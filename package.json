@@ -17,5 +17,16 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0"
+    },
+    "dependencies": {
+        "vue": "^2.6.11",
+        "vue-color": "^2.7.0",
+        "vue-moment": "^4.1.0",
+        "vue-particles": "^1.0.9",
+        "vue-router": "^3.1.5",
+        "vue-slick": "^1.1.15",
+        "vue2-dropzone": "^3.6.0",
+        "vuetify": "^2.2.12",
+        "vuex": "^3.1.2"
     }
 }
