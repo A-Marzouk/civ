@@ -70,6 +70,16 @@ if ($("#resumeTheme8").length !== 0) {
     });
 }
 
+import resumeTheme10 from './components/resume_themes/theme10';
+if ($("#resumeTheme10").length !== 0) {
+    new Vue({
+        el: '#resumeTheme10',
+        components:{
+            'resume-theme-10':resumeTheme10
+        }
+    });
+}
+
 
 
 

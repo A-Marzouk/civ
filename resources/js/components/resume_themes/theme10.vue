@@ -343,7 +343,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $primaryColor: #104efb;
 
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap");
