@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// resume controller routes:
+Route::get('/preview/{themeCode}', 'ResumeController@themePreview');

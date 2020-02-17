@@ -1,8 +1,8 @@
 <template>
     <div class="row hero-wrap">
         <div class="pa-0 head-bar col-sm-12 col-lg-12 col-12">
-            <a href="#">
-                <img src="/images/welcome_landing_page/icons/logo.png" alt="">
+            <a href="#" class="logo">
+                <img src="/images/welcome_landing_page/logo/civie_logo-01.png" alt="">
             </a>
         </div>
         <div class="pa-0 intro-section col-sm-12 col-lg-6 col-12">
@@ -154,8 +154,14 @@
 
                 a {
                     img {
-                        min-width: 316.4px;
+                        min-width: 195px;
                         max-height: 53px;
+                    }
+                }
+
+                a.logo{
+                    img{
+                        width:195px;
                     }
                 }
             }
@@ -203,6 +209,12 @@
                     img {
                         min-width: 240px;
                         max-width: 240px;
+                    }
+                }
+
+                a.logo{
+                    img{
+                        width:195px;
                     }
                 }
             }
@@ -265,6 +277,12 @@
 
     .head-bar {
         margin-bottom: 100px;
+
+        a.logo{
+            img{
+                width:195px;
+            }
+        }
     }
 
     .intro-section {
