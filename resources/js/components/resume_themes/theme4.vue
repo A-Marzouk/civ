@@ -187,7 +187,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
     .hideOnNotPhone{
         @media only screen and (min-width: 765px) {

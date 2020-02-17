@@ -22,4 +22,18 @@ if ($("#resumeTheme3").length !== 0) {
 }
 
 
+import resumeTheme4 from './components/resume_themes/theme4';
+if ($("#resumeTheme4").length !== 0) {
+    new Vue({
+        el: '#resumeTheme4',
+        components:{
+            'resume-theme-4':resumeTheme4
+        }
+    });
+}
+
+
+
+
+
 

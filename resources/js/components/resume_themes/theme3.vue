@@ -857,7 +857,7 @@
                 bottom: 0;
                 height: 1px;
                 width: 125%;
-                margin-left: -58%;
+                margin-left: -12.5%;
                 border: 3px solid #5289E7;
                 border-radius: 5px;
                 @media only screen and (max-width: 765px) {
@@ -1442,7 +1442,7 @@
                     bottom: 0;
                     height: 1px;
                     width: 125%;
-                    margin-left: -58%;
+                    margin-left: -12.5%;
                     border: 3px solid #5289E7;
                     border-radius: 5px;
                     @media only screen and (max-width: 765px) {
@@ -1773,7 +1773,7 @@
                     bottom: 0;
                     height: 1px;
                     width: 125%;
-                    margin-left: -58%;
+                    margin-left: -12.5%;
                     border: 3px solid #5289E7;
                     border-radius: 5px;
                     @media only screen and (max-width: 765px) {
