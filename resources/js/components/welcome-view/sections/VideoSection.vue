@@ -42,7 +42,7 @@ export default {
 <style lang="scss" scoped>
 
   .play-icon{
-    margin-top: 30%;
+    margin-top: 0;
     margin-left: 10%;
   }
 
