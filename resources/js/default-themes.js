@@ -32,6 +32,17 @@ if ($("#resumeTheme4").length !== 0) {
     });
 }
 
+import resumeTheme5 from './components/resume_themes/theme5';
+if ($("#resumeTheme5").length !== 0) {
+    new Vue({
+        el: '#resumeTheme5',
+        components:{
+            'resume-theme-5':resumeTheme5
+        }
+    });
+}
+
+
 
 
 

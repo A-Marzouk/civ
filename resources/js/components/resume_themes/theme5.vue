@@ -372,7 +372,7 @@
     }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss" scoped>
     .theme-container {
         display: flex;
         justify-content: center;
@@ -760,7 +760,7 @@
                 .education {
                     display: flex;
                     flex-wrap: wrap;
-                    justify-content: start;
+                    justify-content: flex-start;
                     width: 100%;
 
                     .education-item {
@@ -889,7 +889,7 @@
 
                 .left {
                     display: flex;
-                    align-items: start;
+                    align-items: flex-start;
                     margin-bottom: 22px;
 
                     .profile-picture {
@@ -1268,7 +1268,7 @@
                     .education {
                         display: flex;
                         flex-wrap: wrap;
-                        justify-content: start;
+                        justify-content:  flex-start;
 
                         .education-item {
                             margin-right: 30px;
@@ -1795,7 +1795,7 @@
                     .education {
                         display: flex;
                         flex-wrap: wrap;
-                        justify-content: start;
+                        justify-content:  flex-start;
 
                         .education-item {
                             margin-right: 0;
