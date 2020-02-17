@@ -17,3 +17,8 @@ Route::get('/', function () {
 
 // resume controller routes:
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview');
+
+Auth::routes(['verify' => true]);
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
