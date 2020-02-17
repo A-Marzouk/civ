@@ -19,6 +19,14 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            // social logins ID's holder
+            $table->string('github_id')->nullable();
+            $table->string('google_id')->nullable();
+            $table->string('linkedin_id')->nullable();
+            $table->string('facebook_id')->nullable();
+            $table->string('instagram_id')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });
