@@ -21,6 +21,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "bootstrap": "^4.4.1",
         "jquery": "^3.4.1",
         "laravel-mix-svg-vue": "^0.2.6",
         "vue": "^2.6.11",
