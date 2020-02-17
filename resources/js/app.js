@@ -1,4 +1,3 @@
-import $ from "jquery";
 require('./modules');
 
 // welcome page view component registration:

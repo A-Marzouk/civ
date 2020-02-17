@@ -1,4 +1,4 @@
-@extends('freelancer.layouts.theme_frame')
+@extends('layouts.app')
 
 @section('content')
     <div id="resumeTheme8" class="d-flex justify-content-center w-100">
