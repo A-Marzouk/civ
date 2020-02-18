@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     },
     actions:{
         getCurrentUser: (store) => {
-            axios.get('/agent/current').then( (response) => {
+            axios.get('/api/user/current').then( (response) => {
                 store.commit('getCurrentUser',response.data);
             });
         }

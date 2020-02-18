@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class ResumeBuilderController extends Controller
 {
@@ -18,31 +20,30 @@ class ResumeBuilderController extends Controller
 
     public function editAccountData(Request $request){
         $request->validate([
-            'first_name' => 'max:191|required',
+            'name' => 'max:191|required',
             'email'     => 'max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
             'username' => 'min:3|max:191',
         ]);
 
 
-        $user = currentUser();
+        $user = auth()->user();
 
 
-        $user->userData->update(
-            $request->toArray()
-        );
 
-
-        if ($request->userNameChanged) {
-            $user->update([
-                'username' => $request->username
-            ]);
-        }
-
+        $user->update([
+            'username' => $request->username
+        ]);
 
         if (isset($request->password)) {
             $user->update([
-                'password' => $request->password
+                'password' => Hash::make($request->password)
+            ]);
+        }
+
+        if (isset($request->name)) {
+            $user->update([
+                'name' => $request->name
             ]);
         }
 
@@ -52,12 +53,12 @@ class ResumeBuilderController extends Controller
             ]);
         }
 
-        return $user->userData;
+        return $user;
     }
 
     public function validateSingleField(Request $request){
         $request->validate([
-            'first_name' => 'min:3|max:191',
+            'name' => 'min:3|max:191',
             'email'     => 'max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
             'username' => 'min:3|max:191|unique:users',
