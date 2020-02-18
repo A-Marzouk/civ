@@ -7,16 +7,16 @@
                         My account
                     </div>
                     <div class="mar-form">
-                        <div class="mar-input" :class="{active:fields.first_name, 'error':errors.first_name}">
+                        <div class="mar-input" :class="{active:fields.name, 'error':errors.name}">
                             <div class="d-flex align-items-center" style="position: relative;">
-                                <input type="text" v-model="accountData.first_name" id="first_name"
-                                       @focus="focusFiledStyles('first_name')" @blur="validateFiled('first_name')">
+                                <input type="text" v-model="accountData.name" id="name"
+                                       @focus="focusFiledStyles('name')" @blur="validateFiled('name')">
                                 <img src="/images/resume_builder/my_account/check-circle-regular.svg" alt="correct"
-                                     v-show="fields.first_name">
+                                     v-show="fields.name">
                                 <img src="/images/resume_builder/my_account/times-circle-regular.svg" alt="correct"
-                                     v-show="errors.first_name">
+                                     v-show="errors.name">
                             </div>
-                            <label for="first_name">
+                            <label for="name">
                                 Name
                             </label>
                         </div>
@@ -145,8 +145,8 @@
 </template>
 
 <script>
-    import monthlyPlan from "../../freelancerResume/resumeBuilderIncludes/monthly_plan.vue";
-    import yearlyPlan from "../../freelancerResume/resumeBuilderIncludes/yearly_plan.vue";
+    import monthlyPlan from "./includes/monthly_plan";
+    import yearlyPlan from "./includes/yearly_plan";
 
     export default {
         name: "MyAccount",
@@ -164,7 +164,7 @@
                 notificationMessage: '',
                 usernameOldValue: '',
                 fields: {
-                    first_name: '',
+                    name: '',
                     email: '',
                     username: '',
                     password: '',
@@ -177,7 +177,7 @@
                 this.usernameOldValue = this.currentUser.username;
 
                 return {
-                    first_name: user.user_data ? user.user_data.first_name : '',
+                    name: user.name,
                     email: user.email,
                     username: user.username,
                     userNameChanged: false,

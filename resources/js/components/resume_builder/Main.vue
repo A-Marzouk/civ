@@ -24,7 +24,7 @@
                     <img src="/images/resume_builder/notification.png" alt="notification icon">
                 </button>
                 <button class="action-btn">
-                    <img src="/images/resume_builder/settings-icon.svg" alt="settings icon">
+                    <img src="/images/resume_builder/settings-icon.svg" alt="settings icon" @click="logout">
                 </button>
                 <button class="action-btn user-profile">
                     <img src="/images/resume_builder/default-user.jpg" alt="user profile picture">
@@ -67,6 +67,12 @@
             setActiveMainTab(tab) {
                 console.log(tab);
                 this.activeMainTab = tab
+            },
+            logout(){
+                axios.post('/logout', {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}).then((response) =>{
+                        window.location.href = '/';
+                    }
+                )
             }
         },
         mounted() {

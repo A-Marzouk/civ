@@ -4,7 +4,7 @@
            <div @click="() => false" class="aside-bar d-flex flex-column mr-5">
                <div @click="setActive" v-for="(section, ind) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{'active': !ind}">
 
-                <svg-vue class="aside-icon" :icon="`${section.name}-icon`"></svg-vue>
+                <img class="aside-icon" :src="`/images/resume_builder/${section.name}-icon.svg`">
                 <router-link :to="`/resume-builder/edit/${section.name.replace('/', '-')}`">
                     {{formatSectionString(section.name)}}
                 </router-link>

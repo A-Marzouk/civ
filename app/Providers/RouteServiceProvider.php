@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const RESUME_BUILDER = '/resume-builder';
 
     /**
      * Define your route model bindings, pattern filters, etc.

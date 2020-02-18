@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.my-app')
 
 @section('content')
     <div id="resumeTheme5" class="d-flex justify-content-center">

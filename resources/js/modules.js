@@ -1,13 +1,19 @@
-
 window.Vue = require('vue');
-// VueRouter
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
 
 // Vuetify
 import Vuetify from 'vuetify';
 Vue.use(Vuetify);
 
+// axios:
+
+window.axios = require('axios');
+Vue.use(axios);
+
 // VueParticles
 import VueParticles from 'vue-particles';
 Vue.use(VueParticles);
+
+// vue2Dropzone
+import vue2Dropzone from 'vue2-dropzone'
+Vue.component("vue2Dropzone", vue2Dropzone);
+import 'vue2-dropzone/dist/vue2Dropzone.min.css';
