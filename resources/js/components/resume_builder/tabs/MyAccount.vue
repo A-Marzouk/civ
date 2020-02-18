@@ -145,8 +145,8 @@
 </template>
 
 <script>
-    import monthlyPlan from "../../freelancerResume/resumeBuilderIncludes/monthly_plan.vue";
-    import yearlyPlan from "../../freelancerResume/resumeBuilderIncludes/yearly_plan.vue";
+    import monthlyPlan from "./includes/monthly_plan";
+    import yearlyPlan from "./includes/yearly_plan";
 
     export default {
         name: "MyAccount",

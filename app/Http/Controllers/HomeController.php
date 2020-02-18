@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('welcome');
+        $this->middleware('auth')->except('welcome','privacy','terms');
     }
 
     /**
@@ -29,5 +29,17 @@ class HomeController extends Controller
     public function verified()
     {
         return 'verified';
+    }
+
+
+    public function privacy()
+    {
+        return view('contracts.privacy');
+
+    }
+
+    public function terms()
+    {
+        return view('contracts.terms');
     }
 }

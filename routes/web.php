@@ -18,6 +18,10 @@ Route::get('/preview/{themeCode}', 'ResumeController@themePreview');
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@welcome')->name('home');
+Route::get('/privacy', 'HomeController@privacy')->name('privacy');
+Route::get('/terms', 'HomeController@terms')->name('terms');
+
+
 Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
 
 // social sites register & login:
@@ -36,3 +40,10 @@ Route::get('/register/google/callback', 'Auth\SocialSitesRegisterController@hand
 
 Route::get('/register/linkedin', 'Auth\SocialSitesRegisterController@redirectToLinkedinProvider')->name('client.linkedin.register');
 Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@handleLinkedinProviderCallback')->name('client.linkedin.callback');
+
+
+// resume builder main routes.
+Route::get('/resume-builder/{any?}', 'ResumeBuilderController@index')->name('resume.builder.main');
+Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name('resume.builder.edit');
+Route::post('/resume-builder/account/submit', 'ResumeBuilderController@editAccountData')->name('account.edit');
+Route::post('/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('account.validate');

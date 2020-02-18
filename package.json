@@ -29,6 +29,7 @@
         "bootstrap": "^4.4.1",
         "jquery": "^3.4.1",
         "laravel-mix-svg-vue": "^0.2.6",
+        "svg-vue": "^0.1.1",
         "vue": "^2.6.11",
         "vue-color": "^2.7.0",
         "vue-load-image": "^0.1.9",
