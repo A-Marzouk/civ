@@ -95,14 +95,11 @@
             },
             submitForm() {
                 this.canSubmit = false;
-                if(this.referral_code){
-                    this.formData.referral_code = this.referral_code ;
-                }
                 this.formData.name = this.getUserName();
                 this.formData.password_confirmation = this.formData.password;
-                axios.post('/freelancer/register', this.formData)
+                axios.post('/simple-register', this.formData)
                     .then(response => {
-                        window.location.href = '/dashboard';
+                        window.location.href = '/resume-builder';
                     })
                     .catch(error => {
                         this.canSubmit = true;

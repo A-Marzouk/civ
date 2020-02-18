@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Http\Client\Exception;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -39,15 +40,15 @@ class SocialSitesRegisterController extends Controller
 
     public function simpleRegister(Request $request)
     {
-
         $this->validator($request->all())->validate();
-        $agent = $this->create($request->all());
-        if (isset($request->referral_code)) {
-            $agent->user->update([
-                'referred_by_code' => $request->referral_code
-            ]);
-        }
-        auth()->login($agent->user);
+
+         $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        auth()->login($user);
 
         return [
             'status' => 'success'

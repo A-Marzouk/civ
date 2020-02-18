@@ -26,6 +26,8 @@ Route::get('/verified', 'HomeController@verified')->name('verified')->middleware
 
 // social sites register & login:
 
+Route::post('/simple-register', 'Auth\SocialSitesRegisterController@simpleRegister')->name('simple.register');
+
 Route::get('/register/github', 'Auth\SocialSitesRegisterController@redirectToGitHubProvider')->name('client.github.register');
 Route::get('/register/github/callback', 'Auth\SocialSitesRegisterController@handleGitHubProviderCallback')->name('client.github.callback');
 
