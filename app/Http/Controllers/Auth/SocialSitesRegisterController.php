@@ -11,11 +11,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\User;
-use Http\Client\Exception;
+use Exception;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Validator;
@@ -28,15 +26,6 @@ class SocialSitesRegisterController extends Controller
         $this->middleware('guest');
     }
 
-    public function simpleRegisterView()
-    {
-        $referral_code = 'NOT_DEFINED';
-        if (Input::get('referral_code')) {
-            // it means this client is refered by someone.
-            $referral_code = Input::get('referral_code');
-        }
-        return view('auth.freelancerSimpleRegister', compact('referral_code'));
-    }
 
     public function simpleRegister(Request $request)
     {
@@ -66,12 +55,10 @@ class SocialSitesRegisterController extends Controller
 
     protected function create(array $data)
     {
-        return app(User::class)->createAgent([
-            'user' => [
-                'email' => $data['email'],
-                'password' => $data['password'],
-                'username' => $data['email'],
-            ]
+        return User::create([
+            'username' => $data['email'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
     }
 
@@ -92,19 +79,13 @@ class SocialSitesRegisterController extends Controller
             return $authUser;
         }
 
-        $agent = app(User::class)->createAgent([
-            'user' => [
-                'email' => $user->email ?? $user->user['username'],
-                'username' => $user->email ?? $user->user['username'],
-                $provider.'_id' => $user->id
-            ],
-            'agent' => [],
-            'user_data' => [
-                'first_name' => $user->name,
-            ],
+        $user = User::create([
+            'email' => $user->email ?? $user->user['username'],
+            'username' => $user->email ?? $user->user['username'],
+            $provider.'_id' => $user->id
         ]);
 
-        return $agent->user;
+        return $user;
 
     }
 
@@ -119,7 +100,7 @@ class SocialSitesRegisterController extends Controller
         try {
             $user = Socialite::driver('github')->user();
         } catch (Exception $e) {
-            return Redirect::to('/freelancer/register/github');
+            return Redirect::to('/register/github');
         }
 
         $authUser = $this->findOrCreateUser($user,'github');
@@ -140,7 +121,7 @@ class SocialSitesRegisterController extends Controller
         try {
             $user = Socialite::driver('google')->user();
         } catch (Exception $e) {
-            return Redirect::to('/freelancer/register/google');
+            return Redirect::to('/register/google');
         }
 
         $authUser = $this->findOrCreateUser($user,'google');
@@ -161,7 +142,7 @@ class SocialSitesRegisterController extends Controller
         try {
             $user = Socialite::driver('linkedin')->user();
         } catch (Exception $e) {
-            return Redirect::to('/freelancer/register/linkedin');
+            return Redirect::to('/register/linkedin');
         }
 
         $authUser = $this->findOrCreateUser($user,'linkedin');
@@ -182,7 +163,7 @@ class SocialSitesRegisterController extends Controller
         try {
             $user = Socialite::driver('facebook')->stateless()->user();
         } catch (Exception $e) {
-            return Redirect::to('/freelancer/register/facebook');
+            return Redirect::to('/register/facebook');
         }
 
         $authUser = $this->findOrCreateUser($user,'facebook');
@@ -203,7 +184,7 @@ class SocialSitesRegisterController extends Controller
         try {
             $user = Socialite::driver('instagram')->stateless()->user();
         } catch (Exception $e) {
-            return Redirect::to('/freelancer/register/instagram');
+            return Redirect::to('/register/instagram');
         }
 
         $authUser = $this->findOrCreateUser($user,'instagram');
