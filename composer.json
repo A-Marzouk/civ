@@ -11,9 +11,10 @@
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^6.2",
-        "symfony/translation": "4.3.8",
         "laravel/socialite": "^4.3",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "spatie/laravel-permission": "^3.8",
+        "symfony/translation": "4.3.8"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
