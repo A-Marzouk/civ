@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <span class="title-inline">Already have account? <a href="#">Login</a></span>
+                <span class="title-inline">Already have account? <a href="/login">Login</a></span>
             </div>
         </div>
     </div>
