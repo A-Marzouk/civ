@@ -1,3 +1,22 @@
 .policy,.terms{
   white-space: pre;
 }
+
+.NoDecor a,button {
+  outline: none;
+}
+
+.NoDecor a:hover,button:hover {
+  text-decoration: none;
+}
+
+.NoDecor {
+  a.focus, a:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+  }
+  button.focus, button:focus{
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+  }
+}

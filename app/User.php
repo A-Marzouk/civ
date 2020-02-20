@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable;
+    use Notifiable,HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +37,15 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function getIsAdminAttribute()
+    {
+        return $this->hasRole('admin');
+    }
+
+    public function getIsUserAttribute()
+    {
+        return $this->hasRole('user');
+    }
 }
