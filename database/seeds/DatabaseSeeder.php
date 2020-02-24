@@ -14,10 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-//        $this->cleanDatabase();
+        $this->cleanDatabase();
 
         $this->call(RolesAndPermissionsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
+        $this->call(SkillsTableSeeder::class);
     }
 
     private function cleanDatabase()
