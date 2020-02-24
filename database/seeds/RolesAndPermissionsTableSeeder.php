@@ -51,8 +51,8 @@ class RolesAndPermissionsTableSeeder extends Seeder
             ],
             [
                 'role' => [
-                    'name' => 'user',
-                    'label' => 'User',
+                    'name' => 'agent',
+                    'label' => 'Agent',
                 ],
                 'permissions' => [],
             ]
