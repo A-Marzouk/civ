@@ -35,7 +35,7 @@ class SocialSitesRegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ])->assignRole('user');
+        ])->assignRole('agent');
 
         auth()->login($user);
 
@@ -59,7 +59,7 @@ class SocialSitesRegisterController extends Controller
             'username' => $data['email'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ])->assignRole('user');
+        ])->assignRole('agent');
     }
 
 
@@ -83,7 +83,7 @@ class SocialSitesRegisterController extends Controller
             'email' => $user->email ?? $user->user['username'],
             'username' => $user->email ?? $user->user['username'],
             $provider.'_id' => $user->id
-        ])->assignRole('user');
+        ])->assignRole('agent');
 
         return $user;
 

@@ -32,7 +32,7 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Civ Agent',
             ],
         ])->each(function ($item) {
-            User::create($item)->assignRole('user');
+            User::create($item)->assignRole('agent');
         });
     }
 }
