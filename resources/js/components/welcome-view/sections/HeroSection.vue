@@ -34,6 +34,23 @@
                                     <div class="v-input__control">
                                         <div class="v-input__slot">
                                             <div class="v-text-field__slot">
+                                                <input name="name" required="required" id="input-8" class="w-100" placeholder="Name" type="text" style="padding-left: 20px;" v-model="formData.name"></div>
+                                        </div>
+                                        <div class="v-text-field__details" v-if="errors.name">
+                                            <div class="v-messages theme--light error--text" role="alert">
+                                                <div class="v-messages__wrapper">
+                                                    <div class="v-messages__message">{{errors.name[0]}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-12 col-12">
+                                <div class="v-input v-input--has-state theme--light v-text-field v-text-field--is-booted v-text-field--placeholder error--text">
+                                    <div class="v-input__control">
+                                        <div class="v-input__slot">
+                                            <div class="v-text-field__slot">
                                                 <input name="email" required="required" id="input-9" class="w-100" placeholder="Email" type="text" style="padding-left: 20px;" v-model="formData.email"></div>
                                         </div>
                                         <div class="v-text-field__details" v-if="errors.email">
@@ -63,6 +80,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-sm-12 col-lg-12 col-12">
+                                <div class="v-input v-input--has-state theme--light v-text-field v-text-field--is-booted v-text-field--placeholder error--text">
+                                    <div class="v-input__control">
+                                        <div class="v-input__slot">
+                                            <div class="v-text-field__slot">
+                                                <input name="password_confirmation" required="required" id="input-11" placeholder="Confirm password" type="password"  v-model="formData.password_confirmation" class="w-100" style="padding-left: 20px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-sm-12 col-lg-12 col-12 NoDecor">
                                 <a href="javascript:void(0)" class="btn-inset light__blue full" @click="submitForm"><i>Sign up</i></a>
                             </div>
@@ -80,7 +107,7 @@
         data() {
             return {
                 formData: {
-                    name: 'Workforce agent',
+                    name: '',
                     email: '',
                     password: '',
                     password_confirmation: '',
@@ -95,8 +122,6 @@
             },
             submitForm() {
                 this.canSubmit = false;
-                this.formData.name = this.getUserName();
-                this.formData.password_confirmation = this.formData.password;
                 axios.post('/simple-register', this.formData)
                     .then(response => {
                         window.location.href = '/resume-builder';
