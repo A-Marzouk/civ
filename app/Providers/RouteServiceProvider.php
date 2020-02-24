@@ -22,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const RESUME_BUILDER = '/resume-builder';
+    public const ADMIN = '/workforce-admin';
 
     /**
      * Define your route model bindings, pattern filters, etc.
