@@ -16,3 +16,23 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+Route::group(['prefix'=>'users/{user_id}'], function(){
+
+// skills api routes:
+    //list skills
+    Route::get('/skills','SkillsController@index');
+    //list single skill
+    Route::get('/skills/{id}','SkillsController@show');
+    //create new skill
+    Route::post('skill','SkillsController@store');
+    //update a skill
+    Route::put('/skill','SkillsController@store');
+    //delete skill
+    Route::delete('skills/{id}','SkillsController@destroy');
+
+});
+
+

@@ -14,7 +14,10 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->engine = 'InnoDB';
+
+            $table->bigIncrements('id')->unique();
+
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('username')->unique()->nullable();
