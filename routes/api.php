@@ -33,6 +33,18 @@ Route::group(['prefix'=>'users/{user_id}'], function(){
     //delete skill
     Route::delete('skills/{id}','SkillsController@destroy');
 
+
+// Hobbies api routes:
+    //list skills
+    Route::get('/hobbies','HobbiesController@index');
+    //list single skill
+    Route::get('/hobbies/{id}','HobbiesController@show');
+    //create new skill
+    Route::post('hobby','HobbiesController@store');
+    //update a skill
+    Route::put('/hobby','HobbiesController@store');
+    //delete skill
+    Route::delete('hobbies/{id}','HobbiesController@destroy');
 });
 
 
