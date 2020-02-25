@@ -48,9 +48,13 @@ Route::group(['prefix' => 'users/{user_id}'], function () {
 
 
 // Authentication API routes
-Route::post('login', 'API\AuthController@login');
+Route::post('login', 'API\AuthController@login')->name('api.login');
 Route::post('register', 'API\AuthController@register');
+
 Route::group(['middleware' => 'auth:api'], function () {
+
     Route::get('user', 'API\AuthController@user');
+    Route::post('logout', 'API\AuthController@logout');
+
 });
 

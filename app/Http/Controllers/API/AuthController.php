@@ -30,10 +30,10 @@ class AuthController extends Controller
         if($attempt){
             $user = Auth::user();
 
-            $success['access_token'] =  $user->createToken('civ access token')-> accessToken;
+            $success['access_token'] =  $user->createToken('My-App')->accessToken;
             $success['user'] =  $user;
 
-            return response()->json(['success' => $success], $this-> successStatus);
+            return response()->json(['success' => $success], $this->successStatus);
         }
 
         return response()->json(['error'=>'Unauthorised'], 401);
@@ -61,7 +61,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ])->assignRole('agent');
 
-        $success['access_token'] =  $user->createToken('civ_Login')-> accessToken;
+        $success['access_token'] =  $user->createToken('My-App')-> accessToken;
         $success['user'] =  $user;
 
         return response()->json(['success'=>$success], $this-> successStatus);
@@ -75,5 +75,19 @@ class AuthController extends Controller
     {
         $user = Auth::user();
         return response()->json(['success' => $user], $this-> successStatus);
+    }
+
+
+    /**
+     * lougut api
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout()
+    {
+        if (Auth::check()) {
+            Auth::user()->token()->revoke();
+            return response()->json(['success' => 'Logged out', 'access_token' => Auth::user()->token()], $this-> successStatus);
+        }
     }
 }
