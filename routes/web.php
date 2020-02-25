@@ -54,3 +54,7 @@ Route::get('/user/current', 'UsersController@currentUser')->name('current.user')
 
 // admin routes:
 Route::get('/workforce-admin', 'AdminsController@index')->name('admin.dashboard');
+
+
+// passport clients route:
+Route::get('/developer', 'APIController@APIClients')->name('create.api.client');

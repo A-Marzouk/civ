@@ -30,7 +30,7 @@ class AuthController extends Controller
         if($attempt){
             $user = Auth::user();
 
-            $success['access_token'] =  $user->createToken('My-App')->accessToken;
+            $success['access_token'] = $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
             $success['user'] =  $user;
 
             return response()->json(['success' => $success], $this->successStatus);
@@ -61,7 +61,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ])->assignRole('agent');
 
-        $success['access_token'] =  $user->createToken('My-App')-> accessToken;
+        $success['access_token'] = $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
         $success['user'] =  $user;
 
         return response()->json(['success'=>$success], $this-> successStatus);
