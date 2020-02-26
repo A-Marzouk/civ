@@ -82,7 +82,7 @@
                 moveTabsHelper(e, 'mainLinksWrapper', _this)
             },
             logout(){
-                axios.post('/logout', {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}).then((response) =>{
+                axios.post('/logout').then((response) =>{
                         window.location.href = '/';
                     }
                 )
