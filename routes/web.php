@@ -49,7 +49,7 @@ Route::post('/resume-builder/account/validate', 'ResumeBuilderController@validat
 
 
 // users controller routes
-Route::get('/api/user/current', 'UsersController@currentUser')->name('current.user');
+Route::get('/user/current', 'UsersController@currentUser')->name('current.user');
 
 
 // admin routes:
