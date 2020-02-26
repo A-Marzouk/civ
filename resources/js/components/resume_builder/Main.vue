@@ -83,6 +83,8 @@
             },
             logout(){
                 axios.post('/logout').then((response) =>{
+                        // remove access token from cookies:
+                        Vue.$cookies.remove('access_token');
                         window.location.href = '/';
                     }
                 )

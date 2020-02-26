@@ -32,6 +32,7 @@
         "laravel-mix-svg-vue": "^0.2.6",
         "vue": "^2.6.11",
         "vue-color": "^2.7.0",
+        "vue-cookies": "^1.6.1",
         "vue-load-image": "^0.1.9",
         "vue-moment": "^4.1.0",
         "vue-particles": "^1.0.9",

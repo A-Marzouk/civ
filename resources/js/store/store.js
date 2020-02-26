@@ -3,10 +3,14 @@ window.Vue = require('vue');
 import Vuex from 'vuex'
 Vue.use(Vuex);
 
+// cookies:
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies);
 
 export const store = new Vuex.Store({
     state:{
-        user:{}
+        user:{},
+        access_token: Vue.$cookies.get('access_token') || null
     },
     mutations:{
       getCurrentUser: (state,data)=>{

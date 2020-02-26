@@ -80,6 +80,7 @@
                     .then(response => {
                         // save the access token then redirect:
                         console.log(response.data);
+                        Vue.$cookies.set('access_token',response.data.access_token,"3y");
                         window.location.href = '/resume-builder';
                     })
                     .catch(error => {
