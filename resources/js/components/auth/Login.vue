@@ -78,6 +78,8 @@
                 this.canSubmit = false;
                 axios.post('/login', this.formData)
                     .then(response => {
+                        // save the access token then redirect:
+                        console.log(response.data);
                         window.location.href = '/resume-builder';
                     })
                     .catch(error => {
