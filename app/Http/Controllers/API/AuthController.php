@@ -85,8 +85,6 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        return Auth::user()->token();
-
         if (Auth::check()) {
             Auth::user()->token()->revoke();
             return response()->json(['success' => 'Logged out', 'access_token' => Auth::user()->token()], $this-> successStatus);

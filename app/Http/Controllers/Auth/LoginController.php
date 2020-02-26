@@ -66,7 +66,9 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::guard('api')->user()->token()->revoke();
+        if(Auth::guard('api')->check()){
+            Auth::guard('api')->user()->token()->revoke();
+        }
         $this->guard()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
