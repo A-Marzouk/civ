@@ -7,7 +7,7 @@
             </a>
 
             <!-- Replace this with vue-tabs -->
-            <div id="mainLinksWrapper" class="links-group d-flex alig-items-center justify-content-between">
+            <div id="mainLinksWrapper" class="links-group d-flex align-items-center justify-content-between">
                 <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="first main-tab-link">
                     My account
                 </router-link>
@@ -66,7 +66,7 @@
             }
         },
         methods: {
-            setActiveMainTab(tab) {
+            setActiveTab(tab) {
                 this.activeTab = tab
             },
             changeTab (e) {
@@ -90,19 +90,19 @@
                 // my Account Tab
                 case 2:
                     linksWrapper.classList.add('moveFrom-myAccount')
-                    this.setActiveMainTab('myAccount')
+                    this.setActiveTab('myAccount')
                     break
 
                 // view CV Tab
                 case 3:
                     linksWrapper.classList.add('moveFrom-viewCV')
-                    this.setActiveMainTab('viewCV')
+                    this.setActiveTab('viewCV')
                     break
 
                 // edit Tab
                 default:
                     linksWrapper.classList.add('moveFrom-editCV')
-                    this.setActiveMainTab('editCV')
+                    this.setActiveTab('editCV')
                     break
             }
         }
