@@ -77,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-lg-12 col-12 NoDecor">
+                    <div class="col-sm-12 col-lg-12 col-12 NoDecor" :class="{'disabled':!canSubmit}">
                         <a href="javascript:void(0)" class="btn-inset light__blue full" @click="submitForm"><i>Sign up</i></a>
                     </div>
                 </div>
@@ -104,6 +104,10 @@
         },
         methods:{
             submitForm() {
+                if (!this.canSubmit) {
+                    console.log('Please wait...');
+                    return;
+                }
                 this.canSubmit = false;
                 axios.post('/simple-register', this.formData)
                     .then(response => {
@@ -138,6 +142,11 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
+    .disabled{
+        a:hover {
+            cursor: not-allowed;
+        }
+    }
 </style>
