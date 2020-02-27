@@ -50,6 +50,17 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="ml-4 mb-3">
+                        <input class="form-check-input" type="checkbox" name="remember"
+                               id="remember" v-model="formData.remember">
+
+                        <label class="form-check-label" for="remember">
+                            Remember Me
+                        </label>
+                    </div>
+
+
                     <div class="col-sm-12 col-lg-12 col-12 NoDecor">
                         <a href="javascript:void(0)" class="btn-inset light__blue full" @click="submitForm"><i>Login</i></a>
                     </div>
@@ -68,6 +79,7 @@
                 formData: {
                     email: '',
                     password: '',
+                    remember: false
                 },
                 canSubmit: true,
                 errors: []
