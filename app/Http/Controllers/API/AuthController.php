@@ -75,18 +75,6 @@ class AuthController extends Controller
     }
 
     /**
-     * details api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function user()
-    {
-        $user = Auth::user();
-        return response()->json(['success' => $user], $this-> successStatus);
-    }
-
-
-    /**
      * lougut api
      *
      * @return \Illuminate\Http\Response

@@ -45,12 +45,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasRole('admin');
     }
 
-    public function getIsUserAttribute()
+    public function getIsAgentAttribute()
     {
-        return $this->hasRole('user');
+        return $this->hasRole('agent');
     }
 
+
+    // relations has Many
     public function skills(){
-        $this->hasMany(Skill::class);
+        return $this->hasMany(Skill::class);
+    }
+    public function hobbies(){
+        return $this->hasMany(Hobby::class);
     }
 }

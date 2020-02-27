@@ -12,4 +12,9 @@ class Skill extends Model
         'title','category','percentage','user_id'
     ];
 
+
+    public function user(){
+       return $this->belongsTo(User::class);
+    }
+
 }
