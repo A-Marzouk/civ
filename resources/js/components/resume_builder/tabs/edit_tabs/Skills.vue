@@ -82,14 +82,10 @@
         },
         methods:{
             moveProgressBar() {
-                console.log("moveProgressBar");
-
-                
                 this.skills.forEach((skill) => {
                     let skillIdSelector = $('#skill_' + skill.id);
                     let progressBarSelector = $('#progress-bar_' + skill.id);
                     let getPercent = skillIdSelector.data('progress-percent') / 100;
-                    console.log(getPercent);
                     let getProgressWrapWidth = skillIdSelector.width();
                     let progressTotal = getPercent * getProgressWrapWidth;
                     let animationLength = 2000;
@@ -100,8 +96,6 @@
                         left: progressTotal
                     }, animationLength);
                 });
-                
-       
             }
         },
         mounted() {
