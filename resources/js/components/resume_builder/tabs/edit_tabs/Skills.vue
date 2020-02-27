@@ -46,33 +46,18 @@
            </div>
 
            <div class="skills-list">
-               <div class="skills-item">
+               <div v-for="(skill,index) in skills" :key="skill.id + '_skill'" class="skills-item">
                    <div class="skill-title">
-                       Adobe Illustrator
+                       {{skill.title}}
                    </div>
                    <div class="percentage">
                        <div class="percentage-bar">
-                           <div class="progress-wrap progress" data-progress-percent="70">
-                               <div class="progress-bar progress"></div>
+                           <div class="progress-wrap progress" :id="'skill_' + skill.id" :data-progress-percent="skill.percentage">
+                               <div class="progress-bar progress" :id="'progress-bar_' + skill.id"></div>
                            </div>
                        </div>
                        <div class="percentage-text">
-                           70%
-                       </div>
-                   </div>
-               </div>
-               <div class="skills-item">
-                   <div class="skill-title">
-                       Adobe XD
-                   </div>
-                   <div class="percentage">
-                       <div class="percentage-bar">
-                           <div class="progress-wrap color-blueviolet progress" data-progress-percent="70">
-                               <div class="progress-bar progress"></div>
-                           </div>
-                       </div>
-                       <div class="percentage-text color-blueviolet">
-                           70%
+                           {{skill.percentage}}%
                        </div>
                    </div>
                </div>
@@ -83,8 +68,6 @@
 </template>
 
 <script>
-    import vTabNames from './includes/vtab_onincludes';
-
     export default {
         name: "Skills",
         data() {
@@ -92,24 +75,39 @@
                 selectedTab:'programming_languages',
             }
         },
+        computed: {
+            skills() {
+                return this.$store.state.user.skills;
+            }
+        },
         methods:{
             moveProgressBar() {
                 console.log("moveProgressBar");
 
-                var getPercent = ($('.progress-wrap').data('progress-percent') / 100);
-                var getProgressWrapWidth = $('.progress-wrap').width();
-                var progressTotal = getPercent * getProgressWrapWidth;
-                var animationLength = 2000;
+                
+                this.skills.forEach((skill) => {
+                    let skillIdSelector = $('#skill_' + skill.id);
+                    let progressBarSelector = $('#progress-bar_' + skill.id);
+                    let getPercent = skillIdSelector.data('progress-percent') / 100;
+                    console.log(getPercent);
+                    let getProgressWrapWidth = skillIdSelector.width();
+                    let progressTotal = getPercent * getProgressWrapWidth;
+                    let animationLength = 2000;
 
-                // on page load, animate percentage bar to data percentage length
-                // .stop() used to prevent animation queueing
-                $('.progress-bar').stop().animate({
-                    left: progressTotal
-                }, animationLength);
+                    // on page load, animate percentage bar to data percentage length
+                    // .stop() used to prevent animation queueing
+                    progressBarSelector.stop().animate({
+                        left: progressTotal
+                    }, animationLength);
+                });
+                
+       
             }
         },
         mounted() {
-            this.moveProgressBar();
+           setTimeout(() => { // give time to skills to be loaded
+               this.moveProgressBar();
+           },2000)
         }
 
     }

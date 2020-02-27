@@ -297,7 +297,7 @@
             },
         },
         mounted() {
-            this.$store.dispatch('getCurrentUser');
+
         }
 
     }
