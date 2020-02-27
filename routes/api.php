@@ -18,21 +18,43 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-
-Route::group(['prefix'=>'users/{user_id}'], function(){
+Route::group(['prefix' => 'user/'], function () {
 
 // skills api routes:
     //list skills
-    Route::get('/skills','SkillsController@index');
+    Route::get('/skills', 'API\SkillsController@index');
     //list single skill
-    Route::get('/skills/{id}','SkillsController@show');
+    Route::get('/skills/{id}', 'API\SkillsController@show');
     //create new skill
-    Route::post('skill','SkillsController@store');
+    Route::post('/skills', 'API\SkillsController@store');
     //update a skill
-    Route::put('/skill','SkillsController@store');
+    Route::put('/skills', 'API\SkillsController@store');
     //delete skill
-    Route::delete('skills/{id}','SkillsController@destroy');
+    Route::delete('skills/{id}', 'API\SkillsController@destroy');
 
+
+// Hobbies api routes:
+    //list skills
+    Route::get('/hobbies', 'API\HobbiesController@index');
+    //list single skill
+    Route::get('/hobbies/{id}', 'API\HobbiesController@show');
+    //create new skill
+    Route::post('/hobbies', 'API\HobbiesController@store');
+    //update a skill
+    Route::put('/hobbies', 'API\HobbiesController@store');
+    //delete skill
+    Route::delete('hobbies/{id}', 'API\HobbiesController@destroy');
 });
 
+
+// API Authentication routes
+Route::post('login', 'API\AuthController@login')->name('api.login');
+Route::post('register', 'API\AuthController@register');
+
+Route::group(['middleware' => 'auth:api'], function () {
+
+    Route::get('user', 'API\AuthController@user');
+    Route::post('logout', 'API\AuthController@logout');
+
+});
 

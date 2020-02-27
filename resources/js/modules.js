@@ -5,7 +5,6 @@ import Vuetify from 'vuetify';
 Vue.use(Vuetify);
 
 // axios:
-
 window.axios = require('axios');
 Vue.use(axios);
 
@@ -21,3 +20,7 @@ import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 // SvgVue
 import SvgVue from 'svg-vue';
 Vue.use(SvgVue);
+
+// cookies:
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies);

@@ -24,7 +24,7 @@
                     <img src="/images/resume_builder/notification.png" alt="notification icon">
                 </button>
                 <button class="action-btn">
-                    <img src="/images/resume_builder/settings-icon.svg" alt="settings icon">
+                    <img src="/images/resume_builder/settings-icon.svg" alt="settings icon" @click="logout">
                 </button>
                 <button class="action-btn user-profile">
                     <img src="/images/resume_builder/default-user.jpg" alt="user profile picture">
@@ -80,6 +80,14 @@
 
                 // Move decorator on tabs
                 moveTabsHelper(e, 'mainLinksWrapper', _this)
+            },
+            logout(){
+                axios.post('/logout').then((response) =>{
+                        // remove access token from cookies:
+                        Vue.$cookies.remove('access_token');
+                        window.location.href = '/';
+                    }
+                )
             }
         },
         mounted() {

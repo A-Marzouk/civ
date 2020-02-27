@@ -1,8 +1,12 @@
 require('./modules');
 
+let token = 'Bearer ' + ( Vue.$cookies.get('access_token') || null );
+axios.defaults.headers.Authorization = token;
+
 $.ajaxSetup({
     headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        'Accept':'application/json'
     }
 });
 
@@ -24,4 +28,6 @@ require('./default-themes');
 // Resume builder components register
 require('./resume-builder');
 
+// passport and Auth components register
+require('./passport');
 
