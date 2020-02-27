@@ -36,7 +36,7 @@ if ($("#resumeBuilder").length !== 0) {
             children: [
                 {
                     path: '/resume-builder/edit',
-                    component: ResumeBuilderEditCVProfile
+                    redirect: '/resume-builder/edit/profile'
                 },
                 {
                     path: '/resume-builder/edit/profile',

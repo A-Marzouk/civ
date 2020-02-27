@@ -94,23 +94,24 @@
             let linksWrapper = document.getElementById('mainLinksWrapper')
             let pathArray = window.location.pathname.split('/')
 
-            switch (pathArray.length) {
-                // my Account Tab
-                case 2:
-                    linksWrapper.classList.add('moveFrom-myAccount')
-                    this.setActiveTab('myAccount')
+            switch (pathArray[2]) {
+                // edit Tab
+                case 'edit':
+                    linksWrapper.classList.add('moveFrom-editCV')
+                    this.setActiveTab('editCV')
                     break
+                    
 
                 // view CV Tab
-                case 3:
+                case 'view':
                     linksWrapper.classList.add('moveFrom-viewCV')
                     this.setActiveTab('viewCV')
                     break
 
-                // edit Tab
+                // my Account Tab
                 default:
-                    linksWrapper.classList.add('moveFrom-editCV')
-                    this.setActiveTab('editCV')
+                    linksWrapper.classList.add('moveFrom-myAccount')
+                    this.setActiveTab('myAccount')
                     break
             }
         }
