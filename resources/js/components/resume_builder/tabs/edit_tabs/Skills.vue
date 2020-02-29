@@ -52,7 +52,7 @@
            </div>
 
            <div class="skills-list">
-               <div v-for="(skill,index) in skills" :key="skill.id + '_skill'" class="skills-item">
+               <div v-for="(skill,index) in skills" :key="skill.id + '_skill'" class="skills-item" v-show="skill.category === selectedTab">
                    <div class="skill-title">
                        {{skill.title}}
                    </div>
