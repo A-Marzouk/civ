@@ -6,7 +6,6 @@ Vue.use(Vuetify);
 
 // axios:
 window.axios = require('axios');
-Vue.use(axios);
 
 // VueParticles
 import VueParticles from 'vue-particles';

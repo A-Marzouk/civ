@@ -23,15 +23,21 @@
            <div class="add-award-section">
                <div class="award-input">
                    <label for="title">Skill/ tools/ software name</label>
-                   <input type="text" id="title">
+                   <input type="text" id="title" v-model="skill.title" required>
+                   <div class="error" v-if="errors.title">
+                       {{ Array.isArray(errors.title) ? errors.title[0] : errors.title}}
+                   </div>
                </div>
                <div class="award-input">
                    <label for="percentage">How much your skill on (Percentage) over this software?</label>
-                   <input type="text" id="percentage">
+                   <input type="number" min="30" max="100" step="1" id="percentage" v-model="skill.percentage">
+                   <div class="error" v-if="errors.percentage">
+                       {{ Array.isArray(errors.percentage) ? errors.percentage[0] : errors.percentage}}
+                   </div>
                </div>
                <div class="action-btns">
                    <div class="add-award-btn NoDecor">
-                       <a href="">
+                       <a href="javascript:void(0)" @click="addSkill">
                            <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
                            Add skill now
                        </a>
@@ -73,6 +79,12 @@
         data() {
             return {
                 selectedTab:'programming_languages',
+                skill:{
+                    category:'',
+                    title:'',
+                    percentage:''
+                },
+                errors:{}
             }
         },
         computed: {
@@ -83,19 +95,67 @@
         methods:{
             moveProgressBar() {
                 this.skills.forEach((skill) => {
-                    let skillIdSelector = $('#skill_' + skill.id);
-                    let progressBarSelector = $('#progress-bar_' + skill.id);
-                    let getPercent = skillIdSelector.data('progress-percent') / 100;
-                    let getProgressWrapWidth = skillIdSelector.width();
-                    let progressTotal = getPercent * getProgressWrapWidth;
-                    let animationLength = 2000;
-
-                    // on page load, animate percentage bar to data percentage length
-                    // .stop() used to prevent animation queueing
-                    progressBarSelector.stop().animate({
-                        left: progressTotal
-                    }, animationLength);
+                   this.progressBarSingleSkill(skill);
                 });
+            },
+            progressBarSingleSkill(skill){
+                let skillIdSelector = $('#skill_' + skill.id);
+                let progressBarSelector = $('#progress-bar_' + skill.id);
+                let getPercent = skillIdSelector.data('progress-percent') / 100;
+                let getProgressWrapWidth = skillIdSelector.width();
+                let progressTotal = getPercent * getProgressWrapWidth;
+                let animationLength = 2000;
+                // on page load, animate percentage bar to data percentage length
+                // .stop() used to prevent animation queueing
+                progressBarSelector.stop().animate({
+                    left: progressTotal
+                }, animationLength);
+            },
+            addSkill(){
+                if(this.validateSkill()){
+                    // set skill category & add new
+                    this.skill.category = this.selectedTab;
+                    axios.post('/api/user/skills', this.skill)
+                        .then( (response)=>{
+                            let addedSkill = response.data.data;
+                            this.skills.push(addedSkill);
+                            this.clearSkill();
+                            setTimeout(() => { // give time to the skill to be loaded
+                                this.progressBarSingleSkill(addedSkill);
+                            },1500)
+                        })
+                        .catch( (error) => {
+                            if (typeof error.response.data === 'object') {
+                                console.log( error.response.data.errors);
+                                this.errors = error.response.data.errors;
+                            } else {
+                                this.errors = 'Something went wrong. Please try again.';
+                            }
+                        });
+                }
+            },
+            validateSkill(){
+                this.errors = {};
+
+                if (this.skill.title && this.skill.percentage) {
+                    return true;
+                }
+
+                if (!this.skill.title) {
+                    this.errors.title = 'Title required.';
+                }
+                if (!this.skill.percentage) {
+                    this.errors.percentage = 'Percentage required.';
+                }
+
+                return false;
+            },
+            clearSkill(){
+                this.skill = {
+                    category:'',
+                    title:'',
+                    percentage:''
+                };
             }
         },
         mounted() {
@@ -297,5 +357,11 @@
             }
         }
 
+    }
+
+    .error{
+        color: red;
+        font-weight: 600;
+        margin-left:5px;
     }
 </style>
