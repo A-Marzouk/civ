@@ -95,7 +95,7 @@ class SkillsController extends Controller
     {
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255','min:3'],
-            'percentage' => ['required', 'numeric', 'max:255'],
+            'percentage' => ['required', 'numeric','min:30', 'max:100'],
         ]);
     }
 }
