@@ -52,7 +52,25 @@
            </div>
 
            <div class="skills-list">
-               <div v-for="(skill,index) in skills" :key="skill.id + '_skill'" class="skills-item" v-show="skill.category === selectedTab">
+               <div class="skills-item" v-for="(skill,index) in skills" :key="skill.id + '_skill'" v-show="skill.category === selectedTab">
+                   <div class="options">
+                       <div class="options-btn NoDecor" @click="optionSkillId === skill.id ? optionSkillId=0 : optionSkillId=skill.id" >
+                           <a href="javascript:void(0)" :class="{'opened':optionSkillId === skill.id}">
+                               Options
+                               <img src="/images/resume_builder/arrow-down.png" alt="" :class="{'optionsOpened':optionSkillId === skill.id}">
+                           </a>
+                       </div>
+                       <div class="extended-options" v-show="optionSkillId === skill.id" :class="{'opened':optionSkillId === skill.id}">
+                           <div class="edit-btn NoDecor" @click="editSkill(skill)">
+                               <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
+                               Edit
+                           </div>
+                           <div class="delete-btn NoDecor" @click="deleteSkill(skill)">
+                               <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                               Delete
+                           </div>
+                       </div>
+                   </div>
                    <div class="skill-title">
                        {{skill.title}}
                    </div>
@@ -84,6 +102,7 @@
                     title:'',
                     percentage:''
                 },
+                optionSkillId:0,
                 errors:{}
             }
         },
@@ -156,6 +175,13 @@
                     title:'',
                     percentage:''
                 };
+            },
+
+            editSkill(skill){
+
+            },
+            deleteSkill(skill){
+
             }
         },
         mounted() {
@@ -296,10 +322,16 @@
             margin-top:60px;
 
             .skills-item{
+                background: whitesmoke;
+                position:relative;
                 margin-left: 43px;
                 margin-bottom: 30px;
                 display: flex;
+                justify-content: center;
                 flex-direction: column;
+                width:861px;
+                height:140px;
+                padding-left:43px;
 
                 .skill-title{
                     font-family: "Noto Sans", serif;
@@ -352,6 +384,91 @@
                     }
                     .percentage-text.color-blueviolet{
                         color: blueviolet;
+                    }
+                }
+
+                .options{
+                    position:absolute;
+                    right:14px;
+                    top:14px;
+
+                    .options-btn{
+                        a{
+                            width: 88px;
+                            height: 29px;
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            background: #FFFFFF 0 0 no-repeat padding-box;
+                            border: 1px solid #505050;
+                            border-radius: 5px;
+                            opacity: 1;
+
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img{
+                                width: 13.3px;
+                                height: 6.8px;
+                                margin-left: 8px;
+                            }
+                            img.optionsOpened {
+                                -webkit-transform: scaleY(-1);
+                                transform: scaleY(-1);
+                            }
+                        }
+                        a.opened{
+                            border: 1px solid #1F5DE4;
+                        }
+                        a:focus{
+                            outline:none !important;
+                            box-shadow: none !important;
+                        }
+                    }
+
+                    .extended-options{
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
+                        border-radius: 5px;
+                        opacity: 1;
+                        margin-top:8px;
+                        width:88px;
+                        height:60px;
+                        padding-top: 7px;
+                        padding-left: 8px;
+
+                        .edit-btn, .delete-btn{
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img{
+                                width:15.75px;
+                                height:14px;
+                                margin-right:6px;
+                            }
+
+                            &:hover{
+                                cursor: pointer;
+                            }
+                        }
+                        .delete-btn{
+                            margin-top:8px;
+                            img{
+                                width:10.89px;
+                                height:14px;
+                                margin-right:9.5px;
+                            }
+                        }
+                    }
+                    .extended-options.opened{
+                        border: 1px solid #1F5DE4;
                     }
                 }
             }
