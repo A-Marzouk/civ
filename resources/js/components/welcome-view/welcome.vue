@@ -11,7 +11,7 @@
                         <ContactSection />
                     </div>
                     <div class="footer-section w-100">
-                        <img src="/images/welcome_landing_page/icons/logo-white.png" alt="">
+                        <img src="/images/welcome_landing_page/logo/civie_logo_white.png" alt="">
                     </div>
                 </div>
             </div>
@@ -280,14 +280,18 @@
         min-height: 150px;
         width: -webkit-fill-available;
 
+        img{
+            max-width: 250px;
+        }
+
         @media only screen
-        and (min-device-width: 320px)
-        and (max-device-width: 480px)
-        and (-webkit-min-device-pixel-ratio: 2) {
+        and (min-width: 320px)
+        and (max-width: 480px){
+
             min-height: 140px;
 
             img{
-                max-width: 250px;
+                max-width: 200px;
             }
         }
 
