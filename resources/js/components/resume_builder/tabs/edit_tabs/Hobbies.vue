@@ -36,31 +36,65 @@
 
             <div class="work-ex-list">
                 <div class="work-ex-item" v-for="(hobby,index) in hobbies" :key="hobby.id + 'hobby_key' ">
-                    <div class="d-flex">
-                        <div class="work-ex-info">
-                            <div class="work-ex-title">
-                                {{hobby.title}} <small>{{hobby.category}}</small>
+                   <div class="d-flex justify-content-between">
+                       <div class="d-flex">
+                           <div class="work-ex-info">
+                               <div class="work-ex-title">
+                                   {{hobby.title}} <small>{{hobby.category}}</small>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="options">
+                           <div class="options-btn NoDecor"
+                                @click="optionHobbyId === hobby.id ? optionHobbyId=0 : optionHobbyId=hobby.id">
+                               <a href="javascript:void(0)" :class="{'opened':optionHobbyId === hobby.id}">
+                                   Options
+                                   <img src="/images/resume_builder/arrow-down.png" alt=""
+                                        :class="{'optionsOpened':optionHobbyId === hobby.id}">
+                               </a>
+                           </div>
+                           <div class="extended-options" v-show="optionHobbyId === hobby.id"
+                                :class="{'opened':optionHobbyId === hobby.id}">
+                               <div class="edit-btn NoDecor" @click="editHobby(hobby)">
+                                   <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
+                                   Edit
+                               </div>
+                               <div class="delete-btn NoDecor" @click="deleteHobby(hobby)">
+                                   <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                                   Delete
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+
+                    <div class="editForm">
+                        <div class="add-award-section mt-0 mb-5" v-show="editedHobby.id === hobby.id">
+                            <div class="award-input short">
+                                <label>Category</label>
+                                <input type="text" v-model="editedHobby.category" required>
+                                <div class="error" v-if="errors.edit.category">
+                                    {{ Array.isArray(errors.edit.category) ? errors.edit.category[0] : errors.edit.category}}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="options">
-                        <div class="options-btn NoDecor"
-                             @click="optionHobbyId === hobby.id ? optionHobbyId=0 : optionHobbyId=hobby.id">
-                            <a href="javascript:void(0)" :class="{'opened':optionHobbyId === hobby.id}">
-                                Options
-                                <img src="/images/resume_builder/arrow-down.png" alt=""
-                                     :class="{'optionsOpened':optionHobbyId === hobby.id}">
-                            </a>
-                        </div>
-                        <div class="extended-options" v-show="optionHobbyId === hobby.id"
-                             :class="{'opened':optionHobbyId === hobby.id}">
-                            <div class="edit-btn NoDecor" @click="editHobby(hobby)">
-                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
-                                Edit
+                            <div class="award-input">
+                                <label>Title</label>
+                                <input type="text" v-model="editedHobby.title">
+                                <div class="error" v-if="errors.edit.title">
+                                    {{ Array.isArray(errors.edit.title) ? errors.edit.title[0] : errors.edit.title}}
+                                </div>
                             </div>
-                            <div class="delete-btn NoDecor" @click="deleteHobby(hobby)">
-                                <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
-                                Delete
+                            <div class="action-btns d-flex flex-row">
+                                <div class="add-award-btn NoDecor">
+                                    <a href="javascript:void(0)" @click="applyEdit">
+                                        <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                                        Save
+                                    </a>
+                                </div>
+                                <div class="auto-import-btn NoDecor">
+                                    <a href="javascript:void(0)" @click="cancelEdit">
+                                        Cancel
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -149,6 +183,7 @@
                 axios.put('/api/user/hobbies', this.editedHobby)
                     .then((response) => {
                         this.EditedSuccessfully(response.data.data);
+                        this.clearErrors();
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -188,6 +223,7 @@
             },
             closeOptionsBtn() {
                 this.optionHobbyId = 0;
+                this.clearErrors();
             },
             clearEditedHobby() {
                 this.editedHobby = {};
@@ -195,6 +231,12 @@
             cancelEdit() {
                 this.clearEditedHobby();
                 this.closeOptionsBtn();
+            },
+            clearErrors () {
+                this.errors = {
+                    new:{},
+                    edit:{}
+                }
             }
         },
         mounted() {
@@ -299,8 +341,6 @@
         .work-ex-list{
             margin-top: 90px;
             .work-ex-item{
-                display: flex;
-                justify-content: space-between;
                 width: 757px;
 
                 .work-icon{
