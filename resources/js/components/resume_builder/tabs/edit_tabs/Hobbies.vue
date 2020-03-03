@@ -8,20 +8,26 @@
             <div class="add-award-section">
                 <div class="award-input short">
                     <label for="category">Category</label>
-                    <input type="text" id="category">
+                    <input type="text" id="category"  v-model="hobby.category">
+                    <div class="error" v-if="errors.new.category">
+                        {{ Array.isArray(errors.new.category) ? errors.new.category[0] : errors.new.category}}
+                    </div>
                 </div>
                 <div class="award-input">
                     <label for="awardTitle">New Hobby</label>
-                    <input type="text" id="awardTitle">
+                    <input type="text" id="awardTitle" v-model="hobby.title">
+                    <div class="error" v-if="errors.new.title">
+                        {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
+                    </div>
                 </div>
                 <div class="add-award-btn NoDecor">
-                    <a href="">
-                        <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                    <a href="javascript:void(0)" @click="addHobby">
+                        <img src="/images/resume_builder/work-ex/mark.png" alt="add">
                         Add hobby now
                     </a>
                 </div>
                 <div class="auto-import-btn NoDecor">
-                    <a href="">
+                    <a href="javascript:void(0)">
                         <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
                         Auto import
                     </a>
@@ -29,22 +35,34 @@
             </div>
 
             <div class="work-ex-list">
-                <div class="work-ex-item">
+                <div class="work-ex-item" v-for="(hobby,index) in hobbies" :key="hobby.id + 'hobby_key' ">
                     <div class="d-flex">
-                        <div class="work-icon">
-                            <img src="/images/resume_builder/hobbies/soccer.png" alt="hobby icon">
-                        </div>
                         <div class="work-ex-info">
                             <div class="work-ex-title">
-                                Football
+                                {{hobby.title}} <small>{{hobby.category}}</small>
                             </div>
                         </div>
                     </div>
-                    <div class="options-btn NoDecor">
-                        <a href="javascript:void(0)">
-                            Options
-                            <img src="/images/resume_builder/work-ex/Icon ionic-md-arrow-dropdown.png" alt="">
-                        </a>
+                    <div class="options">
+                        <div class="options-btn NoDecor"
+                             @click="optionHobbyId === hobby.id ? optionHobbyId=0 : optionHobbyId=hobby.id">
+                            <a href="javascript:void(0)" :class="{'opened':optionHobbyId === hobby.id}">
+                                Options
+                                <img src="/images/resume_builder/arrow-down.png" alt=""
+                                     :class="{'optionsOpened':optionHobbyId === hobby.id}">
+                            </a>
+                        </div>
+                        <div class="extended-options" v-show="optionHobbyId === hobby.id"
+                             :class="{'opened':optionHobbyId === hobby.id}">
+                            <div class="edit-btn NoDecor" @click="editHobby(hobby)">
+                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
+                                Edit
+                            </div>
+                            <div class="delete-btn NoDecor" @click="deleteHobby(hobby)">
+                                <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                                Delete
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,8 +76,129 @@
         name: "Hobbies",
         data() {
             return {
-                selectedTab: 'Awards'
+                hobby: {
+                    category: '',
+                    title: ''
+                },
+                optionHobbyId: 0,
+                editedHobby: {},
+                errors: {
+                    new: {},
+                    edit: {}
+                }
             }
+        },
+        computed: {
+            hobbies() {
+                return this.$store.state.user.hobbies;
+            }
+        },
+        methods: {
+            addHobby() {
+                if (this.validateHobby()) {
+                    axios.post('/api/user/hobbies', this.hobby)
+                        .then((response) => {
+                            let addedHobby = response.data.data;
+                            this.hobbies.push(addedHobby);
+                            this.clearHobby();
+                        })
+                        .catch((error) => {
+                            if (typeof error.response.data === 'object') {
+                                this.errors.new = error.response.data.errors;
+                            } else {
+                                this.errors.new  = 'Something went wrong. Please try again.';
+                            }
+                        });
+                }
+            },
+            validateHobby() {
+                this.errors = {
+                    new:{},
+                    edit:{}
+                };
+
+                if (this.hobby.title && this.hobby.category) {
+                    return true;
+                }
+
+                if (!this.hobby.title) {
+                    this.errors.new.title = 'Title required.';
+                }
+                if (!this.hobby.category) {
+                    this.errors.new.category = 'Category required.';
+                }
+
+                return false;
+            },
+            clearHobby() {
+                this.hobby = {
+                    category: '',
+                    title: ''
+                };
+            },
+
+            editHobby(hobby) {
+                this.editedHobby = {
+                    id: hobby.id,
+                    category: hobby.category,
+                    title: hobby.title
+                };
+                this.closeOptionsBtn();
+            },
+            applyEdit() {
+                axios.put('/api/user/hobbies', this.editedHobby)
+                    .then((response) => {
+                        this.EditedSuccessfully(response.data.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            deleteHobby(hobby) {
+                if (!confirm('Do you want to delete this hobby [' + hobby.title + '] ?')) {
+                    return;
+                }
+                axios.delete('/api/user/hobbies/' + hobby.id)
+                    .then((response) => {
+                        this.hobbies.forEach( (hobby,index) => {
+                            if(hobby.id === response.data.data.id){
+                                this.hobbies.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+
+            EditedSuccessfully(editedHobby) {
+                this.clearEditedHobby();
+                // replace the edited hobby with the new one:
+                this.hobbies.forEach((hobby, index) => {
+                    if (hobby.id === editedHobby.id) {
+                        this.hobbies[index] = editedHobby;
+                    }
+                });
+            },
+            closeOptionsBtn() {
+                this.optionHobbyId = 0;
+            },
+            clearEditedHobby() {
+                this.editedHobby = {};
+            },
+            cancelEdit() {
+                this.clearEditedHobby();
+                this.closeOptionsBtn();
+            }
+        },
+        mounted() {
+            console.log(this.$store.state.user.hobbies);
         }
     }
 </script>
@@ -161,7 +300,7 @@
             margin-top: 90px;
             .work-ex-item{
                 display: flex;
-                justify-content: flex-start;
+                justify-content: space-between;
                 width: 757px;
 
                 .work-icon{
@@ -194,33 +333,103 @@
                     }
                 }
 
-                .options-btn{
-                    a{
-                        width: 131px;
-                        height: 44px;
+                .options {
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                    .options-btn {
+                        a {
+                            width: 100px;
+                            height: 40px;
 
-                        background: #FFFFFF 0% 0% no-repeat padding-box;
-                        border: 1px solid #1F5DE4;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            background: #FFFFFF 0 0 no-repeat padding-box;
+                            border: 1px solid #505050;
+                            border-radius: 5px;
+                            opacity: 1;
+
+                            font: 600 15px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img {
+                                width: 13.3px;
+                                height: 6.8px;
+                                margin-left: 8px;
+                            }
+
+                            img.optionsOpened {
+                                -webkit-transform: scaleY(-1);
+                                transform: scaleY(-1);
+                            }
+                        }
+
+                        a.opened {
+                            border: 1px solid #1F5DE4;
+                        }
+
+                        a:focus {
+                            outline: none !important;
+                            box-shadow: none !important;
+                        }
+                    }
+
+                    .extended-options {
+                        position: absolute;
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
                         border-radius: 5px;
                         opacity: 1;
+                        margin-top: 8px;
+                        width: 100px;
+                        height: 60px;
+                        padding-top: 7px;
+                        padding-left: 8px;
 
-                        font: 600 20px/27px Noto Sans;
-                        letter-spacing: 0;
-                        color: #505050;
+                        .edit-btn, .delete-btn {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
 
-                        img{
-                            width: 20px;
-                            height: 10px;
-                            margin-left: 16px;
+                            img {
+                                width: 15.75px;
+                                height: 14px;
+                                margin-right: 6px;
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
+
+                        .delete-btn {
+                            margin-top: 8px;
+
+                            img {
+                                width: 10.89px;
+                                height: 14px;
+                                margin-right: 9.5px;
+                            }
+                        }
+                    }
+
+                    .extended-options.opened {
+                        border: 1px solid #1F5DE4;
                     }
                 }
             }
         }
 
+    }
+
+    .error {
+        position: absolute;
+        color: red;
+        font-weight: 600;
+        margin-left: 5px;
     }
 </style>
