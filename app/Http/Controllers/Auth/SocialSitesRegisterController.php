@@ -85,8 +85,8 @@ class SocialSitesRegisterController extends Controller
             $provider.'_id' => $user->id
         ])->assignRole('agent');
 
-        return $user;
 
+        return $user;
     }
 
 
@@ -105,10 +105,9 @@ class SocialSitesRegisterController extends Controller
 
         $authUser = $this->findOrCreateUser($user,'github');
 
+        $token = $authUser->createToken($authUser->name. '| USER ID:' . $authUser->id)->accessToken;
         auth()->login($authUser);
-
-
-        return Redirect::to('/resume-builder');
+        return Redirect::to('/resume-builder')->withCookie(cookie('access_token',$token,1577000,null, null, false, false )); // 3 years
     }
 
     //    google provider
@@ -126,9 +125,10 @@ class SocialSitesRegisterController extends Controller
 
         $authUser = $this->findOrCreateUser($user,'google');
 
-        auth()->login($authUser);
 
-        return Redirect::to('/resume-builder');
+        $token = $authUser->createToken($authUser->name. '| USER ID:' . $authUser->id)->accessToken;
+        auth()->login($authUser);
+        return Redirect::to('/resume-builder')->withCookie(cookie('access_token',$token,1577000,null, null, false, false )); // 3 years
 
     }
 
@@ -147,9 +147,9 @@ class SocialSitesRegisterController extends Controller
 
         $authUser = $this->findOrCreateUser($user,'linkedin');
 
+        $token = $authUser->createToken($authUser->name. '| USER ID:' . $authUser->id)->accessToken;
         auth()->login($authUser);
-
-        return Redirect::to('/resume-builder');
+        return Redirect::to('/resume-builder')->withCookie(cookie('access_token',$token,1577000,null, null, false, false )); // 3 years
     }
 
 
@@ -168,9 +168,9 @@ class SocialSitesRegisterController extends Controller
 
         $authUser = $this->findOrCreateUser($user,'facebook');
 
+        $token = $authUser->createToken($authUser->name. '| USER ID:' . $authUser->id)->accessToken;
         auth()->login($authUser);
-
-        return Redirect::to('/resume-builder');
+        return Redirect::to('/resume-builder')->withCookie(cookie('access_token',$token,1577000,null, null, false, false )); // 3 years
     }
 
 
@@ -189,9 +189,9 @@ class SocialSitesRegisterController extends Controller
 
         $authUser = $this->findOrCreateUser($user,'instagram');
 
+        $token = $authUser->createToken($authUser->name. '| USER ID:' . $authUser->id)->accessToken;
         auth()->login($authUser);
-
-        return Redirect::to('/resume-builder');
+        return Redirect::to('/resume-builder')->withCookie(cookie('access_token',$token,1577000,null, null, false, false )); // 3 years
     }
 
 

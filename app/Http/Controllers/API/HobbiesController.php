@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Hobby as HobbyResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class HobbiesController extends Controller
@@ -38,6 +40,9 @@ class HobbiesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validator($request->all())->validate();
+
         if($request->isMethod('put')){
             // update
             $hobby = Hobby::findOrFail($request->id);
@@ -85,6 +90,15 @@ class HobbiesController extends Controller
         if($hobby->delete()){
             return ['data' => ['id' => $hobby->id] ];
         }
+    }
+
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'title' => ['required', 'string', 'max:255','min:3'],
+            'category' => ['required', 'string','max:255','min:3'],
+        ]);
     }
 }
 
