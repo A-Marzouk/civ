@@ -48,13 +48,10 @@ Route::group(['prefix' => 'user/'], function () {
 
 
 // API Authentication routes
-Route::post('login', 'API\AuthController@login')->name('api.login');
-Route::post('register', 'API\AuthController@register');
+Route::post('login', 'API\Auth\AuthController@login')->name('api.login');
+Route::post('register', 'API\Auth\AuthController@register');
+Route::post('logout', 'API\Auth\AuthController@logout');
 
-Route::group(['middleware' => 'auth:api'], function () {
-
-    Route::get('user', 'API\AuthController@user');
-    Route::post('logout', 'API\AuthController@logout');
-
-});
+// API users routes
+Route::get('user', 'API\UsersController@user');
 

@@ -91,6 +91,7 @@
             }
         },
         mounted() {
+            this.$store.dispatch('getCurrentUser');
             let linksWrapper = document.getElementById('mainLinksWrapper')
             let pathArray = window.location.pathname.split('/')
 

@@ -35,7 +35,7 @@
     };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .disabled-btn{
         background: lightgrey;
         border:none;
@@ -54,7 +54,7 @@
                 a {
                     img {
                         min-width: 195px;
-                        max-height: 53px;
+                        max-height: 82px;
                     }
                 }
 
@@ -291,5 +291,7 @@
                 border: 1px solid #fff;
             }
         }
+
+
     }
 </style>

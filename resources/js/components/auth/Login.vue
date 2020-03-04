@@ -21,7 +21,9 @@
                             <div class="v-input__control">
                                 <div class="v-input__slot">
                                     <div class="v-text-field__slot">
-                                        <input name="email" required="required" id="input-9" class="w-100" placeholder="Email" type="text" style="padding-left: 20px;" v-model="formData.email"></div>
+                                        <input name="email" required="required" id="input-9" class="w-100"
+                                               placeholder="Email" type="text" style="padding-left: 20px;"
+                                               v-model="formData.email"></div>
                                 </div>
                                 <div class="v-text-field__details" v-if="errors.email">
                                     <div class="v-messages theme--light error--text" role="alert">
@@ -38,7 +40,9 @@
                             <div class="v-input__control">
                                 <div class="v-input__slot">
                                     <div class="v-text-field__slot">
-                                        <input name="password" required="required" id="input-10" placeholder="Password" type="password"  v-model="formData.password" class="w-100" style="padding-left: 20px;"></div>
+                                        <input name="password" required="required" id="input-10" placeholder="Password"
+                                               type="password" v-model="formData.password" class="w-100"
+                                               style="padding-left: 20px;"></div>
                                 </div>
                                 <div class="v-text-field__details" v-if="errors.password">
                                     <div class="v-messages theme--light error--text" role="alert">
@@ -50,7 +54,18 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-lg-12 col-12 NoDecor">
+
+                    <div class="ml-4 mb-3">
+                        <input class="form-check-input" type="checkbox" name="remember"
+                               id="remember" v-model="formData.remember">
+
+                        <label class="form-check-label" for="remember">
+                            Remember Me
+                        </label>
+                    </div>
+
+
+                    <div class="col-sm-12 col-lg-12 col-12 NoDecor" :class="{'disabled':!canSubmit}">
                         <a href="javascript:void(0)" class="btn-inset light__blue full" @click="submitForm"><i>Login</i></a>
                     </div>
                 </div>
@@ -68,18 +83,23 @@
                 formData: {
                     email: '',
                     password: '',
+                    remember: false
                 },
                 canSubmit: true,
                 errors: []
             }
         },
-        methods:{
+        methods: {
             submitForm() {
+                if (!this.canSubmit) {
+                    console.log('Please wait...');
+                    return;
+                }
                 this.canSubmit = false;
                 axios.post('/login', this.formData)
                     .then(response => {
                         // save the access token then redirect:
-                        Vue.$cookies.set('access_token',response.data.access_token,"3y");
+                        Vue.$cookies.set('access_token', response.data.access_token, "3y");
                         window.location.href = '/resume-builder';
                     })
                     .catch(error => {
@@ -111,6 +131,11 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
+    .disabled{
+        a:hover {
+            cursor: not-allowed;
+        }
+    }
 </style>

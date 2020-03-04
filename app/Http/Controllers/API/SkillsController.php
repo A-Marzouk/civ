@@ -7,6 +7,7 @@ use App\Http\Resources\Skill as SkillResource;
 use App\Skill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SkillsController extends Controller
 {
@@ -37,11 +38,15 @@ class SkillsController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validator($request->all())->validate();
+
         if($request->isMethod('put')){
             // update
             $skill = Skill::findOrFail($request->id);
             $skill->update($request->toArray());
         }else{
+            // add
             $request['user_id'] = Auth::user()->id;
             $skill =Skill::create($request->toArray());
         }
@@ -84,5 +89,13 @@ class SkillsController extends Controller
         if($skill->delete()){
             return ['data' => ['id' => $skill->id] ];
         }
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'title' => ['required', 'string', 'max:255','min:3'],
+            'percentage' => ['required', 'numeric','min:30', 'max:100'],
+        ]);
     }
 }
