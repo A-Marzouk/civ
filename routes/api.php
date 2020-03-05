@@ -123,6 +123,13 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/references', 'API\ReferencesController@store');
     Route::put('/references', 'API\ReferencesController@store');
     Route::delete('/references/{id}', 'API\ReferencesController@destroy');
+
+// Imports api routes:
+    Route::get('/imports', 'API\ImportsController@index');
+    Route::get('/imports/{id}', 'API\ImportsController@show');
+    Route::post('/imports', 'API\ImportsController@store');
+    Route::put('/imports', 'API\ImportsController@store');
+    Route::delete('/imports/{id}', 'API\ImportsController@destroy');
 });
 
 
