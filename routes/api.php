@@ -112,9 +112,17 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/media', 'API\MediaController@store');
     Route::delete('/media/{id}', 'API\MediaController@destroy');
 
+
 // Payment info api routes:
     Route::get('/payment-info', 'API\PaymentInfoController@index');
     Route::post('/payment-info', 'API\PaymentInfoController@store');
+
+// References api routes:
+    Route::get('/references', 'API\ReferencesController@index');
+    Route::get('/references/{id}', 'API\ReferencesController@show');
+    Route::post('/references', 'API\ReferencesController@store');
+    Route::put('/references', 'API\ReferencesController@store');
+    Route::delete('/references/{id}', 'API\ReferencesController@destroy');
 });
 
 
