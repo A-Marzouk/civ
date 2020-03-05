@@ -11,6 +11,9 @@
  * @description
  *      The function get a tabwrapper and assign to this the active tabs to made the transtions between tabs.
  * 
+ *      IMPORTANT!!!!
+ *      Use v-if render instead v-show to avoid render conflicts
+ * 
  * 
  */
 export function moveTabsHelper (e, wrapperId, component) {

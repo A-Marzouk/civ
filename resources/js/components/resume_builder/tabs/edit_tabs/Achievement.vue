@@ -81,46 +81,6 @@ $mainColor: #001CE2;
     .section-body-wrapper {
         width: 1337px;
 
-        .achievements-bar {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 75px;
-            border-bottom: 3px solid #C9CFF8;
-
-            .decorator {
-                position: absolute;
-                display: block;
-                bottom: -3px;
-                left: 0;
-                height: 3px;
-                background-color: $mainColor;
-                transform: translateX(0);
-                transition: .6s;
-            }
-
-            .bar-item {
-                font: 700 35px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-                opacity: 1;
-                padding: 0 20px;
-                padding-bottom: 23px;
-                margin-bottom: -3px;
-                border-bottom: 3px solid #C9CFF8;
-                transition: all 300ms ease-in;
-                text-align: center;
-            }
-
-            .bar-item:hover {
-                cursor: pointer;
-            }
-
-            .bar-item.active {
-                color: #001CE2;
-            }
-        }
-
         .add-award-section {
             display: flex;
             justify-content: space-between;

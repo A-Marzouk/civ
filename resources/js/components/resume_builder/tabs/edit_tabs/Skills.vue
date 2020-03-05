@@ -5,21 +5,12 @@
             <h2>Skills</h2>
         </div>
         <div class="section-body-wrapper">
-            <div class="achievements-bar">
-                <div class="bar-item" :class="{ active : selectedTab === 'programming_languages'}"
-                     @click="selectedTab = 'programming_languages'">
-                    Programming languages
+            <div class="achievements-bar" id="skillLinksWrapper">
+                <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :data-target="tabName" @click="changeTab" :class="{ active : activeTab === tabName}">
+                    {{ tabName.replace('_', ' ') }}
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Frameworks'}"
-                     @click="selectedTab = 'Frameworks'">
-                    Frameworks
-                </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Software'}" @click="selectedTab = 'Software'">
-                    Software
-                </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Design'}" @click="selectedTab = 'Design'">
-                    Design
-                </div>
+                
+                <div class="decorator"></div>
             </div>
 
             <div class="add-award-section">
@@ -55,7 +46,7 @@
 
             <div class="skills-list">
                 <div class="skills-item" v-for="(skill,index) in skills" :key="index + '_skill'"
-                     v-show="skill.category === selectedTab">
+                     v-show="skill.category === activeTab">
                     <div class="options">
                         <div class="options-btn NoDecor"
                              @click="optionSkillId === skill.id ? optionSkillId=0 : optionSkillId=skill.id">
@@ -131,11 +122,18 @@
 </template>
 
 <script>
+import { moveTabsHelper } from '../../helpers/tab-animations';
     export default {
         name: "Skills",
         data() {
             return {
-                selectedTab: 'programming_languages',
+                activeTab: 'Programming_languages',
+                tabs: [
+                    'Programming_languages',
+                    'Software',
+                    'Design',
+                    'Frameworks'
+                ],
                 skill: {
                     category: '',
                     title: '',
@@ -176,7 +174,7 @@
             addSkill() {
                 if (this.validateSkill()) {
                     // set skill category & add new
-                    this.skill.category = this.selectedTab;
+                    this.skill.category = this.activeTab;
                     axios.post('/api/user/skills', this.skill)
                         .then((response) => {
                             let addedSkill = response.data.data;
@@ -281,12 +279,23 @@
             cancelEdit() {
                 this.clearEditedSkill();
                 this.closeOptionsBtn();
+            },
+            setActiveTab (tab) {
+                this.activeTab = tab
+            },
+            changeTab (e) {
+
+                // Here will be the animations between transitions
+                
+                moveTabsHelper(e, 'skillLinksWrapper', this)
             }
         },
         mounted() {
             setTimeout(() => { // give time to skills to be loaded
                 this.moveProgressBar();
             }, 2000)
+
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
 
     }
@@ -296,35 +305,7 @@
     .section-body-wrapper {
         width: 1337px;
 
-        .achievements-bar {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 75px;
-            border-bottom: 3px solid #C9CFF8;
-            padding-right: 50px;
-
-            .bar-item {
-                font: 700 35px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-                opacity: 1;
-                padding-bottom: 23px;
-                margin-bottom: -3px;
-                border-bottom: 3px solid #C9CFF8;
-                transition: all 300ms ease-in;
-            }
-
-            .bar-item:hover {
-                cursor: pointer;
-            }
-
-            .bar-item.active {
-                color: #001CE2;
-                border-bottom-color: #001CE2;
-            }
-        }
-
+        
         .add-award-section {
             display: flex;
             flex-direction: column;
