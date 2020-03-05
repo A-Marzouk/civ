@@ -94,24 +94,23 @@
         },
         mounted() {
             this.$store.dispatch('getCurrentUser');
-            let linksWrapper = document.getElementById('mainLinksWrapper')
             let pathArray = window.location.pathname.split('/')
 
             switch (pathArray[2]) {
                 // edit Tab
                 case 'edit':
-                    this.changeTab({ target: document.getElementById('editCV')}, 'editCV', this)
+                    this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this)
                     break
                     
 
                 // view CV Tab
                 case 'view':
-                    this.changeTab({ target: document.getElementById('viewCV')}, 'viewCV', this)
+                    this.changeTab({ target: document.getElementById('viewCV')}, 'mainLinksWrapper', this)
                     break
 
                 // my Account Tab
                 default:
-                    this.changeTab({ target: document.getElementById('myAccount')}, 'myAccount', this)
+                    this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this)
                     break
             }
         }

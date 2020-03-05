@@ -1,13 +1,15 @@
 <template>
     <div>
-        <div class="achievements-bar sub-bar links-group" id="linksWrapper">
-            <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" @click="activeTab = tabName" :class="{ active : activeTab === tabName}" >
-                {{tabName}}
+        <div class="achievements-bar sub-bar" id="linksWrapper">
+            <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :data-target="tabName" @click="changeTab" :class="{ active : activeTab === tabName}" >
+                {{tabName.replace(/-/g, " ")}}
             </div>
+
+            <div class="decorator"></div>
         </div>
 
 
-        <div v-show="activeTab === 'My profile link'">
+        <div v-if="activeTab === 'My-profile-link'">
 
             <div class="hold-tab">
                 <div class="input-field">
@@ -24,7 +26,7 @@
             </div>
 
         </div>
-        <div v-show="activeTab === 'Social link'">
+        <div v-else-if="activeTab === 'Social-link'">
             <div class="hold-tab social">
                 <div class="options-wrap" v-show="wrapNewItem">
                     <a href="" class="btn-outline" @click.prevent="showAddItem">Add new link</a>
@@ -69,7 +71,7 @@
 
             </div>
         </div>
-        <div v-show="activeTab === 'Portfolio link'">
+        <div v-else-if="activeTab === 'Portfolio-link'">
             <div class="hold-tab social">
                 <div class="options-wrap">
                     <a href="" class="btn-outline">Add new link</a>
@@ -104,7 +106,7 @@
                 </div>
             </div>
         </div>
-        <div v-show="activeTab === 'Payment link'">
+        <div v-else>
             <v-card>
                 cuatro
             </v-card>
@@ -118,12 +120,12 @@ import { moveTabsHelper } from '../../../helpers/tab-animations';
 export default {
     data: () => ({        
         tabs: [
-            'My profile link',
-            'Social link',
-            'Portfolio link',
-            'Payment link'
+            'My-profile-link',
+            'Social-link',
+            'Portfolio-link',
+            'Payment-link'
         ],
-        activeTab: 'My profile link',
+        activeTab: 'My-profile-link',
         /** Add item list flow */
         activeListItem: undefined,
         movingUp: undefined,
@@ -182,6 +184,9 @@ export default {
             
             moveTabsHelper(e, 'linksWrapper', this)
         }
+    },
+    mounted() {
+        this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
     }
 }
 </script>

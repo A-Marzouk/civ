@@ -13,11 +13,11 @@
             <div class="decorator"></div>
         </div>
         
-        <Manage v-show="activeTab === 'manage'"></Manage>
-        <Personal v-show="activeTab === 'personal' "></Personal>
-        <Links  v-show="activeTab === 'links' "></Links>
-        <Languages v-show="activeTab === 'languages' "></Languages>
-        <Location v-show="activeTab === 'location' "></Location>
+        <Manage v-if="activeTab === 'manage'"></Manage>
+        <Personal v-else-if="activeTab === 'personal' "></Personal>
+        <Links  v-else-if="activeTab === 'links' "></Links>
+        <Languages v-else-if="activeTab === 'languages' "></Languages>
+        <Location v-else></Location>
     </div>
 </template>
 
@@ -124,7 +124,10 @@
                     this.movingUp = undefined
                 },500)
             
-            }
+            },
+        },
+        mounted() {
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
     }
 
@@ -146,25 +149,14 @@ $mainColor: #001CE2;
 
         position: relative;
 
-        &.moveFrom-editCV {
-            &::after {
-                transform: translateX(305px);
-            }
-        }
-
-        &.moveFrom-viewCV {
-            &::after {
-                transform: translateX(calc(305px *2));
-            }
-        }
-
         .decorator {
             position: absolute;
-            left: 0;
-            bottom: -3px;
-            background: $mainColor;
-            width: 130px;
+            display: block;
             height: 3px;
+            background-color: $mainColor;
+            transform: translateX(0);
+            transition: .45s;
+            bottom: -3px;
         }
 
         .bar-item {
@@ -174,7 +166,6 @@ $mainColor: #001CE2;
             opacity: 1;
             padding-bottom: 23px;
             margin-bottom: -3px;
-            border-bottom: 3px solid #C9CFF8;
             transition: all 300ms ease-in;
         }
 
@@ -184,7 +175,6 @@ $mainColor: #001CE2;
 
         .bar-item.active {
             color: #001CE2;
-            // border-bottom-color: #001CE2;
         }
     }
     .achievements-bar.sub-bar {
