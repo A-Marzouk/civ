@@ -17,6 +17,8 @@
                 <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                     View CV
                 </router-link>
+
+                <div class="decorator"></div>
             </div>
 
             <div class="actions-group d-flex align-items-center justify-content-between">
@@ -92,27 +94,23 @@
         },
         mounted() {
             this.$store.dispatch('getCurrentUser');
-            let linksWrapper = document.getElementById('mainLinksWrapper')
             let pathArray = window.location.pathname.split('/')
 
             switch (pathArray[2]) {
                 // edit Tab
                 case 'edit':
-                    linksWrapper.classList.add('moveFrom-editCV')
-                    this.setActiveTab('editCV')
+                    this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this)
                     break
                     
 
                 // view CV Tab
                 case 'view':
-                    linksWrapper.classList.add('moveFrom-viewCV')
-                    this.setActiveTab('viewCV')
+                    this.changeTab({ target: document.getElementById('viewCV')}, 'mainLinksWrapper', this)
                     break
 
                 // my Account Tab
                 default:
-                    linksWrapper.classList.add('moveFrom-myAccount')
-                    this.setActiveTab('myAccount')
+                    this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this)
                     break
             }
         }
@@ -178,30 +176,15 @@
             height: 100%;
             position: relative;
 
-            &.moveFrom-editCV {
-                &::after {
-                    transform: translateX(305px);
-                }
-            }
-
-            &.moveFrom-viewCV {
-                &::after {
-                    transform: translateX(calc(305px *2));
-                }
-            }
-
-            &::after {
-                content: "";
+            .decorator {
                 position: absolute;
                 display: block;
-                bottom: -50px;
-                left: 0;
-                width: 205px;
                 height: 5px;
                 background-color: $mainColor;
                 border-radius: 5px 5px 0 0;
                 transform: translateX(0);
                 transition: .6s;
+                bottom: -50px;
             }
 
             a {

@@ -5,17 +5,12 @@
         </div>
 
         <div class="section-body-wrapper">
-            <div class="achievements-bar">
-                <div class="bar-item" :class="{ active : selectedTab === 'About'}" @click="selectedTab = 'About'">
-                    About
+            <div class="achievements-bar" id='summaryLinksWrapper'>
+                <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :class="{ active : activeTab === tabName}" :data-target="tabName" @click="changeTab">
+                    {{tabName}}
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Objective'}"
-                     @click="selectedTab = 'Objective'">
-                    Objective
-                </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Overview'}" @click="selectedTab = 'Overview'">
-                    Overview
-                </div>
+
+                <div class="decorator"></div>
             </div>
             <div class="about-section">
                 <div class="about-input">
@@ -45,12 +40,33 @@
 </template>
 
 <script>
+import { moveTabsHelper } from '../../helpers/tab-animations'
+
     export default {
         name: "Summary",
         data() {
             return {
-                selectedTab: 'About'
+                tabs: [
+                    'About',
+                    'Objective',
+                    'Overview'
+                ],
+                activeTab: 'About'
             }
+        },
+        methods: {
+            setActiveTab (tab) {
+                this.activeTab = tab
+            },
+            changeTab (e) {
+
+                // Here will be the animations between transitions
+                
+                moveTabsHelper(e, 'summaryLinksWrapper', this)
+            }
+        },        
+        mounted() {
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
     }
 </script>
@@ -59,35 +75,6 @@
 
     .section-body-wrapper {
         width: 1337px;
-
-        .achievements-bar {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 75px;
-            border-bottom: 3px solid #C9CFF8;
-            padding-right: 50px;
-
-            .bar-item {
-                font: 700 35px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-                opacity: 1;
-                padding-bottom: 23px;
-                margin-bottom: -3px;
-                border-bottom: 3px solid #C9CFF8;
-                transition: all 300ms ease-in;
-            }
-
-            .bar-item:hover {
-                cursor: pointer;
-            }
-
-            .bar-item.active {
-                color: #001CE2;
-                border-bottom-color: #001CE2;
-            }
-        }
 
         .about-section {
             margin-top: 47px;
