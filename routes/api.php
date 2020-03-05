@@ -44,6 +44,32 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/hobbies', 'API\HobbiesController@store');
     //delete skill
     Route::delete('hobbies/{id}', 'API\HobbiesController@destroy');
+
+
+// Education api routes:
+    //list education
+    Route::get('/education', 'API\EducationController@index');
+    //list single education
+    Route::get('/education/{id}', 'API\EducationController@show');
+    //create new education
+    Route::post('/education', 'API\EducationController@store');
+    //update a education
+    Route::put('/education', 'API\EducationController@store');
+    //delete education
+    Route::delete('education/{id}', 'API\EducationController@destroy');
+
+
+// WorkEx api routes:
+    //list workExperience
+    Route::get('/work-experience', 'API\WorkExController@index');
+    //list single workExperience
+    Route::get('/work-experience/{id}', 'API\WorkExController@show');
+    //create new workExperience
+    Route::post('/work-experience', 'API\WorkExController@store');
+    //update a workExperience
+    Route::put('/work-experience', 'API\WorkExController@store');
+    //delete workExperience
+    Route::delete('work-experience/{id}', 'API\WorkExController@destroy');
 });
 
 

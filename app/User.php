@@ -58,4 +58,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hobbies(){
         return $this->hasMany(Hobby::class);
     }
+    public function education(){
+        return $this->hasMany(Education::class);
+    }
+    public function workExperience(){
+        return $this->hasMany(WorkEx::class);
+    }
 }

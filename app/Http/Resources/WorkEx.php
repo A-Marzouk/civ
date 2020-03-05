@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Skill extends JsonResource
+class WorkEx extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,8 +15,8 @@ class Skill extends JsonResource
     public function toArray($request)
     {
         return parent::toArray($request);
-        // here I can customize my return array. now it returns all data from the Skill model.
     }
+
 
     public function with($request)
     {
