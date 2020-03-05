@@ -12,7 +12,7 @@
                         Hourly rate
                     </div>
                     <div class="pay-input">
-                        <label for="hourly-rate">My hourly rate is</label>
+                        <label for="hourly-rate">My rate is: (USD)</label>
                         <input type="number" min="3" max="100000" step="1" id="hourly-rate" value="20.00">
                     </div>
 
@@ -28,15 +28,14 @@
                         I am available for
                     </div>
                     <div class="pay-input">
-                        <label for="available">My hourly rate is</label>
+                        <label for="available">Available working hours:</label>
                         <input type="text" id="available" value="6 hours">
                     </div>
 
                     <div class="rate-per">
+                        <div  class="active">Weekly</div>
                         <div>Monthly</div>
-                        <div class="active">Hourly</div>
                         <div>Yearly</div>
-                        <div>Weekly</div>
                     </div>
                 </div>
             </div>

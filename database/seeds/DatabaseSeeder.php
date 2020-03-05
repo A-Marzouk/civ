@@ -20,6 +20,17 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(SkillsTableSeeder::class);
         $this->call(HobbiesTableSeeder::class);
+        $this->call(EducationTableSeeder::class);
+        $this->call(WorkExTableSeeder::class);
+        $this->call(PersonalInfoTableSeeder::class);
+        $this->call(LinksTableSeeder::class);
+        $this->call(LanguagesTableSeeder::class);
+        $this->call(ProjectsTableSeeder::class);
+        $this->call(AchievementsTableSeeder::class);
+        $this->call(MediaTableSeeder::class);
+        $this->call(PaymentInfoTableSeeder::class);
+        $this->call(ReferencesTableSeeder::class);
+        $this->call(ImportsTableSeeder::class);
     }
 
     private function cleanDatabase()

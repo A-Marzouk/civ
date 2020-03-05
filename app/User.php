@@ -58,4 +58,52 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hobbies(){
         return $this->hasMany(Hobby::class);
     }
+    public function education(){
+        return $this->hasMany(Education::class);
+    }
+    public function workExperience(){
+        return $this->hasMany(WorkEx::class);
+    }
+    public function links(){
+        return $this->hasMany(Link::class);
+    }
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class);
+    }
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
+    public function references()
+    {
+        return $this->hasMany(Reference::class);
+    }
+    public function imports()
+    {
+        return $this->hasMany(Import::class);
+    }
+
+
+
+    // many to many relationships:
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class);
+    }
+
+
+
+    // relations has One
+    public function personalInfo(){
+        return $this->hasOne(PersonalInfo::class);
+    }
+   public function paymentInfo(){
+        return $this->hasOne(PaymentInfo::class);
+    }
+
 }
