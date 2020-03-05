@@ -67,6 +67,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function links(){
         return $this->hasMany(Link::class);
     }
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class);
+    }
+
 
 
 

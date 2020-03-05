@@ -84,6 +84,12 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/links', 'API\LinksController@store');
     Route::put('/links', 'API\LinksController@store');
     Route::delete('/links/{id}', 'API\LinksController@destroy');
+
+
+// Languages api routes:
+    Route::get('/languages', 'API\LanguagesController@index');
+    Route::post('/languages', 'API\LanguagesController@store');
+    Route::delete('/languages/{id}', 'API\LanguagesController@destroy');
 });
 
 
