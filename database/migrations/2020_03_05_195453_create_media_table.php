@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAchievementsTable extends Migration
+class CreateMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateAchievementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('achievements', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->bigIncrements('id');
 
             $table->string('title')->nullable();
-            $table->string('category')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image_src')->nullable();
+            $table->string('type')->nullable();
+            $table->text('transcript')->nullable();
             $table->string('url')->nullable();
 
             $table->integer('user_id')->unsigned();
@@ -34,6 +33,6 @@ class CreateAchievementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('achievements');
+        Schema::dropIfExists('media');
     }
 }

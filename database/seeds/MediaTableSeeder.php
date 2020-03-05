@@ -1,9 +1,8 @@
 <?php
 
-use App\Link;
 use Illuminate\Database\Seeder;
-
-class LinksTableSeeder extends Seeder
+use App\Media;
+class MediaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +11,6 @@ class LinksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Link::class,10)->create();
+        factory(Media::class,4)->create();
     }
 }

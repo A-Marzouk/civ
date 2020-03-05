@@ -67,17 +67,26 @@ class User extends Authenticatable implements MustVerifyEmail
     public function links(){
         return $this->hasMany(Link::class);
     }
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+    public function achievements()
+    {
+        return $this->hasMany(Achievement::class);
+    }
+    public function media()
+    {
+        return $this->hasMany(Media::class);
+    }
+
+
+
+    // many to many relationships:
     public function languages()
     {
         return $this->belongsToMany(Language::class);
     }
-    public function projects()
-    {
-        return $this->belongsToMany(Project::class);
-    }
-
-
-
 
 
 

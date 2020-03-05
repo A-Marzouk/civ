@@ -96,6 +96,21 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/projects', 'API\ProjectsController@store');
     Route::put('/projects', 'API\ProjectsController@store');
     Route::delete('/projects/{id}', 'API\ProjectsController@destroy');
+
+// Achievements api routes:
+    Route::get('/achievements', 'API\AchievementsController@index');
+    Route::get('/achievements/{id}', 'API\AchievementsController@show');
+    Route::post('/achievements', 'API\AchievementsController@store');
+    Route::put('/achievements', 'API\AchievementsController@store');
+    Route::delete('/achievements/{id}', 'API\AchievementsController@destroy');
+
+
+// Media api routes:
+    Route::get('/media', 'API\MediaController@index');
+    Route::get('/media/{id}', 'API\MediaController@show');
+    Route::post('/media', 'API\MediaController@store');
+    Route::put('/media', 'API\MediaController@store');
+    Route::delete('/media/{id}', 'API\MediaController@destroy');
 });
 
 
