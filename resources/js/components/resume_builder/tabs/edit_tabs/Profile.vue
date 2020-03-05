@@ -12,12 +12,14 @@
 
             <div class="decorator"></div>
         </div>
-        
-        <Manage v-if="activeTab === 'manage'"></Manage>
-        <Personal v-else-if="activeTab === 'personal' "></Personal>
-        <Links  v-else-if="activeTab === 'links' "></Links>
-        <Languages v-else-if="activeTab === 'languages' "></Languages>
-        <Location v-else></Location>
+
+        <transition :duration="590" class="mt-5 content" name="hide" mode="out-in">
+            <Manage v-if="activeTab === 'manage'"></Manage>
+            <Personal v-else-if="activeTab === 'personal' "></Personal>
+            <Links  v-else-if="activeTab === 'links' "></Links>
+            <Languages v-else-if="activeTab === 'languages' "></Languages>
+            <Location v-else></Location>
+        </transition>
     </div>
 </template>
 
@@ -139,44 +141,6 @@
 
 <style lang="scss">
 $mainColor: #001CE2;
-
-    .achievements-bar {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        margin-top: 55px;
-        border-bottom: 3px solid #C9CFF8;
-
-        position: relative;
-
-        .decorator {
-            position: absolute;
-            display: block;
-            height: 3px;
-            background-color: $mainColor;
-            transform: translateX(0);
-            transition: .45s;
-            bottom: -3px;
-        }
-
-        .bar-item {
-            font: 700 35px Noto Sans;
-            letter-spacing: 0;
-            color: #505050;
-            opacity: 1;
-            padding-bottom: 23px;
-            margin-bottom: -3px;
-            transition: all 300ms ease-in;
-        }
-
-        .bar-item:hover {
-            cursor: pointer;
-        }
-
-        .bar-item.active {
-            color: #001CE2;
-        }
-    }
     .achievements-bar.sub-bar {
         margin-top: 50px;
     }

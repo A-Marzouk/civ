@@ -5,19 +5,15 @@
             <h2>References</h2>
         </div>
         <div class="section-body-wrapper">
-            <div class="achievements-bar">
-                <div class="bar-item" :class="{ active : selectedTab === 'References'}" @click="selectedTab = 'References'">
-                    References
+            <div class="achievements-bar" id="referencesLinksWrapper">
+                <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :data-target="tabName" @click="changeTab" :class="{ active : activeTab === tabName}">
+                    {{ tabName }}
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Referee'}" @click="selectedTab = 'Referee'">
-                    Referee
-                </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Testimonials'}" @click="selectedTab = 'Testimonials'">
-                    Testimonials
-                </div>
+
+                <div class="decorator"></div>
             </div>
 
-            <div class="references" v-show="selectedTab === 'References'">
+            <div class="references" v-show="activeTab === 'References'">
                 <div class="reference-input">
                     <label for="name">
                         My full-name
@@ -56,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="references" v-show="selectedTab === 'Referee'">
+            <div class="references" v-show="activeTab === 'Referee'">
                 <div class="reference-input">
                     <label for="nameReferee">
                         Name
@@ -103,7 +99,7 @@
                 </div>
             </div>
 
-            <div class="about-section" v-show="selectedTab === 'Testimonials'">
+            <div class="about-section" v-show="activeTab === 'Testimonials'">
                 <div class="about-input">
                     <label for="about" class="d-flex justify-content-between">
                         <span class="label-text">Add Testimonials</span>
@@ -125,12 +121,32 @@
 </template>
 
 <script>
+import { moveTabsHelper } from '../../helpers/tab-animations'
     export default {
         name: "References",
         data() {
             return {
-                selectedTab: 'References',
+                activeTab: 'References',
+                tabs: [
+                    'References',
+                    'Referee',
+                    'Testimonials'
+                ]
             }
+        },
+        methods: {
+            setActiveTab (tab) {
+                this.activeTab = tab
+            },
+            changeTab (e) {
+
+                // Here will be the animations between transitions
+                
+                moveTabsHelper(e, 'referencesLinksWrapper', this)
+            }
+        },
+        mounted() {
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
     }
 </script>
@@ -139,34 +155,6 @@
 
     .section-body-wrapper {
         width: 1337px;
-        .achievements-bar {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 75px;
-            border-bottom: 3px solid #C9CFF8;
-            padding-right: 50px;
-
-            .bar-item {
-                font: 700 35px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-                opacity: 1;
-                padding-bottom: 23px;
-                margin-bottom: -3px;
-                border-bottom: 3px solid #C9CFF8;
-                transition: all 300ms ease-in;
-            }
-
-            .bar-item:hover {
-                cursor: pointer;
-            }
-
-            .bar-item.active {
-                color: #001CE2;
-                border-bottom-color: #001CE2;
-            }
-        }
 
         .references{
             display: flex;
