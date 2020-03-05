@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProjectsTableSeeder::class);
         $this->call(AchievementsTableSeeder::class);
         $this->call(MediaTableSeeder::class);
+        $this->call(PaymentInfoTableSeeder::class);
     }
 
     private function cleanDatabase()

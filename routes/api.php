@@ -111,6 +111,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/media', 'API\MediaController@store');
     Route::put('/media', 'API\MediaController@store');
     Route::delete('/media/{id}', 'API\MediaController@destroy');
+
+// Payment info api routes:
+    Route::get('/payment-info', 'API\PaymentInfoController@index');
+    Route::post('/payment-info', 'API\PaymentInfoController@store');
 });
 
 
