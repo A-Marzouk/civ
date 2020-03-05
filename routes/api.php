@@ -70,6 +70,20 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/work-experience', 'API\WorkExController@store');
     //delete workExperience
     Route::delete('work-experience/{id}', 'API\WorkExController@destroy');
+
+// Personal info api routes:
+    Route::get('/personal-info', 'API\PersonalInfoController@index');
+    Route::get('/personal-info/{id}', 'API\PersonalInfoController@show');
+    Route::post('/personal-info', 'API\PersonalInfoController@store');
+    Route::put('/personal-info', 'API\PersonalInfoController@store');
+    Route::delete('/personal-info/{id}', 'API\PersonalInfoController@destroy');
+
+// Links api routes:
+    Route::get('/links', 'API\LinksController@index');
+    Route::get('/links/{id}', 'API\LinksController@show');
+    Route::post('/links', 'API\LinksController@store');
+    Route::put('/links', 'API\LinksController@store');
+    Route::delete('/links/{id}', 'API\LinksController@destroy');
 });
 
 

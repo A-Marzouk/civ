@@ -10,4 +10,11 @@ class WorkEx extends Model
     protected $fillable = [
         'company_name','job_title','description','website','date_from','date_to','present','user_id'
     ];
+
+
+    // relation belongs to :
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

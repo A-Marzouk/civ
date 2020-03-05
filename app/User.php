@@ -64,4 +64,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function workExperience(){
         return $this->hasMany(WorkEx::class);
     }
+    public function links(){
+        return $this->hasMany(Link::class);
+    }
+
+
+
+    // relations has One
+    public function personalInfo(){
+        return $this->hasOne(PersonalInfo::class);
+    }
+
 }

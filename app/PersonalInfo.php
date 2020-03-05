@@ -4,16 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Education extends Model
+class PersonalInfo extends Model
 {
-    protected $table = 'education';
+
+    protected $table = 'personal_info';
+
     protected $fillable = [
-        'institution_type','university_name','degree_title','date_from','date_to','present','user_id'
+        'full_name','email','designation', 'phone','about','user_id'
     ];
+
 
     // relation belongs to
     public function user(){
         return $this->belongsTo(User::class);
     }
-
 }
