@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\PaymentInfo;
 use App\PersonalInfo;
+use App\Summary;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -50,6 +51,13 @@ class EventServiceProvider extends ServiceProvider
                 'salary' => 3,
                 'available_hours_frequency' => 'weekly',
                 'available_hours' => 40
+            ]);
+
+            // summary
+            Summary::create([
+                'user_id' => $user->id,
+                'objective' => '',
+                'overview' => '',
             ]);
 
         });

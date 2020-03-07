@@ -22,15 +22,16 @@ class DatabaseSeeder extends Seeder
         $this->call(HobbiesTableSeeder::class);
         $this->call(EducationTableSeeder::class);
         $this->call(WorkExTableSeeder::class);
-        $this->call(PersonalInfoTableSeeder::class);
+//        $this->call(PersonalInfoTableSeeder::class);  // commented out because we make relationship for each created USER.
         $this->call(LinksTableSeeder::class);
         $this->call(LanguagesTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
         $this->call(AchievementsTableSeeder::class);
         $this->call(MediaTableSeeder::class);
-        $this->call(PaymentInfoTableSeeder::class);
+//        $this->call(PaymentInfoTableSeeder::class);  // commented out because we make relationship for each created USER.
         $this->call(ReferencesTableSeeder::class);
         $this->call(ImportsTableSeeder::class);
+//        $this->call(SummaryTableSeeder::class); // commented out because we make relationship for each created USER.
     }
 
     private function cleanDatabase()

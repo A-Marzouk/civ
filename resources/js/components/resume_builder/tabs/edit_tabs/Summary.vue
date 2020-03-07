@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div class="about-section" >
+            <div class="about-section"  v-show="activeTab === 'Overview'">
                 <div class="about-input">
                     <label for="overview" class="d-flex justify-content-between">
                         <span class="label-text">Overview</span>

@@ -127,6 +127,11 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/imports', 'API\ImportsController@store');
     Route::put('/imports', 'API\ImportsController@store');
     Route::delete('/imports/{id}', 'API\ImportsController@destroy');
+
+
+// Summary api routes:
+    Route::get('/summary', 'API\SummaryController@index');
+    Route::put('/summary', 'API\SummaryController@store');
 });
 
 
