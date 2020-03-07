@@ -9,16 +9,38 @@
                 <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :class="{ active : activeTab === tabName}" :data-target="tabName" @click="changeTab">
                     {{tabName}}
                 </div>
-
                 <div class="decorator"></div>
             </div>
-            <div class="about-section">
+
+            <div class="about-section" v-show="activeTab === 'Objective'">
                 <div class="about-input">
-                    <label for="about" class="d-flex justify-content-between">
-                        <span class="label-text">About myself</span>
-                        <span class="note-text">Maximum 80 words</span>
+                    <label for="objective" class="d-flex justify-content-between">
+                        <span class="label-text">Objective</span>
                     </label>
-                    <textarea name="about" id="about"></textarea>
+                    <textarea name="about" id="objective"></textarea>
+                </div>
+                <div class="action-btns">
+                    <div class="auto-import-btn short NoDecor">
+                        <a href="">
+                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                            Add
+                        </a>
+                    </div>
+                    <div class="auto-import-btn NoDecor">
+                        <a href="">
+                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                            Auto import
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="about-section" >
+                <div class="about-input">
+                    <label for="overview" class="d-flex justify-content-between">
+                        <span class="label-text">Overview</span>
+                    </label>
+                    <textarea name="about" id="overview"></textarea>
                 </div>
                 <div class="action-btns">
                     <div class="auto-import-btn short NoDecor">
@@ -47,11 +69,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
         data() {
             return {
                 tabs: [
-                    'About',
                     'Objective',
                     'Overview'
                 ],
-                activeTab: 'About'
+                activeTab: 'Objective'
             }
         },
         methods: {
@@ -75,6 +96,14 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 
     .section-body-wrapper {
         width: 1337px;
+
+        .achievements-bar{
+            justify-content: flex-start;
+            width:fit-content;
+            .bar-item{
+                padding-right:30px;
+            }
+        }
 
         .about-section {
             margin-top: 47px;
