@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\PaymentInfo;
+use App\PersonalInfo;
+use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +32,26 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        User::created(function($user)
+        {
+            // create default one to one relations needed for user.
+
+                // personal info
+            PersonalInfo::create([
+                'user_id' => $user->id,
+                'full_name' => $user->name,
+                'email' => $user->email
+            ]);
+
+                // payment_info
+            PaymentInfo::create([
+                'user_id' => $user->id,
+                'salary_frequency' => 'hourly',
+                'salary' => 3,
+                'available_hours_frequency' => 'weekly',
+                'available_hours' => 40
+            ]);
+
+        });
     }
 }
