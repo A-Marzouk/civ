@@ -7,6 +7,8 @@ use App\PaymentInfo;
 use App\Http\Resources\PaymentInfo as PaymentInfoResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 class PaymentInfoController extends Controller
 {
@@ -26,69 +28,37 @@ class PaymentInfoController extends Controller
         return new PaymentInfoResource($paymentInfo);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\PaymentInfo
      */
     public function store(Request $request)
     {
-        //
+        // here we will not save new we will directly update info.
+        $this->validator($request->all())->validate();
+
+        if($request->isMethod('put')){
+            // update
+            $paymentInfo = Auth::user()->paymentInfo;
+            $paymentInfo->update($request->toArray());
+        }
+
+        if (isset($paymentInfo)){
+            return new PaymentInfoResource($paymentInfo);
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    protected function validator(array $data)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return Validator::make($data, [
+            'salary_frequency' => ['required', 'string', 'max:255','min:3'],
+            'salary' => ['required', 'numeric','min:3','max:9999999'],
+            'available_hours_frequency' => ['required', 'string','max:255','min:3'],
+            'available_hours' => ['required', 'numeric','min:10','max:80'],
+        ]);
     }
 }

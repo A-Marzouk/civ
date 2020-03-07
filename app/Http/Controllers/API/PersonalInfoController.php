@@ -7,6 +7,8 @@ use App\Http\Resources\PersonalInfo as PersonalInfoResource;
 use App\PersonalInfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class PersonalInfoController extends Controller
@@ -28,69 +30,38 @@ class PersonalInfoController extends Controller
         return new PersonalInfoResource($personalInfo);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\PersonalInfo
      */
     public function store(Request $request)
     {
-        //
+        // here we will not save new we will directly update info.
+        $this->validator($request->all())->validate();
+
+        if($request->isMethod('put')){
+            // update
+            $personalInfo = Auth::user()->personalInfo;
+            $personalInfo->update($request->toArray());
+        }
+
+        if (isset($personalInfo)){
+            return new PersonalInfoResource($personalInfo);
+        }
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\PersonalInfo  $personalInfo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(PersonalInfo $personalInfo)
+    protected function validator(array $data)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PersonalInfo  $personalInfo
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(PersonalInfo $personalInfo)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PersonalInfo  $personalInfo
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, PersonalInfo $personalInfo)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\PersonalInfo  $personalInfo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(PersonalInfo $personalInfo)
-    {
-        //
+        return Validator::make($data, [
+            'full_name' => ['required', 'string', 'max:255','min:3'],
+            'email' => ['email','max:255','unique:users'],
+            'designation' => ['required', 'string','max:255','min:3'],
+            'phone' => ['required', 'numeric','min:7'],
+            'about' => ['required','string','min:30','max:2500'],
+        ]);
     }
 }

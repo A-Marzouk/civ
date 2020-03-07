@@ -73,10 +73,7 @@ Route::group(['prefix' => 'user/'], function () {
 
 // Personal info api routes:
     Route::get('/personal-info', 'API\PersonalInfoController@index');
-    Route::get('/personal-info/{id}', 'API\PersonalInfoController@show');
-    Route::post('/personal-info', 'API\PersonalInfoController@store');
     Route::put('/personal-info', 'API\PersonalInfoController@store');
-    Route::delete('/personal-info/{id}', 'API\PersonalInfoController@destroy');
 
 // Links api routes:
     Route::get('/links', 'API\LinksController@index');
@@ -115,7 +112,7 @@ Route::group(['prefix' => 'user/'], function () {
 
 // Payment info api routes:
     Route::get('/payment-info', 'API\PaymentInfoController@index');
-    Route::post('/payment-info', 'API\PaymentInfoController@store');
+    Route::put('/payment-info', 'API\PaymentInfoController@store');
 
 // References api routes:
     Route::get('/references', 'API\ReferencesController@index');
