@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Reference;
 use App\Http\Resources\Reference as ReferenceResource;
 use Illuminate\Http\Request;use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ReferencesController extends Controller
 {
@@ -24,69 +25,59 @@ class ReferencesController extends Controller
         $references = Reference::where('user_id',Auth::user()->id)->paginate(5);
         return ReferenceResource::collection($references);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $this->validator($request->all())->validate();
+
+        if($request->isMethod('put')){
+            // update
+            $reference = Reference::findOrFail($request->id);
+            $reference->update($request->toArray());
+        }else{
+            // add
+            $request['user_id'] = Auth::user()->id;
+            $reference = Reference::create($request->toArray());
+        }
+
+        if ($reference->id){
+            return new ReferenceResource($reference);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $reference = Reference::where([
+            'id' => $id,
+            'user_id' => Auth::user()->id
+        ])->first();
+
+        return new ReferenceResource($reference);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $reference = Reference::where([
+            'id' => $id,
+            'user_id' => Auth::user()->id
+        ])->first();
+
+        if($reference->delete()){
+            return ['data' => ['id' => $reference->id] ];
+        }
+    }
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255','min:3'],
+            'title' => ['required', 'string', 'max:255'],
+            'phone' => ['required','min:7' , 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'company' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+            'reference_text' => ['string', 'max:2500'],
+            'notes' => ['string', 'max:2500'],
+        ]);
     }
 }
