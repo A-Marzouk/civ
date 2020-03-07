@@ -7,6 +7,7 @@ use App\Link;
 use App\Http\Resources\Link as LinkResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class LinksController extends Controller
 {
@@ -27,69 +28,54 @@ class LinksController extends Controller
         return LinkResource::collection($links);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+
+        $this->validator($request->all())->validate();
+
+        if($request->isMethod('put')){
+            // update
+            $link = Link::findOrFail($request->id);
+            $link->update($request->toArray());
+        }else{
+            // add
+            $request['user_id'] = Auth::user()->id;
+            $link = Link::create($request->toArray());
+        }
+
+        if ($link->id){
+            return new LinkResource($link);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Link $link)
+    public function show($id)
     {
-        //
+        $link = Link::where([
+            'id' => $id,
+            'user_id' => Auth::user()->id
+        ])->first();
+
+        return new LinkResource($link);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Link $link)
+    public function destroy($id)
     {
-        //
+        $link = Link::where([
+            'id' => $id,
+            'user_id' => Auth::user()->id
+        ])->first();
+
+        if($link->delete()){
+            return ['data' => ['id' => $link->id] ];
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Link $link)
+    protected function validator(array $data)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Link  $link
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Link $link)
-    {
-        //
+        return Validator::make($data, [
+            'link_title' => ['required', 'string', 'max:255','min:3'],
+            'category' => ['required', 'string', 'max:255'],
+            'link' => ['required', 'string','max:255'],
+        ]);
     }
 }
