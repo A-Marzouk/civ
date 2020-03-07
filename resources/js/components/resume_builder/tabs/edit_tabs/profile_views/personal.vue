@@ -14,23 +14,23 @@
         <form class="form-edit_profile">
             <div class="input-field">
                 <label for="fullname">My full-name</label>
-                <input type="text" placeholder="" id="fullname" name="fullname">
+                <input type="text" placeholder="" id="fullname" name="fullname" v-model="personalInfo.full_name">
             </div>
             <div class="input-field">
                 <label for="email">Email adress</label>
-                <input type="email" id="email" placeholder="" name="email">
+                <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email">
             </div>
             <div class="input-field">
                 <label for="designation">Designation</label>
-                <input type="text" id="designation" placeholder="" name="designation">
+                <input type="text" id="designation" placeholder="" name="designation" v-model="personalInfo.designation">
             </div>
             <div class="input-field">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" placeholder="" name="phone">
+                <input type="tel" id="phone" placeholder="" name="phone" v-model="personalInfo.phone">
             </div>
             <div class="input-field">
                 <label for="aboutmyself">About myself <i class="hint-message">Maximum 80 words</i></label>
-                <textarea name="aboutmyself"  id="aboutmyself"></textarea>
+                <textarea name="aboutmyself"  id="aboutmyself" v-model="personalInfo.about"></textarea>
             </div>
             <div class="actions">
                 <a href="#" class="btn-blue"><img src="/images/resume_builder/profile/icon-save.png">Save all information</a>
@@ -41,10 +41,23 @@
 
 <script>
 export default {
-    
+    data(){
+        return{
+
+        }
+    },
+    computed: {
+        personalInfo() {
+            return this.$store.state.user.personal_info;
+        }
+    },
 }
 </script>
 
-<style scope lang="scss">
-    
+<style scoped lang="scss">
+    .input-field {
+        input,textarea{
+            color: black;
+        }
+    }
 </style>

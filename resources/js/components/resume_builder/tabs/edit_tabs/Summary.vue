@@ -5,25 +5,42 @@
         </div>
 
         <div class="section-body-wrapper">
-            <div class="achievements-bar">
-                <div class="bar-item" :class="{ active : selectedTab === 'About'}" @click="selectedTab = 'About'">
-                    About
+            <div class="achievements-bar" id='summaryLinksWrapper'>
+                <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :class="{ active : activeTab === tabName}" :data-target="tabName" @click="changeTab">
+                    {{tabName}}
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Objective'}"
-                     @click="selectedTab = 'Objective'">
-                    Objective
+                <div class="decorator"></div>
+            </div>
+
+            <div class="about-section" v-show="activeTab === 'Objective'">
+                <div class="about-input">
+                    <label for="objective" class="d-flex justify-content-between">
+                        <span class="label-text">Objective</span>
+                    </label>
+                    <textarea name="about" id="objective" v-model="summary.objective">></textarea>
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Overview'}" @click="selectedTab = 'Overview'">
-                    Overview
+                <div class="action-btns">
+                    <div class="auto-import-btn short NoDecor">
+                        <a href="">
+                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                            Add
+                        </a>
+                    </div>
+                    <div class="auto-import-btn NoDecor">
+                        <a href="">
+                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                            Auto import
+                        </a>
+                    </div>
                 </div>
             </div>
-            <div class="about-section">
+
+            <div class="about-section"  v-show="activeTab === 'Overview'">
                 <div class="about-input">
-                    <label for="about" class="d-flex justify-content-between">
-                        <span class="label-text">About myself</span>
-                        <span class="note-text">Maximum 80 words</span>
+                    <label for="overview" class="d-flex justify-content-between">
+                        <span class="label-text">Overview</span>
                     </label>
-                    <textarea name="about" id="about"></textarea>
+                    <textarea name="about" id="overview" v-model="summary.overview"></textarea>
                 </div>
                 <div class="action-btns">
                     <div class="auto-import-btn short NoDecor">
@@ -45,12 +62,37 @@
 </template>
 
 <script>
+import { moveTabsHelper } from '../../helpers/tab-animations'
+
     export default {
         name: "Summary",
         data() {
             return {
-                selectedTab: 'About'
+                tabs: [
+                    'Objective',
+                    'Overview'
+                ],
+                activeTab: 'Objective'
             }
+        },
+        computed: {
+            summary() {
+                return this.$store.state.user.summary;
+            }
+        },
+        methods: {
+            setActiveTab (tab) {
+                this.activeTab = tab
+            },
+            changeTab (e) {
+
+                // Here will be the animations between transitions
+                
+                moveTabsHelper(e, 'summaryLinksWrapper', this)
+            }
+        },        
+        mounted() {
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
     }
 </script>
@@ -60,32 +102,11 @@
     .section-body-wrapper {
         width: 1337px;
 
-        .achievements-bar {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 75px;
-            border-bottom: 3px solid #C9CFF8;
-            padding-right: 50px;
-
-            .bar-item {
-                font: 700 35px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-                opacity: 1;
-                padding-bottom: 23px;
-                margin-bottom: -3px;
-                border-bottom: 3px solid #C9CFF8;
-                transition: all 300ms ease-in;
-            }
-
-            .bar-item:hover {
-                cursor: pointer;
-            }
-
-            .bar-item.active {
-                color: #001CE2;
-                border-bottom-color: #001CE2;
+        .achievements-bar{
+            justify-content: flex-start;
+            width:fit-content;
+            .bar-item{
+                padding-right:30px;
             }
         }
 

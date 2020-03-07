@@ -12,12 +12,14 @@
 
             <div class="decorator"></div>
         </div>
-        
-        <Manage v-show="activeTab === 'manage'"></Manage>
-        <Personal v-show="activeTab === 'personal' "></Personal>
-        <Links  v-show="activeTab === 'links' "></Links>
-        <Languages v-show="activeTab === 'languages' "></Languages>
-        <Location v-show="activeTab === 'location' "></Location>
+
+        <transition :duration="590" class="mt-5 content" name="hide" mode="out-in">
+            <Manage v-if="activeTab === 'manage'"></Manage>
+            <Personal v-else-if="activeTab === 'personal' "></Personal>
+            <Links  v-else-if="activeTab === 'links' "></Links>
+            <Languages v-else-if="activeTab === 'languages' "></Languages>
+            <Location v-else></Location>
+        </transition>
     </div>
 </template>
 
@@ -124,7 +126,10 @@
                     this.movingUp = undefined
                 },500)
             
-            }
+            },
+        },
+        mounted() {
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
     }
 
@@ -136,57 +141,6 @@
 
 <style lang="scss">
 $mainColor: #001CE2;
-
-    .achievements-bar {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        margin-top: 55px;
-        border-bottom: 3px solid #C9CFF8;
-
-        position: relative;
-
-        &.moveFrom-editCV {
-            &::after {
-                transform: translateX(305px);
-            }
-        }
-
-        &.moveFrom-viewCV {
-            &::after {
-                transform: translateX(calc(305px *2));
-            }
-        }
-
-        .decorator {
-            position: absolute;
-            left: 0;
-            bottom: -3px;
-            background: $mainColor;
-            width: 130px;
-            height: 3px;
-        }
-
-        .bar-item {
-            font: 700 35px Noto Sans;
-            letter-spacing: 0;
-            color: #505050;
-            opacity: 1;
-            padding-bottom: 23px;
-            margin-bottom: -3px;
-            border-bottom: 3px solid #C9CFF8;
-            transition: all 300ms ease-in;
-        }
-
-        .bar-item:hover {
-            cursor: pointer;
-        }
-
-        .bar-item.active {
-            color: #001CE2;
-            // border-bottom-color: #001CE2;
-        }
-    }
     .achievements-bar.sub-bar {
         margin-top: 50px;
     }

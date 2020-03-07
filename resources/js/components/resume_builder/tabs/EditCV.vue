@@ -107,28 +107,28 @@
             },
             scrollHandler (target) {
                 let scrollItem = document.getElementById('scrollItem');
-                let scrollItemHeight = scrollItem.style.height !== "" ? parseFloat(scrollItem.style.height.replace('px', '')) : 0;
+                // let scrollItemHeight = scrollItem.style.height !== "" ? parseFloat(scrollItem.style.height.replace('px', '')) : 0;
                 let scrollItemPos = scrollItem.style.top !== "" ? parseFloat(scrollItem.style.top.replace('px', '')) : 0;
 
                 // diff between actual size and the target size
-                let heightDiff = target.offsetHeight - scrollItemHeight;
+                // let heightDiff = target.offsetHeight - scrollItemHeight;
 
                 // diff between actual pos and target pos
                 let posDiff = target.offsetTop - scrollItemPos;
 
                 // To position and height gradually during 0.5 secs
                 let moveInterval = posDiff / 15;
-                let growInterval = heightDiff / 15;
+                // let growInterval = heightDiff / 15;
 
                 let count = 1
 
                 let interval = setInterval(() => {
 
                     scrollItemPos += moveInterval
-                    scrollItemHeight += growInterval
+                    // scrollItemHeight += growInterval
 
                     scrollItem.style.top = scrollItemPos + "px";
-                    scrollItem.style.height = scrollItemHeight + "px";
+                    // scrollItem.style.height = scrollItemHeight + "px";
                 }, 20);
 
                 setTimeout(() => {
@@ -175,7 +175,7 @@ $disabledColor: #9f9e9e;
         top: 0;
         right: 0;
         width: 6px;
-        height: 20px;
+        height: 61px;
         z-index: 5;
         background-color: $activeColor;
     }

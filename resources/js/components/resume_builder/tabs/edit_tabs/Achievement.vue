@@ -5,225 +5,81 @@
             <h2>Achievement</h2>
         </div>
         <div class="section-body-wrapper">
-            <div class="achievements-bar">
-                <div class="bar-item" :class="{ active : selectedTab === 'Awards'}" @click="selectedTab = 'Awards'">
+            <div id="achievementTabs" class="achievements-bar">
+                <div data-target="Awards" class="bar-item" :class="{ active : activeTab === 'Awards'}" @click="changeTab">
                     Awards
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Certificates'}" @click="selectedTab = 'Certificates'">
+                <div data-target="Certificates" class="bar-item" :class="{ active : activeTab === 'Certificates'}" @click="changeTab">
                     Certificates
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Public'}" @click="selectedTab = 'Public'">
+                <div data-target="Public" class="bar-item" :class="{ active : activeTab === 'Public'}" @click="changeTab">
                     Public Speaking
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'Events'}" @click="selectedTab = 'Events'">
+                <div data-target="Events" class="bar-item" :class="{ active : activeTab === 'Events'}" @click="changeTab">
                     Events
                 </div>
+
+                <div class="decorator"></div>
             </div>
-            <div class="add-award-section" v-show="selectedTab === 'Awards'">
-                <div class="award-input">
-                    <label for="awardTitle">New Awards</label>
-                    <input type="text" id="awardTitle">
-                </div>
-                <div class="add-award-btn NoDecor">
-                    <a href="">
-                        <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                        Add awards now
-                    </a>
-                </div>
-                <div class="auto-import-btn NoDecor">
-                    <a href="">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                        Auto import
-                    </a>
-                </div>
-            </div>
-            <div class="certificates-section" v-show="selectedTab === 'Certificates'">
-                <div class="add-certificate">
-                    <div class="upload-image">
-                        <div class="img-label">
-                            Add Certificates
-                        </div>
-                        <div class="upload-image-box">
-                            <img src="/images/resume_builder/achievements/download.png" alt="download">
-                            <div class="upload-text">
-                                Upload image
-                            </div>
-                        </div>
-                    </div>
-                    <div class="certification-details-form">
-                        <div class="certification-input">
-                            <label for="title">Title</label>
-                            <input type="text" id="title">
-                        </div>
-                        <div class="certification-input">
-                            <label for="description">Description</label>
-                            <textarea name="description" id="description"></textarea>
-                        </div>
-                        <div class="action-btns">
-                            <div class="add-award-btn NoDecor">
-                                <a href="javascript:void(0)">
-                                    <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                                    Add certificate now
-                                </a>
-                            </div>
-                            <div class="auto-import-btn NoDecor">
-                                <a href="javascript:void(0)">
-                                    <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                                    Auto import
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="certifications-list">
-                    <div class="certification-item">
-                        <div class="certification-preview">
-                            <img src="/images/resume_builder/achievements/Image 2.png" alt="certification-preview">
-                        </div>
-                        <div class="certification-details">
-                            <div class="title">
-                                Certificate of achievement
-                            </div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                                sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                            </div>
-                            <div class="options-btn NoDecor">
-                                <a href="javascript:void(0)">
-                                    Options
-                                    <img src="/images/resume_builder/work-ex/Icon ionic-md-arrow-dropdown.png" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="certificates-section" v-show="selectedTab === 'Public'">
-                <div class="add-certificate">
-                    <div class="upload-image">
-                        <div class="img-label">
-                            Upload video or images
-                        </div>
-                        <div class="upload-image-box">
-                            <img src="/images/resume_builder/achievements/download.png" alt="download">
-                            <div class="upload-text">
-                                Upload
-                            </div>
-                        </div>
-                    </div>
-                    <div class="certification-details-form">
-                        <div class="certification-input">
-                            <label for="publicTitle">Title</label>
-                            <input type="text" id="publicTitle">
-                        </div>
-                        <div class="certification-input">
-                            <label for="publicDescription">Description</label>
-                            <textarea name="description" id="publicDescription"></textarea>
-                        </div>
-                        <div class="action-btns">
-                            <div class="add-award-btn NoDecor">
-                                <a href="javascript:void(0)" class="short">
-                                    <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                                    Add now
-                                </a>
-                            </div>
-                            <div class="auto-import-btn NoDecor">
-                                <a href="javascript:void(0)">
-                                    <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                                    Auto import
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="certificates-section" v-show="selectedTab === 'Events'">
-                <div class="add-certificate">
-                    <div class="upload-image">
-                        <div class="img-label">
-                            Upload video or images
-                        </div>
-                        <div class="upload-image-box">
-                            <img src="/images/resume_builder/achievements/download.png" alt="download">
-                            <div class="upload-text">
-                                Upload
-                            </div>
-                        </div>
-                    </div>
-                    <div class="certification-details-form">
-                        <div class="certification-input">
-                            <label for="eventsTitle">Title</label>
-                            <input type="text" id="eventsTitle">
-                        </div>
-                        <div class="certification-input">
-                            <label for="eventDescription">Description</label>
-                            <textarea name="description" id="eventDescription"></textarea>
-                        </div>
-                        <div class="action-btns">
-                            <div class="add-award-btn NoDecor">
-                                <a href="javascript:void(0)" class="short">
-                                    <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                                    Add now
-                                </a>
-                            </div>
-                            <div class="auto-import-btn NoDecor">
-                                <a href="javascript:void(0)">
-                                    <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                                    Auto import
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+            <transition name="hide" mode="out-in">
+                <award-view v-if="activeTab === 'Awards'"></award-view>
+                <certificates-view  v-else-if="activeTab === 'Certificates'"></certificates-view>
+                <public-view v-else-if="activeTab === 'Public'"></public-view>
+                <events-view v-else></events-view>
+            </transition>
+            
         </div>
     </div>
 </template>
 
 <script>
+    import AwardView from './achievements_views/awards';
+    import CertificatesView from './achievements_views/certificates';
+    import PublicView from './achievements_views/public';
+    import EventsView from './achievements_views/events';
+
+    import { moveTabsHelper } from '../../helpers/tab-animations';
+
     export default {
+        components: {
+            AwardView,
+            CertificatesView,
+            PublicView,
+            EventsView
+        },
         name: "Achievement",
         data() {
             return {
-                selectedTab: 'Public'
+                activeTab: 'Awards'
             }
+        },
+        methods: {
+            setActiveTab (tab) {
+                this.activeTab = tab
+            },
+            changeTab (e) {
+                let _this = this;
+
+                moveTabsHelper(e, 'achievementTabs', _this);
+            }
+        },
+        mounted () {
+            let _this = this
+
+            // Get active tab
+            let activeTab = document.querySelector('.bar-item.active');
+            moveTabsHelper({
+                target: activeTab
+            }, 'achievementTabs', _this);
         }
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+$mainColor: #001CE2;
     .section-body-wrapper {
         width: 1337px;
-
-        .achievements-bar {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 75px;
-            border-bottom: 3px solid #C9CFF8;
-            padding-right: 50px;
-
-            .bar-item {
-                font: 700 35px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-                opacity: 1;
-                padding-bottom: 23px;
-                margin-bottom: -3px;
-                border-bottom: 3px solid #C9CFF8;
-                transition: all 300ms ease-in;
-            }
-
-            .bar-item:hover {
-                cursor: pointer;
-            }
-
-            .bar-item.active {
-                color: #001CE2;
-                border-bottom-color: #001CE2;
-            }
-        }
 
         .add-award-section {
             display: flex;
@@ -503,5 +359,12 @@
                 }
             }
         }
+    }
+
+    .hide-enter-active, .hide-leave-active {
+        transition: opacity .5s;
+    }
+    .hide-enter, .hide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>

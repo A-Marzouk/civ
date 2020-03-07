@@ -37,10 +37,12 @@ class SocialSitesRegisterController extends Controller
             'password' => Hash::make($request->password),
         ])->assignRole('agent');
 
-        auth()->login($user);
+         $token =  $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
+         auth()->login($user);
 
         return [
-            'status' => 'success'
+            'status' => 'success',
+            'access_token' => $token
         ];
     }
 

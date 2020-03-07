@@ -4,18 +4,14 @@
             <h2>Imports</h2>
         </div>
         <div class="section-body-wrapper">
-            <div class="achievements-bar">
-                <div class="bar-item" :class="{ active : selectedTab === 'downloads'}" @click="selectedTab = 'downloads'">
-                    Downloads
+            <div class="achievements-bar" id="importLinksWrapper">
+                <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :data-target="tabName" @click="changeTab" :class="{ active : activeTab === tabName}">
+                    {{tabName.replace('_', ' ')}}
                 </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'manage'}" @click="selectedTab = 'manage'">
-                    Manage imports
-                </div>
-                <div class="bar-item" :class="{ active : selectedTab === 'links'}" @click="selectedTab = 'links'">
-                    URL links
-                </div>
+
+                <div class="decorator"></div>
             </div>
-            <div class="achievements-bar sub-bar" v-show="selectedTab === 'manage'">
+            <div class="achievements-bar sub-bar" v-if="activeTab === 'Manage'">
                 <div class="bar-item" :class="{ active : selectedSubTab === 'PDF'}" @click="selectedSubTab = 'PDF'">
                     PDF
                 </div>
@@ -36,7 +32,7 @@
                 </div>
             </div>
             <transition name="component-fade" mode="out-in">
-                <div class="imports-list" v-if="selectedTab === 'downloads'">
+                <div class="imports-list" v-if="activeTab === 'Downloads'">
                     <div class="import-item">
                         <div class="import-name">
                            File 2
@@ -66,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="imports-list" v-if="selectedTab === 'manage'">
+                <div class="imports-list" v-else-if="activeTab === 'Manage'">
                     <div class="import-item">
                         <div class="import-name">
                             PDF import 1
@@ -119,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="imports-list" v-if="selectedTab === 'links'">
+                <div class="imports-list" v-else>
                     <div class="import-item">
                         <div class="import-name">
                             www.123workforce.com/Aymane
@@ -147,13 +143,33 @@
 </template>
 
 <script>
+import { moveTabsHelper } from '../../helpers/tab-animations'
     export default {
         name: "imports",
         data() {
             return {
-                selectedTab: 'downloads',
+                activeTab: 'Downloads',
                 selectedSubTab: 'PDF',
+                tabs: [
+                    'Downloads',
+                    'Manage_imports',
+                    'URL_links'
+                ]
             }
+        },
+        methods: {
+            setActiveTab (tab) {
+                this.activeTab = tab
+            },
+            changeTab (e) {
+
+                // Here will be the animations between transitions
+                
+                moveTabsHelper(e, 'importLinksWrapper', this)
+            }
+        },
+        mounted() {
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
     }
 </script>
@@ -161,35 +177,6 @@
 <style scoped lang="scss">
     .section-body-wrapper {
         width: 1337px;
-
-        .achievements-bar {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            margin-top: 75px;
-            border-bottom: 3px solid #C9CFF8;
-            padding-right: 50px;
-
-            .bar-item {
-                font: 700 35px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-                opacity: 1;
-                padding-bottom: 23px;
-                margin-bottom: -3px;
-                border-bottom: 3px solid #C9CFF8;
-                transition: all 300ms ease-in;
-            }
-
-            .bar-item:hover {
-                cursor: pointer;
-            }
-
-            .bar-item.active {
-                color: #001CE2;
-                border-bottom-color: #001CE2;
-            }
-        }
 
         .achievements-bar.sub-bar {
             margin-top: 74px;
