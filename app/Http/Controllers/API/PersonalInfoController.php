@@ -60,6 +60,7 @@ class PersonalInfoController extends Controller
             'full_name' => ['required', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
             'designation' => ['required', 'string','max:255','min:3'],
+            'profile_pic' => ['required', 'string','max:255','min:3'],
             'phone' => ['required', 'numeric','min:7'],
             'about' => ['required','string','min:30','max:2500'],
         ]);

@@ -12,6 +12,7 @@ $factory->define(PersonalInfo::class, function (Faker $faker) {
         'email' => $faker->email,
         'designation' => $faker->jobTitle,
         'phone' => $faker->phoneNumber,
+        'profile_pic' => $faker->text(30),
         'about' => $faker->text(150)
     ];
 });

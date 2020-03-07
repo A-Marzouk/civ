@@ -10,7 +10,7 @@ class PersonalInfo extends Model
     protected $table = 'personal_info';
 
     protected $fillable = [
-        'full_name','email','designation', 'phone','about','user_id'
+        'full_name','email','designation','profile_pic', 'phone','about','user_id'
     ];
 
 
