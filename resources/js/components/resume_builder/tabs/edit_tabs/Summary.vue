@@ -17,7 +17,7 @@
                     <label for="objective" class="d-flex justify-content-between">
                         <span class="label-text">Objective</span>
                     </label>
-                    <textarea name="about" id="objective"></textarea>
+                    <textarea name="about" id="objective" v-model="summary.objective">></textarea>
                 </div>
                 <div class="action-btns">
                     <div class="auto-import-btn short NoDecor">
@@ -40,7 +40,7 @@
                     <label for="overview" class="d-flex justify-content-between">
                         <span class="label-text">Overview</span>
                     </label>
-                    <textarea name="about" id="overview"></textarea>
+                    <textarea name="about" id="overview" v-model="summary.overview"></textarea>
                 </div>
                 <div class="action-btns">
                     <div class="auto-import-btn short NoDecor">
@@ -73,6 +73,11 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     'Overview'
                 ],
                 activeTab: 'Objective'
+            }
+        },
+        computed: {
+            summary() {
+                return this.$store.state.user.summary;
             }
         },
         methods: {
