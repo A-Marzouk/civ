@@ -61,27 +61,42 @@
                 </div>
             </div>
             <div class="work-ex-list">
-                <div class="work-ex-item">
+                <div class="work-ex-item mt-5" v-for="(work,index) in works" :key="index + '_workEx'">
                     <div class="work-icon">
                         <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
                     </div>
                     <div class="work-ex-info">
                         <div class="work-ex-title">
-                            Wedevs
+                            {{work.company_name}}
                         </div>
                         <div class="work-ex-sub-title">
-                            User experience designer,<br/>
-                            Duration: Dec 2017 - Sep 2018
+                            {{work.job_title}},<br/>
+                            Duration: {{work.date_from}} - {{work.present ? "present" : work.date_to}}
                         </div>
                         <div class="work-ex-detials">
-                            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
+                            {{work.description}}
                         </div>
                     </div>
-                    <div class="options-btn NoDecor">
-                        <a href="javascript:void(0)">
-                            Options
-                            <img src="/images/resume_builder/work-ex/Icon ionic-md-arrow-dropdown.png" alt="">
-                        </a>
+                    <div class="options">
+                        <div class="options-btn NoDecor"
+                             @click="optionWorkId === work.id ? optionWorkId=0 : optionWorkId=work.id">
+                            <a href="javascript:void(0)" :class="{'opened':optionWorkId === work.id}">
+                                Options
+                                <img src="/images/resume_builder/arrow-down.png" alt=""
+                                     :class="{'optionsOpened':optionWorkId === work.id}">
+                            </a>
+                        </div>
+                        <div class="extended-options" v-show="optionWorkId === work.id"
+                             :class="{'opened':optionWorkId === work.id}">
+                            <div class="edit-btn NoDecor" @click="editWork(work)">
+                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
+                                Edit
+                            </div>
+                            <div class="delete-btn NoDecor" @click="deleteWork(work)">
+                                <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                                Delete
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,9 +108,28 @@
     export default {
         name: "WorkExperience",
         data() {
-            return {}
+            return {
+                optionWorkId: 0,
+                editedWork: {},
+                errors: {
+                    new: {},
+                    edit: {}
+                }
+            }
         },
-        methods: {},
+        computed: {
+            works() {
+                return this.$store.state.user.work_experience;
+            }
+        },
+        methods: {
+            editWork(work){
+
+            },
+            deleteWork(work){
+
+            },
+        },
         mounted() {
 
         }
@@ -297,8 +331,9 @@
         .work-ex-list{
             margin-top: 64px;
             .work-ex-item{
+                position: relative;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
                 width: 757px;
 
                 .work-icon{
@@ -330,29 +365,94 @@
                     }
                 }
 
-                .options-btn{
-                    a{
-                        width: 131px;
-                        height: 44px;
+                .options {
+                    position: absolute;
+                    right: 14px;
+                    top: 14px;
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                    .options-btn {
+                        a {
+                            width: 130px;
+                            height: 44px;
 
-                        background: #FFFFFF 0% 0% no-repeat padding-box;
-                        border: 1px solid #1F5DE4;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            background: #FFFFFF 0 0 no-repeat padding-box;
+                            border: 1px solid #505050;
+                            border-radius: 5px;
+                            opacity: 1;
+
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img {
+                                width: 13.3px;
+                                height: 6.8px;
+                                margin-left: 8px;
+                            }
+
+                            img.optionsOpened {
+                                -webkit-transform: scaleY(-1);
+                                transform: scaleY(-1);
+                            }
+                        }
+
+                        a.opened {
+                            border: 1px solid #1F5DE4;
+                        }
+
+                        a:focus {
+                            outline: none !important;
+                            box-shadow: none !important;
+                        }
+                    }
+
+                    .extended-options {
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
                         border-radius: 5px;
                         opacity: 1;
+                        margin-top: 8px;
+                        width: 130px;
+                        height: 60px;
+                        padding-top: 7px;
+                        padding-left: 8px;
 
-                        font: 600 20px/27px Noto Sans;
-                        letter-spacing: 0;
-                        color: #505050;
+                        .edit-btn, .delete-btn {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
 
-                        img{
-                            width: 20px;
-                            height: 10px;
-                            margin-left: 16px;
+                            img {
+                                width: 15.75px;
+                                height: 14px;
+                                margin-right: 6px;
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
+
+                        .delete-btn {
+                            margin-top: 8px;
+
+                            img {
+                                width: 10.89px;
+                                height: 14px;
+                                margin-right: 9.5px;
+                            }
+                        }
+                    }
+
+                    .extended-options.opened {
+                        border: 1px solid #1F5DE4;
                     }
                 }
             }
