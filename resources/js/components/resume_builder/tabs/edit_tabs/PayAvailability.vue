@@ -13,14 +13,14 @@
                     </div>
                     <div class="pay-input">
                         <label for="hourly-rate">My rate is: (USD)</label>
-                        <input type="number" min="3" max="100000" step="1" id="hourly-rate" value="20.00">
+                        <input type="number" min="3" max="100000" step="1" id="hourly-rate" v-model="paymentInfo.salary">
                     </div>
 
                     <div class="rate-per">
-                        <div>Monthly</div>
-                        <div class="active">Hourly</div>
-                        <div>Yearly</div>
-                        <div>Weekly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'monthly'}">Monthly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'hourly'}">Hourly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'yearly'}">Yearly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'weekly'}">Weekly</div>
                     </div>
                 </div>
                 <div class="hourly-rate">
@@ -29,13 +29,13 @@
                     </div>
                     <div class="pay-input">
                         <label for="available">Available working hours:</label>
-                        <input type="text" id="available" value="6 hours">
+                        <input type="text" id="available" value="6 hours"  v-model="paymentInfo.available_hours">
                     </div>
 
                     <div class="rate-per">
-                        <div  class="active">Weekly</div>
-                        <div>Monthly</div>
-                        <div>Yearly</div>
+                        <div  :class="{active : paymentInfo.available_hours_frequency === 'weekly'}">Weekly</div>
+                        <div :class="{active : paymentInfo.available_hours_frequency === 'monthly'}">Monthly</div>
+                        <div :class="{active : paymentInfo.available_hours_frequency === 'yearly'}">Yearly</div>
                     </div>
                 </div>
             </div>
@@ -55,10 +55,14 @@
         name: "PayAvailability",
         data(){
             return{
-                ratePer:'hour',
-                availableHoursPer:'hour',
+
             }
-        }
+        },
+        computed: {
+            paymentInfo() {
+                return this.$store.state.user.payment_info;
+            }
+        },
     }
 </script>
 
