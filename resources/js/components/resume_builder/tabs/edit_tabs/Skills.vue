@@ -308,6 +308,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
         
         .add-award-section {
             display: flex;
+            align-items: flex-start;
             flex-direction: column;
             margin-top: 55px;
 
