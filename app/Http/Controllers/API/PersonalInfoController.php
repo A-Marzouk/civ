@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PersonalInfo as PersonalInfoResource;
 use App\PersonalInfo;
@@ -41,11 +42,17 @@ class PersonalInfoController extends Controller
     {
         // here we will not save new we will directly update info.
         $this->validator($request->all())->validate();
+        $personalInfo = Auth::user()->personalInfo;
 
         if($request->isMethod('put')){
-            // update
-            $personalInfo = Auth::user()->personalInfo;
             $personalInfo->update($request->toArray());
+        }
+
+        if (isset($_FILES['profile_pic'])) {
+            $pathToPicture = Upload::profilePicture('profile_pic');
+            $personalInfo->update([
+                'profile_pic' => $pathToPicture
+            ]);
         }
 
         if (isset($personalInfo)){
@@ -60,7 +67,7 @@ class PersonalInfoController extends Controller
             'full_name' => ['required', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
             'designation' => ['required', 'string','max:255','min:3'],
-            'profile_pic' => ['required', 'string','max:255','min:3'],
+            'profile_pic' => ['required'],
             'phone' => ['required', 'numeric','min:7'],
             'about' => ['required','string','min:30','max:2500'],
         ]);
