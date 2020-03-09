@@ -48,24 +48,37 @@
             </div>
         </div>
         <div class="certifications-list">
-            <div class="certification-item">
+            <div class="certification-item"  v-for="(achievement,index) in achievements" :key="index + '_achievements'" v-show="achievement.category === 'certificates'">
                 <div class="certification-preview">
-                    <img src="/images/resume_builder/achievements/Image 2.png" alt="certification-preview">
+                    <img :src="achievement.image_src" alt="certification-preview">
                 </div>
                 <div class="certification-details">
                     <div class="title">
-                        Certificate of achievement
+                        {{achievement.title}}
                     </div>
                     <div class="description">
-                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-                        sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                        {{achievement.description}}
                     </div>
-                    <div class="options-btn NoDecor">
-                        <a href="javascript:void(0)">
-                            Options
-                            <img src="/images/resume_builder/work-ex/Icon ionic-md-arrow-dropdown.png" alt="">
-                        </a>
+                    <div class="options">
+                        <div class="options-btn NoDecor"
+                             @click="optionAchievementId === achievement.id ? optionAchievementId=0 : optionAchievementId=achievement.id">
+                            <a href="javascript:void(0)" :class="{'opened':optionAchievementId === achievement.id}">
+                                Options
+                                <img src="/images/resume_builder/arrow-down.png" alt=""
+                                     :class="{'optionsOpened':optionAchievementId === achievement.id}">
+                            </a>
+                        </div>
+                        <div class="extended-options" v-show="optionAchievementId === achievement.id"
+                             :class="{'opened':optionAchievementId === achievement.id}">
+                            <div class="edit-btn NoDecor" @click="editAchievement(achievement)">
+                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
+                                Edit
+                            </div>
+                            <div class="delete-btn NoDecor" @click="deleteAchievement(achievement)">
+                                <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                                Delete
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,14 +88,14 @@
 
 <script>
 export default {
+    props:['achievements'],
     data: () => ({
-        certificatesList: [
-            {
-                title: 'My certificate',
-                description: 'Description bla, bla, bla.',
-                file: ''
-            }
-        ],
+        optionAchievementId: 0,
+        editedAchievement: {},
+        errors: {
+            new: {},
+            edit: {}
+        },
         addCertificateForm: {
             title: '',
             description: '',
@@ -259,6 +272,133 @@ export default {
 
         &.description {
             height: 190px;
+        }
+    }
+
+    .certifications-list{
+        margin-top: 85px;
+        .certification-item{
+            display: flex;
+            position:relative;
+            .certification-preview{
+                img{
+                    width: 376px;
+                    height: 290px;
+                    margin-right: 36px;
+                }
+            }
+
+            .certification-details{
+                display: flex;
+                flex-direction: column;
+                .title{
+                    font-family: "Noto Sans",serif;
+                    font-weight: 600;
+                    font-size: 30px;
+                    text-align: left;
+                    color: #001ce2;
+                    margin-bottom: 30px;
+                }
+
+                .description{
+                    font-family: "Noto Sans",serif;
+                    font-weight: 500;
+                    font-size: 18px;
+                    text-align: left;
+                    color: #001ce2;
+                }
+            }
+
+            .options {
+                position: absolute;
+                right: 14px;
+                top: 0;
+
+                .options-btn {
+                    a {
+                        width: 88px;
+                        height: 29px;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
+                        border-radius: 5px;
+                        opacity: 1;
+
+                        font: 600 13px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 13.3px;
+                            height: 6.8px;
+                            margin-left: 8px;
+                        }
+
+                        img.optionsOpened {
+                            -webkit-transform: scaleY(-1);
+                            transform: scaleY(-1);
+                        }
+                    }
+
+                    a.opened {
+                        border: 1px solid #1F5DE4;
+                    }
+
+                    a:focus {
+                        outline: none !important;
+                        box-shadow: none !important;
+                    }
+                }
+
+                .extended-options {
+                    background: #FFFFFF 0 0 no-repeat padding-box;
+                    border: 1px solid #505050;
+                    border-radius: 5px;
+                    opacity: 1;
+                    margin-top: 8px;
+                    width: 88px;
+                    height: 60px;
+                    padding-top: 7px;
+                    padding-left: 8px;
+
+                    .edit-btn, .delete-btn {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        font: 600 13px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 15.75px;
+                            height: 14px;
+                            margin-right: 6px;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .delete-btn {
+                        margin-top: 8px;
+
+                        img {
+                            width: 10.89px;
+                            height: 14px;
+                            margin-right: 9.5px;
+                        }
+                    }
+                }
+
+                .extended-options.opened {
+                    border: 1px solid #1F5DE4;
+                }
+            }
         }
     }
 </style>

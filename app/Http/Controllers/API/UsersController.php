@@ -23,7 +23,22 @@ class UsersController extends Controller
 
     public function user()
     {
-        $user = User::where('id',Auth::user()->id)->with('skills','hobbies')->first();
+        $user = User::where('id',Auth::user()->id)->with([
+            'skills',
+            'hobbies',
+            'education',
+            'workExperience',
+            'links',
+            'projects',
+            'achievements',
+            'media',
+            'references',
+            'imports',
+            'languages',
+            'personalInfo',
+            'paymentInfo',
+            'summary',
+        ])->first();
         if($user){
             return response()->json($user, 200);
         }

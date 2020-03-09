@@ -16,7 +16,7 @@
             <img src="/images/welcome_landing_page/imgs/play.png" alt=""  class="play-icon" style="width: 40%; height:40%;">
           </a>
         </div>
-        <video ref="videoElem" src="/images/welcome_landing_page/video/sample.mp4" controls ></video>
+        <video ref="videoElem" src="/images/welcome_landing_page/video/welcome-civie.mp4" controls type="video/mp4"></video>
       </div>
       <a href="javascript:void(0)" class="btn-inset light__red"><i>Get started</i></a>
     </div>

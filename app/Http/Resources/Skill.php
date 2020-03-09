@@ -22,7 +22,7 @@ class Skill extends JsonResource
     {
         return [
             'version' => '1.0.0',
-            'author_url' => url('http://civ.ie'),
+            'author_url' => url('https://civ.ie'),
         ];
     }
 }

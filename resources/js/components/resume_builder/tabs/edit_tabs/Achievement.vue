@@ -24,7 +24,7 @@
 
             <transition name="hide" mode="out-in">
                 <award-view v-if="activeTab === 'Awards'"></award-view>
-                <certificates-view  v-else-if="activeTab === 'Certificates'"></certificates-view>
+                <certificates-view  v-else-if="activeTab === 'Certificates'" :achievements = "achievements"></certificates-view>
                 <public-view v-else-if="activeTab === 'Public'"></public-view>
                 <events-view v-else></events-view>
             </transition>
@@ -51,7 +51,12 @@
         name: "Achievement",
         data() {
             return {
-                activeTab: 'Awards'
+                activeTab: 'Awards',
+            }
+        },
+        computed: {
+            achievements() {
+                return this.$store.state.user.achievements;
             }
         },
         methods: {
@@ -290,68 +295,6 @@ $mainColor: #001CE2;
                                     width: 27px;
                                     height: 27px;
                                     margin-right: 10px;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            .certifications-list{
-                margin-top: 85px;
-                .certification-item{
-                    display: flex;
-
-                    .certification-preview{
-                        img{
-                            width: 376px;
-                            height: 290px;
-                            margin-right: 36px;
-                        }
-                    }
-
-                    .certification-details{
-                        display: flex;
-                        flex-direction: column;
-                        .title{
-                            font-family: "Noto Sans",serif;
-                            font-weight: 600;
-                            font-size: 30px;
-                            text-align: left;
-                            color: #001ce2;
-                            margin-bottom: 30px;
-                        }
-
-                        .description{
-                            font-family: "Noto Sans",serif;
-                            font-weight: 500;
-                            font-size: 18px;
-                            text-align: left;
-                            color: #001ce2;
-                        }
-                        .options-btn{
-                            margin-top:30px;
-                            a{
-                                width: 131px;
-                                height: 44px;
-
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-
-                                background: #FFFFFF 0% 0% no-repeat padding-box;
-                                border: 1px solid #1F5DE4;
-                                border-radius: 5px;
-                                opacity: 1;
-
-                                font: 600 20px/27px Noto Sans;
-                                letter-spacing: 0;
-                                color: #505050;
-
-                                img{
-                                    width: 20px;
-                                    height: 10px;
-                                    margin-left: 16px;
                                 }
                             }
                         }

@@ -308,6 +308,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
         
         .add-award-section {
             display: flex;
+            align-items: flex-start;
             flex-direction: column;
             margin-top: 55px;
 
@@ -404,8 +405,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
             margin-top: 60px;
 
             .skills-item {
-                background: whitesmoke;
                 position: relative;
+                background: whitesmoke;
                 margin-left: 43px;
                 margin-bottom: 30px;
                 display: flex;
