@@ -17,6 +17,7 @@
                     <div class="upload-text">
                         Upload image
                     </div>
+                    <img id="certificatePreviewClone" :src="previewImage" />
                 </vue2Dropzone>
             </div>
             <div class="certification-details-form">
