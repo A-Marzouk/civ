@@ -58,7 +58,7 @@ class PaymentInfoController extends Controller
             'salary_frequency' => ['required', 'string', 'max:255','min:3'],
             'salary' => ['required', 'numeric','min:3','max:9999999'],
             'available_hours_frequency' => ['required', 'string','max:255','min:3'],
-            'available_hours' => ['required', 'numeric','min:10','max:80'],
+            'available_hours' => ['required', 'numeric','min:10','max:5000'],
         ]);
     }
 }

@@ -84,20 +84,22 @@
                 <!--</div>-->
             </div>
             <div class="work-ex-list">
-                <div class="work-ex-item mt-5" v-for="(work,index) in works" :key="index + '_workEx'">
-                    <div class="work-icon">
-                        <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
-                    </div>
-                    <div class="work-ex-info">
-                        <div class="work-ex-title">
-                            {{work.company_name}}
+                <div class="work-ex-item mt-5 flex-column" v-for="(work,index) in works" :key="index + '_workEx'">
+                    <div class="d-flex">
+                        <div class="work-icon">
+                            <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
                         </div>
-                        <div class="work-ex-sub-title">
-                            {{work.job_title}},<br/>
-                            Duration: {{work.date_from}} - {{work.present ? "present" : work.date_to}}
-                        </div>
-                        <div class="work-ex-detials">
-                            {{work.description}}
+                        <div class="work-ex-info">
+                            <div class="work-ex-title">
+                                {{work.company_name}}
+                            </div>
+                            <div class="work-ex-sub-title">
+                                {{work.job_title}},<br/>
+                                Duration: {{work.date_from}} - {{work.present ? "present" : work.date_to}}
+                            </div>
+                            <div class="work-ex-detials">
+                                {{work.description}}
+                            </div>
                         </div>
                     </div>
                     <div class="options">
@@ -119,6 +121,80 @@
                                 <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
                                 Delete
                             </div>
+                        </div>
+                    </div>
+                    <div class="work-ex-form flex-column" v-show="work.id === editedWork.id">
+                        <div class="d-flex flex-row flex-wrap justify-content-between">
+                            <div class="work-ex-form-input">
+                                <label for="companyName">Company name</label>
+                                <input type="text" class="shorter" v-model="editedWork.company_name">
+                                <div class="error" v-if="errors.edit.company_name">
+                                    {{ Array.isArray(errors.edit.company_name) ? errors.edit.company_name[0] : errors.edit.company_name}}
+                                </div>
+                            </div>
+                            <div class="work-ex-form-input">
+                                <label for="jobTitle">Job title</label>
+                                <input type="text" v-model="editedWork.job_title">
+                                <div class="error" v-if="errors.edit.job_title">
+                                    {{ Array.isArray(errors.edit.job_title) ? errors.edit.job_title[0] : errors.edit.job_title}}
+                                </div>
+                            </div>
+                            <div class="work-ex-form-input">
+                                <label for="description">Description</label>
+                                <textarea type="text"  v-model="editedWork.description"></textarea>
+                                <div class="error" v-if="errors.edit.description">
+                                    {{ Array.isArray(errors.edit.description) ? errors.edit.description[0] : errors.edit.description}}
+                                </div>
+                            </div>
+                            <div class="work-ex-form-group">
+                                <div class="work-ex-form-input">
+                                    <label for="website">Website (optional)</label>
+                                    <input type="text"  v-model="editedWork.website">
+                                    <div class="error" v-if="errors.edit.website">
+                                        {{ Array.isArray(errors.edit.website) ? errors.edit.website[0] : errors.edit.website}}
+                                    </div>
+                                </div>
+                                <div class="date-group">
+                                    <div class="date-input">
+                                        <label for="dateFrom">Date</label>
+                                        <input type="date"  v-model="editedWork.date_from">
+                                        <div class="error" v-if="errors.edit.date_from">
+                                            {{ Array.isArray(errors.edit.date_from) ? errors.edit.date_from[0] : errors.edit.date_from}}
+                                        </div>
+                                    </div>
+                                    <div class="date-text">
+                                        to
+                                    </div>
+                                    <div class="date-input">
+                                        <label for="dateTo" class="light d-flex align-items-center">
+                                            <input type="checkbox" class="checkbox" v-model="editedWork.present"> I currently work here.
+                                        </label>
+                                        <input type="date"  v-model="editedWork.date_to" :disabled="editedWork.present">
+                                        <div class="error" v-if="errors.edit.date_to">
+                                            {{ Array.isArray(errors.edit.date_to) ? errors.edit.date_to[0] : errors.edit.date_to}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-btns">
+                            <div class="add-work NoDecor">
+                                <a href="javascript:void(0)" @click="applyEdit">
+                                    <img src="/images/resume_builder/work-ex/mark.png" alt="">
+                                    Save
+                                </a>
+                            </div>
+                            <div class="add-new-work NoDecor">
+                                <a href="javascript:void(0)" @click="clearEditedWork">
+                                    Cancel
+                                </a>
+                            </div>
+                            <!--<div class="auto-import NoDecor">-->
+                            <!--<a href="javascript:void(0)">-->
+                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
+                            <!--Auto import-->
+                            <!--</a>-->
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>
@@ -156,8 +232,43 @@
             }
         },
         methods: {
-            editWork(work){
-
+            editWork(work) {
+                this.editedWork = {
+                    id: work.id,
+                    company_name:work.company_name,
+                    job_title:work.job_title,
+                    description:work.description,
+                    website:work.website,
+                    date_from:work.date_from,
+                    date_to:work.date_to,
+                    present:work.present,
+                };
+                this.closeOptionsBtn();
+            },
+            applyEdit() {
+                axios.put('/api/user/work-experience', this.editedWork)
+                    .then((response) => {
+                        this.EditedSuccessfully(response.data.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors.edit = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            EditedSuccessfully(editedWork) {
+                this.clearEditedWork();
+                // replace the edited skill with the new one:
+                this.works.forEach((work, index) => {
+                    if (work.id === editedWork.id) {
+                        this.works[index] = editedWork;
+                    }
+                });
+            },
+            clearEditedWork() {
+                this.editedWork = {};
             },
             deleteWork(work){
                 if (!confirm('Do you want to delete this work ?')) {
@@ -193,6 +304,7 @@
                     });
             },
             clearWorkEx(){
+                this.addNewWork = false;
                 this.newWork = {
                     company_name:'',
                     job_title:'',
@@ -202,7 +314,10 @@
                     date_to:'',
                     present:'',
                 }
-            }
+            },
+            closeOptionsBtn() {
+                this.optionWorkId = 0;
+            },
         },
         mounted() {
 
