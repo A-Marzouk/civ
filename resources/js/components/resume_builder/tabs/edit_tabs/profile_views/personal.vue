@@ -18,22 +18,42 @@
             <div class="input-field">
                 <label for="fullname">My full-name</label>
                 <input type="text" placeholder="" id="fullname" name="fullname" v-model="personalInfo.full_name">
+                <div class="error" v-if="errors.full_name">
+                    {{ Array.isArray(errors.full_name) ? errors.full_name[0] :
+                    errors.full_name}}
+                </div>
             </div>
             <div class="input-field">
                 <label for="email">Email adress</label>
                 <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email" disabled>
+                <div class="error" v-if="errors.email">
+                    {{ Array.isArray(errors.email) ? errors.email[0] :
+                    errors.email}}
+                </div>
             </div>
             <div class="input-field">
                 <label for="designation">Designation</label>
                 <input type="text" id="designation" placeholder="" name="designation" v-model="personalInfo.designation">
+                <div class="error" v-if="errors.designation">
+                    {{ Array.isArray(errors.designation) ? errors.designation[0] :
+                    errors.designation}}
+                </div>
             </div>
             <div class="input-field">
                 <label for="phone">Phone</label>
                 <input type="tel" id="phone" placeholder="" name="phone" v-model="personalInfo.phone">
+                <div class="error" v-if="errors.phone">
+                    {{ Array.isArray(errors.phone) ? errors.phone[0] :
+                    errors.phone}}
+                </div>
             </div>
             <div class="input-field">
                 <label for="aboutmyself">About myself <i class="hint-message">Maximum 80 words</i></label>
                 <textarea name="aboutmyself"  id="aboutmyself" v-model="personalInfo.about"></textarea>
+                <div class="error" v-if="errors.about">
+                    {{ Array.isArray(errors.about) ? errors.about[0] :
+                    errors.about}}
+                </div>
             </div>
             <div class="actions">
                 <a href="javascript:void(0)" @click="applyEdit" class="btn-blue"><img src="/images/resume_builder/profile/icon-save.png">Save all information</a>
@@ -63,6 +83,8 @@ export default {
             $.each(this.personalInfo, (field) => {
                 field !== 'email' ? formData.append(field, this.personalInfo[field]) : '' ;
             });
+
+            this.errors={};
 
             axios.post('/api/user/personal-info',formData,{headers:{'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
@@ -118,5 +140,11 @@ export default {
     .hold-edit .user-cover {
         width: 144px;
         height: 144px;
+    }
+
+    .error {
+        color: red;
+        font-weight: 600;
+        margin-left: 5px;
     }
 </style>
