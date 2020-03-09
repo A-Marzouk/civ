@@ -26,11 +26,17 @@ class LanguagesController extends Controller
         return LanguageResource::collection($languages);
     }
 
+    public function languagesList()
+    {
+        $languages = Language::all();
+        return LanguageResource::collection($languages);
+    }
+
     public function store(Request $request)
     {
        // attach a language to user:
         Auth::user()->languages()->attach($request->language_id);
-        return ['status' => 'success'];
+        return ['language' => Language::find($request->language_id)];
     }
 
 
@@ -38,6 +44,6 @@ class LanguagesController extends Controller
     {
         // detach a language from user:
         Auth::user()->languages()->detach($id);
-        return ['status' => 'success'];
+        return ['data' => ['id' => $id] ];
     }
 }

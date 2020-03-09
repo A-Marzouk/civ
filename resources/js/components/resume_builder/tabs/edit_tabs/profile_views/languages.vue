@@ -2,14 +2,22 @@
     <div>
         <div class="hold-tab wrapp">
             <div class="input-field">
-                <label for="profilelink">New language</label>
-                <input type="text" placeholder="" id="profilelink" name="profilelink">
+                <label for="language">New language</label>
+                <select name="language"  id="language" v-model="selectedLanguage">
+                    <option value="selected" selected disabled>Select language</option>
+                    <option :value="language.id" v-for="(language,index) in languagesList" :key="index + '_language'">
+                        {{language.label}}
+                    </option>
+                </select>
+                <div class="error" v-if="errors.language">
+                    {{errors.language}}
+                </div>
             </div>
-            <a href="#" class="btn-blue"><img src="/images/resume_builder/profile/icon-check.png">Add language now</a>
-            <a href="" class="btn-outline ml-5">Auto import</a>
+            <a href="javascript:void(0)" @click="saveLanguage" class="btn-blue"><img src="/images/resume_builder/profile/icon-check.png">Add language now</a>
+            <a href="javascript:void(0)" class="btn-outline ml-5">Auto import</a>
             <div class="lang-items">
-                <div class="lang-item" v-for="(language,index) in languages" :key="index + '_language'">
-                    <img class="flagLang" src="/images/resume_builder/profile/flag-france.png" alt="">
+                <div class="lang-item mt-4" v-for="(language,index) in languages" :key="index + '_language'">
+                    <img class="LangIcon" src="/images/resume_builder/language-icon.png" alt="">
                     <span class="nameLang">{{language.label}}</span>
                     <div class="options">
                         <div class="options-btn NoDecor"
@@ -22,10 +30,6 @@
                         </div>
                         <div class="extended-options" v-show="optionLanguageId === language.id"
                              :class="{'opened':optionLanguageId === language.id}">
-                            <div class="edit-btn NoDecor" @click="editLanguage(language)">
-                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
-                                Edit
-                            </div>
                             <div class="delete-btn NoDecor" @click="deleteLanguage(language)">
                                 <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
                                 Delete
@@ -44,18 +48,50 @@
             return {
                 optionLanguageId: 0,
                 editedLanguage: {},
-                errors: {
-                    new: {},
-                    edit: {}
-                }
+                errors: {},
+                languagesList:[],
+                selectedLanguage:'selected'
             }
         },
         methods:{
-            deleteLanguage(){
+            deleteLanguage(lang){
+                if (!confirm('Do you want to delete this language [' + lang.label + '] ?')) {
+                    return;
+                }
 
+                axios.delete('/api/user/languages/' + lang.id)
+                    .then((response) => {
+                        this.languages.forEach( (language,index) => {
+                            if(language.id === lang.id){
+                                this.languages.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             },
             editLanguage(){
 
+            },
+            saveLanguage() {
+                let language_id = this.selectedLanguage;
+                this.errors = {};
+                axios.post('/api/user/languages', {language_id})
+                    .then((response) => {
+                        this.languages.unshift(response.data.language);
+                        this.selectedLanguage = 'selected'
+                    })
+                    .catch((error) => {
+                        this.errors = {
+                            language: 'This language already exists.'
+                        };
+                    });
+            },
+            closeOptionsBtn(){
+                this.optionLanguageId = 0 ;
             }
         },
         computed: {
@@ -63,6 +99,15 @@
                 return this.$store.state.user.languages;
             }
         },
+        mounted() {
+            axios.get('/api/user/languages-list')
+                .then( (response) => {
+                    this.languagesList = response.data.data ;
+                })
+                .catch( (error) => {
+                    console.log(error)
+                });
+        }
     }
 </script>
 
@@ -74,7 +119,7 @@
     }
     .options {
         position: absolute;
-        right: 14px;
+        right: -50px;
         top: 18px;
 
         .options-btn {
@@ -124,8 +169,8 @@
             opacity: 1;
             margin-top: 8px;
             width: 88px;
-            height: 60px;
-            padding-top: 7px;
+            height: 45px;
+            padding-top: 5px;
             padding-left: 8px;
 
             .edit-btn, .delete-btn {
@@ -161,5 +206,28 @@
         .extended-options.opened {
             border: 1px solid #1F5DE4;
         }
+    }
+
+    .input-field{
+        select{
+            border: 1.5px solid #505050;
+            border-radius: 8px;
+            padding: 0px 0px 0px 16.8px;
+
+            &:focus{
+                outline:none;
+            }
+        }
+    }
+
+    .error {
+        color: red;
+        margin-left: 5px;
+    }
+
+    .LangIcon{
+        width:40px;
+        height:40px;
+        margin-right: 20px;
     }
 </style>
