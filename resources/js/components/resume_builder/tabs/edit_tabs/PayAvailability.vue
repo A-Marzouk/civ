@@ -14,13 +14,20 @@
                     <div class="pay-input">
                         <label for="hourly-rate">My rate is: (USD)</label>
                         <input type="number" min="3" max="100000" step="1" id="hourly-rate" v-model="paymentInfo.salary">
+                        <div class="error" v-if="errors.salary">
+                            {{ Array.isArray(errors.salary) ? errors.salary[0] : errors.salary}}
+                        </div>
                     </div>
 
                     <div class="rate-per">
-                        <div :class="{active : paymentInfo.salary_frequency === 'monthly'}">Monthly</div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'hourly'}">Hourly</div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'yearly'}">Yearly</div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'weekly'}">Weekly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'monthly'}" @click="paymentInfo.salary_frequency ='monthly'">
+                            Monthly
+                        </div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'hourly'}" @click="paymentInfo.salary_frequency ='hourly'">
+                            Hourly
+                        </div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'yearly'}" @click="paymentInfo.salary_frequency ='yearly'">Yearly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'weekly'}" @click="paymentInfo.salary_frequency ='weekly'">Weekly</div>
                     </div>
                 </div>
                 <div class="hourly-rate">
@@ -30,18 +37,21 @@
                     <div class="pay-input">
                         <label for="available">Available working hours:</label>
                         <input type="text" id="available" value="6 hours"  v-model="paymentInfo.available_hours">
+                        <div class="error" v-if="errors.available_hours">
+                            {{ Array.isArray(errors.available_hours) ? errors.available_hours[0] : errors.available_hours}}
+                        </div>
                     </div>
 
                     <div class="rate-per">
-                        <div  :class="{active : paymentInfo.available_hours_frequency === 'weekly'}">Weekly</div>
-                        <div :class="{active : paymentInfo.available_hours_frequency === 'monthly'}">Monthly</div>
-                        <div :class="{active : paymentInfo.available_hours_frequency === 'yearly'}">Yearly</div>
+                        <div  :class="{active : paymentInfo.available_hours_frequency === 'weekly'}" @click="paymentInfo.available_hours_frequency ='weekly'">Weekly</div>
+                        <div :class="{active : paymentInfo.available_hours_frequency === 'monthly'}" @click="paymentInfo.available_hours_frequency ='monthly'">Monthly</div>
+                        <div :class="{active : paymentInfo.available_hours_frequency === 'yearly'}" @click="paymentInfo.available_hours_frequency ='yearly'">Yearly</div>
                     </div>
                 </div>
             </div>
 
             <div class="save-btn NoDecor">
-                <a href="javascript:void(0)">
+                <a href="javascript:void(0)" @click="updatePaymentInfo">
                     <img src="/images/resume_builder/availablity/Icon material-save.png" alt="save icon">
                     Save all information
                 </a>
@@ -55,7 +65,7 @@
         name: "PayAvailability",
         data(){
             return{
-
+                errors:{}
             }
         },
         computed: {
@@ -63,6 +73,24 @@
                 return this.$store.state.user.payment_info;
             }
         },
+
+        methods:{
+            updatePaymentInfo(){
+                this.errors = {};
+                axios.put('/api/user/payment-info',this.paymentInfo)
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+            }
+        }
     }
 </script>
 
@@ -129,6 +157,10 @@
                         color:#001CE2;
                         font-weight: 700;
                     }
+
+                    div:hover{
+                        cursor: pointer;
+                    }
                 }
             }
 
@@ -157,5 +189,10 @@
                 }
             }
         }
+    }
+
+    .error {
+        color: red;
+        margin-left: 5px;
     }
 </style>
