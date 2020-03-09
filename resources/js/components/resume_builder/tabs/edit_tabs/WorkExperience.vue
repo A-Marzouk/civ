@@ -5,60 +5,83 @@
             <h2>Work Experience</h2>
         </div>
         <div class="section-body">
-            <div class="work-ex-form">
+            <div class="work-ex-form" v-show="addNewWork">
                 <div class="work-ex-form-input">
                     <label for="companyName">Company name</label>
-                    <input type="text" id="companyName" class="shorter">
+                    <input type="text" id="companyName" class="shorter" v-model="newWork.company_name">
+                    <div class="error" v-if="errors.new.company_name">
+                        {{ Array.isArray(errors.new.company_name) ? errors.new.company_name[0] : errors.new.company_name}}
+                    </div>
                 </div>
                 <div class="work-ex-form-input">
                     <label for="jobTitle">Job title</label>
-                    <input type="text" id="jobTitle">
+                    <input type="text" id="jobTitle" v-model="newWork.job_title">
+                    <div class="error" v-if="errors.new.job_title">
+                        {{ Array.isArray(errors.new.job_title) ? errors.new.job_title[0] : errors.new.job_title}}
+                    </div>
                 </div>
                 <div class="work-ex-form-input">
                     <label for="description">Description</label>
-                    <textarea type="text" id="description"></textarea>
+                    <textarea type="text" id="description" v-model="newWork.description"></textarea>
+                    <div class="error" v-if="errors.new.description">
+                        {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                    </div>
                 </div>
                 <div class="work-ex-form-group">
                     <div class="work-ex-form-input">
                         <label for="website">Website (optional)</label>
-                        <input type="text" id="website">
+                        <input type="text" id="website" v-model="newWork.website">
+                        <div class="error" v-if="errors.new.website">
+                            {{ Array.isArray(errors.new.website) ? errors.new.website[0] : errors.new.website}}
+                        </div>
                     </div>
                     <div class="date-group">
                         <div class="date-input">
                             <label for="dateFrom">Date</label>
-                            <input type="date" id="dateFrom">
+                            <input type="date" id="dateFrom" v-model="newWork.date_from">
+                            <div class="error" v-if="errors.new.date_from">
+                                {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                            </div>
                         </div>
                         <div class="date-text">
                             to
                         </div>
                         <div class="date-input">
                             <label for="dateTo" class="light d-flex align-items-center">
-                                <input type="checkbox" class="checkbox"> I currently work here.
+                                <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
                             </label>
-                            <input type="date" id="dateTo">
+                            <input type="date" id="dateTo" v-model="newWork.date_to" :disabled="newWork.present">
+                            <div class="error" v-if="errors.new.date_to">
+                                {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="action-btns">
                 <div class="add-work NoDecor">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" v-show="addNewWork" @click="addWorkEx">
                         <img src="/images/resume_builder/work-ex/mark.png" alt="">
-                        Add Work Now
+                        Save
                     </a>
                 </div>
                 <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" @click="addNewWork = true" v-show="!addNewWork">
                         <img src="/images/resume_builder/work-ex/add-box.png" alt="">
                         Add new work
                     </a>
                 </div>
-                <div class="auto-import NoDecor">
-                    <a href="javascript:void(0)">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="">
-                        Auto import
+                <div class="add-new-work NoDecor">
+                    <a href="javascript:void(0)" @click="addNewWork = false" v-show="addNewWork">
+                        Cancel
                     </a>
                 </div>
+                <!--<div class="auto-import NoDecor">-->
+                    <!--<a href="javascript:void(0)">-->
+                        <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
+                        <!--Auto import-->
+                    <!--</a>-->
+                <!--</div>-->
             </div>
             <div class="work-ex-list">
                 <div class="work-ex-item mt-5" v-for="(work,index) in works" :key="index + '_workEx'">
@@ -111,10 +134,20 @@
             return {
                 optionWorkId: 0,
                 editedWork: {},
+                newWork: {
+                    company_name:'',
+                    job_title:'',
+                    description:'',
+                    website:'',
+                    date_from:'',
+                    date_to:'',
+                    present:false,
+                },
                 errors: {
                     new: {},
                     edit: {}
-                }
+                },
+                addNewWork:false
             }
         },
         computed: {
@@ -127,8 +160,49 @@
 
             },
             deleteWork(work){
+                if (!confirm('Do you want to delete this work ?')) {
+                    return;
+                }
+                axios.delete('/api/user/work-experience/' + work.id)
+                    .then((response) => {
+                        this.works.forEach( (myWork,index) => {
+                            if(myWork.id === response.data.data.id){
+                                this.works.splice(index,1);
+                            }
+                        });
 
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             },
+            addWorkEx(){
+                this.errors = {  new: {}, edit: {}};
+                axios.post('/api/user/work-experience', this.newWork)
+                    .then((response) => {
+                        this.works.unshift(response.data.data);
+                        this.clearWorkEx();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            clearWorkEx(){
+                this.newWork = {
+                    company_name:'',
+                    job_title:'',
+                    description:'',
+                    website:'',
+                    date_from:'',
+                    date_to:'',
+                    present:'',
+                }
+            }
         },
         mounted() {
 
@@ -183,6 +257,7 @@
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
+                    padding-top: 18px;
                 }
 
                 textarea:focus{
@@ -457,5 +532,10 @@
                 }
             }
         }
+    }
+
+    .error {
+        color: red;
+        margin-left: 5px;
     }
 </style>

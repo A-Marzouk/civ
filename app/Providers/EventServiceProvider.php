@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Link;
 use App\PaymentInfo;
 use App\PersonalInfo;
 use App\Summary;
@@ -58,6 +59,18 @@ class EventServiceProvider extends ServiceProvider
                 'user_id' => $user->id,
                 'objective' => '',
                 'overview' => '',
+            ]);
+
+            // Profile Link
+            Link::create([
+                'user_id' => $user->id,
+                'category' => 'profile_link',
+            ]);
+
+            // Payment Link
+            Link::create([
+                'user_id' => $user->id,
+                'category' => 'payment_link',
             ]);
 
         });

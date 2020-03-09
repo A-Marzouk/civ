@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="summary">
         <div class="section-title">
             <h2>Summary</h2>
         </div>
@@ -18,20 +18,23 @@
                         <span class="label-text">Objective</span>
                     </label>
                     <textarea name="about" id="objective" v-model="summary.objective">></textarea>
+                    <div class="error" v-if="errors.objective">
+                        {{ Array.isArray(errors.objective) ? errors.objective[0] : errors.objective}}
+                    </div>
                 </div>
                 <div class="action-btns">
                     <div class="auto-import-btn short NoDecor">
-                        <a href="">
+                        <a href="javascript:void(0)" @click="updateSummary">
                             <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Add
+                            Save
                         </a>
                     </div>
-                    <div class="auto-import-btn NoDecor">
-                        <a href="">
-                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Auto import
-                        </a>
-                    </div>
+                    <!--<div class="auto-import-btn NoDecor">-->
+                        <!--<a href="javascript:void(0)">-->
+                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                            <!--Auto import-->
+                        <!--</a>-->
+                    <!--</div>-->
                 </div>
             </div>
 
@@ -41,20 +44,23 @@
                         <span class="label-text">Overview</span>
                     </label>
                     <textarea name="about" id="overview" v-model="summary.overview"></textarea>
+                    <div class="error" v-if="errors.overview">
+                        {{ Array.isArray(errors.overview) ? errors.overview[0] : errors.overview}}
+                    </div>
                 </div>
                 <div class="action-btns">
                     <div class="auto-import-btn short NoDecor">
-                        <a href="">
+                        <a href="javascript:void(0)"  @click="updateSummary">
                             <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Add
+                            Save
                         </a>
                     </div>
-                    <div class="auto-import-btn NoDecor">
-                        <a href="">
-                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Auto import
-                        </a>
-                    </div>
+                    <!--<div class="auto-import-btn NoDecor">-->
+                        <!--<a href="javascript:void(0)">-->
+                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                            <!--Auto import-->
+                        <!--</a>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -72,7 +78,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     'Objective',
                     'Overview'
                 ],
-                activeTab: 'Objective'
+                activeTab: 'Objective',
+                errors:{}
             }
         },
         computed: {
@@ -85,10 +92,21 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 this.activeTab = tab
             },
             changeTab (e) {
-
-                // Here will be the animations between transitions
-                
                 moveTabsHelper(e, 'summaryLinksWrapper', this)
+            },
+            updateSummary(){
+                this.errors = {};
+                axios.put('/api/user/summary', this.summary)
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
             }
         },        
         mounted() {
@@ -187,6 +205,11 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 }
             }
         }
+    }
+
+    .error {
+        color: red;
+        margin-left: 5px;
     }
 
 </style>
