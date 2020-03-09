@@ -6,6 +6,7 @@ use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PersonalInfo as PersonalInfoResource;
 use App\PersonalInfo;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -49,10 +50,15 @@ class PersonalInfoController extends Controller
         }
 
         if (isset($_FILES['profile_pic'])) {
-            $pathToPicture = Upload::profilePicture('profile_pic');
-            $personalInfo->update([
-                'profile_pic' => $pathToPicture
-            ]);
+            $pathToPicture = Upload::profilePicture('profile_pic', Auth::user()->id);
+            if($pathToPicture){
+                $personalInfo->update([
+                    'profile_pic' => $pathToPicture
+                ]);
+            }else{
+                throw new Exception('Failed to upload image');
+            }
+
         }
 
         if (isset($personalInfo)){

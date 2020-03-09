@@ -78,7 +78,7 @@ class Upload
         }
     }
 
-    public static function profilePicture($name){
+    public static function profilePicture($name,$user_id){
         $target_dir = 'uploads/pictures/' ;
         $uploadOk = 1;
 
@@ -149,7 +149,7 @@ class Upload
         } else {
             $array = explode('.', $_FILES[$name]['name']);
             $extension = end($array);
-            $target_file = $target_dir .$name .'_'.date(time()).'.'.$extension;
+            $target_file = $target_dir .$name .'_'.$user_id.'.'.$extension;
             if (move_uploaded_file($_FILES[$name]["tmp_name"], $target_file)) {
                 return $target_file;
             } else {

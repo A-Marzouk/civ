@@ -13,6 +13,9 @@
                        style="width: 1px; height: 1px; opacity: 0; right:145%;"
                        @change=handleProfilePictureUpload>
             </div>
+            <div class="error" v-if="profile_pic_error">
+                {{profile_pic_error}}
+            </div>
         </div>
         <form class="form-edit_profile">
             <div class="input-field">
@@ -68,7 +71,8 @@ export default {
     data(){
         return{
             errors:{},
-            tempPic:''
+            tempPic:'',
+            profile_pic_error:''
         }
     },
     computed: {
@@ -100,18 +104,36 @@ export default {
                 });
         },
         handleProfilePictureUpload() {
-            this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
-            this.tempPic =  URL.createObjectURL(this.personalInfo.profile_pic) ;
+            // validate uploaded file :
+            let isValid = this.validateUploadedFile(this.$refs.profile_picture.files[0]);
+            if(isValid){
+                this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
+                this.tempPic =  URL.createObjectURL(this.personalInfo.profile_pic) ;
+                this.profile_pic_error = '';
+            }else{
+                console.log('error in pic');
+                this.profile_pic_error = 'Incorrect file chosen!';
+            }
+        },
+        validateUploadedFile(file){
+            let isValid = true ;
+            if(file.type.search('image') === -1){
+                isValid = false;
+            }
+            if(file.size > 250000){
+                isValid = false;
+            }
+            return isValid;
         },
         clickUploadInput(){
             $('#profile_picture').click();
         },
         getProfilePicSrc(){
-            if(this.tempPic .length > 0 || typeof this.personalInfo.profile_pic.name == 'string'){
+            if(this.tempPic.length > 0){
                 return this.tempPic;
             }
 
-            if (this.personalInfo){
+            if (this.personalInfo.profile_pic !== null){
                 if(this.personalInfo.profile_pic.search('uploads/pictures') !== -1){
                     return '/' + this.personalInfo.profile_pic
                 }
