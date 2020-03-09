@@ -23,10 +23,10 @@
             </div>
 
             <transition name="hide" mode="out-in">
-                <award-view v-if="activeTab === 'Awards'"></award-view>
-                <certificates-view  v-else-if="activeTab === 'Certificates'" :achievements = "achievements"></certificates-view>
-                <public-view v-else-if="activeTab === 'Public'"></public-view>
-                <events-view v-else></events-view>
+                <award-view v-if="activeTab === 'Awards'"  :achievements="achievements" @achievementDeleted="deleteAchievement" @achievementAdded="addAchievement"></award-view>
+                <certificates-view  v-else-if="activeTab === 'Certificates'" :achievements = "achievements" @achievementAdded="addAchievement"></certificates-view>
+                <public-view v-else-if="activeTab === 'Public'" @achievementAdded="addAchievement"></public-view>
+                <events-view v-else @achievementAdded="addAchievement"></events-view>
             </transition>
             
         </div>
@@ -52,6 +52,16 @@
         data() {
             return {
                 activeTab: 'Awards',
+                optionAchievementId: 0,
+                editedAchievement: {},
+                newAchievement: {
+
+                },
+                errors: {
+                    new: {},
+                    edit: {}
+                },
+                addNewAchievement:false
             }
         },
         computed: {
@@ -65,12 +75,91 @@
             },
             changeTab (e) {
                 let _this = this;
-
                 moveTabsHelper(e, 'achievementTabs', _this);
-            }
+            },
+            editAchievement(achievement) {
+                this.editedAchievement = {
+                    id: achievement.id,
+                   // TODO: continue fields
+                };
+                this.closeOptionsBtn();
+            },
+            applyEdit() {
+                axios.put('/api/user/achievements', this.editedAchievement)
+                    .then((response) => {
+                        this.EditedSuccessfully(response.data.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors.edit = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            EditedSuccessfully(editedAchievement) {
+                this.clearEditedAchievement();
+                // replace the edited skill with the new one:
+                this.achievements.forEach((achievement, index) => {
+                    if (achievement.id === editedAchievement.id) {
+                        this.achievements[index] = editedAchievement;
+                    }
+                });
+            },
+            clearEditedAchievement() {
+                this.editedAchievement = {};
+            },
+            deleteAchievement(achievement){
+                if (!confirm('Do you want to delete this achievement ?')) {
+                    return;
+                }
+                axios.delete('/api/user/achievements/' + achievement.id)
+                    .then((response) => {
+                        this.achievements.forEach( (myAchievement,index) => {
+                            if(myAchievement.id === response.data.data.id){
+                                this.achievements.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+            addAchievement(newAchievement){
+                console.log(newAchievement);
+                this.errors = {  new: {}, edit: {}};
+                axios.post('/api/user/achievements', newAchievement)
+                    .then((response) => {
+                        this.achievements.unshift(response.data.data);
+                        this.clearAchievement();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            clearAchievement(){
+                this.addNewAchievement = false;
+                this.newAchievement = {
+                    institution_type:'',
+                    university_name:'',
+                    degree_title:'',
+                    date_from:'',
+                    date_to:'',
+                    present:false,
+                }
+            },
+            closeOptionsBtn() {
+                this.optionAchievementId = 0;
+            },
         },
         mounted () {
-            let _this = this
+            let _this = this;
 
             // Get active tab
             let activeTab = document.querySelector('.bar-item.active');

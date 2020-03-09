@@ -70,9 +70,9 @@ class AchievementsController extends Controller
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255','min:3'],
             'category' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string','min:3', 'max:2500'],
-            'image_src' => ['required', 'string', 'max:255'],
-            'url' => ['required', 'string','max:255'],
+            'description' => ['string','min:3', 'max:2500'],
+            'image_src' => ['string', 'max:255'],
+            'url' => ['string','max:255'],
         ]);
     }
 }
