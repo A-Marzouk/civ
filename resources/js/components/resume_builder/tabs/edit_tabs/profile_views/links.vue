@@ -34,34 +34,37 @@
 
             <div v-else-if="activeTab === 'Social-link'">
                 <div class="hold-tab social">
-                    <div class="options-wrap" v-show="wrapNewItem">
-                        <a href="" class="btn-outline" @click.prevent="showAddItem">Add new link</a>
-                        <!--<a href="" class="btn-outline">Auto import</a>-->
+                    <div class="options-wrap">
+                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddSocialLink" @click="isAddSocialLink = true">Add new link</a>
+                        <!--<a href="javascript:void(0)" class="btn-outline">Auto import</a>-->
                     </div>
-                    <div class="addItem-wrap animated fadeIn" v-show="addItem">
+                    <div class="addItem-wrap animated fadeIn" v-show="isAddSocialLink">
                         <div class="input-field">
-                            <label for="sociallink">Add social link</label>
-                            <input id="sociallink" type="text" placeholder="" name="sociallink" v-model="social_link">
+                            <label for="socialLink">Add social link</label>
+                            <input id="socialLink" type="text" v-model="newSocialLink.link">
+                            <div class="error" v-if="errors.link">
+                                {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
+                            </div>
                         </div>
-                        <a href="#" class="btn-blue" @click.prevent="addLink"><img
+                        <a href="javascript:void(0)" class="btn-blue" @click="saveLink(newSocialLink)"><img
                                 src="/images/resume_builder/profile/icon-save2.png">Save new this link</a>
-                        <a href="" class="btn-close ml-5" @click.prevent="closeAdd">x</a>
+                        <a href="javascript:void(0)" class="btn-close ml-5" @click="isAddSocialLink = false">x</a>
                     </div>
 
-                    <div class="list-links" v-show="wrapNewItem">
+                    <div class="list-links">
                         <ul>
                             <li v-for="(item, index) in socialLinks" :key="index" class="animated fadeIn link-item"
                                 :class="{'fadeIn': activeListItem === index, 'movingDown': movingDown === index, 'movingUp': movingUp === index }">
                                         <span class="move-item">
-                                            <a href="" class="go_up"
+                                            <a href="javascript:void(0)" class="go_up"
                                                @click.prevent="reorder('social','mup',index,index-1)"
                                                :class="index==0?'disable':''"></a>
-                                            <a href="" class="go_down"
+                                            <a href="javascript:void(0)" class="go_down"
                                                @click.prevent="reorder('social','mdown',index,index+1)"
                                                :class="index==(socialLinks.length-1)?'disable':''"></a>
                                         </span>
                                 <span class="info-link">
-                                            <img :src="getIconImage(item.link_title)" alt="">
+                                            <img src="/images/resume_builder/link-icon.png" alt="">
                                             {{item.link}}
                                         </span>
                                 <div class="options">
@@ -95,23 +98,35 @@
             <div v-else-if="activeTab === 'Portfolio-link'">
                 <div class="hold-tab social">
                     <div class="options-wrap">
-                        <a href="" class="btn-outline">Add new link</a>
-                        <!--<a href="" class="btn-outline">Auto import</a>-->
+                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddPortfolioLink" @click="isAddPortfolioLink = true">Add new link</a>
+                        <!--<a href="javascript:void(0)" class="btn-outline">Auto import</a>-->
+                    </div>
+                    <div class="addItem-wrap animated fadeIn" v-show="isAddPortfolioLink">
+                        <div class="input-field">
+                            <label for="portfolioLink">Add portfolio link</label>
+                            <input id="portfolioLink" type="text" v-model="newPortfolioLink.link">
+                            <div class="error" v-if="errors.link">
+                                {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
+                            </div>
+                        </div>
+                        <a href="javascript:void(0)" class="btn-blue" @click="saveLink(newPortfolioLink)"><img
+                                src="/images/resume_builder/profile/icon-save2.png">Save new this link</a>
+                        <a href="javascript:void(0)" class="btn-close ml-5" @click="isAddPortfolioLink = false">x</a>
                     </div>
                     <div class="list-links">
                         <ul>
                             <li v-for="(item, index) in portfolioLinks" :key="index" class="animated fadeIn link-item"
                                 :class="{'fadeIn': activeListItem === index , 'movingDown': movingDown === index, 'movingUp': movingUp === index }">
                                         <span class="move-item">
-                                            <a href="" class="go_up"
+                                            <a href="javascript:void(0)" class="go_up"
                                                @click.prevent="reorder('portfolio','mup',index,index-1)"
                                                :class="index==0?'disable':''"></a>
-                                            <a href="" class="go_down"
+                                            <a href="javascript:void(0)" class="go_down"
                                                @click.prevent="reorder('portfolio','mdown',index,index+1)"
                                                :class="index==(socialLinks.length-1)?'disable':''"></a>
                                         </span>
                                 <span class="info-link">
-                                            <img :src="getIconImage(item.link_title)" alt="">
+                                            <img src="/images/resume_builder/link-icon.png" alt="">
                                             {{item.link}}
                                         </span>
 
@@ -182,23 +197,19 @@
             movingUp: undefined,
             movingDown: undefined,
             socialLinks: [],
-            portfolioLinks: [
-                {
-                    'link_title': 'Behance',
-                    'link': 'https://www.Behance.com/hachib_rahman_/'
-                },
-                {
-                    'link_title': 'Dribbble',
-                    'link': 'https://www.Dribbble.com/in/hachibur-rahman-5913a5139/'
-                }
-            ],
+            portfolioLinks: [],
             profileLink: '',
             paymentLink: '',
-            addItem: false,
-            wrapNewItem: true,
-            /** Fields add social link */
-            social_link: '',
-            namesocial: '',
+            isAddSocialLink: false,
+            isAddPortfolioLink: false,
+            newSocialLink: {
+                category:'social_link',
+                link:''
+            },
+            newPortfolioLink: {
+                category:'portfolio_link',
+                link:''
+            },
             errors: {},
             optionPortfolioLinkId:'',
             optionSocialLinkId:''
@@ -231,37 +242,27 @@
                 }, 500)
 
             },
-            getIconImage(name) {
-
-                let arrayIcons = {
-                    'behance': '/images/resume_builder/profile/behance.png',
-                    'dribbble': '/images/resume_builder/profile/dribbble.png',
-                }
-
-                if (arrayIcons.hasOwnProperty(name.toLowerCase())) {
-                    return arrayIcons[name.toLowerCase()];
-                } else {
-                    return '/images/resume_builder/profile/icon-plus.png';
-                }
-
-            },
             setActiveTab(tab) {
                 this.activeTab = tab
             },
             changeTab(e) {
 
+                this.errors = {};
                 // Here will be the animations between transitions
-
                 moveTabsHelper(e, 'linksWrapper', this)
             },
             saveProfileLink() {
+                if(!this.validURL(this.profileLink.link)){
+                    this.errors = {link : 'Not a valid link!'} ;
+                    return;
+                }
                 axios.put('/api/user/links', this.profileLink)
                     .then((response) => {
                         console.log(response.data.data);
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            this.errors.edit = error.response.data.errors;
+                            this.errors = error.response.data.errors;
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
@@ -275,13 +276,17 @@
                 $temp.remove();
             },
             savePaymentLink() {
+                if(!this.validURL(this.paymentLink.link)){
+                    this.errors = {link : 'Not a valid link!'} ;
+                    return;
+                }
                 axios.put('/api/user/links', this.paymentLink)
                     .then((response) => {
                         console.log(response.data.data);
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            this.errors.edit = error.response.data.errors;
+                            this.errors = error.response.data.errors;
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
@@ -298,7 +303,7 @@
 
             },
             deleteLink(link){
-                if (!confirm('Do you want to delete this link [' + link.link_title + '] ?')) {
+                if (!confirm('Do you want to delete this link [' + link.link + '] ?')) {
                     return;
                 }
                 axios.delete('/api/user/links/' + link.id)
@@ -319,6 +324,46 @@
                 this.optionPortfolioLinkId = 0;
                 this.optionSocialLinkId = 0;
             },
+            addSocialLink(){
+                this.isAddSocialLink = true;
+            },
+            addPortfolioLink(){
+                this.isAddPortfolioLink = true;
+            },
+            saveLink(link){
+                if(!this.validURL(link.link)){
+                   this.errors = {link : 'Not a valid link!'} ;
+                    return;
+                }
+                axios.post('/api/user/links', link)
+                    .then((response) => {
+                        let addedLink = response.data.data;
+                        this.links.push(addedLink);
+                        this.clearLink();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors  = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            clearLink(){
+                this.isAddSocialLink = false;
+                this.isAddPortfolioLink = false;
+                this.newSocialLink.link = '';
+                this.newPortfolioLink.link = '';
+            },
+            validURL(str) {
+                var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+                return !!pattern.test(str);
+            }
         },
         computed: {
             links() {
@@ -353,7 +398,7 @@
 
     .options {
         position: absolute;
-        right: 14px;
+        right: -100px;
         top: 5px;
 
         .options-btn {
@@ -444,5 +489,19 @@
 
     .link-item{
         min-width: 400px;
+    }
+
+    .error{
+        color:red;
+        padding-top:5px;
+        padding-left:3px;
+    }
+
+    .info-link{
+        img{
+            margin-right: 6px !important;
+            max-width: 30px !important;
+            min-width: 20px !important;
+        }
     }
 </style>
