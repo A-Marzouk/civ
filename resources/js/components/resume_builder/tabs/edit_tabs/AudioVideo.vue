@@ -29,7 +29,9 @@
 
             <!-- Audio previews -->
             <div class="audios-preview-container">
-                <audio-element v-for="i in 3" :key="i" :name="'Audio ' + i"></audio-element>
+                <div v-for="(mediaElement,index) in media" :key="index + '_mediaElement'" v-if="mediaElement.type === 'audio'">
+                    <audio-element :mediaElement="mediaElement"></audio-element>
+                </div>
             </div>
         </div>
     </section>
@@ -55,7 +57,12 @@ import audioElement from "./includes/audio-element";
 
                 }
             ]
-        })
+        }),
+        computed: {
+            media() {
+                return this.$store.state.user.media;
+            }
+        },
     }
 </script>
 

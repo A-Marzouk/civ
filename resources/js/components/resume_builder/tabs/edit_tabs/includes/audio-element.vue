@@ -1,6 +1,6 @@
 <template>
     <div class="audio-element">
-        <div class="audio-name">{{name}}</div>
+        <div class="audio-name">{{mediaElement.title}}</div>
         <div class="audio-player d-flex align-items-center">
             <svg-vue class="play-icon" icon="play-icon"></svg-vue>
             <svg-vue class="sound-frecuency" icon="sound-frecuency"></svg-vue>
@@ -33,7 +33,7 @@
 
 <script>
 export default {
-    props: ['name'],
+    props: ['mediaElement'],
     data: () => ({
     })
 }

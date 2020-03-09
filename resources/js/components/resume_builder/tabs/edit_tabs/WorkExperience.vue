@@ -5,83 +5,121 @@
             <h2>Work Experience</h2>
         </div>
         <div class="section-body">
-            <div class="work-ex-form">
+            <div class="work-ex-form" v-show="addNewWork">
                 <div class="work-ex-form-input">
                     <label for="companyName">Company name</label>
-                    <input type="text" id="companyName" class="shorter">
+                    <input type="text" id="companyName" class="shorter" v-model="newWork.company_name">
+                    <div class="error" v-if="errors.new.company_name">
+                        {{ Array.isArray(errors.new.company_name) ? errors.new.company_name[0] : errors.new.company_name}}
+                    </div>
                 </div>
                 <div class="work-ex-form-input">
                     <label for="jobTitle">Job title</label>
-                    <input type="text" id="jobTitle">
+                    <input type="text" id="jobTitle" v-model="newWork.job_title">
+                    <div class="error" v-if="errors.new.job_title">
+                        {{ Array.isArray(errors.new.job_title) ? errors.new.job_title[0] : errors.new.job_title}}
+                    </div>
                 </div>
                 <div class="work-ex-form-input">
                     <label for="description">Description</label>
-                    <textarea type="text" id="description"></textarea>
+                    <textarea type="text" id="description" v-model="newWork.description"></textarea>
+                    <div class="error" v-if="errors.new.description">
+                        {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                    </div>
                 </div>
                 <div class="work-ex-form-group">
                     <div class="work-ex-form-input">
                         <label for="website">Website (optional)</label>
-                        <input type="text" id="website">
+                        <input type="text" id="website" v-model="newWork.website">
+                        <div class="error" v-if="errors.new.website">
+                            {{ Array.isArray(errors.new.website) ? errors.new.website[0] : errors.new.website}}
+                        </div>
                     </div>
                     <div class="date-group">
                         <div class="date-input">
                             <label for="dateFrom">Date</label>
-                            <input type="date" id="dateFrom">
+                            <input type="date" id="dateFrom" v-model="newWork.date_from">
+                            <div class="error" v-if="errors.new.date_from">
+                                {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                            </div>
                         </div>
                         <div class="date-text">
                             to
                         </div>
                         <div class="date-input">
                             <label for="dateTo" class="light d-flex align-items-center">
-                                <input type="checkbox" class="checkbox"> I currently work here.
+                                <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
                             </label>
-                            <input type="date" id="dateTo">
+                            <input type="date" id="dateTo" v-model="newWork.date_to" :disabled="newWork.present">
+                            <div class="error" v-if="errors.new.date_to">
+                                {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="action-btns">
                 <div class="add-work NoDecor">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" v-show="addNewWork" @click="addWorkEx">
                         <img src="/images/resume_builder/work-ex/mark.png" alt="">
-                        Add Work Now
+                        Save
                     </a>
                 </div>
                 <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" @click="addNewWork = true" v-show="!addNewWork">
                         <img src="/images/resume_builder/work-ex/add-box.png" alt="">
                         Add new work
                     </a>
                 </div>
-                <div class="auto-import NoDecor">
-                    <a href="javascript:void(0)">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="">
-                        Auto import
+                <div class="add-new-work NoDecor">
+                    <a href="javascript:void(0)" @click="addNewWork = false" v-show="addNewWork">
+                        Cancel
                     </a>
                 </div>
+                <!--<div class="auto-import NoDecor">-->
+                    <!--<a href="javascript:void(0)">-->
+                        <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
+                        <!--Auto import-->
+                    <!--</a>-->
+                <!--</div>-->
             </div>
             <div class="work-ex-list">
-                <div class="work-ex-item">
+                <div class="work-ex-item mt-5" v-for="(work,index) in works" :key="index + '_workEx'">
                     <div class="work-icon">
                         <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
                     </div>
                     <div class="work-ex-info">
                         <div class="work-ex-title">
-                            Wedevs
+                            {{work.company_name}}
                         </div>
                         <div class="work-ex-sub-title">
-                            User experience designer,<br/>
-                            Duration: Dec 2017 - Sep 2018
+                            {{work.job_title}},<br/>
+                            Duration: {{work.date_from}} - {{work.present ? "present" : work.date_to}}
                         </div>
                         <div class="work-ex-detials">
-                            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
+                            {{work.description}}
                         </div>
                     </div>
-                    <div class="options-btn NoDecor">
-                        <a href="javascript:void(0)">
-                            Options
-                            <img src="/images/resume_builder/work-ex/Icon ionic-md-arrow-dropdown.png" alt="">
-                        </a>
+                    <div class="options">
+                        <div class="options-btn NoDecor"
+                             @click="optionWorkId === work.id ? optionWorkId=0 : optionWorkId=work.id">
+                            <a href="javascript:void(0)" :class="{'opened':optionWorkId === work.id}">
+                                Options
+                                <img src="/images/resume_builder/arrow-down.png" alt=""
+                                     :class="{'optionsOpened':optionWorkId === work.id}">
+                            </a>
+                        </div>
+                        <div class="extended-options" v-show="optionWorkId === work.id"
+                             :class="{'opened':optionWorkId === work.id}">
+                            <div class="edit-btn NoDecor" @click="editWork(work)">
+                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
+                                Edit
+                            </div>
+                            <div class="delete-btn NoDecor" @click="deleteWork(work)">
+                                <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                                Delete
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,9 +131,79 @@
     export default {
         name: "WorkExperience",
         data() {
-            return {}
+            return {
+                optionWorkId: 0,
+                editedWork: {},
+                newWork: {
+                    company_name:'',
+                    job_title:'',
+                    description:'',
+                    website:'',
+                    date_from:'',
+                    date_to:'',
+                    present:false,
+                },
+                errors: {
+                    new: {},
+                    edit: {}
+                },
+                addNewWork:false
+            }
         },
-        methods: {},
+        computed: {
+            works() {
+                return this.$store.state.user.work_experience;
+            }
+        },
+        methods: {
+            editWork(work){
+
+            },
+            deleteWork(work){
+                if (!confirm('Do you want to delete this work ?')) {
+                    return;
+                }
+                axios.delete('/api/user/work-experience/' + work.id)
+                    .then((response) => {
+                        this.works.forEach( (myWork,index) => {
+                            if(myWork.id === response.data.data.id){
+                                this.works.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+            addWorkEx(){
+                this.errors = {  new: {}, edit: {}};
+                axios.post('/api/user/work-experience', this.newWork)
+                    .then((response) => {
+                        this.works.unshift(response.data.data);
+                        this.clearWorkEx();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            clearWorkEx(){
+                this.newWork = {
+                    company_name:'',
+                    job_title:'',
+                    description:'',
+                    website:'',
+                    date_from:'',
+                    date_to:'',
+                    present:'',
+                }
+            }
+        },
         mounted() {
 
         }
@@ -149,6 +257,7 @@
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
+                    padding-top: 18px;
                 }
 
                 textarea:focus{
@@ -297,8 +406,9 @@
         .work-ex-list{
             margin-top: 64px;
             .work-ex-item{
+                position: relative;
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
                 width: 757px;
 
                 .work-icon{
@@ -330,32 +440,102 @@
                     }
                 }
 
-                .options-btn{
-                    a{
-                        width: 131px;
-                        height: 44px;
+                .options {
+                    position: absolute;
+                    right: 14px;
+                    top: 14px;
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                    .options-btn {
+                        a {
+                            width: 130px;
+                            height: 44px;
 
-                        background: #FFFFFF 0% 0% no-repeat padding-box;
-                        border: 1px solid #1F5DE4;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            background: #FFFFFF 0 0 no-repeat padding-box;
+                            border: 1px solid #505050;
+                            border-radius: 5px;
+                            opacity: 1;
+
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img {
+                                width: 13.3px;
+                                height: 6.8px;
+                                margin-left: 8px;
+                            }
+
+                            img.optionsOpened {
+                                -webkit-transform: scaleY(-1);
+                                transform: scaleY(-1);
+                            }
+                        }
+
+                        a.opened {
+                            border: 1px solid #1F5DE4;
+                        }
+
+                        a:focus {
+                            outline: none !important;
+                            box-shadow: none !important;
+                        }
+                    }
+
+                    .extended-options {
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
                         border-radius: 5px;
                         opacity: 1;
+                        margin-top: 8px;
+                        width: 130px;
+                        height: 60px;
+                        padding-top: 7px;
+                        padding-left: 8px;
 
-                        font: 600 20px/27px Noto Sans;
-                        letter-spacing: 0;
-                        color: #505050;
+                        .edit-btn, .delete-btn {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
 
-                        img{
-                            width: 20px;
-                            height: 10px;
-                            margin-left: 16px;
+                            img {
+                                width: 15.75px;
+                                height: 14px;
+                                margin-right: 6px;
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
+
+                        .delete-btn {
+                            margin-top: 8px;
+
+                            img {
+                                width: 10.89px;
+                                height: 14px;
+                                margin-right: 9.5px;
+                            }
+                        }
+                    }
+
+                    .extended-options.opened {
+                        border: 1px solid #1F5DE4;
                     }
                 }
             }
         }
+    }
+
+    .error {
+        color: red;
+        margin-left: 5px;
     }
 </style>

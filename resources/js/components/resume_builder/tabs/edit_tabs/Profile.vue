@@ -280,7 +280,7 @@ $mainColor: #001CE2;
                 color: #3C3748;
             }
 
-            input{
+            input,select{
                 font-size: 22px;
                 min-height: 76px;
                 color: #505050;
