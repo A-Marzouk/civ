@@ -73,7 +73,7 @@ class LinksController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'link_title' => ['required', 'string', 'max:255','min:3'],
+            'link_title' => ['string', 'max:255','min:3'],
             'category' => ['required', 'string', 'max:255'],
             'link' => ['required', 'string','max:255'],
         ]);
