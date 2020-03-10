@@ -75,51 +75,79 @@
                 </a>
             </div>
 
-            <div class="references" v-show="activeTab === 'Referee'">
-                <div class="reference-input">
-                    <label for="nameReferee">
-                        Name
-                    </label>
-                    <input type="text" placeholder="John smith" id="nameReferee">
-                </div>
-                <div class="reference-input">
-                    <label for="titleReferee">
-                        Title / Position
-                    </label>
-                    <input type="text" placeholder="Head of Operations " id="titleReferee">
-                </div>
-                <div class="reference-input">
-                    <label for="emailReferee">
-                        Contact Email
-                    </label>
-                    <input type="text" placeholder="joelle.smith@swiftbanking.com" id="emailReferee">
-                </div>
+            <div class="references d-flex flex-column" v-if="activeTab === 'Referee'">
+               <div class="d-flex flex-wrap justify-content-between">
+                   <div class="reference-input">
+                       <label for="nameReferee">
+                           Name
+                       </label>
+                       <input type="text" placeholder="John smith" id="nameReferee" v-model="referee.name">
+                       <div class="error" v-if="errors.name">
+                           {{ Array.isArray(errors.name) ? errors.name[0] : errors.name}}
+                       </div>
+                   </div>
+                   <div class="reference-input">
+                       <label for="titleReferee">
+                           Title / Position
+                       </label>
+                       <input type="text" placeholder="Head of Operations " id="titleReferee" v-model="referee.title">
+                       <div class="error" v-if="errors.title">
+                           {{ Array.isArray(errors.title) ? errors.title[0] : errors.title}}
+                       </div>
+                   </div>
+                   <div class="reference-input">
+                       <label for="emailReferee">
+                           Contact Email
+                       </label>
+                       <input type="text" placeholder="joelle.smith@swiftbanking.com" id="emailReferee" v-model="referee.contact_email">
+                       <div class="error" v-if="errors.contact_email">
+                           {{ Array.isArray(errors.contact_email) ? errors.contact_email[0] : errors.contact_email}}
+                       </div>
+                   </div>
 
-                <div class="reference-input">
-                    <label for="companyReferee">
-                        Company
-                    </label>
-                    <input type="text"  id="companyReferee" placeholder="SwiftBanking.com">
-                </div>
-                <div class="reference-input">
-                    <label for="phoneReferee">
-                        Phone number
-                    </label>
-                    <input type="text"  id="phoneReferee" placeholder="(678) 757 9413">
-                </div>
-                <div class="reference-input">
-                    <label for="emailReferee2">
-                        Email
-                    </label>
-                    <input type="text" placeholder="joelle.smith@swiftbanking.com" id="emailReferee2">
-                </div>
+                   <div class="reference-input">
+                       <label for="companyReferee">
+                           Company
+                       </label>
+                       <input type="text"  id="companyReferee" placeholder="SwiftBanking.com" v-model="referee.company">
+                       <div class="error" v-if="errors.company">
+                           {{ Array.isArray(errors.company) ? errors.company[0] : errors.company}}
+                       </div>
+                   </div>
+                   <div class="reference-input">
+                       <label for="phoneReferee">
+                           Phone number
+                       </label>
+                       <input type="text"  id="phoneReferee" placeholder="(678) 757 9413" v-model="referee.phone">
+                       <div class="error" v-if="errors.phone">
+                           {{ Array.isArray(errors.phone) ? errors.phone[0] : errors.phone}}
+                       </div>
+                   </div>
+                   <div class="reference-input">
+                       <label for="emailReferee2">
+                           Email
+                       </label>
+                       <input type="text" placeholder="joelle.smith@swiftbanking.com" id="emailReferee2" v-model="referee.email">
+                       <div class="error" v-if="errors.email">
+                           {{ Array.isArray(errors.email) ? errors.email[0] : errors.email}}
+                       </div>
+                   </div>
 
-                <div class="reference-input">
-                    <label for="notesReferee">
-                        Notes
-                    </label>
-                    <textarea id="notesReferee" name="notesReferee"></textarea>
-                </div>
+                   <div class="reference-input">
+                       <label for="notesReferee">
+                           Notes
+                       </label>
+                       <textarea id="notesReferee" name="notesReferee"  v-model="referee.notes"></textarea>
+                       <div class="error" v-if="errors.notes">
+                           {{ Array.isArray(errors.notes) ? errors.notes[0] : errors.notes}}
+                       </div>
+                   </div>
+               </div>
+
+                <a href="javascript:void(0)" @click="applyRefereeEdit" class="btn-blue">
+                    <img src="/images/resume_builder/profile/icon-save2.png">
+                    Save referee
+                </a>
             </div>
 
             <div class="about-section" v-show="activeTab === 'Testimonials'">
@@ -171,12 +199,29 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 this.activeTab = tab
             },
             changeTab (e) {
+                this.errors={};
                 moveTabsHelper(e, 'referencesLinksWrapper', this)
             },
             applyReferenceEdit() {
                 this.errors={};
 
                 axios.put('/api/user/reference',this.reference)
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            applyRefereeEdit() {
+                this.errors={};
+
+                axios.put('/api/user/referee',this.referee)
                     .then((response) => {
                         console.log(response.data);
                     })
@@ -221,6 +266,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 }
                 textarea{
                     height: 154.59px;
+                    padding-top: 12px;
                 }
                 input:focus,textarea:focus {
                     outline: none;

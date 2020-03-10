@@ -8,7 +8,7 @@ class Referee extends Model
 {
     protected $table= 'referee';
     protected $fillable = [
-        'user_id','name','title','phone','email','company','address','reference_text','notes'
+        'user_id','name','title','phone','email','contact_email','company','address','reference_text','notes'
     ];
 
 

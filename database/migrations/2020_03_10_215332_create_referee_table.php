@@ -20,6 +20,7 @@ class CreateRefereeTable extends Migration
             $table->string('title')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->string('contact_email')->nullable();
             $table->string('company')->nullable();
             $table->string('address')->nullable();
             $table->text('reference_text')->nullable();

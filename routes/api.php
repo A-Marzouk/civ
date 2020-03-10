@@ -119,6 +119,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/reference', 'API\ReferencesController@index');
     Route::put('/reference', 'API\ReferencesController@store');
 
+// Referee api routes:
+    Route::get('/referee', 'API\RefereeController@index');
+    Route::put('/referee', 'API\RefereeController@store');
+
 // Imports api routes:
     Route::get('/imports', 'API\ImportsController@index');
     Route::get('/imports/{id}', 'API\ImportsController@show');
