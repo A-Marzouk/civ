@@ -1,5 +1,5 @@
 <template>
-    <div class="resume-container">
+    <div class="resume-container" >
 
         <nav class="resume-builder-nav d-flex align-items-start">
             <a href="/freelancer/dashboard" class="brand-link">
@@ -42,8 +42,8 @@
                 <div class="user-name">
                     {{user.name}}
                 </div>
-                <div class="job-title">
-                   {{user.personal_info.designation}}
+                <div class="job-title" v-if="personalInfo">
+                   {{personalInfo.designation}}
                 </div>
             </div>
         </div>
@@ -70,6 +70,9 @@
         computed: {
             user() {
               return this.$store.state.user;
+            },
+            personalInfo(){
+                return this.$store.state.user.personal_info;
             }
         },
         methods: {
