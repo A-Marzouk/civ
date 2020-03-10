@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="currentUser">
         <div id="myAccountTab" class="my-account-tab-wrapper">
             <div class="form-wrapper">
                 <div class="content-wrapper">
@@ -286,7 +286,7 @@
                 return getUrl.protocol + "//" + getUrl.host + '/';
             },
             canEditEmail() {
-                return !(this.currentUser.instagram_id !== null && !this.currentUser.email);
+                return !(this.currentUser.instagram_id !== null && !this.isEmail(this.currentUser.email));
             },
             isUsernameChanged() {
                 if (!this.currentUser.username) {
@@ -295,6 +295,10 @@
                     return this.usernameOldValue.trim() !== this.accountData.username.trim(); // return true if  changed
                 }
             },
+            isEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
         },
         mounted() {
 
