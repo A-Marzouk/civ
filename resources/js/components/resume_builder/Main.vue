@@ -40,10 +40,10 @@
             </div>
             <div class="name-title-wrapper">
                 <div class="user-name">
-                    Carolyn Meyer
+                    {{user.name}}
                 </div>
                 <div class="job-title">
-                    User interface designer
+                   {{user.personal_info.designation}}
                 </div>
             </div>
         </div>
@@ -65,6 +65,11 @@
         data() {
             return {
                 activeTab: 'my-account'
+            }
+        },
+        computed: {
+            user() {
+              return this.$store.state.user;
             }
         },
         methods: {
