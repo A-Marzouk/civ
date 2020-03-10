@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Link;
 use App\PaymentInfo;
 use App\PersonalInfo;
+use App\Referee;
+use App\Reference;
 use App\Summary;
 use App\User;
 use Illuminate\Auth\Events\Registered;
@@ -63,6 +65,16 @@ class EventServiceProvider extends ServiceProvider
                 'user_id' => $user->id,
                 'objective' => '',
                 'overview' => '',
+            ]);
+
+            // Reference
+            Reference::create([
+                'user_id' => $user->id,
+            ]);
+
+            // Referee
+            Referee::create([
+                'user_id' => $user->id,
             ]);
 
             // Profile Link

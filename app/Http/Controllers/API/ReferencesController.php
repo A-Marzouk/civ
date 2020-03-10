@@ -18,12 +18,12 @@ class ReferencesController extends Controller
     /**
      * Display a listing of the resource.
      *@param  int  $user_id
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection
+     *  @return \App\Http\Resources\Reference
      */
     public function index()
     {
-        $references = Reference::where('user_id',Auth::user()->id)->paginate(5);
-        return ReferenceResource::collection($references);
+        $reference = Reference::where('user_id',Auth::user()->id)->first();
+        return new ReferenceResource($reference);
     }
     public function store(Request $request)
     {
@@ -31,8 +31,7 @@ class ReferencesController extends Controller
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put')){
-            // update
-            $reference = Reference::findOrFail($request->id);
+            $reference = Auth::user()->reference;
             $reference->update($request->toArray());
         }else{
             // add
@@ -45,39 +44,17 @@ class ReferencesController extends Controller
         }
     }
 
-    public function show($id)
-    {
-        $reference = Reference::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
-        ])->first();
-
-        return new ReferenceResource($reference);
-    }
-
-    public function destroy($id)
-    {
-        $reference = Reference::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
-        ])->first();
-
-        if($reference->delete()){
-            return ['data' => ['id' => $reference->id] ];
-        }
-    }
-
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255','min:3'],
             'title' => ['required', 'string', 'max:255'],
-            'phone' => ['required','min:7' , 'max:255'],
+            'phone' => ['required','min:7' ,'numeric'],
             'email' => ['required', 'email', 'max:255'],
             'company' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
-            'reference_text' => ['string', 'max:2500'],
-            'notes' => ['string', 'max:2500'],
+            'reference_text' => ['nullable','string', 'max:2500'],
+            'notes' => ['nullable','string', 'max:2500'],
         ]);
     }
 }

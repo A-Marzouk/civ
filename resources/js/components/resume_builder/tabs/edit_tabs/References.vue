@@ -13,43 +13,66 @@
                 <div class="decorator"></div>
             </div>
 
-            <div class="references" v-show="activeTab === 'References'">
+            <div class="references" v-show="activeTab === 'References'" v-if="reference">
                 <div class="reference-input">
                     <label for="name">
                         My full-name
                     </label>
-                    <input type="text" placeholder="John smith" id="name">
+                    <input type="text" placeholder="John smith" id="name" v-model="reference.name">
+                    <div class="error" v-if="errors.name">
+                        {{ Array.isArray(errors.name) ? errors.name[0] : errors.name}}
+                    </div>
                 </div>
                 <div class="reference-input">
                     <label for="title">
                         Title / Position
                     </label>
-                    <input type="text" placeholder="Head of Operations " id="title">
+                    <input type="text" placeholder="Head of Operations" id="title" v-model="reference.title">
+                    <div class="error" v-if="errors.title">
+                        {{ Array.isArray(errors.title) ? errors.title[0] : errors.title}}
+                    </div>
                 </div>
                 <div class="reference-input">
                     <label for="phone">
                         Phone
                     </label>
-                    <input type="text"  id="phone" placeholder="(678) 757 9413">
+                    <input type="text"  id="phone" placeholder="(678) 757 9413" v-model="reference.phone">
+                    <div class="error" v-if="errors.phone">
+                        {{ Array.isArray(errors.phone) ? errors.phone[0] : errors.phone}}
+                    </div>
                 </div>
                 <div class="reference-input">
                     <label for="email">
                         Contact Email
                     </label>
-                    <input type="text" placeholder="joelle.smith@swiftbanking.com" id="email">
+                    <input type="text" placeholder="joelle.smith@swiftbanking.com" id="email" v-model="reference.email">
+                    <div class="error" v-if="errors.email">
+                        {{ Array.isArray(errors.email) ? errors.email[0] : errors.email}}
+                    </div>
                 </div>
                 <div class="reference-input">
                     <label for="company">
                         Company
                     </label>
-                    <input type="text"  id="company" placeholder="SwiftBanking.com">
+                    <input type="text"  id="company" placeholder="SwiftBanking.com" v-model="reference.company">
+                    <div class="error" v-if="errors.company">
+                        {{ Array.isArray(errors.company) ? errors.company[0] : errors.company}}
+                    </div>
                 </div>
                 <div class="reference-input">
                     <label for="adresse">
                         Address
                     </label>
-                    <input type="text" placeholder="134 Rightward Way (Address) Portland, ME, 04019" id="adresse">
+                    <input type="text" placeholder="134 Rightward Way (Address) Portland, ME, 04019" id="adresse" v-model="reference.address">
+                    <div class="error" v-if="errors.address">
+                        {{ Array.isArray(errors.address) ? errors.address[0] : errors.address}}
+                    </div>
                 </div>
+
+                <a href="javascript:void(0)" @click="applyReferenceEdit" class="btn-blue">
+                    <img src="/images/resume_builder/profile/icon-save2.png">
+                    Save reference
+                </a>
             </div>
 
             <div class="references" v-show="activeTab === 'Referee'">
@@ -108,7 +131,7 @@
                 </div>
                 <div class="action-btns">
                     <div class="auto-import-btn short NoDecor">
-                        <a href="">
+                        <a href="javascript:void(0)">
                             <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
                             Add
                         </a>
@@ -131,7 +154,16 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     'References',
                     'Referee',
                     'Testimonials'
-                ]
+                ],
+                errors:{}
+            }
+        },
+        computed: {
+            reference() {
+                return this.$store.state.user.reference;
+            },
+            referee() {
+                return this.$store.state.user.referee;
             }
         },
         methods: {
@@ -139,11 +171,24 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 this.activeTab = tab
             },
             changeTab (e) {
-
-                // Here will be the animations between transitions
-                
                 moveTabsHelper(e, 'referencesLinksWrapper', this)
-            }
+            },
+            applyReferenceEdit() {
+                this.errors={};
+
+                axios.put('/api/user/reference',this.reference)
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
         },
         mounted() {
             this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
@@ -269,5 +314,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             }
         }
 
+    }
+    .error{
+        color:red;
+        padding-top:5px;
+        padding-left:3px;
     }
 </style>
