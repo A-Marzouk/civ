@@ -177,7 +177,7 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
-
+        \SocialiteProviders\Manager\ServiceProvider::class
     ],
 
     /*
