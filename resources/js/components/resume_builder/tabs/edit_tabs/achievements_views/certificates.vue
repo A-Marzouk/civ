@@ -82,11 +82,11 @@
                         </div>
                         <div class="extended-options" v-show="optionAchievementId === achievement.id"
                              :class="{'opened':optionAchievementId === achievement.id}">
-                            <div class="edit-btn NoDecor" @click="editAchievement(achievement)">
-                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
-                                Edit
-                            </div>
-                            <div class="delete-btn NoDecor" @click="deleteAchievement(achievement)">
+                            <!--<div class="edit-btn NoDecor" @click="editAchievement(achievement)">-->
+                                <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
+                                <!--Edit-->
+                            <!--</div>-->
+                            <div class="delete-btn NoDecor" @click="deleteCertificate(achievement)">
                                 <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
                                 Delete
                             </div>
@@ -200,9 +200,12 @@ export default {
                         this.errors.new  = 'Something went wrong. Please try again.';
                     }
                 });
-
-
         },
+        deleteCertificate(achievement){
+            console.log('delete');
+            this.$emit('achievementDeleted', achievement);
+        },
+
         addFileToListAnimation () {
             let titleAnimationBlock = document.querySelector('.text-animation.title');
             let descriptionAnimationBlock = document.querySelector('.text-animation.description');

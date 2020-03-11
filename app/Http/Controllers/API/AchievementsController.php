@@ -27,6 +27,7 @@ class AchievementsController extends Controller
 
     public function store(Request $request)
     {
+        return $request;
 
         $this->validator($request->all())->validate();
 
@@ -41,11 +42,10 @@ class AchievementsController extends Controller
         }
 
         if (isset($_FILES['file'])) {
-
             $pathToPicture = Upload::certificate('file', Auth::user()->id);
             if($pathToPicture){
                 $achievement->update([
-                    'image_src' => '/' . $pathToPicture
+                    'image_src' => '/'.$pathToPicture
                 ]);
             }else{
                 throw new Exception('Failed to upload image');
@@ -85,8 +85,8 @@ class AchievementsController extends Controller
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255','min:3'],
             'category' => ['required', 'string', 'max:255'],
-            'description' => ['required','string','min:3', 'max:2500'],
-            'file' => ['required','file'],
+            'description' => ['nullable','string','min:3', 'max:2500'],
+            'file' => ['nullable','file'],
             'url' => ['nullable','max:255'],
         ]);
     }
