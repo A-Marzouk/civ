@@ -130,6 +130,13 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/imports', 'API\ImportsController@store');
     Route::delete('/imports/{id}', 'API\ImportsController@destroy');
 
+// Testimonials api routes:
+    Route::get('/testimonials', 'API\TestimonialsController@index');
+    Route::get('/testimonials/{id}', 'API\TestimonialsController@show');
+    Route::post('/testimonials', 'API\TestimonialsController@store');
+    Route::put('/testimonials', 'API\TestimonialsController@store');
+    Route::delete('/testimonials/{id}', 'API\TestimonialsController@destroy');
+
 
 // Summary api routes:
     Route::get('/summary', 'API\SummaryController@index');

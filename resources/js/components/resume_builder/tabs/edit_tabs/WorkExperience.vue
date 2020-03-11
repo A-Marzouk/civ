@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="action-btns">
-                <div class="add-work NoDecor">
+                <div class="add-work NoDecor mr-0">
                     <a href="javascript:void(0)" v-show="addNewWork" @click="addWorkEx">
                         <img src="/images/resume_builder/work-ex/mark.png" alt="">
                         Save
