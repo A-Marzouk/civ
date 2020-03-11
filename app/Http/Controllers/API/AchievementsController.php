@@ -27,7 +27,6 @@ class AchievementsController extends Controller
 
     public function store(Request $request)
     {
-        return $request;
 
         $this->validator($request->all())->validate();
 
