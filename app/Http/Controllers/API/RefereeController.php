@@ -3,27 +3,21 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Reference;
-use App\Http\Resources\Reference as ReferenceResource;
+use App\Referee;
+use App\Http\Resources\Referee as RefereeResource;
 use Illuminate\Http\Request;use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
-class ReferencesController extends Controller
+class RefereeController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:api');
     }
 
-    /**
-     * Display a listing of the resource.
-     *@param  int  $user_id
-     *  @return \App\Http\Resources\Reference
-     */
     public function index()
     {
-        $reference = Reference::where('user_id',Auth::user()->id)->first();
-        return new ReferenceResource($reference);
+        $referee = Referee::where('user_id',Auth::user()->id)->first();
+        return new RefereeResource($referee);
     }
     public function store(Request $request)
     {
@@ -31,16 +25,16 @@ class ReferencesController extends Controller
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put')){
-            $reference = Auth::user()->reference;
-            $reference->update($request->toArray());
+            $referee = Auth::user()->referee;
+            $referee->update($request->toArray());
         }else{
             // add
             $request['user_id'] = Auth::user()->id;
-            $reference = Reference::create($request->toArray());
+            $referee = Referee::create($request->toArray());
         }
 
-        if ($reference->id){
-            return new ReferenceResource($reference);
+        if ($referee->id){
+            return new RefereeResource($referee);
         }
     }
 
@@ -51,8 +45,9 @@ class ReferencesController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'phone' => ['required','min:7' ,'numeric'],
             'email' => ['required', 'email', 'max:255'],
+            'contact_email' => ['required', 'email', 'max:255'],
             'company' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
+            'address' => ['nullable', 'string', 'max:255'],
             'reference_text' => ['nullable','string', 'max:2500'],
             'notes' => ['nullable','string', 'max:2500'],
         ]);

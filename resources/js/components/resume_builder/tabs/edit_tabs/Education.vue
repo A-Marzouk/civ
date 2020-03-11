@@ -5,59 +5,79 @@
             <h2>Education</h2>
         </div>
         <div class="section-body">
-            <div class="work-ex-form">
+            <div class="work-ex-form"  v-show="addNewEducation">
                 <div class="work-ex-form-input">
                     <label for="institutionType">Institution type</label>
-                    <input type="text" id="institutionType" class="shorter">
+                    <input type="text" id="institutionType" class="shorter" v-model="newEducation.institution_type">
+                    <div class="error" v-if="errors.new.institution_type">
+                        {{ Array.isArray(errors.new.institution_type) ? errors.new.institution_type[0] : errors.new.institution_type}}
+                    </div>
                 </div>
                 <div class="work-ex-form-input">
                     <label for="universityName">University name</label>
-                    <input type="text" id="universityName">
+                    <input type="text" id="universityName" v-model="newEducation.university_name">
+                    <div class="error" v-if="errors.new.university_name">
+                        {{ Array.isArray(errors.new.university_name) ? errors.new.university_name[0] : errors.new.university_name}}
+                    </div>
                 </div>
                 <div class="work-ex-form-input">
                     <label for="degreeTitle">Degree title</label>
-                    <input type="text" id="degreeTitle"  class="shorter">
+                    <input type="text" id="degreeTitle"  class="shorter" v-model="newEducation.degree_title">
+                    <div class="error" v-if="errors.new.degree_title">
+                        {{ Array.isArray(errors.new.degree_title) ? errors.new.degree_title[0] : errors.new.degree_title}}
+                    </div>
                 </div>
                 <div class="work-ex-form-group">
                     <div class="date-group">
                         <div class="date-input">
                             <label for="dateFrom">Session</label>
-                            <input type="date" id="dateFrom">
+                            <input type="date" id="dateFrom" v-model="newEducation.date_from">
+                            <div class="error" v-if="errors.new.date_from">
+                                {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                            </div>
                         </div>
                         <div class="date-text">
                             to
                         </div>
                         <div class="date-input">
                             <label for="dateTo" class="light d-flex align-items-center">
-                                <input type="checkbox" class="checkbox"> I currently study here.
+                                <input type="checkbox" class="checkbox" v-model="newEducation.present"> I currently study here.
                             </label>
-                            <input type="date" id="dateTo">
+                            <input type="date" id="dateTo" v-model="newEducation.date_to" :disabled="newEducation.present">
+                            <div class="error" v-if="errors.new.date_to">
+                                {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="action-btns">
                 <div class="add-work NoDecor">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" v-show="addNewEducation" @click="addEducation">
                         <img src="/images/resume_builder/work-ex/mark.png" alt="">
-                        Add Education Now
+                        Save
                     </a>
                 </div>
                 <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)">
+                    <a href="javascript:void(0)" @click="addNewEducation = true" v-show="!addNewEducation">
                         <img src="/images/resume_builder/work-ex/add-box.png" alt="">
                         Add new degree
                     </a>
                 </div>
-                <div class="auto-import NoDecor">
-                    <a href="javascript:void(0)">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="">
-                        Auto import
+                <div class="add-new-work NoDecor">
+                    <a href="javascript:void(0)" @click="addNewEducation = false" v-show="addNewEducation">
+                        Cancel
                     </a>
                 </div>
+                <!--<div class="auto-import NoDecor">-->
+                    <!--<a href="javascript:void(0)">-->
+                        <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
+                        <!--Auto import-->
+                    <!--</a>-->
+                <!--</div>-->
             </div>
             <div class="work-ex-list">
-                <div class="work-ex-item mt-5" v-for="(education,index) in educations" :key="index + '_education'">
+                <div class="work-ex-item mt-5 flex-column" v-for="(education,index) in educations" :key="index + '_education'">
                     <div class="d-flex">
                         <div class="work-icon">
                             <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
@@ -95,6 +115,73 @@
                             </div>
                         </div>
                     </div>
+                    <div v-show="education.id === editedEducation.id">
+                        <div class="work-ex-form">
+                            <div class="work-ex-form-input">
+                                <label for="institutionType">Institution type</label>
+                                <input type="text" class="shorter" v-model="editedEducation.institution_type">
+                                <div class="error" v-if="errors.edit.institution_type">
+                                    {{ Array.isArray(errors.edit.institution_type) ? errors.edit.institution_type[0] : errors.edit.institution_type}}
+                                </div>
+                            </div>
+                            <div class="work-ex-form-input">
+                                <label for="universityName">University name</label>
+                                <input type="text" v-model="editedEducation.university_name">
+                                <div class="error" v-if="errors.edit.university_name">
+                                    {{ Array.isArray(errors.edit.university_name) ? errors.edit.university_name[0] : errors.edit.university_name}}
+                                </div>
+                            </div>
+                            <div class="work-ex-form-input">
+                                <label for="degreeTitle">Degree title</label>
+                                <input type="text"  class="shorter" v-model="editedEducation.degree_title">
+                                <div class="error" v-if="errors.edit.degree_title">
+                                    {{ Array.isArray(errors.edit.degree_title) ? errors.edit.degree_title[0] : errors.edit.degree_title}}
+                                </div>
+                            </div>
+                            <div class="work-ex-form-group">
+                                <div class="date-group">
+                                    <div class="date-input">
+                                        <label for="dateFrom">Session</label>
+                                        <input type="date" v-model="editedEducation.date_from">
+                                        <div class="error" v-if="errors.edit.date_from">
+                                            {{ Array.isArray(errors.edit.date_from) ? errors.edit.date_from[0] : errors.edit.date_from}}
+                                        </div>
+                                    </div>
+                                    <div class="date-text">
+                                        to
+                                    </div>
+                                    <div class="date-input">
+                                        <label for="dateTo" class="light d-flex align-items-center">
+                                            <input type="checkbox" class="checkbox" v-model="editedEducation.present" > I currently study here.
+                                        </label>
+                                        <input type="date" v-model="editedEducation.date_to"  :disabled="editedEducation.present">
+                                        <div class="error" v-if="errors.edit.date_to">
+                                            {{ Array.isArray(errors.edit.date_to) ? errors.edit.date_to[0] : errors.edit.date_to}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="action-btns">
+                            <div class="add-work NoDecor">
+                                <a href="javascript:void(0)" @click="applyEdit">
+                                    <img src="/images/resume_builder/work-ex/mark.png" alt="">
+                                    Save
+                                </a>
+                            </div>
+                            <div class="add-new-work NoDecor">
+                                <a href="javascript:void(0)" @click="clearEditedEducation">
+                                    Cancel
+                                </a>
+                            </div>
+                            <!--<div class="auto-import NoDecor">-->
+                            <!--<a href="javascript:void(0)">-->
+                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
+                            <!--Auto import-->
+                            <!--</a>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -108,10 +195,19 @@
             return {
                 optionEducationId: 0,
                 editedEducation: {},
+                newEducation: {
+                    institution_type:'',
+                    university_name:'',
+                    degree_title:'',
+                    date_from:'',
+                    date_to:'',
+                    present:false,
+                },
                 errors: {
                     new: {},
                     edit: {}
-                }
+                },
+                addNewEducation:false
             }
         },
         computed: {
@@ -120,8 +216,90 @@
             }
         },
         methods: {
-            editEducation(education){},
-            deleteEducation(education){},
+            editEducation(education) {
+                this.editedEducation = {
+                    id: education.id,
+                    institution_type:education.institution_type,
+                    university_name:education.university_name,
+                    degree_title:education.degree_title,
+                    date_from:education.date_from,
+                    date_to:education.date_to,
+                    present:education.present,
+                };
+                this.closeOptionsBtn();
+            },
+            applyEdit() {
+                axios.put('/api/user/education', this.editedEducation)
+                    .then((response) => {
+                        this.EditedSuccessfully(response.data.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors.edit = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            EditedSuccessfully(editedEducation) {
+                this.clearEditedEducation();
+                // replace the edited skill with the new one:
+                this.educations.forEach((education, index) => {
+                    if (education.id === editedEducation.id) {
+                        this.educations[index] = editedEducation;
+                    }
+                });
+            },
+            clearEditedEducation() {
+                this.editedEducation = {};
+            },
+            deleteEducation(education){
+                if (!confirm('Do you want to delete this education ?')) {
+                    return;
+                }
+                axios.delete('/api/user/education/' + education.id)
+                    .then((response) => {
+                        this.educations.forEach( (myEducation,index) => {
+                            if(myEducation.id === response.data.data.id){
+                                this.educations.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+            addEducation(){
+                this.errors = {  new: {}, edit: {}};
+                axios.post('/api/user/education', this.newEducation)
+                    .then((response) => {
+                        this.educations.unshift(response.data.data);
+                        this.clearEducation();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            clearEducation(){
+                this.addNewEducation = false;
+                this.newEducation = {
+                    institution_type:'',
+                    university_name:'',
+                    degree_title:'',
+                    date_from:'',
+                    date_to:'',
+                    present:false,
+                }
+            },
+            closeOptionsBtn() {
+                this.optionEducationId = 0;
+            },
         },
         mounted() {
 
@@ -452,5 +630,9 @@
                 }
             }
         }
+    }
+    .error {
+        color: red;
+        margin-left: 5px;
     }
 </style>

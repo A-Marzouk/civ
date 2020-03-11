@@ -29,8 +29,9 @@ class DatabaseSeeder extends Seeder
         $this->call(AchievementsTableSeeder::class);
         $this->call(MediaTableSeeder::class);
 //        $this->call(PaymentInfoTableSeeder::class);  // commented out because we make relationship for each created USER.
-        $this->call(ReferencesTableSeeder::class);
+//        $this->call(ReferencesTableSeeder::class);  // commented out because we make relationship for each created USER.
         $this->call(ImportsTableSeeder::class);
+//        $this->call(RefereeTableSeeder::class);  // commented out because we make relationship for each created USER.
 //        $this->call(SummaryTableSeeder::class); // commented out because we make relationship for each created USER.
     }
 

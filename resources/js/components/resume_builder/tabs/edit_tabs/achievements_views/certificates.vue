@@ -41,12 +41,12 @@
                             Add certificate now
                         </a>
                     </div>
-                    <div class="auto-import-btn NoDecor">
-                        <a href="javascript:void(0)">
-                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Auto import
-                        </a>
-                    </div>
+                    <!--<div class="auto-import-btn NoDecor">-->
+                        <!--<a href="javascript:void(0)">-->
+                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                            <!--Auto import-->
+                        <!--</a>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -109,7 +109,7 @@ export default {
             url: 'https://httpbin.org/post',
             thumbnailWidth: 150,
             uploadMultiple: false,
-            maxFilesize: 0.5,
+            maxFilesize: 25,
             addRemoveLinks: true,
             maxFiles: 1,
             autoProcessQueue: false,

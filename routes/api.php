@@ -116,11 +116,12 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/payment-info', 'API\PaymentInfoController@store');
 
 // References api routes:
-    Route::get('/references', 'API\ReferencesController@index');
-    Route::get('/references/{id}', 'API\ReferencesController@show');
-    Route::post('/references', 'API\ReferencesController@store');
-    Route::put('/references', 'API\ReferencesController@store');
-    Route::delete('/references/{id}', 'API\ReferencesController@destroy');
+    Route::get('/reference', 'API\ReferencesController@index');
+    Route::put('/reference', 'API\ReferencesController@store');
+
+// Referee api routes:
+    Route::get('/referee', 'API\RefereeController@index');
+    Route::put('/referee', 'API\RefereeController@store');
 
 // Imports api routes:
     Route::get('/imports', 'API\ImportsController@index');
