@@ -28,7 +28,7 @@
             </div>
             <div class="input-field">
                 <label for="email">Email adress</label>
-                <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email" disabled>
+                <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email" :disabled="canEditEmail()">
                 <div class="error" v-if="errors.email">
                     {{ Array.isArray(errors.email) ? errors.email[0] :
                     errors.email}}
@@ -78,6 +78,9 @@ export default {
     computed: {
         personalInfo() {
             return this.$store.state.user.personal_info;
+        },
+        user(){
+            return this.$store.state.user;
         }
     },
     methods:{
@@ -141,6 +144,13 @@ export default {
 
             return  '/images/resume_builder/profile/holder.jpg' ;
 
+        },
+        canEditEmail() {
+            return !(this.user.instagram_id !== null && !this.isEmail(this.personalInfo.email));
+        },
+        isEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
         }
     }
 }

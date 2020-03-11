@@ -4,15 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PersonalInfo extends Model
+class Testimonial extends Model
 {
-
-    protected $table = 'personal_info';
-
+    protected $table = 'testimonials';
     protected $fillable = [
-        'full_name','email','designation','profile_pic','location', 'phone','about','user_id'
+        'name','company','title','description','user_id'
     ];
-
 
     // relation belongs to
     public function user(){

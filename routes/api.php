@@ -116,11 +116,12 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/payment-info', 'API\PaymentInfoController@store');
 
 // References api routes:
-    Route::get('/references', 'API\ReferencesController@index');
-    Route::get('/references/{id}', 'API\ReferencesController@show');
-    Route::post('/references', 'API\ReferencesController@store');
-    Route::put('/references', 'API\ReferencesController@store');
-    Route::delete('/references/{id}', 'API\ReferencesController@destroy');
+    Route::get('/reference', 'API\ReferencesController@index');
+    Route::put('/reference', 'API\ReferencesController@store');
+
+// Referee api routes:
+    Route::get('/referee', 'API\RefereeController@index');
+    Route::put('/referee', 'API\RefereeController@store');
 
 // Imports api routes:
     Route::get('/imports', 'API\ImportsController@index');
@@ -128,6 +129,13 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/imports', 'API\ImportsController@store');
     Route::put('/imports', 'API\ImportsController@store');
     Route::delete('/imports/{id}', 'API\ImportsController@destroy');
+
+// Testimonials api routes:
+    Route::get('/testimonials', 'API\TestimonialsController@index');
+    Route::get('/testimonials/{id}', 'API\TestimonialsController@show');
+    Route::post('/testimonials', 'API\TestimonialsController@store');
+    Route::put('/testimonials', 'API\TestimonialsController@store');
+    Route::delete('/testimonials/{id}', 'API\TestimonialsController@destroy');
 
 
 // Summary api routes:

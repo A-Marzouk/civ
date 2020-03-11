@@ -21,6 +21,7 @@ class CreatePersonalInfoTable extends Migration
             $table->string('designation')->nullable();
             $table->string('profile_pic')->nullable();
             $table->string('phone')->nullable();
+            $table->string('location')->nullable();
             $table->text('about')->nullable();
 
             $table->integer('user_id')->unsigned();

@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PersonalInfo extends Model
+class Referee extends Model
 {
-
-    protected $table = 'personal_info';
-
+    protected $table= 'referee';
     protected $fillable = [
-        'full_name','email','designation','profile_pic','location', 'phone','about','user_id'
+        'user_id','name','title','phone','email','contact_email','company','address','reference_text','notes'
     ];
 
 

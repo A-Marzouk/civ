@@ -91,15 +91,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Media::class);
     }
-
-    public function references()
-    {
-        return $this->hasMany(Reference::class);
-    }
-
     public function imports()
     {
         return $this->hasMany(Import::class);
+    }
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
     }
 
 
@@ -125,6 +123,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Summary::class);
     }
-
+    public function reference()
+    {
+        return $this->hasOne(Reference::class);
+    }
+    public function referee()
+    {
+        return $this->hasOne(Referee::class);
+    }
 
 }

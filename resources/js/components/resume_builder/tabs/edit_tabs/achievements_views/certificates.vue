@@ -17,22 +17,26 @@
                     <div class="upload-text">
                         Upload image
                     </div>
+                    <div v-show="showInputHelpers" class="file-animation" id="certificatePreviewClone">
+                        <embed v-if="previewFile && previewFile.type === 'application/pdf'" :src="previewFile && previewFile.url" alt="" :type="previewFile.type" />
+                        <img v-else :src="previewFile && previewFile.url" alt="" />
+                    </div>
                 </vue2Dropzone>
             </div>
             <div class="certification-details-form">
                 <div class="certification-input">
                     <label for="title">Title</label>
                     <input type="text" id="title" v-model="addCertificateForm.title">
-                    <div class="text-animation title"></div>
+                    <div v-show="showInputHelpers" class="text-animation title"></div>
                 </div>
                 <div class="certification-input">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" v-model="addCertificateForm.description"></textarea>
-                    <div class="text-animation description"></div>
+                    <div v-show="showInputHelpers" class="text-animation description"></div>
                 </div>
                 <div class="action-btns">
                     <div class="add-award-btn NoDecor">
-                        <a href="javascript:void(0)">
+                        <a href="javascript:void(0)" @click="addCertificate">
                             <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
                             Add certificate now
                         </a>
@@ -91,6 +95,7 @@ export default {
     data: () => ({
         optionAchievementId: 0,
         editedAchievement: {},
+        showInputHelpers: false,
         errors: {
             new: {},
             edit: {}
@@ -107,6 +112,7 @@ export default {
             maxFilesize: 25,
             addRemoveLinks: true,
             maxFiles: 1,
+            autoProcessQueue: false,
             acceptedFiles: 'application/pdf, image/*',
             previewTemplate: `
             <div class="dz-preview dz-file-preview">
@@ -117,14 +123,10 @@ export default {
                     <div class="dz-size"><span data-dz-size></span></div>
                     <div class="dz-filename"><span data-dz-name></span></div>
                 </div>
-                <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                <div class="dz-success-mark"><i class="fa fa-check"></i></div>
-                <div class="dz-error-mark"><i class="fa fa-close"></i></div>
             </div>
         `
         },
-
+        previewFile: null
     }),
     methods: {
         handlingEvent: function (file) {
@@ -144,6 +146,8 @@ export default {
                 thumbnail.style.background = `url(${fileURL})`;
                 thumbnail.appendChild(embedElement);
             }
+
+            this.addCertificateForm.file = file
         },
         thumbnail: function(file, dataUrl) {
             var j, len, ref, thumbnailElement;
@@ -165,19 +169,35 @@ export default {
                 })(this)), 1);
             }
         },
-        saveFile () {
+        addCertificate () {
+            let _this = this
+            // Axios request here
+
+            _this.addFileToListAnimation();
+            
+        },
+        addFileToListAnimation () {
             let titleAnimationBlock = document.querySelector('.text-animation.title');
             let descriptionAnimationBlock = document.querySelector('.text-animation.description');
+            let fileAnimationBlock = document.querySelector('.file-animation');
 
             titleAnimationBlock.innerHTML = this.addCertificateForm.title;
-            descriptionAnimationBlock.innerHTML = this.addCertificateForm.description
+            descriptionAnimationBlock.innerHTML = this.addCertificateForm.description;
+            this.previewFile = this.addCertificateForm.file;
 
-            // move to top using z-index
+            this.showInputHelpers = true;
+            
+            this.addCertificateForm.title = '';
+            this.addCertificateForm.description = '';
+            this.addCertificateForm.file = null;
+            this.$refs.newCertificate.removeAllFiles();
 
-            titleAnimationBlock.style.zIndex = 1;
-            descriptionAnimationBlock.style.zIndex = 1;
+            let certificationsListContainer = document.querySelector('.certifications-list');
+            let addCertificateContainer = document.querySelector('.add-certificate');
 
-
+            titleAnimationBlock.classList.add('show');
+            descriptionAnimationBlock.classList.add('show');
+            fileAnimationBlock.classList.add('show');
         }
     }
 }
@@ -186,7 +206,17 @@ export default {
 <style lang="scss">
     $activeColor: #001CE2;
 
+    @keyframes showInputHelpers {
+        from  {
+            transform: translateY(0);
+        } to {
+            transform: translateY(700px);
+        }
+    }
+
     #certificateDropzone {
+        position: relative;
+
         .dz-preview {
             width: 100%;
             height: 100%;
@@ -267,10 +297,38 @@ export default {
         bottom: 0;
         width: 807px;
         height: 76px;
-        z-index: -1;
+        transform: translateY(0);
+        transition: .5s;
+        padding-left: 18px;
 
         &.description {
+            padding-top: 22px;
             height: 190px;
+        }
+
+        &.title {
+            display: flex;
+            align-items: center;
+        }
+
+        &.show {
+            animation-name: showInputHelpers;
+            animation-duration: 1.2s;
+            animation-timing-function: ease-in-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    .file-animation {
+        position: absolute;
+
+        &.show {
+            animation-name: showInputHelpers;
+            animation-duration: 1.2s;
+            animation-timing-function: ease-in-out;
+            animation-delay: 0.2s;
+            animation-fill-mode: forwards;
         }
     }
 
