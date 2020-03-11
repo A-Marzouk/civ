@@ -55,8 +55,8 @@ class SummaryController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'objective' => ['string', 'max:2500','min:3'],
-            'overview' =>  ['string', 'max:2500','min:3']
+            'objective' => ['nullable','string', 'max:2500','min:3'],
+            'overview' =>  ['nullable','string', 'max:2500','min:3']
         ]);
     }
 
