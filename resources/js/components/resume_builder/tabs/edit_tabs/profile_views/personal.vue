@@ -95,7 +95,7 @@ export default {
 
             axios.post('/api/user/personal-info',formData,{headers:{'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
-                    console.log(response.data);
+                    this.$store.dispatch('successMessage');
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {

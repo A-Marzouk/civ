@@ -41,6 +41,12 @@ export const store = new Vuex.Store({
                     window.location.href = '/login';
                 }
             )
+        },
+        successMessage(){
+            let modal = $('#successMessageModal');
+            modal.modal('show');
+            modal.css('display','flex');
+            setTimeout( () => {modal.modal('hide')},3000);
         }
     }
 });

@@ -258,7 +258,8 @@
                 }
                 axios.put('/api/user/links', this.profileLink)
                     .then((response) => {
-                        console.log(response.data.data);
+                        // console.log(response.data.data);
+                        this.$store.dispatch('successMessage');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -282,7 +283,7 @@
                 }
                 axios.put('/api/user/links', this.paymentLink)
                     .then((response) => {
-                        console.log(response.data.data);
+                        this.$store.dispatch('successMessage');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
