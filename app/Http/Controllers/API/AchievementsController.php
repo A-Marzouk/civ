@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Achievement;
+use App\classes\Upload;
+use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Resources\Achievement as AchievementResource;
@@ -38,6 +40,19 @@ class AchievementsController extends Controller
             $achievement =Achievement::create($request->toArray());
         }
 
+        if (isset($_FILES['file'])) {
+
+            $pathToPicture = Upload::certificate('file', Auth::user()->id);
+            if($pathToPicture){
+                $achievement->update([
+                    'image_src' => '/' . $pathToPicture
+                ]);
+            }else{
+                throw new Exception('Failed to upload image');
+            }
+
+        }
+
         if ($achievement->id){
             return new AchievementResource($achievement);
         }
@@ -70,9 +85,9 @@ class AchievementsController extends Controller
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255','min:3'],
             'category' => ['required', 'string', 'max:255'],
-            'description' => ['string','min:3', 'max:2500'],
-            'image_src' => ['string', 'max:255'],
-            'url' => ['string','max:255'],
+            'description' => ['required','string','min:3', 'max:2500'],
+            'file' => ['required','file'],
+            'url' => ['nullable','max:255'],
         ]);
     }
 }
