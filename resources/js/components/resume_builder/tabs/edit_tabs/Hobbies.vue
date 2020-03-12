@@ -1,14 +1,24 @@
 <template>
-    <div>
+    <div id="hobbiesSection">
         <div class="section-title">
             <div class="title-light">Add</div>
             <h2>Hobbies</h2>
         </div>
         <div class="section-body-wrapper">
             <div class="add-award-section">
-                <div class="award-input short">
+                <div class="civ-input">
                     <label for="category">Category</label>
-                    <input type="text" id="category"  v-model="hobby.category">
+                    <div class="civ-custom-select">
+                        <div class="civ-select-input" @click="showCategoryOptions = !showCategoryOptions">
+                            <input type="text" id="category" disabled placeholder="Soccer" v-model="hobby.category" :class="{'with-border' : !showCategoryOptions}">
+                            <img src="/images/resume_builder/arrow-down.png" alt="arrow" :class="{'toggled':showCategoryOptions}">
+                        </div>
+                        <div class="civ-custom-options" v-show="showCategoryOptions">
+                            <div v-for="(category,index) in categoryOptions" :key="index + '_category'" @click="selectCategory(category.title)">
+                                {{category.title}}
+                            </div>
+                        </div>
+                    </div>
                     <div class="error" v-if="errors.new.category">
                         {{ Array.isArray(errors.new.category) ? errors.new.category[0] : errors.new.category}}
                     </div>
@@ -111,9 +121,28 @@
         data() {
             return {
                 hobby: {
-                    category: '',
+                    category: 'select',
                     title: ''
                 },
+                categoryOptions:[
+                    {
+                        title:'Sports',
+                        value:'sports'
+                    },
+                    {
+                        title:'Ice skating',
+                        value:'ice_skating'
+                    },
+                    {
+                        title:'Cycling',
+                        value:'cycling'
+                    },
+                    {
+                        title:'Parkour',
+                        value:'parkour'
+                    }
+                ],
+                showCategoryOptions:false,
                 optionHobbyId: 0,
                 editedHobby: {},
                 errors: {
@@ -128,6 +157,10 @@
             }
         },
         methods: {
+            selectCategory(title){
+                this.hobby.category = title;
+                this.showCategoryOptions = false;
+            },
             addHobby() {
                 if (this.validateHobby()) {
                     axios.post('/api/user/hobbies', this.hobby)
@@ -242,7 +275,11 @@
             }
         },
         mounted() {
-            console.log(this.$store.state.user.hobbies);
+            $('#hobbiesSection').on('click',  (e) => {
+                if(this.showCategoryOptions && !$(e.target).parents('.civ-input').length){
+                    this.showCategoryOptions = false;
+                }
+            })
         }
     }
 </script>
@@ -250,7 +287,6 @@
 <style scoped lang="scss">
     .section-body-wrapper {
         width: 1337px;
-
         .add-award-section {
             display: flex;
             justify-content: space-between;
@@ -339,7 +375,6 @@
             }
 
         }
-
         .work-ex-list{
             margin-top: 90px;
             .work-ex-item{
@@ -465,6 +500,89 @@
                 }
             }
         }
+    }
+
+    .civ-input{
+
+        margin-right: 30px;
+
+        label{
+            text-align: left;
+            font: 600 22px Noto Sans;
+            letter-spacing: 0;
+            color: #505050;
+            opacity: 1;
+        }
+
+        .civ-custom-select{
+
+            position: relative;
+
+            .civ-select-input{
+                img{
+                    width:24px ;
+                    height:12px;
+                    position: absolute;
+                    top: 35px;
+                    right: 20px;
+
+                    &.toggled{
+                        -webkit-transform: scaleY(-1);
+                        transform: scaleY(-1);
+                    }
+                }
+
+                ::placeholder {
+                    opacity: .3;
+                    font-weight: normal;
+                }
+
+                input{
+                    width:269px;
+                    height:76px;
+                    border: 1.5px #505050 solid;
+                    padding-left:23px;
+                    border-radius: 10px 10px 0 0;
+                    border-bottom: 0;
+                    color: black;
+                    font-weight: bold;
+                    font-size: 22px;
+
+                    &:focus{
+                        outline: none !important;
+                    }
+                    &:hover{
+                        cursor: pointer;
+                    }
+
+                    &.with-border{
+                        border-bottom: 1.5px #505050 solid;
+                        border-radius: 10px;
+                    }
+                }
+
+            }
+
+            .civ-custom-options{
+                background: #f8fafc;
+                position: absolute;
+                border: 1.5px #505050 solid;
+                border-radius: 0 0 10px 10px;
+                opacity: 1;
+                margin-top: 0;
+                width:269px;
+                border-top: 0;
+                height: auto;
+
+                div{
+                    font-size: 22px;
+                    padding-left: 23px;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
 
     }
 
@@ -473,5 +591,12 @@
         color: red;
         font-weight: 600;
         margin-left: 5px;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .5s;
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
     }
 </style>

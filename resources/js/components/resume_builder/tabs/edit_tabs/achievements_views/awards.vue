@@ -21,11 +21,18 @@
             <!--</a>-->
             <!--</div>-->
         </div>
-        <div class="awards-list">
-            <div class="awards-item" v-for="(achievement,index) in achievements" :key="index + '_achievement'" v-show="achievement.category === 'awards'">
-               <div>
-                   {{index+1}} - {{achievement.title}}
-               </div>
+        <div class="work-ex-list mt-3">
+            <div class="work-ex-item mt-5 flex-column" v-for="(achievement,index) in achievements" :key="index + '_achievement'" v-show="achievement.category === 'awards'">
+                <div class="d-flex">
+                    <div class="work-icon">
+                        <img src="/images/resume_builder/achievements/award.png" alt="work-icon">
+                    </div>
+                    <div class="work-ex-info">
+                        <div class="work-ex-title">
+                            {{achievement.title}}
+                        </div>
+                    </div>
+                </div>
 
                 <div class="options">
                     <div class="options-btn NoDecor"
@@ -46,6 +53,9 @@
                 </div>
             </div>
         </div>
+
+
+
     </div>
 </template>
 
@@ -83,6 +93,140 @@
     }
 </script>
 <style scoped lang="scss">
+
+    .work-ex-list{
+        margin-top: 64px;
+        .work-ex-item{
+            position: relative;
+            display: flex;
+            justify-content: flex-start;
+            width: 500px;
+
+            .work-icon{
+              img{
+                  width: 38px;
+                  height: auto;
+                  margin-right: 33px;
+              }
+            }
+
+            .work-ex-info{
+                .work-ex-title{
+                    font: 700 30px/41px Noto Sans;
+                    letter-spacing: 0;
+                    color: #3C3748;
+                    margin-bottom: 12px;
+                    opacity: 1;
+                }
+                .work-ex-sub-title{
+                    font: 700 19px Noto Sans;
+                    letter-spacing: 0;
+                    color: #3C3748;
+                    opacity: 1;
+                    margin-bottom: 16px;
+                }
+                .work-ex-detials{
+                    font: 500 16px Noto Sans;
+                    letter-spacing: 0;
+                    color: #555060;
+                    opacity: 1;
+                }
+            }
+
+            .options {
+                position: absolute;
+                right: -50px;
+                top: 0;
+
+                .options-btn {
+                    a {
+                        width: 130px;
+                        height: 44px;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
+                        border-radius: 5px;
+                        opacity: 1;
+
+                        font: 600 13px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 13.3px;
+                            height: 6.8px;
+                            margin-left: 8px;
+                        }
+
+                        img.optionsOpened {
+                            -webkit-transform: scaleY(-1);
+                            transform: scaleY(-1);
+                        }
+                    }
+
+                    a.opened {
+                        border: 1px solid #1F5DE4;
+                    }
+
+                    a:focus {
+                        outline: none !important;
+                        box-shadow: none !important;
+                    }
+                }
+
+                .extended-options {
+                    background: #FFFFFF 0 0 no-repeat padding-box;
+                    border: 1px solid #505050;
+                    border-radius: 5px;
+                    opacity: 1;
+                    margin-top: 8px;
+                    width: 130px;
+                    height: 60px;
+                    padding-top: 7px;
+                    padding-left: 8px;
+
+                    .edit-btn, .delete-btn {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        font: 600 13px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 15.75px;
+                            height: 14px;
+                            margin-right: 6px;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .delete-btn {
+                        margin-top: 8px;
+
+                        img {
+                            width: 10.89px;
+                            height: 14px;
+                            margin-right: 9.5px;
+                        }
+                    }
+                }
+
+                .extended-options.opened {
+                    border: 1px solid #1F5DE4;
+                }
+            }
+        }
+    }
+
+
     .awards-list{
         margin-top:40px;
         .awards-item{

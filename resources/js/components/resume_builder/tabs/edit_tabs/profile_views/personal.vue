@@ -137,9 +137,7 @@ export default {
             }
 
             if (this.personalInfo.profile_pic !== null){
-                if(this.personalInfo.profile_pic.search('uploads/pictures') !== -1){
-                    return '/' + this.personalInfo.profile_pic
-                }
+                return this.personalInfo.profile_pic;
             }
 
             return  '/images/resume_builder/profile/holder.jpg' ;

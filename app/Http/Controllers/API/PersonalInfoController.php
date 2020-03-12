@@ -53,7 +53,7 @@ class PersonalInfoController extends Controller
             $pathToPicture = Upload::profilePicture('profile_pic', Auth::user()->id);
             if($pathToPicture){
                 $personalInfo->update([
-                    'profile_pic' => $pathToPicture
+                    'profile_pic' => '/' . $pathToPicture
                 ]);
             }else{
                 throw new Exception('Failed to upload image');
