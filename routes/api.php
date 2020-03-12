@@ -74,6 +74,7 @@ Route::group(['prefix' => 'user/'], function () {
 // Personal info api routes:
     Route::get('/personal-info', 'API\PersonalInfoController@index');
     Route::put('/personal-info', 'API\PersonalInfoController@store');
+    Route::put('/personal-info/location', 'API\PersonalInfoController@storeLocation');
 
 // Links api routes:
     Route::get('/links', 'API\LinksController@index');

@@ -252,7 +252,8 @@
 
                 axios.post('/resume-builder/account/submit', this.accountData)
                     .then((response) => {
-                        console.log(response.data);
+                        // changes saved pop-up
+                        this.$store.dispatch('successMessage');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

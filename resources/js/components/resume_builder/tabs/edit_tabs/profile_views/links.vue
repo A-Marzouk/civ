@@ -341,6 +341,8 @@
                         let addedLink = response.data.data;
                         this.links.push(addedLink);
                         this.clearLink();
+                        // changes saved pop-up
+                        this.$store.dispatch('successMessage');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
