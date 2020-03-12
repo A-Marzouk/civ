@@ -157,7 +157,7 @@
                             <label for="emailReferee2" class="grey">
                                 Title
                             </label>
-                            <input type="email"  class="grey-border" v-model="newTestimonial.title">
+                            <input type="text" class="grey-border" v-model="newTestimonial.title">
                             <div class="error" v-if="errors.new.title">
                                 {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
                             </div>
@@ -324,7 +324,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 
                 axios.put('/api/user/reference',this.reference)
                     .then((response) => {
-                        console.log(response.data);
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -340,7 +340,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 
                 axios.put('/api/user/referee',this.referee)
                     .then((response) => {
-                        console.log(response.data);
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -357,6 +357,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     .then((response) => {
                         this.testimonials.unshift(response.data.data);
                         this.newTestimonial = {title:'', description:''};
+                        this.addNewTestimonial = false;
                         this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
