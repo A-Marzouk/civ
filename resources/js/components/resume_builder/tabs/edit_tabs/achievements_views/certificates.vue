@@ -22,16 +22,25 @@
                         <img v-else :src="previewFile && previewFile.url" alt="" />
                     </div>
                 </vue2Dropzone>
+                <div class="error" v-if="errors.new.file">
+                    {{ Array.isArray(errors.new.file) ? errors.new.file[0] : errors.new.file}}
+                </div>
             </div>
             <div class="certification-details-form">
                 <div class="certification-input">
                     <label for="title">Title</label>
                     <input type="text" id="title" v-model="addCertificateForm.title">
+                    <div class="error" v-if="errors.new.title">
+                        {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
+                    </div>
                     <div v-show="showInputHelpers" class="text-animation title"></div>
                 </div>
                 <div class="certification-input">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" v-model="addCertificateForm.description"></textarea>
+                    <div class="error" v-if="errors.new.description">
+                        {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                    </div>
                     <div v-show="showInputHelpers" class="text-animation description"></div>
                 </div>
                 <div class="action-btns">
@@ -50,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="certifications-list">
+        <div class="certifications-list" v-if="achievements">
             <div class="certification-item"  v-for="(achievement,index) in achievements" :key="index + '_achievements'" v-show="achievement.category === 'certificates'">
                 <div class="certification-preview">
                     <img :src="achievement.image_src" alt="certification-preview">
@@ -73,11 +82,11 @@
                         </div>
                         <div class="extended-options" v-show="optionAchievementId === achievement.id"
                              :class="{'opened':optionAchievementId === achievement.id}">
-                            <div class="edit-btn NoDecor" @click="editAchievement(achievement)">
-                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
-                                Edit
-                            </div>
-                            <div class="delete-btn NoDecor" @click="deleteAchievement(achievement)">
+                            <!--<div class="edit-btn NoDecor" @click="editAchievement(achievement)">-->
+                                <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
+                                <!--Edit-->
+                            <!--</div>-->
+                            <div class="delete-btn NoDecor" @click="deleteCertificate(achievement)">
                                 <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
                                 Delete
                             </div>
@@ -101,6 +110,7 @@ export default {
             edit: {}
         },
         addCertificateForm: {
+            category: 'certificates',
             title: '',
             description: '',
             file: null
@@ -170,12 +180,32 @@ export default {
             }
         },
         addCertificate () {
-            let _this = this
             // Axios request here
 
-            _this.addFileToListAnimation();
-            
+            let formData = new FormData();
+            $.each(this.addCertificateForm, (field) => {
+                formData.append(field, this.addCertificateForm[field])
+            });
+
+            axios.post('/api/user/achievements', formData)
+                .then((response) => {
+                    let addedAchievement = response.data.data;
+                    this.achievements.push(addedAchievement);
+                    this.addFileToListAnimation();
+                })
+                .catch((error) => {
+                    if (typeof error.response.data === 'object') {
+                        this.errors.new = error.response.data.errors;
+                    } else {
+                        this.errors.new  = 'Something went wrong. Please try again.';
+                    }
+                });
         },
+        deleteCertificate(achievement){
+            console.log('delete');
+            this.$emit('achievementDeleted', achievement);
+        },
+
         addFileToListAnimation () {
             let titleAnimationBlock = document.querySelector('.text-animation.title');
             let descriptionAnimationBlock = document.querySelector('.text-animation.description');
@@ -186,7 +216,7 @@ export default {
             this.previewFile = this.addCertificateForm.file;
 
             this.showInputHelpers = true;
-            
+
             this.addCertificateForm.title = '';
             this.addCertificateForm.description = '';
             this.addCertificateForm.file = null;
@@ -457,5 +487,11 @@ export default {
                 }
             }
         }
+    }
+
+    .error {
+        color: red;
+        font-weight: 500;
+        margin-left: 5px;
     }
 </style>

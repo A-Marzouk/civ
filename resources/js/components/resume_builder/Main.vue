@@ -48,10 +48,30 @@
             </div>
         </div>
 
-
         <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
             <router-view></router-view>
         </transition>
+
+
+        <div class="modal fade" id="successMessageModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+
+                        <div class="thank-you-pop d-flex">
+                            <img src="/images/resume_builder/tick.png" alt="">
+                            <div class="success-message-text">
+                                Data saved successfully
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </template>
 
@@ -126,6 +146,10 @@
 </script>
 
 <style lang="scss">
+
+    body.modal-open {
+        overflow: visible !important;
+    }
 
     .info-wrapper {
         display: flex;
@@ -252,6 +276,94 @@
                 }
             }
 
+        }
+
+    }
+
+
+    .thank-you-pop {
+        width: 100%;
+        display:flex;
+        align-items:center ;
+        justify-content: center;
+
+        img {
+            width: 99px;
+            height: 99px;
+            margin-right:64px;
+        }
+
+        p {
+            font-size: 20px;
+            margin-bottom: 27px;
+            color: #5C5C5C;
+        }
+
+        h3.cupon-pop {
+            font-size: 25px;
+            margin-bottom: 40px;
+            color: #222;
+            display: inline-block;
+            text-align: center;
+            padding: 10px 20px;
+            border: 2px dashed #222;
+            clear: both;
+            font-weight: normal;
+
+            span {
+                color: #03A9F4;
+            }
+        }
+
+        a {
+            display: inline-block;
+            margin: 0 auto;
+            padding: 9px 20px;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 14px;
+            background-color: #8BC34A;
+            border-radius: 17px;
+
+            i {
+                margin-right: 5px;
+                color: #fff;
+            }
+        }
+    }
+
+    #successMessageModal .modal-header {
+        border: 0px;
+    }
+
+    .success-message-text{
+        font-weight: 600;
+        font-size: 33px;
+        text-align: left;
+        color: #505050;
+    }
+
+    #successMessageModal{
+        align-items: center;
+        background: rgba(255, 255, 255, 0.9);
+        overflow-y: hidden;
+        .modal-dialog{
+            max-width: 736px !important;
+            height: 100vh !important;
+            display: flex;
+        }
+
+        .modal-content{
+            border: none;
+            border-radius: 45px;
+            margin: auto !important;
+            height: fit-content !important;
+        }
+        .modal-body{
+            height:303px;
+            display:flex;
+            align-items:center ;
+            justify-content: center;
         }
 
     }

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="summary">
+    <div>
         <div class="section-title">
             <h2>Summary</h2>
         </div>
@@ -12,57 +12,59 @@
                 <div class="decorator"></div>
             </div>
 
-            <div class="about-section" v-show="activeTab === 'Objective'">
-                <div class="about-input">
-                    <label for="objective" class="d-flex justify-content-between">
-                        <span class="label-text">Objective</span>
-                    </label>
-                    <textarea name="about" id="objective" v-model="summary.objective">></textarea>
-                    <div class="error" v-if="errors.objective">
-                        {{ Array.isArray(errors.objective) ? errors.objective[0] : errors.objective}}
+            <div v-if="summary">
+                <div class="about-section" v-show="activeTab === 'Objective'">
+                    <div class="about-input">
+                        <label for="objective" class="d-flex justify-content-between">
+                            <span class="label-text">Objective</span>
+                        </label>
+                        <textarea name="about" id="objective" v-model="summary.objective">></textarea>
+                        <div class="error" v-if="errors.objective">
+                            {{ Array.isArray(errors.objective) ? errors.objective[0] : errors.objective}}
+                        </div>
+                    </div>
+                    <div class="action-btns">
+                        <div class="auto-import-btn short NoDecor">
+                            <a href="javascript:void(0)" @click="updateSummary">
+                                <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                                Save
+                            </a>
+                        </div>
+                        <!--<div class="auto-import-btn NoDecor">-->
+                        <!--<a href="javascript:void(0)">-->
+                        <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                        <!--Auto import-->
+                        <!--</a>-->
+                        <!--</div>-->
                     </div>
                 </div>
-                <div class="action-btns">
-                    <div class="auto-import-btn short NoDecor">
-                        <a href="javascript:void(0)" @click="updateSummary">
-                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Save
-                        </a>
+                <div class="about-section"  v-show="activeTab === 'Overview'">
+                    <div class="about-input">
+                        <label for="overview" class="d-flex justify-content-between">
+                            <span class="label-text">Overview</span>
+                        </label>
+                        <textarea name="about" id="overview" v-model="summary.overview"></textarea>
+                        <div class="error" v-if="errors.overview">
+                            {{ Array.isArray(errors.overview) ? errors.overview[0] : errors.overview}}
+                        </div>
                     </div>
-                    <!--<div class="auto-import-btn NoDecor">-->
+                    <div class="action-btns">
+                        <div class="auto-import-btn short NoDecor">
+                            <a href="javascript:void(0)"  @click="updateSummary">
+                                <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                                Save
+                            </a>
+                        </div>
+                        <!--<div class="auto-import-btn NoDecor">-->
                         <!--<a href="javascript:void(0)">-->
-                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
-                            <!--Auto import-->
+                        <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                        <!--Auto import-->
                         <!--</a>-->
-                    <!--</div>-->
+                        <!--</div>-->
+                    </div>
                 </div>
             </div>
 
-            <div class="about-section"  v-show="activeTab === 'Overview'">
-                <div class="about-input">
-                    <label for="overview" class="d-flex justify-content-between">
-                        <span class="label-text">Overview</span>
-                    </label>
-                    <textarea name="about" id="overview" v-model="summary.overview"></textarea>
-                    <div class="error" v-if="errors.overview">
-                        {{ Array.isArray(errors.overview) ? errors.overview[0] : errors.overview}}
-                    </div>
-                </div>
-                <div class="action-btns">
-                    <div class="auto-import-btn short NoDecor">
-                        <a href="javascript:void(0)"  @click="updateSummary">
-                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Save
-                        </a>
-                    </div>
-                    <!--<div class="auto-import-btn NoDecor">-->
-                        <!--<a href="javascript:void(0)">-->
-                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
-                            <!--Auto import-->
-                        <!--</a>-->
-                    <!--</div>-->
-                </div>
-            </div>
         </div>
     </div>
 </template>
@@ -110,7 +112,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             }
         },        
         mounted() {
-            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)});
         }
     }
 </script>

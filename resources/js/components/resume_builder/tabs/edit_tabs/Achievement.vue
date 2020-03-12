@@ -24,7 +24,7 @@
 
             <transition name="hide" mode="out-in">
                 <award-view v-if="activeTab === 'Awards'"  :achievements="achievements" @achievementDeleted="deleteAchievement" @achievementAdded="addAchievement"></award-view>
-                <certificates-view  v-else-if="activeTab === 'Certificates'" :achievements = "achievements" @achievementAdded="addAchievement"></certificates-view>
+                <certificates-view  v-else-if="activeTab === 'Certificates'" :achievements = "achievements" @achievementDeleted="deleteAchievement"></certificates-view>
                 <public-view v-else-if="activeTab === 'Public'" @achievementAdded="addAchievement"></public-view>
                 <events-view v-else @achievementAdded="addAchievement"></events-view>
             </transition>
