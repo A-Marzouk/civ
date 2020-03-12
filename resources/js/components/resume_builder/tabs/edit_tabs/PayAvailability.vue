@@ -79,7 +79,7 @@
                 this.errors = {};
                 axios.put('/api/user/payment-info',this.paymentInfo)
                     .then((response) => {
-                        console.log(response.data);
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

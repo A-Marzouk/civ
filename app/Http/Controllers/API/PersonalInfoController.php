@@ -67,6 +67,17 @@ class PersonalInfoController extends Controller
 
     }
 
+
+    public function storeLocation(Request $request){
+        $personalInfo = Auth::user()->personalInfo;
+        $this->locationValidator($request->all())->validate();
+        $personalInfo->update($request->toArray());
+
+        if (isset($personalInfo)){
+            return new PersonalInfoResource($personalInfo);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -76,6 +87,13 @@ class PersonalInfoController extends Controller
             'profile_pic' => ['required'],
             'phone' => ['required', 'numeric','min:7'],
             'about' => ['required','string','min:30','max:2500'],
+        ]);
+    }
+
+    protected function locationValidator(array $data)
+    {
+        return Validator::make($data, [
+            'location' => ['required', 'string', 'max:255','min:3'],
         ]);
     }
 }

@@ -83,6 +83,8 @@
                     .then((response) => {
                         this.languages.unshift(response.data.language);
                         this.selectedLanguage = 'selected'
+                        // changes saved pop-up
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         this.errors = {

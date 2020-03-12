@@ -192,6 +192,7 @@ export default {
                     let addedAchievement = response.data.data;
                     this.achievements.push(addedAchievement);
                     this.addFileToListAnimation();
+                    this.$store.dispatch('fullScreenNotification');
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {

@@ -183,6 +183,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                             setTimeout(() => { // give time to the skill to be loaded
                                 this.progressBarSingleSkill(addedSkill);
                             }, 1500)
+                            this.$store.dispatch('fullScreenNotification');
                         })
                         .catch((error) => {
                             if (typeof error.response.data === 'object') {
@@ -262,6 +263,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
             },
             EditedSuccessfully(editedSkill) {
                 this.clearEditedSkill();
+                this.$store.dispatch('fullScreenNotification');
                 // replace the edited skill with the new one:
                 this.skills.forEach((skill, index) => {
                     if (skill.id === editedSkill.id) {
@@ -478,7 +480,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 .options {
                     position: absolute;
                     right: 14px;
-                    top: 14px;
+                    top: 9px;
 
                     .options-btn {
                         a {
