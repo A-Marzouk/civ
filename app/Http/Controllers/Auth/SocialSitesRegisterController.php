@@ -84,6 +84,12 @@ class SocialSitesRegisterController extends Controller
             );
         }
 
+        else if(isset($user->avatar)){
+            $newUser->personalInfo->update(
+                ['profile_pic' => $user->avatar]
+            );
+        }
+
 
         return $newUser;
     }
