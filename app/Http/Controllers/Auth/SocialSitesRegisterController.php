@@ -55,17 +55,6 @@ class SocialSitesRegisterController extends Controller
         ]);
     }
 
-    protected function create(array $data)
-    {
-        return User::create([
-            'username' => $data['email'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ])->assignRole('agent');
-    }
-
-
-
     private function findOrCreateUser($user,$provider)
     {
 
@@ -81,14 +70,33 @@ class SocialSitesRegisterController extends Controller
             return $authUser;
         }
 
-        $user = User::create([
+        $newUser = User::create([
             'email' => $user->email ?? $user->user['username'],
-            'username' => $user->email ?? $user->user['username'],
+            'username' => $this->getUserName($user),
+            'name' => $user->name ?? '',
             $provider.'_id' => $user->id
         ])->assignRole('agent');
 
 
-        return $user;
+        if(isset($user->avatar_original)){
+            $newUser->personalInfo->update(
+                ['profile_pic' => $user->avatar_original]
+            );
+        }
+
+
+        return $newUser;
+    }
+
+    protected function getUserName($user){
+        if($user->email){
+            $parts = explode("@", $user->email);
+            $username = $parts[0];
+        }else{
+            $username = $user->username;
+        }
+
+        return $username;
     }
 
 
