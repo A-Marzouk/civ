@@ -135,6 +135,7 @@
                             let addedHobby = response.data.data;
                             this.hobbies.push(addedHobby);
                             this.clearHobby();
+                            this.$store.dispatch('fullScreenNotification');
                         })
                         .catch((error) => {
                             if (typeof error.response.data === 'object') {
@@ -184,6 +185,7 @@
                     .then((response) => {
                         this.EditedSuccessfully(response.data.data);
                         this.clearErrors();
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

@@ -27,12 +27,10 @@
             updateLocation(){
                 axios.put('/api/user/personal-info/location',{location : this.personalInfo.location})
                     .then((response) => {
-                        console.log(response.data);
-                        this.$store.dispatch('successMessage');
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            console.log(error.response.data.errors);
                             this.errors = error.response.data.errors;
                         } else {
                             this.errors = 'Something went wrong. Please try again.';

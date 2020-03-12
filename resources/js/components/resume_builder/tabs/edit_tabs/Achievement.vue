@@ -99,6 +99,8 @@
             },
             EditedSuccessfully(editedAchievement) {
                 this.clearEditedAchievement();
+                this.$store.dispatch('fullScreenNotification');
+
                 // replace the edited skill with the new one:
                 this.achievements.forEach((achievement, index) => {
                     if (achievement.id === editedAchievement.id) {
@@ -134,6 +136,7 @@
                     .then((response) => {
                         this.achievements.unshift(response.data.data);
                         this.clearAchievement();
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

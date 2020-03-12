@@ -100,7 +100,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 this.errors = {};
                 axios.put('/api/user/summary', this.summary)
                     .then((response) => {
-                        console.log(response.data);
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

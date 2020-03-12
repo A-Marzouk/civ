@@ -260,6 +260,7 @@
             },
             EditedSuccessfully(editedWork) {
                 this.clearEditedWork();
+                this.$store.dispatch('fullScreenNotification');
                 // replace the edited skill with the new one:
                 this.works.forEach((work, index) => {
                     if (work.id === editedWork.id) {
@@ -294,6 +295,7 @@
                     .then((response) => {
                         this.works.unshift(response.data.data);
                         this.clearWorkEx();
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

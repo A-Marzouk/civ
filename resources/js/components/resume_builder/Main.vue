@@ -53,16 +53,14 @@
         </transition>
 
 
-        <div class="modal fade" id="successMessageModal" role="dialog">
+        <div class="modal fade" id="fullScreenNotificationModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
-
+                        <!-- image and notification text are set on stor.js (while sending the event) - default value is for success-->
                         <div class="thank-you-pop d-flex">
-                            <img src="/images/resume_builder/tick.png" alt="">
-                            <div class="success-message-text">
-                                Data saved successfully
-                            </div>
+                            <img src="" id="notificationIconSrc" alt="notification modal">
+                            <div class="success-message-text" id="notificationText"></div>
                         </div>
 
                     </div>
@@ -332,7 +330,7 @@
         }
     }
 
-    #successMessageModal .modal-header {
+    #fullScreenNotificationModal .modal-header {
         border: 0px;
     }
 
@@ -343,7 +341,7 @@
         color: #505050;
     }
 
-    #successMessageModal{
+    #fullScreenNotificationModal{
         align-items: center;
         background: rgba(255, 255, 255, 0.9);
         overflow-y: hidden;

@@ -17,6 +17,20 @@ export const store = new Vuex.Store({
     mutations: {
         getCurrentUser: (state, data) => {
             state.user = data;
+        },
+        showFullScreenNotification:(state, data) => {
+            let modal = $('#fullScreenNotificationModal');
+
+            // change to needed content
+            let notificationText = $('#notificationText');
+            let notificationIconSrc = $('#notificationIconSrc');
+            data.message ? notificationText.text(data.message) : notificationText.text('Data saved successfully');
+            data.iconSrc ? notificationIconSrc.prop('src',data.iconSrc) : notificationIconSrc.prop('src','/images/resume_builder/tick.png') ;
+
+            // toggle modal
+            modal.modal('show');
+            modal.css('display','flex');
+            setTimeout( () => {modal.modal('hide')},2000);
         }
     },
     actions: {
@@ -42,11 +56,8 @@ export const store = new Vuex.Store({
                 }
             )
         },
-        successMessage(){
-            let modal = $('#successMessageModal');
-            modal.modal('show');
-            modal.css('display','flex');
-            setTimeout( () => {modal.modal('hide')},3000);
+        fullScreenNotification(store,payload = {}){
+           store.commit('showFullScreenNotification',payload)
         }
     }
 });

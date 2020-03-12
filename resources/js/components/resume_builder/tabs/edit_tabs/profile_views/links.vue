@@ -259,7 +259,7 @@
                 axios.put('/api/user/links', this.profileLink)
                     .then((response) => {
                         // console.log(response.data.data);
-                        this.$store.dispatch('successMessage');
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -283,7 +283,7 @@
                 }
                 axios.put('/api/user/links', this.paymentLink)
                     .then((response) => {
-                        this.$store.dispatch('successMessage');
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -342,7 +342,7 @@
                         this.links.push(addedLink);
                         this.clearLink();
                         // changes saved pop-up
-                        this.$store.dispatch('successMessage');
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

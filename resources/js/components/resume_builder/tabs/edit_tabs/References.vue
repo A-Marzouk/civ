@@ -357,6 +357,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     .then((response) => {
                         this.testimonials.unshift(response.data.data);
                         this.newTestimonial = {title:'', description:''};
+                        this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -393,6 +394,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             },
             EditedSuccessfully(editedTestimonial) {
                 this.clearEditedTestimonial();
+                this.$store.dispatch('fullScreenNotification');
                 // replace the edited skill with the new one:
                 this.testimonials.forEach((testimonial, index) => {
                     if (testimonial.id === editedTestimonial.id) {
