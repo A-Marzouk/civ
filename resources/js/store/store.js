@@ -41,6 +41,16 @@ export const store = new Vuex.Store({
                 setTimeout( () => {
                     notificationElement.slideToggle('slow');
                 },2000);
+        },
+        showFlyingNotificationDelete:(state, data) => {
+            let notificationElement = $('#flyingNotificationDelete');
+            if( notificationElement.is(':visible')){
+                return ;
+            }
+            notificationElement.slideToggle('slow');
+            setTimeout( () => {
+                notificationElement.slideToggle('slow');
+            },2000);
         }
 
     },
@@ -72,6 +82,9 @@ export const store = new Vuex.Store({
         },
         flyingNotification(store,payload = {}){
             store.commit('showFlyingNotification',payload);
+        },
+        flyingNotificationDelete(store,payload = {}){
+            store.commit('showFlyingNotificationDelete',payload);
         }
     }
 });

@@ -277,6 +277,7 @@
                 }
                 axios.delete('/api/user/work-experience/' + work.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.works.forEach( (myWork,index) => {
                             if(myWork.id === response.data.data.id){
                                 this.works.splice(index,1);
