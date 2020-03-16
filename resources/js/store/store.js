@@ -34,10 +34,13 @@ export const store = new Vuex.Store({
         },
         showFlyingNotification:(state, data) => {
             let notificationElement = $('#flyingNotification');
-            notificationElement.slideToggle(true);
-            setTimeout(() => {
-                notificationElement.slideToggle(false)
-            }, 2000);
+                if( notificationElement.is(':visible')){
+                    return ;
+                }
+                notificationElement.slideToggle('slow');
+                setTimeout( () => {
+                    notificationElement.slideToggle('slow');
+                },2000);
         }
 
     },

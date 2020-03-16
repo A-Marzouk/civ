@@ -42,14 +42,14 @@ class RefereeController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255','min:3'],
-            'title' => ['required', 'string', 'max:255'],
-            'phone' => ['required','min:7' ,'numeric'],
-            'email' => ['required', 'email', 'max:255'],
-            'contact_email' => ['required', 'email', 'max:255'],
-            'company' => ['required', 'string', 'max:255'],
-            'address' => ['nullable', 'string', 'max:255'],
-            'reference_text' => ['nullable','string', 'max:2500'],
-            'notes' => ['nullable','string', 'max:2500'],
+            'title' => ['sometimes','required', 'string', 'max:255'],
+            'phone' => ['sometimes','required','min:7' ,'numeric'],
+            'email' => ['sometimes','required', 'email', 'max:255'],
+            'contact_email' => ['sometimes','required', 'email', 'max:255'],
+            'company' => ['sometimes','required', 'string', 'max:255'],
+            'address' => ['sometimes','nullable', 'string', 'max:255'],
+            'reference_text' => ['sometimes','nullable','string', 'max:2500'],
+            'notes' => ['sometimes','nullable','string', 'max:2500'],
         ]);
     }
 }
