@@ -308,6 +308,7 @@
                 }
                 axios.delete('/api/user/links/' + link.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.links.forEach( (link,index) => {
                             if(link.id === response.data.data.id){
                                 this.links.splice(index,1);

@@ -435,6 +435,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 }
                 axios.delete('/api/user/testimonials/' + testimonial.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.testimonials.forEach( (myTestimonial,index) => {
                             if(myTestimonial.id === response.data.data.id){
                                 this.testimonials.splice(index,1);

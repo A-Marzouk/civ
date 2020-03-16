@@ -61,6 +61,7 @@
 
                 axios.delete('/api/user/languages/' + lang.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.languages.forEach( (language,index) => {
                             if(language.id === lang.id){
                                 this.languages.splice(index,1);
