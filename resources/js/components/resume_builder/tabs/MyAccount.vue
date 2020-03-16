@@ -60,15 +60,6 @@
                                 My subscription
                             </div>
                             <div>
-                                <!--<label class='toggle-label'>-->
-                                    <!--<input type='checkbox'/>-->
-                                    <!--<span class='back'>-->
-                                    <!--<span class='toggle'></span>-->
-                                    <!--<span class='label on'>On</span>-->
-                                    <!--<span class='label off'>Off</span>-->
-                                    <!--</span>-->
-                                <!--</label>-->
-
                                 <div class="toggle-panel smaller">
                                     <div class="aux-fill" :class="{left: subscription === 'on',right: subscription === 'off'}"></div>
                                     <div class="buttons">
@@ -195,6 +186,8 @@
                 },700)
             },
             validateFiled(field_name) {
+                let saveUsername = false ;
+
                 let data = {
                     [field_name]: this.accountData[field_name]
                 };
@@ -203,6 +196,7 @@
                     if (!this.isUsernameChanged()) {
                         return;
                     }
+                    saveUsername = true;
                 }
 
                 if (field_name === 'password') {
@@ -220,6 +214,9 @@
                         if (response.data === 'success') {
                             this.fields[field_name] = 'success';
                             this.errors[field_name] = null;
+                            if(saveUsername){
+                                this.autoSave();
+                            }
                         }
                     })
                     .catch((error) => {
@@ -264,7 +261,6 @@
                         }
                     })
             },
-
             clearErrors() {
                 $.each(this.errors, (error) => {
                     this.errors[error] = '';
@@ -299,10 +295,37 @@
             isEmail(email) {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(email).toLowerCase());
-            }
+            },
+
+            // autosave submit
+            autoSave(){
+                axios.post('/resume-builder/account/submit', this.accountData)
+                    .then((response) => {
+                        // changes saved pop-up
+                        this.$store.dispatch('flyingNotification');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                            this.updateErrors(error.response.data.errors);
+                        } else {
+                            this.errors = ['Something went wrong. Please try again.'];
+                        }
+                    })
+            },
+            setUpAutoSave(){
+                let inputs = $('#myAccountTab :input');
+
+                inputs.each((index,input) => {
+                   if(input.id && input.id !== 'username'){
+                       $('#' + input.id).focusout(this.autoSave);
+                   }
+                });
+
+            },
         },
         mounted() {
-
+            this.setUpAutoSave();
         }
 
     }

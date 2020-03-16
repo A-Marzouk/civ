@@ -13,63 +13,63 @@
                 <div class="decorator"></div>
             </div>
 
-            <div class="references" v-show="activeTab === 'References'" v-if="reference">
+            <div class="references" v-show="activeTab === 'References'" v-if="this.reference">
                 <div class="reference-input">
-                    <label for="name">
+                    <label for="reference_name">
                         My full-name
                     </label>
-                    <input type="text" placeholder="John smith" id="name" v-model="reference.name">
+                    <input type="text" placeholder="John smith" id="reference_name" v-model="reference.name" @blur="applyReferenceEdit('auto')">
                     <div class="error" v-if="errors.name">
                         {{ Array.isArray(errors.name) ? errors.name[0] : errors.name}}
                     </div>
                 </div>
                 <div class="reference-input">
-                    <label for="title">
+                    <label for="reference_title">
                         Title / Position
                     </label>
-                    <input type="text" placeholder="Head of Operations" id="title" v-model="reference.title">
+                    <input type="text" placeholder="Head of Operations" id="reference_title" v-model="reference.title" @blur="applyReferenceEdit('auto')">
                     <div class="error" v-if="errors.title">
                         {{ Array.isArray(errors.title) ? errors.title[0] : errors.title}}
                     </div>
                 </div>
                 <div class="reference-input">
-                    <label for="phone">
+                    <label for="reference_phone">
                         Phone
                     </label>
-                    <input type="text"  id="phone" placeholder="(678) 757 9413" v-model="reference.phone">
+                    <input type="text"  id="reference_phone" placeholder="(678) 757 9413" v-model="reference.phone" @blur="applyReferenceEdit('auto')">
                     <div class="error" v-if="errors.phone">
                         {{ Array.isArray(errors.phone) ? errors.phone[0] : errors.phone}}
                     </div>
                 </div>
                 <div class="reference-input">
-                    <label for="email">
+                    <label for="reference_email">
                         Contact Email
                     </label>
-                    <input type="text" placeholder="joelle.smith@swiftbanking.com" id="email" v-model="reference.email">
+                    <input type="text" placeholder="joelle.smith@swiftbanking.com" id="reference_email" v-model="reference.email" @blur="applyReferenceEdit('auto')">
                     <div class="error" v-if="errors.email">
                         {{ Array.isArray(errors.email) ? errors.email[0] : errors.email}}
                     </div>
                 </div>
                 <div class="reference-input">
-                    <label for="company">
+                    <label for="reference_company">
                         Company
                     </label>
-                    <input type="text"  id="company" placeholder="SwiftBanking.com" v-model="reference.company">
+                    <input type="text"  id="reference_company" placeholder="SwiftBanking.com" v-model="reference.company" @blur="applyReferenceEdit('auto')">
                     <div class="error" v-if="errors.company">
                         {{ Array.isArray(errors.company) ? errors.company[0] : errors.company}}
                     </div>
                 </div>
                 <div class="reference-input">
-                    <label for="adresse">
+                    <label for="reference_adresse">
                         Address
                     </label>
-                    <input type="text" placeholder="134 Rightward Way (Address) Portland, ME, 04019" id="adresse" v-model="reference.address">
+                    <input type="text" placeholder="134 Rightward Way (Address) Portland, ME, 04019" id="reference_adresse" v-model="reference.address" @blur="applyReferenceEdit('auto')">
                     <div class="error" v-if="errors.address">
                         {{ Array.isArray(errors.address) ? errors.address[0] : errors.address}}
                     </div>
                 </div>
 
-                <a href="javascript:void(0)" @click="applyReferenceEdit" class="btn-blue">
+                <a href="javascript:void(0)" @click="applyReferenceEdit('manual')" class="btn-blue">
                     <img src="/images/resume_builder/profile/icon-save2.png">
                     Save reference
                 </a>
@@ -81,7 +81,7 @@
                        <label for="nameReferee">
                            Name
                        </label>
-                       <input type="text" placeholder="John smith" id="nameReferee" v-model="referee.name">
+                       <input type="text" placeholder="John smith" id="nameReferee" v-model="referee.name" @blur="applyRefereeEdit('auto')">
                        <div class="error" v-if="errors.name">
                            {{ Array.isArray(errors.name) ? errors.name[0] : errors.name}}
                        </div>
@@ -90,7 +90,7 @@
                        <label for="titleReferee">
                            Title / Position
                        </label>
-                       <input type="text" placeholder="Head of Operations " id="titleReferee" v-model="referee.title">
+                       <input type="text" placeholder="Head of Operations " id="titleReferee" v-model="referee.title" @blur="applyRefereeEdit('auto')">
                        <div class="error" v-if="errors.title">
                            {{ Array.isArray(errors.title) ? errors.title[0] : errors.title}}
                        </div>
@@ -99,7 +99,7 @@
                        <label for="emailReferee">
                            Contact Email
                        </label>
-                       <input type="text" placeholder="joelle.smith@swiftbanking.com" id="emailReferee" v-model="referee.contact_email">
+                       <input type="text" placeholder="joelle.smith@swiftbanking.com" id="emailReferee" v-model="referee.contact_email" @blur="applyRefereeEdit('auto')">
                        <div class="error" v-if="errors.contact_email">
                            {{ Array.isArray(errors.contact_email) ? errors.contact_email[0] : errors.contact_email}}
                        </div>
@@ -109,7 +109,7 @@
                        <label for="companyReferee">
                            Company
                        </label>
-                       <input type="text"  id="companyReferee" placeholder="SwiftBanking.com" v-model="referee.company">
+                       <input type="text"  id="companyReferee" placeholder="SwiftBanking.com" v-model="referee.company" @blur="applyRefereeEdit('auto')">
                        <div class="error" v-if="errors.company">
                            {{ Array.isArray(errors.company) ? errors.company[0] : errors.company}}
                        </div>
@@ -118,7 +118,7 @@
                        <label for="phoneReferee">
                            Phone number
                        </label>
-                       <input type="text"  id="phoneReferee" placeholder="(678) 757 9413" v-model="referee.phone">
+                       <input type="text"  id="phoneReferee" placeholder="(678) 757 9413" v-model="referee.phone" @blur="applyRefereeEdit('auto')">
                        <div class="error" v-if="errors.phone">
                            {{ Array.isArray(errors.phone) ? errors.phone[0] : errors.phone}}
                        </div>
@@ -127,7 +127,7 @@
                        <label for="emailReferee2">
                            Email
                        </label>
-                       <input type="email" placeholder="joelle.smith@swiftbanking.com" id="emailReferee2" v-model="referee.email">
+                       <input type="email" placeholder="joelle.smith@swiftbanking.com" id="emailReferee2" v-model="referee.email" @blur="applyRefereeEdit('auto')">
                        <div class="error" v-if="errors.email">
                            {{ Array.isArray(errors.email) ? errors.email[0] : errors.email}}
                        </div>
@@ -137,14 +137,14 @@
                        <label for="notesReferee">
                            Notes
                        </label>
-                       <textarea id="notesReferee" name="notesReferee"  v-model="referee.notes"></textarea>
+                       <textarea id="notesReferee" name="notesReferee"  v-model="referee.notes"  @blur="applyRefereeEdit('auto')"></textarea>
                        <div class="error" v-if="errors.notes">
                            {{ Array.isArray(errors.notes) ? errors.notes[0] : errors.notes}}
                        </div>
                    </div>
                </div>
 
-                <a href="javascript:void(0)" @click="applyRefereeEdit" class="btn-blue">
+                <a href="javascript:void(0)" @click="applyRefereeEdit('manual')" class="btn-blue">
                     <img src="/images/resume_builder/profile/icon-save2.png">
                     Save referee
                 </a>
@@ -318,33 +318,56 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     edit:{},};
                 moveTabsHelper(e, 'referencesLinksWrapper', this)
             },
-            applyReferenceEdit() {
-                this.errors={  new:{},
-                    edit:{},};
+            applyReferenceEdit(savingType) {
+                this.errors={  new:{}, edit:{},};
+                let formData = {} ;
+                $.each(this.reference, (field) => {
+                    if(this.reference[field] !== null){
+                        if(this.reference[field].length){
+                            formData[field] = this.reference[field];
+                        }
+                    }
+                });
 
-                axios.put('/api/user/reference',this.reference)
+                if(savingType === 'manual'){
+                    formData = this.reference;
+                }
+
+                axios.put('/api/user/reference',formData)
                     .then((response) => {
-                        this.$store.dispatch('fullScreenNotification');
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            console.log(error.response.data.errors);
                             this.errors = error.response.data.errors;
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
                     });
             },
-            applyRefereeEdit() {
+            applyRefereeEdit(savingType) {
                 this.errors={};
 
-                axios.put('/api/user/referee',this.referee)
+
+                let formData = {} ;
+                $.each(this.referee, (field) => {
+                    if(this.referee[field] !== null){
+                        if(this.referee[field].length){
+                            formData[field] = this.referee[field];
+                        }
+                    }
+                });
+
+                if(savingType === 'manual'){
+                    formData = this.referee;
+                }
+
+                axios.put('/api/user/referee',formData)
                     .then((response) => {
-                        this.$store.dispatch('fullScreenNotification');
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            console.log(error.response.data.errors);
                             this.errors = error.response.data.errors;
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
@@ -426,7 +449,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             },
         },
         mounted() {
-            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
+            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)});
         }
     }
 </script>

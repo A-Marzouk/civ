@@ -13,21 +13,21 @@
                     </div>
                     <div class="pay-input">
                         <label for="hourly-rate">My rate is: (USD)</label>
-                        <input type="number" min="3" max="100000" step="1" id="hourly-rate" v-model="paymentInfo.salary">
+                        <input type="number" min="3" max="100000" step="1" id="hourly-rate" v-model="paymentInfo.salary" @blur="updatePaymentInfo('auto')">
                         <div class="error" v-if="errors.salary">
                             {{ Array.isArray(errors.salary) ? errors.salary[0] : errors.salary}}
                         </div>
                     </div>
 
                     <div class="rate-per">
-                        <div :class="{active : paymentInfo.salary_frequency === 'monthly'}" @click="paymentInfo.salary_frequency ='monthly'">
+                        <div :class="{active : paymentInfo.salary_frequency === 'monthly'}" @click="updateSalaryFrequency('monthly')">
                             Monthly
                         </div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'hourly'}" @click="paymentInfo.salary_frequency ='hourly'">
+                        <div :class="{active : paymentInfo.salary_frequency === 'hourly'}" @click="updateSalaryFrequency('hourly')">
                             Hourly
                         </div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'yearly'}" @click="paymentInfo.salary_frequency ='yearly'">Yearly</div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'weekly'}" @click="paymentInfo.salary_frequency ='weekly'">Weekly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'yearly'}" @click="updateSalaryFrequency('yearly')">Yearly</div>
+                        <div :class="{active : paymentInfo.salary_frequency === 'weekly'}" @click="updateSalaryFrequency('weekly')">Weekly</div>
                     </div>
                 </div>
                 <div class="hourly-rate">
@@ -36,23 +36,23 @@
                     </div>
                     <div class="pay-input">
                         <label for="available">Available working hours:</label>
-                        <input type="text" id="available" value="6 hours"  v-model="paymentInfo.available_hours">
+                        <input type="text" id="available" value="6 hours"  v-model="paymentInfo.available_hours" @blur="updatePaymentInfo('auto')">
                         <div class="error" v-if="errors.available_hours">
                             {{ Array.isArray(errors.available_hours) ? errors.available_hours[0] : errors.available_hours}}
                         </div>
                     </div>
 
                     <div class="rate-per">
-                        <div  :class="{active : paymentInfo.available_hours_frequency === 'weekly'}" @click="paymentInfo.available_hours_frequency ='weekly'">Weekly</div>
-                        <div :class="{active : paymentInfo.available_hours_frequency === 'monthly'}" @click="paymentInfo.available_hours_frequency ='monthly'">Monthly</div>
-                        <div :class="{active : paymentInfo.available_hours_frequency === 'yearly'}" @click="paymentInfo.available_hours_frequency ='yearly'">Yearly</div>
+                        <div  :class="{active : paymentInfo.available_hours_frequency === 'weekly'}" @click="updateHoursAvailabilityFrequency('weekly')">Weekly</div>
+                        <div :class="{active : paymentInfo.available_hours_frequency === 'monthly'}" @click="updateHoursAvailabilityFrequency('monthly')">Monthly</div>
+                        <div :class="{active : paymentInfo.available_hours_frequency === 'yearly'}" @click="updateHoursAvailabilityFrequency('yearly')">Yearly</div>
                     </div>
                 </div>
             </div>
 
             <div class="save-btn NoDecor">
-                <a href="javascript:void(0)" @click="updatePaymentInfo">
-                    <img src="/images/resume_builder/availablity/Icon material-save.png" alt="save icon">
+                <a href="javascript:void(0)" @click="updatePaymentInfo('manual')">
+                    <img src="/images/resume_builder/availability/Icon material-save.png" alt="save icon">
                     Save all information
                 </a>
             </div>
@@ -75,11 +75,11 @@
         },
 
         methods:{
-            updatePaymentInfo(){
+            updatePaymentInfo(savingType){
                 this.errors = {};
                 axios.put('/api/user/payment-info',this.paymentInfo)
                     .then((response) => {
-                        this.$store.dispatch('fullScreenNotification');
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -89,6 +89,14 @@
                             this.errors = 'Something went wrong. Please try again.';
                         }
                     });
+            },
+            updateSalaryFrequency(frequency){
+                this.paymentInfo.salary_frequency = frequency ;
+                this.updatePaymentInfo('auto');
+            },
+            updateHoursAvailabilityFrequency(frequency){
+                this.paymentInfo.available_hours_frequency = frequency ;
+                this.updatePaymentInfo('auto');
             }
         }
     }

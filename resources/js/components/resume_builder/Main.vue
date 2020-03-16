@@ -62,10 +62,15 @@
                             <img src="" id="notificationIconSrc" alt="notification modal">
                             <div class="success-message-text" id="notificationText"></div>
                         </div>
-
                     </div>
-
                 </div>
+            </div>
+        </div>
+
+        <div class="flying-notification" id="flyingNotification">
+            <div class="d-flex align-items-center">
+                <img src="/images/resume_builder/tick.png" alt="notification modal">
+                <div class="text">Saved</div>
             </div>
         </div>
 
@@ -339,6 +344,27 @@
         font-size: 33px;
         text-align: left;
         color: #505050;
+    }
+
+    .flying-notification{
+        position: fixed;
+        display: none;
+        bottom: 30px;
+        right: 50px;
+        background: whitesmoke;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px white;
+
+        img{
+            width: 40px;
+            margin-right: 15px;
+        }
+
+        .text{
+            font-weight: 600;
+            font-size:18px;
+        }
     }
 
     #fullScreenNotificationModal{

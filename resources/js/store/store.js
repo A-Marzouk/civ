@@ -31,7 +31,18 @@ export const store = new Vuex.Store({
             modal.modal('show');
             modal.css('display','flex');
             setTimeout( () => {modal.modal('hide')},2000);
+        },
+        showFlyingNotification:(state, data) => {
+            let notificationElement = $('#flyingNotification');
+                if( notificationElement.is(':visible')){
+                    return ;
+                }
+                notificationElement.slideToggle('slow');
+                setTimeout( () => {
+                    notificationElement.slideToggle('slow');
+                },2000);
         }
+
     },
     actions: {
         getCurrentUser: (store) => {
@@ -57,7 +68,10 @@ export const store = new Vuex.Store({
             )
         },
         fullScreenNotification(store,payload = {}){
-           store.commit('showFullScreenNotification',payload)
+           store.commit('showFullScreenNotification',payload);
+        },
+        flyingNotification(store,payload = {}){
+            store.commit('showFlyingNotification',payload);
         }
     }
 });
