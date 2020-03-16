@@ -329,6 +329,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     }
                 });
 
+                if(savingType === 'manual'){
+                    formData = this.reference;
+                }
+
                 axios.put('/api/user/reference',formData)
                     .then((response) => {
                         savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
@@ -353,6 +357,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         }
                     }
                 });
+
+                if(savingType === 'manual'){
+                    formData = this.referee;
+                }
 
                 axios.put('/api/user/referee',formData)
                     .then((response) => {
