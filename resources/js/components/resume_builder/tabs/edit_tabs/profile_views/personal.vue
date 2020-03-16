@@ -1,5 +1,5 @@
 <template>
-    <div class="hold-edit" v-if="personalInfo">
+    <div class="hold-edit" v-if="personalInfo" id="personalInfoTab">
         <img class="user-cover" :src="getProfilePicSrc()" id="profilePic" alt="">
         <div class="upload-section">
             <h5>Change profile photo</h5>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="javascript:void(0)" @click="applyEdit" class="btn-blue"><img src="/images/resume_builder/profile/icon-save.png">Save all information</a>
+                <a href="javascript:void(0)" @click="manualSave" class="btn-blue"><img src="/images/resume_builder/profile/icon-save.png">Save all information</a>
             </div>
         </form>
     </div>
@@ -72,7 +72,8 @@ export default {
         return{
             errors:{},
             tempPic:'',
-            profile_pic_error:''
+            profile_pic_error:'',
+            savingType: 'manual'
         }
     },
     computed: {
@@ -84,18 +85,35 @@ export default {
         }
     },
     methods:{
-        applyEdit() {
+        manualSave(){
+          this.applyEdit('manual');
+        },
+        applyEdit(savingType) {
             let formData = new FormData();
             formData.append("_method", "put");
+
             $.each(this.personalInfo, (field) => {
-                field !== 'email' ? formData.append(field, this.personalInfo[field]) : '' ;
+                if(this.personalInfo[field] !== null){
+                    if(field !== 'email' && this.personalInfo[field].length){
+                        formData.append(field, this.personalInfo[field]);
+                    }
+                    if(field === 'profile_pic'){
+                        formData.append(field, this.personalInfo[field]);
+                    }
+                }
             });
 
             this.errors={};
 
             axios.post('/api/user/personal-info',formData,{headers:{'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
-                    this.$store.dispatch('fullScreenNotification');
+                    console.log(response.data);
+                    if(savingType === 'manual'){
+                        this.$store.dispatch('fullScreenNotification');
+                    }else{
+                        this.$store.dispatch('flyingNotification');
+                    }
+
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {
@@ -113,6 +131,7 @@ export default {
                 this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
                 this.tempPic =  URL.createObjectURL(this.personalInfo.profile_pic) ;
                 this.profile_pic_error = '';
+                this.applyEdit('auto');
             }else{
                 console.log('error in pic');
                 this.profile_pic_error = 'Incorrect file chosen!';
@@ -149,7 +168,21 @@ export default {
         isEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(String(email).toLowerCase());
-        }
+        },
+        setUpAutoSave(){
+            let inputs = $('#personalInfoTab :input');
+            inputs.each((index,input) => {
+                if(input.id){
+                    $('#' + input.id).focusout( () => {
+                        this.applyEdit('auto');
+                    });
+                }
+            });
+
+        },
+    },
+    mounted() {
+        this.setUpAutoSave();
     }
 }
 </script>
