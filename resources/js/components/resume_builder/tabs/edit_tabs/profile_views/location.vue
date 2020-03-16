@@ -3,12 +3,12 @@
         <div class="hold-tab wrapp">
             <div class="input-field">
                 <label for="location">Location</label>
-                <input type="text" name="location" id="location" v-model="personalInfo.location">
+                <input type="text" name="location" id="location" v-model="personalInfo.location" @blur="updateLocation('auto')">
                 <div class="error" v-if="errors.location">
                     {{ Array.isArray(errors.location) ? errors.location[0] : errors.location}}
                 </div>
             </div>
-            <a href="javascript:void(0)" class="btn-blue" @click="updateLocation">
+            <a href="javascript:void(0)" class="btn-blue" @click="updateLocation('manual')">
                 <img alt="location" src="/images/resume_builder/profile/icon-check.png" >
                 Save location
             </a>
@@ -24,10 +24,10 @@
             }
         },
         methods:{
-            updateLocation(){
+            updateLocation(savingType){
                 axios.put('/api/user/personal-info/location',{location : this.personalInfo.location})
                     .then((response) => {
-                        this.$store.dispatch('fullScreenNotification');
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
