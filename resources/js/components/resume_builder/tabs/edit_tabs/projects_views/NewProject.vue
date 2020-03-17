@@ -67,7 +67,7 @@
 
        <div class="d-flex align-items-center justify-content-between" style="max-width:1048px;">
             <div class="d-flex">
-                <a class="btn filled" href="javascript:void(0)" @click="addNewProject">
+                <a class="btn filled" href="javascript:void(0)" @click="addNewProject" :class="{'disabled-btn': !canSubmit()}">
                     <svg-vue class="save-icon icon" icon="save-icon"></svg-vue>
                     Save all information
                 </a>
@@ -140,8 +140,6 @@
             },
 
             addNewProject(){
-                console.log(this.canSubmit());
-
                 if(!this.canSubmit()){
                     return;
                 }
@@ -154,7 +152,6 @@
                 });
                 axios.post('/api/user/projects', formData, {headers:{'Content-Type': 'multipart/form-data'}})
                     .then((response) => {
-                        console.log(response.data.data);
                         this.clearProject();
                         this.$store.dispatch('fullScreenNotification');
                         this.$store.state.user.projects.push(response.data.data);
@@ -306,4 +303,17 @@
         max-width:1048px;
     }
 
+
+    .disabled-btn{
+        opacity: .5;
+        &:hover{
+            cursor: not-allowed;
+        }
+    }
+
+    .input-field{
+        textarea,input{
+            color: black;
+        }
+    }
 </style>
