@@ -16,7 +16,7 @@
                 <div class="hold-tab animated fadeIn">
                     <div class="input-field">
                         <label for="profilelink">My profile link</label>
-                        <input type="text" name="profilelink" id="profilelink" v-model="profileLink.link">
+                        <input type="text" name="profilelink" id="profilelink" v-model="profileLink.link" @blur="saveProfileLink('auto')">
                         <div class="error" v-if="errors.link">
                             {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
                         </div>
@@ -25,7 +25,7 @@
                         <a href="javascript:void(0)" @click="copyProfileLink"><span class="copy"></span></a>
                         <a href="javascript:void(0)"><span class="share"></span></a>
                     </div>
-                    <a href="javascript:void(0)" @click="saveProfileLink" class="btn-blue"><img
+                    <a href="javascript:void(0)" @click="saveProfileLink('manual')" class="btn-blue"><img
                             src="/images/resume_builder/profile/icon-save2.png">Save this new link</a>
 
                 </div>
@@ -161,7 +161,7 @@
                 <div class="hold-tab animated fadeIn">
                     <div class="input-field">
                         <label for="paymentLink">My payment link</label>
-                        <input type="text" name="paymentLink" id="paymentLink" v-model="paymentLink.link">
+                        <input type="text" name="paymentLink" id="paymentLink" v-model="paymentLink.link" @blur="savePaymentLink('auto')">
                         <div class="error" v-if="errors.link">
                             {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
                         </div>
@@ -170,7 +170,7 @@
                         <a href="javascript:void(0)" @click="copyPaymentLink"><span class="copy"></span></a>
                         <a href="javascript:void(0)"><span class="share"></span></a>
                     </div>
-                    <a href="javascript:void(0)" @click="savePaymentLink" class="btn-blue"><img
+                    <a href="javascript:void(0)" @click="savePaymentLink('manual')" class="btn-blue"><img
                             src="/images/resume_builder/profile/icon-save2.png">Save this new link</a>
 
                 </div>
@@ -251,15 +251,14 @@
                 // Here will be the animations between transitions
                 moveTabsHelper(e, 'linksWrapper', this)
             },
-            saveProfileLink() {
+            saveProfileLink(savingType) {
                 if(!this.validURL(this.profileLink.link)){
                     this.errors = {link : 'Not a valid link!'} ;
                     return;
                 }
                 axios.put('/api/user/links', this.profileLink)
                     .then((response) => {
-                        // console.log(response.data.data);
-                        this.$store.dispatch('fullScreenNotification');
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -276,14 +275,14 @@
                 document.execCommand("copy");
                 $temp.remove();
             },
-            savePaymentLink() {
+            savePaymentLink(savingType) {
                 if(!this.validURL(this.paymentLink.link)){
                     this.errors = {link : 'Not a valid link!'} ;
                     return;
                 }
                 axios.put('/api/user/links', this.paymentLink)
                     .then((response) => {
-                        this.$store.dispatch('fullScreenNotification');
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -309,6 +308,7 @@
                 }
                 axios.delete('/api/user/links/' + link.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.links.forEach( (link,index) => {
                             if(link.id === response.data.data.id){
                                 this.links.splice(index,1);

@@ -32,16 +32,8 @@ class PersonalInfoController extends Controller
         return new PersonalInfoResource($personalInfo);
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \App\Http\Resources\PersonalInfo
-     */
     public function store(Request $request)
     {
-        // here we will not save new we will directly update info.
         $this->validator($request->all())->validate();
         $personalInfo = Auth::user()->personalInfo;
 
@@ -83,10 +75,10 @@ class PersonalInfoController extends Controller
         return Validator::make($data, [
             'full_name' => ['required', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
-            'designation' => ['required', 'string','max:255','min:3'],
-            'profile_pic' => ['required'],
-            'phone' => ['required', 'numeric','min:7'],
-            'about' => ['required','string','min:30','max:2500'],
+            'designation' => ['sometimes','required', 'string','max:255','min:7'],
+            'profile_pic' => ['sometimes','required'],
+            'phone' => ['sometimes','required', 'numeric','min:7'],
+            'about' => ['sometimes','required','string','min:30','max:2500'],
         ]);
     }
 

@@ -249,6 +249,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 }
                 axios.delete('/api/user/skills/' + skill.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.skills.forEach( (skill,index) => {
                             if(skill.id === response.data.data.id){
                                 this.skills.splice(index,1);

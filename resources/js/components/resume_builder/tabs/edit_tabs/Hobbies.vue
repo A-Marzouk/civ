@@ -234,6 +234,7 @@
                 }
                 axios.delete('/api/user/hobbies/' + hobby.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.hobbies.forEach( (hobby,index) => {
                             if(hobby.id === response.data.data.id){
                                 this.hobbies.splice(index,1);

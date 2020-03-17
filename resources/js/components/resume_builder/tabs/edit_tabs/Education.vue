@@ -260,6 +260,7 @@
                 }
                 axios.delete('/api/user/education/' + education.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.educations.forEach( (myEducation,index) => {
                             if(myEducation.id === response.data.data.id){
                                 this.educations.splice(index,1);

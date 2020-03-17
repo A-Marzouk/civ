@@ -20,20 +20,21 @@ class ResumeBuilderController extends Controller
 
     public function editAccountData(Request $request){
         $request->validate([
-            'name' => 'max:191|required',
-            'email'     => 'max:191|email',
+            'name' => 'nullable|max:191|min:3',
+            'email'     => 'nullable|max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
-            'username' => 'min:3|max:191',
+            'username' => 'nullable|min:3|max:191',
         ]);
 
 
         $user = auth()->user();
 
 
-
-        $user->update([
-            'username' => $request->username
-        ]);
+        if (isset($request->username)) {
+            $user->update([
+                'username' => $request->username
+            ]);
+        }
 
         if (isset($request->password)) {
             $user->update([

@@ -117,6 +117,7 @@
                 }
                 axios.delete('/api/user/achievements/' + achievement.id)
                     .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
                         this.achievements.forEach( (myAchievement,index) => {
                             if(myAchievement.id === response.data.data.id){
                                 this.achievements.splice(index,1);

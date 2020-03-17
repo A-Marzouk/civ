@@ -102,8 +102,13 @@
                 let activeNow = document.querySelector('.aside-link.active')
                 activeNow && activeNow.classList.toggle('active')
                 e.target.parentNode.classList.toggle('active')
+                this.scrollHandler(e.target.parentNode);
 
-                this.scrollHandler(e.target.parentNode)
+                console.log('set new active tab');
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: 130
+                }, 600);
+
             },
             scrollHandler (target) {
                 let scrollItem = document.getElementById('scrollItem');

@@ -20,7 +20,7 @@
         <form class="form-edit_profile">
             <div class="input-field">
                 <label for="fullname">My full-name</label>
-                <input type="text" placeholder="" id="fullname" name="fullname" v-model="personalInfo.full_name">
+                <input type="text" placeholder="" id="fullname" name="fullname" v-model="personalInfo.full_name" @blur="applyEdit('auto')">
                 <div class="error" v-if="errors.full_name">
                     {{ Array.isArray(errors.full_name) ? errors.full_name[0] :
                     errors.full_name}}
@@ -28,7 +28,7 @@
             </div>
             <div class="input-field">
                 <label for="email">Email adress</label>
-                <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email" :disabled="canEditEmail()">
+                <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email" :disabled="canEditEmail()" @blur="applyEdit('auto')">
                 <div class="error" v-if="errors.email">
                     {{ Array.isArray(errors.email) ? errors.email[0] :
                     errors.email}}
@@ -36,7 +36,7 @@
             </div>
             <div class="input-field">
                 <label for="designation">Designation</label>
-                <input type="text" id="designation" placeholder="" name="designation" v-model="personalInfo.designation">
+                <input type="text" id="designation" placeholder="" name="designation" v-model="personalInfo.designation" @blur="applyEdit('auto')">
                 <div class="error" v-if="errors.designation">
                     {{ Array.isArray(errors.designation) ? errors.designation[0] :
                     errors.designation}}
@@ -44,7 +44,7 @@
             </div>
             <div class="input-field">
                 <label for="phone">Phone</label>
-                <input type="tel" id="phone" placeholder="" name="phone" v-model="personalInfo.phone">
+                <input type="tel" id="phone" placeholder="" name="phone" v-model="personalInfo.phone" @blur="applyEdit('auto')">
                 <div class="error" v-if="errors.phone">
                     {{ Array.isArray(errors.phone) ? errors.phone[0] :
                     errors.phone}}
@@ -52,14 +52,14 @@
             </div>
             <div class="input-field">
                 <label for="aboutmyself">About myself <i class="hint-message">Maximum 80 words</i></label>
-                <textarea name="aboutmyself"  id="aboutmyself" v-model="personalInfo.about"></textarea>
+                <textarea name="aboutmyself"  id="aboutmyself" v-model="personalInfo.about" @blur="applyEdit('auto')"></textarea>
                 <div class="error" v-if="errors.about">
                     {{ Array.isArray(errors.about) ? errors.about[0] :
                     errors.about}}
                 </div>
             </div>
             <div class="actions">
-                <a href="javascript:void(0)" @click="applyEdit" class="btn-blue"><img src="/images/resume_builder/profile/icon-save.png">Save all information</a>
+                <a href="javascript:void(0)" @click="manualSave" class="btn-blue"><img src="/images/resume_builder/profile/icon-save.png">Save all information</a>
             </div>
         </form>
     </div>
@@ -72,7 +72,8 @@ export default {
         return{
             errors:{},
             tempPic:'',
-            profile_pic_error:''
+            profile_pic_error:'',
+            savingType: 'manual'
         }
     },
     computed: {
@@ -84,18 +85,35 @@ export default {
         }
     },
     methods:{
-        applyEdit() {
+        manualSave(){
+          this.applyEdit('manual');
+        },
+        applyEdit(savingType) {
             let formData = new FormData();
             formData.append("_method", "put");
+
             $.each(this.personalInfo, (field) => {
-                field !== 'email' ? formData.append(field, this.personalInfo[field]) : '' ;
+                if(this.personalInfo[field] !== null){
+                    if(field !== 'email' && this.personalInfo[field].length){
+                        formData.append(field, this.personalInfo[field]);
+                    }
+                    if(field === 'profile_pic'){
+                        formData.append(field, this.personalInfo[field]);
+                    }
+                }
             });
 
             this.errors={};
 
             axios.post('/api/user/personal-info',formData,{headers:{'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
-                    this.$store.dispatch('fullScreenNotification');
+                    console.log(response.data);
+                    if(savingType === 'manual'){
+                        this.$store.dispatch('fullScreenNotification');
+                    }else{
+                        this.$store.dispatch('flyingNotification');
+                    }
+
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {
@@ -113,6 +131,7 @@ export default {
                 this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
                 this.tempPic =  URL.createObjectURL(this.personalInfo.profile_pic) ;
                 this.profile_pic_error = '';
+                this.applyEdit('auto');
             }else{
                 console.log('error in pic');
                 this.profile_pic_error = 'Incorrect file chosen!';
@@ -149,7 +168,9 @@ export default {
         isEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(String(email).toLowerCase());
-        }
+        },
+    },
+    mounted() {
     }
 }
 </script>
