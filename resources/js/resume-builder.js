@@ -65,24 +65,14 @@ if ($("#resumeBuilder").length !== 0) {
                     children: [
                         {
                             path:'',
-                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/projects.vue').default,
+                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/ProjectsList.vue').default,
                             props: true
                         },
                         {
-                            path:'step-1',
-                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/form_view_num1.vue').default,
+                            path:'/resume-builder/edit/projects/new',
+                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/NewProject.vue').default,
                             props: true
                         },
-                        {
-                            path:'step-2',
-                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/form_view_num2.vue').default,
-                            props: true
-                        },
-                        {
-                            path:'step-3',
-                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/form_view_num3.vue').default,
-                            props: true
-                        }
                     ]
                 },
                 {
