@@ -145,11 +145,17 @@
                 }
                 this.errors = {  new: {}, edit: {}};
                 let formData = new FormData();
+
                 $.each(this.newProject, (field) => {
-                    if(this.newProject[field].length){
+                    if(this.newProject[field].length && field !== 'images'){
                         formData.append(field, this.newProject[field]);
                     }
                 });
+
+                this.newProject.images.forEach( (image) => {
+                    formData.append('images[]', image);
+                });
+
                 axios.post('/api/user/projects', formData, {headers:{'Content-Type': 'multipart/form-data'}})
                     .then((response) => {
                         this.clearProject();

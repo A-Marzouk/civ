@@ -18,7 +18,7 @@
                         <svg-vue icon="remove-icon"></svg-vue>
                     </a>
                 </div>
-                <div>
+                <div class="project-name">
                     {{project.name}}
                 </div>
             </div>
@@ -111,6 +111,13 @@
             width: 477px;
             height: 359px;
         }
+
+    }
+
+    .project-name{
+        margin-top: 15px;
+        font-size: 24px;
+        font-weight: 600;
     }
 
 

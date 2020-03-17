@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use App\classes\Upload;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProjectImage;
 use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Resources\Project as ProjectResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\Console\Input\Input;
 
 
 class ProjectsController extends Controller
@@ -30,10 +33,17 @@ class ProjectsController extends Controller
     }
     public function store(Request $request)
     {
+
         $this->validator($request->all())->validate();
 
         $request['user_id'] = Auth::user()->id;
         $project = Project::create($request->toArray());
+
+        if($request->hasfile('images')) {
+            $this->storeProjectImages(Upload::projectImages($request),$project);
+        }
+
+        $project['images'] = $project->images;
 
         if ($project->id){
             return new ProjectResource($project);
@@ -86,5 +96,16 @@ class ProjectsController extends Controller
             'skills' => ['sometimes','required', 'string','max:255'],
             'software' => ['sometimes','required', 'string','max:255'],
         ]);
+    }
+
+    protected function storeProjectImages($data, $project){
+        $is_main = true ;
+        foreach ($data as $filePath){
+            $project->images()->create([
+                'src' => $filePath,
+                'is_main' => $is_main
+            ]);
+            $is_main = false;
+        }
     }
 }
