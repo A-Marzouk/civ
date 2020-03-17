@@ -154,9 +154,11 @@
                 });
                 axios.post('/api/user/projects', formData, {headers:{'Content-Type': 'multipart/form-data'}})
                     .then((response) => {
-                        console.log(response.data);
+                        console.log(response.data.data);
                         this.clearProject();
                         this.$store.dispatch('fullScreenNotification');
+                        this.$store.state.user.projects.push(response.data.data);
+                        this.$router.replace('/resume-builder/edit/projects');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -189,6 +191,8 @@
                 return canSubmit ;
             }
 
+        },
+        mounted(){
         }
     }
 </script>

@@ -10,11 +10,11 @@
         </div>
 
         <div class="projects-container d-flex flex-wrap">
-            <div v-for="project in projects" :key="project.name" class="d-flex flex-column mb-3">
+            <div v-for="(project,index) in projects" :key="'project_' + index" class="d-flex flex-column mb-3">
                 <div class="project">
                     <img :src="getMainImage(project)" alt="">
                     <a class="d-flex justify-content-center align-items-center remove-icon"
-                       href="javascript:void(0)">
+                       href="javascript:void(0)" @click="deleteProject(project)">
                         <svg-vue icon="remove-icon"></svg-vue>
                     </a>
                 </div>
@@ -47,6 +47,23 @@
                 });
 
                 return mainImageSrc;
+            },
+            deleteProject(project){
+                if (!confirm('Do you want to delete this project ?')) {
+                    return;
+                }
+                axios.delete('/api/user/projects/' + project.id)
+                    .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
+                        this.projects.forEach( (myProject,index) => {
+                            if(myProject.id === response.data.data.id){
+                                this.projects.splice(index,1);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             }
         },
     }
