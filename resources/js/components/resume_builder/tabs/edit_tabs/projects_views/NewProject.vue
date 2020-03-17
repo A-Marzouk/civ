@@ -3,17 +3,18 @@
 
        <div class="steps-container">
            <div v-show="activeStep === 2" class="first-step mt-4">
-               <div class="text-hint mb-3">Only use images that are greater than 500 pixels in both height and 300 pixels in width.</div>
+               <div class="text-hint mb-3">
+                   Please use images that are greater than 500 pixels in both height and 300 pixels in width. (Max of 5 images)
+               </div>
                <div class="new-project-images">
                    <vue2Dropzone id="projects" :options="dropZoneOptions" :useCustomSlot=true v-on:vdropzone-file-added="handlingEvent" ref="newImages">
                        <svg-vue class="download-dropzone-icon" icon='download-dropzone-icon'></svg-vue>
                        <div class="text-blue">Upload image</div>
                    </vue2Dropzone>
 
-                   <div class="d-flex align-items-center images-preview" style="width: min-content;">
-                       <div v-for="item in 3" :key="'preview-' + item" src="" alt="" class="project-image-preview"></div>
-                   </div>
-
+                   <a class="btn outline mt-3 mb-3 remove-btn" href="javascript:void(0)" @click="removeFiles">
+                       Remove all files
+                   </a>
                </div>
            </div>
 
@@ -101,8 +102,9 @@
                     url: 'https://httpbin.org/post',
                     thumbnailWidth: 150,
                     maxFilesize: 25,
-                    maxFiles:4,
-                    acceptedFiles: 'image/*'
+                    maxFiles:5,
+                    acceptedFiles: 'image/*',
+                    addRemoveLinks:true,
                 },
                 newProject:{
                     images:[],
@@ -121,9 +123,13 @@
         },
         methods:{
             handlingEvent: function (file) {
-                if(this.newProject.images.length < 4){
+                if(this.newProject.images.length < 5){
                     this.newProject.images.push(file);
                 }
+            },
+            removeFiles(){
+              this.newProject.images = [];
+                this.$refs.newImages.removeAllFiles();
             },
             stepNext(){
                 if(this.activeStep < 3){
@@ -243,6 +249,7 @@
 
         .dropzone {
             position: relative;
+            overflow: auto;
             height: 588px;
             display: flex;
             justify-content: center;
@@ -321,5 +328,9 @@
         textarea,input{
             color: black;
         }
+    }
+
+    .remove-btn{
+        width: fit-content;
     }
 </style>
