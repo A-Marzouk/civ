@@ -19,6 +19,8 @@ class CreateProjectsTable extends Migration
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->string('link')->nullable();
+            $table->string('skills')->nullable();
+            $table->string('software')->nullable();
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

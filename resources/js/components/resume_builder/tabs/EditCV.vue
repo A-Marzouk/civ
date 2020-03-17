@@ -104,7 +104,6 @@
                 e.target.parentNode.classList.toggle('active')
                 this.scrollHandler(e.target.parentNode);
 
-                console.log('set new active tab');
                 $([document.documentElement, document.body]).animate({
                     scrollTop: 130
                 }, 600);

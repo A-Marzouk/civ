@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LinksTableSeeder::class);
         $this->call(LanguagesTableSeeder::class);
         $this->call(ProjectsTableSeeder::class);
+        $this->call(ProjectImagesTableSeeder::class);
         $this->call(AchievementsTableSeeder::class);
         $this->call(MediaTableSeeder::class);
 //        $this->call(PaymentInfoTableSeeder::class);  // commented out because we make relationship for each created USER.
