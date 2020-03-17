@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="section-title">
+            <div class="title-light">Edit</div>
             <h2>Summary</h2>
         </div>
 
