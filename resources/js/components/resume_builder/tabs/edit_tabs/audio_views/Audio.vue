@@ -3,26 +3,26 @@
     <div class="content d-flex">
       <div class="upload-container d-flex flex-column">
         <h3 class="text-blue">Upload my audio</h3>
-        <vue2Dropzone id="audio_and_video" :options="dropzoneOptions" :useCustomSlot="true">
+        
+        <div id="audio_and_video" class="vue-dropzone">
           <svg-vue class="upload-audio-icon" icon="upload-audio-icon"></svg-vue>
           <div class="empty-text">
-            Drag and drop audio files
-            <br />or
+           &nbsp;
           </div>
           <b-button class="btn filled btn-upload" @click="$bvModal.show('main-upload-modal')">
             <svg-vue class="upload-icon icon" icon="upload-icon"></svg-vue>
             <span>Browse audio file</span>
           </b-button>
-        </vue2Dropzone>
+        </div>
         <!-- Insert icon -->
       </div>
 
       <!-- Audio Upload Main Modal -->
       <div>
-        <b-modal id="main-upload-modal" hide-footer hide-header>
+        <b-modal id="main-upload-modal" style="max-width:60% !important;" hide-footer hide-header>
           <div class="d-block">
             <b-row>
-              <b-col cols="1" align-h="start">
+              <b-col cols="2" align-h="start">
                 <button
                   type="button"
                   align="left"
@@ -31,16 +31,42 @@
                   class="btn-close"
                 >×</button>
               </b-col>
-              <b-col cols="11" class="upload-audio-title text-center">Upload <span>Audio</span></b-col>
+              <b-col cols="10" class="upload-audio-title text-center">Upload <span>Audio</span>
+              <svg-vue class="voice-icon" icon="voice-icon"></svg-vue>
+              </b-col>
             </b-row>
             <b-container class="bv-example-row">
               <b-row class="text-center">
+                <!-- Link Url -->
                 <b-col>
                   <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
-                  <div class="d-flex-inline">1 of 3</div>
+                  <div class="d-flex-inline">
+                    <button>
+                      <svg-vue class="upload-url-icon" icon="upload-url-icon"></svg-vue>
+                    </button>
+                  </div>
                 </b-col>
-                <b-col>2 of 3</b-col>
-                <b-col>3 of 3</b-col>
+                <!-- Link URL -->
+                <!-- MP3 -->
+                <b-col>
+                  <div class="d-flex-inline upload-audio-subtitle">Upload Mp3</div>
+                  <div class="d-flex-inline">
+                    <button>
+                      <svg-vue class="upload-url-icon" icon="mp3-icon"></svg-vue>
+                    </button>
+                  </div>
+                </b-col>
+                <!-- MP3 -->
+                <!-- Record -->
+                <b-col>
+                  <div class="d-flex-inline upload-audio-subtitle">Record</div>
+                  <div class="d-flex-inline">
+                    <button>
+                      <svg-vue class="microphone-icon" icon="microphone-icon"></svg-vue>
+                    </button>
+                  </div>
+                </b-col>
+                <!-- Record -->
               </b-row>
             </b-container>
           </div>
@@ -147,8 +173,14 @@ $mainBlue: #001ce2;
 </style>
 
 <style>
+/* new css */
 .modal-content {
   border: 2px solid #001CE2 !important;
+  border-radius: 20px !important;
+}
+.modal.show .modal-dialog{
+  max-width: 50% !important;
+  
 }
 .btn-close{
   color: #001AD6;
@@ -158,8 +190,8 @@ $mainBlue: #001ce2;
 }
 
 .upload-audio-title{
-  font-size:1.8rem;
-  margin-left: -20px;
+  font-size:2rem;
+  margin-left: -48px;
   color:#001CE2;
 }
 
@@ -168,8 +200,23 @@ $mainBlue: #001ce2;
 }
 
 .upload-audio-subtitle{
-  font-size: 1.0rem !important;
+  font-size: 1.3rem !important;
   font-weight: bold;
   color:#001CE2;
 }
+.upload-url-icon{
+  width: 30%;
+  margin-top: 15px;
+}
+.microphone-icon{
+  width: 20%;
+  margin-top: 15px;
+}
+
+.voice-icon{
+  width: 4%;
+  margin-left: 15px;
+}
+
+/* new css */
 </style>
