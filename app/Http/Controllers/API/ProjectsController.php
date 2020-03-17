@@ -30,18 +30,10 @@ class ProjectsController extends Controller
     }
     public function store(Request $request)
     {
-
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
-            // update
-            $project = Project::findOrFail($request->id);
-            $project->update($request->toArray());
-        }else{
-            // add
-            $request['user_id'] = Auth::user()->id;
-            $project = Project::create($request->toArray());
-        }
+        $request['user_id'] = Auth::user()->id;
+        $project = Project::create($request->toArray());
 
         if ($project->id){
             return new ProjectResource($project);

@@ -1,14 +1,8 @@
 <template>
     <div>
 
-        <div class="btns-wrapper d-flex align-items-center">
-            <router-link to="/resume-builder/edit/projects" class="btn outline" >
-                <b>Cancel</b>
-            </router-link>
-        </div>
-
        <div class="steps-container">
-           <div v-show="activeStep === 1" class="first-step mt-4">
+           <div v-show="activeStep === 2" class="first-step mt-4">
                <div class="text-hint mb-3">Only use images that are greater than 500 pixels in both height and 300 pixels in width.</div>
                <div class="new-project-images">
                    <vue2Dropzone id="projects" :options="dropZoneOptions" :useCustomSlot=true v-on:vdropzone-file-added="handlingEvent" ref="newImages">
@@ -16,21 +10,20 @@
                        <div class="text-blue">Upload image</div>
                    </vue2Dropzone>
 
-                   <div class="d-flex align-items-center images-preview">
+                   <div class="d-flex align-items-center images-preview" style="width: min-content;">
                        <div v-for="item in 3" :key="'preview-' + item" src="" alt="" class="project-image-preview"></div>
                    </div>
-
 
                </div>
            </div>
 
-           <div v-show="activeStep === 2" class="second-step mt-4">
+           <div v-show="activeStep === 1" class="second-step mt-4">
                <div class="new-project-form">
                    <div class="input-field">
                        <label for="projectName">
                            Project name <br/><span style="opacity:0.5; font-size:13px;">You don’t have to use the project’s official title, but try to keep it brief.</span>
                        </label>
-                       <input id="projectName" type="text" class="--blue">
+                       <input id="projectName" type="text" class="--blue" v-model="newProject.name">
                    </div>
 
                    <div class="input-field">
@@ -38,7 +31,7 @@
                            Description
                            <br/><span style="opacity:0.5; font-size:13px;">Give a quick primer of this project, and your involvement.</span>
                        </label>
-                       <textarea rows="10" id="projectDescription" class="--blue"></textarea>
+                       <textarea rows="10" id="projectDescription" class="--blue" v-model="newProject.description"></textarea>
                    </div>
                </div>
            </div>
@@ -50,7 +43,7 @@
                            Project URL
                            <br/><span style="opacity:0.5; font-size:13px;">Is there an active link where this project can be viewed without a password?</span>
                        </label>
-                       <input id="projectUrl" type="text" class="--blue">
+                       <input id="projectUrl" type="text" class="--blue" v-model="newProject.link">
                    </div>
 
                    <div class="input-field">
@@ -58,7 +51,7 @@
                            Skills used in this project
                            <br/><span style="opacity:0.5; font-size:13px;">What skills did you put to use for this project?</span>
                        </label>
-                       <input id="skils" type="text" class="--blue">
+                       <input id="skils" type="text" class="--blue" v-model="newProject.skills">
                    </div>
 
                    <div class="input-field">
@@ -66,17 +59,22 @@
                            Software used in this project
                            <br/><span style="opacity:0.5; font-size:13px;">Give a quick primer of this project, and your involvement</span>
                        </label>
-                       <input id="software" type="text" class="--blue">
+                       <input id="software" type="text" class="--blue" v-model="newProject.software">
                    </div>
                </div>
            </div>
        </div>
 
-       <div class="d-flex  align-items-center">
-            <a class="btn filled" href="javascript:void(0)">
-                <svg-vue class="save-icon icon" icon="save-icon"></svg-vue>
-                Save all information
-            </a>
+       <div class="d-flex align-items-center justify-content-between" style="max-width:1048px;">
+            <div class="d-flex">
+                <a class="btn filled" href="javascript:void(0)" @click="addNewProject">
+                    <svg-vue class="save-icon icon" icon="save-icon"></svg-vue>
+                    Save all information
+                </a>
+                <router-link to="/resume-builder/edit/projects" class="btn outline ml-3" >
+                    <b>Cancel</b>
+                </router-link>
+            </div>
             <div class="d-flex">
                 <div  class="step-indicator">
                     <a href="javascript:void(0)" @click="stepBack">
@@ -108,13 +106,21 @@
                 },
                 newProject:{
                     images:[],
+                    name:'',
+                    description:'',
+                    link:'',
+                    skills:'',
+                    software:'',
                 },
-                activeStep:1
+                activeStep:1,
+                errors:{
+                    new:{},
+                    edit:{}
+                }
             }
         },
         methods:{
             handlingEvent: function (file) {
-                console.log(file);
                 if(this.newProject.images.length < 4){
                     this.newProject.images.push(file);
                 }
@@ -131,6 +137,56 @@
             },
             goToStep(step){
                 this.activeStep = step ;
+            },
+
+            addNewProject(){
+                console.log(this.canSubmit());
+
+                if(!this.canSubmit()){
+                    return;
+                }
+                this.errors = {  new: {}, edit: {}};
+                let formData = new FormData();
+                $.each(this.newProject, (field) => {
+                    if(this.newProject[field].length){
+                        formData.append(field, this.newProject[field]);
+                    }
+                });
+                axios.post('/api/user/projects', formData, {headers:{'Content-Type': 'multipart/form-data'}})
+                    .then((response) => {
+                        console.log(response.data);
+                        this.clearProject();
+                        this.$store.dispatch('fullScreenNotification');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            clearProject(){
+                this.newProject = {
+                    images:[],
+                        name:'',
+                        description:'',
+                        link:'',
+                        skills:'',
+                        software:''
+                };
+                this.$refs.newImages.removeAllFiles();
+            },
+            canSubmit(){
+                let canSubmit = true;
+
+                $.each(this.newProject, (field) => {
+                    if(!this.newProject[field].length){
+                       canSubmit = false;
+                    }
+                });
+
+                return canSubmit ;
             }
 
         }
@@ -141,7 +197,6 @@
     $mainBlue: #001CE2;
 
     .step-indicator {
-        margin-left: 142px;
         display: flex;
         align-items: center;
         justify-content: space-between;
