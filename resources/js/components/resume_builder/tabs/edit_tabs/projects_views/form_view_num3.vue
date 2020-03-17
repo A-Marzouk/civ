@@ -17,11 +17,11 @@
         </div>
 
         <div class="input-field">
-            <label for="skils">
-                Softwares used in this project
+            <label for="software">
+                Software used in this project
                 <div class="hint-message left text-light-gray">Give a quick primer of this project, and your involvement</div>
             </label>
-            <input id="skils" type="text" class="--blue">
+            <input id="software" type="text" class="--blue">
         </div>
 
         <button @click="saveForm" class="btn filled" type="submit">

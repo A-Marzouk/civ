@@ -12,9 +12,9 @@
             </keep-alive>
             
             <div v-if="formStep !== null" class="step-indicator">
-                <a href="javascript:void;" @click="prevStep"><svg-vue class="step-arrow-icon" icon="left-arrow-icon"></svg-vue></a>
+                <a href="javascript:void(0)" @click="prevStep"><svg-vue class="step-arrow-icon" icon="left-arrow-icon"></svg-vue></a>
                 <span @click="setStep(step)" class="step-dot" :class="{active: step === formStep}" v-for="step in 3" :key="step + 'step'"></span>
-                <a href="javascript:void;" @click="nextStep"><svg-vue class="step-arrow-icon" icon="right-arrow-icon"></svg-vue></a>
+                <a href="javascript:void(0)" @click="nextStep"><svg-vue class="step-arrow-icon" icon="right-arrow-icon"></svg-vue></a>
             </div>
         </div>
     </section>

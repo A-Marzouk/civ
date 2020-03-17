@@ -10,6 +10,8 @@ $factory->define(Project::class, function (Faker $faker) {
         'user_id' => 2 ,
         'name' => $faker->text(30),
         'description' => $faker->text(150),
-        'link' => $faker->url
+        'link' => $faker->url,
+        'skills' => $faker->sentence,
+        'software' => $faker->sentence,
     ];
 });

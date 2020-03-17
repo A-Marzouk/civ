@@ -10,12 +10,17 @@
                 <svg-vue class="icon add-project-icon" icon="add-icon"></svg-vue> <b>Auto import</b>
             </button>
         </div>
-        <div class="projects-container d-flex">
-            <div class="project" v-for="project in projects" :key="project.name">
-                <img :src="project.mainImage" alt="">
-                <a class="d-flex justify-content-center align-items-center remove-icon" href="javascript:;">
-                    <svg-vue icon="remove-icon"></svg-vue>
-                </a>
+        <div class="projects-container d-flex flex-wrap">
+            <div v-for="project in projects" :key="project.name" class="d-flex flex-column mb-3">
+                <div class="project">
+                    <img :src="getMainImage(project)" alt="">
+                    <a class="d-flex justify-content-center align-items-center remove-icon" href="javascript:void(0)">
+                        <svg-vue icon="remove-icon"></svg-vue>
+                    </a>
+                </div>
+                <div>
+                    {{project.name}}
+                </div>
             </div>
         </div>
     </div>        
@@ -27,20 +32,29 @@
 export default {
     name: "Projects",
     props: {
-        setStep: { type: Function }
+        setStep: {type:Function}
     },
-    data: () => ({
-        projects: [
-            {
-                name: 'Project 1',
-                mainImage: '/images/resume_builder/project1.png'
-            },
-            {
-                name: 'Project 2',
-                mainImage: '/images/resume_builder/project2.png'
-            }
-        ]
-    })
+    data(){
+        return{
+
+        }
+    },
+    computed: {
+        projects() {
+            return this.$store.state.user.projects;
+        }
+    },
+    methods:{
+        getMainImage(project){
+            let mainImageSrc = '' ;
+            project.images.forEach( (image) => {
+                image.is_main ? mainImageSrc = image.src : '' ;
+            });
+
+            return mainImageSrc;
+        }
+    }
+
 }
 </script>
 
@@ -80,6 +94,11 @@ $mainBlue: #001CE2;
     &:hover .remove-icon {
         opacity: 1;
         transition: all .5s ease;
+    }
+
+    img{
+        width:477px;
+        height: 359px;
     }
 }
 
