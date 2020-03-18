@@ -25,8 +25,6 @@ import VueCookies from 'vue-cookies'
 Vue.use(VueCookies);
 
 //bootstrap vue
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
+import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
