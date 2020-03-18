@@ -56,43 +56,46 @@
               </b-col>
             </b-row>
             <!-- Main Function Buttons -->
-            <b-container class="bv-example-row" v-if="currentItem==null">
-              <b-row class="text-center">
-                <!-- Link Url -->
-                <b-col>
-                  <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
-                  <div class="d-flex-inline">
-                    <button @click="currentItem='linkUrl' ">
-                      <svg-vue class="upload-url-icon" icon="upload-url-icon"></svg-vue>
-                    </button>
-                  </div>
-                </b-col>
-                <!-- Link URL -->
-                <!-- MP3 -->
-                <b-col>
-                  <div class="d-flex-inline upload-audio-subtitle">Upload Mp3</div>
-                  <div class="d-flex-inline">
-                    <input type="file" ref="file" style="display: none" accept=".mp3">
-                    <button @click="$refs.file.click()">
-                      <svg-vue class="mp3-icon" icon="mp3-icon"></svg-vue>
-                    </button>
-                  </div>
-                </b-col>
-                <!-- MP3 -->
-                <!-- Record -->
-                <b-col>
-                  <div class="d-flex-inline upload-audio-subtitle">Record</div>
-                  <div class="d-flex-inline">
-                    <button @click="currentItem='record'">
-                      <svg-vue class="microphone-icon" icon="microphone-icon"></svg-vue>
-                    </button>
-                  </div>
-                </b-col>
-                <!-- Record -->
-              </b-row>
-            </b-container>
+            <transition name="bounce">
+              <b-container class="bv-example-row" v-if="currentItem==null">
+                <b-row class="text-center">
+                  <!-- Link Url -->
+                  <b-col>
+                    <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
+                    <div class="d-flex-inline">
+                      <button @click="currentItem='linkUrl' ">
+                        <svg-vue class="upload-url-icon" icon="upload-url-icon"></svg-vue>
+                      </button>
+                    </div>
+                  </b-col>
+                  <!-- Link URL -->
+                  <!-- MP3 -->
+                  <b-col>
+                    <div class="d-flex-inline upload-audio-subtitle">Upload Mp3</div>
+                    <div class="d-flex-inline">
+                      <input type="file" ref="file" style="display: none" accept=".mp3" />
+                      <button @click="$refs.file.click()">
+                        <svg-vue class="mp3-icon" icon="mp3-icon"></svg-vue>
+                      </button>
+                    </div>
+                  </b-col>
+                  <!-- MP3 -->
+                  <!-- Record -->
+                  <b-col>
+                    <div class="d-flex-inline upload-audio-subtitle">Record</div>
+                    <div class="d-flex-inline">
+                      <button @click="currentItem='record'">
+                        <svg-vue class="microphone-icon" icon="microphone-icon"></svg-vue>
+                      </button>
+                    </div>
+                  </b-col>
+                  <!-- Record -->
+                </b-row>
+              </b-container>
+            </transition>
             <!-- Main Function Buttons -->
             <!-- Link Upload Child -->
+
             <b-container v-if="currentItem=='linkUrl'" class="bv-example-row">
               <b-row align-v="center">
                 <b-col cols="2" class="link-title-text">Link URL</b-col>
@@ -112,7 +115,7 @@
               <b-row>
                 <b-col>Mp3</b-col>
               </b-row>
-            </b-container> -->
+            </b-container>-->
 
             <b-container v-if="currentItem=='record'">
               <b-row class="justify-content-md-center">
@@ -239,6 +242,26 @@ $mainBlue: #001ce2;
 .audios-preview-container {
   margin-top: 10px;
 }
+
+/* aninamtion */
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* animation */
 </style>
 
 <style>

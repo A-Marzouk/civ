@@ -58,32 +58,39 @@
               </b-col>
             </b-row>
             <!-- Main Function Buttons -->
-            <b-container class="bv-example-row" v-if="currentItem==null">
-              <b-row class="text-center">
-                <!-- Link Url -->
-                <b-col>
-                  <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
-                  <div class="d-flex-inline">
-                    <button @click="currentItem='linkUrl' ">
-                      <svg-vue class="upload-url-icon" icon="upload-url-icon"></svg-vue>
-                    </button>
-                  </div>
-                </b-col>
-                <!-- Link URL -->
+            <transition name="bounce">
+              <b-container class="bv-example-row" v-if="currentItem==null">
+                <b-row class="text-center">
+                  <!-- Link Url -->
+                  <b-col>
+                    <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
+                    <div class="d-flex-inline">
+                      <button @click="currentItem='linkUrl' ">
+                        <svg-vue class="upload-url-icon" icon="upload-url-icon"></svg-vue>
+                      </button>
+                    </div>
+                  </b-col>
+                  <!-- Link URL -->
 
-                <!-- Upload Video -->
-                <b-col>
-                  <div class="d-flex-inline upload-audio-subtitle">Upload Video</div>
-                  <div class="d-flex-inline">
-                    <input type="file" ref="file" style="display: none" accept=".webm, .ogg, .mp4" />
-                    <button @click="$refs.file.click()">
-                      <svg-vue class="video-upload-icon" icon="video-upload-icon"></svg-vue>
-                    </button>
-                  </div>
-                </b-col>
-                <!-- Upload Video -->
-              </b-row>
-            </b-container>
+                  <!-- Upload Video -->
+                  <b-col>
+                    <div class="d-flex-inline upload-audio-subtitle">Upload Video</div>
+                    <div class="d-flex-inline">
+                      <input
+                        type="file"
+                        ref="file"
+                        style="display: none"
+                        accept=".webm, .ogg, .mp4"
+                      />
+                      <button @click="$refs.file.click()">
+                        <svg-vue class="video-upload-icon" icon="video-upload-icon"></svg-vue>
+                      </button>
+                    </div>
+                  </b-col>
+                  <!-- Upload Video -->
+                </b-row>
+              </b-container>
+            </transition>
 
             <!-- Main Function Buttons -->
             <!-- Link Upload Child -->
@@ -196,6 +203,26 @@ $mainBlue: #001ce2;
 .audios-preview-container {
   margin-top: 10px;
 }
+
+/* aninamtion */
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* animation */
 </style>
 
 <style>
@@ -249,6 +276,8 @@ $mainBlue: #001ce2;
 /* Child Modal */
 
 /* Child Modal */
+
+
 
 /* new css */
 </style>
