@@ -1,9 +1,8 @@
 <template>
-    <div class="audio-element">
-        <div class="audio-name">{{name}}</div>
-        <div class="audio-player d-flex align-items-center">
-            <svg-vue class="play-icon" icon="play-icon"></svg-vue>
-            <svg-vue class="sound-frecuency" icon="sound-frecuency"></svg-vue>
+    <div class="video-element">
+        <div class="video-name">{{name}}</div>
+        <div class="video-player d-flex align-items-center">
+            <svg-vue class="video-play-icon" icon="video-play-icon"></svg-vue>
 
             <div class="order-controls d-flex flex-column">
                 <button class="icon">
@@ -41,11 +40,11 @@ export default {
 
 <style lang="scss">
 $mainBlue: #001CE2; 
-    .audio-element {
+    .video-element {
         position: relative;
         margin-bottom: 50px;
         
-        .audio-name {
+        .video-name {
             font-family: "Noto Sans", Arial, Helvetica, sans-serif;
             font-size: 18px;
             font-weight: 700;
@@ -66,7 +65,8 @@ $mainBlue: #001CE2;
                 align-items: center;
                 svg {
                     width: 12px;
-                    height: 6px;
+                    height: 15px;
+                    margin-right:97px;
                 }
                 
                 &:first-child {
@@ -76,8 +76,8 @@ $mainBlue: #001CE2;
         }
         .select-audio-options {
             position: absolute;
-            bottom: 7px;
-            right: 19px;
+            bottom: 15px;
+            right: 106px;
             height: 22px;
             border-radius: 5px;
             border: 1px solid $mainBlue;
@@ -93,18 +93,16 @@ $mainBlue: #001CE2;
             }
         }
     }
-    .audio-player {
+    .video-player {
         border: 1px solid $mainBlue;
-        border-radius: 25px;
-        height: 91px;
-        width: 350px;
+        border-radius: 22px;
+        height: 150px;
+        width: 260px;
         padding-left: 36px;
-        .play-icon {
-            width: 30px;
+        .video-play-icon {
+            width: 40px;
+            margin-left:70px;
         }
-        .sound-frecuency {
-            width: 210px;
-            margin-left: 25px;
-        }
+        
     }
 </style>

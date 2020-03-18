@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 67 57">
+  <g id="button" transform="translate(1 0.182)">
+    <rect id="Rectangle_381" data-name="Rectangle 381" width="67" height="57" rx="8" transform="translate(-1 -0.182)" fill="#001ce2"/>
+    <g id="Group_940" data-name="Group 940" transform="translate(19 15.335)">
+      <path id="Icon_material-add-box" data-name="Icon material-add-box" d="M28.5,4.5H7.5a3,3,0,0,0-3,3v21a3,3,0,0,0,3,3h21a3.009,3.009,0,0,0,3-3V7.5A3.009,3.009,0,0,0,28.5,4.5Z" transform="translate(-4.5 -4.5)" fill="#ecf2ff"/>
+      <path id="Icon_metro-checkmark" data-name="Icon metro-checkmark" d="M15.5,5.784,8.318,12.968,4.965,9.616,2.571,12.01l5.747,5.747L17.9,8.179Z" transform="translate(3.429 2.216)" fill="#001ce2"/>
+    </g>
+  </g>
+</svg>

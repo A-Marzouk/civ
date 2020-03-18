@@ -5,19 +5,27 @@
       <h2>Audio / Video</h2>
     </div>
 
-    <div class="achievements-bar" id="profileLinksWrapper">
-      <div
-        class="bar-item"
-        v-for="(tabName,i) in tabs"
-        :key="i"
-        :index="i"
-        :item="tabName"
-        :data-target="tabName"
-        @click="changeTab"
-        :class="{ active : activeTab === tabName}"
-      >{{tabName}}</div>
+    <div>
+      <b-container>
+        <b-row>
+          <b-col cols="6">
+            <div class="achievements-bar" id="profileLinksWrapper">
+              <div
+                class="bar-item"
+                v-for="(tabName,i) in tabs"
+                :key="i"
+                :index="i"
+                :item="tabName"
+                :data-target="tabName"
+                @click="changeTab"
+                :class="{ active : activeTab === tabName}"
+              >{{tabName}}</div>
 
-      <div class="decorator"></div>
+              <div class="decorator"></div>
+            </div>
+          </b-col>
+        </b-row>
+      </b-container>
     </div>
 
     <transition :duration="590" class="mt-5 content" name="hide" mode="out-in">
