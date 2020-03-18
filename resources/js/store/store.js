@@ -34,6 +34,12 @@ export const store = new Vuex.Store({
         },
         showFlyingNotification:(state, data) => {
             let notificationElement = $('#flyingNotification');
+
+            let notificationText = $('#flyingNotificationText');
+            let notificationIconSrc = $('#flyingNotificationIconSrc');
+            data.message ? notificationText.text(data.message) : notificationText.text('Saved');
+            data.iconSrc ? notificationIconSrc.prop('src',data.iconSrc) : notificationIconSrc.prop('src','/images/resume_builder/tick.png') ;
+
                 if( notificationElement.is(':visible')){
                     return ;
                 }

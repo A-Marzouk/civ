@@ -25,6 +25,9 @@
                            Project name <br/><span style="opacity:0.5; font-size:13px;">You don’t have to use the project’s official title, but try to keep it brief.</span>
                        </label>
                        <input id="projectName" type="text" class="--blue" v-model="newProject.name">
+                       <div class="error" v-if="errors.new.name">
+                           {{ Array.isArray(errors.new.name) ? errors.new.name[0] : errors.new.name}}
+                       </div>
                    </div>
 
                    <div class="input-field">
@@ -33,6 +36,9 @@
                            <br/><span style="opacity:0.5; font-size:13px;">Give a quick primer of this project, and your involvement.</span>
                        </label>
                        <textarea rows="10" id="projectDescription" class="--blue" v-model="newProject.description"></textarea>
+                       <div class="error" v-if="errors.new.description">
+                           {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                       </div>
                    </div>
                </div>
            </div>
@@ -45,6 +51,9 @@
                            <br/><span style="opacity:0.5; font-size:13px;">Is there an active link where this project can be viewed without a password?</span>
                        </label>
                        <input id="projectUrl" type="text" class="--blue" v-model="newProject.link">
+                       <div class="error" v-if="errors.new.link">
+                           {{ Array.isArray(errors.new.link) ? errors.new.link[0] : errors.new.link}}
+                       </div>
                    </div>
 
                    <div class="input-field">
@@ -53,6 +62,9 @@
                            <br/><span style="opacity:0.5; font-size:13px;">What skills did you put to use for this project?</span>
                        </label>
                        <input id="skils" type="text" class="--blue" v-model="newProject.skills">
+                       <div class="error" v-if="errors.new.skills">
+                           {{ Array.isArray(errors.new.skills) ? errors.new.skills[0] : errors.new.skills}}
+                       </div>
                    </div>
 
                    <div class="input-field">
@@ -61,6 +73,9 @@
                            <br/><span style="opacity:0.5; font-size:13px;">Give a quick primer of this project, and your involvement</span>
                        </label>
                        <input id="software" type="text" class="--blue" v-model="newProject.software">
+                       <div class="error" v-if="errors.new.software">
+                           {{ Array.isArray(errors.new.software) ? errors.new.software[0] : errors.new.software}}
+                       </div>
                    </div>
                </div>
            </div>
@@ -175,6 +190,8 @@
                         } else {
                             this.errors.new  = 'Something went wrong. Please try again.';
                         }
+
+                        this.$store.dispatch('flyingNotification',{message:'Error',iconSrc:'/images/resume_builder/error.png'});
                     });
             },
             clearProject(){

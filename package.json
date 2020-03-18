@@ -11,6 +11,8 @@
     },
     "devDependencies": {
         "axios": "^0.19.2",
+        "acorn": ">=6.4.1",
+        "minimist": ">=1.2.2",
         "bootstrap": "^4.0.0",
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.0.1",

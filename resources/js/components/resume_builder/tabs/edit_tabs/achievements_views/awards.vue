@@ -1,25 +1,22 @@
 <template>
     <div>
         <div class="add-award-section">
-            <div class="award-input">
+            <div class="award-input d-flex flex-column w-100">
                 <label for="awardTitle">New Awards</label>
-                <input type="text" id="awardTitle" v-model="newAward.title">
-                <div class="error" v-if="errors.title">
-                    {{errors.title}}
+                <div class="d-flex w-100" style="justify-content: space-between; align-items: center;">
+                    <input type="text" id="awardTitle" v-model="newAward.title">
+
+                    <div class="add-award-btn NoDecor">
+                        <a href="javascript:void(0)" @click="addAward">
+                            <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                            Add awards now
+                        </a>
+                    </div>
+                </div>
+                <div class="error" v-if="errors.new.title">
+                    {{errors.new.title[0]}}
                 </div>
             </div>
-            <div class="add-award-btn NoDecor">
-                <a href="javascript:void(0)" @click="addAward">
-                    <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                    Add awards now
-                </a>
-            </div>
-            <!--<div class="auto-import-btn NoDecor">-->
-            <!--<a href="">-->
-            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
-            <!--Auto import-->
-            <!--</a>-->
-            <!--</div>-->
         </div>
         <div class="work-ex-list mt-3">
             <div class="work-ex-item mt-5 flex-column" v-for="(achievement,index) in achievements" :key="index + '_achievement'" v-show="achievement.category === 'awards'">
@@ -69,19 +66,36 @@
                     title: ''
                 },
                 optionAchievementId:'',
-                errors:{}
+                errors:{
+                    new: {}, edit: {}
+                }
             }
         },
         methods: {
-            async addAward() {
-                this.errors = {}
-                if(this.newAward.title.length < 3){
-                    this.errors = {
-                      title : 'Award title should be more than 3 symbols.'
-                    };
-                }
-                await this.$emit('achievementAdded', this.newAward);
-                this.newAward.title= '';
+            addAward () {
+                // Axios request here
+                this.errors= { new: {}, edit: {}};
+                axios.post('/api/user/achievements', this.newAward)
+                    .then((response) => {
+                        let addedAchievement = response.data.data;
+                        this.$emit('achievementAdded',addedAchievement);
+                        this.$store.dispatch('fullScreenNotification');
+                        this.clearAward();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification',{message:'Error',iconSrc:'/images/resume_builder/error.png'});
+                    });
+            },
+            clearAward(){
+                this.newAward = {
+                    category: 'awards',
+                    title: '',
+                };
             },
             deleteAward(award){
                 this.$emit('achievementDeleted', award);
@@ -183,10 +197,10 @@
                     border: 1px solid #505050;
                     border-radius: 5px;
                     opacity: 1;
-                    margin-top: 8px;
+                    margin-top: 6px;
                     width: 130px;
-                    height: 60px;
-                    padding-top: 7px;
+                    height: 45px;
+                    padding-top: 5px;
                     padding-left: 8px;
 
                     .edit-btn, .delete-btn {
