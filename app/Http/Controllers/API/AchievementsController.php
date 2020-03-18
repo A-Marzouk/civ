@@ -74,6 +74,11 @@ class AchievementsController extends Controller
             'user_id' => Auth::user()->id
         ])->first();
 
+        // remove the file from the directory if exists:
+        if (file_exists(public_path($achievement->image_src))) {
+            unlink(public_path($achievement->image_src));
+        }
+
         if($achievement->delete()){
             return ['data' => ['id' => $achievement->id] ];
         }

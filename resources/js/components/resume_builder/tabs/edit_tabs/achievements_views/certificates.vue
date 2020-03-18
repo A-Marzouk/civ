@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="certifications-list" v-if="achievements">
-            <div class="certification-item"  v-for="(achievement,index) in achievements" :key="index + '_achievements'">
+            <div class="certification-item mt-5"  v-for="(achievement,index) in achievements" :key="index + '_achievements'">
                 <div class="certification-preview">
                     <img :src="achievement.image_src" alt="certification-preview">
                 </div>
@@ -175,7 +175,7 @@ export default {
         },
         addCertificate () {
             // Axios request here
-
+            this.errors= { new: {}, edit: {}};
             let formData = new FormData();
             $.each(this.addCertificateForm, (field) => {
                 formData.append(field, this.addCertificateForm[field])
@@ -184,8 +184,9 @@ export default {
             axios.post('/api/user/achievements', formData)
                 .then((response) => {
                     let addedAchievement = response.data.data;
-                    this.achievements.push(addedAchievement);
+                    this.$emit('achievementAdded',addedAchievement);
                     this.$store.dispatch('fullScreenNotification');
+                    this.clearCertificate();
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {
@@ -193,7 +194,18 @@ export default {
                     } else {
                         this.errors.new  = 'Something went wrong. Please try again.';
                     }
+                    this.$store.dispatch('flyingNotification',{message:'Error',iconSrc:'/images/resume_builder/error.png'});
+
                 });
+        },
+        clearCertificate(){
+            this.addCertificateForm = {
+                category: 'certificates',
+                title: '',
+                description: '',
+                file: null
+            };
+            this.$refs.newCertificate.removeAllFiles();
         },
         deleteCertificate(achievement){
             console.log('delete');
@@ -371,8 +383,8 @@ export default {
                     opacity: 1;
                     margin-top: 8px;
                     width: 88px;
-                    height: 60px;
-                    padding-top: 7px;
+                    height: 45px;
+                    padding-top: 5px;
                     padding-left: 8px;
 
                     .edit-btn, .delete-btn {

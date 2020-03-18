@@ -178,8 +178,9 @@ export default {
             axios.post('/api/user/achievements', formData)
                 .then((response) => {
                     let addedAchievement = response.data.data;
-                    this.achievements.push(addedAchievement);
+                    this.$emit('achievementAdded',addedAchievement);
                     this.$store.dispatch('fullScreenNotification');
+                    this.clearCertificate();
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {
@@ -187,7 +188,18 @@ export default {
                     } else {
                         this.errors.new  = 'Something went wrong. Please try again.';
                     }
+                    this.$store.dispatch('flyingNotification',{message:'Error',iconSrc:'/images/resume_builder/error.png'});
+
                 });
+        },
+        clearCertificate(){
+            this.addCertificateForm = {
+                category: 'events',
+                title: '',
+                description: '',
+                file: null
+            };
+            this.$refs.newCertificate.removeAllFiles();
         },
         deleteCertificate(achievement){
             console.log('delete');
