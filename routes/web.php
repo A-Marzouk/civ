@@ -44,6 +44,7 @@ Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@ha
 // resume builder main routes.
 Route::get('/resume-builder/{any?}', 'ResumeBuilderController@index')->name('resume.builder.main');
 Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name('resume.builder.edit');
+Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::post('/resume-builder/account/submit', 'ResumeBuilderController@editAccountData')->name('account.edit');
 Route::post('/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('account.validate');
 

@@ -17,10 +17,6 @@
                     <div class="upload-text">
                         Upload image
                     </div>
-                    <div v-show="showInputHelpers" class="file-animation" id="certificatePreviewClone">
-                        <embed v-if="previewFile && previewFile.type === 'application/pdf'" :src="previewFile && previewFile.url" alt="" :type="previewFile.type" />
-                        <img v-else :src="previewFile && previewFile.url" alt="" />
-                    </div>
                 </vue2Dropzone>
                 <div class="error" v-if="errors.new.file">
                     {{ Array.isArray(errors.new.file) ? errors.new.file[0] : errors.new.file}}
@@ -33,7 +29,6 @@
                     <div class="error" v-if="errors.new.title">
                         {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
                     </div>
-                    <div v-show="showInputHelpers" class="text-animation title"></div>
                 </div>
                 <div class="certification-input">
                     <label for="description">Description</label>
@@ -41,7 +36,6 @@
                     <div class="error" v-if="errors.new.description">
                         {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
                     </div>
-                    <div v-show="showInputHelpers" class="text-animation description"></div>
                 </div>
                 <div class="action-btns">
                     <div class="add-award-btn NoDecor">
@@ -60,7 +54,7 @@
             </div>
         </div>
         <div class="certifications-list" v-if="achievements">
-            <div class="certification-item"  v-for="(achievement,index) in achievements" :key="index + '_achievements'" v-show="achievement.category === 'certificates'">
+            <div class="certification-item mt-5"  v-for="(achievement,index) in achievements" :key="index + '_achievements'">
                 <div class="certification-preview">
                     <img :src="achievement.image_src" alt="certification-preview">
                 </div>
@@ -181,7 +175,7 @@ export default {
         },
         addCertificate () {
             // Axios request here
-
+            this.errors= { new: {}, edit: {}};
             let formData = new FormData();
             $.each(this.addCertificateForm, (field) => {
                 formData.append(field, this.addCertificateForm[field])
@@ -190,9 +184,9 @@ export default {
             axios.post('/api/user/achievements', formData)
                 .then((response) => {
                     let addedAchievement = response.data.data;
-                    this.achievements.push(addedAchievement);
-                    this.addFileToListAnimation();
+                    this.$emit('achievementAdded',addedAchievement);
                     this.$store.dispatch('fullScreenNotification');
+                    this.clearCertificate();
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {
@@ -200,35 +194,22 @@ export default {
                     } else {
                         this.errors.new  = 'Something went wrong. Please try again.';
                     }
+                    this.$store.dispatch('flyingNotification',{message:'Error',iconSrc:'/images/resume_builder/error.png'});
+
                 });
+        },
+        clearCertificate(){
+            this.addCertificateForm = {
+                category: 'certificates',
+                title: '',
+                description: '',
+                file: null
+            };
+            this.$refs.newCertificate.removeAllFiles();
         },
         deleteCertificate(achievement){
             console.log('delete');
             this.$emit('achievementDeleted', achievement);
-        },
-
-        addFileToListAnimation () {
-            let titleAnimationBlock = document.querySelector('.text-animation.title');
-            let descriptionAnimationBlock = document.querySelector('.text-animation.description');
-            let fileAnimationBlock = document.querySelector('.file-animation');
-
-            titleAnimationBlock.innerHTML = this.addCertificateForm.title;
-            descriptionAnimationBlock.innerHTML = this.addCertificateForm.description;
-            this.previewFile = this.addCertificateForm.file;
-
-            this.showInputHelpers = true;
-
-            this.addCertificateForm.title = '';
-            this.addCertificateForm.description = '';
-            this.addCertificateForm.file = null;
-            this.$refs.newCertificate.removeAllFiles();
-
-            let certificationsListContainer = document.querySelector('.certifications-list');
-            let addCertificateContainer = document.querySelector('.add-certificate');
-
-            titleAnimationBlock.classList.add('show');
-            descriptionAnimationBlock.classList.add('show');
-            fileAnimationBlock.classList.add('show');
         }
     }
 }
@@ -236,14 +217,6 @@ export default {
 
 <style lang="scss">
     $activeColor: #001CE2;
-
-    @keyframes showInputHelpers {
-        from  {
-            transform: translateY(0);
-        } to {
-            transform: translateY(700px);
-        }
-    }
 
     #certificateDropzone {
         position: relative;
@@ -288,6 +261,7 @@ export default {
                     width: 100%;
                     height: 50%;
                     overflow: hidden;
+                    background-position: center ;
                 }
                 
                 embed {
@@ -321,46 +295,6 @@ export default {
 
     .certification-input {
         position: relative;
-    }
-
-    .text-animation {
-        position: absolute;
-        bottom: 0;
-        width: 807px;
-        height: 76px;
-        transform: translateY(0);
-        transition: .5s;
-        padding-left: 18px;
-
-        &.description {
-            padding-top: 22px;
-            height: 190px;
-        }
-
-        &.title {
-            display: flex;
-            align-items: center;
-        }
-
-        &.show {
-            animation-name: showInputHelpers;
-            animation-duration: 1.2s;
-            animation-timing-function: ease-in-out;
-            animation-delay: 0.2s;
-            animation-fill-mode: forwards;
-        }
-    }
-
-    .file-animation {
-        position: absolute;
-
-        &.show {
-            animation-name: showInputHelpers;
-            animation-duration: 1.2s;
-            animation-timing-function: ease-in-out;
-            animation-delay: 0.2s;
-            animation-fill-mode: forwards;
-        }
     }
 
     .certifications-list{
@@ -449,8 +383,8 @@ export default {
                     opacity: 1;
                     margin-top: 8px;
                     width: 88px;
-                    height: 60px;
-                    padding-top: 7px;
+                    height: 45px;
+                    padding-top: 5px;
                     padding-left: 8px;
 
                     .edit-btn, .delete-btn {

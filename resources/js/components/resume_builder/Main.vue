@@ -69,8 +69,8 @@
 
         <div class="flying-notification" id="flyingNotification">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="/images/resume_builder/tick.png" alt="notification modal">
-                <div class="text">Saved</div>
+                <img src="" id="flyingNotificationIconSrc" alt="notification modal">
+                <div class="text" id="flyingNotificationText"></div>
             </div>
         </div>
 
