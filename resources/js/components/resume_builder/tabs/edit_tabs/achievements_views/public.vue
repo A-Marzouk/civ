@@ -182,7 +182,7 @@ export default {
                     this.$store.dispatch('fullScreenNotification');
                     this.clearPublic();
                 })
-                .catch((error) =>
+                .catch((error) =>{
                     if (typeof error.response.data === 'object') {
                         this.errors.new = error.response.data.errors;
                     } else {
