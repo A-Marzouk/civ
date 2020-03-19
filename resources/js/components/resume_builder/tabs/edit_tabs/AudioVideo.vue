@@ -54,79 +54,15 @@ export default {
   data() {
     return {
       activeTab: "Video",
-      cTabProfile: "tab-0",
-      cTabLinks: null,
-      tabColor: "#001CE2",
       tabs: ["Video", "Audio"],
-      /** Add item list flow */
-      activeListItem: undefined,
-      movingUp: undefined,
-      movingDown: undefined,
-      socialLinks: [
-        {
-          name: "Facebook",
-          link: "https://facebook.com/linksample"
-        },
-        {
-          name: "Instagram",
-          link: "https://instagram.com/linksample"
-        },
-        {
-          name: "Dribbble",
-          link: "https://www.Dribbble.com/in/hachibur-rahman-5913a5139/"
-        }
-      ],
-      porfolioLinks: [
-        {
-          name: "Behance",
-          link: "https://www.Behance.com/hachib_rahman_/"
-        },
-        {
-          name: "Dribbble",
-          link: "https://www.Dribbble.com/in/hachibur-rahman-5913a5139/"
-        }
-      ],
-      addItem: false,
-      wrapNewItem: true,
-      /** Fields add social link */
-      social_link: "",
-      namesocial: ""
     };
   },
   methods: {
     changeTab(e) {
-      /** Logic click on tab espcific */
-
       moveTabsHelper(e, "profileLinksWrapper", this);
     },
     setActiveTab(tab) {
       this.activeTab = tab;
-    },
-    reorder(type, dir, from, to) {
-      this.activeListItem = from;
-
-      if (dir == "mup") {
-        this.movingUp = from;
-        this.movingDown = undefined;
-      }
-      if (dir == "mdown") {
-        this.movingDown = from;
-        this.movingUp = undefined;
-      }
-      setTimeout(() => {
-        switch (type) {
-          case "social":
-            this.socialLinks.moveItem(from, to);
-            break;
-          case "portfolio":
-            this.porfolioLinks.moveItem(from, to);
-            break;
-        }
-
-        this.activeListItem = undefined;
-        this.movingDown = undefined;
-        this.movingUp = undefined;
-      }, 500);
     }
   },
   mounted() {
