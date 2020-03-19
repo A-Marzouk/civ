@@ -1,22 +1,24 @@
 <template>
-    <div class="v-application v-application--is-ltr theme--light">
-        <div class="v-application--wrap">
-            <div class="v-content">
-                <div class="v-content__wrap">
-                    <div class="my-container">
-                        <HeroSection />
-                        <VideoSection />
-                        <SliderSection />
-                        <TestimonioSection />
-                        <ContactSection />
-                    </div>
-                    <div class="footer-section w-100">
-                        <img src="/images/welcome_landing_page/logo/civie_logo_white.png" alt="">
+    <v-app>
+        <div class="v-application v-application--is-ltr theme--light">
+            <div class="v-application--wrap">
+                <div class="v-content">
+                    <div class="v-content__wrap">
+                        <div class="my-container">
+                            <HeroSection />
+                            <VideoSection />
+                            <SliderSection />
+                            <TestimonioSection />
+                            <ContactSection />
+                        </div>
+                        <div class="footer-section w-100">
+                            <img src="/images/welcome_landing_page/logo/civie_logo_white.png" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </v-app>
 </template>
 <script>
     import HeroSection from './sections/HeroSection';
@@ -42,9 +44,6 @@
     };
 </script>
 <style lang="scss">
-
-    @import '/images/welcome_landing_page/styles/slick.css';
-    @import '~vuetify/dist/vuetify.min.css';
 
 
     @import url('//fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap');
