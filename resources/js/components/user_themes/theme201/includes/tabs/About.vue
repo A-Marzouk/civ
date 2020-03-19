@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 1785px;">
+  <v-container style="max-width: 1785px;" v-if="user">
     <v-layout align-center justify-center>
       <v-flex xs12>
         <v-card flat>
@@ -13,13 +13,7 @@
 
           <v-card-text>
             <p class="about-p">
-              I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-              <br />
-              <br />I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-              I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-              <br />
-              <br />
-I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop…
+                {{user.personal_info.about}}
             </p>
           </v-card-text>
         </v-card>
@@ -30,7 +24,17 @@ I'm Conor, I'm a product manager from London. I'm currently looking for new perm
 
 <script>
 export default {
-  name: "About"
+  name: "About",
+    data(){
+      return{
+
+      }
+    },
+    computed: {
+        user() {
+            return this.$store.state.themeUser;
+        }
+    },
 };
 </script>
 
@@ -50,11 +54,10 @@ h1 {
   right: 21.82%;
   top: 639px;
 
-  font-family: Open Sans;
   font-style: normal;
   font-weight: 300;
-  font-size: 14px;
-  line-height: 15px;
+  font-size: 18px;
+  line-height:28px;
   /* or 107% */
 
   text-align: center;

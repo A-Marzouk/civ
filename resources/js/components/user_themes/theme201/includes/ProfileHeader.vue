@@ -1,10 +1,10 @@
 <template>
-    <v-layout row wrap>
+    <v-layout row wrap v-if="user.personal_info">
         <v-flex xs12 class="hidden-sm-and-up">
             <v-card class="mx-auto" flat>
                 <v-list-item two-line>
                     <v-list-item-avatar size="85">
-                        <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
+                        <v-img :src="user.personal_info.profile_pic"></v-img>
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title class="headline title-text">{{user.name}}</v-list-item-title>
@@ -21,7 +21,7 @@
                         <v-layout row>
                             <v-flex xs3 md3 sm4 lg2 class="mobile-center">
                                 <v-avatar size="120">
-                                    <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
+                                    <v-img :src="user.personal_info.profile_pic"></v-img>
                                 </v-avatar>
                             </v-flex>
 
@@ -257,6 +257,8 @@
             user() {
                 return this.$store.state.themeUser;
             }
+        },
+        methods:{
         },
         mounted() {
 
