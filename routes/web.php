@@ -18,12 +18,14 @@ Auth::routes(['verify' => true]);
 
 // public routes
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
+Route::get('/cv/{username}', 'ResumeController@userResume'); // resume with real user data
+
 Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
 
-// needs verification routes:
+// routes need verification :
 Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
 
 
@@ -49,8 +51,7 @@ Route::post('/resume-builder/account/submit', 'ResumeBuilderController@editAccou
 Route::post('/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('account.validate');
 
 
-// users controller routes
-Route::get('/user/current', 'UsersController@currentUser')->name('current.user');
+
 
 
 // admin routes:

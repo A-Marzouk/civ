@@ -1,6 +1,6 @@
 <template>
     <div class="hold-edit" v-if="personalInfo">
-        <img class="user-cover" :src="getProfilePicSrc()" id="profilePic" alt="">
+        <img class="user-cover" :src="personalInfo.profile_pic" id="profilePic" alt="">
         <div class="upload-section">
             <h5>Change profile photo</h5>
             <p>Only use images that are greater than 500 pixels in both height and width.</p>
@@ -98,7 +98,7 @@ export default {
                         formData.append(field, this.personalInfo[field]);
                     }
                     if(field === 'profile_pic'){
-                        formData.append(field, this.personalInfo[field]);
+                        formData.append(field,this.$refs.profile_picture.files[0]);
                     }
                 }
             });
@@ -113,7 +113,7 @@ export default {
                     }else{
                         this.$store.dispatch('flyingNotification');
                     }
-
+                    this.personalInfo.profile_pic = response.data.data.profile_pic;
                 })
                 .catch((error) => {
                     if (typeof error.response.data === 'object') {
@@ -128,8 +128,7 @@ export default {
             // validate uploaded file :
             let isValid = this.validateUploadedFile(this.$refs.profile_picture.files[0]);
             if(isValid){
-                this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
-                this.tempPic =  URL.createObjectURL(this.personalInfo.profile_pic) ;
+                this.tempPic =  URL.createObjectURL(this.$refs.profile_picture.files[0]) ;
                 this.profile_pic_error = '';
                 this.applyEdit('auto');
             }else{
@@ -149,18 +148,6 @@ export default {
         },
         clickUploadInput(){
             $('#profile_picture').click();
-        },
-        getProfilePicSrc(){
-            if(this.tempPic.length > 0){
-                return this.tempPic;
-            }
-
-            if (this.personalInfo.profile_pic !== null){
-                return this.personalInfo.profile_pic;
-            }
-
-            return  '/images/resume_builder/profile/holder.jpg' ;
-
         },
         canEditEmail() {
             return !(this.user.instagram_id !== null && !this.isEmail(this.personalInfo.email));

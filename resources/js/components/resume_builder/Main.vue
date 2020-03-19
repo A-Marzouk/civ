@@ -34,9 +34,9 @@
             </div>
         </nav>
 
-        <div class="info-wrapper">
+        <div class="info-wrapper" v-if="personalInfo">
             <div class="avatar">
-                <img src="/images/resume_themes/theme5/profile.png" alt="profile-pic">
+                <img :src="personalInfo.profile_pic" alt="profile-pic">
             </div>
             <div class="name-title-wrapper">
                 <div class="user-name">
@@ -55,7 +55,7 @@
 
         <div class="modal fade" id="fullScreenNotificationModal" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content border-0">
                     <div class="modal-body">
                         <!-- image and notification text are set on stor.js (while sending the event) - default value is for success-->
                         <div class="thank-you-pop d-flex">
@@ -167,10 +167,10 @@
 
         .avatar {
             margin-right: 32px;
-
             img {
                 width: 167px;
                 height: 167px;
+                border-radius: 50%;
             }
         }
 
