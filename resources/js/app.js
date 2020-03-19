@@ -3,6 +3,9 @@ require('./modules');
 let token = 'Bearer ' + ( Vue.$cookies.get('access_token') || null );
 axios.defaults.headers.Authorization = token;
 
+// Vuetify
+import vuetify from './vuetify';
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
@@ -15,6 +18,7 @@ import welcomeView from './components/welcome-view/welcome';
 if ($("#welcomeView").length !== 0) {
     new Vue({
         el: '#welcomeView',
+        vuetify,
         components:{
             'welcome-view':welcomeView
         }

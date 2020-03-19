@@ -106,7 +106,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
     .v-carousel{
         box-shadow: none!important;

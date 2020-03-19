@@ -1,9 +1,5 @@
 window.Vue = require('vue');
 
-// Vuetify
-import Vuetify from 'vuetify';
-Vue.use(Vuetify);
-
 // axios:
 window.axios = require('axios');
 
