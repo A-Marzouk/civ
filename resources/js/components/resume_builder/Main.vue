@@ -49,7 +49,7 @@
         </div>
 
         <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
-            <router-view></router-view>
+            <router-view style="min-height: 100vh;"></router-view>
         </transition>
 
 

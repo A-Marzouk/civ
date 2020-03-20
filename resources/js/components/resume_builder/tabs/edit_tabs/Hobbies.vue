@@ -578,8 +578,13 @@
                 div{
                     font-size: 22px;
                     padding-left: 23px;
+                    margin-left: 1px;
                     &:hover{
                         cursor: pointer;
+                        background: lightcyan;
+                    }
+                    &:last-child:hover{
+                        border-radius:0 0 10px 10px ;
                     }
                 }
             }
