@@ -223,9 +223,7 @@ $mainBlue: #001ce2;
   }
 }
 /* animation */
-</style>
 
-<style>
 /* new css */
 .modal-content {
   border: 2px solid #001ce2 !important;
