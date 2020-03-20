@@ -1,8 +1,8 @@
 <template>
     <v-container style="max-width: 1785px;" v-if="works">
         <v-row >
-            <div class="d-flex flex-wrap justify-content-start">
-                <v-flex xs12 md5 mb-10 v-for="(work,index) in works" :key="work.id" class="work-item">
+            <div class="d-flex flex-wrap justify-content-between">
+                <v-flex xs12 md6 mb-10 v-for="(work,index) in works" :key="work.id" class="work-item">
                     <v-layout row wrap>
                         <v-flex xs12 sm4 md6 lg4>
                             <v-card flat>
@@ -42,7 +42,7 @@
 <script>
     export default {
         name: "Work",
-        data() {
+            data() {
             return {}
         },
         computed: {
@@ -57,7 +57,7 @@
 
 
     .work-item {
-        margin-right:50px;
+
     }
 
     .custom-header {
