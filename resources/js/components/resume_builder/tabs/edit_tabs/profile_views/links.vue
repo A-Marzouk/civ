@@ -79,22 +79,19 @@
                     </div>
                 </div>
 
-                <div class="list-links">
-                    <ul>
-                        <li v-for="(item, index) in socialLinks" :key="index" class="animated fadeIn link-item"
-                            :class="{'fadeIn': activeListItem === index, 'movingDown': movingDown === index, 'movingUp': movingUp === index }">
-                                        <span class="move-item">
-                                            <a href="javascript:void(0)" class="go_up"
-                                               @click.prevent="reorder('social','mup',index,index-1)"
-                                               :class="index==0?'disable':''"></a>
-                                            <a href="javascript:void(0)" class="go_down"
-                                               @click.prevent="reorder('social','mdown',index,index+1)"
-                                               :class="index==(socialLinks.length-1)?'disable':''"></a>
-                                        </span>
-                            <span class="info-link">
-                                            <img src="/images/resume_builder/link-icon.png" alt="">
-                                            {{item.link}}
-                                        </span>
+
+
+                <div class="work-ex-list">
+                    <div class="work-ex-item mt-5" v-for="(item,index) in socialLinks" :key="item.id + 'link_key' ">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                <div class="work-ex-info">
+                                    <div class="work-ex-title">
+                                        <img src="/images/resume_builder/link-icon.png" alt="">
+                                        {{item.link_title}}: <small>{{item.link}}</small>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="options">
                                 <div class="options-btn NoDecor"
                                      @click="optionSocialLinkId === item.id ? optionSocialLinkId=0 : optionSocialLinkId=item.id">
@@ -116,8 +113,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -501,96 +498,7 @@
             }
         }
     }
-    .options {
-        position: absolute;
-        right: -100px;
-        top: 5px;
 
-        .options-btn {
-            a {
-                width: 88px;
-                height: 29px;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                background: #FFFFFF 0 0 no-repeat padding-box;
-                border: 1px solid #505050;
-                border-radius: 5px;
-                opacity: 1;
-
-                font: 600 13px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-
-                img {
-                    width: 13.3px;
-                    height: 6.8px;
-                    margin-left: 8px;
-                }
-
-                img.optionsOpened {
-                    -webkit-transform: scaleY(-1);
-                    transform: scaleY(-1);
-                }
-            }
-
-            a.opened {
-                border: 1px solid #1F5DE4;
-            }
-
-            a:focus {
-                outline: none !important;
-                box-shadow: none !important;
-            }
-        }
-
-        .extended-options {
-            background: #FFFFFF 0 0 no-repeat padding-box;
-            border: 1px solid #505050;
-            border-radius: 5px;
-            opacity: 1;
-            margin-top: 8px;
-            width: 88px;
-            height: 45px;
-            padding-top: 5px;
-            padding-left: 8px;
-
-            .edit-btn, .delete-btn {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                font: 600 13px Noto Sans;
-                letter-spacing: 0;
-                color: #505050;
-
-                img {
-                    width: 15.75px;
-                    height: 14px;
-                    margin-right: 6px;
-                }
-
-                &:hover {
-                    cursor: pointer;
-                }
-            }
-
-            .delete-btn {
-                margin-top: 8px;
-
-                img {
-                    width: 10.89px;
-                    height: 14px;
-                    margin-right: 9.5px;
-                }
-            }
-        }
-
-        .extended-options.opened {
-            border: 1px solid #1F5DE4;
-        }
-    }
 
     .link-item {
         min-width: 400px;
@@ -712,6 +620,137 @@
         .input-field{
             min-width:auto !important;
             width: 500px;
+        }
+    }
+
+    .work-ex-list{
+        margin-top: 90px;
+        .work-ex-item{
+            width: 757px;
+
+            .work-icon{
+                width: 38px;
+                height: 27px;
+                margin-right: 33px;
+            }
+
+            .work-ex-info{
+                margin-right: 30px;
+                .work-ex-title{
+                    font: 700 30px/41px Noto Sans;
+                    letter-spacing: 0;
+                    color: #001CE2;
+                    margin-bottom: 12px;
+                    opacity: 1;
+
+                    img{
+                        width:30px;
+                        margin-right:10px;
+                    }
+                }
+                .work-ex-sub-title{
+                    font: 700 19px Noto Sans;
+                    letter-spacing: 0;
+                    color: #001CE2;
+                    opacity: 1;
+                    margin-bottom: 16px;
+                }
+                .work-ex-detials{
+                    font: 500 16px Noto Sans;
+                    letter-spacing: 0;
+                    color: #001CE2;
+                    opacity: 1;
+                }
+            }
+
+            .options {
+
+                .options-btn {
+                    a {
+                        width: 100px;
+                        height: 40px;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
+                        border-radius: 5px;
+                        opacity: 1;
+
+                        font: 600 15px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 13.3px;
+                            height: 6.8px;
+                            margin-left: 8px;
+                        }
+
+                        img.optionsOpened {
+                            -webkit-transform: scaleY(-1);
+                            transform: scaleY(-1);
+                        }
+                    }
+
+                    a.opened {
+                        border: 1px solid #1F5DE4;
+                    }
+
+                    a:focus {
+                        outline: none !important;
+                        box-shadow: none !important;
+                    }
+                }
+
+                .extended-options {
+                    position: absolute;
+                    background: #FFFFFF 0 0 no-repeat padding-box;
+                    border: 1px solid #505050;
+                    border-radius: 5px;
+                    opacity: 1;
+                    margin-top: 8px;
+                    width: 100px;
+                    height: 45px;
+                    padding-top: 5px;
+                    padding-left: 8px;
+
+                    .edit-btn, .delete-btn {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        font: 600 13px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 15.75px;
+                            height: 14px;
+                            margin-right: 6px;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .delete-btn {
+                        margin-top: 8px;
+
+                        img {
+                            width: 10.89px;
+                            height: 14px;
+                            margin-right: 9.5px;
+                        }
+                    }
+                }
+
+                .extended-options.opened {
+                    border: 1px solid #1F5DE4;
+                }
+            }
         }
     }
 </style>

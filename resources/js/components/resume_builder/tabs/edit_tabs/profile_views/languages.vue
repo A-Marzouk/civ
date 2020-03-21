@@ -106,6 +106,7 @@
             axios.get('/api/user/languages-list')
                 .then( (response) => {
                     this.languagesList = response.data.data ;
+                    this.languagesList.sort((a,b)=> (a.label>b.label)*2-1);
                 })
                 .catch( (error) => {
                     console.log(error)

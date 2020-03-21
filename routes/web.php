@@ -23,9 +23,6 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
-Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
-
-
 // routes need verification :
 Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
 
@@ -61,3 +58,8 @@ Route::get('/workforce-admin', 'AdminsController@index')->name('admin.dashboard'
 
 // passport clients route:
 Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
+
+
+// public cv url
+
+Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
