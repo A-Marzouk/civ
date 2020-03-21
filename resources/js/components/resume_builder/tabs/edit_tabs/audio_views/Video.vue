@@ -140,6 +140,7 @@
             </div>
             <!-- Audio Upload Main Modal -->
         </div>
+
     </div>
 </template>
 
@@ -178,11 +179,23 @@
 
                 this.$bvModal.hide('main-upload-modal');
                 this.currentUploadMethod = 'general';
-                axios.post('/api/user/media', formData , {headers:{'Content-Type': 'multipart/form-data'}})
+
+                const config = {
+                    onUploadProgress: progressEvent => {
+                        let progress = (progressEvent.loaded/progressEvent.total) * 100 ;
+                        $('#progressBar').css('width',progress + '%');
+                    } ,
+                    headers:{'Content-Type': 'multipart/form-data'}
+                };
+
+                axios.post('/api/user/media', formData , config)
                     .then((response) => {
                         let addedMedia = response.data.data;
                         this.videos.push(addedMedia);
                         this.clearMedia();
+                        setTimeout(() => {
+                            $('#progressBar').css('width',0);
+                        }, 2000);
                         this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
@@ -213,8 +226,6 @@
                                 this.videos.splice(index,1);
                             }
                         });
-
-                        this.closeOptionsBtn();
                     })
                     .catch(error => {
                         console.log(error);
@@ -432,4 +443,6 @@
     }
 
     /* new css */
+
+
 </style>

@@ -93,7 +93,7 @@ class MediaController extends Controller
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255','min:3'],
             'type' => ['required', 'string', 'max:255'],
-            'url' => ['sometimes', 'string', 'max:255'],
+            'url' => ['sometimes', 'max:255'],
             'mediaFile' => ['sometimes', 'file'],
             'transcript' => ['string','max:2500'],
         ]);

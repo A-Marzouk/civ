@@ -53,6 +53,8 @@
         </transition>
 
 
+        <!-- Notifications and progress bar | to be moved to component-->
+
         <div class="modal fade" id="fullScreenNotificationModal" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content border-0" style="border:none !important;">
@@ -80,6 +82,8 @@
                 <div class="text">Deleted</div>
             </div>
         </div>
+
+        <div class="progressBar" id="progressBar"></div>
 
 
     </div>
@@ -413,4 +417,15 @@
         }
 
     }
+
+
+    .progressBar{
+        position:fixed;
+        width:0%;
+        height:7px;
+        bottom:0;
+        left: 0;
+        background:#1EC300;
+    }
+
 </style>
