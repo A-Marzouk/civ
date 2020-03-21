@@ -135,13 +135,6 @@
                 </b-col>
               </b-row>
             </b-container>
-            <!-- Link Upload Child -->
-
-            <!-- <b-container v-if="currentUploadMethod=='mp3Upload'">
-              <b-row>
-                <b-col>Mp3</b-col>
-              </b-row>
-            </b-container>-->
 
             <b-container v-if="currentUploadMethod=='record'">
               <b-row class="justify-content-md-center">
