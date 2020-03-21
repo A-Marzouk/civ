@@ -29,7 +29,7 @@ export const store = new Vuex.Store({
             let notificationText = $('#notificationText');
             let notificationIconSrc = $('#notificationIconSrc');
             data.message ? notificationText.text(data.message) : notificationText.text('Data saved successfully');
-            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.png');
+            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
 
             // toggle modal
             modal.modal('show');
@@ -44,7 +44,7 @@ export const store = new Vuex.Store({
             let notificationText = $('#flyingNotificationText');
             let notificationIconSrc = $('#flyingNotificationIconSrc');
             data.message ? notificationText.text(data.message) : notificationText.text('Saved');
-            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.png');
+            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
 
             if (notificationElement.is(':visible')) {
                 return;
