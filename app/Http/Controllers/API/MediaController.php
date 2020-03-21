@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Media;
 use App\Http\Resources\Media as MediaResource;
@@ -32,6 +33,7 @@ class MediaController extends Controller
     public function store(Request $request)
     {
 
+
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put')){
@@ -42,6 +44,16 @@ class MediaController extends Controller
             // add
             $request['user_id'] = Auth::user()->id;
             $media = Media::create($request->toArray());
+
+            if($request->hasfile('mediaFile')) {
+                $path = Upload::media($request);
+                $media->update([
+                    'url' => $path
+                ]);
+            }
+
+
+
         }
 
         if ($media->id){
@@ -66,6 +78,11 @@ class MediaController extends Controller
             'user_id' => Auth::user()->id
         ])->first();
 
+        // remove media from the system if the file exists
+        if (file_exists(public_path($media->url))) {
+            unlink(public_path($media->url));
+        }
+
         if($media->delete()){
             return ['data' => ['id' => $media->id] ];
         }
@@ -76,7 +93,8 @@ class MediaController extends Controller
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255','min:3'],
             'type' => ['required', 'string', 'max:255'],
-            'url' => ['required', 'string','max:255'],
+            'url' => ['sometimes', 'string', 'max:255'],
+            'mediaFile' => ['sometimes', 'file'],
             'transcript' => ['string','max:2500'],
         ]);
     }

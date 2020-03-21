@@ -256,4 +256,13 @@ class Upload
         return $data;
     }
 
+    public static function media(Request $request)
+    {
+        $file = $request->file('mediaFile');
+        $name = date(time()) . '_' . $file->getClientOriginalName();
+        $file->move(public_path() . '/uploads/media/', $name);
+        $path = '/uploads/media/' . $name;
+        return $path;
+    }
+
 }
