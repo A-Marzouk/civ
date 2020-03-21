@@ -1,5 +1,10 @@
 window.Vue = require('vue');
 
+
+// audio recorder:
+import AudioRecorder from 'vue-audio-recorder'
+Vue.use(AudioRecorder);
+
 // axios:
 window.axios = require('axios');
 
