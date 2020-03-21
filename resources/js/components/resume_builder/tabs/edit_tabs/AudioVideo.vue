@@ -30,7 +30,6 @@
 
     <transition :duration="590" class="mt-5 content" name="hide" mode="out-in">
       <Video v-if="activeTab === 'Video'"></Video>
-      <Languages v-else-if="activeTab === 'languages' "></Languages>
       <Audio v-else></Audio>
     </transition>
   </div>

@@ -91,17 +91,17 @@
         <v-flex xs12 sm4 md4 class="hidden-sm-and-down mobile-center">
             <v-card flat>
                 <v-card-text>
-                    <div class="btn-align">
-                        <v-btn class="mx-2 custom-btn" fab dark small color="black">
+                    <div class="btn-align NoDecor">
+                        <v-btn class="mx-2 custom-btn" fab dark small color="black" :href="getProviderLink('behance')" target="_blank">
                             <v-icon style="font-size:14px !important;">fa-behance</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2 custom-btn" fab dark small color="black">
+                        <v-btn class="mx-2 custom-btn" fab dark small color="black" :href="getProviderLink('dribbble')" target="_blank">
                             <v-icon>fa-dribbble</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2 custom-btn" fab dark small color="black">
+                        <v-btn class="mx-2 custom-btn" fab dark small color="black" :href="getProviderLink('instagram')" target="_blank">
                             <v-icon>mdi-instagram</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2 custom-btn" fab dark small color="black">
+                        <v-btn class="mx-2 custom-btn" fab dark small color="black" :href="getProviderLink('linkedin')" target="_blank">
                             <v-icon>mdi-linkedin</v-icon>
                         </v-btn>
                     </div>
@@ -117,21 +117,21 @@
                         <v-btn class="mx-2" fab dark color="black">
                             <v-icon>mdi-map-marker</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2" fab dark color="red">
+                        <v-btn class="mx-2" fab dark color="red" :href="getProviderLink('google')" target="_blank">
                             <v-icon>mdi-google-plus</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2" fab dark color="black">
+                        <v-btn class="mx-2" fab dark color="black" :href="getProviderLink('linkedin')" target="_blank">
                             <v-icon>mdi-linkedin</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2" fab dark color="black">
+                        <v-btn class="mx-2" fab dark color="black" :href="getProviderLink('whatsapp')" target="_blank">
                             <v-icon>mdi-whatsapp</v-icon>
                         </v-btn>
 
-                        <v-btn class="mx-2" fab dark color="black">
+                        <v-btn class="mx-2" fab dark color="black" :href="getProviderLink('behance')" target="_blank">
                             <v-icon>fa-behance</v-icon>
                         </v-btn>
 
-                        <v-btn class="mx-2" fab dark color="black">
+                        <v-btn class="mx-2" fab dark color="black" :href="getProviderLink('dribbble')" target="_blank">
                             <v-icon>fa-dribbble</v-icon>
                         </v-btn>
                     </div>
@@ -148,21 +148,21 @@
                         <v-btn class="mx-2" fab small dark color="black">
                             <v-icon>mdi-map-marker</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2" fab small dark color="black">
+                        <v-btn class="mx-2" fab small dark color="black" :href="getProviderLink('google')" target="_blank">
                             <v-icon>mdi-google-plus</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2" fab small dark color="black">
+                        <v-btn class="mx-2" fab small dark color="black" :href="getProviderLink('linkedin')" target="_blank">
                             <v-icon>mdi-linkedin</v-icon>
                         </v-btn>
-                        <v-btn class="mx-2" fab dark small color="black">
+                        <v-btn class="mx-2" fab dark small color="black" :href="getProviderLink('whatsapp')" target="_blank">
                             <v-icon>mdi-whatsapp</v-icon>
                         </v-btn>
 
-                        <v-btn class="mx-2" fab dark small color="black">
+                        <v-btn class="mx-2" fab dark small color="black" :href="getProviderLink('behance')" target="_blank">
                             <v-icon style="font-size:12px !important;">fa-behance</v-icon>
                         </v-btn>
 
-                        <v-btn class="mx-2" fab small dark color="black">
+                        <v-btn class="mx-2" fab small dark color="black" :href="getProviderLink('dribbble')" target="_blank">
                             <v-icon>fa-dribbble</v-icon>
                         </v-btn>
                     </div>
@@ -259,6 +259,19 @@
             }
         },
         methods:{
+            getProviderLink(provider){
+                let links = this.user.links;
+                let providerLink = '';
+                links.forEach( (link) => {
+                    if(link.category === 'social_link'){
+                        if(link.link_title.toLowerCase() === provider.toLowerCase()){
+                            providerLink = link.link ;
+                        }
+                    }
+                });
+
+                return providerLink;
+            }
         },
         mounted() {
 

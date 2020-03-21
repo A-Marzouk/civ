@@ -18,12 +18,10 @@ Auth::routes(['verify' => true]);
 
 // public routes
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
-Route::get('/cv/{username}', 'ResumeController@userResume'); // resume with real user data
 
 Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
-
 
 // routes need verification :
 Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
@@ -60,3 +58,8 @@ Route::get('/workforce-admin', 'AdminsController@index')->name('admin.dashboard'
 
 // passport clients route:
 Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
+
+
+// public cv url
+
+Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
