@@ -19,21 +19,21 @@
 
             <div class="upload-container d-flex flex-column" style="margin-left:-5vw;">
                 <div class="audios-preview-container">
-                    <div class="audio-element" v-for="(audio,index) in audios" :key="audio.id"
-                         v-if="audio.type === 'audio'">
+                    <div class="audio-element" v-for="(audio,index) in audios" :key="audio.id" v-if="audio.type === 'audio'">
                         <div class="audio-name">{{audio.title}}</div>
-                        <div class="audio-player d-flex align-items-center">
-                            <svg-vue class="play-icon" icon="play-icon"></svg-vue>
-                            <svg-vue class="sound-frecuency" icon="sound-frecuency"></svg-vue>
+                        <div class="audio-player d-flex">
+                            <audio controls preload="auto" >
+                                <source :src="audio.url">
+                            </audio>
 
-                            <div class="order-controls d-flex flex-column">
-                                <button class="icon">
-                                    <svg-vue icon="arrow-up"></svg-vue>
-                                </button>
-                                <button class="icon">
-                                    <svg-vue icon="arrow-down"></svg-vue>
-                                </button>
-                            </div>
+                            <!--<div class="order-controls d-flex flex-column">-->
+                            <!--<button class="icon">-->
+                            <!--<svg-vue icon="arrow-up"></svg-vue>-->
+                            <!--</button>-->
+                            <!--<button class="icon">-->
+                            <!--<svg-vue icon="arrow-down"></svg-vue>-->
+                            <!--</button>-->
+                            <!--</div>-->
 
                             <div class="input-select select-audio-options dropdown">
                                 <button class="audio-options dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -133,7 +133,8 @@
 
                         <b-container v-show="currentUploadMethod=='record'">
                             <div class="audio-recorder d-flex justify-content-center w-100">
-                                <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish" :show-upload-button="false"/>
+                                <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
+                                                :show-upload-button="false"/>
                             </div>
                         </b-container>
                     </div>
@@ -177,7 +178,7 @@
                     // add upload button :
                     let uploadBtn = '<img alt="upload" id="uploadRecord" src="/icons/done-record-icon.svg"/>';
                     $('.ar-records__record').prepend(uploadBtn);
-                    $('#uploadRecord').on('click',this.uploadMedia);
+                    $('#uploadRecord').on('click', this.uploadMedia);
 
                 }, 1000);
             },
@@ -257,7 +258,8 @@
                     })
             }
         },
-    };
+    }
+    ;
 </script>
 
 <style lang="scss">
@@ -275,13 +277,19 @@
             margin-top: 10px;
         }
 
-        #uploadRecord{
-            width:25px;
-            height:auto;
-            &:hover{
+        #uploadRecord {
+            width: 25px;
+            height: auto;
+
+            &:hover {
                 cursor: pointer;
             }
         }
+    }
+
+
+    .modal.show .modal-dialog.modal-md {
+        max-width: 55% !important;
     }
 </style>
 
@@ -522,12 +530,18 @@
     .audio-player {
         border: 1px solid $mainBlue;
         border-radius: 25px;
-        height: 91px;
+        height: 100px;
         width: 350px;
-        padding-left: 36px;
-
+        justify-content:center;
+        align-items: flex-start;
+        padding-top: 11px;
         .play-icon {
             width: 30px;
+        }
+
+        audio{
+            border: 1px $mainBlue solid;
+            border-radius: 25px;
         }
 
         .sound-frecuency {
@@ -536,10 +550,4 @@
         }
     }
 
-</style>
-
-<style>
-    .modal.show .modal-dialog.modal-md {
-        max-width: 55% !important;
-    }
 </style>
