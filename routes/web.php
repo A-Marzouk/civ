@@ -18,11 +18,12 @@ Auth::routes(['verify' => true]);
 
 // public routes
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
-Route::get('/cv/{username}', 'ResumeController@userResume'); // resume with real user data
 
 Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
+
+Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
 
 
 // routes need verification :
