@@ -62,7 +62,8 @@ export default {
     },
     setActiveTab(tab) {
       this.activeTab = tab;
-    }
+    },
+
   },
   mounted() {
     this.changeTab({
@@ -79,6 +80,12 @@ Array.prototype.moveItem = function(from, to) {
 
 <style lang="scss" scoped>
 $mainColor: #001ce2;
+
+
+.audio-recorder{
+
+}
+
 .achievements-bar.sub-bar {
   margin-top: 50px;
 }

@@ -245,7 +245,7 @@ class Upload
 
     public static function projectImages(Request $request)
     {
-        $data = [] ;
+        $data = [];
 
         foreach ($request->file('images') as $file) {
             $name = date(time()) . '_' . $file->getClientOriginalName();
@@ -260,6 +260,9 @@ class Upload
     {
         $file = $request->file('mediaFile');
         $name = date(time()) . '_' . $file->getClientOriginalName();
+        if (strpos($name, 'blob') !== false) { // audio record
+            $name .= 'user_record.mp3';
+        }
         $file->move(public_path() . '/uploads/media/', $name);
         $path = '/uploads/media/' . $name;
         return $path;
