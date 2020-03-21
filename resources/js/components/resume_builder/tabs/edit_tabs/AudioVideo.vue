@@ -6,7 +6,7 @@
     </div>
 
     <div>
-      <b-container>
+      <b-container class="p-0">
         <b-row>
           <b-col cols="6">
             <div class="achievements-bar" id="profileLinksWrapper">
@@ -78,7 +78,7 @@ Array.prototype.moveItem = function(from, to) {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $mainColor: #001ce2;
 .achievements-bar.sub-bar {
   margin-top: 50px;

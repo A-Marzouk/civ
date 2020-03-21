@@ -1,5 +1,5 @@
 <template>
-    <div v-if="links">
+    <div v-if="links" id="linksSection">
         <div class="achievements-bar sub-bar" id="linksWrapper">
             <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :data-target="tabName"
                  @click="changeTab" :class="{ active : activeTab === tabName}">
@@ -16,7 +16,8 @@
                 <div class="hold-tab animated fadeIn">
                     <div class="input-field">
                         <label for="profilelink">My profile link</label>
-                        <input type="text" name="profilelink" id="profilelink" v-model="profileLink.link" @blur="saveProfileLink('auto')">
+                        <input type="text" name="profilelink" id="profilelink" v-model="profileLink.link"
+                               @blur="saveProfileLink('auto')">
                         <div class="error" v-if="errors.link">
                             {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
                         </div>
@@ -35,11 +36,33 @@
             <div v-else-if="activeTab === 'Social-link'">
                 <div class="hold-tab social">
                     <div class="options-wrap">
-                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddSocialLink" @click="isAddSocialLink = true">Add new link</a>
+                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddSocialLink"
+                           @click="isAddSocialLink = true">Add new link</a>
                         <!--<a href="javascript:void(0)" class="btn-outline">Auto import</a>-->
                     </div>
                     <div class="addItem-wrap animated fadeIn" v-show="isAddSocialLink">
-                        <div class="input-field">
+                        <div class="civ-input">
+                            <label for="category">Social site</label>
+                            <div class="civ-custom-select">
+                                <div class="civ-select-input" @click="showCategoryOptions = !showCategoryOptions">
+                                    <input type="text" id="category" disabled placeholder="Facebook"
+                                           v-model="newSocialLink.link_title"
+                                           :class="{'with-border' : !showCategoryOptions}">
+                                    <img src="/images/resume_builder/arrow-down.png" alt="arrow"
+                                         :class="{'toggled':showCategoryOptions}">
+                                </div>
+                                <div class="civ-custom-options" v-show="showCategoryOptions">
+                                    <div v-for="(category,index) in categoryOptions" :key="index + '_category'"
+                                         @click="selectCategory(category.title)">
+                                        {{category.title}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="error" v-if="errors.link_title">
+                                {{ Array.isArray(errors.link_title) ? errors.link_title[0] : errors.link_title}}
+                            </div>
+                        </div>
+                        <div class="input-field mb-0">
                             <label for="socialLink">Add social link</label>
                             <input id="socialLink" type="text" v-model="newSocialLink.link">
                             <div class="error" v-if="errors.link">
@@ -48,13 +71,18 @@
                         </div>
                         <a href="javascript:void(0)" class="btn-blue" @click="saveLink(newSocialLink)"><img
                                 src="/images/resume_builder/profile/icon-save2.png">Save new this link</a>
-                        <a href="javascript:void(0)" class="btn-close ml-5" @click="isAddSocialLink = false">x</a>
+                        <div class="add-new-work NoDecor">
+                            <a href="javascript:void(0)" @click="isAddSocialLink = false">
+                                Cancel
+                            </a>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="list-links">
-                        <ul>
-                            <li v-for="(item, index) in socialLinks" :key="index" class="animated fadeIn link-item"
-                                :class="{'fadeIn': activeListItem === index, 'movingDown': movingDown === index, 'movingUp': movingUp === index }">
+                <div class="list-links">
+                    <ul>
+                        <li v-for="(item, index) in socialLinks" :key="index" class="animated fadeIn link-item"
+                            :class="{'fadeIn': activeListItem === index, 'movingDown': movingDown === index, 'movingUp': movingUp === index }">
                                         <span class="move-item">
                                             <a href="javascript:void(0)" class="go_up"
                                                @click.prevent="reorder('social','mup',index,index-1)"
@@ -63,42 +91,41 @@
                                                @click.prevent="reorder('social','mdown',index,index+1)"
                                                :class="index==(socialLinks.length-1)?'disable':''"></a>
                                         </span>
-                                <span class="info-link">
+                            <span class="info-link">
                                             <img src="/images/resume_builder/link-icon.png" alt="">
                                             {{item.link}}
                                         </span>
-                                <div class="options">
-                                    <div class="options-btn NoDecor"
-                                         @click="optionSocialLinkId === item.id ? optionSocialLinkId=0 : optionSocialLinkId=item.id">
-                                        <a href="javascript:void(0)" :class="{'opened':optionSocialLinkId === item.id}">
-                                            Options
-                                            <img src="/images/resume_builder/arrow-down.png" alt=""
-                                                 :class="{'optionsOpened':optionSocialLinkId === item.id}">
-                                        </a>
-                                    </div>
-                                    <div class="extended-options" v-show="optionSocialLinkId === item.id"
-                                         :class="{'opened':optionSocialLinkId === item.id}">
-                                        <!--<div class="edit-btn NoDecor" @click="editLink(item)">-->
-                                            <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
-                                            <!--Edit-->
-                                        <!--</div>-->
-                                        <div class="delete-btn NoDecor" @click="deleteLink(item)">
-                                            <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
-                                            Delete
-                                        </div>
+                            <div class="options">
+                                <div class="options-btn NoDecor"
+                                     @click="optionSocialLinkId === item.id ? optionSocialLinkId=0 : optionSocialLinkId=item.id">
+                                    <a href="javascript:void(0)" :class="{'opened':optionSocialLinkId === item.id}">
+                                        Options
+                                        <img src="/images/resume_builder/arrow-down.png" alt=""
+                                             :class="{'optionsOpened':optionSocialLinkId === item.id}">
+                                    </a>
+                                </div>
+                                <div class="extended-options" v-show="optionSocialLinkId === item.id"
+                                     :class="{'opened':optionSocialLinkId === item.id}">
+                                    <!--<div class="edit-btn NoDecor" @click="editLink(item)">-->
+                                    <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
+                                    <!--Edit-->
+                                    <!--</div>-->
+                                    <div class="delete-btn NoDecor" @click="deleteLink(item)">
+                                        <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                                        Delete
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
-                    </div>
-
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
             <div v-else-if="activeTab === 'Portfolio-link'">
                 <div class="hold-tab social">
                     <div class="options-wrap">
-                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddPortfolioLink" @click="isAddPortfolioLink = true">Add new link</a>
+                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddPortfolioLink"
+                           @click="isAddPortfolioLink = true">Add new link</a>
                         <!--<a href="javascript:void(0)" class="btn-outline">Auto import</a>-->
                     </div>
                     <div class="addItem-wrap animated fadeIn" v-show="isAddPortfolioLink">
@@ -130,10 +157,11 @@
                                             {{item.link}}
                                         </span>
 
-                                    <div class="options">
+                                <div class="options">
                                     <div class="options-btn NoDecor"
                                          @click="optionPortfolioLinkId === item.id ? optionPortfolioLinkId=0 : optionPortfolioLinkId=item.id">
-                                        <a href="javascript:void(0)" :class="{'opened':optionPortfolioLinkId === item.id}">
+                                        <a href="javascript:void(0)"
+                                           :class="{'opened':optionPortfolioLinkId === item.id}">
                                             Options
                                             <img src="/images/resume_builder/arrow-down.png" alt=""
                                                  :class="{'optionsOpened':optionPortfolioLinkId === item.id}">
@@ -142,8 +170,8 @@
                                     <div class="extended-options" v-show="optionPortfolioLinkId === item.id"
                                          :class="{'opened':optionPortfolioLinkId === item.id}">
                                         <!--<div class="edit-btn NoDecor" @click="editLink(item)">-->
-                                            <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
-                                            <!--Edit-->
+                                        <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
+                                        <!--Edit-->
                                         <!--</div>-->
                                         <div class="delete-btn NoDecor" @click="deleteLink(item)">
                                             <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
@@ -161,7 +189,8 @@
                 <div class="hold-tab animated fadeIn">
                     <div class="input-field">
                         <label for="paymentLink">My payment link</label>
-                        <input type="text" name="paymentLink" id="paymentLink" v-model="paymentLink.link" @blur="savePaymentLink('auto')">
+                        <input type="text" name="paymentLink" id="paymentLink" v-model="paymentLink.link"
+                               @blur="savePaymentLink('auto')">
                         <div class="error" v-if="errors.link">
                             {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
                         </div>
@@ -203,18 +232,61 @@
             isAddSocialLink: false,
             isAddPortfolioLink: false,
             newSocialLink: {
-                category:'social_link',
-                link:''
+                category: 'social_link',
+                link: '',
+                link_title: ''
             },
             newPortfolioLink: {
-                category:'portfolio_link',
-                link:''
+                category: 'portfolio_link',
+                link: ''
             },
             errors: {},
-            optionPortfolioLinkId:'',
-            optionSocialLinkId:''
+            optionPortfolioLinkId: '',
+            optionSocialLinkId: '',
+
+            // for input select
+            categoryOptions: [
+                {
+                    title: 'Linkedin',
+                    value: 'Linkedin'
+                },
+                {
+                    title: 'Facebook',
+                    value: 'Facebook'
+                },
+                {
+                    title: 'Instagram',
+                    value: 'Instagram'
+                },
+                {
+                    title: 'Behance',
+                    value: 'Behance'
+                },
+                {
+                    title: 'Google',
+                    value: 'Google'
+                },
+                {
+                    title: 'Dribbble',
+                    value: 'Dribbble'
+                },
+                {
+                    title: 'GitHub',
+                    value: 'GitHub'
+                },
+                {
+                    title: 'Twitter',
+                    value: 'Twitter'
+                },
+            ],
+            showCategoryOptions: false,
+
         }),
         methods: {
+            selectCategory(title) {
+                this.newSocialLink.link_title = title;
+                this.showCategoryOptions = false;
+            },
             reorder(type, dir, from, to) {
                 this.activeListItem = from;
 
@@ -252,13 +324,13 @@
                 moveTabsHelper(e, 'linksWrapper', this)
             },
             saveProfileLink(savingType) {
-                if(!this.validURL(this.profileLink.link)){
-                    this.errors = {link : 'Not a valid link!'} ;
+                if (!this.validURL(this.profileLink.link)) {
+                    this.errors = {link: 'Not a valid link!'};
                     return;
                 }
                 axios.put('/api/user/links', this.profileLink)
                     .then((response) => {
-                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') : this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -276,13 +348,13 @@
                 $temp.remove();
             },
             savePaymentLink(savingType) {
-                if(!this.validURL(this.paymentLink.link)){
-                    this.errors = {link : 'Not a valid link!'} ;
+                if (!this.validURL(this.paymentLink.link)) {
+                    this.errors = {link: 'Not a valid link!'};
                     return;
                 }
                 axios.put('/api/user/links', this.paymentLink)
                     .then((response) => {
-                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') : this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -299,19 +371,19 @@
                 document.execCommand("copy");
                 $temp.remove();
             },
-            editLink(link){
+            editLink(link) {
 
             },
-            deleteLink(link){
+            deleteLink(link) {
                 if (!confirm('Do you want to delete this link [' + link.link + '] ?')) {
                     return;
                 }
                 axios.delete('/api/user/links/' + link.id)
                     .then((response) => {
                         this.$store.dispatch('flyingNotificationDelete');
-                        this.links.forEach( (link,index) => {
-                            if(link.id === response.data.data.id){
-                                this.links.splice(index,1);
+                        this.links.forEach((link, index) => {
+                            if (link.id === response.data.data.id) {
+                                this.links.splice(index, 1);
                             }
                         });
 
@@ -325,15 +397,15 @@
                 this.optionPortfolioLinkId = 0;
                 this.optionSocialLinkId = 0;
             },
-            addSocialLink(){
+            addSocialLink() {
                 this.isAddSocialLink = true;
             },
-            addPortfolioLink(){
+            addPortfolioLink() {
                 this.isAddPortfolioLink = true;
             },
-            saveLink(link){
-                if(!this.validURL(link.link)){
-                   this.errors = {link : 'Not a valid link!'} ;
+            saveLink(link) {
+                if (!this.validURL(link.link)) {
+                    this.errors = {link: 'Not a valid link!'};
                     return;
                 }
                 axios.post('/api/user/links', link)
@@ -348,23 +420,23 @@
                         if (typeof error.response.data === 'object') {
                             this.errors = error.response.data.errors;
                         } else {
-                            this.errors  = 'Something went wrong. Please try again.';
+                            this.errors = 'Something went wrong. Please try again.';
                         }
                     });
             },
-            clearLink(){
+            clearLink() {
                 this.isAddSocialLink = false;
                 this.isAddPortfolioLink = false;
                 this.newSocialLink.link = '';
                 this.newPortfolioLink.link = '';
             },
             validURL(str) {
-                var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-                    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-                    '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-                    '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+                var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
+                    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+                    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+                    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+                    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+                    '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
                 return !!pattern.test(str);
             }
         },
@@ -391,14 +463,44 @@
             }
         },
         mounted() {
-            this.changeTab({target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
+            this.changeTab({target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)});
+            $('#linksSection').on('click', (e) => {
+                if (this.showCategoryOptions && !$(e.target).parents('.civ-input').length) {
+                    this.showCategoryOptions = false;
+                }
+            })
         }
     }
 </script>
 
 <style lang="scss" scoped>
     $mainColor: #001CE2;
+    .add-new-work {
+        margin-right: 29px;
 
+        a{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 115px;
+            margin-left: 20px;
+            height: 74px;
+            border: 2px solid #001CE2;
+            border-radius: 8px;
+            opacity: 1;
+
+            font: 600 19px/26px Noto Sans;
+            letter-spacing: 0;
+            color: #001CE2;
+
+            img{
+                width:27px;
+                height: 27px;
+                margin-right: 10px;
+            }
+        }
+    }
     .options {
         position: absolute;
         right: -100px;
@@ -490,21 +592,126 @@
         }
     }
 
-    .link-item{
+    .link-item {
         min-width: 400px;
     }
 
-    .error{
-        color:red;
-        padding-top:5px;
-        padding-left:3px;
+    .error {
+        color: red;
+        padding-top: 5px;
+        padding-left: 3px;
     }
 
-    .info-link{
-        img{
+    .input-field {
+
+    }
+
+    .info-link {
+        img {
             margin-right: 6px !important;
             max-width: 30px !important;
             min-width: 20px !important;
+        }
+    }
+
+    .civ-input {
+
+        margin-right: 30px;
+
+        label {
+            text-align: left;
+            font: 600 22px Noto Sans;
+            letter-spacing: 0;
+            color: #505050;
+            opacity: 1;
+        }
+
+        .civ-custom-select {
+
+            position: relative;
+
+            .civ-select-input {
+                img {
+                    width: 24px;
+                    height: 12px;
+                    position: absolute;
+                    top: 35px;
+                    right: 20px;
+
+                    &.toggled {
+                        -webkit-transform: scaleY(-1);
+                        transform: scaleY(-1);
+                    }
+                }
+
+                ::placeholder {
+                    opacity: .3;
+                    font-weight: normal;
+                }
+
+                input {
+                    width: 269px;
+                    height: 76px;
+                    border: 1.5px #505050 solid;
+                    padding-left: 23px;
+                    border-radius: 10px 10px 0 0;
+                    border-bottom: 0;
+                    color: black;
+                    font-weight: bold;
+                    font-size: 22px;
+
+                    &:focus {
+                        outline: none !important;
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+
+                    &.with-border {
+                        border-bottom: 1.5px #505050 solid;
+                        border-radius: 10px;
+                    }
+                }
+
+            }
+
+            .civ-custom-options {
+                background: #f8fafc;
+                position: absolute;
+                border: 1.5px #505050 solid;
+                border-radius: 0 0 10px 10px;
+                opacity: 1;
+                margin-top: 0;
+                width: 269px;
+                border-top: 0;
+                height: auto;
+
+                div {
+                    font-size: 22px;
+                    padding-left: 23px;
+                    margin-left: 1px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background: lightcyan;
+                    }
+
+                    &:last-child:hover {
+                        border-radius: 0 0 10px 10px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .addItem-wrap{
+        display: flex;
+        align-items: flex-end;
+        .input-field{
+            min-width:auto !important;
+            width: 500px;
         }
     }
 </style>

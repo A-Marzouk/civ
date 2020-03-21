@@ -98,7 +98,7 @@ export default {
                         formData.append(field, this.personalInfo[field]);
                     }
                     if(field === 'profile_pic'){
-                        formData.append(field,this.$refs.profile_picture.files[0]);
+                        formData.append(field,this.personalInfo[field]);
                     }
                 }
             });
@@ -128,6 +128,7 @@ export default {
             // validate uploaded file :
             let isValid = this.validateUploadedFile(this.$refs.profile_picture.files[0]);
             if(isValid){
+                this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
                 this.tempPic =  URL.createObjectURL(this.$refs.profile_picture.files[0]) ;
                 this.profile_pic_error = '';
                 this.applyEdit('auto');
