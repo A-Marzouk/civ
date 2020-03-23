@@ -700,88 +700,6 @@
                     { title: "Software", value: 'Software', id: 3 },
                     { title: "Design Skills", value: 'Design', id: 4 }
                 ],
-                portfolio: [
-                    {
-                        title: "Product Design",
-                        subtitle: "industrial,creative,idea",
-                        id: 1
-                    },
-                    {
-                        title: "Website Design",
-                        subtitle: "industrial,creative,idea",
-                        id: 2
-                    },
-                    {
-                        title: "Pattern Design",
-                        subtitle: "industrial,creative,idea",
-                        id: 3
-                    },
-                    {
-                        title: "Product Design",
-                        subtitle: "industrial,creative,idea",
-                        id: 4
-                    },
-                    {
-                        title: "Product Design",
-                        subtitle: "industrial,creative,idea",
-                        id: 5
-                    },
-                    {
-                        title: "Product Design",
-                        subtitle: "industrial,creative,idea",
-                        id: 6
-                    }
-                ],
-                work: [
-                    {
-                        id: 1,
-                        title: "Product Designer",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 2,
-                        title: "Animation Designer",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 3,
-                        title: "Visual Designer",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 4,
-                        title: "Illustrator Designer",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 5,
-                        title: "UX Designer",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 6,
-                        title: "UX Designer",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    }
-                ],
                 socialMedia: [
                     { title: "behance", icon: "fa-behance", color: "#217BFF" },
                     { title: "dribbble", icon: "fa-dribbble", color: "#EE588A" },
@@ -797,6 +715,7 @@
                 educations: this.user.education,
                 works: this.user.work_experience,
                 projects: this.user.projects,
+                links: this.user.links,
 
             };
         },
