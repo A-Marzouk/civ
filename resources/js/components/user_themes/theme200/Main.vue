@@ -534,7 +534,7 @@
                                                     <v-card flat color="transparent">
                                                         <v-card-text align>
                                                             <div class="pic-box">
-                                                                <v-img src="/images/resume_themes/theme200/images/about-me/men.png"></v-img>
+                                                                <v-img :src="personalInfo.profile_pic"></v-img>
                                                             </div>
                                                         </v-card-text>
                                                     </v-card>
@@ -546,11 +546,10 @@
                                                     <v-card color="transparent" flat>
                                                         <v-card-text>
                                                             <div class="hello-text">Hello I'm</div>
-                                                            <div class="hello-title">Mickel David</div>
+                                                            <div class="hello-title">{{personalInfo.full_name}}</div>
                                                             <div class="display-2 hello-designation">
                                                                 <div class="designation-for-tab">
-                                                                    a
-                                                                    <span style="color:#6152CF;">UI&UX</span> Designer
+                                                                    <span style="color:#6152CF;">{{personalInfo.designation}}</span>
                                                                 </div>
                                                             </div>
                                                         </v-card-text>
@@ -563,7 +562,7 @@
                                                     <v-card flat color="transparent">
                                                         <v-card-text align="right">
                                                             <div class="pic-box">
-                                                                <v-img src="/images/resume_themes/theme200/images/about-me/men.png"></v-img>
+                                                                <v-img :src="personalInfo.profile_pic"></v-img>
                                                             </div>
                                                         </v-card-text>
                                                     </v-card>
@@ -590,7 +589,10 @@
                                                                     <v-card flat color="transparent" class="pa-0">
                                                                         <v-card-text
                                                                                 class="body-1"
-                                                                        >I have a great passion on designing and always love to create a new design. Thus now I am highly skilled, enthusiastic, self- motivated UI & UX Designer able to do any kinds of designing on upwork. Not only that I have worked for other company but I myself have also a website based on web programming and web developing of my own.</v-card-text>
+                                                                        >
+                                                                            {{personalInfo.about}}
+
+                                                                        </v-card-text>
                                                                         <v-card-actions class="ml-2">
                                                                             <v-btn
                                                                                     color="#414143"
@@ -620,41 +622,41 @@
                             <!-- Tab item for achievement -->
                             <v-tab-item>
                                 <v-container>
-                                    <v-card flat color="transparent" class="mt-n10">
-                                        <v-card-text>
+                                    <v-card flat color="transparent" class="mt-n10" v-for="(achievement, index) in achievements" :key="achievement.id">
+                                        <v-card-text class="mt-54">
                                             <v-row>
                                                 <v-col cols="12" md="6" sm="6">
                                                     <v-card flat color="transparent" elevation-12>
-                                                        <v-img src="/images/resume_themes/theme200/images/about-me/certification.png"></v-img>
+                                                        <v-img :src="achievement.image_src"></v-img>
                                                     </v-card>
                                                 </v-col>
 
                                                 <v-col cols="12" md="6" sm="6">
                                                     <v-card flat color="transparent" class="certification">
                                                         <v-card-title>
-                                                            <span class="achievement-title">Hubspot Design Certification</span>
+                                                            <span class="achievement-title">{{achievement.title}}</span>
                                                         </v-card-title>
-                                                        <v-card-subtitle class="achievement-subtitle">HubSpot Design Academy</v-card-subtitle>
+
                                                         <v-card-text
                                                                 class="achievement-text caption"
                                                         >The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot's design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.</v-card-text>
                                                     </v-card>
                                                 </v-col>
                                             </v-row>
-                                            <!-- Pagination -->
-                                            <v-row class="mt-5">
-                                                <v-col cols="12">
-                                                    <div class="text-center">
-                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
-                                                            <v-icon disabled>mdi-arrow-left</v-icon>
-                                                        </v-btn>
-                                                        <span class="title pagination-text">1/5 7</span>
-                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
-                                                            <v-icon>mdi-arrow-right</v-icon>
-                                                        </v-btn>
-                                                    </div>
-                                                </v-col>
-                                            </v-row>
+                                            <!-- Pagination  | Not working pagination commented-->
+                                            <!--<v-row class="mt-5">-->
+                                                <!--<v-col cols="12">-->
+                                                    <!--<div class="text-center">-->
+                                                        <!--<v-btn dark x-small class="mx-8" fab color="#6152CF">-->
+                                                            <!--<v-icon disabled>mdi-arrow-left</v-icon>-->
+                                                        <!--</v-btn>-->
+                                                        <!--<span class="title pagination-text">1/5 7</span>-->
+                                                        <!--<v-btn dark x-small class="mx-8" fab color="#6152CF">-->
+                                                            <!--<v-icon>mdi-arrow-right</v-icon>-->
+                                                        <!--</v-btn>-->
+                                                    <!--</div>-->
+                                                <!--</v-col>-->
+                                            <!--</v-row>-->
                                             <!-- Pagination -->
                                         </v-card-text>
                                     </v-card>
@@ -842,7 +844,8 @@
                 // user real data:
                 personalInfo:this.user.personal_info,
                 paymentInfo:this.user.payment_info,
-                skills: this.user.skills
+                skills: this.user.skills,
+                achievements: this.user.achievements,
 
             };
         },
