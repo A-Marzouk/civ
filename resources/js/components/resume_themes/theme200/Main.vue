@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <v-container fluid ma-0 pa-0 fill-height>
+    <v-app class="w-100">
+        <div class="themeWrapper">
             <!-- Header Row -->
             <v-row no-gutters>
                 <!-- Column for header section -->
@@ -21,7 +21,8 @@
                                                                 class="profile-avatar"
                                                                 max-width="150"
                                                         >
-                                                            <img class="elevation-6" src="/images/resume_themes/theme200/images/avatar.png" />
+                                                            <img class="elevation-6"
+                                                                 src="/images/resume_themes/theme200/images/avatar.png"/>
                                                         </v-list-item-avatar>
                                                         <!-- Avatar -->
                                                         <!-- Name -->
@@ -42,7 +43,8 @@
                                                                         :key="icon.title"
                                                                         :color="icon.color"
                                                                 >
-                                                                    <v-icon small v-text="icon.icon" class="social-sm-icon"></v-icon>
+                                                                    <v-icon small v-text="icon.icon"
+                                                                            class="social-sm-icon"></v-icon>
                                                                 </v-btn>
                                                             </v-list-item-icon>
 
@@ -55,7 +57,8 @@
                                                                         v-for="icon in socialMedia"
                                                                         :key="icon.title"
                                                                 >
-                                                                    <v-img class="social-icon" :src="getIconSocial(icon.title)"></v-img>
+                                                                    <v-img class="social-icon"
+                                                                           :src="getIconSocial(icon.title)"></v-img>
                                                                 </v-btn>
                                                             </v-list-item-icon>
                                                         </v-list-item-content>
@@ -65,7 +68,8 @@
                                                 </div>
                                                 <v-btn color="#FF5231" class="chat-btn">
                                                     TAP TO CHAT
-                                                    <v-img src="/images/resume_themes/theme200/icons/chat.png" class="chat-btn-img ml-1"></v-img>
+                                                    <v-img src="/images/resume_themes/theme200/icons/chat.png"
+                                                           class="chat-btn-img ml-1"></v-img>
                                                 </v-btn>
                                             </v-card-text>
                                         </v-card>
@@ -81,7 +85,7 @@
                                         </v-card>
                                         <v-card flat color="transparent" class="mt-6">
                                             <v-btn small color="#E8E5F6" class="video-btn">
-                                                <img src="/images/resume_themes/theme200/icons/youtube-camera.png" />
+                                                <img src="/images/resume_themes/theme200/icons/youtube-camera.png"/>
                                             </v-btn>
                                         </v-card>
                                     </v-col>
@@ -92,11 +96,13 @@
                                                 <v-col cols="4" class>
                                                     <v-list-item align="center">
                                                         <v-list-item-icon>
-                                                            <img style="width:18px !important; " src="/images/resume_themes/theme200/icons/hour.png" />
+                                                            <img style="width:18px !important; "
+                                                                 src="/images/resume_themes/theme200/icons/hour.png"/>
                                                             <!-- <v-icon color="#00CDF7" small>mdi-clock-check</v-icon> -->
                                                         </v-list-item-icon>
                                                         <v-list-item-content class="ml-n10">
-                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour</v-list-item-subtitle>
+                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour
+                                                            </v-list-item-subtitle>
                                                         </v-list-item-content>
                                                     </v-list-item>
                                                 </v-col>
@@ -107,7 +113,8 @@
                                                             <v-icon color="#00CDF7" small>mdi-calendar-check</v-icon>
                                                         </v-list-item-icon>
                                                         <v-list-item-content class="ml-n10">
-                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour</v-list-item-subtitle>
+                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour
+                                                            </v-list-item-subtitle>
                                                         </v-list-item-content>
                                                     </v-list-item>
                                                 </v-col>
@@ -120,7 +127,8 @@
                                                             style="font-size:2.5vw;"
                                                     >
                                                         Hire Me
-                                                        <img class="ml-2" width="18" src="/images/resume_themes/theme200/icons/chat2.png" />
+                                                        <img class="ml-2" width="18"
+                                                             src="/images/resume_themes/theme200/icons/chat2.png"/>
                                                     </v-btn>
                                                 </v-col>
                                             </v-row>
@@ -145,19 +153,24 @@
                                                         <v-card flat color="transparent">
                                                             <v-card-text align="center">
                                                                 <v-row align="center">
-                                                                    <v-col cols="12" md="4" class="interview-col hidden-sm-and-down">
-                                                                        <div class="interview-text">Your Interviews:</div>
+                                                                    <v-col cols="12" md="4"
+                                                                           class="interview-col hidden-sm-and-down">
+                                                                        <div class="interview-text">Your Interviews:
+                                                                        </div>
                                                                     </v-col>
                                                                     <v-spacer class="hidden-md-only"></v-spacer>
                                                                     <v-col cols="12" md="4" sm="5" class>
                                                                         <v-btn color="#03CA9F" class="btn-voice-call">
-                                                                            <img class="mr-2" src="/images/resume_themes/theme200/icons/phone.png" />Voice Call
+                                                                            <img class="mr-2"
+                                                                                 src="/images/resume_themes/theme200/icons/phone.png"/>Voice
+                                                                            Call
                                                                         </v-btn>
                                                                     </v-col>
 
                                                                     <v-col cols="12" md="4" sm="5" class>
                                                                         <v-btn color="#2400FF" class="btn-upload">
-                                                                            <img src="/images/resume_themes/theme200/icons/camera.png" class="mr-2" />Upload Video
+                                                                            <img src="/images/resume_themes/theme200/icons/camera.png"
+                                                                                 class="mr-2"/>Upload Video
                                                                         </v-btn>
                                                                     </v-col>
                                                                 </v-row>
@@ -168,7 +181,8 @@
 
                                                     <!-- Only shows in desktop and tablet version -->
                                                     <v-col cols="10" md="11" sm="12">
-                                                        <v-card flat class="card-hire-me" height="80" color="rgba(37, 0, 0, 0.1)">
+                                                        <v-card flat class="card-hire-me" height="80"
+                                                                color="rgba(37, 0, 0, 0.1)">
                                                             <v-card-text>
                                                                 <v-row no-gutters align="center">
                                                                     <v-col
@@ -177,7 +191,8 @@
                                                                             sm="1"
                                                                             class="mt-md-n5 mr-md-n4 mt-sm-n5 mr-sm-n2"
                                                                     >
-                                                                        <v-img class="img-hour" src="/images/resume_themes/theme200/icons/hourly-rate.png"></v-img>
+                                                                        <v-img class="img-hour"
+                                                                               src="/images/resume_themes/theme200/icons/hourly-rate.png"></v-img>
                                                                     </v-col>
                                                                     <v-col cols="12" md="3" sm="3">
                                                                         <div class="hire-me-title">15$</div>
@@ -189,17 +204,22 @@
                                                                             sm="1"
                                                                             class="mt-md-n5 mr-md-n4 mt-sm-n5 mr-sm-n2"
                                                                     >
-                                                                        <v-img class="img-hour" src="/images/resume_themes/theme200/icons/availibility.png"></v-img>
+                                                                        <v-img class="img-hour"
+                                                                               src="/images/resume_themes/theme200/icons/availibility.png"></v-img>
                                                                     </v-col>
                                                                     <v-col cols="12" md="3" sm="4">
                                                                         <div class="hire-me-title">40 Hours</div>
-                                                                        <div class="hire-me-subtitle">Weekly Availibility</div>
+                                                                        <div class="hire-me-subtitle">Weekly
+                                                                            Availibility
+                                                                        </div>
                                                                     </v-col>
 
                                                                     <v-col cols="12" md="4" sm="2" class="ml-md-8">
-                                                                        <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
+                                                                        <v-btn block color="#00CDF7" height="50"
+                                                                               class="btn-hire-me">
                                                                             Hire Me
-                                                                            <img class="mx-1" src="/images/resume_themes/theme200/icons/chat2.png" />
+                                                                            <img class="mx-1"
+                                                                                 src="/images/resume_themes/theme200/icons/chat2.png"/>
                                                                         </v-btn>
                                                                     </v-col>
                                                                 </v-row>
@@ -281,7 +301,8 @@
                                     class="text-capitalize caption"
                                     v-for="skill in skills"
                                     :key="skill.id"
-                            >{{skill.skill}}</v-tab>
+                            >{{skill.skill}}
+                            </v-tab>
                         </v-tabs>
                     </v-card>
                 </v-col>
@@ -306,7 +327,7 @@
                                         dark
                                         depressed
                                 >
-                                    <img width="15" :src="getImgUrlIcon(item.id)" />
+                                    <img width="15" :src="getImgUrlIcon(item.id)"/>
                                 </v-btn>
                             </v-tab>
                         </v-tabs>
@@ -344,13 +365,14 @@
                                                                     color="#6152CF"
                                                             >
                                                                 <v-btn fab small color="#ffffff">
-                                                                    <img src="/images/resume_themes/theme200/icons/overlay-icon.png" />
+                                                                    <img src="/images/resume_themes/theme200/icons/overlay-icon.png"/>
                                                                 </v-btn>
                                                             </v-overlay>
                                                         </v-img>
 
                                                         <v-card-title>{{item.title}}</v-card-title>
-                                                        <v-card-subtitle align="left">{{ item.subtitle }}</v-card-subtitle>
+                                                        <v-card-subtitle align="left">{{ item.subtitle }}
+                                                        </v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
                                             </v-row>
@@ -381,12 +403,14 @@
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <v-row>
-                                                <v-col cols="12" md="6" sm="12" v-for="(item,index) in work" :key="index">
+                                                <v-col cols="12" md="6" sm="12" v-for="(item,index) in work"
+                                                       :key="index">
                                                     <v-card flat color="transparent" class="mx-md-10">
                                                         <v-card-text>
                                                             <v-list-item>
                                                                 <v-list-item-icon class="mt-2">
-                                                                    <v-img width="40" :src="getIconWork(item.id)"></v-img>
+                                                                    <v-img width="40"
+                                                                           :src="getIconWork(item.id)"></v-img>
                                                                 </v-list-item-icon>
                                                                 <div
                                                                         class="v-line"
@@ -395,12 +419,19 @@
                                 ]"
                                                                 ></div>
                                                                 <v-list-item-content>
-                                                                    <v-list-item-title class="work-title">{{item.title}}</v-list-item-title>
+                                                                    <v-list-item-title class="work-title">
+                                                                        {{item.title}}
+                                                                    </v-list-item-title>
                                                                     <v-list-item-subtitle
                                                                             class="work-subtitle mt-2"
-                                                                    >{{ item.subtitle1 }}</v-list-item-subtitle>
-                                                                    <v-list-item-subtitle class="work-subtitle">{{ item.subtitle2}}</v-list-item-subtitle>
-                                                                    <div class="float-xs-left mt-4 work-text">{{ item.bodyText }}</div>
+                                                                    >{{ item.subtitle1 }}
+                                                                    </v-list-item-subtitle>
+                                                                    <v-list-item-subtitle class="work-subtitle">{{
+                                                                        item.subtitle2}}
+                                                                    </v-list-item-subtitle>
+                                                                    <div class="float-xs-left mt-4 work-text">{{
+                                                                        item.bodyText }}
+                                                                    </div>
                                                                 </v-list-item-content>
                                                             </v-list-item>
                                                         </v-card-text>
@@ -424,19 +455,27 @@
                                                         <v-card-text>
                                                             <v-list-item>
                                                                 <v-list-item-icon class="mt-2">
-                                                                    <v-img width="40" :src="getIconEducation(item.id)"></v-img>
+                                                                    <v-img width="40"
+                                                                           :src="getIconEducation(item.id)"></v-img>
                                                                 </v-list-item-icon>
-                                                                <div class="v-line" v-if="work.length-(index+1) >1"></div>
+                                                                <div class="v-line"
+                                                                     v-if="work.length-(index+1) >1"></div>
                                                                 <v-list-item-content>
-                                                                    <v-list-item-title class="work-title">{{item.title}}</v-list-item-title>
+                                                                    <v-list-item-title class="work-title">
+                                                                        {{item.title}}
+                                                                    </v-list-item-title>
                                                                     <v-list-item-subtitle
                                                                             class="work-subtitle mt-2"
-                                                                    >{{ item.subtitle1 }}</v-list-item-subtitle>
+                                                                    >{{ item.subtitle1 }}
+                                                                    </v-list-item-subtitle>
                                                                     <v-list-item-subtitle
                                                                             v-if="item.subtitle2"
                                                                             class="work-subtitle mt-2"
-                                                                    >{{ item.subtitle2}}</v-list-item-subtitle>
-                                                                    <div class="float-xs-left mt-4 work-text">{{ item.bodyText }}</div>
+                                                                    >{{ item.subtitle2}}
+                                                                    </v-list-item-subtitle>
+                                                                    <div class="float-xs-left mt-4 work-text">{{
+                                                                        item.bodyText }}
+                                                                    </div>
                                                                 </v-list-item-content>
                                                             </v-list-item>
                                                         </v-card-text>
@@ -467,14 +506,17 @@
                                                             v-for="item in skills"
                                                             :key="item.id"
                                                             class="skill-tab-text mx-md-4 mr-sm-n4"
-                                                    >{{item.skill}}</v-tab>
+                                                    >{{item.skill}}
+                                                    </v-tab>
                                                 </v-tabs>
                                                 <v-spacer></v-spacer>
                                                 <v-btn icon class="mx-md-3">
-                                                    <img width="40" src="/images/resume_themes/theme200/icons/skills/arrange.png" />
+                                                    <img width="40"
+                                                         src="/images/resume_themes/theme200/icons/skills/arrange.png"/>
                                                 </v-btn>
                                                 <v-btn icon small class="mr-sm-3">
-                                                    <img height="16" width="20" src="/images/resume_themes/theme200/icons/skills/view-list.png" />
+                                                    <img height="16" width="20"
+                                                         src="/images/resume_themes/theme200/icons/skills/view-list.png"/>
                                                 </v-btn>
                                             </v-toolbar>
                                             <!-- Inner Tab Items -->
@@ -492,7 +534,9 @@
                                                                         :key="skill.title"
                                                                 >
                                                                     <v-card flat color="transparent">
-                                                                        <v-card-title class="skill-child-title">{{skill.title}}</v-card-title>
+                                                                        <v-card-title class="skill-child-title">
+                                                                            {{skill.title}}
+                                                                        </v-card-title>
                                                                         <v-card-text>
                                                                             <v-row>
                                                                                 <v-col
@@ -502,7 +546,8 @@
                                                                                         v-for="software in skill.softwareList"
                                                                                         :key="software.name"
                                                                                 >
-                                                                                    <v-card flat color="#D5EEFF" class="pa-0">
+                                                                                    <v-card flat color="#D5EEFF"
+                                                                                            class="pa-0">
                                                                                         <v-card-text>
                                                                                             <v-list-item>
                                                                                                 <v-list-item-icon>
@@ -512,20 +557,27 @@
                                                                                                     ></v-img>
                                                                                                 </v-list-item-icon>
 
-                                                                                                <v-list-item-content class="ml-n6">
+                                                                                                <v-list-item-content
+                                                                                                        class="ml-n6">
                                                                                                     <v-list-item-subtitle>
                                                                                                         <v-row no-gutters>
-                                                                                                            <v-col cols="9">{{software.name}}</v-col>
+                                                                                                            <v-col cols="9">
+                                                                                                                {{software.name}}
+                                                                                                            </v-col>
                                                                                                             <v-col
                                                                                                                     cols="3"
                                                                                                                     class="hidden-sm-and-up caption"
                                                                                                                     align="right"
-                                                                                                            >{{software.valueText}}</v-col>
+                                                                                                            >
+                                                                                                                {{software.valueText}}
+                                                                                                            </v-col>
                                                                                                         </v-row>
                                                                                                     </v-list-item-subtitle>
                                                                                                     <v-list-item-subtitle>
                                                                                                         <v-row no-gutters>
-                                                                                                            <v-col cols="12" md="9" sm="9">
+                                                                                                            <v-col cols="12"
+                                                                                                                   md="9"
+                                                                                                                   sm="9">
                                                                                                                 <v-progress-linear
                                                                                                                         height="8"
                                                                                                                         background-color="#C5C5C5"
@@ -539,7 +591,9 @@
                                                                                                                     sm="2"
                                                                                                                     offset="1"
                                                                                                                     class="mt-n1 caption hidden-xs-only"
-                                                                                                            >{{software.valueText}}</v-col>
+                                                                                                            >
+                                                                                                                {{software.valueText}}
+                                                                                                            </v-col>
                                                                                                         </v-row>
                                                                                                     </v-list-item-subtitle>
                                                                                                 </v-list-item-content>
@@ -557,11 +611,13 @@
                                                             <v-row class="mt-5">
                                                                 <v-col cols="12">
                                                                     <div class="text-center">
-                                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                                                                        <v-btn dark x-small class="mx-8" fab
+                                                                               color="#6152CF">
                                                                             <v-icon disabled>mdi-arrow-left</v-icon>
                                                                         </v-btn>
                                                                         <span class="title pagination-text">1/5</span>
-                                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                                                                        <v-btn dark x-small class="mx-8" fab
+                                                                               color="#6152CF">
                                                                             <v-icon>mdi-arrow-right</v-icon>
                                                                         </v-btn>
                                                                     </div>
@@ -647,7 +703,15 @@
                                                                     <v-card flat color="transparent" class="pa-0">
                                                                         <v-card-text
                                                                                 class="body-1"
-                                                                        >I have a great passion on designing and always love to create a new design. Thus now I am highly skilled, enthusiastic, self- motivated UI & UX Designer able to do any kinds of designing on upwork. Not only that I have worked for other company but I myself have also a website based on web programming and web developing of my own.</v-card-text>
+                                                                        >I have a great passion on designing and always
+                                                                            love to create a new design. Thus now I am
+                                                                            highly skilled, enthusiastic, self-
+                                                                            motivated UI & UX Designer able to do any
+                                                                            kinds of designing on upwork. Not only that
+                                                                            I have worked for other company but I myself
+                                                                            have also a website based on web programming
+                                                                            and web developing of my own.
+                                                                        </v-card-text>
                                                                         <v-card-actions class="ml-2">
                                                                             <v-btn
                                                                                     color="#414143"
@@ -657,7 +721,8 @@
                                                                                     v-for="media in socialMedia"
                                                                                     :key="media.title"
                                                                             >
-                                                                                <v-icon small v-text="media.icon"></v-icon>
+                                                                                <v-icon small
+                                                                                        v-text="media.icon"></v-icon>
                                                                             </v-btn>
                                                                         </v-card-actions>
                                                                     </v-card>
@@ -691,10 +756,19 @@
                                                         <v-card-title>
                                                             <span class="achievement-title">Hubspot Design Certification</span>
                                                         </v-card-title>
-                                                        <v-card-subtitle class="achievement-subtitle">HubSpot Design Academy</v-card-subtitle>
+                                                        <v-card-subtitle class="achievement-subtitle">HubSpot Design
+                                                            Academy
+                                                        </v-card-subtitle>
                                                         <v-card-text
                                                                 class="achievement-text caption"
-                                                        >The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot's design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.</v-card-text>
+                                                        >The bearer of this certificate is hereby deemed proficient in
+                                                            crafting responsive, styled templates using HubSpot's design
+                                                            tools. The bearer has demonstrated that he/she can
+                                                            effectively apply template and style knowledge to HubSpot
+                                                            blog, page, landing page and email templates and is approved
+                                                            to sell these assets in the HubSpot Marketplace.
+                                                            Certification is active for 13 months after month issued.
+                                                        </v-card-text>
                                                     </v-card>
                                                 </v-col>
                                             </v-row>
@@ -728,7 +802,7 @@
             <!-- footer row -->
             <!-- n -->
             <!-- footer row -->
-        </v-container>
+        </div>
     </v-app>
 </template>
 
@@ -743,12 +817,12 @@
                 dataTabs: null,
                 currentTab: 1,
                 tabs: [
-                    { title: "Portfolio", id: 1 },
-                    { title: "Works", id: 2 },
-                    { title: "Education", id: 3 },
-                    { title: "Skills", id: 4 },
-                    { title: "About Me", id: 5 },
-                    { title: "Achievement", id: 6 }
+                    {title: "Portfolio", id: 1},
+                    {title: "Works", id: 2},
+                    {title: "Education", id: 3},
+                    {title: "Skills", id: 4},
+                    {title: "About Me", id: 5},
+                    {title: "Achievement", id: 6}
                 ],
                 skills: [
                     {
@@ -756,9 +830,9 @@
                         value: 80,
                         id: 1
                     },
-                    { skill: "Framework/Databases", value: 35, id: 2 },
-                    { skill: "Software", value: 92, id: 3 },
-                    { skill: "Design Skills", value: 55, id: 4 }
+                    {skill: "Framework/Databases", value: 35, id: 2},
+                    {skill: "Software", value: 92, id: 3},
+                    {skill: "Design Skills", value: 55, id: 4}
                 ],
                 skillDetails: [
                     {
@@ -964,10 +1038,10 @@
                 ],
 
                 socialMedia: [
-                    { title: "behance", icon: "fa-behance", color: "#217BFF" },
-                    { title: "dribbble", icon: "fa-dribbble", color: "#EE588A" },
-                    { title: "instagram", icon: "fa-instagram", color: "#DD24BC" },
-                    { title: "google", icon: "fa-google-plus", color: "#DC4E41" }
+                    {title: "behance", icon: "fa-behance", color: "#217BFF"},
+                    {title: "dribbble", icon: "fa-dribbble", color: "#EE588A"},
+                    {title: "instagram", icon: "fa-instagram", color: "#DD24BC"},
+                    {title: "google", icon: "fa-google-plus", color: "#DC4E41"}
                 ]
             };
         },
@@ -1010,577 +1084,10 @@
 </script>
 
 <style lang="scss" scoped>
-    @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-    @import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
-    @import url(//db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular);
-    .pagination-text {
-        color: #3d3d3d;
-    }
-    .parent-card {
-        border-radius: 0px !important;
-    }
-    .profile-avatar {
-        width: 150px !important;
-        height: auto !important;
-        border-radius: 22px !important;
+    .themeWrapper {
+        width: 100%;
     }
 
-    .profile-title {
-        font-family: "Open Sans" !important;
-        font-size: 36px !important;
-    }
-
-    .profile-subtitle {
-        font-family: "Open Sans" !important;
-        font-size: 16px !important;
-        padding: 1px;
-        color: #ffffff !important;
-    }
-
-    .chat-btn {
-        font-family: "Open Sans" !important;
-        border-radius: 23px !important;
-        padding: 8px !important;
-        font-size: 12px !important;
-        margin-top: -50px;
-        margin-left: 24px;
-        text-align: center !important;
-    }
-
-    /* social icons */
-    .social-icon {
-        width: 30px;
-        height: 30px;
-    }
-    /* social icons */
-
-    /* interview */
-    .interview-text {
-        font-family: "Open Sans" !important;
-        font-size: 16px !important;
-        color: #ffffff !important;
-    }
-
-    .btn-voice-call {
-        font-family: "Open Sans" !important;
-        border-radius: 2.76vw !important;
-        font-size: 0.97vw !important;
-        text-transform: capitalize !important;
-        width: 13vw !important;
-        height: 3.65vw !important;
-        margin-left: -1.62vw !important;
-    }
-
-    .btn-voice-call img {
-        width: 1vw !important;
-    }
-
-    .btn-upload {
-        font-family: "Open Sans" !important;
-        border-radius: 2.76vw !important;
-        font-size: 0.97vw !important;
-        text-transform: capitalize !important;
-        width: 13vw !important;
-        height: 3.65vw !important;
-    }
-
-    .btn-upload img {
-        width: 20px !important;
-    }
-    /* inerview */
-    /* hire me card */
-
-    .card-hire-me {
-        border-radius: 51px !important;
-    }
-
-    .hire-me-title {
-        font-size: 1vw !important;
-        color: #ffffff;
-        margin-left: 0.2vw !important;
-    }
-
-    .hire-me-subtitle {
-        font-size: 0.9vw !important;
-        color: #ffffff;
-    }
-
-    .btn-hire-me {
-        font-family: "Open Sans" !important;
-        font-size: 15px !important;
-        text-transform: capitalize !important;
-        border-radius: 38px !important;
-    }
-
-    .img-hour {
-        width: 1.8vw !important;
-    }
-
-    .btn-hire-me img {
-        width: 20px !important;
-    }
-
-    /* tab styles */
-    .parent-tab {
-        overflow: hidden !important;
-        border-radius: 26px 26px 0 0 !important;
-    }
-
-    .ct-tab-title {
-        color: #ffffff !important;
-        font-size: 1.2vw !important;
-        font-weight: 500 !important;
-    }
-
-    .active-tab {
-        background-color: #ffffff !important;
-        color: #fc5283 !important;
-    }
-
-    /* Corners */
-    .round-left {
-        border-top-left-radius: 26px;
-    }
-
-    .round-right {
-        border-top-right-radius: 26px !important;
-    }
-    .v-slide-group__prev.v-slide-group__prev--disabled {
-        display: none !important;
-    }
-    .v-slide-group__next.v-slide-group__next--disabled {
-        display: none !important;
-    }
-    /* tab styles */
-
-    /* Portfolio */
-    .card-portfolio {
-        border-radius: 12px !important;
-        width: 90% !important;
-    }
-    /* Portfolio */
-    /* Work */
-    .work-title {
-        font-family: "Poppins" !important;
-        font-size: 22px !important;
-        font-weight: 700;
-    }
-
-    .work-subtitle {
-        font-family: "Poppins" !important;
-        font-size: 18px !important;
-        color: #4b4b4b !important;
-        font-weight: 400 !important;
-    }
-
-    .work-text {
-        font-family: "Poppins" !important;
-        font-size: 16px !important;
-        color: #656565 !important;
-    }
-    /* Work */
-
-    /* Skill tabs */
-    .skill-tab-text {
-        font-size: 14px !important;
-        text-transform: capitalize !important;
-    }
-
-    .skill-child-title {
-        font-weight: 500 !important;
-    }
-    /* Skills tabs */
-
-    /* About Me Tab */
-    .about-me-pic-flex {
-        text-align: right !important;
-    }
-    .hello-text {
-        color: #373737;
-    }
-
-    .hello-title {
-        font-size: 35px;
-        font-weight: 400;
-        margin-top: 15px;
-        color: #373737;
-    }
-
-    .hello-designation {
-        font-size: 37px;
-        font-weight: 400;
-        margin-top: 22px;
-        color: #373737;
-    }
-
-    .pic-box {
-        width: 50%;
-        height: auto !important;
-        border-radius: 15px !important;
-        aspect-ratio: 0.9 !important;
-        box-shadow: 48px 56px 0px -8px rgba(97, 82, 207, 1) !important;
-    }
-
-    .about-me-flex {
-        margin-top: -100px;
-    }
-
-    /* About Me Tab */
-
-    /* Achievement */
-    .achievement-title {
-        font-size: 22px;
-        color: #474747 !important;
-        font-weight: normal;
-    }
-
-    .achievement-subtitle {
-        color: #6152cf !important;
-    }
-
-    .achievement-text {
-        color: #808080 !important;
-    }
-
-    /* Achievement */
-    /* for google chrome and safari */
-    .v-line {
-        position: absolute;
-        margin-top: 58px;
-        margin-left: 19px;
-        height: 110%;
-        border: 1px solid #707070;
-    }
-    @-moz-document url-prefix() {
-        .v-line {
-            position: absolute;
-            margin-top: 120px;
-            margin-left: 19px;
-            height: 112%;
-            border: 1px solid #707070;
-        }
-    }
-
-    /* achievement */
-
-    /* achievement */
-
-    /* Footer Image */
-
-    /* Media Query */
-    /* hire me card */
-
-    /* special desktop case */
-    @media screen and (min-width: 960px) {
-        .interview-flex {
-            margin-left: 4.06vw !important;
-        }
-        .certification {
-            margin-top: 10% !important;
-        }
-    }
-    /* special desktop case */
-
-    /* .................................................Tablet ................................. */
-    /* Tablet */
-    @media screen and (min-width: 600px) and (max-width: 959px) {
-        /* Profile */
-        .profile-avatar {
-            width: 18vw !important;
-        }
-        .profile-title {
-            font-size: 3.5vw !important;
-        }
-
-        .profile-subtitle {
-            font-size: 1.7vw !important;
-        }
-
-        .chat-btn {
-            padding: 1.5vw !important;
-            font-size: 1.28vw !important;
-            margin-top: -6.44vw;
-            margin-left: 3.86vw;
-        }
-
-        .chat-btn-img {
-            width: 1.67vw !important;
-        }
-
-        .social-icon {
-            width: 3.86vw;
-            height: 3.86vw;
-        }
-        /* Profile */
-
-        /* Ineterview  */
-        .interview-flex {
-            margin-top: 45px;
-            margin-bottom: -10px;
-        }
-        .btn-voice-call {
-            font-size: 1.55vw !important;
-            text-transform: capitalize !important;
-            width: 18vw !important;
-            height: 5.12vw !important;
-            margin-left: -10px;
-        }
-
-        .btn-voice-call img {
-            width: 12px !important;
-        }
-
-        .btn-upload {
-            font-size: 1.55vw !important;
-            width: 18vw !important;
-            height: 5.12vw !important;
-        }
-
-        .btn-upload img {
-            width: 1.93vw !important;
-        }
-        /* Interview */
-
-        /* Hire me */
-        .card-hire-me {
-            height: 70px !important;
-        }
-        .hire-me-title {
-            margin-left: 1.02vw !important;
-            font-size: 1.67vw !important;
-        }
-        .hire-me-subtitle {
-            font-size: 1.41vw !important;
-        }
-        .btn-hire-me {
-            margin-top: -0.64vw;
-            font-size: 1.54vw !important;
-            height: 4.89vw !important;
-            width: 12.87vw !important;
-        }
-
-        .btn-hire-me img {
-            width: 1.93vw !important;
-        }
-
-        /* Hire me */
-
-        /* tab */
-        .parent-tab {
-            border-radius: 26px 26px 0 0 !important;
-        }
-        .v-slide-group__prev.v-slide-group__prev--disabled {
-            display: none !important;
-        }
-
-        .round-right {
-            border-top-right-radius: 0px;
-        }
-
-        /* tab */
-
-        /* Work */
-        .work-title {
-            font-size: 20px !important;
-            font-weight: 700;
-        }
-
-        .work-subtitle {
-            font-size: 16px !important;
-        }
-
-        .work-text {
-            font-size: 14px !important;
-        }
-        /* Work */
-
-        /* Skill tabs */
-        .skill-tab-text {
-            font-size: 12px !important;
-            text-transform: capitalize !important;
-        }
-        /* Skill Tab */
-
-        /* About Me */
-        .pic-box {
-            width: 50%;
-            margin-right: 50px;
-            margin-top: -20px;
-        }
-
-        .hello-title {
-            font-size: 26px;
-            font-weight: 400;
-            margin-top: 15px;
-            color: #373737;
-        }
-
-        .designation-for-tab {
-            margin-top: -10px;
-            font-size: 40px !important;
-        }
-
-        .about-me-flex {
-            margin-top: -50px;
-        }
-
-        /* About Me */
-
-        /* vertical line */
-        .v-line {
-            position: absolute;
-            margin-top: 56px;
-            margin-left: 19px;
-            height: 110%;
-            border: 1px solid #707070;
-        }
-        @-moz-document url-prefix() {
-            .v-line {
-                position: absolute;
-                margin-top: 113px;
-                margin-left: 19px;
-                height: 110%;
-                border: 1px solid #707070;
-            }
-        }
-        /* vertical line */
-    }
-    /* Tablet */
-
-    /* .................................................................................................. */
-    /* ..............................................Mobile Screen................................. */
-
-    @media screen and (max-width: 599px) {
-        /*  profile */
-        .profile-avatar {
-            margin-left: -30px;
-            width: 120px !important;
-            height: auto !important;
-            border-radius: 22px !important;
-        }
-        .profile-title {
-            font-size: 6vw !important;
-        }
-
-        .profile-subtitle {
-            font-size: 4vw !important;
-            padding: 2px;
-            color: #ffffff !important;
-        }
-
-        .chat-btn {
-            padding: 10px !important;
-            font-size: 9px !important;
-            margin-top: -50px;
-            margin-left: -2px;
-            width: 100px !important;
-            text-align: center !important;
-        }
-
-        .chat-btn-img {
-            width: 2px !important;
-        }
-        .social-sm-icon-btn {
-            margin-right: 3px !important;
-            height: 6vw !important ;
-            min-width: 1vw !important;
-        }
-        .social-sm-icon {
-            font-size: 8px !important;
-        }
-
-        .phone-btn {
-            padding: 0px 8.444px !important;
-            margin-left: 5vw;
-            margin-top: 46px;
-            margin-bottom: -0.8vw;
-            height: 32px !important;
-            min-width: 50% !important;
-        }
-
-        .phone-icon {
-            font-size: 18px !important;
-        }
-
-        .video-btn {
-            margin-left: 5vw;
-            padding: 0px 4.444px !important;
-            max-height: 35px !important;
-            min-width: 50% !important;
-        }
-
-        .video-btn img {
-            width: 16px !important;
-            height: 13px !important;
-        }
-
-        /* Profile */
-        .skill-tab-text {
-            font-size: 12px !important;
-        }
-
-        /* tabs */
-        .tab-mobile-btn-active {
-            width: 14vw !important ;
-            height: 14vw !important;
-        }
-        .tab-mobile-btn-active img {
-            width: 6vw !important;
-            height: auto !important;
-        }
-
-        .tab-dot {
-            height: 10px;
-            width: 10px;
-            margin-right: 3px;
-            background: lightgray;
-            border-radius: 50px;
-            display: inline-block;
-            box-shadow: 0px 0px 4px gray inset;
-        }
-
-        .tab-dot-active {
-            margin-right: 3px;
-            height: 10px;
-            width: 10px;
-            background: black;
-            border-radius: 50px;
-            display: inline-block;
-            box-shadow: 0px 0px 4px gray inset;
-        }
-        /* tabs */
-        /* About Me */
-        .about-me-flex {
-            margin-top: 0px;
-        }
-
-        .pic-box {
-            width: 50%;
-            height: auto !important;
-            border-radius: 15px !important;
-            aspect-ratio: 0.9 !important;
-            box-shadow: 40px 30px 0px -8px rgba(97, 82, 207, 1) !important;
-        }
-
-        .hello-title {
-            font-size: 8vw;
-            font-weight: 400;
-            margin-top: 15px;
-            color: #373737;
-        }
-        .designation-for-tab {
-            margin-top: -10px;
-            font-size: 7vw !important;
-        }
-        /* About ME */
-        /* achievement */
-        .achievement-title{
-            font-size: 5vw;
-        }
-        /* achievement */
-    }
-    /* mobile devices */
-
-    /* min screen devices*/
+    @import "resources/sass/themes/theme200.scss";
 </style>
 
