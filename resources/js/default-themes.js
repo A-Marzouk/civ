@@ -99,6 +99,21 @@ if ($("#resumeTheme201").length !== 0) {
 }
 
 
+import resumeTheme200 from './components/resume_themes/theme200/Main';
+if ($("#resumeTheme200").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme200',
+        vuetify,
+        iconfont: 'fa4',
+        components:{
+            'resume-theme-200':resumeTheme200
+        }
+    });
+
+}
+
+
 
 
 
