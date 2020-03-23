@@ -7,7 +7,7 @@
                 <v-col cols="12">
                     <v-card color="#6152CF" class="parent-card" dark flat>
                         <v-card-text>
-                            <v-container fluid ma-0 pa-0>
+                            <div class="m-0 p-0">
                                 <v-row no-gutters>
                                     <!-- Column 1 Profile -->
                                     <v-col cols="8" md="5" sm="2">
@@ -27,10 +27,10 @@
                                                         <!-- Name -->
                                                         <v-list-item-content>
                                                             <v-list-item-title class="ml-md-4">
-                                                                <span class="profile-title">Olivia Emily</span>
+                                                                <span class="profile-title">{{personalInfo.full_name}}</span>
                                                             </v-list-item-title>
                                                             <v-list-item-subtitle class="ml-md-5">
-                                                                <span class="profile-subtitle">UX/UI Designer</span>
+                                                                <span class="profile-subtitle">{{personalInfo.designation}}</span>
                                                             </v-list-item-subtitle>
 
                                                             <v-list-item-icon class="hidden-md-and-up">
@@ -255,7 +255,7 @@
                                     </v-col>
                                     <!-- Column3 tabs-->
                                 </v-row>
-                            </v-container>
+                            </div>
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -734,6 +734,7 @@
 
 <script>
     export default {
+        props:['user'],
         data() {
             return {
                 skillTab: null,
@@ -910,8 +911,6 @@
                             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
                     }
                 ],
-
-                // Education
                 education: [
                     {
                         id: 1,
@@ -962,16 +961,18 @@
                             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
                     }
                 ],
-
                 socialMedia: [
                     { title: "behance", icon: "fa-behance", color: "#217BFF" },
                     { title: "dribbble", icon: "fa-dribbble", color: "#EE588A" },
                     { title: "instagram", icon: "fa-instagram", color: "#DD24BC" },
                     { title: "google", icon: "fa-google-plus", color: "#DC4E41" }
-                ]
+                ],
+
+                // user real data:
+                personalInfo:this.user.personal_info,
+
             };
         },
-
         methods: {
             getImgUrlIcon(icon) {
                 return `/images/resume_themes/theme200/icons/tabs/${icon}.png`;
@@ -1005,7 +1006,7 @@
             getIconSocial(icon) {
                 return `/images/resume_themes/theme200/icons/${icon}.png`;
             }
-        }
+        },
     };
 </script>
 
