@@ -21,6 +21,34 @@ if ($("#userTheme201").length !== 0) {
 
 
 
+import userTheme3 from './components/user_themes/theme3';
+if ($("#userTheme3").length !== 0) {
+
+    new Vue({
+        el: '#userTheme3',
+        store,
+        components:{
+            'user-theme-3':userTheme3
+        }
+    });
+
+}
+
+
+
+import userTheme8 from './components/user_themes/theme8';
+if ($("#userTheme8").length !== 0) {
+    new Vue({
+        el: '#userTheme8',
+        store,
+        components:{
+            'user-theme-8':userTheme8
+        }
+    });
+}
+
+
+
 
 
 

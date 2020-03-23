@@ -88,7 +88,7 @@
 
                     <div class="actions-row">
                         <img src="/images/resume_builder/my_account/edit-solid.svg" alt="edit">
-                        <img src="/images/resume_builder/my_account/copy.svg" alt="edit">
+                        <img src="/images/resume_builder/my_account/copy.svg" alt="edit" @click="copyCivLink">
                         <img src="/images/resume_builder/my_account/share-square-solid.svg" alt="edit">
                     </div>
 
@@ -178,6 +178,14 @@
             }
         },
         methods: {
+            copyCivLink() {
+                let $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(this.baseUrl() + this.accountData.username).select();
+                document.execCommand("copy");
+                $temp.remove();
+                this.$store.dispatch('flyingNotification',{message:'Copied',iconSrc:'/images/resume_builder/tick.svg'});
+            },
             setPlan(plan){
                 this.selectedPlan = 0 ;
                 this.selectedBtn = plan;

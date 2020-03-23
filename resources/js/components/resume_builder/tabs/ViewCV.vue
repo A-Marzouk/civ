@@ -15,22 +15,26 @@
             </div>
         </div>
         <div class="change-structure-text">
-            <img src="/images/resume_builder/viewCV/grid-2.png" alt="icon">
-            Change Structure
+            <img src="/images/resume_builder/viewCV/img-holder.png" alt="icon">
+            Change Theme
         </div>
         
         <div class="themes">
-            <div class="theme-item">
-                <img src="/images/resume_builder/viewCV/1.png" alt="theme-preview">
-            </div>
-            <div class="theme-item">
-                <img src="/images/resume_builder/viewCV/3.png" alt="theme-preview">
-            </div>
-            <div class="theme-item">
-                <img src="/images/resume_builder/viewCV/4.png" alt="theme-preview">
-            </div>
-            <div class="theme-item">
-                <img src="/images/resume_builder/viewCV/1.png" alt="theme-preview">
+            <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.code">
+                <img :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
+
+                <div class="theme-action-btns">
+                    <a href="javascript:void(0)" class="active-btn" :class="{ 'active' : parseInt(user.theme_code) === theme.code}" @click="activateTheme(theme.code)">
+                        Active
+                    </a>
+                    <a :href="'/' + user.username" target="_blank" v-if="parseInt(user.theme_code) === theme.code">
+                        Open
+                    </a>
+                    <a :href="'/preview/theme' + theme.code" target="_blank" v-else>
+                        Preview
+                    </a>
+                </div>
+
             </div>
         </div>
         
@@ -39,7 +43,45 @@
 
 <script>
     export default {
-        name: "ViewCV"
+        name: "ViewCV",
+        data(){
+            return{
+                availableThemes:[
+                    {
+                        code:201
+                    },
+                    {
+                        code:3
+                    },
+                ]
+            }
+        },
+        computed:{
+            user(){
+                return this.$store.state.user;
+            }
+        },
+        methods:{
+            activateTheme(theme_code){
+                if(this.user.theme_code === theme_code){
+                    return;
+                }
+                axios.put('/api/user/update-theme',{theme_code : theme_code})
+                    .then((response) => {
+                        console.log(response.data);
+                        this.user.theme_code  = theme_code ;
+                        this.$store.dispatch('flyingNotification');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+            }
+        }
     }
 </script>
 
@@ -120,9 +162,7 @@
             }
         }
         .themes{
-            margin-left:140px;
-            margin-top:60px;
-            justify-content: space-between;
+            justify-content: space-around;
             display: flex;
             flex-wrap: wrap;
             .theme-item{
@@ -130,6 +170,44 @@
                 img{
                     width:642px;
                     height:451px;
+                    border-radius:25px;
+                    border: 2px solid blue;
+
+                    &.active{
+                        border: 5px solid lightgreen;
+                    }
+                }
+
+                .theme-action-btns{
+                    margin-top: 15px;
+                    margin-left: 15px;
+                    display: flex;
+                    align-items: center;
+
+                    a.active-btn{
+                        background-color: #cccccc;
+                        color: #666666;
+                    }
+                    a.active-btn.active{
+                        background-color: lightgreen;
+                        color: white;
+                    }
+
+                    a{
+                        width: 100px;
+                        height: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                        margin-right: 20px;
+                        background: blue;
+                        color: white;
+
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
                 }
             }
         }

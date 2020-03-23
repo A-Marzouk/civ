@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="civ-custom-options" v-show="showCategoryOptions">
                                     <div v-for="(category,index) in categoryOptions" :key="index + '_category'"
-                                         @click="selectCategory(category.title)">
+                                         @click="selectCategory(category)">
                                         {{category.title}}
                                     </div>
                                 </div>
@@ -63,14 +63,14 @@
                             </div>
                         </div>
                         <div class="input-field mb-0">
-                            <label for="socialLink">Add social link</label>
-                            <input id="socialLink" type="text" v-model="newSocialLink.link">
+                            <label for="socialLink">{{currentBaseUrl}}</label>
+                            <input id="socialLink" type="text" v-model="newSocialLink.link" placeholder="johndoe">
                             <div class="error" v-if="errors.link">
                                 {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
                             </div>
                         </div>
-                        <a href="javascript:void(0)" class="btn-blue" @click="saveLink(newSocialLink)"><img
-                                src="/images/resume_builder/profile/icon-save2.png">Save new this link</a>
+                        <a href="javascript:void(0)" class="btn-blue" @click="saveLink(newSocialLink,currentBaseUrl)"><img
+                                src="/images/resume_builder/profile/icon-save2.png">Save this new link</a>
                         <div class="add-new-work NoDecor">
                             <a href="javascript:void(0)" @click="isAddSocialLink = false">
                                 Cancel
@@ -80,7 +80,6 @@
                 </div>
 
 
-
                 <div class="work-ex-list">
                     <div class="work-ex-item mt-5" v-for="(item,index) in socialLinks" :key="item.id + 'link_key' ">
                         <div class="d-flex justify-content-between">
@@ -88,7 +87,8 @@
                                 <div class="work-ex-info">
                                     <div class="work-ex-title">
                                         <img src="/images/resume_builder/link-icon.png" alt="">
-                                        {{item.link_title}}: <small>{{item.link}}</small>
+                                        {{item.link_title}}:
+                                        <small class="NoDecor"><a :href="item.link" target="_blank">{{item.link}}</a></small>
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                         <!--<a href="javascript:void(0)" class="btn-outline">Auto import</a>-->
                     </div>
                     <div class="addItem-wrap animated fadeIn" v-show="isAddPortfolioLink">
-                        <div class="input-field">
+                        <div class="input-field mb-0">
                             <label for="portfolioLink">Add portfolio link</label>
                             <input id="portfolioLink" type="text" v-model="newPortfolioLink.link">
                             <div class="error" v-if="errors.link">
@@ -138,46 +138,43 @@
                         <a href="javascript:void(0)" class="btn-close ml-5" @click="isAddPortfolioLink = false">x</a>
                     </div>
                     <div class="list-links">
-                        <ul>
-                            <li v-for="(item, index) in portfolioLinks" :key="index" class="animated fadeIn link-item"
-                                :class="{'fadeIn': activeListItem === index , 'movingDown': movingDown === index, 'movingUp': movingUp === index }">
-                                        <span class="move-item">
-                                            <a href="javascript:void(0)" class="go_up"
-                                               @click.prevent="reorder('portfolio','mup',index,index-1)"
-                                               :class="index==0?'disable':''"></a>
-                                            <a href="javascript:void(0)" class="go_down"
-                                               @click.prevent="reorder('portfolio','mdown',index,index+1)"
-                                               :class="index==(socialLinks.length-1)?'disable':''"></a>
-                                        </span>
-                                <span class="info-link">
-                                            <img src="/images/resume_builder/link-icon.png" alt="">
-                                            {{item.link}}
-                                        </span>
-
-                                <div class="options">
-                                    <div class="options-btn NoDecor"
-                                         @click="optionPortfolioLinkId === item.id ? optionPortfolioLinkId=0 : optionPortfolioLinkId=item.id">
-                                        <a href="javascript:void(0)"
-                                           :class="{'opened':optionPortfolioLinkId === item.id}">
-                                            Options
-                                            <img src="/images/resume_builder/arrow-down.png" alt=""
-                                                 :class="{'optionsOpened':optionPortfolioLinkId === item.id}">
-                                        </a>
-                                    </div>
-                                    <div class="extended-options" v-show="optionPortfolioLinkId === item.id"
-                                         :class="{'opened':optionPortfolioLinkId === item.id}">
-                                        <!--<div class="edit-btn NoDecor" @click="editLink(item)">-->
-                                        <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
-                                        <!--Edit-->
-                                        <!--</div>-->
-                                        <div class="delete-btn NoDecor" @click="deleteLink(item)">
-                                            <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
-                                            Delete
+                        <div>
+                            <div class="work-ex-list mt-0">
+                                <div class="work-ex-item mt-1" v-for="(item,index) in portfolioLinks" :key="item.id + 'link_key' ">
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex">
+                                            <div class="work-ex-info">
+                                                <div class="work-ex-title">
+                                                    <img src="/images/resume_builder/link-icon.png" alt="">
+                                                    <small class="NoDecor"><a :href="addPrefix(item.link)" target="_blank">{{item.link}}</a></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="options">
+                                            <div class="options-btn NoDecor"
+                                                 @click="optionSocialLinkId === item.id ? optionSocialLinkId=0 : optionSocialLinkId=item.id">
+                                                <a href="javascript:void(0)" :class="{'opened':optionSocialLinkId === item.id}">
+                                                    Options
+                                                    <img src="/images/resume_builder/arrow-down.png" alt=""
+                                                         :class="{'optionsOpened':optionSocialLinkId === item.id}">
+                                                </a>
+                                            </div>
+                                            <div class="extended-options" v-show="optionSocialLinkId === item.id"
+                                                 :class="{'opened':optionSocialLinkId === item.id}">
+                                                <!--<div class="edit-btn NoDecor" @click="editLink(item)">-->
+                                                <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
+                                                <!--Edit-->
+                                                <!--</div>-->
+                                                <div class="delete-btn NoDecor" @click="deleteLink(item)">
+                                                    <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
+                                                    Delete
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -245,43 +242,56 @@
             categoryOptions: [
                 {
                     title: 'Linkedin',
-                    value: 'Linkedin'
+                    value: 'Linkedin',
+                    baseUrl: 'https://www.linkedin.com/in/'
                 },
                 {
                     title: 'Facebook',
-                    value: 'Facebook'
+                    value: 'Facebook',
+                    baseUrl: 'https://www.facebook.com/'
                 },
                 {
                     title: 'Instagram',
-                    value: 'Instagram'
+                    value: 'Instagram',
+                    baseUrl: 'https://www.instagram.com/'
                 },
                 {
                     title: 'Behance',
-                    value: 'Behance'
-                },
-                {
-                    title: 'Google',
-                    value: 'Google'
+                    value: 'Behance',
+                    baseUrl: 'https://www.behance.net/'
                 },
                 {
                     title: 'Dribbble',
-                    value: 'Dribbble'
+                    value: 'Dribbble',
+                    baseUrl: 'https://dribbble.com/'
                 },
                 {
                     title: 'GitHub',
-                    value: 'GitHub'
+                    value: 'GitHub',
+                    baseUrl: 'https://github.com/'
                 },
                 {
                     title: 'Twitter',
-                    value: 'Twitter'
+                    value: 'Twitter',
+                    baseUrl: 'https://twitter.com/'
                 },
             ],
             showCategoryOptions: false,
+            currentBaseUrl:''
 
         }),
         methods: {
-            selectCategory(title) {
-                this.newSocialLink.link_title = title;
+            addPrefix(url){
+                var prefix = 'http://';
+                if (url.substr(0, prefix.length) !== prefix)
+                {
+                    url = prefix + url;
+                }
+                return url;
+            },
+            selectCategory(category) {
+                this.currentBaseUrl = category.baseUrl;
+                this.newSocialLink.link_title = category.title ;
                 this.showCategoryOptions = false;
             },
             reorder(type, dir, from, to) {
@@ -400,7 +410,10 @@
             addPortfolioLink() {
                 this.isAddPortfolioLink = true;
             },
-            saveLink(link) {
+            saveLink(link, base = '') {
+                if(link.link.length){
+                    link.link = base + link.link;
+                }
                 if (!this.validURL(link.link)) {
                     this.errors = {link: 'Not a valid link!'};
                     return;
@@ -426,6 +439,7 @@
                 this.isAddPortfolioLink = false;
                 this.newSocialLink.link = '';
                 this.newPortfolioLink.link = '';
+                this.currentBaseUrl = '';
             },
             validURL(str) {
                 var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
@@ -475,7 +489,7 @@
     .add-new-work {
         margin-right: 29px;
 
-        a{
+        a {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -491,8 +505,8 @@
             letter-spacing: 0;
             color: #001CE2;
 
-            img{
-                width:27px;
+            img {
+                width: 27px;
                 height: 27px;
                 margin-right: 10px;
             }
@@ -508,6 +522,8 @@
         color: red;
         padding-top: 5px;
         padding-left: 3px;
+        position: absolute;
+        bottom: -35px;
     }
 
     .input-field {
@@ -614,143 +630,148 @@
 
     }
 
-    .addItem-wrap{
+    .addItem-wrap {
         display: flex;
         align-items: flex-end;
-        .input-field{
-            min-width:auto !important;
+
+        .input-field {
+            min-width: auto !important;
             width: 500px;
         }
     }
 
-    .work-ex-list{
+    .work-ex-list {
         margin-top: 90px;
-        .work-ex-item{
+
+        .work-ex-item {
             width: 757px;
 
-            .work-icon{
+            .work-icon {
                 width: 38px;
                 height: 27px;
                 margin-right: 33px;
             }
 
-            .work-ex-info{
+            .work-ex-info {
                 margin-right: 30px;
-                .work-ex-title{
+
+                .work-ex-title {
                     font: 700 30px/41px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
                     margin-bottom: 12px;
                     opacity: 1;
 
-                    img{
-                        width:30px;
-                        margin-right:10px;
+                    img {
+                        width: 30px;
+                        margin-right: 10px;
                     }
                 }
-                .work-ex-sub-title{
+
+                .work-ex-sub-title {
                     font: 700 19px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
                     opacity: 1;
                     margin-bottom: 16px;
                 }
-                .work-ex-detials{
+
+                .work-ex-detials {
                     font: 500 16px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
                     opacity: 1;
                 }
             }
+        }
+    }
 
-            .options {
+    .options {
+        margin-top: 14px;
+        .options-btn {
+            a {
+                width: 100px;
+                height: 40px;
 
-                .options-btn {
-                    a {
-                        width: 100px;
-                        height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                background: #FFFFFF 0 0 no-repeat padding-box;
+                border: 1px solid #505050;
+                border-radius: 5px;
+                opacity: 1;
 
-                        background: #FFFFFF 0 0 no-repeat padding-box;
-                        border: 1px solid #505050;
-                        border-radius: 5px;
-                        opacity: 1;
+                font: 600 15px Noto Sans;
+                letter-spacing: 0;
+                color: #505050;
 
-                        font: 600 15px Noto Sans;
-                        letter-spacing: 0;
-                        color: #505050;
-
-                        img {
-                            width: 13.3px;
-                            height: 6.8px;
-                            margin-left: 8px;
-                        }
-
-                        img.optionsOpened {
-                            -webkit-transform: scaleY(-1);
-                            transform: scaleY(-1);
-                        }
-                    }
-
-                    a.opened {
-                        border: 1px solid #1F5DE4;
-                    }
-
-                    a:focus {
-                        outline: none !important;
-                        box-shadow: none !important;
-                    }
+                img {
+                    width: 13.3px;
+                    height: 6.8px;
+                    margin-left: 8px;
                 }
 
-                .extended-options {
-                    position: absolute;
-                    background: #FFFFFF 0 0 no-repeat padding-box;
-                    border: 1px solid #505050;
-                    border-radius: 5px;
-                    opacity: 1;
-                    margin-top: 8px;
-                    width: 100px;
-                    height: 45px;
-                    padding-top: 5px;
-                    padding-left: 8px;
-
-                    .edit-btn, .delete-btn {
-                        display: flex;
-                        justify-content: flex-start;
-                        align-items: center;
-                        font: 600 13px Noto Sans;
-                        letter-spacing: 0;
-                        color: #505050;
-
-                        img {
-                            width: 15.75px;
-                            height: 14px;
-                            margin-right: 6px;
-                        }
-
-                        &:hover {
-                            cursor: pointer;
-                        }
-                    }
-
-                    .delete-btn {
-                        margin-top: 8px;
-
-                        img {
-                            width: 10.89px;
-                            height: 14px;
-                            margin-right: 9.5px;
-                        }
-                    }
-                }
-
-                .extended-options.opened {
-                    border: 1px solid #1F5DE4;
+                img.optionsOpened {
+                    -webkit-transform: scaleY(-1);
+                    transform: scaleY(-1);
                 }
             }
+
+            a.opened {
+                border: 1px solid #1F5DE4;
+            }
+
+            a:focus {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+        }
+
+        .extended-options {
+            position: absolute;
+            background: #FFFFFF 0 0 no-repeat padding-box;
+            border: 1px solid #505050;
+            border-radius: 5px;
+            opacity: 1;
+            margin-top: 8px;
+            width: 100px;
+            height: 45px;
+            padding-top: 5px;
+            padding-left: 8px;
+
+            .edit-btn, .delete-btn {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                font: 600 13px Noto Sans;
+                letter-spacing: 0;
+                color: #505050;
+
+                img {
+                    width: 15.75px;
+                    height: 14px;
+                    margin-right: 6px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            .delete-btn {
+                margin-top: 8px;
+
+                img {
+                    width: 10.89px;
+                    height: 14px;
+                    margin-right: 9.5px;
+                }
+            }
+        }
+
+        .extended-options.opened {
+            border: 1px solid #1F5DE4;
         }
     }
 </style>
