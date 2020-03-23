@@ -20,6 +20,23 @@ if ($("#userTheme201").length !== 0) {
 }
 
 
+import userTheme200 from './components/user_themes/theme200/Main';
+if ($("#userTheme200").length !== 0) {
+
+    new Vue({
+        el: '#userTheme200',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components:{
+            'user-theme-200':userTheme200
+        }
+    });
+
+}
+
+
+
 
 import userTheme3 from './components/user_themes/theme3';
 if ($("#userTheme3").length !== 0) {
