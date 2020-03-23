@@ -334,12 +334,13 @@
                                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
                                         <v-card-text align="center">
                                             <v-row>
-                                                <v-col md="4" sm="6" v-for="item in portfolio" :key="item.id">
+                                                <v-col md="4" sm="6" v-for="(project,index) in projects" :key="project.id"   >
                                                     <v-card elevation-12 class="card-portfolio">
-                                                        <v-img aspect-ratio="1.4" :src="getImgUrlPortfolio(item.id)">
+                                                        <v-img aspect-ratio="1.4" :src="getProjectMainImage(project)" @mouseover="hoveredProjectId = project.id"
+                                                               @mouseleave="hoveredProjectId =0">
                                                             <v-overlay
                                                                     :absolute="absolute"
-                                                                    :value="item.id==1 ? overlay : false"
+                                                                    :value="project.id === hoveredProjectId"
                                                                     opacity="0.8"
                                                                     color="#6152CF"
                                                             >
@@ -349,8 +350,8 @@
                                                             </v-overlay>
                                                         </v-img>
 
-                                                        <v-card-title>{{item.title}}</v-card-title>
-                                                        <v-card-subtitle align="left">{{ item.subtitle }}</v-card-subtitle>
+                                                        <v-card-title>{{project.name}}</v-card-title>
+                                                        <v-card-subtitle align="left">{{ project.description }}</v-card-subtitle>
                                                     </v-card>
                                                 </v-col>
                                             </v-row>
@@ -678,6 +679,7 @@
         props:['user'],
         data() {
             return {
+                hoveredProjectId:0,
                 activeSkillTab: {title: "Programming Languages", value: 'Programming_languages', id: 1},
                 page: 1,
                 overlay: true,
@@ -794,6 +796,7 @@
                 achievements: this.user.achievements,
                 educations: this.user.education,
                 works: this.user.work_experience,
+                projects: this.user.projects,
 
             };
         },
@@ -919,6 +922,18 @@
                     return arrayOfSkillImages[skill_title.toLowerCase()];
                 }
                 return '/images/skills_icons/skill.png';
+            },
+            getProjectMainImage(project){
+                let mainImage = '';
+
+                let images = project.images;
+                images.forEach((image) => {
+                    if (image.is_main){
+                        mainImage = image;
+                    }
+                });
+
+                return mainImage.src;
             },
         },
     };
