@@ -21,7 +21,7 @@
                                                                 class="profile-avatar"
                                                                 max-width="150"
                                                         >
-                                                            <img class="elevation-6" src="/images/resume_themes/theme200/images/avatar.png" />
+                                                            <img class="elevation-6" :src="personalInfo.profile_pic" />
                                                         </v-list-item-avatar>
                                                         <!-- Avatar -->
                                                         <!-- Name -->
@@ -96,7 +96,7 @@
                                                             <!-- <v-icon color="#00CDF7" small>mdi-clock-check</v-icon> -->
                                                         </v-list-item-icon>
                                                         <v-list-item-content class="ml-n10">
-                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour</v-list-item-subtitle>
+                                                            <v-list-item-subtitle style="font-size:3.5vw;">{{paymentInfo.salary}}$/{{paymentInfo.salary_frequency}}</v-list-item-subtitle>
                                                         </v-list-item-content>
                                                     </v-list-item>
                                                 </v-col>
@@ -107,7 +107,7 @@
                                                             <v-icon color="#00CDF7" small>mdi-calendar-check</v-icon>
                                                         </v-list-item-icon>
                                                         <v-list-item-content class="ml-n10">
-                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour</v-list-item-subtitle>
+                                                            <v-list-item-subtitle style="font-size:3.5vw;">{{paymentInfo.salary}}$/{{paymentInfo.salary_frequency}}</v-list-item-subtitle>
                                                         </v-list-item-content>
                                                     </v-list-item>
                                                 </v-col>
@@ -151,13 +151,13 @@
                                                                     <v-spacer class="hidden-md-only"></v-spacer>
                                                                     <v-col cols="12" md="4" sm="5" class>
                                                                         <v-btn color="#03CA9F" class="btn-voice-call">
-                                                                            <img class="mr-2" src="/images/resume_themes/theme200/icons/phone.png" />Voice Call
+                                                                            <img class="mr-2" src="/images/resume_themes/theme200/icons/phone.png" />Audio
                                                                         </v-btn>
                                                                     </v-col>
 
                                                                     <v-col cols="12" md="4" sm="5" class>
                                                                         <v-btn color="#2400FF" class="btn-upload">
-                                                                            <img src="/images/resume_themes/theme200/icons/camera.png" class="mr-2" />Upload Video
+                                                                            <img src="/images/resume_themes/theme200/icons/camera.png" class="mr-2" /> Video
                                                                         </v-btn>
                                                                     </v-col>
                                                                 </v-row>
@@ -180,8 +180,8 @@
                                                                         <v-img class="img-hour" src="/images/resume_themes/theme200/icons/hourly-rate.png"></v-img>
                                                                     </v-col>
                                                                     <v-col cols="12" md="3" sm="3">
-                                                                        <div class="hire-me-title">15$</div>
-                                                                        <div class="hire-me-subtitle">Hourly Rate</div>
+                                                                        <div class="hire-me-title">{{paymentInfo.salary}}$</div>
+                                                                        <div class="hire-me-subtitle">{{paymentInfo.salary_frequency}} Rate</div>
                                                                     </v-col>
                                                                     <v-col
                                                                             cols="12"
@@ -192,8 +192,8 @@
                                                                         <v-img class="img-hour" src="/images/resume_themes/theme200/icons/availibility.png"></v-img>
                                                                     </v-col>
                                                                     <v-col cols="12" md="3" sm="4">
-                                                                        <div class="hire-me-title">40 Hours</div>
-                                                                        <div class="hire-me-subtitle">Weekly Availibility</div>
+                                                                        <div class="hire-me-title">{{paymentInfo.available_hours}} Hours</div>
+                                                                        <div class="hire-me-subtitle">{{paymentInfo.available_hours_frequency}} Availibility</div>
                                                                     </v-col>
 
                                                                     <v-col cols="12" md="4" sm="2" class="ml-md-8">
@@ -970,6 +970,7 @@
 
                 // user real data:
                 personalInfo:this.user.personal_info,
+                paymentInfo:this.user.payment_info,
 
             };
         },
