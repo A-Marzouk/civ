@@ -7,7 +7,7 @@
                 <v-col cols="12">
                     <v-card color="#6152CF" class="parent-card" dark flat>
                         <v-card-text>
-                            <v-container fluid ma-0 pa-0>
+                            <div fluid ma-0 pa-0>
                                 <v-row no-gutters>
                                     <!-- Column 1 Profile -->
                                     <v-col cols="8" md="5" sm="2">
@@ -275,7 +275,7 @@
                                     </v-col>
                                     <!-- Column3 tabs-->
                                 </v-row>
-                            </v-container>
+                            </div>
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -351,7 +351,7 @@
                         <v-tabs v-model="dataTabs">
                             <!-- Tab Item Portfolio -->
                             <v-tab-item>
-                                <v-container>
+                                <div>
                                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
                                         <v-card-text align="center">
                                             <v-row>
@@ -393,7 +393,7 @@
                                             <!-- Pagination -->
                                         </v-card-text>
                                     </v-card>
-                                </v-container>
+                                </div>
                             </v-tab-item>
                             <!-- tab item portfolio -->
 
