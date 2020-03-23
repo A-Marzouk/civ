@@ -22,6 +22,7 @@
 
         },
         mounted() {
+            // this line to make the user accessible on $store.
             this.$store.dispatch('updateThemeUser', this.user);
         }
     }
