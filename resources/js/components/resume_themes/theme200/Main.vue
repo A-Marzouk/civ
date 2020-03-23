@@ -234,7 +234,7 @@
                                     <!-- Column 2 -->
                                     <!-- Coumn 3 tabs -->
                                     <v-col cols="12" md="10" sm="12" offset-md="1" class="mb-n8 hidden-xs-only">
-                                        <v-card color="transparent" flat>
+                                        <v-card color="transparent" flat  class="w-100">
                                             <v-card-text>
                                                 <!-- tabs -->
                                                 <v-tabs
@@ -523,7 +523,7 @@
                                             <v-tabs-items v-model="skillTab">
                                                 <!-- Inner tab first item -->
                                                 <v-tab-item v-for="n in 4" :key="n">
-                                                    <v-card color="transparent" flat>
+                                                    <v-card color="transparent" flat class="w-100">
                                                         <v-card-text>
                                                             <v-row>
                                                                 <!-- 1st inner column -->
@@ -656,7 +656,7 @@
 
                                                 <!-- About Me Me Name and Designation -->
                                                 <v-col cols="12" md="6" sm="6">
-                                                    <v-card color="transparent" flat>
+                                                    <v-card color="transparent" flat class="w-100">
                                                         <v-card-text>
                                                             <div class="hello-text">Hello I'm</div>
                                                             <div class="hello-title">Mickel David</div>
