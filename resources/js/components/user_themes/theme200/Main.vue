@@ -270,18 +270,18 @@
                 <v-col cols="12" class="hidden-sm-and-up" :class="[currentTab == 4?'':'d-none']">
                     <v-card flat>
                         <v-tabs
-                                v-model="skillTab"
+                                
                                 background-color="#F15959"
                                 show-arrows
                                 grow
                                 dark
                                 style="border-radius:0px !important;"
                         >
-                            <v-tab
+                            <v-tab @click="activeSkillTab = skillTab"
                                     class="text-capitalize caption"
-                                    v-for="skill in skills"
-                                    :key="skill.id"
-                            >{{skill.skill}}</v-tab>
+                                    v-for="skillTab in skillTabs"
+                                    :key="skillTab.value"
+                            >{{skillTab.title}}</v-tab>
                         </v-tabs>
                     </v-card>
                 </v-col>
@@ -354,21 +354,6 @@
                                                     </v-card>
                                                 </v-col>
                                             </v-row>
-                                            <!-- Pagination -->
-                                            <v-row class="mt-5">
-                                                <v-col cols="12">
-                                                    <div class="text-center">
-                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
-                                                            <v-icon disabled>mdi-arrow-left</v-icon>
-                                                        </v-btn>
-                                                        <span class="title pagination-text">1/5</span>
-                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
-                                                            <v-icon>mdi-arrow-right</v-icon>
-                                                        </v-btn>
-                                                    </div>
-                                                </v-col>
-                                            </v-row>
-                                            <!-- Pagination -->
                                         </v-card-text>
                                     </v-card>
                                 </v-container>
@@ -458,16 +443,12 @@
                                             <v-toolbar flat class="ml-md-5 hidden-xs-only">
                                                 <v-tabs
                                                         color="#6152CF"
-                                                        v-model="skillTab"
+                                                        
                                                         background-color="transparent"
                                                         align-with-title
                                                         mobile-break-point="599"
                                                 >
-                                                    <v-tab
-                                                            v-for="item in skills"
-                                                            :key="item.id"
-                                                            class="skill-tab-text mx-md-4 mr-sm-n4"
-                                                    >{{item.skill}}</v-tab>
+                                                    <v-tab @click="activeSkillTab = skillTab" v-for="skillTab in skillTabs" :key="skillTab.value" class="skill-tab-text mx-md-4 mr-sm-n4">{{skillTab.title}}</v-tab>
                                                 </v-tabs>
                                                 <v-spacer></v-spacer>
                                                 <v-btn icon class="mx-md-3">
@@ -478,102 +459,64 @@
                                                 </v-btn>
                                             </v-toolbar>
                                             <!-- Inner Tab Items -->
-                                            <v-tabs-items v-model="skillTab">
-                                                <!-- Inner tab first item -->
-                                                <v-tab-item v-for="n in 4" :key="n">
-                                                    <v-card color="transparent" flat>
-                                                        <v-card-text>
-                                                            <v-row>
-                                                                <!-- 1st inner column -->
-                                                                <v-col
-                                                                        cols="12"
-                                                                        md="12"
-                                                                        v-for="skill in skillDetails"
-                                                                        :key="skill.title"
-                                                                >
-                                                                    <v-card flat color="transparent">
-                                                                        <v-card-title class="skill-child-title">{{skill.title}}</v-card-title>
-                                                                        <v-card-text>
-                                                                            <v-row>
-                                                                                <v-col
-                                                                                        cols="12"
-                                                                                        md="3"
-                                                                                        sm="6"
-                                                                                        v-for="software in skill.softwareList"
-                                                                                        :key="software.name"
-                                                                                >
-                                                                                    <v-card flat color="#D5EEFF" class="pa-0">
-                                                                                        <v-card-text>
-                                                                                            <v-list-item>
-                                                                                                <v-list-item-icon>
-                                                                                                    <v-img
-                                                                                                            width="35"
-                                                                                                            :src="getIconSkill(software.icon)"
-                                                                                                    ></v-img>
-                                                                                                </v-list-item-icon>
+                                            <v-card color="transparent" flat class="w-100">
+                                                <v-card-text>
+                                                    <v-row>
+                                                        <v-card flat color="transparent" class="w-100">
+                                                            <v-card-text>
+                                                                <v-row>
+                                                                    <v-col class="skill-item" cols="12" md="3" sm="6" v-for="skill in skills" :key="skill.title" v-if="activeSkillTab.value === skill.category">
+                                                                        <v-card flat color="#D5EEFF" class="pa-0" >
+                                                                            <v-card-text>
+                                                                                <v-list-item>
+                                                                                    <v-list-item-icon>
+                                                                                        <v-img
+                                                                                                width="35"
+                                                                                                :src="getSkillIcon(skill.title)"
+                                                                                        ></v-img>
+                                                                                    </v-list-item-icon>
 
-                                                                                                <v-list-item-content class="ml-n6">
-                                                                                                    <v-list-item-subtitle>
-                                                                                                        <v-row no-gutters>
-                                                                                                            <v-col cols="9">{{software.name}}</v-col>
-                                                                                                            <v-col
-                                                                                                                    cols="3"
-                                                                                                                    class="hidden-sm-and-up caption"
-                                                                                                                    align="right"
-                                                                                                            >{{software.valueText}}</v-col>
-                                                                                                        </v-row>
-                                                                                                    </v-list-item-subtitle>
-                                                                                                    <v-list-item-subtitle>
-                                                                                                        <v-row no-gutters>
-                                                                                                            <v-col cols="12" md="9" sm="9">
-                                                                                                                <v-progress-linear
-                                                                                                                        height="8"
-                                                                                                                        background-color="#C5C5C5"
-                                                                                                                        :color="software.color"
-                                                                                                                        :value="software.value"
-                                                                                                                ></v-progress-linear>
-                                                                                                            </v-col>
-                                                                                                            <v-col
-                                                                                                                    cols="4"
-                                                                                                                    md="2"
-                                                                                                                    sm="2"
-                                                                                                                    offset="1"
-                                                                                                                    class="mt-n1 caption hidden-xs-only"
-                                                                                                            >{{software.valueText}}</v-col>
-                                                                                                        </v-row>
-                                                                                                    </v-list-item-subtitle>
-                                                                                                </v-list-item-content>
-                                                                                            </v-list-item>
-                                                                                        </v-card-text>
-                                                                                    </v-card>
-                                                                                </v-col>
-                                                                            </v-row>
-                                                                        </v-card-text>
-                                                                    </v-card>
-                                                                </v-col>
-                                                                <!-- 1st inner column -->
-                                                            </v-row>
-                                                            <!-- Pagination -->
-                                                            <v-row class="mt-5">
-                                                                <v-col cols="12">
-                                                                    <div class="text-center">
-                                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
-                                                                            <v-icon disabled>mdi-arrow-left</v-icon>
-                                                                        </v-btn>
-                                                                        <span class="title pagination-text">1/5</span>
-                                                                        <v-btn dark x-small class="mx-8" fab color="#6152CF">
-                                                                            <v-icon>mdi-arrow-right</v-icon>
-                                                                        </v-btn>
-                                                                    </div>
-                                                                </v-col>
-                                                            </v-row>
-                                                            <!-- Pagination -->
-                                                        </v-card-text>
-                                                    </v-card>
-                                                </v-tab-item>
-                                                <!-- inner tab 1st item -->
-                                            </v-tabs-items>
-                                            <!-- Inner tab Items -->
+                                                                                    <v-list-item-content class="ml-n6">
+                                                                                        <v-list-item-subtitle>
+                                                                                            <v-row no-gutters>
+                                                                                                <v-col cols="9">{{skill.title}}</v-col>
+                                                                                                <v-col
+                                                                                                        cols="3"
+                                                                                                        class="hidden-sm-and-up caption"
+                                                                                                        align="right"
+                                                                                                >{{skill.title}}</v-col>
+                                                                                            </v-row>
+                                                                                        </v-list-item-subtitle>
+                                                                                        <v-list-item-subtitle>
+                                                                                            <v-row no-gutters>
+                                                                                                <v-col cols="12" md="9" sm="9">
+                                                                                                    <v-progress-linear
+                                                                                                            height="8"
+                                                                                                            background-color="#C5C5C5"
+                                                                                                            color="blue"
+                                                                                                            :value="skill.percentage"
+                                                                                                    ></v-progress-linear>
+                                                                                                </v-col>
+                                                                                                <v-col
+                                                                                                        cols="4"
+                                                                                                        md="2"
+                                                                                                        sm="2"
+                                                                                                        offset="1"
+                                                                                                        class="mt-n1 caption hidden-xs-only"
+                                                                                                >{{skill.percentage}}%</v-col>
+                                                                                            </v-row>
+                                                                                        </v-list-item-subtitle>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
+                                                                            </v-card-text>
+                                                                        </v-card>
+                                                                    </v-col>
+                                                                </v-row>
+                                                            </v-card-text>
+                                                        </v-card>
+                                                    </v-row>
+                                                </v-card-text>
+                                            </v-card>
                                         </v-card-text>
                                     </v-card>
                                 </v-container>
@@ -705,7 +648,7 @@
                                                         <v-btn dark x-small class="mx-8" fab color="#6152CF">
                                                             <v-icon disabled>mdi-arrow-left</v-icon>
                                                         </v-btn>
-                                                        <span class="title pagination-text">1/5</span>
+                                                        <span class="title pagination-text">1/5 7</span>
                                                         <v-btn dark x-small class="mx-8" fab color="#6152CF">
                                                             <v-icon>mdi-arrow-right</v-icon>
                                                         </v-btn>
@@ -737,7 +680,7 @@
         props:['user'],
         data() {
             return {
-                skillTab: null,
+                activeSkillTab: {title: "Programming Languages", value: 'Programming_languages', id: 1},
                 page: 1,
                 overlay: true,
                 absolute: true,
@@ -751,83 +694,11 @@
                     { title: "About Me", id: 5 },
                     { title: "Achievement", id: 6 }
                 ],
-                skills: [
-                    {
-                        skill: "Programming Languages",
-                        value: 80,
-                        id: 1
-                    },
-                    { skill: "Framework/Databases", value: 35, id: 2 },
-                    { skill: "Software", value: 92, id: 3 },
-                    { skill: "Design Skills", value: 55, id: 4 }
-                ],
-                skillDetails: [
-                    {
-                        title: "Softwares",
-                        softwareList: [
-                            {
-                                name: "Illustrator",
-                                icon: "illustrator",
-                                color: "#FF7C00",
-                                value: "90",
-                                valueText: "90%"
-                            },
-                            {
-                                name: "Adobe XD",
-                                icon: "xd",
-                                color: "#FF21AF",
-                                value: "70",
-                                valueText: "70%"
-                            },
-                            {
-                                name: "Photoshop",
-                                icon: "photoshop",
-                                color: "#00C8FF",
-                                value: "95",
-                                valueText: "95%"
-                            },
-                            {
-                                name: "Premier Pro",
-                                icon: "premier",
-                                color: "#E788FF",
-                                value: "50",
-                                valueText: "50%"
-                            }
-                        ]
-                    },
-                    {
-                        title: "Languages",
-                        softwareList: [
-                            {
-                                name: "HTML",
-                                icon: "html",
-                                color: "#E34F26",
-                                value: "90",
-                                valueText: "90%"
-                            },
-                            {
-                                name: "CSS",
-                                icon: "css",
-                                color: "#264DE4",
-                                value: "70",
-                                valueText: "70%"
-                            },
-                            {
-                                name: "Javascript",
-                                icon: "js",
-                                color: "#FDD83C",
-                                value: "95",
-                                valueText: "95%"
-                            },
-                            {
-                                name: "Magento",
-                                icon: "magento",
-                                color: "#EC6737",
-                                value: "50",
-                                valueText: "50%"
-                            }
-                        ]
-                    }
+                skillTabs: [
+                    {title: "Programming Languages", value: 'Programming_languages', id: 1},
+                    { title: "Framework/Databases", value: 'Frameworks', id: 2 },
+                    { title: "Software", value: 'Software', id: 3 },
+                    { title: "Design Skills", value: 'Design', id: 4 }
                 ],
                 portfolio: [
                     {
@@ -971,6 +842,7 @@
                 // user real data:
                 personalInfo:this.user.personal_info,
                 paymentInfo:this.user.payment_info,
+                skills: this.user.skills
 
             };
         },
@@ -1006,7 +878,97 @@
             //get social media image icons
             getIconSocial(icon) {
                 return `/images/resume_themes/theme200/icons/${icon}.png`;
-            }
+            },
+            getSkillIcon(skill_title) {
+                let arrayOfSkillImages = {
+                    'ui design': '/images/skills_icons/user_interface.png',
+                    'ux design': '/images/skills_icons/user_experience.png',
+                    'logo design': '/images/skills_icons/logo_design.png',
+                    'animation': '/images/skills_icons/animation.jpg',
+                    'motion graphics': '/images/skills_icons/motion_graphics.png',
+                    'illustration': '/images/skills_icons/illustration.png',
+                    'advertising': '/images/skills_icons/advertising.png',
+                    'branding': '/images/skills_icons/branding.png',
+                    'brochure Design': '/images/skills_icons/brochure_design.png',
+                    'website design': '/images/skills_icons/web_design.png',
+                    'game designer': '/images/skills_icons/game_designer.png',
+                    'character design': '/images/skills_icons/character_design.png',
+                    'digital painting': '/images/skills_icons/digital_painting.png',
+                    'creative director': '/images/skills_icons/creative_director.png',
+                    'html / css': '/images/skills_icons/HTML.png',
+                    // 2-
+
+                    'adobe after effects': '/images/skills_icons/AE.png',
+                    'sketch': '/images/skills_icons/Sketch.png',
+                    'adobe illustrator': '/images/skills_icons/Illustrator.png',
+                    'adobe xd': '/images/skills_icons/AdobeXD.png',
+                    'photoshop': '/images/skills_icons/Photoshop.png',
+                    'autocad': '/images/skills_icons/autocad.png',
+                    'solidworks': '/images/skills_icons/solid_works.png',
+                    'adobe flash': '/images/skills_icons/adobe_flash.png',
+                    'digital drawing Tablet': '/images/skills_icons/digital_drawing_tablet.png',
+                    'adobe indesign': '/images/skills_icons/indesign.png',
+                    'coreldraw': '/images/skills_icons/corel_draw.png',
+                    '3d max': '/images/skills_icons/3d_max.png',
+
+                    // developer :
+                    // 1-
+                    'javascript': '/images/skills_icons/javascript.png',
+                    'sql': '/images/skills_icons/mysql.png',
+                    'java': 'resumeApp/resources/assets/images/skills_icons/java.png',
+                    'c#': '/images/skills_icons/c#.png',
+                    'python': '/images/skills_icons/python.png',
+                    'php': '/images/skills_icons/php.png',
+                    'c++': '/images/skills_icons/c_language.png',
+                    'c': '/images/skills_icons/c_language.png',
+                    'typescript': '/images/skills_icons/typescript.png',
+                    'ruby': '/images/skills_icons/ruby.png',
+                    'objective-C': '/images/skills_icons/objective_c.png',
+                    'swift': '/images/skills_icons/swift.png',
+                    'vb.net': '/images/skills_icons/vb_net.png',
+                    'go': '/images/skills_icons/go.png',
+                    'perl': '/images/skills_icons/perl.png',
+                    'scala': '/images/skills_icons/scala.png',
+                    'groovy': '/images/skills_icons/groovy.png',
+                    'assembly': '/images/skills_icons/assembly.png',
+                    'coffeescript': '/images/skills_icons/coffeeScript.png',
+                    'vba': '/images/skills_icons/vba.png',
+                    'r': '/images/skills_icons/r_lang.png',
+                    'matlab': '/images/skills_icons/matlab.png',
+                    'visual basic 6': '/images/skills_icons/matlab.png',
+                    'lua': '/images/skills_icons/lua.png',
+                    'haskell': '/images/skills_icons/haskell.png',
+                    'html': '/images/skills_icons/HTML.png',
+                    'css': '/images/skills_icons/CSS.png',
+                    'laravel': '/images/skills_icons/laravel.png',
+                    'phpstorm': '/images/skills_icons/phpstorm.png',
+
+                    //2-
+                    'angularjs': '/images/skills_icons/Angularjs.png',
+                    'angular.js': '/images/skills_icons/Angularjs.png',
+                    'node.js': '/images/skills_icons/node_js.png',
+                    'nodejs': '/images/skills_icons/node_js.png',
+                    '.net Core': '/images/skills_icons/netcore.png',
+                    'react': '/images/skills_icons/react.png',
+                    'cordova': '/images/skills_icons/cordava.png',
+                    'firebase': '',
+                    'xamarin': '',
+                    'hadoop': '/images/skills_icons/hadoop.png',
+                    'spark': '/images/skills_icons/spark.png',
+                    'mysql': '/images/skills_icons/mysql.png',
+                    'sql server': '/images/skills_icons/sql server.png',
+                    'postgresql': '/images/skills_icons/postgreSQL.png',
+                    'sqlite': '/images/skills_icons/SQLite.png',
+                    'mongodb': '/images/skills_icons/mongoDB.png',
+                    'oracle': '/images/skills_icons/Oracle.png',
+                    'redis': '/images/skills_icons/redis.png',
+                    'cassandra': '/images/skills_icons/cassandra.png'
+                };
+                if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
+                    return arrayOfSkillImages[skill_title.toLowerCase()];
+                }
+                return '/images/skills_icons/skill.png';
+            },
         },
     };
 </script>
