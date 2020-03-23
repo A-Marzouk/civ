@@ -77,6 +77,9 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/personal-info/location', 'API\PersonalInfoController@storeLocation');
     Route::put('/personal-info/single-field', 'API\PersonalInfoController@updateSingleField');
 
+//  update user theme :
+    Route::put('/update-theme', 'API\UsersController@updateUserTheme');
+
 // Links api routes:
     Route::get('/links', 'API\LinksController@index');
     Route::get('/links/{id}', 'API\LinksController@show');
