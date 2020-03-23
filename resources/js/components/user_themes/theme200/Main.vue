@@ -366,26 +366,26 @@
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <v-row>
-                                                <v-col cols="12" md="6" sm="12" v-for="(item,index) in work" :key="index">
+                                                <v-col cols="12" md="6" sm="12" v-for="(work,index) in works" :key="index">
                                                     <v-card flat color="transparent" class="mx-md-10">
                                                         <v-card-text>
                                                             <v-list-item>
                                                                 <v-list-item-icon class="mt-2">
-                                                                    <v-img width="40" :src="getIconWork(item.id)"></v-img>
+                                                                    <v-img width="40" :src="getIconWork(index+1)"></v-img>
                                                                 </v-list-item-icon>
                                                                 <div
                                                                         class="v-line"
                                                                         :class="[
-                                  work.length-(index+1) <2 ? 'hidden-md-and-up':''
+                                  works.length-(index+1) <2 ? 'hidden-md-and-up':''
                                 ]"
                                                                 ></div>
                                                                 <v-list-item-content>
-                                                                    <v-list-item-title class="work-title">{{item.title}}</v-list-item-title>
+                                                                    <v-list-item-title class="work-title">{{work.job_title}}</v-list-item-title>
                                                                     <v-list-item-subtitle
                                                                             class="work-subtitle mt-2"
-                                                                    >{{ item.subtitle1 }}</v-list-item-subtitle>
-                                                                    <v-list-item-subtitle class="work-subtitle">{{ item.subtitle2}}</v-list-item-subtitle>
-                                                                    <div class="float-xs-left mt-4 work-text">{{ item.bodyText }}</div>
+                                                                    >{{ work.company_name }}</v-list-item-subtitle>
+                                                                    <v-list-item-subtitle class="work-subtitle">{{ work.company_name}}</v-list-item-subtitle>
+                                                                    <div class="float-xs-left mt-4 work-text">{{ work.description }}</div>
                                                                 </v-list-item-content>
                                                             </v-list-item>
                                                         </v-card-text>
@@ -404,24 +404,20 @@
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <v-row>
-                                                <v-col cols="12" md="6" v-for="(item,index) in education" :key="index">
+                                                <v-col cols="12" md="6" v-for="(education,index) in educations" :key="index">
                                                     <v-card flat color="transparent" class="mx-md-10">
                                                         <v-card-text>
                                                             <v-list-item>
                                                                 <v-list-item-icon class="mt-2">
-                                                                    <v-img width="40" :src="getIconEducation(item.id)"></v-img>
+                                                                    <v-img width="40" :src="getIconEducation(index+1)"></v-img>
                                                                 </v-list-item-icon>
-                                                                <div class="v-line" v-if="work.length-(index+1) >1"></div>
+                                                                <div class="v-line" v-if="educations.length-(index+1) >1"></div>
                                                                 <v-list-item-content>
-                                                                    <v-list-item-title class="work-title">{{item.title}}</v-list-item-title>
+                                                                    <v-list-item-title class="work-title">{{education.degree_title}}</v-list-item-title>
                                                                     <v-list-item-subtitle
                                                                             class="work-subtitle mt-2"
-                                                                    >{{ item.subtitle1 }}</v-list-item-subtitle>
-                                                                    <v-list-item-subtitle
-                                                                            v-if="item.subtitle2"
-                                                                            class="work-subtitle mt-2"
-                                                                    >{{ item.subtitle2}}</v-list-item-subtitle>
-                                                                    <div class="float-xs-left mt-4 work-text">{{ item.bodyText }}</div>
+                                                                    >{{ education.university_name }}</v-list-item-subtitle>
+                                                                    <div class="float-xs-left mt-4 work-text">{{ education.institution_type }}</div>
                                                                 </v-list-item-content>
                                                             </v-list-item>
                                                         </v-card-text>
@@ -784,56 +780,6 @@
                             "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
                     }
                 ],
-                education: [
-                    {
-                        id: 1,
-                        title: "Graphic Art Institute",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 2,
-                        title: "Edx Ltd",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 3,
-                        title: "Visual Design ltd",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 4,
-                        title: "teachable",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "Jan 2017 - Feb 2019",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 5,
-                        title: "Udemy",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    },
-                    {
-                        id: 6,
-                        title: "learnworlds",
-                        subtitle1: "Gps Bangla",
-                        subtitle2: "",
-                        bodyText:
-                            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-                    }
-                ],
                 socialMedia: [
                     { title: "behance", icon: "fa-behance", color: "#217BFF" },
                     { title: "dribbble", icon: "fa-dribbble", color: "#EE588A" },
@@ -846,6 +792,8 @@
                 paymentInfo:this.user.payment_info,
                 skills: this.user.skills,
                 achievements: this.user.achievements,
+                educations: this.user.education,
+                works: this.user.work_experience,
 
             };
         },
