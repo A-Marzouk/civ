@@ -401,7 +401,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        background-image: url("/images/resume_themes/theme8/background.svg");
+        background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
         font-family: 'Thabit', monospace !important;
         max-width: 1920px;
 
@@ -1535,7 +1535,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            background-image: url("/images/resume_themes/theme8/background.svg");
+            background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
             font-family: 'Thabit', monospace !important;
             max-width: 1920px;
 
