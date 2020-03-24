@@ -7,7 +7,7 @@
                 <v-col cols="12">
                     <v-card color="#6152CF" class="parent-card" dark flat>
                         <v-card-text>
-                            <div class="m-0 p-0">
+                            <v-container class="m-0 p-0">
                                 <v-row no-gutters>
                                     <!-- Column 1 Profile -->
                                     <v-col cols="8" md="5" sm="2">
@@ -255,7 +255,7 @@
                                     </v-col>
                                     <!-- Column3 tabs-->
                                 </v-row>
-                            </div>
+                            </v-container>
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -440,7 +440,7 @@
                                             <v-toolbar flat class="ml-md-5 hidden-xs-only">
                                                 <v-tabs
                                                         color="#6152CF"
-                                                        
+
                                                         background-color="transparent"
                                                         align-with-title
                                                         mobile-break-point="599"
