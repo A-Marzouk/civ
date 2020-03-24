@@ -24,7 +24,6 @@ class ResumeController extends Controller
         if($user){
             // get theme code
             $themeCode = $user->theme_code ;
-            $themeCode = 8 ; // TODO: remove this line
             return view('userThemes.theme' . $themeCode, compact('user'));
         }else{
             return abort(404);
