@@ -36,11 +36,11 @@
                         </div>
 
                         <div class="icons">
-                            <img src="/images/resume_themes/theme8/behance (1).svg" alt="social icon">
+                            <img src="/images/resume_themes/theme8/behance.svg" alt="social icon">
                             <img src="/images/resume_themes/theme8/dribbble.svg" alt="social icon">
                             <img src="/images/resume_themes/theme8/instagram.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/XMLID_801_.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/icon.svg" alt="social icon">
+                            <img src="/images/resume_themes/theme8/linkedin.svg" alt="social icon">
+                            <img src="/images/resume_themes/theme8/google.svg" alt="social icon">
                         </div>
                     </div>
                 </div>

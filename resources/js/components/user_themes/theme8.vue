@@ -35,12 +35,10 @@
                             </div>
                         </div>
 
-                        <div class="icons">
-                            <img src="/images/resume_themes/theme8/behance (1).svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/dribbble.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/instagram.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/XMLID_801_.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/icon.svg" alt="social icon">
+                        <div class="icons NoDecor">
+                            <a :href="item.link" v-for="item in socialLinks" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
+                                <img :src="`/images/resume_themes/theme8/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -221,7 +219,6 @@
                 works: this.user.work_experience,
                 projects: this.user.projects,
                 links: this.user.links,
-
                 slickOptions:{
                     dots: false,
                     arrows: false,
@@ -238,10 +235,9 @@
                             }
                         },
                     ]
-                },
+                }
             }
         },
-
         methods: {
             setActiveTab(tabName) {
                 this.activeTab = tabName;
@@ -267,9 +263,14 @@
             },
             getRandomColor(){
                 return  'background:#' + Math.floor(Math.random()*16777215).toString(16);
-            }
+            },
         },
 
+        computed:{
+            socialLinks(){
+                return this.links.filter( (link) => {return link.category === 'social_link' ? link : false});
+            }
+        },
         mounted() {
             this.skillsBar();
         }
@@ -375,12 +376,14 @@
                         .icons{
                             display: flex;
                             align-items: center;
-                            img{
-                                width:42px;
-                                height:26px;
+                            a{
+                                img{
+                                    width: 30px;
+                                    height: auto;
+                                }
                                 margin-right:30px ;
                             }
-                            img:last-child{
+                            a:last-child{
                                 margin-right:0 ;
                             }
                         }
