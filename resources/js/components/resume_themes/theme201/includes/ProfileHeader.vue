@@ -49,7 +49,10 @@
                       </v-btn>
                       <!-- hidden in medium devices -->
                       <v-btn class="mr-4 custom-btn" fab dark small color="white">
-                        <v-img src="/images/resume_themes/theme201/icons/pdf-download.png" class="custom-icon"></v-img>
+                        <v-img
+                          src="/images/resume_themes/theme201/icons/pdf-download.png"
+                          class="custom-icon"
+                        ></v-img>
                       </v-btn>
 
                       <!-- Hire Me Btn -->
@@ -72,10 +75,10 @@
                     <v-icon>mdi-map-marker</v-icon>
                   </v-btn>
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <v-icon>mdi-whatsapp</v-icon>
+                    <img width="14" src="/images/resume_themes/theme201/icons/whatsapp.png">
                   </v-btn>
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <v-icon>mdi-google</v-icon>
+                    <img width="16" src="/images/resume_themes/theme201/icons/google-plus.png">
                   </v-btn>
                 </div>
               </v-flex>
@@ -93,13 +96,13 @@
               <v-icon style="font-size:14px !important;">fa-behance</v-icon>
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <v-icon>fa-dribbble</v-icon>
+              <img width="16" src="/images/resume_themes/theme201/icons/dribbble.png">
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <v-icon>mdi-instagram</v-icon>
+              <img width="14" src="/images/resume_themes/theme201/icons/instagram.png">
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <v-icon>mdi-linkedin</v-icon>
+              <v-icon style="font-size:12px;">fa-linkedin</v-icon>
             </v-btn>
           </div>
         </v-card-text>
@@ -115,13 +118,13 @@
               <v-icon>mdi-map-marker</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark color="red">
-              <v-icon>mdi-google-plus</v-icon>
+              <img width="20" src="/images/resume_themes/theme201/icons/google-plus.png">
             </v-btn>
             <v-btn class="mx-2" fab dark color="black">
-              <v-icon>mdi-linkedin</v-icon>
+              <v-icon>fa-linkedin</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark color="black">
-              <v-icon>mdi-whatsapp</v-icon>
+              <img width="20" src="/images/resume_themes/theme201/icons/whatsapp.png">
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
@@ -129,7 +132,7 @@
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
-              <v-icon>fa-dribbble</v-icon>
+              <img width="22" src="/images/resume_themes/theme201/icons/dribbble.png">
             </v-btn>
           </div>
         </v-card-text>
@@ -149,10 +152,10 @@
               <v-icon>mdi-google-plus</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab small dark color="black">
-              <v-icon>mdi-linkedin</v-icon>
+              <v-icon style="font-size:12px;">fa-linkedin</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark small color="black">
-              <v-icon>mdi-whatsapp</v-icon>
+              <img width="14" src="/images/resume_themes/theme201/icons/whatsapp.png">
             </v-btn>
 
             <v-btn class="mx-2" fab dark small color="black">
@@ -160,7 +163,7 @@
             </v-btn>
 
             <v-btn class="mx-2" fab small dark color="black">
-              <v-icon>fa-dribbble</v-icon>
+              <img width="14" src="/images/resume_themes/theme201/icons/dribbble.png">
             </v-btn>
           </div>
         </v-card-text>
@@ -252,43 +255,40 @@ export default {
 </script>
 
 <style>
+.title-row {
+  padding-left: 5px !important;
+}
 
+.title-text {
+  font-weight: 600;
+  font-size: 40px !important;
+  line-height: 54px;
+  color: #1d1d1d;
+}
 
-  .title-row {
-    padding-left: 5px !important;
-  }
+.subtitle-text {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px !important;
+  line-height: 29px;
+  color: #1d1d1d;
+}
 
-  .title-text {
-    font-weight: 600;
-    font-size: 40px !important;
-    line-height: 54px;
-    color: #1D1D1D;
-  }
+.custom-icon {
+  width: 29px;
+  height: auto;
+}
 
-  .subtitle-text {
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 300;
-    font-size: 14px !important;
-    line-height: 29px;
-    color: #1D1D1D;
-  }
-
-  .custom-icon {
-    width: 29px;
-    height: auto;
-  }
-
-
-  .custom-mobile-icon {
+.custom-mobile-icon {
   margin-left: -12px !important;
 }
 .btn-hire-me {
   border-radius: 50px !important;
   font-size: 12px !important;
   width: 100px;
-  height:31px !important;
-  margin-top:3px;
+  height: 31px !important;
+  margin-top: 3px;
 }
 .v-dialog {
   overflow-x: hidden !important;
@@ -301,6 +301,5 @@ export default {
   height: 30px;
   margin-top: 20px;
 }
-
 </style>
 
