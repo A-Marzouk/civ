@@ -248,29 +248,38 @@ export default {
       hireMeModal: false
     };
   }
-  // created() {
-  //   window.addEventListener("resize", this.handleResize);
-  //   this.handleResize();
-  // },
-  // destroyed() {
-  //   window.removeEventListener("resize", this.handleResize);
-  // },
-  // methods: {
-  //   handleResize() {
-  //     if (window.innerWidth >= 600 && window.innerWidth < 959) {
-  //       this.fontSize = "font-size: 36px !important";
-  //     }
-
-  //     else{
-  //       this.fontSize= "";
-  //       this.flexWidth = "";
-  //     }
-  //   }
-  // }
 };
 </script>
 
 <style>
+
+
+  .title-row {
+    padding-left: 5px !important;
+  }
+
+  .title-text {
+    font-weight: 600;
+    font-size: 40px !important;
+    line-height: 54px;
+    color: #1D1D1D;
+  }
+
+  .subtitle-text {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px !important;
+    line-height: 29px;
+    color: #1D1D1D;
+  }
+
+  .custom-icon {
+    width: 29px;
+    height: auto;
+  }
+
+
   .custom-mobile-icon {
   margin-left: -12px !important;
 }

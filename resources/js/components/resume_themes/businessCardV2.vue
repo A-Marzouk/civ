@@ -134,7 +134,7 @@
         width: 355.27px;
         height:205px;
         background-size:cover ;
-        background-image: url("/images/resume_themes/theme8/background.svg");
+        background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
         font-family: 'Thabit', monospace !important;
     }
 
