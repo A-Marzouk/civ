@@ -21,18 +21,18 @@
         
         <div class="themes">
             <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.code">
-                <img :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
+                <img @click="openTheme(theme)" :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
 
                 <div class="theme-action-btns">
-                    <a href="javascript:void(0)" class="active-btn" :class="{ 'active' : parseInt(user.theme_code) === theme.code}" @click="activateTheme(theme.code)">
-                        Active
+                    <a href="javascript:void(0)" class="active-btn" :class="{ 'active' : parseInt(user.theme_code) === theme.code}"  @click="activateTheme(theme.code)">
+                        {{ parseInt(user.theme_code) === theme.code ? 'Current theme' : 'Make as default theme'}}
                     </a>
-                    <a :href="'/' + user.username" target="_blank" v-if="parseInt(user.theme_code) === theme.code">
-                        Open
-                    </a>
-                    <a :href="'/preview/theme' + theme.code" target="_blank" v-else>
-                        Preview
-                    </a>
+                    <!--<a :href="'/' + user.username" target="_blank" v-if="parseInt(user.theme_code) === theme.code">-->
+                        <!--Open-->
+                    <!--</a>-->
+                    <!--<a :href="'/preview/theme' + theme.code" target="_blank" v-else>-->
+                        <!--Preview-->
+                    <!--</a>-->
                 </div>
 
             </div>
@@ -68,6 +68,11 @@
             }
         },
         methods:{
+            openTheme(theme){
+                let url  = '/preview/theme'+theme.code ;
+                window.open(url, "_blank") || window.location.replace(url);
+
+            },
             activateTheme(theme_code){
                 if(this.user.theme_code === theme_code){
                     return;
@@ -177,30 +182,41 @@
                     width:642px;
                     height:451px;
                     border-radius:25px;
-                    border: 2px solid blue;
 
                     &.active{
-                        border: 5px solid lightgreen;
+                        -webkit-box-shadow: 0px 59px 70px -20px rgba(7, 211, 38, 0.48);
+                        -moz-box-shadow: 0px 59px 70px -20px rgba(7, 211, 38, 0.48);
+                        box-shadow:  0px 59px 70px -20px rgba(7, 211, 38, 0.48);
+                    }
+
+                    &:hover{
+                        cursor: pointer;
                     }
                 }
 
                 .theme-action-btns{
-                    margin-top: 15px;
-                    margin-left: 15px;
                     display: flex;
                     align-items: center;
+                    justify-content: center;
 
                     a.active-btn{
                         background-color: #cccccc;
                         color: #666666;
+                        margin-top: -25px;
                     }
                     a.active-btn.active{
-                        background-color: lightgreen;
+                        background-color: #07D326;
                         color: white;
+                        font-weight: 600;
+                        &:hover{
+                            cursor: default;
+                        }
                     }
 
                     a{
-                        width: 100px;
+                        width: auto;
+                        padding-left: 15px;
+                        padding-right: 15px;
                         height: 50px;
                         display: flex;
                         justify-content: center;
@@ -216,6 +232,8 @@
                     }
                 }
             }
+
+            margin-bottom: 100px;
         }
     }
 </style>
