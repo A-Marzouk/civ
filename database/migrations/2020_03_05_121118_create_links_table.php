@@ -20,6 +20,7 @@ class CreateLinksTable extends Migration
             $table->string('category')->nullable();
             $table->string('link')->nullable();
             $table->string('link_title')->nullable();
+            $table->integer('is_active')->default(1);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

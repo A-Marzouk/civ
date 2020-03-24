@@ -76,6 +76,7 @@ class LinksController extends Controller
             'link_title' => ['nullable','string', 'max:255','min:3'],
             'category' => ['required', 'string', 'max:255'],
             'link' => ['required', 'string','max:255'],
+            'is_active' => ['max:255'],
         ]);
     }
 }

@@ -399,7 +399,7 @@
 
                             <!-- Tab Item For Work -->
                             <v-tab-item>
-                                <v-container>
+                                <div>
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <v-row>
@@ -440,13 +440,13 @@
                                             </v-row>
                                         </v-card-text>
                                     </v-card>
-                                </v-container>
+                                </div>
                             </v-tab-item>
                             <!-- Tab Item for work -->
 
                             <!-- Tab Item For Education -->
                             <v-tab-item>
-                                <v-container>
+                                <div>
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <v-row>
@@ -484,13 +484,13 @@
                                             </v-row>
                                         </v-card-text>
                                     </v-card>
-                                </v-container>
+                                </div>
                             </v-tab-item>
                             <!-- Tab Item For Education -->
 
                             <!-- Tab Item for skills -->
                             <v-tab-item>
-                                <v-container>
+                                <div>
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <!-- Skill Child Tabs -->
@@ -632,13 +632,13 @@
                                             <!-- Inner tab Items -->
                                         </v-card-text>
                                     </v-card>
-                                </v-container>
+                                </div>
                             </v-tab-item>
                             <!-- Tab Item For Skills -->
 
                             <!-- Tab Item For About Me -->
                             <v-tab-item>
-                                <v-container>
+                                <div>
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <v-row>
@@ -735,13 +735,13 @@
                                             </v-row>
                                         </v-card-text>
                                     </v-card>
-                                </v-container>
+                                </div>
                             </v-tab-item>
                             <!-- Tab Item for About Me -->
 
                             <!-- Tab item for achievement -->
                             <v-tab-item>
-                                <v-container>
+                                <div>
                                     <v-card flat color="transparent" class="mt-n10">
                                         <v-card-text>
                                             <v-row>
@@ -789,7 +789,7 @@
                                             <!-- Pagination -->
                                         </v-card-text>
                                     </v-card>
-                                </v-container>
+                                </div>
                             </v-tab-item>
 
                             <!-- Tab item for achievement -->
