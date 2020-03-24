@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-content-center">
     <nav class="navbar navbar-light fixed-top dashboard_navbar">
-      <a class="navbar-brand" href="/freelancer/dashboard">
+      <a class="navbar-brand" href="/">
         <img src="/images/client/logo_123.png" alt="logout" style="width: 177px;" />
       </a>
     </nav>
