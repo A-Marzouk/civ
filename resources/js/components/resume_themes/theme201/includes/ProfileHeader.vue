@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12 class="hidden-sm-and-up">
-      <v-card class="mx-auto" flat>
+      <v-card class="" flat>
         <v-list-item two-line>
           <v-list-item-avatar size="85">
             <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
@@ -15,7 +15,7 @@
     </v-flex>
 
     <v-flex sm8 md8 class="hidden-xs-only custom-name-row">
-      <v-card class="mx-auto" flat>
+      <v-card class="" flat>
         <v-card-text>
           <v-list-item>
             <v-layout row>
@@ -26,7 +26,7 @@
               </v-flex>
 
               <v-flex xs9 md6 sm8 lg4 class="mobile-center custom-name-section">
-                <v-list-item>
+                <v-list-item class="ml-sm-2">
                   <v-list-item-content class="title-row">
                     <v-list-item-title class="headline title-text">
                       <span class="title-text-tablet">Beverly Andrews</span>
@@ -141,28 +141,28 @@
     <!-- For tablet view -->
 
     <!-- For Mobile -->
-    <v-flex sm12 xs12 class="tablet-mobile-social-icon d-xs-flex d-sm-none d-md-none">
+    <v-flex sm12 xs12 class="tablet-mobile-social-icon hidden-sm-and-up">
       <v-card flat>
         <v-card-text>
           <div class="mobile-align">
-            <v-btn class="mx-2" fab small dark color="black">
+            <v-btn class="mx-1" fab small dark color="black">
               <v-icon>mdi-map-marker</v-icon>
             </v-btn>
-            <v-btn class="mx-2" fab small dark color="black">
+            <v-btn class="mx-1" fab small dark color="black">
               <v-icon>mdi-google-plus</v-icon>
             </v-btn>
-            <v-btn class="mx-2" fab small dark color="black">
+            <v-btn class="mx-1" fab small dark color="black">
               <v-icon style="font-size:12px;">fa-linkedin</v-icon>
             </v-btn>
-            <v-btn class="mx-2" fab dark small color="black">
+            <v-btn class="mx-1" fab dark small color="black">
               <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp">
             </v-btn>
 
-            <v-btn class="mx-2" fab dark small color="black">
+            <v-btn class="mx-1" fab dark small color="black">
               <v-icon style="font-size:12px !important;">fa-behance</v-icon>
             </v-btn>
 
-            <v-btn class="mx-2" fab small dark color="black">
+            <v-btn class="mx-1" fab small dark color="black">
               <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp">
             </v-btn>
           </div>
