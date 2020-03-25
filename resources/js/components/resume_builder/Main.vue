@@ -57,7 +57,7 @@
 
         <div class="modal fade" id="fullScreenNotificationModal" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content border-0" style="border:none !important; ">
+                <div class="modal-content border-0" style="border:none !important;">
                     <div class="modal-body">
                         <!-- image and notification text are set on stor.js (while sending the event) - default value is for success-->
                         <div class="thank-you-pop d-flex">
