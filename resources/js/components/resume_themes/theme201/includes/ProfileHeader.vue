@@ -135,7 +135,7 @@
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
-              <img width="20" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
+              <img width="22" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
             </v-btn>
           </div>
         </v-card-text>
