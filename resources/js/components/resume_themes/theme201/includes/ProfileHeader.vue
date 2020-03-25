@@ -75,10 +75,10 @@
                     <v-icon>mdi-map-marker</v-icon>
                   </v-btn>
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <img width="14" src="/images/resume_themes/theme201/icons/whatsapp.png">
+                    <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp">
                   </v-btn>
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <img width="16" src="/images/resume_themes/theme201/icons/google-plus.png">
+                    <img width="16" src="/images/resume_themes/theme201/social_icons/google-plus.webp">
                   </v-btn>
                 </div>
               </v-flex>
@@ -96,10 +96,10 @@
               <v-icon style="font-size:14px !important;">fa-behance</v-icon>
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="16" src="/images/resume_themes/theme201/icons/dribbble.png">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp">
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="14" src="/images/resume_themes/theme201/icons/instagram.png">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/instagram.webp">
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
               <v-icon style="font-size:12px;">fa-linkedin</v-icon>
@@ -118,13 +118,13 @@
               <v-icon>mdi-map-marker</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark color="red">
-              <img width="20" src="/images/resume_themes/theme201/icons/google-plus.png">
+              <img width="20" src="/images/resume_themes/theme201/social_icons/google-plus.webp">
             </v-btn>
             <v-btn class="mx-2" fab dark color="black">
               <v-icon>fa-linkedin</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark color="black">
-              <img width="20" src="/images/resume_themes/theme201/icons/whatsapp.png">
+              <img width="20" src="/images/resume_themes/theme201/social_icons/whatsapp.webp">
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
@@ -132,7 +132,7 @@
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
-              <img width="22" src="/images/resume_themes/theme201/icons/dribbble.png">
+              <img width="20" src="/images/resume_themes/theme201/social_icons/dribbble.webp">
             </v-btn>
           </div>
         </v-card-text>
@@ -155,7 +155,7 @@
               <v-icon style="font-size:12px;">fa-linkedin</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark small color="black">
-              <img width="14" src="/images/resume_themes/theme201/icons/whatsapp.png">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp">
             </v-btn>
 
             <v-btn class="mx-2" fab dark small color="black">
@@ -163,7 +163,7 @@
             </v-btn>
 
             <v-btn class="mx-2" fab small dark color="black">
-              <img width="14" src="/images/resume_themes/theme201/icons/dribbble.png">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp">
             </v-btn>
           </div>
         </v-card-text>
