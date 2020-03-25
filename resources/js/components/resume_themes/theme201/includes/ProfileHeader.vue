@@ -18,22 +18,22 @@
       <v-card class flat>
         <v-card-text>
           <v-list-item>
-            <v-layout row>
-              <v-flex xs3 md3 sm4 lg2 class="mobile-center">
+            <v-layout row wrap>
+              <v-flex xs3 md3 sm3 lg2 class="mobile-center">
                 <v-avatar size="120">
                   <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
                 </v-avatar>
               </v-flex>
 
-              <v-flex xs9 md6 sm8 lg4 class="mobile-center custom-name-section">
+              <v-flex xs9 md6 sm9 lg4 class="mobile-center custom-name-section">
                 <v-list-item class="ml-sm-2">
                   <v-list-item-content class="title-row">
-                    <v-list-item-title class="headline title-text">
+                    <v-list-item-title class="headline title-text ml-sm-1">
                       <span class="title-text-tablet">Beverly Andrews</span>
                     </v-list-item-title>
 
-                    <v-list-item-subtitle class="subtitle-text pa-sm-1">User interface designer</v-list-item-subtitle>
-                    <div class="profile-btn">
+                    <v-list-item-subtitle class="subtitle-text mt-sm-n2 ml-sm-1">User interface designer</v-list-item-subtitle>
+                    <div class="profile-btn mt-sm-2">
                       <v-btn
                         class="ml-n1 mr-4 custom-btn hidden-sm-and-down"
                         fab
@@ -120,7 +120,7 @@
             <v-btn class="mx-2" fab dark color="black">
               <v-icon>mdi-map-marker</v-icon>
             </v-btn>
-            <v-btn class="mx-2" fab dark color="red">
+            <v-btn class="mx-2" fab dark color="black">
               <img width="20" src="/images/resume_themes/theme201/social_icons/google-plus.webp" />
             </v-btn>
             <v-btn class="mx-2" fab dark color="black">
@@ -218,15 +218,15 @@
 
           <v-card-text align="center">
             <v-container style="max-width: 1785px;">
-              <v-row justify="center">
+              <v-row justify="center" align="center">
                 <v-col cols="5" sm="3" md="3">
-                  <div style="color:black;" class="font-weight-bold">$35</div>
-                  <div>hourly rate</div>
+                  <div class="font-weight-bold custom-modal-title">$35</div>
+                  <div class="custom-modal-subtitle">hourly rate</div>
                 </v-col>
                 <div class="vertical-line mx-2"></div>
                 <v-col cols="5" sm="3" md="3">
-                  <div style="color:black;" class="font-weight-bold">35 HOURS</div>
-                  <div>weekly availibility</div>
+                  <div class="font-weight-bold custom-modal-title">35 HOURS</div>
+                  <div class="custom-modal-subtitle">weekly availibility</div>
                 </v-col>
                 <v-col cols="6" sm="3" md="3">
                   <v-btn depressed class="text-capitalize btn-hire-me" color="#1D1D1D" dark>Hire Me</v-btn>
@@ -258,6 +258,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.custom-modal-title{
+  color: #000000 !important;
+}
+.custom-modal-subtitle{
+  font-size: 12px !important;
+}
 .custom-mobile-icon {
   margin-left: -12px !important;
 }
