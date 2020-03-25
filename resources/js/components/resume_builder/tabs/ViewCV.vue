@@ -59,6 +59,9 @@
                     {
                         code:8
                     },
+                    {
+                        code:300
+                    },
                 ]
             }
         },
@@ -182,6 +185,7 @@
                     width:642px;
                     height:451px;
                     border-radius:25px;
+                    transition: all 2s;
 
                     &.active{
                         -webkit-box-shadow: 0px 59px 70px -20px rgba(7, 211, 38, 0.48);
