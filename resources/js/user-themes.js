@@ -66,6 +66,20 @@ if ($("#userTheme8").length !== 0) {
 
 
 
+import userTheme300 from './components/user_themes/theme300';
+if ($("#userTheme300").length !== 0) {
+    new Vue({
+        el: '#userTheme300',
+        vuetify,
+        store,
+        components:{
+            'user-theme-300':userTheme300
+        }
+    });
+}
+
+
+
 
 
 
