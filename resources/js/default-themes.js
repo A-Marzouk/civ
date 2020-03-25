@@ -125,6 +125,48 @@ if ($("#resumeTheme200").length !== 0) {
 
 }
 
+import resumeTheme401 from './components/resume_themes/theme401';
+if ($("#resumeTheme401").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme401',
+        vuetify,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-401': resumeTheme401
+        }
+    });
+
+}
+
+import resumeTheme402 from './components/resume_themes/theme402';
+if ($("#resumeTheme402").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme402',
+        vuetify,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-402': resumeTheme402
+        }
+    });
+
+}
+
+import resumeTheme403 from './components/resume_themes/theme403';
+if ($("#resumeTheme403").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme403',
+        vuetify,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-403': resumeTheme403
+        }
+    });
+
+}
+
 
 
 
