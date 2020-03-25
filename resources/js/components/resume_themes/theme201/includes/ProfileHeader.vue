@@ -50,7 +50,7 @@
                       <!-- hidden in medium devices -->
                       <v-btn class="mr-4 custom-btn" fab dark small color="white">
                         <v-img
-                          src="/images/resume_themes/theme201/icons/pdf-download.png"
+                          src="/images/resume_themes/theme201/pdf-download.png"
                           class="custom-icon"
                         ></v-img>
                       </v-btn>
@@ -180,7 +180,7 @@
           </v-btn>
 
           <v-btn class="mx-2 custom-btn" fab dark small color="white">
-            <v-img src="/images/resume_themes/theme201/icons/pdf-download.png" class="custom-icon"></v-img>
+            <v-img src="/images/resume_themes/theme201/pdf-download.png" class="custom-icon"></v-img>
           </v-btn>
 
           <!-- Hire Me Btn -->
@@ -209,7 +209,7 @@
           <v-card-title class="headline">
             <v-spacer></v-spacer>
             <v-btn fab class="hidden-sm-and-up" icon @click="hireMeModal=false">
-              <img width="25" src="/images/resume_themes/theme201/icons/close.png" />
+              <img width="25" src="/images/resume_themes/theme201/close.png" />
             </v-btn>
           </v-card-title>
 
@@ -230,7 +230,7 @@
                 </v-col>
                 <v-col align="right" class="hidden-xs-only" sm="2" md="2">
                   <v-btn fab class icon @click="hireMeModal=false">
-                    <img width="30" src="/images/resume_themes/theme201/icons/close.png" />
+                    <img width="30" src="/images/resume_themes/theme201/close.png" />
                   </v-btn>
                 </v-col>
               </v-row>
