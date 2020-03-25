@@ -19,6 +19,9 @@ Auth::routes(['verify' => true]);
 // public routes
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
 
+// Download Resume routes
+Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
+
 Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
