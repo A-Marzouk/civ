@@ -211,7 +211,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 .v-card__text {
   width: 101%;
 }
