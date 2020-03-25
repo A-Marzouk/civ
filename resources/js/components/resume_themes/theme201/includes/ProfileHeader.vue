@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12 class="hidden-sm-and-up">
-      <v-card class="" flat>
+      <v-card class flat>
         <v-list-item two-line>
           <v-list-item-avatar size="85">
             <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
@@ -15,7 +15,7 @@
     </v-flex>
 
     <v-flex sm8 md8 class="hidden-xs-only custom-name-row">
-      <v-card class="" flat>
+      <v-card class flat>
         <v-card-text>
           <v-list-item>
             <v-layout row>
@@ -33,7 +33,7 @@
                     </v-list-item-title>
 
                     <v-list-item-subtitle class="subtitle-text pa-sm-1">User interface designer</v-list-item-subtitle>
-                    <div class="profile-btn mt-1">
+                    <div class="profile-btn">
                       <v-btn
                         class="ml-n1 mr-4 custom-btn hidden-sm-and-down"
                         fab
@@ -75,10 +75,13 @@
                     <v-icon>mdi-map-marker</v-icon>
                   </v-btn>
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp">
+                    <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp" />
                   </v-btn>
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <img width="16" src="/images/resume_themes/theme201/social_icons/google-plus.webp">
+                    <img
+                      width="16"
+                      src="/images/resume_themes/theme201/social_icons/google-plus.webp"
+                    />
                   </v-btn>
                 </div>
               </v-flex>
@@ -96,13 +99,13 @@
               <v-icon style="font-size:14px !important;">fa-behance</v-icon>
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="14" src="/images/resume_themes/theme201/social_icons/instagram.webp">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/instagram.webp" />
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <v-icon style="font-size:12px;">fa-linkedin</v-icon>
+                <img width="12" src="/images/resume_themes/theme201/social_icons/linkedin.webp" />
             </v-btn>
           </div>
         </v-card-text>
@@ -118,13 +121,13 @@
               <v-icon>mdi-map-marker</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark color="red">
-              <img width="20" src="/images/resume_themes/theme201/social_icons/google-plus.webp">
+              <img width="20" src="/images/resume_themes/theme201/social_icons/google-plus.webp" />
             </v-btn>
             <v-btn class="mx-2" fab dark color="black">
               <v-icon>fa-linkedin</v-icon>
             </v-btn>
             <v-btn class="mx-2" fab dark color="black">
-              <img width="20" src="/images/resume_themes/theme201/social_icons/whatsapp.webp">
+              <img width="20" src="/images/resume_themes/theme201/social_icons/whatsapp.webp" />
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
@@ -132,7 +135,7 @@
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
-              <img width="20" src="/images/resume_themes/theme201/social_icons/dribbble.webp">
+              <img width="20" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
             </v-btn>
           </div>
         </v-card-text>
@@ -155,7 +158,7 @@
               <v-icon style="font-size:12px;">fa-linkedin</v-icon>
             </v-btn>
             <v-btn class="mx-1" fab dark small color="black">
-              <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp" />
             </v-btn>
 
             <v-btn class="mx-1" fab dark small color="black">
@@ -163,7 +166,7 @@
             </v-btn>
 
             <v-btn class="mx-1" fab small dark color="black">
-              <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp">
+              <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
             </v-btn>
           </div>
         </v-card-text>
@@ -254,32 +257,7 @@ export default {
 };
 </script>
 
-<style>
-.title-row {
-  padding-left: 5px !important;
-}
-
-.title-text {
-  font-weight: 600;
-  font-size: 40px !important;
-  line-height: 54px;
-  color: #1d1d1d;
-}
-
-.subtitle-text {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px !important;
-  line-height: 29px;
-  color: #1d1d1d;
-}
-
-.custom-icon {
-  width: 29px;
-  height: auto;
-}
-
+<style scoped lang="scss">
 .custom-mobile-icon {
   margin-left: -12px !important;
 }
@@ -300,6 +278,12 @@ export default {
   border-left: 1.5px solid grey;
   height: 30px;
   margin-top: 20px;
+}
+
+@media screen and (min-width: 747px) and (max-width: 754px) {
+  .custom-name-section {
+    margin-left: -57px;
+  }
 }
 </style>
 
