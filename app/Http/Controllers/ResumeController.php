@@ -22,9 +22,8 @@ class ResumeController extends Controller
         // search the userdata using userName
 
         if ($userName) {
-
             // $view = \View::make('resume_pdf_themes.' . $themeCode, compact('freelancer'))->render();
-            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Helvetica', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode);
+            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Helvetica', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.theme' . $themeCode);
 
             if (ob_get_contents()) {
                 ob_end_clean();
@@ -34,7 +33,7 @@ class ResumeController extends Controller
             return $pdf->stream('resume-'.$themeCode.'.pdf');
         }
 
-        return view('defaultPDFThemes.' . $themeCode);
+        return view('defaultPDFThemes.theme' . $themeCode);
     }
     
     public function userResume ($username) {
