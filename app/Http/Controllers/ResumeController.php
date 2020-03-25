@@ -22,7 +22,7 @@ class ResumeController extends Controller
         if ($userName) {
 
             // $view = \View::make('resume_pdf_themes.' . $themeCode, compact('freelancer'))->render();
-            $pdf = \PDF::loadView('defaultPDFThemes.' . $themeCode);
+            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Helvetica', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode);
 
             if (ob_get_contents()) ob_end_clean();
 
