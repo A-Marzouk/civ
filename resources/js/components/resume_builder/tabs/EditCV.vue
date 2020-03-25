@@ -3,9 +3,8 @@
        <div class="d-flex mt-5">
            <div @click="() => false" class="aside-bar d-flex flex-column mr-5">
                <div @click="setActive" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
-
                 <svg-vue class="aside-icon" :icon="`${section.name}-icon`"></svg-vue>
-                <router-link :to="`/resume-builder/edit/${section.name.replace('/', '-')}`">
+                <router-link :to="`/resume-builder/edit/${section.name}`">
                     {{formatSectionString(section.name)}}
                 </router-link>
                </div>
@@ -57,7 +56,7 @@
                     icon: null
                 },
                 {
-                    name: 'audio/video',
+                    name: 'audio-video',
                     icon: null
                 },
                 {
@@ -104,7 +103,6 @@
                 e.target.parentNode.classList.toggle('active')
                 this.scrollHandler(e.target.parentNode);
 
-                console.log('set new active tab');
                 $([document.documentElement, document.body]).animate({
                     scrollTop: 130
                 }, 600);
@@ -146,7 +144,7 @@
             }
         },
         mounted () {
-            let _this = this
+            let _this = this;
             setTimeout(() => {
                 _this.scrollHandler(document.querySelector('.aside-link.active'))
             }, 100)

@@ -8,12 +8,17 @@ class Project extends Model
 {
     protected $table ='projects';
     protected $fillable = [
-        'name','description','link','user_id'
+        'name','description','link','skills','software','user_id'
     ];
 
 
     // relation belongs to
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    // relation has many:
+    public function images(){
+        return $this->hasMany(ProjectImage::class);
     }
 }

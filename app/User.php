@@ -18,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id'
+        'name', 'username','theme_code', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id'
     ];
 
     /**
@@ -48,6 +48,33 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getIsAgentAttribute()
     {
         return $this->hasRole('agent');
+    }
+
+    //user with all relations
+
+    public static function withAllRelations($username){
+        return User::where('username',$username)->with([
+            'skills',
+            'hobbies',
+            'education',
+            'workExperience',
+            'links',
+            'projects.images',
+            'achievements',
+            'media',
+            'reference',
+            'referee',
+            'testimonials',
+            'imports',
+            'languages',
+            'personalInfo',
+            'paymentInfo',
+            'summary',
+        ])->first();
+    }
+
+    public function testName(){
+        return $this->name;
     }
 
 

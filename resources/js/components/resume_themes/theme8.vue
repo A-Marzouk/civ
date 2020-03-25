@@ -36,11 +36,11 @@
                         </div>
 
                         <div class="icons">
-                            <img src="/images/resume_themes/theme8/behance (1).svg" alt="social icon">
+                            <img src="/images/resume_themes/theme8/behance.svg" alt="social icon">
                             <img src="/images/resume_themes/theme8/dribbble.svg" alt="social icon">
                             <img src="/images/resume_themes/theme8/instagram.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/XMLID_801_.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/icon.svg" alt="social icon">
+                            <img src="/images/resume_themes/theme8/linkedin.svg" alt="social icon">
+                            <img src="/images/resume_themes/theme8/google.svg" alt="social icon">
                         </div>
                     </div>
                 </div>
@@ -401,7 +401,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        background-image: url("/images/resume_themes/theme8/background.svg");
+        background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
         font-family: 'Thabit', monospace !important;
         max-width: 1920px;
 
@@ -1535,7 +1535,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            background-image: url("/images/resume_themes/theme8/background.svg");
+            background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
             font-family: 'Thabit', monospace !important;
             max-width: 1920px;
 

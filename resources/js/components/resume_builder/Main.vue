@@ -2,7 +2,7 @@
     <div class="resume-container" >
 
         <nav class="resume-builder-nav d-flex align-items-start">
-            <a href="/freelancer/dashboard" class="brand-link">
+            <a href="/resume-builder" class="brand-link">
                 <img class="brand-image" src="/images/resume_builder/123 icon.png" alt="123workforce icon"/>
             </a>
 
@@ -34,9 +34,9 @@
             </div>
         </nav>
 
-        <div class="info-wrapper">
+        <div class="info-wrapper" v-if="personalInfo">
             <div class="avatar">
-                <img src="/images/resume_themes/theme5/profile.png" alt="profile-pic">
+                <img :src="personalInfo.profile_pic" alt="profile-pic">
             </div>
             <div class="name-title-wrapper">
                 <div class="user-name">
@@ -49,13 +49,15 @@
         </div>
 
         <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
-            <router-view></router-view>
+            <router-view style="min-height: 100vh;"></router-view>
         </transition>
 
 
+        <!-- Notifications and progress bar | to be moved to component-->
+
         <div class="modal fade" id="fullScreenNotificationModal" role="dialog">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content border-0" style="border:none !important;">
                     <div class="modal-body">
                         <!-- image and notification text are set on stor.js (while sending the event) - default value is for success-->
                         <div class="thank-you-pop d-flex">
@@ -69,8 +71,8 @@
 
         <div class="flying-notification" id="flyingNotification">
             <div class="d-flex align-items-center justify-content-center">
-                <img src="/images/resume_builder/tick.png" alt="notification modal">
-                <div class="text">Saved</div>
+                <img src="" id="flyingNotificationIconSrc" alt="notification modal">
+                <div class="text" id="flyingNotificationText"></div>
             </div>
         </div>
 
@@ -80,6 +82,8 @@
                 <div class="text">Deleted</div>
             </div>
         </div>
+
+        <div class="progressBar" id="progressBar"></div>
 
 
     </div>
@@ -167,10 +171,10 @@
 
         .avatar {
             margin-right: 32px;
-
             img {
                 width: 167px;
                 height: 167px;
+                border-radius: 50%;
             }
         }
 
@@ -413,4 +417,15 @@
         }
 
     }
+
+
+    .progressBar{
+        position:fixed;
+        width:0%;
+        height:7px;
+        bottom:0;
+        left: 0;
+        background:#1EC300;
+    }
+
 </style>

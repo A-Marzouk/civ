@@ -26,8 +26,7 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
-
-// needs verification routes:
+// routes need verification :
 Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
 
 
@@ -48,12 +47,12 @@ Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@ha
 // resume builder main routes.
 Route::get('/resume-builder/{any?}', 'ResumeBuilderController@index')->name('resume.builder.main');
 Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name('resume.builder.edit');
+Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::post('/resume-builder/account/submit', 'ResumeBuilderController@editAccountData')->name('account.edit');
 Route::post('/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('account.validate');
 
 
-// users controller routes
-Route::get('/user/current', 'UsersController@currentUser')->name('current.user');
+
 
 
 // admin routes:
@@ -62,3 +61,8 @@ Route::get('/workforce-admin', 'AdminsController@index')->name('admin.dashboard'
 
 // passport clients route:
 Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
+
+
+// public cv url
+
+Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data

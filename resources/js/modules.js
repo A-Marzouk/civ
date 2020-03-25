@@ -1,8 +1,9 @@
 window.Vue = require('vue');
 
-// Vuetify
-import Vuetify from 'vuetify';
-Vue.use(Vuetify);
+
+// audio recorder:
+import AudioRecorder from 'vue-audio-recorder'
+Vue.use(AudioRecorder);
 
 // axios:
 window.axios = require('axios');
@@ -23,3 +24,8 @@ Vue.use(SvgVue);
 // cookies:
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies);
+
+//bootstrap vue
+import { BootstrapVue } from 'bootstrap-vue'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)

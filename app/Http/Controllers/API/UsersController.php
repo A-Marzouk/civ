@@ -11,6 +11,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
@@ -29,7 +30,7 @@ class UsersController extends Controller
             'education',
             'workExperience',
             'links',
-            'projects',
+            'projects.images',
             'achievements',
             'media',
             'reference',
@@ -45,6 +46,15 @@ class UsersController extends Controller
             return response()->json($user, 200);
         }
         return response()->json(['Error' => "Something went wrong."], 404);
+    }
+
+
+    public function updateUserTheme(Request $request){
+        Auth::user()->update(
+            ['theme_code' => $request->theme_code]
+        );
+
+        return ['status' => 'success'];
     }
 
 }

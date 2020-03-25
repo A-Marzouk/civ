@@ -11,6 +11,7 @@ $factory->define(Link::class, function (Faker $faker) {
         'category' => $faker->text(30),
         'link' => $faker->url,
         'link_title' => $faker->url,
+        'is_active' => 1,
     ];
 });
 

@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 
+use App\User;
+
 class ResumeController extends Controller
 {
 
@@ -24,13 +26,27 @@ class ResumeController extends Controller
             // $view = \View::make('resume_pdf_themes.' . $themeCode, compact('freelancer'))->render();
             $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Helvetica', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode);
 
-            if (ob_get_contents()) ob_end_clean();
+            if (ob_get_contents()) {
+                ob_end_clean();
+            }
 
             // return $pdf->stream($freelancer->userData['first_name'] . ' ' . $freelancer->userData['last_name'] . '.pdf');
             return $pdf->stream('resume-'.$themeCode.'.pdf');
         }
 
         return view('defaultPDFThemes.' . $themeCode);
+    }
+    
+    public function userResume ($username) {
+        // get user default cv code.
+        $user = User::withAllRelations($username);
+        if($user){
+            // get theme code
+            $themeCode = $user->theme_code ;
+            return view('userThemes.theme' . $themeCode, compact('user'));
+        }else{
+            return abort(404);
+        }
     }
 
 }

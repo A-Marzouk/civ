@@ -23,21 +23,23 @@
             </div>
 
             <transition name="hide" mode="out-in">
-                <award-view v-if="activeTab === 'Awards'" 
-                    :achievements="achievements && achievements.filter(achievement => achievement.category === 'award')"
+                <award-view v-if="activeTab === 'Awards'"
+                     @achievementAdded="addAchievement"
+                    :achievements="achievements && achievements.filter(achievement => achievement.category === 'awards')"
                     @achievementDeleted="deleteAchievement"
-                    @achievementAdded="addAchievement"
                 ></award-view>
                 <certificates-view  v-else-if="activeTab === 'Certificates'"
+                    @achievementAdded="addAchievement"
                     :achievements="achievements && achievements.filter(achievement => achievement.category === 'certificates')"
                     @achievementDeleted="deleteAchievement"
                 ></certificates-view>
                 <public-view v-else-if="activeTab === 'Public'"
-                    @achievementAdded="addAchievement"
+                     @achievementAdded="addAchievement"
                     :achievements="achievements && achievements.filter(achievement => achievement.category === 'public_speaking')"
                     @achievementDeleted="deleteAchievement"
                 ></public-view>
-                <events-view v-else @achievementAdded="addAchievement"
+                <events-view v-else
+                     @achievementAdded="addAchievement"
                     :achievements="achievements && achievements.filter(achievement => achievement.category === 'events')"
                     @achievementDeleted="deleteAchievement"
                 ></events-view>
@@ -91,6 +93,9 @@
                 let _this = this;
                 moveTabsHelper(e, 'achievementTabs', _this);
             },
+            addAchievement(achievement){
+                this.achievements.push(achievement);
+            },
             editAchievement(achievement) {
                 this.editedAchievement = {
                     id: achievement.id,
@@ -134,6 +139,7 @@
                         this.$store.dispatch('flyingNotificationDelete');
                         this.achievements.forEach( (myAchievement,index) => {
                             if(myAchievement.id === response.data.data.id){
+                                console.log('found deleted');
                                 this.achievements.splice(index,1);
                             }
                         });
@@ -143,34 +149,6 @@
                     .catch(error => {
                         console.log(error);
                     })
-            },
-            addAchievement(newAchievement){
-                console.log(newAchievement);
-                this.errors = {  new: {}, edit: {}};
-                axios.post('/api/user/achievements', newAchievement)
-                    .then((response) => {
-                        this.achievements.unshift(response.data.data);
-                        this.clearAchievement();
-                        this.$store.dispatch('fullScreenNotification');
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            this.errors.new = error.response.data.errors;
-                        } else {
-                            this.errors.new  = 'Something went wrong. Please try again.';
-                        }
-                    });
-            },
-            clearAchievement(){
-                this.addNewAchievement = false;
-                this.newAchievement = {
-                    institution_type:'',
-                    university_name:'',
-                    degree_title:'',
-                    date_from:'',
-                    date_to:'',
-                    present:false,
-                }
             },
             closeOptionsBtn() {
                 this.optionAchievementId = 0;

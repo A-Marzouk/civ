@@ -12,45 +12,57 @@ Vue.use(VueCookies);
 export const store = new Vuex.Store({
     state: {
         user: {},
+        themeUser: {},
         access_token: Vue.$cookies.get('access_token') || null
     },
     mutations: {
         getCurrentUser: (state, data) => {
             state.user = data;
         },
-        showFullScreenNotification:(state, data) => {
+        updateThemeUser(state, themeUser) {
+            state.themeUser = themeUser;
+        },
+        showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
 
             // change to needed content
             let notificationText = $('#notificationText');
             let notificationIconSrc = $('#notificationIconSrc');
             data.message ? notificationText.text(data.message) : notificationText.text('Data saved successfully');
-            data.iconSrc ? notificationIconSrc.prop('src',data.iconSrc) : notificationIconSrc.prop('src','/images/resume_builder/tick.png') ;
+            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
 
             // toggle modal
             modal.modal('show');
-            modal.css('display','flex');
-            setTimeout( () => {modal.modal('hide')},2000);
+            modal.css('display', 'flex');
+            setTimeout(() => {
+                modal.modal('hide')
+            }, 2000);
         },
-        showFlyingNotification:(state, data) => {
+        showFlyingNotification: (state, data) => {
             let notificationElement = $('#flyingNotification');
-                if( notificationElement.is(':visible')){
-                    return ;
-                }
-                notificationElement.slideToggle('slow');
-                setTimeout( () => {
-                    notificationElement.slideToggle('slow');
-                },2000);
-        },
-        showFlyingNotificationDelete:(state, data) => {
-            let notificationElement = $('#flyingNotificationDelete');
-            if( notificationElement.is(':visible')){
-                return ;
+
+            let notificationText = $('#flyingNotificationText');
+            let notificationIconSrc = $('#flyingNotificationIconSrc');
+            data.message ? notificationText.text(data.message) : notificationText.text('Saved');
+            data.iconSrc ? notificationIconSrc.prop('src', data.iconSrc) : notificationIconSrc.prop('src', '/images/resume_builder/tick.svg');
+
+            if (notificationElement.is(':visible')) {
+                return;
             }
             notificationElement.slideToggle('slow');
-            setTimeout( () => {
+            setTimeout(() => {
                 notificationElement.slideToggle('slow');
-            },2000);
+            }, 2000);
+        },
+        showFlyingNotificationDelete: (state, data) => {
+            let notificationElement = $('#flyingNotificationDelete');
+            if (notificationElement.is(':visible')) {
+                return;
+            }
+            notificationElement.slideToggle('slow');
+            setTimeout(() => {
+                notificationElement.slideToggle('slow');
+            }, 2000);
         }
 
     },
@@ -60,7 +72,7 @@ export const store = new Vuex.Store({
                 store.commit('getCurrentUser', response.data);
             }).catch((error) => {
                 // if unauthorized : logout user [it means the cookie has been deleted or changed]
-                console.log( 'token is : ' + store.state.access_token);
+                console.log('token is : ' + store.state.access_token);
                 return;
                 if (error.response.status === 401) {
                     store.dispatch('logoutUnauthorizedUser');
@@ -77,14 +89,17 @@ export const store = new Vuex.Store({
                 }
             )
         },
-        fullScreenNotification(store,payload = {}){
-           store.commit('showFullScreenNotification',payload);
+        fullScreenNotification(store, payload = {}) {
+            store.commit('showFullScreenNotification', payload);
         },
-        flyingNotification(store,payload = {}){
-            store.commit('showFlyingNotification',payload);
+        flyingNotification(store, payload = {}) {
+            store.commit('showFlyingNotification', payload);
         },
-        flyingNotificationDelete(store,payload = {}){
-            store.commit('showFlyingNotificationDelete',payload);
+        flyingNotificationDelete(store, payload = {}) {
+            store.commit('showFlyingNotificationDelete', payload);
+        },
+        updateThemeUser(store, themeUser) {
+            store.commit('updateThemeUser', themeUser);
         }
     }
 });

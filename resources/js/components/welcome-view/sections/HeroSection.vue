@@ -5,7 +5,7 @@
                 <img src="/images/welcome_landing_page/logo/civie_logo-01.png" alt="">
             </a>
         </div>
-        <div class="pa-0 intro-section col-sm-12 col-lg-6 col-12">
+        <div class="pa-0 intro-section  col-sm-12 col-lg-6 col-12">
             <h1>Make Your Online Resume</h1>
             <p>We believe that resume’s can look beautiful, we help freelancers, contractors &amp; jobseekers create
                 stunning online resume’s.</p>
@@ -186,6 +186,9 @@
 
     .intro-section {
         h1 {
+            font-size: 72px;
+            line-height: 80px;
+            font-weight: bold;
             padding-top: 90px;
             max-width: 580px;
         }
