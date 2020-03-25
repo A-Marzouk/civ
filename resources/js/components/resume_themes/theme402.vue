@@ -1,14 +1,16 @@
 <template>
-<div class="ct-back-color">
+<v-app class="ct-back-color" style="width: 100%">
+<div>
+  
   <v-container class="mb-8">
     <div class="my-8 hidden-sm-and-down"></div>
        <v-card
-            class="mx-auto ct-border-radius px-10 py-8"
+            class="mx-auto ct-border-radius px-10 py-6"
             color="white"
             :dark="true"
             flat
         >
-            <v-layout justify="space-between" class="ct-container" row>
+            <v-layout class="ct-container" row>
               <v-avatar height="120" width="120" class="ct-avatar hidden-sm-and-down">
                 <img src="/images/resume_themes/theme401/femalepic.png" alt="image" >
               </v-avatar>
@@ -23,19 +25,19 @@
 
                       <!-- 3 social media -->
                       <div class="d-inline hidden-sm-and-down">
-                        <v-btn fab dark small color="ct-secondary ml-4 hidden-sm-and-down"  :elevation=0>
+                        <v-btn fab dark small color="ct-secondary ml-2 hidden-sm-and-down"  :elevation=0>
                             <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.00065 0C2.80549 0 0.206055 2.59944 0.206055 5.79456C0.206055 9.75981 5.39165 15.581 5.61243 15.8269C5.8198 16.0579 6.18187 16.0575 6.38886 15.8269C6.60965 15.581 11.7952 9.75981 11.7952 5.79456C11.7952 2.59944 9.19577 0 6.00065 0ZM6.00065 8.70997C4.39308 8.70997 3.08527 7.40213 3.08527 5.79456C3.08527 4.187 4.39312 2.87919 6.00065 2.87919C7.60818 2.87919 8.91599 4.18703 8.91599 5.79459C8.91599 7.40216 7.60818 8.70997 6.00065 8.70997Z" fill="#956BE3"/>
                             </svg>
                         </v-btn>
 
-                        <v-btn fab dark small color="ct-secondary ml-4 hidden-sm-and-down"  :elevation=0>
+                        <v-btn fab dark small color="ct-secondary ml-2 hidden-sm-and-down"  :elevation=0>
                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M8.50212 0H8.49788C3.81119 0 0 3.81225 0 8.5C0 10.3594 0.59925 12.0828 1.61819 13.4821L0.558875 16.6398L3.82606 15.5954C5.17013 16.4858 6.77344 17 8.50212 17C13.1888 17 17 13.1867 17 8.5C17 3.81331 13.1888 0 8.50212 0ZM13.4481 12.0031C13.243 12.5821 12.4291 13.0624 11.7799 13.2026C11.3358 13.2972 10.7557 13.3726 8.80281 12.563C6.30487 11.5281 4.69625 8.98981 4.57088 8.82512C4.45081 8.66044 3.5615 7.48106 3.5615 6.26131C3.5615 5.04156 4.18094 4.44763 4.43062 4.19263C4.63569 3.98331 4.97463 3.88769 5.29975 3.88769C5.40494 3.88769 5.4995 3.893 5.5845 3.89725C5.83419 3.90788 5.95956 3.92275 6.12425 4.31694C6.32931 4.811 6.82869 6.03075 6.88819 6.15613C6.94875 6.2815 7.00931 6.4515 6.92431 6.61619C6.84462 6.78619 6.7745 6.86162 6.64913 7.00612C6.52375 7.15062 6.40475 7.26113 6.27938 7.41625C6.16462 7.55119 6.035 7.69569 6.1795 7.94537C6.324 8.18975 6.82337 9.00469 7.55862 9.65919C8.50744 10.5039 9.27669 10.7738 9.55188 10.8885C9.75694 10.9735 10.0013 10.9533 10.1511 10.7939C10.3413 10.5889 10.5761 10.2489 10.8152 9.91419C10.9852 9.67406 11.1998 9.64431 11.4251 9.72931C11.6546 9.809 12.869 10.4093 13.1187 10.5336C13.3684 10.659 13.5331 10.7185 13.5936 10.8237C13.6531 10.9289 13.6531 11.4229 13.4481 12.0031Z" fill="#956BE3"/>
                             </svg>
                         </v-btn>
 
-                        <v-btn fab dark small color="ct-secondary ml-4 hidden-sm-and-down"  :elevation=0>
+                        <v-btn fab dark small color="ct-secondary ml-2 hidden-sm-and-down"  :elevation=0>
                             <img src="/images/resume_themes/theme401/google-plus.png" alt="download-icon" class="ct-icon-download" >
                         </v-btn>
                       </div>
@@ -43,9 +45,9 @@
                 </v-list-item-title>
                 
 
-                <p class="body-2 font-weight-thin grey--text ml-md-8 ml-sm-2">
+                 <div class="grey--text mb-6 ml-md-8 ml-sm-2">
                    Web Ui/Ux Designer, Graphiс Designer 
-                </p>
+                </div>
 
                 <v-btn class="ct-border-radius text-capitalize font-weight-thin hidden-sm-and-down ml-md-8" color="ct-primary" depressed>
                     <v-icon size="16">mdi-email</v-icon>
@@ -108,18 +110,28 @@
         </v-card>
   </v-container>
 
-
 <!-- Small screen social media icons -->
  
-  <!-- <v-container class="d-flex pl-4 mb-10 hidden-md-and-up">
-    <div v-for="n in 6" :key="n" 
-      class="d-flex justify-center align-center sm-icon-container pa-4 mr-4">
+  <v-container class="d-flex justify-center">
+    <v-avatar v-for="n in 6" :key="n" class="mr-4 hidden-md-and-up">
       <img :src="getImgUrlSm(n)" alt="img" class="ct-icon-img" >
-    </div>
-  </v-container> -->
+    </v-avatar>
+  </v-container>
+
+  <v-container class="d-flex justify-center p-0">
+    <v-btn class="ct-border-radius text-capitalize font-weight-thin mt-6 hidden-md-and-up ml-md-8" color="ct-primary" depressed>
+        <v-icon size="16" color="white">mdi-email</v-icon>
+        <span size="16 font-weight-thin" class="ml-2 py-1 white--text">Send Message</span>
+    </v-btn>
+          
+    <v-btn fab dark small color="ct-primary font-weight-thin mt-6 hidden-md-and-up ml-4"  :elevation=0>
+            <!-- <v-icon dark size="16">mdi-download</v-icon> -->
+        <img src="/images/resume_themes/theme401/download.png" alt="download-icon" class="ct-icon-download" >
+    </v-btn>
+  </v-container>
 
   <!-- Tab start -->
-  <div class="mb-8">
+  <div class="mb-12">
     <v-container class="hidden-sm-and-down">
         <v-tabs 
         background-color="transparent" 
@@ -139,7 +151,7 @@
     </v-container>
     
     <v-tabs 
-        class="hidden-md-and-up ct-transform" 
+        class="hidden-md-and-up ct-transform mt-12" 
         background-color="transparent" 
         center-active 
         hide-slider height="38">
@@ -165,7 +177,7 @@
       flat
     >
       <v-card-text>
-        <div class="title text-center ct-secondary--text mb-6">
+        <div class="title text-center ct-secondary--text mb-6 font-weight-bold">
           About
         </div>
         <div color="ct-card-body">
@@ -175,7 +187,7 @@
     </v-card>
 
     <div class="hidden-md-and-up pa-4">
-    <div class="ct-secondary--text title">
+    <div class="ct-secondary--text title font-weight-bold mb-4">
       About
     </div>
     <p class="ct-mobile-body font-weight-regular">
@@ -192,7 +204,8 @@
         v-for="image in images"
         :key="image.id"
         cols="12"
-        md="4"
+        md="5"
+        lg="4"
         sm="6"
       >
       <div class="d-flex justify-center">
@@ -211,7 +224,7 @@
         :key="n"
         cols="12"
         md="6"
-        sm="6"
+        sm="12"
         :class="[n % 2 != 0 ? 'mr-auto' : '', 'work-tile mb-6']"
       >
         <v-card flat class="pa-6 rounde_me">
@@ -227,7 +240,7 @@
                 </p>
             </div>
 
-            <p class="ct-body-text text-content">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
+            <div class="ct-body-text text-content grey--text">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
         </v-card>       
       </v-col>
     </v-row>
@@ -255,7 +268,7 @@
                     University
                 </p>
             </div>
-            <p class="ct-body-text text-content">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
+            <div class="ct-body-text text-content grey--text">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
         </v-card>
       </v-col>
     </v-row>
@@ -294,8 +307,8 @@
       </v-list>
     </v-card>
   </v-container>
-
 </div>
+</v-app>
 </template>
 
 <script>
@@ -353,10 +366,7 @@
 
 <style scoped>
 /* Global style */
-body {
-  font-family: 'Montserrat';
-  line-height: 17px;
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 /* Header style */
 
@@ -365,11 +375,15 @@ body {
 .ct-primary--text { color: #f6f6f6 }
 .ct-secondary--text { color: #956BE3 }
 
-.ct-back-color { background-color: #E5E5E5!important }
+.ct-back-color { 
+  background-color: #E5E5E5!important;
+  font-family: 'Montserrat' !important;
+}
 .ct-dark-text { color: #CBCBCB !important }
 
 .ct-height-container {
   height: 100vh;
+  font-family: 'Montserrat';
 }
 
 .ct-border-radius {
@@ -377,8 +391,8 @@ body {
 }
 
 .user-name {
-    font-size: 1.8rem !important;
-    font-weight: 500;
+    font-size: 1.6rem !important;
+    font-weight: 600;
 }
 
 .ct-icon-download {
@@ -387,14 +401,17 @@ body {
 }
 
 .ct-icon-download-bright {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 .about-container {
    margin-bottom: 2rem !important;
 }
 
+/* Global style end */
+
+/* redo style */
 
 .ct-container {
   position: relative;
@@ -410,12 +427,12 @@ body {
   transform: translateX(-2.2rem) translateY(-2.2rem);
 }
 
-/* Global style end */
+/* redo style end */
 
 /* small screen icons slider */
 
 .ct-icon-img {
-  height: 1.2rem;
+  height: 2.8rem;
   width: auto;
 }
 
@@ -507,11 +524,10 @@ body {
       font-size: 0.8rem;
       color: '#D9D8D8';
       font-weight: 300 !important;
-      transform: translateY(0.5rem)
   }
 
   .work-tile {
-      max-width: 36.4rem !important;
+      max-width: 35rem !important;
   }
 
 /* skills style */

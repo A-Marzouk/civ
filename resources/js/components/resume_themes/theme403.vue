@@ -1,5 +1,5 @@
 <template>
-<v-app>
+<v-app style="width: 100%">
   <!-- Header -->
 
   <div class="header-cont d-flex align-center mb-6">
@@ -56,11 +56,11 @@
               <div class="d-flex justify-end mt-3">
               
                 <v-avatar size="30" color="#6884F3" class="hidden-md-and-up">
-                  <img src="/images/resume_themes/theme403/icons/audio.png" alt="audio" class="ct-icon" >
+                  <img src="/images/resume_themes/theme403/audio.png" alt="audio" class="ct-icon" >
                   
                 </v-avatar>
                 <v-avatar size="30" color="#6884F3" class="ml-2 hidden-md-and-up">
-                  <img src="/images/resume_themes/theme403/icons/video.png" alt="video" class="ct-icon" >
+                  <img src="/images/resume_themes/theme403/video.png" alt="video" class="ct-icon" >
                 </v-avatar>
               </div>
             </div>
@@ -226,8 +226,11 @@
 
     <!-- Tab content 2 start -->
 
-      <div v-if="currentTab == 2">       
-        <v-row no-gutters v-for="item in educations" :key="item.id">
+      <div v-if="currentTab == 2">     
+
+        <div class="subtitle-2 mb-0">Work Experiance</div>
+        <v-divider></v-divider>  
+        <v-row no-gutters v-for="item in educations" :key="item.id" class="mt-10">
           <v-col cols="2" class="ct-left-timeline">
            <div class="body-2 hidden-sm-and-down">{{ item.duration }}</div>
            <div class="caption hidden-md-and-up"> {{ item.duration }}</div>
@@ -255,7 +258,10 @@
     <!-- Tab content 3 start -->
 
       <div v-if="currentTab == 3">
-        <v-row no-gutters v-for="item in educations" :key="item.id">
+
+        <div class="subtitle-2">Educational Qualifications</div>
+        <v-divider></v-divider>
+        <v-row no-gutters v-for="item in educations" :key="item.id" class="mt-10">
           <v-col cols="2" class="ct-left-timeline">
            <div class="body-2 hidden-sm-and-down">{{ item.duration }}</div>
            <div class="caption hidden-md-and-up"> {{ item.duration }}</div>
@@ -291,7 +297,7 @@
             <div class="bar-cont ml-9 d-flex align-end light-it" v-for="skill in skills" :key="skill.id">
               
               <div>
-                <div :style="{ height: skill.value/5.8 + 'rem', width: '20rem' }" class="primary pt-2 progress text-center">{{ skill.value }}%</div>
+                <div :style="{ height: skill.value/5.8 + 'rem', width: '20rem' }" class="primary pt-2 progress pl-1">{{ skill.value }}%</div>
                 <div class="text-center caption white black--text pt-2">{{ skill.skill }}</div>
               </div>
             </div>
@@ -364,7 +370,7 @@
            return image + '/' + id + ".png"
         },
         getImgUrlIcon(icon) {
-           let image = 'images/resume_themes/theme403/icons/tabs'
+           let image = '/images/resume_themes/theme403/icons/tabs'
            return image + '/' + icon + ".png"
         }
     }
@@ -697,11 +703,11 @@
 /* Design skill style */
 .bar-cont {
   height: 20rem;
-  width: 1.5rem;
+  width: 1.7rem;
 }
 
 .progress {
-  width: 1.5rem !important;
+  width: 1.7rem !important;
   font-size: 0.6rem;
   color: white;
 }
@@ -710,9 +716,12 @@
   width: 4.85rem;
 }
 
-/* responsive */
-@media only screen and (max-width: 800px) {
-  
+
+
+/* new style */
+.subtitle-2 {
+  font-weight: 600 !important;
+  color: rgb(88, 88, 88);
 }
 
 </style>

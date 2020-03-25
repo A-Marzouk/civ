@@ -1,10 +1,10 @@
 <template>
-<v-app class="ct-back-color">
-<div class="ct-back-color">
-  <v-container class="mb-8">
+<v-app class="ct-back-color" style="width: 100%">
+<div>
+  <v-container class="mb-5">
     <div class="my-8 hidden-sm-and-down"></div>
        <v-card
-            class="mx-auto ct-border-radius px-10 py-8"
+            class="mx-auto ct-border-radius px-10 py-6"
             color="white"
             :dark="true"
             flat
@@ -12,14 +12,14 @@
             <v-layout justify="space-between" row >
               <v-flex md8 sm8 xs8>
                 <v-list-item-title class="display-1 font-weight-bold ct-primary--text">
-                    <span class="user-name ct-secondary--text mr-md-8 mr-sm-4">Carla Pipin Ranga</span>
+                    <span class="user-name ct-secondary--text mr-4">Carla Pipin Ranga</span>
 
                     <v-btn class="ct-border-radius text-capitalize font-weight-thin hidden-sm-and-down" color="ct-primary" depressed>
                         <v-icon size="16">mdi-email</v-icon>
-                        <span size="16 font-weight-thin" class="ml-2">Send Message</span>
+                        <span size="16" class="ml-2 font-weight-thin">Send Message</span>
                     </v-btn>
                       
-                      <v-btn fab dark small color="ct-primary font-weight-thin hidden-sm-and-down ml-4"  :elevation=0>
+                      <v-btn fab dark small color="ct-primary font-weight-thin hidden-sm-and-down ml-2"  :elevation=0>
                         <!-- <v-icon dark size="16">mdi-download</v-icon> -->
                           <img src="/images/resume_themes/theme401/download.png" alt="download-icon" class="ct-icon-download" >
                       </v-btn>
@@ -28,12 +28,12 @@
 
                 </v-list-item-title>
 
-                <p class="body-2 font-weight-thin grey--text">
+                <div class="grey--text mb-4">
                    Web Ui/Ux Designer, Graphiс Designer 
-                </p>
+                </div>
 
                 <!-- break -->
-                 <v-flex md4 sm4 xs4 class="hidden-sm-and-down" >
+                 <v-flex md6 sm6 xs4 class="hidden-sm-and-down">
                     <div class="text-left">
                             <v-btn fab dark small color="ct-secondary font-weight-thin"  :elevation=0>
                               <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -115,12 +115,11 @@
 
 <!-- Small screen social media icons -->
  
-  <!-- <v-container class="d-flex pl-4 mb-10 hidden-md-and-up">
-    <div v-for="n in 6" :key="n" 
-      class="d-flex justify-center align-center sm-icon-container pa-4 mr-4">
+  <v-container class="d-flex justify-center">
+    <v-avatar v-for="n in 6" :key="n" class="mr-4 hidden-md-and-up">
       <img :src="getImgUrlSm(n)" alt="img" class="ct-icon-img" >
-    </div>
-  </v-container> -->
+    </v-avatar>
+  </v-container>
 
   <!-- Tab start -->
   <div class="mb-8">
@@ -143,7 +142,7 @@
     </v-container>
     
     <v-tabs 
-        class="hidden-md-and-up ct-transform" 
+        class="hidden-md-and-up ct-transform mt-12" 
         background-color="transparent" 
         center-active 
         hide-slider height="38">
@@ -169,7 +168,7 @@
       flat
     >
       <v-card-text>
-        <div class="title text-center ct-secondary--text mb-6">
+        <div class="title text-center ct-secondary--text mb-6 font-weight-bold">
           About
         </div>
         <div color="ct-card-body">
@@ -179,7 +178,7 @@
     </v-card>
 
     <div class="hidden-md-and-up pa-4">
-    <div class="ct-secondary--text title">
+    <div class="ct-secondary--text title font-weight-bold">
       About
     </div>
     <p class="ct-mobile-body font-weight-regular">
@@ -196,7 +195,8 @@
         v-for="image in images"
         :key="image.id"
         cols="12"
-        md="4"
+        md="5"
+        lg="4"
         sm="6"
       >
       <div class="d-flex justify-center">
@@ -215,7 +215,7 @@
         :key="n"
         cols="12"
         md="6"
-        sm="6"
+        sm="12"
         :class="[n % 2 != 0 ? 'mr-auto' : '', 'work-tile mb-6']"
       >
         <v-card flat class="pa-6 rounde_me">
@@ -231,7 +231,7 @@
                 </p>
             </div>
 
-            <p class="ct-body-text text-content">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
+            <div class="ct-body-text text-content grey--text">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
         </v-card>       
       </v-col>
     </v-row>
@@ -259,7 +259,7 @@
                     University
                 </p>
             </div>
-            <p class="ct-body-text text-content">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
+            <div class="ct-body-text text-content grey--text">I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
         </v-card>
       </v-col>
     </v-row>
@@ -357,10 +357,7 @@
 
 <style scoped>
 /* Global style */
-body {
-  font-family: 'Montserrat';
-  line-height: 17px;
-}
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 /* Header style */
 
@@ -369,11 +366,15 @@ body {
 .ct-primary--text { color: #f6f6f6 }
 .ct-secondary--text { color: #956BE3 }
 
-.ct-back-color { background-color: #E5E5E5!important }
+.ct-back-color { 
+  background-color: #E5E5E5!important;
+  font-family: 'Montserrat' !important;
+}
 .ct-dark-text { color: #CBCBCB !important }
 
 .ct-height-container {
   height: 100vh;
+  font-family: 'Montserrat';
 }
 
 .ct-border-radius {
@@ -381,8 +382,8 @@ body {
 }
 
 .user-name {
-    font-size: 1.8rem !important;
-    font-weight: 500;
+    font-size: 1.6rem !important;
+    font-weight: 600;
 }
 
 .ct-icon-download {
@@ -391,8 +392,8 @@ body {
 }
 
 .ct-icon-download-bright {
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 .about-container {
@@ -404,7 +405,7 @@ body {
 /* small screen icons slider */
 
 .ct-icon-img {
-  height: 1.2rem;
+  height: 2.8rem;
   width: auto;
 }
 
@@ -496,11 +497,10 @@ body {
       font-size: 0.8rem;
       color: '#D9D8D8';
       font-weight: 300 !important;
-      transform: translateY(0.5rem)
   }
 
   .work-tile {
-      max-width: 36.4rem !important;
+      max-width: 35rem !important;
   }
 
 /* skills style */
