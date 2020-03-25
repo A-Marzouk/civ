@@ -99,7 +99,7 @@
               <v-icon style="font-size:14px !important;">fa-behance</v-icon>
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
+              <img width="16" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
             </v-btn>
             <v-btn class="mx-2 custom-btn" fab dark small color="black">
               <img width="14" src="/images/resume_themes/theme201/social_icons/instagram.webp" />
