@@ -20,7 +20,8 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+    // already files scoped by using ID wrappers
     @import "resources/sass/themes/theme201.scss";
 </style>
 
