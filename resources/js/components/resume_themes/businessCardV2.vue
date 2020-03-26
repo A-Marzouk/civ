@@ -43,7 +43,7 @@
             </div>
             <div class="icons">
                 <img src="/images/resume_themes/theme8/workforce.png" alt="" style="width: 21px; height: 21px;">
-                <img src="/images/resume_themes/theme8/behance (1).png" alt="" style="width: 29px; height: 18px;">
+                <img src="/images/resume_themes/theme8/behance.svg" alt="" style="width: 29px; height: 18px;">
                 <img src="/images/resume_themes/theme8/dribbble.png" alt="" style="width: 21px; height: 22px;">
                 <img src="/images/resume_themes/theme8/instagram.png" alt="" style="width: 21px; height: 21px;">
                 <img src="/images/resume_themes/theme8/XMLID_801_.png" alt="" style="width: 21px; height: 21px;">
@@ -68,7 +68,7 @@
             </div>
             <div class="icons">
                 <img src="/images/resume_themes/theme8/workforce.png" alt="" style="width: 21px; height: 21px;">
-                <img src="/images/resume_themes/theme8/behance (1).png" alt="" style="width: 29px; height: 18px;">
+                <img src="/images/resume_themes/theme8/behance.svg" alt="" style="width: 29px; height: 18px;">
                 <img src="/images/resume_themes/theme8/dribbble.png" alt="" style="width: 21px; height: 22px;">
                 <img src="/images/resume_themes/theme8/instagram.png" alt="" style="width: 21px; height: 21px;">
                 <img src="/images/resume_themes/theme8/XMLID_801_.png" alt="" style="width: 21px; height: 21px;">
@@ -107,7 +107,7 @@
                     </div>
                     <div class="icons">
                         <img src="/images/resume_themes/theme8/workforce.png" alt="" style="width: 21px; height: 21px;">
-                        <img src="/images/resume_themes/theme8/behance (1).png" alt="" style="width: 29px; height: 18px;">
+                        <img src="/images/resume_themes/theme8/behance.svg" alt="" style="width: 29px; height: 18px;">
                         <img src="/images/resume_themes/theme8/dribbble.png" alt="" style="width: 21px; height: 22px;">
                         <img src="/images/resume_themes/theme8/instagram.png" alt="" style="width: 21px; height: 21px;">
                         <img src="/images/resume_themes/theme8/XMLID_801_.png" alt="" style="width: 21px; height: 21px;">
@@ -134,7 +134,7 @@
         width: 355.27px;
         height:205px;
         background-size:cover ;
-        background-image: url("/images/resume_themes/theme8/background.svg");
+        background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
         font-family: 'Thabit', monospace !important;
     }
 

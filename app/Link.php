@@ -9,7 +9,7 @@ class Link extends Model
     protected $table = 'links';
 
     protected $fillable = [
-        'category','link','link_title', 'user_id'
+        'category','link','link_title','is_active', 'user_id'
     ];
 
 

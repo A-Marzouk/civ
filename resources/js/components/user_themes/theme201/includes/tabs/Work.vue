@@ -53,13 +53,10 @@
     };
 </script>
 
-<style scoped>
-
-
-    .work-item {
-
+<style scoped lang="scss">
+    .v-card__text {
+        width: 101%;
     }
-
     .custom-header {
         font-size: 30px;
         line-height: 35px;
@@ -85,6 +82,7 @@
     }
 
     .custom-p2 {
+        font-family: Open Sans;
         font-style: normal;
         font-weight: 300;
         font-size: 12px;
@@ -99,7 +97,6 @@
             font-size: 20px;
             margin: 5px 0 18px;
         }
-
         .custom-p {
             margin: 47px auto;
         }

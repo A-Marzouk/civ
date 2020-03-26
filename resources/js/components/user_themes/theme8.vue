@@ -4,14 +4,14 @@
         <div class="main-info-bar">
             <div class="left">
                 <div class="profile-picture">
-                    <img src="/images/resume_themes/theme5/profile.png" alt="">
+                    <img :src="personalInfo.profile_pic" alt="">
                 </div>
                 <div class="main-info">
                     <div class="user-name">
-                        Beverly Andrews
+                        {{personalInfo.full_name}}
                     </div>
                     <div class="job-title">
-                        User interface designer
+                        {{personalInfo.designation}}
                     </div>
                     <div class="social">
                         <div class="d-flex">
@@ -35,12 +35,10 @@
                             </div>
                         </div>
 
-                        <div class="icons">
-                            <img src="/images/resume_themes/theme8/behance (1).svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/dribbble.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/instagram.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/XMLID_801_.svg" alt="social icon">
-                            <img src="/images/resume_themes/theme8/icon.svg" alt="social icon">
+                        <div class="icons NoDecor">
+                            <a :href="item.link" v-for="item in socialLinks" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
+                                <img :src="`/images/resume_themes/theme8/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -66,20 +64,20 @@
                 <div class="prof-info">
                     <div class="prof-left">
                         <div class="hours">
-                            <div class="text">
-                                Hourly rate
+                            <div class="text" style="text-transform: capitalize;">
+                                {{paymentInfo.salary_frequency}} rate
                             </div>
                             <div class="number">
-                                $ 25 USD
+                                $ {{paymentInfo.salary}} USD
                             </div>
                         </div>
                         <div class="horizontal-divider"></div>
                         <div class="rate">
                             <div class="text">
-                                Available for
+                                Available ({{paymentInfo.available_hours_frequency}})
                             </div>
-                            <div class="number">
-                                8 Hours
+                            <div class="number" style="text-transform: capitalize;">
+                                {{paymentInfo.available_hours}} Hours
                             </div>
                         </div>
                     </div>
@@ -116,12 +114,9 @@
             <div class="tab-content-wrapper">
                 <div class="portfolio" v-show="activeTab === 'portfolio'" :class="{active : activeTab === 'portfolio'}">
                     <div class="images">
-                        <img src="/images/resume_themes/theme8/tracker_3_2x 1.svg" alt="portfolio img">
-                        <img src="/images/resume_themes/theme8/dribbble_fitness_2x_2x 1.svg" alt="portfolio img">
-                        <img src="/images/resume_themes/theme8/fitness2_2x_2x 1.svg" alt="portfolio img">
-                        <img src="/images/resume_themes/theme8/fitness_club-statics_schedule_2x 1.svg" alt="portfolio img">
-                        <img src="/images/resume_themes/theme8/app_01 1.svg" alt="portfolio img">
-                        <img src="/images/resume_themes/theme8/image_processing20200116-657-105hy6m 1.svg" alt="portfolio img">
+                        <div v-for="project in projects" :key="project.id + '_project'">
+                            <img :src="getProjectMainImage(project)" alt="portfolio img">
+                        </div>
                     </div>
 
                     <div class="loading d-none">
@@ -132,170 +127,51 @@
                     </div>
                 </div>
                 <div class="work-experience" v-show="activeTab === 'workEx'" :class="{active : activeTab === 'workEx'}">
-                    <div class="work-item">
+                    <div class="work-item" v-for="work in works" :key="work.id + '_work'">
                         <div class="company">
-                            Google
+                            {{work.company_name}}
                         </div>
                         <div class="title">
-                            User interface designer
+                            {{work.job_title}}
                         </div>
                         <div class="duration">
-                            Duration: Dec 19 - Present
+                            Duration:  {{work.date_from}} - {{work.present ? "present" : work.date_to}}
                         </div>
                         <div class="work-info">
-                            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
+                            {{work.description}}
                         </div>
                     </div>
-
-                    <div class="work-item">
-                        <div class="company">
-                            Google
-                        </div>
-                        <div class="title">
-                            User interface designer
-                        </div>
-                        <div class="duration">
-                            Duration: Dec 19 - Present
-                        </div>
-                        <div class="work-info">
-                            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
-                        </div>
-                    </div>
-
-                    <div class="work-item">
-                        <div class="company">
-                            Google
-                        </div>
-                        <div class="title">
-                            User interface designer
-                        </div>
-                        <div class="duration">
-                            Duration: Dec 19 - Present
-                        </div>
-                        <div class="work-info">
-                            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
-                        </div>
-                    </div>
-
                 </div>
                 <div class="education" v-show="activeTab === 'edu'" :class="{active : activeTab === 'edu'}">
-                    <div class="education-item">
+                    <div class="education-item"  v-for="education in educations" :key="education.id + '_education'">
                         <div class="education-type">
-                            University
+                            {{education.institution_type}}
                         </div>
                         <div class="education-name">
-                            CA Institute of Technology
+                            {{education.university_name}}
                         </div>
                         <div class="education-date">
-                            M.Sc in HCI, Dec 19 - present
+                            {{education.date_from}} - {{education.present ? "present" : education.date_to}}
                         </div>
                         <div class="education-info">
-                            CGPA - 3.70 out of 4.0
-                        </div>
-                    </div>
-                    <div class="education-item">
-                        <div class="education-type">
-                            College
-                        </div>
-                        <div class="education-name">
-                            Lethbride College
-                        </div>
-                        <div class="education-date">
-                            M.Sc in HCI, Dec 19 - present
-                        </div>
-                        <div class="education-info">
-                            CGPA - 3.70 out of 4.0
-                        </div>
-                    </div>
-                    <div class="education-item">
-                        <div class="education-type">
-                            University
-                        </div>
-                        <div class="education-name">
-                            University of Toronto
-                        </div>
-                        <div class="education-date">
-                            M.Sc in HCI, Dec 19 - present
-                        </div>
-                        <div class="education-info">
-                            CGPA - 3.70 out of 4.0
+                            {{education.degree_title}}
                         </div>
                     </div>
                 </div>
                 <div class="skills-tab" v-show="activeTab === 'skills'" :class="{active : activeTab === 'skills'}">
-                    <div class="skill-item skills d-flex align-items-end">
+                    <div class="skill-item skills d-flex align-items-end" v-for="skill in skills" :key="skill.id + '_skill'">
                         <div class="skill">
                             <div class="skill-title">
-                                Adobe Photoshop
+                               {{skill.title}}
                             </div>
                             <!-- bar -->
-                            <div class="skill-bar" :data-bar="90">
-                                <span></span>
+                            <div class="skill-bar" :data-bar="skill.percentage">
+                                <span :style="getRandomColor()"></span>
                             </div>
                         </div>
 
                         <div style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;" class="percentage">
-                            90%
-                        </div>
-                    </div>
-                    <div class="skill-item skills d-flex align-items-end">
-                        <div class="skill">
-                            <div class="skill-title">
-                                Adobe After Effect
-                            </div>
-                            <!-- bar -->
-                            <div class="skill-bar red" :data-bar="65">
-                                <span class="red"></span>
-                            </div>
-                        </div>
-
-                        <div style="color:#FF26BE; font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;" class="percentage">
-                            65%
-                        </div>
-                    </div>
-                    <div class="skill-item skills d-flex align-items-end">
-                        <div class="skill">
-                            <div class="skill-title">
-                                Adobe Premiere pro
-                            </div>
-                            <!-- bar -->
-                            <div class="skill-bar orange" :data-bar="70">
-                                <span class="orange"></span>
-                            </div>
-                        </div>
-
-                        <div style="color:#FF7C00; font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;" class="percentage">
-                            70%
-                        </div>
-                    </div>
-                    <div class="skill-item skills d-flex align-items-end">
-                        <div class="skill">
-                            <div class="skill-title">
-                                Adobe Illustrator
-                            </div>
-                            <!-- bar -->
-                            <div class="skill-bar" :data-bar="50">
-                                <span></span>
-                            </div>
-                        </div>
-
-                        <div style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;" class="percentage">
-                            50%
-                        </div>
-                    </div>
-                    <div class="skill-item skills d-flex align-items-end">
-                        <div class="skill">
-                            <div class="skill-title">
-                                Adobe XD
-                            </div>
-                            <!-- bar -->
-                            <div class="skill-bar" :data-bar="85">
-                                <span></span>
-                            </div>
-                        </div>
-
-                        <div style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;" class="percentage">
-                            85%
+                            {{skill.percentage}}%
                         </div>
                     </div>
                 </div>
@@ -305,14 +181,7 @@
                             About me
                         </div>
                         <div class="about-text">
-                            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit
-                            Text” or double click me to add your own content and make changes to the font. Feel free to
-                            drag and drop me anywhere you like on your page. I’m a great place for you to tell a story
-                            and let your users know a little more about you. This is a great space to write long text
-                            about your company and your services. You can use this space to go into a little more detail
-                            about your company. Talk about your team and what services you provide. Tell your visitors
-                            the story of how you came up with the idea for your business and what makes you different
-                            from your competitors.
+                           {{personalInfo.about}}
                         </div>
                     </div>
                     <div class="contact">
@@ -320,7 +189,7 @@
                             Contact
                         </div>
                         <div class="email">
-                            Email: contact@developer.com
+                            Email: {{personalInfo.email}}
                         </div>
                     </div>
                 </div>
@@ -334,12 +203,22 @@
 
     export default {
         name: "theme5",
+        props:['user'],
         components: {
             Slick
         },
         data() {
             return {
                 activeTab: 'portfolio',
+                // user real data:
+                personalInfo:this.user.personal_info,
+                paymentInfo:this.user.payment_info,
+                skills: this.user.skills,
+                achievements: this.user.achievements,
+                educations: this.user.education,
+                works: this.user.work_experience,
+                projects: this.user.projects,
+                links: this.user.links,
                 slickOptions:{
                     dots: false,
                     arrows: false,
@@ -356,23 +235,42 @@
                             }
                         },
                     ]
-                },
+                }
             }
         },
-
         methods: {
             setActiveTab(tabName) {
                 this.activeTab = tabName;
             },
             skillsBar() {
-                $(".skills .skill .skill-bar span").each(function () {
+                $(".skills .skill .skill-bar span").each( function () {
                     $(this).animate({
-                        "width": $(this).parent().attr("data-bar") + "%"
+                        "width": $(this).parent().attr("data-bar") + "%",
                     }, 1000);
                 });
             },
+            getProjectMainImage(project){
+                let mainImage = '';
+
+                let images = project.images;
+                images.forEach((image) => {
+                    if (image.is_main){
+                        mainImage = image;
+                    }
+                });
+
+                return mainImage.src;
+            },
+            getRandomColor(){
+                return  'background:#' + Math.floor(Math.random()*16777215).toString(16);
+            },
         },
 
+        computed:{
+            socialLinks(){
+                return this.links.filter( (link) => {return link.category === 'social_link' ? link : false});
+            }
+        },
         mounted() {
             this.skillsBar();
         }
@@ -401,7 +299,7 @@
         flex-direction: column;
         align-items: center;
         width: 100%;
-        background-image: url("/images/resume_themes/theme8/background.svg");
+        background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
         font-family: 'Thabit', monospace !important;
         max-width: 1920px;
 
@@ -478,12 +376,14 @@
                         .icons{
                             display: flex;
                             align-items: center;
-                            img{
-                                width:42px;
-                                height:26px;
+                            a{
+                                img{
+                                    width: 30px;
+                                    height: auto;
+                                }
                                 margin-right:30px ;
                             }
-                            img:last-child{
+                            a:last-child{
                                 margin-right:0 ;
                             }
                         }
@@ -715,6 +615,7 @@
 
 
             .tab-content-wrapper {
+                width:100%;
                 margin-top: 115px;
 
                 .portfolio.active, .skills.active, .about.active, .work-experience.active, .education.active {
@@ -732,7 +633,7 @@
                     .images {
                         display: flex;
                         flex-wrap: wrap;
-                        justify-content: space-between;
+                        justify-content: space-around;
 
                         img {
                             width: 488px;
@@ -1535,7 +1436,7 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            background-image: url("/images/resume_themes/theme8/background.svg");
+            background-image: url("/images/resume_themes/theme8/background.svg"); background-attachment: fixed;
             font-family: 'Thabit', monospace !important;
             max-width: 1920px;
 

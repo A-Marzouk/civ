@@ -38,35 +38,37 @@ export default {
 };
 </script>
 
-<style>
-h1 {
-  font-family: Open Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 40px;
-  line-height: 41px;
-  color: #1d1d1d;
-}
 
-.about-p {
-  height: 138px;
-  left: 21.82%;
-  right: 21.82%;
-  top: 639px;
-
-  font-style: normal;
-  font-weight: 300;
-  font-size: 18px;
-  line-height:28px;
-  /* or 107% */
-
-  text-align: center;
-  color: #1d1d1d;
-}
-
-@media screen and (max-width: 800px) {
-  .about-p {
-    text-align: left;
+<style scoped lang="scss">
+  h1 {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 41px;
+    color: #1d1d1d;
   }
-}
+
+  .about-p {
+    height: 138px;
+    left: 21.82%;
+    right: 21.82%;
+    top: 639px;
+
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 15px;
+    /* or 107% */
+
+    text-align: center;
+    color: #1d1d1d;
+  }
+
+  @media screen and (max-width: 800px) {
+    .about-p {
+      text-align: left;
+    }
+  }
 </style>

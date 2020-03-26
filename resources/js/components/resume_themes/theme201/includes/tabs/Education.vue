@@ -91,7 +91,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 .custom-h1 {
   font-style: normal;
   font-weight: normal;

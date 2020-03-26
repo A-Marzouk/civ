@@ -81,10 +81,10 @@
 
 
                 <div class="work-ex-list">
-                    <div class="work-ex-item mt-5" v-for="(item,index) in socialLinks" :key="item.id + 'link_key' ">
+                    <div class="work-ex-item mt-5" v-for="(item,index) in socialLinks" :key="item.id + 'link_key'">
                         <div class="d-flex justify-content-between">
                             <div class="d-flex">
-                                <div class="work-ex-info">
+                                <div class="work-ex-info" :class="{'deactivated' : !item.is_active}">
                                     <div class="work-ex-title">
                                         <img src="/images/resume_builder/link-icon.png" alt="">
                                         {{item.link_title}}:
@@ -95,13 +95,13 @@
                             <div class="options">
                                 <div class="options-btn NoDecor"
                                      @click="optionSocialLinkId === item.id ? optionSocialLinkId=0 : optionSocialLinkId=item.id">
-                                    <a href="javascript:void(0)" :class="{'opened':optionSocialLinkId === item.id}">
+                                    <a href="javascript:void(0)" class="social" :class="{'opened':optionSocialLinkId === item.id}">
                                         Options
                                         <img src="/images/resume_builder/arrow-down.png" alt=""
                                              :class="{'optionsOpened':optionSocialLinkId === item.id}">
                                     </a>
                                 </div>
-                                <div class="extended-options" v-show="optionSocialLinkId === item.id"
+                                <div class="extended-options social" v-show="optionSocialLinkId === item.id"
                                      :class="{'opened':optionSocialLinkId === item.id}">
                                     <!--<div class="edit-btn NoDecor" @click="editLink(item)">-->
                                     <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
@@ -110,6 +110,14 @@
                                     <div class="delete-btn NoDecor" @click="deleteLink(item)">
                                         <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
                                         Delete
+                                    </div>
+                                    <div class="delete-btn NoDecor" @click="toggleLink(item)" v-if="!item.is_active">
+                                        <img src="/images/resume_builder/links/activate.png" alt="delete icon" class="activate">
+                                        Activate
+                                    </div>
+                                    <div class="delete-btn NoDecor" @click="toggleLink(item)" v-if="item.is_active">
+                                        <img src="/images/resume_builder/links/deactivate.png" alt="delete icon" class="activate">
+                                        Deactivate
                                     </div>
                                 </div>
                             </div>
@@ -152,15 +160,15 @@
                                         </div>
                                         <div class="options">
                                             <div class="options-btn NoDecor"
-                                                 @click="optionSocialLinkId === item.id ? optionSocialLinkId=0 : optionSocialLinkId=item.id">
-                                                <a href="javascript:void(0)" :class="{'opened':optionSocialLinkId === item.id}">
+                                                 @click="optionPortfolioLinkId === item.id ? optionPortfolioLinkId=0 : optionPortfolioLinkId=item.id">
+                                                <a href="javascript:void(0)" :class="{'opened':optionPortfolioLinkId === item.id}">
                                                     Options
                                                     <img src="/images/resume_builder/arrow-down.png" alt=""
-                                                         :class="{'optionsOpened':optionSocialLinkId === item.id}">
+                                                         :class="{'optionsOpened':optionPortfolioLinkId === item.id}">
                                                 </a>
                                             </div>
-                                            <div class="extended-options" v-show="optionSocialLinkId === item.id"
-                                                 :class="{'opened':optionSocialLinkId === item.id}">
+                                            <div class="extended-options" v-show="optionPortfolioLinkId === item.id"
+                                                 :class="{'opened':optionPortfolioLinkId === item.id}">
                                                 <!--<div class="edit-btn NoDecor" @click="editLink(item)">-->
                                                 <!--<img src="/images/resume_builder/edit-icon.png" alt="edit icon">-->
                                                 <!--Edit-->
@@ -228,7 +236,8 @@
             newSocialLink: {
                 category: 'social_link',
                 link: '',
-                link_title: ''
+                link_title: '',
+                is_active: true
             },
             newPortfolioLink: {
                 category: 'portfolio_link',
@@ -281,6 +290,21 @@
 
         }),
         methods: {
+            toggleLink(link){
+                link.is_active = !link.is_active;
+                axios.put('/api/user/links', link)
+                    .then((response) => {
+                        this.$store.dispatch('flyingNotification');
+                        this.closeOptionsBtn();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors.edit = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
             addPrefix(url){
                 var prefix = 'http://';
                 if (url.substr(0, prefix.length) !== prefix)
@@ -682,6 +706,10 @@
                     color: #001CE2;
                     opacity: 1;
                 }
+
+                &.deactivated{
+                    opacity: 0.3;
+                }
             }
         }
     }
@@ -716,6 +744,10 @@
                     -webkit-transform: scaleY(-1);
                     transform: scaleY(-1);
                 }
+
+                &.social{
+                    width: 120px;
+                }
             }
 
             a.opened {
@@ -740,6 +772,14 @@
             padding-top: 5px;
             padding-left: 8px;
 
+            &.social{
+                height: auto;
+                padding-top: 6px;
+                padding-bottom: 10px;
+                padding-left: 8px;
+                width: 120px;
+            }
+
             .edit-btn, .delete-btn {
                 display: flex;
                 justify-content: flex-start;
@@ -752,6 +792,12 @@
                     width: 15.75px;
                     height: 14px;
                     margin-right: 6px;
+
+                    &.activate{
+                        height: 16px;
+                        width: 14px;
+                        margin-right: 6.5px;
+                    }
                 }
 
                 &:hover {
