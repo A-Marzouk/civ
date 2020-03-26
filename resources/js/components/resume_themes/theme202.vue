@@ -1,6 +1,11 @@
 <template>
   <v-app style="width:100%">
-    <v-container fluid ma-0 pa-0 style="background-color:rgba(16, 78, 251, 0.06); max-width:1920px !important; ">
+    <v-container
+      fluid
+      ma-0
+      pa-0
+      style="background-color:rgba(16, 78, 251, 0.06); max-width:1920px !important; "
+    >
       <v-layout row wrap>
         <v-flex xs12>
           <v-card color="#104EFB" class="custom-parent-card">
@@ -10,7 +15,7 @@
               <v-container class="themeWrapperBlue">
                 <v-layout row wrap>
                   <!-- Profile Pic -->
-                  <v-flex xs12 sm6 md3 class="ml-md-n2">
+                  <v-flex xs12 sm6 md3 class="ml-md-n2 ml-sm-0">
                     <v-card color="transparent" dark flat>
                       <v-card-text>
                         <v-list-item>
@@ -82,7 +87,15 @@
                   <!-- Profile Pic -->
 
                   <!-- Social Icons -->
-                  <v-flex class="mt-n10" d-flex xs12 sm6 md5 align-center justify-center>
+                  <v-flex
+                    class="mt-n3 mt-md-0 mt-sm-0"
+                    d-flex
+                    xs12
+                    sm6
+                    md5
+                    align-center
+                    justify-center
+                  >
                     <v-card color="transparent" flat class="custom-social-media-card">
                       <v-card-text class="custom-card-text" align="center">
                         <v-btn depressed class="mx-1 custom-social-btn hidden-sm-and-up">
@@ -134,7 +147,7 @@
                     mb-md-0
                     mb-sm-12
                   >
-                    <v-card flat class="hire-me pa-0 ml-md-n12" width="700" >
+                    <v-card flat class="hire-me pa-0 ml-md-n12">
                       <v-card-text>
                         <v-layout row justify-center align-center>
                           <v-flex xs6 sm4 md3>
@@ -181,7 +194,6 @@
           wrap
           my-md-n11
           my-sm-n11
-          my-xs-n12
           justify-center
           align-center
         >
@@ -678,11 +690,11 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Actor&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
-  /* Theme Wrapper */
-  .themeWrapperBlue{
-    max-width: 100%;
-  }
-  /* Theme wrapper*/
+/* Theme Wrapper */
+.themeWrapperBlue {
+  max-width: 100%;
+}
+/* Theme wrapper*/
 
 /* tab */
 .active-tab {
@@ -748,7 +760,7 @@ export default {
 }
 
 .hire-me {
-  width: 95%;
+  width: 700px;
   text-align: center !important;
   box-shadow: 0px 7px 9px rgba(16, 78, 251, 0.03) !important;
   border-radius: 50px !important;
@@ -977,6 +989,7 @@ export default {
 
   .hire-me {
     margin-left: 1px;
+    width: 95% !important;
   }
   .btn-hire-me {
     border-radius: 20px !important;
@@ -999,11 +1012,10 @@ export default {
   .progress-value-text {
     font-size: 8px !important;
   }
-
 }
 @media screen and (max-width: 360px) {
   .hire-me {
-    margin-left: 10px !important;
+    margin-left: 13px !important;
   }
 
   .btn-hire-me {
