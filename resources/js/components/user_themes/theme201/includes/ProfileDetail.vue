@@ -94,7 +94,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
   hr.custom-line {
     margin: 51px auto 0;
     border: 1px solid  #d3d3d3;
@@ -103,3 +103,4 @@ export default {
     opacity: 0.5;
   }
 </style>
+

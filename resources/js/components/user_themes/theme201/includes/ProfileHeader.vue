@@ -50,7 +50,7 @@
                                             </v-btn>
                                             <!-- hidden in medium devices -->
                                             <v-btn class="mr-4 custom-btn" fab dark small color="white">
-                                                <v-img src="/images/resume_themes/theme201/icons/pdf-download.png"
+                                                <v-img src="/images/resume_themes/theme201/pdf-download.png"
                                                        class="custom-icon"></v-img>
                                             </v-btn>
 
@@ -210,7 +210,7 @@
                     <v-card-title class="headline">
                         <v-spacer></v-spacer>
                         <v-btn fab class="hidden-sm-and-up" icon @click="hireMeModal=false">
-                            <img width="25" src="/images/resume_themes/theme201/icons/close.png"/>
+                            <img width="25" src="/images/resume_themes/theme201/close.png"/>
                         </v-btn>
                     </v-card-title>
 
@@ -232,7 +232,7 @@
                                 </v-col>
                                 <v-col align="right" class="hidden-xs-only" sm="2" md="2">
                                     <v-btn fab class icon @click="hireMeModal=false">
-                                        <img width="30" src="/images/resume_themes/theme201/icons/close.png"/>
+                                        <img width="30" src="/images/resume_themes/theme201/close.png"/>
                                     </v-btn>
                                 </v-col>
                             </v-row>
@@ -279,11 +279,16 @@
     };
 </script>
 
-<style>
+<style scoped lang="scss">
+    .custom-modal-title{
+        color: #000000 !important;
+    }
+    .custom-modal-subtitle{
+        font-size: 12px !important;
+    }
     .custom-mobile-icon {
         margin-left: -12px !important;
     }
-
     .btn-hire-me {
         border-radius: 50px !important;
         font-size: 12px !important;
@@ -291,7 +296,6 @@
         height: 31px !important;
         margin-top: 3px;
     }
-
     .v-dialog {
         overflow-x: hidden !important;
         overflow-y: hidden !important;
@@ -304,5 +308,10 @@
         margin-top: 20px;
     }
 
+    @media screen and (min-width: 747px) and (max-width: 754px) {
+        .custom-name-section {
+            margin-left: -57px;
+        }
+    }
 </style>
 

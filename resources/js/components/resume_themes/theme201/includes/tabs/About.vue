@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
 h1 {
   font-family: Open Sans;
   font-style: normal;
