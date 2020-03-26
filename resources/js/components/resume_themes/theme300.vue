@@ -240,7 +240,7 @@
                 <v-form ref="formMessages" class="form-messages">
                     <v-container>
                         <v-row>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="12" sm="12" cols="12" class="input-col">
                                 <v-text-field
                                     v-model="formMessage.name"
                                     :rules="formMessage.nameRules"
@@ -249,7 +249,7 @@
                                     color="#202124"
                                 ></v-text-field>
                             </v-col>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="12" sm="12" cols="12" class="input-col">
                                 <v-text-field
                                     v-model="formMessage.email"
                                     :rules="formMessage.emailRules"
@@ -258,7 +258,7 @@
                                     color="#202124"
                                 ></v-text-field>
                             </v-col>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="12" sm="12" cols="12" class="input-col">
                                 <v-textarea
                                     v-model="formMessage.message"
                                     filled
@@ -595,6 +595,7 @@ export default {
                     font-size: 12px;
                 }
                 .social-wrap{
+
                     a{
                         min-width: 23px;
                         min-height: 23px;
@@ -749,6 +750,9 @@ export default {
 
 
     }
+    .profileCol{
+        padding: 0;
+    }
 
     .imageCol{
         position: relative;
@@ -800,7 +804,7 @@ export default {
         color: #5F6368;
     }
     .social-wrap{
-        display: block;
+        justify-content: flex-start;
         margin: 12px 0 0 0;
 
         a{
@@ -1351,6 +1355,7 @@ export default {
 
             &.form-wrap{
                 padding: 0;
+                justify-content: center;
 
                 .v-btn{
                     &.btn-send{
@@ -1589,4 +1594,6 @@ export default {
         }
 
     }
+
+
 </style>
