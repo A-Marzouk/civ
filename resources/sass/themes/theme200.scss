@@ -1,31 +1,26 @@
-#resumeTheme200, #userTheme200{
-
+#resumeTheme200,
+#userTheme200 {
     .pagination-text {
         color: #3d3d3d;
     }
-
     .parent-card {
         border-radius: 0px !important;
     }
-
     .profile-avatar {
         width: 150px !important;
         height: auto !important;
         border-radius: 22px !important;
     }
-
     .profile-title {
         font-family: "Open Sans", sans-serif !important;
         font-size: 36px !important;
     }
-
     .profile-subtitle {
         font-family: "Open Sans", sans-serif !important;
         font-size: 16px !important;
         padding: 1px;
         color: #ffffff !important;
     }
-
     .chat-btn {
         font-family: "Open Sans", sans-serif !important;
         border-radius: 23px !important;
@@ -35,27 +30,18 @@
         margin-left: 24px;
         text-align: center !important;
     }
-
-
     /* social icons */
-
     .social-icon {
         width: 30px;
         height: 30px;
     }
-
-
     /* social icons */
-
-
     /* interview */
-
     .interview-text {
         font-family: "Open Sans", sans-serif !important;
         font-size: 16px !important;
         color: #ffffff !important;
     }
-
     .btn-voice-call {
         font-family: "Open Sans", sans-serif !important;
         border-radius: 2.76vw !important;
@@ -68,7 +54,6 @@
             width: 1vw !important;
         }
     }
-
     .btn-upload {
         font-family: "Open Sans", sans-serif !important;
         border-radius: 2.76vw !important;
@@ -80,29 +65,21 @@
             width: 20px !important;
         }
     }
-
-
     /* inerview */
-
-
     /* hire me card */
-
     .card-hire-me {
         border-radius: 51px !important;
     }
-
     .hire-me-title {
         font-size: 1vw !important;
         color: #ffffff;
         margin-left: 0.2vw !important;
     }
-
     .hire-me-subtitle {
         font-size: 0.9vw !important;
         color: #ffffff;
         text-transform: capitalize;
     }
-
     .btn-hire-me {
         font-family: "Open Sans", sans-serif !important;
         font-size: 15px !important;
@@ -110,133 +87,93 @@
         text-transform: capitalize !important;
         border-radius: 38px !important;
     }
-
     .img-hour {
         width: 1.8vw !important;
     }
-
     .btn-hire-me img {
         width: 20px !important;
     }
-
     .skill-item {
         width: fit-content;
     }
-
-
     /* tab styles */
-
     .parent-tab {
         overflow: hidden !important;
         border-radius: 26px 26px 0 0 !important;
     }
-
     .ct-tab-title {
         color: #ffffff !important;
         font-size: 1.2vw !important;
         font-weight: 600 !important;
     }
-
     .active-tab {
         background-color: #ffffff !important;
         color: #fc5283 !important;
     }
-
-
     /* Corners */
-
     .round-left-custom {
         border-top-left-radius: 26px;
     }
-
     .round-right-custom {
         border-top-right-radius: 26px !important;
     }
-
     .v-slide-group__prev.v-slide-group__prev--disabled,
     .v-slide-group__next.v-slide-group__next--disabled {
         display: none !important;
     }
-
-
     /* tab styles */
-
-
     /* Portfolio */
-
     .card-portfolio {
         border-radius: 12px !important;
         width: 90% !important;
     }
-
-
     /* Portfolio */
-
-
     /* Work */
-
     .work-title {
         font-family: "Poppins" !important;
         font-size: 22px !important;
         font-weight: 700;
     }
-
     .work-subtitle {
         font-family: "Poppins" !important;
         font-size: 18px !important;
         color: #4b4b4b !important;
         font-weight: 400 !important;
     }
-
     .work-text {
         font-family: "Poppins" !important;
         font-size: 16px !important;
         color: #656565 !important;
     }
-
-
     /* Work */
-
-
     /* Skill tabs */
-
     .skill-tab-text {
         font-size: 14px !important;
         text-transform: capitalize !important;
     }
-
     .skill-child-title {
         font-weight: 500 !important;
     }
-
-
     /* Skills tabs */
-
-
     /* About Me Tab */
-
     .about-me-pic-flex {
         text-align: right !important;
     }
-
     .hello-text {
         color: #373737;
     }
-
     .hello-title {
         font-size: 35px;
         font-weight: 400;
         margin-top: 15px;
         color: #373737;
     }
-
     .hello-designation {
         font-size: 37px;
         font-weight: 400;
         margin-top: 22px;
         color: #373737;
     }
-
     .pic-box {
         width: 50%;
         height: auto !important;
@@ -244,37 +181,24 @@
         aspect-ratio: 0.9 !important;
         box-shadow: 48px 56px 0px -8px rgba(97, 82, 207, 1) !important;
     }
-
     .about-me-flex {
         margin-top: -100px;
     }
-
-
     /* About Me Tab */
-
-
     /* Achievement */
-
     .achievement-title {
         font-size: 22px;
         color: #474747 !important;
         font-weight: normal;
     }
-
     .achievement-subtitle {
         color: #6152cf !important;
     }
-
     .achievement-text {
         color: #808080 !important;
     }
-
-
     /* Achievement */
-
-
     /* for google chrome and safari */
-
     .v-line {
         position: absolute;
         margin-top: 58px;
@@ -282,7 +206,6 @@
         height: 110%;
         border: 1px solid #707070;
     }
-
     @-moz-document url-prefix() {
         .v-line {
             position: absolute;
@@ -292,25 +215,12 @@
             border: 1px solid #707070;
         }
     }
-
-
     /* achievement */
-
-
     /* achievement */
-
-
     /* Footer Image */
-
-
     /* Media Query */
-
-
     /* hire me card */
-
-
     /* special desktop case */
-
     @media screen and (min-width: 960px) {
         .interview-flex {
             margin-left: 4.06vw !important;
@@ -319,16 +229,9 @@
             margin-top: 10% !important;
         }
     }
-
-
     /* special desktop case */
-
-
     /* .................................................Tablet ................................. */
-
-
     /* Tablet */
-
     @media screen and (min-width: 600px) and (max-width: 959px) {
         /* Profile */
         .profile-avatar {
@@ -468,16 +371,9 @@
         }
         /* vertical line */
     }
-
-
     /* Tablet */
-
-
     /* .................................................................................................. */
-
-
     /* ..............................................Mobile Screen................................. */
-
     @media screen and (max-width: 599px) {
         /*  profile */
         .profile-avatar {
@@ -594,11 +490,6 @@
         }
         /* achievement */
     }
-
-
     /* mobile devices */
-
-
     /* min screen devices*/
-
 }
