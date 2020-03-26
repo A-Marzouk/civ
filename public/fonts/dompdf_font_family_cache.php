@@ -78,12 +78,18 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'open sans' => array(
-    'normal' => $fontDir . '/open-sans-normal_a80c9ebbc8915257ccff50ad36ffe695',
+    'normal' => $rootDir . '/lib/fonts/open-sans-normal_2d61eedf1a366b3351d9409ac4a567a9',
   ),
   'opensans-regular' => array(
-    'normal' => $fontDir . '/////OpenSans-Regular',
-    'bold' => $fontDir . '/////OpenSans-Regular',
-    'italic' => $fontDir . '/////OpenSans-Regular',
-    'bold_italic' => $fontDir . '/////OpenSans-Regular',
+    'normal' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
+    'bold' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
+    'italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
+    'bold_italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
+  ),
+  'raleway' => array(
+    'normal' => $fontDir . '/Raleway-Regular',
+    'bold' => $fontDir . '/Raleway-Light',
+    'italic' => $fontDir . '/Raleway-Bold',
+    'bold_italic' => $fontDir . '/Raleway-Regular',
   ),
 ) ?>
