@@ -1,16 +1,16 @@
 <template>
   <v-app style="width:100%">
-    <v-container fluid ma-0 pa-0 fill style="background-color:rgba(16, 78, 251, 0.06); max-width: 1785px;">
+    <v-container fluid ma-0 pa-0 style="background-color:rgba(16, 78, 251, 0.06); max-width:1920px !important; ">
       <v-layout row wrap>
         <v-flex xs12>
           <v-card color="#104EFB" class="custom-parent-card">
             <v-card-text>
               <div class="circle1"></div>
               <div class="circle2"></div>
-              <v-container>
+              <v-container class="themeWrapperBlue">
                 <v-layout row wrap>
                   <!-- Profile Pic -->
-                  <v-flex xs12 sm6 md3 class="ml-md-n6">
+                  <v-flex xs12 sm6 md3 class="ml-md-n2">
                     <v-card color="transparent" dark flat>
                       <v-card-text>
                         <v-list-item>
@@ -82,8 +82,8 @@
                   <!-- Profile Pic -->
 
                   <!-- Social Icons -->
-                  <v-flex class d-flex xs12 sm6 md5 align-center justify-center>
-                    <v-card color="transparent" flat class="social-media-card">
+                  <v-flex class="mt-n10" d-flex xs12 sm6 md5 align-center justify-center>
+                    <v-card color="transparent" flat class="custom-social-media-card">
                       <v-card-text class="custom-card-text" align="center">
                         <v-btn depressed class="mx-1 custom-social-btn hidden-sm-and-up">
                           <img
@@ -134,7 +134,7 @@
                     mb-md-0
                     mb-sm-12
                   >
-                    <v-card flat class="hire-me pa-0" width="700">
+                    <v-card flat class="hire-me pa-0 ml-md-n12" width="700" >
                       <v-card-text>
                         <v-layout row justify-center align-center>
                           <v-flex xs6 sm4 md3>
@@ -174,7 +174,7 @@
       </v-layout>
 
       <!-- Tabs -->
-      <v-container>
+      <v-container class="themeWrapperBlue">
         <v-layout
           class="tab-layout"
           row
@@ -678,6 +678,12 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Actor&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Raleway&display=swap");
+  /* Theme Wrapper */
+  .themeWrapperBlue{
+    max-width: 100%;
+  }
+  /* Theme wrapper*/
+
 /* tab */
 .active-tab {
   background-color: #ffffff !important;
@@ -750,6 +756,8 @@ export default {
 
 .btn-hire-me {
   border-radius: 40px !important;
+  height: 45px !important;
+  margin-top: 0px !important;
 }
 
 .hire-me-title-text {
@@ -864,17 +872,17 @@ export default {
 }
 
 .circle3 {
-  position: absolute !important;
-  margin-top: -48px !important;
-  margin-left: 173px !important;
+  position: absolute;
+  margin-top: -48px;
+  margin-left: 173px;
   width: 150px;
   height: 150px;
-  border-radius: 50% !important;
-  background: rgba(241, 244, 255, 0.1) !important;
+  border-radius: 50%;
+  background: rgba(241, 244, 255, 0.1);
 }
 
 .circle4 {
-  position: absolute !important;
+  position: absolute;
   margin-left: 93px;
   margin-top: -123px;
   width: 220px;
@@ -885,7 +893,7 @@ export default {
 
 /* media query block */
 @media screen and (min-width: 960px) and (max-width: 1263px) {
-  .social-media-card {
+  .custom-social-media-card {
     margin-left: 90px;
   }
   .hire-me-subtitle-text {
@@ -974,7 +982,6 @@ export default {
     border-radius: 20px !important;
   }
   /* circles */
-  // Progress
   .skill-img {
     width: 30px;
     height: 30px;
@@ -993,10 +1000,7 @@ export default {
     font-size: 8px !important;
   }
 
-  // Progress
 }
-//mobile query ends here
-// for iPhoene 5s
 @media screen and (max-width: 360px) {
   .hire-me {
     margin-left: 10px !important;
