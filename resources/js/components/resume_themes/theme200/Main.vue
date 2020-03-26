@@ -255,8 +255,8 @@
                                                             class="ct-tab-title text-capitalize"
                                                             :class="[
                         currentTab == tab.id ? 'active-tab' : '',
-                        tab.id == 1 ? 'round-left' : '',
-                        tab.id == 6 ? 'round-right' : '',
+                        tab.id == 1 ? 'round-left-custom' : '',
+                        tab.id == 6 ? 'round-right-custom' : '',
 
                       ]"
                                                     >
