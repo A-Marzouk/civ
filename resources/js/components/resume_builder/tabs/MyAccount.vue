@@ -110,7 +110,7 @@
         <div class="modal fade" id="prices" tabindex="-1" role="dialog" aria-labelledby="prices" aria-hidden="true" style="overflow: hidden!important;">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-body" style="min-height: 525px;">
+                    <div class="modal-body" style="min-height: 600px;">
                         <div class="plans">
                             <div class="toggle-panel">
                                 <div class="aux-fill" :class="{left: selectedBtn === 'monthly',right: selectedBtn === 'yearly'}"></div>
