@@ -32,38 +32,38 @@ export default {
 };
 </script>
 
-<style>
-.custom-h1 {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 28px;
-  line-height: 44px;
-  /* identical to box height */
+<style scoped lang="scss">
+  .custom-h1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 44px;
+    /* identical to box height */
 
-  color: #1d1d1d;
-}
-
-.subtitle-1 {
-  font-size: 12px;
-}
-
-
-
-
-@media screen and (min-width: 960px) and (max-width: 1263px) {
-  .custom-h1{
-    font-size:20px;
     color: #1d1d1d;
   }
-}
 
-
-@media screen and (min-width: 290px) and (max-width: 522px) {
-  .custom-h1{
-    font-weight: bold;
-    font-size:15px;
-    color: #1d1d1d;
+  .subtitle-1 {
+    font-size: 12px;
   }
- 
-}
+
+
+
+
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    .custom-h1{
+      font-size:20px;
+      color: #1d1d1d;
+    }
+  }
+
+
+  @media screen and (min-width: 290px) and (max-width: 522px) {
+    .custom-h1{
+      font-weight: bold;
+      font-size:15px;
+      color: #1d1d1d;
+    }
+
+  }
 </style>
