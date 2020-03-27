@@ -83,37 +83,37 @@
 .hold-payment .pay-method .v-radio .v-input--selection-controls__input input[type=radio]{
     max-height: 100%;
 }
-.form-wrap .form-messages{
+#resumeTheme300 .form-wrap .form-messages{
     width: 100%;
 }
-.form-wrap .form-messages .input-col{
+#resumeTheme300 .form-wrap .form-messages .input-col{
     padding: 0px;
 }
-.form-wrap .v-text-field{
+#resumeTheme300 .form-wrap .v-text-field{
     margin: 0 0 40px 0;
     padding: 0;
 }
-.form-wrap .v-text-field input{
+#resumeTheme300 .form-wrap .v-text-field input{
     background: #fff;
     border-radius: 0px;
     min-height: auto;
     padding-left: 0px;
 }
 
-.form-wrap .v-text-field .v-label{
+#resumeTheme300 .form-wrap .v-text-field .v-label{
     font-size: 16px;
 }
-.form-wrap .v-text-field.v-text-field--enclosed{
+#resumeTheme300 .form-wrap .v-text-field.v-text-field--enclosed{
     margin: 0;
     border-radius: 0px;
 }
-.form-wrap .v-text-field.v-textarea > .v-input__control > .v-input__slot:before{
+#resumeTheme300 .form-wrap .v-text-field.v-textarea > .v-input__control > .v-input__slot:before{
     border-width: 0px;
 }
-.form-wrap .v-input input:invalid, .form-wrap .v-input textarea:invalid{
+#resumeTheme300 .form-wrap .v-input input:invalid, .form-wrap .v-input textarea:invalid{
     box-shadow: none;
 }
-.form-wrap .v-text-field>.v-input__control>.v-input__slot{
+#resumeTheme300 .form-wrap .v-text-field>.v-input__control>.v-input__slot{
     border-bottom: 1px solid #ccc;
 }
 
