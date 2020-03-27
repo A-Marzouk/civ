@@ -13,10 +13,10 @@
                                 <div class="head-name">Eduardo Acosta</div>
                                 <div class="head-profile">Front-end Developer</div>
                                 <div class="social-wrap">
-                                    <a href="" alt="Twitter" title="Twitter"><v-icon>mdi-twitter</v-icon></a>
-                                    <a href="" alt="Linkedin" title="Linkedin"><v-icon>mdi-linkedin</v-icon></a>
-                                    <a href="" alt="Facebook" title="Facebook"><v-icon>mdi-facebook</v-icon></a>
-                                    <a href="" alt="Instagram" title="Instagram"><v-icon>mdi-instagram</v-icon></a>
+                                    <a href="" alt="Twitter" title="Twitter"><img src="/images/resume_themes/theme300/social_icons/twitter.webp" alt="twitter"></a>
+                                    <a href="" alt="Linkedin" title="Linkedin"><img src="/images/resume_themes/theme300/social_icons/linkedin.webp" alt="linkedin"></a>
+                                    <a href="" alt="Facebook" title="Facebook"><img src="/images/resume_themes/theme300/social_icons/facebook.webp" alt="facebook"></a>
+                                    <a href="" alt="Instagram" title="Instagram"><img src="/images/resume_themes/theme300/social_icons/instagram.webp" alt="instagram"></a>
                                 </div>
                             </v-col>
                             <v-col lg="5" md="5" sm="5" cols="3" class="interviewSection">
@@ -240,7 +240,7 @@
                 <v-form ref="formMessages" class="form-messages">
                     <v-container>
                         <v-row>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="12" sm="12" cols="12" class="input-col">
                                 <v-text-field
                                     v-model="formMessage.name"
                                     :rules="formMessage.nameRules"
@@ -249,7 +249,7 @@
                                     color="#202124"
                                 ></v-text-field>
                             </v-col>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="12" sm="12" cols="12" class="input-col">
                                 <v-text-field
                                     v-model="formMessage.email"
                                     :rules="formMessage.emailRules"
@@ -258,7 +258,7 @@
                                     color="#202124"
                                 ></v-text-field>
                             </v-col>
-                            <v-col lg="12" sm="12" cols="12">
+                            <v-col lg="12" sm="12" cols="12" class="input-col">
                                 <v-textarea
                                     v-model="formMessage.message"
                                     filled
@@ -595,15 +595,15 @@ export default {
                     font-size: 12px;
                 }
                 .social-wrap{
+
                     a{
                         min-width: 23px;
                         min-height: 23px;
                         line-height: 20px;
                         margin-right: 10px;
 
-                        i{
-                            font-size: 12px;
-                            line-height: 23px;
+                        img{
+                            max-width: 12px;
                         }
                     }
                 }
@@ -698,7 +698,7 @@ export default {
 
                     .col-12{
                         display: flex;
-                        justify-content: flex-end;
+                        justify-content: center;
                     }
                     
                 }
@@ -749,6 +749,9 @@ export default {
 
 
     }
+    .profileCol{
+        padding: 0;
+    }
 
     .imageCol{
         position: relative;
@@ -758,8 +761,8 @@ export default {
         max-width: 190px;
 
         .profile-img{
-            width: 140px;
-            height: 140px;
+            width: 8.8rem !important;
+            height: 8.8rem !important;
             display: block;
             background-position: center;
             background-size: cover;
@@ -800,7 +803,7 @@ export default {
         color: #5F6368;
     }
     .social-wrap{
-        display: block;
+        justify-content: flex-start;
         margin: 12px 0 0 0;
 
         a{
@@ -815,8 +818,8 @@ export default {
             line-height: 32px;
             box-shadow: none;
 
-            i{
-                color: #202124;
+            img{
+                max-width: 24px;
             }
         }
     }
@@ -1351,6 +1354,7 @@ export default {
 
             &.form-wrap{
                 padding: 0;
+                justify-content: center;
 
                 .v-btn{
                     &.btn-send{
@@ -1532,10 +1536,10 @@ export default {
         }
 
         .hold-payment{
-            margin-top: 20px;
             background: #F5F7F7;
             max-width: 710px;
             min-height: 160px;
+            margin: 20px auto;
 
             .pay-method{
 
