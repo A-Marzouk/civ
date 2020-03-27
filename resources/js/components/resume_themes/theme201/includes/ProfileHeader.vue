@@ -33,8 +33,8 @@
                     </v-list-item-title>
 
                     <v-list-item-subtitle class="subtitle-text mt-sm-n2 ml-sm-1">{{user.personal_info.designation}}</v-list-item-subtitle>
-                    <div class="profile-btn mt-sm-2">
-                      <v-btn @click="sendEmail"
+                    <div class="profile-btn mt-sm-2 NoDecor">
+                      <v-btn :href="'mailto:' + user.personal_info.email"
                         class="ml-n1 mr-md-4 mr-sm-3 custom-btn hidden-sm-and-down"
                         fab
                         dark
@@ -95,17 +95,8 @@
       <v-card flat>
         <v-card-text>
           <div class="btn-align">
-            <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="16" src="/images/resume_themes/theme201/social_icons/behance.webp" />
-            </v-btn>
-            <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="16" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
-            </v-btn>
-            <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="14" src="/images/resume_themes/theme201/social_icons/instagram.webp" />
-            </v-btn>
-            <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                <img width="12" src="/images/resume_themes/theme201/social_icons/linkedin.webp" />
+            <v-btn class="mx-2 custom-btn" fab dark small color="black" :href="item.link" v-for="item in socialLinks" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
+              <img width="16" :src="`/images/resume_themes/theme201/social_icons/${item.link_title.toLowerCase()}.webp`" />
             </v-btn>
           </div>
         </v-card-text>
@@ -130,10 +121,6 @@
 
             <v-btn class="mx-2" fab dark color="black">
               <img width="20" src="/images/resume_themes/theme201/social_icons/whatsapp.webp" />
-            </v-btn>
-
-            <v-btn class="mx-2 custom-btn" fab dark small color="black">
-              <img width="16" src="/images/resume_themes/theme201/social_icons/behance.webp" />
             </v-btn>
 
             <v-btn class="mx-2" fab dark color="black">
@@ -263,6 +250,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.themeUser;
+    },
+    socialLinks(){
+      return this.user.links.filter( (link) => {return link.category === 'social_link' ? link : false});
     }
   },
   methods:{

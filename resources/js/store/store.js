@@ -206,19 +206,19 @@ export const store = new Vuex.Store({
                 {
                     category:'social_link',
                     link:'https://instagram.com',
-                    link_title:'Instagram',
+                    link_title:'Behance',
                     is_active:true
                 },
                 {
                     category:'social_link',
                     link:'https://instagram.com',
-                    link_title:'Instagram',
+                    link_title:'Linkedin',
                     is_active:true
                 },
                 {
                     category:'social_link',
                     link:'https://instagram.com',
-                    link_title:'Instagram',
+                    link_title:'Dribbble',
                     is_active:true
                 },
                 
