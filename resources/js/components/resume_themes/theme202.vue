@@ -734,7 +734,7 @@ export default {
   font-family: Raleway !important;
 }
 .title-text {
-  font-size: 26px !important;
+  font-size: 25px !important;
   font-family: Raleway !important;
   font-style: normal;
 }

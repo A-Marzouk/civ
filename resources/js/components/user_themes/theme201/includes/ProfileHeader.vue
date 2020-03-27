@@ -8,7 +8,7 @@
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title class="headline title-text">{{user.name}}</v-list-item-title>
-                        <v-list-item-subtitle>{{user.personal_info.designation}}</v-list-item-subtitle>
+                        <v-list-item-subtitle style="color:black;">{{user.personal_info.designation}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-card>
@@ -19,13 +19,13 @@
                 <v-card-text>
                     <v-list-item>
                         <v-layout row>
-                            <v-flex xs3 md3 sm4 lg2 class="mobile-center">
+                            <v-flex xs3 md3 sm4 class="mobile-center">
                                 <v-avatar size="120">
                                     <v-img :src="user.personal_info.profile_pic"></v-img>
                                 </v-avatar>
                             </v-flex>
 
-                            <v-flex xs9 md6 sm8 lg4 class="mobile-center custom-name-section">
+                            <v-flex xs9 md6 sm8  class="mobile-center custom-name-section">
                                 <v-list-item>
                                     <v-list-item-content class="title-row">
                                         <v-list-item-title class="headline title-text">
@@ -36,7 +36,7 @@
                                         </v-list-item-subtitle>
                                         <div class="profile-btn mt-1">
                                             <v-btn
-                                                    class="ml-n1 mr-4 custom-btn hidden-sm-and-down"
+                                                    class="ml-n1 mr-md-4 mr-sm-3 custom-btn hidden-sm-and-down"
                                                     fab
                                                     dark
                                                     color="black"
@@ -45,11 +45,11 @@
                                             </v-btn>
 
                                             <!-- hidden in medium devices -->
-                                            <v-btn class="mr-4 custom-btn hidden-md-and-up" fab dark color="black">
+                                            <v-btn class="mr-md-4 mr-sm-3 custom-btn hidden-md-and-up" fab dark color="black">
                                                 <v-icon>mdi-email</v-icon>
                                             </v-btn>
                                             <!-- hidden in medium devices -->
-                                            <v-btn class="mr-4 custom-btn" fab dark small color="white">
+                                            <v-btn class="mr-md-4 mr-sm-3 custom-btn" fab dark small color="white">
                                                 <v-img src="/images/resume_themes/theme201/pdf-download.png"
                                                        class="custom-icon"></v-img>
                                             </v-btn>
@@ -219,12 +219,12 @@
                             <v-row justify="center">
                                 <v-col cols="5" sm="3" md="3">
                                     <div style="color:black;" class="font-weight-bold">$35</div>
-                                    <div>hourly rate</div>
+                                    <div class="custom-modal-subtitle">hourly rate</div>
                                 </v-col>
                                 <div class="vertical-line mx-2"></div>
                                 <v-col cols="5" sm="3" md="3">
                                     <div style="color:black;" class="font-weight-bold">35 HOURS</div>
-                                    <div>weekly availibility</div>
+                                    <div class="custom-modal-subtitle">weekly availibility</div>
                                 </v-col>
                                 <v-col cols="6" sm="3" md="3">
                                     <v-btn depressed class="text-capitalize btn-hire-me" color="#1D1D1D" dark>Hire Me
