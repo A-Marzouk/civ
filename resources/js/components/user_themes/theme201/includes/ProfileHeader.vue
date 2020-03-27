@@ -8,7 +8,7 @@
                     </v-list-item-avatar>
                     <v-list-item-content>
                         <v-list-item-title class="headline title-text">{{user.name}}</v-list-item-title>
-                        <v-list-item-subtitle>{{user.personal_info.designation}}</v-list-item-subtitle>
+                        <v-list-item-subtitle style="color:black;">{{user.personal_info.designation}}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-card>

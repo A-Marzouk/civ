@@ -8,7 +8,7 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="headline title-text">Beverly Andrews</v-list-item-title>
-            <v-list-item-subtitle>User interface designer</v-list-item-subtitle>
+            <v-list-item-subtitle style="color:black;">User interface designer</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-card>
@@ -69,7 +69,7 @@
                 </v-list-item>
               </v-flex>
 
-              <v-flex sm12 md3 class="hidden-sm-and-down">
+              <v-flex sm12 md2 class="hidden-sm-and-down">
                 <div class="social-icon">
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
                     <v-icon>mdi-map-marker</v-icon>
