@@ -1053,7 +1053,7 @@
             getImgUrlIcon(icon) {
                 return `/images/resume_themes/theme200/icons/tabs/${icon}.png`;
             },
-
+            
             getImgUrlIconActive(icon) {
                 return `/images/resume_themes/theme200/icons/tabs-active/${icon}.png`;
 
@@ -1080,7 +1080,7 @@
 
             //get social media image icons
             getIconSocial(icon) {
-                return `/images/resume_themes/theme200/icons/${icon}.png`;
+                return `/images/resume_themes/theme200/social_icons/${icon}.webp`;
             }
         }
     };
