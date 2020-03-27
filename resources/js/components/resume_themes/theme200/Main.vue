@@ -28,10 +28,10 @@
                                                         <!-- Name -->
                                                         <v-list-item-content>
                                                             <v-list-item-title class="ml-md-4">
-                                                                <span class="profile-title">Olivia Emily</span>
+                                                                <span class="profile-title">{{currentUser.personal_info.full_name}}</span>
                                                             </v-list-item-title>
                                                             <v-list-item-subtitle class="ml-md-5">
-                                                                <span class="profile-subtitle">UX/UI Designer</span>
+                                                                <span class="profile-subtitle">{{currentUser.personal_info.designation}}</span>
                                                             </v-list-item-subtitle>
 
                                                             <v-list-item-icon class="hidden-md-and-up">
@@ -1045,7 +1045,9 @@
                     {title: "dribbble", icon: "fa-dribbble", color: "#EE588A"},
                     {title: "instagram", icon: "fa-instagram", color: "#DD24BC"},
                     {title: "google", icon: "fa-google-plus", color: "#DC4E41"}
-                ]
+                ],
+
+                currentUser: this.user
             };
         },
 
@@ -1081,19 +1083,21 @@
             //get social media image icons
             getIconSocial(icon) {
                 return `/images/resume_themes/theme200/social_icons/${icon}.webp`;
+            },
+            setDummyUser() {
+                this.currentUser = this.$store.state.dummyUser;
             }
         },
 
-        mounted(){
-            // this line to make the user accessible on $store for included components.
-            let user = {} ;
-            if (!this.user) {
-                user = this.$store.state.dummyUser;
-            }else{
-                user = this.user ;
+        mounted() {
+
+            // if there is no user or the preview is true, set dummy user
+            if (!this.currentUser || this.is_preview) {
+                this.setDummyUser();
             }
 
-            this.$store.dispatch('updateThemeUser', user);
+            // let user accessible in included components.
+            this.$store.dispatch('updateThemeUser', this.currentUser);
         }
     };
 </script>
