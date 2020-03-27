@@ -1,4 +1,6 @@
 import vuetify from './vuetify';
+import {store} from './store/store';
+
 
 
 import resumeTheme2 from './components/resume_themes/theme2';
@@ -90,6 +92,7 @@ if ($("#resumeTheme201").length !== 0) {
     new Vue({
         el: '#resumeTheme201',
         vuetify,
+        store,
         iconfont: 'fa4',
         components: {
             'resume-theme-201': resumeTheme201

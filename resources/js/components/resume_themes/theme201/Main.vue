@@ -11,17 +11,27 @@
     import ProfileHeader from './includes/ProfileHeader'
     import ProfileDetail from './includes/ProfileDetail'
 
-    export default{
+    export default {
         name: "Main",
-        props:['user'],
-        components:{
+        props: ['user'],
+        components: {
             ProfileHeader,
             ProfileDetail,
         },
-    mounted() {
-        // this line to make the user accessible on $store.
-        this.$store.dispatch('updateThemeUser', this.user);
-    }
+        computed:{
+
+        },
+        mounted() {
+            // this line to make the user accessible on $store for included components.
+            let user = {} ;
+            if (!this.user) {
+                user = this.$store.state.dummyUser;
+            }else{
+                user = this.user ;
+            }
+
+            this.$store.dispatch('updateThemeUser', user);
+        }
     }
 </script>
 
