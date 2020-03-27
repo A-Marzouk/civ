@@ -13,10 +13,15 @@
 
     export default{
         name: "Main",
+        props:['user'],
         components:{
             ProfileHeader,
             ProfileDetail,
-        }
+        },
+    mounted() {
+        // this line to make the user accessible on $store.
+        this.$store.dispatch('updateThemeUser', this.user);
+    }
     }
 </script>
 
