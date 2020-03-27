@@ -1082,6 +1082,18 @@
             getIconSocial(icon) {
                 return `/images/resume_themes/theme200/social_icons/${icon}.webp`;
             }
+        },
+
+        mounted(){
+            // this line to make the user accessible on $store for included components.
+            let user = {} ;
+            if (!this.user) {
+                user = this.$store.state.dummyUser;
+            }else{
+                user = this.user ;
+            }
+
+            this.$store.dispatch('updateThemeUser', user);
         }
     };
 </script>

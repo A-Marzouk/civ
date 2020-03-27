@@ -138,6 +138,7 @@ if ($("#resumeTheme200").length !== 0) {
     new Vue({
         el: '#resumeTheme200',
         vuetify,
+        store,
         iconfont: 'fa4',
         components: {
             'resume-theme-200': resumeTheme200
