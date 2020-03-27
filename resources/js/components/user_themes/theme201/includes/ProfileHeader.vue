@@ -219,12 +219,12 @@
                             <v-row justify="center">
                                 <v-col cols="5" sm="3" md="3">
                                     <div style="color:black;" class="font-weight-bold">$35</div>
-                                    <div>hourly rate</div>
+                                    <div class="custom-modal-subtitle">hourly rate</div>
                                 </v-col>
                                 <div class="vertical-line mx-2"></div>
                                 <v-col cols="5" sm="3" md="3">
                                     <div style="color:black;" class="font-weight-bold">35 HOURS</div>
-                                    <div>weekly availibility</div>
+                                    <div class="custom-modal-subtitle">weekly availibility</div>
                                 </v-col>
                                 <v-col cols="6" sm="3" md="3">
                                     <v-btn depressed class="text-capitalize btn-hire-me" color="#1D1D1D" dark>Hire Me
