@@ -10,11 +10,22 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
 
     public function themePreview ($themeCode) {
+        $authUser = Auth::user();
+        if($authUser){
+            $user = User::withAllRelations($authUser->username);
+            if($user){
+                // get theme code
+                $userThemeCode = $user->theme_code ;
+                return view('defaultThemes.theme' . $userThemeCode, compact('user'));
+            }
+        }
+
         return view('defaultThemes.' . $themeCode);
     }
 
@@ -42,7 +53,7 @@ class ResumeController extends Controller
         if($user){
             // get theme code
             $themeCode = $user->theme_code ;
-            return view('userThemes.theme' . $themeCode, compact('user'));
+            return view('defaultThemes.theme' . $themeCode, compact('user'));
         }else{
             return abort(404);
         }

@@ -1,203 +1,235 @@
-#resumeTheme201,#userTheme201 {
-    .custom-name-section {
-        margin-left: -10px !important;
-    }
-    .title-row {
-        padding-left: 5px !important;
-    }
-    .title-text {
-        font-size: 1.5rem !important;
-        font-weight: 400;
-        letter-spacing: normal !important;
-        font-family: "Roboto", sans-serif !important;
-        color: #1D1D1D;
-    }
-    .subtitle-text {
-        font-family: Open Sans;
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px !important;
-        line-height: 29px;
-        color: #1D1D1D;
-    }
-    .custom-icon {
-        width: 29px;
-        height: auto;
-    }
-    .v-application .mx-2.custom-btn {
-        margin: 10px 5px 0 0 !important;
-    }
-    .layout.skills.row {
-        margin-bottom: 50px;
-    }
-    .flex.skills-middle {
-        text-align: center;
-        margin: 30px auto 0;
-    }
-    .skills-text {
-        font-size: 20px;
-        font-weight: 400;
-        margin-top: -4px;
-    }
-    .custom-tab {
-        margin: 50px auto;
-    }
-    .btn-align {
-        text-align: right
-    }
-    .profile-btn {
-        text-align: left
-    }
-    .social-icon {
-        text-align: left
-    }
-    .custom-header2 {
-        word-break: break-word;
-    }
-    .layout.row {
-        margin-right: 0;
-        margin-left: 0;
-    }
-    .skills-percent {
-        text-align: center
-    }
-    .v-btn--fab.v-size--small {
-        width: 30px !important;
-        height: 30px !important;
-        box-shadow: none !important;
-    }
-    .v-btn--fab {
-        width: 40px !important;
-        height: 40px !important;
-        box-shadow: none !important;
-    }
-    .v-btn--fab.v-size--small .v-icon {
-        font-size: 17px !important;
-    }
-    .title-header {
-        font-size: 30px;
-    }
-    .tab-text {
-        font-size: 24px !important;
-        font-weight: bold !important;
-        color: rgba(29, 29, 29, 0.2) !important;
-        text-transform: capitalize !important;
-    }
-    .tab-text.v-tab.v-tab--active {
-        color: #1D1D1D !important;
-    }
-    .tablet-align {
-        margin-left: 20px;
-    }
-    @media screen and (min-width: 600px) and (max-width: 959px) {
-        .custom-name-section {
-            margin-left: none !important;
-            max-width: 100.0% !important;
+        #resumeTheme201,
+        #userTheme201 {
+
+            a:focus{
+                outline: none;
+            }
+
+
+            .custom-name-section {
+                margin-left: -5vw;
+            }
+            .title-row {
+                padding-left: 5px !important;
+            }
+            .title-text {
+                font-size: 2vw !important;
+                font-weight: 400;
+                letter-spacing: normal !important;
+                font-family: "Roboto", sans-serif !important;
+                color: #1D1D1D;
+            }
+            .subtitle-text {
+                font-family: Open Sans;
+                font-style: normal;
+                font-weight: 300;
+                font-size: 14px !important;
+                line-height: 29px;
+                color: #1D1D1D;
+            }
+            // Custom Icons
+            .custom-icon {
+                width: 29px;
+                height: auto;
+            }
+            // Custom icons
+            .v-application .mx-2.custom-btn {
+                margin: 10px 5px 0 0 !important;
+            }
+            .layout.skills.row {
+                margin-bottom: 50px;
+            }
+            .flex.skills-middle {
+                text-align: center;
+                margin: 30px auto 0;
+            }
+            .skills-text {
+                font-size: 20px;
+                font-weight: 400;
+                margin-top: -4px;
+            }
+            .custom-tab {
+                margin: 50px auto;
+            }
+            .btn-align {
+                text-align: right;
+            }
+            .profile-btn {
+                text-align: left;
+            }
+            // social icons
+            .social-icon {
+                text-align: left;
+                margin-left: -80px;
+            }
+            // Social icon
+            .custom-header2 {
+                word-break: break-word;
+            }
+            .layout.row {
+                margin-right: 0;
+                margin-left: 0;
+            }
+            .skills-percent {
+                text-align: center
+            }
+            .v-btn--fab.v-size--small {
+                width: 30px !important;
+                height: 30px !important;
+                box-shadow: none !important;
+            }
+            .v-btn--fab {
+                width: 40px !important;
+                height: 40px !important;
+                box-shadow: none !important;
+            }
+            .v-btn--fab.v-size--small .v-icon {
+                font-size: 17px !important;
+            }
+            .title-header {
+                font-size: 30px;
+            }
+            .tab-text {
+                font-size: 24px !important;
+                font-weight: bold !important;
+                color: rgba(29, 29, 29, 0.2) !important;
+                text-transform: capitalize !important;
+            }
+            .tab-text.v-tab.v-tab--active {
+                color: #1D1D1D !important;
+            }
+            .tablet-align {
+                margin-left: 20px;
+            }
+            @media screen and (min-width: 600px) and (max-width: 959px) {
+                .custom-name-section {
+                    margin-left: -2vw !important;
+                    max-width: 100.0% !important;
+                }
+                .title-text-tablet {
+                    font-size: 3.8vw !important;
+                }
+                .subtitle-text {
+                    font-size: 20px !important;
+                }
+                .tablet-mobile-flex {
+                    margin-bottom: 50px !important;
+                }
+                .tab-text {
+                    font-size: 24px !important;
+                }
+                .title-row {
+                    margin-left: 2vw;
+                }
+                /* social button size */
+                .v-btn--fab.v-size--default {
+                    width: 50px !important;
+                    height: 50px !important;
+                }
+                /* social button size  */
+                /* social icon size */
+                .v-btn--fab.v-size--small .v-icon {
+                    font-size: 24px !important;
+                }
+                /* social icon size */
+            }
+            // Custom tab screen
+            @media screen and (min-width:600px) and (max-width:764px) {
+                // .title-text-tablet {
+                //     font-size: 2rem !important;
+                // }
+                .custom-name-section {
+                    margin-left: 90px !important;
+                    margin-top: -120px;
+                }
+            }
+            // Custom tab screen
+            @media screen and (max-width: 599px) {
+                .title-text {
+                    font-size: 1.5rem !important;
+                }
+                .tablet-mobile-flex {
+                    margin-bottom: 50px !important;
+                }
+                .tab-text {
+                    font-size: 16px !important;
+                }
+                .mobile-center {
+                    margin: 0 auto;
+                    text-align: center;
+                }
+                .btn-align {
+                    text-align: center;
+                }
+                .profile-btn {
+                    text-align: center;
+                }
+                .social-icon {
+                    text-align: center;
+                }
+                .skills-text {
+                    margin-bottom: 10px;
+                    margin-top: 10px;
+                    font-size: 14px !important;
+                }
+                .skills-percent {
+                    text-align: right;
+                }
+                .tablet-mobile-social-icon {
+                    text-align: center;
+                }
+                .custom-modal-title {
+                    font-size: 12px !important;
+                }
+                .custom-modal-subtitle {
+                    font-size: 11px !important;
+                }
+            }
+            // @media screen and (max-width: 669px) and (min-width: 600px) {
+            //     .custom-avater {
+            //         max-width: 200px;
+            //     }
+            //     .custom-name-section {
+            //         margin-left: -50px !important;
+            //     }
+            //     .custom-name-row {
+            //         max-width: 100% !important;
+            //         flex-basis: 100% !important;
+            //     }
+            // }
+            // @media screen and (min-width:670px) and (max-width:747px) {
+            //     .custom-name-section {
+            //         margin-left: 100px;
+            //         margin-top: -120px;
+            //     }
+            // }
+            @media screen and (max-width:406px) {
+                .profile-btn2 {
+                    max-width: 110% !important;
+                }
+                title-text2 {
+                    font-size: 14px !important;
+                }
+            }
+            @media screen and (max-width:328px) {
+                .title-text {
+                    font-size: 1.3rem !important;
+                    font-size: 6vw !important;
+                }
+                .mobile-align {
+                    margin-left: -10px;
+                }
+            }
+            @media screen and (min-width:960px) {
+                .custom-icon {
+                    margin-top: 3px !important;
+                }
+            }
         }
-        .title-text-tablet {
-            font-size: 2.25rem !important;
+        
+        @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+            //
+            .custom-name-section {
+                margin-left: -4vw !important;
+            }
         }
-        .subtitle-text {
-            font-size: 20px !important;
-        }
-        .tablet-mobile-flex {
-            margin-bottom: 50px !important;
-        }
-        .tab-text {
-            font-size: 24px !important;
-        }
-        .title-row {
-            margin-left: 10px !important;
-        }
-        /* social button size */
-        .v-btn--fab.v-size--default {
-            width: 50px !important;
-            height: 50px !important;
-        }
-        /* social button size  */
-        /* social icon size */
-        .v-btn--fab.v-size--small .v-icon {
-            font-size: 24px !important;
-        }
-        /* social icon size */
-    }
-    // Custom tab screen
-    @media screen and (min-width:600px) and (max-width:764px) {
-        .title-text-tablet {
-            font-size: 2rem !important;
-        }
-        .custom-name-section {
-            margin-left: 90px !important;
-            margin-top: -120px;
-        }
-    }
-    // Custom tab screen
-    @media screen and (max-width: 599px) {
-        .tablet-mobile-flex {
-            margin-bottom: 50px !important;
-        }
-        .tab-text {
-            font-size: 16px !important;
-        }
-        .mobile-center {
-            margin: 0 auto;
-            text-align: center;
-        }
-        .btn-align {
-            text-align: center;
-        }
-        .profile-btn {
-            text-align: center;
-        }
-        .social-icon {
-            text-align: center;
-        }
-        .skills-text {
-            margin-bottom: 10px;
-            margin-top: 10px;
-            font-size: 14px !important;
-        }
-        .skills-percent {
-            text-align: right;
-        }
-        .tablet-mobile-social-icon {
-            text-align: center;
-        }
-    }
-    // @media screen and (max-width: 669px) and (min-width: 600px) {
-    //     .custom-avater {
-    //         max-width: 200px;
-    //     }
-    //     .custom-name-section {
-    //         margin-left: -50px !important;
-    //     }
-    //     .custom-name-row {
-    //         max-width: 100% !important;
-    //         flex-basis: 100% !important;
-    //     }
-    // }
-    // @media screen and (min-width:670px) and (max-width:747px) {
-    //     .custom-name-section {
-    //         margin-left: 100px;
-    //         margin-top: -120px;
-    //     }
-    // }
-    @media screen and (max-width:406px) {
-        .profile-btn2 {
-            max-width: 110% !important;
-        }
-        title-text2 {
-            font-size: 14px !important;
-        }
-    }
-    @media screen and (max-width:328px) {
-        .mobile-align {
-            margin-left: -10px;
-        }
-    }
-    @media screen and (min-width:960px) {
-        .custom-icon {
-            margin-top: 3px !important;
-        }
-    }
-}
