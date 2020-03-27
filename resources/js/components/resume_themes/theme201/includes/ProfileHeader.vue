@@ -8,7 +8,7 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="headline title-text">Beverly Andrews</v-list-item-title>
-            <v-list-item-subtitle>User interface designer</v-list-item-subtitle>
+            <v-list-item-subtitle style="color:black;">User interface designer</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-card>
@@ -19,13 +19,13 @@
         <v-card-text>
           <v-list-item>
             <v-layout row wrap>
-              <v-flex xs3 md3 sm3 lg2 class="mobile-center">
+              <v-flex xs3 md3 sm3 class="mobile-center">
                 <v-avatar size="120">
                   <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
                 </v-avatar>
               </v-flex>
 
-              <v-flex xs9 md6 sm9 lg4 class="mobile-center custom-name-section">
+              <v-flex xs9 md6 sm9 class="mobile-center custom-name-section">
                 <v-list-item class="ml-sm-2">
                   <v-list-item-content class="title-row">
                     <v-list-item-title class="headline title-text ml-sm-1">
@@ -35,7 +35,7 @@
                     <v-list-item-subtitle class="subtitle-text mt-sm-n2 ml-sm-1">User interface designer</v-list-item-subtitle>
                     <div class="profile-btn mt-sm-2">
                       <v-btn
-                        class="ml-n1 mr-4 custom-btn hidden-sm-and-down"
+                        class="ml-n1 mr-md-4 mr-sm-3 custom-btn hidden-sm-and-down"
                         fab
                         dark
                         color="black"
@@ -44,11 +44,11 @@
                       </v-btn>
 
                       <!-- hidden in medium devices -->
-                      <v-btn class="mr-4 custom-btn hidden-md-and-up" fab dark color="black">
+                      <v-btn class="mr-md-4 mr-sm-3 custom-btn hidden-md-and-up" fab dark color="black">
                         <v-icon>mdi-email</v-icon>
                       </v-btn>
                       <!-- hidden in medium devices -->
-                      <v-btn class="mr-4 custom-btn" fab dark small color="white">
+                      <v-btn class="mr-md-4 mr-sm-3 custom-btn" fab dark small color="white">
                         <v-img
                           src="/images/resume_themes/theme201/pdf-download.png"
                           class="custom-icon"
@@ -69,7 +69,7 @@
                 </v-list-item>
               </v-flex>
 
-              <v-flex sm12 md3 class="hidden-sm-and-down">
+              <v-flex sm12 md2 class="hidden-sm-and-down">
                 <div class="social-icon">
                   <v-btn class="mx-2 custom-btn" fab dark small color="black">
                     <v-icon>mdi-map-marker</v-icon>
