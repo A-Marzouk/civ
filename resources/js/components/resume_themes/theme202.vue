@@ -147,18 +147,18 @@
                     mb-md-0
                     mb-sm-12
                   >
-                    <v-card flat class="hire-me pa-0 ml-md-n12">
+                    <v-card flat class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-1">
                       <v-card-text>
                         <v-layout row justify-center align-center>
-                          <v-flex xs6 sm4 md3>
+                          <v-flex xs6 sm4 md3 class="mt-md-0 mt-sm-0 mt-4">
                             <div class="caption hire-me-title-text">$10</div>
                             <div class="hire-me-subtitle-text">Hourly Rate</div>
                           </v-flex>
-                          <v-flex xs6 sm4 md4>
+                          <v-flex xs6 sm4 md4 class="mt-md-0 mt-sm-0 mt-4">
                             <div class="caption hire-me-title-text">35 HOURS</div>
                             <div class="hire-me-subtitle-text">Weekly availibility</div>
                           </v-flex>
-                          <v-flex xs5 sm3 md4>
+                          <v-flex xs5 sm3 md4 class="mb-md-0 mb-sm-0 mb-n1 mt-md-0 mt-sm-0 mt-n5">
                             <div class="circle3 d-none d-sm-none d-md-flex"></div>
                             <div class="circle4 d-none d-sm-none d-md-flex"></div>
                             <div class="mt-10 hidden-sm-and-up"></div>
