@@ -15,17 +15,15 @@ use Illuminate\Support\Facades\Auth;
 class ResumeController extends Controller
 {
 
+
     public function themePreview ($themeCode) {
         $authUser = Auth::user();
         if($authUser){
             $user = User::withAllRelations($authUser->username);
             if($user){
-                // get theme code
-                $userThemeCode = $user->theme_code ;
-                return view('defaultThemes.theme' . $userThemeCode, compact('user'));
+                return view('defaultThemes.' . $themeCode,compact('user'));
             }
         }
-
         return view('defaultThemes.' . $themeCode);
     }
 
