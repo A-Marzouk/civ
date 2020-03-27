@@ -598,7 +598,7 @@
                                         <v-flex xs2 sm2 class>
                                           <img
                                             width="25"
-                                            src="/images/resume_themes/theme202/icons/work.png"
+                                            src="/images/resume_themes/theme202/icons/education.png"
                                           />
                                         </v-flex>
                                         <v-flex xs8 sm6 class="mt-1">
