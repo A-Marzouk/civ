@@ -19,13 +19,13 @@
                 <v-card-text>
                     <v-list-item>
                         <v-layout row>
-                            <v-flex xs3 md3 sm4 lg2 class="mobile-center">
+                            <v-flex xs3 md3 sm4 class="mobile-center">
                                 <v-avatar size="120">
                                     <v-img :src="user.personal_info.profile_pic"></v-img>
                                 </v-avatar>
                             </v-flex>
 
-                            <v-flex xs9 md6 sm8 lg4 class="mobile-center custom-name-section">
+                            <v-flex xs9 md6 sm8  class="mobile-center custom-name-section">
                                 <v-list-item>
                                     <v-list-item-content class="title-row">
                                         <v-list-item-title class="headline title-text">
@@ -36,7 +36,7 @@
                                         </v-list-item-subtitle>
                                         <div class="profile-btn mt-1">
                                             <v-btn
-                                                    class="ml-n1 mr-4 custom-btn hidden-sm-and-down"
+                                                    class="ml-n1 mr-md-4 mr-sm-3 custom-btn hidden-sm-and-down"
                                                     fab
                                                     dark
                                                     color="black"
@@ -45,11 +45,11 @@
                                             </v-btn>
 
                                             <!-- hidden in medium devices -->
-                                            <v-btn class="mr-4 custom-btn hidden-md-and-up" fab dark color="black">
+                                            <v-btn class="mr-md-4 mr-sm-3 custom-btn hidden-md-and-up" fab dark color="black">
                                                 <v-icon>mdi-email</v-icon>
                                             </v-btn>
                                             <!-- hidden in medium devices -->
-                                            <v-btn class="mr-4 custom-btn" fab dark small color="white">
+                                            <v-btn class="mr-md-4 mr-sm-3 custom-btn" fab dark small color="white">
                                                 <v-img src="/images/resume_themes/theme201/pdf-download.png"
                                                        class="custom-icon"></v-img>
                                             </v-btn>
