@@ -34,7 +34,7 @@
 
                     <v-list-item-subtitle class="subtitle-text mt-sm-n2 ml-sm-1">{{user.personal_info.designation}}</v-list-item-subtitle>
                     <div class="profile-btn mt-sm-2">
-                      <v-btn
+                      <v-btn @click="sendEmail"
                         class="ml-n1 mr-md-4 mr-sm-3 custom-btn hidden-sm-and-down"
                         fab
                         dark
@@ -278,6 +278,9 @@ export default {
       });
 
       return providerLink;
+    },
+    sendEmail(){
+
     }
   },
   mounted() {
