@@ -69,6 +69,7 @@ import resumeTheme8 from './components/resume_themes/theme8';
 if ($("#resumeTheme8").length !== 0) {
     new Vue({
         el: '#resumeTheme8',
+        store,
         components: {
             'resume-theme-8': resumeTheme8
         }
