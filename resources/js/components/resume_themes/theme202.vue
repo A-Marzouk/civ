@@ -34,7 +34,7 @@
                                   </v-list-item-title>
                                 </v-list-item-content>
                                 <v-list-item-icon>
-                                  <v-btn small dark color="#104EFB" depressed class="ml-n5">
+                                  <v-btn btn small dark color="#104EFB" depressed class="">
                                     <img
                                       width="20"
                                       src="/images/resume_themes/theme202/icons/message.png"
