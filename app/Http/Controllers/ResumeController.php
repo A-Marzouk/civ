@@ -18,13 +18,14 @@ class ResumeController extends Controller
 
     public function themePreview ($themeCode) {
         $authUser = Auth::user();
+        $is_preview = 'true' ;
         if($authUser){
             $user = User::withAllRelations($authUser->username);
             if($user){
-                return view('defaultThemes.' . $themeCode,compact('user'));
+                return view('defaultThemes.' . $themeCode,compact('user','is_preview'));
             }
         }
-        return view('defaultThemes.' . $themeCode);
+        return view('defaultThemes.' . $themeCode,compact('is_preview'));
     }
 
     public function downloadPDFResume ($themeCode, $userName) {
@@ -48,10 +49,11 @@ class ResumeController extends Controller
     public function userResume ($username) {
         // get user default cv code.
         $user = User::withAllRelations($username);
+        $is_preview = 'false' ;
         if($user){
             // get theme code
             $themeCode = $user->theme_code ;
-            return view('defaultThemes.theme' . $themeCode, compact('user'));
+            return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
             return abort(404);
         }
