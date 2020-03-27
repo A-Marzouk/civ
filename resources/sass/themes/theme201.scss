@@ -54,7 +54,7 @@
             // social icons
             .social-icon {
                 text-align: left;
-                margin-left: -80px;
+                margin-left: -125px;
             }
             // Social icon
             .custom-header2 {
@@ -225,5 +225,9 @@
             //
             .custom-name-section {
                 margin-left: -4vw !important;
+            }
+            .social-icon {
+                text-align: right;
+                margin-left: -80px !important;
             }
         }
