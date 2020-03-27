@@ -1,11 +1,8 @@
         #resumeTheme201,
         #userTheme201 {
-
-            a:focus{
+            a:focus {
                 outline: none;
             }
-
-
             .custom-name-section {
                 margin-left: -5vw;
             }
@@ -60,7 +57,7 @@
             // social icons
             .social-icon {
                 text-align: left;
-                margin-left: -80px;
+                margin-left: -125px;
             }
             // Social icon
             .custom-header2 {
@@ -185,24 +182,6 @@
                     font-size: 11px !important;
                 }
             }
-            // @media screen and (max-width: 669px) and (min-width: 600px) {
-            //     .custom-avater {
-            //         max-width: 200px;
-            //     }
-            //     .custom-name-section {
-            //         margin-left: -50px !important;
-            //     }
-            //     .custom-name-row {
-            //         max-width: 100% !important;
-            //         flex-basis: 100% !important;
-            //     }
-            // }
-            // @media screen and (min-width:670px) and (max-width:747px) {
-            //     .custom-name-section {
-            //         margin-left: 100px;
-            //         margin-top: -120px;
-            //     }
-            // }
             @media screen and (max-width:406px) {
                 .profile-btn2 {
                     max-width: 110% !important;
@@ -231,5 +210,10 @@
             //
             .custom-name-section {
                 margin-left: -4vw !important;
+            }
+            //social icon for ipad pro
+            .social-icon {
+                text-align: right;
+                margin-left: -80px !important;
             }
         }

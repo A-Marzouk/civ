@@ -34,7 +34,7 @@
                                   </v-list-item-title>
                                 </v-list-item-content>
                                 <v-list-item-icon>
-                                  <v-btn btn small dark color="#104EFB" depressed class="">
+                                  <v-btn btn small dark color="#104EFB" depressed class>
                                     <img
                                       width="20"
                                       src="/images/resume_themes/theme202/icons/message.png"
@@ -147,18 +147,18 @@
                     mb-md-0
                     mb-sm-12
                   >
-                    <v-card flat class="hire-me pa-0 ml-md-n12">
+                    <v-card flat class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-1">
                       <v-card-text>
                         <v-layout row justify-center align-center>
-                          <v-flex xs6 sm4 md3>
+                          <v-flex xs6 sm4 md3 class="mt-md-0 mt-sm-0 mt-4">
                             <div class="caption hire-me-title-text">$10</div>
                             <div class="hire-me-subtitle-text">Hourly Rate</div>
                           </v-flex>
-                          <v-flex xs6 sm4 md4>
+                          <v-flex xs6 sm4 md4 class="mt-md-0 mt-sm-0 mt-4">
                             <div class="caption hire-me-title-text">35 HOURS</div>
                             <div class="hire-me-subtitle-text">Weekly availibility</div>
                           </v-flex>
-                          <v-flex xs5 sm3 md4>
+                          <v-flex xs5 sm3 md4 class="mb-md-0 mb-sm-0 mb-n1 mt-md-0 mt-sm-0 mt-n5">
                             <div class="circle3 d-none d-sm-none d-md-flex"></div>
                             <div class="circle4 d-none d-sm-none d-md-flex"></div>
                             <div class="mt-10 hidden-sm-and-up"></div>
@@ -188,15 +188,7 @@
 
       <!-- Tabs -->
       <v-container class="themeWrapperBlue">
-        <v-layout
-          class="tab-layout"
-          row
-          wrap
-          my-md-n11
-          my-sm-n11
-          justify-center
-          align-center
-        >
+        <v-layout class="tab-layout" row wrap my-md-n11 my-sm-n11 justify-center align-center>
           <v-flex xs10 md11 sm10>
             <v-card flat class="card-tab">
               <!-- Main Tab -->
@@ -248,118 +240,32 @@
                       <v-tab-item v-for="i in 4" :key="i">
                         <v-card flat color="rgba(16, 78, 251, 0.06)">
                           <v-card-text class="card-text-center">
+                            <v-container fluid ma-0 pa-0>
                             <v-layout row wrap justify-center align-center>
                               <!-- Photoshop Skill -->
-                              <v-flex xs2 align="center">
+                              <v-flex xs2 align="center" v-for="item in skills" :key="item.title" class="mr-md-0 mr-sm-0 mr-2">
                                 <div class="caption">
                                   <v-progress-circular
                                     class="custom-progress-bar"
                                     size="45"
                                     rotate="180"
-                                    :value="64"
+                                    :value="item.value"
                                     color="#104EFB"
                                   >
-                                    <span class="progress-value-text">64%</span>
+                                    <span class="progress-value-text">{{ item.value_text }}</span>
                                   </v-progress-circular>
                                 </div>
                                 <div class="my-10">
                                   <img
                                     class="skill-img"
-                                    src="/images/resume_themes/theme202/skills/photoshop.png"
+                                    :src="getSkillIcon(item.title)"
                                   />
                                 </div>
                               </v-flex>
-                              <!-- Photoshop skill -->
-
-                              <!-- Illustrator Skill -->
-                              <v-flex xs2 align="center">
-                                <div class="caption">
-                                  <v-progress-circular
-                                    class="custom-progress-bar"
-                                    size="45"
-                                    rotate="180"
-                                    :value="76"
-                                    color="#104EFB"
-                                  >
-                                    <span class="progress-value-text">76%</span>
-                                  </v-progress-circular>
-                                </div>
-                                <div class="my-10">
-                                  <img
-                                    class="skill-img"
-                                    src="/images/resume_themes/theme202/skills/illustrator.png"
-                                  />
-                                </div>
-                              </v-flex>
-                              <!-- Illustrator Skill -->
-
-                              <!-- Sketch Skill -->
-                              <v-flex xs2 align="center">
-                                <div class="caption">
-                                  <v-progress-circular
-                                    class="custom-progress-bar"
-                                    size="45"
-                                    rotate="180"
-                                    :value="60"
-                                    color="#104EFB"
-                                  >
-                                    <span class="progress-value-text">60</span>
-                                  </v-progress-circular>
-                                </div>
-                                <div class="my-10">
-                                  <img
-                                    class="skill-img"
-                                    src="/images/resume_themes/theme202/skills/sketch.png"
-                                  />
-                                </div>
-                              </v-flex>
-                              <!-- Sketch Skill -->
-
-                              <!-- XD Skill -->
-                              <v-flex xs2 align="center">
-                                <div class="caption">
-                                  <v-progress-circular
-                                    class="custom-progress-bar"
-                                    size="45"
-                                    rotate="180"
-                                    :value="70"
-                                    color="#104EFB"
-                                  >
-                                    <span class="progress-value-text">70%</span>
-                                  </v-progress-circular>
-                                </div>
-                                <div class="my-10">
-                                  <img
-                                    class="skill-img"
-                                    src="/images/resume_themes/theme202/skills/xd.png"
-                                  />
-                                </div>
-                              </v-flex>
-                              <!-- XD Skill -->
-
-                              <!-- Figma -->
-                              <v-flex xs2 align="center">
-                                <div class="caption">
-                                  <v-progress-circular
-                                    class="custom-progress-bar"
-                                    size="45"
-                                    rotate="180"
-                                    :value="97"
-                                    color="#104EFB"
-                                  >
-                                    <span class="progress-value-text">97</span>
-                                  </v-progress-circular>
-                                </div>
-                                <div class="my-10">
-                                  <img
-                                    class="skill-img-figma"
-                                    width="38.36"
-                                    src="/images/resume_themes/theme202/skills/figma.png"
-                                  />
-                                </div>
-                              </v-flex>
-                              <!-- Figma -->
+                              <!-- Photoshop skill -->  
                             </v-layout>
+                            </v-container>
+
                           </v-card-text>
                         </v-card>
                       </v-tab-item>
@@ -598,7 +504,7 @@
                                         <v-flex xs2 sm2 class>
                                           <img
                                             width="25"
-                                            src="/images/resume_themes/theme202/icons/work.png"
+                                            src="/images/resume_themes/theme202/icons/education.png"
                                           />
                                         </v-flex>
                                         <v-flex xs8 sm6 class="mt-1">
@@ -681,8 +587,40 @@ export default {
         { id: 2, title: "Portfolio" },
         { id: 3, title: "Work" },
         { id: 4, title: "Education" }
+      ],
+      skills: [
+        {
+          title: "photoshop",
+          value_text: "65%",
+          value: 65
+        },
+        {
+          title: "illustrator",
+          value_text: "76%",
+          value: 76
+        },
+        {
+          title: "sketch",
+          value_text: "60%",
+          value: 60
+        },
+        {
+          title: "xd",
+          value_text: "70%",
+          value: 70
+        },
+        {
+          title: "figma",
+          value_text: "97%",
+          value: 97
+        }
       ]
     };
+  },
+  methods: {
+    getSkillIcon(icon) {
+      return `/images/resume_themes/theme202/skills/${icon}.png`;
+    }
   }
 };
 </script>
