@@ -1,6 +1,6 @@
 <template>
     <v-app class="w-100">
-        <div class="themeWrapper">
+        <div class="themeWrapper" v-if="currentUser">
             <!-- Header Row -->
             <v-row no-gutters>
                 <!-- Column for header section -->
