@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 require('laravel-mix-svg-vue');
-
+const tailwindcss = require('tailwindcss')
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -30,4 +30,8 @@ mix.js('resources/js/app.js', 'public/js')
         { removeViewBox: true },
         { removeDimensions: false }
     ]
-});
+    }).options({
+        postCss: [
+            tailwindcss('./tailwind.config.js'),
+        ]
+    });

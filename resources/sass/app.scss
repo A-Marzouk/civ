@@ -14,3 +14,9 @@
 @import '~vuetify/dist/vuetify.min.css';
 @import '/css/slick.css';
 @import "media-queries";
+// Tailwind
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
