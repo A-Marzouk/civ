@@ -15,6 +15,7 @@
                 letter-spacing: normal !important;
                 font-family: "Roboto", sans-serif !important;
                 color: #1D1D1D;
+                overflow: visible;
             }
             .subtitle-text {
                 font-family: Open Sans;
@@ -104,7 +105,7 @@
                     max-width: 100.0% !important;
                 }
                 .title-text-tablet {
-                    font-size: 3.8vw !important;
+                    font-size: 1.8rem !important;
                 }
                 .subtitle-text {
                     font-size: 20px !important;
@@ -206,14 +207,14 @@
             }
         }
         
-        @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-            //
-            .custom-name-section {
-                margin-left: -4vw !important;
-            }
-            //social icon for ipad pro
-            .social-icon {
-                text-align: right;
-                margin-left: -80px !important;
-            }
-        }
+        // @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+        //     //
+        //     .custom-name-section {
+        //         margin-left: -4vw !important;
+        //     }
+        //     //social icon for ipad pro
+        //     .social-icon {
+        //         text-align: right;
+        //         margin-left: -80px !important;
+        //     }
+        // }
