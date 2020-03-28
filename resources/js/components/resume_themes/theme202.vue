@@ -233,7 +233,6 @@
                 hide-slider
               >
                 <v-tab
-                  :ripple="false"
                   class="tab-text text-capitalize"
                   v-for="item in tabs"
                   :key="item.id"
@@ -676,7 +675,6 @@ export default {
   height: 2.5rem;
   margin-top: 4px;
   overflow: hidden !important;
-  width: 15%;
 }
 
 .active-tab:hover {
