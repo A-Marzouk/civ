@@ -25,40 +25,72 @@
                               src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                             ></v-img>
                           </v-list-item-avatar>
-                          <v-list color="transparent" class="ml-n5" disabled>
-                            <v-list-item-group v-model="item" color="primary">
+                          <v-list color="transparent" class="ml-n5">
+                            <v-list-item v-model="item" color="primary">
                               <v-list-item>
                                 <v-list-item-content>
                                   <v-list-item-title class="headline">
                                     <span class="title-text">Conor</span>
+                                    <span class="ml-12">
+                                      <v-btn
+                                        btn
+                                        icon
+                                        small
+                                        dark
+                                        color="#104EFB"
+                                        depressed
+                                        class="custom-message-btn"
+                                      >
+                                        <img
+                                          width="20"
+                                          src="/images/resume_themes/theme202/icons/message.png"
+                                        />
+                                      </v-btn>
+                                    </span>
                                   </v-list-item-title>
                                 </v-list-item-content>
-                                <v-list-item-icon>
-                                  <v-btn btn small dark color="#104EFB" depressed class>
-                                    <img
-                                      width="20"
-                                      src="/images/resume_themes/theme202/icons/message.png"
-                                    />
-                                  </v-btn>
-                                </v-list-item-icon>
                               </v-list-item>
-                            </v-list-item-group>
+                            </v-list-item>
                             <!-- Designation Group -->
-                            <v-list-item-group v-model="item2" color="primary" class="mt-n6">
+                            <v-list-item v-model="item2" color="primary" class="mt-n6">
                               <v-list-item>
                                 <v-list-item-content>
                                   <v-list-item-subtitle class="subtitle-text">Web Designer</v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
-                            </v-list-item-group>
+                            </v-list-item>
                             <!-- Designation group -->
                             <!-- Interview -->
-                            <v-list-item-group color="primary">
+                            <v-list-item color="primary">
                               <v-list-item>
                                 <v-list-item-content>
-                                  <v-list-item-subtitle class="interview-text mr-2">Interview</v-list-item-subtitle>
+                                  <v-list-item-subtitle class="interview-text mr-2">
+                                    Interview
+                                    <span style="margin-left:15px;">
+                                      <v-btn depressed icon small dark color="#104EFB">
+                                        <img
+                                          height="19"
+                                          src="/images/resume_themes/theme202/icons/audio-speaker-on.png"
+                                        />
+                                      </v-btn>
+                                      <v-btn
+                                        depressed
+                                        icon
+                                        small
+                                        dark
+                                        color="#104EFB"
+                                        class="custom-video-btn"
+                                      >
+                                        <img
+                                          height="19"
+                                          src="/images/resume_themes/theme202/icons/video-camera.png"
+                                          style="margin-top:-4px;"
+                                        />
+                                      </v-btn>
+                                    </span>
+                                  </v-list-item-subtitle>
                                 </v-list-item-content>
-                                <v-list-item-icon>
+                                <!-- <v-list-item-icon>
                                   <v-btn depressed small dark color="#104EFB">
                                     <img
                                       height="19"
@@ -75,9 +107,9 @@
                                       style="margin-top:-4px;"
                                     />
                                   </v-btn>
-                                </v-list-item-icon>
+                                </v-list-item-icon>-->
                               </v-list-item>
-                            </v-list-item-group>
+                            </v-list-item>
                             <!-- Interview -->
                           </v-list>
                         </v-list-item>
@@ -241,31 +273,33 @@
                         <v-card flat color="rgba(16, 78, 251, 0.06)">
                           <v-card-text class="card-text-center">
                             <v-container fluid ma-0 pa-0>
-                            <v-layout row wrap justify-center align-center>
-                              <!-- Photoshop Skill -->
-                              <v-flex xs2 align="center" v-for="item in skills" :key="item.title" class="mr-md-0 mr-sm-0 mr-2">
-                                <div class="caption">
-                                  <v-progress-circular
-                                    class="custom-progress-bar"
-                                    size="45"
-                                    rotate="180"
-                                    :value="item.value"
-                                    color="#104EFB"
-                                  >
-                                    <span class="progress-value-text">{{ item.value_text }}</span>
-                                  </v-progress-circular>
-                                </div>
-                                <div class="my-10">
-                                  <img
-                                    class="skill-img"
-                                    :src="getSkillIcon(item.title)"
-                                  />
-                                </div>
-                              </v-flex>
-                              <!-- Photoshop skill -->  
-                            </v-layout>
+                              <v-layout row wrap justify-center align-center>
+                                <!-- Photoshop Skill -->
+                                <v-flex
+                                  xs2
+                                  align="center"
+                                  v-for="item in skills"
+                                  :key="item.title"
+                                  class="mr-md-0 mr-sm-0 mr-2"
+                                >
+                                  <div class="caption">
+                                    <v-progress-circular
+                                      class="custom-progress-bar"
+                                      size="45"
+                                      rotate="180"
+                                      :value="item.value"
+                                      color="#104EFB"
+                                    >
+                                      <span class="progress-value-text">{{ item.value_text }}</span>
+                                    </v-progress-circular>
+                                  </div>
+                                  <div class="my-10">
+                                    <img class="skill-img" :src="getSkillIcon(item.title)" />
+                                  </div>
+                                </v-flex>
+                                <!-- Photoshop skill -->
+                              </v-layout>
                             </v-container>
-
                           </v-card-text>
                         </v-card>
                       </v-tab-item>
@@ -727,10 +761,6 @@ export default {
   padding: 0px;
 }
 
-.icon-message {
-  margin-left: 75px;
-}
-
 .custom-social-btn {
   height: 45px !important;
   min-width: 40px !important;
@@ -839,6 +869,10 @@ export default {
   height: 220px;
   border-radius: 50%;
   background: rgba(241, 244, 255, 0.1);
+}
+
+.custom-video-btn {
+  margin-left: 18px !important;
 }
 
 /* media query block */
