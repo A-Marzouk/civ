@@ -10,19 +10,28 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
 
+
     public function themePreview ($themeCode) {
-        return view('defaultThemes.' . $themeCode);
+        $authUser = Auth::user();
+        $is_preview = 'true' ;
+        if($authUser){
+            $user = User::withAllRelations($authUser->username);
+            if($user){
+                return view('defaultThemes.' . $themeCode,compact('user','is_preview'));
+            }
+        }
+        return view('defaultThemes.' . $themeCode,compact('is_preview'));
     }
 
     public function downloadPDFResume ($themeCode, $userName) {
         // search the userdata using userName
 
         if ($userName) {
-
             // $view = \View::make('resume_pdf_themes.' . $themeCode, compact('freelancer'))->render();
             $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Arial', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode);
 
@@ -34,16 +43,17 @@ class ResumeController extends Controller
             return $pdf->stream('resume-'.$themeCode.'.pdf');
         }
 
-        return view('defaultPDFThemes.' . $themeCode);
+        return view('defaultPDFThemes.theme' . $themeCode);
     }
 
     public function userResume ($username) {
         // get user default cv code.
         $user = User::withAllRelations($username);
+        $is_preview = 'false' ;
         if($user){
             // get theme code
             $themeCode = $user->theme_code ;
-            return view('userThemes.theme' . $themeCode, compact('user'));
+            return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
             return abort(404);
         }
