@@ -4,7 +4,7 @@
       <v-card class flat color="transparent">
         <v-list-item two-line>
           <v-list-item-avatar size="85">
-            <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
+            <v-img :src="user.personal_info.profile_pic"></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="headline title-text" style="overflow:visible !important;">{{user.personal_info.full_name}}</v-list-item-title>
@@ -21,7 +21,7 @@
             <v-flex xs9 md11 sm9 class="mobile-center">
               <v-list-item class="">
                 <v-list-item-avatar  size="120">
-                  <v-img src="/images/resume_themes/theme201/Screenshot_1 1.png"></v-img>
+                  <v-img :src="user.personal_info.profile_pic"></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content class="title-row">
                   <v-list-item-title class="headline title-text ml-sm-1">
