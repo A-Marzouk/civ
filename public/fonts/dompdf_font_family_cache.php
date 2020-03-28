@@ -88,8 +88,8 @@
   ),
   'raleway' => array(
     'normal' => $fontDir . '/Raleway-Regular',
-    'bold' => $fontDir . '/Raleway-Light',
-    'italic' => $fontDir . '/Raleway-Bold',
+    'bold' => $fontDir . '/Raleway-Bold',
+    'italic' => $fontDir . '/Raleway-BoldItalic',
     'bold_italic' => $fontDir . '/Raleway-Regular',
   ),
 ) ?>
