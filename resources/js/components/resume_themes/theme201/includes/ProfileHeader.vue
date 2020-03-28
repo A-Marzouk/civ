@@ -89,29 +89,12 @@
                 </v-list-item-content>
               </v-list-item>
             </v-flex>
-
-            <!-- <v-flex sm12 md2 class="hidden-sm-and-down">
-                <div class="">
-                  <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <v-icon>mdi-map-marker</v-icon>
-                  </v-btn>
-                  <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp" />
-                  </v-btn>
-                  <v-btn class="mx-2 custom-btn" fab dark small color="black">
-                    <img
-                      width="16"
-                      src="/images/resume_themes/theme201/social_icons/google-plus.webp"
-                    />
-                  </v-btn>
-                </div>
-            </v-flex>-->
           </v-layout>
         </v-card-text>
       </v-card>
     </v-flex>
 
-    <v-flex xs12 sm4 md2 offset-md2 class="hidden-sm-and-down mobile-center">
+    <v-flex xs12 sm4 md3 offset-md1 class="hidden-sm-and-down mobile-center">
       <v-card flat>
         <v-card-text>
           <div class="btn-align">

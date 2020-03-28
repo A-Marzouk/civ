@@ -3,14 +3,11 @@
             a:focus {
                 outline: none;
             }
-            .custom-name-section {
-                margin-left: -5vw;
-            }
             .title-row {
                 padding-left: 5px !important;
             }
             .title-text {
-                font-size: 2vw !important;
+                font-size: 1.7rem !important;
                 font-weight: 400;
                 letter-spacing: normal !important;
                 font-family: "Roboto", sans-serif !important;
@@ -206,15 +203,3 @@
                 }
             }
         }
-        
-        // @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-        //     //
-        //     .custom-name-section {
-        //         margin-left: -4vw !important;
-        //     }
-        //     //social icon for ipad pro
-        //     .social-icon {
-        //         text-align: right;
-        //         margin-left: -80px !important;
-        //     }
-        // }
