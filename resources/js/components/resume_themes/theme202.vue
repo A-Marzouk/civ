@@ -25,7 +25,7 @@
                               src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                             ></v-img>
                           </v-list-item-avatar>
-                          <v-list color="transparent" class="ml-n5">
+                          <v-list color="transparent" class="ml-n10 ml-md-n5 ml-sm-n5">
                             <v-list-item v-model="item" color="primary">
                               <v-list-item>
                                 <v-list-item-content>
@@ -179,7 +179,7 @@
                     mb-md-0
                     mb-sm-12
                   >
-                    <v-card flat class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-1">
+                    <v-card flat class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-1 mx-md-0 mx-sm-0 mx-4">
                       <v-card-text>
                         <v-layout row justify-center align-center>
                           <v-flex xs6 sm4 md3 class="mt-md-0 mt-sm-0 mt-4">
@@ -960,8 +960,6 @@ export default {
   }
 
   .hire-me {
-    margin-left: 1px;
-    width: 95% !important;
   }
   .btn-hire-me {
     border-radius: 20px !important;
@@ -986,12 +984,11 @@ export default {
   }
 }
 @media screen and (max-width: 360px) {
-  .hire-me {
-    margin-left: 13px !important;
-  }
-
   .btn-hire-me {
     border-radius: 15px !important;
+  }
+  .custom-social-btn{
+    margin-right: 1px !important;
   }
 }
 
