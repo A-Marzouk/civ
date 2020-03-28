@@ -35,20 +35,6 @@ if ($("#userTheme3").length !== 0) {
 }
 
 
-
-import userTheme8 from './components/user_themes/theme8';
-if ($("#userTheme8").length !== 0) {
-    new Vue({
-        el: '#userTheme8',
-        store,
-        components:{
-            'user-theme-8':userTheme8
-        }
-    });
-}
-
-
-
 import userTheme300 from './components/user_themes/theme300';
 if ($("#userTheme300").length !== 0) {
     new Vue({

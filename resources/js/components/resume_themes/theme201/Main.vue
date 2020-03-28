@@ -13,24 +13,31 @@
 
     export default {
         name: "Main",
-        props: ['user'],
+        props: ['user', 'is_preview'],
+        data() {
+            return {
+                currentUser: this.user
+            }
+        },
         components: {
             ProfileHeader,
             ProfileDetail,
         },
-        computed:{
-
+        computed: {},
+        methods: {
+            setDummyUser() {
+                this.currentUser = this.$store.state.dummyUser;
+            }
         },
         mounted() {
-            // this line to make the user accessible on $store for included components.
-            let user = {} ;
-            if (!this.user) {
-                user = this.$store.state.dummyUser;
-            }else{
-                user = this.user ;
+
+            // if there is no user or the preview is true, set dummy user
+            if (!this.currentUser || this.is_preview) {
+                this.setDummyUser();
             }
 
-            this.$store.dispatch('updateThemeUser', user);
+            // let user accessible in included components.
+            this.$store.dispatch('updateThemeUser', this.currentUser);
         }
     }
 </script>

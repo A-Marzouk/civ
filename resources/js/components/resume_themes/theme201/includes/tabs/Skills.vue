@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 1785px; !important">
+  <v-container style="max-width: 1785px; !important" v-if="skills">
     <v-row wrap>
       <!-- shows only on tabs and desktop -->
       <v-flex md8 class="skills-middle hidden-xs-only">
@@ -20,7 +20,7 @@
       <!-- shows only on tabss and desktops -->
       <v-flex xs12 class="hidden-sm-and-up">
         <v-card flat>
-          <v-layout row class="skills">
+          <v-layout row class="skills" v-for="(skill,index) in skills" :key="index + '_skill'">
             <v-flex xs6 class="skills-text">{{skill.title}}</v-flex>
             <v-flex xs6 class="skills-text">
               <div class="skills-percent">{{skill.percentage}}%</div>
