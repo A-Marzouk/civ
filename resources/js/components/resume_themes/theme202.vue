@@ -4,7 +4,7 @@
       fluid
       ma-0
       pa-0
-      style="background-color:rgba(16, 78, 251, 0.06); max-width:1920px !important; "
+      style="background-color:rgba(16, 78, 251, 0.06); max-width:100% !important; "
     >
       <v-layout row wrap>
         <v-flex xs12>
@@ -15,7 +15,7 @@
               <v-container class="themeWrapperBlue">
                 <v-layout row wrap>
                   <!-- Profile Pic -->
-                  <v-flex xs12 sm6 md3 class="ml-md-n2 ml-sm-0">
+                  <v-flex xs12 sm6 md3 class="">
                     <v-card color="transparent" dark flat>
                       <v-card-text>
                         <v-list-item>
@@ -872,7 +872,7 @@ export default {
 }
 
 .custom-video-btn {
-  margin-left: 18px !important;
+  margin-left: 16px !important;
 }
 
 /* media query block */
@@ -890,8 +890,8 @@ export default {
     border-radius: 20px !important;
   }
   .hire-me {
-    margin-left: 30px !important;
-    margin-right: 30px !important;
+    margin-left: 30px;
+    margin-right: 30px;
   }
   .custom-social-btn {
     height: 45px;
@@ -959,8 +959,6 @@ export default {
     margin-top: -20px;
   }
 
-  .hire-me {
-  }
   .btn-hire-me {
     border-radius: 20px !important;
   }
@@ -988,8 +986,9 @@ export default {
     border-radius: 15px !important;
   }
   .custom-social-btn{
-    margin-right: 1px !important;
+    margin-right: -2px !important;
   }
+
 }
 
 /* media query block */
