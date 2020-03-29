@@ -4,7 +4,7 @@
         <div class="upload-section">
             <h5>Change profile photo</h5>
             <p>Only use images that are greater than 500 pixels in both height and width.</p>
-            <div class="choose-photo-btn NoDecor">
+            <div class="btn btn-filled choose-photo-btn NoDecor">
                 <a href="javascript:void(0)" @click="clickUploadInput">
                     <img src="/images/resume_builder/profile/icon-file.png" alt="">
                     Choose photo now
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="actions">
-                <a href="javascript:void(0)" @click="manualSave" class="btn-blue"><img src="/images/resume_builder/profile/icon-save.png">Save all information</a>
+                <a href="javascript:void(0)" @click="manualSave" class="btn btn-filled"><img class='icon' src="/images/resume_builder/profile/icon-save.png">Save all information</a>
             </div>
         </form>
     </div>
@@ -164,6 +164,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../../sass/media-queries';
+
+
     .input-field {
         input,textarea{
             color: black;
@@ -171,6 +174,8 @@ export default {
     }
 
     .choose-photo-btn{
+        max-width: 142px;
+        
         a:hover{
             color:white;
         }
@@ -179,6 +184,12 @@ export default {
     .hold-edit .user-cover {
         width: 144px;
         height: 144px;
+
+        @include lt-md {
+            width: 80px;
+            height: 80px;
+            vertical-align: top;
+        }
     }
 
     .error {

@@ -23,6 +23,8 @@
 
 #resumeBuilder, body, html {
     height: 100%;
+    width: 100vw;
+    background: white;
 }
 
 .resume-container {
@@ -34,9 +36,17 @@
     color: $mainBlue;
     font-family: NexaLight, Arial, Helvetica, sans-serif;
 
+    @include lt-md {
+      font-size: 28px;
+    }
+
     h2 {
         font-size: 59px;
         font-family: NexaBold, Arial, Helvetica, sans-serif;
+        
+        @include lt-md {
+          font-size: 28px;
+        }
     }
 }
 

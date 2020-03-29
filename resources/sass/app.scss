@@ -8,9 +8,9 @@
 @import '~bootstrap/scss/bootstrap';
 
 // needed scss
+@import "media-queries";
 @import 'main';
 @import 'auth/login-card';
 @import '~font-awesome/css/font-awesome.min.css';
 @import '~vuetify/dist/vuetify.min.css';
 @import '/css/slick.css';
-@import "media-queries";

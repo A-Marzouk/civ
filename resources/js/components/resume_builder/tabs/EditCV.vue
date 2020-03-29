@@ -152,9 +152,11 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $activeColor: #001CE2;
 $disabledColor: #9f9e9e;
+
+@import '../../../../sass/media-queries';
 
 .aside-bar {
     min-width: 260px;
@@ -162,6 +164,10 @@ $disabledColor: #9f9e9e;
     max-height: calc(61px * 12);
     // Check it
     overflow-y: auto;
+
+    @include lt-md {
+        display: none !important;
+    }
 
     &::after {
         content: "";
