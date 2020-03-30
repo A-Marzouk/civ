@@ -1161,3 +1161,13 @@
     @import "resources/sass/themes/theme200.scss";
 </style>
 
+<style>
+    #resumeTheme200 .v-slide-group__prev{
+        display:none;
+    }
+
+    #resumeTheme200 .v-slide-group__next{
+        display:none;
+    }
+</style>
+
