@@ -403,10 +403,7 @@
                                                                         <v-img width="40"
                                                                                :src="getIconWork(index+1)"></v-img>
                                                                     </v-list-item-icon>
-                                                                    <div
-                                                                            class="v-line"
-                                                                            :class="[currentUser.work_experience.length-(index+1) <2 ? 'hidden-md-and-up':'']"
-                                                                    ></div>
+                                                                    <div class="v-line"></div>
                                                                     <v-list-item-content>
                                                                         <v-list-item-title class="work-title">
                                                                             {{work.job_title}}
@@ -444,8 +441,7 @@
                                                                         <v-img width="40"
                                                                                :src="getIconEducation(index+1)"></v-img>
                                                                     </v-list-item-icon>
-                                                                    <div class="v-line"
-                                                                         v-if="currentUser.education.length-(index+1) >1"></div>
+                                                                    <div class="v-line"></div>
                                                                     <v-list-item-content>
                                                                         <v-list-item-title class="work-title">
                                                                             {{education.university_name}}
