@@ -43,7 +43,7 @@ class LoginController extends Controller
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
         $token = $this->authenticated($request, $this->guard()->user());
-        return ['access_token' => $token];
+        return ['access_token' => $token, 'is_admin' => $this->guard()->user()->hasRole('admin')];
     }
 
     /**

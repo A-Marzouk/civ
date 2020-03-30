@@ -42,7 +42,8 @@ class SocialSitesRegisterController extends Controller
 
         return [
             'status' => 'success',
-            'access_token' => $token
+            'access_token' => $token,
+            'is_admin' => $user->hasRole('admin'),
         ];
     }
 
