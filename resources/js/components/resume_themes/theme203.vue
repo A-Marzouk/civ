@@ -322,7 +322,7 @@
                           <v-card flat color="transparent">
                             <v-card-text>
                               <div class="skill-circle">
-                                <span>ph</span>
+                                <span>fig</span>
                               </div>
                             </v-card-text>
                           </v-card>
@@ -539,19 +539,17 @@ export default {
 
 .skill-circle {
   position: absolute;
-  width: 4.5625rem;
-  height: 4.5rem;
+  width: 3.1rem;
+  height: 3rem;
   border-radius: 50%;
   background: #000000;
   border: 5px solid #e0bb4c;
   box-sizing: border-box;
   text-align: center;
-  justify-content: center;
-  display: flex;
-  margin:0;
+  padding: 6px 2px 0 3px;
   span {
     font-family: "Rubik", sans-serif;
-    font-size: 2.25rem;
+    font-size: 1.25rem;
     color: #ffffff;
   }
 }
