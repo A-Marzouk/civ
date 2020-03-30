@@ -13,8 +13,8 @@
                     {{errors.language}}
                 </div>
             </div>
-            <a href="javascript:void(0)" @click="saveLanguage" class="btn-blue"><img src="/images/resume_builder/profile/icon-check.png">Add language now</a>
-            <a href="javascript:void(0)" class="btn-outline ml-5">Auto import</a>
+            <a href="javascript:void(0)" @click="saveLanguage" class="btn btn-filled"><img class='icon' src="/images/resume_builder/profile/icon-check.png">Add language now</a>
+            <a href="javascript:void(0)" class="btn ml-5">Auto import</a>
             <div class="lang-items">
                 <div class="lang-item mt-4" v-for="(language,index) in languages" :key="index + '_language'">
                     <img class="LangIcon" src="/images/resume_builder/language-icon.png" alt="">
@@ -116,6 +116,7 @@
 </script>
 
 <style scoped lang="scss">
+@import '../../../../../../sass/media-queries';
 
     .lang-item{
         position: relative;
@@ -213,15 +214,11 @@
     }
 
     .input-field{
-        select{
-            border: 1.5px solid #505050;
-            border-radius: 8px;
-            padding: 0px 0px 0px 16.8px;
-
-            &:focus{
-                outline:none;
-            }
+        @include lt-md {
+            width: 100%;
         }
+        // select{
+        // }
     }
 
     .error {
