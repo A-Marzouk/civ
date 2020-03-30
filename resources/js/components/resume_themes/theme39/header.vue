@@ -3,10 +3,7 @@
     <div class="inner p-0">
       <div class="top items-stretch">
         <div class="left flex justify-end">
-          <img
-            class="rounded-full max-w-xs"
-            src="./../../../../public/images/resume_themes/theme39/header-icon.png"
-          />
+          <img class="rounded-full max-w-xs" v-bind:src="logo" />
         </div>
         <div class="right col-span-2 flex flex-col items-stretch">
           <h1 class="font-bold not-italic text-purple-501 text-4xl leading-10">Carla Pipin Ranga</h1>
@@ -211,7 +208,9 @@
 export default {
   components: {},
   data() {
-    return {};
+    return {
+      logo: "/images/resume_themes/theme39/header-icon.png"
+    };
   },
 
   methods: {}
@@ -219,113 +218,115 @@ export default {
 </script>
 
 <style lang="scss">
-header {
-  div.top {
-    @apply flex;
-    > * {
-      @apply py-12;
-    }
-    div.left {
-      background-color: #513ecd;
-      flex: 0.53;
-      position: relative;
-      img {
-        position: absolute;
-        left: 94px;
-        border: 14px solid #fff;
-        top: 24px;
+div#wrapper_theme39 {
+  header {
+    div.top {
+      @apply flex;
+      > * {
+        @apply py-12;
       }
-    }
-    div.right {
-      flex: 1.2;
-      padding-left: 100px;
-      h1 {
+      div.left {
+        background-color: #513ecd;
+        flex: 0.53;
+        position: relative;
+        img {
+          position: absolute;
+          left: 94px;
+          border: 14px solid #fff;
+          top: 24px;
+        }
       }
-      p {
-        font-size: 14px;
+      div.right {
+        flex: 1.2;
+        padding-left: 100px;
+        h1 {
+        }
+        p {
+          font-size: 14px;
+        }
+        div.media {
+          a {
+            margin-right: 25px;
+            @apply rounded-full bg-gray-301;
+          }
+          a:nth-child(1) {
+            padding: 13px;
+          }
+          a:nth-child(2) {
+            padding: 10px;
+          }
+          a:nth-child(3) {
+            padding: 9px;
+          }
+        }
       }
-      div.media {
+      div.icons {
+        flex: 1.7;
         a {
           margin-right: 25px;
           @apply rounded-full bg-gray-301;
         }
         a:nth-child(1) {
-          padding: 13px;
+          padding: 9px;
         }
         a:nth-child(2) {
           padding: 10px;
         }
         a:nth-child(3) {
+          padding: 10px;
+        }
+        a:nth-child(4) {
+          padding: 9px;
+        }
+        a:nth-child(5) {
           padding: 9px;
         }
       }
-    }
-    div.icons {
-      flex: 1.7;
-      a {
-        margin-right: 25px;
-        @apply rounded-full bg-gray-301;
-      }
-      a:nth-child(1) {
-        padding: 9px;
-      }
-      a:nth-child(2) {
-        padding: 10px;
-      }
-      a:nth-child(3) {
-        padding: 10px;
-      }
-      a:nth-child(4) {
-        padding: 9px;
-      }
-      a:nth-child(5) {
-        padding: 9px;
-      }
-    }
-    div.hire {
-      flex: 1.4;
-      > div {
-        align-items: center;
-      }
+      div.hire {
+        flex: 1.4;
+        > div {
+          align-items: center;
+        }
 
-      .hourly--rate {
-        align-items: center;
-        span:first-child {
-          @apply text-gray-702 not-italic;
+        .hourly--rate {
+          align-items: center;
+          span:first-child {
+            @apply text-gray-702 not-italic;
+            font-size: 18px;
+            line-height: 22px;
+          }
+          span:nth-child(2) {
+            @apply text-purple-501 font-bold;
+            font-size: 24px;
+            line-height: 29px;
+          }
+        }
+        .vertical {
+          content: "";
+          border: 1px solid #d7d7d7;
+          height: 41px;
+          width: 1px;
+        }
+        .available--for {
+          align-items: center;
+          span:first-child {
+            @apply text-gray-702 not-italic;
+            font-size: 18px;
+            line-height: 22px;
+          }
+          span:nth-child(2) {
+            @apply text-purple-501 font-bold;
+            font-size: 24px;
+            line-height: 29px;
+          }
+        }
+        button {
+          @apply bg-purple-501 text-white font-bold;
+          border-radius: 50px;
           font-size: 18px;
           line-height: 22px;
+          padding: 21px 61px 18px 65px;
         }
-        span:nth-child(2) {
-          @apply text-purple-501 font-bold;
-          font-size: 24px;
-          line-height: 29px;
-        }
-      }
-      .vertical {
-        content: "";
-        border: 1px solid #d7d7d7;
-        height: 41px;
-        width: 1px;
-      }
-      .available--for {
-        align-items: center;
-        span:first-child {
-          @apply text-gray-702 not-italic;
-          font-size: 18px;
-          line-height: 22px;
-        }
-        span:nth-child(2) {
-          @apply text-purple-501 font-bold;
-          font-size: 24px;
-          line-height: 29px;
-        }
-      }
-      button {
-        @apply bg-purple-501 text-white font-bold;
-        border-radius: 50px;
-        font-size: 18px;
-        line-height: 22px;
-        padding: 21px 61px 18px 65px;
       }
     }
   }
