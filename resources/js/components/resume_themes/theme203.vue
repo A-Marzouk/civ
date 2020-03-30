@@ -172,7 +172,7 @@
           <v-col>
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;"> 
-                <!-- Portfolio -->
+                <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <v-card flat color="transparent">
                     <div class="watermark-text text-center">Portfolio</div>
@@ -257,7 +257,28 @@
                     </v-card-text>
                   </v-card>
                 </v-tab-item>
-                <!-- Portfolio -->
+                <!-- .......................Portfolio.................................. -->
+
+              <!-- ...................Tab Item Work............................. -->
+              <v-tab-item>
+                 <div class="watermark-text text-center">Work</div>
+              </v-tab-item>
+              <!--................... Tab item Work............................... -->
+
+              <!-- ...................Tab Item Education............................. -->
+              <v-tab-item>
+                 <div class="watermark-text text-center">Education</div>
+              </v-tab-item>
+              <!--................... Tab item Education............................... -->
+
+              <!-- ...................Tab Item Skills............................. -->
+              <v-tab-item>
+                 <div class="watermark-text text-center">Skills</div>
+              </v-tab-item>
+              <!--................... Tab item Skills............................... -->
+
+
+
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -418,8 +439,7 @@ export default {
 .custom-portfolio-img {
   border-radius: 10px;
 }
-.image-box-custom {
-}
+
 // .........................Desktop Portfolio...........................
 
 // Watermark text
