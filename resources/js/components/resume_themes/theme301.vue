@@ -1878,9 +1878,10 @@
             }
 
             .v-card__actions{
-                padding: 34px 37px 0px 37px;                
-                display: flex;
+                padding: 34px 37px 0px 37px;
+                flex-wrap: wrap;
                 justify-content: flex-end;
+                display: flex;                
             }
             .close-icon{
                 color: #2310A0;
