@@ -43,7 +43,7 @@
                                                             <!-- Hidden in sm and xs devices -->
                                                             <v-list-item-icon class="hidden-sm-and-down ">
                                                                 <a :href="item.link" v-for="item in socialLinks" class="mr-3" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
-                                                                    <img :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                                                    <img :class="item.link_title == 'Behance'? 'mobile-social-icon-image-behance' : 'mobile-social-icon-image' " :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
                                                                 </a>
                                                             </v-list-item-icon>
                                                         </v-list-item-content>
