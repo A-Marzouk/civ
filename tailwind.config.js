@@ -8,6 +8,7 @@ module.exports = {
                     ...colors.gray,
                     '301': '#EBEBEB',
                     '701': '#444444',
+                    '702': '#484848',
                 },
                 purple: {
                     ...colors.purple,
