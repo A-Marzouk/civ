@@ -263,22 +263,20 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Work</div>
                   <v-card color="transparent" flat>
-                    <v-card-text class="">
+                    <v-card-text class>
                       <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6"  class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent"> 
-                              <v-card-title class="custom-work-title">
-                                <img class="mx-5" src="/images/resume_themes/theme203/images/ellipse.png"/> Google Inc. Introduction Google
-                              </v-card-title>
-                              <v-card-subtitle class="custom-work-subtitle">
-                                User interface designer
-                              </v-card-subtitle>
-                              <v-card-action class="custom-work-duration">
-                                2012- Current
-                              </v-card-action>
+                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
+                          <v-card flat color="transparent">
+                            <v-card-title class="custom-work-title">
+                              <img
+                                class="mx-5"
+                                src="/images/resume_themes/theme203/images/ellipse.png"
+                              /> Google Inc. Introduction Google
+                            </v-card-title>
+                            <v-card-subtitle class="custom-work-subtitle">User interface designer</v-card-subtitle>
+                            <v-card-action class="custom-work-duration">2012- Current</v-card-action>
                           </v-card>
                         </v-col>
-                        
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -289,23 +287,25 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" flat>
-                    <v-card-text class="">
+                    <v-card-text class>
                       <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6"  class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent"> 
-                              <v-card-title class="custom-work-title">
-                                <img class="mx-5" src="/images/resume_themes/theme203/images/ellipse.png"/> Google Inc. Introduction Google
-                              </v-card-title>
-                              <v-card-subtitle class="custom-education-subtitle">
-                                <span>M.Sc in HCI, </span>
-                                <span class="mr-md-5"> Dec 19 - Present</span>
-                              </v-card-subtitle>
-                              <v-card-text class="custom-education-details">
-                                I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
-                              </v-card-text>
+                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
+                          <v-card flat color="transparent">
+                            <v-card-title class="custom-work-title">
+                              <img
+                                class="mx-5"
+                                src="/images/resume_themes/theme203/images/ellipse.png"
+                              /> Google Inc. Introduction Google
+                            </v-card-title>
+                            <v-card-subtitle class="custom-education-subtitle">
+                              <span>M.Sc in HCI,</span>
+                              <span class="mr-md-5">Dec 19 - Present</span>
+                            </v-card-subtitle>
+                            <v-card-text
+                              class="custom-education-details"
+                            >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card-text>
                           </v-card>
                         </v-col>
-                        
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -315,6 +315,21 @@
                 <!-- ...................Tab Item Skills............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
+                  <v-card color="transparent" flat>
+                    <v-card-text class>
+                      <v-row align="center" justify="center">
+                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
+                          <v-card flat color="transparent">
+                            <v-card-text>
+                              <div class="skill-circle">
+                                <span>ph</span>
+                              </div>
+                            </v-card-text>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
               </v-tabs-items>
@@ -362,6 +377,7 @@ export default {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 
 /* Shapes */
@@ -481,44 +497,65 @@ export default {
 // .........................Desktop Portfolio...........................
 
 // ................... Work Desktop......................................
-.custom-work-title{
-  font-size:24px;
+.custom-work-title {
+  font-size: 24px;
   line-height: 2.6875rem;
-  img{
+  img {
     width: 20px !important;
   }
 }
-.custom-work-subtitle{
-  font-size:12px;
-  color:#000000 !important;
+.custom-work-subtitle {
+  font-size: 12px;
+  color: #000000 !important;
   text-align: left;
   margin-left: 62px;
   text-transform: capitalize;
 }
-.custom-work-duration{
-  font-size:12px;
-  color:#000000 !important;
+.custom-work-duration {
+  font-size: 12px;
+  color: #000000 !important;
   text-align: left !important;
   margin-left: 80px;
 }
 //...................... Work Desktop.....................................
 
 // ................ Education Desktop............................
-.custom-education-subtitle{
-  font-size:0.875rem;
-  color:#FBD76D !important;
-  line-height:1.4375rem;
-  font-weight:bold;
-  margin-left:62px;
+.custom-education-subtitle {
+  font-size: 0.875rem;
+  color: #fbd76d !important;
+  line-height: 1.4375rem;
+  font-weight: bold;
+  margin-left: 62px;
 }
-.custom-education-details{
-  font-size:0.75rem;
-  line-height:1.4375rem;
+.custom-education-details {
+  font-size: 0.75rem;
+  line-height: 1.4375rem;
   font-weight: 300;
-  color: #2D2D2D !important;
-  margin-left:62px;
+  color: #2d2d2d !important;
+  margin-left: 62px;
 }
 // ................ Education Desktop............................
+// ................Skills Desktop..................................
+
+.skill-circle {
+  position: absolute;
+  width: 4.5625rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: #000000;
+  border: 5px solid #e0bb4c;
+  box-sizing: border-box;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  margin:0;
+  span {
+    font-family: "Rubik", sans-serif;
+    font-size: 2.25rem;
+    color: #ffffff;
+  }
+}
+//..................Skills Desktop.....................................
 // Watermark text
 .watermark-text {
   position: absolute;
