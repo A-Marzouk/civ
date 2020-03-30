@@ -167,17 +167,93 @@
         <!-- Main navigation tab -->
       </v-container>
       <!-- ....................Tab Items ..........................-->
-      <v-container style="width:100%">
-        <v-row>
+      <v-container fluid style="width:100%">
+        <v-row class="mx-10">
           <v-col>
             <v-card flat color="transparent">
               <v-tabs-items v-model="mainDataTab">
                 <!-- Portfolio -->
                 <v-tab-item>
-                  <v-card flat  color="transparent">
+                  <v-card flat color="transparent">
                     <div class="watermark-text text-center">Portfolio</div>
-                    <v-card-text>
+                    <v-card-text align="center">
+                      <v-row align="center" justify="center">
+                        <!-- 1st column -->
+                        <v-col cols="12" sm="6" md="3">
+                          <v-card class="pa-2" flat>
+                            <div class="my-md-5 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/1.png"
+                              ></v-img>
+                            </div>
+                            <div class="my-md-2 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/2.png"
+                              ></v-img>
+                            </div>
+                          </v-card>
+                        </v-col>
+                        <!-- 1st column -->
+
+                        <!-- 2nd column -->
+                        <v-col cols="12" sm="6" md="3">
+                          <v-card class="pa-2" flat>
+                            <div class="my-md-5 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/3.png"
+                              ></v-img>
+                            </div>
+                            <div class="my-md-2 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/4.png"
+                              ></v-img>
+                            </div>
+                          </v-card>
+                        </v-col>
+                      <!-- 2nd column -->
                       
+                      <!-- 3rd column -->
+                      <v-col cols="12" sm="6" md="3">
+                          <v-card class="pa-2" flat>
+                            <div class="my-md-5 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/5.png"
+                              ></v-img>
+                            </div>
+                            <div class="my-md-2 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/6.png"
+                              ></v-img>
+                            </div>
+                          </v-card>
+                        </v-col>
+                      <!-- 3rd column -->
+
+                      <!-- 4th Column -->
+                      <v-col cols="12" sm="6" md="3">
+                          <v-card class="pa-2" flat>
+                            <div class="my-md-5 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/7.png"
+                              ></v-img>
+                            </div>
+                            <div class="my-md-2 image-box-custom">
+                              <v-img
+                                class="custom-portfolio-img"
+                                src="/images/resume_themes/theme203/portfolio/8.png"
+                              ></v-img>
+                            </div>
+                          </v-card>
+                        </v-col>
+                      <!-- 4th Cloumn -->
+                      </v-row>
                     </v-card-text>
                   </v-card>
                 </v-tab-item>
@@ -231,7 +307,7 @@ export default {
 
 /* Shapes */
 .triangle-top-left {
-  left:0;
+  left: 0;
   top: 0;
   padding: 0;
   margin: 0;
@@ -334,17 +410,23 @@ export default {
 /* Profile */
 
 // ............................ Main Navigation Tab...........................//
-.custom-tab-text{
+.custom-tab-text {
   font-size: 1.2rem;
 }
 // ............................ Main Navigation Tab ...........................//
+// ..........................Desktop Portfolio.........................
+.custom-portfolio-img {
+  border-radius: 10px;
+}
+.image-box-custom {
+}
+// .........................Desktop Portfolio...........................
 
 // Watermark text
-.watermark-text{
+.watermark-text {
   position: absolute;
-  font-size:20vw;
+  font-size: 20vw;
   width: 100%;
-  z-index: 4;
-  opacity: 0.20;
+  opacity: 0.2;
 }
 </style>
