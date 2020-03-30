@@ -525,6 +525,14 @@
             font-size: 5vw;
         }
         /* achievement */
+        .v-line {
+            height: 107% !important;
+        }
+        @-moz-document url-prefix() {
+            .v-line {
+                margin-top: 115px !important;
+            }
+        }
     }
     /* mobile devices */
     /* min screen devices*/
