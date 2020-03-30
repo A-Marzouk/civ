@@ -113,7 +113,11 @@
                     .then(response => {
                         // save the access token then redirect:
                         Vue.$cookies.set('access_token', response.data.access_token, "3y");
-                        window.location.href = '/resume-builder';
+                        if(response.data.is_admin){
+                            window.location.href = '/workforce-admin';
+                        }else{
+                            window.location.href = '/resume-builder';
+                        }
                     })
                     .catch(error => {
                         this.canSubmit = true;

@@ -1,4 +1,4 @@
-@extends('layouts.my-app')
+@extends('layouts.theme-vuetify')
 
 @section('content')
     <div id="resumeTheme300" class="d-flex justify-content-center">

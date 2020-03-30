@@ -25,6 +25,9 @@ if ($("#welcomeView").length !== 0) {
     });
 }
 
+//admin components
+require('./admin');
+
 
 // Default themes preview components registrations:
 require('./default-themes');

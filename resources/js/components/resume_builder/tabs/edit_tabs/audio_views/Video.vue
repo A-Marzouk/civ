@@ -22,16 +22,18 @@
                     <div class="video-element" v-for="(video,index) in videos" :key="video.id" v-if="video.type === 'video'">
                         <div class="video-name">{{video.title}}</div>
                         <div class="video-player d-flex align-items-center">
-                            <svg-vue class="video-play-icon" icon="video-play-icon"></svg-vue>
-
-                            <div class="order-controls d-flex flex-column">
-                                <button class="icon">
-                                    <svg-vue icon="arrow-up"></svg-vue>
-                                </button>
-                                <button class="icon">
-                                    <svg-vue icon="arrow-down"></svg-vue>
-                                </button>
+                            <div v-show="video.id === playingVideo">
+                                <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" frameborder="0" v-if="video.url.includes('youtube')"></iframe>
+                                <video controls v-show="video.id === playingVideo" :id="video.id + '_videoPlayback'"  v-else>
+                                    <source :src="video.url" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
+
+                            <a href="javascript:void(0)" @click="loadVideo(video.id)"  v-show="video.id !== playingVideo">
+                                <svg-vue class="video-play-icon" icon="video-play-icon"></svg-vue>
+                            </a>
+
 
                             <div class="input-select select-audio-options dropdown">
                                 <button class="audio-options dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -42,6 +44,10 @@
                                     <a class="dropdown-item" href="javascript:void(0)" @click="deleteMedia(video)">
                                         <svg-vue class="option-icon" icon="trash-delete-icon"></svg-vue>
                                         Delete
+                                    </a>
+                                    <a class="dropdown-item" href="javascript:void(0)" @click="closeVideo(video.id)" v-show="playingVideo === video.id">
+                                        <span style="font-weight: bold; margin-right: 6px; margin-left: 2px;">X</span>
+                                        Close
                                     </a>
                                 </div>
                             </div>
@@ -128,10 +134,10 @@
                                 <b-col cols="8">
                                     <b-form-input type="url" class="link-input" placeholder="link here" v-model="newVideo.url"></b-form-input>
                                 </b-col>
-                                <b-col>
-                                    <button @click="uploadMedia">
-                                        <svg-vue class="link-btn-icon" icon="link-btn-icon"></svg-vue>
-                                    </button>
+                                <b-col cols="2">
+                                    <a href="javascript:void(0)" @click="uploadMedia">
+                                        Upload
+                                    </a>
                                 </b-col>
                             </b-row>
                         </b-container>
@@ -139,6 +145,9 @@
                 </b-modal>
             </div>
             <!-- Audio Upload Main Modal -->
+
+            <!-- video play modal -->
+
         </div>
 
     </div>
@@ -155,6 +164,7 @@
                     mediaFile: null
                 },
                 errors: {},
+                playingVideo:0,
                 currentUploadMethod: 'general',
             }
         },
@@ -164,6 +174,14 @@
             }
         },
         methods: {
+            loadVideo(id){
+                this.playingVideo = id ;
+            },
+            closeVideo(id){
+              this.playingVideo = 0 ;
+              console.log('#' + id + '_videoPlayback');
+              $('#' + id + '_videoPlayback').get(0).pause();
+            },
             handleVideoUpload() {
                 this.newVideo.mediaFile = this.$refs.video.files[0];
                 this.uploadMedia();
@@ -409,8 +427,8 @@
 
         .select-audio-options {
             position: absolute;
-            bottom: 15px;
-            right: 106px;
+            bottom: -30px;
+            right: 100px;
             height: 22px;
             border-radius: 5px;
             border: 1px solid $mainBlue;
@@ -433,11 +451,23 @@
         border-radius: 22px;
         height: 150px;
         width: 260px;
-        padding-left: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         .video-play-icon {
             width: 40px;
-            margin-left: 70px;
+        }
+
+        video,iframe{
+            height: 150px;
+            width: 260px;
+            border-radius: 22px;
+            border: 5px solid black;
+            margin-top: 5px;
+            &:focus{
+                outline: none;
+            }
         }
 
     }

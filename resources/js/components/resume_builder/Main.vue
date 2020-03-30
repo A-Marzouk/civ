@@ -250,6 +250,8 @@
         display: none;
         transform: translateX(-100%);
         position: fixed;
+        display: flex;
+        flex-direction: column;
         left: 0;
         top: 0;
         height: 100%;
@@ -265,6 +267,7 @@
         .side-bg-panel {
             background: rgba(255, 255, 255, 0.9);
             width: 80%;
+            height: 100%;
             max-width: 265px;
             box-shadow: 0 12px 12px rgba(0, 0, 0, .1);
             overflow: auto;

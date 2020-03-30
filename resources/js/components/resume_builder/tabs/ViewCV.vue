@@ -21,7 +21,7 @@
         
         <div class="themes">
             <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.code">
-                <img @click="openTheme(theme)" :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
+                <img @click="openTheme(theme)" class="theme-image" :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
 
                 <div class="theme-action-btns" v-if="parseInt(user.theme_code) === theme.code">
                     <a :href="'/' + user.username " target="_blank" class="active-btn">
@@ -104,7 +104,6 @@
                 }
                 axios.put('/api/user/update-theme',{theme_code : theme_code})
                     .then((response) => {
-                        console.log(response.data);
                         this.user.theme_code  = theme_code ;
                         this.$store.dispatch('flyingNotification');
                     })
@@ -206,7 +205,8 @@
                 display: flex;
                 align-items: center;
                 flex-direction: column;
-                img{
+                img.theme-image{
+                    border: 1px solid black;
                     width:634px;
                     height:451px;
                     border-radius:25px;
