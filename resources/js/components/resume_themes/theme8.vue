@@ -37,7 +37,7 @@
 
                         <div class="icons NoDecor">
                             <a :href="item.link" v-for="item in socialLinks" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
-                                <img :src="`/images/resume_themes/theme8/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                <img :src="`/images/resume_themes/theme8/social_icons/${stringToLowerCase(item.link_title)}.webp`"  alt="social icon">
                             </a>
                         </div>
                     </div>
@@ -231,6 +231,12 @@
             }
         },
         methods: {
+            stringToLowerCase(string){
+                if(string){
+                    return string.toLowerCase();
+                }
+                return 'social_icon';
+            },
             setActiveTab(tabName) {
                 this.activeTab = tabName;
             },
