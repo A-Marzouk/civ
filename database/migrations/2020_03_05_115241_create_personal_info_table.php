@@ -19,7 +19,7 @@ class CreatePersonalInfoTable extends Migration
             $table->string('full_name')->nullable();
             $table->string('email')->nullable();
             $table->string('designation')->nullable();
-            $table->string('profile_pic')->default('/images/resume_builder/profile/holder.jpg');
+            $table->string('profile_pic')->default('/images/resume_builder/profile/holder.png');
             $table->string('phone')->nullable();
             $table->string('location')->nullable();
             $table->text('about')->nullable();

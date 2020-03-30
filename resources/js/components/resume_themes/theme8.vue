@@ -1,5 +1,5 @@
 <template>
-    <div class="theme-container" v-if="user">
+    <div class="theme-container" v-if="currentUser">
         <vue-particles></vue-particles>
         <div class="main-info-bar">
             <div class="left">
@@ -37,7 +37,7 @@
 
                         <div class="icons NoDecor">
                             <a :href="item.link" v-for="item in socialLinks" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
-                                <img :src="`/images/resume_themes/theme8/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                <img :src="`/images/resume_themes/theme8/social_icons/${stringToLowerCase(item.link_title)}.webp`"  alt="social icon">
                             </a>
                         </div>
                     </div>
@@ -202,7 +202,7 @@
     import Slick from 'vue-slick';
 
     export default {
-        name: "theme5",
+        name: "theme8",
         props:['user','is_preview'],
         components: {
             Slick
@@ -231,6 +231,12 @@
             }
         },
         methods: {
+            stringToLowerCase(string){
+                if(string){
+                    return string.toLowerCase();
+                }
+                return 'social_icon';
+            },
             setActiveTab(tabName) {
                 this.activeTab = tabName;
             },
