@@ -148,6 +148,7 @@
 
       <!-- tab bar row -->
       <v-container>
+        <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" md="10">
             <v-card flat color="transparent">
@@ -163,9 +164,16 @@
             </v-card>
           </v-col>
         </v-row>
+        <!-- Main navigation tab -->
       </v-container>
-      <div class="triangle-bottom-right" style="text-align:right"></div>
+      <!-- Tab Items -->
+      <v-container></v-container>
+      <!-- Tab Items -->
+      
       <!-- tab bar row -->
+      <!-- Right Bottom bar -->
+      <div class="triangle-bottom-right" style="text-align:right"></div>
+      <!-- Right bottom bar -->
     </v-container>
   </v-app>
 </template>
