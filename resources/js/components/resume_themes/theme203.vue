@@ -12,7 +12,7 @@
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col md="5" cols="12" sm="12" class="mx-auto">
+                <v-col md="5" cols="12" sm="12">
                   <v-card flat color="transparent" style="z-index:2;">
                     <v-card-text>
                       <v-list-item two-line>
@@ -67,7 +67,7 @@
                 <!-- 2nd column social media icons -->
                 <v-col md="3" sm="6" cols="12" class="mt-n3 pa-0" align="center">
                   <v-card flat color="tranparent">
-                    <v-card-text class="">
+                    <v-card-text class>
                       <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
                         <img
                           width="14"
@@ -149,29 +149,51 @@
       <!-- tab bar row -->
       <v-container>
         <v-row no-gutters align="center" justify="center">
-          <v-col cols="12" md="8">
-            <v-card>
+          <v-col cols="12" md="10">
+            <v-card flat color="transparent">
               <v-card-text>
-                <v-tabs color="black" fixed-tabs>
-                  <v-tab>Item One</v-tab>
-                  <v-tab>Item Two</v-tab>
-                  <v-tab>Item Three</v-tab>
-                  <v-tab>Item Three</v-tab>
-                  <v-tab>Item Three</v-tab>
+                <v-tabs color="black" grow hide-slider>
+                  <v-tab
+                    v-for="item in mainTabs"
+                    :key="item.id"
+                    class="text-capitalize custom-tab-text"
+                  >{{item.title}}</v-tab>
                 </v-tabs>
               </v-card-text>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
-
+      <div class="triangle-bottom-right" style="text-align:right"></div>
       <!-- tab bar row -->
     </v-container>
   </v-app>
 </template>
 <script>
 export default {
-  name: "ResumeTheme40"
+  name: "ResumeTheme40",
+  data() {
+    return {
+      mainTabs: [
+        {
+          id: 1,
+          title: "Portfolio"
+        },
+        {
+          id: 2,
+          title: "Work"
+        },
+        {
+          id: 3,
+          title: "Education"
+        },
+        {
+          id: 4,
+          title: "Skills"
+        }
+      ]
+    };
+  }
 };
 </script>
 
@@ -181,6 +203,10 @@ export default {
 
 /* Shapes */
 .triangle-top-left {
+  left:0;
+  top: 0;
+  padding: 0;
+  margin: 0;
   position: absolute;
   background: #fcd259;
   height: 18.75rem;
@@ -190,21 +216,24 @@ export default {
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
-  float:left;
+  float: left;
 }
 
 .triangle-bottom-right {
-  position: absolute;
-  background-attachment: fixed;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
   background: #fcd259;
-  height: 18.75rem;
-  width: 20rem;
+  height: 15.75rem;
+  width: 10rem;
   background-position: right bottom !important;
   -webkit-clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   clip-path: polygon(100% 0, 0% 100%, 100% 100%);
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
-  float:right;
+  float: right;
 }
 
 .verical-sidebar {
@@ -213,6 +242,7 @@ export default {
   width: 3vw;
   height: 600vh;
   z-index: 1;
+  bottom: 0;
 }
 /* Shapes */
 
@@ -274,4 +304,10 @@ export default {
 /* Hire Me Card */
 
 /* Profile */
+
+// ............................ Main Navigation Tab...........................//
+.custom-tab-text{
+  font-size: 1.2rem;
+}
+// ............................ Main Navigation Tab ...........................//
 </style>
