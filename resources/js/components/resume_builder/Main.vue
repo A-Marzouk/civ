@@ -193,8 +193,8 @@
 </script>
 
 <style lang="scss">
-@import '../../../sass/media-queries';
 
+@import '../../../sass/media-queries';
     body.modal-open {
         overflow: visible !important;
     }

@@ -36,7 +36,7 @@
 
                                                             <v-list-item-icon class="hidden-md-and-up">
                                                                 <a :href="item.link" v-for="item in socialLinks" class="mr-3" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
-                                                                    <img :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                                                    <img :class="item.link_title == 'Behance'? 'mobile-social-icon-image-behance' : 'mobile-social-icon-image' " :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
                                                                 </a>
                                                             </v-list-item-icon>
 
@@ -62,7 +62,7 @@
                                     <!-- Column 1 Profile -->
 
                                     <!-- Hidden in sm and up phone icons -->
-                                    <v-col col="4" class="hidden-sm-and-up ml-12">
+                                    <v-col col="1" class="hidden-sm-and-up ml-12" align="right">
                                         <v-card flat color="transparent">
                                             <v-btn small color="#00CDF7" class="phone-btn">
                                                 <v-icon color="#6D1CFF" class="phone-icon">fa-phone</v-icon>
@@ -218,8 +218,10 @@
                                     </v-col>
                                     <!-- Column 2 -->
                                     <!-- Coumn 3 tabs -->
-                                    <v-col cols="12" md="10" sm="12" offset-md="1" class="mb-n8 hidden-xs-only">
-                                        <v-card color="transparent" flat  class="w-100">
+                                    <v-col cols="12" md="12" sm="12"  class="mt-n5 mb-n11 hidden-xs-only">
+                                        <v-row align="center" justify="center">
+                                            <v-col md="10">
+                                                <v-card color="transparent" flat  class="w-100">
                                             <v-card-text>
                                                 <!-- tabs -->
                                                 <v-tabs
@@ -231,7 +233,6 @@
                                                         centered
                                                         dark
                                                         hide-slider
-                                                        mobile-break-point="599"
                                                 >
                                                     <v-tab
                                                             v-for="tab in tabs"
@@ -248,7 +249,7 @@
                                                         <v-avatar tile height="16" width="15">
                                                             <img
                                                                     :src="[currentTab == tab.id ? getImgUrlIconActive(tab.id):getImgUrlIcon(tab.id) ]"
-                                                                    class="mr-md-4 mr-sm-n4"
+                                                                    class="mr-md-2 mr-sm-n2"
                                                             />
                                                         </v-avatar>
                                                         {{tab.title}}
@@ -257,6 +258,9 @@
                                                 </v-tabs>
                                             </v-card-text>
                                         </v-card>
+
+                                            </v-col>
+                                        </v-row>
                                     </v-col>
                                     <!-- Column3 tabs-->
                                 </v-row>
@@ -300,9 +304,8 @@
                                 v-model="dataTabs"
                                 hide-slider
                                 center-active
-                                style="margin-left:-55px;"
                         >
-                            <v-tab v-for="item in tabs" :key="item.title" class>
+                            <v-tab v-for="item in tabs" :key="item.title">
                                 <v-btn
                                         x-small
                                         fab
@@ -400,10 +403,7 @@
                                                                         <v-img width="40"
                                                                                :src="getIconWork(index+1)"></v-img>
                                                                     </v-list-item-icon>
-                                                                    <div
-                                                                            class="v-line"
-                                                                            :class="[currentUser.work_experience.length-(index+1) <2 ? 'hidden-md-and-up':'']"
-                                                                    ></div>
+                                                                    <div class="v-line"></div>
                                                                     <v-list-item-content>
                                                                         <v-list-item-title class="work-title">
                                                                             {{work.job_title}}
@@ -441,8 +441,7 @@
                                                                         <v-img width="40"
                                                                                :src="getIconEducation(index+1)"></v-img>
                                                                     </v-list-item-icon>
-                                                                    <div class="v-line"
-                                                                         v-if="currentUser.education.length-(index+1) >1"></div>
+                                                                    <div class="v-line"></div>
                                                                     <v-list-item-content>
                                                                         <v-list-item-title class="work-title">
                                                                             {{education.university_name}}
@@ -1157,7 +1156,18 @@
     .themeWrapper {
         width: 100%;
     }
+    
 
     @import "resources/sass/themes/theme200.scss";
+</style>
+
+<style>
+    #resumeTheme200 .v-slide-group__prev{
+        display:none;
+    }
+
+    #resumeTheme200 .v-slide-group__next{
+        display:none;
+    }
 </style>
 

@@ -1,5 +1,5 @@
 import vuetify from './vuetify';
-import {store} from './store/store';
+import { store } from './store/store';
 
 
 
@@ -187,4 +187,20 @@ if ($("#resumeTheme403").length !== 0) {
         }
     });
 
+}
+
+
+
+import resumeTheme203 from './components/resume_themes/theme203';
+if ($("#resumeTheme203").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme203',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components: {
+            'resume-theme-203': resumeTheme203
+        }
+    });
 }
