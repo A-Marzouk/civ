@@ -21,12 +21,17 @@ export function moveTabsHelper (e, wrapperId, component) {
     // Move decorator on tabs
     let linksWrapper = document.getElementById(wrapperId)
     let { target } = e
+
+    console.log(component, target);
     
     component.setActiveTab(target.getAttribute('data-target'))
 
     let decorator = linksWrapper.querySelector('.decorator');
-    decorator.style.width = target.offsetWidth + 'px';
+    if (decorator !== null) {
+        decorator.style.width = target.offsetWidth + 'px';
+    
+        // Complete move of the decorator
+        decorator.style.transform = `translateX(${target.offsetLeft}px)`;
+    }
 
-    // Complete move of the decorator
-    decorator.style.transform = `translateX(${target.offsetLeft}px)`;
 }

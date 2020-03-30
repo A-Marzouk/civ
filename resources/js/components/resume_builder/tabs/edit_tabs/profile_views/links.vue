@@ -26,8 +26,10 @@
                         <a href="javascript:void(0)" @click="copyProfileLink"><span class="copy"></span></a>
                         <a href="javascript:void(0)"><span class="share"></span></a>
                     </div>
-                    <a href="javascript:void(0)" @click="saveProfileLink('manual')" class="btn-blue"><img
-                            src="/images/resume_builder/profile/icon-save2.png">Save this new link</a>
+                    <a href="javascript:void(0)" @click="saveProfileLink('manual')" class="btn btn-filled">
+                        <img class='icon'
+                            src="/images/resume_builder/profile/icon-save2.png">Save this new link
+                    </a>
 
                 </div>
 

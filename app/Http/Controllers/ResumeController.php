@@ -33,7 +33,7 @@ class ResumeController extends Controller
 
         if ($userName) {
             // $view = \View::make('resume_pdf_themes.' . $themeCode, compact('freelancer'))->render();
-            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Helvetica', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.theme' . $themeCode);
+            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Arial', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode);
 
             if (ob_get_contents()) {
                 ob_end_clean();
@@ -45,7 +45,7 @@ class ResumeController extends Controller
 
         return view('defaultPDFThemes.theme' . $themeCode);
     }
-    
+
     public function userResume ($username) {
         // get user default cv code.
         $user = User::withAllRelations($username);

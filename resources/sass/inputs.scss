@@ -20,9 +20,17 @@
                 margin-top: 7px;
                 margin-bottom: 16px;
             }
+
+            @include lt-md {
+                font-size: 9px;
+            }
+        }
+
+        @include lt-md {
+            font-size: 13px;
         }
     }
-    input {
+    input, select {
         min-height: 73px;
         max-width: 616px;
         border: 1.5px solid #505050;
@@ -36,6 +44,13 @@
 
         &.--blue {
             border-color: $mainBlue;
+        }
+
+        @include lt-md {
+            font-size: 13px;
+            min-height: 38px;
+            border-radius: 6px;
+            border-width: 0.5px;
         }
     }
     textarea {
@@ -54,6 +69,13 @@
 
         &.--blue {
             border-color: $mainBlue;
+        }
+
+        @include lt-md {
+            font-size: 13px;
+            min-height: 83px;
+            border-radius: 6px;
+            border-width: 0.5px;
         }
     }
 }
