@@ -169,7 +169,7 @@
         color: #373737;
     }
     .hello-designation {
-        font-size: 37px;
+        font-size: 36px !important;
         font-weight: 400;
         margin-top: 22px;
         color: #373737;
@@ -354,7 +354,10 @@
         }
         .designation-for-tab {
             margin-top: -10px;
-            font-size: 40px !important;
+            font-size: 25px !important;
+        }
+        .hello-designation span {
+            font-size: 20px !important;
         }
         .about-me-flex {
             margin-top: -50px;
@@ -391,10 +394,10 @@
             border-radius: 22px !important;
         }
         .profile-title {
-            font-size: 6vw !important;
+            font-size: 5vw !important;
         }
         .profile-subtitle {
-            font-size: 4vw !important;
+            font-size: 3vw !important;
             padding: 2px;
             color: #ffffff !important;
         }
@@ -408,6 +411,12 @@
         }
         .chat-btn-img {
             width: 2px !important;
+        }
+        .mobile-social-icon-image {
+            width: 25px;
+        }
+        .mobile-social-icon-image-behance {
+            width: 27px;
         }
         .social-sm-icon-btn {
             margin-right: 3px !important;

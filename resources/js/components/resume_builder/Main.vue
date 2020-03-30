@@ -160,7 +160,6 @@
 </script>
 
 <style lang="scss">
-    @import '~bootstrap/scss/bootstrap';
     body.modal-open {
         overflow: visible !important;
     }
