@@ -288,6 +288,27 @@
                 <!-- ...................Tab Item Education............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Education</div>
+                  <v-card color="transparent" flat>
+                    <v-card-text class="">
+                      <v-row align="center" justify="center">
+                        <v-col cols="12" sm="12" md="6"  class="mb-12" v-for="n in 4" :key="n">
+                          <v-card flat color="transparent"> 
+                              <v-card-title class="custom-work-title">
+                                <img class="mx-5" src="/images/resume_themes/theme203/images/ellipse.png"/> Google Inc. Introduction Google
+                              </v-card-title>
+                              <v-card-subtitle class="custom-education-subtitle">
+                                <span>M.Sc in HCI, </span>
+                                <span class="mr-md-5"> Dec 19 - Present</span>
+                              </v-card-subtitle>
+                              <v-card-text class="custom-education-details">
+                                I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
+                              </v-card-text>
+                          </v-card>
+                        </v-col>
+                        
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
                 </v-tab-item>
                 <!--................... Tab item Education............................... -->
 
@@ -481,11 +502,28 @@ export default {
   margin-left: 80px;
 }
 //...................... Work Desktop.....................................
+
+// ................ Education Desktop............................
+.custom-education-subtitle{
+  font-size:0.875rem;
+  color:#FBD76D !important;
+  line-height:1.4375rem;
+  font-weight:bold;
+  margin-left:62px;
+}
+.custom-education-details{
+  font-size:0.75rem;
+  line-height:1.4375rem;
+  font-weight: 300;
+  color: #2D2D2D !important;
+  margin-left:62px;
+}
+// ................ Education Desktop............................
 // Watermark text
 .watermark-text {
   position: absolute;
   font-size: 20vw;
   width: 100%;
-  opacity: 0.2;
+  opacity: 0.1;
 }
 </style>
