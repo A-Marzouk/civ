@@ -104,7 +104,6 @@
                 }
                 axios.put('/api/user/update-theme',{theme_code : theme_code})
                     .then((response) => {
-                        console.log(response.data);
                         this.user.theme_code  = theme_code ;
                         this.$store.dispatch('flyingNotification');
                     })

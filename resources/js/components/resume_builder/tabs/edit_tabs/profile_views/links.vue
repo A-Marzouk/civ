@@ -358,7 +358,7 @@
             },
             saveProfileLink(savingType) {
                 if (!this.validURL(this.profileLink.link)) {
-                    this.errors = {link: 'Not a valid link!'};
+                    this.errors = {link: 'Not a valid url! '};
                     return;
                 }
                 axios.put('/api/user/links', this.profileLink)
@@ -444,6 +444,12 @@
                     this.errors = {link: 'Not a valid link!'};
                     return;
                 }
+
+                if(link.category === 'social_link' && link.link_title.length < 1){
+                    this.errors = {link: 'Please choose social site!'};
+                    return;
+                }
+
                 axios.post('/api/user/links', link)
                     .then((response) => {
                         let addedLink = response.data.data;
