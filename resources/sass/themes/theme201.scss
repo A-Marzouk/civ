@@ -3,18 +3,16 @@
             a:focus {
                 outline: none;
             }
-            .custom-name-section {
-                margin-left: -5vw;
-            }
             .title-row {
                 padding-left: 5px !important;
             }
             .title-text {
-                font-size: 2vw !important;
+                font-size: 1.7rem !important;
                 font-weight: 400;
                 letter-spacing: normal !important;
                 font-family: "Roboto", sans-serif !important;
                 color: #1D1D1D;
+                overflow: visible;
             }
             .subtitle-text {
                 font-family: Open Sans;
@@ -104,7 +102,7 @@
                     max-width: 100.0% !important;
                 }
                 .title-text-tablet {
-                    font-size: 3.8vw !important;
+                    font-size: 1.8rem !important;
                 }
                 .subtitle-text {
                     font-size: 20px !important;
@@ -203,17 +201,5 @@
                 .custom-icon {
                     margin-top: 3px !important;
                 }
-            }
-        }
-        
-        @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-            //
-            .custom-name-section {
-                margin-left: -4vw !important;
-            }
-            //social icon for ipad pro
-            .social-icon {
-                text-align: right;
-                margin-left: -80px !important;
             }
         }
