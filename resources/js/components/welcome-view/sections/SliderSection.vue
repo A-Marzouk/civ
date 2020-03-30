@@ -226,7 +226,7 @@ export default {
   .slick-dots{
     bottom: 40% !important;
     left: 25% !important;
-    width: 50%;
+    width: auto;
     @media screen and (max-width: 769px) {
       bottom: 0 !important;
       left: 25% !important;
