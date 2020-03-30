@@ -7,7 +7,7 @@
       <v-row no-gutters>
         <v-col cols="12">
           <!-- Main header card -->
-          <v-card flat>
+          <v-card flat color="transparent">
             <!-- Child Row -->
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
@@ -108,21 +108,21 @@
                     <v-card-text class="ml-md-n5">
                       <v-row no-gutters align="center" justify="center">
                         <v-col cols="4" class="d-flex">
-                          <v-card flat class="text-center">
+                          <v-card flat class="text-center" color="tranparent">
                             <v-card-title class="hire-me-title">Hourly rate</v-card-title>
                             <v-card-subtitle class="hire-me-subtitle">$25 USD</v-card-subtitle>
                           </v-card>
                         </v-col>
                         <div style="height:41px; border:1px solid #D7D7D7;"></div>
                         <v-col cols="4" class="d-flex">
-                          <v-card flat class="text-center">
+                          <v-card flat class="text-center" color="transparent">
                             <v-card-title class="hire-me-title">Available for</v-card-title>
                             <v-card-subtitle class="hire-me-subtitle">8 Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
                         <v-col cols="3" class="d-flex">
-                          <v-card flat>
+                          <v-card flat color="transparent">
                             <v-card-text>
                               <v-btn
                                 color="#FCD259"
@@ -170,8 +170,8 @@
       <v-container fluid style="width:100%">
         <v-row class="mx-10">
           <v-col>
-            <v-card flat color="transparent">
-              <v-tabs-items v-model="mainDataTab">
+            <v-card flat color="transparent" style="z-index:1;">
+              <v-tabs-items v-model="mainDataTab" style="background-color:transparent;"> 
                 <!-- Portfolio -->
                 <v-tab-item>
                   <v-card flat color="transparent">
@@ -180,7 +180,7 @@
                       <v-row align="center" justify="center">
                         <!-- 1st column -->
                         <v-col cols="12" sm="6" md="3">
-                          <v-card class="pa-2" flat>
+                          <v-card class="pa-2" flat color="transparent">
                             <div class="my-md-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
@@ -199,7 +199,7 @@
 
                         <!-- 2nd column -->
                         <v-col cols="12" sm="6" md="3">
-                          <v-card class="pa-2" flat>
+                          <v-card class="pa-2" flat color="transparent">
                             <div class="my-md-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
@@ -218,7 +218,7 @@
                       
                       <!-- 3rd column -->
                       <v-col cols="12" sm="6" md="3">
-                          <v-card class="pa-2" flat>
+                          <v-card class="pa-2" flat color="transparent">
                             <div class="my-md-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
@@ -237,7 +237,7 @@
 
                       <!-- 4th Column -->
                       <v-col cols="12" sm="6" md="3">
-                          <v-card class="pa-2" flat>
+                          <v-card class="pa-2" flat color="transparent">
                             <div class="my-md-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
