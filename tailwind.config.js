@@ -7,6 +7,7 @@ module.exports = {
                 gray: {
                     ...colors.gray,
                     '301': '#EBEBEB',
+                    '302': '#D9D9D9',
                     '701': '#444444',
                     '702': '#484848',
                 },
