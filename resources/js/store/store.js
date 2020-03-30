@@ -12,6 +12,235 @@ Vue.use(VueCookies);
 export const store = new Vuex.Store({
     state: {
         user: {},
+        dummyUser: {
+            id: 'dummy',
+            personal_info: {
+                full_name: 'Beverly Andrews',
+                email: 'beverly@andrews.com',
+                profile_pic: '/images/resume_themes/theme200/images/about-me/men.png',
+                designation: 'User interface designer',
+                phone: '+990000000',
+                location: 'London',
+                about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            },
+            payment_info: {
+                salary: '10',
+                salary_frequency: 'Hourly',
+                available_hours: '40',
+                available_hours_frequency: 'Weekly'
+            },
+            skills: [
+                {
+                    id: Math.random(),
+                    title: 'photoshop',
+                    category: 'design',
+                    percentage: '90',
+                },
+                {
+                    id: Math.random(),
+                    title: 'photoshop',
+                    category: 'design',
+                    percentage: '90',
+                },
+                {
+                    id: Math.random(),
+                    title: 'photoshop',
+                    category: 'design',
+                    percentage: '90',
+                },
+            ],
+            achievements: [
+                {
+                    title: 'Hubspot Design Certification',
+                    category: 'certificates',
+                    description: 'The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot\'s design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.',
+                    image_src: '/images/resume_themes/theme200/images/about-me/certification.png',
+                    url: '',
+                },
+                {
+                    title: 'Hubspot Design Certification',
+                    category: 'certificates',
+                    description: 'The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot\'s design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.',
+                    image_src: '/images/resume_themes/theme200/images/about-me/certification.png',
+                    url: '',
+                }
+            ],
+            education: [
+                {
+                    id: Math.random(),
+                    institution_type: 'I\'m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.',
+                    university_name: 'California Institute Of Technology',
+                    degree_title: 'M.Sc',
+                    date_from: '12/2019',
+                    date_to: '12/2020',
+                    present: true
+                },
+                {
+                    id: Math.random(),
+                    institution_type: 'I\'m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.',
+                    university_name: 'California Institute Of Technology',
+                    degree_title: 'M.Sc',
+                    date_from: '12/2019',
+                    date_to: '12/2020',
+                    present: true
+                },
+                {
+                    id: Math.random(),
+                    institution_type: 'I\'m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.',
+                    university_name: 'California Institute Of Technology',
+                    degree_title: 'M.Sc',
+                    date_from: '12/2019',
+                    date_to: '12/2020',
+                    present: true
+                }
+            ],
+            work_experience: [
+                {
+                    id: Math.random(), company_name: 'Google',
+                    job_title: 'User interface designer',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ',
+                    website: 'Google.com',
+                    date_from: '2018',
+                    date_to: '22',
+                    present: true
+                },
+                {
+                    id: Math.random(), company_name: 'Google',
+                    job_title: 'User interface designer',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ',
+                    website: 'Google.com',
+                    date_from: '2018',
+                    date_to: '2022',
+                    present: false
+                },
+                {
+                    id: Math.random(), company_name: 'Google',
+                    job_title: 'User interface designer',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ',
+                    website: 'Google.com',
+                    date_from: '2018',
+                    date_to: '2022',
+                    present: false
+                }
+            ],
+            projects: [
+                {
+
+                    id: Math.random(), name: 'Website development',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
+                    link: 'website.com',
+                    skills: 'HTML, CSS and JS',
+                    software: 'Vue.js',
+                    images: [
+                        {
+                            src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
+                            is_main: true
+                        },
+                    ]
+                },
+                {
+
+                    id: Math.random(), name: 'Website development',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
+                    link: 'website.com',
+                    skills: 'HTML, CSS and JS',
+                    software: 'Vue.js',
+                    images: [
+                        {
+                            src: '/images/resume_themes/theme201/dribbble_fitness_2x_2x 1.png',
+                            is_main: true
+                        },
+                    ]
+                },
+                {
+
+                    id: Math.random(), name: 'Website development',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
+                    link: 'website.com',
+                    skills: 'HTML, CSS and JS',
+                    software: 'Vue.js',
+                    images: [
+                        {
+                            src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
+                            is_main: true
+                        },
+                    ]
+                },
+                {
+
+                    id: Math.random(), name: 'Website development',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
+                    link: 'website.com',
+                    skills: 'HTML, CSS and JS',
+                    software: 'Vue.js',
+                    images: [
+                        {
+                            src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
+                            is_main: true
+                        },
+                    ]
+                },
+                {
+
+                    id: Math.random(), name: 'Website development',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
+                    link: 'website.com',
+                    skills: 'HTML, CSS and JS',
+                    software: 'Vue.js',
+                    images: [
+                        {
+                            src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
+                            is_main: true
+                        },
+                    ]
+                },
+                {
+
+                    id: Math.random(), name: 'Website development',
+                    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis',
+                    link: 'website.com',
+                    skills: 'HTML, CSS and JS',
+                    software: 'Vue.js',
+                    images: [
+                        {
+                            src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
+                            is_main: true
+                        },
+                    ]
+                },
+            ],
+            links: [
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://instagram.com',
+                    link_title: 'Instagram',
+                    is_active: true
+                },
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://instagram.com',
+                    link_title: 'Behance',
+                    is_active: true
+                },
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://instagram.com',
+                    link_title: 'Linkedin',
+                    is_active: false
+                },
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://instagram.com',
+                    link_title: 'Dribbble',
+                    is_active: true
+                },
+
+            ]
+        },
         themeUser: {},
         access_token: Vue.$cookies.get('access_token') || null
     },
@@ -73,7 +302,6 @@ export const store = new Vuex.Store({
             }).catch((error) => {
                 // if unauthorized : logout user [it means the cookie has been deleted or changed]
                 console.log('token is : ' + store.state.access_token);
-                return;
                 if (error.response.status === 401) {
                     store.dispatch('logoutUnauthorizedUser');
                 }

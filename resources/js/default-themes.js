@@ -1,4 +1,6 @@
 import vuetify from './vuetify';
+import { store } from './store/store';
+
 
 
 import resumeTheme2 from './components/resume_themes/theme2';
@@ -67,6 +69,7 @@ import resumeTheme8 from './components/resume_themes/theme8';
 if ($("#resumeTheme8").length !== 0) {
     new Vue({
         el: '#resumeTheme8',
+        store,
         components: {
             'resume-theme-8': resumeTheme8
         }
@@ -90,6 +93,7 @@ if ($("#resumeTheme201").length !== 0) {
     new Vue({
         el: '#resumeTheme201',
         vuetify,
+        store,
         iconfont: 'fa4',
         components: {
             'resume-theme-201': resumeTheme201
@@ -134,6 +138,7 @@ if ($("#resumeTheme200").length !== 0) {
     new Vue({
         el: '#resumeTheme200',
         vuetify,
+        store,
         iconfont: 'fa4',
         components: {
             'resume-theme-200': resumeTheme200
@@ -182,4 +187,20 @@ if ($("#resumeTheme403").length !== 0) {
         }
     });
 
+}
+
+
+
+import resumeTheme203 from './components/resume_themes/theme203';
+if ($("#resumeTheme203").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme203',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components: {
+            'resume-theme-203': resumeTheme203
+        }
+    });
 }

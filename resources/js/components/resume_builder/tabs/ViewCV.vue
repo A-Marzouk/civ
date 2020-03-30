@@ -21,18 +21,40 @@
         
         <div class="themes">
             <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.code">
-                <img @click="openTheme(theme)" :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
+                <img @click="openTheme(theme)" class="theme-image" :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
 
-                <div class="theme-action-btns">
-                    <a href="javascript:void(0)" class="active-btn" :class="{ 'active' : parseInt(user.theme_code) === theme.code}"  @click="activateTheme(theme.code)">
-                        {{ parseInt(user.theme_code) === theme.code ? 'Current theme' : 'Make as default theme'}}
+                <div class="theme-action-btns" v-if="parseInt(user.theme_code) === theme.code">
+                    <a :href="'/' + user.username " target="_blank" class="active-btn">
+                        Open
+                        <img src="/images/resume_builder/viewCV/checkmark.png" alt="checkmark">
                     </a>
-                    <!--<a :href="'/' + user.username" target="_blank" v-if="parseInt(user.theme_code) === theme.code">-->
-                        <!--Open-->
-                    <!--</a>-->
-                    <!--<a :href="'/preview/theme' + theme.code" target="_blank" v-else>-->
-                        <!--Preview-->
-                    <!--</a>-->
+                </div>
+
+                <div class="theme-action-btns-wrapper" v-else>
+                    <div class="left">
+                        <div class="activate-btn NoDecor">
+                            <a href="javascript:void(0)" @click="activateTheme(theme.code)">
+                                Activate
+                                <img src="/images/resume_builder/viewCV/checkmark.png" alt="checkmark">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="my-data-btn NoDecor">
+                            <a :href="'/preview/theme' + theme.code +'?real=true'" target="_blank">
+                                My data
+                                <img src="/images/resume_builder/viewCV/eye.png" alt="eye">
+                            </a>
+                        </div>
+                        <div class="preview-btn NoDecor">
+                            <a :href="'/preview/theme' + theme.code" target="_blank">
+                                Preview
+                                <img src="/images/resume_builder/viewCV/eye-white.png" alt="eye-white">
+                            </a>
+                        </div>
+
+
+                    </div>
                 </div>
 
             </div>
@@ -181,16 +203,23 @@
             flex-wrap: wrap;
             .theme-item{
                 margin-top:100px;
-                img{
-                    width:642px;
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                img.theme-image{
+                    border: 1px solid black;
+                    width:634px;
                     height:451px;
                     border-radius:25px;
                     transition: all 2s;
+                    -webkit-box-shadow: 0px 35px 70px -20px rgba(25, 69, 213, 0.3);
+                    -moz-box-shadow:  0px 35px 70px -20px rgba(25, 69, 213, 0.3);
+                    box-shadow:   0px 35px 70px -20px rgba(25, 69, 213, 0.3);
 
                     &.active{
-                        -webkit-box-shadow: 0px 59px 70px -20px rgba(7, 211, 38, 0.48);
-                        -moz-box-shadow: 0px 59px 70px -20px rgba(7, 211, 38, 0.48);
-                        box-shadow:  0px 59px 70px -20px rgba(7, 211, 38, 0.48);
+                        -webkit-box-shadow: 0px 35px 70px -20px rgba(7, 211, 38, 0.3);
+                        -moz-box-shadow: 0px 35px 70px -20px rgba(7, 211, 38, 0.3);
+                        box-shadow:  0px 35px 70px -20px rgba(7, 211, 38, 0.3);
                     }
 
                     &:hover{
@@ -204,18 +233,25 @@
                     justify-content: center;
 
                     a.active-btn{
-                        background-color: #cccccc;
-                        color: #666666;
-                        margin-top: -25px;
-                    }
-                    a.active-btn.active{
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-top: -23px;
+                        height: 47.19px;
+                        width: 113.67px;
+                        font-weight: 500;
+                        font-size: 21px;
+                        text-align: left;
+                        color: #fff;
                         background-color: #07D326;
-                        color: white;
-                        font-weight: 600;
-                        &:hover{
-                            cursor: default;
+
+                        img{
+                            width:17.06px;
+                            height:13.33px;
+                            margin-left: 15px;
                         }
                     }
+
 
                     a{
                         width: auto;
@@ -235,6 +271,96 @@
                         }
                     }
                 }
+
+                .theme-action-btns-wrapper{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-left:32px;
+                    padding-right:23px;
+                    background: whitesmoke;
+                    border-radius: 10px;
+                    width: 619px;
+                    height: 70px;
+                    margin-top: -35px;
+                    background: linear-gradient(#f8f8f8 0%, #f4f4f4 100%);
+
+                    .left{
+                        .activate-btn{
+                           a{
+                               display: flex;
+                               align-items: center;
+                               justify-content: center;
+                               width:156px;
+                               height:42px;
+                               border-radius: 21px;
+                               background: #1945D5;
+                               font-weight: 600;
+                               font-size: 15px;
+                               text-align: left;
+                               color: #fff;
+
+                               img{
+                                   width:15.72px;
+                                   height:12.28px;
+                                   margin-left: 24.7px;
+                               }
+                           }
+                        }
+                    }
+
+                    .right{
+                        display: flex;
+                        .my-data-btn{
+                            margin-right: 19px;
+                           a{
+                               display: flex;
+                               align-items: center;
+                               justify-content: center;
+                               width: 139px;
+                               height: 42px;
+                               font-weight: 600;
+                               font-size: 15px;
+                               letter-spacing: 0.01em;
+                               text-align: left;
+                               color: #1b4bd2;
+                               background: white;
+                               border-radius: 21px;
+                               border: 1px solid #1945d5;
+                               img{
+                                   width:22.51px;
+                                   height:14.35px;
+                                   margin-left: 22.9px;
+                               }
+                           }
+                        }
+
+                        .preview-btn{
+                          a{
+                              display: flex;
+                              align-items: center;
+                              justify-content: center;
+                              border-radius: 21px;
+                              background: #1945D5;
+                              font-weight: 600;
+                              font-size: 15px;
+                              text-align: left;
+                              color: #fff;
+                              width: 139px;
+                              height: 42px;
+
+                              img{
+                                  width:22.51px;
+                                  height:14.35px;
+                                  margin-left: 19.9px;
+                              }
+                          }
+                        }
+                    }
+
+
+                }
+
             }
 
             margin-bottom: 100px;

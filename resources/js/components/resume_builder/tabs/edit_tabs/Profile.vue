@@ -140,6 +140,7 @@
 </script>
 
 <style lang="scss">
+@import '../../../../../sass/media-queries';
 $mainColor: #001CE2;
     .achievements-bar.sub-bar {
         margin-top: 50px;
@@ -167,8 +168,8 @@ $mainColor: #001CE2;
         padding: 40px 20px;
 
         .user-cover{
-            max-width: 144px;
-            min-height: 144px;
+            width: 144px;
+            height: 144px;
             border-radius: 100%;
             border: 5px solid #fff;
             box-shadow: -5px 16px 30px rgba(90, 90, 90, 0.12);
@@ -183,11 +184,23 @@ $mainColor: #001CE2;
                 
                 font-size: 22px;
                 font-weight: bold;
-                color: $colorPrimary
+                color: $colorPrimary;
+
+                @include lt-md {
+                    font-size: 16px;
+                }
             }
             p{
                 font-size: 16px;
                 color: $colorGray;
+
+                @include lt-md {
+                    font-size: 10px;
+                }
+            }
+
+            @include lt-md {
+                width: calc(100% - 120px);
             }
         }
     }
@@ -230,6 +243,10 @@ $mainColor: #001CE2;
         flex-flow: column;
         margin-top: 40px;
 
+        @include lt-md {
+            margin-top: 20px;
+        }
+
         .actions{
             display: flex;
             max-width: 490px;
@@ -262,30 +279,19 @@ $mainColor: #001CE2;
             color: #fff;
             text-decoration: none;
         }
+
+        @include lt-md {
+            font-size: 8px;
+        }
+
     }
 
     .hold-tab{
         justify-content: flex-start;
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         margin-top: 55px;
-
-        .input-field{
-            max-width: 100%;
-            min-width: 50.8%;
-
-            label{
-                font-size: 23px;
-                font-weight: 500;
-                color: #3C3748;
-            }
-
-            input,select{
-                font-size: 22px;
-                min-height: 76px;
-                color: #505050;
-            }
-        }
 
         .btn-blue{
             min-width: 294px;
@@ -324,21 +330,39 @@ $mainColor: #001CE2;
 
             .edit{
                 background: url('/images/resume_builder/profile/icon-edit.png') no-repeat;
+                background-size: contain;
                 width: 44px;
                 height: 39px;
-                display: block;                
+                display: block;
+                
+                @include lt-md {
+                    height: 15px;
+                    width: 20px;
+                }
             }
             .copy{
                 background: url('/images/resume_builder/profile/icon-copy.png') no-repeat;
+                background-size: contain;
                 width: 33.7px;
                 height: 39px;
-                display: block;                
+                display: block;
+                
+                @include lt-md {
+                    height: 15px;
+                    width: 20px;
+                }
             }
             .share{
                 background: url('/images/resume_builder/profile/icon-share.png') no-repeat;
+                background-size: contain;
                 width: 44px;
                 height: 39px;
-                display: block;                
+                display: block;
+                
+                @include lt-md {
+                    height: 15px;
+                    width: 20px;
+                }
             }
         }
 
@@ -600,6 +624,13 @@ $mainColor: #001CE2;
                 width: 13px;
                 height: 16px;
                 margin-right: 7px;
+            }
+
+            @include lt-md {
+                font-size: 8px;
+                width: 142px;
+                height: 30px;
+                padding: 0 !important;
             }
         }
     }
