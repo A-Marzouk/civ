@@ -153,7 +153,7 @@
           <v-col cols="12" md="10">
             <v-card flat color="transparent">
               <v-card-text>
-                <v-tabs color="black" grow hide-slider>
+                <v-tabs v-model="mainDataTab" color="black" grow hide-slider>
                   <v-tab
                     v-for="item in mainTabs"
                     :key="item.id"
@@ -166,10 +166,29 @@
         </v-row>
         <!-- Main navigation tab -->
       </v-container>
-      <!-- Tab Items -->
-      <v-container></v-container>
-      <!-- Tab Items -->
-      
+      <!-- ....................Tab Items ..........................-->
+      <v-container style="width:100%">
+        <v-row>
+          <v-col>
+            <v-card flat color="transparent">
+              <v-tabs-items v-model="mainDataTab">
+                <!-- Portfolio -->
+                <v-tab-item>
+                  <v-card flat  color="transparent">
+                    <div class="watermark-text text-center">Portfolio</div>
+                    <v-card-text>
+                      
+                    </v-card-text>
+                  </v-card>
+                </v-tab-item>
+                <!-- Portfolio -->
+              </v-tabs-items>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <!-- ......................................Tab Items .........................-->
+
       <!-- tab bar row -->
       <!-- Right Bottom bar -->
       <div class="triangle-bottom-right" style="text-align:right"></div>
@@ -182,6 +201,7 @@ export default {
   name: "ResumeTheme40",
   data() {
     return {
+      mainDataTab: null,
       mainTabs: [
         {
           id: 1,
@@ -318,4 +338,13 @@ export default {
   font-size: 1.2rem;
 }
 // ............................ Main Navigation Tab ...........................//
+
+// Watermark text
+.watermark-text{
+  position: absolute;
+  font-size:20vw;
+  width: 100%;
+  z-index: 4;
+  opacity: 0.20;
+}
 </style>
