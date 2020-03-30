@@ -35,7 +35,7 @@ export default {
 .custom-h1 {
   font-style: normal;
   font-weight: normal;
-  font-size: 28px;
+  font-size: 1.5rem;
   line-height: 44px;
   /* identical to box height */
 

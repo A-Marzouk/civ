@@ -10,16 +10,17 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
 
 
-    public function themePreview ($themeCode) {
+    public function themePreview ($themeCode, Request $request) {
         $authUser = Auth::user();
-        $is_preview = 'true' ;
-        if($authUser){
+        $is_preview = $request->real === 'true' ? 'false' : 'true' ;
+        if($is_preview === 'false' && $authUser){
             $user = User::withAllRelations($authUser->username);
             if($user){
                 return view('defaultThemes.' . $themeCode,compact('user','is_preview'));
@@ -33,7 +34,7 @@ class ResumeController extends Controller
 
         if ($userName) {
             // $view = \View::make('resume_pdf_themes.' . $themeCode, compact('freelancer'))->render();
-            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Helvetica', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.theme' . $themeCode);
+            $pdf = \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'Arial', 'fontDir' => public_path('fonts/')])->loadView('defaultPDFThemes.' . $themeCode);
 
             if (ob_get_contents()) {
                 ob_end_clean();
@@ -45,7 +46,7 @@ class ResumeController extends Controller
 
         return view('defaultPDFThemes.theme' . $themeCode);
     }
-    
+
     public function userResume ($username) {
         // get user default cv code.
         $user = User::withAllRelations($username);

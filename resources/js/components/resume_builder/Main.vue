@@ -6,6 +6,10 @@
                 <img class="brand-image" src="/images/resume_builder/123 icon.png" alt="123workforce icon"/>
             </a>
 
+            <a href="javascript:;" class="menu-link" @click='openMenu = true'>
+                <img class="menu-icon" src="/icons/menu-icon.svg" alt="menu icon 123workforce"/>
+            </a>
+
             <!-- Replace this with vue-tabs -->
             <div id="mainLinksWrapper" class="links-group d-flex align-items-center justify-content-between">
                 <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="first main-tab-link">
@@ -33,6 +37,32 @@
                 </button>
             </div>
         </nav>
+
+        <div class="side-menu" :class="{ opened: openMenu }">
+            <div class="bg-action" @click='openMenu = false'></div>
+            <div class="side-bg-panel">
+                <div class="links-wrapper">
+
+                    <a href="javascript:;" class="close-btn" @click='openMenu = false'>
+                        <img class="close-icon" src="/icons/close-icon.svg" alt="close icon 123workforce"/>
+                    </a>
+
+                    <div id="mainLinksWrapperMobile" class="links-group d-flex align-items-center justify-content-between">
+                        <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
+                            <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
+                        </router-link>
+                        <router-link id='editCVMobile' data-target="editCV" v-on:click.native="setActiveTab('editCV')" to="/resume-builder/edit" class="second has-inside-routes main-tab-link">
+                            <svg-vue class="nav-icon" :icon="`editCV-icon`"></svg-vue>
+                        </router-link>
+                        <router-link id='viewCVMobile' data-target="viewCV" v-on:click.native="setActiveTab('viewCV')" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
+                            <svg-vue class="nav-icon" :icon="`view-icon`"></svg-vue>
+                        </router-link>
+                    </div>
+                </div>
+
+                <edit-menu v-show='activeTab === "editCV"'></edit-menu>
+            </div>
+        </div>
 
         <div class="info-wrapper" v-if="personalInfo">
             <div class="avatar">
@@ -92,13 +122,17 @@
 <script>
 
     import { moveTabsHelper } from './helpers/tab-animations'
+    import editMenu from './components/aside-menu'
 
     export default {
         name: "Main",
-        components: {},
+        components: {
+            'edit-menu': editMenu
+        },
         data() {
             return {
-                activeTab: 'my-account'
+                openMenu: false,
+                activeTab: 'myAccount'
             }
         },
         computed: {
@@ -122,7 +156,6 @@
                     input.placeholder = ''
                 })
 
-                // Move decorator on tabs
                 moveTabsHelper(e, 'mainLinksWrapper', _this)
             },
             logout(){
@@ -161,6 +194,7 @@
 
 <style lang="scss">
 
+@import '../../../sass/media-queries';
     body.modal-open {
         overflow: visible !important;
     }
@@ -168,6 +202,10 @@
     .info-wrapper {
         display: flex;
         align-items: center;
+
+        @include lt-md {
+            display: none;
+        }
 
         .avatar {
             margin-right: 32px;
@@ -200,6 +238,72 @@
     $mainColor: #001CE2;
     .resume-container {
         padding: 160px 100px 30px;
+        width: 100%;
+        overflow-x: hidden;
+
+        @include lt-md {
+            padding: 50px 36px;
+        }
+    }
+
+    .side-menu {
+        display: none;
+        transform: translateX(-100%);
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100vw;
+        z-index: 510;
+        background: rgba(255, 255, 255, 0.6);
+        transition: all ease .4s;
+
+        .decorator { 
+            display: none;
+        }
+
+        .side-bg-panel {
+            background: rgba(255, 255, 255, 0.9);
+            width: 80%;
+            max-width: 265px;
+            box-shadow: 0 12px 12px rgba(0, 0, 0, .1);
+            overflow: auto;
+        }
+
+        .bg-action {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .links-wrapper {
+            padding: 40px;
+            background: white;
+            box-shadow: 0 9px 10px rgba(0, 0, 0, .04);
+            
+            .links-group {
+                margin-top: 38px;
+            }
+
+            .nav-icon {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @include lt-md {
+            display: block;
+
+            &.opened {
+                transform: translateX(0);
+                transition: all ease .2s;
+            }
+        }
+
+        .close-icon {
+
+        }
     }
 
     .resume-builder-nav {
@@ -212,10 +316,40 @@
         height: 129px;
         background: #fff;
         z-index: 500;
+        overflow-x: hidden;
+
+        @include lt-md {
+            padding: 26px 37px;
+            height: auto;
+            box-shadow: none;
+        }
 
         .brand-image {
             width: 40px;
             margin-right: 262px;
+
+            @include lt-md {
+                display: none;
+            }
+        }
+
+        .menu-link {
+            margin-top: 10px;
+        }
+
+        .menu-icon {
+            display: none;
+            // margin:
+
+            @include lt-md {
+                display: block;
+            }
+        }
+
+        #mainLinksWrapper {
+            @include lt-md {
+                display: none !important;
+            }
         }
 
         .links-group {
@@ -268,12 +402,21 @@
             position: absolute;
             right: 100px;
 
+            @include lt-md {
+                right: 37px;
+            }
+
             .action-btn {
                 background: transparent;
                 border: 0;
                 width: 40px;
                 margin-right: 58px;
                 position: relative;
+
+                @include lt-md {
+                    width: 20px;
+                    margin-right: 24px;
+                }
 
                 img {
                     width: 100%;
@@ -282,6 +425,10 @@
                 &.user-profile {
                     width: 46px;
                     margin: 0;
+
+                    @include lt-md {
+                        width: 27px;
+                    }
 
                     img {
                         border-radius: 50%;
@@ -428,4 +575,10 @@
         background:#1EC300;
     }
 
+    // Responsive
+
+    // Mobile responsive
+    @include lt-md {
+
+    }
 </style>
