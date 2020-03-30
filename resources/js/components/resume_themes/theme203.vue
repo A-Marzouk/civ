@@ -171,7 +171,7 @@
         <v-row class="mx-10">
           <v-col>
             <v-card flat color="transparent" style="z-index:1;">
-              <v-tabs-items v-model="mainDataTab" style="background-color:transparent;"> 
+              <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <v-card flat color="transparent">
@@ -214,10 +214,10 @@
                             </div>
                           </v-card>
                         </v-col>
-                      <!-- 2nd column -->
-                      
-                      <!-- 3rd column -->
-                      <v-col cols="12" sm="6" md="3">
+                        <!-- 2nd column -->
+
+                        <!-- 3rd column -->
+                        <v-col cols="12" sm="6" md="3">
                           <v-card class="pa-2" flat color="transparent">
                             <div class="my-md-5 image-box-custom">
                               <v-img
@@ -233,10 +233,10 @@
                             </div>
                           </v-card>
                         </v-col>
-                      <!-- 3rd column -->
+                        <!-- 3rd column -->
 
-                      <!-- 4th Column -->
-                      <v-col cols="12" sm="6" md="3">
+                        <!-- 4th Column -->
+                        <v-col cols="12" sm="6" md="3">
                           <v-card class="pa-2" flat color="transparent">
                             <div class="my-md-5 image-box-custom">
                               <v-img
@@ -252,33 +252,50 @@
                             </div>
                           </v-card>
                         </v-col>
-                      <!-- 4th Cloumn -->
+                        <!-- 4th Cloumn -->
                       </v-row>
                     </v-card-text>
                   </v-card>
                 </v-tab-item>
                 <!-- .......................Portfolio.................................. -->
 
-              <!-- ...................Tab Item Work............................. -->
-              <v-tab-item>
-                 <div class="watermark-text text-center">Work</div>
-              </v-tab-item>
-              <!--................... Tab item Work............................... -->
+                <!-- ...................Tab Item Work............................. -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Work</div>
+                  <v-card color="transparent" flat>
+                    <v-card-text class="">
+                      <v-row align="center" justify="center">
+                        <v-col cols="12" sm="12" md="6"  class="mb-12" v-for="n in 4" :key="n">
+                          <v-card flat color="transparent"> 
+                              <v-card-title class="custom-work-title">
+                                <img class="mx-5" src="/images/resume_themes/theme203/images/ellipse.png"/> Google Inc. Introduction Google
+                              </v-card-title>
+                              <v-card-subtitle class="custom-work-subtitle">
+                                User interface designer
+                              </v-card-subtitle>
+                              <v-card-action class="custom-work-duration">
+                                2012- Current
+                              </v-card-action>
+                          </v-card>
+                        </v-col>
+                        
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </v-tab-item>
+                <!--................... Tab item Work............................... -->
 
-              <!-- ...................Tab Item Education............................. -->
-              <v-tab-item>
-                 <div class="watermark-text text-center">Education</div>
-              </v-tab-item>
-              <!--................... Tab item Education............................... -->
+                <!-- ...................Tab Item Education............................. -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Education</div>
+                </v-tab-item>
+                <!--................... Tab item Education............................... -->
 
-              <!-- ...................Tab Item Skills............................. -->
-              <v-tab-item>
-                 <div class="watermark-text text-center">Skills</div>
-              </v-tab-item>
-              <!--................... Tab item Skills............................... -->
-
-
-
+                <!-- ...................Tab Item Skills............................. -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Skills</div>
+                </v-tab-item>
+                <!--................... Tab item Skills............................... -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -442,6 +459,28 @@ export default {
 
 // .........................Desktop Portfolio...........................
 
+// ................... Work Desktop......................................
+.custom-work-title{
+  font-size:24px;
+  line-height: 2.6875rem;
+  img{
+    width: 20px !important;
+  }
+}
+.custom-work-subtitle{
+  font-size:12px;
+  color:#000000 !important;
+  text-align: left;
+  margin-left: 62px;
+  text-transform: capitalize;
+}
+.custom-work-duration{
+  font-size:12px;
+  color:#000000 !important;
+  text-align: left !important;
+  margin-left: 80px;
+}
+//...................... Work Desktop.....................................
 // Watermark text
 .watermark-text {
   position: absolute;
