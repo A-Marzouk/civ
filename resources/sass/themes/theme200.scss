@@ -1,5 +1,13 @@
 #resumeTheme200,
 #userTheme200 {
+    // Social Icons
+    .mobile-social-icon-image {
+        width: 30px;
+    }
+    .mobile-social-icon-image-behance {
+        width: 32px;
+    }
+    // Social Icons
     .pagination-text {
         color: #3d3d3d;
     }
@@ -239,6 +247,15 @@
     //     }
     // }
     @media screen and (min-width:600px) and (max-width: 959px) {
+        // Social Icons
+        .mobile-social-icon-image {
+            width: 30px;
+            height: 30px;
+        }
+        .mobile-social-icon-image-behance {
+            width: 31px;
+        }
+        // Social Icons
         // updated inview desktop row
         .desktop-row {
             margin-top: -60px !important;
