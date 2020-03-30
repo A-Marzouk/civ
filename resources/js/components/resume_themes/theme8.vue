@@ -1,5 +1,5 @@
 <template>
-    <div class="theme-container" v-if="user">
+    <div class="theme-container" v-if="currentUser">
         <vue-particles></vue-particles>
         <div class="main-info-bar">
             <div class="left">
@@ -202,7 +202,7 @@
     import Slick from 'vue-slick';
 
     export default {
-        name: "theme5",
+        name: "theme8",
         props:['user','is_preview'],
         components: {
             Slick
