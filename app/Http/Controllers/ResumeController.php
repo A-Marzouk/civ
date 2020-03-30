@@ -10,16 +10,17 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ResumeController extends Controller
 {
 
 
-    public function themePreview ($themeCode) {
+    public function themePreview ($themeCode, Request $request) {
         $authUser = Auth::user();
-        $is_preview = 'true' ;
-        if($authUser){
+        $is_preview = $request->real === 'true' ? 'false' : 'true' ;
+        if($is_preview === 'false' && $authUser){
             $user = User::withAllRelations($authUser->username);
             if($user){
                 return view('defaultThemes.' . $themeCode,compact('user','is_preview'));
