@@ -64,19 +64,22 @@
             </div>
         </div>
 
-        <div class="info-wrapper" v-if="personalInfo">
-            <div class="avatar">
-                <img :src="personalInfo.profile_pic" alt="profile-pic">
-            </div>
-            <div class="name-title-wrapper">
-                <div class="user-name">
-                    {{user.name}}
+        <div class="content" :class="{ 'hideInfoWrapper-md': activeTab !== 'myAccount' }">
+            <div class="info-wrapper" v-if="personalInfo">
+                <div class="avatar">
+                    <img :src="personalInfo.profile_pic" alt="profile-pic">
                 </div>
-                <div class="job-title" v-if="personalInfo">
-                   {{personalInfo.designation}}
+                <div class="name-title-wrapper">
+                    <div class="user-name">
+                        {{user.name}}
+                    </div>
+                    <div class="job-title" v-if="personalInfo">
+                    {{personalInfo.designation}}
+                    </div>
                 </div>
             </div>
         </div>
+
 
         <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
             <router-view style="min-height: 100vh;"></router-view>
@@ -199,13 +202,19 @@
         overflow: visible !important;
     }
 
+    .content {
+        width: 100%;
+
+        &.hideInfoWrapper-md .info-wrapper {
+           @include lt-md {
+                display: none !important;
+            }
+        }
+    }
+
     .info-wrapper {
         display: flex;
         align-items: center;
-
-        @include lt-md {
-            display: none;
-        }
 
         .avatar {
             margin-right: 32px;
