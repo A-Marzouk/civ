@@ -23,7 +23,7 @@
             :href="`#tab-${id}`"
           >
             <span
-              :class="[currentTab == id ? 'bg-tm39-1': 'bg-tm39-2','rounded p-2 text-white flex items-center']"
+              :class="[currentTab == id ? 'bg-tm39-1': 'bg-tm39-2','rounded-full p-2 text-white flex items-center']"
             >{{id}}.</span>
             {{ title }}
           </v-tab>

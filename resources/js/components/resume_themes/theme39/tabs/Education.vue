@@ -7,7 +7,7 @@
         class="tm39-educations flex flex-row items-start"
       >
         <span
-          class="tm39-educations--span rounded p-2 text-white flex items-center bg-tm39-1"
+          class="tm39-educations--span rounded-full p-2 text-white flex items-center bg-tm39-1"
         >{{id}}.</span>
         <div class="flex flex-col justify-between">
           <div class="tm39-educations--info">

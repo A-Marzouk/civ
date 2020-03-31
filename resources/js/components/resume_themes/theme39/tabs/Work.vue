@@ -3,7 +3,7 @@
     <div class="tm39-work--inner grid grid-cols-2">
       <div v-for="({id}) in works" v-bind:key="id" class="tm39-works flex flex-row items-start">
         <span
-          class="tm39-works--span rounded p-2 text-white flex items-center bg-tm39-1"
+          class="tm39-works--span rounded-full p-2 text-white flex items-center bg-tm39-1"
         >{{id}}.</span>
         <div class="flex flex-col justify-between">
           <div class="tm39-works--info">
