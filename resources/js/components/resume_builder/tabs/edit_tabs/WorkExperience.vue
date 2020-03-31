@@ -5,59 +5,61 @@
             <h2>Work Experience</h2>
         </div>
         <div class="section-body">
-            <div class="work-ex-form" v-show="addNewWork">
-                <div class="work-ex-form-input">
-                    <label for="companyName">Company name</label>
-                    <input type="text" id="companyName" class="shorter" v-model="newWork.company_name">
-                    <div class="error" v-if="errors.new.company_name">
-                        {{ Array.isArray(errors.new.company_name) ? errors.new.company_name[0] : errors.new.company_name}}
-                    </div>
-                </div>
-                <div class="work-ex-form-input">
-                    <label for="jobTitle">Job title</label>
-                    <input type="text" id="jobTitle" v-model="newWork.job_title">
-                    <div class="error" v-if="errors.new.job_title">
-                        {{ Array.isArray(errors.new.job_title) ? errors.new.job_title[0] : errors.new.job_title}}
-                    </div>
-                </div>
-                <div class="work-ex-form-input">
-                    <label for="description">Description</label>
-                    <textarea type="text" id="description" v-model="newWork.description"></textarea>
-                    <div class="error" v-if="errors.new.description">
-                        {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
-                    </div>
-                </div>
-                <div class="work-ex-form-group">
-                    <div class="work-ex-form-input">
-                        <label for="website">Website (optional)</label>
-                        <input type="text" id="website" v-model="newWork.website">
-                        <div class="error" v-if="errors.new.website">
-                            {{ Array.isArray(errors.new.website) ? errors.new.website[0] : errors.new.website}}
+            <transition name='fadeCustom' mode="out-in">
+                <div class="work-ex-form" v-show="addNewWork">
+                    <div class="work-ex-form-input input-field">
+                        <label for="companyName">Company name</label>
+                        <input class='shorter' type="text" id="companyName" v-model="newWork.company_name">
+                        <div class="error" v-if="errors.new.company_name">
+                            {{ Array.isArray(errors.new.company_name) ? errors.new.company_name[0] : errors.new.company_name}}
                         </div>
                     </div>
-                    <div class="date-group">
-                        <div class="date-input">
-                            <label for="dateFrom">Date</label>
-                            <input type="date" id="dateFrom" v-model="newWork.date_from">
-                            <div class="error" v-if="errors.new.date_from">
-                                {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                    <div class="work-ex-form-input input-field">
+                        <label for="jobTitle">Job title</label>
+                        <input type="text" id="jobTitle" v-model="newWork.job_title">
+                        <div class="error" v-if="errors.new.job_title">
+                            {{ Array.isArray(errors.new.job_title) ? errors.new.job_title[0] : errors.new.job_title}}
+                        </div>
+                    </div>
+                    <div class="work-ex-form-input input-field description-field">
+                        <label for="description">Description</label>
+                        <textarea type="text" id="description" v-model="newWork.description"></textarea>
+                        <div class="error" v-if="errors.new.description">
+                            {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                        </div>
+                    </div>
+                    <div class="work-ex-form-group">
+                        <div class="work-ex-form-input input-field">
+                            <label for="website">Website (optional)</label>
+                            <input type="text" id="website" v-model="newWork.website">
+                            <div class="error" v-if="errors.new.website">
+                                {{ Array.isArray(errors.new.website) ? errors.new.website[0] : errors.new.website}}
                             </div>
                         </div>
-                        <div class="date-text">
-                            to
-                        </div>
-                        <div class="date-input">
-                            <label for="dateTo" class="light d-flex align-items-center">
-                                <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
-                            </label>
-                            <input type="date" id="dateTo" v-model="newWork.date_to" :disabled="newWork.present">
-                            <div class="error" v-if="errors.new.date_to">
-                                {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                        <div class="date-group">
+                            <div class="date-input">
+                                <label for="dateFrom">Date</label>
+                                <input type="date" id="dateFrom" v-model="newWork.date_from">
+                                <div class="error" v-if="errors.new.date_from">
+                                    {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                                </div>
+                            </div>
+                            <div class="date-text">
+                                to
+                            </div>
+                            <div class="date-input">
+                                <label for="dateTo" class="light d-flex align-items-center">
+                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
+                                </label>
+                                <input type="date" id="dateTo" v-model="newWork.date_to" :disabled="newWork.present">
+                                <div class="error" v-if="errors.new.date_to">
+                                    {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </transition>
             <div class="action-btns">
                 <div class="add-work NoDecor mr-0">
                     <a href="javascript:void(0)" v-show="addNewWork" @click="addWorkEx">
@@ -125,21 +127,21 @@
                     </div>
                     <div class="work-ex-form flex-column" v-show="work.id === editedWork.id">
                         <div class="d-flex flex-row flex-wrap justify-content-between">
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="companyName">Company name</label>
-                                <input type="text" class="shorter" v-model="editedWork.company_name">
+                                <input type="text" v-model="editedWork.company_name">
                                 <div class="error" v-if="errors.edit.company_name">
                                     {{ Array.isArray(errors.edit.company_name) ? errors.edit.company_name[0] : errors.edit.company_name}}
                                 </div>
                             </div>
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="jobTitle">Job title</label>
                                 <input type="text" v-model="editedWork.job_title">
                                 <div class="error" v-if="errors.edit.job_title">
                                     {{ Array.isArray(errors.edit.job_title) ? errors.edit.job_title[0] : errors.edit.job_title}}
                                 </div>
                             </div>
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="description">Description</label>
                                 <textarea type="text"  v-model="editedWork.description"></textarea>
                                 <div class="error" v-if="errors.edit.description">
@@ -147,7 +149,7 @@
                                 </div>
                             </div>
                             <div class="work-ex-form-group">
-                                <div class="work-ex-form-input">
+                                <div class="work-ex-form-input input-field">
                                     <label for="website">Website (optional)</label>
                                     <input type="text"  v-model="editedWork.website">
                                     <div class="error" v-if="errors.edit.website">
@@ -329,19 +331,45 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../sass/media-queries';
     .section-body {
         margin-top: 20px;
 
         .work-ex-form {
             display: flex;
             flex-wrap: wrap;
-            width: 1302px;
+            max-width: 1302px;
+            width: 100%;
             justify-content: space-between;
 
-            .work-ex-form-input {
+            .work-ex-form-input.input-field {
                 display: flex;
                 flex-direction: column;
                 margin-top: 42px;
+                width: 49%;
+                min-width: 524px;
+
+                @include lt-lg {
+                    width: 48%;
+                    max-width: 637px;
+                    min-width: auto;
+
+                    // input,
+                    // textarea {
+                    //     width: 637px;
+                    //     max-width: 637px;
+                    // }
+                }
+
+                &.description-field {
+                    margin-bottom: 0;
+
+                    @include lt-lg {
+                        max-width: 100% !important;
+                        margin-bottom: 25px;
+                        width: 100%;
+                    }
+                }
 
                 label {
                     text-align: left;
@@ -351,17 +379,21 @@
                     opacity: 1;
                 }
 
-                input.shorter {
-                    width: 571px;
-                }
-
                 input {
-                    width: 637px;
                     height: 76px;
-                    border: 2px solid #505050;
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
+
+                    &.shorter {
+                        max-width: 571px;
+                        width: 90%;
+
+                        @include lt-lg {
+                            width: 100%;
+                            max-width: 100%;
+                        }
+                    }
                 }
 
                 input:focus {
@@ -369,13 +401,18 @@
                 }
 
                 textarea {
-                    width: 617px;
+                    max-width: 637px;
+                    width: 100%;
                     height: 201px;
                     border: 2px solid #505050;
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
                     padding-top: 18px;
+
+                    @include lt-lg {
+                        max-width: 100% !important;
+                    }
                 }
 
                 textarea:focus{
@@ -387,23 +424,56 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                width: 48%;
+                max-width: 637px;
+                min-width: 524px;
+
+                @include lt-lg {
+                    width: 100%;
+                    max-width: 100%;
+                    min-width: auto;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+
+                .input-field {
+                    width: 100%;
+
+                    @include lt-lg {
+                        width: 48%;
+                        margin-bottom: 0 !important;
+                    }
+                }
 
                 .date-group {
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;
+                    min-width: 637px;
+                    width: 100%;
+
+                    @include lt-lg {
+                        width: 49%;
+                        min-width: 200px;
+                    }
 
                     .date-text {
                         font: 600 19px/26px Noto Sans;
                         letter-spacing: 0;
                         color: #001CE2;
                         opacity: 1;
-                        margin-bottom: 18px;
+                        margin: 0 33px 18px;
+
+                        @include lt-lg {
+                            margin: 0 15px 18px;
+                        }
                     }
 
                     .date-input {
                         display: flex;
                         flex-direction: column;
+                        max-width: 275px;
+                        width: calc(50% - 44px);
 
                         label {
                             text-align: left;
@@ -421,12 +491,16 @@
                         }
 
                         input {
-                            width: 275px;
+                            width: 100%;
                             height: 62px;
                             border: 2px solid #505050;
                             border-radius: 8px;
                             opacity: 1;
                             padding-left: 18px;
+
+                            @include lt-lg {
+                                height: 76px;
+                            }
                         }
 
                         input:focus{
