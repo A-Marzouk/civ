@@ -1,3 +1,4 @@
+
 import {store} from './store/store';
 
 
@@ -29,10 +30,11 @@ import ResumeBuilderEditCVReferences from './components/resume_builder/tabs/edit
 if ($("#resumeBuilder").length !== 0) {
 
     const routes = [
-        {path: '/resume-builder', component: ResumeBuilderMyAccount},
+        {path: '/resume-builder', component: ResumeBuilderMyAccount, name:'my-account',},
         {
             path: '/resume-builder/edit',
             component: ResumeBuilderEditCV,
+            name:'edit',
             children: [
                 {
                     path: '/resume-builder/edit',
@@ -102,7 +104,7 @@ if ($("#resumeBuilder").length !== 0) {
             ]
 
         },
-        {path: '/resume-builder/view', component: ResumeBuilderViewCV}
+        {path: '/resume-builder/view', component: ResumeBuilderViewCV, name:'view',}
     ];
 
     const router = new VueRouter({

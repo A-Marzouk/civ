@@ -559,7 +559,7 @@
     }
 
     .input-field {
-
+        width:500px;
     }
 
     .info-link {

@@ -86,7 +86,7 @@
                         </div>
                     </div>
 
-                    <div class="actions-row">
+                    <div class="actions-row d-flex">
                         <img src="/images/resume_builder/my_account/edit-solid.svg" alt="edit">
                         <img src="/images/resume_builder/my_account/copy.svg" alt="edit" @click="copyCivLink">
                         <img src="/images/resume_builder/my_account/share-square-solid.svg" alt="edit">
