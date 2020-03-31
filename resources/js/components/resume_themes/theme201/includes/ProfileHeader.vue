@@ -244,7 +244,7 @@
         <v-card>
           <v-card-title class="headline">
             <v-spacer></v-spacer>
-            <v-btn fab class="hidden-sm-and-up" icon @click="hireMeModal=false">
+            <v-btn fab class="hidden-md-and-up" icon @click="hireMeModal=false">
               <img width="25" src="/images/resume_themes/theme201/close.png" />
             </v-btn>
           </v-card-title>
@@ -253,7 +253,7 @@
             <v-container style="max-width: 1785px;">
               <v-row justify="center" align="center">
                 <!-- new 1st column -->
-                <v-col cols="12" sm="12" md="2">
+                <v-col cols="12" sm="8" md="2">
                   <v-row no-gutters>
                     <v-col cols="4" md="12">
                       <span class="hire-modal-contact-type">MONTHLY</span>
@@ -268,13 +268,13 @@
                 </v-col>
                 <!-- new 1st column -->
                 <!-- Column 1 -->
-                <v-col cols="5" sm="3" md="2">
+                <v-col cols="5" sm="6" md="2">
                   <div>Rate $USD</div>
                   <!-- <div class="custom-modal-subtitle">{{user.payment_info.salary_frequency}} rate</div> -->
                   <div class="font-weight-bold custom-modal-title">${{user.payment_info.salary}}</div>
                 </v-col>
                 <!-- Column 1 -->
-                <v-col cols="12" sm="12" md="2">
+                <v-col cols="12" sm="8" md="2">
                   <v-row no-gutters>
                     <v-col cols="4" md="12">
                       <span class="hire-modal-contact-type">MONTHLY</span>
@@ -288,7 +288,7 @@
                   </v-row>
                 </v-col>
                 <!-- 2nd Column -->
-                <v-col cols="12" sm="12" md="3">
+                <v-col cols="12" sm="8" md="3">
                   <!-- <div
                     class="custom-modal-subtitle"
                   >{{user.payment_info.available_hours_frequency}} availability</div>-->
@@ -303,7 +303,7 @@
                 </v-col>
                 <!-- 3rd column -->
                 <!-- 4th column -->
-                <v-col  align="right" class="hidden-xs-only" sm="2" md="1">
+                <v-col  align="right" class="hidden-sm-and-down" sm="2" md="1">
                   <v-btn fab class icon @click="hireMeModal=false">
                     <img width="30" src="/images/resume_themes/theme201/close.png" />
                   </v-btn>
