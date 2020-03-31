@@ -336,7 +336,9 @@
                                 <v-list-item-content class="mt-md-n6">
                                   <v-list-item-subtitle>
                                     <v-row no-gutters>
-                                      <v-col cols="6" class="skill-title-text"><span class="ml-2">{{ skill.title }}</span></v-col>
+                                      <v-col cols="6" class="skill-title-text">
+                                        <span class="ml-2">{{ skill.title }}</span>
+                                      </v-col>
                                       <v-col
                                         cols="6"
                                         align="right"
@@ -346,8 +348,7 @@
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle>
                                     <v-progress-linear
-                                      color="yellow"
-                                      class="custom-progress-bar"
+                                      color="#FCD259"
                                       height="12"
                                       rounded
                                       :value="skill.skill_value"
@@ -383,6 +384,7 @@ export default {
   data() {
     return {
       mainDataTab: null,
+      progressBarColor: "yellow",
       mainTabs: [
         {
           id: 1,
@@ -634,14 +636,7 @@ export default {
   line-height: 1.6875rem;
   color: #222d68 !important;
 }
-.custom-progress-bar {
-  color: linear-gradient(
-    138.05deg,
-    #fcd259 1.07%,
-    #e5bf4e 51.95%,
-    #ffde81 89.88%
-  ) !important;
-}
+
 //..................Skills Desktop.....................................
 // Watermark text
 .watermark-text {
@@ -649,5 +644,24 @@ export default {
   font-size: 20vw;
   width: 100%;
   opacity: 0.1;
+}
+</style>
+
+<style>
+#resumeTheme203 .v-progress-linear__determinate {
+  background-color: -moz-linear-gradient(
+    138.05deg,
+    #fcd259 1.07%,
+    #e5bf4e 51.95%,
+    #ffde81 89.88%
+  ) !important;
+   background-color: linear-gradient(
+    138.05deg,
+    #fcd259 1.07%,
+    #e5bf4e 51.95%,
+    #ffde81 89.88%
+  ) !important;
+
+
 }
 </style>
