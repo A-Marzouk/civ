@@ -166,25 +166,42 @@
 
                                                     <!-- Only shows in desktop and tablet version -->
                                                     <v-col cols="10" md="11" sm="12">
-                                                        <v-card flat class="card-hire-me" height="80"
+                                                        <v-card flat class="card-hire-me"
                                                                 color="rgba(37, 0, 0, 0.1)">
                                                             <v-card-text>
                                                                 <v-row no-gutters align="center">
                                                                     <v-col
-                                                                            cols="12"
                                                                             md="1"
                                                                             sm="1"
-                                                                            class="mt-md-n5 mr-md-n4 mt-sm-n5 mr-sm-n2"
+                                                                            class="mx-auto"
                                                                     >
-                                                                        <v-img class="img-hour"
+                                                                        <v-img class="img-hour mt-n5"
                                                                                src="/images/resume_themes/theme200/icons/hourly-rate.png"></v-img>
                                                                     </v-col>
-                                                                    <v-col cols="12" md="3" sm="3">
+                                                                    <v-col md="2" sm="2">
+                                                                        <div class="d-flex-inline mt-4">
+                                                                            Monthly
+                                                                        </div> 
+                                                                        <div class="d-flex-inline">
+                                                                            Weekly
+                                                                        </div> 
+                                                                        <div class="d-flex-inline">
+                                                                            Hourly
+                                                                        </div> 
+                                                                    </v-col>
+                                                                    <v-col md="2" sm="2">
+                                                                        <div class="hire-me-subtitle">
+                                                                            Rate $ USD
+                                                                        </div>
+                                                                        <div>
+                                                                            15$   
+                                                                        </div>
+                                                                    </v-col>
+                                                                    <!-- <v-col cols="12" md="3" sm="3">
                                                                         <div class="hire-me-title">{{currentUser.payment_info.salary}}$</div>
                                                                         <div class="hire-me-subtitle">Hourly Rate</div>
-                                                                    </v-col>
+                                                                    </v-col> -->
                                                                     <v-col
-                                                                            cols="12"
                                                                             md="1"
                                                                             sm="1"
                                                                             class="mt-md-n5 mr-md-n4 mt-sm-n5 mr-sm-n2"
@@ -192,14 +209,26 @@
                                                                         <v-img class="img-hour"
                                                                                src="/images/resume_themes/theme200/icons/availibility.png"></v-img>
                                                                     </v-col>
-                                                                    <v-col cols="12" md="3" sm="4">
+                                                                    <v-col md="2" sm="2">
+                                                                        <div class="d-flex-inline mt-4">
+                                                                            Monthly
+                                                                        </div> 
+                                                                        <div class="d-flex-inline">
+                                                                            Weekly
+                                                                        </div> 
+                                                                        <div class="d-flex-inline">
+                                                                            Hourly
+                                                                        </div>
+                                                                    </v-col>
+                                                                    <!-- <v-col cols="12" md="3" sm="3">
                                                                         <div class="hire-me-title">{{currentUser.payment_info.available_hours}} Hours</div>
                                                                         <div class="hire-me-subtitle">{{currentUser.payment_info.available_hours_frequency}}
                                                                             Availability
                                                                         </div>
-                                                                    </v-col>
+                                                                    </v-col> -->
+                                                                    <v-col md="2" sm="2"></v-col>
 
-                                                                    <v-col cols="12" md="4" sm="2" class="ml-md-8">
+                                                                    <v-col cols="12" md="4" sm="2" class="">
                                                                         <v-btn block color="#00CDF7" height="50"
                                                                                class="btn-hire-me">
                                                                             Hire Me
