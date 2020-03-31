@@ -241,9 +241,13 @@
         width: 100%;
         overflow-x: hidden;
 
-        @include lt-sm {
-            padding: 50px 36px;
+        @include lt-md {
+            padding: 80px 36px 50px;
         }
+
+        // @include lt-sm {
+        //     padding: 50px 36px;
+        // }
     }
 
     .side-menu {
@@ -295,7 +299,7 @@
             }
         }
 
-        @include lt-sm {
+        @include lt-lg {
             display: block;
 
             &.opened {
@@ -321,7 +325,7 @@
         z-index: 500;
         overflow-x: hidden;
 
-        @include lt-sm {
+        @include lt-lg {
             padding: 26px 37px;
             height: auto;
             box-shadow: none;
@@ -331,26 +335,35 @@
             width: 40px;
             margin-right: 262px;
 
-            @include lt-sm {
+            @include lt-lg {
                 display: none;
             }
         }
 
         .menu-link {
-            margin-top: 10px;
+            margin-top: 5px;
+
+            @include lt-md {
+                margin-top: 10px;
+            }
         }
 
         .menu-icon {
             display: none;
+            height: 20px;
             // margin:
 
-            @include lt-sm {
+            @include lt-lg {
                 display: block;
+            }
+
+            @include lt-sm {
+                height: auto;
             }
         }
 
         #mainLinksWrapper {
-            @include lt-sm {
+            @include lt-lg {
                 display: none !important;
             }
         }
@@ -405,7 +418,7 @@
             position: absolute;
             right: 100px;
 
-            @include lt-sm {
+            @include lt-lg {
                 right: 37px;
             }
 

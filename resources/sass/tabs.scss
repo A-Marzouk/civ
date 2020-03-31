@@ -32,18 +32,25 @@
         border-bottom: 3px solid #C9CFF8;
         transition: all 300ms ease-in;
         text-align: center;
+
+        @include lt-lg {
+            font-size: 28px;
+            padding: 0 15px;
+            padding-bottom: 15px;
+        }
         
+        @include lt-md {
+            font-size: 25px;
+            padding: 0 12px;
+            padding-bottom: 12px;
+        }
+
         @include lt-sm {
             font-size: 12px;
             padding: 5px;
             padding-bottom: 7.3px;
         }
         
-        @include lt-lg {
-            font-size: 25px;
-            padding: 0 12px;
-            padding-bottom: 12px;
-        }
     }
 
     .bar-item:hover {
