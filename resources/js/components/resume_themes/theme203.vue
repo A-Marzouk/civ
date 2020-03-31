@@ -318,21 +318,41 @@
                   <v-card color="transparent" flat>
                     <v-card-text class>
                       <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="5" offset-md="1" class="mb-12" v-for="n in 4" :key="n">
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="5"
+                          offset-md="1"
+                          class="mb-12"
+                          v-for="skill in skills"
+                          :key="skill.id"
+                        >
                           <v-card flat color="transparent" class="mx-auto">
                             <v-card-text>
                               <v-list-item>
-                                <v-list-item-avatar class="skill-circle">
-                                  <span>fig</span>
+                                <v-list-item-avatar class="skill-circle mr-n1" style="z-index:2;">
+                                  <span>{{skill.icon_text}}</span>
                                 </v-list-item-avatar>
-                                <v-list-item-content class="mt-md-n2">
+                                <v-list-item-content class="mt-md-n6">
                                   <v-list-item-subtitle>
                                     <v-row no-gutters>
-                                      <v-col cols="6">Photoshop</v-col>
-                                      <v-col cols="6" align="right">90%</v-col>
+                                      <v-col cols="6" class="skill-title-text"><span class="ml-2">{{ skill.title }}</span></v-col>
+                                      <v-col
+                                        cols="6"
+                                        align="right"
+                                        class="skill-title-text"
+                                      >{{skill.skill_value_text}}</v-col>
                                     </v-row>
                                   </v-list-item-subtitle>
-                                  <v-list-item-subtitle>Progress Bar</v-list-item-subtitle>
+                                  <v-list-item-subtitle>
+                                    <v-progress-linear
+                                      color="yellow"
+                                      class="custom-progress-bar"
+                                      height="12"
+                                      rounded
+                                      :value="skill.skill_value"
+                                    ></v-progress-linear>
+                                  </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
                             </v-card-text>
@@ -379,6 +399,50 @@ export default {
         {
           id: 4,
           title: "Skills"
+        }
+      ],
+      skills: [
+        {
+          id: 1,
+          title: "Photoshop",
+          skill_value: 90,
+          skill_value_text: "90%",
+          icon_text: "ph"
+        },
+        {
+          id: 2,
+          title: "Photoshop",
+          skill_value: 90,
+          skill_value_text: "90%",
+          icon_text: "ph"
+        },
+        {
+          id: 3,
+          title: "Illustrator",
+          skill_value: 90,
+          skill_value_text: "90%",
+          icon_text: "ill"
+        },
+        {
+          id: 4,
+          title: "Illustrator",
+          skill_value: 90,
+          skill_value_text: "90%",
+          icon_text: "ill"
+        },
+        {
+          id: 5,
+          title: "Figma",
+          skill_value: 90,
+          skill_value_text: "90%",
+          icon_text: "fig"
+        },
+        {
+          id: 6,
+          title: "Figma",
+          skill_value: 50,
+          skill_value_text: "80%",
+          icon_text: "fig"
         }
       ]
     };
@@ -556,11 +620,27 @@ export default {
   border: 5px solid #e0bb4c;
   box-sizing: border-box;
   text-align: center;
+  padding: 3px 6px 5px 8px;
   span {
     font-family: "Rubik", sans-serif;
     font-size: 1rem;
     color: #ffffff;
   }
+}
+
+.skill-title-text {
+  font-family: "Rubik", sans-serif !important;
+  font-size: 1rem;
+  line-height: 1.6875rem;
+  color: #222d68 !important;
+}
+.custom-progress-bar {
+  color: linear-gradient(
+    138.05deg,
+    #fcd259 1.07%,
+    #e5bf4e 51.95%,
+    #ffde81 89.88%
+  ) !important;
 }
 //..................Skills Desktop.....................................
 // Watermark text
