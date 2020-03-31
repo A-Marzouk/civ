@@ -64,7 +64,9 @@
             </div>
         </div>
 
-        <div class="content" :class="{ 'hideInfoWrapper-md': activeTab !== 'myAccount' }">
+        <div class="content" 
+            :class="{ 'hideInfoWrapper-md': false /*activeTab !== 'myAccount'*/ }"
+        >
             <div class="info-wrapper" v-if="personalInfo">
                 <div class="avatar">
                     <img :src="personalInfo.profile_pic" alt="profile-pic">
@@ -205,7 +207,8 @@
     .content {
         width: 100%;
 
-        &.hideInfoWrapper-md .info-wrapper {
+        .info-wrapper {
+        // &.hideInfoWrapper-md .info-wrapper {
            @include lt-md {
                 display: none !important;
             }

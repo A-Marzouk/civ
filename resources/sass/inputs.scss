@@ -9,6 +9,10 @@
         color: #505050;
         font-family: "Noto Sans";
         font-weight: 700;
+        
+        @include lt-md {
+            color: $mainBlue;
+        }
 
         .hint-message {
             font-size: 18px;

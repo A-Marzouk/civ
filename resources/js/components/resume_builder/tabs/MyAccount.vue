@@ -93,11 +93,11 @@
                     </div>
 
                     <div class="action-btns NoDecor">
-                        <a class="btn btn-filled btn-fullWidth--md" href="javascript:void(0)" @click="submitForm">
+                        <a class="btn btn-filled" href="javascript:void(0)" @click="submitForm">
                             <img class='icon' src="/images/resume_builder/my_account/check-solid.svg" alt="edit">
                             Save changes
                         </a>
-                        <a href="javascript:void(0)" class="purchase-btn" data-toggle="modal" data-target="#prices" v-show="subscription==='on'">
+                        <a href="javascript:void(0)" class="btn btn-outline purchase-btn" data-toggle="modal" data-target="#prices" v-show="subscription==='on'">
                             Purchase subscription
                         </a>
                     </div>
@@ -408,6 +408,10 @@
                 .form-title.sub {
                     font: 500 30px Noto Sans;
                     margin-bottom: 27px;
+
+                    @include lt-md {
+                        font-size: 15px;
+                    }
                 }
 
                 .mar-form {
@@ -423,6 +427,10 @@
                             letter-spacing: 0;
                             color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                font-size: 15px;
+                            }
                         }
 
                         label.labelFocused {
@@ -570,17 +578,34 @@
 
                 .actions-row {
                     margin-bottom: 25px;
+                    background: #F6F6F6;
+                    border-radius: 8px;
+                    padding: 10px 25px;
+                    max-width: 218px;
+                    display: flex;
+                    justify-content: space-between;
+                    // box-shadow: rgba(0,0,0,.16);
+
+                    @include lt-md {
+                        max-width: 100%;
+                        // margin-top: 1rem;
+                    }
 
                     img {
                         width: 35px;
                         height: 35px;
-                        margin-right: 32px;
+                        margin-right: 20px;
+
+                        &:last-child {
+                            margin: 0;
+                        }
                     }
                 }
 
                 .action-btns {
                     display: flex;
                     justify-content: space-between;
+                    width: 100%;
 
                     .save-btn {
                         width: 240px;
@@ -606,20 +631,16 @@
                     }
 
                     .purchase-btn {
-                        width: 230px;
-                        height: 66px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
-
-                        background: #FFFFFF 0% 0% no-repeat padding-box;
-                        border: 1px solid #001CE2;
-                        border-radius: 12px;
                         opacity: 1;
+                        height: 71px;
 
                         font: bold 16px Noto Sans;
                         letter-spacing: 0;
                         color: #001CE2;
+                        padding: 0 !important;
 
                     }
                 }
