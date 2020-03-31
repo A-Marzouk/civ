@@ -348,8 +348,7 @@
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle>
                                     <v-progress-linear
-                                      :color="progressBarColor"
-                                      class="custom-progress-bar"
+                                      color="#FCD259"
                                       height="12"
                                       rounded
                                       :value="skill.skill_value"
@@ -645,5 +644,24 @@ export default {
   font-size: 20vw;
   width: 100%;
   opacity: 0.1;
+}
+</style>
+
+<style>
+#resumeTheme203 .v-progress-linear__determinate {
+  background-color: -moz-linear-gradient(
+    138.05deg,
+    #fcd259 1.07%,
+    #e5bf4e 51.95%,
+    #ffde81 89.88%
+  ) !important;
+   background-color: linear-gradient(
+    138.05deg,
+    #fcd259 1.07%,
+    #e5bf4e 51.95%,
+    #ffde81 89.88%
+  ) !important;
+
+
 }
 </style>
