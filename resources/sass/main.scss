@@ -36,6 +36,10 @@
     color: $mainBlue;
     font-family: NexaLight, Arial, Helvetica, sans-serif;
 
+    @include lt-lg {
+      font-size: 37px;
+    }
+
     @include lt-sm {
       font-size: 28px;
     }
@@ -43,6 +47,10 @@
     h2 {
         font-size: 59px;
         font-family: NexaBold, Arial, Helvetica, sans-serif;
+
+        @include lt-lg {
+          font-size: 37px;
+        }
         
         @include lt-sm {
           font-size: 28px;

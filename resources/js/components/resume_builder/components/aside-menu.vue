@@ -117,8 +117,12 @@ $disabledColor: #9f9e9e;
 }
 
 .aside-link {
-    font-size: 14px;
+    font-size: 18px;
     padding-right: 32px;
+
+    @include lt-sm {
+        font-size: 14px;
+    }
 
     .aside-icon {
         path {

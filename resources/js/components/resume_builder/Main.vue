@@ -1,7 +1,7 @@
 <template>
     <div class="resume-container" >
 
-        <nav class="resume-builder-nav d-flex align-items-start">
+        <nav class="resume-builder-nav d-flex align-items-start justify-content-between">
             <a href="/resume-builder" class="brand-link">
                 <img class="brand-image" src="/images/resume_builder/123 icon.png" alt="123workforce icon"/>
             </a>
@@ -203,7 +203,7 @@
         display: flex;
         align-items: center;
 
-        @include lt-sm {
+        @include lt-md {
             display: none;
         }
 
@@ -331,9 +331,15 @@
             box-shadow: none;
         }
 
+        .brand-link {
+            @include lt-lg {
+                display: none;
+            }
+        }
+
         .brand-image {
             width: 40px;
-            margin-right: 262px;
+            margin-right: 50px;
 
             @include lt-lg {
                 display: none;
@@ -342,6 +348,11 @@
 
         .menu-link {
             margin-top: 5px;
+            display: none;
+
+            @include lt-lg {
+                display: block;
+            }
 
             @include lt-md {
                 margin-top: 10px;
@@ -363,6 +374,8 @@
         }
 
         #mainLinksWrapper {
+            width: 670px;
+
             @include lt-lg {
                 display: none !important;
             }
@@ -371,6 +384,10 @@
         .links-group {
             height: 100%;
             position: relative;
+
+            @include lt-lg {
+
+            }
 
             .decorator {
                 position: absolute;
@@ -384,8 +401,9 @@
             }
 
             a {
-                margin-right: 100px;
-                width: 205px;
+                // margin-right: 100px;
+                max-width: 205px;
+                width: 45%;
                 text-align: center;
                 color: #747474;
                 font-weight: bold;
@@ -415,12 +433,12 @@
         }
 
         .actions-group {
-            position: absolute;
-            right: 100px;
+            // position: absolute;
+            // right: 100px;
 
-            @include lt-lg {
-                right: 37px;
-            }
+            // @include lt-lg {
+            //     right: 37px;
+            // }
 
             .action-btn {
                 background: transparent;
@@ -428,6 +446,11 @@
                 width: 40px;
                 margin-right: 58px;
                 position: relative;
+
+                @include lt-sm {
+                    width: 26px;
+                    margin-right: 33px;
+                }
 
                 @include lt-sm {
                     width: 20px;
