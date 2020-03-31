@@ -9,7 +9,7 @@
                                 <span class="profile-img" v-bind:style="{ backgroundImage: 'url(/images/resume_themes/theme300/profile.jpg)' }" /> 
                                 <a href="#" class="chat-option" @click.prevent="dialogMessage = true"><v-icon>mdi-message-text</v-icon></a>
                             </v-col>
-                            <v-col lg="2" md="4" sm="4" cols="5" class="profileCol">
+                            <v-col lg="2" md="5" sm="4" cols="5" class="profileCol">
                                 <div class="head-name">Eduardo Acosta</div>
                                 <div class="head-profile">Front-end Developer</div>
                                 <div class="social-wrap">
@@ -19,7 +19,7 @@
                                     <a href="" alt="Instagram" title="Instagram"><img src="/images/resume_themes/theme300/social_icons/instagram.webp" alt="instagram"></a>
                                 </div>
                             </v-col>
-                            <v-col lg="5" md="5" sm="5" cols="3" class="interviewSection">
+                            <v-col lg="5" md="4" sm="5" cols="3" class="interviewSection">
                                 <span class="title-medium">View interviews</span>
                                 <div class="option-wrap">
                                     <a href="#" class="btn-default" @click.prevent="dialogAudio = true"><v-icon>mdi-microphone</v-icon>Audio &amp; Text</a>
@@ -230,8 +230,6 @@
                             </v-tab-item>                        
                         </v-tabs-items>
                     </div>
-                    
-                    
                 </v-col>
             </v-row>
         </v-container>
@@ -314,41 +312,37 @@
                 <v-card-actions>
                     <v-icon class="close-icon" @click="dialogHireme = false">mdi-close</v-icon>
                 </v-card-actions>
-                <v-container>
+                <v-card-text>
                     <h3>Select Payment Method :</h3>
-                    <v-row class="hold-payment">
-                        <v-col cols="12" lg="12">
-                            <v-radio-group v-model="radioGroup" :row="true" class="pay-method">
-                                <span class="item-pay">
-                                    <v-radio
-                                        color="#d8d8d8"
-                                        value="1"
-                                        name="opt-paypal"
-                                        off-icon="mdi-checkbox-blank-circle"
-                                        :ripple="false"
-                                    >
-                                        
-                                    </v-radio>
-                                    <img src="/images/resume_themes/theme300/icons/icon-paypal.png" alt="">
-                                </span>
-                                <span class="item-pay">
-                                    <v-radio
-                                        color="#d8d8d8"
-                                        value="2"
-                                        name="opt-payonner"
-                                        off-icon="mdi-checkbox-blank-circle"
-                                        :ripple="false"
-                                    >  
-                                        
-                                    </v-radio>
-                                    <img src="/images/resume_themes/theme300/icons/icon-payonner.png" alt="">
-                                </span>
-                            </v-radio-group>
-                            
-                        </v-col>
-                    </v-row> 
-                </v-container>                         
-                
+                    <div class="hold-payment">
+                        <v-radio-group v-model="radioGroup" :row="true" class="pay-method">
+                            <span class="item-pay">
+                                <v-radio
+                                    color="#d8d8d8"
+                                    value="1"
+                                    name="opt-paypal"
+                                    off-icon="mdi-checkbox-blank-circle"
+                                    :ripple="false"
+                                >
+                                    
+                                </v-radio>
+                                <img src="/images/resume_themes/theme300/icons/icon-paypal.png" alt="">
+                            </span>
+                            <span class="item-pay">
+                                <v-radio
+                                    color="#d8d8d8"
+                                    value="2"
+                                    name="opt-payonner"
+                                    off-icon="mdi-checkbox-blank-circle"
+                                    :ripple="false"
+                                >  
+                                    
+                                </v-radio>
+                                <img src="/images/resume_themes/theme300/icons/icon-payonner.png" alt="">
+                            </span>
+                        </v-radio-group>
+                    </div>
+                </v-card-text>                
             </v-card>
         </v-dialog>
     </v-app>
@@ -564,7 +558,7 @@ export default {
 
         @media screen and (max-width: 769px) {
             max-width: 95%;
-            padding-top: 55px;
+            padding-top: 30px;
             padding-bottom: 0;
 
             .imageCol{
@@ -611,8 +605,11 @@ export default {
 
             .interviewSection{
                 border: 0;
-                align-items: flex-start;
                 margin-top: 0;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 0px;
+                height: 80px;
 
                 .title-medium{
                     font-size: 0;
@@ -647,10 +644,11 @@ export default {
                 margin-top: 15px;
                 flex-flow: nowrap;
                 min-height: 69px;
+                padding: 0px 30px;
 
                 .rate-wrap{
 
-                    justify-content: center;
+                    justify-content: flex-end;
 
                     
 
@@ -698,7 +696,7 @@ export default {
 
                     .col-12{
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-end;
                     }
                     
                 }
@@ -708,6 +706,39 @@ export default {
                     min-height: 29px;
                     line-height: 29px;
                     font-size: 10px;
+                }
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .imageCol{
+
+                padding: 0 1em 0 0;
+                .profile-img{
+                    max-width: 100px;
+                    max-height: 100px;
+                }
+                .chat-option{
+                    left: 28%;
+                    bottom: -13px;
+                }
+            }
+            .interviewSection{
+                padding: 0px;
+
+                .option-wrap{
+                    display: block;
+                }
+            }
+
+            .rateSection{
+                padding: 0px 20px;
+                .hire-wrap{
+                    .col-12{
+                        justify-content: flex-end;
+                        padding: 0;
+                    }
                 }
             }
         }
@@ -743,6 +774,10 @@ export default {
                     width: auto;
                     display: block;
                 }
+            }
+
+            .rateSection{
+                padding: 0px 30px 0px 10px;
             }
         }
 
@@ -1576,14 +1611,16 @@ export default {
                     .item-pay{
                         flex-flow: row;
                         display: flex;
-                        margin-left: 30px;
-                        margin-bottom: 20px;
+                        margin-left: 0px;
+                        margin-bottom: 0px;
+                        width: 50%;
+                        justify-content: center;
 
                         .v-radio{
-                            margin-left: 0px;
+                            margin: 0px;
                         }
                         img{
-                            max-width: 124px;
+                            max-width: 60%;
                         }
                     }
                     
@@ -1592,5 +1629,9 @@ export default {
             
         }
 
+    }
+
+    #resumeTheme300 .form-wrap .form-messages{
+        padding: 10px;
     }
 </style>

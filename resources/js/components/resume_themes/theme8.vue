@@ -1,17 +1,17 @@
 <template>
-    <div class="theme-container" v-if="user">
+    <div class="theme-container" v-if="currentUser">
         <vue-particles></vue-particles>
         <div class="main-info-bar">
             <div class="left">
                 <div class="profile-picture">
-                    <img :src="user.personal_info.profile_pic" alt="">
+                    <img :src="currentUser.personal_info.profile_pic" alt="">
                 </div>
                 <div class="main-info">
                     <div class="user-name">
-                        {{user.personal_info.full_name}}
+                        {{currentUser.personal_info.full_name}}
                     </div>
                     <div class="job-title">
-                        {{user.personal_info.designation}}
+                        {{currentUser.personal_info.designation}}
                     </div>
                     <div class="social">
                         <div class="d-flex">
@@ -37,7 +37,7 @@
 
                         <div class="icons NoDecor">
                             <a :href="item.link" v-for="item in socialLinks" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
-                                <img :src="`/images/resume_themes/theme8/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                <img :src="`/images/resume_themes/theme8/social_icons/${stringToLowerCase(item.link_title)}.webp`"  alt="social icon">
                             </a>
                         </div>
                     </div>
@@ -65,19 +65,19 @@
                     <div class="prof-left">
                         <div class="hours">
                             <div class="text" style="text-transform: capitalize;">
-                                {{user.payment_info.salary_frequency}} rate
+                                {{currentUser.payment_info.salary_frequency}} rate
                             </div>
                             <div class="number">
-                                $ {{user.payment_info.salary}} USD
+                                $ {{currentUser.payment_info.salary}} USD
                             </div>
                         </div>
                         <div class="horizontal-divider"></div>
                         <div class="rate">
                             <div class="text">
-                                Available ({{user.payment_info.available_hours_frequency}})
+                                Available ({{currentUser.payment_info.available_hours_frequency}})
                             </div>
                             <div class="number" style="text-transform: capitalize;">
-                                {{user.payment_info.available_hours}} Hours
+                                {{currentUser.payment_info.available_hours}} Hours
                             </div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
             <div class="tab-content-wrapper">
                 <div class="portfolio" v-show="activeTab === 'portfolio'" :class="{active : activeTab === 'portfolio'}">
                     <div class="images">
-                        <div v-for="project in user.projects" :key="project.id + '_project'">
+                        <div v-for="project in currentUser.projects" :key="project.id + '_project'">
                             <img :src="getProjectMainImage(project)" alt="portfolio img">
                         </div>
                     </div>
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div class="work-experience" v-show="activeTab === 'workEx'" :class="{active : activeTab === 'workEx'}">
-                    <div class="work-item" v-for="work in user.work_experience" :key="work.id + '_work'">
+                    <div class="work-item" v-for="work in currentUser.work_experience" :key="work.id + '_work'">
                         <div class="company">
                             {{work.company_name}}
                         </div>
@@ -143,7 +143,7 @@
                     </div>
                 </div>
                 <div class="education" v-show="activeTab === 'edu'" :class="{active : activeTab === 'edu'}">
-                    <div class="education-item"  v-for="education in user.education" :key="education.id + '_education'">
+                    <div class="education-item"  v-for="education in currentUser.education" :key="education.id + '_education'">
                         <div class="education-type">
                             {{education.institution_type}}
                         </div>
@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 <div class="skills-tab" v-show="activeTab === 'skills'" :class="{active : activeTab === 'skills'}">
-                    <div class="skill-item skills d-flex align-items-end" v-for="skill in user.skills" :key="skill.id + '_skill'">
+                    <div class="skill-item skills d-flex align-items-end" v-for="skill in currentUser.skills" :key="skill.id + '_skill'">
                         <div class="skill">
                             <div class="skill-title">
                                {{skill.title}}
@@ -181,7 +181,7 @@
                             About me
                         </div>
                         <div class="about-text">
-                           {{user.personal_info.about}}
+                           {{currentUser.personal_info.about}}
                         </div>
                     </div>
                     <div class="contact">
@@ -189,7 +189,7 @@
                             Contact
                         </div>
                         <div class="email">
-                            Email: {{user.personal_info.email}}
+                            Email: {{currentUser.personal_info.email}}
                         </div>
                     </div>
                 </div>
@@ -202,8 +202,8 @@
     import Slick from 'vue-slick';
 
     export default {
-        name: "theme5",
-        props:['user'],
+        name: "theme8",
+        props:['user','is_preview'],
         components: {
             Slick
         },
@@ -226,10 +226,17 @@
                             }
                         },
                     ]
-                }
+                },
+                currentUser : this.user
             }
         },
         methods: {
+            stringToLowerCase(string){
+                if(string){
+                    return string.toLowerCase();
+                }
+                return 'social_icon';
+            },
             setActiveTab(tabName) {
                 this.activeTab = tabName;
             },
@@ -255,21 +262,22 @@
             getRandomColor(){
                 return  'background:#' + Math.floor(Math.random()*16777215).toString(16);
             },
-            setUser(){
-                this.user = this.$store.state.dummyUser;
+            setDummyUser(){
+                this.currentUser = this.$store.state.dummyUser;
             }
         },
 
         computed:{
             socialLinks(){
-                return this.user.links.filter( (link) => {return link.category === 'social_link' ? link : false});
+                return this.currentUser.links.filter( (link) => {return link.category === 'social_link' ? link : false});
             }
         },
         mounted() {
             this.skillsBar();
 
-            if (!this.user) {
-                this.setUser();
+            // if there is no user or the preview is true, set dummy user
+            if (!this.currentUser || this.is_preview) {
+                this.setDummyUser();
             }
 
         }

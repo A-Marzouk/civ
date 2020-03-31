@@ -17,7 +17,7 @@ export const store = new Vuex.Store({
             personal_info: {
                 full_name: 'Beverly Andrews',
                 email: 'beverly@andrews.com',
-                profile_pic: '/images/resume_themes/theme3/person.png',
+                profile_pic: '/images/resume_themes/theme200/images/about-me/men.png',
                 designation: 'User interface designer',
                 phone: '+990000000',
                 location: 'London',
@@ -51,10 +51,17 @@ export const store = new Vuex.Store({
             ],
             achievements: [
                 {
-                    title: '',
-                    category: '',
-                    description: '',
-                    image_src: '',
+                    title: 'Hubspot Design Certification',
+                    category: 'certificates',
+                    description: 'The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot\'s design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.',
+                    image_src: '/images/resume_themes/theme200/images/about-me/certification.png',
+                    url: '',
+                },
+                {
+                    title: 'Hubspot Design Certification',
+                    category: 'certificates',
+                    description: 'The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot\'s design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.',
+                    image_src: '/images/resume_themes/theme200/images/about-me/certification.png',
                     url: '',
                 }
             ],
@@ -222,7 +229,7 @@ export const store = new Vuex.Store({
                     category: 'social_link',
                     link: 'https://instagram.com',
                     link_title: 'Linkedin',
-                    is_active: true
+                    is_active: false
                 },
                 {
                     id: Math.random(),

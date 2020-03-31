@@ -68,6 +68,8 @@
     flex-flow: row;
     justify-content: space-around;
     width: 100%;
+    align-items: center;
+    height: 150px;
 }
 .hold-payment .pay-method .v-radio i{
     font-size: 41px;
@@ -79,6 +81,7 @@
 .hold-payment .pay-method .v-radio .v-input--selection-controls__input{
     width: 41px;
     height: 41px;
+    margin: 0;
 }
 .hold-payment .pay-method .v-radio .v-input--selection-controls__input input[type=radio]{
     max-height: 100%;

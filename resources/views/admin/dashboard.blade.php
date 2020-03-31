@@ -2,10 +2,8 @@
 
 @section('content')
 
-    <div class="card">
-        <div class="card-body">
-            Admin dashboard - under construction
-        </div>
+    <div id="adminDashboard">
+        <admin-dashboard></admin-dashboard>
     </div>
 
 @endsection

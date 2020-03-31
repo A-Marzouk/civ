@@ -1,23 +1,18 @@
         #resumeTheme201,
         #userTheme201 {
-
-            a:focus{
+            a:focus {
                 outline: none;
-            }
-
-
-            .custom-name-section {
-                margin-left: -5vw;
             }
             .title-row {
                 padding-left: 5px !important;
             }
             .title-text {
-                font-size: 2vw !important;
+                font-size: 1.7rem !important;
                 font-weight: 400;
                 letter-spacing: normal !important;
                 font-family: "Roboto", sans-serif !important;
                 color: #1D1D1D;
+                overflow: visible;
             }
             .subtitle-text {
                 font-family: Open Sans;
@@ -60,7 +55,7 @@
             // social icons
             .social-icon {
                 text-align: left;
-                margin-left: -80px;
+                margin-left: -125px;
             }
             // Social icon
             .custom-header2 {
@@ -107,7 +102,7 @@
                     max-width: 100.0% !important;
                 }
                 .title-text-tablet {
-                    font-size: 3.8vw !important;
+                    font-size: 1.8rem !important;
                 }
                 .subtitle-text {
                     font-size: 20px !important;
@@ -185,24 +180,6 @@
                     font-size: 11px !important;
                 }
             }
-            // @media screen and (max-width: 669px) and (min-width: 600px) {
-            //     .custom-avater {
-            //         max-width: 200px;
-            //     }
-            //     .custom-name-section {
-            //         margin-left: -50px !important;
-            //     }
-            //     .custom-name-row {
-            //         max-width: 100% !important;
-            //         flex-basis: 100% !important;
-            //     }
-            // }
-            // @media screen and (min-width:670px) and (max-width:747px) {
-            //     .custom-name-section {
-            //         margin-left: 100px;
-            //         margin-top: -120px;
-            //     }
-            // }
             @media screen and (max-width:406px) {
                 .profile-btn2 {
                     max-width: 110% !important;
@@ -224,12 +201,5 @@
                 .custom-icon {
                     margin-top: 3px !important;
                 }
-            }
-        }
-        
-        @media only screen and (min-device-width: 1024px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
-            //
-            .custom-name-section {
-                margin-left: -4vw !important;
             }
         }

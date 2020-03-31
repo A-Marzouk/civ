@@ -1,6 +1,6 @@
 <template>
     <v-app class="w-100">
-        <div class="themeWrapper">
+        <div class="themeWrapper" v-if="currentUser">
             <!-- Header Row -->
             <v-row no-gutters>
                 <!-- Column for header section -->
@@ -28,38 +28,23 @@
                                                         <!-- Name -->
                                                         <v-list-item-content>
                                                             <v-list-item-title class="ml-md-4">
-                                                                <span class="profile-title">Olivia Emily</span>
+                                                                <span class="profile-title">{{currentUser.personal_info.full_name}}</span>
                                                             </v-list-item-title>
                                                             <v-list-item-subtitle class="ml-md-5">
-                                                                <span class="profile-subtitle">UX/UI Designer</span>
+                                                                <span class="profile-subtitle">{{currentUser.personal_info.designation}}</span>
                                                             </v-list-item-subtitle>
 
                                                             <v-list-item-icon class="hidden-md-and-up">
-                                                                <v-btn
-                                                                        height="30"
-                                                                        x-small
-                                                                        class="mr-sm-1 social-sm-icon-btn"
-                                                                        v-for="icon in socialMedia"
-                                                                        :key="icon.title"
-                                                                        :color="icon.color"
-                                                                >
-                                                                    <v-icon small v-text="icon.icon"
-                                                                            class="social-sm-icon"></v-icon>
-                                                                </v-btn>
+                                                                <a :href="item.link" v-for="item in socialLinks" class="mr-3" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
+                                                                    <img :class="item.link_title == 'Behance'? 'mobile-social-icon-image-behance' : 'mobile-social-icon-image' " :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                                                </a>
                                                             </v-list-item-icon>
 
                                                             <!-- Hidden in sm and xs devices -->
-                                                            <v-list-item-icon class="hidden-sm-and-down">
-                                                                <v-btn
-                                                                        small
-                                                                        icon
-                                                                        class="mr-2"
-                                                                        v-for="icon in socialMedia"
-                                                                        :key="icon.title"
-                                                                >
-                                                                    <v-img class="social-icon"
-                                                                           :src="getIconSocial(icon.title)"></v-img>
-                                                                </v-btn>
+                                                            <v-list-item-icon class="hidden-sm-and-down ">
+                                                                <a :href="item.link" v-for="item in socialLinks" class="mr-3" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
+                                                                    <img :class="item.link_title == 'Behance'? 'mobile-social-icon-image-behance' : 'mobile-social-icon-image' " :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                                                </a>
                                                             </v-list-item-icon>
                                                         </v-list-item-content>
                                                         <!-- Hidden in sm and xs devices -->
@@ -77,7 +62,7 @@
                                     <!-- Column 1 Profile -->
 
                                     <!-- Hidden in sm and up phone icons -->
-                                    <v-col col="4" class="hidden-sm-and-up ml-12">
+                                    <v-col col="1" class="hidden-sm-and-up ml-12" align="right">
                                         <v-card flat color="transparent">
                                             <v-btn small color="#00CDF7" class="phone-btn">
                                                 <v-icon color="#6D1CFF" class="phone-icon">fa-phone</v-icon>
@@ -101,7 +86,7 @@
                                                             <!-- <v-icon color="#00CDF7" small>mdi-clock-check</v-icon> -->
                                                         </v-list-item-icon>
                                                         <v-list-item-content class="ml-n10">
-                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour
+                                                            <v-list-item-subtitle style="font-size:3.5vw;">{{currentUser.payment_info.salary}}$/hour
                                                             </v-list-item-subtitle>
                                                         </v-list-item-content>
                                                     </v-list-item>
@@ -113,7 +98,7 @@
                                                             <v-icon color="#00CDF7" small>mdi-calendar-check</v-icon>
                                                         </v-list-item-icon>
                                                         <v-list-item-content class="ml-n10">
-                                                            <v-list-item-subtitle style="font-size:3.5vw;">15$/hour
+                                                            <v-list-item-subtitle style="font-size:3.5vw;">{{currentUser.payment_info.salary}}$/hour
                                                             </v-list-item-subtitle>
                                                         </v-list-item-content>
                                                     </v-list-item>
@@ -195,7 +180,7 @@
                                                                                src="/images/resume_themes/theme200/icons/hourly-rate.png"></v-img>
                                                                     </v-col>
                                                                     <v-col cols="12" md="3" sm="3">
-                                                                        <div class="hire-me-title">15$</div>
+                                                                        <div class="hire-me-title">{{currentUser.payment_info.salary}}$</div>
                                                                         <div class="hire-me-subtitle">Hourly Rate</div>
                                                                     </v-col>
                                                                     <v-col
@@ -208,9 +193,9 @@
                                                                                src="/images/resume_themes/theme200/icons/availibility.png"></v-img>
                                                                     </v-col>
                                                                     <v-col cols="12" md="3" sm="4">
-                                                                        <div class="hire-me-title">40 Hours</div>
-                                                                        <div class="hire-me-subtitle">Weekly
-                                                                            Availibility
+                                                                        <div class="hire-me-title">{{currentUser.payment_info.available_hours}} Hours</div>
+                                                                        <div class="hire-me-subtitle">{{currentUser.payment_info.available_hours_frequency}}
+                                                                            Availability
                                                                         </div>
                                                                     </v-col>
 
@@ -233,8 +218,10 @@
                                     </v-col>
                                     <!-- Column 2 -->
                                     <!-- Coumn 3 tabs -->
-                                    <v-col cols="12" md="10" sm="12" offset-md="1" class="mb-n8 hidden-xs-only">
-                                        <v-card color="transparent" flat  class="w-100">
+                                    <v-col cols="12" md="12" sm="12"  class="mt-n5 mb-n11 hidden-xs-only">
+                                        <v-row align="center" justify="center">
+                                            <v-col md="10">
+                                                <v-card color="transparent" flat  class="w-100">
                                             <v-card-text>
                                                 <!-- tabs -->
                                                 <v-tabs
@@ -246,7 +233,6 @@
                                                         centered
                                                         dark
                                                         hide-slider
-                                                        mobile-break-point="599"
                                                 >
                                                     <v-tab
                                                             v-for="tab in tabs"
@@ -263,7 +249,7 @@
                                                         <v-avatar tile height="16" width="15">
                                                             <img
                                                                     :src="[currentTab == tab.id ? getImgUrlIconActive(tab.id):getImgUrlIcon(tab.id) ]"
-                                                                    class="mr-md-4 mr-sm-n4"
+                                                                    class="mr-md-2 mr-sm-n2"
                                                             />
                                                         </v-avatar>
                                                         {{tab.title}}
@@ -272,6 +258,9 @@
                                                 </v-tabs>
                                             </v-card-text>
                                         </v-card>
+
+                                            </v-col>
+                                        </v-row>
                                     </v-col>
                                     <!-- Column3 tabs-->
                                 </v-row>
@@ -299,9 +288,9 @@
                         >
                             <v-tab
                                     class="text-capitalize caption"
-                                    v-for="skill in skills"
+                                    v-for="skill in skillTabs"
                                     :key="skill.id"
-                            >{{skill.skill}}
+                            >{{skill.title}}
                             </v-tab>
                         </v-tabs>
                     </v-card>
@@ -315,9 +304,8 @@
                                 v-model="dataTabs"
                                 hide-slider
                                 center-active
-                                style="margin-left:-55px;"
                         >
-                            <v-tab v-for="item in tabs" :key="item.title" class>
+                            <v-tab v-for="item in tabs" :key="item.title">
                                 <v-btn
                                         x-small
                                         fab
@@ -357,12 +345,13 @@
                                             <v-card-text align="center">
 
                                                 <v-row>
-                                                    <v-col md="4" sm="6" v-for="item in portfolio" :key="item.id">
+                                                    <v-col md="4" sm="6" v-for="project in currentUser.projects" :key="project.id">
                                                         <v-card elevation-12 class="card-portfolio">
-                                                            <v-img aspect-ratio="1.4" :src="getImgUrlPortfolio(item.id)">
+                                                            <v-img :src="getProjectMainImage(project)" @mouseover="hoveredProjectId = project.id"
+                                                                   @mouseleave="hoveredProjectId =0">
                                                                 <v-overlay
                                                                         :absolute="absolute"
-                                                                        :value="item.id==1 ? overlay : false"
+                                                                        :value="project.id === hoveredProjectId"
                                                                         opacity="0.8"
                                                                         color="#6152CF"
                                                                 >
@@ -372,8 +361,8 @@
                                                                 </v-overlay>
                                                             </v-img>
 
-                                                            <v-card-title>{{item.title}}</v-card-title>
-                                                            <v-card-subtitle align="left">{{ item.subtitle }}
+                                                            <v-card-title>{{project.name}}</v-card-title>
+                                                            <v-card-subtitle align="left">{{project.description}}
                                                             </v-card-subtitle>
                                                         </v-card>
                                                     </v-col>
@@ -405,34 +394,26 @@
                                         <v-card flat color="transparent" class="mt-n10">
                                             <v-card-text>
                                                 <v-row>
-                                                    <v-col cols="12" md="6" sm="12" v-for="(item,index) in work"
+                                                    <v-col cols="12" md="6" sm="12" v-for="(work,index) in currentUser.work_experience"
                                                            :key="index">
                                                         <v-card flat color="transparent" class="mx-md-10">
                                                             <v-card-text>
                                                                 <v-list-item>
                                                                     <v-list-item-icon class="mt-2">
                                                                         <v-img width="40"
-                                                                               :src="getIconWork(item.id)"></v-img>
+                                                                               :src="getIconWork(index+1)"></v-img>
                                                                     </v-list-item-icon>
-                                                                    <div
-                                                                            class="v-line"
-                                                                            :class="[
-                                  work.length-(index+1) <2 ? 'hidden-md-and-up':''
-                                ]"
-                                                                    ></div>
+                                                                    <div class="v-line"></div>
                                                                     <v-list-item-content>
                                                                         <v-list-item-title class="work-title">
-                                                                            {{item.title}}
+                                                                            {{work.job_title}}
                                                                         </v-list-item-title>
                                                                         <v-list-item-subtitle
                                                                                 class="work-subtitle mt-2"
-                                                                        >{{ item.subtitle1 }}
-                                                                        </v-list-item-subtitle>
-                                                                        <v-list-item-subtitle class="work-subtitle">{{
-                                                                            item.subtitle2}}
+                                                                        >{{ work.company_name }}
                                                                         </v-list-item-subtitle>
                                                                         <div class="float-xs-left mt-4 work-text">{{
-                                                                            item.bodyText }}
+                                                                            work.description }}
                                                                         </div>
                                                                     </v-list-item-content>
                                                                 </v-list-item>
@@ -452,31 +433,30 @@
                                         <v-card flat color="transparent" class="mt-n10">
                                             <v-card-text>
                                                 <v-row>
-                                                    <v-col cols="12" md="6" v-for="(item,index) in education" :key="index">
+                                                    <v-col cols="12" md="6" v-for="(education,index) in currentUser.education" :key="index">
                                                         <v-card flat color="transparent" class="mx-md-10">
                                                             <v-card-text>
                                                                 <v-list-item>
                                                                     <v-list-item-icon class="mt-2">
                                                                         <v-img width="40"
-                                                                               :src="getIconEducation(item.id)"></v-img>
+                                                                               :src="getIconEducation(index+1)"></v-img>
                                                                     </v-list-item-icon>
-                                                                    <div class="v-line"
-                                                                         v-if="work.length-(index+1) >1"></div>
+                                                                    <div class="v-line"></div>
                                                                     <v-list-item-content>
                                                                         <v-list-item-title class="work-title">
-                                                                            {{item.title}}
+                                                                            {{education.university_name}}
                                                                         </v-list-item-title>
                                                                         <v-list-item-subtitle
                                                                                 class="work-subtitle mt-2"
-                                                                        >{{ item.subtitle1 }}
+                                                                        >{{ education.institution_type }}
                                                                         </v-list-item-subtitle>
                                                                         <v-list-item-subtitle
-                                                                                v-if="item.subtitle2"
+                                                                                v-if="education.degree_title"
                                                                                 class="work-subtitle mt-2"
-                                                                        >{{ item.subtitle2}}
+                                                                        >{{ education.degree_title}}
                                                                         </v-list-item-subtitle>
-                                                                        <div class="float-xs-left mt-4 work-text">{{
-                                                                            item.bodyText }}
+                                                                        <div class="float-xs-left mt-4 work-text">
+                                                                            {{education.date_from }} - {{education.present ? 'Present' : education.date_to}}
                                                                         </div>
                                                                     </v-list-item-content>
                                                                 </v-list-item>
@@ -505,10 +485,10 @@
                                                             mobile-break-point="599"
                                                     >
                                                         <v-tab
-                                                                v-for="item in skills"
+                                                                v-for="item in skillTabs"
                                                                 :key="item.id"
                                                                 class="skill-tab-text mx-md-4 mr-sm-n4"
-                                                        >{{item.skill}}
+                                                        >{{item.title}}
                                                         </v-tab>
                                                     </v-tabs>
                                                     <v-spacer></v-spacer>
@@ -525,89 +505,73 @@
                                                 <v-tabs-items v-model="skillTab">
                                                     <!-- Inner tab first item -->
                                                     <v-tab-item v-for="n in 4" :key="n">
-                                                        <v-card color="transparent" flat class="w-100">
+                                                        <v-card color="transparent" flat>
+                                                            <v-card-title style="font-weight: 600; color: rgba(0,0,0,.87);">{{skillTabs[skillTab].title}}</v-card-title>
                                                             <v-card-text>
                                                                 <v-row>
-                                                                    <!-- 1st inner column -->
                                                                     <v-col
                                                                             cols="12"
-                                                                            md="12"
-                                                                            v-for="skill in skillDetails"
-                                                                            :key="skill.title"
+                                                                            md="3"
+                                                                            sm="6"
+                                                                            class="skill-item"
+                                                                            v-for="skill in currentUser.skills"
+                                                                            :key="skill.id"
                                                                     >
-                                                                        <v-card flat color="transparent">
-                                                                            <v-card-title class="skill-child-title">
-                                                                                {{skill.title}}
-                                                                            </v-card-title>
+                                                                        <v-card flat color="#D5EEFF"
+                                                                                class="pa-0">
                                                                             <v-card-text>
-                                                                                <v-row>
-                                                                                    <v-col
-                                                                                            cols="12"
-                                                                                            md="3"
-                                                                                            sm="6"
-                                                                                            v-for="software in skill.softwareList"
-                                                                                            :key="software.name"
-                                                                                    >
-                                                                                        <v-card flat color="#D5EEFF"
-                                                                                                class="pa-0">
-                                                                                            <v-card-text>
-                                                                                                <v-list-item>
-                                                                                                    <v-list-item-icon>
-                                                                                                        <v-img
-                                                                                                                width="35"
-                                                                                                                :src="getIconSkill(software.icon)"
-                                                                                                        ></v-img>
-                                                                                                    </v-list-item-icon>
+                                                                                <v-list-item>
+                                                                                    <v-list-item-icon>
+                                                                                        <v-img
+                                                                                                width="35"
+                                                                                                :src="getSkillIcon(skill.title)"
+                                                                                        ></v-img>
+                                                                                    </v-list-item-icon>
 
-                                                                                                    <v-list-item-content
-                                                                                                            class="ml-n6">
-                                                                                                        <v-list-item-subtitle>
-                                                                                                            <v-row no-gutters>
-                                                                                                                <v-col cols="9">
-                                                                                                                    {{software.name}}
-                                                                                                                </v-col>
-                                                                                                                <v-col
-                                                                                                                        cols="3"
-                                                                                                                        class="hidden-sm-and-up caption"
-                                                                                                                        align="right"
-                                                                                                                >
-                                                                                                                    {{software.valueText}}
-                                                                                                                </v-col>
-                                                                                                            </v-row>
-                                                                                                        </v-list-item-subtitle>
-                                                                                                        <v-list-item-subtitle>
-                                                                                                            <v-row no-gutters>
-                                                                                                                <v-col cols="12"
-                                                                                                                       md="9"
-                                                                                                                       sm="9">
-                                                                                                                    <v-progress-linear
-                                                                                                                            height="8"
-                                                                                                                            background-color="#C5C5C5"
-                                                                                                                            :color="software.color"
-                                                                                                                            :value="software.value"
-                                                                                                                    ></v-progress-linear>
-                                                                                                                </v-col>
-                                                                                                                <v-col
-                                                                                                                        cols="4"
-                                                                                                                        md="2"
-                                                                                                                        sm="2"
-                                                                                                                        offset="1"
-                                                                                                                        class="mt-n1 caption hidden-xs-only"
-                                                                                                                >
-                                                                                                                    {{software.valueText}}
-                                                                                                                </v-col>
-                                                                                                            </v-row>
-                                                                                                        </v-list-item-subtitle>
-                                                                                                    </v-list-item-content>
-                                                                                                </v-list-item>
-                                                                                            </v-card-text>
-                                                                                        </v-card>
-                                                                                    </v-col>
-                                                                                </v-row>
+                                                                                    <v-list-item-content
+                                                                                            class="ml-n6">
+                                                                                        <v-list-item-subtitle>
+                                                                                            <v-row no-gutters>
+                                                                                                <v-col cols="9">
+                                                                                                    {{skill.title}}
+                                                                                                </v-col>
+                                                                                                <v-col
+                                                                                                        cols="3"
+                                                                                                        class="hidden-sm-and-up caption"
+                                                                                                        align="right"
+                                                                                                >
+                                                                                                    {{skill.percentage}}%
+                                                                                                </v-col>
+                                                                                            </v-row>
+                                                                                        </v-list-item-subtitle>
+                                                                                        <v-list-item-subtitle>
+                                                                                            <v-row no-gutters>
+                                                                                                <v-col cols="12"
+                                                                                                       md="9"
+                                                                                                       sm="9">
+                                                                                                    <v-progress-linear
+                                                                                                            height="8"
+                                                                                                            background-color="#C5C5C5"
+                                                                                                            color="green"
+                                                                                                            :value="skill.percentage"
+                                                                                                    ></v-progress-linear>
+                                                                                                </v-col>
+                                                                                                <v-col
+                                                                                                        cols="4"
+                                                                                                        md="2"
+                                                                                                        sm="2"
+                                                                                                        offset="1"
+                                                                                                        class="mt-n1 caption hidden-xs-only"
+                                                                                                >
+                                                                                                    {{skill.percentage}}%
+                                                                                                </v-col>
+                                                                                            </v-row>
+                                                                                        </v-list-item-subtitle>
+                                                                                    </v-list-item-content>
+                                                                                </v-list-item>
                                                                             </v-card-text>
                                                                         </v-card>
                                                                     </v-col>
-                                                                    <!-- 1st inner column -->
                                                                 </v-row>
                                                                 <!-- Pagination -->
                                                                 <v-row class="mt-5">
@@ -661,11 +625,11 @@
                                                         <v-card color="transparent" flat class="w-100">
                                                             <v-card-text>
                                                                 <div class="hello-text">Hello I'm</div>
-                                                                <div class="hello-title">Mickel David</div>
+                                                                <div class="hello-title">{{currentUser.personal_info.full_name}}</div>
                                                                 <div class="display-2 hello-designation">
                                                                     <div class="designation-for-tab">
                                                                         a
-                                                                        <span style="color:#6152CF;">UI&UX</span> Designer
+                                                                        <span style="color:#6152CF;">{{currentUser.personal_info.designation}}</span>
                                                                     </div>
                                                                 </div>
                                                             </v-card-text>
@@ -678,7 +642,7 @@
                                                         <v-card flat color="transparent">
                                                             <v-card-text align="right">
                                                                 <div class="pic-box">
-                                                                    <v-img src="/images/resume_themes/theme200/images/about-me/men.png"></v-img>
+                                                                    <v-img :src="currentUser.personal_info.profile_pic" style="border-radius: 10px;"></v-img>
                                                                 </div>
                                                             </v-card-text>
                                                         </v-card>
@@ -705,27 +669,12 @@
                                                                         <v-card flat color="transparent" class="pa-0">
                                                                             <v-card-text
                                                                                     class="body-1"
-                                                                            >I have a great passion on designing and always
-                                                                                love to create a new design. Thus now I am
-                                                                                highly skilled, enthusiastic, self-
-                                                                                motivated UI & UX Designer able to do any
-                                                                                kinds of designing on upwork. Not only that
-                                                                                I have worked for other company but I myself
-                                                                                have also a website based on web programming
-                                                                                and web developing of my own.
+                                                                            >{{currentUser.personal_info.about}}
                                                                             </v-card-text>
                                                                             <v-card-actions class="ml-2">
-                                                                                <v-btn
-                                                                                        color="#414143"
-                                                                                        height="35"
-                                                                                        x-small
-                                                                                        dark
-                                                                                        v-for="media in socialMedia"
-                                                                                        :key="media.title"
-                                                                                >
-                                                                                    <v-icon small
-                                                                                            v-text="media.icon"></v-icon>
-                                                                                </v-btn>
+                                                                                <a :href="item.link" v-for="item in socialLinks" class="mr-3" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
+                                                                                    <img :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"  alt="social icon">
+                                                                                </a>
                                                                             </v-card-actions>
                                                                         </v-card>
                                                                     </v-col>
@@ -746,30 +695,25 @@
                                     <div>
                                         <v-card flat color="transparent" class="mt-n10">
                                             <v-card-text>
-                                                <v-row>
+                                                <v-row v-for="(achievement,index) in currentUser.achievements" :key="index + '_achievement'">
                                                     <v-col cols="12" md="6" sm="6">
                                                         <v-card flat color="transparent" elevation-12>
-                                                            <v-img src="/images/resume_themes/theme200/images/about-me/certification.png"></v-img>
+                                                            <v-img :src="achievement.image_src"></v-img>
                                                         </v-card>
                                                     </v-col>
 
                                                     <v-col cols="12" md="6" sm="6">
                                                         <v-card flat color="transparent" class="certification">
                                                             <v-card-title>
-                                                                <span class="achievement-title">Hubspot Design Certification</span>
+                                                                <span class="achievement-title">{{achievement.title}}</span>
                                                             </v-card-title>
-                                                            <v-card-subtitle class="achievement-subtitle">HubSpot Design
-                                                                Academy
+                                                            <v-card-subtitle class="achievement-subtitle">
+                                                                {{achievement.category}}
                                                             </v-card-subtitle>
                                                             <v-card-text
                                                                     class="achievement-text caption"
-                                                            >The bearer of this certificate is hereby deemed proficient in
-                                                                crafting responsive, styled templates using HubSpot's design
-                                                                tools. The bearer has demonstrated that he/she can
-                                                                effectively apply template and style knowledge to HubSpot
-                                                                blog, page, landing page and email templates and is approved
-                                                                to sell these assets in the HubSpot Marketplace.
-                                                                Certification is active for 13 months after month issued.
+                                                            >
+                                                                {{achievement.description}}
                                                             </v-card-text>
                                                         </v-card>
                                                     </v-col>
@@ -811,11 +755,13 @@
 
 <script>
     export default {
+        props:['user','is_preview'],
         data() {
             return {
-                skillTab: null,
+                skillTab: 0,
                 page: 1,
                 overlay: true,
+                hoveredProjectId: 0,
                 absolute: true,
                 dataTabs: null,
                 currentTab: 1,
@@ -827,15 +773,11 @@
                     {title: "About Me", id: 5},
                     {title: "Achievement", id: 6}
                 ],
-                skills: [
-                    {
-                        skill: "Programming Languages",
-                        value: 80,
-                        id: 1
-                    },
-                    {skill: "Framework/Databases", value: 35, id: 2},
-                    {skill: "Software", value: 92, id: 3},
-                    {skill: "Design Skills", value: 55, id: 4}
+                skillTabs: [
+                    {title: "Programming Languages", value: 'Programming_languages', id: 1},
+                    { title: "Framework/Databases", value: 'Frameworks', id: 2 },
+                    { title: "Software", value: 'Software', id: 3 },
+                    { title: "Design Skills", value: 'Design', id: 4 }
                 ],
                 skillDetails: [
                     {
@@ -1045,7 +987,9 @@
                     {title: "dribbble", icon: "fa-dribbble", color: "#EE588A"},
                     {title: "instagram", icon: "fa-instagram", color: "#DD24BC"},
                     {title: "google", icon: "fa-google-plus", color: "#DC4E41"}
-                ]
+                ],
+
+                currentUser: this.user
             };
         },
 
@@ -1053,7 +997,20 @@
             getImgUrlIcon(icon) {
                 return `/images/resume_themes/theme200/icons/tabs/${icon}.png`;
             },
-            
+
+            getProjectMainImage(project){
+                let mainImage = '';
+
+                let images = project.images;
+                images.forEach((image) => {
+                    if (image.is_main){
+                        mainImage = image;
+                    }
+                });
+
+                return mainImage.src;
+            },
+
             getImgUrlIconActive(icon) {
                 return `/images/resume_themes/theme200/icons/tabs-active/${icon}.png`;
 
@@ -1081,7 +1038,116 @@
             //get social media image icons
             getIconSocial(icon) {
                 return `/images/resume_themes/theme200/social_icons/${icon}.webp`;
+            },
+            setDummyUser() {
+                this.currentUser = this.$store.state.dummyUser;
+            },
+            getSkillIcon(skill_title) {
+                let arrayOfSkillImages = {
+                    'ui design': '/images/skills_icons/user_interface.png',
+                    'ux design': '/images/skills_icons/user_experience.png',
+                    'logo design': '/images/skills_icons/logo_design.png',
+                    'animation': '/images/skills_icons/animation.jpg',
+                    'motion graphics': '/images/skills_icons/motion_graphics.png',
+                    'illustration': '/images/skills_icons/illustration.png',
+                    'advertising': '/images/skills_icons/advertising.png',
+                    'branding': '/images/skills_icons/branding.png',
+                    'brochure Design': '/images/skills_icons/brochure_design.png',
+                    'website design': '/images/skills_icons/web_design.png',
+                    'game designer': '/images/skills_icons/game_designer.png',
+                    'character design': '/images/skills_icons/character_design.png',
+                    'digital painting': '/images/skills_icons/digital_painting.png',
+                    'creative director': '/images/skills_icons/creative_director.png',
+                    'html / css': '/images/skills_icons/HTML.png',
+                    // 2-
+
+                    'adobe after effects': '/images/skills_icons/AE.png',
+                    'sketch': '/images/skills_icons/Sketch.png',
+                    'adobe illustrator': '/images/skills_icons/Illustrator.png',
+                    'adobe xd': '/images/skills_icons/AdobeXD.png',
+                    'photoshop': '/images/skills_icons/Photoshop.png',
+                    'autocad': '/images/skills_icons/autocad.png',
+                    'solidworks': '/images/skills_icons/solid_works.png',
+                    'adobe flash': '/images/skills_icons/adobe_flash.png',
+                    'digital drawing Tablet': '/images/skills_icons/digital_drawing_tablet.png',
+                    'adobe indesign': '/images/skills_icons/indesign.png',
+                    'coreldraw': '/images/skills_icons/corel_draw.png',
+                    '3d max': '/images/skills_icons/3d_max.png',
+
+                    // developer :
+                    // 1-
+                    'javascript': '/images/skills_icons/javascript.png',
+                    'sql': '/images/skills_icons/mysql.png',
+                    'java': 'resumeApp/resources/assets/images/skills_icons/java.png',
+                    'c#': '/images/skills_icons/c#.png',
+                    'python': '/images/skills_icons/python.png',
+                    'php': '/images/skills_icons/php.png',
+                    'c++': '/images/skills_icons/c_language.png',
+                    'c': '/images/skills_icons/c_language.png',
+                    'typescript': '/images/skills_icons/typescript.png',
+                    'ruby': '/images/skills_icons/ruby.png',
+                    'objective-C': '/images/skills_icons/objective_c.png',
+                    'swift': '/images/skills_icons/swift.png',
+                    'vb.net': '/images/skills_icons/vb_net.png',
+                    'go': '/images/skills_icons/go.png',
+                    'perl': '/images/skills_icons/perl.png',
+                    'scala': '/images/skills_icons/scala.png',
+                    'groovy': '/images/skills_icons/groovy.png',
+                    'assembly': '/images/skills_icons/assembly.png',
+                    'coffeescript': '/images/skills_icons/coffeeScript.png',
+                    'vba': '/images/skills_icons/vba.png',
+                    'r': '/images/skills_icons/r_lang.png',
+                    'matlab': '/images/skills_icons/matlab.png',
+                    'visual basic 6': '/images/skills_icons/matlab.png',
+                    'lua': '/images/skills_icons/lua.png',
+                    'haskell': '/images/skills_icons/haskell.png',
+                    'html': '/images/skills_icons/HTML.png',
+                    'css': '/images/skills_icons/CSS.png',
+                    'laravel': '/images/skills_icons/laravel.png',
+                    'phpstorm': '/images/skills_icons/phpstorm.png',
+
+                    //2-
+                    'angularjs': '/images/skills_icons/Angularjs.png',
+                    'angular.js': '/images/skills_icons/Angularjs.png',
+                    'node.js': '/images/skills_icons/node_js.png',
+                    'nodejs': '/images/skills_icons/node_js.png',
+                    '.net Core': '/images/skills_icons/netcore.png',
+                    'react': '/images/skills_icons/react.png',
+                    'cordova': '/images/skills_icons/cordava.png',
+                    'firebase': '',
+                    'xamarin': '',
+                    'hadoop': '/images/skills_icons/hadoop.png',
+                    'spark': '/images/skills_icons/spark.png',
+                    'mysql': '/images/skills_icons/mysql.png',
+                    'sql server': '/images/skills_icons/sql server.png',
+                    'postgresql': '/images/skills_icons/postgreSQL.png',
+                    'sqlite': '/images/skills_icons/SQLite.png',
+                    'mongodb': '/images/skills_icons/mongoDB.png',
+                    'oracle': '/images/skills_icons/Oracle.png',
+                    'redis': '/images/skills_icons/redis.png',
+                    'cassandra': '/images/skills_icons/cassandra.png'
+                };
+                if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
+                    return arrayOfSkillImages[skill_title.toLowerCase()];
+                }
+                return '/images/skills_icons/skill.png';
+            },
+        },
+        computed: {
+            socialLinks(){
+                return this.currentUser.links.filter( (link) => {return link.category === 'social_link' ? link : false});
             }
+        },
+
+        mounted() {
+
+            // if there is no user or the preview is true, set dummy user
+            if (!this.currentUser || this.is_preview) {
+                this.setDummyUser();
+            }
+
+            // let user accessible in included components.
+            this.$store.dispatch('updateThemeUser', this.currentUser);
         }
     };
 </script>
@@ -1090,7 +1156,18 @@
     .themeWrapper {
         width: 100%;
     }
+    
 
     @import "resources/sass/themes/theme200.scss";
+</style>
+
+<style>
+    #resumeTheme200 .v-slide-group__prev{
+        display:none;
+    }
+
+    #resumeTheme200 .v-slide-group__next{
+        display:none;
+    }
 </style>
 
