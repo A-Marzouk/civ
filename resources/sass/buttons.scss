@@ -11,10 +11,17 @@
     padding: 18px 20px !important;
     font-size: 20px !important;
 
+    min-width: 250px;
+
     @include lt-md {
         font-size: 8px !important;
         padding: 10px 20px !important;
         border-radius: 5px !important;
+        min-width: 165px;
+    }
+
+    @include lt-sm {
+        margin-top: 1rem;
     }
 
     .icon {
@@ -43,6 +50,26 @@
             path, circle {
                 fill: white;
             }
+        }
+    }
+
+    &-outline {
+        font-family: 'Noto Sans';
+        font-size: 21px;
+        font-weight: 500;
+        color: #001CE2;
+        border: 1px solid #1F5DE4;
+        border-radius: 8px;
+        text-decoration: none;
+        outline: none;
+        background: #fff;
+
+        &:hover{
+            text-decoration: none;
+        }
+
+        +.btn-outline{
+            margin-left: 46px;
         }
     }
 }

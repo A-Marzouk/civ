@@ -174,7 +174,11 @@ export default {
     }
 
     .choose-photo-btn{
-        max-width: 142px;
+        max-width: 200px;
+
+        @include lt-md {
+            max-width: 142px;
+        }
         
         a:hover{
             color:white;

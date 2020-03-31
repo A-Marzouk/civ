@@ -159,7 +159,8 @@ $mainColor: #001CE2;
 
     .profile-hold{
         justify-content: flex-start;
-        width: 1363px;
+        max-width: 1363px;
+        width: 100%;
         flex-flow: column;
     }
 
@@ -255,7 +256,7 @@ $mainColor: #001CE2;
     }
     
 
-    .btn-blue{
+    .btn btn-filled{
         text-decoration: none;
         font-size: 15px;
         min-width: 203px;
@@ -293,7 +294,17 @@ $mainColor: #001CE2;
         align-items: center;
         margin-top: 55px;
 
-        .btn-blue{
+        .input-field {
+            width: 718px;
+            margin-right: 2rem;
+
+            @include lt-md {
+                width: 100% !important;
+                margin-right: 0 !important;
+            }
+        }
+
+        .btn btn-filled{
             min-width: 294px;
             min-height: 75px;
             margin-left: 5%;
@@ -317,7 +328,7 @@ $mainColor: #001CE2;
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        margin-left: 29px;
+        margin-right: 29px;
         border-radius: 8px;
 
         a{
@@ -367,40 +378,6 @@ $mainColor: #001CE2;
         }
 
         
-    }
-
-    /** Social tab */
-    .btn-outline{
-        min-width: 226px;
-        min-height: 62px;
-        font-family: 'Noto Sans';
-        font-size: 21px;
-        font-weight: 500;
-        color: #001CE2;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #1F5DE4;
-        border-radius: 8px;
-        text-decoration: none;
-        outline: none;
-        background: #fff;
-
-        &::before{
-            content: "";
-            width: 31.4px;
-            height: 31.4px;
-            background: url('/images/resume_builder/profile/icon-plus.png');
-            margin-right: 12px;
-        }
-
-        &:hover{
-            text-decoration: none;
-        }
-
-        +.btn-outline{
-            margin-left: 46px;
-        }
     }
 
     .btn-close{
@@ -542,12 +519,22 @@ $mainColor: #001CE2;
     .lang-items{
         margin: 0;
         padding: 0;
+        
+        @include lt-md {
+            width: 100%;
+            max-width: 616px;
+            flex-wrap: wrap;
+        }
 
-        .lang-item{
+        .lang-item {
 
             display: flex;
             justify-content: flex-start;
             align-items: center;
+
+            .lang {
+                display: flex;
+            }
 
             .flagLang{
                 margin: 0px 25px;
@@ -556,6 +543,10 @@ $mainColor: #001CE2;
                 font-size: 39px;
                 font-weight: 700;
                 color: #001CE2;
+
+                @include lt-md {
+                    font-size: 20px;
+                }
             }
         }
     }

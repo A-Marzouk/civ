@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <a href="javascript:void(0)" @click="applyReferenceEdit('manual')" class="btn-blue">
+                <a href="javascript:void(0)" @click="applyReferenceEdit('manual')" class="btn btn-filled">
                     <img src="/images/resume_builder/profile/icon-save2.png">
                     Save reference
                 </a>
@@ -144,7 +144,7 @@
                    </div>
                </div>
 
-                <a href="javascript:void(0)" @click="applyRefereeEdit('manual')" class="btn-blue">
+                <a href="javascript:void(0)" @click="applyRefereeEdit('manual')" class="btn btn-filled">
                     <img src="/images/resume_builder/profile/icon-save2.png">
                     Save referee
                 </a>

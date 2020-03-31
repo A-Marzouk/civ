@@ -13,12 +13,25 @@
                     {{errors.language}}
                 </div>
             </div>
-            <a href="javascript:void(0)" @click="saveLanguage" class="btn btn-filled"><img class='icon' src="/images/resume_builder/profile/icon-check.png">Add language now</a>
-            <a href="javascript:void(0)" class="btn ml-5">Auto import</a>
-            <div class="lang-items">
+
+            <div class="buttons-wrapper">
+                <a href="javascript:void(0)" @click="saveLanguage" class="btn btn-filled"><img class='icon' src="/images/resume_builder/profile/icon-check.png">Add language now</a>
+                <a href="javascript:void(0)" class="btn btn-outline">Auto import</a>
+            </div>
+            <div v-if="languages.length" class="lang-items">
                 <div class="lang-item mt-4" v-for="(language,index) in languages" :key="index + '_language'">
-                    <img class="LangIcon" src="/images/resume_builder/language-icon.png" alt="">
-                    <span class="nameLang">{{language.label}}</span>
+                    <div class="lang">
+                        <img class="LangIcon" src="/images/resume_builder/language-icon.png" alt="">
+                        <span class="nameLang">{{language.label}}</span>
+                    </div>
+                    <div class="options-mob">
+                        <a href="">
+                            <svg-vue class="opt-icon" :icon="`edit-icon`"></svg-vue>
+                        </a>
+                        <a href="">
+                            <svg-vue class="opt-icon" :icon="`trash-delete-icon`"></svg-vue>
+                        </a>
+                    </div>
                     <div class="options">
                         <div class="options-btn NoDecor"
                              @click="optionLanguageId === language.id ? optionLanguageId=0 : optionLanguageId=language.id">
@@ -118,14 +131,69 @@
 <style scoped lang="scss">
 @import '../../../../../../sass/media-queries';
 
+    $mainBlue: #001CE2;
+
     .lang-item{
         position: relative;
         width: 400px;
+
+        @include lt-md {
+            justify-content: space-between !important;
+            width: 100%;
+        }
     }
+
+    .buttons-wrapper {
+        display: flex;
+        width: 100%;
+        max-width: 616px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .options-mob {
+        display: none;
+        width: 119px;
+        height: 38px;
+        background: #F9F9F9;
+        box-shadow: 0 9px 12px rgab(0, 0, 0, 0.06);
+        border-radius: 6px;
+        align-self: flex-end;
+        position: relative;
+        margin-left: 10px;
+        padding: 5px;
+
+        @include lt-md {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        a {
+            height: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                height: 100%;
+                fill: $mainBlue !important;
+
+                path, circle {
+                    fill: $mainBlue !important;
+                }
+            }
+        }
+    }
+
     .options {
         position: absolute;
         right: -50px;
         top: 18px;
+
+        @include lt-md {
+            display: none;
+        }
 
         .options-btn {
             a {
