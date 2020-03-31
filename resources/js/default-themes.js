@@ -195,6 +195,7 @@ import resumeTheme39 from './components/resume_themes/theme39';
 if ($("#resumeTheme39").length !== 0) {
     new Vue({
         el: '#resumeTheme39',
+        vuetify,
         iconfont: 'mdi',
         components: {
             'resume-theme-39': resumeTheme39
