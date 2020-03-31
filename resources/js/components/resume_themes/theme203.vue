@@ -318,12 +318,23 @@
                   <v-card color="transparent" flat>
                     <v-card-text class>
                       <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
+                        <v-col cols="12" sm="12" md="5" offset-md="1" class="mb-12" v-for="n in 4" :key="n">
+                          <v-card flat color="transparent" class="mx-auto">
                             <v-card-text>
-                              <div class="skill-circle">
-                                <span>fig</span>
-                              </div>
+                              <v-list-item>
+                                <v-list-item-avatar class="skill-circle">
+                                  <span>fig</span>
+                                </v-list-item-avatar>
+                                <v-list-item-content class="mt-md-n2">
+                                  <v-list-item-subtitle>
+                                    <v-row no-gutters>
+                                      <v-col cols="6">Photoshop</v-col>
+                                      <v-col cols="6" align="right">90%</v-col>
+                                    </v-row>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle>Progress Bar</v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
                             </v-card-text>
                           </v-card>
                         </v-col>
@@ -538,7 +549,6 @@ export default {
 // ................Skills Desktop..................................
 
 .skill-circle {
-  position: absolute;
   width: 3.1rem;
   height: 3rem;
   border-radius: 50%;
@@ -546,10 +556,9 @@ export default {
   border: 5px solid #e0bb4c;
   box-sizing: border-box;
   text-align: center;
-  padding: 6px 2px 0 3px;
   span {
     font-family: "Rubik", sans-serif;
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: #ffffff;
   }
 }
