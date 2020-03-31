@@ -15,9 +15,9 @@ const tailwindcss = require('tailwindcss');
 mix.webpackConfig({
     devServer: {
         proxy: {
-            '*': 'http://localhost:8000',
-        },
-    },
+            '*': 'http://localhost:8000'
+        }
+    }
 });
 
 mix.js('resources/js/app.js', 'public/js')
@@ -29,9 +29,10 @@ mix.js('resources/js/app.js', 'public/js')
         svgoSettings: [
             { removeTitle: true },
             { removeViewBox: true },
-            { removeDimensions: false },
+            { removeDimensions: false }
         ],
     })
     .options({
         postCss: [tailwindcss('./tailwind.config.js')],
+        processCssUrls: false
     });
