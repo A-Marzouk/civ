@@ -336,7 +336,9 @@
                                 <v-list-item-content class="mt-md-n6">
                                   <v-list-item-subtitle>
                                     <v-row no-gutters>
-                                      <v-col cols="6" class="skill-title-text"><span class="ml-2">{{ skill.title }}</span></v-col>
+                                      <v-col cols="6" class="skill-title-text">
+                                        <span class="ml-2">{{ skill.title }}</span>
+                                      </v-col>
                                       <v-col
                                         cols="6"
                                         align="right"
@@ -346,7 +348,7 @@
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle>
                                     <v-progress-linear
-                                      color="yellow"
+                                      :color="progressBarColor"
                                       class="custom-progress-bar"
                                       height="12"
                                       rounded
@@ -383,6 +385,7 @@ export default {
   data() {
     return {
       mainDataTab: null,
+      progressBarColor: "yellow",
       mainTabs: [
         {
           id: 1,
@@ -634,14 +637,7 @@ export default {
   line-height: 1.6875rem;
   color: #222d68 !important;
 }
-.custom-progress-bar {
-  color: linear-gradient(
-    138.05deg,
-    #fcd259 1.07%,
-    #e5bf4e 51.95%,
-    #ffde81 89.88%
-  ) !important;
-}
+
 //..................Skills Desktop.....................................
 // Watermark text
 .watermark-text {
