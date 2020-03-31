@@ -203,7 +203,7 @@
         display: flex;
         align-items: center;
 
-        @include lt-md {
+        @include lt-sm {
             display: none;
         }
 
@@ -241,7 +241,7 @@
         width: 100%;
         overflow-x: hidden;
 
-        @include lt-md {
+        @include lt-sm {
             padding: 50px 36px;
         }
     }
@@ -295,7 +295,7 @@
             }
         }
 
-        @include lt-md {
+        @include lt-sm {
             display: block;
 
             &.opened {
@@ -321,7 +321,7 @@
         z-index: 500;
         overflow-x: hidden;
 
-        @include lt-md {
+        @include lt-sm {
             padding: 26px 37px;
             height: auto;
             box-shadow: none;
@@ -331,7 +331,7 @@
             width: 40px;
             margin-right: 262px;
 
-            @include lt-md {
+            @include lt-sm {
                 display: none;
             }
         }
@@ -344,13 +344,13 @@
             display: none;
             // margin:
 
-            @include lt-md {
+            @include lt-sm {
                 display: block;
             }
         }
 
         #mainLinksWrapper {
-            @include lt-md {
+            @include lt-sm {
                 display: none !important;
             }
         }
@@ -405,7 +405,7 @@
             position: absolute;
             right: 100px;
 
-            @include lt-md {
+            @include lt-sm {
                 right: 37px;
             }
 
@@ -416,7 +416,7 @@
                 margin-right: 58px;
                 position: relative;
 
-                @include lt-md {
+                @include lt-sm {
                     width: 20px;
                     margin-right: 24px;
                 }
@@ -429,7 +429,7 @@
                     width: 46px;
                     margin: 0;
 
-                    @include lt-md {
+                    @include lt-sm {
                         width: 27px;
                     }
 
@@ -581,7 +581,7 @@
     // Responsive
 
     // Mobile responsive
-    @include lt-md {
+    @include lt-sm {
 
     }
 </style>

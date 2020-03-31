@@ -181,13 +181,16 @@ $mainColor: #001CE2;
             vertical-align: middle;
             margin-left: 22px;
 
-            h5{
-                
+            h5{                
                 font-size: 22px;
                 font-weight: bold;
                 color: $colorPrimary;
 
-                @include lt-md {
+                @include lt-lg {
+                    font-size: 19px;
+                }
+
+                @include lt-sm {
                     font-size: 16px;
                 }
             }
@@ -195,12 +198,12 @@ $mainColor: #001CE2;
                 font-size: 16px;
                 color: $colorGray;
 
-                @include lt-md {
+                @include lt-sm {
                     font-size: 10px;
                 }
             }
 
-            @include lt-md {
+            @include lt-sm {
                 width: calc(100% - 120px);
             }
         }
@@ -244,7 +247,7 @@ $mainColor: #001CE2;
         flex-flow: column;
         margin-top: 40px;
 
-        @include lt-md {
+        @include lt-sm {
             margin-top: 20px;
         }
 
@@ -281,7 +284,7 @@ $mainColor: #001CE2;
             text-decoration: none;
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 8px;
         }
 
@@ -289,16 +292,16 @@ $mainColor: #001CE2;
 
     .hold-tab{
         justify-content: flex-start;
+        align-items: center;
         display: flex;
         flex-wrap: wrap;
-        align-items: center;
         margin-top: 55px;
 
         .input-field {
             width: 718px;
             margin-right: 2rem;
 
-            @include lt-md {
+            @include lt-sm {
                 width: 100% !important;
                 margin-right: 0 !important;
             }
@@ -318,7 +321,8 @@ $mainColor: #001CE2;
         }
         &.wrapp{
             flex-wrap: wrap;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
         }
     }
 
@@ -346,7 +350,7 @@ $mainColor: #001CE2;
                 height: 39px;
                 display: block;
                 
-                @include lt-md {
+                @include lt-sm {
                     height: 15px;
                     width: 20px;
                 }
@@ -358,7 +362,7 @@ $mainColor: #001CE2;
                 height: 39px;
                 display: block;
                 
-                @include lt-md {
+                @include lt-sm {
                     height: 15px;
                     width: 20px;
                 }
@@ -370,7 +374,7 @@ $mainColor: #001CE2;
                 height: 39px;
                 display: block;
                 
-                @include lt-md {
+                @include lt-sm {
                     height: 15px;
                     width: 20px;
                 }
@@ -520,7 +524,7 @@ $mainColor: #001CE2;
         margin: 0;
         padding: 0;
         
-        @include lt-md {
+        @include lt-sm {
             width: 100%;
             max-width: 616px;
             flex-wrap: wrap;
@@ -544,7 +548,7 @@ $mainColor: #001CE2;
                 font-weight: 700;
                 color: #001CE2;
 
-                @include lt-md {
+                @include lt-sm {
                     font-size: 20px;
                 }
             }
@@ -600,8 +604,6 @@ $mainColor: #001CE2;
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 203px;
-            height: 48px;
 
             background: #001CE2 0% 0% no-repeat padding-box;
             border-radius: 8px;
@@ -617,7 +619,7 @@ $mainColor: #001CE2;
                 margin-right: 7px;
             }
 
-            @include lt-md {
+            @include lt-sm {
                 font-size: 8px;
                 width: 142px;
                 height: 30px;

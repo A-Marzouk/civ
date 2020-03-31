@@ -6,7 +6,7 @@
     border-bottom: 3px solid #C9CFF8;
     position: relative;
 
-    @include lt-md {
+    @include lt-sm {
         margin-top: 30px;
     }
 
@@ -32,11 +32,17 @@
         border-bottom: 3px solid #C9CFF8;
         transition: all 300ms ease-in;
         text-align: center;
-
-        @include lt-md {
+        
+        @include lt-sm {
             font-size: 12px;
             padding: 5px;
             padding-bottom: 7.3px;
+        }
+        
+        @include lt-lg {
+            font-size: 25px;
+            padding: 0 12px;
+            padding-bottom: 12px;
         }
     }
 

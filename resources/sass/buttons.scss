@@ -13,7 +13,7 @@
 
     min-width: 250px;
 
-    @include lt-md {
+    @include lt-sm {
         font-size: 8px !important;
         padding: 10px 20px !important;
         border-radius: 5px !important;
@@ -28,7 +28,7 @@
         margin-right: 10px;
         height: 18px;
 
-        @include lt-md {
+        @include lt-sm {
             height: 16px;
         }
 

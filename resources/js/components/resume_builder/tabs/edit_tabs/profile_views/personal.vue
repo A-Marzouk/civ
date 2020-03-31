@@ -176,7 +176,7 @@ export default {
     .choose-photo-btn{
         max-width: 200px;
 
-        @include lt-md {
+        @include lt-sm {
             max-width: 142px;
         }
         
@@ -189,7 +189,7 @@ export default {
         width: 144px;
         height: 144px;
 
-        @include lt-md {
+        @include lt-sm {
             width: 80px;
             height: 80px;
             vertical-align: top;

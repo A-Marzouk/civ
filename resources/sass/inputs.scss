@@ -21,12 +21,12 @@
                 margin-bottom: 16px;
             }
 
-            @include lt-md {
+            @include lt-sm {
                 font-size: 9px;
             }
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 13px;
         }
     }
@@ -47,7 +47,7 @@
             border-color: $mainBlue;
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 13px;
             min-height: 38px;
             border-radius: 6px;
@@ -72,7 +72,7 @@
             border-color: $mainBlue;
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 13px;
             min-height: 83px;
             border-radius: 6px;

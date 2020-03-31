@@ -165,7 +165,7 @@ $disabledColor: #9f9e9e;
     // Check it
     overflow-y: auto;
 
-    @include lt-md {
+    @include lt-sm {
         display: none !important;
     }
 

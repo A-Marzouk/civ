@@ -51,7 +51,7 @@
                         </a> -->
                     </div>
                     <div class="addItem-wrap animated fadeIn" v-show="isAddSocialLink">
-                        <div class="civ-input input-field">
+                        <div class="civ-input input-field mb-0">
                             <label for="category">Social site</label>
                             <div class="civ-custom-select">
                                 <div class="civ-select-input" @click="showCategoryOptions = !showCategoryOptions">
@@ -72,7 +72,7 @@
                                 {{ Array.isArray(errors.link_title) ? errors.link_title[0] : errors.link_title}}
                             </div>
                         </div>
-                        <div class="input-field">
+                        <div class="input-field mb-0">
                             <label for="socialLink">{{currentBaseUrl}}</label>
                             <input id="socialLink" type="text" v-model="newSocialLink.link" placeholder="johndoe">
                             <div class="error" v-if="errors.link">
@@ -155,7 +155,7 @@
                         </a> -->
                     </div>
                     <div class="addItem-wrap animated fadeIn" v-show="isAddPortfolioLink">
-                        <div class="input-field">
+                        <div class="input-field mb-0">
                             <label for="portfolioLink">Add portfolio link</label>
                             <input id="portfolioLink" type="text" v-model="newPortfolioLink.link">
                             <div class="error" v-if="errors.link">
@@ -546,7 +546,7 @@
 
         .btn {
             
-            @include lt-md {
+            @include lt-sm {
                 width: 40%;
                 min-width: 150px;
                 max-width: 180px;
@@ -563,6 +563,7 @@
 
     .add-new-work {
         width: 100%;
+        max-width: 600px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -585,6 +586,10 @@
                 margin-right: 10px;
             }
         }
+
+        @include lt-sm {
+            max-width: auto;
+        }
     }
 
 
@@ -606,7 +611,7 @@
             width: 718px;
             margin-right: 2rem;
 
-            @include lt-md {
+            @include lt-sm {
                 width: 100%;
             }
         }
@@ -625,7 +630,7 @@
 
         margin-right: 30px;
 
-        @include lt-md {
+        @include lt-sm {
             width: 100%;
             margin-right: 0;
             // margin-bottom: 15px;
@@ -651,7 +656,7 @@
                     top: 35px;
                     right: 20px;
 
-                    @include lt-md {
+                    @include lt-sm {
                         height: 10px;
                         width: 20px;
                         top: 15px;
@@ -680,13 +685,14 @@
                     font-weight: bold;
                     font-size: 22px;
 
-                    @include lt-md {
+                    @include lt-sm {
                         font-size: 13px;
                         min-height: 38px;
                         height: auto;
                         width: 100%;
                         border-radius: 6px;
                         border-width: 0.5px;
+                        margin-bottom: 25px;
                     }
 
                     &:focus {
@@ -740,7 +746,7 @@
         align-items: flex-end;
         width: 100%;
 
-        @include lt-md {
+        @include lt-sm {
             flex-wrap: wrap;
         }
 

@@ -137,10 +137,14 @@
         position: relative;
         width: 400px;
 
-        @include lt-md {
+        @include lt-sm {
             justify-content: space-between !important;
             width: 100%;
         }
+    }
+
+    .hold-tab {
+        align-items: flex-start !important;
     }
 
     .buttons-wrapper {
@@ -163,7 +167,7 @@
         margin-left: 10px;
         padding: 5px;
 
-        @include lt-md {
+        @include lt-sm {
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -191,7 +195,7 @@
         right: -50px;
         top: 18px;
 
-        @include lt-md {
+        @include lt-sm {
             display: none;
         }
 
@@ -282,7 +286,7 @@
     }
 
     .input-field{
-        @include lt-md {
+        @include lt-sm {
             width: 100%;
         }
         // select{
