@@ -641,6 +641,7 @@ export default {
 // Watermark text
 .watermark-text {
   position: absolute;
+  margin-top:-70px;
   font-size: 20vw;
   width: 100%;
   opacity: 0.1;
