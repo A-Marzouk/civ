@@ -11,3 +11,12 @@
 @import '~font-awesome/css/font-awesome.min.css';
 @import '~vuetify/dist/vuetify.min.css';
 @import '/css/slick.css';
+
+// Tailwind resources
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
