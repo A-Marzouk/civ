@@ -95,3 +95,17 @@
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
   }
 }
+
+.hideOnMd {
+  @include lt-md {
+    display: none;
+  }
+}
+
+.showOnMd {
+  display: none;
+
+  @include lt-md {
+    display: block;
+  }
+}

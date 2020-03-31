@@ -324,7 +324,7 @@
 
     .resume-builder-nav {
         width: 100vw;
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         box-shadow: 0 6px 12px #6565653b;
@@ -332,12 +332,13 @@
         height: 129px;
         background: #fff;
         z-index: 500;
-        overflow-x: hidden;
+        overflow: hidden;
 
         @include lt-lg {
             padding: 26px 37px;
             height: auto;
-            box-shadow: none;
+            overflow-x: hidden;
+            // box-shadow: none;
         }
 
         .brand-link {
@@ -377,7 +378,7 @@
                 display: block;
             }
 
-            @include lt-sm {
+            @include lt-md {
                 height: auto;
             }
         }
@@ -456,7 +457,7 @@
                 margin-right: 58px;
                 position: relative;
 
-                @include lt-sm {
+                @include lt-md {
                     width: 26px;
                     margin-right: 33px;
                 }

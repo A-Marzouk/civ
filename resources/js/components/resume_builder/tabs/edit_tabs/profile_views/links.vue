@@ -654,7 +654,7 @@
                     height: 12px;
                     position: absolute;
                     top: 35px;
-                    right: 20px;
+                    left: 279px;
 
                     @include lt-sm {
                         height: 10px;
@@ -675,7 +675,6 @@
 
                 input {
                     width: 269px;
-                    max-width: 616px;
                     height: 76px;
                     border: 1.5px #505050 solid;
                     padding-left: 23px;
@@ -745,14 +744,15 @@
         display: flex;
         align-items: flex-end;
         width: 100%;
-
-        @include lt-sm {
-            flex-wrap: wrap;
-        }
+        flex-wrap: wrap;
 
         .input-field {
             min-width: auto !important;
             max-width: 500px;
+        }
+
+        .btn {
+            margin-top: 2rem;
         }
     }
 

@@ -47,12 +47,17 @@
             border-color: $mainBlue;
         }
 
+        &:focus {
+            border-color: $mainBlue;
+        }
+
         @include lt-sm {
             font-size: 13px;
             min-height: 38px;
             border-radius: 6px;
             border-width: 0.5px;
         }
+
     }
     textarea {
         min-height: 181px;
