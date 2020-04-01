@@ -623,7 +623,7 @@
                                     >{{education.university_name}}</v-list-item-title>
                                     <v-card flat>
                                       <div
-                                        class="work-subtitle mt-2"
+                                        class="work-text mt-2"
                                       >{{ education.institution_type }}</div>
                                     </v-card>
                                     <v-list-item-subtitle
