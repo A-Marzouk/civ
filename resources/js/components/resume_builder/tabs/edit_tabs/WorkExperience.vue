@@ -60,21 +60,21 @@
                     </div>
                 </div>
             </transition>
-            <div class="action-btns">
-                <div class="add-work NoDecor mr-0">
-                    <a href="javascript:void(0)" v-show="addNewWork" @click="addWorkEx">
-                        <img src="/images/resume_builder/work-ex/mark.png" alt="">
+            <div class="action-btns" :class='{"justify-content-between": addNewWork}'>
+                <div class="add-work NoDecor mr-0 save-btn" v-if="addNewWork">
+                    <a class="btn btn-filled" href="javascript:void(0)" @click="addWorkEx">
+                        <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="">
                         Save
                     </a>
                 </div>
-                <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)" @click="addNewWork = true" v-show="!addNewWork">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="">
+                <div class="add-new-work NoDecor" v-if="!addNewWork">
+                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = true">
+                        <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="">
                         Add new work
                     </a>
                 </div>
-                <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)" @click="addNewWork = false" v-show="addNewWork">
+                <div class="add-work NoDecor cancel-btn" v-if="addNewWork">
+                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = false">
                         Cancel
                     </a>
                 </div>
@@ -332,6 +332,8 @@
 
 <style scoped lang="scss">
     @import '../../../../../sass/media-queries';
+    $mainBlue: #001CE2;
+
     .section-body {
         margin-top: 20px;
 
@@ -341,6 +343,10 @@
             max-width: 1302px;
             width: 100%;
             justify-content: space-between;
+
+            @include lt-md {
+                padding: 0 62px;
+            }
 
             .work-ex-form-input.input-field {
                 display: flex;
@@ -353,12 +359,11 @@
                     width: 48%;
                     max-width: 637px;
                     min-width: auto;
+                }
 
-                    // input,
-                    // textarea {
-                    //     width: 637px;
-                    //     max-width: 637px;
-                    // }
+                @include lt-md {
+                    margin-top: 5px;
+                    width: 100%;
                 }
 
                 &.description-field {
@@ -375,8 +380,11 @@
                     text-align: left;
                     font: 600 22px/30px Noto Sans;
                     letter-spacing: 0;
-                    color: #505050;
                     opacity: 1;
+
+                    @include lt-md {
+                        font-size: 18px;
+                    }
                 }
 
                 input {
@@ -443,6 +451,11 @@
                         width: 48%;
                         margin-bottom: 0 !important;
                     }
+
+                    @include lt-lg {
+                        width: 100%;
+                        margin-bottom: 25px !important;
+                    }
                 }
 
                 .date-group {
@@ -457,6 +470,10 @@
                         min-width: 200px;
                     }
 
+                    @include lt-md {
+                        width: 100%;
+                    }
+
                     .date-text {
                         font: 600 19px/26px Noto Sans;
                         letter-spacing: 0;
@@ -466,6 +483,10 @@
 
                         @include lt-lg {
                             margin: 0 15px 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
                         }
                     }
 
@@ -481,13 +502,22 @@
                             letter-spacing: 0;
                             color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                font-size: 18px;
+                                color: $mainBlue;
+                            }
                         }
 
                         label.light {
                             font: 500 18px/24px Noto Sans;
                             letter-spacing: 0;
-                            color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                font-size: 11px;
+                                color: $mainBlue;
+                            }
                         }
 
                         input {
@@ -520,22 +550,53 @@
         .action-btns {
             display: flex;
             margin-top: 42px;
+
+            .btn {
+                font-size: 14px !important;
+
+                 @include lt-md {
+                    width: 100%;
+                    min-width: 100px;
+                }
+            }
+
             .add-work {
                 margin-right: 29px;
-                a{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
 
-                    width: 247px;
+                @include lt-md {
+                    width: 45%;
+                }
+
+                &.save-btn {
+                    @include lt-md {
+                        width: 32%;
+                        min-width: 100px;
+                        margin-left: 62px;
+                    }
+                }
+
+                &.cancel-btn {
+                    @include lt-md {
+                        width: 32%;
+                        min-width: 100px;
+                        margin-right: 62px;
+                    }
+                }
+
+                a {
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+
+                    max-width: 247px;
                     height: 62px;
-                    background: #001CE2 0% 0% no-repeat padding-box;
+                    // background: #001CE2 0% 0% no-repeat padding-box;
                     border-radius: 8px;
                     opacity: 1;
 
                     font: 600 19px/26px Noto Sans;
-                    letter-spacing: 0;
-                    color: #FFFFFF;
+                    // letter-spacing: 0;
+                    // color: #FFFFFF;
 
                     img{
                         width:27px;
@@ -549,19 +610,19 @@
                 margin-right: 29px;
 
                 a{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
 
                     width: 226px;
                     height: 62px;
-                    border: 2px solid #001CE2;
+                    // border: 2px solid #001CE2;
                     border-radius: 8px;
                     opacity: 1;
 
                     font: 600 19px/26px Noto Sans;
                     letter-spacing: 0;
-                    color: #001CE2;
+                    // color: #001CE2;
 
                     img{
                         width:27px;
@@ -597,11 +658,13 @@
         }
         .work-ex-list{
             margin-top: 64px;
+
             .work-ex-item{
                 position: relative;
                 display: flex;
                 justify-content: flex-start;
-                width: 757px;
+                max-width: 757px;
+                width: 100%;
 
                 .work-icon{
                     width: 38px;

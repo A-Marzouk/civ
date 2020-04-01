@@ -254,7 +254,7 @@
         overflow-x: hidden;
 
         @include lt-md {
-            padding: 80px 36px 50px;
+            padding: 80px 80px 50px;
         }
 
         // @include lt-sm {
@@ -338,7 +338,12 @@
         overflow: hidden;
 
         @include lt-lg {
-            padding: 26px 37px;
+            padding: 26px 80px;
+            height: 90px;
+        }
+
+        @include lt-sm {
+            padding: 36px;
             height: auto;
             overflow-x: hidden;
             // box-shadow: none;
@@ -381,7 +386,7 @@
                 display: block;
             }
 
-            @include lt-md {
+            @include lt-sm {
                 height: auto;
             }
         }
