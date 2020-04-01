@@ -67,17 +67,26 @@
         <div class="content" 
             :class="{ 'hideInfoWrapper-md': false /*activeTab !== 'myAccount'*/ }"
         >
-            <div class="info-wrapper" v-if="personalInfo">
-                <div class="avatar">
-                    <img :src="personalInfo.profile_pic" alt="profile-pic">
+            <div class="info-wrapper justify-content-between" v-if="personalInfo">
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <img :src="personalInfo.profile_pic" alt="profile-pic">
+                    </div>
+                    <div class="name-title-wrapper">
+                        <div class="user-name">
+                            {{user.name}}
+                        </div>
+                        <div class="job-title" v-if="personalInfo">
+                            {{personalInfo.designation}}
+                        </div>
+                    </div>
                 </div>
-                <div class="name-title-wrapper">
-                    <div class="user-name">
-                        {{user.name}}
-                    </div>
-                    <div class="job-title" v-if="personalInfo">
-                    {{personalInfo.designation}}
-                    </div>
+
+                <div class="auto-import-btn NoDecor" v-show="$route.name !== 'view'">
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#importModal">
+                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                        Auto import
+                    </a>
                 </div>
             </div>
         </div>
@@ -119,6 +128,42 @@
         </div>
 
         <div class="progressBar" id="progressBar"></div>
+
+
+        <div class="modal importModal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="prices" aria-hidden="true" style="overflow: hidden!important;">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-body">
+                        <div class="close-btn" data-dismiss="modal">
+                            <a href="javascript:void(0)">
+                                <img src="/images/resume_builder/my_account/close-modal.png" alt="Close icon">
+                            </a>
+                        </div>
+                        <div class="importModalContent">
+                            <div class="title">
+                                Import from
+                            </div>
+
+                            <div class="importOptions">
+                                <div class="item">
+                                    <img src="/images/resume_builder/my_account/word.png" alt="Word icon">
+                                    Word
+                                </div>
+                                <div class="item">
+                                    <img class="behance" src="/images/resume_builder/my_account/behance.png" alt="Behance icon">
+                                    Behance
+                                </div>
+                                <div class="item">
+                                    <img src="/images/resume_builder/my_account/download.png" alt="Upload icon" style="transform: scaleY(-1);">
+                                    Upload PDF
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
     </div>
@@ -175,7 +220,6 @@
         mounted() {
             this.$store.dispatch('getCurrentUser');
             let pathArray = window.location.pathname.split('/')
-
             switch (pathArray[2]) {
                 // edit Tab
                 case 'edit':
@@ -632,10 +676,124 @@
         background:#1EC300;
     }
 
-    // Responsive
+// import modal styles:
+
+.importModal{
+
+    .modal-dialog{
+        display: flex;
+        justify-content: center;
+        margin-top: 15%;
+
+        .modal-content{
+            width:889px;
+            border-radius: 20px;
+
+            .modal-body{
+                width: 889px;
+                height:340px;
+
+                border:1.5px solid #001CE2;
+                border-radius:20px;
+
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+
+                padding-left:120px;
+                padding-right:120px;
+
+                .importModalContent{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+
+                    .title{
+                        margin-top:20px;
+                        margin-bottom:40px;
+                        font-weight: bold;
+                        font-size: 48px;
+                        text-align: left;
+                        color: #001ce2;
+                    }
+
+                    .importOptions{
+                        display: flex;
+                        justify-content: space-between;
+                        width: 100%;
+
+                        .item{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: flex-end;
+
+                            font-weight: normal;
+                            font-size: 22px;
+                            text-align: left;
+                            color: #001ce2;
+                            img{
+                                margin-bottom: 15px;
+                                width: 57.05px;
+                                height:54.68px;
+                            }
+                            img.behance{
+                                height:38.68px;
+                            }
+
+                            &:hover{
+                                cursor:pointer;
+                            }
+                        }
+                    }
+                }
+
+                .close-btn{
+                    position: absolute;
+                    top: 50px;
+                    left: 58px;
+                    &:hover{
+                        cursor:pointer;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+.auto-import-btn {
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 226px;
+        height: 62px;
+
+        border: 1.5px solid #001CE2;
+        border-radius: 8px;
+        opacity: 1;
+
+        font: 600 19px Noto Sans;
+        letter-spacing: 0;
+        color: #001CE2;
+
+        img {
+            width: 27px;
+            height: 27px;
+            margin-right: 14px;
+        }
+    }
+}
+
+
+// Responsive
 
     // Mobile responsive
     @include lt-sm {
 
     }
+
+
 </style>

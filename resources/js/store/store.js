@@ -301,7 +301,6 @@ export const store = new Vuex.Store({
                 store.commit('getCurrentUser', response.data);
             }).catch((error) => {
                 // if unauthorized : logout user [it means the cookie has been deleted or changed]
-                console.log('token is : ' + store.state.access_token);
                 if (error.response.status === 401) {
                     store.dispatch('logoutUnauthorizedUser');
                 }

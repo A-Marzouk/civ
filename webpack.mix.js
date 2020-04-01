@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 require('laravel-mix-svg-vue');
-
+const tailwindcss = require('tailwindcss');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -21,14 +21,18 @@ mix.webpackConfig({
 });
 
 mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css')
-   .sass('resources/sass/app-vuetify.scss', 'public/css')
-   .svgVue({
-    svgPath: 'public/icons',
-    extract: false,
-    svgoSettings: [
-        { removeTitle: true },
-        { removeViewBox: true },
-        { removeDimensions: false }
-    ]
-});
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/app-vuetify.scss', 'public/css')
+    .svgVue({
+        svgPath: 'public/icons',
+        extract: false,
+        svgoSettings: [
+            { removeTitle: true },
+            { removeViewBox: true },
+            { removeDimensions: false }
+        ],
+    })
+    .options({
+        postCss: [tailwindcss('./tailwind.config.js')],
+        processCssUrls: false
+    });
