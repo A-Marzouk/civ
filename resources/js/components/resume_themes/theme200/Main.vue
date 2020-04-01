@@ -287,7 +287,8 @@
                                     </v-tabs-items>
                                     <!-- tab 1 items -->
                                   </v-col>
-                                  <v-col md="2" sm="12">
+                                  <!-- Show on desktop -->
+                                  <v-col md="2" class="hidden-sm-and-down">
                                     <div class="hire-card-frequency2">
                                       <img
                                         width="15"
@@ -313,6 +314,29 @@
                                       <!-- tab2 -->
                                     </div>
                                   </v-col>
+                                  <!-- Show on desktop -->
+                                  <!-- Show on tablet -->
+                                  <v-col sm="12" class="hidden-md-and-up">
+                                    <img
+                                      width="15"
+                                      class="hire-me-hour-icon"
+                                      src="/images/resume_themes/theme200/icons/availibility.png"
+                                    />
+                                    <v-card flat color="transparent" align="center">
+                                      <v-tabs
+                                        v-model="tabFrequency"
+                                        centered
+                                        hide-slider
+                                        dense
+                                        background-color="transparent"
+                                      >
+                                        <v-tab class="caption text-capitalize">Monthly</v-tab>
+                                        <v-tab class="caption text-capitalize">Weekly</v-tab>
+                                        <v-tab class="caption text-capitalize">Hourly</v-tab>
+                                      </v-tabs>
+                                    </v-card>
+                                  </v-col>
+                                  <!-- Show on tablet -->
                                   <v-col align="center" md="3" sm="12">
                                     <v-tabs-items
                                       v-model="tabFrequency"
@@ -326,14 +350,24 @@
                                       </v-tab-item>
                                     </v-tabs-items>
                                   </v-col>
-                                  <v-col md="3">
-                                    <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
-                                      Hire Me
-                                      <img
-                                        class="mx-1"
-                                        src="/images/resume_themes/theme200/icons/chat2.png"
-                                      />
-                                    </v-btn>
+                                  <v-col md="3" sm="12" align="center">
+                                    <v-card flat color="transparent" align="center">
+                                      <v-btn block color="#00CDF7" height="50" class="btn-hire-me hidden-sm-and-down">
+                                        Hire Me
+                                        <img
+                                          class="mx-1"
+                                          src="/images/resume_themes/theme200/icons/chat2.png"
+                                        />
+                                      </v-btn>
+
+                                      <v-btn color="#00CDF7" height="50"  class="btn-hire-me hidden-md-and-up mt-sm-4">
+                                        Hire Me
+                                        <img
+                                          class="mx-1"
+                                          src="/images/resume_themes/theme200/icons/chat2.png"
+                                        />
+                                      </v-btn>
+                                    </v-card>
                                   </v-col>
                                 </v-row>
                               </v-card-text>
