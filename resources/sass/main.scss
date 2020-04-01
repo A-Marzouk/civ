@@ -99,12 +99,12 @@
 
 .hideOnMd {
   @include lt-md {
-    display: none;
+    display: none !important;
   }
 }
 
 .showOnMd {
-  display: none;
+  display: none !important;
 
   @include lt-md {
     display: block;
