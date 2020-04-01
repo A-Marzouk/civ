@@ -8,8 +8,8 @@
                     {{ Array.isArray(errors.location) ? errors.location[0] : errors.location}}
                 </div>
             </div>
-            <a href="javascript:void(0)" class="btn-blue" @click="updateLocation('manual')">
-                <img alt="location" src="/images/resume_builder/profile/icon-check.png" >
+            <a href="javascript:void(0)" class="btn btn-filled" @click="updateLocation('manual')">
+                <img class='icon' alt="location" src="/images/resume_builder/profile/icon-check.png" >
                 Save location
             </a>
         </div>

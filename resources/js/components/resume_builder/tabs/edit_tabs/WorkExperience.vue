@@ -5,74 +5,76 @@
             <h2>Work Experience</h2>
         </div>
         <div class="section-body">
-            <div class="work-ex-form" v-show="addNewWork">
-                <div class="work-ex-form-input">
-                    <label for="companyName">Company name</label>
-                    <input type="text" id="companyName" class="shorter" v-model="newWork.company_name">
-                    <div class="error" v-if="errors.new.company_name">
-                        {{ Array.isArray(errors.new.company_name) ? errors.new.company_name[0] : errors.new.company_name}}
-                    </div>
-                </div>
-                <div class="work-ex-form-input">
-                    <label for="jobTitle">Job title</label>
-                    <input type="text" id="jobTitle" v-model="newWork.job_title">
-                    <div class="error" v-if="errors.new.job_title">
-                        {{ Array.isArray(errors.new.job_title) ? errors.new.job_title[0] : errors.new.job_title}}
-                    </div>
-                </div>
-                <div class="work-ex-form-input">
-                    <label for="description">Description</label>
-                    <textarea type="text" id="description" v-model="newWork.description"></textarea>
-                    <div class="error" v-if="errors.new.description">
-                        {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
-                    </div>
-                </div>
-                <div class="work-ex-form-group">
-                    <div class="work-ex-form-input">
-                        <label for="website">Website (optional)</label>
-                        <input type="text" id="website" v-model="newWork.website">
-                        <div class="error" v-if="errors.new.website">
-                            {{ Array.isArray(errors.new.website) ? errors.new.website[0] : errors.new.website}}
+            <transition name='fadeCustom' mode="out-in">
+                <div class="work-ex-form" v-show="addNewWork">
+                    <div class="work-ex-form-input input-field">
+                        <label for="companyName">Company name</label>
+                        <input class='shorter' type="text" id="companyName" v-model="newWork.company_name">
+                        <div class="error" v-if="errors.new.company_name">
+                            {{ Array.isArray(errors.new.company_name) ? errors.new.company_name[0] : errors.new.company_name}}
                         </div>
                     </div>
-                    <div class="date-group">
-                        <div class="date-input">
-                            <label for="dateFrom">Date</label>
-                            <input type="date" id="dateFrom" v-model="newWork.date_from">
-                            <div class="error" v-if="errors.new.date_from">
-                                {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                    <div class="work-ex-form-input input-field">
+                        <label for="jobTitle">Job title</label>
+                        <input type="text" id="jobTitle" v-model="newWork.job_title">
+                        <div class="error" v-if="errors.new.job_title">
+                            {{ Array.isArray(errors.new.job_title) ? errors.new.job_title[0] : errors.new.job_title}}
+                        </div>
+                    </div>
+                    <div class="work-ex-form-input input-field description-field">
+                        <label for="description">Description</label>
+                        <textarea type="text" id="description" v-model="newWork.description"></textarea>
+                        <div class="error" v-if="errors.new.description">
+                            {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                        </div>
+                    </div>
+                    <div class="work-ex-form-group">
+                        <div class="work-ex-form-input input-field">
+                            <label for="website">Website (optional)</label>
+                            <input type="text" id="website" v-model="newWork.website">
+                            <div class="error" v-if="errors.new.website">
+                                {{ Array.isArray(errors.new.website) ? errors.new.website[0] : errors.new.website}}
                             </div>
                         </div>
-                        <div class="date-text">
-                            to
-                        </div>
-                        <div class="date-input">
-                            <label for="dateTo" class="light d-flex align-items-center">
-                                <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
-                            </label>
-                            <input type="date" id="dateTo" v-model="newWork.date_to" :disabled="newWork.present">
-                            <div class="error" v-if="errors.new.date_to">
-                                {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                        <div class="date-group">
+                            <div class="date-input">
+                                <label for="dateFrom">Date</label>
+                                <input type="date" id="dateFrom" v-model="newWork.date_from">
+                                <div class="error" v-if="errors.new.date_from">
+                                    {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                                </div>
+                            </div>
+                            <div class="date-text">
+                                to
+                            </div>
+                            <div class="date-input">
+                                <label for="dateTo" class="light d-flex align-items-center">
+                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
+                                </label>
+                                <input type="date" id="dateTo" v-model="newWork.date_to" :disabled="newWork.present">
+                                <div class="error" v-if="errors.new.date_to">
+                                    {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="action-btns">
-                <div class="add-work NoDecor mr-0">
-                    <a href="javascript:void(0)" v-show="addNewWork" @click="addWorkEx">
-                        <img src="/images/resume_builder/work-ex/mark.png" alt="">
+            </transition>
+            <div class="action-btns" :class='{"justify-content-between": addNewWork}'>
+                <div class="add-work NoDecor mr-0 save-btn" v-if="addNewWork">
+                    <a class="btn btn-filled" href="javascript:void(0)" @click="addWorkEx">
+                        <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="">
                         Save
                     </a>
                 </div>
-                <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)" @click="addNewWork = true" v-show="!addNewWork">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="">
+                <div class="add-new-work NoDecor" v-if="!addNewWork">
+                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = true">
+                        <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="">
                         Add new work
                     </a>
                 </div>
-                <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)" @click="addNewWork = false" v-show="addNewWork">
+                <div class="add-work NoDecor cancel-btn" v-if="addNewWork">
+                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = false">
                         Cancel
                     </a>
                 </div>
@@ -100,9 +102,19 @@
                             <div class="work-ex-detials">
                                 {{work.description}}
                             </div>
+                            <div class="optionsBtns showOnMd">
+                                <a href="">
+                                    <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
+                                </a>
+
+                                <a href="">
+                                    <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="options">
+
+                    <div class="options hideOnMd">
                         <div class="options-btn NoDecor"
                              @click="optionWorkId === work.id ? optionWorkId=0 : optionWorkId=work.id">
                             <a href="javascript:void(0)" :class="{'opened':optionWorkId === work.id}">
@@ -125,21 +137,21 @@
                     </div>
                     <div class="work-ex-form flex-column" v-show="work.id === editedWork.id">
                         <div class="d-flex flex-row flex-wrap justify-content-between">
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="companyName">Company name</label>
-                                <input type="text" class="shorter" v-model="editedWork.company_name">
+                                <input type="text" v-model="editedWork.company_name">
                                 <div class="error" v-if="errors.edit.company_name">
                                     {{ Array.isArray(errors.edit.company_name) ? errors.edit.company_name[0] : errors.edit.company_name}}
                                 </div>
                             </div>
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="jobTitle">Job title</label>
                                 <input type="text" v-model="editedWork.job_title">
                                 <div class="error" v-if="errors.edit.job_title">
                                     {{ Array.isArray(errors.edit.job_title) ? errors.edit.job_title[0] : errors.edit.job_title}}
                                 </div>
                             </div>
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="description">Description</label>
                                 <textarea type="text"  v-model="editedWork.description"></textarea>
                                 <div class="error" v-if="errors.edit.description">
@@ -147,7 +159,7 @@
                                 </div>
                             </div>
                             <div class="work-ex-form-group">
-                                <div class="work-ex-form-input">
+                                <div class="work-ex-form-input input-field">
                                     <label for="website">Website (optional)</label>
                                     <input type="text"  v-model="editedWork.website">
                                     <div class="error" v-if="errors.edit.website">
@@ -329,39 +341,89 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../sass/media-queries';
+    $mainBlue: #001CE2;
+
     .section-body {
         margin-top: 20px;
 
         .work-ex-form {
             display: flex;
             flex-wrap: wrap;
-            width: 1302px;
+            max-width: 1302px;
+            width: 100%;
             justify-content: space-between;
 
-            .work-ex-form-input {
+            @include lt-md {
+                padding: 0 62px;
+            }
+
+            @include lt-sm {
+                padding: 0;
+            }
+
+            .work-ex-form-input.input-field {
                 display: flex;
                 flex-direction: column;
                 margin-top: 42px;
+                width: 49%;
+                min-width: 524px;
+
+                @include lt-lg {
+                    width: 48%;
+                    max-width: 637px;
+                    min-width: auto;
+                }
+
+                @include lt-md {
+                    margin-top: 5px;
+                    width: 100%;
+                }
+
+                &.description-field {
+                    margin-bottom: 0;
+
+                    @include lt-lg {
+                        max-width: 100% !important;
+                        margin-bottom: 25px;
+                        width: 100%;
+                    }
+                }
 
                 label {
                     text-align: left;
                     font: 600 22px/30px Noto Sans;
                     letter-spacing: 0;
-                    color: #505050;
                     opacity: 1;
-                }
 
-                input.shorter {
-                    width: 571px;
+                    @include lt-md {
+                        font-size: 18px;
+                    }
+
+                    @include lt-sm {
+                        font-size: 15px;
+                    }
                 }
 
                 input {
-                    width: 637px;
                     height: 76px;
-                    border: 2px solid #505050;
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
+
+                    &.shorter {
+                        max-width: 571px;
+                        width: 90%;
+
+                        @include lt-lg {
+                            width: 100%;
+                            max-width: 100%;
+                        }
+                    }
+
+                    @include lt-md {
+                        height: 47px;
+                    }
                 }
 
                 input:focus {
@@ -369,13 +431,22 @@
                 }
 
                 textarea {
-                    width: 617px;
+                    max-width: 637px;
+                    width: 100%;
                     height: 201px;
-                    border: 2px solid #505050;
+                    // border: 2px solid #505050;
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
                     padding-top: 18px;
+
+                    @include lt-lg {
+                        max-width: 100% !important;
+                    }
+
+                    @include lt-md {
+                        height: 131px;
+                    }
                 }
 
                 textarea:focus{
@@ -387,23 +458,78 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
+                width: 48%;
+                max-width: 637px;
+                min-width: 524px;
+
+                @include lt-lg {
+                    width: 100%;
+                    max-width: 100%;
+                    min-width: auto;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                }
+
+                .input-field {
+                    width: 100%;
+
+                    @include lt-lg {
+                        width: 48%;
+                        margin-bottom: 0 !important;
+                    }
+
+                    @include lt-lg {
+                        width: 100%;
+                        margin-bottom: 25px !important;
+                    }
+                }
 
                 .date-group {
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;
+                    min-width: 637px;
+                    width: 100%;
+
+                    @include lt-lg {
+                        width: 49%;
+                        min-width: 200px;
+                    }
+
+                    @include lt-md {
+                        width: 100%;
+                    }
 
                     .date-text {
                         font: 600 19px/26px Noto Sans;
                         letter-spacing: 0;
                         color: #001CE2;
                         opacity: 1;
-                        margin-bottom: 18px;
+                        margin: 0 33px 18px;
+
+                        @include lt-lg {
+                            margin: 0 15px 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
+                        }
+
+                        @include lt-sm {
+                            font-size: 12px;
+                            margin: 0 6px 10px;
+                        }
                     }
 
                     .date-input {
                         display: flex;
                         flex-direction: column;
+                        max-width: 275px;
+                        width: calc(50% - 44px);
+
+                        @include lt-sm {
+                            width: 50%;
+                        }
 
                         label {
                             text-align: left;
@@ -411,22 +537,45 @@
                             letter-spacing: 0;
                             color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                font-size: 18px;
+                                color: $mainBlue;
+                            }
+
+                            @include lt-sm {
+                                font-size: 15px;
+                            }
                         }
 
                         label.light {
                             font: 500 18px/24px Noto Sans;
                             letter-spacing: 0;
-                            color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                font-size: 11px;
+                                color: $mainBlue;
+                            }
                         }
 
                         input {
-                            width: 275px;
+                            width: 100%;
                             height: 62px;
                             border: 2px solid #505050;
                             border-radius: 8px;
                             opacity: 1;
                             padding-left: 18px;
+
+                            @include lt-lg {
+                                height: 76px;
+                                border-width: 0;
+                                background: #F5F5F5;
+                            }
+
+                            @include lt-md {
+                                height: 47px;
+                            }
                         }
 
                         input:focus{
@@ -446,22 +595,63 @@
         .action-btns {
             display: flex;
             margin-top: 42px;
+
+            .btn {
+                font-size: 14px !important;
+
+                 @include lt-md {
+                    width: 100%;
+                    min-width: 100px;
+                }
+            }
+
             .add-work {
                 margin-right: 29px;
-                a{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
 
-                    width: 247px;
+                @include lt-md {
+                    width: 45%;
+                }
+
+                &.save-btn {
+                    @include lt-md {
+                        width: 32%;
+                        min-width: 100px;
+                        margin-left: 62px;
+                    }
+                    
+                    @include lt-sm {
+                        width: 49%;
+                        margin-left: 0;
+                    }
+                }
+
+                &.cancel-btn {
+                    @include lt-md {
+                        width: 32%;
+                        min-width: 100px;
+                        margin-right: 62px;
+                    }
+
+                    @include lt-sm {
+                        width: 30%;
+                        margin-right: 0;
+                    }
+                }
+
+                a {
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+
+                    max-width: 247px;
                     height: 62px;
-                    background: #001CE2 0% 0% no-repeat padding-box;
+                    // background: #001CE2 0% 0% no-repeat padding-box;
                     border-radius: 8px;
                     opacity: 1;
 
                     font: 600 19px/26px Noto Sans;
-                    letter-spacing: 0;
-                    color: #FFFFFF;
+                    // letter-spacing: 0;
+                    // color: #FFFFFF;
 
                     img{
                         width:27px;
@@ -475,19 +665,19 @@
                 margin-right: 29px;
 
                 a{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
 
                     width: 226px;
                     height: 62px;
-                    border: 2px solid #001CE2;
+                    // border: 2px solid #001CE2;
                     border-radius: 8px;
                     opacity: 1;
 
                     font: 600 19px/26px Noto Sans;
                     letter-spacing: 0;
-                    color: #001CE2;
+                    // color: #001CE2;
 
                     img{
                         width:27px;
@@ -523,25 +713,63 @@
         }
         .work-ex-list{
             margin-top: 64px;
+
             .work-ex-item{
                 position: relative;
                 display: flex;
                 justify-content: flex-start;
-                width: 757px;
+                max-width: 757px;
+                width: 100%;
+                margin-bottom: 30px;
 
                 .work-icon{
                     width: 38px;
                     height: 27px;
-                    margin-right: 33px;
+
+                    @include lt-md {
+                        width: 34px;
+                        height: 30px;
+                        
+                        img {
+                            margin-right: 18px;
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 28px;
+                        height: 25px;
+                        
+                        img {
+                            margin-right: 12px;
+                        }
+                    }
                 }
 
                 .work-ex-info{
+                    margin-left: 33px;
+
+                    @include lt-md {
+                        margin-left: 18px;
+                    }
+
+                    @include lt-sm {
+                        margin-right: 12px;
+                    }
+
                     .work-ex-title{
                         font: 700 30px/41px Noto Sans;
                         letter-spacing: 0;
                         color: #3C3748;
                         margin-bottom: 12px;
                         opacity: 1;
+
+                        @include lt-md {
+                            font-size: 24px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
+                        }
                     }
                     .work-ex-sub-title{
                         font: 700 19px Noto Sans;
@@ -549,12 +777,54 @@
                         color: #3C3748;
                         opacity: 1;
                         margin-bottom: 16px;
+
+                        @include lt-md {
+                            font-size: 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 14px;
+                        }
                     }
                     .work-ex-detials{
                         font: 500 16px Noto Sans;
                         letter-spacing: 0;
                         color: #555060;
                         opacity: 1;
+
+                        @include lt-md {
+                            font-size: 12px;
+                        }
+
+                        @include lt-md {
+                            font-size: 11px;
+                        }
+                    }
+                }
+
+                .optionsBtns {
+                    width: 100%;
+                    background: #F9F9F9;
+                    box-shadow: 0 9px 12px rgba(0,0,0,.03);
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px 37px;
+                    border-radius: 2px;
+                    margin-top: 1rem;
+
+                    a {
+                        height: 24px;
+                        display: block;
+
+                        .icon {
+                            height: 100%;
+                            color: $mainBlue;
+                            fill: $mainBlue;
+
+                            path {
+                                fill: $mainBlue;
+                            }
+                        }
                     }
                 }
 

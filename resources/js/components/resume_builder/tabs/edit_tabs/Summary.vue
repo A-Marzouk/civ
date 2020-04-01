@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style='width: 100%'>
         <div class="section-title">
             <div class="title-light">Edit</div>
             <h2>Summary</h2>
@@ -17,7 +17,7 @@
                 <div class="about-section" v-show="activeTab === 'Objective'">
                     <div class="about-input">
                         <label for="objective" class="d-flex justify-content-between">
-                            <span class="label-text">Objective</span>
+                            <span class="label-text">Add Objective</span>
                         </label>
                         <textarea name="about" id="objective" v-model="summary.objective" @blur="updateSummary('auto')">></textarea>
                         <div class="error" v-if="errors.objective">
@@ -25,12 +25,10 @@
                         </div>
                     </div>
                     <div class="action-btns">
-                        <div class="auto-import-btn short NoDecor">
-                            <a href="javascript:void(0)" @click="updateSummary('manual')">
-                                <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                                Save
-                            </a>
-                        </div>
+                        <a class='btn btn-outfilled short btn-filled-md btn-fullWidth--md' href="javascript:void(0)" @click="updateSummary('manual')">
+                            <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
+                            Save
+                        </a>
                         <!--<div class="auto-import-btn NoDecor">-->
                         <!--<a href="javascript:void(0)">-->
                         <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
@@ -42,7 +40,7 @@
                 <div class="about-section"  v-show="activeTab === 'Overview'">
                     <div class="about-input">
                         <label for="overview" class="d-flex justify-content-between">
-                            <span class="label-text">Overview</span>
+                            <span class="label-text">Add Overview</span>
                         </label>
                         <textarea name="about" id="overview" v-model="summary.overview" @blur="updateSummary('auto')"></textarea>
                         <div class="error" v-if="errors.overview">
@@ -50,12 +48,10 @@
                         </div>
                     </div>
                     <div class="action-btns">
-                        <div class="auto-import-btn short NoDecor">
-                            <a href="javascript:void(0)"  @click="updateSummary('manual')">
-                                <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                                Save
-                            </a>
-                        </div>
+                        <a class='btn btn-outfilled short btn-filled-md btn-fullWidth--md' href="javascript:void(0)"  @click="updateSummary('manual')">
+                            <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
+                            Save
+                        </a>
                         <!--<div class="auto-import-btn NoDecor">-->
                         <!--<a href="javascript:void(0)">-->
                         <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
@@ -119,13 +115,23 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../sass/media-queries';
+
+    $mainBlue: #001CE2;
 
     .section-body-wrapper {
-        width: 1337px;
+        max-width: 1337px;
+        width: 100%;
 
         .achievements-bar{
             justify-content: flex-start;
-            width:fit-content;
+            width: fit-content;
+
+            @include lt-md {
+                width: 100%;
+                justify-content: space-between;
+            }
+
             .bar-item{
                 padding-right:30px;
             }
@@ -133,13 +139,16 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 
         .about-section {
             margin-top: 47px;
+            width: 100%;
 
             .about-input {
                 display: flex;
                 flex-direction: column;
-                width: fit-content;
+                width: 100%;
+
                 textarea {
-                    width: 815px;
+                    max-width: 815px;
+                    width: 100%;
                     height: 274px;
                     border: 1.5px solid #9F9E9E;
                     border-radius: 10px;
@@ -150,10 +159,15 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 
                 textarea:focus {
                     outline: none;
+
+                    @include lt-md {
+                        border-color: $mainBlue;
+                    }
                 }
 
                 label {
                     margin-bottom:17px;
+
                     .label-text {
                         text-align: left;
                         font: 600 20px Noto Sans;
@@ -161,6 +175,11 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         opacity: 1;
                         font-size: 20px;
                         color: #9f9e9e;
+
+                        @include lt-md {
+                            font-size: 14px;
+                            color: $mainBlue;
+                        }
                     }
 
                     .note-text {
@@ -184,13 +203,13 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     width: 226px;
                     height: 62px;
 
-                    border: 1.5px solid #001CE2;
+                    border: 1.5px solid $mainBlue;
                     border-radius: 8px;
                     opacity: 1;
 
                     font: 600 19px Noto Sans;
                     letter-spacing: 0;
-                    color: #001CE2;
+                    color: $mainBlue;
 
                     img {
                         width: 27px;
@@ -200,12 +219,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 }
             }
 
-            .auto-import-btn.short {
+            .short {
                 margin-right: 38px;
-
-                a {
-                    width: 144px;
-                }
             }
         }
     }

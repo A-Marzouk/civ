@@ -105,7 +105,6 @@
         methods:{
             submitForm() {
                 if (!this.canSubmit) {
-                    console.log('Please wait...');
                     return;
                 }
                 this.canSubmit = false;

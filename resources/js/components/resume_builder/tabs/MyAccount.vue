@@ -7,7 +7,7 @@
                         My account
                     </div>
                     <div class="mar-form">
-                        <div class="mar-input" :class="{active:fields.name, 'error':errors.name}">
+                        <div class="input-field" :class="{active:fields.name, 'error':errors.name}">
                             <div class="d-flex align-items-center" style="position: relative;">
                                 <input type="text" v-model="accountData.name" id="name"
                                        @focus="focusFiledStyles('name')" @blur="validateFiled('name')">
@@ -20,13 +20,13 @@
                                 Name
                             </label>
                         </div>
-                        <div class="mar-input" :class="{'active': fields.email , 'error': errors.email}">
+                        <div class="input-field" :class="{'active': fields.email , 'error': errors.email}">
                             <input type="email" v-model="accountData.email" id="email" :disabled="canEditEmail()">
                             <label for="email">
                                 Email
                             </label>
                         </div>
-                        <div class="mar-input" :class="{'active': fields.password , 'error': errors.password}">
+                        <div class="input-field" :class="{'active': fields.password , 'error': errors.password}">
                             <div class="d-flex align-items-center" style="position: relative;">
                                 <input type="password" v-model="accountData.password" placeholder="*********"
                                        id="password" @focus="focusFiledStyles('password')"
@@ -40,7 +40,7 @@
                                 Password
                             </label>
                         </div>
-                        <div class="mar-input" :class="{'active': fields.password , 'error': errors.password}">
+                        <div class="input-field" :class="{'active': fields.password , 'error': errors.password}">
                             <div class="d-flex align-items-center" style="position: relative;">
                                 <input type="password" v-model="accountData.password_confirmation"
                                        placeholder="*********" @focus="focusFiledStyles('password_confirmation')"
@@ -72,7 +72,7 @@
 
                             </div>
                         </div>
-                        <div class="mar-input" :class="{'active': fields.username , 'error': errors.username}">
+                        <div class="input-field" :class="{'active': fields.username , 'error': errors.username}">
                             <div class="d-flex align-items-center" style="position: relative;">
                                 <input type="text" v-model="accountData.username" id="username"
                                        @focus="focusFiledStyles('username')" @blur="validateFiled('username')">
@@ -86,18 +86,18 @@
                         </div>
                     </div>
 
-                    <div class="actions-row">
+                    <div class="actions-row d-flex">
                         <img src="/images/resume_builder/my_account/edit-solid.svg" alt="edit">
                         <img src="/images/resume_builder/my_account/copy.svg" alt="edit" @click="copyCivLink">
                         <img src="/images/resume_builder/my_account/share-square-solid.svg" alt="edit">
                     </div>
 
                     <div class="action-btns NoDecor">
-                        <a class="save-btn" href="javascript:void(0)" @click="submitForm">
-                            <img src="/images/resume_builder/my_account/check-solid.svg" alt="edit">
+                        <a class="btn btn-filled" href="javascript:void(0)" @click="submitForm">
+                            <img class='icon' src="/images/resume_builder/my_account/check-solid.svg" alt="edit">
                             Save changes
                         </a>
-                        <a href="javascript:void(0)" class="purchase-btn" data-toggle="modal" data-target="#prices" v-show="subscription==='on'">
+                        <a href="javascript:void(0)" class="btn btn-outline purchase-btn" data-toggle="modal" data-target="#prices" v-show="subscription==='on'">
                             Purchase subscription
                         </a>
                     </div>
@@ -340,7 +340,10 @@
 </script>
 
 <style lang="scss">
-   $text-color: #4374de;
+
+    @import '../../../../sass/media-queries';
+
+    $text-color: #4374de;
     $primary: #1f5de4;
     $bg-color: white;
     $input-bg: #f1f8fc;
@@ -386,21 +389,33 @@
             align-items: center;
 
             .content-wrapper {
+                
+                width: 100%;
+                max-width: 616px;
+
                 .form-title {
                     margin-bottom: 44px;
                     font: 500 51px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
                     opacity: 1;
+
+                    @include lt-md {
+                        font-size: 37px;
+                    }
                 }
 
                 .form-title.sub {
                     font: 500 30px Noto Sans;
                     margin-bottom: 27px;
+
+                    @include lt-md {
+                        font-size: 15px;
+                    }
                 }
 
                 .mar-form {
-                    .mar-input {
+                    .input-field {
                         display: flex;
                         flex-direction: column-reverse;
                         margin-bottom: 25px;
@@ -412,6 +427,10 @@
                             letter-spacing: 0;
                             color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                font-size: 15px;
+                            }
                         }
 
                         label.labelFocused {
@@ -419,13 +438,6 @@
                         }
 
                         input {
-                            width: 616px;
-                            height: 73px;
-                            background: #FFFFFF 0% 0% no-repeat padding-box;
-                            border: 1.5px solid #505050;
-                            color: #505050;
-                            border-radius: 8px;
-                            padding-left: 17px;
                             opacity: 1;
                         }
 
@@ -443,7 +455,7 @@
                         }
                     }
 
-                    .mar-input.active {
+                    .input-field.active {
                         label {
                             color: #1EC300;
                             font: 600 17px/23px Noto Sans;
@@ -455,7 +467,7 @@
                         }
                     }
 
-                    .mar-input.error {
+                    .input-field.error {
                         label {
                             color: #E20000;
                             font: 600 17px/23px Noto Sans;
@@ -566,17 +578,34 @@
 
                 .actions-row {
                     margin-bottom: 25px;
+                    background: #F6F6F6;
+                    border-radius: 8px;
+                    padding: 10px 25px;
+                    max-width: 218px;
+                    display: flex;
+                    justify-content: space-between;
+                    // box-shadow: rgba(0,0,0,.16);
+
+                    @include lt-md {
+                        max-width: 100%;
+                        // margin-top: 1rem;
+                    }
 
                     img {
                         width: 35px;
                         height: 35px;
-                        margin-right: 32px;
+                        margin-right: 20px;
+
+                        &:last-child {
+                            margin: 0;
+                        }
                     }
                 }
 
                 .action-btns {
                     display: flex;
                     justify-content: space-between;
+                    width: 100%;
 
                     .save-btn {
                         width: 240px;
@@ -602,20 +631,16 @@
                     }
 
                     .purchase-btn {
-                        width: 230px;
-                        height: 66px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
-
-                        background: #FFFFFF 0% 0% no-repeat padding-box;
-                        border: 1px solid #001CE2;
-                        border-radius: 12px;
                         opacity: 1;
+                        height: 71px;
 
                         font: bold 16px Noto Sans;
                         letter-spacing: 0;
                         color: #001CE2;
+                        padding: 0 !important;
 
                     }
                 }
@@ -957,7 +982,7 @@
             overflow: visible;
 
             @for $i from 1 through 6 {
-                .mar-input {
+                .input-field {
                     &:nth-child(#{ $i }) {
                         animation-name: moveInput#{$i};
                         animation-duration: .6s;

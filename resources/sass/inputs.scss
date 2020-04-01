@@ -9,6 +9,10 @@
         color: #505050;
         font-family: "Noto Sans";
         font-weight: 700;
+        
+        @include lt-md {
+            color: $mainBlue;
+        }
 
         .hint-message {
             font-size: 18px;
@@ -21,18 +25,19 @@
                 margin-bottom: 16px;
             }
 
-            @include lt-md {
+            @include lt-sm {
                 font-size: 9px;
             }
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 13px;
         }
     }
     input, select {
         min-height: 73px;
-        max-width: 616px;
+        max-width: 637px;
+        width: 100%;
         border: 1.5px solid #505050;
         border-radius: 8px;
         padding: 0px 0px 0px 16.8px;
@@ -46,12 +51,17 @@
             border-color: $mainBlue;
         }
 
-        @include lt-md {
+        &:focus {
+            border-color: $mainBlue;
+        }
+
+        @include lt-sm {
             font-size: 13px;
             min-height: 38px;
             border-radius: 6px;
             border-width: 0.5px;
         }
+
     }
     textarea {
         min-height: 181px;
@@ -71,7 +81,7 @@
             border-color: $mainBlue;
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 13px;
             min-height: 83px;
             border-radius: 6px;

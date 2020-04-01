@@ -104,7 +104,7 @@
                 this.scrollHandler(e.target.parentNode);
 
                 $([document.documentElement, document.body]).animate({
-                    scrollTop: 130
+                    scrollTop: 100
                 }, 600);
 
             },
@@ -165,7 +165,7 @@ $disabledColor: #9f9e9e;
     // Check it
     overflow-y: auto;
 
-    @include lt-md {
+    @include lt-lg {
         display: none !important;
     }
 
