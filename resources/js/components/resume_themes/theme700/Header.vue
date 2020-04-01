@@ -1,14 +1,14 @@
 <template>
   <header class="w-full">
-    <div class="inner p-0">
-      <div class="top items-stretch">
-        <div class="left flex justify-end">
-          <img class="rounded-full max-w-xs" v-bind:src="logo" />
+    <div class="inner p-0 w-full my-0 xl:mx-auto sm:m-0 xl:max-w-tm700-xl-2 md:max-w-screen-md sm:max-w-screen-sm">
+      <div class="top flex items-stretch">
+        <div class="left py-12 flex justify-end bg-tm700-1 relative flex-tm700-1">
+          <img class="rounded-full max-w-xs absolute border-14 border-white left-94px top-24px pl-24px mt-" v-bind:src="logo" />
         </div>
-        <div class="right col-span-2 flex flex-col items-stretch">
-          <h1 class="font-bold not-italic text-tm39-1 text-4xl leading-10">Carla Pipin Ranga</h1>
+        <div class="right py-12 col-span-2 flex flex-col items-stretch flex-tm700-2">
+          <h1 class="font-bold not-italic text-tm700-1 text-4xl leading-10">Carla Pipin Ranga</h1>
           <p
-            class="font-bold not-italic text-tm39-4 leading-10 font-medium leading-4"
+            class="font-bold not-italic text-tm700-4 leading-10 font-medium leading-4"
           >Web Ui/Ux Designer, Graphiс Designer</p>
           <div class="media flex items-center">
             <a href="#">
@@ -63,7 +63,7 @@
             </a>
           </div>
         </div>
-        <div class="icons">
+        <div class="icons py-12 flex-tm700-4">
           <div class="flex items-center">
             <a href="#">
               <svg
@@ -183,8 +183,8 @@
             </a>
           </div>
         </div>
-        <div class="hire">
-          <div class="flex items-center">
+        <div class="hire py-12 flex-tm700-3">
+          <div class="flex items-center justify-between">
             <div class="hourly--rate flex flex-row">
               <div class="flex flex-col">
                 <span>Hourly Rate</span>
@@ -209,7 +209,7 @@ export default {
   components: {},
   data() {
     return {
-      logo: "/images/resume_themes/theme39/header-icon.png"
+      logo: "/images/resume_themes/theme700/header-icon.png"
     };
   },
 
@@ -218,26 +218,11 @@ export default {
 </script>
 
 <style lang="scss">
-div#wrapper_theme39 {
+div#wrapper_theme700 {
   header {
     div.top {
-      @apply flex;
-      > * {
-        @apply py-12;
-      }
-      div.left {
-        background-color: #513ecd;
-        flex: 0.53;
-        position: relative;
-        img {
-          position: absolute;
-          left: 94px;
-          border: 14px solid #fff;
-          top: 24px;
-        }
-      }
+
       div.right {
-        flex: 1.2;
         padding-left: 100px;
         h1 {
         }
@@ -247,7 +232,7 @@ div#wrapper_theme39 {
         div.media {
           a {
             margin-right: 25px;
-            @apply rounded-full bg-tm39-2;
+            @apply rounded-full bg-tm700-2;
           }
           a:nth-child(1) {
             padding: 13px;
@@ -264,7 +249,7 @@ div#wrapper_theme39 {
         flex: 1.7;
         a {
           margin-right: 25px;
-          @apply rounded-full bg-tm39-2;
+          @apply rounded-full bg-tm700-2;
         }
         a:nth-child(1) {
           padding: 9px;
@@ -291,12 +276,12 @@ div#wrapper_theme39 {
         .hourly--rate {
           align-items: center;
           span:first-child {
-            @apply text-tm39-5 not-italic;
+            @apply text-tm700-5 not-italic;
             font-size: 18px;
             line-height: 22px;
           }
           span:nth-child(2) {
-            @apply text-tm39-1 font-bold;
+            @apply text-tm700-1 font-bold;
             font-size: 24px;
             line-height: 29px;
           }
@@ -310,18 +295,18 @@ div#wrapper_theme39 {
         .available--for {
           align-items: center;
           span:first-child {
-            @apply text-tm39-5 not-italic;
+            @apply text-tm700-5 not-italic;
             font-size: 18px;
             line-height: 22px;
           }
           span:nth-child(2) {
-            @apply text-tm39-1 font-bold;
+            @apply text-tm700-1 font-bold;
             font-size: 24px;
             line-height: 29px;
           }
         }
         button {
-          @apply bg-tm39-1 text-white font-bold;
+          @apply bg-tm700-1 text-white font-bold;
           border-radius: 50px;
           font-size: 18px;
           line-height: 22px;
