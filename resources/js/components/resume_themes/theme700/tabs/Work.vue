@@ -1,20 +1,20 @@
 <template>
-  <div class="tm39-work" v-if="currentTab === 2">
-    <div class="tm39-work--inner grid grid-cols-2">
-      <div v-for="({id}) in works" v-bind:key="id" class="tm39-works flex flex-row items-start">
+  <div class="tm700-work" v-if="currentTab === 2">
+    <div class="tm700-work--inner grid grid-cols-2">
+      <div v-for="({id}) in works" v-bind:key="id" class="tm700-works flex flex-row items-start">
         <span
-          class="tm39-works--span rounded-full p-2 text-white flex items-center bg-tm39-1"
+          class="tm700-works--span rounded-full p-2 text-white flex items-center bg-tm700-1"
         >{{id}}.</span>
         <div class="flex flex-col justify-between">
-          <div class="tm39-works--info">
+          <div class="tm700-works--info">
             <h3
-              class="tm39-works--title not-italic text-2xl text-tmbg-tm39-1 font-normal"
+              class="tm700-works--title not-italic text-2xl text-tmbg-tm700-1 font-normal"
             >Google Inc. Introduction Google</h3>
             <span
-              class="tm39-works--slogan text-black capitalize not-italic font-normal"
+              class="tm700-works--slogan text-black capitalize not-italic font-normal"
             >User interface designer</span>
           </div>
-          <span class="tm39-works--when">2012- Current</span>
+          <span class="tm700-works--when">2012- Current</span>
         </div>
       </div>
     </div>
@@ -33,17 +33,17 @@ export default {
 </script>
 
 <style lang="scss">
-.tm39-work {
+.tm700-work {
   margin-top: 189px;
-  .tm39-work--inner {
+  .tm700-work--inner {
     width: 100%;
     max-width: 87.25rem;
     margin: 0 auto;
     grid-row-gap: 174px;
   }
-  .tm39-works {
+  .tm700-works {
     font-family: "Gotham Pro", "Montserrat";
-    span.tm39-works--span {
+    span.tm700-works--span {
       margin-right: 19px;
       min-width: 44px;
       height: 44px;
@@ -51,17 +51,17 @@ export default {
       font-size: 18px;
       flex: 0;
     }
-    .tm39-works--info {
+    .tm700-works--info {
       margin-bottom: 35px;
-      .tm39-works--title {
+      .tm700-works--title {
         line-height: 23px;
       }
-      .tm39-works--slogan {
+      .tm700-works--slogan {
         font-size: 12px;
         line-height: 11px;
       }
     }
-    span.tm39-works--when {
+    span.tm700-works--when {
       font-size: 12px;
       line-height: 11px;
     }

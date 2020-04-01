@@ -215,14 +215,14 @@ if ($("#resumeTheme301").length !== 0) {
 
 }
 
-import resumeTheme39 from './components/resume_themes/theme39/index';
-if ($("#resumeTheme39").length !== 0) {
+import resumeTheme700 from './components/resume_themes/theme700/index';
+if ($("#resumeTheme700").length !== 0) {
     new Vue({
-        el: '#resumeTheme39',
+        el: '#resumeTheme700',
         vuetify,
         iconfont: 'mdi',
         components: {
-            'resume-theme-39': resumeTheme39
+            'resume-theme-700': resumeTheme700
         }
     });
 }

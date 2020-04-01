@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper_theme39">
+  <div id="wrapper_theme700">
     <Header></Header>
     <Main></Main>
   </div>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-#wrapper_theme39 {
+#wrapper_theme700 {
   background: linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%);
   width: 100%;
   max-width: 120rem;
