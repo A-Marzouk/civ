@@ -1,11 +1,11 @@
 <template>
   <header class="w-full">
-    <div class="inner p-0">
-      <div class="top items-stretch">
-        <div class="left flex justify-end">
-          <img class="rounded-full max-w-xs" v-bind:src="logo" />
+    <div class="inner p-0 w-full my-0 xl:mx-auto sm:m-0 xl:max-w-tm700-xl-2 md:max-w-screen-md sm:max-w-screen-sm">
+      <div class="top flex items-stretch">
+        <div class="left py-12 flex justify-end bg-tm700-1 relative flex-tm700-1">
+          <img class="rounded-full max-w-xs absolute border-14 border-white left-94px top-24px pl-24px mt-" v-bind:src="logo" />
         </div>
-        <div class="right col-span-2 flex flex-col items-stretch">
+        <div class="right py-12 col-span-2 flex flex-col items-stretch flex-tm700-2">
           <h1 class="font-bold not-italic text-tm700-1 text-4xl leading-10">Carla Pipin Ranga</h1>
           <p
             class="font-bold not-italic text-tm700-4 leading-10 font-medium leading-4"
@@ -63,7 +63,7 @@
             </a>
           </div>
         </div>
-        <div class="icons">
+        <div class="icons py-12 flex-tm700-4">
           <div class="flex items-center">
             <a href="#">
               <svg
@@ -183,8 +183,8 @@
             </a>
           </div>
         </div>
-        <div class="hire">
-          <div class="flex items-center">
+        <div class="hire py-12 flex-tm700-3">
+          <div class="flex items-center justify-between">
             <div class="hourly--rate flex flex-row">
               <div class="flex flex-col">
                 <span>Hourly Rate</span>
@@ -221,23 +221,8 @@ export default {
 div#wrapper_theme700 {
   header {
     div.top {
-      @apply flex;
-      > * {
-        @apply py-12;
-      }
-      div.left {
-        background-color: #513ecd;
-        flex: 0.53;
-        position: relative;
-        img {
-          position: absolute;
-          left: 94px;
-          border: 14px solid #fff;
-          top: 24px;
-        }
-      }
+
       div.right {
-        flex: 1.2;
         padding-left: 100px;
         h1 {
         }

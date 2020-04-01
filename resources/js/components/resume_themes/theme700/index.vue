@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper_theme700">
+  <div id="wrapper_theme700" class="w-full font-montserrat my-0 mx-auto max-w-tm700-xl-1 bg-tm700-7">
     <Header></Header>
     <Main></Main>
   </div>
@@ -19,16 +19,5 @@ export default {
 </script>
 
 <style lang="scss">
-#wrapper_theme700 {
-  background: linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%);
-  width: 100%;
-  max-width: 120rem;
-  margin: 0 auto;
-  font-family: Montserrat;
-  .inner {
-    width: 100%;
-    max-width: 106.5625rem;
-    margin: 0 auto;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 </style>
