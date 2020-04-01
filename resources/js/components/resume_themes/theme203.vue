@@ -22,8 +22,14 @@
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
                             Carla Pipin Ranga
-                            <span class="ml-7">
-                              <v-btn fab color="#FCD259" small depressed class="mx-auto btn-email">
+                            <span class="ml-2">
+                              <v-btn
+                                fab
+                                color="#FCD259"
+                                small
+                                depressed
+                                class="mx-md-1 mx-sm-2 btn-email"
+                              >
                                 <v-icon class="icon-email">mdi-email</v-icon>
                               </v-btn>
 
@@ -32,7 +38,7 @@
                                 color="#FCD259"
                                 x-small
                                 depressed
-                                class="mx-auto btn-video-player"
+                                class="mx-md-0 mx-sm-2 btn-video-player"
                               >
                                 <img
                                   width="14"
@@ -45,7 +51,7 @@
                                 color="#FCD259"
                                 x-small
                                 depressed
-                                class="btn-headphone mx-auto"
+                                class="btn-headphone mx-auto mx-sm-2"
                               >
                                 <img
                                   width="14"
@@ -68,13 +74,21 @@
                 <v-col md="3" sm="6" cols="12" class="mt-n3 pa-0" align="center">
                   <v-card flat color="tranparent">
                     <v-card-text class>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
+                      <v-btn
+                        fab
+                        color="#FCD259"
+                        small
+                        class="mx-md-1 mx-sm-2 social-btn"
+                        depressed
+                        v-for="item in socialIcons"
+                        :key="item.id"
+                      >
                         <img
                           width="14"
-                          src="/images/resume_themes/theme203/social_icons/behance.webp"
+                          :src="getSocialIcon(item.title)"
                         />
                       </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
+                      <!-- <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
                         <img
                           width="14"
                           src="/images/resume_themes/theme203/social_icons/dribbble.webp"
@@ -97,7 +111,7 @@
                           width="14"
                           src="/images/resume_themes/theme203/social_icons/google-plus.webp"
                         />
-                      </v-btn>
+                      </v-btn>-->
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -383,6 +397,13 @@ export default {
   name: "ResumeTheme40",
   data() {
     return {
+      socialIcons: [
+        { id: 1, title: "behance" },
+        { id: 2, title: "dribbble" },
+        { id: 3, title: "instagram" },
+        { id: 4, title: "linkedin" },
+        { id: 5, title: "google-plus" }
+      ],
       mainDataTab: null,
       progressBarColor: "yellow",
       mainTabs: [
@@ -448,6 +469,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    getSocialIcon(name) {
+      return `/images/resume_themes/theme203/social_icons/${name}.webp`;
+    }
   }
 };
 </script>
@@ -641,7 +667,7 @@ export default {
 // Watermark text
 .watermark-text {
   position: absolute;
-  margin-top:-70px;
+  margin-top: -70px;
   font-size: 20vw;
   width: 100%;
   opacity: 0.1;
@@ -656,13 +682,11 @@ export default {
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
-   background-color: linear-gradient(
+  background-color: linear-gradient(
     138.05deg,
     #fcd259 1.07%,
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
-
-
 }
 </style>

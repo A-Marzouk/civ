@@ -228,7 +228,8 @@
                             <v-card flat class="card-hire-me" color="rgba(37, 0, 0, 0.1)">
                               <v-card-text>
                                 <v-row no-gutters align="center">
-                                  <v-col md="2">
+                                  <!-- for desktop -->
+                                  <v-col md="2" class="hidden-sm-and-down">
                                     <img
                                       width="15"
                                       class="mt-md-1"
@@ -237,6 +238,7 @@
                                     />
                                     <!-- tab 1 -->
                                     <v-tabs
+                                      class="hire-me-parent-tab"
                                       height="60"
                                       v-model="tabRate"
                                       center-active
@@ -251,7 +253,30 @@
                                     </v-tabs>
                                     <!-- tab 1 -->
                                   </v-col>
-                                  <v-col align="center" md="2" class>
+                                  <!-- For desktop -->
+                                  <!-- for tablet -->
+                                  <v-col sm="12" class="hidden-md-and-up">
+                                    <img
+                                      width="15"
+                                      class="hire-me-hour-icon"
+                                      src="/images/resume_themes/theme200/icons/hourly-rate.png"
+                                    />
+                                    <v-card flat color="transparent" align="center">
+                                      <v-tabs
+                                        v-model="tabRate"
+                                        centered
+                                        hide-slider
+                                        dense
+                                        background-color="transparent"
+                                      >
+                                        <v-tab class="caption text-capitalize">Monthly</v-tab>
+                                        <v-tab class="caption text-capitalize">Weekly</v-tab>
+                                        <v-tab class="caption text-capitalize">Hourly</v-tab>
+                                      </v-tabs>
+                                    </v-card>
+                                  </v-col>
+                                  <!-- for tablet -->
+                                  <v-col align="center" md="2" sm="12">
                                     <!-- tab 1 items -->
                                     <v-tabs-items v-model="tabRate" style="background:transparent;">
                                       <v-tab-item v-for="n in 3" :key="n">
@@ -263,7 +288,8 @@
                                     </v-tabs-items>
                                     <!-- tab 1 items -->
                                   </v-col>
-                                  <v-col md="2">
+                                  <!-- Show on desktop -->
+                                  <v-col md="2" class="hidden-sm-and-down">
                                     <div class="hire-card-frequency2">
                                       <img
                                         width="15"
@@ -273,7 +299,7 @@
                                       />
                                       <!-- tab2 -->
                                       <v-tabs
-                                        class="ml-md-1"
+                                        class="ml-md-1 hire-me-parent-tab"
                                         height="60"
                                         v-model="tabFrequency"
                                         center-active
@@ -289,7 +315,30 @@
                                       <!-- tab2 -->
                                     </div>
                                   </v-col>
-                                  <v-col align="center" md="3">
+                                  <!-- Show on desktop -->
+                                  <!-- Show on tablet -->
+                                  <v-col sm="12" class="hidden-md-and-up">
+                                    <img
+                                      width="15"
+                                      class="hire-me-hour-icon"
+                                      src="/images/resume_themes/theme200/icons/availibility.png"
+                                    />
+                                    <v-card flat color="transparent" align="center">
+                                      <v-tabs
+                                        v-model="tabFrequency"
+                                        centered
+                                        hide-slider
+                                        dense
+                                        background-color="transparent"
+                                      >
+                                        <v-tab class="caption text-capitalize">Monthly</v-tab>
+                                        <v-tab class="caption text-capitalize">Weekly</v-tab>
+                                        <v-tab class="caption text-capitalize">Hourly</v-tab>
+                                      </v-tabs>
+                                    </v-card>
+                                  </v-col>
+                                  <!-- Show on tablet -->
+                                  <v-col align="center" md="3" sm="12">
                                     <v-tabs-items
                                       v-model="tabFrequency"
                                       style="background:transparent;"
@@ -302,14 +351,24 @@
                                       </v-tab-item>
                                     </v-tabs-items>
                                   </v-col>
-                                  <v-col md="3">
-                                    <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
-                                      Hire Me
-                                      <img
-                                        class="mx-1"
-                                        src="/images/resume_themes/theme200/icons/chat2.png"
-                                      />
-                                    </v-btn>
+                                  <v-col md="3" sm="12" align="center">
+                                    <v-card flat color="transparent" align="center">
+                                      <v-btn block color="#00CDF7" height="50" class="btn-hire-me hidden-sm-and-down">
+                                        Hire Me
+                                        <img
+                                          class="mx-1"
+                                          src="/images/resume_themes/theme200/icons/chat2.png"
+                                        />
+                                      </v-btn>
+
+                                      <v-btn color="#00CDF7" height="50"  class="btn-hire-me hidden-md-and-up mt-sm-4">
+                                        Hire Me
+                                        <img
+                                          class="mx-1"
+                                          src="/images/resume_themes/theme200/icons/chat2.png"
+                                        />
+                                      </v-btn>
+                                    </v-card>
                                   </v-col>
                                 </v-row>
                               </v-card-text>
@@ -515,7 +574,7 @@
                               <v-card-text>
                                 <v-list-item>
                                   <v-list-item-icon class="mt-2">
-                                    <v-img width="40" :src="getIconWork(index+1)"></v-img>
+                                    <v-img style="z-index:1;" width="40" :src="getIconWork(index+1)"></v-img>
                                   </v-list-item-icon>
                                   <div class="v-line"></div>
                                   <v-list-item-content>
@@ -555,7 +614,7 @@
                               <v-card-text>
                                 <v-list-item>
                                   <v-list-item-icon class="mt-2">
-                                    <v-img width="40" :src="getIconEducation(index+1)"></v-img>
+                                    <v-img style="z-index:1;" width="40" :src="getIconEducation(index+1)"></v-img>
                                   </v-list-item-icon>
                                   <div class="v-line"></div>
                                   <v-list-item-content>
@@ -564,7 +623,7 @@
                                     >{{education.university_name}}</v-list-item-title>
                                     <v-card flat>
                                       <div
-                                        class="work-subtitle mt-2"
+                                        class="work-text mt-2"
                                       >{{ education.institution_type }}</div>
                                     </v-card>
                                     <v-list-item-subtitle
