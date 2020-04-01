@@ -7,7 +7,10 @@
             <v-img :src="user.personal_info.profile_pic"></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
-            <v-list-item-title class="headline title-text" style="overflow:visible !important;">{{user.personal_info.full_name}}</v-list-item-title>
+            <v-list-item-title
+              class="headline title-text"
+              style="overflow:visible !important;"
+            >{{user.personal_info.full_name}}</v-list-item-title>
             <v-list-item-subtitle style="color:black;">{{user.personal_info.designation}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -15,29 +18,49 @@
     </v-flex>
 
     <v-flex sm12 md8 class="hidden-xs-only">
-      <v-card class="mx-auto" flat color="transparent" >
+      <v-card class="mx-auto" flat color="transparent">
         <v-card-text>
           <v-layout row justify-space-between>
             <v-flex xs9 md11 sm9 class="mobile-center">
-              <v-list-item class="">
-                <v-list-item-avatar  size="120">
+              <v-list-item class>
+                <v-list-item-avatar size="120">
                   <v-img :src="user.personal_info.profile_pic"></v-img>
                 </v-list-item-avatar>
                 <v-list-item-content class="title-row">
                   <v-list-item-title class="headline title-text ml-sm-1">
                     <span class="title-text-tablet">{{user.personal_info.full_name}}</span>
                     <span class="ml-md-6 hidden-sm-and-down">
-                      <v-btn class="mx-2 custom-btn" style="margin-top:-13px !important;" fab dark small color="black">
+                      <v-btn
+                        class="mx-2 custom-btn"
+                        style="margin-top:-13px !important;"
+                        fab
+                        dark
+                        small
+                        color="black"
+                      >
                         <v-icon>mdi-map-marker</v-icon>
-
                       </v-btn>
-                      <v-btn class="mx-2 custom-btn" fab dark small color="black" style="margin-top:-13px !important;">
+                      <v-btn
+                        class="mx-2 custom-btn"
+                        fab
+                        dark
+                        small
+                        color="black"
+                        style="margin-top:-13px !important;"
+                      >
                         <img
                           width="14"
                           src="/images/resume_themes/theme201/social_icons/whatsapp.webp"
                         />
                       </v-btn>
-                      <v-btn class="mx-2 custom-btn" fab dark small color="black" style="margin-top:-13px !important;">
+                      <v-btn
+                        class="mx-2 custom-btn"
+                        fab
+                        dark
+                        small
+                        color="black"
+                        style="margin-top:-13px !important;"
+                      >
                         <img
                           width="16"
                           src="/images/resume_themes/theme201/social_icons/google-plus.webp"
@@ -213,15 +236,15 @@
     <div>
       <v-dialog
         class="hireMeModal"
-        style="overflow-x: hidden !important;"
+        style="overflow-x: hidden !important;border-radius:30px;"
         v-model="hireMeModal"
         persistent
-        max-width="600"
+        max-width="800"
       >
         <v-card>
           <v-card-title class="headline">
             <v-spacer></v-spacer>
-            <v-btn fab class="hidden-sm-and-up" icon @click="hireMeModal=false">
+            <v-btn fab class="hidden-md-and-up" icon @click="hireMeModal=false">
               <img width="25" src="/images/resume_themes/theme201/close.png" />
             </v-btn>
           </v-card-title>
@@ -229,27 +252,94 @@
           <v-card-text align="center">
             <v-container style="max-width: 1785px;">
               <v-row justify="center" align="center">
-                <v-col cols="5" sm="3" md="3">
-                  <div class="font-weight-bold custom-modal-title">${{user.payment_info.salary}}</div>
-                  <div class="custom-modal-subtitle">{{user.payment_info.salary_frequency}} rate</div>
+                <!-- new 1st column -->
+                <v-col cols="12" sm="8" md="2">
+                  <v-tabs
+                    class="hidden-sm-and-down"
+                    vertical
+                    hide-slider
+                    color="#1D1D1D"
+                    center-active
+                    v-model="tabRate"
+                  >
+                    <v-tab>MONTHLY</v-tab>
+                    <v-tab>WEEKLY</v-tab>
+                    <v-tab>HOURLY</v-tab>
+                  </v-tabs>
+
+                  <v-tabs
+                    class="hidden-md-and-up"
+                    hide-slider
+                    color="#1D1D1D"
+                    centered
+                    v-model="tabRate"
+                  >
+                    <v-tab class="hire-me-parent-tab">MONTHLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">WEEKLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">HOURLY</v-tab>
+                  </v-tabs>
                 </v-col>
-                <div class="vertical-line mx-2"></div>
-                <v-col cols="5" sm="3" md="3">
-                  <div
-                    class="font-weight-bold custom-modal-title"
-                  >{{user.payment_info.available_hours}} HOURS</div>
-                  <div
-                    class="custom-modal-subtitle"
-                  >{{user.payment_info.available_hours_frequency}} availability</div>
+                <!-- new 1st column -->
+                <!-- Column 1 -->
+                <v-col cols="12" sm="6" md="2">
+                  <v-tabs-items v-model="tabRate">
+                    <v-tab-item v-for="n in 3" :key="n">
+                      <div>Rate $USD</div>
+                      <!-- <div class="custom-modal-subtitle">{{user.payment_info.salary_frequency}} rate</div> -->
+                      <div class="font-weight-bold custom-modal-title">${{user.payment_info.salary}}</div>
+                    </v-tab-item>
+                  </v-tabs-items>
                 </v-col>
-                <v-col cols="6" sm="3" md="3">
+                <!-- Column 1 -->
+                <v-col cols="12" sm="8" md="2">
+                  <v-tabs
+                    class="hidden-sm-and-down"
+                    vertical
+                    hide-slider
+                    color="#1D1D1D"
+                    center-active
+                    v-model="tabFrequency"
+                  >
+                    <v-tab>MONTHLY</v-tab>
+                    <v-tab>WEEKLY</v-tab>
+                    <v-tab>HOURLY</v-tab>
+                  </v-tabs>
+
+                  <v-tabs
+                    class="hidden-md-and-up"
+                    hide-slider
+                    color="#1D1D1D"
+                    centered
+                    v-model="tabFrequency"
+                  >
+                    <v-tab class="hire-me-parent-tab"> MONTHLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">WEEKLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">HOURLY</v-tab>
+                  </v-tabs>
+                </v-col>
+                <!-- 2nd Column -->
+                <v-col cols="12" sm="8" md="3">
+                  <v-tabs-items v-model="tabFrequency">
+                    <v-tab-item v-for="n in 3" :key="n">
+                      <div class>Availibility hours</div>
+                      <div
+                        class="font-weight-bold custom-modal-title"
+                      >{{user.payment_info.available_hours}} HOURS</div>
+                    </v-tab-item>
+                  </v-tabs-items>
+                </v-col>
+                <!-- 3rd column -->
+                <v-col cols="12" sm="12" md="2">
                   <v-btn depressed class="text-capitalize btn-hire-me" color="#1D1D1D" dark>Hire Me</v-btn>
                 </v-col>
-                <v-col align="right" class="hidden-xs-only" sm="2" md="2">
+                <!-- 3rd column -->
+                <!-- 4th column -->
+                <v-col align="right" class="hidden-sm-and-down" sm="2" md="1">
                   <v-btn fab class icon @click="hireMeModal=false">
                     <img width="30" src="/images/resume_themes/theme201/close.png" />
                   </v-btn>
                 </v-col>
+                <!-- 4th column-->
               </v-row>
             </v-container>
           </v-card-text>
@@ -266,7 +356,9 @@ export default {
   data() {
     return {
       hireMeModal: false,
-      currentUser: {}
+      currentUser: {},
+      tabRate: null,
+      tabFrequency: null
     };
   },
   computed: {
@@ -301,7 +393,9 @@ export default {
 
 <style scoped lang="scss">
 .custom-modal-title {
+  font-size: 1rem;
   color: #000000 !important;
+  line-height: 30px;
 }
 .custom-modal-subtitle {
   font-size: 12px !important;
@@ -328,10 +422,34 @@ export default {
   margin-top: 20px;
 }
 
+.hire-modal-contact-type {
+  font-size: 14px;
+  color: #1d1d1d !important;
+  line-height: 19px;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+}
+.custom-active {
+  font-weight: 800 !important;
+}
+
 @media screen and (min-width: 747px) and (max-width: 754px) {
   .custom-name-section {
     margin-left: -57px;
   }
+}
+
+@media screen and (max-width:599px) {
+  .hire-me-parent-tab{
+    font-size:12px !important;
+  }
+
+}
+</style>
+
+<style>
+#resumeTheme201 .v-dialog {
+  border-radius: 30px;
 }
 </style>
 

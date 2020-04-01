@@ -17,7 +17,6 @@
         "browser-sync": "^2.26.7",
         "browser-sync-webpack-plugin": "^2.0.1",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
@@ -25,14 +24,13 @@
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
         "font-awesome": "^4.7.0",
-        "vue": "^2.6.11",
-        "vue-template-compiler": "^2.6.10"
+        "vue": "^2.6.11"
     },
     "dependencies": {
         "@babel/preset-stage-2": "^7.8.3",
         "bootstrap-vue": "^2.7.0",
-        "jquery": "^3.4.1",
         "laravel-mix-svg-vue": "^0.2.6",
+        "tailwindcss": "^1.2.0",
         "vue-audio-recorder": "^3.0.1",
         "vue-color": "^2.7.0",
         "vue-cookies": "^1.6.1",
@@ -41,9 +39,10 @@
         "vue-particles": "^1.0.9",
         "vue-router": "^3.1.5",
         "vue-slick": "^1.1.15",
-        "vue-template-compiler": "^2.6.11",
         "vue2-dropzone": "^3.6.0",
         "vuetify": "^2.2.12",
-        "vuex": "^3.1.2"
+        "vuex": "^3.1.2",
+        "jquery": "^3.2",
+        "vue-template-compiler": "^2.6.10"
     }
 }
