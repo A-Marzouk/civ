@@ -228,7 +228,8 @@
                             <v-card flat class="card-hire-me" color="rgba(37, 0, 0, 0.1)">
                               <v-card-text>
                                 <v-row no-gutters align="center">
-                                  <v-col md="2">
+                                  <!-- for desktop -->
+                                  <v-col md="2" class="hidden-sm-and-down">
                                     <img
                                       width="15"
                                       class="mt-md-1"
@@ -251,7 +252,30 @@
                                     </v-tabs>
                                     <!-- tab 1 -->
                                   </v-col>
-                                  <v-col align="center" md="2" class>
+                                  <!-- For desktop -->
+                                  <!-- for tablet -->
+                                  <v-col sm="12" class="hidden-md-and-up">
+                                    <img
+                                      width="15"
+                                      class="hire-me-hour-icon"
+                                      src="/images/resume_themes/theme200/icons/hourly-rate.png"
+                                    />
+                                    <v-card flat color="transparent" align="center">
+                                      <v-tabs
+                                        v-model="tabRate"
+                                        centered
+                                        hide-slider
+                                        dense
+                                        background-color="transparent"
+                                      >
+                                        <v-tab class="caption text-capitalize">Monthly</v-tab>
+                                        <v-tab class="caption text-capitalize">Weekly</v-tab>
+                                        <v-tab class="caption text-capitalize">Hourly</v-tab>
+                                      </v-tabs>
+                                    </v-card>
+                                  </v-col>
+                                  <!-- for tablet -->
+                                  <v-col align="center" md="2" sm="12">
                                     <!-- tab 1 items -->
                                     <v-tabs-items v-model="tabRate" style="background:transparent;">
                                       <v-tab-item v-for="n in 3" :key="n">
@@ -263,7 +287,7 @@
                                     </v-tabs-items>
                                     <!-- tab 1 items -->
                                   </v-col>
-                                  <v-col md="2">
+                                  <v-col md="2" sm="12">
                                     <div class="hire-card-frequency2">
                                       <img
                                         width="15"
@@ -289,7 +313,7 @@
                                       <!-- tab2 -->
                                     </div>
                                   </v-col>
-                                  <v-col align="center" md="3">
+                                  <v-col align="center" md="3" sm="12">
                                     <v-tabs-items
                                       v-model="tabFrequency"
                                       style="background:transparent;"
