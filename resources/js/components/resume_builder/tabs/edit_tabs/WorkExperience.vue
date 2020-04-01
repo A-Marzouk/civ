@@ -102,9 +102,19 @@
                             <div class="work-ex-detials">
                                 {{work.description}}
                             </div>
+                            <div class="optionsBtns showOnMd">
+                                <a href="">
+                                    <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
+                                </a>
+
+                                <a href="">
+                                    <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="options">
+
+                    <div class="options hideOnMd">
                         <div class="options-btn NoDecor"
                              @click="optionWorkId === work.id ? optionWorkId=0 : optionWorkId=work.id">
                             <a href="javascript:void(0)" :class="{'opened':optionWorkId === work.id}">
@@ -348,6 +358,10 @@
                 padding: 0 62px;
             }
 
+            @include lt-sm {
+                padding: 0;
+            }
+
             .work-ex-form-input.input-field {
                 display: flex;
                 flex-direction: column;
@@ -385,6 +399,10 @@
                     @include lt-md {
                         font-size: 18px;
                     }
+
+                    @include lt-sm {
+                        font-size: 15px;
+                    }
                 }
 
                 input {
@@ -402,6 +420,10 @@
                             max-width: 100%;
                         }
                     }
+
+                    @include lt-md {
+                        height: 47px;
+                    }
                 }
 
                 input:focus {
@@ -412,7 +434,7 @@
                     max-width: 637px;
                     width: 100%;
                     height: 201px;
-                    border: 2px solid #505050;
+                    // border: 2px solid #505050;
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
@@ -420,6 +442,10 @@
 
                     @include lt-lg {
                         max-width: 100% !important;
+                    }
+
+                    @include lt-md {
+                        height: 131px;
                     }
                 }
 
@@ -488,6 +514,11 @@
                         @include lt-md {
                             font-size: 16px;
                         }
+
+                        @include lt-sm {
+                            font-size: 12px;
+                            margin: 0 6px 10px;
+                        }
                     }
 
                     .date-input {
@@ -495,6 +526,10 @@
                         flex-direction: column;
                         max-width: 275px;
                         width: calc(50% - 44px);
+
+                        @include lt-sm {
+                            width: 50%;
+                        }
 
                         label {
                             text-align: left;
@@ -506,6 +541,10 @@
                             @include lt-md {
                                 font-size: 18px;
                                 color: $mainBlue;
+                            }
+
+                            @include lt-sm {
+                                font-size: 15px;
                             }
                         }
 
@@ -530,6 +569,12 @@
 
                             @include lt-lg {
                                 height: 76px;
+                                border-width: 0;
+                                background: #F5F5F5;
+                            }
+
+                            @include lt-md {
+                                height: 47px;
                             }
                         }
 
@@ -573,6 +618,11 @@
                         min-width: 100px;
                         margin-left: 62px;
                     }
+                    
+                    @include lt-sm {
+                        width: 49%;
+                        margin-left: 0;
+                    }
                 }
 
                 &.cancel-btn {
@@ -580,6 +630,11 @@
                         width: 32%;
                         min-width: 100px;
                         margin-right: 62px;
+                    }
+
+                    @include lt-sm {
+                        width: 30%;
+                        margin-right: 0;
                     }
                 }
 
@@ -665,20 +720,56 @@
                 justify-content: flex-start;
                 max-width: 757px;
                 width: 100%;
+                margin-bottom: 30px;
 
                 .work-icon{
                     width: 38px;
                     height: 27px;
-                    margin-right: 33px;
+
+                    @include lt-md {
+                        width: 34px;
+                        height: 30px;
+                        
+                        img {
+                            margin-right: 18px;
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 28px;
+                        height: 25px;
+                        
+                        img {
+                            margin-right: 12px;
+                        }
+                    }
                 }
 
                 .work-ex-info{
+                    margin-left: 33px;
+
+                    @include lt-md {
+                        margin-left: 18px;
+                    }
+
+                    @include lt-sm {
+                        margin-right: 12px;
+                    }
+
                     .work-ex-title{
                         font: 700 30px/41px Noto Sans;
                         letter-spacing: 0;
                         color: #3C3748;
                         margin-bottom: 12px;
                         opacity: 1;
+
+                        @include lt-md {
+                            font-size: 24px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
+                        }
                     }
                     .work-ex-sub-title{
                         font: 700 19px Noto Sans;
@@ -686,12 +777,54 @@
                         color: #3C3748;
                         opacity: 1;
                         margin-bottom: 16px;
+
+                        @include lt-md {
+                            font-size: 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 14px;
+                        }
                     }
                     .work-ex-detials{
                         font: 500 16px Noto Sans;
                         letter-spacing: 0;
                         color: #555060;
                         opacity: 1;
+
+                        @include lt-md {
+                            font-size: 12px;
+                        }
+
+                        @include lt-md {
+                            font-size: 11px;
+                        }
+                    }
+                }
+
+                .optionsBtns {
+                    width: 100%;
+                    background: #F9F9F9;
+                    box-shadow: 0 9px 12px rgba(0,0,0,.03);
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px 37px;
+                    border-radius: 2px;
+                    margin-top: 1rem;
+
+                    a {
+                        height: 24px;
+                        display: block;
+
+                        .icon {
+                            height: 100%;
+                            color: $mainBlue;
+                            fill: $mainBlue;
+
+                            path {
+                                fill: $mainBlue;
+                            }
+                        }
                     }
                 }
 

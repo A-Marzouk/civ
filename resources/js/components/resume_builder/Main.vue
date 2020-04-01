@@ -257,9 +257,9 @@
             padding: 80px 80px 50px;
         }
 
-        // @include lt-sm {
-        //     padding: 50px 36px;
-        // }
+        @include lt-sm {
+            padding: 100px 36px 50px;
+        }
     }
 
     .side-menu {
