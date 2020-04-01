@@ -10,25 +10,7 @@
                             Extract text
                         </a>
                     </div>
-                    <hr>
-                    <div class="form-group mt-3">
-                        <select name="langauge" id="language" class="custom-select" v-model="translationLanguage" required>
-                            <option value="select">Select a language</option>
-                            <option value="en">English</option>
-                            <option value="ru">Russian</option>
-                            <option value="es">Spanish</option>
-                            <option value="pt">Portuguese</option>
-                            <option value="fr">French</option>
-                            <option value="de">German</option>
-                            <option value="zh">Chinese</option>
-                            <option value="ar">Arabic</option>
-                        </select>
-                    </div>
-                    <a href="javascript:void(0)" class="btn btn-dark" @click="translatExtractedText">
-                        Translate Text
-                    </a>
                 </div>
-
             </div>
 
             <div class="row w-100">
@@ -698,24 +680,6 @@
             }
         },
         methods: {
-            translatExtractedText(){
-                if (!this.extractedText){
-                    alert('No text detected!');
-                    return;
-                }
-                if(this.translationLanguage === 'en'){
-                    this.extractedText = this.originalText;
-                }
-                axios.post('/resume/translate',{
-                    extractedText : this.extractedText,
-                    translationLanguage  : this.translationLanguage
-                })
-                    .then( (response) => {
-                        console.log(response);
-                        this.extractedText = response.data;
-                    })
-                    .catch();
-            },
             goToExternalURL(link) {
                 if (link.includes('http')) {
                     window.open(link, '_blank');
@@ -729,7 +693,7 @@
                 this.errors = [];
                 let formData = new FormData();
                 formData.append('pdf_cv', this.file);
-                axios.post('/pdf/extract-text', formData)
+                axios.post('/resume-builder/import/pdf', formData)
                     .then((response) => {
                         if (response.data.length > 0) {
                             this.extractedText = response.data;
