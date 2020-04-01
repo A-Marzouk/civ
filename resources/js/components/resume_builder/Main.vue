@@ -1,7 +1,7 @@
 <template>
     <div class="resume-container" >
 
-        <nav class="resume-builder-nav d-flex align-items-start">
+        <nav class="resume-builder-nav d-flex align-items-start justify-content-between">
             <a href="/resume-builder" class="brand-link">
                 <img class="brand-image" src="/images/resume_builder/123 icon.png" alt="123workforce icon"/>
             </a>
@@ -64,28 +64,33 @@
             </div>
         </div>
 
-        <div class="info-wrapper justify-content-between" v-if="personalInfo">
-           <div class="d-flex align-items-center">
-               <div class="avatar">
-                   <img :src="personalInfo.profile_pic" alt="profile-pic">
-               </div>
-               <div class="name-title-wrapper">
-                   <div class="user-name">
-                       {{user.name}}
-                   </div>
-                   <div class="job-title" v-if="personalInfo">
-                       {{personalInfo.designation}}
-                   </div>
-               </div>
-           </div>
+        <div class="content" 
+            :class="{ 'hideInfoWrapper-md': false /*activeTab !== 'myAccount'*/ }"
+        >
+            <div class="info-wrapper justify-content-between" v-if="personalInfo">
+                <div class="d-flex align-items-center">
+                    <div class="avatar">
+                        <img :src="personalInfo.profile_pic" alt="profile-pic">
+                    </div>
+                    <div class="name-title-wrapper">
+                        <div class="user-name">
+                            {{user.name}}
+                        </div>
+                        <div class="job-title" v-if="personalInfo">
+                            {{personalInfo.designation}}
+                        </div>
+                    </div>
+                </div>
 
-            <div class="auto-import-btn NoDecor" v-show="$route.name !== 'view'">
-                <a href="javascript:void(0)"  data-toggle="modal" data-target="#importModal">
-                    <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                    Auto import
-                </a>
+                <div class="auto-import-btn NoDecor" v-show="$route.name !== 'view'">
+                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#importModal">
+                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                        Auto import
+                    </a>
+                </div>
             </div>
         </div>
+
 
         <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
             <router-view style="min-height: 100vh;"></router-view>
@@ -243,13 +248,20 @@
         overflow: visible !important;
     }
 
+    .content {
+        width: 100%;
+
+        .info-wrapper {
+        // &.hideInfoWrapper-md .info-wrapper {
+           @include lt-md {
+                display: none !important;
+            }
+        }
+    }
+
     .info-wrapper {
         display: flex;
         align-items: center;
-
-        @include lt-md {
-            display: none;
-        }
 
         .avatar {
             margin-right: 32px;
@@ -286,7 +298,11 @@
         overflow-x: hidden;
 
         @include lt-md {
-            padding: 50px 36px;
+            padding: 80px 80px 50px;
+        }
+
+        @include lt-sm {
+            padding: 100px 36px 50px;
         }
     }
 
@@ -339,7 +355,7 @@
             }
         }
 
-        @include lt-md {
+        @include lt-lg {
             display: block;
 
             &.opened {
@@ -355,7 +371,7 @@
 
     .resume-builder-nav {
         width: 100vw;
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 0;
         box-shadow: 0 6px 12px #6565653b;
@@ -363,38 +379,66 @@
         height: 129px;
         background: #fff;
         z-index: 500;
-        overflow-x: hidden;
+        overflow: hidden;
 
-        @include lt-md {
-            padding: 26px 37px;
+        @include lt-lg {
+            padding: 26px 80px;
+            height: 90px;
+        }
+
+        @include lt-sm {
+            padding: 36px;
             height: auto;
-            box-shadow: none;
+            overflow-x: hidden;
+            // box-shadow: none;
+        }
+
+        .brand-link {
+            @include lt-lg {
+                display: none;
+            }
         }
 
         .brand-image {
             width: 40px;
-            margin-right: 262px;
+            margin-right: 50px;
 
-            @include lt-md {
+            @include lt-lg {
                 display: none;
             }
         }
 
         .menu-link {
-            margin-top: 10px;
+            margin-top: 5px;
+            display: none;
+
+            @include lt-lg {
+                display: block;
+            }
+
+            @include lt-md {
+                margin-top: 10px;
+            }
         }
 
         .menu-icon {
             display: none;
+            height: 20px;
             // margin:
 
-            @include lt-md {
+            @include lt-lg {
                 display: block;
+            }
+
+            @include lt-sm {
+                height: auto;
             }
         }
 
         #mainLinksWrapper {
-            @include lt-md {
+            width: 670px;
+
+            @include lt-lg {
                 display: none !important;
             }
         }
@@ -402,6 +446,10 @@
         .links-group {
             height: 100%;
             position: relative;
+
+            @include lt-lg {
+
+            }
 
             .decorator {
                 position: absolute;
@@ -415,8 +463,9 @@
             }
 
             a {
-                margin-right: 100px;
-                width: 205px;
+                // margin-right: 100px;
+                max-width: 205px;
+                width: 45%;
                 text-align: center;
                 color: #747474;
                 font-weight: bold;
@@ -446,12 +495,12 @@
         }
 
         .actions-group {
-            position: absolute;
-            right: 100px;
+            // position: absolute;
+            // right: 100px;
 
-            @include lt-md {
-                right: 37px;
-            }
+            // @include lt-lg {
+            //     right: 37px;
+            // }
 
             .action-btn {
                 background: transparent;
@@ -461,6 +510,11 @@
                 position: relative;
 
                 @include lt-md {
+                    width: 26px;
+                    margin-right: 33px;
+                }
+
+                @include lt-sm {
                     width: 20px;
                     margin-right: 24px;
                 }
@@ -473,7 +527,7 @@
                     width: 46px;
                     margin: 0;
 
-                    @include lt-md {
+                    @include lt-sm {
                         width: 27px;
                     }
 
@@ -737,7 +791,7 @@
 // Responsive
 
     // Mobile responsive
-    @include lt-md {
+    @include lt-sm {
 
     }
 

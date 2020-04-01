@@ -181,7 +181,7 @@ $colorGray: #505050;
   }
 }
 
-.btn-blue {
+.btn btn-filled {
   text-decoration: none;
   font-size: 15px;
   min-width: 203px;
@@ -231,7 +231,7 @@ $colorGray: #505050;
     }
   }
 
-  .btn-blue {
+  .btn btn-filled {
     min-width: 294px;
     min-height: 75px;
     margin-left: 5%;

@@ -38,12 +38,20 @@
             <div v-else-if="activeTab === 'Social-link'">
                 <div class="hold-tab social">
                     <div class="options-wrap">
-                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddSocialLink"
-                           @click="isAddSocialLink = true">Add new link</a>
-                        <!--<a href="javascript:void(0)" class="btn-outline">Auto import</a>-->
+                        <a href="javascript:void(0)" class="btn btn-outline" v-show="!isAddPortfolioLink"
+                           @click="isAddSocialLink = true">
+                           <img class='icon'
+                            src="/images/resume_builder/profile/icon-plus.png">
+                           Add new link
+                        </a>
+                        <!-- <a href="javascript:void(0)" class="btn btn-outline">
+                            <img class='icon'
+                            src="/images/resume_builder/profile/icon-plus.png">
+                            Auto import
+                        </a> -->
                     </div>
                     <div class="addItem-wrap animated fadeIn" v-show="isAddSocialLink">
-                        <div class="civ-input">
+                        <div class="civ-input input-field mb-0">
                             <label for="category">Social site</label>
                             <div class="civ-custom-select">
                                 <div class="civ-select-input" @click="showCategoryOptions = !showCategoryOptions">
@@ -71,10 +79,13 @@
                                 {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
                             </div>
                         </div>
-                        <a href="javascript:void(0)" class="btn-blue" @click="saveLink(newSocialLink,currentBaseUrl)"><img
-                                src="/images/resume_builder/profile/icon-save2.png">Save this new link</a>
                         <div class="add-new-work NoDecor">
-                            <a href="javascript:void(0)" @click="isAddSocialLink = false">
+                            <a href="javascript:void(0)" class="btn btn-filled" @click="saveLink(newSocialLink,currentBaseUrl)">
+                                <img
+                                    class="icon"
+                                    src="/images/resume_builder/profile/icon-save2.png">Save this new link
+                            </a>
+                            <a class='btn btn-outline' href="javascript:void(0)" @click="isAddSocialLink = false">
                                 Cancel
                             </a>
                         </div>
@@ -131,9 +142,17 @@
             <div v-else-if="activeTab === 'Portfolio-link'">
                 <div class="hold-tab social">
                     <div class="options-wrap">
-                        <a href="javascript:void(0)" class="btn-outline" v-show="!isAddPortfolioLink"
-                           @click="isAddPortfolioLink = true">Add new link</a>
-                        <!--<a href="javascript:void(0)" class="btn-outline">Auto import</a>-->
+                        <a href="javascript:void(0)" class="btn btn-outline" v-show="!isAddPortfolioLink"
+                           @click="isAddPortfolioLink = true">
+                           <img class='icon'
+                            src="/images/resume_builder/profile/icon-plus.png">
+                           Add new link
+                        </a>
+                        <!-- <a href="javascript:void(0)" class="btn btn-outline">
+                            <img class='icon'
+                            src="/images/resume_builder/profile/icon-plus.png">
+                            Auto import
+                        </a> -->
                     </div>
                     <div class="addItem-wrap animated fadeIn" v-show="isAddPortfolioLink">
                         <div class="input-field mb-0">
@@ -143,9 +162,12 @@
                                 {{ Array.isArray(errors.link) ? errors.link[0] : errors.link}}
                             </div>
                         </div>
-                        <a href="javascript:void(0)" class="btn-blue" @click="saveLink(newPortfolioLink)"><img
-                                src="/images/resume_builder/profile/icon-save2.png">Save new this link</a>
-                        <a href="javascript:void(0)" class="btn-close ml-5" @click="isAddPortfolioLink = false">x</a>
+                        <div class="add-new-work NoDecor">
+                            <a href="javascript:void(0)" class="btn btn-filled" @click="saveLink(newPortfolioLink)"><img
+                                class="icon"
+                                    src="/images/resume_builder/profile/icon-save2.png">Save new this link</a>
+                            <a href="javascript:void(0)" class="btn btn-outline" @click="isAddPortfolioLink = false">Cancel</a>
+                        </div>
                     </div>
                     <div class="list-links">
                         <div>
@@ -203,8 +225,8 @@
                         <a href="javascript:void(0)" @click="copyPaymentLink"><span class="copy"></span></a>
                         <a href="javascript:void(0)"><span class="share"></span></a>
                     </div>
-                    <a href="javascript:void(0)" @click="savePaymentLink('manual')" class="btn-blue"><img
-                            src="/images/resume_builder/profile/icon-save2.png">Save this new link</a>
+                    <a href="javascript:void(0)" @click="savePaymentLink('manual')" class="btn btn-filled"><img
+                            class='icon' src="/images/resume_builder/profile/icon-save2.png">Save this new link</a>
 
                 </div>
             </div>
@@ -517,18 +539,47 @@
 </script>
 
 <style lang="scss" scoped>
+    @import '../../../../../../sass/media-queries';
+
     $mainColor: #001CE2;
+
+    .options-wrap {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        margin-bottom: 24px;
+
+        .btn {
+            
+            @include lt-sm {
+                width: 40%;
+                min-width: 150px;
+                max-width: 180px;
+                margin: 0 !important;
+                font-size: 13px !important;
+                margin-bottom: 20px;
+            }
+
+            .icon {
+
+            }
+        }
+    }
+
     .add-new-work {
-        margin-right: 29px;
+        width: 100%;
+        max-width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
 
         a {
             display: flex;
             justify-content: center;
             align-items: center;
-
-            width: 115px;
-            margin-left: 20px;
-            height: 74px;
+            // min-width: 130px;
+            margin-top: 10px;
             border: 2px solid #001CE2;
             border-radius: 8px;
             opacity: 1;
@@ -537,11 +588,13 @@
             letter-spacing: 0;
             color: #001CE2;
 
-            img {
-                width: 27px;
-                height: 27px;
+            &:first-child {
                 margin-right: 10px;
             }
+        }
+
+        @include lt-sm {
+            max-width: auto;
         }
     }
 
@@ -558,9 +611,18 @@
         bottom: -35px;
     }
 
-    .input-field {
-        width:500px;
+    .hold-tab {
+
+        .input-field {
+            width: 718px;
+            margin-right: 2rem;
+
+            @include lt-sm {
+                width: 100%;
+            }
+        }
     }
+
 
     .info-link {
         img {
@@ -574,9 +636,15 @@
 
         margin-right: 30px;
 
+        @include lt-sm {
+            width: 100%;
+            margin-right: 0;
+            // margin-bottom: 15px;
+        }
+
         label {
             text-align: left;
-            font: 600 22px Noto Sans;
+            // font: 600 22px Noto Sans;
             letter-spacing: 0;
             color: #505050;
             opacity: 1;
@@ -592,7 +660,13 @@
                     height: 12px;
                     position: absolute;
                     top: 35px;
-                    right: 20px;
+                    left: 279px;
+
+                    @include lt-sm {
+                        height: 10px;
+                        width: 20px;
+                        top: 15px;
+                    }
 
                     &.toggled {
                         -webkit-transform: scaleY(-1);
@@ -615,6 +689,16 @@
                     color: black;
                     font-weight: bold;
                     font-size: 22px;
+
+                    @include lt-sm {
+                        font-size: 13px;
+                        min-height: 38px;
+                        height: auto;
+                        width: 100%;
+                        border-radius: 6px;
+                        border-width: 0.5px;
+                        margin-bottom: 25px;
+                    }
 
                     &:focus {
                         outline: none !important;
@@ -665,10 +749,16 @@
     .addItem-wrap {
         display: flex;
         align-items: flex-end;
+        width: 100%;
+        flex-wrap: wrap;
 
         .input-field {
             min-width: auto !important;
-            width: 500px;
+            max-width: 500px;
+        }
+
+        .btn {
+            margin-top: 2rem;
         }
     }
 
