@@ -562,9 +562,11 @@
                                     <v-list-item-title
                                       class="work-title"
                                     >{{education.university_name}}</v-list-item-title>
-                                    <v-list-item-subtitle
-                                      class="work-subtitle mt-2"
-                                    >{{ education.institution_type }}</v-list-item-subtitle>
+                                    <v-card flat>
+                                      <div
+                                        class="work-subtitle mt-2"
+                                      >{{ education.institution_type }}</div>
+                                    </v-card>
                                     <v-list-item-subtitle
                                       v-if="education.degree_title"
                                       class="work-subtitle mt-2"
