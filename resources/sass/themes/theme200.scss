@@ -90,7 +90,7 @@
     }
     .btn-hire-me {
         font-family: "Open Sans", sans-serif !important;
-        font-size: 15px !important;
+        font-size: 15px;
         height: 45px !important;
         text-transform: capitalize !important;
         border-radius: 38px !important;
@@ -549,4 +549,20 @@
     }
     /* mobile devices */
     /* min screen devices*/
+    // ipad pro
+    @media only screen and (max-width:1024px) {
+        .btn-hire-me {
+            width: 5vw;
+            font-size: 12px;
+        }
+        .hire-me-parent-tab {
+            margin-left: 10px !important;
+        }
+        .hire-card-frequency2 {
+            img {
+                margin-left: -5px !important;
+            }
+        }
+    }
+    // ipad pro
 }

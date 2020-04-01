@@ -238,6 +238,7 @@
                                     />
                                     <!-- tab 1 -->
                                     <v-tabs
+                                      class="hire-me-parent-tab"
                                       height="60"
                                       v-model="tabRate"
                                       center-active
@@ -298,7 +299,7 @@
                                       />
                                       <!-- tab2 -->
                                       <v-tabs
-                                        class="ml-md-1"
+                                        class="ml-md-1 hire-me-parent-tab"
                                         height="60"
                                         v-model="tabFrequency"
                                         center-active
