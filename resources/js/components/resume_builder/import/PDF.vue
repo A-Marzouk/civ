@@ -1,18 +1,46 @@
 <template>
-    <div>
-        <div class="pl-5 pr-5 d-flex flex-column align-items-start ">
-            <h2>Please upload your cv in pdf format </h2>
+    <div class="import-cv-wrapper">
+
+        <div class="title">
+            <img src="/images/resume_builder/import/pic.png" alt="icon">
+            Please upload <span> your cv in PDF format</span>
+        </div>
+
+        <div class="import-action-btns">
             <div class="d-flex">
-                <div class="ml-3">
-                    <input type="file" ref="file" @change="handleFileUpload">
-                    <div>
-                        <a href="javascript:void(0)" class="btn btn-dark mt-2" @click="uploadPDFFile">
-                            Extract text
-                        </a>
-                    </div>
+                <div class="auto-import-btn NoDecor">
+                    <a href="javascript:void(0)" @click="openBrowse">
+                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                        Import PDF file
+                    </a>
+                </div>
+                <div class="auto-import-btn NoDecor">
+                    <a href="javascript:void(0)" @click="uploadPDFFile">
+                        Extract file
+                        <img class="extract" src="/images/resume_builder/import/extract.png" alt="add">
+                    </a>
                 </div>
             </div>
 
+            <div class="progress-bar-wrapper">
+                <div class="upload-progress-bar" id="upload-progress-bar"></div>
+                <div class="progress-bar-value">
+                    {{progress}}%
+                </div>
+            </div>
+            <div class="file-name">
+                <span v-show="file">
+                    {{file.name}}
+                </span>
+            </div>
+        </div>
+
+
+        <input type="file" id="uploadFileButton" ref="file" @change="handleFileUpload"
+               style="opacity:0; position: absolute; left:-500px;">
+
+
+        <div class="pl-5 pr-5 d-flex flex-column align-items-start ">
             <div class="row w-100">
                 <div class="col-7 border-dark m-3 p-2" style="white-space: pre-line; border: 1px dotted;"
                      v-show="extractedText.length > 0">
@@ -83,7 +111,8 @@
                         <div v-if="freelancerData.links.length > 0">
                             Links:
                             <div v-for="(link,index) in freelancerData.links" :key="index">
-                                <b><a href="javascript:void(0)" @click="goToExternalURL(link)" target="_blank">{{link}}</a></b>
+                                <b><a href="javascript:void(0)" @click="goToExternalURL(link)"
+                                      target="_blank">{{link}}</a></b>
                             </div>
                         </div>
                         <div v-else>
@@ -92,7 +121,7 @@
                     </div>
                     <hr>
                     <div>
-                        <div v-if="freelancerData.education" >
+                        <div v-if="freelancerData.education">
                             education:
                             <b class="pre-formatted">{{nl2br(freelancerData.education)}}</b>
                         </div>
@@ -102,7 +131,7 @@
                     </div>
                     <hr>
                     <div>
-                        <div v-if="freelancerData.work_experience" >
+                        <div v-if="freelancerData.work_experience">
                             Work experience:
                             <b class="pre-formatted">{{nl2br(freelancerData.work_experience)}}</b>
                         </div>
@@ -112,7 +141,7 @@
                     </div>
                     <hr>
                     <div>
-                        <div v-if="freelancerData.references" >
+                        <div v-if="freelancerData.references">
                             References:
                             <b class="pre-formatted">{{nl2br(freelancerData.references)}}</b>
                         </div>
@@ -132,10 +161,10 @@
 
 <script>
     export default {
-        name: "ExtractTextFromPDF",
+        name: "ImportPDF",
         data() {
             return {
-                translationLanguage:'select',
+                translationLanguage: 'select',
                 file: '',
                 extractedText: '',
                 originalText: '',
@@ -496,7 +525,7 @@
                     'CorelDraw',
                     '3d Max'
                 ],
-                languages : [
+                languages: [
                     "Abkhaz",
                     "Afar",
                     "Afrikaans",
@@ -677,9 +706,13 @@
                     "Yoruba",
                     "Zhuang, Chuang"
                 ],
+                progress:0
             }
         },
         methods: {
+            openBrowse() {
+                $('#uploadFileButton').click();
+            },
             goToExternalURL(link) {
                 if (link.includes('http')) {
                     window.open(link, '_blank');
@@ -693,7 +726,15 @@
                 this.errors = [];
                 let formData = new FormData();
                 formData.append('pdf_cv', this.file);
-                axios.post('/resume-builder/import/pdf', formData)
+                const config = {
+                    onUploadProgress: progressEvent => {
+                         this.progress = (progressEvent.loaded/progressEvent.total) * 100 ;
+                        $('#upload-progress-bar').css('width',this.progress + '%');
+                    } ,
+                    headers:{'Content-Type': 'multipart/form-data'}
+                };
+
+                axios.post('/resume-builder/import/pdf', formData, config)
                     .then((response) => {
                         if (response.data.length > 0) {
                             this.extractedText = response.data;
@@ -765,13 +806,13 @@
                 this.searchForReferencesText();
 
             },
-            searchForEducationText(){
-                 this.freelancerData.education = this.extractedText.match(/((?<=Education)|(?<=EDUCATION))[\S\s]*?((?=Languages)|(?=LANGUAGES)|(?<=Experience)|(?<=EXPERIENCE)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
+            searchForEducationText() {
+                this.freelancerData.education = this.extractedText.match(/((?<=Education)|(?<=EDUCATION))[\S\s]*?((?=Languages)|(?=LANGUAGES)|(?<=Experience)|(?<=EXPERIENCE)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
             },
-            searchForExperienceText(){
+            searchForExperienceText() {
                 this.freelancerData.work_experience = this.extractedText.match(/((?<=Experience)|(?<=EXPERIENCE)|(?<=Work)|(?<=WORK))[\S\s]*?((?=Education)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Languages)|(?=LANGUAGES)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
             },
-            searchForReferencesText(){
+            searchForReferencesText() {
                 this.freelancerData.references = this.extractedText.match(/((?<=References)|(?<=REFEREES)|(?<=REFERENCES)|(?<=Referees))[\S\s]*?((?=Education)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=Experience)|(?=EXPERIENCE)|(?=Languages)|(?=LANGUAGES)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
             },
             nl2br(str) {
@@ -796,12 +837,12 @@
             },
             searchForLinks(textLine) {
                 let cleanTextLine = textLine.replace(/\s/g, "");
-                let linkRegex     = /(https?:\/\/(?:www\.|(?!www))[^\s]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}|[^\s]+\.com|[^\s]+\.net|[^\s]+\.org|[^\s]+\.gov)/gi;
-                let link          = cleanTextLine.match(linkRegex);
+                let linkRegex = /(https?:\/\/(?:www\.|(?!www))[^\s]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,}|[^\s]+\.com|[^\s]+\.net|[^\s]+\.org|[^\s]+\.gov)/gi;
+                let link = cleanTextLine.match(linkRegex);
                 if (link !== null) {
                     // check and remove if email  :
                     let emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
-                    if(!emailRegex.test(cleanTextLine)){
+                    if (!emailRegex.test(cleanTextLine)) {
                         this.freelancerData.links.push(cleanTextLine);
                     }
                 }
@@ -828,21 +869,21 @@
                     this.freelancerData.job_title = textLine
                 }
             },
-            searchForSkills(textLine){
+            searchForSkills(textLine) {
                 let cleanTextLine = textLine.replace(/\s/g, "");
-                let skillRegex = new RegExp(this.skillsList.join('|'),'ig');
-                let skills = cleanTextLine.match(skillRegex) ;
-                if(skills !== null){
+                let skillRegex = new RegExp(this.skillsList.join('|'), 'ig');
+                let skills = cleanTextLine.match(skillRegex);
+                if (skills !== null) {
                     this.freelancerData.skills.push(...skills);
                 }
                 // filter repeated elements in skills :
                 this.freelancerData.skills = Array.from(new Set(this.freelancerData.skills))
             },
-            searchForLanguages(textLine){
+            searchForLanguages(textLine) {
                 let cleanTextLine = textLine.replace(/\s/g, "");
-                let languageRegex = new RegExp(this.languages.join('|'),'ig');
-                let languages = cleanTextLine.match(languageRegex) ;
-                if(languages !== null){
+                let languageRegex = new RegExp(this.languages.join('|'), 'ig');
+                let languages = cleanTextLine.match(languageRegex);
+                if (languages !== null) {
                     this.freelancerData.languages.push(...languages);
                 }
                 // filter repeated elements in languages :
@@ -855,8 +896,108 @@
     }
 </script>
 
-<style scoped>
-    .pre-formatted{
+<style scoped lang="scss">
+    .pre-formatted {
         white-space: pre-line;
+    }
+
+    .import-cv-wrapper {
+        padding-left: 50px;
+        padding-right: 50px;
+        margin-top: 100px;
+
+        .title {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 52px;
+            text-align: left;
+            color: #081fe2;
+
+            span {
+                font-weight: 500;
+                margin-left: 10px;
+            }
+
+            img {
+                width: 49.79px;
+                height: 49.79px;
+                margin-right: 28px;
+            }
+        }
+
+        .import-action-btns {
+            margin-top: 70px;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            width: 1405px;
+            height: auto;
+            background: whitesmoke;
+            padding-left: 73px;
+            padding-top: 61px;
+
+            .auto-import-btn {
+                margin-right: 65px;
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 419px;
+                    height: 115px;
+
+                    border: 1.5px solid #001CE2;
+                    border-radius: 8px;
+                    opacity: 1;
+
+                    font: 500 33px Noto Sans;
+                    letter-spacing: 0;
+                    color: #001CE2;
+
+                    img {
+                        width: 47.74px;
+                        height: 47.74px;
+                        margin-right: 25.5px;
+                    }
+
+                    img.extract {
+                        width: 47.74px;
+                        height: 47.74px;
+                        margin-left: 92px;
+                    }
+                }
+            }
+
+            .progress-bar-wrapper {
+                margin-top: 78px;
+                display: flex;
+                align-items: center;
+                width: 958px;
+
+                .upload-progress-bar {
+                    width: 1%;
+                    height: 5px;
+                    border-radius: 5px;
+                    background: #081FE2;
+                }
+
+                .progress-bar-value {
+                    font-weight: normal;
+                    font-size: 38px;
+                    text-align: left;
+                    color: #081fe2;
+                    margin-left: 22.5px;
+                    margin-bottom:10px;
+                }
+            }
+
+
+            .file-name {
+                margin-top: 32px;
+                padding-bottom: 101px;
+            }
+
+        }
     }
 </style>

@@ -16,13 +16,13 @@
                     My account
                 </router-link>
                 <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" class="second has-inside-routes main-tab-link">
-                    Edit
+                    Edit CV
                 </router-link>
                 <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
-                    View
+                    View CV
                 </router-link>
                 <router-link id='import' data-target="import" v-on:click.native="changeTab" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
-                    Import
+                    CV Import
                 </router-link>
 
                 <div class="decorator"></div>
