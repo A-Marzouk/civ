@@ -211,7 +211,7 @@
     /* for google chrome and safari */
     .v-line {
         position: absolute;
-        margin-top: 56px;
+        margin-top: 57px;
         margin-left: 19px;
         height: 110%;
         border: 1px solid #707070;
@@ -527,11 +527,13 @@
         }
         /* achievement */
         .v-line {
-            height: 107% !important;
+            margin-top: 48px;
+            height: 115%;
         }
         @-moz-document url-prefix() {
             .v-line {
-                margin-top: 115px !important;
+                margin-top: 112px !important;
+                height: 115% !important;
             }
         }
         //work work title

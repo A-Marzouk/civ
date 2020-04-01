@@ -573,7 +573,7 @@
                               <v-card-text>
                                 <v-list-item>
                                   <v-list-item-icon class="mt-2">
-                                    <v-img width="40" :src="getIconWork(index+1)"></v-img>
+                                    <v-img style="z-index:1;" width="40" :src="getIconWork(index+1)"></v-img>
                                   </v-list-item-icon>
                                   <div class="v-line"></div>
                                   <v-list-item-content>
@@ -613,7 +613,7 @@
                               <v-card-text>
                                 <v-list-item>
                                   <v-list-item-icon class="mt-2">
-                                    <v-img width="40" :src="getIconEducation(index+1)"></v-img>
+                                    <v-img style="z-index:1;" width="40" :src="getIconEducation(index+1)"></v-img>
                                   </v-list-item-icon>
                                   <div class="v-line"></div>
                                   <v-list-item-content>
