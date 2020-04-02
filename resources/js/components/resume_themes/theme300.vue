@@ -481,7 +481,7 @@ export default {
 
 <style lang="scss" scoped>
 
-    @import url('/css/utils_theme300.css');
+    @import 'resources/sass/themes/utils_theme300.scss';
     
     $max_wTheme : 1420px;
     $tab_OneColor : #D93025;

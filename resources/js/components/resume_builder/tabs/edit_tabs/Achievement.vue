@@ -166,7 +166,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 $mainColor: #001CE2;
     .section-body-wrapper {
         width: 1337px;
