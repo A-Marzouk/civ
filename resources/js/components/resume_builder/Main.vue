@@ -27,21 +27,6 @@
 
                 <div class="decorator"></div>
             </div>
-
-            <div class="actions-group d-flex align-items-center justify-content-between">
-                <!-- <button class="action-btn">
-                    <img src="/images/resume_builder/notification.png" alt="notification icon">
-                </button>
-                <button class="action-btn">
-                    <img src="/images/resume_builder/settings-icon.svg" alt="settings icon" @click="logout">
-                </button>
-                <button class="action-btn user-profile">
-                    <img src="/images/resume_builder/default-user.jpg" alt="user profile picture">
-                </button> -->
-                <button class="btn btn-filled" @click="logout">
-                    Log Out
-                </button>
-            </div>
         </nav>
 
         <div class="side-menu" :class="{ opened: openMenu }">
@@ -92,10 +77,9 @@
                 </div>
 
                 <div class="auto-import-btn NoDecor" v-show="$route.name !== 'view'">
-                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#importModal">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                        Auto import
-                    </a>
+                    <button class="btn btn-filled" @click="logout">
+                        Log Out
+                    </button>
                 </div>
             </div>
         </div>
