@@ -90,8 +90,8 @@
                   <!-- Column 1 Profile -->
 
                   <!-- Hidden in sm and up phone icons -->
-                  <v-col col="1" class="hidden-sm-and-up ml-12" align="right">
-                    <v-card flat color="transparent">
+                  <v-col col="1" class="hidden-sm-and-up" align="right">
+                    <v-card flat color="transparent" >
                       <v-btn small color="#00CDF7" class="phone-btn">
                         <img src="/images/resume_themes/theme200/icons/telephone-handle.png" />
                       </v-btn>
@@ -104,77 +104,80 @@
                   </v-col>
                   <!-- Hourly rate -->
                   <v-col cols="12" class="hidden-sm-and-up">
-                    <v-card color="white" light>
-                      <v-row no-gutters justify="center" align="center">
-                        <!-- mobile parent hire me tab -->
-                        <v-col cols="12" align="center">
-                          <v-tabs dense centered hide-slider color="#343434" v-model="tabRate">
-                            <v-tab class="caption text-capitalize">Monthly</v-tab>
-                            <v-tab class="caption text-capitalize">Weekly</v-tab>
-                            <v-tab class="caption text-capitalize">Hourly</v-tab>
-                          </v-tabs>
-                        </v-col>
-                        <!-- mobile parent hire me tab -->
-                        <v-col cols="12" align="center">
-                          <v-tabs-items v-model="tabRate">
-                            <v-tab-item v-for="n in 3" :key="n">
-                              <div>
-                                <img
-                                  class="mt-1"
-                                  style="width:18px !important; position:absolute"
-                                  src="/images/resume_themes/theme200/icons/hour.png"
-                                />
-                                <span
-                                  style="font-size:3.5vw;"
-                                  class="ml-6"
-                                >{{currentUser.payment_info.salary}}$/hour</span>
-                              </div>
-                            </v-tab-item>
-                          </v-tabs-items>
-                        </v-col>
-
-                        <v-col cols="12" align="center">
-                          <v-tabs centered hide-slider color="#343434" v-model="tabFrequency">
-                            <v-tab class="caption text-capitalize">Monthly</v-tab>
-                            <v-tab class="caption text-capitalize">Weekly</v-tab>
-                            <v-tab class="caption text-capitalize">Hourly</v-tab>
-                          </v-tabs>
-                        </v-col>
-
-                        <v-col cols="12" align="center">
-                          <v-tabs-items v-model="tabFrequency">
-                            <v-tab-item v-for="n in 3" :key="n">
-                              <v-list-item class="center">
-                                <v-list-item-content>
-                                  <v-list-item-subtitle>
-                                    <v-icon color="#00CDF7" class="mx-1" small>mdi-calendar-check</v-icon>
+                    <v-container style="width:100%">
+                      <v-card color="white" light>
+                        <v-row no-gutters justify="center" align="center">
+                          <!-- mobile parent hire me tab -->
+                          <v-col cols="12" align="center">
+                            <v-tabs dense centered hide-slider color="#343434" v-model="tabRate">
+                              <v-tab class="caption text-capitalize">Monthly</v-tab>
+                              <v-tab class="caption text-capitalize">Weekly</v-tab>
+                              <v-tab class="caption text-capitalize">Hourly</v-tab>
+                            </v-tabs>
+                          </v-col>
+                          <!-- mobile parent hire me tab -->
+                          <v-col cols="12" align="center">
+                            <v-tabs-items v-model="tabRate">
+                              <v-tab-item v-for="n in 3" :key="n">
+                                <v-row align="center" justify="center">
+                                  <v-col cols="4">
+                                    <img
+                                      class="mt-1 mr-1"
+                                      style="width:18px !important; position:absolute;"
+                                      src="/images/resume_themes/theme200/icons/hour.png"
+                                    />
                                     <span
                                       style="font-size:3.5vw;"
-                                    >{{currentUser.payment_info.salary}}$/hour</span>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-tab-item>
-                          </v-tabs-items>
-                        </v-col>
+                                    >{{currentUser.payment_info.available_hours}}$</span>
+                                  </v-col>
+                                </v-row>
+                              </v-tab-item>
+                            </v-tabs-items>
+                          </v-col>
 
-                        <v-col cols="6" align="center">
-                          <v-btn
-                            color="#FF5231"
-                            dark
-                            class="text-capitalize mb-3"
-                            style="font-size:4.5vw;"
-                          >
-                            Hire Me
-                            <img
-                              class="ml-2"
-                              width="18"
-                              src="/images/resume_themes/theme200/icons/chat2.png"
-                            />
-                          </v-btn>
-                        </v-col>
-                      </v-row>
-                    </v-card>
+                          <v-col cols="12" align="center">
+                            <v-tabs centered hide-slider color="#343434" v-model="tabFrequency">
+                              <v-tab class="caption text-capitalize">Monthly</v-tab>
+                              <v-tab class="caption text-capitalize">Weekly</v-tab>
+                              <v-tab class="caption text-capitalize">Hourly</v-tab>
+                            </v-tabs>
+                          </v-col>
+
+                          <v-col cols="12" align="center">
+                            <v-tabs-items v-model="tabFrequency">
+                              <v-tab-item v-for="n in 3" :key="n">
+                                <v-list-item class="center">
+                                  <v-list-item-content>
+                                    <v-list-item-subtitle>
+                                      <v-icon color="#00CDF7" class="mx-1" small>mdi-calendar-check</v-icon>
+                                      <span
+                                        style="font-size:3.5vw;"
+                                      >{{currentUser.payment_info.salary}}$/hour</span>
+                                    </v-list-item-subtitle>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-tab-item>
+                            </v-tabs-items>
+                          </v-col>
+
+                          <v-col cols="6" align="center">
+                            <v-btn
+                              color="#FF5231"
+                              dark
+                              class="text-capitalize mb-3"
+                              style="font-size:4.5vw;"
+                            >
+                              Hire Me
+                              <img
+                                class="ml-2"
+                                width="18"
+                                src="/images/resume_themes/theme200/icons/chat2.png"
+                              />
+                            </v-btn>
+                          </v-col>
+                        </v-row>
+                      </v-card>
+                    </v-container>
                   </v-col>
                   <!-- Hourly Rate -->
                   <!-- Hideen in sm and up phone icons -->
