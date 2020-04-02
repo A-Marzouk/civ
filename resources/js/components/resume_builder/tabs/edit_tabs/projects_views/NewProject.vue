@@ -81,17 +81,17 @@
            </div>
        </div>
 
-       <div class="d-flex align-items-center justify-content-between" style="max-width:1048px;">
-            <div class="d-flex">
-                <a class="btn filled" href="javascript:void(0)" @click="addNewProject" :class="{'disabled-btn': !canSubmit()}">
+       <div class="d-flex align-items-center justify-content-between ctrls-wrapper" style="max-width:1048px;">
+            <div class="d-flex btns-wrapper">
+                <a class="btn btn-filled" href="javascript:void(0)" @click="addNewProject" :class="{'disabled-btn': !canSubmit()}">
                     <svg-vue class="save-icon icon" icon="save-icon"></svg-vue>
-                    Save all information
+                    Add Project
                 </a>
                 <router-link to="/resume-builder/edit/projects" class="btn outline ml-3" >
                     <b>Cancel</b>
                 </router-link>
             </div>
-            <div class="d-flex">
+            <div class="d-flex indicator-wrapper">
                 <div  class="step-indicator">
                     <a href="javascript:void(0)" @click="stepBack">
                         <svg-vue class="step-arrow-icon" icon="left-arrow-icon"></svg-vue>
@@ -224,37 +224,71 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../../sass/media-queries';
     $mainBlue: #001CE2;
 
-    .step-indicator {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 300px;
 
-        .step-arrow-icon {
-            height: 22px;
+    .ctrls-wrapper {
+        
+        @include lt-md {
+            flex-wrap: wrap;
 
-            &:hover {
-                cursor: pointer;
+            div {
+                width: 100%;
             }
         }
 
-        .step-dot {
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: block;
-            background: #C9CFF8;
-            transition: all .5s ease;
+        .btns-wrapper {
+            @include lt-md {
+                justify-content: space-between;
 
-            &.active {
-                background: #001CE2;
-                transition: all .5s ease;
+                .btn {
+                    width: 48%;
+                    min-width: 200px;
+                }
             }
+        }
 
-            &:hover {
-                cursor: pointer;
+        .indicator-wrapper {
+            margin-left: 24px;
+
+            @include lt-md {
+                margin-left: 0;
+                margin-top: 3rem;
+                justify-content: center;
+            }
+    
+            .step-indicator {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 300px;
+        
+                .step-arrow-icon {
+                    height: 22px;
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+        
+                .step-dot {
+                    border-radius: 50%;
+                    width: 22px;
+                    height: 22px;
+                    display: block;
+                    background: #C9CFF8;
+                    transition: all .5s ease;
+        
+                    &.active {
+                        background: #001CE2;
+                        transition: all .5s ease;
+                    }
+        
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
@@ -307,6 +341,19 @@
     .new-project-form {
         max-width: 1048px;
         width: 100%;
+
+        @include lt-md {
+            .input-field {
+                width: 100%;
+                max-width: 100%;
+
+                input,
+                textarea {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
     }
 
     .icon-container {
@@ -336,6 +383,7 @@
 
     .disabled-btn{
         opacity: .5;
+        border: none !important;
         &:hover{
             cursor: not-allowed;
         }

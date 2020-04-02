@@ -255,7 +255,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 @import '../../../sass/media-queries';
     body.modal-open {
