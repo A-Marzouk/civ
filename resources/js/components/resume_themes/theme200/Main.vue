@@ -104,8 +104,8 @@
                   </v-col>
                   <!-- Hourly rate -->
                   <v-col cols="12" class="hidden-sm-and-up">
-                    <v-container style="width:100%">
-                      <v-card color="white" light>
+                    <v-container fluid style="width:100%">
+                      <v-card color="white" light class="mr-1">
                         <v-row no-gutters justify="center" align="center">
                           <!-- mobile parent hire me tab -->
                           <v-col cols="12" align="center">
