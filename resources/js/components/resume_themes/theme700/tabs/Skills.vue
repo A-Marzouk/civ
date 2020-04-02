@@ -38,7 +38,7 @@
           >{{name}}</span>
           <span class="tm700-skill-proglangs--bar bg-tm700-2 h-tm700-7 flex">
             <span
-              class="h-tm700-5 bg-tm700-1 rounded-tm700-15"
+              class="h-tm700-5 bg-tm700-1 rounded-civ-15"
               v-bind:style="{width:percentage + '%'}"
             ></span>
           </span>

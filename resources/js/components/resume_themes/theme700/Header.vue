@@ -1,17 +1,22 @@
 <template>
-  <header class="w-full">
-    <div class="inner p-0 w-full my-0 xl:mx-auto sm:m-0 xl:max-w-tm700-xl-2 md:max-w-screen-md sm:max-w-screen-sm">
-      <div class="top flex items-stretch">
-        <div class="left py-12 flex justify-end bg-tm700-1 relative flex-tm700-1">
-          <img class="rounded-full max-w-xs absolute border-14 border-white left-94px top-24px pl-24px mt-" v-bind:src="logo" />
+  <div>
+  <header class="header mb-4">
+    <div class="inner p-0 w-full my-0 xl:mx-auto sm:m-0 xl:max-w-tm700-xl-2">
+      <div class="top flex items-stretch md:flex-wrap">
+        <!-- left -->
+        <div class="left md:pl-96px md:py-16 py-12 flex justify-end bg-tm700-1 relative xl:flex-civ-1 lg:flex-civ-1 md:items-center">
+          <img class="rounded-full max-w-xs absolute border-14 border-white right-minus-80px top-24px " v-bind:src="logo" />
         </div>
-        <div class="right py-12 col-span-2 flex flex-col items-stretch flex-tm700-2">
-          <h1 class="font-bold not-italic text-tm700-1 text-4xl leading-10">Carla Pipin Ranga</h1>
-          <p
-            class="font-bold not-italic text-tm700-4 leading-10 font-medium leading-4"
-          >Web Ui/Ux Designer, Graphiс Designer</p>
+        <!-- right -->
+        <div class="right lg:pl-80px xl:pl-tm700-9 py-12 flex md:flex-row flex-col items-stretch lg:flex-civ-2 xl:flex-civ-1_2">
+          <div class="flex flex-col">
+            <h1 class="font-bold not-italic text-tm700-1 text-4xl leading-10">Carla Pipin Ranga</h1>
+            <p
+              class="font-bold text-sm not-italic text-tm700-4 leading-10 font-medium leading-4"
+            >Web Ui/Ux Designer, Graphiс Designer</p>
+          </div>
           <div class="media flex items-center">
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 mr-tm700-10 md:pl-5 lg:pl-13 lg:p-civ-13 xl:p-civ-13">
               <svg
                 width="16"
                 height="14"
@@ -25,7 +30,7 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 mr-tm700-10 p-civ-10">
               <svg
                 width="13"
                 height="12"
@@ -39,7 +44,7 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 mr-tm700-10 p-tm700-11">
               <svg
                 width="13"
                 height="12"
@@ -63,9 +68,10 @@
             </a>
           </div>
         </div>
-        <div class="icons py-12 flex-tm700-4">
+        <!-- icons -->
+        <div class="icons py-12 lg:flex-civ-3 xl:flex-civ-4">
           <div class="flex items-center">
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 xl:mr-tm700-10 p-9px">
               <svg
                 width="19"
                 height="19"
@@ -84,7 +90,7 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 xl:mr-tm700-10 p-9px">
               <svg
                 width="17"
                 height="17"
@@ -122,7 +128,7 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 xl:mr-tm700-10 p-9px">
               <svg
                 width="16"
                 height="16"
@@ -144,7 +150,7 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 xl:mr-tm700-10 p-9px">
               <svg
                 width="17"
                 height="17"
@@ -163,7 +169,7 @@
                 />
               </svg>
             </a>
-            <a href="#">
+            <a href="#" class="rounded-full bg-tm700-2 p-9px">
               <svg
                 width="19"
                 height="19"
@@ -183,25 +189,237 @@
             </a>
           </div>
         </div>
-        <div class="hire py-12 flex-tm700-3">
+        <!-- hire -->
+        <div class="hire py-12 flex-civ-1_5">
           <div class="flex items-center justify-between">
-            <div class="hourly--rate flex flex-row">
+            <div class="hourly--rate flex flex-row items-center">
               <div class="flex flex-col">
-                <span>Hourly Rate</span>
-                <span>$25 USD</span>
+                <span class="text-tm700-5 not-italic text-civ-18 leading-civ-22">Hourly Rate</span>
+                <span class="text-tm700-1 font-bold text-2xl leading-civ-29">$25 USD</span>
               </div>
             </div>
             <div class="vertical"></div>
-            <div class="available--for flex flex-col">
-              <span>Available for</span>
-              <span>8 Hours</span>
+            <div class="available--for flex flex-col items-center">
+              <span class="text-tm700-5 not-italic text-civ-18 leading-civ-22">Available for</span>
+              <span class="text-tm700-1 font-bold text-2xl leading-civ-29">8 Hours</span>
             </div>
-            <button>Hire Me</button>
+            <button class="bg-tm700-1 text-white font-bold text-civ-18 leading-civ-22 rounded-civ-50p md:p-civ-15 lg:p-civ-15 xl:pt-5 xl:pr-66px xl:pb-18px xl:pl-60px">Hire Me</button>
           </div>
         </div>
       </div>
     </div>
   </header>
+  <!---------dont touch ------->
+  <header class="header" id="head">
+    <div class="inner p-0 w-full my-0 xl:mx-auto sm:m-0 xl:max-w-tm700-xl-2">
+      <div class="top grid items-stretch">
+        <!-- left -->
+        <div class="left md:pl-96px md:py-16 py-12 flex justify-end bg-tm700-1 relative xl:flex-civ-1 lg:flex-civ-1 md:items-center">
+          <img class="rounded-full max-w-xs absolute border-14 border-white right-minus-80px top-24px md:top-34px" v-bind:src="logo" />
+        </div>
+        <!-- right -->
+        <div class="right md:pl-96px lg:pl-80px xl:pl-tm700-9 md:pb-0 py-12 flex md:flex-col lg:flex-row items-stretch lg:flex-civ-2 xl:flex-civ-1_2">
+            <div class="md:flex md:flex-row lg:flex-col md:items-start">
+              <div class="flex flex-col">
+                <h1 class="font-bold not-italic text-tm700-1 text-4xl leading-10">Carla Pipin Ranga</h1>
+                <p class="font-bold text-sm not-italic text-tm700-4 leading-10 font-medium leading-4">Web Ui/Ux Designer, Graphiс Designer</p>
+              </div>
+              <div class="media flex items-center md:ml-52px lg:m-0 xl:m-0">
+                <a href="#" class="rounded-full bg-tm700-2 mr-tm700-10 md:p-5 lg:p-civ-13">
+                  <svg
+                    width="16"
+                    height="14"
+                    viewBox="0 0 16 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.4 0H1.6C1.17704 0.00231308 0.772127 0.187708 0.473797 0.515647C0.175467 0.843585 0.00799465 1.28738 0.00799994 1.75L0 12.25C0.00115164 12.7137 0.170092 13.1581 0.469901 13.486C0.76971 13.814 1.17601 13.9987 1.6 14H14.4C14.824 13.9987 15.2303 13.814 15.5301 13.486C15.8299 13.1581 15.9988 12.7137 16 12.25V1.75C15.9988 1.28626 15.8299 0.841871 15.5301 0.513955C15.2303 0.186039 14.824 0.0012596 14.4 0ZM14.4 3.5L8 7.875L1.6 3.5V1.75L8 6.125L14.4 1.75V3.5Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+                <a href="#" class="rounded-full bg-tm700-2 mr-tm700-10 md:p-4 lg:p-3">
+                  <svg
+                    width="13"
+                    height="12"
+                    viewBox="0 0 13 10"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12.7758 0H0.224171C0.164717 0 0.107698 0.0229093 0.0656581 0.0636881C0.0236179 0.104467 0 0.159775 0 0.217445L0 9.78255C0 9.84023 0.0236179 9.89553 0.0656581 9.93631C0.107698 9.97709 0.164717 10 0.224171 10H12.7758C12.8351 10 12.892 9.97722 12.934 9.93664C12.976 9.89606 12.9997 9.84099 13 9.78348V0.217445C13 0.159775 12.9764 0.104467 12.9343 0.0636881C12.8923 0.0229093 12.8353 0 12.7758 0ZM2.24139 9.56511H0.448341V7.60934H2.24139V9.56511ZM2.24139 7.17352H0.448341V5.21806H2.24139V7.17352ZM2.24139 4.78194H0.448341V2.82647H2.24139V4.78194ZM2.24139 2.39036H0.448341V0.43489H2.24139V2.39036ZM8.18937 5.18269L5.7238 6.7048C5.68984 6.72573 5.65069 6.7374 5.61047 6.73859C5.57025 6.73978 5.53045 6.73045 5.49523 6.71157C5.46001 6.6927 5.43067 6.66498 5.4103 6.63132C5.38994 6.59766 5.37928 6.5593 5.37946 6.52027V3.47543C5.37925 3.43635 5.38989 3.39794 5.41027 3.36423C5.43066 3.33052 5.46003 3.30277 5.4953 3.28388C5.53057 3.265 5.57044 3.25568 5.6107 3.25692C5.65097 3.25815 5.69015 3.26989 5.72412 3.29089L8.18968 4.8127C8.22143 4.83239 8.24756 4.85951 8.26566 4.89157C8.28376 4.92364 8.29324 4.9596 8.29324 4.99616C8.29324 5.03271 8.28376 5.06867 8.26566 5.10074C8.24756 5.1328 8.22143 5.15992 8.18968 5.17961L8.18937 5.18269ZM12.5517 9.56511H10.7586V7.60934H12.5517V9.56511ZM12.5517 7.17352H10.7586V5.21806H12.5517V7.17352ZM12.5517 4.78194H10.7586V2.82647H12.5517V4.78194ZM12.5517 2.39036H10.7586V0.43489H12.5517V2.39036Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+                <a href="#" class="rounded-full bg-tm700-2 mr-tm700-10 md:p-5 lg:p-2">
+                  <svg
+                    width="13"
+                    height="12"
+                    viewBox="0 0 13 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M6.08108 0.945312C5.03948 0.950181 4.0169 1.22969 3.11312 1.75656C2.20933 2.28342 1.45522 3.03966 0.924348 3.95149C0.393477 4.86332 0.103981 5.89959 0.0841052 6.95919C0.0642295 8.0188 0.314653 9.06556 0.810943 9.99733V8.37667C0.81335 8.08018 0.91474 7.79334 1.09847 7.5632C1.08322 7.40151 1.07559 7.23898 1.07559 7.07562C1.07817 5.72319 1.6055 4.42649 2.54289 3.46762C3.48028 2.50874 4.75188 1.96526 6.08108 1.95539C6.78487 1.95812 7.48026 2.11113 8.12226 2.40454C8.76426 2.69794 9.33858 3.1252 9.80805 3.65868C10.2775 4.19215 10.6317 4.81996 10.8477 5.50149C11.0637 6.18301 11.1366 6.90308 11.0618 7.6151C11.2221 7.83569 11.3094 8.10237 11.311 8.37667V10.0797C11.8251 9.1485 12.0911 8.0968 12.0828 7.02878C12.0745 5.96075 11.7922 4.91345 11.2638 3.99057C10.7354 3.06769 9.97928 2.30124 9.07024 1.76711C8.1612 1.23298 7.13081 0.9497 6.08108 0.945312Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M1.18056 8.11472C1.15487 8.19951 1.14174 8.28772 1.1416 8.37644V10.6656C1.1416 11.3721 1.96864 11.9449 2.9889 11.9449H3.76647V7.09741H2.9889C2.09818 7.09741 1.35493 7.53371 1.18056 8.11472Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M10.9797 10.6656V8.37645C10.9795 8.32187 10.9743 8.26743 10.9642 8.21382C10.8486 7.58468 10.0729 7.09741 9.13237 7.09741H8.35449V11.9452H9.13237C10.153 11.9449 10.9797 11.3721 10.9797 10.6656Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <!-- icons -->
+            <div class="icons xl:pl-47px md:pb-0 md:pt-88px lg:py-12 xl:py-12 xl:py-0 lg:flex-civ-3 xl:flex-civ-4 md:col-start-2 md:row-start-2">
+              <div class="flex items-center xl:pl-47px">
+                <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 md:xl:mr-47px lg:xl:mr-tm700-10  xl:mr-tm700-10 md:p-18px lg:p-9px">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 19 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.81677 8.92971C8.21105 8.73138 8.50914 8.51049 8.7134 8.27178C9.07681 7.84187 9.25613 7.27182 9.25613 6.5652C9.25613 5.87758 9.07681 5.28972 8.71815 4.79687C8.1196 3.99405 7.10658 3.58314 5.67434 3.56177H0V15.1444H5.29075C5.88692 15.1444 6.43915 15.0933 6.94982 14.9888C7.46049 14.8831 7.90227 14.6896 8.27637 14.4069C8.60889 14.1611 8.88679 13.8559 9.10769 13.496C9.45684 12.9521 9.63142 12.3357 9.63142 11.6493C9.63142 10.9842 9.47822 10.4178 9.17419 9.95223C8.8666 9.48669 8.41532 9.14585 7.81677 8.92971ZM2.34075 5.57356H4.89646C5.4582 5.57356 5.92136 5.63412 6.28477 5.75407C6.70518 5.92865 6.91538 6.28374 6.91538 6.82528C6.91538 7.31101 6.75505 7.65066 6.43797 7.84187C6.1185 8.03307 5.70403 8.12927 5.19574 8.12927H2.34075V5.57356ZM6.38215 12.9307C6.0995 13.0673 5.70166 13.135 5.19218 13.135H2.34075V10.046H5.23137C5.73491 10.0496 6.12682 10.1161 6.40709 10.2408C6.90588 10.4665 7.15409 10.8797 7.15409 11.4842C7.15409 12.1968 6.89757 12.6766 6.38215 12.9307Z"
+                      fill="#513FCA"
+                    />
+                    <path d="M17.1735 4.10229H12.1416V5.54404H17.1735V4.10229Z" fill="#513FCA" />
+                    <path
+                      d="M18.922 9.79232C18.8175 9.12132 18.5871 8.53109 18.2284 8.02161C17.8353 7.44444 17.3365 7.02165 16.7297 6.75444C16.1252 6.48605 15.4447 6.35185 14.687 6.35304C13.4151 6.35304 12.3819 6.75088 11.5826 7.54063C10.7858 8.33276 10.3867 9.47166 10.3867 10.9562C10.3867 12.5392 10.8273 13.6829 11.7133 14.3848C12.5956 15.0878 13.6146 15.4382 14.7713 15.4382C16.1715 15.4382 17.2605 15.0213 18.0384 14.19C18.536 13.6651 18.8175 13.1485 18.8792 12.6414H16.561C16.4268 12.8919 16.2713 13.0879 16.0931 13.2304C15.7701 13.4917 15.3497 13.6223 14.8343 13.6223C14.3438 13.6223 13.9281 13.5142 13.5814 13.2993C13.0089 12.9549 12.7097 12.3516 12.6717 11.493H18.998C19.0075 10.7531 18.9837 10.1842 18.922 9.79232ZM12.7287 10.0144C12.8118 9.45741 13.0137 9.01563 13.3343 8.68904C13.655 8.36364 14.1086 8.19975 14.6894 8.19856C15.225 8.19856 15.6727 8.35176 16.0373 8.65935C16.3971 8.96931 16.6002 9.41941 16.6418 10.0144H12.7287Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+                <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 md:xl:mr-47px lg:xl:mr-tm700-10  xl:mr-tm700-10 md:p-18px lg:p-9px">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 17 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.5 0C3.81331 0 0 3.81331 0 8.5C0 13.1867 3.81331 17 8.5 17C13.1867 17 17 13.1867 17 8.5C17 3.81331 13.1867 0 8.5 0ZM8.5 15.9375C4.39875 15.9375 1.0625 12.6002 1.0625 8.5C1.0625 4.39875 4.39875 1.0625 8.5 1.0625C12.6002 1.0625 15.9375 4.39875 15.9375 8.5C15.9375 12.6002 12.6002 15.9375 8.5 15.9375Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M8.49989 2.125C8.05364 2.125 7.61802 2.17175 7.19727 2.25887C7.97077 3.35537 8.67308 4.4965 9.29145 5.67906C10.4613 5.134 11.562 4.43062 12.5671 3.59125C11.4632 2.67538 10.0458 2.125 8.49989 2.125Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M13.3251 4.34106C12.2318 5.26225 11.0291 6.02619 9.75195 6.62331C10.0314 7.20556 10.2906 7.79525 10.5308 8.3945C11.9418 8.10444 13.4101 8.07788 14.8658 8.31906C14.8233 6.79969 14.2516 5.41419 13.3251 4.34106Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M6.13063 2.58594C4.21707 3.35306 2.7657 5.01906 2.29395 7.06437C4.35732 7.15256 6.39944 6.80831 8.30026 6.08262C7.66169 4.87031 6.93813 3.70156 6.13063 2.58594Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M8.77625 7.04297C6.936 7.76016 4.97038 8.15115 2.97181 8.15115C2.69662 8.15115 2.42037 8.13415 2.14412 8.11928C2.13669 8.24572 2.125 8.37109 2.125 8.49965C2.125 10.0647 2.69131 11.497 3.62738 12.6062C5.15844 10.7054 7.2165 9.34328 9.4945 8.65903C9.27244 8.1129 9.03231 7.57528 8.77625 7.04297Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M10.9209 9.40097C11.4277 10.8141 11.8251 12.2665 12.1162 13.7477C13.5527 12.7563 14.5557 11.1913 14.8075 9.38291C13.5049 9.15235 12.1885 9.16297 10.9209 9.40097Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M9.87708 9.64771C7.73508 10.2735 5.80027 11.5591 4.38184 13.3622C5.49321 14.3046 6.92865 14.8752 8.50008 14.8752C9.44358 14.8752 10.3371 14.6648 11.1425 14.2961C10.8503 12.7088 10.4253 11.1554 9.87708 9.64771Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+                <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 md:xl:mr-47px lg:xl:mr-tm700-10  xl:mr-tm700-10 md:p-18px lg:p-9px">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.6689 0H4.33105C1.94287 0 0 1.94287 0 4.33105V11.669C0 14.0571 1.94287 16 4.33105 16H11.669C14.0571 16 16 14.0571 16 11.669V4.33105C16 1.94287 14.0571 0 11.6689 0V0ZM7.99998 12.3749C5.58764 12.3749 3.62512 10.4123 3.62512 7.99998C3.62512 5.58764 5.58764 3.62512 7.99998 3.62512C10.4123 3.62512 12.3749 5.58764 12.3749 7.99998C12.3749 10.4123 10.4123 12.3749 7.99998 12.3749ZM12.4795 4.65685C11.7666 4.65685 11.1867 4.07702 11.1867 3.36413C11.1867 2.65124 11.7666 2.07129 12.4795 2.07129C13.1924 2.07129 13.7723 2.65124 13.7723 3.36413C13.7723 4.07702 13.1924 4.65685 12.4795 4.65685Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M8.00036 4.5625C6.10534 4.5625 4.56348 6.10425 4.56348 7.99938C4.56348 9.8944 6.10534 11.4363 8.00036 11.4363C9.8955 11.4363 11.4372 9.8944 11.4372 7.99938C11.4372 6.10425 9.8955 4.5625 8.00036 4.5625Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M12.4797 3.00879C12.2842 3.00879 12.125 3.16797 12.125 3.36352C12.125 3.55908 12.2842 3.71826 12.4797 3.71826C12.6754 3.71826 12.8346 3.5592 12.8346 3.36352C12.8346 3.16785 12.6754 3.00879 12.4797 3.00879Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+                <a href="#" class="rounded-full bg-tm700-2 lg:mr-4 md:xl:mr-47px lg:xl:mr-tm700-10  xl:mr-tm700-10 md:p-18px lg:p-9px">
+                  <svg
+                    width="17"
+                    height="17"
+                    viewBox="0 0 17 17"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M4.3882 5.59644H0.97168V16.1H4.3882V5.59644Z" fill="#513FCA" />
+                    <path
+                      d="M13.6944 5.71961C13.6581 5.70816 13.6238 5.69574 13.5856 5.68524C13.5397 5.67473 13.4939 5.66614 13.4471 5.6585C13.2657 5.62222 13.0671 5.59644 12.8341 5.59644C10.8422 5.59644 9.57894 7.04497 9.16262 7.60453V5.59644H5.74609V16.1H9.16262V10.3708C9.16262 10.3708 11.7446 6.77474 12.8341 9.41591C12.8341 11.7735 12.8341 16.1 12.8341 16.1H16.2497V9.012C16.2497 7.42501 15.1621 6.10252 13.6944 5.71961Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M2.6427 4.16431C3.56558 4.16431 4.31372 3.41617 4.31372 2.49329C4.31372 1.57041 3.56558 0.822266 2.6427 0.822266C1.71982 0.822266 0.97168 1.57041 0.97168 2.49329C0.97168 3.41617 1.71982 4.16431 2.6427 4.16431Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+                <a href="#" class="rounded-full bg-tm700-2 md:p-18px lg:p-9px">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 19 19"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.625 8.3125V5.9375H15.4375V8.3125H13.0625V9.5H15.4375V11.875H16.625V9.5H19V8.3125H16.625Z"
+                      fill="#513FCA"
+                    />
+                    <path
+                      d="M5.9375 8.3125V10.6875H9.29694C8.8065 12.0697 7.486 13.0625 5.9375 13.0625C3.97337 13.0625 2.375 11.4641 2.375 9.5C2.375 7.53587 3.97337 5.9375 5.9375 5.9375C6.78894 5.9375 7.60831 6.24269 8.24481 6.79725L9.80519 5.0065C8.73644 4.0755 7.36369 3.5625 5.9375 3.5625C2.66356 3.5625 0 6.22606 0 9.5C0 12.7739 2.66356 15.4375 5.9375 15.4375C9.21144 15.4375 11.875 12.7739 11.875 9.5V8.3125H5.9375Z"
+                      fill="#513FCA"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+        </div>
+        <!-- hire -->
+        <div class="hire py-12 flex-civ-1_5 md:col-start-2 md:row-start-3 lg:col-start-3 lg:row-start-1 xl:col-start-3 xl:row-start-1">
+          <div class="flex items-center justify-between">
+            <div class="hourly--rate flex flex-row items-center">
+              <div class="flex flex-col">
+                <span class="text-tm700-5 not-italic text-civ-18 leading-civ-22">Hourly Rate</span>
+                <span class="text-tm700-1 font-bold text-2xl leading-civ-29">$25 USD</span>
+              </div>
+            </div>
+            <div class="vertical"></div>
+            <div class="available--for flex flex-col items-center">
+              <span class="text-tm700-5 not-italic text-civ-18 leading-civ-22">Available for</span>
+              <span class="text-tm700-1 font-bold text-2xl leading-civ-29">8 Hours</span>
+            </div>
+            <button class="bg-tm700-1 text-white font-bold text-civ-18 leading-civ-22 rounded-civ-50p md:p-civ-15 lg:p-civ-15 xl:pt-5 xl:pr-66px xl:pb-18px xl:pl-60px">Hire Me</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+    </div>
 </template>
 
 <script>
@@ -218,101 +436,56 @@ export default {
 </script>
 
 <style lang="scss">
-div#wrapper_theme700 {
-  header {
-    div.top {
-
-      div.right {
-        padding-left: 100px;
-        h1 {
+.vertical {
+    content: "";
+    border: 1px solid #d7d7d7;
+    height: 41px;
+    width: 1px;
+}
+/*
+.hire {
+    button {
+        @media (min-width: 1024px){
+            padding: 15px;
         }
-        p {
-          font-size: 14px;
-        }
-        div.media {
-          a {
-            margin-right: 25px;
-            @apply rounded-full bg-tm700-2;
-          }
-          a:nth-child(1) {
-            padding: 13px;
-          }
-          a:nth-child(2) {
-            padding: 10px;
-          }
-          a:nth-child(3) {
-            padding: 9px;
-          }
-        }
-      }
-      div.icons {
-        flex: 1.7;
-        a {
-          margin-right: 25px;
-          @apply rounded-full bg-tm700-2;
-        }
-        a:nth-child(1) {
-          padding: 9px;
-        }
-        a:nth-child(2) {
-          padding: 10px;
-        }
-        a:nth-child(3) {
-          padding: 10px;
-        }
-        a:nth-child(4) {
-          padding: 9px;
-        }
-        a:nth-child(5) {
-          padding: 9px;
-        }
-      }
-      div.hire {
-        flex: 1.4;
-        > div {
-          align-items: center;
+        @media (min-width: 1280px){
+            padding: 21px 65px 18px 65px;
         }
 
-        .hourly--rate {
-          align-items: center;
-          span:first-child {
-            @apply text-tm700-5 not-italic;
-            font-size: 18px;
-            line-height: 22px;
-          }
-          span:nth-child(2) {
-            @apply text-tm700-1 font-bold;
-            font-size: 24px;
-            line-height: 29px;
-          }
-        }
-        .vertical {
-          content: "";
-          border: 1px solid #d7d7d7;
-          height: 41px;
-          width: 1px;
-        }
-        .available--for {
-          align-items: center;
-          span:first-child {
-            @apply text-tm700-5 not-italic;
-            font-size: 18px;
-            line-height: 22px;
-          }
-          span:nth-child(2) {
-            @apply text-tm700-1 font-bold;
-            font-size: 24px;
-            line-height: 29px;
-          }
-        }
-        button {
-          @apply bg-tm700-1 text-white font-bold;
-          border-radius: 50px;
-          font-size: 18px;
-          line-height: 22px;
-          padding: 21px 61px 18px 65px;
-        }
+    }
+}
+*/
+#head {
+  .top {
+
+    @media (min-width: 768px) {
+      grid-template-columns: 107px auto;
+      grid-template-rows: auto auto;
+    }
+    @media (min-width: 1024px) {
+      grid-template-columns: 98px 5fr 2fr;
+        grid-template-rows: auto;
+    }
+    @media (min-width: 1280px) {
+      grid-template-columns: 172px 5fr 2fr;
+        grid-template-rows: auto;
+    }
+    .icons {
+        @media (min-width: 1024px) {
+          justify-self: center;
       }
+    }
+      .hire {
+        @media (min-width: 768px) {
+          justify-self: center;
+        }
+        @media (min-width: 1024px) {
+          justify-self: normal;
+        }
+        @media (min-width: 1280px) {
+          justify-self: normal;
+        }
+
     }
   }
 }
