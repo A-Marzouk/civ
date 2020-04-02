@@ -21,6 +21,9 @@
                 <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                     View CV
                 </router-link>
+                <router-link id='import' data-target="import" v-on:click.native="changeTab" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
+                    CV Import
+                </router-link>
 
                 <div class="decorator"></div>
             </div>
@@ -56,6 +59,9 @@
                         </router-link>
                         <router-link id='viewCVMobile' data-target="viewCV" v-on:click.native="setActiveTab('viewCV')" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`view-icon`"></svg-vue>
+                        </router-link>
+                        <router-link id='importMobile' data-target="import" v-on:click.native="setActiveTab('import')" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
+                            <svg-vue class="nav-icon" :icon="`import`"></svg-vue>
                         </router-link>
                     </div>
                 </div>
@@ -223,19 +229,24 @@
             switch (pathArray[2]) {
                 // edit Tab
                 case 'edit':
-                    this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this)
-                    break
+                    this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this);
+                    break;
                     
 
                 // view CV Tab
                 case 'view':
-                    this.changeTab({ target: document.getElementById('viewCV')}, 'mainLinksWrapper', this)
+                    this.changeTab({ target: document.getElementById('viewCV')}, 'mainLinksWrapper', this);
+                    break;
+
+                case 'import':
+                    this.changeTab({ target: document.getElementById('import')}, 'mainLinksWrapper', this);
                     break
+
 
                 // my Account Tab
                 default:
-                    this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this)
-                    break
+                    this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this);
+                    break;
             }
         }
     }
@@ -436,7 +447,7 @@
         }
 
         #mainLinksWrapper {
-            width: 670px;
+            width: 800px;
 
             @include lt-lg {
                 display: none !important;
@@ -475,7 +486,7 @@
                 font-size: 25px;
                 transition: color 1s;
                 border-bottom-color: transparent;
-
+                white-space: nowrap;
                 &:hover,
                 &:active {
                     text-decoration: none;
