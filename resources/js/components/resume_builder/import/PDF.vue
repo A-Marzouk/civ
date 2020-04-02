@@ -14,7 +14,7 @@
                         Import PDF file
                     </a>
                 </div>
-                <div class="auto-import-btn NoDecor">
+                <div class="auto-import-btn NoDecor"  v-show="file">
                     <a href="javascript:void(0)" @click="uploadPDFFile">
                         Extract file
                         <img class="extract" src="/images/resume_builder/import/extract.png" alt="add">
@@ -38,6 +38,17 @@
 
         <input type="file" id="uploadFileButton" ref="file" @change="handleFileUpload"
                style="opacity:0; position: absolute; left:-500px;">
+
+
+        <div class="import-results">
+            <div class="title">
+                Select <span>your information</span>
+            </div>
+
+            <div class="sections">
+
+            </div>
+        </div>
 
 
         <div class="pl-5 pr-5 d-flex flex-column align-items-start ">
@@ -944,27 +955,27 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 419px;
-                    height: 115px;
+                    width: 281px;
+                    height: 77px;
 
                     border: 1.5px solid #001CE2;
                     border-radius: 8px;
                     opacity: 1;
 
-                    font: 500 33px Noto Sans;
+                    font: 500 25px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
 
                     img {
-                        width: 47.74px;
-                        height: 47.74px;
-                        margin-right: 25.5px;
+                        width: 33.74px;
+                        height: 33.74px;
+                        margin-right: 18.5px;
                     }
 
                     img.extract {
-                        width: 47.74px;
-                        height: 47.74px;
-                        margin-left: 92px;
+                        width: 50.74px;
+                        height: 32.74px;
+                        margin-left: 34px;
                     }
                 }
             }
@@ -998,6 +1009,28 @@
                 padding-bottom: 101px;
             }
 
+        }
+
+        .import-results{
+            margin-top: 100px;
+            .title{
+                display: flex;
+                align-items: center;
+                font-weight: 600;
+                font-size: 52px;
+                text-align: left;
+                color: #081fe2;
+
+                span{
+                    font-weight: 300;
+                }
+            }
+
+            .sections{
+                .section-title{
+
+                }
+            }
         }
     }
 </style>
