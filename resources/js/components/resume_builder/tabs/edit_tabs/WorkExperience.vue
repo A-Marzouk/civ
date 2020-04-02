@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="work-container">
         <div class="section-title">
             <div class="title-light">Add</div>
             <h2>Work Experience</h2>
@@ -87,7 +87,7 @@
             </div>
             <div class="work-ex-list">
                 <div class="work-ex-item mt-5 flex-column" v-for="(work,index) in works" :key="index + '_workEx'">
-                    <div class="d-flex">
+                    <div class="item-grid">
                         <div class="work-icon">
                             <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
                         </div>
@@ -344,8 +344,13 @@
     @import '../../../../../sass/media-queries';
     $mainBlue: #001CE2;
 
+    .work-container {
+        width: 100%;
+    }
+
     .section-body {
         margin-top: 20px;
+        width: 100%;
 
         .work-ex-form {
             display: flex;
@@ -378,6 +383,7 @@
                 @include lt-md {
                     margin-top: 5px;
                     width: 100%;
+                    max-width: 100%;
                 }
 
                 &.description-field {
@@ -415,7 +421,8 @@
                         max-width: 571px;
                         width: 90%;
 
-                        @include lt-lg {
+                        // Forced breakpoint
+                        @media (max-width: 1556px) {
                             width: 100%;
                             max-width: 100%;
                         }
@@ -423,6 +430,8 @@
 
                     @include lt-md {
                         height: 47px;
+                        width: 100%;
+                        max-width: 100%;
                     }
                 }
 
@@ -472,15 +481,20 @@
 
                 .input-field {
                     width: 100%;
-
+                    
                     @include lt-lg {
                         width: 48%;
                         margin-bottom: 0 !important;
                     }
 
-                    @include lt-lg {
+                    @include lt-md {
                         width: 100%;
+                        max-width: 100%;
                         margin-bottom: 25px !important;
+                        
+                        input {
+                            max-width: 100%;
+                        }
                     }
                 }
 
@@ -492,7 +506,7 @@
                     width: 100%;
 
                     @include lt-lg {
-                        width: 49%;
+                        width: 48%;
                         min-width: 200px;
                     }
 
@@ -553,6 +567,10 @@
                             letter-spacing: 0;
                             opacity: 1;
 
+                            @include lt-lg {
+                                font-size: 15px;
+                            }
+
                             @include lt-md {
                                 font-size: 11px;
                                 color: $mainBlue;
@@ -595,6 +613,11 @@
         .action-btns {
             display: flex;
             margin-top: 42px;
+            max-width: 600px;
+
+            @include lt-md {
+                max-width: 100%;
+            }
 
             .btn {
                 font-size: 14px !important;
@@ -714,6 +737,7 @@
         .work-ex-list{
             margin-top: 64px;
 
+
             .work-ex-item{
                 position: relative;
                 display: flex;
@@ -722,39 +746,42 @@
                 width: 100%;
                 margin-bottom: 30px;
 
+                .item-grid {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 38px 1fr;
+                    grid-gap: 18px;
+
+                    @include lt-sm {
+                        grid-gap: 6px;
+                    }
+                }
+
                 .work-icon{
-                    width: 38px;
-                    height: 27px;
+                    width: 100%;
+                    margin-top: 10px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
 
                     @include lt-md {
-                        width: 34px;
-                        height: 30px;
-                        
                         img {
-                            margin-right: 18px;
+                            width: 34px;
                         }
                     }
 
                     @include lt-sm {
-                        width: 28px;
-                        height: 25px;
+                        grid-gap: 12px;
                         
                         img {
-                            margin-right: 12px;
+                            width: 28px;
                         }
                     }
                 }
 
                 .work-ex-info{
-                    margin-left: 33px;
-
-                    @include lt-md {
-                        margin-left: 18px;
-                    }
-
-                    @include lt-sm {
-                        margin-right: 12px;
-                    }
 
                     .work-ex-title{
                         font: 700 30px/41px Noto Sans;
@@ -806,15 +833,26 @@
                     width: 100%;
                     background: #F9F9F9;
                     box-shadow: 0 9px 12px rgba(0,0,0,.03);
-                    display: flex;
                     justify-content: space-between;
                     padding: 12px 37px;
                     border-radius: 2px;
-                    margin-top: 1rem;
+                    margin: 1rem auto 0;
+
+                    @include lt-md {
+                        display: flex !important;
+                    }
+
+                    @include lt-sm {
+                        max-width: 250px;
+                    }
 
                     a {
                         height: 24px;
                         display: block;
+
+                        @include lt-sm {
+                            height: 16px;
+                        }
 
                         .icon {
                             height: 100%;
