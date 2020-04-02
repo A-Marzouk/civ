@@ -377,7 +377,7 @@
   }
 </script>
 
-<style>
+<style scoped>
 /* Global style */
 .primary { background-color: #4E6EF1 !important; }
 .primary--text { color: #4E6EF1 !important; }
