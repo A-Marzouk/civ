@@ -335,9 +335,9 @@
                   <!-- Column 2 -->
 
                   <!-- Availibility only for tablet version -->
-                  <v-col cols="12" class="availibility-tablet mt-n5" align="center">
+                  <v-col cols="12" class="availibility-tablet mt-n5 mb-2" align="center">
                     <v-container fluid ma-0 pa-0 style="width:100%">
-                      <v-card color="rgba(37, 0, 0, 0.1)" flat>
+                      <v-card class="card-hire-me" color="rgba(37, 0, 0, 0.1)" flat>
                         <v-row align="center" justify="center">
                           <!--tab1 column -->
                           <v-col cols="3">
