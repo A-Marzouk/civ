@@ -229,7 +229,7 @@
                               <v-card-text>
                                 <v-row no-gutters align="center">
                                   <!-- for desktop -->
-                                  <v-col md="2" class="">
+                                  <v-col md="2" class>
                                     <img
                                       width="15"
                                       class="mt-md-1"
@@ -254,7 +254,7 @@
                                     <!-- tab 1 -->
                                   </v-col>
                                   <!-- For desktop -->
-                                  
+
                                   <v-col align="center" md="2" sm="12">
                                     <!-- tab 1 items -->
                                     <v-tabs-items v-model="tabRate" style="background:transparent;">
@@ -268,7 +268,7 @@
                                     <!-- tab 1 items -->
                                   </v-col>
                                   <!-- Show on desktop -->
-                                  <v-col md="2" class="">
+                                  <v-col md="2" class>
                                     <div class="hire-card-frequency2">
                                       <img
                                         width="15"
@@ -295,7 +295,7 @@
                                     </div>
                                   </v-col>
                                   <!-- Show on desktop -->
-                                  
+
                                   <v-col align="center" md="3" sm="12">
                                     <v-tabs-items
                                       v-model="tabFrequency"
@@ -318,8 +318,6 @@
                                           src="/images/resume_themes/theme200/icons/chat2.png"
                                         />
                                       </v-btn>
-
-                                    
                                     </v-card>
                                   </v-col>
                                 </v-row>
@@ -333,22 +331,86 @@
                   </v-col>
                   <!-- Column 2 -->
 
-
                   <!-- Availibility only for tablet version -->
-                  <v-col cols="12"  class="availibility-tablet">
-                    <v-card flat color="rgba(37, 0, 0, 0.1)" align="center">
-                      <v-container fluid style="width:100%">
+                  <v-col cols="12" class="availibility-tablet mt-n5" align="center">
+                    <v-container fluid ma-0 pa-0 style="width:100%">
+                      <v-card color="rgba(37, 0, 0, 0.1)" flat>
                         <v-row align="center" justify="center">
-                          <v-col cols="5">Column 1</v-col>
-                           <v-col cols="5"> column2</v-col>
-                            <v-col cols="2">Column3</v-col>
+                          <!--tab1 column -->
+                          <v-col cols="3">
+                            <v-tabs
+                              class="hire-me-parent-tab"
+                              height="60"
+                              v-model="tabRate"
+                              center-active
+                              vertical
+                              hide-slider
+                              dense
+                              background-color="transparent"
+                            >
+                              <v-tab class="body-2 text-capitalize">Monthly</v-tab>
+                              <v-tab class="body-2 text-capitalize">Weekly</v-tab>
+                              <v-tab class="body-2 text-capitalize">Hourly</v-tab>
+                            </v-tabs>
+                          </v-col>
+                          <!-- tab 1 column -->
+                          <!-- Column2 Tab 1 items -->
+                          <v-col cols="2">
+                            <v-tabs-items v-model="tabRate" style="background:transparent;">
+                              <v-tab-item v-for="n in 3" :key="n">
+                                <div class="hire-me-subtitle">Rate $ USD</div>
+                                <div
+                                  class="hire-me-title"
+                                >{{currentUser.payment_info.available_hours}}$</div>
+                              </v-tab-item>
+                            </v-tabs-items>
+                          </v-col>
+                          <!-- Column 2 Tab 1 Items -->
+
+                          <!-- column 2 tab -->
+                          <v-col cols="3">
+                            <v-tabs
+                              class="hire-me-parent-tab"
+                              height="60"
+                              v-model="tabFrequency"
+                              center-active
+                              vertical
+                              hide-slider
+                              dense
+                              background-color="transparent"
+                            >
+                              <v-tab class="body-2 text-capitalize">Monthly</v-tab>
+                              <v-tab class="body-2 text-capitalize">Weekly</v-tab>
+                              <v-tab class="body-2 text-capitalize">Hourly</v-tab>
+                            </v-tabs>
+                          </v-col>
+                          <!-- column 2 tab -->
+                          <v-col cols="2">
+                            <v-tabs-items v-model="tabFrequency" style="background:transparent;">
+                              <v-tab-item v-for="n in 3" :key="n">
+                                <div class="hire-me-subtitle">Rate $ USD</div>
+                                <div
+                                  class="hire-me-title"
+                                >{{currentUser.payment_info.available_hours}}$</div>
+                              </v-tab-item>
+                            </v-tabs-items>
+                          </v-col>
+                          <v-col cols="2">
+                            <v-card flat color="transparent" align="center">
+                              <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
+                                Hire Me
+                                <img
+                                  class="mx-1"
+                                  src="/images/resume_themes/theme200/icons/chat2.png"
+                                />
+                              </v-btn>
+                            </v-card>
+                          </v-col>
                         </v-row>
-                      </v-container>
-                    </v-card>
+                      </v-card>
+                    </v-container>
                   </v-col>
                   <!-- Availibility only for tablet version -->
-
-
 
                   <!-- Coumn 3 tabs -->
                   <v-col cols="12" md="12" sm="12" class="mt-n5 mb-n11 hidden-xs-only">
@@ -544,7 +606,11 @@
                               <v-card-text>
                                 <v-list-item>
                                   <v-list-item-icon class="mt-2">
-                                    <v-img style="z-index:1;" width="40" :src="getIconWork(index+1)"></v-img>
+                                    <v-img
+                                      style="z-index:1;"
+                                      width="40"
+                                      :src="getIconWork(index+1)"
+                                    ></v-img>
                                   </v-list-item-icon>
                                   <div class="v-line"></div>
                                   <v-list-item-content>
@@ -584,7 +650,11 @@
                               <v-card-text>
                                 <v-list-item>
                                   <v-list-item-icon class="mt-2">
-                                    <v-img style="z-index:1;" width="40" :src="getIconEducation(index+1)"></v-img>
+                                    <v-img
+                                      style="z-index:1;"
+                                      width="40"
+                                      :src="getIconEducation(index+1)"
+                                    ></v-img>
                                   </v-list-item-icon>
                                   <div class="v-line"></div>
                                   <v-list-item-content>
@@ -592,9 +662,7 @@
                                       class="work-title"
                                     >{{education.university_name}}</v-list-item-title>
                                     <v-card flat>
-                                      <div
-                                        class="work-text mt-2"
-                                      >{{ education.institution_type }}</div>
+                                      <div class="work-text mt-2">{{ education.institution_type }}</div>
                                     </v-card>
                                     <v-list-item-subtitle
                                       v-if="education.degree_title"
