@@ -12,14 +12,14 @@
 
             <!-- Replace this with vue-tabs -->
             <div id="mainLinksWrapper" class="links-group d-flex align-items-center justify-content-between">
-                <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="first main-tab-link">
-                    My account
-                </router-link>
                 <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" class="second has-inside-routes main-tab-link">
                     Edit CV
                 </router-link>
                 <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                     View CV
+                </router-link>
+                <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="first main-tab-link">
+                    My account
                 </router-link>
                 <router-link id='import' data-target="import" v-on:click.native="changeTab" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
                     CV Import
@@ -29,7 +29,7 @@
             </div>
 
             <div class="actions-group d-flex align-items-center justify-content-between">
-                <button class="action-btn">
+                <!-- <button class="action-btn">
                     <img src="/images/resume_builder/notification.png" alt="notification icon">
                 </button>
                 <button class="action-btn">
@@ -37,6 +37,9 @@
                 </button>
                 <button class="action-btn user-profile">
                     <img src="/images/resume_builder/default-user.jpg" alt="user profile picture">
+                </button> -->
+                <button class="btn btn-filled" @click="logout">
+                    Log Out
                 </button>
             </div>
         </nav>
@@ -51,14 +54,14 @@
                     </a>
 
                     <div id="mainLinksWrapperMobile" class="links-group d-flex align-items-center justify-content-between">
-                        <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
-                            <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
-                        </router-link>
                         <router-link id='editCVMobile' data-target="editCV" v-on:click.native="setActiveTab('editCV')" to="/resume-builder/edit" class="second has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`editCV-icon`"></svg-vue>
                         </router-link>
                         <router-link id='viewCVMobile' data-target="viewCV" v-on:click.native="setActiveTab('viewCV')" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`view-icon`"></svg-vue>
+                        </router-link>
+                        <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
+                            <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
                         </router-link>
                         <router-link id='importMobile' data-target="import" v-on:click.native="setActiveTab('import')" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`import`"></svg-vue>
@@ -404,6 +407,19 @@
             // box-shadow: none;
         }
 
+        .btn {
+            max-width: 110px !important;
+            margin-top: 0 !important;
+
+            @include lt-md {
+                max-width: 80px !important;
+            }
+            
+            @include lt-sm {
+                max-width: 60px !important;
+            }
+        }
+
         .brand-link {
             @include lt-lg {
                 display: none;
@@ -512,6 +528,8 @@
             // @include lt-lg {
             //     right: 37px;
             // }
+
+            align-self: center;
 
             .action-btn {
                 background: transparent;
