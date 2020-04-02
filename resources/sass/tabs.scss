@@ -37,10 +37,11 @@
             font-size: 28px;
             padding: 0 15px;
             padding-bottom: 15px;
+            max-width: auto;
         }
         
         @include lt-md {
-            font-size: 25px;
+            font-size: 17px;
             padding: 0 12px;
             padding-bottom: 12px;
         }
