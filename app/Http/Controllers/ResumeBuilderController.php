@@ -11,7 +11,7 @@ class ResumeBuilderController extends Controller
 
     public function __construct()
     {
-        $this->middleware('role:agent');
+        $this->middleware(['auth','role:agent']);
     }
 
     public function index(){

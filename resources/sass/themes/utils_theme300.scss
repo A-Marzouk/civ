@@ -1,3 +1,5 @@
+#resumeTheme300{
+
 .v-icon.v-icon{
     color: #000;
     opacity: 1;
@@ -38,7 +40,7 @@
 .main-tabs_theme3>.v-tabs-bar{
     height: 100px !important;
 }
-  
+
 /** Timeline dot styles */
 .work-section .v-timeline .v-timeline-item__dot{
     border: 6px solid #0F9D58;
@@ -120,11 +122,11 @@
     border-bottom: 1px solid #ccc;
 }
 
-  
+
 
 @media screen and (max-width: 769px) {
     .main-tabs_theme3 .v-slide-group__content{
-        justify-content: center;  
+        justify-content: center;
     }
     .main-tabs_theme3 .v-slide-group__content .v-tabs-slider-wrapper{
         display: none;
@@ -141,4 +143,6 @@
     .v-timeline::before,.v-timeline-item .v-timeline-item__divider,.v-timeline-item .v-timeline-item__opposite{
         display: none;
     }
+}
+
 }

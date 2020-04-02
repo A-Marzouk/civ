@@ -1,71 +1,73 @@
 <template>
-    <div>
+    <div class="work-container">
         <div class="section-title">
             <div class="title-light">Add</div>
             <h2>Education</h2>
         </div>
         <div class="section-body">
-            <div class="work-ex-form"  v-show="addNewEducation">
-                <div class="work-ex-form-input">
-                    <label for="institutionType">Institution type</label>
-                    <input type="text" id="institutionType" class="shorter" v-model="newEducation.institution_type">
-                    <div class="error" v-if="errors.new.institution_type">
-                        {{ Array.isArray(errors.new.institution_type) ? errors.new.institution_type[0] : errors.new.institution_type}}
+            <transition name='fadeCustom' mode="out-in">
+                <div class="work-ex-form"  v-show="addNewEducation">
+                    <div class="work-ex-form-input input-field">
+                        <label for="institutionType">Institution type</label>
+                        <input type="text" id="institutionType" class="shorter" v-model="newEducation.institution_type">
+                        <div class="error" v-if="errors.new.institution_type">
+                            {{ Array.isArray(errors.new.institution_type) ? errors.new.institution_type[0] : errors.new.institution_type}}
+                        </div>
                     </div>
-                </div>
-                <div class="work-ex-form-input">
-                    <label for="universityName">University name</label>
-                    <input type="text" id="universityName" v-model="newEducation.university_name">
-                    <div class="error" v-if="errors.new.university_name">
-                        {{ Array.isArray(errors.new.university_name) ? errors.new.university_name[0] : errors.new.university_name}}
+                    <div class="work-ex-form-input input-field">
+                        <label for="universityName">University name</label>
+                        <input type="text" id="universityName" v-model="newEducation.university_name">
+                        <div class="error" v-if="errors.new.university_name">
+                            {{ Array.isArray(errors.new.university_name) ? errors.new.university_name[0] : errors.new.university_name}}
+                        </div>
                     </div>
-                </div>
-                <div class="work-ex-form-input">
-                    <label for="degreeTitle">Degree title</label>
-                    <input type="text" id="degreeTitle"  class="shorter" v-model="newEducation.degree_title">
-                    <div class="error" v-if="errors.new.degree_title">
-                        {{ Array.isArray(errors.new.degree_title) ? errors.new.degree_title[0] : errors.new.degree_title}}
+                    <div class="work-ex-form-input input-field">
+                        <label for="degreeTitle">Degree title</label>
+                        <input type="text" id="degreeTitle"  class="shorter" v-model="newEducation.degree_title">
+                        <div class="error" v-if="errors.new.degree_title">
+                            {{ Array.isArray(errors.new.degree_title) ? errors.new.degree_title[0] : errors.new.degree_title}}
+                        </div>
                     </div>
-                </div>
-                <div class="work-ex-form-group">
-                    <div class="date-group">
-                        <div class="date-input">
-                            <label for="dateFrom">Session</label>
-                            <input type="date" id="dateFrom" v-model="newEducation.date_from">
-                            <div class="error" v-if="errors.new.date_from">
-                                {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                    <div class="work-ex-form-group">
+                        <div class="date-group">
+                            <div class="date-input">
+                                <label for="dateFrom">Session</label>
+                                <input type="date" id="dateFrom" v-model="newEducation.date_from">
+                                <div class="error" v-if="errors.new.date_from">
+                                    {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                                </div>
+                            </div>
+                            <div class="date-text">
+                                to
+                            </div>
+                            <div class="date-input">
+                                <label for="dateTo" class="light d-flex align-items-center">
+                                    <input type="checkbox" class="checkbox" v-model="newEducation.present"> I currently study here.
+                                </label>
+                                <input type="date" id="dateTo" v-model="newEducation.date_to" :disabled="newEducation.present">
+                                <div class="error" v-if="errors.new.date_to">
+                                    {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                                </div>
                             </div>
                         </div>
-                        <div class="date-text">
-                            to
-                        </div>
-                        <div class="date-input">
-                            <label for="dateTo" class="light d-flex align-items-center">
-                                <input type="checkbox" class="checkbox" v-model="newEducation.present"> I currently study here.
-                            </label>
-                            <input type="date" id="dateTo" v-model="newEducation.date_to" :disabled="newEducation.present">
-                            <div class="error" v-if="errors.new.date_to">
-                                {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
-                            </div>
-                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="action-btns">
-                <div class="add-work NoDecor mr-0">
-                    <a href="javascript:void(0)" v-show="addNewEducation" @click="addEducation">
-                        <img src="/images/resume_builder/work-ex/mark.png" alt="">
+            </transition>
+            <div class="action-btns" :class='{"justify-content-between": addNewEducation}'>
+                <div class="add-work NoDecor mr-0 save-btn" v-if="addNewEducation">
+                    <a class="btn btn-filled" href="javascript:void(0)" @click="addEducation">
+                        <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
                         Save
                     </a>
                 </div>
-                <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)" @click="addNewEducation = true" v-show="!addNewEducation">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="">
+                <div class="add-new-work NoDecor" v-if="!addNewEducation">
+                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewEducation = true">
+                        <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="">
                         Add new degree
                     </a>
                 </div>
-                <div class="add-new-work NoDecor">
-                    <a href="javascript:void(0)" @click="addNewEducation = false" v-show="addNewEducation">
+                <div class="add-new-work NoDecor" v-if="addNewEducation">
+                    <a class="btn btn-outline cancel-btn" href="javascript:void(0)" @click="addNewEducation = false" >
                         Cancel
                     </a>
                 </div>
@@ -78,9 +80,9 @@
             </div>
             <div class="work-ex-list">
                 <div class="work-ex-item mt-5 flex-column" v-for="(education,index) in educations" :key="index + '_education'">
-                    <div class="d-flex">
+                    <div class="item-grid">
                         <div class="work-icon">
-                            <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
+                            <img src="/images/resume_builder/work-ex/college-hat.png" alt="work-icon">
                         </div>
                         <div class="work-ex-info">
                             <div class="work-ex-title">
@@ -88,13 +90,23 @@
                             </div>
                             <div class="work-ex-sub-title">
                                 {{education.degree_title}}<br/>
+                                Duration: {{education.date_from}} - {{education.present ? "present" : education.date_to}}
                             </div>
                             <div class="work-ex-detials">
-                                {{education.date_from}} - {{education.present ? "present" : education.date_to}}
+                                {{education.description || 'Dolor consectetur exercitation irure veniam pariatur laborum proident anim cupidatat anim duis et veniam. Irure non reprehenderit nisi in voluptate ad. Do consectetur consequat esse duis minim mollit exercitation nisi. Enim proident in excepteur commodo minim voluptate aliqua commodo ut. Duis dolore id in pariatur sit aliquip esse ut veniam. Velit est culpa tempor ullamco elit.'}}
+                            </div>
+                            <div class="optionsBtns showOnMd">
+                                <a href="">
+                                    <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
+                                </a>
+
+                                <a href="">
+                                    <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="options">
+                    <div class="options hideOnMd">
                         <div class="options-btn NoDecor"
                              @click="optionEducationId === education.id ? optionEducationId=0 : optionEducationId=education.id">
                             <a href="javascript:void(0)" :class="{'opened':optionEducationId === education.id}">
@@ -117,21 +129,21 @@
                     </div>
                     <div v-show="education.id === editedEducation.id">
                         <div class="work-ex-form">
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="institutionType">Institution type</label>
                                 <input type="text" class="shorter" v-model="editedEducation.institution_type">
                                 <div class="error" v-if="errors.edit.institution_type">
                                     {{ Array.isArray(errors.edit.institution_type) ? errors.edit.institution_type[0] : errors.edit.institution_type}}
                                 </div>
                             </div>
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="universityName">University name</label>
                                 <input type="text" v-model="editedEducation.university_name">
                                 <div class="error" v-if="errors.edit.university_name">
                                     {{ Array.isArray(errors.edit.university_name) ? errors.edit.university_name[0] : errors.edit.university_name}}
                                 </div>
                             </div>
-                            <div class="work-ex-form-input">
+                            <div class="work-ex-form-input input-field">
                                 <label for="degreeTitle">Degree title</label>
                                 <input type="text"  class="shorter" v-model="editedEducation.degree_title">
                                 <div class="error" v-if="errors.edit.degree_title">
@@ -190,7 +202,7 @@
 
 <script>
     export default {
-        name: "WorkExperience",
+        name: "Education",
         data() {
             return {
                 optionEducationId: 0,
@@ -201,13 +213,13 @@
                     degree_title:'',
                     date_from:'',
                     date_to:'',
-                    present:false,
+                    present: false,
                 },
                 errors: {
                     new: {},
                     edit: {}
                 },
-                addNewEducation:false
+                addNewEducation: false
             }
         },
         computed: {
@@ -311,39 +323,93 @@
 </script>
 
 <style scoped lang="scss">
+@import '../../../../../sass/media-queries';
+$mainBlue: #001CE2;
+
     .section-body {
         margin-top: 20px;
 
         .work-ex-form {
             display: flex;
             flex-wrap: wrap;
-            width: 1302px;
+            max-width: 1302px;
+            width: 100%;
             justify-content: space-between;
 
-            .work-ex-form-input {
+            @include lt-md {
+                padding: 0 62px;
+            }
+
+            @include lt-sm {
+                padding: 0;
+            }
+
+            .work-ex-form-input.input-field {
                 display: flex;
                 flex-direction: column;
                 margin-top: 42px;
+                width: 49%;
+                min-width: 524px;
+
+                @include lt-lg {
+                    width: 48%;
+                    max-width: 637px;
+                    min-width: auto;
+                }
+
+                @include lt-md {
+                    margin-top: 5px;
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                &.description-field {
+                    margin-bottom: 0;
+
+                    @include lt-lg {
+                        max-width: 100% !important;
+                        margin-bottom: 25px;
+                        width: 100%;
+                    }
+                }
 
                 label {
                     text-align: left;
                     font: 600 22px/30px Noto Sans;
                     letter-spacing: 0;
-                    color: #505050;
                     opacity: 1;
-                }
 
-                input.shorter {
-                    width: 571px;
+                    @include lt-md {
+                        font-size: 18px;
+                    }
+
+                    @include lt-sm {
+                        font-size: 15px;
+                    }
                 }
 
                 input {
-                    width: 637px;
                     height: 76px;
-                    border: 2px solid #505050;
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
+
+                    &.shorter {
+                        max-width: 571px;
+                        width: 90%;
+
+                        // Forced breakpoint
+                        @media (max-width: 1556px) {
+                            width: 100%;
+                            max-width: 100%;
+                        }
+                    }
+
+                    @include lt-md {
+                        height: 47px;
+                        width: 100%;
+                        max-width: 100%;
+                    }
                 }
 
                 input:focus {
@@ -351,12 +417,22 @@
                 }
 
                 textarea {
-                    width: 617px;
+                    max-width: 637px;
+                    width: 100%;
                     height: 201px;
-                    border: 2px solid #505050;
+                    // border: 2px solid #505050;
                     border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
+                    padding-top: 18px;
+
+                    @include lt-lg {
+                        max-width: 100% !important;
+                    }
+
+                    @include lt-md {
+                        height: 131px;
+                    }
                 }
 
                 textarea:focus{
@@ -367,26 +443,89 @@
             .work-ex-form-group {
                 display: flex;
                 flex-direction: column;
-                justify-content: flex-end;
-                width: 637px;
+                justify-content: space-between;
+                width: 48%;
+                max-width: 637px;
+                min-width: 524px;
+
+                @include lt-lg {
+                    min-width: auto;
+                    // flex-direction: row;
+                    // flex-wrap: wrap;
+                    margin-top: 42px;
+                    margin-bottom: 25px;
+                }
+
+                @include lt-md {
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                .input-field {
+                    width: 100%;
+                    @include lt-lg {
+                            width: 48%;
+                        margin-bottom: 0 !important;
+                    }
+
+                    @include lt-md {
+                        width: 100%;
+                        max-width: 100%;
+                        margin-bottom: 25px !important;
+                        
+                        input {
+                            max-width: 100%;
+                        }
+                    }
+                }
 
                 .date-group {
                     display: flex;
                     justify-content: space-between;
                     align-items: flex-end;
-                    margin-bottom: 12px;
+                    min-width: 637px;
+                    width: 100%;
+
+                    @include lt-lg {
+                        // width: 48%;
+                        min-width: 200px;
+                    }
+
+                    @include lt-md {
+                        width: 100%;
+                        margin-bottom: 0;
+                    }
 
                     .date-text {
                         font: 600 19px/26px Noto Sans;
                         letter-spacing: 0;
                         color: #001CE2;
                         opacity: 1;
-                        margin-bottom: 18px;
+                        margin: 0 33px 18px;
+
+                        @include lt-lg {
+                            margin: 0 15px 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
+                        }
+
+                        @include lt-sm {
+                            font-size: 12px;
+                            margin: 0 6px 10px;
+                        }
                     }
 
                     .date-input {
                         display: flex;
                         flex-direction: column;
+                        max-width: 275px;
+                        width: calc(50% - 44px);
+
+                        @include lt-sm {
+                            width: 50%;
+                        }
 
                         label {
                             text-align: left;
@@ -394,22 +533,49 @@
                             letter-spacing: 0;
                             color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                font-size: 18px;
+                                color: $mainBlue;
+                            }
+
+                            @include lt-sm {
+                                font-size: 15px;
+                            }
                         }
 
                         label.light {
                             font: 500 18px/24px Noto Sans;
                             letter-spacing: 0;
-                            color: #505050;
                             opacity: 1;
+
+                            @include lt-lg {
+                                font-size: 15px;
+                            }
+
+                            @include lt-md {
+                                font-size: 11px;
+                                color: $mainBlue;
+                            }
                         }
 
                         input {
-                            width: 275px;
+                            width: 100%;
                             height: 62px;
                             border: 2px solid #505050;
                             border-radius: 8px;
                             opacity: 1;
                             padding-left: 18px;
+
+                            @include lt-lg {
+                                height: 76px;
+                                border-width: 0;
+                                background: #F5F5F5;
+                            }
+
+                            @include lt-md {
+                                height: 47px;
+                            }
                         }
 
                         input:focus{
@@ -429,22 +595,68 @@
         .action-btns {
             display: flex;
             margin-top: 42px;
+            max-width: 600px;
+
+            @include lt-md {
+                max-width: 100%;
+            }
+
+            .btn {
+                font-size: 14px !important;
+
+                 @include lt-md {
+                    width: 100%;
+                    min-width: 100px;
+                }
+            }
+
             .add-work {
                 margin-right: 29px;
-                a{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
 
-                    width: 247px;
+                @include lt-md {
+                    width: 45%;
+                }
+
+                &.save-btn {
+                    @include lt-md {
+                        width: 32%;
+                        min-width: 100px;
+                        margin-left: 62px;
+                    }
+                    
+                    @include lt-sm {
+                        width: 49%;
+                        margin-left: 0;
+                    }
+                }
+
+                &.cancel-btn {
+                    @include lt-md {
+                        width: 32%;
+                        min-width: 100px;
+                        margin-right: 62px;
+                    }
+
+                    @include lt-sm {
+                        width: 30%;
+                        margin-right: 0;
+                    }
+                }
+
+                a {
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
+
+                    max-width: 247px;
                     height: 62px;
-                    background: #001CE2 0% 0% no-repeat padding-box;
+                    // background: #001CE2 0% 0% no-repeat padding-box;
                     border-radius: 8px;
                     opacity: 1;
 
                     font: 600 19px/26px Noto Sans;
-                    letter-spacing: 0;
-                    color: #FFFFFF;
+                    // letter-spacing: 0;
+                    // color: #FFFFFF;
 
                     img{
                         width:27px;
@@ -458,19 +670,19 @@
                 margin-right: 29px;
 
                 a{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
 
                     width: 226px;
                     height: 62px;
-                    border: 2px solid #001CE2;
+                    // border: 2px solid #001CE2;
                     border-radius: 8px;
                     opacity: 1;
 
                     font: 600 19px/26px Noto Sans;
                     letter-spacing: 0;
-                    color: #001CE2;
+                    // color: #001CE2;
 
                     img{
                         width:27px;
@@ -506,38 +718,133 @@
         }
         .work-ex-list{
             margin-top: 64px;
+
+
             .work-ex-item{
-                display: flex;
                 position: relative;
-                justify-content: space-between;
-                width: 757px;
+                display: flex;
+                justify-content: flex-start;
+                max-width: 757px;
+                width: 100%;
+                margin-bottom: 30px;
+
+                .item-grid {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 38px 1fr;
+                    grid-gap: 18px;
+
+                    @include lt-sm {
+                        grid-gap: 6px;
+                    }
+                }
 
                 .work-icon{
-                    width: 38px;
-                    height: 27px;
-                    margin-right: 33px;
+                    width: 100%;
+                    margin-top: 10px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+
+                    @include lt-md {
+                        img {
+                            width: 34px;
+                        }
+                    }
+
+                    @include lt-sm {
+                        grid-gap: 12px;
+                        
+                        img {
+                            width: 28px;
+                        }
+                    }
                 }
 
                 .work-ex-info{
+
                     .work-ex-title{
                         font: 700 30px/41px Noto Sans;
                         letter-spacing: 0;
-                        color: #001CE2;
+                        color: #3C3748;
                         margin-bottom: 12px;
                         opacity: 1;
+
+                        @include lt-md {
+                            font-size: 24px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
+                        }
                     }
                     .work-ex-sub-title{
                         font: 700 19px Noto Sans;
                         letter-spacing: 0;
-                        color: #001CE2;
+                        color: #3C3748;
                         opacity: 1;
                         margin-bottom: 16px;
+
+                        @include lt-md {
+                            font-size: 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 14px;
+                        }
                     }
                     .work-ex-detials{
                         font: 500 16px Noto Sans;
                         letter-spacing: 0;
-                        color: #001CE2;
+                        color: #555060;
                         opacity: 1;
+
+                        @include lt-md {
+                            font-size: 12px;
+                        }
+
+                        @include lt-md {
+                            font-size: 11px;
+                        }
+                    }
+                }
+
+                .optionsBtns {
+                    width: 100%;
+                    background: #F9F9F9;
+                    box-shadow: 0 9px 12px rgba(0,0,0,.03);
+                    justify-content: space-between;
+                    padding: 12px 37px;
+                    border-radius: 2px;
+                    margin: 1rem auto 0;
+
+                    @include lt-md {
+                        display: flex !important;
+                    }
+
+                    @include lt-sm {
+                        max-width: 250px;
+                    }
+
+                    a {
+                        height: 24px;
+                        display: block;
+
+                        @include lt-sm {
+                            height: 16px;
+                        }
+
+                        .icon {
+                            height: 100%;
+                            color: $mainBlue;
+                            fill: $mainBlue;
+
+                            path {
+                                fill: $mainBlue;
+                            }
+                        }
                     }
                 }
 
