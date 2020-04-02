@@ -114,7 +114,7 @@
                             <v-tab class="caption text-capitalize">Hourly</v-tab>
                           </v-tabs>
                         </v-col>
-                        <!-- mbile parent hire me tab -->
+                        <!-- mobile parent hire me tab -->
                         <v-col cols="12" align="center">
                           <v-tabs-items v-model="tabRate">
                             <v-tab-item v-for="n in 3" :key="n">
@@ -224,12 +224,12 @@
                           <!-- Only shows on tablet desktop version -->
 
                           <!-- Only shows in desktop and tablet version -->
-                          <v-col cols="10" md="11" sm="12">
+                          <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
                             <v-card flat class="card-hire-me" color="rgba(37, 0, 0, 0.1)">
                               <v-card-text>
                                 <v-row no-gutters align="center">
                                   <!-- for desktop -->
-                                  <v-col md="2" class="hidden-sm-and-down">
+                                  <v-col md="2" class="">
                                     <img
                                       width="15"
                                       class="mt-md-1"
@@ -254,28 +254,7 @@
                                     <!-- tab 1 -->
                                   </v-col>
                                   <!-- For desktop -->
-                                  <!-- for tablet -->
-                                  <v-col sm="12" class="hidden-md-and-up">
-                                    <img
-                                      width="15"
-                                      class="hire-me-hour-icon"
-                                      src="/images/resume_themes/theme200/icons/hourly-rate.png"
-                                    />
-                                    <v-card flat color="transparent" align="center">
-                                      <v-tabs
-                                        v-model="tabRate"
-                                        centered
-                                        hide-slider
-                                        dense
-                                        background-color="transparent"
-                                      >
-                                        <v-tab class="caption text-capitalize">Monthly</v-tab>
-                                        <v-tab class="caption text-capitalize">Weekly</v-tab>
-                                        <v-tab class="caption text-capitalize">Hourly</v-tab>
-                                      </v-tabs>
-                                    </v-card>
-                                  </v-col>
-                                  <!-- for tablet -->
+                                  
                                   <v-col align="center" md="2" sm="12">
                                     <!-- tab 1 items -->
                                     <v-tabs-items v-model="tabRate" style="background:transparent;">
@@ -289,7 +268,7 @@
                                     <!-- tab 1 items -->
                                   </v-col>
                                   <!-- Show on desktop -->
-                                  <v-col md="2" class="hidden-sm-and-down">
+                                  <v-col md="2" class="">
                                     <div class="hire-card-frequency2">
                                       <img
                                         width="15"
@@ -316,28 +295,7 @@
                                     </div>
                                   </v-col>
                                   <!-- Show on desktop -->
-                                  <!-- Show on tablet -->
-                                  <v-col sm="12" class="hidden-md-and-up">
-                                    <img
-                                      width="15"
-                                      class="hire-me-hour-icon"
-                                      src="/images/resume_themes/theme200/icons/availibility.png"
-                                    />
-                                    <v-card flat color="transparent" align="center">
-                                      <v-tabs
-                                        v-model="tabFrequency"
-                                        centered
-                                        hide-slider
-                                        dense
-                                        background-color="transparent"
-                                      >
-                                        <v-tab class="caption text-capitalize">Monthly</v-tab>
-                                        <v-tab class="caption text-capitalize">Weekly</v-tab>
-                                        <v-tab class="caption text-capitalize">Hourly</v-tab>
-                                      </v-tabs>
-                                    </v-card>
-                                  </v-col>
-                                  <!-- Show on tablet -->
+                                  
                                   <v-col align="center" md="3" sm="12">
                                     <v-tabs-items
                                       v-model="tabFrequency"
@@ -353,7 +311,7 @@
                                   </v-col>
                                   <v-col md="3" sm="12" align="center">
                                     <v-card flat color="transparent" align="center">
-                                      <v-btn block color="#00CDF7" height="50" class="btn-hire-me hidden-sm-and-down">
+                                      <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
                                         Hire Me
                                         <img
                                           class="mx-1"
@@ -361,13 +319,7 @@
                                         />
                                       </v-btn>
 
-                                      <v-btn color="#00CDF7" height="50"  class="btn-hire-me hidden-md-and-up mt-sm-4">
-                                        Hire Me
-                                        <img
-                                          class="mx-1"
-                                          src="/images/resume_themes/theme200/icons/chat2.png"
-                                        />
-                                      </v-btn>
+                                    
                                     </v-card>
                                   </v-col>
                                 </v-row>
@@ -380,6 +332,24 @@
                     </v-card>
                   </v-col>
                   <!-- Column 2 -->
+
+
+                  <!-- Availibility only for tablet version -->
+                  <v-col cols="12"  class="availibility-tablet">
+                    <v-card flat color="rgba(37, 0, 0, 0.1)" align="center">
+                      <v-container fluid style="width:100%">
+                        <v-row align="center" justify="center">
+                          <v-col cols="5">Column 1</v-col>
+                           <v-col cols="5"> column2</v-col>
+                            <v-col cols="2">Column3</v-col>
+                        </v-row>
+                      </v-container>
+                    </v-card>
+                  </v-col>
+                  <!-- Availibility only for tablet version -->
+
+
+
                   <!-- Coumn 3 tabs -->
                   <v-col cols="12" md="12" sm="12" class="mt-n5 mb-n11 hidden-xs-only">
                     <v-row align="center" justify="center">
