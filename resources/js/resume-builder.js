@@ -12,7 +12,6 @@ import resumeBuilder from './components/resume_builder/Main';
 import ResumeBuilderMyAccount from './components/resume_builder/tabs/MyAccount'
 import ResumeBuilderEditCV from './components/resume_builder/tabs/EditCV'
 import ResumeBuilderViewCV from './components/resume_builder/tabs/ViewCV'
-import ResumeBuilderImport from './components/resume_builder/import/PDF'
 
 // edit inside components :
 import ResumeBuilderEditCVProfile from './components/resume_builder/tabs/edit_tabs/Profile'
@@ -105,8 +104,7 @@ if ($("#resumeBuilder").length !== 0) {
             ]
 
         },
-        {path: '/resume-builder/view', component: ResumeBuilderViewCV, name:'view',},
-        {path: '/resume-builder/import', component: ResumeBuilderImport, name:'import',}
+        {path: '/resume-builder/view', component: ResumeBuilderViewCV, name:'view',}
     ];
 
     const router = new VueRouter({

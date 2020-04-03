@@ -11,7 +11,7 @@
                 <div class="auto-import-btn NoDecor">
                     <a href="javascript:void(0)" @click="openBrowse">
                         <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                        Import PDF file
+                        Import  <span> PDF </span> file
                     </a>
                 </div>
                 <div class="auto-import-btn NoDecor"  v-show="file">
@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="progress-bar-wrapper">
+            <div class="progress-bar-wrapper" v-show="progress > 0">
                 <div class="upload-progress-bar" id="upload-progress-bar"></div>
                 <div class="progress-bar-value">
                     {{progress}}%
@@ -40,7 +40,7 @@
                style="opacity:0; position: absolute; left:-500px;">
 
 
-        <div class="import-results">
+        <div class="import-results"  v-show="extractedText.length > 0">
             <div class="title">
                 Select <span>your information</span>
             </div>
@@ -921,7 +921,7 @@
             display: flex;
             align-items: center;
             font-weight: 600;
-            font-size: 52px;
+            font-size: 40px;
             text-align: left;
             color: #081fe2;
 
@@ -955,20 +955,26 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 281px;
-                    height: 77px;
+                    width: 260px;
+                    height: 72px;
 
                     border: 1.5px solid #001CE2;
                     border-radius: 8px;
                     opacity: 1;
 
-                    font: 500 25px Noto Sans;
+                    font: 500 20px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
 
+                    span{
+                        font-weight: 600;
+                        margin-left: 6px;
+                        margin-right: 6px;
+                    }
+
                     img {
-                        width: 33.74px;
-                        height: 33.74px;
+                        width: 31.12px;
+                        height: 31.12px;
                         margin-right: 18.5px;
                     }
 

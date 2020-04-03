@@ -21,9 +21,6 @@
                 <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="first main-tab-link">
                     My account
                 </router-link>
-                <router-link id='import' data-target="import" v-on:click.native="changeTab" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
-                    Import CV
-                </router-link>
 
                 <div class="decorator"></div>
             </div>
