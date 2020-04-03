@@ -1,0 +1,199 @@
+#resumeTheme500 {
+.theme500{
+    padding-left:225px ;
+}
+/* Style the tabs */
+.tabs {
+  overflow: hidden;
+}
+
+.tabs {
+  color: #000 !important;
+  cursor: pointer;
+  padding: 30px 15px !important;
+  transition: background-color 0.5s;
+
+  text-align: center;
+  display: inline-block;
+}
+
+.tabs a {
+  color: #000 !important;
+}
+
+.tabrow {
+  position: relative;
+}
+
+/* Change background color of tabs on hover */
+.tabs a:hover {
+  opacity: 0.8;
+}
+
+/* Styling for active tab */
+.active {
+  background-color: #ffffff;
+
+  color: black;
+
+  cursor: default;
+}
+
+/* Style the tab content */
+.tabcontent {
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 3px 3px 6px #e1e1e1;
+}
+
+.large_dot:before {
+  bottom: 0;
+  content: "";
+  height: 0px;
+  position: absolute;
+  top: 0px;
+  width: 0px;
+}
+
+.mainPoint {
+  margin-left: 10px;
+  height: 5px;
+  border-radius: 15px;
+  width: 80px;
+  background-color: #ffa20a;
+}
+
+.v-timeline-item__inner-dot {
+  border-radius: 15% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.theme500 .v-tab {
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  font-size: 0.875rem;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0.0892857143em;
+  line-height: normal;
+  min-width: 90px;
+  max-width: 360px;
+  outline: none;
+  padding: 0 50px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.v-tab:not(.v-tab--active) {
+  background-color: #ffffff;
+  color: black !important;
+  margin: 0 16px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+
+  position: relative;
+}
+
+.v-tab--active {
+  background-color: #23a565;
+  color: white !important;
+  margin: 0 16px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+
+  position: relative;
+}
+
+.v-tab--active:after {
+  width: 0;
+  height: 50px;
+  border-left: 0px solid #23a565;
+  border-right: 35px solid transparent;
+  border-bottom: 49px solid #23a565;
+  right: -32px;
+  content: "";
+  display: inline-block;
+  position: absolute;
+}
+
+.v-tab:not(.v-tab--active):after {
+  width: 0;
+  height: 50px;
+  border-left: 0px solid #ffffff;
+  border-right: 35px solid transparent;
+  border-bottom: 49px solid #ffffff;
+  right: -32px;
+  content: "";
+  display: inline-block;
+  position: absolute;
+}
+
+.v-tab:not(.v-tab--active) > .v-icon {
+  color: #3361d0 !important;
+}
+
+.theme--dark.v-tabs .v-tab:hover:before {
+  opacity: 0 !important;
+}
+
+.v-tabs-slider-wrapper {
+  height: 2px !important;
+
+  width: 100% !important;
+}
+
+.v-tabs-slider {
+  color: #23a565 !important;
+}
+
+.head {
+  line-height: 1em;
+  font-size: 1.5rem;
+}
+
+.subhead {
+  line-height: 1em;
+  font-size: 1rem;
+}
+
+.mini {
+  line-height: 1em;
+  font-size: 1rem;
+}
+
+.tabtitle {
+  line-height: 1em;
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 600px) {
+  .head {
+    font-size: 20px !important;
+  }
+
+  .subhead {
+    font-size: 15px !important;
+  }
+
+  .mini {
+    font-size: 12px !important;
+  }
+
+  .tabtitle {
+    font-size: 10px !important;
+  }
+}
+
+
+}
