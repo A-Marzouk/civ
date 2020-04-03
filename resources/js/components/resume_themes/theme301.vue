@@ -425,7 +425,7 @@
 </template>
 <style lang="scss" scoped>
 
-    @import url('/css/utils_theme301.css');
+    @import 'resources/sass/themes/utils_theme301.scss';
 
     @import 'https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap';
     @import 'https://fonts.googleapis.com/css?family=Actor&display=swap';

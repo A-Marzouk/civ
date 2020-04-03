@@ -1,7 +1,7 @@
 <template>
     <div class="resume-container" >
 
-        <nav class="resume-builder-nav d-flex align-items-start justify-content-between">
+        <nav class="resume-builder-nav d-flex align-items-start justify-content-start">
             <a href="/resume-builder" class="brand-link">
                 <img class="brand-image" src="/images/resume_builder/123 icon.png" alt="123workforce icon"/>
             </a>
@@ -26,21 +26,6 @@
                 </router-link>
 
                 <div class="decorator"></div>
-            </div>
-
-            <div class="actions-group d-flex align-items-center justify-content-between">
-                <!-- <button class="action-btn">
-                    <img src="/images/resume_builder/notification.png" alt="notification icon">
-                </button>
-                <button class="action-btn">
-                    <img src="/images/resume_builder/settings-icon.svg" alt="settings icon" @click="logout">
-                </button>
-                <button class="action-btn user-profile">
-                    <img src="/images/resume_builder/default-user.jpg" alt="user profile picture">
-                </button> -->
-                <button class="btn btn-filled" @click="logout">
-                    Log Out
-                </button>
             </div>
         </nav>
 
@@ -91,11 +76,10 @@
                     </div>
                 </div>
 
-                <div class="auto-import-btn NoDecor" v-show="$route.name !== 'view'">
-                    <a href="javascript:void(0)"  data-toggle="modal" data-target="#importModal">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                        Auto import
-                    </a>
+                <div class="auto-import-btn NoDecor" v-show="$route.name === 'my-account'">
+                    <button class="btn btn-filled" @click="logout">
+                        Log Out
+                    </button>
                 </div>
             </div>
         </div>
@@ -421,6 +405,7 @@
         }
 
         .brand-link {
+            flex-grow:0.4;
             @include lt-lg {
                 display: none;
             }
