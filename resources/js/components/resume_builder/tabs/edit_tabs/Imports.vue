@@ -115,6 +115,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="imports-list" v-else-if="activeTab === 'Import_CV'">
+                    <import-cv></import-cv>
+                </div>
                 <div class="imports-list" v-else>
                     <div class="import-item">
                         <div class="import-name">
@@ -144,7 +147,11 @@
 
 <script>
 import { moveTabsHelper } from '../../helpers/tab-animations'
+import  ImportCV  from '../../components/ImportCV'
     export default {
+        components: {
+            'import-cv': ImportCV
+        },
         name: "imports",
         data() {
             return {
@@ -153,7 +160,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 tabs: [
                     'Downloads',
                     'Manage_imports',
-                    'URL_links'
+                    'URL_links',
+                    'Import_CV'
                 ]
             }
         },

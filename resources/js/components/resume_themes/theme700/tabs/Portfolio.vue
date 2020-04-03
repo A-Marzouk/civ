@@ -1,9 +1,9 @@
 <template>
-<div class="tm700-portfolio" v-if="currentTab === 1">
+<div class="tm700-portfolio tw-mt-47px" v-if="currentTab === 1">
     <div class="inner">
-    <div class="tm700-portfolios grid grid-cols-3">
+    <div class="tm700-portfolios tw-grid md:tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-3 tw-row-gap-24 tw-col-gap-25px">
         <div v-for="(portfolio,id) in portfolios" v-bind:key="id">
-            <img class="w-full" v-bind:src="portfolio.url" />
+            <img class="tw-w-full" v-bind:src="portfolio.url" />
         </div>
     </div>
     </div>
@@ -47,15 +47,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .tm700-portfolio {
-      margin-top: 78px;
-      .tm700-portfolios {
-        grid-row-gap: 93px;
-        grid-column-gap: 25px;
-        > div {
-          img {
-          }
-        }
-      }
-    }
+.tm700-portfolios {
+    justify-items: center;
+}
 </style>
