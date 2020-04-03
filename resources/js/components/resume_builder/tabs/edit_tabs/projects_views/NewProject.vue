@@ -254,8 +254,9 @@
 
             @include lt-md {
                 margin-left: 0;
-                margin-top: 3rem;
+                margin-bottom: 2rem;
                 justify-content: center;
+                order: -1;
             }
     
             .step-indicator {
