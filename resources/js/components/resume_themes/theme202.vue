@@ -16,7 +16,7 @@
                 <v-row no-gutters align="center" justify="center">
                   <!-- Profile Pic -->
                   <v-col cols="12" sm="6" md="3" class>
-                    <v-card color="transparent" dark flat>
+                    <v-card color="transparent" dark flat class="ml-md-0 ml-sm-0 ml-n10">
                       <v-card-text>
                         <v-list-item>
                           <v-list-item-avatar color="grey darken-3" size="120" max-width="120">
@@ -104,32 +104,32 @@
                   <v-col class cols="12" sm="6" md="5">
                     <v-card color="transparent" flat class="custom-social-media-card">
                       <v-card-text class="custom-card-text" align="center">
-                        <v-btn depressed class="mx-1 custom-social-btn hidden-sm-and-up">
+                        <v-btn depressed class="mr-1 custom-social-btn hidden-sm-and-up">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/behance.webp"
                           />
                         </v-btn>
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/dribbble.webp"
                           />
                         </v-btn>
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/pinterest.webp"
                           />
                         </v-btn>
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/instagram.webp"
                           />
                         </v-btn>
 
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/linkedin.webp"
@@ -952,12 +952,19 @@ export default {
     font-size: 8px !important;
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 370px) {
   .btn-hire-me {
     border-radius: 15px !important;
   }
   .custom-social-btn {
-    margin-right: -2px !important;
+    margin-right: auto !important;
+  }
+}
+
+@media screen and (max-width: 344px) {
+  .custom-social-btn {
+    width: 30px !important;
+    height: 40px !important;
   }
 }
 
