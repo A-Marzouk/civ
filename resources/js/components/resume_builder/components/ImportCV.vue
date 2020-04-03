@@ -28,12 +28,30 @@
                     {{progress}}%
                 </div>
             </div>
-            <div class="file-name">
-                <span v-show="file">
-                    {{file.name}}
-                </span>
+            <div class="file-name"  v-show="file">
+                {{file.name}}
+            </div>
+
+            <div>
+                <vue2Dropzone class="upload-image-box d-flex justify-content-center align-items-center"
+                              id="cvDropZone"
+                              :options="dropzoneOptions"
+                              :useCustomSlot=true
+                              v-on:vdropzone-file-added="handlingEvent"
+                              v-on:vdropzone-thumbnail="thumbnail"
+                              ref="newImport"
+                >
+                    <div class="d-flex align-items-center flex-column" style="opacity: 0.4;">
+                        <div class="upload-text">
+                            Or drag your file
+                        </div>
+                        <img src="/images/resume_builder/import/pic.png" alt="icon" class="mt-2" style="filter: grayscale(100%);">
+                    </div>
+
+                </vue2Dropzone>
             </div>
         </div>
+
 
 
         <input type="file" id="uploadFileButton" ref="file" @change="handleFileUpload"
@@ -171,6 +189,8 @@
 </template>
 
 <script>
+
+
     export default {
         name: "ImportPDF",
         data() {
@@ -717,10 +737,34 @@
                     "Yoruba",
                     "Zhuang, Chuang"
                 ],
-                progress:0
+                progress:0,
+                dropzoneOptions: {
+                    url: 'https://httpbin.org/post',
+                    thumbnailWidth: 150,
+                    uploadMultiple: false,
+                    maxFilesize: 25,
+                    addRemoveLinks: true,
+                    maxFiles: 1,
+                    autoProcessQueue: false,
+                    acceptedFiles: 'application/pdf, image/*',
+                    previewTemplate: `
+            <div class="dz-preview dz-file-preview">
+                <div class="dz-image">
+                    <div class="thumbnail" data-dz-thumbnail-bg></div>
+                </div>
+                <div class="dz-details">
+                    <div class="dz-size"><span data-dz-size></span></div>
+                    <div class="dz-filename"><span data-dz-name></span></div>
+                </div>
+            </div>
+        `
+                },
             }
         },
         methods: {
+
+            // handle file upload
+
             openBrowse() {
                 $('#uploadFileButton').click();
             },
@@ -784,6 +828,52 @@
             handleFileUpload() {
                 this.file = this.$refs.file.files[0];
             },
+
+
+            // dropzone funcions
+            handlingEvent: function (file) {
+                if (file.type === 'application/pdf') {
+
+                    // Set default bg for pdf files
+                    let thumbnail = document.querySelector('.thumbnail');
+
+                    // create the file URL to embembed
+                    let fileURL = URL.createObjectURL(file);
+                    let embedElement = document.createElement('embed');
+
+                    embedElement.type = file.type;
+                    embedElement.src = fileURL;
+
+
+                    thumbnail.style.background = `url(${fileURL})`;
+                    thumbnail.appendChild(embedElement);
+                }
+
+                this.file = file
+            },
+            thumbnail: function(file, dataUrl) {
+                var j, len, ref, thumbnailElement;
+
+                if (file.previewElement) {
+                    file.previewElement.classList.remove("dz-file-preview");
+                    ref = file.previewElement.querySelectorAll("[data-dz-thumbnail-bg]");
+
+                    for (j = 0, len = ref.length; j < len; j++) {
+                        thumbnailElement = ref[j];
+                        thumbnailElement.alt = file.name;
+                        thumbnailElement.style.backgroundImage = 'url("' + dataUrl + '")';
+                    }
+
+                    return setTimeout(((function(_this) {
+                        return function() {
+                            return file.previewElement.classList.add("dz-image-preview");
+                        };
+                    })(this)), 1);
+                }
+            },
+
+            // search functions
+
             searchForData() {
                 let arrayOfData = this.arrayOfExtractedText;
 
@@ -908,6 +998,9 @@
 </script>
 
 <style scoped lang="scss">
+
+    $activeColor : #001CE2;
+
     .pre-formatted {
         white-space: pre-line;
     }
@@ -1037,6 +1130,106 @@
 
                 }
             }
+        }
+    }
+
+    #cvDropZone {
+
+        // my styles:
+        /*border: darkgray dashed 1px;*/
+        border:none;
+        margin-top:55px;
+        width:884px;
+        height:219px;
+        /*border-radius: 25px;*/
+        margin-bottom:55px;
+
+        background-image:
+                radial-gradient(circle at 2.5px, #a9a9a9 1.25px, rgba(255,255,255,0) 2.5px),
+                radial-gradient(circle, #a9a9a9 1.25px, rgba(255,255,255,0) 2.5px),
+                radial-gradient(circle at 2.5px, #a9a9a9 1.25px, rgba(255,255,255,0) 2.5px),
+                radial-gradient(circle, #a9a9a9 1.25px, rgba(255,255,255,0) 2.5px);
+        background-position: top, right, bottom, left;
+        background-size: 15px 5px, 5px 15px;
+        background-repeat: repeat-x, repeat-y;
+
+
+
+        .upload-text{
+            font-size:26px;
+        }
+
+        position: relative;
+
+        .dz-preview {
+            width: 100%;
+            height: 100%;
+            background: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .dz-details {
+                padding: 50px 10px;
+                height: 45%;
+                display: none;
+                top: auto;
+                bottom: 0;
+                border-radius: 5px;
+                background: rgba($color: $activeColor, $alpha: .8);
+            }
+
+            .dz-progress {
+                bottom: 70px;
+                top: auto;
+            }
+
+            .dz-error-mark,
+            .dz-success-mark {
+                bottom: 40px;
+            }
+
+            .dz-image {
+                background: none;
+                z-index: 3;
+                border-radius: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .thumbnail {
+                    width: 100%;
+                    height: 50%;
+                    overflow: hidden;
+                    background-position: center ;
+                }
+
+                embed {
+                    width: calc(100% + 15px);
+                    height: 100%;
+                    overflow:hidden !important;
+                }
+            }
+
+            .dz-remove {
+                bottom: 20px;
+                top: auto;
+                border-radius: 5px;
+                margin: 0;
+                color: $activeColor;
+                border-color: $activeColor;
+            }
+        }
+
+        .dz-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .dz-image-preview .dz-details,
+        .dz-preview .dz-details {
+            // background: rgba($color: $activeColor, $alpha: .8);
+            // background: none;
         }
     }
 </style>
