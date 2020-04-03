@@ -1,20 +1,20 @@
 <template>
-  <div class="tm700-work" v-if="currentTab === 2">
-    <div class="tm700-work--inner grid grid-cols-2">
-      <div v-for="({id}) in works" v-bind:key="id" class="tm700-works flex flex-row items-start">
+  <div class="tm700-work tw-mt-20" v-if="currentTab === 2">
+    <div class="tm700-work--inner tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-w-full tw-max-w-1396px tw-my-0 tw-mx-auto md:tw-row-gap-128px lg:tw-row-gap-174px md:tw-pl-52px lg:tw-pl-0">
+      <div v-for="({id}) in works" v-bind:key="id" class="tm700-works tw-flex tw-flex-row tw-items-start tw-font-gothampro">
         <span
-          class="tm700-works--span rounded-full p-2 text-white flex items-center bg-tm700-1"
+          class="tm700-works--span tw-rounded-full tw-p-2 tw-text-white tw-flex tw-items-center tw-bg-tm700-1 tw-mr-18px tw-w-44px tw-h-44px tw-flex-none"
         >{{id}}.</span>
         <div class="flex flex-col justify-between">
-          <div class="tm700-works--info">
+          <div class="tm700-works--info tw-mb-35px">
             <h3
-              class="tm700-works--title not-italic text-2xl text-tmbg-tm700-1 font-normal"
+              class="tm700-works--title tw-not-italic tw-text-24px tw-text-tmbg-tm700-1 tw-font-normal tw-leading-6 tw-text-tm700-1"
             >Google Inc. Introduction Google</h3>
             <span
-              class="tm700-works--slogan text-black capitalize not-italic font-normal"
+              class="tm700-works--slogan tw-text-black tw-capitalize tw-not-italic tw-font-normal tw-text-xs tw-leading-11px"
             >User interface designer</span>
           </div>
-          <span class="tm700-works--when">2012- Current</span>
+          <span class="tm700-works--when tw-text-xs tw-leading-11px">2012- Current</span>
         </div>
       </div>
     </div>
@@ -34,37 +34,8 @@ export default {
 
 <style lang="scss">
 .tm700-work {
-  margin-top: 189px;
   .tm700-work--inner {
-    width: 100%;
-    max-width: 87.25rem;
-    margin: 0 auto;
-    grid-row-gap: 174px;
-  }
-  .tm700-works {
-    font-family: "Gotham Pro", "Montserrat";
-    span.tm700-works--span {
-      margin-right: 19px;
-      min-width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      font-size: 18px;
-      flex: 0;
-    }
-    .tm700-works--info {
-      margin-bottom: 35px;
-      .tm700-works--title {
-        line-height: 23px;
-      }
-      .tm700-works--slogan {
-        font-size: 12px;
-        line-height: 11px;
-      }
-    }
-    span.tm700-works--when {
-      font-size: 12px;
-      line-height: 11px;
-    }
+    justify-items: start;
   }
 }
 </style>

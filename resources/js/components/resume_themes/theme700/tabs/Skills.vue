@@ -1,11 +1,11 @@
 <template>
   <div class="tm700-skill" v-if="currentTab === 4">
-    <div class="tm700-skill--tabs font-lato mb-tm700-2">
-      <div class="tm700-skill--inner-tabs w-full my-0 mx-auto">
+    <div class="tm700-skill--tabs tw-font-lato tw-mb-tm700-2">
+      <div class="tm700-skill--inner-tabs tw-w-full tw-my-0 tw-mx-auto xl:tw-mx-336px">
         <v-tabs
           v-model="tab"
           background-color="#FFF"
-          class="tm700-skill-tabs--top flex flex-row justify-center"
+          class="tm700-skill-tabs--top twflex tw-flex-row tw-justify-center tw-bg-tm700-7 tw-mt-113px"
           :centered="centered"
           :grow="grow"
           :vertical="vertical"
@@ -16,8 +16,8 @@
           <v-tab
             @click="currentSkillsTab = id"
             :class="[
-                currentSkillsTab == id ? 'tm700-skill-tabs-active--tab text-tm700-1' : 'text-tm700-3', 'tm700-skill-tabs--one  font-bold not-italic text-2xl list-none normal-case p-0 tracking-normal font-lato',
-                id === 4 ? 'mr-0': 'mr-tm700-1'
+                currentSkillsTab == id ? 'tm700-skill-tabs-active--tab tw-text-tm700-1' : 'tw-text-tm700-3', 'tm700-skill-tabs--one  tw-font-bold tw-not-italic tw-text-2xl tw-list-none tw-normal-case tw-p-0 tw-tracking-normal tw-font-lato',
+                id === 4 ? 'tw-mr-0': 'tw-mr-tm700-1'
             ]"
             v-for="{title, id} in Skillstabs"
             :key="id"
@@ -27,23 +27,23 @@
       </div>
     </div>
     <div class="tm700-skill--proglang" v-if="currentSkillsTab === 1">
-      <div class="tm700-skill-proglang--inner w-full max-w-tm700-dw-1 my-0 mx-auto grid grid-cols-1">
+      <div class="tm700-skill-proglang--inner tw-w-full tw-max-w-tm700-dw-1 tw-my-0 tw-mx-auto tw-grid tw-grid-cols-1">
         <div
           v-for="{id, name, percentage} in programingLanguages"
           v-bind:key="id"
-          class="tm700-skill-proglangs grid gap-8 font-lato grid-cols-tm700-d-skills-bar mb-tm700-6 items-center"
+          class="tm700-skill-proglangs tw-grid tw-gap-8 tw-font-lato tw-grid-cols-tm700-d-skills-bar tw-mb-tm700-6 tw-items-center md:tw-mx-35px lg:tw-mx-0"
         >
           <span
-            class="tm700-skill-proglangs--name text-tm700-1 not-italic font-extrabold text-2xl"
+            class="tm700-skill-proglangs--name tw-text-tm700-1 tw-not-italic tw-font-extrabold tw-text-2xl tw-leading-29px"
           >{{name}}</span>
-          <span class="tm700-skill-proglangs--bar bg-tm700-2 h-tm700-7 flex">
+          <span class="tm700-skill-proglangs--bar tw-bg-tm700-2 tw-h-tm700-7 tw-flex">
             <span
-              class="h-tm700-5 bg-tm700-1 rounded-civ-15"
+              class="tw-h-tm700-5 tw-bg-tm700-1 tw-rounded-civ-15"
               v-bind:style="{width:percentage + '%'}"
             ></span>
           </span>
           <span
-            class="tm700-skill-proglangs-percentage text-tm700-1 not-italic font-bold text-2xl"
+            class="tm700-skill-proglangs-percentage tw-text-tm700-1 tw-not-italic tw-font-bold tw-text-2xl tw-leading-29px"
           >{{percentage}}%</span>
         </div>
       </div>
@@ -87,46 +87,10 @@ export default {
 .tm700-skill {
   .tm700-skill--tabs {
     .tm700-skill-tabs--top {
-      background-color: linear-gradient(
-        135.49deg,
-        #ffffff 10.06%,
-        #ffffff 75.33%
-      );
-      margin-top: 113px;
-      .tm700-skill-tabs--one {
-      }
-      .tm700-skill-tabs-active--tab {
-        color: #513ecd;
-      }
       .v-tabs-slider {
         @apply bg-tm700-1 my-0 mx-auto w-2/4 h-tm700-3;
         box-shadow: 2px 5px 30px rgba(192, 18, 159, 0.37);
         border-radius: 15px;
-      }
-    }
-  }
-  .tm700-skill--proglang {
-    .tm700-skill-proglangs {
-      .tm700-skill-proglangs--name {
-        line-height: 29px;
-      }
-      .tm700-skill-proglangs--bar {
-        progress[value] {
-          height: 20px;
-          border-radius: 15px;
-        }
-        progress[value]::-webkit-progress-value,
-        progress[value]::-moz-progress-value {
-          color: red;
-          @apply bg-tm700-1;
-        }
-        span:nth-child(1) {
-        }
-        span:nth-child(2) {
-        }
-      }
-      .tm700-skill-proglangs-percentage {
-        line-height: 29px;
       }
     }
   }

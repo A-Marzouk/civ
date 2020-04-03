@@ -1,11 +1,11 @@
 <template>
-  <section class="main">
+  <section class="main tw-my-52px">
     <div class="tm700-tabs">
-      <div class="inner">
+      <div class="tm700-inner lg:tw-ml-113px">
         <v-tabs
           v-model="tab"
           background-color="#FFF"
-          class="tabs--top"
+          class="tabs--top tw-bg-tm700-7"
           :centered="centered"
           :grow="grow"
           :vertical="vertical"
@@ -16,24 +16,24 @@
           <v-tab
             @click="currentTab = id"
             :class="[
-                currentTab == id ? 'tm700-active-tab' : '', 'tm700-tabs--one font-bold not-italic text-tm700-3 normal-case list-none text-3xl',
+                currentTab == id ? 'tm700-active-tab' : '', 'tm700-tabs--one tw-mr-82px tw-font-montserrat tw-leading-37px w-font-bold tw-not-italic tw-text-tm700-3 tw-normal-case tw-list-none tw-text-3xl',
             ]"
             v-for="{title, id} in tabs"
             :key="id"
             :href="`#tab-${id}`"
           >
             <span
-              :class="[currentTab == id ? 'bg-tm700-1': 'bg-tm700-2','rounded-full p-2 text-white flex items-center']"
+              :class="[currentTab == id ? 'tw-bg-tm700-1': 'tw-bg-tm700-2','tw-rounded-full tw-p-2 tw-text-white tw-flex tw-items-center tw-w-44px tw-h-44px tw-w-54px tw-mr-10px tw-text-18px']"
             >{{id}}.</span>
             {{ title }}
           </v-tab>
         </v-tabs>
       </div>
     </div>
-    <Portfolio v-bind:currentTab="currentTab"></Portfolio>
-    <Work v-bind:currentTab="currentTab"></Work>
-    <Education v-bind:currentTab="currentTab"></Education>
-    <Skills v-bind:currentTab="currentTab"></Skills>
+    <Portfolio :currentTab="currentTab" />
+    <Work :currentTab="currentTab" />
+    <Education :currentTab="currentTab" />
+    <Skills :currentTab="currentTab" />
   </section>
 </template>
 <script>
@@ -68,27 +68,11 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 #wrapper_theme700 {
   .main {
-    margin-top: 54px;
-    margin-bottom: 54px;
     // Start Tabs
     .tm700-tabs {
-      .tabs--top {
-        background-color: linear-gradient(
-          135.49deg,
-          #ffffff 10.06%,
-          #ffffff 75.33%
-        );
-      }
       .tm700-tabs--one {
-        line-height: 37px;
-        font-family: "Montserrat", sans-serif;
-        font-feature-settings: "tnum" on, "lnum" on;
-        margin-right: 82px;
         span {
           margin-right: 10px;
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
           font-size: 18px;
         }
         .tm700-active-tab-span {

@@ -1,5 +1,5 @@
 <template>
-  <div class="tm700-right tw-py-12 md:tw-col-start-2 md:tw-row-start-3 lg:tw-col-start-3 lg:tw-row-start-1 xl:tw-col-start-3 xl:tw-row-start-1">
+  <div class="tm700-right tw-py-12 tw-col-start-1 tw-col-end-3 md:tw-col-start-2 md:tw-row-start-3 lg:tw-col-start-3 lg:tw-row-start-1 xl:tw-col-start-3 xl:tw-row-start-1 ">
     <div class="tw-flex tw-items-center tw-justify-between">
       <div class="hourly--rate tw-flex tw-flex-row tw-items-center md:tw-ml-5 lg:tw-ml-0">
         <div class="tw-flex tw-flex-col">

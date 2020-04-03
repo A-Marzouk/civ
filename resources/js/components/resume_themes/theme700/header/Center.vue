@@ -1,12 +1,12 @@
 <template>
-  <div class="center md:tw-pl-96px lg:tw-pl-80px xl:tw-pl-tm700-9 md:tw-pb-0 tw-py-12 tw-flex md:tw-flex-col lg:tw-flex-row tw-items-stretch">
-  <div class="md:tw-flex md:tw-flex-row lg:tw-flex-col md:tw-items-start">
-    <div class="tw-flex tw-flex-col">
-      <h1 class="tw-font-bold tw-not-italic tw-text-tm700-1 tw-text-4xl tw-leading-10">Carla Pipin Ranga</h1>
-      <p class="tw-font-bold tw-text-sm tw-not-italic tw-text-tm700-4 tw-leading-10 tw-font-medium tw-leading-4">Web Ui/Ux Designer, Graphiс Designer</p>
+  <div class="center tw-pl-80px md:tw-pl-96px lg:tw-pl-80px xl:tw-pl-tm700-9 tw-pb-16 md:tw-pb-0 lg:tw-pb-12 tw-pt-28px md:tw-pt-12 tw-flex tw-flex-col lg:tw-flex-row tw-items-stretch">
+  <div class="md:tw-flex md:tw-flex-row lg:tw-flex-col md:tw-items-start tw-pb-3 md:tw-pb-0">
+    <div class="tw-flex tw-flex-col tw-pb-5-4 md:tw-pb-0">
+      <h1 class="tw-font-bold tw-not-italic tw-text-tm700-1 tw-text-18px md:tw-text-4xl tw-leading-23px md:tw-leading-10">Carla Pipin Ranga</h1>
+      <p class="tw-font-bold tw-text-xs md:tw-text-sm tw-not-italic tw-text-tm700-4 tw-leading-10 tw-font-medium tw-leading-10px md:tw-leading-4">Web Ui/Ux Designer, Graphiс Designer</p>
     </div>
     <div class="media tw-flex tw-items-center md:tw-ml-52px lg:tw-m-0 xl:tw-m-0">
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 tw-mr-tm700-10 md:tw-p-5 lg:tw-p-civ-13">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 tw-mr-tm700-10 tw-p-2 md:tw-p-5 lg:tw-p-civ-13">
         <svg
           width="16"
           height="14"
@@ -20,7 +20,7 @@
           />
         </svg>
       </a>
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 tw-mr-tm700-10 md:tw-p-4 lg:tw-p-3">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 tw-mr-tm700-10 tw-p-2 md:tw-p-4 lg:tw-p-3">
         <svg
           width="13"
           height="12"
@@ -34,7 +34,7 @@
           />
         </svg>
       </a>
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 tw-mr-tm700-10 md:tw-p-4 lg:tw-p-2">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 tw-mr-tm700-10 tw-p-2 md:tw-p-4 lg:tw-p-2">
         <svg
           width="13"
           height="12"
@@ -61,7 +61,7 @@
   <!-- icons -->
   <div class="icons md:tw-pb-0 md:tw-pt-44px lg:tw-py-0 md:tw-col-start-2 md:tw-row-start-2">
     <div class="tw-flex tw-items-center xl:tw-pl-47px">
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 md:tw-p-18px lg:tw-p-9px">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px">
         <svg
           width="19"
           height="19"
@@ -80,7 +80,7 @@
           />
         </svg>
       </a>
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 md:tw-p-18px lg:tw-p-9px">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px">
         <svg
           width="17"
           height="17"
@@ -118,7 +118,7 @@
           />
         </svg>
       </a>
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 md:tw-p-18px lg:tw-p-9px">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px">
         <svg
           width="16"
           height="16"
@@ -140,7 +140,7 @@
           />
         </svg>
       </a>
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 md:tw-p-18px lg:tw-p-9px">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 lg:tw-mr-4 md:tw-mr-47px lg:tw-mr-tm700-10  xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px">
         <svg
           width="17"
           height="17"
@@ -159,7 +159,7 @@
           />
         </svg>
       </a>
-      <a href="#" class="tw-rounded-full tw-bg-tm700-2 md:tw-p-18px lg:tw-p-9px">
+      <a href="#" class="tw-rounded-full tw-bg-tm700-2 tw-p-9px md:tw-p-18px lg:tw-p-9px">
         <svg
           width="19"
           height="19"

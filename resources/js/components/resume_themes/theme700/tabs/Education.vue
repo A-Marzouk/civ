@@ -1,13 +1,13 @@
 <template>
   <div class="tm700-education" v-if="currentTab === 3">
-    <div class="tm700-education--inner grid grid-cols-2">
+    <div class="tm700-education--inner tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-w-full tw-max-w-1396px tw-my-0 tw-mx-auto md:tw-row-gap-128px lg:tw-row-gap-174px md:tw-pl-52px lg:tw-pl-0">
       <div
         v-for="({id}) in educations"
         v-bind:key="id"
-        class="tm700-educations flex flex-row items-start"
+        class="tm700-educations tw-flex tw-flex-row tw-items-start tw-font-gothampro"
       >
         <span
-          class="tm700-educations--span rounded-full p-2 text-white flex items-center bg-tm700-1"
+          class="tm700-educations--span tw-rounded-full tw-p-2 tw-text-white tw-flex tw-items-center tw-bg-tm700-1 tw-mr-18px tw-w-44px tw-h-44px tw-flex-none"
         >{{id}}.</span>
         <div class="flex flex-col justify-between">
           <div class="tm700-educations--info">

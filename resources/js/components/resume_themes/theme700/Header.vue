@@ -32,6 +32,10 @@ export default {
 <style lang="scss">
 .tm700-header {
   .tm700-top {
+    @media (min-width: 320px) {
+      grid-template-columns: 87px auto;
+      grid-template-rows: auto auto;
+    }
     @media (min-width: 768px) {
       grid-template-columns: 107px auto;
       grid-template-rows: auto auto;
