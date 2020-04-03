@@ -607,6 +607,13 @@
                     justify-content: space-between;
                     width: 100%;
 
+                    @include lt-md {
+                        .btn {
+                            width: 48%;
+                            min-width: 10px !important;
+                        }
+                    }
+
                     .save-btn {
                         width: 240px;
                         height: 66px;

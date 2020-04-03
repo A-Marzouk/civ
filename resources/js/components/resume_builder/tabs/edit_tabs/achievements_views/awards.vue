@@ -1,17 +1,15 @@
 <template>
     <div>
         <div class="add-award-section">
-            <div class="award-input d-flex flex-column w-100">
+            <div class="award-input input-field d-flex flex-column w-100">
                 <label for="awardTitle">New Awards</label>
-                <div class="d-flex w-100" style="justify-content: space-between; align-items: center;">
+                <div class="d-flex w-100 flex-input" style="justify-content: space-between; align-items: center;">
                     <input type="text" id="awardTitle" v-model="newAward.title">
 
-                    <div class="add-award-btn NoDecor">
-                        <a href="javascript:void(0)" @click="addAward">
-                            <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                            Add awards now
-                        </a>
-                    </div>
+                    <a class="btn btn-filled btn-fullWidth--md" href="javascript:void(0)" @click="addAward">
+                        <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                        Add awards now
+                    </a>
                 </div>
                 <div class="error" v-if="errors.new.title">
                     {{errors.new.title[0]}}
@@ -31,7 +29,13 @@
                     </div>
                 </div>
 
-                <div class="options">
+                <div class="optionsBtns showOnMd justify-content-center">
+                    <a href="javascript:;" class="delete-btn NoDecor" @click="deleteAward(achievement)">
+                        <svg-vue class="icon" :icon='"trash-delete-icon"'></svg-vue>
+                    </a>
+                </div>
+
+                <div class="options hideOnMd">
                     <div class="options-btn NoDecor"
                          @click="optionAchievementId === achievement.id ? optionAchievementId=0 : optionAchievementId=achievement.id">
                         <a href="javascript:void(0)" :class="{'opened':optionAchievementId === achievement.id}">
@@ -107,14 +111,102 @@
     }
 </script>
 <style scoped lang="scss">
+@import '../../../../../../sass/media-queries';
+
+    .add-award-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 71px;
+
+        .award-input {
+            input {
+                width: 807px;
+                height: 76px;
+                border: 2px solid #505050;
+                border-radius: 10px;
+                opacity: 1;
+                padding-left: 18px;
+            }
+            input:focus {
+                outline: none;
+            }
+
+            label {
+                text-align: left;
+                font: 600 22px Noto Sans;
+                letter-spacing: 0;
+                color: #505050;
+                opacity: 1;
+            }
+        }
+
+
+
+        .add-award-btn {
+            margin-right: 31px;
+            margin-bottom: 7px;
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 247px;
+                height: 62px;
+
+                background: #001CE2 0% 0% no-repeat padding-box;
+                border-radius: 8px;
+
+                font: 600 19px Noto Sans;
+                letter-spacing: 0;
+                color: #FFFFFF;
+                opacity: 1;
+
+                img {
+                    width: 27px;
+                    height: 27px;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .auto-import-btn {
+            margin-bottom: 7px;
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 226px;
+                height: 62px;
+
+                border: 2px solid #001CE2;
+                border-radius: 8px;
+                opacity: 1;
+
+                font: 600 19px Noto Sans;
+                letter-spacing: 0;
+                color: #001CE2;
+
+                img {
+                    width: 27px;
+                    height: 27px;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+    }
 
     .work-ex-list{
         margin-top: 64px;
+        width: 100%;
+        max-width: 900px;
+
         .work-ex-item{
             position: relative;
             display: flex;
             justify-content: flex-start;
-            width: 500px;
+            max-width: 500px;
+            width: 100%;
 
             .work-icon{
               img{
@@ -131,6 +223,14 @@
                     color: #3C3748;
                     margin-bottom: 12px;
                     opacity: 1;
+
+                    @include lt-md {
+                        font-size: 16px;
+                    }
+
+                    @include lt-sm {
+                        font-size: 16px;
+                    }
                 }
                 .work-ex-sub-title{
                     font: 700 19px Noto Sans;
@@ -138,12 +238,28 @@
                     color: #3C3748;
                     opacity: 1;
                     margin-bottom: 16px;
+
+                    @include lt-md {
+                        font-size: 16px;
+                    }
+
+                    @include lt-sm {
+                        font-size: 14px;
+                    }
                 }
                 .work-ex-detials{
                     font: 500 16px Noto Sans;
                     letter-spacing: 0;
                     color: #555060;
                     opacity: 1;
+
+                    @include lt-md {
+                        font-size:14px;
+                    }
+
+                    @include lt-sm {
+                        font-size:12px;
+                    }
                 }
             }
 
