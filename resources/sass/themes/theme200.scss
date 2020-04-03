@@ -331,11 +331,15 @@
             text-transform: capitalize;
         }
         .btn-hire-me {
+            margin-left: -12vw;
             font-size: 1.54vw !important;
             height: 4.89hw !important;
             width: 16.87vw !important;
             img {
                 width: 1.93vw !important;
+            }
+            @media screen and (max-width:630px) {
+                margin-left: -6vw;
             }
         }
         /* Hire me */
