@@ -16,20 +16,40 @@ const spacing = {
     'civ-21': '21‬px',
     'civ-61': '61‬px',
     '9px': '9px',
+    '10px': '0.625rem',
     '15px': '15px',
     '18px': '18px',
     '20px': '20px',
     '22px': '22px',
-    '47px': '1.68rem',
+    '24px': '6rem',
+    '25px': '25px',
+    '28px': '28px',
+    '35px': '2.1875‬rem',
+    '37px': '2.3125‬rem',
+    '44px': '2.75rem',
+    '47px': '2.938rem',
+    '52px': '3.25rem',
+    '53px': '3.375‬rem',
+    '54px': '3.375‬‬rem',
     '60px': '3.75rem',
     '66px': '4.13rem',
-    '52px': '4.13rem',
-    '52px': '4.13rem',
-    '80px': '5rem', // 80px
-    '88px': '5.5rem', // 80px
-    '96px': '6rem', // 80px
+    '78px': '4.875‬rem',
+    '80px': '5rem',
+    '82px': '5.125‬rem',
+    '84px': '5.25‬rem',
+    '88px': '5.5rem',
+    '92px': '5.75‬rem',
+    '93px': '5.8125‬rem',
+    '94px': '5.875‬rem',
+    '96px': '6rem',
+    '113px': '7rem',
+    '128px': '8.75‬rem',
+    '140px': '140px',
+    '174px': '10.9‬rem',
+    '336px': '21‬‬rem',
 };
 module.exports = {
+    prefix: 'tw-',
     theme: {
         extend: {
             spacing,
@@ -53,11 +73,13 @@ module.exports = {
             fontFamily: {
                 lato: ['Lato', 'sans-serif'],
                 montserrat: ['Montserrat', 'sans-serif'],
+                gothampro: ['Gotham Pro', 'sans-serif'],
             },
             maxWidth: {
                 'tm700-dw-1': '73.875rem',
                 'tm700-xl-1': '120rem',
                 'tm700-xl-2': '106.5625rem',
+                '1396px': '87.25rem',
             },
             gridTemplateColumns: {
                 'tm700-d-skills-bar': '118px auto 48px',
@@ -81,10 +103,16 @@ module.exports = {
             fontSize: {
                 'tm700-18': '1.125rem', // 18px
                 'tm700-22': '1.375‬rem', // 22px
+                '18px': '1.125rem', // 22px
             },
             lineHeight: {
-                'civ-22': '22px', // 22px
-                'civ-29': '29‬px', // 29px
+                '10px': '10px',
+                '11px': '11px',
+                'civ-22': '22px',
+                '22px': '1.375‬rem',
+                '23px': '23px',
+                '37px': '37px',
+                'civ-29': '29‬px',
             },
         },
     },
