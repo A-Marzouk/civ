@@ -1,6 +1,6 @@
 <template>
-  <v-layout row wrap v-if="user.personal_info">
-    <v-flex xs12 class="hidden-sm-and-up">
+  <v-row no-gutters  v-if="user.personal_info">
+    <v-col cols="12" class="hidden-sm-and-up">
       <v-card class flat color="transparent">
         <v-list-item two-line>
           <v-list-item-avatar size="85">
@@ -15,13 +15,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-card>
-    </v-flex>
+    </v-col>
 
-    <v-flex sm12 md8 class="hidden-xs-only">
+    <v-col sm="12" md="8" class="hidden-xs-only">
       <v-card class="mx-auto" flat color="transparent">
         <v-card-text>
-          <v-layout row justify-space-between>
-            <v-flex xs9 md11 sm9 class="mobile-center">
+          <v-row no-gutters>
+            <v-col cols="9" md="11" sm="9" class="mobile-center">
               <v-list-item class>
                 <v-list-item-avatar size="120">
                   <v-img :src="user.personal_info.profile_pic"></v-img>
@@ -112,13 +112,13 @@
                   </div>
                 </v-list-item-content>
               </v-list-item>
-            </v-flex>
-          </v-layout>
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
 
-    <v-flex xs12 sm4 md3 offset-md1 class="hidden-sm-and-down mobile-center">
+    <v-col cols="12" sm="4" md="3" offset-md1 class="hidden-sm-and-down mobile-center">
       <v-card flat>
         <v-card-text>
           <div class="btn-align">
@@ -142,10 +142,10 @@
           </div>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
 
     <!-- For Tablet -->
-    <v-flex sm12 xs12 class="tablet-mobile-social-icon d-none d-sm-flex d-md-none">
+    <v-col sm="12" cols="12" class="tablet-mobile-social-icon d-none d-sm-flex d-md-none">
       <v-card flat>
         <v-card-text>
           <div class="tablet-align">
@@ -170,11 +170,11 @@
           </div>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
     <!-- For tablet view -->
 
     <!-- For Mobile -->
-    <v-flex sm12 xs12 class="tablet-mobile-social-icon hidden-sm-and-up">
+    <v-col sm="12" cols="12" class="tablet-mobile-social-icon hidden-sm-and-up">
       <v-card flat>
         <v-card-text>
           <div class="mobile-align">
@@ -204,11 +204,11 @@
           </div>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
     <!-- For mobile view -->
 
     <!-- for xs devices only -->
-    <v-flex sm12 xs12 class="tablet-mobile-social-icon hidden-sm-and-up">
+    <v-col sm="12" cols="12" class="tablet-mobile-social-icon hidden-sm-and-up">
       <v-card flat>
         <v-card-text>
           <v-btn class="mx-2 custom-btn" fab dark color="black">
@@ -230,7 +230,7 @@
           <!-- Hire Me Btn -->
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
     <!-- for xs devices only -->
     <!-- Hire Me Modal -->
     <div>
@@ -348,7 +348,7 @@
     </div>
 
     <!-- Hire Me Modal -->
-  </v-layout>
+  </v-row>
 </template>
 
 <script>

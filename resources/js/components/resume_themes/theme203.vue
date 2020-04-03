@@ -13,10 +13,13 @@
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
                 <v-col md="8" cols="12" sm="7">
-                  <v-card color="transparent" flat style="z-index:2;" class="p-0 ma-0">
+                  <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
-                        <v-list-item-avatar size="120">
+                        <v-list-item-avatar size="120" class="hidden-xs-only custom-avatar">
+                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-avatar size="80" class="hidden-sm-and-up custom-avatar mr-2">
                           <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
@@ -79,6 +82,7 @@
                             <v-card flat color="transparent">
                               <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
                             </v-card>
+                            
                           </v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
@@ -213,7 +217,7 @@
                       <v-row align="center" justify="center">
                         <div class="watermark-text text-center">Portfolio</div>
                         <!-- 1st column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
                             <div class="my-5 image-box-custom">
                               <v-img
@@ -232,7 +236,7 @@
                         <!-- 1st column -->
 
                         <!-- 2nd column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
                             <div class="my-5 image-box-custom">
                               <v-img
@@ -251,7 +255,7 @@
                         <!-- 2nd column -->
 
                         <!-- 3rd column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
                             <div class="my-5 image-box-custom">
                               <v-img
@@ -270,7 +274,7 @@
                         <!-- 3rd column -->
 
                         <!-- 4th Column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
                             <div class="my-5 image-box-custom">
                               <v-img
@@ -329,7 +333,7 @@
                               <img
                                 class="mx-5"
                                 src="/images/resume_themes/theme203/images/ellipse.png"
-                              /> Google Inc. Introduction Google
+                              /> California Institute of technology
                             </v-card-title>
                             <v-card-subtitle class="custom-education-subtitle">
                               <span>M.Sc in HCI,</span>
@@ -364,10 +368,13 @@
                           <v-card flat color="transparent" class="mx-auto">
                             <v-card-text>
                               <v-list-item>
-                                <v-list-item-avatar class="skill-circle mr-n1" style="z-index:2;">
+                                <v-list-item-avatar
+                                  class="skill-circle mr-n1 mt-sm-2"
+                                  style="z-index:1;"
+                                >
                                   <span>{{skill.icon_text}}</span>
                                 </v-list-item-avatar>
-                                <v-list-item-content class="mt-md-n6">
+                                <v-list-item-content class="mt-n6">
                                   <v-list-item-subtitle>
                                     <v-row no-gutters>
                                       <v-col cols="6" class="skill-title-text">
@@ -501,6 +508,7 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
+@import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 
 /* Shapes */
@@ -512,13 +520,16 @@ export default {
   position: absolute;
   background: #fcd259;
   height: 18.75rem;
-  width: 25.3rem;
+  width: 27rem;
   -webkit-clip-path: polygon(100% 0, 0% 100%, 0 0);
   clip-path: polygon(100% 0, 0% 100%, 0 0);
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and(max-width:599px) {
+    width: 14.5rem;
+  }
 }
 
 .triangle-bottom-right {
@@ -536,13 +547,16 @@ export default {
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   float: right;
+  // @media screen and(max-width:599px) {
+  //   width: ;
+  // }
 }
 
 .verical-sidebar {
   position: absolute;
   background: #e6bf4e;
-  width: 3vw;
-  height: 600vh;
+  width: 2rem;
+  height: 700vh;
   z-index: 1;
   bottom: 0;
 }
@@ -551,12 +565,22 @@ export default {
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
+  @media screen and(max-width:599px) {
+    font-size: 1.12rem !important;
+  }
+}
+
+.custom-avatar {
+  border: 5px solid white;
 }
 
 .profile-subtitle {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
+  @media screen and(max-width:599px) {
+    font-size: 0.5rem !important;
+  }
 }
 .btn-email {
   width: 2.56rem !important;
@@ -589,12 +613,18 @@ export default {
   font-size: 0.9rem !important;
   color: #8b8b8b !important;
   text-align: center !important;
+  @media screen and (max-width: 959px) {
+    font-size: 0.7rem !important;
+  }
 }
 
 .hire-me-subtitle {
   font-family: "Montserrat", sans-serif !important;
   font-size: 1rem !important;
   color: #000000 !important;
+  @media screen and (max-width: 959px) {
+    font-size: 0.8rem !important;
+  }
 }
 
 .btn-hire-me {
@@ -610,6 +640,9 @@ export default {
 // ............................ Main Navigation Tab...........................//
 .custom-tab-text {
   font-size: 1.2rem;
+  @media screen and (max-width: 599px) {
+    font-size: 1rem;
+  }
 }
 // ............................ Main Navigation Tab ...........................//
 // ..........................Desktop Portfolio.........................
@@ -623,6 +656,7 @@ export default {
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
+  text-transform: capitalize;
   img {
     width: 20px !important;
   }
@@ -668,10 +702,10 @@ export default {
   border: 5px solid #e0bb4c;
   box-sizing: border-box;
   text-align: center;
-  padding: 3px 6px 5px 8px;
+  padding: 3px 8px 5px 8px;
   span {
     font-family: "Rubik", sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #ffffff;
   }
 }
