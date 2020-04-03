@@ -1,6 +1,6 @@
 <template>
     <div class="certificates-section">
-        <div class="add-certificate">
+        <div class="add-certificate hideOnMd">
             <div class="upload-image">
                 <div class="img-label">
                     Add Certificates
@@ -23,14 +23,14 @@
                 </div>
             </div>
             <div class="certification-details-form">
-                <div class="certification-input">
+                <div class="certification-input input-field">
                     <label for="title">Title</label>
                     <input type="text" id="title" v-model="addCertificateForm.title">
                     <div class="error" v-if="errors.new.title">
                         {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
                     </div>
                 </div>
-                <div class="certification-input">
+                <div class="certification-input input-field">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" v-model="addCertificateForm.description"></textarea>
                     <div class="error" v-if="errors.new.description">
@@ -44,7 +44,77 @@
                             Add certificate now
                         </a>
                     </div>
+                    <!--<div class="auto-import-btn NoDecor">-->
+                        <!--<a href="javascript:void(0)">-->
+                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                            <!--Auto import-->
+                        <!--</a>-->
+                    <!--</div>-->
                 </div>
+            </div>
+        </div>
+        <transition name='fadeCustom'>
+            <div v-if='addNewCertificate' class="add-certificate showOnMd">
+                <div class="upload-image">
+                    <div class="img-label">
+                        Add Certificates
+                    </div>
+                    <vue2Dropzone class="upload-image-box d-flex justify-content-center align-items-center"
+                        id="certificateDropzone"
+                        :options="dropzoneOptions"
+                        :useCustomSlot=true
+                        v-on:vdropzone-file-added="handlingEvent"
+                        v-on:vdropzone-thumbnail="thumbnail"
+                        ref="newCertificate"
+                    >
+                        <img src="/images/resume_builder/achievements/download.png" alt="download">
+                        <div class="upload-text">
+                            Upload image
+                        </div>
+                    </vue2Dropzone>
+                    <div class="error" v-if="errors.new.file">
+                        {{ Array.isArray(errors.new.file) ? errors.new.file[0] : errors.new.file}}
+                    </div>
+                </div>
+                <div class="certification-details-form">
+                    <div class="certification-input input-field">
+                        <label for="title">Title</label>
+                        <input type="text" v-model="addCertificateForm.title">
+                        <div class="error" v-if="errors.new.title">
+                            {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
+                        </div>
+                    </div>
+                    <div class="certification-input input-field">
+                        <label for="description">Description</label>
+                        <textarea name="description" v-model="addCertificateForm.description"></textarea>
+                        <div class="error" v-if="errors.new.description">
+                            {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                        </div>
+                    </div>
+                    <div class="action-btns">
+                        <a class="btn btn-filled" href="javascript:void(0)" @click="addCertificate">
+                            <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                            Add certificate now
+                        </a>
+                        <a class="btn btn-outline" href="javascript:void(0)" @click="addNewCertificate = false">
+                            Cancel
+                        </a>
+                        <!--<div class="auto-import-btn NoDecor">-->
+                            <!--<a href="javascript:void(0)">-->
+                                <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                                <!--Auto import-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </transition>
+        <div class="add-certificate-btn showOnMd">
+            <div v-show='!addNewCertificate' class="btn-wrapper">
+                <a class="btn btn-filled" href="javascript:void(0)" @click="addNewCertificate = true">
+                    <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                    Add certificate now
+                </a>
             </div>
         </div>
         <div class="certifications-list" v-if="achievements">
@@ -59,7 +129,16 @@
                     <div class="description">
                         {{achievement.description}}
                     </div>
-                    <div class="options">
+                    <div class="optionsBtns showOnMd">
+                        <a href="">
+                            <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
+                        </a>
+
+                        <a href="">
+                            <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                        </a>
+                    </div>
+                    <div class="options hideOnMd">
                         <div class="options-btn NoDecor"
                              @click="optionAchievementId === achievement.id ? optionAchievementId=0 : optionAchievementId=achievement.id">
                             <a href="javascript:void(0)" :class="{'opened':optionAchievementId === achievement.id}">
@@ -93,6 +172,7 @@ export default {
         optionAchievementId: 0,
         editedAchievement: {},
         showInputHelpers: false,
+        addNewCertificate: false,
         errors: {
             new: {},
             edit: {}

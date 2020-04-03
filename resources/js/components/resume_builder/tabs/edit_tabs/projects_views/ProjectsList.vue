@@ -1,9 +1,12 @@
 <template>
     <div class="wrapper">
 
-
         <div class="btns-wrapper d-flex align-items-center">
-            <router-link to="/resume-builder/edit/projects/new" class="btn outline" >
+            <router-link to="/resume-builder/edit/projects/new" class="btn btn-outline" >
+                <svg-vue class="icon add-project-icon" icon="add-icon"></svg-vue>
+                <b>Auto import</b>
+            </router-link>
+            <router-link to="/resume-builder/edit/projects/new" class="btn btn-filled" >
                 <svg-vue class="icon add-project-icon" icon="add-icon"></svg-vue>
                 <b>Add a new project</b>
             </router-link>
@@ -70,19 +73,79 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../../sass/media-queries';
     $mainBlue: #001CE2;
+
+    .btns-wrapper {
+        margin-top: 26px;
+
+        @include lt-md {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        @include lt-sm {
+            flex-wrap: wrap;
+        }
+
+
+        a {
+            color: $mainBlue;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+
+        .btn {
+            margin-right: 12px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            @include lt-sm {
+                min-width: 135px;
+                width: 48%;
+                margin-right: 0;
+            }
+
+            @media (max-width: 380px) {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+    }
+
     .content {
         position: relative;
     }
 
     .projects-container {
         margin-top: 32px;
+        display: flex;
+        justify-content: space-between;
+
+        .flex-column {
+            max-width: 477px;
+            width: 48%;
+            min-width: 300px;
+
+            @include lt-sm {
+                width: 100%;
+                min-width: auto;
+                max-width: 100%;
+            }
+        }
 
     }
 
     .project {
         position: relative;
-        margin-right: 87px;
+        border: 6px solid white;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,.1);
+        margin-top: 2rem;
 
         .remove-icon {
             opacity: 0;
@@ -122,8 +185,8 @@
 
 
 
-    .add-project-icon {
-        width: 31px;
-        height: 31px;
-    }
+    // .add-project-icon {
+    //     width: 31px;
+    //     height: 31px;
+    // }
 </style>

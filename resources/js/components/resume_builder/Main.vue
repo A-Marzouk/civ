@@ -42,11 +42,11 @@
                         <router-link id='viewCVMobile' data-target="viewCV" v-on:click.native="setActiveTab('viewCV')" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`view-icon`"></svg-vue>
                         </router-link>
-                        <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
-                            <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
-                        </router-link>
                         <router-link id='importMobile' data-target="import" v-on:click.native="setActiveTab('import')" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`import`"></svg-vue>
+                        </router-link>
+                        <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
+                            <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
                         </router-link>
                     </div>
                 </div>
@@ -236,7 +236,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 @import '../../../sass/media-queries';
     body.modal-open {
