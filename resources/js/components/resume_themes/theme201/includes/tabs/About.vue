@@ -1,7 +1,7 @@
 <template>
     <v-container style="max-width: 1785px;">
-        <v-layout align-center justify-center>
-            <v-flex xs12>
+        <v-row align="center" justify="center">
+            <v-row cols=12>
                 <v-card flat>
                     <v-card-title class="justify-center hidden-sm-and-down">
                         <h1 class="title-header">About</h1>
@@ -17,8 +17,8 @@
                         </p>
                     </v-card-text>
                 </v-card>
-            </v-flex>
-        </v-layout>
+            </v-row>
+        </v-row>
     </v-container>
 </template>
 

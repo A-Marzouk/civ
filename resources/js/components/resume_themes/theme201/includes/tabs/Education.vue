@@ -1,7 +1,7 @@
 <template>
   <v-container style="max-width: 1785px;">
     <v-row wrap class="justify-content-between">
-      <v-flex xs12 md5 mt-5 class="tablet-mobile-flex" v-for="(education,index) in educations" :key="index + '_education'">
+      <v-col cols="12" md="5"  class="tablet-mobile-flex mt-5" v-for="(education,index) in educations" :key="index + '_education'">
         <v-card flat>
           <v-card-title>
             <h1 class="custom-h1">{{education.university_name}}</h1>
@@ -13,7 +13,7 @@
             </div>
           </v-card-text>
         </v-card>
-      </v-flex>
+      </v-col>
     </v-row>
   </v-container>
 </template>
