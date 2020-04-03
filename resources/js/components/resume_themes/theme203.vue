@@ -12,7 +12,7 @@
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col md="5" cols="12" sm="12">
+                <v-col md="8" cols="12" sm="7">
                   <v-card color="transparent" flat style="z-index:2;" class="p-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
@@ -23,8 +23,7 @@
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent">
                               Carla Pipin Ranga
-
-                              <span class="ml-2">
+                              <span class="mx-12 hidden-sm-and-down">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -61,11 +60,26 @@
                                   />
                                 </v-btn>
                               </span>
+                              <span class="mx-3 hidden-sm-and-down">
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  small
+                                  class="mx-md-1 mx-sm-2 social-btn"
+                                  depressed
+                                  v-for="item in socialIcons"
+                                  :key="item.id"
+                                >
+                                  <img width="14" :src="getSocialIcon(item.title)" />
+                                </v-btn>
+                              </span>
                             </v-card>
                           </v-list-item-title>
-                          <v-list-item-title
-                            class="profile-subtitle"
-                          >Web Ui/Ux Designer, Graphiс Designer</v-list-item-title>
+                          <v-list-item-title>
+                            <v-card flat color="transparent">
+                              <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
+                            </v-card>
+                          </v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                     </v-card-text>
@@ -73,8 +87,38 @@
                 </v-col>
                 <!-- 1st column profile pic and icons -->
 
+                <!-- 2nd column only for tab version -->
+                <v-col sm="5" class="tablet-audio-video-flex" align="right">
+                  <v-card flat color="transparent" class="mr-5">
+                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
+                      <v-icon class="icon-email">mdi-email</v-icon>
+                    </v-btn>
+
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="mx-md-0 mx-sm-2 btn-video-player"
+                    >
+                      <img width="14" src="/images/resume_themes/theme203/icons/video-player.webp" />
+                    </v-btn>
+
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="btn-headphone mx-auto mx-sm-2"
+                    >
+                      <img width="14" src="/images/resume_themes/theme203/icons/headphones.webp" />
+                    </v-btn>
+                  </v-card>
+                </v-col>
+                <!-- 2nd column only for tab version -->
+
                 <!-- 2nd column social media icons -->
-                <v-col md="3" sm="6" cols="12" class="mt-n3 pa-0" align="center">
+                <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
                   <v-card flat color="tranparent">
                     <v-card-text class>
                       <v-btn
@@ -171,16 +215,16 @@
                         <!-- 1st column -->
                         <v-col cols="12" sm="6" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/1.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/2.png"
+                                src="/images/resume_themes/theme203/portfolio/1.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -190,16 +234,16 @@
                         <!-- 2nd column -->
                         <v-col cols="12" sm="6" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/3.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/4.png"
+                                src="/images/resume_themes/theme203/portfolio/3.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -209,16 +253,16 @@
                         <!-- 3rd column -->
                         <v-col cols="12" sm="6" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/5.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/6.png"
+                                src="/images/resume_themes/theme203/portfolio/5.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -228,16 +272,16 @@
                         <!-- 4th Column -->
                         <v-col cols="12" sm="6" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/7.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/8.png"
+                                src="/images/resume_themes/theme203/portfolio/7.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -637,6 +681,15 @@ export default {
   font-size: 1rem;
   line-height: 1.6875rem;
   color: #222d68 !important;
+}
+.tablet-audio-video-flex {
+  display: none;
+  @media screen and (max-width: 959px) {
+    display: inline;
+  }
+  @media screen and (max-width: 599px) {
+    display: none;
+  }
 }
 
 //..................Skills Desktop.....................................
