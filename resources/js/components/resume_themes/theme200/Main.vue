@@ -105,7 +105,7 @@
                   <!-- Hourly rate -->
                   <v-col cols="12" class="hidden-sm-and-up">
                     <v-container fluid style="width:100%">
-                      <v-card color="white" light class="mr-1">
+                      <v-card color="white" light class="mr-1 pa-5" height="280" >
                         <v-row no-gutters justify="center" align="center">
                           <!-- mobile parent hire me tab -->
                           <v-col cols="12" align="center">
@@ -122,7 +122,7 @@
                                 <v-row align="center" justify="center">
                                   <v-col cols="4">
                                     <img
-                                      class="mt-1 mr-1"
+                                      class="custom-hour-img"
                                       style="width:18px !important; position:absolute;"
                                       src="/images/resume_themes/theme200/icons/hour.png"
                                     />
@@ -164,7 +164,7 @@
                             <v-btn
                               color="#FF5231"
                               dark
-                              class="text-capitalize mb-3"
+                              class="text-capitalize mb-3 mobile-hire-me-btn"
                               style="font-size:4.5vw;"
                             >
                               Hire Me
@@ -313,7 +313,7 @@
                                     </v-tabs-items>
                                   </v-col>
                                   <v-col md="3" sm="12" align="center">
-                                    <v-card flat color="transparent" align="center">
+                                    <v-card flat color="transparent" align="center" >
                                       <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
                                         Hire Me
                                         <img
@@ -340,9 +340,9 @@
                       <v-card class color="rgba(37, 0, 0, 0.1)" flat width="705">
                         <v-row align="center" justify="center">
                           <!--tab1 column -->
-                          <v-col cols="5">
+                          <v-col cols="10">
                             <div class="d-flex flex-row bd-highlight align-items-center">
-                              <div class="p-2 bd-highlight">
+                              <div class="p-4 bd-highlight">
                                 <v-tabs
                                   class="hire-me-parent-tab"
                                   height="60"
@@ -358,7 +358,7 @@
                                   <v-tab class="body-2 text-capitalize">Hourly</v-tab>
                                 </v-tabs>
                               </div>
-                              <div class="p-2 bd-highlight mt-4">
+                              <div class="p-4 bd-highlight mt-4">
                                 <v-tabs-items v-model="tabRate" style="background:transparent;">
                                   <v-tab-item v-for="n in 3" :key="n">
                                     <div class="hire-me-subtitle">Rate $ USD</div>
@@ -368,17 +368,7 @@
                                   </v-tab-item>
                                 </v-tabs-items>
                               </div>
-                            </div>
-                          </v-col>
-                          <!-- tab 1 column -->
-                          <!-- Column2 Tab 1 items -->
-
-                          <!-- Column 2 Tab 1 Items -->
-
-                          <!-- column 2 tab -->
-                          <v-col cols="7">
-                            <div class="d-flex align-items-center">
-                              <div class="p-2 bd-highlight">
+                              <div class="p-4 bd-highlight">
                                 <v-tabs
                                   class="hire-me-parent-tab"
                                   height="60"
@@ -394,7 +384,7 @@
                                   <v-tab class="body-2 text-capitalize">Hourly</v-tab>
                                 </v-tabs>
                               </div>
-                              <div class="p-2 bd-highlight mt-4">
+                              <div class="p-4 bd-highlight mt-4">
                                 <v-tabs-items
                                   v-model="tabFrequency"
                                   style="background:transparent;"
@@ -407,21 +397,19 @@
                                   </v-tab-item>
                                 </v-tabs-items>
                               </div>
-                              <div class="p-2 bd-highlight mt-4">
-                                <v-card flat color="transparent" align="center">
-                                  <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
-                                    Hire Me
-                                    <img
-                                      class="mx-1"
-                                      src="/images/resume_themes/theme200/icons/chat2.png"
-                                    />
-                                  </v-btn>
-                                </v-card>
-                              </div>
                             </div>
                           </v-col>
-                          <!-- column 2 tab -->
-
+                          <v-col cols="2">
+                            <v-card flat color="transparent" align="center" class="mx-n12">
+                              <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
+                                Hire Me
+                                <img
+                                  class="mx-1"
+                                  src="/images/resume_themes/theme200/icons/chat2.png"
+                                />
+                              </v-btn>
+                            </v-card>
+                          </v-col>
                         </v-row>
                       </v-card>
                     </v-container>
@@ -1414,8 +1402,10 @@ export default {
   margin-left: 13px !important;
 }
 
-@media screen and (min-width: 600px) and (max-width: 959px) {
+.mobile-hire-me-btn{
+  margin-top: 6px;
 }
+
 </style>
 
 <style>
