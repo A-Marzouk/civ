@@ -1,9 +1,9 @@
 <template>
     <v-container style="max-width: 1785px;">
-        <v-row wrap class="justify-content-between">
-            <v-col cols="12" md="5" class="mb-10" v-for="(work,index) in works" :key="index + '_work'">
-                <v-layout row wrap>
-                    <v-col cols="12" sm="4" md="6" lg="4">
+        <v-row>
+            <v-col cols="12" md="6" class="mb-10" v-for="(work,index) in works" :key="index + '_work'">
+                <v-row>
+                    <v-col cols="12" sm="4" md="4">
                         <v-card flat>
                             <v-card-text>
                                 <h1 class="custom-header">{{work.company_name}}</h1>
@@ -17,7 +17,7 @@
                         </v-card>
                     </v-col>
                     <!-- 2nd column -->
-                    <v-col cols="12" sm="8" md="6" lg="8">
+                    <v-col cols="12" sm="8" md="8" >
                         <v-card flat>
                             <v-card-text>
                                 <h1 class="custom-header2">{{work.job_title}}</h1>
@@ -29,7 +29,7 @@
                         </v-card>
                     </v-col>
                     <!-- 2nd column -->
-                </v-layout>
+                </v-row>
             </v-col>
         </v-row>
     </v-container>
