@@ -105,7 +105,7 @@
                   <!-- Hourly rate -->
                   <v-col cols="12" class="hidden-sm-and-up">
                     <v-container fluid style="width:100%">
-                      <v-card color="white" light class="mr-1">
+                      <v-card color="white" light class="mr-1 pa-5" height="280" >
                         <v-row no-gutters justify="center" align="center">
                           <!-- mobile parent hire me tab -->
                           <v-col cols="12" align="center">
@@ -122,7 +122,7 @@
                                 <v-row align="center" justify="center">
                                   <v-col cols="4">
                                     <img
-                                      class="mt-1 mr-1"
+                                      class="custom-hour-img"
                                       style="width:18px !important; position:absolute;"
                                       src="/images/resume_themes/theme200/icons/hour.png"
                                     />
@@ -164,7 +164,7 @@
                             <v-btn
                               color="#FF5231"
                               dark
-                              class="text-capitalize mb-3"
+                              class="text-capitalize mb-3 mobile-hire-me-btn"
                               style="font-size:4.5vw;"
                             >
                               Hire Me
@@ -313,7 +313,7 @@
                                     </v-tabs-items>
                                   </v-col>
                                   <v-col md="3" sm="12" align="center">
-                                    <v-card flat color="transparent" align="center">
+                                    <v-card flat color="transparent" align="center" >
                                       <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
                                         Hire Me
                                         <img
@@ -1402,8 +1402,10 @@ export default {
   margin-left: 13px !important;
 }
 
-@media screen and (min-width: 600px) and (max-width: 959px) {
+.mobile-hire-me-btn{
+  margin-top: 6px;
 }
+
 </style>
 
 <style>

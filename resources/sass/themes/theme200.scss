@@ -418,6 +418,13 @@
     /* .................................................................................................. */
     /* ..............................................Mobile Screen................................. */
     @media screen and (max-width: 599px) {
+        .custom-hour-img {
+            margin-top: 3px;
+            margin-left: 12px;
+            @media screen and (max-width: 370px) {
+                margin-left: 5px;
+            }
+        }
         .availibility-tablet {
             display: none;
         }
@@ -467,6 +474,9 @@
             margin-bottom: -0.8vw;
             height: 32px !important;
             min-width: 32px !important;
+            @media screen and(max-width: 334) {
+                margin-right: -3px;
+            }
         }
         .phone-icon {
             font-size: 18px !important;
@@ -478,6 +488,9 @@
             img {
                 width: 16px !important;
                 height: 13px !important;
+            }
+            @media screen and(max-width:334px) {
+                margin-right: -3px;
             }
         }
         /* Profile */
