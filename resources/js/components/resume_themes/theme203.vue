@@ -13,7 +13,7 @@
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
                 <v-col md="5" cols="12" sm="12">
-                  <v-card flat color="transparent" style="z-index:2;">
+                  <v-card color="transparent" flat style="z-index:2;" class="p-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
                         <v-list-item-avatar size="120">
@@ -21,44 +21,47 @@
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
-                            Carla Pipin Ranga
-                            <span class="ml-2">
-                              <v-btn
-                                fab
-                                color="#FCD259"
-                                small
-                                depressed
-                                class="mx-md-1 mx-sm-2 btn-email"
-                              >
-                                <v-icon class="icon-email">mdi-email</v-icon>
-                              </v-btn>
+                            <v-card class="pa-0" flat color="transparent">
+                              Carla Pipin Ranga
 
-                              <v-btn
-                                fab
-                                color="#FCD259"
-                                x-small
-                                depressed
-                                class="mx-md-0 mx-sm-2 btn-video-player"
-                              >
-                                <img
-                                  width="14"
-                                  src="/images/resume_themes/theme203/icons/video-player.webp"
-                                />
-                              </v-btn>
+                              <span class="ml-2">
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  small
+                                  depressed
+                                  class="mx-md-1 mx-sm-2 btn-email"
+                                >
+                                  <v-icon class="icon-email">mdi-email</v-icon>
+                                </v-btn>
 
-                              <v-btn
-                                fab
-                                color="#FCD259"
-                                x-small
-                                depressed
-                                class="btn-headphone mx-auto mx-sm-2"
-                              >
-                                <img
-                                  width="14"
-                                  src="/images/resume_themes/theme203/icons/headphones.webp"
-                                />
-                              </v-btn>
-                            </span>
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  x-small
+                                  depressed
+                                  class="mx-md-0 mx-sm-2 btn-video-player"
+                                >
+                                  <img
+                                    width="14"
+                                    src="/images/resume_themes/theme203/icons/video-player.webp"
+                                  />
+                                </v-btn>
+
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  x-small
+                                  depressed
+                                  class="btn-headphone mx-auto mx-sm-2"
+                                >
+                                  <img
+                                    width="14"
+                                    src="/images/resume_themes/theme203/icons/headphones.webp"
+                                  />
+                                </v-btn>
+                              </span>
+                            </v-card>
                           </v-list-item-title>
                           <v-list-item-title
                             class="profile-subtitle"
@@ -83,35 +86,8 @@
                         v-for="item in socialIcons"
                         :key="item.id"
                       >
-                        <img
-                          width="14"
-                          :src="getSocialIcon(item.title)"
-                        />
+                        <img width="14" :src="getSocialIcon(item.title)" />
                       </v-btn>
-                      <!-- <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/dribbble.webp"
-                        />
-                      </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/instagram.webp"
-                        />
-                      </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/linikedin.webp"
-                        />
-                      </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/google-plus.webp"
-                        />
-                      </v-btn>-->
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -189,9 +165,9 @@
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <v-card flat color="transparent">
-                    <div class="watermark-text text-center">Portfolio</div>
                     <v-card-text align="center">
                       <v-row align="center" justify="center">
+                        <div class="watermark-text text-center">Portfolio</div>
                         <!-- 1st column -->
                         <v-col cols="12" sm="6" md="3">
                           <v-card class="pa-2" flat color="transparent">
@@ -667,8 +643,8 @@ export default {
 // Watermark text
 .watermark-text {
   position: absolute;
-  margin-top: -70px;
-  font-size: 20vw;
+  margin-top: -65px;
+  font-size: 18vw;
   width: 100%;
   opacity: 0.1;
 }
