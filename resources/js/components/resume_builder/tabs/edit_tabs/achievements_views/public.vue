@@ -207,3 +207,139 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .certificates-section{
+        margin-top: 72.5px;
+
+        .add-certificate{
+            display: flex;
+            justify-content: flex-start;
+
+            .upload-image{
+                display: flex;
+                flex-direction: column;
+                margin-right: 45px;
+                .img-label{
+                    font-family: "Noto Sans", serif;
+                    font-weight: 600;
+                    font-size: 22px;
+                    text-align: left;
+                    color: #505050;
+                    margin-bottom: 12px;
+                }
+                .upload-image-box{
+                    width:412px;
+                    height:518px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border: 2px solid #505050;
+                    border-radius: 10px;
+                    img{
+                        width:95px;
+                        height:89px;
+                    }
+                    .upload-text{
+                        font-family: "Noto Sans", serif;
+                        font-weight: bold;
+                        font-size: 30px;
+                        letter-spacing: 0.02em;
+                        line-height: 67px;
+                        text-align: left;
+                        color: #747474;
+                    }
+                }
+            }
+
+            .certification-details-form{
+                margin-top: 37px;
+                .certification-input{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 33px;
+                    input,textarea {
+                        width: 807px;
+                        height: 76px;
+                        border: 2px solid #505050;
+                        border-radius: 10px;
+                        opacity: 1;
+                        padding-left: 18px;
+                    }
+                    textarea{
+                        padding-top: 18px;
+                        height: 190px;
+                    }
+                    input:focus,textarea:focus {
+                        outline: none;
+                    }
+
+                    label {
+                        text-align: left;
+                        font: 600 22px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+                        opacity: 1;
+                    }
+                }
+
+                .action-btns{
+                    display: flex;
+                    .add-award-btn{
+                        margin-right: 20px;
+                        a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 256px;
+                            height: 62px;
+
+                            background: #001CE2 0% 0% no-repeat padding-box;
+                            border-radius: 8px;
+
+                            font: 600 19px Noto Sans;
+                            letter-spacing: 0;
+                            color: #FFFFFF;
+                            opacity: 1;
+
+                            img {
+                                width: 27px;
+                                height: 27px;
+                                margin-right: 10px;
+                            }
+                        }
+
+                        a.short{
+                            width:163px;
+                        }
+                    }
+
+                    .auto-import-btn{
+                        a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 226px;
+                            height: 62px;
+
+                            border: 2px solid #001CE2;
+                            border-radius: 8px;
+                            opacity: 1;
+
+                            font: 600 19px Noto Sans;
+                            letter-spacing: 0;
+                            color: #001CE2;
+
+                            img {
+                                width: 27px;
+                                height: 27px;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</style>

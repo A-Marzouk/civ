@@ -108,6 +108,89 @@
 </script>
 <style scoped lang="scss">
 
+    .add-award-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 71px;
+
+        .award-input {
+            input {
+                width: 807px;
+                height: 76px;
+                border: 2px solid #505050;
+                border-radius: 10px;
+                opacity: 1;
+                padding-left: 18px;
+            }
+            input:focus {
+                outline: none;
+            }
+
+            label {
+                text-align: left;
+                font: 600 22px Noto Sans;
+                letter-spacing: 0;
+                color: #505050;
+                opacity: 1;
+            }
+        }
+
+
+
+        .add-award-btn {
+            margin-right: 31px;
+            margin-bottom: 7px;
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 247px;
+                height: 62px;
+
+                background: #001CE2 0% 0% no-repeat padding-box;
+                border-radius: 8px;
+
+                font: 600 19px Noto Sans;
+                letter-spacing: 0;
+                color: #FFFFFF;
+                opacity: 1;
+
+                img {
+                    width: 27px;
+                    height: 27px;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .auto-import-btn {
+            margin-bottom: 7px;
+            a {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 226px;
+                height: 62px;
+
+                border: 2px solid #001CE2;
+                border-radius: 8px;
+                opacity: 1;
+
+                font: 600 19px Noto Sans;
+                letter-spacing: 0;
+                color: #001CE2;
+
+                img {
+                    width: 27px;
+                    height: 27px;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+    }
+
     .work-ex-list{
         margin-top: 64px;
         .work-ex-item{
