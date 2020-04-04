@@ -6,17 +6,17 @@
       pa-0
       style="background-color:rgba(16, 78, 251, 0.06); max-width:100% !important; "
     >
-      <v-layout row wrap>
-        <v-flex xs12>
-          <v-card color="#104EFB" class="custom-parent-card">
+      <v-row no-gutters>
+        <v-col cols="12">
+          <v-card color="#104EFB" class="custom-parent-card" style="border-radius:0px;">
             <v-card-text>
               <div class="circle1"></div>
               <div class="circle2"></div>
               <v-container class="themeWrapperBlue">
-                <v-layout row wrap>
+                <v-row no-gutters align="center" justify="center">
                   <!-- Profile Pic -->
-                  <v-flex xs12 sm6 md3 class="">
-                    <v-card color="transparent" dark flat>
+                  <v-col cols="12" sm="6" md="3" class>
+                    <v-card color="transparent" dark flat class="ml-md-0 ml-sm-0 ml-n10">
                       <v-card-text>
                         <v-list-item>
                           <v-list-item-avatar color="grey darken-3" size="120" max-width="120">
@@ -69,7 +69,7 @@
                                     <span style="margin-left:15px;">
                                       <v-btn depressed icon small dark color="#104EFB">
                                         <img
-                                          height="19"
+                                          width="20"
                                           src="/images/resume_themes/theme202/icons/audio-speaker-on.png"
                                         />
                                       </v-btn>
@@ -82,7 +82,7 @@
                                         class="custom-video-btn"
                                       >
                                         <img
-                                          height="19"
+                                          width="20"
                                           src="/images/resume_themes/theme202/icons/video-camera.png"
                                           style="margin-top:-4px;"
                                         />
@@ -90,24 +90,6 @@
                                     </span>
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
-                                <!-- <v-list-item-icon>
-                                  <v-btn depressed small dark color="#104EFB">
-                                    <img
-                                      height="19"
-                                      src="/images/resume_themes/theme202/icons/audio-speaker-on.png"
-                                    />
-                                  </v-btn>
-                                </v-list-item-icon>
-
-                                <v-list-item-icon>
-                                  <v-btn depressed small dark color="#104EFB" class="ml-n5">
-                                    <img
-                                      height="19"
-                                      src="/images/resume_themes/theme202/icons/video-camera.png"
-                                      style="margin-top:-4px;"
-                                    />
-                                  </v-btn>
-                                </v-list-item-icon>-->
                               </v-list-item>
                             </v-list-item>
                             <!-- Interview -->
@@ -115,47 +97,39 @@
                         </v-list-item>
                       </v-card-text>
                     </v-card>
-                  </v-flex>
+                  </v-col>
                   <!-- Profile Pic -->
 
                   <!-- Social Icons -->
-                  <v-flex
-                    class="mt-n3 mt-md-0 mt-sm-0"
-                    d-flex
-                    xs12
-                    sm6
-                    md5
-                    align-center
-                    justify-center
-                  >
+                  <v-col class cols="12" sm="6" md="5">
                     <v-card color="transparent" flat class="custom-social-media-card">
                       <v-card-text class="custom-card-text" align="center">
-                        <v-btn depressed class="mx-1 custom-social-btn hidden-sm-and-up">
+                        <v-btn depressed class="mr-1 custom-social-btn hidden-sm-and-up">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/behance.webp"
                           />
                         </v-btn>
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/dribbble.webp"
                           />
                         </v-btn>
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/pinterest.webp"
                           />
                         </v-btn>
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/instagram.webp"
                           />
                         </v-btn>
 
-                        <v-btn depressed class="mx-1 custom-social-btn">
+                        <v-btn depressed class="mr-1 custom-social-btn">
                           <img
                             width="16"
                             src="/images/resume_themes/theme202/social_icons/linkedin.webp"
@@ -163,34 +137,34 @@
                         </v-btn>
                       </v-card-text>
                     </v-card>
-                  </v-flex>
+                  </v-col>
                   <!-- Social Icons -->
 
-                  <v-flex xs12 md10 class="hidden-sm-and-up mb-md-1 mb-sm-1"></v-flex>
+                  <v-col cols="12" md="10" class="hidden-sm-and-up mb-md-1 mb-sm-1"></v-col>
                   <!-- Availability -->
-                  <v-flex
-                    d-flex
-                    xs12
-                    sm12
-                    md4
-                    align-center
-                    justify-center
-                    mt-xs-10
-                    mb-md-0
-                    mb-sm-12
+                  <v-col
+                    cols="12"
+                    sm="12"
+                    md="4"
+                    align="center"
+                    justify="center"
+                    class="mt-10 mt-md-0 mt-sm-0 mb-md-0 mb-sm-12"
                   >
-                    <v-card flat class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-1 mx-md-0 mx-sm-0 mx-4">
+                    <v-card
+                      flat
+                      class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-n8"
+                    >
                       <v-card-text>
-                        <v-layout row justify-center align-center>
-                          <v-flex xs6 sm4 md3 class="mt-md-0 mt-sm-0 mt-4">
+                        <v-row justify="center" align="center">
+                          <v-col cols="6" sm="4" md="3" class="mt-md-0 mt-sm-0 mt-4">
                             <div class="caption hire-me-title-text">$10</div>
                             <div class="hire-me-subtitle-text">Hourly Rate</div>
-                          </v-flex>
-                          <v-flex xs6 sm4 md4 class="mt-md-0 mt-sm-0 mt-4">
+                          </v-col>
+                          <v-col cols="6" sm="4" md="4" class="mt-md-0 mt-sm-0 mt-4">
                             <div class="caption hire-me-title-text">35 HOURS</div>
                             <div class="hire-me-subtitle-text">Weekly availibility</div>
-                          </v-flex>
-                          <v-flex xs5 sm3 md4 class="mb-md-0 mb-sm-0 mb-n1 mt-md-0 mt-sm-0 mt-n5">
+                          </v-col>
+                          <v-col cols="5" sm="3" md="4" class="mb-md-0 mb-sm-0 mb-n1 mt-md-0 mt-sm-0 mt-n5">
                             <div class="circle3 d-none d-sm-none d-md-flex"></div>
                             <div class="circle4 d-none d-sm-none d-md-flex"></div>
                             <div class="mt-10 hidden-sm-and-up"></div>
@@ -205,23 +179,23 @@
                               >HIRE ME</v-btn>
                             </div>
                             <!-- Hire Me Buton -->
-                          </v-flex>
-                        </v-layout>
+                          </v-col>
+                        </v-row>
                       </v-card-text>
                     </v-card>
-                  </v-flex>
+                  </v-col>
                   <!-- Social  -->
-                </v-layout>
+                </v-row>
               </v-container>
             </v-card-text>
           </v-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
 
       <!-- Tabs -->
       <v-container class="themeWrapperBlue">
-        <v-layout class="tab-layout" row wrap my-md-n11 my-sm-n11 justify-center align-center>
-          <v-flex xs10 md11 sm10>
+        <v-row no-gutters class="tab-layout my-md-n11 my-sm-n11"  justify="center" align="center">
+          <v-col cols="10" md="11" sm="10">
             <v-card flat class="card-tab">
               <!-- Main Tab -->
               <v-tabs
@@ -272,10 +246,10 @@
                         <v-card flat color="rgba(16, 78, 251, 0.06)">
                           <v-card-text class="card-text-center">
                             <v-container fluid ma-0 pa-0>
-                              <v-layout row wrap justify-center align-center>
+                              <v-row justify="center" align="center">
                                 <!-- Photoshop Skill -->
-                                <v-flex
-                                  xs2
+                                <v-col
+                                  cols="2"
                                   align="center"
                                   v-for="item in skills"
                                   :key="item.title"
@@ -295,9 +269,9 @@
                                   <div class="my-10">
                                     <img class="skill-img" :src="getSkillIcon(item.title)" />
                                   </div>
-                                </v-flex>
+                                </v-col>
                                 <!-- Photoshop skill -->
-                              </v-layout>
+                              </v-row>
                             </v-container>
                           </v-card-text>
                         </v-card>
@@ -316,8 +290,8 @@
               <v-tab-item>
                 <v-card flat color="rgba(16, 78, 251, 0.06)">
                   <v-card-text>
-                    <v-layout row wrap align-center justify-center>
-                      <v-flex xs12 sm10 md6 pa-md-8 mb-sm-10 mb-10>
+                    <v-row align="center" justify="center">
+                      <v-col cols="12" sm="10" md="6" class="pa-md-8 mb-sm-10 mb-10">
                         <v-card elevation="6" class="card-portfolio">
                           <v-toolbar color="#104EFB" dark height="100">
                             <v-toolbar-title>
@@ -343,9 +317,9 @@
                             ></v-img>
                           </v-card-text>
                         </v-card>
-                      </v-flex>
+                      </v-col>
 
-                      <v-flex xs12 sm10 md6 pa-md-8 mb-sm-10>
+                      <v-col cols="12" sm="10" md="6" class="pa-md-8 mb-sm-10">
                         <v-card elevation="6" class="card-portfolio">
                           <v-toolbar color="#104EFB" dark height="100">
                             <v-toolbar-title>
@@ -371,8 +345,8 @@
                             ></v-img>
                           </v-card-text>
                         </v-card>
-                      </v-flex>
-                    </v-layout>
+                      </v-col>
+                    </v-row>
                   </v-card-text>
                   <v-card-text class="card-text-center">
                     <v-btn icon class="mr-5" color="primary">
@@ -391,13 +365,13 @@
               <v-tab-item>
                 <v-card flat color="rgba(16, 78, 251, 0.06)">
                   <v-card-text>
-                    <v-layout row wrap align-center justify-center>
+                    <v-row align="center" justify="center">
                       <!-- 1st Card -->
-                      <v-flex xs12 md6 ma-0 pa-5 mb-10 v-for="i in 4" :key="i">
+                      <v-col cols="12" md="6" class="ma-0 pa-5 mb-10 " v-for="i in 4" :key="i">
                         <v-card elevation="6" class="card-portfolio">
                           <v-card-text>
-                            <v-layout row wrap justify-center align-center>
-                              <v-flex xs12 mt-5 mb-5 class="hidden-sm-and-down">
+                            <v-row justify="center" align="center">
+                              <v-col cols="12"  class="hidden-sm-and-down mt-5 mb-5">
                                 <div align="center">
                                   <v-img
                                     width="32"
@@ -405,8 +379,8 @@
                                     src="/images/resume_themes/theme202/icons/work.png"
                                   ></v-img>
                                 </div>
-                              </v-flex>
-                              <v-flex xs12 md4 class="hidden-sm-and-down">
+                              </v-col>
+                              <v-col cols="12" md="4" class="hidden-sm-and-down">
                                 <v-card flat>
                                   <v-card-text>
                                     <v-list-item three-line>
@@ -422,40 +396,39 @@
                                     </v-list-item>
                                   </v-card-text>
                                 </v-card>
-                              </v-flex>
+                              </v-col>
                               <!-- This potion is only shows on sm and xs devices -->
-                              <v-flex xs12 class="hidden-md-and-up">
+                              <v-col cols="12" class="hidden-md-and-up">
                                 <v-card color="transparent" flat>
                                   <v-card-text class>
-                                    <v-container mx-sm-6>
-                                      <v-layout row wrap>
-                                        <v-flex xs2 sm2 class>
+                                    <v-container class="mx-sm-6">
+                                      <v-row>
+                                        <v-col cols="2" sm="2" class>
                                           <img
                                             width="25"
                                             src="/images/resume_themes/theme202/icons/work.png"
                                           />
-                                        </v-flex>
-                                        <v-flex xs8 sm6 class="mt-1">
+                                        </v-col>
+                                        <v-col cols="8" sm="6" class="mt-1">
                                           <span
                                             class="card-work-title-left text-center"
                                           >Graphic & Web Designer</span>
-                                        </v-flex>
-                                        <v-flex
-                                          xs6
-                                          sm4
-                                          offset-xs-2
+                                        </v-col>
+                                        <v-col
+                                          cols="6"
+                                          sm="4"
                                           class="mt-sm-1 offset-2 offset-sm-0"
                                         >
                                           <span class="card-work-subtitle">2018-2019</span>
-                                        </v-flex>
-                                      </v-layout>
+                                        </v-col>
+                                      </v-row>
                                     </v-container>
                                   </v-card-text>
                                 </v-card>
-                              </v-flex>
+                              </v-col>
                               <!-- This potion is only shows on sm and xs devices -->
 
-                              <v-flex xs12 md8>
+                              <v-col cols="12" md="8">
                                 <v-card flat class="mx-sm-5">
                                   <v-list-item three-line>
                                     <v-list-item-content>
@@ -481,15 +454,15 @@
                                     </v-list-item-content>
                                   </v-list-item>
                                 </v-card>
-                              </v-flex>
-                            </v-layout>
+                              </v-col>
+                            </v-row>
                           </v-card-text>
                         </v-card>
-                      </v-flex>
+                      </v-col>
                       <!-- 1st card -->
 
                       <!-- 4th Card -->
-                    </v-layout>
+                    </v-row>
                   </v-card-text>
                 </v-card>
               </v-tab-item>
@@ -499,14 +472,14 @@
               <v-tab-item>
                 <v-card flat color="rgba(16, 78, 251, 0.06)">
                   <v-card-text>
-                    <v-layout row wrap align-center justify-center>
+                    <v-row align="center" justify="center">
                       <!-- 1st Card -->
-                      <v-flex xs12 md6 ma-0 pa-5 mb-10 v-for="i in 4" :key="i">
+                      <v-col cols="12" md="6" class="ma-0 pa-5 mb-10" v-for="i in 4" :key="i">
                         <v-card elevation="6" class="card-portfolio">
                           <v-card-text>
-                            <v-layout row wrap justify-center align-center>
+                            <v-row justify="center" align="center">
                               <!-- Hidden in sm and down -->
-                              <v-flex xs12 mt-5 mb-5 class="hidden-sm-and-down">
+                              <v-col cols="12" mt-5 mb-5 class="hidden-sm-and-down">
                                 <div align="center">
                                   <v-img
                                     width="32"
@@ -514,8 +487,8 @@
                                     src="/images/resume_themes/theme202/icons/education.png"
                                   ></v-img>
                                 </div>
-                              </v-flex>
-                              <v-flex xs12 md4 mt-md-n12 class="hidden-sm-and-down">
+                              </v-col>
+                              <v-col cols="12" md="4"  class="hidden-sm-and-down mt-md-n12">
                                 <v-card flat>
                                   <v-card-text>
                                     <div class="card-work-title-left mb-8 mx-2">
@@ -525,37 +498,37 @@
                                     <p class="card-work-subtitle mx-2">2015-2016</p>
                                   </v-card-text>
                                 </v-card>
-                              </v-flex>
+                              </v-col>
                               <!-- Hidden and sm and down -->
 
                               <!-- Hidden in md and up -->
-                              <v-flex xs12 class="hidden-md-and-up">
+                              <v-col cols="12" class="hidden-md-and-up">
                                 <v-card color="transparent" flat>
                                   <v-card-text class>
-                                    <v-container mx-sm-6 grid-list-xs>
-                                      <v-layout row wrap>
-                                        <v-flex xs2 sm2 class>
+                                    <v-container class="mx-sm-6 grid-list-xs" >
+                                      <v-row>
+                                        <v-col cols="2" sm="2" class>
                                           <img
                                             width="25"
                                             src="/images/resume_themes/theme202/icons/education.png"
                                           />
-                                        </v-flex>
-                                        <v-flex xs8 sm6 class="mt-1">
+                                        </v-col>
+                                        <v-col cols="8" sm="6" class="mt-1">
                                           <span
                                             class="card-work-title-left text-center"
                                           >Master in Web Developer</span>
-                                        </v-flex>
-                                        <v-flex xs6 sm4 class="mt-sm-1 offset-2 offset-sm-0">
+                                        </v-col>
+                                        <v-col cols="6" sm="4" class="mt-sm-1 offset-2 offset-sm-0">
                                           <span class="card-work-subtitle">2015-2016</span>
-                                        </v-flex>
-                                      </v-layout>
+                                        </v-col>
+                                      </v-row>
                                     </v-container>
                                   </v-card-text>
                                 </v-card>
-                              </v-flex>
+                              </v-col>
                               <!-- Hidden in md and up -->
 
-                              <v-flex xs12 md8>
+                              <v-col cols="12" md="8">
                                 <v-card flat>
                                   <v-card-text>
                                     <v-list-item three-line>
@@ -585,20 +558,20 @@
                                     </v-list-item>
                                   </v-card-text>
                                 </v-card>
-                              </v-flex>
-                            </v-layout>
+                              </v-col>
+                            </v-row>
                           </v-card-text>
                         </v-card>
-                      </v-flex>
+                      </v-col>
                       <!-- 1st card -->
-                    </v-layout>
+                    </v-row>
                   </v-card-text>
                 </v-card>
               </v-tab-item>
               <!-- .....................................Education................................................. -->
             </v-tabs-items>
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-container>
       <!-- Tabs -->
     </v-container>
@@ -933,7 +906,7 @@ export default {
   }
   /* Work/Portfolio */
   .custom-parent-card {
-    height: 495px !important;
+    height: 550px !important;
   }
   /* Parent tab text */
   .tab-layout {
@@ -979,14 +952,20 @@ export default {
     font-size: 8px !important;
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 370px) {
   .btn-hire-me {
     border-radius: 15px !important;
   }
-  .custom-social-btn{
-    margin-right: -2px !important;
+  .custom-social-btn {
+    margin-right: auto !important;
   }
+}
 
+@media screen and (max-width: 344px) {
+  .custom-social-btn {
+    width: 30px !important;
+    height: 40px !important;
+  }
 }
 
 /* media query block */

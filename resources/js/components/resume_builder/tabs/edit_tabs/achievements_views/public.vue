@@ -1,6 +1,6 @@
 <template>
     <div class="certificates-section">
-        <div class="add-certificate">
+        <div class="add-certificate hideOnMd">
             <div class="upload-image">
                 <div class="img-label">
                     Add Certificates
@@ -23,14 +23,14 @@
                 </div>
             </div>
             <div class="certification-details-form">
-                <div class="certification-input">
+                <div class="certification-input input-field">
                     <label for="title">Title</label>
                     <input type="text" id="title" v-model="addCertificateForm.title">
                     <div class="error" v-if="errors.new.title">
                         {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
                     </div>
                 </div>
-                <div class="certification-input">
+                <div class="certification-input input-field">
                     <label for="description">Description</label>
                     <textarea name="description" id="description" v-model="addCertificateForm.description"></textarea>
                     <div class="error" v-if="errors.new.description">
@@ -44,7 +44,77 @@
                             Add certificate now
                         </a>
                     </div>
+                    <!--<div class="auto-import-btn NoDecor">-->
+                        <!--<a href="javascript:void(0)">-->
+                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                            <!--Auto import-->
+                        <!--</a>-->
+                    <!--</div>-->
                 </div>
+            </div>
+        </div>
+        <transition name='fadeCustom'>
+            <div v-if='addNewCertificate' class="add-certificate showOnMd">
+                <div class="upload-image">
+                    <div class="img-label">
+                        Add Certificates
+                    </div>
+                    <vue2Dropzone class="upload-image-box d-flex justify-content-center align-items-center"
+                        id="certificateDropzone"
+                        :options="dropzoneOptions"
+                        :useCustomSlot=true
+                        v-on:vdropzone-file-added="handlingEvent"
+                        v-on:vdropzone-thumbnail="thumbnail"
+                        ref="newCertificate"
+                    >
+                        <img src="/images/resume_builder/achievements/download.png" alt="download">
+                        <div class="upload-text">
+                            Upload image
+                        </div>
+                    </vue2Dropzone>
+                    <div class="error" v-if="errors.new.file">
+                        {{ Array.isArray(errors.new.file) ? errors.new.file[0] : errors.new.file}}
+                    </div>
+                </div>
+                <div class="certification-details-form">
+                    <div class="certification-input input-field">
+                        <label for="title">Title</label>
+                        <input type="text" v-model="addCertificateForm.title">
+                        <div class="error" v-if="errors.new.title">
+                            {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
+                        </div>
+                    </div>
+                    <div class="certification-input input-field">
+                        <label for="description">Description</label>
+                        <textarea name="description" v-model="addCertificateForm.description"></textarea>
+                        <div class="error" v-if="errors.new.description">
+                            {{ Array.isArray(errors.new.description) ? errors.new.description[0] : errors.new.description}}
+                        </div>
+                    </div>
+                    <div class="action-btns">
+                        <a class="btn btn-filled" href="javascript:void(0)" @click="addCertificate">
+                            <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                            Add certificate now
+                        </a>
+                        <a class="btn btn-outline" href="javascript:void(0)" @click="addNewCertificate = false">
+                            Cancel
+                        </a>
+                        <!--<div class="auto-import-btn NoDecor">-->
+                            <!--<a href="javascript:void(0)">-->
+                                <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="add">-->
+                                <!--Auto import-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </transition>
+        <div class="add-certificate-btn showOnMd">
+            <div v-show='!addNewCertificate' class="btn-wrapper">
+                <a class="btn btn-filled" href="javascript:void(0)" @click="addNewCertificate = true">
+                    <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="mark">
+                    Add certificate now
+                </a>
             </div>
         </div>
         <div class="certifications-list" v-if="achievements">
@@ -59,7 +129,16 @@
                     <div class="description">
                         {{achievement.description}}
                     </div>
-                    <div class="options">
+                    <div class="optionsBtns showOnMd">
+                        <a href="">
+                            <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
+                        </a>
+
+                        <a href="">
+                            <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                        </a>
+                    </div>
+                    <div class="options hideOnMd">
                         <div class="options-btn NoDecor"
                              @click="optionAchievementId === achievement.id ? optionAchievementId=0 : optionAchievementId=achievement.id">
                             <a href="javascript:void(0)" :class="{'opened':optionAchievementId === achievement.id}">
@@ -93,6 +172,7 @@ export default {
         optionAchievementId: 0,
         editedAchievement: {},
         showInputHelpers: false,
+        addNewCertificate: false,
         errors: {
             new: {},
             edit: {}
@@ -207,3 +287,139 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .certificates-section{
+        margin-top: 72.5px;
+
+        .add-certificate{
+            display: flex;
+            justify-content: flex-start;
+
+            .upload-image{
+                display: flex;
+                flex-direction: column;
+                margin-right: 45px;
+                .img-label{
+                    font-family: "Noto Sans", serif;
+                    font-weight: 600;
+                    font-size: 22px;
+                    text-align: left;
+                    color: #505050;
+                    margin-bottom: 12px;
+                }
+                .upload-image-box{
+                    width:412px;
+                    height:518px;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    border: 2px solid #505050;
+                    border-radius: 10px;
+                    img{
+                        width:95px;
+                        height:89px;
+                    }
+                    .upload-text{
+                        font-family: "Noto Sans", serif;
+                        font-weight: bold;
+                        font-size: 30px;
+                        letter-spacing: 0.02em;
+                        line-height: 67px;
+                        text-align: left;
+                        color: #747474;
+                    }
+                }
+            }
+
+            .certification-details-form{
+                margin-top: 37px;
+                .certification-input{
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 33px;
+                    input,textarea {
+                        width: 807px;
+                        height: 76px;
+                        border: 2px solid #505050;
+                        border-radius: 10px;
+                        opacity: 1;
+                        padding-left: 18px;
+                    }
+                    textarea{
+                        padding-top: 18px;
+                        height: 190px;
+                    }
+                    input:focus,textarea:focus {
+                        outline: none;
+                    }
+
+                    label {
+                        text-align: left;
+                        font: 600 22px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+                        opacity: 1;
+                    }
+                }
+
+                .action-btns{
+                    display: flex;
+                    .add-award-btn{
+                        margin-right: 20px;
+                        a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 256px;
+                            height: 62px;
+
+                            background: #001CE2 0% 0% no-repeat padding-box;
+                            border-radius: 8px;
+
+                            font: 600 19px Noto Sans;
+                            letter-spacing: 0;
+                            color: #FFFFFF;
+                            opacity: 1;
+
+                            img {
+                                width: 27px;
+                                height: 27px;
+                                margin-right: 10px;
+                            }
+                        }
+
+                        a.short{
+                            width:163px;
+                        }
+                    }
+
+                    .auto-import-btn{
+                        a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 226px;
+                            height: 62px;
+
+                            border: 2px solid #001CE2;
+                            border-radius: 8px;
+                            opacity: 1;
+
+                            font: 600 19px Noto Sans;
+                            letter-spacing: 0;
+                            color: #001CE2;
+
+                            img {
+                                width: 27px;
+                                height: 27px;
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</style>

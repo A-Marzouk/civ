@@ -1,11 +1,11 @@
 <template>
     <section class="section-view">
         <div class="section-title">
-            <div class="title-light">Add</div>
+            <div class="title-light">Edit</div>
             <h2>Portfolio</h2>
         </div>
 
-        <transition class="mt-5" name="fade" mode="out-in">
+        <transition class="mt-5" name="fadeCustom" mode="out-in">
             <router-view></router-view>
         </transition>
 
@@ -25,21 +25,8 @@
 </script>
 
 <style lang="scss" scoped>
-    $mainBlue: #001CE2;
-
-    .btns-wrapper {
-        margin-top: 26px;
-
-        a {
-            color: $mainBlue;
-
-            &:hover {
-                text-decoration: none;
-            }
-        }
-
-        .btn {
-            margin-right: 12px;
-        }
+    .section-view {
+        width: 100%;
+        max-width: 1450px;
     }
 </style>

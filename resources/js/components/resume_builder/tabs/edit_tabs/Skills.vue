@@ -43,8 +43,8 @@
             </div>
             
 
-            <transition name="fadeCustom" mode="out-in">            
-                <div v-if="!addNewSkill" class="action-btns showOnMd">
+            <transition class="showOnMd" name="fadeCustom" mode="out-in">            
+                <div v-if="!addNewSkill" class="action-btns">
                     <a class="btn btn-filled" href="javascript:void(0)" @click="addNewSkill = true">
                         <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
                         Add skill now
@@ -54,7 +54,7 @@
                         Auto import
                     </a>
                 </div>
-                <div v-else class="addSkillForm showOnMd">
+                <div v-else class="addSkillForm">
                     <div class="add-award-section">
                         <div class="input-field">
                             <label for="title">Skill/ tools/ software name</label>

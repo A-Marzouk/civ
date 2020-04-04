@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper_theme700" class="w-full font-montserrat my-0 mx-auto max-w-tm700-xl-1 bg-tm700-7">
+  <div id="wrapper_theme700" class="w-full font-montserrat my-0 xl:mx-auto md:mx-0 max-w-tm700-xl-1 bg-tm700-7">
     <Header></Header>
     <Main></Main>
   </div>
