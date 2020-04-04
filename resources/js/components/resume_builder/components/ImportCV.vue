@@ -3,7 +3,7 @@
 
         <div class="title">
             <img src="/images/resume_builder/import/pic.png" alt="icon">
-            Please upload <span> your cv in PDF format</span>
+            Please upload <span> your cv in PDF or DOCX format</span>
         </div>
 
         <div class="import-action-btns">
@@ -182,8 +182,8 @@
                 </div>
             </div>
 
-            <div v-show="errors.pdf_cv" style="color: red;" class="mt-3">
-                {{errors.pdf_cv}}
+            <div v-show="errors.cv" style="color: red;" class="mt-3">
+                {{errors.cv}}
             </div>
         </div>
     </div>
@@ -200,7 +200,7 @@
                 file: '',
                 extractedText: '',
                 originalText: '',
-                arrayOfExtractedText: '',
+                arrayOfExtractedText:[],
                 errors: [],
                 freelancerData: {
                     'name': '',
@@ -747,7 +747,7 @@
                     addRemoveLinks: true,
                     maxFiles: 1,
                     autoProcessQueue: false,
-                    acceptedFiles: 'application/pdf, image/*',
+                    acceptedFiles: '*',
                     previewTemplate: `
             <div class="dz-preview dz-file-preview">
                 <div class="dz-image">
@@ -781,7 +781,7 @@
             uploadPDFFile() {
                 this.errors = [];
                 let formData = new FormData();
-                formData.append('pdf_cv', this.file);
+                formData.append('cv', this.file);
                 const config = {
                     onUploadProgress: progressEvent => {
                          this.progress = (progressEvent.loaded/progressEvent.total) * 100 ;
@@ -790,25 +790,40 @@
                     headers:{'Content-Type': 'multipart/form-data'}
                 };
 
-                axios.post('/resume-builder/import/pdf', formData, config)
-                    .then((response) => {
-                        if (response.data.length > 0) {
-                            this.extractedText = response.data;
-                            this.originalText = response.data;
-                            this.clearFreelancerData();
-                        } else {
-                            this.extractedText = 'This file does not contain any text to be extracted!';
-                        }
-                        this.arrayOfExtractedText = this.extractedText.split("\n");
-                        this.searchForData();
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            this.errors = error.response.data.errors;
-                        } else {
-                            this.errors = ['Something went wrong. Please try again.'];
-                        }
-                    });
+                if(this.file.type === 'application/pdf'){
+                    axios.post('/resume-builder/import/pdf', formData, config)
+                        .then((response) => {
+                            if (response.data.length > 0) {
+                                this.extractedText = response.data;
+                                this.originalText = response.data;
+                                this.clearFreelancerData();
+                            } else {
+                                this.extractedText = 'This file does not contain any text to be extracted!';
+                            }
+                            this.arrayOfExtractedText = this.extractedText.split("\n");
+                            this.searchForData();
+                        })
+                        .catch((error) => {
+                            if (typeof error.response.data === 'object') {
+                                this.errors = error.response.data.errors;
+                            } else {
+                                this.errors = ['Something went wrong. Please try again.'];
+                            }
+                        });
+                }else{
+                    axios.post('/resume-builder/import/docx', formData, config)
+                        .then((response) => {
+                           this.extractDocText(response.data) ;
+                        })
+                        .catch((error) => {
+                            if (typeof error.response.data === 'object') {
+                                this.errors = error.response.data.errors;
+                            } else {
+                                this.errors = ['Something went wrong. Please try again.'];
+                            }
+                        });
+                }
+
             },
             clearFreelancerData() {
                 this.freelancerData = {
@@ -839,7 +854,7 @@
 
             // dropzone funcions
             handlingEvent: function (file) {
-                if (file.type === 'application/pdf') {
+                if (file.type === 'application/pdf' ) {
 
                     // Set default bg for pdf files
                     let thumbnail = document.querySelector('.thumbnail');
@@ -878,6 +893,25 @@
                     })(this)), 1);
                 }
             },
+
+            // document extracting text funtions:
+            extractDocText(sections){
+                sections.forEach( section => {
+                    section.elements.forEach( element => {
+                        if(element.elements.length > 0){
+                            if(element.elements[0].text){
+                                console.log(element.elements[0].text);
+                                this.extractedText += element.elements[0].text;
+                                this.arrayOfExtractedText.push(element.elements[0].text);
+                            }
+                        }
+                    });
+                });
+
+                this.searchForData();
+            },
+
+
 
             // search functions
 
