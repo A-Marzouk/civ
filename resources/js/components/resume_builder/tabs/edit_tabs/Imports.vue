@@ -215,12 +215,8 @@ import  ImportCV  from '../../components/ImportCV'
         }
     }
     .section-body-wrapper {
-        width: 1337px;
-
-
-        @include lt-md {
-            width: 100%;
-        }
+        max-width: 1337px;
+        width: 100%;
 
         .achievements-bar.sub-bar {
             margin-top: 74px;
@@ -292,7 +288,8 @@ import  ImportCV  from '../../components/ImportCV'
                     @include lt-md {
                         border-radius: 19px;
                         box-shadow: 0px 9px 10px rgba(0, 0, 0, 0.03);
-                        min-width: 492px;
+                        max-width: 492px;
+                        width: 100%;
                         height: 67px;
                         align-items: center;
                         padding: 0px 24px;
@@ -309,7 +306,7 @@ import  ImportCV  from '../../components/ImportCV'
 
                     .import-date{
                         padding-right: 35%;
-                        min-width: 200px;
+                        // text-align
 
                         @include lt-md {
                             padding: 0;
@@ -325,7 +322,8 @@ import  ImportCV  from '../../components/ImportCV'
                     padding: 22px 0px;
 
                     @include lt-md {
-                        min-width: 385px;
+                        max-width: 385px;
+                        width: 90%;
                         position: relative;
                         z-index: 1;
                         padding: 20px 0px 10px 0px;
