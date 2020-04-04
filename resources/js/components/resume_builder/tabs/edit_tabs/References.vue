@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="references-wrap">
         <div class="section-title">
             <div class="title-light">Add</div>
             <h2>References</h2>
@@ -13,7 +13,7 @@
                 <div class="decorator"></div>
             </div>
 
-            <div class="references" v-show="activeTab === 'References'" v-if="this.reference">
+            <div class="references flex-column" v-show="activeTab === 'References'" v-if="this.reference">
                 <div class="reference-input">
                     <label for="reference_name">
                         My full-name
@@ -70,7 +70,7 @@
                 </div>
 
                 <a href="javascript:void(0)" @click="applyReferenceEdit('manual')" class="btn btn-filled">
-                    <img src="/images/resume_builder/profile/icon-save2.png">
+                    <img src="/images/resume_builder/profile/icon-save2.png" class="icon">
                     Save reference
                 </a>
             </div>
@@ -145,13 +145,13 @@
                </div>
 
                 <a href="javascript:void(0)" @click="applyRefereeEdit('manual')" class="btn btn-filled">
-                    <img src="/images/resume_builder/profile/icon-save2.png">
+                    <img src="/images/resume_builder/profile/icon-save2.png" class="icon">
                     Save referee
                 </a>
             </div>
 
             <div class="about-section references d-flex flex-column" v-if="activeTab === 'Testimonials'">
-                <div>
+                <div :class="{'about-addnew' : addNewTestimonial}">
                     <div v-show="addNewTestimonial">
                         <div class="reference-input mb-3 mt-3" >
                             <label for="emailReferee2" class="grey">
@@ -185,7 +185,7 @@
                                 Save Testimonial
                             </a>
                         </div>
-                        <div class="add-new-work NoDecor ml-5">
+                        <div class="add-new-work NoDecor">
                             <a href="javascript:void(0)" @click="addNewTestimonial = false" v-show="addNewTestimonial">
                                 Cancel
                             </a>
@@ -456,9 +456,22 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../sass/media-queries';
 
+    .references-wrap{
+
+        width: 100%; 
+
+        @include lt-md {
+            width: 100%;
+        }
+    }
     .section-body-wrapper {
         width: 1337px;
+
+        @include lt-md {
+            width: 100%;
+        }
 
         .references{
             display: flex;
@@ -466,10 +479,36 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             flex-wrap: wrap;
             margin-top:45px;
 
+            @include lt-md {
+
+                &.about-section{
+                    max-width: 490px;
+
+                    .about-addnew{
+                        width: 100%;
+
+                        .action-btns{
+                            justify-content: space-between;
+                        }
+
+                    }
+                }
+
+                max-width: 348px;
+                margin: 30px auto 0px auto;
+                justify-content: center;
+            }
+
             .reference-input{
                 margin-bottom: 60px;
                 display: flex;
                 flex-direction: column;
+
+                @include lt-md {
+                    width: 100%;
+                    margin-bottom: 23px;
+                }
+
                 input,textarea {
                     width: 585px;
                     height: 68px;
@@ -479,6 +518,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     padding-left: 18px;
                     &.grey-border{
                         border: 1.5px solid #9F9E9E;
+                    }
+
+                    @include lt-md {
+                        width: 100%;
                     }
                 }
 
@@ -510,6 +553,12 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                 display: flex;
                 flex-direction: column;
                 width: fit-content;
+
+                @include lt-md {
+                    width: 100%;
+                    margin-bottom: 23px;
+                }
+
                 textarea {
                     width: 815px;
                     height: 274px;
@@ -518,6 +567,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     opacity: 1;
                     padding-left: 18px;
                     padding-top: 18px;
+
+                    @include lt-md {
+                        width: 100%;
+                    }
                 }
 
                 textarea:focus {
@@ -547,8 +600,21 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
         .action-btns {
             margin-top: 45px;
             display: flex;
+
+            @include lt-md{
+                justify-content: center;
+            }
+            @include lt-sm{
+                flex-direction: column;
+            }
+
             .add-work {
                 margin-right: 29px;
+
+                @include lt-sm {
+                    margin-bottom: 10px;
+                }
+
                 a{
                     display: flex;
                     justify-content: center;
@@ -568,12 +634,28 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         width:27px;
                         height: 27px;
                         margin-right: 10px;
+
+                        @include lt-sm {
+                            max-width: 20px;
+                            max-height: 20px;
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+                        height: 45px;
+                        font-size: 8px;
+                        font-weight: 500;
                     }
                 }
             }
 
             .add-new-work {
                 margin-right: 29px;
+
+                @include lt-md {
+                    margin: 0;
+                }
 
                 a{
                     display: flex;
@@ -594,6 +676,13 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         width:27px;
                         height: 27px;
                         margin-right: 10px;
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+                        height: 45px;
+                        font-size: 8px;
+                        font-weight: 500;
                     }
                 }
             }
