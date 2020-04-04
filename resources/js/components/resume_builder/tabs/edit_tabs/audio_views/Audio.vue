@@ -1,6 +1,6 @@
 <template>
-    <div class="d-flex justify-content-center" >
-        <div class="content d-flex">
+    <div>
+        <div class="content d-flex justify-content-between">
              <div class="upload-container d-flex flex-column">
                 <h3 class="text-blue hideOnMd">Upload my audio</h3>
                 <div id="audio_and_video" class="vue-dropzone">
@@ -54,9 +54,9 @@
 
             <!-- Audio Upload Main Modal -->
             <div>
-                <b-modal id="main-upload-modal" style="max-width:60% !important;" hide-footer hide-header>
+                <b-modal id="main-upload-modal" hide-footer hide-header>
                     <div class="d-block">
-                        <b-row class="justify-content-center">
+                        <b-row class="justify-content-center upload-header">
                             <div class="action-btn">
                                 <button type="button" aria-label="Close" @click="$bvModal.hide('main-upload-modal')"
                                         class="btn-close" v-if="currentUploadMethod == null">×
@@ -288,14 +288,32 @@
     }
 
 
-    .modal.show .modal-dialog.modal-md {
-        max-width: 55% !important;
-    }
+    // .modal.show .modal-dialog.modal-md {
+    //     max-width: 55% !important;
+    // }
 </style>
 
 <style lang="scss" scoped>
     $mainBlue: #001ce2;
     @import '../../../../../../sass/media-queries';
+
+    .modal-content {
+        border: 2px solid #001ce2 !important;
+        border-radius: 20px !important;
+    }
+
+    .modal.show .modal-dialog {
+        max-width: 55% !important;
+
+        &.modal-md {
+
+            @include lt-md {
+                max-width: 100% !important;
+                width: 70%;
+            }
+        }
+
+    }
 
     .optionsBtns {
         display: flex;
@@ -343,6 +361,7 @@
 
     .content {
         flex-wrap: wrap;
+        width: 100%;
 
         @include lt-md {
             max-width: 418px;
@@ -421,7 +440,7 @@
     }
 
     .audios-preview-container {
-        margin-top: 10px;
+        margin-top: 40px;
     }
 
     /* aninamtion */
@@ -457,10 +476,41 @@
         }
     }
 
+.upload-header {
+
+        @include lt-md {
+            display: none;
+        }
+    }
+
+    .container .row {
+        @include lt-md {
+            display: flex;
+            flex-direction: column;
+
+            .upload-option {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                background: #B9B9B9;
+                border-radius: 8px;
+                margin-bottom: 32px;
+                padding: 10px 50px;
+                font-size: 19px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
 
     .upload-audio-title {
         font-size: 2rem;
+        margin-left: -48px;
         color: #001ce2;
+
     }
 
     .upload-audio-title span {
@@ -471,6 +521,10 @@
         font-size: 1.3rem !important;
         font-weight: bold;
         color: #001ce2;
+
+        @include lt-md {
+            color: #54585E;
+        }
     }
 
     .upload-url-icon {
@@ -492,6 +546,7 @@
     .voice-icon {
         width: 20px !important;
         margin-left: 15px;
+        display: inline-block;
     }
 
     .audio-back-icon {

@@ -52,9 +52,9 @@
 
             <!-- Video Upload Main Modal -->
             <div>
-                <b-modal id="main-upload-modal" style="max-width:60% !important;" hide-footer hide-header>
+                <b-modal class="media-upload-modal" id="main-upload-modal" hide-footer hide-header>
                     <div class="d-block">
-                        <b-row>
+                        <b-row class='upload-header'>
                             <b-col cols="2" align-h="start">
                                 <button
                                         type="button"
@@ -87,7 +87,7 @@
                             <b-container class="bv-example-row" v-if="currentUploadMethod === 'general'">
                                 <b-row class="text-center">
                                     <!-- Link Url -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
                                         <div class="d-flex-inline">
                                             <button @click="currentUploadMethod ='linkUrl' ">
@@ -98,7 +98,7 @@
                                     <!-- Link URL -->
 
                                     <!-- Upload Video -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Upload Video</div>
                                         <div class="d-flex-inline">
                                             <input
@@ -374,7 +374,7 @@
     }
 
     .audios-preview-container {
-        margin-top: 10px;
+        margin-top: 40px;
         display: flex;
         justify-content: space-around;
         flex-wrap: wrap;
@@ -411,6 +411,15 @@
 
     .modal.show .modal-dialog {
         max-width: 55% !important;
+
+        &.modal-md {
+
+            @include lt-md {
+                max-width: 100% !important;
+                width: 70%;
+            }
+        }
+
     }
 
     .btn-close {
@@ -420,10 +429,41 @@
         border: none !important;
     }
 
+    .upload-header {
+
+        @include lt-md {
+            display: none;
+        }
+    }
+
+    .container .row {
+        @include lt-md {
+            display: flex;
+            flex-direction: column;
+
+            .upload-option {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                background: #B9B9B9;
+                border-radius: 8px;
+                margin-bottom: 32px;
+                padding: 10px 50px;
+                font-size: 19px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
     .upload-audio-title {
         font-size: 2rem;
         margin-left: -48px;
         color: #001ce2;
+
     }
 
     .upload-audio-title span {
@@ -434,12 +474,17 @@
         font-size: 1.3rem !important;
         font-weight: bold;
         color: #001ce2;
+
+        @include lt-md {
+            color: #54585E;
+        }
     }
 
     .upload-url-icon {
         width: 50px !important;
         height: auto;
         margin-top: 15px;
+        
     }
 
     .video-upload-icon {
@@ -450,7 +495,8 @@
     .video-icon {
         width: 40px !important;
         margin-left: 15px;
-        margin-top: -18px;
+        // margin-top: -18px;
+        display: inline-block
     }
 
     /* Child Modal */
