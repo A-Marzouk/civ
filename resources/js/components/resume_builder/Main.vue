@@ -42,9 +42,9 @@
                         <router-link id='viewCVMobile' data-target="viewCV" v-on:click.native="setActiveTab('viewCV')" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`view-icon`"></svg-vue>
                         </router-link>
-                        <router-link id='importMobile' data-target="import" v-on:click.native="setActiveTab('import')" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
+                        <!-- <router-link id='importMobile' data-target="import" v-on:click.native="setActiveTab('import')" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`import`"></svg-vue>
-                        </router-link>
+                        </router-link> -->
                         <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
                             <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
                         </router-link>
@@ -286,7 +286,7 @@
         }
     }
 
-    $mainColor: #001CE2;
+    $mainBlue: #001CE2;
     .resume-container {
         padding: 160px 100px 30px;
         width: 100%;
@@ -464,7 +464,7 @@
                 position: absolute;
                 display: block;
                 height: 5px;
-                background-color: $mainColor;
+                background-color: $mainBlue;
                 border-radius: 5px 5px 0 0;
                 transform: translateX(0);
                 transition: .6s;
@@ -492,7 +492,7 @@
 
                 &.router-link-exact-active, &.router-link-active.has-inside-routes{
                     position: relative;
-                    color: $mainColor;
+                    color: $mainBlue;
                 }
 
 

@@ -1,23 +1,27 @@
 <template>
     <div>
-        <div class="content d-flex">
+        <div class="content d-flex justify-content-between">
             <div class="upload-container d-flex flex-column">
-                <h3 class="text-blue">Upload my video</h3>
+                <h3 class="text-blue hideOnMd">Upload my video</h3>
                 <div id="audio_and_video" class="vue-dropzone">
-                    <svg-vue class="upload-audio-icon" icon="upload-audio-icon"></svg-vue>
+                    <svg-vue class="upload-audio-icon hideOnMd" icon="upload-audio-icon"></svg-vue>
                     <div class="empty-text">
                         <br/>
                     </div>
-                    <b-button class="btn filled btn-upload" @click="$bvModal.show('main-upload-modal')">
+                    <b-button class="btn btn-filled btn-upload hideOnMd" @click="$bvModal.show('main-upload-modal')">
                         <svg-vue class="upload-icon icon" icon="upload-icon"></svg-vue>
                         <span>Browse video file</span>
+                    </b-button>
+                    <b-button class="btn btn-filled btn-upload showOnMd" @click="$bvModal.show('main-upload-modal')">
+                        <svg-vue class="upload-icon icon" icon="upload-icon"></svg-vue>
+                        <span>Add video</span>
                     </b-button>
                 </div>
                 <!-- Insert icon -->
             </div>
 
             <!-- Preview video -->
-            <div class="upload-container d-flex flex-column" style="margin-left:-5vw;">
+            <div class="upload-container d-flex flex-column">
                 <div class="audios-preview-container">
                     <div class="video-element" v-for="(video,index) in videos" :key="video.id" v-if="video.type === 'video'">
                         <div class="video-name">{{video.title}}</div>
@@ -30,26 +34,14 @@
                                 </video>
                             </div>
 
-                            <a href="javascript:void(0)" @click="loadVideo(video.id)"  v-show="video.id !== playingVideo">
-                                <svg-vue class="video-play-icon" icon="video-play-icon"></svg-vue>
+                            <a class="play-btn" href="javascript:void(0)" @click="loadVideo(video.id)"  v-show="video.id !== playingVideo">
+                                <svg-vue class="video-play-icon" icon="play-media-icon"></svg-vue>
                             </a>
 
-
-                            <div class="input-select select-audio-options dropdown">
-                                <button class="audio-options dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Option
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="deleteMedia(video)">
-                                        <svg-vue class="option-icon" icon="trash-delete-icon"></svg-vue>
-                                        Delete
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="closeVideo(video.id)" v-show="playingVideo === video.id">
-                                        <span style="font-weight: bold; margin-right: 6px; margin-left: 2px;">X</span>
-                                        Close
-                                    </a>
-                                </div>
+                            <div class="optionsBtns justify-content-center">
+                                <a href="javascript:void(0)" @click="deleteMedia(video)">
+                                    <svg-vue class="option-icon icon" icon="trash-delete-icon"></svg-vue>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -60,9 +52,9 @@
 
             <!-- Video Upload Main Modal -->
             <div>
-                <b-modal id="main-upload-modal" style="max-width:60% !important;" hide-footer hide-header>
+                <b-modal class="media-upload-modal" id="main-upload-modal" hide-footer hide-header>
                     <div class="d-block">
-                        <b-row>
+                        <b-row class='upload-header'>
                             <b-col cols="2" align-h="start">
                                 <button
                                         type="button"
@@ -95,7 +87,7 @@
                             <b-container class="bv-example-row" v-if="currentUploadMethod === 'general'">
                                 <b-row class="text-center">
                                     <!-- Link Url -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
                                         <div class="d-flex-inline">
                                             <button @click="currentUploadMethod ='linkUrl' ">
@@ -106,7 +98,7 @@
                                     <!-- Link URL -->
 
                                     <!-- Upload Video -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Upload Video</div>
                                         <div class="d-flex-inline">
                                             <input
@@ -255,12 +247,78 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../../sass/media-queries';
     $mainBlue: #001ce2;
+
+    .optionsBtns {
+        display: flex;
+        margin: 0;
+        width: 30px;
+        height: 30px;
+        background: #F9F9F9;
+        box-shadow: 0 9px 12px rgba(0,0,0,.03);
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        border-radius: 2px;
+        position: absolute;
+
+        top: 10px;
+        right: 10px;
+
+        @include lt-md {
+        }
+
+        @include lt-sm {
+            width: 20px;
+            height: 20px;
+        }
+
+        a {
+            height: 24px;
+            display: block;
+
+            @include lt-sm {
+                height: 16px;
+            }
+
+            .icon {
+                height: 100%;
+                color: $mainBlue;
+                fill: $mainBlue;
+
+                path {
+                    fill: $mainBlue;
+                }
+            }
+        }
+    }
+    
+    .content {
+        flex-wrap: wrap;
+
+        @include lt-md {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+    }
 
     .upload-container {
         position: relative;
-        width: 354px;
-        margin-right: 232px;
+        max-width: 354px;
+        width: 48%;
+
+        @include lt-md {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 100%;
+
+            .showOnMd {
+                display: flex !important;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
 
         h3 {
             font-size: 28px;
@@ -289,6 +347,15 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        @include lt-md {
+            border: none;
+            height: auto;
+            margin: 0 auto;
+            width: 100%;
+            margin-top: 6px;
+            max-width: 418px;
+        }
     }
 
     .upload-audio-icon {
@@ -307,7 +374,10 @@
     }
 
     .audios-preview-container {
-        margin-top: 10px;
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
     }
 
     /* aninamtion */
@@ -341,6 +411,15 @@
 
     .modal.show .modal-dialog {
         max-width: 55% !important;
+
+        &.modal-md {
+
+            @include lt-md {
+                max-width: 100% !important;
+                width: 70%;
+            }
+        }
+
     }
 
     .btn-close {
@@ -350,10 +429,46 @@
         border: none !important;
     }
 
+    .upload-header {
+
+        @include lt-md {
+            display: none;
+        }
+    }
+
+    .container .row {
+        @include lt-md {
+            display: flex;
+            flex-direction: column;
+
+            .upload-option {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                background: #B9B9B9;
+                border-radius: 8px;
+                margin-bottom: 32px;
+                padding: 10px 50px;
+                font-size: 19px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                @include lt-sm {
+                    padding: 10px 30px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
     .upload-audio-title {
         font-size: 2rem;
         margin-left: -48px;
         color: #001ce2;
+
     }
 
     .upload-audio-title span {
@@ -364,12 +479,17 @@
         font-size: 1.3rem !important;
         font-weight: bold;
         color: #001ce2;
+
+        @include lt-md {
+            color: #54585E;
+        }
     }
 
     .upload-url-icon {
         width: 50px !important;
         height: auto;
         margin-top: 15px;
+        
     }
 
     .video-upload-icon {
@@ -380,7 +500,8 @@
     .video-icon {
         width: 40px !important;
         margin-left: 15px;
-        margin-top: -18px;
+        // margin-top: -18px;
+        display: inline-block
     }
 
     /* Child Modal */
@@ -390,6 +511,12 @@
     .video-element {
         position: relative;
         margin-bottom: 50px;
+        max-width: 300px;
+        min-width: 280px;
+
+        @include lt-md {
+            width: 46%;
+        }
 
         .video-name {
             font-family: "Noto Sans", Arial, Helvetica, sans-serif;
@@ -447,16 +574,31 @@
     }
 
     .video-player {
-        border: 1px solid $mainBlue;
+        border: 5px solid white;
         border-radius: 22px;
         height: 150px;
-        width: 260px;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+        box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.16);
+        background: #cccccc;
+        position: relative;
+
+        .play-btn {
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background: white;
+            box-shadow: -2px 10px 16px rgba(0, 0, 0, 0.16);
+            border-radius: 14px;
+        }
 
         .video-play-icon {
-            width: 40px;
+            width: 100%;
         }
 
         video,iframe{
