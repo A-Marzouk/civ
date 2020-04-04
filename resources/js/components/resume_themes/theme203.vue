@@ -26,7 +26,7 @@
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent">
                               Carla Pipin Ranga
-                              <span class="mx-12 hidden-sm-and-down">
+                              <span class="mx-8 hidden-sm-and-down ">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -63,7 +63,7 @@
                                   />
                                 </v-btn>
                               </span>
-                              <span class="mx-3 hidden-sm-and-down">
+                              <span class="mx-1 hidden-sm-and-down">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -91,9 +91,9 @@
                 </v-col>
                 <!-- 1st column profile pic and icons -->
 
-                <!-- 2nd column only for tab version -->
-                <v-col sm="5" class="tablet-audio-video-flex" align="right">
-                  <v-card flat color="transparent" class="mr-5">
+                <!-- 2nd column only for tab and mobile version version -->
+                <v-col sm="5" cols="12" class="tablet-audio-video-flex">
+                  <v-card flat  color="transparent" class="mr-sm-5 mt-sm-0 my-sm-0 my-10 mt-n8 audio-video-card">
                     <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -119,7 +119,7 @@
                     </v-btn>
                   </v-card>
                 </v-col>
-                <!-- 2nd column only for tab version -->
+                <!-- 2nd column only for tab and mobile version version -->
 
                 <!-- 2nd column social media icons -->
                 <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
@@ -129,7 +129,7 @@
                         fab
                         color="#FCD259"
                         small
-                        class="mx-md-1 mx-sm-2 social-btn"
+                        class="mx-md-1 mx-sm-2 mx-1 social-btn"
                         depressed
                         v-for="item in socialIcons"
                         :key="item.id"
@@ -527,8 +527,13 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
-  @media screen and(max-width:599px) {
+  @media screen and (max-width:599px) {
+    width: 15.5rem;
+    height:13.75rem;
+  }
+  @media screen and (max-width:322px) {
     width: 14.5rem;
+    height: 12.75rem;
   }
 }
 
@@ -547,9 +552,10 @@ export default {
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   float: right;
-  // @media screen and(max-width:599px) {
-  //   width: ;
-  // }
+  @media screen and(max-width:959px) {
+    width: 8rem;
+    height: 7.75rem;
+  }
 }
 
 .verical-sidebar {
@@ -607,6 +613,10 @@ export default {
 }
 /* Social Btn */
 
+// audio video card
+
+//audio video card
+
 /* Hire Me card */
 .hire-me-title {
   font-family: "Montserrat", sans-serif !important;
@@ -615,6 +625,9 @@ export default {
   text-align: center !important;
   @media screen and (max-width: 959px) {
     font-size: 0.7rem !important;
+  }
+  @media screen and (max-width: 330px) {
+    font-size: 0.6rem !important;
   }
 }
 
@@ -625,12 +638,24 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 0.8rem !important;
   }
+  @media screen and (max-width: 330px) {
+    font-size: 0.7rem !important;
+  }
 }
 
 .btn-hire-me {
   width: 7.5rem;
   border-radius: 50px !important;
   font-weight: 100px !important;
+  @media screen and (max-width: 599px) {
+    width: 6.5rem;
+    font-size:12px;
+  }
+
+  @media screen and (max-width: 330px) {
+    width: 5.5rem;
+    font-size:12px;
+  }
 }
 
 /* Hire Me Card */
@@ -720,9 +745,11 @@ export default {
   display: none;
   @media screen and (max-width: 959px) {
     display: inline;
+    text-align: right;
   }
   @media screen and (max-width: 599px) {
-    display: none;
+    display: inline;
+    text-align: center;
   }
 }
 
@@ -730,7 +757,7 @@ export default {
 // Watermark text
 .watermark-text {
   position: absolute;
-  margin-top: -65px;
+  margin-top: 3vh;
   font-size: 18vw;
   width: 100%;
   opacity: 0.1;
