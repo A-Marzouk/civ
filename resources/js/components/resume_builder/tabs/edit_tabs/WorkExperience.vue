@@ -61,23 +61,17 @@
                 </div>
             </transition>
             <div class="action-btns" :class='{"justify-content-between": addNewWork}'>
-                <div class="add-work NoDecor mr-0 save-btn" v-if="addNewWork">
-                    <a class="btn btn-filled" href="javascript:void(0)" @click="addWorkEx">
-                        <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="">
-                        Save
-                    </a>
-                </div>
-                <div class="add-new-work NoDecor" v-if="!addNewWork">
-                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = true">
-                        <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="">
-                        Add new work
-                    </a>
-                </div>
-                <div class="add-work NoDecor cancel-btn" v-if="addNewWork">
-                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = false">
-                        Cancel
-                    </a>
-                </div>
+                <a v-if="addNewWork" class="btn btn-filled" href="javascript:void(0)" @click="addWorkEx">
+                    <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="">
+                    Save
+                </a>
+                <a v-if="!addNewWork" class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = true">
+                    <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="">
+                    Add new work
+                </a>
+                <a v-if="addNewWork" class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = false">
+                    Cancel
+                </a>
                 <!--<div class="auto-import NoDecor">-->
                     <!--<a href="javascript:void(0)">-->
                         <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
@@ -103,11 +97,11 @@
                                 {{work.description}}
                             </div>
                             <div class="optionsBtns showOnMd">
-                                <a href="">
+                                <a href="javascript:;" @click="editWork(work)">
                                     <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
                                 </a>
 
-                                <a href="">
+                                <a href="javascript:;" @click="deleteWork(work)">
                                     <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
                                 </a>
                             </div>
@@ -190,17 +184,13 @@
                             </div>
                         </div>
                         <div class="action-btns">
-                            <div class="add-work NoDecor">
-                                <a href="javascript:void(0)" @click="applyEdit">
-                                    <img src="/images/resume_builder/work-ex/mark.png" alt="">
-                                    Save
-                                </a>
-                            </div>
-                            <div class="add-new-work NoDecor">
-                                <a href="javascript:void(0)" @click="clearEditedWork">
-                                    Cancel
-                                </a>
-                            </div>
+                            <a class="btn btn-filled" href="javascript:void(0)" @click="applyEdit">
+                                <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
+                                Save
+                            </a>
+                            <a class="btn btn-outline" href="javascript:void(0)" @click="clearEditedWork">
+                                Cancel
+                            </a>
                             <!--<div class="auto-import NoDecor">-->
                             <!--<a href="javascript:void(0)">-->
                             <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
@@ -614,6 +604,7 @@
             display: flex;
             margin-top: 42px;
             max-width: 600px;
+            justify-content: space-between;
 
             @include lt-md {
                 max-width: 100%;
@@ -623,7 +614,7 @@
                 font-size: 14px !important;
 
                  @include lt-md {
-                    width: 100%;
+                    width: 46%;
                     min-width: 100px;
                 }
             }
