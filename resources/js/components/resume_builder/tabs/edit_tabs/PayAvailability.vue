@@ -125,15 +125,15 @@
                     slidesToScroll: 1,
                     appendDots: '.nav-scrollbox',
                     arrows: false,
-                    responsive: [
-                        {
-                            breakpoint: 480,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1
-                            }
-                        }
-                    ]
+                    // responsive: [
+                    //     {
+                    //         breakpoint: 480,
+                    //         settings: {
+                    //             slidesToShow: 1,
+                    //             slidesToScroll: 1
+                    //         }
+                    //     }
+                    // ]
                 }                 
             }
         },
@@ -469,7 +469,8 @@
                         display: block;
                     }
                     @include lt-sm {
-                        max-width: 250px;
+                        max-width: 240px;
+                        margin-top: 29px;
                     }
                     
                     .slider-rate{
@@ -484,15 +485,25 @@
                             font-weight: bold;
                             color: #C9CFF8;
 
+                            @include lt-sm {
+                                font-size: 11px;
+                            }
+
                             &.active{
                                 color: #001CE2;
                                 font-size: 18px;
+
+                                @include lt-sm {
+                                    font-size: 14px;
+                                }
 
                             }
                         }
 
                         @include lt-sm {
                             overflow: hidden;
+                            min-height: 53px;
+                            line-height: 50px;
                         }
 
 
@@ -507,16 +518,30 @@
                             width: 28.3px;
                             display: flex;
                             justify-content: center;
+                            position: absolute;
+                            top: 10px;
+
 
                             &:nth-child(1){
-                                position: absolute;
                                 left: -40px;
-                                top: 10px;
+                            
+                                @include lt-sm {
+                                    left: -32px;
+                                    top: 4px;
+                                }
                             }
                             &:nth-child(2){
-                                position: absolute;
                                 right: -40px;
-                                top: 10px;
+
+                                @include lt-sm {
+                                    right: -32px;
+                                    top: 4px;
+                                }
+                            }
+
+                            @include lt-sm {
+                                width: 21px;
+                                min-height: 46px;
                             }
                         }
                     }
