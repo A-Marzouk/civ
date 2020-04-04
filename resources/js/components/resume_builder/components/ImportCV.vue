@@ -8,14 +8,12 @@
 
         <div class="import-action-btns">
             <div class="d-flex">
+                <a class="btn btn-outline" href="javascript:void(0)" @click="openBrowse">
+                    <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                    Import  <span> PDF </span> file
+                </a>
                 <div class="auto-import-btn NoDecor">
-                    <a href="javascript:void(0)" @click="openBrowse">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                        Import  <span> PDF </span> file
-                    </a>
-                </div>
-                <div class="auto-import-btn NoDecor"  v-show="file">
-                    <a href="javascript:void(0)" @click="uploadPDFFile">
+                    <a v-show="file" href="javascript:void(0)" @click="uploadPDFFile">
                         Extract file
                         <img class="extract" src="/images/resume_builder/import/extract.png" alt="add">
                     </a>
@@ -32,7 +30,7 @@
                 {{file.name}}
             </div>
 
-            <div>
+            <div class='w-100'>
                 <vue2Dropzone class="upload-image-box d-flex justify-content-center align-items-center"
                               id="cvDropZone"
                               :options="dropzoneOptions"
@@ -998,6 +996,7 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../sass/media-queries';
 
     $activeColor : #001CE2;
 
@@ -1006,17 +1005,22 @@
     }
 
     .import-cv-wrapper {
-        padding-left: 50px;
-        padding-right: 50px;
         margin-top: 100px;
+        width: 100%;
 
         .title {
-            display: flex;
-            align-items: center;
+            // display: flex;
+            // align-items: center;
+            align-content: center;
+            text-align: center;
             font-weight: 600;
             font-size: 40px;
             text-align: left;
             color: #081fe2;
+
+            @include lt-md {
+                font-size: 30px;
+            }
 
             span {
                 font-weight: 500;
@@ -1035,29 +1039,61 @@
             display: flex;
             align-items: flex-start;
             flex-direction: column;
-            width: 1405px;
+            width: 100%;
             height: auto;
             background: whitesmoke;
-            padding-left: 73px;
-            padding-top: 61px;
+            padding: 60px 70px;
+
+            .d-flex {
+                justify-content: space-between;
+                width: 100%;
+
+                @include lt-sm {
+                    flex-wrap: wrap;
+                }
+            }
+
+
+            @include lt-sm {
+                padding: 40px;
+
+                .btn {
+                    width: 100%;
+                    min-width: 90px !important;
+                }
+            }
 
             .auto-import-btn {
-                margin-right: 65px;
+                // margin-right: 65px;
+                width: 40%;
+                
+                @include lt-sm {
+                    height: 56px;
+                    margin-top: 1rem;
+                    width: 100%;
+                }
 
                 a {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 260px;
+                    max-width: 260px;
                     height: 72px;
 
                     border: 1.5px solid #001CE2;
                     border-radius: 8px;
                     opacity: 1;
+                    background: white;
 
                     font: 500 20px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
+
+                    @include lt-sm {
+                        padding: 10px 15px;
+                        font-size: 10px;
+                        height: 56px;
+                    }
 
                     span{
                         font-weight: 600;
@@ -1066,8 +1102,8 @@
                     }
 
                     img {
-                        width: 31.12px;
-                        height: 31.12px;
+                        // width: 31.12px;
+                        // height: 31.12px;
                         margin-right: 18.5px;
                     }
 
@@ -1075,6 +1111,12 @@
                         width: 50.74px;
                         height: 32.74px;
                         margin-left: 34px;
+
+                        @include lt-md {
+                            margin-left: 18px;
+                            height: 16px;
+                            width: auto;
+                        }
                     }
                 }
             }
@@ -1139,7 +1181,7 @@
         /*border: darkgray dashed 1px;*/
         border:none;
         margin-top:55px;
-        width:884px;
+        width:100%;
         height:219px;
         /*border-radius: 25px;*/
         margin-bottom:55px;

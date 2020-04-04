@@ -167,7 +167,7 @@
 </script>
 
 <style lang="scss">
-$mainColor: #001CE2;
+$mainBlue: #001CE2;
 @import '../../../../../sass/media-queries';
 #achievementsEdit {
     .add-certificate-btn {
@@ -258,7 +258,7 @@ $mainColor: #001CE2;
 
                     @include lt-md {
                         font-size: 18px;
-                        color: $mainColor;
+                        color: $mainBlue;
                     }
                 }
             }
@@ -364,7 +364,7 @@ $mainColor: #001CE2;
                         // margin-bottom: 12px;
 
                         @include lt-md {
-                            // color: $mainColor;
+                            // color: $mainBlue;
                             display: none;
                         }
                     }
@@ -602,11 +602,11 @@ $mainColor: #001CE2;
 
         .icon {
             height: 100%;
-            color: $mainColor;
-            fill: $mainColor;
+            color: $mainBlue;
+            fill: $mainBlue;
 
             path {
-                fill: $mainColor;
+                fill: $mainBlue;
             }
         }
     }

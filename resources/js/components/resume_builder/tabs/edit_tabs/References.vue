@@ -195,7 +195,7 @@
 
                 <div class="work-ex-list mt-3">
                     <div class="work-ex-item mt-5 flex-column" v-for="(testimonial,index) in testimonials" :key="index + '_testimonial'">
-                        <div class="d-flex">
+                        <div class="item-grid">
                             <div class="work-icon">
                                 <img src="/images/resume_builder/references/review.png" alt="work-icon">
                             </div>
@@ -206,9 +206,18 @@
                                 <div class="work-ex-detials">
                                     {{testimonial.description}}
                                 </div>
+                                <div class="optionsBtns showOnMd">
+                                    <a href="javascript:;" @click="editTestimonial(testimonial)">
+                                        <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
+                                    </a>
+
+                                    <a href="javascript:;" @click="deleteTestimonial(testimonial)">
+                                        <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="options">
+                        <div class="options hideOnMd">
                             <div class="options-btn NoDecor"
                                  @click="optionTestimonialId === testimonial.id ? optionTestimonialId=0 : optionTestimonialId=testimonial.id">
                                 <a href="javascript:void(0)" :class="{'opened':optionTestimonialId === testimonial.id}">
@@ -457,6 +466,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 
 <style scoped lang="scss">
     @import '../../../../../sass/media-queries';
+    $mainBlue: #001CE2;
 
     .references-wrap{
 
@@ -467,7 +477,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
         }
     }
     .section-body-wrapper {
-        width: 1337px;
+        max-width: 1337px;
+        width: 100%;
 
         @include lt-md {
             width: 100%;
@@ -482,7 +493,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             @include lt-md {
 
                 &.about-section{
-                    max-width: 490px;
+                    max-width: 600px;
+                    width: 100%;
 
                     .about-addnew{
                         width: 100%;
@@ -515,7 +527,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     border: 1.5px solid #001CE2;
                     border-radius: 10px;
                     opacity: 1;
-                    padding-left: 18px;
+                    padding: 5px 18px;
                     &.grey-border{
                         border: 1.5px solid #9F9E9E;
                     }
@@ -722,134 +734,229 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
     }
 
     .work-ex-list{
-        margin-top: 64px;
-        .work-ex-item{
-            position: relative;
-            display: flex;
-            justify-content: flex-start;
-            width: 757px;
+            margin-top: 64px;
 
-            .work-icon{
-                width: 38px;
-                height: 27px;
-                margin-right: 33px;
-            }
 
-            .work-ex-info{
-                .work-ex-title{
-                    font: 700 30px/41px Noto Sans;
-                    letter-spacing: 0;
-                    color: #3C3748;
-                    margin-bottom: 12px;
-                    opacity: 1;
+            .work-ex-item{
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                max-width: 757px;
+                width: 100%;
+                margin-bottom: 30px;
+
+                .item-grid {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 38px 1fr;
+                    grid-gap: 18px;
+
+                    @include lt-sm {
+                        grid-gap: 6px;
+                    }
                 }
-                .work-ex-sub-title{
-                    font: 700 19px Noto Sans;
-                    letter-spacing: 0;
-                    color: #3C3748;
-                    opacity: 1;
-                    margin-bottom: 16px;
-                }
-                .work-ex-detials{
-                    font: 500 16px Noto Sans;
-                    letter-spacing: 0;
-                    color: #555060;
-                    opacity: 1;
-                }
-            }
 
-            .options {
-                position: absolute;
-                right: -100px;
-                top: 14px;
+                .work-icon{
+                    width: 100%;
+                    margin-top: 10px;
 
-                .options-btn {
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+
+                    @include lt-md {
+                        img {
+                            width: 34px;
+                        }
+                    }
+
+                    @include lt-sm {
+                        grid-gap: 12px;
+                        
+                        img {
+                            width: 28px;
+                        }
+                    }
+                }
+
+                .work-ex-info{
+
+                    .work-ex-title{
+                        font: 700 30px/41px Noto Sans;
+                        letter-spacing: 0;
+                        color: #3C3748;
+                        margin-bottom: 12px;
+                        opacity: 1;
+
+                        @include lt-md {
+                            font-size: 24px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
+                        }
+                    }
+                    .work-ex-sub-title{
+                        font: 700 19px Noto Sans;
+                        letter-spacing: 0;
+                        color: #3C3748;
+                        opacity: 1;
+                        margin-bottom: 16px;
+
+                        @include lt-md {
+                            font-size: 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 14px;
+                        }
+                    }
+                    .work-ex-detials{
+                        font: 500 16px Noto Sans;
+                        letter-spacing: 0;
+                        color: #555060;
+                        opacity: 1;
+
+                        @include lt-md {
+                            font-size: 12px;
+                        }
+
+                        @include lt-md {
+                            font-size: 11px;
+                        }
+                    }
+                }
+
+                .optionsBtns {
+                    width: 100%;
+                    background: #F9F9F9;
+                    box-shadow: 0 9px 12px rgba(0,0,0,.03);
+                    justify-content: space-between;
+                    padding: 12px 37px;
+                    border-radius: 2px;
+                    margin: 1rem auto 0;
+
+                    @include lt-md {
+                        display: flex !important;
+                    }
+
+                    @include lt-sm {
+                        max-width: 250px;
+                    }
+
                     a {
-                        width: 130px;
-                        height: 44px;
+                        height: 24px;
+                        display: block;
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        @include lt-sm {
+                            height: 16px;
+                        }
 
+                        .icon {
+                            height: 100%;
+                            color: $mainBlue;
+                            fill: $mainBlue;
+
+                            path {
+                                fill: $mainBlue;
+                            }
+                        }
+                    }
+                }
+
+                .options {
+                    position: absolute;
+                    right: 14px;
+                    top: 14px;
+
+                    .options-btn {
+                        a {
+                            width: 130px;
+                            height: 44px;
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            background: #FFFFFF 0 0 no-repeat padding-box;
+                            border: 1px solid #505050;
+                            border-radius: 5px;
+                            opacity: 1;
+
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img {
+                                width: 13.3px;
+                                height: 6.8px;
+                                margin-left: 8px;
+                            }
+
+                            img.optionsOpened {
+                                -webkit-transform: scaleY(-1);
+                                transform: scaleY(-1);
+                            }
+                        }
+
+                        a.opened {
+                            border: 1px solid #1F5DE4;
+                        }
+
+                        a:focus {
+                            outline: none !important;
+                            box-shadow: none !important;
+                        }
+                    }
+
+                    .extended-options {
                         background: #FFFFFF 0 0 no-repeat padding-box;
                         border: 1px solid #505050;
                         border-radius: 5px;
                         opacity: 1;
+                        margin-top: 8px;
+                        width: 130px;
+                        height: 60px;
+                        padding-top: 7px;
+                        padding-left: 8px;
 
-                        font: 600 13px Noto Sans;
-                        letter-spacing: 0;
-                        color: #505050;
+                        .edit-btn, .delete-btn {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
 
-                        img {
-                            width: 13.3px;
-                            height: 6.8px;
-                            margin-left: 8px;
+                            img {
+                                width: 15.75px;
+                                height: 14px;
+                                margin-right: 6px;
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
 
-                        img.optionsOpened {
-                            -webkit-transform: scaleY(-1);
-                            transform: scaleY(-1);
+                        .delete-btn {
+                            margin-top: 8px;
+
+                            img {
+                                width: 10.89px;
+                                height: 14px;
+                                margin-right: 9.5px;
+                            }
                         }
                     }
 
-                    a.opened {
+                    .extended-options.opened {
                         border: 1px solid #1F5DE4;
                     }
-
-                    a:focus {
-                        outline: none !important;
-                        box-shadow: none !important;
-                    }
-                }
-
-                .extended-options {
-                    background: #FFFFFF 0 0 no-repeat padding-box;
-                    border: 1px solid #505050;
-                    border-radius: 5px;
-                    opacity: 1;
-                    margin-top: 8px;
-                    width: 130px;
-                    height: 60px;
-                    padding-top: 7px;
-                    padding-left: 8px;
-
-                    .edit-btn, .delete-btn {
-                        display: flex;
-                        justify-content: flex-start;
-                        align-items: center;
-                        font: 600 13px Noto Sans;
-                        letter-spacing: 0;
-                        color: #505050;
-
-                        img {
-                            width: 15.75px;
-                            height: 14px;
-                            margin-right: 6px;
-                        }
-
-                        &:hover {
-                            cursor: pointer;
-                        }
-                    }
-
-                    .delete-btn {
-                        margin-top: 8px;
-
-                        img {
-                            width: 10.89px;
-                            height: 14px;
-                            margin-right: 9.5px;
-                        }
-                    }
-                }
-
-                .extended-options.opened {
-                    border: 1px solid #1F5DE4;
                 }
             }
         }
-    }
 
     .error{
         color:red;
