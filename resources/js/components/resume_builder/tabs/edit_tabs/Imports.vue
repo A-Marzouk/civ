@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="imports-wrap">
         <div class="section-title">
             <h2>Imports</h2>
         </div>
@@ -34,67 +34,84 @@
             <transition name="component-fade" mode="out-in">
                 <div class="imports-list" v-if="activeTab === 'Downloads'">
                     <div class="import-item">
-                        <div class="import-name">
-                           File 2
+                        <div class="import-info">
+                            <div class="import-name">
+                                File 2
+                            </div>
+                            <div class="import-date">
+                                01/17/2022
+                            </div>
                         </div>
-                        <div class="import-date">
-                            01/17/2022
-                        </div>
-                        <div class="import-icon-view">
-                            <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                        </div>
-                        <div class="import-delete-iceon">
-                            <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                        <div class="import-actions">
+                            <div class="import-icon-view">
+                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
+                            </div>
+                            <div class="import-delete-iceon">
+                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                            </div>
                         </div>
                     </div>
                     <div class="import-item">
-                        <div class="import-name">
-                            File 2
+                        <div class="import-info">
+                            <div class="import-name">
+                                File 2
+                            </div>
+                            <div class="import-date">
+                                01/17/2022
+                            </div>
                         </div>
-                        <div class="import-date">
-                            01/17/2022
+                        <div class="import-actions">
+                            <div class="import-icon-view">
+                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
+                            </div>
+                            <div class="import-delete-iceon">
+                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                            </div>
                         </div>
-                        <div class="import-icon-view">
-                            <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                        </div>
-                        <div class="import-delete-iceon">
-                            <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="imports-list" v-else-if="activeTab === 'Manage'">
                     <div class="import-item">
-                        <div class="import-name">
-                            PDF import 1
+                        <div class="import-info">
+                            <div class="import-name">
+                                PDF import 1
+                            </div>
+                            <div class="import-date">
+                                01/17/2022
+                            </div>
                         </div>
-                        <div class="import-date">
-                            01/17/2022
-                        </div>
-                        <div class="import-icon-view">
-                            <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                        </div>
-                        <div class="import-edit-icon">
-                            <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
-                        </div>
-                        <div class="import-delete-iceon">
-                            <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                        <div class="import-actions">
+                            <div class="import-icon-view">
+                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
+                            </div>
+                            <div class="import-edit-icon">
+                                <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
+                            </div>
+                            <div class="import-delete-iceon">
+                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                            </div>
                         </div>
                     </div>
                     <div class="import-item">
-                        <div class="import-name">
-                            PDF import 2
+                        <div class="import-info">
+                            <div class="import-name">
+                                PDF import 2
+                            </div>
+                            <div class="import-date">
+                                01/17/2022
+                            </div>
                         </div>
-                        <div class="import-date">
-                            01/17/2022
-                        </div>
-                        <div class="import-icon-view">
-                            <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                        </div>
-                        <div class="import-edit-icon">
-                            <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
-                        </div>
-                        <div class="import-delete-iceon">
-                            <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                        <div class="import-actions">
+                            <div class="import-icon-view">
+                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
+                            </div>
+                            <div class="import-edit-icon">
+                                <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
+                            </div>
+                            <div class="import-delete-iceon">
+                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                            </div>
                         </div>
                     </div>
                     <div class="import-item">
@@ -117,23 +134,27 @@
                 </div>
                 <div class="imports-list" v-else>
                     <div class="import-item">
-                        <div class="import-name">
-                            www.123workforce.com/Aymane
+                        <div class="import-info">
+                            <div class="import-name">
+                                123workforce.com/Aymane
+                            </div>
+                            <div class="import-date">
+                                01/17/2022
+                            </div>
                         </div>
-                        <div class="import-date">
-                            01/17/2022
-                        </div>
-                        <div class="import-icon-view">
-                            <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                        </div>
-                        <div class="import-edit-icon">
-                            <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
-                        </div>
-                        <div class="import-copy-icon">
-                            <img src="/images/resume_builder/imports/copy.png" alt="copy-icon">
-                        </div>
-                        <div class="import-delete-iceon">
-                            <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                        <div class="import-actions">
+                            <div class="import-icon-view">
+                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
+                            </div>
+                            <div class="import-edit-icon">
+                                <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
+                            </div>
+                            <div class="import-copy-icon">
+                                <img src="/images/resume_builder/imports/copy.png" alt="copy-icon">
+                            </div>
+                            <div class="import-delete-iceon">
+                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -175,8 +196,23 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../../sass/media-queries';
+
+    .imports-wrap{
+
+        width: 100%; 
+
+        @include lt-md {
+            width: 100%;
+        }
+    }
     .section-body-wrapper {
         width: 1337px;
+
+
+        @include lt-md {
+            width: 100%;
+        }
 
         .achievements-bar.sub-bar {
             margin-top: 74px;
@@ -185,11 +221,19 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
         .imports-list {
             padding-right: 80px;
 
+            @include lt-md {
+                padding: 0;
+            }
+
             .import-item {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 margin-top: 63px;
+
+                @include lt-md {
+                    flex-direction: column;
+                }
 
                 .import-name {
                     font: 600 30px Noto Sans;
@@ -232,6 +276,70 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                        width: 29px;
                        height: 31px;
                    }
+                }
+                .import-info{
+                    width: 70%;
+                    justify-content: space-between;
+
+                    @include lt-md {
+                        border-radius: 19px;
+                        box-shadow: 0px 9px 10px rgba(0, 0, 0, 0.03);
+                        min-width: 492px;
+                        height: 67px;
+                        align-items: center;
+                        padding: 0px 24px;
+                        position: relative;
+                        z-index: 2;
+                        background: #fff;
+                    }
+
+                    .import-name{
+                        @include lt-md {
+                            font-size: 22px;
+                        }
+                    }
+
+                    .import-date{
+                        padding-right: 35%;
+                        min-width: 200px;
+
+                        @include lt-md {
+                            padding: 0;
+                            font-size: 22px;
+                        }
+                    }
+                }
+                .import-actions{
+                    width: 30%;
+                    justify-content: space-around;
+                    max-width: 360px;
+                    background: #F6F6F6;
+                    padding: 22px 0px;
+
+                    @include lt-md {
+                        min-width: 385px;
+                        position: relative;
+                        z-index: 1;
+                        padding: 20px 0px 10px 0px;
+                        border-radius: 12px;
+                        top: -10px;
+                        align-items: center;
+                    }
+
+                    >div{
+                        img{
+                            @include lt-md {
+                                max-width: 24px;
+                                max-height: 20px;
+                            }
+                        }
+                    }
+                    
+                    
+
+                }
+                .import-info,.import-actions{
+                    display: inline-flex;
                 }
             }
         }
