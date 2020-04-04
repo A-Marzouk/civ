@@ -79,7 +79,7 @@
                             <b-container class="bv-example-row" v-if="currentUploadMethod==null">
                                 <b-row class="text-center">
                                     <!-- Link Url -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
                                         <div class="d-flex-inline">
                                             <button @click="currentUploadMethod='linkUrl' ">
@@ -89,7 +89,7 @@
                                     </b-col>
                                     <!-- Link URL -->
                                     <!-- MP3 -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Upload Mp3</div>
                                         <div class="d-flex-inline">
                                             <input type="file" ref="audio" style="display: none"
@@ -101,7 +101,7 @@
                                     </b-col>
                                     <!-- MP3 -->
                                     <!-- Record -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Record</div>
                                         <div class="d-flex-inline">
                                             <button @click="currentUploadMethod='record'">
