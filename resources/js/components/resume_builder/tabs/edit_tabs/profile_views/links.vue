@@ -50,7 +50,7 @@
                             Auto import
                         </a> -->
                     </div>
-                    <div class="addItem-wrap animated fadeIn" v-show="isAddSocialLink">
+                    <div class="addItem-wrap animated fadeIn justify-content-between" v-show="isAddSocialLink">
                         <div class="civ-input input-field mb-0">
                             <label for="category">Social site</label>
                             <div class="civ-custom-select">
@@ -94,18 +94,26 @@
 
 
                 <div class="work-ex-list">
-                    <div class="work-ex-item mt-5" v-for="(item,index) in socialLinks" :key="item.id + 'link_key'">
-                        <div class="d-flex justify-content-between">
-                            <div class="d-flex">
-                                <div class="work-ex-info" :class="{'deactivated' : !item.is_active}">
-                                    <div class="work-ex-title">
-                                        <img src="/images/resume_builder/link-icon.png" alt="">
-                                        {{item.link_title}}:
-                                        <small class="NoDecor"><a :href="item.link" target="_blank">{{item.link}}</a></small>
-                                    </div>
+                    <div class="work-ex-item mt-5 flex-column" v-for="(item,index) in socialLinks" :key="item.id + 'link_key'">
+                        <div class="item-grid">
+                            <div class="work-icon">
+                                <img src="/images/resume_builder/link-icon.png" alt="">
+                            </div>
+                            <div class="work-ex-info" :class="{'deactivated' : !item.is_active}">
+                                <div class="work-ex-title">
+                                    {{item.link_title}}:
+                                    <small class="NoDecor"><a :href="item.link" target="_blank">{{item.link}}</a></small>
+                                </div>
+                                <div class="optionsBtns showOnMd">
+                                    <a href="javascript:;" @click="toggleLink(item)">
+                                        <svg-vue :class="{desactivated: !item.is_active}" class='icon' :icon="'eye-icon'"></svg-vue>
+                                    </a>
+                                    <a href="javascript:;" @click="deleteLink(item)">
+                                        <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                                    </a>
                                 </div>
                             </div>
-                            <div class="options">
+                            <div class="options hideOnMd">
                                 <div class="options-btn NoDecor"
                                      @click="optionSocialLinkId === item.id ? optionSocialLinkId=0 : optionSocialLinkId=item.id">
                                     <a href="javascript:void(0)" class="social" :class="{'opened':optionSocialLinkId === item.id}">
@@ -172,17 +180,22 @@
                     <div class="list-links">
                         <div>
                             <div class="work-ex-list mt-0">
-                                <div class="work-ex-item mt-1" v-for="(item,index) in portfolioLinks" :key="item.id + 'link_key' ">
-                                    <div class="d-flex justify-content-between">
-                                        <div class="d-flex">
-                                            <div class="work-ex-info">
-                                                <div class="work-ex-title">
-                                                    <img src="/images/resume_builder/link-icon.png" alt="">
-                                                    <small class="NoDecor"><a :href="addPrefix(item.link)" target="_blank">{{item.link}}</a></small>
-                                                </div>
+                                <div class="work-ex-item mt-1 flex-column" v-for="(item,index) in portfolioLinks" :key="item.id + 'link_key' ">
+                                    <div class="item-grid">
+                                        <div class="work-icon">
+                                            <img src="/images/resume_builder/link-icon.png" alt="">
+                                        </div>
+                                        <div class="work-ex-info">
+                                            <div class="work-ex-title">
+                                                <small class="NoDecor"><a :href="addPrefix(item.link)" target="_blank">{{item.link}}</a></small>
+                                            </div>
+                                            <div class="optionsBtns showOnMd justify-content-center">
+                                                <a href="javascript:;" @click="deleteLink(item)">
+                                                    <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="options">
+                                        <div class="options hideOnMd">
                                             <div class="options-btn NoDecor"
                                                  @click="optionPortfolioLinkId === item.id ? optionPortfolioLinkId=0 : optionPortfolioLinkId=item.id">
                                                 <a href="javascript:void(0)" :class="{'opened':optionPortfolioLinkId === item.id}">
@@ -541,7 +554,7 @@
 <style lang="scss" scoped>
     @import '../../../../../../sass/media-queries';
 
-    $mainColor: #001CE2;
+    $mainBlue: #001CE2;
 
     .options-wrap {
         display: flex;
@@ -613,8 +626,24 @@
 
     .hold-tab {
 
+        &.social {
+            display: flex;
+            justify-content: space-between;
+
+            .input-field {
+                margin-right: 0;
+                width: 47%;
+                min-width: 120px !important;
+
+                @include lt-sm {
+                    width: 100%;
+                }
+            }
+        }
+
         .input-field {
-            width: 718px;
+            max-width: 718px;
+            width: 48%;
             margin-right: 2rem;
 
             @include lt-sm {
@@ -650,27 +679,34 @@
             opacity: 1;
         }
 
-        .civ-custom-select {
+        .civ-custom-select{
 
             position: relative;
 
-            .civ-select-input {
-                img {
-                    width: 24px;
-                    height: 12px;
+
+            @include lt-md {
+
+                border-color: $mainBlue;
+            }
+
+            .civ-select-input{
+                img{
+                    width:24px ;
+                    height:12px;
                     position: absolute;
                     top: 35px;
-                    left: 279px;
+                    right: 20px;
 
-                    @include lt-sm {
-                        height: 10px;
-                        width: 20px;
-                        top: 15px;
-                    }
-
-                    &.toggled {
+                    &.toggled{
                         -webkit-transform: scaleY(-1);
                         transform: scaleY(-1);
+                    }
+
+                    @include lt-sm {
+                        height: 9px;
+                        width: 18px;
+                        top: 15px;
+                        right: 15px;
                     }
                 }
 
@@ -679,77 +715,92 @@
                     font-weight: normal;
                 }
 
-                input {
-                    width: 269px;
-                    height: 76px;
+                input{
+                    width: 100%;
+                    height:76px;
                     border: 1.5px #505050 solid;
-                    padding-left: 23px;
+                    padding-left:23px;
                     border-radius: 10px 10px 0 0;
                     border-bottom: 0;
                     color: black;
                     font-weight: bold;
                     font-size: 22px;
+                    background: white;
+
+                    @include lt-md {
+                        border-color: $mainBlue;
+                    }
 
                     @include lt-sm {
-                        font-size: 13px;
-                        min-height: 38px;
-                        height: auto;
-                        width: 100%;
-                        border-radius: 6px;
-                        border-width: 0.5px;
-                        margin-bottom: 25px;
+                        font-size: 14px;
+                        height: 38px
                     }
 
-                    &:focus {
+                    &:focus{
                         outline: none !important;
                     }
-
-                    &:hover {
+                    &:hover{
                         cursor: pointer;
                     }
 
-                    &.with-border {
+                    &.with-border{
                         border-bottom: 1.5px #505050 solid;
                         border-radius: 10px;
+
+                        @include lt-md {
+
+                            border-color: $mainBlue;
+                        }
                     }
                 }
 
             }
 
-            .civ-custom-options {
+            .civ-custom-options{
                 background: #f8fafc;
                 position: absolute;
                 border: 1.5px #505050 solid;
                 border-radius: 0 0 10px 10px;
                 opacity: 1;
                 margin-top: 0;
-                width: 269px;
+                width: 100%;
                 border-top: 0;
                 height: auto;
+                max-height: 300px;
+                overflow-y: auto;
+                z-index: 30;
 
-                div {
+                @include lt-md {
+                    border-color: $mainBlue;
+                }
+
+                div{
                     font-size: 22px;
                     padding-left: 23px;
                     margin-left: 1px;
 
-                    &:hover {
+                    @include lt-sm {
+                        font-size: 14px;
+                    }
+
+                    &:hover{
                         cursor: pointer;
                         background: lightcyan;
                     }
 
-                    &:last-child:hover {
-                        border-radius: 0 0 10px 10px;
+                    &:last-child:hover{
+                        border-radius:0 0 10px 10px ;
                     }
                 }
             }
         }
-
     }
 
     .addItem-wrap {
         display: flex;
         align-items: flex-end;
         width: 100%;
+        max-width: 570px;
         flex-wrap: wrap;
 
         .input-field {
@@ -762,55 +813,235 @@
         }
     }
 
-    .work-ex-list {
-        margin-top: 90px;
+    .work-ex-list{
+            margin-top: 64px;
 
-        .work-ex-item {
-            width: 757px;
 
-            .work-icon {
-                width: 38px;
-                height: 27px;
-                margin-right: 33px;
-            }
+            .work-ex-item{
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                max-width: 757px;
+                width: 100%;
+                margin-bottom: 40px;
 
-            .work-ex-info {
-                margin-right: 30px;
+                .item-grid {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: 38px 1fr;
+                    grid-gap: 18px;
 
-                .work-ex-title {
-                    font: 700 30px/41px Noto Sans;
-                    letter-spacing: 0;
-                    color: #001CE2;
-                    margin-bottom: 12px;
-                    opacity: 1;
-
-                    img {
-                        width: 30px;
-                        margin-right: 10px;
+                    @include lt-sm {
+                        grid-gap: 6px;
                     }
                 }
 
-                .work-ex-sub-title {
-                    font: 700 19px Noto Sans;
-                    letter-spacing: 0;
-                    color: #001CE2;
-                    opacity: 1;
-                    margin-bottom: 16px;
+                .work-icon{
+                    width: 100%;
+                    margin-top: 10px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+
+                    @include lt-md {
+                        img {
+                            width: 34px;
+                        }
+                    }
+
+                    @include lt-sm {
+                        grid-gap: 12px;
+                        
+                        img {
+                            width: 28px;
+                        }
+                    }
                 }
 
-                .work-ex-detials {
-                    font: 500 16px Noto Sans;
-                    letter-spacing: 0;
-                    color: #001CE2;
-                    opacity: 1;
+                .work-ex-info{
+
+                    .work-ex-title{
+                        font: 700 30px/41px Noto Sans;
+                        letter-spacing: 0;
+                        color: $mainBlue;
+                        margin-bottom: 12px;
+                        opacity: 1;
+
+                        @include lt-md {
+                            font-size: 26px;
+                        }
+
+                        @include lt-md {
+                            font-size: 16px;
+                        }
+                    }
+                    .work-ex-sub-title{
+                        font: 700 19px Noto Sans;
+                        letter-spacing: 0;
+                        color: #3C3748;
+                        opacity: 1;
+                        margin-bottom: 16px;
+
+                        @include lt-md {
+                            font-size: 18px;
+                        }
+
+                        @include lt-md {
+                            font-size: 14px;
+                        }
+                    }
+                    .work-ex-detials{
+                        font: 500 16px Noto Sans;
+                        letter-spacing: 0;
+                        color: #555060;
+                        opacity: 1;
+
+                        @include lt-md {
+                            font-size: 12px;
+                        }
+
+                        @include lt-md {
+                            font-size: 11px;
+                        }
+                    }
                 }
 
-                &.deactivated{
-                    opacity: 0.3;
+                .optionsBtns {
+                    width: 100%;
+                    background: #F9F9F9;
+                    box-shadow: 0 9px 12px rgba(0,0,0,.03);
+                    justify-content: space-between;
+                    padding: 12px 37px;
+                    border-radius: 2px;
+                    margin: 1rem auto 0;
+
+                    @include lt-md {
+                        display: flex !important;
+                    }
+
+                    @include lt-sm {
+                        max-width: 250px;
+                    }
+
+                    a {
+                        height: 24px;
+                        display: block;
+
+
+                        @include lt-sm {
+                            height: 16px;
+                        }
+
+                        .icon {
+                            height: 100%;
+                            color: $mainBlue;
+                            fill: $mainBlue;
+
+                            path {
+                                fill: $mainBlue;
+                            }
+                            
+                            &.desactivated {
+                                opacity: 0.3;
+                            }
+                        }
+                    }
+                }
+
+                .options {
+                    position: absolute;
+                    right: 14px;
+                    top: 14px;
+
+                    .options-btn {
+                        a {
+                            width: 130px;
+                            height: 44px;
+
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            background: #FFFFFF 0 0 no-repeat padding-box;
+                            border: 1px solid #505050;
+                            border-radius: 5px;
+                            opacity: 1;
+
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img {
+                                width: 13.3px;
+                                height: 6.8px;
+                                margin-left: 8px;
+                            }
+
+                            img.optionsOpened {
+                                -webkit-transform: scaleY(-1);
+                                transform: scaleY(-1);
+                            }
+                        }
+
+                        a.opened {
+                            border: 1px solid #1F5DE4;
+                        }
+
+                        a:focus {
+                            outline: none !important;
+                            box-shadow: none !important;
+                        }
+                    }
+
+                    .extended-options {
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
+                        border-radius: 5px;
+                        opacity: 1;
+                        margin-top: 8px;
+                        width: 130px;
+                        height: 60px;
+                        padding-top: 7px;
+                        padding-left: 8px;
+
+                        .edit-btn, .delete-btn {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            font: 600 13px Noto Sans;
+                            letter-spacing: 0;
+                            color: #505050;
+
+                            img {
+                                width: 15.75px;
+                                height: 14px;
+                                margin-right: 6px;
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+
+                        .delete-btn {
+                            margin-top: 8px;
+
+                            img {
+                                width: 10.89px;
+                                height: 14px;
+                                margin-right: 9.5px;
+                            }
+                        }
+                    }
+
+                    .extended-options.opened {
+                        border: 1px solid #1F5DE4;
+                    }
                 }
             }
         }
-    }
 
     .options {
         margin-top: 14px;
