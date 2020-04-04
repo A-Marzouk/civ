@@ -1,17 +1,20 @@
 <template>
     <div>
         <div class="content d-flex">
-            <div class="upload-container d-flex flex-column">
-                <h3 class="text-blue">Upload my audio</h3>
-
+             <div class="upload-container d-flex flex-column">
+                <h3 class="text-blue hideOnMd">Upload my audio</h3>
                 <div id="audio_and_video" class="vue-dropzone">
-                    <svg-vue class="upload-audio-icon" icon="upload-audio-icon"></svg-vue>
+                    <svg-vue class="upload-audio-icon hideOnMd" icon="upload-audio-icon"></svg-vue>
                     <div class="empty-text">
                         <br/>
                     </div>
-                    <b-button class="btn filled btn-upload" @click="$bvModal.show('main-upload-modal')">
+                    <b-button class="btn btn-filled btn-upload hideOnMd" @click="$bvModal.show('main-upload-modal')">
                         <svg-vue class="upload-icon icon" icon="upload-icon"></svg-vue>
                         <span>Browse audio file</span>
+                    </b-button>
+                    <b-button class="btn btn-filled btn-upload showOnMd" @click="$bvModal.show('main-upload-modal')">
+                        <svg-vue class="upload-icon icon" icon="upload-icon"></svg-vue>
+                        <span>Add audio</span>
                     </b-button>
                 </div>
                 <!-- Insert icon -->

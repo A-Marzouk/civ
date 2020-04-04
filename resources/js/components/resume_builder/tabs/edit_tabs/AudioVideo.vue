@@ -5,27 +5,19 @@
       <h2>Audio / Video</h2>
     </div>
 
-    <div>
-      <b-container class="p-0">
-        <b-row>
-          <b-col cols="6">
-            <div class="achievements-bar" id="profileLinksWrapper">
-              <div
-                class="bar-item"
-                v-for="(tabName,i) in tabs"
-                :key="i"
-                :index="i"
-                :item="tabName"
-                :data-target="tabName"
-                @click="changeTab"
-                :class="{ active : activeTab === tabName}"
-              >{{tabName}}</div>
+    <div class="achievements-bar" id="profileLinksWrapper">
+      <div
+        class="bar-item"
+        v-for="(tabName,i) in tabs"
+        :key="i"
+        :index="i"
+        :item="tabName"
+        :data-target="tabName"
+        @click="changeTab"
+        :class="{ active : activeTab === tabName}"
+      >{{tabName}}</div>
 
-              <div class="decorator"></div>
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
+      <div class="decorator"></div>
     </div>
 
     <transition :duration="590" class="mt-5 content" name="hide" mode="out-in">
@@ -79,8 +71,24 @@ Array.prototype.moveItem = function(from, to) {
 </script>
 
 <style lang="scss" scoped>
+@import '../../../../../sass/media-queries';
 $mainBlue: #001ce2;
 
+.achievements-bar {
+  max-width: 500px;
+
+  @include lt-md {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 418px;
+    margin-top: 45px;
+
+    .bar-item {
+      font-size: 26px;
+      padding: 1rem 2rem;
+    }
+  }
+}
 
 .audio-recorder{
 
@@ -102,7 +110,8 @@ $colorGray: #505050;
 
 .profile-hold {
   justify-content: flex-start;
-  width: 1363px;
+  max-width: 1363px;
+  width: 100%;
   flex-flow: column;
 }
 
