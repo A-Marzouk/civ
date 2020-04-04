@@ -375,6 +375,9 @@
 
     .audios-preview-container {
         margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
     }
 
     /* aninamtion */
@@ -457,6 +460,12 @@
     .video-element {
         position: relative;
         margin-bottom: 50px;
+        max-width: 300px;
+        min-width: 280px;
+
+        @include lt-md {
+            width: 46%;
+        }
 
         .video-name {
             font-family: "Noto Sans", Arial, Helvetica, sans-serif;
@@ -517,7 +526,7 @@
         border: 5px solid white;
         border-radius: 22px;
         height: 150px;
-        width: 260px;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;

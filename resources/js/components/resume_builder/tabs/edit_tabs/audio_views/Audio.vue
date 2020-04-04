@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="d-flex justify-content-center" >
         <div class="content d-flex">
              <div class="upload-container d-flex flex-column">
                 <h3 class="text-blue hideOnMd">Upload my audio</h3>
@@ -20,7 +20,7 @@
                 <!-- Insert icon -->
             </div>
 
-            <div class="upload-container d-flex flex-column" style="margin-left:-5vw;">
+            <div class="upload-container d-flex flex-column">
                 <div class="audios-preview-container">
                     <div class="audio-element" v-for="(audio,index) in audios" :key="audio.id" v-if="audio.type === 'audio'">
                         <div class="audio-name">{{audio.title}}</div>
@@ -38,17 +38,14 @@
                             <!--</button>-->
                             <!--</div>-->
 
-                            <div class="input-select select-audio-options dropdown">
-                                <button class="audio-options dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Option
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="deleteMedia(audio)">
-                                        <svg-vue class="option-icon" icon="trash-delete-icon"></svg-vue>
-                                        Delete
-                                    </a>
-                                </div>
+                            <a class="play-btn" href="javascript:void(0)" @click="loadVideo(audio.id)"  v-show="audio.id !== playingVideo">
+                                <svg-vue class="audio-play-icon" icon="play-media-icon"></svg-vue>
+                            </a>
+
+                            <div class="optionsBtns justify-content-center">
+                                <a href="javascript:void(0)" @click="deleteMedia(audio)">
+                                    <svg-vue class="option-icon icon" icon="trash-delete-icon"></svg-vue>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -298,11 +295,77 @@
 
 <style lang="scss" scoped>
     $mainBlue: #001ce2;
+    @import '../../../../../../sass/media-queries';
+
+    .optionsBtns {
+        display: flex;
+        margin: 0;
+        width: 30px;
+        height: 30px;
+        background: transparent;
+        box-shadow: 0 9px 12px rgba(0,0,0,.03);
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        border-radius: 2px;
+        position: absolute;
+
+        top: 10px;
+        right: 10px;
+
+        @include lt-md {
+        }
+
+        @include lt-sm {
+            width: 20px;
+            height: 20px;
+        }
+
+        a {
+            height: 24px;
+            display: block;
+
+            @include lt-sm {
+                height: 16px;
+            }
+
+            .icon {
+                height: 100%;
+                color: $mainBlue;
+                fill: $mainBlue;
+
+                path {
+                    fill: $mainBlue;
+                }
+            }
+        }
+    }
+
+    .content {
+        flex-wrap: wrap;
+
+        @include lt-md {
+            max-width: 418px;
+            margin: 0 auto;
+        }
+    }
 
     .upload-container {
         position: relative;
-        width: 354px;
-        margin-right: 232px;
+        max-width: 354px;
+        width: 48%;
+
+        @include lt-md {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 100%;
+
+            .showOnMd {
+                display: flex !important;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
 
         h3 {
             font-size: 28px;
@@ -331,6 +394,15 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        @include lt-md {
+            border: none;
+            height: auto;
+            margin: 0 auto;
+            width: 100%;
+            margin-top: 6px;
+            max-width: 418px;
+        }
     }
 
     .upload-audio-icon {
@@ -531,20 +603,25 @@
     }
 
     .audio-player {
-        border: 1px solid $mainBlue;
-        border-radius: 25px;
+        border-radius: 8px;
+        background: #F7F5F5;
         height: 100px;
-        width: 350px;
+        max-width: 350px;
+        width: 100%;
         justify-content:center;
         align-items: flex-start;
         padding-top: 11px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .16);
+        border: 5px solid white;
+
         .play-icon {
             width: 30px;
         }
 
         audio{
-            border: 1px $mainBlue solid;
-            border-radius: 25px;
+            // border: 1px $mainBlue solid;
+            // border-radius: 25px;
+            background: transparent;
         }
 
         .sound-frecuency {
