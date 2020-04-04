@@ -168,6 +168,10 @@ $mainBlue: #001CE2;
         font-family: 'Noto Sans';
         padding: 40px 20px;
 
+        @include lt-sm {
+            padding: 40px 0;
+        }
+
         .user-cover{
             width: 144px;
             height: 144px;
@@ -204,7 +208,8 @@ $mainBlue: #001CE2;
             }
 
             @include lt-sm {
-                width: calc(100% - 120px);
+                margin-top: 1rem;
+                width: 100%;
             }
         }
     }
