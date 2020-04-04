@@ -130,11 +130,11 @@
                         {{achievement.description}}
                     </div>
                     <div class="optionsBtns showOnMd">
-                        <a href="">
+                        <!-- <a href="">
                             <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
-                        </a>
+                        </a> -->
 
-                        <a href="">
+                        <a href="javascript:;" @click="deleteCertificate(achievement)">
                             <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
                         </a>
                     </div>

@@ -12,6 +12,7 @@
         
         @include lt-md {
             color: $mainBlue;
+            font-size: 18px;
         }
 
         .hint-message {
@@ -41,7 +42,7 @@
         border: 1.5px solid #505050;
         border-radius: 8px;
         padding: 0px 0px 0px 16.8px;
-        color: #a5a5a5;
+        color: #444444;
         font-size: 15px;
         font-family: "Noto Sans";
         font-weight: 500;
@@ -53,6 +54,14 @@
 
         &:focus {
             border-color: $mainBlue;
+        }
+
+        &::placeholder {
+            color: #a5a5a5;
+        }
+
+        @include lt-md {
+            font-size: 16px;
         }
 
         @include lt-sm {
@@ -72,13 +81,17 @@
         font-family: "Noto Sans";
         font-weight: 500;
         outline: none;
-        color: #a5a5a5;
+        color: #444444;
         border: 1.5px solid #505050;
         border-radius: 8px;
         resize: none;
 
         &:focus {
             border-color: $mainBlue;
+        }
+
+        &::placeholder {
+            color: #a5a5a5;
         }
 
         &.--blue {

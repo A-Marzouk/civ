@@ -54,23 +54,17 @@
                 </div>
             </transition>
             <div class="action-btns" :class='{"justify-content-between": addNewEducation}'>
-                <div class="add-work NoDecor mr-0 save-btn" v-if="addNewEducation">
-                    <a class="btn btn-filled" href="javascript:void(0)" @click="addEducation">
-                        <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
-                        Save
-                    </a>
-                </div>
-                <div class="add-new-work NoDecor" v-if="!addNewEducation">
-                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewEducation = true">
-                        <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="">
-                        Add new degree
-                    </a>
-                </div>
-                <div class="add-new-work NoDecor" v-if="addNewEducation">
-                    <a class="btn btn-outline cancel-btn" href="javascript:void(0)" @click="addNewEducation = false" >
-                        Cancel
-                    </a>
-                </div>
+                <a v-if="addNewEducation" class="btn btn-filled" href="javascript:void(0)" @click="addEducation">
+                    <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
+                    Save
+                </a>
+                <a v-if="!addNewEducation" class="btn btn-outline" href="javascript:void(0)" @click="addNewEducation = true">
+                    <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="">
+                    Add new degree
+                </a>
+                <a v-if="addNewEducation" class="btn btn-outline cancel-btn" href="javascript:void(0)" @click="addNewEducation = false" >
+                    Cancel
+                </a>
                 <!--<div class="auto-import NoDecor">-->
                     <!--<a href="javascript:void(0)">-->
                         <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
@@ -96,11 +90,11 @@
                                 {{education.description || 'Dolor consectetur exercitation irure veniam pariatur laborum proident anim cupidatat anim duis et veniam. Irure non reprehenderit nisi in voluptate ad. Do consectetur consequat esse duis minim mollit exercitation nisi. Enim proident in excepteur commodo minim voluptate aliqua commodo ut. Duis dolore id in pariatur sit aliquip esse ut veniam. Velit est culpa tempor ullamco elit.'}}
                             </div>
                             <div class="optionsBtns showOnMd">
-                                <a href="">
+                                <a href="javascript:;" @click="editEducation(education)">
                                     <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
                                 </a>
 
-                                <a href="">
+                                <a href="javascript:;" @click="deleteEducation(education)">
                                     <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
                                 </a>
                             </div>
@@ -175,17 +169,13 @@
                             </div>
                         </div>
                         <div class="action-btns">
-                            <div class="add-work NoDecor">
-                                <a href="javascript:void(0)" @click="applyEdit">
-                                    <img src="/images/resume_builder/work-ex/mark.png" alt="">
-                                    Save
-                                </a>
-                            </div>
-                            <div class="add-new-work NoDecor">
-                                <a href="javascript:void(0)" @click="clearEditedEducation">
-                                    Cancel
-                                </a>
-                            </div>
+                            <a class="btn btn-filled" href="javascript:void(0)" @click="applyEdit">
+                                <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
+                                Save
+                            </a>
+                            <a class="btn btn-outline" href="javascript:void(0)" @click="clearEditedEducation">
+                                Cancel
+                            </a>
                             <!--<div class="auto-import NoDecor">-->
                             <!--<a href="javascript:void(0)">-->
                             <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
@@ -596,6 +586,7 @@ $mainBlue: #001CE2;
             display: flex;
             margin-top: 42px;
             max-width: 600px;
+            justify-content: space-between;
 
             @include lt-md {
                 max-width: 100%;
@@ -605,7 +596,7 @@ $mainBlue: #001CE2;
                 font-size: 14px !important;
 
                  @include lt-md {
-                    width: 100%;
+                    width: 46%;
                     min-width: 100px;
                 }
             }
