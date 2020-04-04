@@ -61,23 +61,17 @@
                 </div>
             </transition>
             <div class="action-btns" :class='{"justify-content-between": addNewWork}'>
-                <div class="add-work NoDecor mr-0 save-btn" v-if="addNewWork">
-                    <a class="btn btn-filled" href="javascript:void(0)" @click="addWorkEx">
-                        <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="">
-                        Save
-                    </a>
-                </div>
-                <div class="add-new-work NoDecor" v-if="!addNewWork">
-                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = true">
-                        <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="">
-                        Add new work
-                    </a>
-                </div>
-                <div class="add-work NoDecor cancel-btn" v-if="addNewWork">
-                    <a class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = false">
-                        Cancel
-                    </a>
-                </div>
+                <a v-if="addNewWork" class="btn btn-filled" href="javascript:void(0)" @click="addWorkEx">
+                    <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="">
+                    Save
+                </a>
+                <a v-if="!addNewWork" class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = true">
+                    <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="">
+                    Add new work
+                </a>
+                <a v-if="addNewWork" class="btn btn-outline" href="javascript:void(0)" @click="addNewWork = false">
+                    Cancel
+                </a>
                 <!--<div class="auto-import NoDecor">-->
                     <!--<a href="javascript:void(0)">-->
                         <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
