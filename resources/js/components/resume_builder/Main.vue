@@ -286,7 +286,7 @@
         }
     }
 
-    $mainColor: #001CE2;
+    $mainBlue: #001CE2;
     .resume-container {
         padding: 160px 100px 30px;
         width: 100%;
@@ -464,7 +464,7 @@
                 position: absolute;
                 display: block;
                 height: 5px;
-                background-color: $mainColor;
+                background-color: $mainBlue;
                 border-radius: 5px 5px 0 0;
                 transform: translateX(0);
                 transition: .6s;
@@ -492,7 +492,7 @@
 
                 &.router-link-exact-active, &.router-link-active.has-inside-routes{
                     position: relative;
-                    color: $mainColor;
+                    color: $mainBlue;
                 }
 
 

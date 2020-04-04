@@ -79,7 +79,7 @@ Array.prototype.moveItem = function(from, to) {
 </script>
 
 <style lang="scss" scoped>
-$mainColor: #001ce2;
+$mainBlue: #001ce2;
 
 
 .audio-recorder{

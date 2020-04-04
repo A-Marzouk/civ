@@ -12,6 +12,7 @@
         
         @include lt-md {
             color: $mainBlue;
+            font-size: 18px;
         }
 
         .hint-message {
@@ -53,6 +54,10 @@
 
         &:focus {
             border-color: $mainBlue;
+        }
+
+        @include lt-md {
+            font-size: 16px;
         }
 
         @include lt-sm {

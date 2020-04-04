@@ -728,6 +728,7 @@ $mainBlue: #001CE2;
 
             position: relative;
 
+
             @include lt-md {
 
                 border-color: $mainBlue;
@@ -744,6 +745,13 @@ $mainBlue: #001CE2;
                     &.toggled{
                         -webkit-transform: scaleY(-1);
                         transform: scaleY(-1);
+                    }
+
+                    @include lt-sm {
+                        height: 9px;
+                        width: 18px;
+                        top: 15px;
+                        right: 15px;
                     }
                 }
 
@@ -762,14 +770,15 @@ $mainBlue: #001CE2;
                     color: black;
                     font-weight: bold;
                     font-size: 22px;
+                    background: white;
 
                     @include lt-md {
-                        background: white;
                         border-color: $mainBlue;
                     }
 
                     @include lt-sm {
                         font-size: 14px;
+                        height: 38px
                     }
 
                     &:focus{
@@ -799,9 +808,12 @@ $mainBlue: #001CE2;
                 border-radius: 0 0 10px 10px;
                 opacity: 1;
                 margin-top: 0;
-                width:269px;
+                width: 100%;
                 border-top: 0;
                 height: auto;
+                max-height: 300px;
+                overflow-y: auto;
+                z-index: 30;
 
                 @include lt-md {
                     border-color: $mainBlue;
