@@ -231,6 +231,11 @@ import  ImportCV  from '../../components/ImportCV'
 
             @include lt-md {
                 padding: 0;
+
+                .import-cv-wrapper{
+                    padding: 0px;
+                }
+
             }
 
             .import-item {
