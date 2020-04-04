@@ -124,7 +124,16 @@
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     appendDots: '.nav-scrollbox',
-                    arrows: false
+                    arrows: false,
+                    responsive: [
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+                    ]
                 }                 
             }
         },
@@ -459,6 +468,9 @@
                     @include lt-md {
                         display: block;
                     }
+                    @include lt-sm {
+                        max-width: 250px;
+                    }
                     
                     .slider-rate{
                         border-radius: 24px;
@@ -478,6 +490,12 @@
 
                             }
                         }
+
+                        @include lt-sm {
+                            overflow: hidden;
+                        }
+
+
                     }
                     .nav-scrollbox{
                         position: relative;
