@@ -455,6 +455,11 @@
                 &:last-of-type {
                     margin-bottom: 0;
                 }
+
+                @include lt-sm {
+                    padding: 10px 30px;
+                    font-size: 16px;
+                }
             }
         }
     }
