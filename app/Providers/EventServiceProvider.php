@@ -52,7 +52,7 @@ class EventServiceProvider extends ServiceProvider
             ]);
 
             // payment_info
-            PaymentInfo::insert(
+            PaymentInfo::insert([
                 [
                     'user_id' => $user->id,
                     'salary_frequency' => 'hourly',
@@ -77,10 +77,10 @@ class EventServiceProvider extends ServiceProvider
                     'salary' => 3000,
                     'currency' => 'usd'
                 ]
-            );
+            ]);
 
             // availability info
-            AvailabilityInfo::insert(
+            AvailabilityInfo::insert([
                 [
                     'user_id' => $user->id,
                     'available_hours_frequency' => 'weekly',
@@ -96,7 +96,7 @@ class EventServiceProvider extends ServiceProvider
                     'available_hours_frequency' => 'yearly',
                     'available_hours' => 4000
                 ]
-            );
+            ]);
 
             // summary
             Summary::create([
