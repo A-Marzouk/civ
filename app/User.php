@@ -68,6 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'imports',
             'languages',
             'personalInfo',
+            'availabilityInfo',
             'paymentInfo',
             'summary',
         ])->first();
