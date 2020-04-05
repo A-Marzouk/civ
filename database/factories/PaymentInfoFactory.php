@@ -10,8 +10,7 @@ $factory->define(PaymentInfo::class, function (Faker $faker) {
         'user_id' => 2,
         'salary' => $faker->numberBetween(0,100),
         'salary_frequency' => 'hourly',
-        'available_hours' => $faker->numberBetween(30,60),
-        'available_hours_frequency' => 'weekly',
+        'currency' => 'udf',
     ];
 });
 
