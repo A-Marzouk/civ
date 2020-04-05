@@ -124,16 +124,7 @@
                     slidesToShow: 3,
                     slidesToScroll: 1,
                     appendDots: '.nav-scrollbox',
-                    arrows: false,
-                    // responsive: [
-                    //     {
-                    //         breakpoint: 480,
-                    //         settings: {
-                    //             slidesToShow: 1,
-                    //             slidesToScroll: 1
-                    //         }
-                    //     }
-                    // ]
+                    arrows: false
                 }                 
             }
         },
