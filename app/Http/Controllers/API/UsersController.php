@@ -40,6 +40,7 @@ class UsersController extends Controller
             'languages',
             'personalInfo',
             'paymentInfo',
+            'availabilityInfo',
             'summary',
         ])->first();
         if($user){
