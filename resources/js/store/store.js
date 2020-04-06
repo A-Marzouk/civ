@@ -23,12 +23,42 @@ export const store = new Vuex.Store({
                 location: 'London',
                 about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             },
-            payment_info: {
-                salary: '10',
-                salary_frequency: 'Hourly',
-                available_hours: '40',
-                available_hours_frequency: 'Weekly'
-            },
+            payment_info: [
+                {
+                    salary: '10',
+                    salary_frequency: 'hourly',
+                    currency: 'usd'
+                },
+                {
+                    salary: '10',
+                    salary_frequency: 'weekly',
+                    currency: 'usd'
+                },
+                {
+                    salary: '10',
+                    salary_frequency: 'monthly',
+                    currency: 'usd'
+                },
+                {
+                    salary: '10',
+                    salary_frequency: 'yearly',
+                    currency: 'usd'
+                },
+            ],
+            availability_info:[
+                {
+                    available_hours: '40',
+                    available_hours_frequency: 'Weekly'
+                },
+                {
+                    available_hours: '40',
+                    available_hours_frequency: 'monthly'
+                },
+                {
+                    available_hours: '40',
+                    available_hours_frequency: 'yearly'
+                }
+            ],
             skills: [
                 {
                     id: Math.random(),

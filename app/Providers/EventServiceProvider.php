@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\AvailabilityInfo;
 use App\Link;
 use App\PaymentInfo;
 use App\PersonalInfo;
@@ -40,24 +41,61 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        User::created(function($user)
-        {
+        User::created(function ($user) {
             // create default one to one relations needed for user.
 
-                // personal info
+            // personal info
             PersonalInfo::create([
                 'user_id' => $user->id,
                 'full_name' => $user->name,
                 'email' => $user->email
             ]);
 
-                // payment_info
-            PaymentInfo::create([
-                'user_id' => $user->id,
-                'salary_frequency' => 'hourly',
-                'salary' => 3,
-                'available_hours_frequency' => 'weekly',
-                'available_hours' => 40
+            // payment_info
+            PaymentInfo::insert([
+                [
+                    'user_id' => $user->id,
+                    'salary_frequency' => 'hourly',
+                    'salary' => 3,
+                    'currency' => 'usd'
+                ],
+                [
+                    'user_id' => $user->id,
+                    'salary_frequency' => 'weekly',
+                    'salary' => 30,
+                    'currency' => 'usd'
+                ],
+                [
+                    'user_id' => $user->id,
+                    'salary_frequency' => 'monthly',
+                    'salary' => 300,
+                    'currency' => 'usd'
+                ],
+                [
+                    'user_id' => $user->id,
+                    'salary_frequency' => 'yearly',
+                    'salary' => 3000,
+                    'currency' => 'usd'
+                ]
+            ]);
+
+            // availability info
+            AvailabilityInfo::insert([
+                [
+                    'user_id' => $user->id,
+                    'available_hours_frequency' => 'weekly',
+                    'available_hours' => 40
+                ],
+                [
+                    'user_id' => $user->id,
+                    'available_hours_frequency' => 'monthly',
+                    'available_hours' => 400
+                ],
+                [
+                    'user_id' => $user->id,
+                    'available_hours_frequency' => 'yearly',
+                    'available_hours' => 4000
+                ]
             ]);
 
             // summary
