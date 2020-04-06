@@ -208,8 +208,8 @@
         <!-- Main navigation tab -->
       </v-container>
       <!-- ....................Tab Items ..........................-->
-      <v-container fluid style="width:100%">
-        <v-row class="mx-10">
+      <v-container style="width:100%">
+        <v-row class="mx-md-10 mx-sm-10 mx-5">
           <v-col>
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
@@ -358,7 +358,7 @@
                                     <v-card flat color="transparent">California Insitute of Technology</v-card>
                                   </v-list-item-title>
                                   <v-list-item-subtitle class="custom-education-subtitle">
-                                    <v-card flat color="transparent" style="color:#fbd76d;">User interface designer</v-card>
+                                    <v-card flat color="transparent" style="color:#fbd76d;">M.Sc in HCI, <span class="ml-5">Dec 19 - Present</span></v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class= "mt-6">
                                     <v-card color="transparent" flat class="custom-education-details">
@@ -703,7 +703,7 @@ export default {
 // ................... Work Desktop......................................
 .work-icon {
   width: 20px;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 .custom-work-title {
   font-size: 24px;
@@ -781,7 +781,7 @@ export default {
 // Watermark text
 .watermark-text {
   position: absolute;
-  margin-top: 3vh;
+  margin-top: 80px;
   font-size: 18vw;
   width: 100%;
   opacity: 0.1;
