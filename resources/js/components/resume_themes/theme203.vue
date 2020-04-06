@@ -12,51 +12,77 @@
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col md="5" cols="12" sm="12">
-                  <v-card flat color="transparent" style="z-index:2;">
+                <v-col md="8" cols="12" sm="7">
+                  <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
-                        <v-list-item-avatar size="120">
+                        <v-list-item-avatar size="120" class="hidden-xs-only custom-avatar">
+                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
+                        </v-list-item-avatar>
+                        <v-list-item-avatar size="80" class="hidden-sm-and-up custom-avatar mr-2">
                           <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
-                            Carla Pipin Ranga
-                            <span class="ml-7">
-                              <v-btn fab color="#FCD259" small depressed class="mx-auto btn-email">
-                                <v-icon class="icon-email">mdi-email</v-icon>
-                              </v-btn>
+                            <v-card class="pa-0" flat color="transparent">
+                              Carla Pipin Ranga
+                              <span class="mx-8 hidden-sm-and-down">
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  small
+                                  depressed
+                                  class="mx-md-1 mx-sm-2 btn-email"
+                                >
+                                  <v-icon class="icon-email">mdi-email</v-icon>
+                                </v-btn>
 
-                              <v-btn
-                                fab
-                                color="#FCD259"
-                                x-small
-                                depressed
-                                class="mx-auto btn-video-player"
-                              >
-                                <img
-                                  width="14"
-                                  src="/images/resume_themes/theme203/icons/video-player.webp"
-                                />
-                              </v-btn>
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  x-small
+                                  depressed
+                                  class="mx-md-0 mx-sm-2 btn-video-player"
+                                >
+                                  <img
+                                    width="14"
+                                    src="/images/resume_themes/theme203/icons/video-player.webp"
+                                  />
+                                </v-btn>
 
-                              <v-btn
-                                fab
-                                color="#FCD259"
-                                x-small
-                                depressed
-                                class="btn-headphone mx-auto"
-                              >
-                                <img
-                                  width="14"
-                                  src="/images/resume_themes/theme203/icons/headphones.webp"
-                                />
-                              </v-btn>
-                            </span>
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  x-small
+                                  depressed
+                                  class="btn-headphone mx-auto mx-sm-2"
+                                >
+                                  <img
+                                    width="14"
+                                    src="/images/resume_themes/theme203/icons/headphones.webp"
+                                  />
+                                </v-btn>
+                              </span>
+                              <span class="mx-1 hidden-sm-and-down">
+                                <v-btn
+                                  fab
+                                  color="#FCD259"
+                                  small
+                                  class="mx-md-1 mx-sm-2 social-btn"
+                                  depressed
+                                  v-for="item in socialIcons"
+                                  :key="item.id"
+                                >
+                                  <img width="14" :src="getSocialIcon(item.title)" />
+                                </v-btn>
+                              </span>
+                            </v-card>
                           </v-list-item-title>
-                          <v-list-item-title
-                            class="profile-subtitle"
-                          >Web Ui/Ux Designer, Graphiс Designer</v-list-item-title>
+                          <v-list-item-title>
+                            <v-card flat color="transparent">
+                              <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
+                            </v-card>
+                          </v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
                     </v-card-text>
@@ -64,39 +90,54 @@
                 </v-col>
                 <!-- 1st column profile pic and icons -->
 
+                <!-- 2nd column only for tab and mobile version version -->
+                <v-col sm="5" cols="12" class="tablet-audio-video-flex">
+                  <v-card
+                    flat
+                    color="transparent"
+                    class="mr-sm-5 mt-sm-0 my-sm-0 my-10 mt-n8 audio-video-card"
+                  >
+                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
+                      <v-icon class="icon-email">mdi-email</v-icon>
+                    </v-btn>
+
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="mx-md-0 mx-sm-2 btn-video-player"
+                    >
+                      <img width="14" src="/images/resume_themes/theme203/icons/video-player.webp" />
+                    </v-btn>
+
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      x-small
+                      depressed
+                      class="btn-headphone mx-auto mx-sm-2"
+                    >
+                      <img width="14" src="/images/resume_themes/theme203/icons/headphones.webp" />
+                    </v-btn>
+                  </v-card>
+                </v-col>
+                <!-- 2nd column only for tab and mobile version version -->
+
                 <!-- 2nd column social media icons -->
-                <v-col md="3" sm="6" cols="12" class="mt-n3 pa-0" align="center">
+                <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
                   <v-card flat color="tranparent">
                     <v-card-text class>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/behance.webp"
-                        />
-                      </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/dribbble.webp"
-                        />
-                      </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/instagram.webp"
-                        />
-                      </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/linikedin.webp"
-                        />
-                      </v-btn>
-                      <v-btn fab color="#FCD259" small class="mx-auto social-btn" depressed>
-                        <img
-                          width="14"
-                          src="/images/resume_themes/theme203/social_icons/google-plus.webp"
-                        />
+                      <v-btn
+                        fab
+                        color="#FCD259"
+                        small
+                        class="mx-md-1 mx-sm-2 mx-1 social-btn"
+                        depressed
+                        v-for="item in socialIcons"
+                        :key="item.id"
+                      >
+                        <img width="14" :src="getSocialIcon(item.title)" />
                       </v-btn>
                     </v-card-text>
                   </v-card>
@@ -147,7 +188,7 @@
       <!-- Header Row -->
 
       <!-- tab bar row -->
-      <v-container>
+      <v-container style="width:100%">
         <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" md="10">
@@ -175,22 +216,22 @@
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <v-card flat color="transparent">
-                    <div class="watermark-text text-center">Portfolio</div>
                     <v-card-text align="center">
                       <v-row align="center" justify="center">
+                        <div class="watermark-text text-center">Portfolio</div>
                         <!-- 1st column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/1.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/2.png"
+                                src="/images/resume_themes/theme203/portfolio/1.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -198,18 +239,18 @@
                         <!-- 1st column -->
 
                         <!-- 2nd column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/3.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/4.png"
+                                src="/images/resume_themes/theme203/portfolio/3.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -217,18 +258,18 @@
                         <!-- 2nd column -->
 
                         <!-- 3rd column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/5.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/6.png"
+                                src="/images/resume_themes/theme203/portfolio/5.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -236,18 +277,18 @@
                         <!-- 3rd column -->
 
                         <!-- 4th Column -->
-                        <v-col cols="12" sm="6" md="3">
+                        <v-col cols="12" sm="12" md="3">
                           <v-card class="pa-2" flat color="transparent">
-                            <div class="my-md-5 image-box-custom">
+                            <div class="my-5 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
                                 src="/images/resume_themes/theme203/portfolio/7.png"
                               ></v-img>
                             </div>
-                            <div class="my-md-2 image-box-custom">
+                            <div class="my-2 image-box-custom">
                               <v-img
                                 class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/8.png"
+                                src="/images/resume_themes/theme203/portfolio/7.png"
                               ></v-img>
                             </div>
                           </v-card>
@@ -264,20 +305,34 @@
                   <div class="watermark-text text-center">Work</div>
                   <v-card color="transparent" flat>
                     <v-card-text class>
-                      <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
-                            <v-card-title class="custom-work-title">
-                              <img
-                                class="mx-5"
-                                src="/images/resume_themes/theme203/images/ellipse.png"
-                              /> Google Inc. Introduction Google
-                            </v-card-title>
-                            <v-card-subtitle class="custom-work-subtitle">User interface designer</v-card-subtitle>
-                            <v-card-action class="custom-work-duration">2012- Current</v-card-action>
-                          </v-card>
-                        </v-col>
-                      </v-row>
+                      <v-container fluid ma-0 pa-0 style="width:100%">
+                        <v-row align="center" justify="center">
+                          <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
+                            <v-card flat color="transparent">
+                              <v-list-item three-line>
+                                <v-list-item-icon>
+                                  <img
+                                    class="work-icon"
+                                    src="/images/resume_themes/theme203/images/ellipse.png"
+                                  />
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                  <v-list-item-title class="custom-work-title">
+                                    <v-card flat color="transparent">Google Inc. Introduction Google</v-card>
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle class="custom-work-subtitle">
+                                    <v-card flat color="transparent">User interface designer</v-card>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle class="custom-work-duration mt-6">
+                                    <v-card color="transparent" flat>2012- Current</v-card>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                              
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-container>
                     </v-card-text>
                   </v-card>
                 </v-tab-item>
@@ -287,27 +342,36 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" flat>
-                    <v-card-text class>
+                    <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
-                            <v-card-title class="custom-work-title">
-                              <img
-                                class="mx-5"
-                                src="/images/resume_themes/theme203/images/ellipse.png"
-                              /> Google Inc. Introduction Google
-                            </v-card-title>
-                            <v-card-subtitle class="custom-education-subtitle">
-                              <span>M.Sc in HCI,</span>
-                              <span class="mr-md-5">Dec 19 - Present</span>
-                            </v-card-subtitle>
-                            <v-card-text
-                              class="custom-education-details"
-                            >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card-text>
-                          </v-card>
-                        </v-col>
+                            <v-card flat color="transparent">
+                              <v-list-item three-line>
+                                <v-list-item-icon>
+                                  <img
+                                    class="work-icon"
+                                    src="/images/resume_themes/theme203/images/ellipse.png"
+                                  />
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                  <v-list-item-title class="custom-work-title">
+                                    <v-card flat color="transparent">California Insitute of Technology</v-card>
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle class="custom-education-subtitle">
+                                    <v-card flat color="transparent" style="color:#fbd76d;">User interface designer</v-card>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle class= "mt-6">
+                                    <v-card color="transparent" flat class="custom-education-details">
+                                      I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
+                                    </v-card>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                              
+                            </v-card>
+                          </v-col>
                       </v-row>
-                    </v-card-text>
+                    </v-container>
                   </v-card>
                 </v-tab-item>
                 <!--................... Tab item Education............................... -->
@@ -316,51 +380,51 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" flat>
-                    <v-card-text class>
-                      <v-row align="center" justify="center">
-                        <v-col
-                          cols="12"
-                          sm="12"
-                          md="5"
-                          offset-md="1"
-                          class="mb-12"
-                          v-for="skill in skills"
-                          :key="skill.id"
-                        >
-                          <v-card flat color="transparent" class="mx-auto">
-                            <v-card-text>
-                              <v-list-item>
-                                <v-list-item-avatar class="skill-circle mr-n1" style="z-index:2;">
-                                  <span>{{skill.icon_text}}</span>
-                                </v-list-item-avatar>
-                                <v-list-item-content class="mt-md-n6">
-                                  <v-list-item-subtitle>
-                                    <v-row no-gutters>
-                                      <v-col cols="6" class="skill-title-text">
-                                        <span class="ml-2">{{ skill.title }}</span>
-                                      </v-col>
-                                      <v-col
-                                        cols="6"
-                                        align="right"
-                                        class="skill-title-text"
-                                      >{{skill.skill_value_text}}</v-col>
-                                    </v-row>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle>
-                                    <v-progress-linear
-                                      color="#FCD259"
-                                      height="12"
-                                      rounded
-                                      :value="skill.skill_value"
-                                    ></v-progress-linear>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-card-text>
-                          </v-card>
-                        </v-col>
-                      </v-row>
-                    </v-card-text>
+                    <v-row align="center" justify="center">
+                      <v-col
+                        cols="12"
+                        sm="12"
+                        md="5"
+                        class="mb-12"
+                        v-for="skill in skills"
+                        :key="skill.id"
+                      >
+                        <v-card flat color="transparent" class="mx-auto">
+                          <v-card-text>
+                            <v-list-item>
+                              <v-list-item-avatar
+                                class="skill-circle mr-n1 mt-sm-2"
+                                style="z-index:1;"
+                              >
+                                <span>{{skill.icon_text}}</span>
+                              </v-list-item-avatar>
+                              <v-list-item-content class="mt-n6">
+                                <v-list-item-subtitle>
+                                  <v-row no-gutters>
+                                    <v-col cols="6" class="skill-title-text">
+                                      <span class="ml-2">{{ skill.title }}</span>
+                                    </v-col>
+                                    <v-col
+                                      cols="6"
+                                      align="right"
+                                      class="skill-title-text"
+                                    >{{skill.skill_value_text}}</v-col>
+                                  </v-row>
+                                </v-list-item-subtitle>
+                                <v-list-item-subtitle>
+                                  <v-progress-linear
+                                    color="#FCD259"
+                                    height="12"
+                                    rounded
+                                    :value="skill.skill_value"
+                                  ></v-progress-linear>
+                                </v-list-item-subtitle>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
                   </v-card>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
@@ -383,6 +447,13 @@ export default {
   name: "ResumeTheme40",
   data() {
     return {
+      socialIcons: [
+        { id: 1, title: "behance" },
+        { id: 2, title: "dribbble" },
+        { id: 3, title: "instagram" },
+        { id: 4, title: "linkedin" },
+        { id: 5, title: "google-plus" }
+      ],
       mainDataTab: null,
       progressBarColor: "yellow",
       mainTabs: [
@@ -448,6 +519,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    getSocialIcon(name) {
+      return `/images/resume_themes/theme203/social_icons/${name}.webp`;
+    }
   }
 };
 </script>
@@ -455,6 +531,7 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
+@import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 
 /* Shapes */
@@ -466,13 +543,21 @@ export default {
   position: absolute;
   background: #fcd259;
   height: 18.75rem;
-  width: 25.3rem;
+  width: 27rem;
   -webkit-clip-path: polygon(100% 0, 0% 100%, 0 0);
   clip-path: polygon(100% 0, 0% 100%, 0 0);
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (max-width: 599px) {
+    width: 15.5rem;
+    height: 13.75rem;
+  }
+  @media screen and (max-width: 322px) {
+    width: 14.5rem;
+    height: 12.75rem;
+  }
 }
 
 .triangle-bottom-right {
@@ -490,13 +575,17 @@ export default {
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   float: right;
+  @media screen and(max-width:959px) {
+    width: 8rem;
+    height: 7.75rem;
+  }
 }
 
 .verical-sidebar {
   position: absolute;
   background: #e6bf4e;
-  width: 3vw;
-  height: 600vh;
+  width: 2rem;
+  height: 700vh;
   z-index: 1;
   bottom: 0;
 }
@@ -505,12 +594,22 @@ export default {
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
+  @media screen and(max-width:599px) {
+    font-size: 1.12rem !important;
+  }
+}
+
+.custom-avatar {
+  border: 5px solid white;
 }
 
 .profile-subtitle {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
+  @media screen and(max-width:599px) {
+    font-size: 0.5rem !important;
+  }
 }
 .btn-email {
   width: 2.56rem !important;
@@ -537,24 +636,49 @@ export default {
 }
 /* Social Btn */
 
+// audio video card
+
+//audio video card
+
 /* Hire Me card */
 .hire-me-title {
   font-family: "Montserrat", sans-serif !important;
   font-size: 0.9rem !important;
   color: #8b8b8b !important;
   text-align: center !important;
+  @media screen and (max-width: 959px) {
+    font-size: 0.7rem !important;
+  }
+  @media screen and (max-width: 330px) {
+    font-size: 0.6rem !important;
+  }
 }
 
 .hire-me-subtitle {
   font-family: "Montserrat", sans-serif !important;
   font-size: 1rem !important;
   color: #000000 !important;
+  @media screen and (max-width: 959px) {
+    font-size: 0.8rem !important;
+  }
+  @media screen and (max-width: 330px) {
+    font-size: 0.7rem !important;
+  }
 }
 
 .btn-hire-me {
   width: 7.5rem;
   border-radius: 50px !important;
   font-weight: 100px !important;
+  @media screen and (max-width: 599px) {
+    width: 6.5rem;
+    font-size: 12px;
+  }
+
+  @media screen and (max-width: 330px) {
+    width: 5.5rem;
+    font-size: 12px;
+  }
 }
 
 /* Hire Me Card */
@@ -564,6 +688,9 @@ export default {
 // ............................ Main Navigation Tab...........................//
 .custom-tab-text {
   font-size: 1.2rem;
+  @media screen and (max-width: 599px) {
+    font-size: 1rem;
+  }
 }
 // ............................ Main Navigation Tab ...........................//
 // ..........................Desktop Portfolio.........................
@@ -574,25 +701,26 @@ export default {
 // .........................Desktop Portfolio...........................
 
 // ................... Work Desktop......................................
+.work-icon {
+  width: 20px;
+  margin-top: 5px;
+}
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
-  img {
-    width: 20px !important;
-  }
+  text-transform: capitalize;
 }
 .custom-work-subtitle {
   font-size: 12px;
   color: #000000 !important;
   text-align: left;
-  margin-left: 62px;
   text-transform: capitalize;
 }
 .custom-work-duration {
   font-size: 12px;
   color: #000000 !important;
   text-align: left !important;
-  margin-left: 80px;
+
 }
 //...................... Work Desktop.....................................
 
@@ -602,14 +730,12 @@ export default {
   color: #fbd76d !important;
   line-height: 1.4375rem;
   font-weight: bold;
-  margin-left: 62px;
 }
 .custom-education-details {
   font-size: 0.75rem;
   line-height: 1.4375rem;
   font-weight: 300;
   color: #2d2d2d !important;
-  margin-left: 62px;
 }
 // ................ Education Desktop............................
 // ................Skills Desktop..................................
@@ -622,10 +748,10 @@ export default {
   border: 5px solid #e0bb4c;
   box-sizing: border-box;
   text-align: center;
-  padding: 3px 6px 5px 8px;
+  padding: 3px 8px 5px 8px;
   span {
     font-family: "Rubik", sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #ffffff;
   }
 }
@@ -635,16 +761,32 @@ export default {
   font-size: 1rem;
   line-height: 1.6875rem;
   color: #222d68 !important;
+  @media screen and (max-width: 599px) {
+    font-size: 0.7rem;
+  }
+}
+.tablet-audio-video-flex {
+  display: none;
+  @media screen and (max-width: 959px) {
+    display: inline;
+    text-align: right;
+  }
+  @media screen and (max-width: 599px) {
+    display: inline;
+    text-align: center;
+  }
 }
 
 //..................Skills Desktop.....................................
 // Watermark text
 .watermark-text {
   position: absolute;
-  margin-top:-70px;
-  font-size: 20vw;
+  margin-top: 3vh;
+  font-size: 18vw;
   width: 100%;
   opacity: 0.1;
+  white-space: nowrap;
+  display: inline-block;
 }
 </style>
 
@@ -656,13 +798,11 @@ export default {
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
-   background-color: linear-gradient(
+  background-color: linear-gradient(
     138.05deg,
     #fcd259 1.07%,
     #e5bf4e 51.95%,
     #ffde81 89.88%
   ) !important;
-
-
 }
 </style>

@@ -9,6 +9,11 @@
         color: #505050;
         font-family: "Noto Sans";
         font-weight: 700;
+        
+        @include lt-md {
+            color: $mainBlue;
+            font-size: 18px;
+        }
 
         .hint-message {
             font-size: 18px;
@@ -21,22 +26,23 @@
                 margin-bottom: 16px;
             }
 
-            @include lt-md {
+            @include lt-sm {
                 font-size: 9px;
             }
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 13px;
         }
     }
     input, select {
         min-height: 73px;
-        max-width: 616px;
+        max-width: 637px;
+        width: 100%;
         border: 1.5px solid #505050;
         border-radius: 8px;
         padding: 0px 0px 0px 16.8px;
-        color: #a5a5a5;
+        color: #444444;
         font-size: 15px;
         font-family: "Noto Sans";
         font-weight: 500;
@@ -46,12 +52,25 @@
             border-color: $mainBlue;
         }
 
+        &:focus {
+            border-color: $mainBlue;
+        }
+
+        &::placeholder {
+            color: #a5a5a5;
+        }
+
         @include lt-md {
+            font-size: 16px;
+        }
+
+        @include lt-sm {
             font-size: 13px;
             min-height: 38px;
             border-radius: 6px;
             border-width: 0.5px;
         }
+
     }
     textarea {
         min-height: 181px;
@@ -62,16 +81,24 @@
         font-family: "Noto Sans";
         font-weight: 500;
         outline: none;
-        color: #a5a5a5;
+        color: #444444;
         border: 1.5px solid #505050;
         border-radius: 8px;
         resize: none;
+
+        &:focus {
+            border-color: $mainBlue;
+        }
+
+        &::placeholder {
+            color: #a5a5a5;
+        }
 
         &.--blue {
             border-color: $mainBlue;
         }
 
-        @include lt-md {
+        @include lt-sm {
             font-size: 13px;
             min-height: 83px;
             border-radius: 6px;

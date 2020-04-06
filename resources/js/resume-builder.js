@@ -30,7 +30,7 @@ import ResumeBuilderEditCVReferences from './components/resume_builder/tabs/edit
 if ($("#resumeBuilder").length !== 0) {
 
     const routes = [
-        {path: '/resume-builder', component: ResumeBuilderMyAccount, name:'my-account',},
+        {path: '/resume-builder', component: ResumeBuilderMyAccount, name:'my-account'},
         {
             path: '/resume-builder/edit',
             component: ResumeBuilderEditCV,

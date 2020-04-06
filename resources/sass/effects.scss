@@ -1,0 +1,7 @@
+// Transitions
+.fadeCustom-enter-active, .fadeCustom-leave-active {
+    transition: opacity .5s;
+}
+.fadeCustom-enter, .fadeCustom-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}

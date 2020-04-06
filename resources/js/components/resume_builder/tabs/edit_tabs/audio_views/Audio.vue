@@ -1,23 +1,26 @@
 <template>
     <div>
-        <div class="content d-flex">
-            <div class="upload-container d-flex flex-column">
-                <h3 class="text-blue">Upload my audio</h3>
-
+        <div class="content d-flex justify-content-between">
+             <div class="upload-container d-flex flex-column">
+                <h3 class="text-blue hideOnMd">Upload my audio</h3>
                 <div id="audio_and_video" class="vue-dropzone">
-                    <svg-vue class="upload-audio-icon" icon="upload-audio-icon"></svg-vue>
+                    <svg-vue class="upload-audio-icon hideOnMd" icon="upload-audio-icon"></svg-vue>
                     <div class="empty-text">
                         <br/>
                     </div>
-                    <b-button class="btn filled btn-upload" @click="$bvModal.show('main-upload-modal')">
+                    <b-button class="btn btn-filled btn-upload hideOnMd" @click="$bvModal.show('main-upload-modal')">
                         <svg-vue class="upload-icon icon" icon="upload-icon"></svg-vue>
                         <span>Browse audio file</span>
+                    </b-button>
+                    <b-button class="btn btn-filled btn-upload showOnMd" @click="$bvModal.show('main-upload-modal')">
+                        <svg-vue class="upload-icon icon" icon="upload-icon"></svg-vue>
+                        <span>Add audio</span>
                     </b-button>
                 </div>
                 <!-- Insert icon -->
             </div>
 
-            <div class="upload-container d-flex flex-column" style="margin-left:-5vw;">
+            <div class="upload-container d-flex flex-column">
                 <div class="audios-preview-container">
                     <div class="audio-element" v-for="(audio,index) in audios" :key="audio.id" v-if="audio.type === 'audio'">
                         <div class="audio-name">{{audio.title}}</div>
@@ -35,17 +38,14 @@
                             <!--</button>-->
                             <!--</div>-->
 
-                            <div class="input-select select-audio-options dropdown">
-                                <button class="audio-options dropdown-toggle" type="button" id="dropdownMenuButton"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Option
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="javascript:void(0)" @click="deleteMedia(audio)">
-                                        <svg-vue class="option-icon" icon="trash-delete-icon"></svg-vue>
-                                        Delete
-                                    </a>
-                                </div>
+                            <a class="play-btn" href="javascript:void(0)" @click="loadVideo(audio.id)"  v-show="audio.id !== playingVideo">
+                                <svg-vue class="audio-play-icon" icon="play-media-icon"></svg-vue>
+                            </a>
+
+                            <div class="optionsBtns justify-content-center">
+                                <a href="javascript:void(0)" @click="deleteMedia(audio)">
+                                    <svg-vue class="option-icon icon" icon="trash-delete-icon"></svg-vue>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -54,9 +54,9 @@
 
             <!-- Audio Upload Main Modal -->
             <div>
-                <b-modal id="main-upload-modal" style="max-width:60% !important;" hide-footer hide-header>
+                <b-modal id="main-upload-modal" hide-footer hide-header>
                     <div class="d-block">
-                        <b-row class="justify-content-center">
+                        <b-row class="justify-content-center upload-header">
                             <div class="action-btn">
                                 <button type="button" aria-label="Close" @click="$bvModal.hide('main-upload-modal')"
                                         class="btn-close" v-if="currentUploadMethod == null">×
@@ -79,7 +79,7 @@
                             <b-container class="bv-example-row" v-if="currentUploadMethod==null">
                                 <b-row class="text-center">
                                     <!-- Link Url -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Link URL</div>
                                         <div class="d-flex-inline">
                                             <button @click="currentUploadMethod='linkUrl' ">
@@ -89,7 +89,7 @@
                                     </b-col>
                                     <!-- Link URL -->
                                     <!-- MP3 -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Upload Mp3</div>
                                         <div class="d-flex-inline">
                                             <input type="file" ref="audio" style="display: none"
@@ -101,7 +101,7 @@
                                     </b-col>
                                     <!-- MP3 -->
                                     <!-- Record -->
-                                    <b-col>
+                                    <b-col class="upload-option">
                                         <div class="d-flex-inline upload-audio-subtitle">Record</div>
                                         <div class="d-flex-inline">
                                             <button @click="currentUploadMethod='record'">
@@ -288,18 +288,103 @@
     }
 
 
-    .modal.show .modal-dialog.modal-md {
-        max-width: 55% !important;
-    }
+    // .modal.show .modal-dialog.modal-md {
+    //     max-width: 55% !important;
+    // }
 </style>
 
 <style lang="scss" scoped>
     $mainBlue: #001ce2;
+    @import '../../../../../../sass/media-queries';
+
+    .modal-content {
+        border: 2px solid #001ce2 !important;
+        border-radius: 20px !important;
+    }
+
+    .modal.show .modal-dialog {
+        max-width: 55% !important;
+
+        &.modal-md {
+
+            @include lt-md {
+                max-width: 100% !important;
+                width: 70%;
+            }
+        }
+
+    }
+
+    .optionsBtns {
+        display: flex;
+        margin: 0;
+        width: 30px;
+        height: 30px;
+        background: transparent;
+        box-shadow: 0 9px 12px rgba(0,0,0,.03);
+        justify-content: center;
+        align-items: center;
+        padding: 12px;
+        border-radius: 2px;
+        position: absolute;
+
+        top: 10px;
+        right: 10px;
+
+        @include lt-md {
+        }
+
+        @include lt-sm {
+            width: 20px;
+            height: 20px;
+        }
+
+        a {
+            height: 24px;
+            display: block;
+
+            @include lt-sm {
+                height: 16px;
+            }
+
+            .icon {
+                height: 100%;
+                color: $mainBlue;
+                fill: $mainBlue;
+
+                path {
+                    fill: $mainBlue;
+                }
+            }
+        }
+    }
+
+    .content {
+        flex-wrap: wrap;
+        width: 100%;
+
+        @include lt-md {
+            max-width: 418px;
+            margin: 0 auto;
+        }
+    }
 
     .upload-container {
         position: relative;
-        width: 354px;
-        margin-right: 232px;
+        max-width: 354px;
+        width: 48%;
+
+        @include lt-md {
+            width: 100%;
+            margin: 0 auto;
+            max-width: 100%;
+
+            .showOnMd {
+                display: flex !important;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
 
         h3 {
             font-size: 28px;
@@ -328,6 +413,15 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+
+        @include lt-md {
+            border: none;
+            height: auto;
+            margin: 0 auto;
+            width: 100%;
+            margin-top: 6px;
+            max-width: 418px;
+        }
     }
 
     .upload-audio-icon {
@@ -346,7 +440,7 @@
     }
 
     .audios-preview-container {
-        margin-top: 10px;
+        margin-top: 40px;
     }
 
     /* aninamtion */
@@ -382,10 +476,46 @@
         }
     }
 
+.upload-header {
+
+        @include lt-md {
+            display: none;
+        }
+    }
+
+    .container .row {
+        @include lt-md {
+            display: flex;
+            flex-direction: column;
+
+            .upload-option {
+                display: flex;
+                width: 100%;
+                justify-content: space-between;
+                align-items: center;
+                background: #B9B9B9;
+                border-radius: 8px;
+                margin-bottom: 32px;
+                padding: 10px 50px;
+                font-size: 19px;
+
+                &:last-of-type {
+                    margin-bottom: 0;
+                }
+
+                @include lt-sm {
+                    padding: 10px 30px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 
     .upload-audio-title {
         font-size: 2rem;
+        margin-left: -48px;
         color: #001ce2;
+
     }
 
     .upload-audio-title span {
@@ -396,6 +526,10 @@
         font-size: 1.3rem !important;
         font-weight: bold;
         color: #001ce2;
+
+        @include lt-md {
+            color: #54585E;
+        }
     }
 
     .upload-url-icon {
@@ -417,6 +551,7 @@
     .voice-icon {
         width: 20px !important;
         margin-left: 15px;
+        display: inline-block;
     }
 
     .audio-back-icon {
@@ -528,20 +663,25 @@
     }
 
     .audio-player {
-        border: 1px solid $mainBlue;
-        border-radius: 25px;
+        border-radius: 8px;
+        background: #F7F5F5;
         height: 100px;
-        width: 350px;
+        max-width: 350px;
+        width: 100%;
         justify-content:center;
         align-items: flex-start;
         padding-top: 11px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .16);
+        border: 5px solid white;
+
         .play-icon {
             width: 30px;
         }
 
         audio{
-            border: 1px $mainBlue solid;
-            border-radius: 25px;
+            // border: 1px $mainBlue solid;
+            // border-radius: 25px;
+            background: transparent;
         }
 
         .sound-frecuency {

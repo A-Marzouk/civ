@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="width: 100%">
         <div class="section-title">
             <div class="title-light">Add</div>
             <h2>Skills</h2>
@@ -13,36 +13,75 @@
                 <div class="decorator"></div>
             </div>
 
-            <div class="add-award-section">
-                <div class="award-input">
-                    <label for="title">Skill/ tools/ software name</label>
-                    <input type="text" id="title" v-model="skill.title" required>
-                    <div class="error" v-if="errors.new.title">
-                        {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
+            <div class="add-award-section hideOnMd">
+                <div class="add-skill-container">
+                    <div class="input-field">
+                        <label for="title">Skill/ tools/ software name</label>
+                        <input type="text" v-model="skill.title" required>
+                        <div class="error" v-if="errors.new.title">
+                            {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
+                        </div>
                     </div>
-                </div>
-                <div class="award-input">
-                    <label for="percentage">How much your skill on (Percentage) over this software?</label>
-                    <input type="number" min="30" max="100" step="1" id="percentage" v-model="skill.percentage">
-                    <div class="error" v-if="errors.new.percentage">
-                        {{ Array.isArray(errors.new.percentage) ? errors.new.percentage[0] : errors.new.percentage}}
+                    <div class="input-field">
+                        <label for="percentage">How much your skill on (Percentage) over this software?</label>
+                        <input type="number" min="30" max="100" step="1" v-model="skill.percentage">
+                        <div class="error" v-if="errors.new.percentage">
+                            {{ Array.isArray(errors.new.percentage) ? errors.new.percentage[0] : errors.new.percentage}}
+                        </div>
                     </div>
                 </div>
                 <div class="action-btns">
-                    <div class="add-award-btn NoDecor">
-                        <a href="javascript:void(0)" @click="addSkill">
-                            <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                            Add skill now
-                        </a>
-                    </div>
-                    <div class="auto-import-btn NoDecor">
-                        <a href="">
-                            <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                            Auto import
-                        </a>
-                    </div>
+                    <a class="add-award-btn btn btn-filled" href="javascript:void(0)" @click="addSkill">
+                        <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
+                        Add skill now
+                    </a>
+                    <a class="btn btn-outline" href="">
+                        <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                        Auto import
+                    </a>
                 </div>
             </div>
+            
+
+            <transition class="showOnMd" name="fadeCustom" mode="out-in">            
+                <div v-if="!addNewSkill" class="action-btns">
+                    <a class="btn btn-filled" href="javascript:void(0)" @click="addNewSkill = true">
+                        <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
+                        Add skill now
+                    </a>
+                    <a class="btn btn-outline" href="javascript:void(0)">
+                        <img class='icon' src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                        Auto import
+                    </a>
+                </div>
+                <div v-else class="addSkillForm">
+                    <div class="add-award-section">
+                        <div class="input-field">
+                            <label for="title">Skill/ tools/ software name</label>
+                            <input type="text" v-model="skill.title" required>
+                            <div class="error" v-if="errors.new.title">
+                                {{ Array.isArray(errors.new.title) ? errors.new.title[0] : errors.new.title}}
+                            </div>
+                        </div>
+                        <div class="input-field">
+                            <label for="percentage">How much your skill on (Percentage) over this software?</label>
+                            <input type="number" min="30" max="100" step="1" v-model="skill.percentage">
+                            <div class="error" v-if="errors.new.percentage">
+                                {{ Array.isArray(errors.new.percentage) ? errors.new.percentage[0] : errors.new.percentage}}
+                            </div>
+                        </div>
+                        <div class="action-btns">
+                            <a class="btn btn-filled" href="javascript:void(0)" @click="addSkill">
+                                <svg-vue class='icon' :icon="'add-icon'"></svg-vue>
+                                Add new skill
+                            </a>
+                            <a class="btn btn-outline" href="javascript:void(0)" @click="addNewSkill = false">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </transition>
 
             <div class="skills-list">
                 <div class="skills-item" v-for="(skill,index) in skills" :key="index + '_skill'"
@@ -100,18 +139,16 @@
                                 </div>
                             </div>
                             <div class="action-btns">
-                                <div class="add-award-btn NoDecor">
-                                    <a href="javascript:void(0)" @click="applyEdit">
-                                        <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                                        Save
-                                    </a>
-                                </div>
-                                <div class="auto-import-btn NoDecor">
-                                    <a href="javascript:void(0)" @click="cancelEdit">
-                                        Cancel
-                                    </a>
-                                </div>
+                                <a class="btn btn-filled" href="javascript:void(0)" @click="applyEdit">
+                                    <img src="/images/resume_builder/work-ex/mark.png" alt="mark" class="icon">
+                                    Save
+                                </a>
+                                <a class="btn btn-outline" href="javascript:void(0)" @click="cancelEdit">
+                                    Cancel
+                                </a>
                             </div>
+
+                            
                         </div>
                     </div>
                 </div>
@@ -139,6 +176,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                     title: '',
                     percentage: ''
                 },
+                addNewSkill: false,
                 optionSkillId: 0,
                 editedSkill: {},
                 errors: {
@@ -305,9 +343,101 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
 </script>
 
 <style scoped lang="scss">
-    .section-body-wrapper {
-        width: 1337px;
 
+@import '../../../../../sass/media-queries';
+
+    .section-body-wrapper {
+        max-width: 1337px;
+        width: 100%;
+
+        .action-btns {
+            margin-top: 15px;
+
+            .btn {
+                @include lt-sm {
+                    width: 48%;
+                    min-width: 90px;
+                    max-width: 142px;
+                }
+            }
+
+            @include lt-md {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                margin-top: 40px;
+            }
+
+            @include gt-sm{
+                display: none;
+            }
+
+            .add-award-btn {
+                margin-right: 31px;
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    background: #001CE2 0% 0% no-repeat padding-box;
+                    border-radius: 8px;
+
+                    font: 600 19px Noto Sans;
+                    letter-spacing: 0;
+                    color: #FFFFFF;
+                    opacity: 1;
+
+                    img {
+                        width: 27px;
+                        height: 27px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .auto-import-btn {
+                margin-bottom: 7px;
+
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 226px;
+                    height: 62px;
+
+                    border: 2px solid #001CE2;
+                    border-radius: 8px;
+                    opacity: 1;
+
+                    font: 600 19px Noto Sans;
+                    letter-spacing: 0;
+                    color: #001CE2;
+
+                    img {
+                        width: 27px;
+                        height: 27px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        .addSkillForm {
+
+            @include lt-md {
+                display: block !important;
+
+                .input-field {
+                    max-width: 100%;
+                    width: 100%;
+
+                    input {
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
         
         .add-award-section {
             display: flex;
@@ -340,6 +470,16 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                     color: #505050;
                     opacity: 1;
                 }
+
+                @include lt-md {
+                    width: 100%;
+
+                    input{
+                        width: 100%;
+                        max-height: 60px;
+                    }
+                }
+
             }
 
 
@@ -347,16 +487,18 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 display: flex;
                 margin-top: 15px;
 
+                @include lt-md {
+                    justify-content: space-between;
+                    width: 100%;
+                }
+
                 .add-award-btn {
                     margin-right: 31px;
-                    margin-bottom: 7px;
 
                     a {
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        width: 181px;
-                        height: 62px;
 
                         background: #001CE2 0% 0% no-repeat padding-box;
                         border-radius: 8px;
@@ -406,18 +548,30 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
 
         .skills-list {
             margin-top: 60px;
+            max-width: 861px;
+            width: 100%;
 
             .skills-item {
                 position: relative;
                 background: whitesmoke;
-                margin-left: 43px;
+                // margin-left: 43px;
                 margin-bottom: 30px;
                 display: flex;
                 justify-content: center;
                 flex-direction: column;
-                width: 861px;
+                width: 100%;
                 min-height: 140px;
-                padding-left: 43px;
+                padding: 10px 43px 30px 43px;
+                border-radius: 8px; 
+
+                @include lt-md {
+                    padding: 1em 2em;
+                }
+
+                @include lt-sm {
+                    padding: 1em;
+                }
+
 
                 .skill-title {
                     font-family: "Noto Sans", serif;
@@ -428,19 +582,22 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 }
 
                 .percentage {
-                    width: 773px;
+                    width: 100%;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
 
                     .percentage-bar {
+                        width: 85%;
+
                         .progress {
-                            width: 404px;
+                            width: 100%;
                             height: 15px;
                             border-radius: 23px;
                         }
 
                         .progress-wrap {
+                            width: 100%;
                             background: #ff7c00;
                             margin: 12px 0;
                             overflow: hidden;
@@ -481,7 +638,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 .options {
                     position: absolute;
                     right: 14px;
-                    top: 9px;
+                    top: 14px;
 
                     .options-btn {
                         a {
@@ -566,6 +723,27 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
 
                     .extended-options.opened {
                         border: 1px solid #1F5DE4;
+                        position: relative;
+                        z-index: 2;
+                    }
+                }
+
+                .editForm{
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+
+                    .add-award-section{
+                        width: 580px;
+
+                        @include lt-md {
+                            width: 100%;
+                        }
+                    }
+
+                    .action-btns{
+                        justify-content: space-between;
+                        width: 100%;
                     }
                 }
             }

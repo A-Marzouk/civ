@@ -16,10 +16,12 @@
 @import "modifiers";
 @import "buttons";
 @import "inputs";
+@import "dropzone";
 @import "forms";
 @import "select";
-@import "dropzone";
 @import "tabs";
+@import "modals";
+@import "effects";
 
 #resumeBuilder, body, html {
     height: 100%;
@@ -36,15 +38,23 @@
     color: $mainBlue;
     font-family: NexaLight, Arial, Helvetica, sans-serif;
 
-    @include lt-md {
+    @include lt-lg {
+      font-size: 37px;
+    }
+
+    @include lt-sm {
       font-size: 28px;
     }
 
     h2 {
         font-size: 59px;
         font-family: NexaBold, Arial, Helvetica, sans-serif;
+
+        @include lt-lg {
+          font-size: 37px;
+        }
         
-        @include lt-md {
+        @include lt-sm {
           font-size: 28px;
         }
     }
@@ -85,5 +95,19 @@
   button.focus, button:focus{
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+  }
+}
+
+.hideOnMd {
+  @include lt-md {
+    display: none !important;
+  }
+}
+
+.showOnMd {
+  display: none !important;
+
+  @include lt-md {
+    display: block;
   }
 }

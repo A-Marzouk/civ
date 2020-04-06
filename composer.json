@@ -15,8 +15,11 @@
         "laravel/passport": "^8.4",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
+        "phpoffice/phpword": "^0.17.0",
+        "smalot/pdfparser": "^0.14.0",
         "socialiteproviders/instagram": "^3.0",
         "spatie/laravel-permission": "^3.8",
+        "spatie/pdf-to-text": "^1.3",
         "symfony/translation": "4.3.8"
     },
     "require-dev": {

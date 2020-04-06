@@ -1,5 +1,8 @@
 #resumeTheme200,
 #userTheme200 {
+    .availibility-tablet {
+        display: none;
+    }
     // Social Icons
     .mobile-social-icon-image {
         width: 30px;
@@ -90,7 +93,7 @@
     }
     .btn-hire-me {
         font-family: "Open Sans", sans-serif !important;
-        font-size: 15px !important;
+        font-size: 15px;
         height: 45px !important;
         text-transform: capitalize !important;
         border-radius: 38px !important;
@@ -141,7 +144,7 @@
     /* Work */
     .work-title {
         font-family: "Poppins" !important;
-        font-size: 22px !important;
+        font-size: 1.25rem !important;
         font-weight: 700;
     }
     .work-subtitle {
@@ -211,7 +214,7 @@
     /* for google chrome and safari */
     .v-line {
         position: absolute;
-        margin-top: 56px;
+        margin-top: 57px;
         margin-left: 19px;
         height: 110%;
         border: 1px solid #707070;
@@ -247,6 +250,17 @@
     //     }
     // }
     @media screen and (min-width:600px) and (max-width: 959px) {
+        .availibility-tablet {
+            display: inline;
+        }
+        //Hire me icons
+        .hire-me-hour-icon {
+            position: absolute;
+            float: left;
+            margin-left: 2px;
+            margin-top: 15px;
+        }
+        //hire me icons
         // Social Icons
         .mobile-social-icon-image {
             width: 30px;
@@ -310,20 +324,22 @@
         /* Interview */
         /* Hire me */
         .hire-me-title {
-            margin-left: 1.02vw !important;
-            font-size: 1.5vw !important;
+            font-size: 2.0vw !important;
         }
         .hire-me-subtitle {
-            font-size: 1.2vw !important;
+            font-size: 1.8vw !important;
             text-transform: capitalize;
         }
         .btn-hire-me {
-            margin-top: -0.64vw;
+            margin-left: -12vw;
             font-size: 1.54vw !important;
-            height: 4.89vw !important;
-            width: 12.87vw !important;
+            height: 4.89hw !important;
+            width: 16.87vw !important;
             img {
                 width: 1.93vw !important;
+            }
+            @media screen and (max-width:630px) {
+                margin-left: -6vw;
             }
         }
         /* Hire me */
@@ -402,6 +418,16 @@
     /* .................................................................................................. */
     /* ..............................................Mobile Screen................................. */
     @media screen and (max-width: 599px) {
+        .custom-hour-img {
+            margin-top: 3px;
+            margin-left: 12px;
+            @media screen and (max-width: 370px) {
+                margin-left: 5px;
+            }
+        }
+        .availibility-tablet {
+            display: none;
+        }
         /*  profile */
         .profile-avatar {
             margin-left: -30px;
@@ -444,23 +470,27 @@
         }
         .phone-btn {
             padding: 0px 8.444px !important;
-            margin-left: 5vw;
             margin-top: 46px;
             margin-bottom: -0.8vw;
             height: 32px !important;
-            min-width: 50% !important;
+            min-width: 32px !important;
+            @media screen and(max-width: 334) {
+                margin-right: -3px;
+            }
         }
         .phone-icon {
             font-size: 18px !important;
         }
         .video-btn {
-            margin-left: 5vw;
             padding: 0px 4.444px !important;
-            max-height: 35px !important;
-            min-width: 50% !important;
+            height: 32px !important;
+            min-width: 32px !important;
             img {
                 width: 16px !important;
                 height: 13px !important;
+            }
+            @media screen and(max-width:334px) {
+                margin-right: -3px;
             }
         }
         /* Profile */
@@ -523,14 +553,42 @@
         }
         /* achievement */
         .v-line {
-            height: 107% !important;
+            margin-top: 48px;
+            height: 115%;
         }
         @-moz-document url-prefix() {
             .v-line {
-                margin-top: 115px !important;
+                margin-top: 112px !important;
+                height: 115% !important;
             }
+        }
+        //work work title
+        .work-title {
+            font-size: 14px !important;
+        }
+        .work-subtitle {
+            font-size: 14px !important;
+        }
+        .work-text {
+            font-size: 14px !important;
         }
     }
     /* mobile devices */
     /* min screen devices*/
+    // ipad pro
+    @media only screen and (max-width:1024px) {
+        .btn-hire-me {
+            width: 5vw;
+            font-size: 12px;
+        }
+        .hire-me-parent-tab {
+            margin-left: 10px !important;
+        }
+        .hire-card-frequency2 {
+            img {
+                margin-left: -5px !important;
+            }
+        }
+    }
+    // ipad pro
 }

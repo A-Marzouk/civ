@@ -225,6 +225,9 @@ export default {
       line-height: 120px;
       border: 40px solid #2410A4;
       transition: all 300ms ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:hover{
         transform: scale(1.1);

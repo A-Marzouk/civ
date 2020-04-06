@@ -471,18 +471,20 @@ export default {
             this.$refs.formMessages.reset();
         }
     },
-    beforeMount(){},
-    mounted(){},
-    created() {
+    beforeMount(){
         this.setTab('portfolio');
-    }
+    },
+    mounted(){},
+    // created() {
+    //     this.setTab('portfolio');
+    // }
 }
 </script>
-
+<style lang="scss">
+    @import 'resources/sass/themes/utils_theme300.scss';
+</style>
 <style lang="scss" scoped>
 
-    @import url('/css/utils_theme300.css');
-    
     $max_wTheme : 1420px;
     $tab_OneColor : #D93025;
     $tab_TwoColor : #0F9D58;
@@ -848,7 +850,7 @@ export default {
             text-align: center;
             border-radius: 100%;
             margin: 0 12px 0 0;
-            display: inline-block;
+            display: inline-flex;
             text-decoration: none;
             line-height: 32px;
             box-shadow: none;
@@ -1222,6 +1224,8 @@ export default {
 
         i{
             margin-right: 10px;
+            color: #000;
+            opacity: 1;
         }
     }
     .btn-action{
@@ -1629,9 +1633,5 @@ export default {
             
         }
 
-    }
-
-    #resumeTheme300 .form-wrap .form-messages{
-        padding: 10px;
     }
 </style>

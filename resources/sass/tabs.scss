@@ -6,7 +6,7 @@
     border-bottom: 3px solid #C9CFF8;
     position: relative;
 
-    @include lt-md {
+    @include lt-sm {
         margin-top: 30px;
     }
 
@@ -16,7 +16,7 @@
         bottom: -3px;
         left: 0;
         height: 3px;
-        background-color: $mainColor;
+        background-color: $mainBlue;
         transform: translateX(0);
         transition: .6s;
     }
@@ -33,11 +33,25 @@
         transition: all 300ms ease-in;
         text-align: center;
 
+        @include lt-lg {
+            font-size: 28px;
+            padding: 0 15px;
+            padding-bottom: 15px;
+            max-width: auto;
+        }
+        
         @include lt-md {
+            font-size: 17px;
+            padding: 0 12px;
+            padding-bottom: 12px;
+        }
+
+        @include lt-sm {
             font-size: 12px;
             padding: 5px;
             padding-bottom: 7.3px;
         }
+        
     }
 
     .bar-item:hover {

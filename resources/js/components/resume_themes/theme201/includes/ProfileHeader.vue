@@ -1,6 +1,6 @@
 <template>
-  <v-layout row wrap v-if="user.personal_info">
-    <v-flex xs12 class="hidden-sm-and-up">
+  <v-row no-gutters  v-if="user.personal_info">
+    <v-col cols="12" class="hidden-sm-and-up">
       <v-card class flat color="transparent">
         <v-list-item two-line>
           <v-list-item-avatar size="85">
@@ -15,13 +15,13 @@
           </v-list-item-content>
         </v-list-item>
       </v-card>
-    </v-flex>
+    </v-col>
 
-    <v-flex sm12 md8 class="hidden-xs-only">
+    <v-col sm="12" md="8" class="hidden-xs-only">
       <v-card class="mx-auto" flat color="transparent">
         <v-card-text>
-          <v-layout row justify-space-between>
-            <v-flex xs9 md11 sm9 class="mobile-center">
+          <v-row no-gutters>
+            <v-col cols="9" md="11" sm="9" class="mobile-center">
               <v-list-item class>
                 <v-list-item-avatar size="120">
                   <v-img :src="user.personal_info.profile_pic"></v-img>
@@ -112,13 +112,13 @@
                   </div>
                 </v-list-item-content>
               </v-list-item>
-            </v-flex>
-          </v-layout>
+            </v-col>
+          </v-row>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
 
-    <v-flex xs12 sm4 md3 offset-md1 class="hidden-sm-and-down mobile-center">
+    <v-col cols="12" sm="4" md="3" offset-md1 class="hidden-sm-and-down mobile-center">
       <v-card flat>
         <v-card-text>
           <div class="btn-align">
@@ -142,10 +142,10 @@
           </div>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
 
     <!-- For Tablet -->
-    <v-flex sm12 xs12 class="tablet-mobile-social-icon d-none d-sm-flex d-md-none">
+    <v-col sm="12" cols="12" class="tablet-mobile-social-icon d-none d-sm-flex d-md-none">
       <v-card flat>
         <v-card-text>
           <div class="tablet-align">
@@ -170,11 +170,11 @@
           </div>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
     <!-- For tablet view -->
 
     <!-- For Mobile -->
-    <v-flex sm12 xs12 class="tablet-mobile-social-icon hidden-sm-and-up">
+    <v-col sm="12" cols="12" class="tablet-mobile-social-icon hidden-sm-and-up">
       <v-card flat>
         <v-card-text>
           <div class="mobile-align">
@@ -204,11 +204,11 @@
           </div>
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
     <!-- For mobile view -->
 
     <!-- for xs devices only -->
-    <v-flex sm12 xs12 class="tablet-mobile-social-icon hidden-sm-and-up">
+    <v-col sm="12" cols="12" class="tablet-mobile-social-icon hidden-sm-and-up">
       <v-card flat>
         <v-card-text>
           <v-btn class="mx-2 custom-btn" fab dark color="black">
@@ -230,7 +230,7 @@
           <!-- Hire Me Btn -->
         </v-card-text>
       </v-card>
-    </v-flex>
+    </v-col>
     <!-- for xs devices only -->
     <!-- Hire Me Modal -->
     <div>
@@ -254,48 +254,79 @@
               <v-row justify="center" align="center">
                 <!-- new 1st column -->
                 <v-col cols="12" sm="8" md="2">
-                  <v-row no-gutters>
-                    <v-col cols="4" md="12">
-                      <span class="hire-modal-contact-type">MONTHLY</span>
-                    </v-col>
-                    <v-col cols="4" md="12">
-                      <span class="hire-modal-contact-type custom-active">WEEKLY</span>
-                    </v-col>
-                    <v-col cols="4" md="12">
-                      <span class="hire-modal-contact-type">HOURLY</span>
-                    </v-col>
-                  </v-row>
+                  <v-tabs
+                    class="hidden-sm-and-down"
+                    vertical
+                    hide-slider
+                    color="#1D1D1D"
+                    center-active
+                    v-model="tabRate"
+                  >
+                    <v-tab>MONTHLY</v-tab>
+                    <v-tab>WEEKLY</v-tab>
+                    <v-tab>HOURLY</v-tab>
+                  </v-tabs>
+
+                  <v-tabs
+                    class="hidden-md-and-up"
+                    hide-slider
+                    color="#1D1D1D"
+                    centered
+                    v-model="tabRate"
+                  >
+                    <v-tab class="hire-me-parent-tab">MONTHLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">WEEKLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">HOURLY</v-tab>
+                  </v-tabs>
                 </v-col>
                 <!-- new 1st column -->
                 <!-- Column 1 -->
-                <v-col cols="5" sm="6" md="2">
-                  <div>Rate $USD</div>
-                  <!-- <div class="custom-modal-subtitle">{{user.payment_info.salary_frequency}} rate</div> -->
-                  <div class="font-weight-bold custom-modal-title">${{user.payment_info.salary}}</div>
+                <v-col cols="12" sm="6" md="2">
+                  <v-tabs-items v-model="tabRate">
+                    <v-tab-item v-for="n in 3" :key="n">
+                      <div>Rate $USD</div>
+                      <!-- <div class="custom-modal-subtitle">{{user.payment_info.salary_frequency}} rate</div> -->
+                      <div class="font-weight-bold custom-modal-title">${{user.payment_info.salary}}</div>
+                    </v-tab-item>
+                  </v-tabs-items>
                 </v-col>
                 <!-- Column 1 -->
                 <v-col cols="12" sm="8" md="2">
-                  <v-row no-gutters>
-                    <v-col cols="4" md="12">
-                      <span class="hire-modal-contact-type">MONTHLY</span>
-                    </v-col>
-                    <v-col cols="4" md="12">
-                      <span class="hire-modal-contact-type custom-active">WEEKLY</span>
-                    </v-col>
-                    <v-col cols="4" md="12">
-                      <span class="hire-modal-contact-type">HOURLY</span>
-                    </v-col>
-                  </v-row>
+                  <v-tabs
+                    class="hidden-sm-and-down"
+                    vertical
+                    hide-slider
+                    color="#1D1D1D"
+                    center-active
+                    v-model="tabFrequency"
+                  >
+                    <v-tab>MONTHLY</v-tab>
+                    <v-tab>WEEKLY</v-tab>
+                    <v-tab>HOURLY</v-tab>
+                  </v-tabs>
+
+                  <v-tabs
+                    class="hidden-md-and-up"
+                    hide-slider
+                    color="#1D1D1D"
+                    centered
+                    v-model="tabFrequency"
+                  >
+                    <v-tab class="hire-me-parent-tab"> MONTHLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">WEEKLY</v-tab>
+                    <v-tab class="hire-me-parent-tab">HOURLY</v-tab>
+                  </v-tabs>
                 </v-col>
                 <!-- 2nd Column -->
                 <v-col cols="12" sm="8" md="3">
-                  <!-- <div
-                    class="custom-modal-subtitle"
-                  >{{user.payment_info.available_hours_frequency}} availability</div>-->
-                  <div class>Availibility hours</div>
-                  <div
-                    class="font-weight-bold custom-modal-title"
-                  >{{user.payment_info.available_hours}} HOURS</div>
+                  <v-tabs-items v-model="tabFrequency">
+                    <v-tab-item v-for="n in 3" :key="n">
+                      <div class>Availibility hours</div>
+                      <div
+                        class="font-weight-bold custom-modal-title"
+                      >{{user.payment_info.available_hours}} HOURS</div>
+                    </v-tab-item>
+                  </v-tabs-items>
                 </v-col>
                 <!-- 3rd column -->
                 <v-col cols="12" sm="12" md="2">
@@ -303,7 +334,7 @@
                 </v-col>
                 <!-- 3rd column -->
                 <!-- 4th column -->
-                <v-col  align="right" class="hidden-sm-and-down" sm="2" md="1">
+                <v-col align="right" class="hidden-sm-and-down" sm="2" md="1">
                   <v-btn fab class icon @click="hireMeModal=false">
                     <img width="30" src="/images/resume_themes/theme201/close.png" />
                   </v-btn>
@@ -317,7 +348,7 @@
     </div>
 
     <!-- Hire Me Modal -->
-  </v-layout>
+  </v-row>
 </template>
 
 <script>
@@ -325,7 +356,9 @@ export default {
   data() {
     return {
       hireMeModal: false,
-      currentUser: {}
+      currentUser: {},
+      tabRate: null,
+      tabFrequency: null
     };
   },
   computed: {
@@ -404,6 +437,13 @@ export default {
   .custom-name-section {
     margin-left: -57px;
   }
+}
+
+@media screen and (max-width:599px) {
+  .hire-me-parent-tab{
+    font-size:12px !important;
+  }
+
 }
 </style>
 

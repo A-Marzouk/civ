@@ -50,6 +50,8 @@ Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name
 Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::post('/resume-builder/account/submit', 'ResumeBuilderController@editAccountData')->name('account.edit');
 Route::post('/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('account.validate');
+Route::post('/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('pdf.import.submit');
+Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('docx.import');
 
 
 

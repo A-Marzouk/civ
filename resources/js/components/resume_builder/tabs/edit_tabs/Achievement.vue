@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="achievementsEdit" class="w-100">
         <div class="section-title">
             <div class="title-light">Add</div>
             <h2>Achievement</h2>
@@ -22,7 +22,7 @@
                 <div class="decorator"></div>
             </div>
 
-            <transition name="hide" mode="out-in">
+            <transition class="w-100" name="hide" mode="out-in">
                 <award-view v-if="activeTab === 'Awards'"
                      @achievementAdded="addAchievement"
                     :achievements="achievements && achievements.filter(achievement => achievement.category === 'awards')"
@@ -167,9 +167,47 @@
 </script>
 
 <style lang="scss">
-$mainColor: #001CE2;
+$mainBlue: #001CE2;
+@import '../../../../../sass/media-queries';
+#achievementsEdit {
+    .add-certificate-btn {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        @include lt-sm {
+
+            .btn {
+                font-size: 17px !important;
+
+                .icon {
+                    height: 19px;
+                }
+            }
+        }
+
+        .btn-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .btn {
+            max-width: 500px;
+            width: 100%;
+        }
+
+        &.showOnMd {
+            @include lt-md {
+                display: flex !important;
+            }
+        }
+    }
+
     .section-body-wrapper {
-        width: 1337px;
+        max-width: 1337px;
+        width: 100%;
 
         .add-award-section {
             display: flex;
@@ -177,14 +215,35 @@ $mainColor: #001CE2;
             align-items: flex-end;
             margin-top: 71px;
 
+            .flex-input {
+                @include lt-md {
+                    flex-wrap: wrap;
+                }
+            }
+
             .award-input {
+
+                @include lt-md {
+                    width: 100%;
+                }
+
                 input {
-                    width: 807px;
-                    height: 76px;
-                    border: 2px solid #505050;
-                    border-radius: 10px;
+                    max-width: 807px;
+                    // height: 76px;
+                    // border: 2px solid #505050;
+                    // border-radius: 10px;
                     opacity: 1;
                     padding-left: 18px;
+                    margin-right: 12px;
+
+                    @include lt-md {
+                        margin-bottom: 2rem;
+                        margin-right: 0;
+                    }
+
+                    @include lt-sm {
+                        margin-bottom: 3px;
+                    }
                 }
                 input:focus {
                     outline: none;
@@ -196,6 +255,11 @@ $mainColor: #001CE2;
                     letter-spacing: 0;
                     color: #505050;
                     opacity: 1;
+
+                    @include lt-md {
+                        font-size: 18px;
+                        color: $mainBlue;
+                    }
                 }
             }
 
@@ -254,38 +318,97 @@ $mainColor: #001CE2;
 
         }
 
-        .certificates-section{
+        .certificates-section {
             margin-top: 72.5px;
 
             .add-certificate{
-                display: flex;
                 justify-content: flex-start;
+                display: flex;
+
+                &.showOnMd {
+                    @include lt-md {
+                        display: flex !important;
+                        flex-wrap: wrap;
+                        justify-content: space-between;
+                    }
+                }
+
+
+                .thumbnail {
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
 
                 .upload-image{
                     display: flex;
                     flex-direction: column;
                     margin-right: 45px;
+                    width: 48%;
+                    max-width:450px;
+
+                    @include lt-md {
+                        margin-right: 0;
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+                        margin-right: 0;
+                    }
+
                     .img-label{
                         font-family: "Noto Sans", serif;
                         font-weight: 600;
                         font-size: 22px;
                         text-align: left;
                         color: #505050;
-                        margin-bottom: 12px;
+                        // margin-bottom: 12px;
+
+                        @include lt-md {
+                            // color: $mainBlue;
+                            display: none;
+                        }
                     }
-                    .upload-image-box{
-                        width:412px;
-                        height:518px;
+
+                    .upload-image-box {
+                        width: 100%;
+                        max-height:518px;
+                        height: 100%;
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
                         border: 2px solid #505050;
                         border-radius: 10px;
+
+                        @include lt-md {
+                            height: 196px;
+                            margin-top: 24px;
+                        }
+
+                        @include lt-sm {
+                            height: 196px;
+                            margin-top: 0;
+                            margin-bottom: 10px;
+                            width: 100%;
+                            border-width: 0.5px;
+                        }
+
                         img{
                             width:95px;
                             height:89px;
+
+                            @include lt-md {
+                                height: 51px;
+                                width: auto;
+                            }
                         }
+
+                        .dz-message {
+                            img {
+                                margin: 0 auto;
+                            }
+                        }
+
                         .upload-text{
                             font-family: "Noto Sans", serif;
                             font-weight: bold;
@@ -294,27 +417,61 @@ $mainColor: #001CE2;
                             line-height: 67px;
                             text-align: left;
                             color: #747474;
+
+                            @include lt-md {
+                                font-size: 17px;
+                            }
                         }
                     }
                 }
 
                 .certification-details-form{
                     margin-top: 37px;
+                    width: 48%;
+
+                    @include lt-md {
+                        margin-top: 0;
+                    }
+
+                    @include lt-sm {
+                        width: 100%
+                    }
+
                     .certification-input{
                         display: flex;
                         flex-direction: column;
                         margin-bottom: 33px;
+
+                        @include lt-md {
+                            margin-bottom: 5px;
+                        }
+
                         input,textarea {
-                            width: 807px;
-                            height: 76px;
-                            border: 2px solid #505050;
+                            max-width: 807px;
+                            width: 100%;
+                            // border: 2px solid #505050;
                             border-radius: 10px;
                             opacity: 1;
                             padding-left: 18px;
+
+                            @include lt-md {
+                                height: 38px;
+                                min-height: 20px;
+                                margin-bottom: 10px;
+                            }
+
+                            @include lt-sm {
+                                width: 100%;
+                            }
                         }
                         textarea{
                             padding-top: 18px;
                             height: 190px;
+
+                            @include lt-md {
+                                height: 107px;
+                                min-height: 80px;
+                            }
                         }
                         input:focus,textarea:focus {
                             outline: none;
@@ -322,65 +479,93 @@ $mainColor: #001CE2;
 
                         label {
                             text-align: left;
-                            font: 600 22px Noto Sans;
+                            // font: 600 22px Noto Sans;
                             letter-spacing: 0;
-                            color: #505050;
+                            // color: #505050;
                             opacity: 1;
+
+                            @include lt-md {
+                                margin-bottom: 0;
+                                font-size: 15px;
+                            }
+                        }
+                    }
+                }
+                .action-btns{
+                    display: flex;
+
+                    @include lt-md {
+                        width: 50%;
+                        min-width: 365px;
+                        justify-content: space-between;
+
+                        .btn {
+                            width: 48%;
+                            min-width: 160px;
+
+                            font-size: 12px !important;
+
+                            .icon {
+                                width: 15px;
+                            }
                         }
                     }
 
-                    .action-btns{
-                        display: flex;
-                        .add-award-btn{
-                            margin-right: 20px;
-                            a {
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                width: 256px;
-                                height: 62px;
+                    @include lt-sm {
+                        flex-wrap: wrap;
+                        width: 100%;
+                        min-width: 10px;
+                    }
+                    
+                    .add-award-btn{
+                        margin-right: 20px;
+                        a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 256px;
+                            height: 62px;
 
-                                background: #001CE2 0% 0% no-repeat padding-box;
-                                border-radius: 8px;
+                            background: #001CE2 0% 0% no-repeat padding-box;
+                            border-radius: 8px;
 
-                                font: 600 19px Noto Sans;
-                                letter-spacing: 0;
-                                color: #FFFFFF;
-                                opacity: 1;
+                            font: 600 19px Noto Sans;
+                            letter-spacing: 0;
+                            color: #FFFFFF;
+                            opacity: 1;
 
-                                img {
-                                    width: 27px;
-                                    height: 27px;
-                                    margin-right: 10px;
-                                }
-                            }
-
-                            a.short{
-                                width:163px;
+                            img {
+                                width: 27px;
+                                height: 27px;
+                                margin-right: 10px;
                             }
                         }
 
-                        .auto-import-btn{
-                            a {
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                                width: 226px;
-                                height: 62px;
+                        a.short{
+                            width:163px;
+                        }
+                    }
 
-                                border: 2px solid #001CE2;
-                                border-radius: 8px;
-                                opacity: 1;
+                    .auto-import-btn{
+                        a {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 226px;
+                            height: 62px;
 
-                                font: 600 19px Noto Sans;
-                                letter-spacing: 0;
-                                color: #001CE2;
+                            border: 2px solid #001CE2;
+                            border-radius: 8px;
+                            opacity: 1;
 
-                                img {
-                                    width: 27px;
-                                    height: 27px;
-                                    margin-right: 10px;
-                                }
+                            font: 600 19px Noto Sans;
+                            letter-spacing: 0;
+                            color: #001CE2;
+
+                            img {
+                                width: 27px;
+                                height: 27px;
+                                margin-right: 10px;
                             }
                         }
                     }
@@ -388,6 +573,44 @@ $mainColor: #001CE2;
             }
         }
     }
+}
+
+.optionsBtns {
+    width: 100%;
+    background: #F9F9F9;
+    box-shadow: 0 9px 12px rgba(0,0,0,.03);
+    justify-content: space-between;
+    padding: 12px 37px;
+    border-radius: 2px;
+    margin: 1rem auto 0;
+
+    @include lt-md {
+        display: flex !important;
+    }
+
+    @include lt-sm {
+        max-width: 250px;
+    }
+
+    a {
+        height: 24px;
+        display: block;
+
+        @include lt-sm {
+            height: 16px;
+        }
+
+        .icon {
+            height: 100%;
+            color: $mainBlue;
+            fill: $mainBlue;
+
+            path {
+                fill: $mainBlue;
+            }
+        }
+    }
+}
 
     .hide-enter-active, .hide-leave-active {
         transition: opacity .5s;

@@ -1,0 +1,27 @@
+#main-upload-modal.modal {
+
+    background: rgb(255, 255, 255, .95) !important;
+
+    &.show {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+        .modal-dialog.modal-md {
+            width: 60%;
+            max-width: 550px !important;
+            box-shadow: 0 0 15px rgba(0,0,0,0.16);
+
+            @include lt-md {
+                max-width: 90% !important;
+                width: 90%;
+            }
+
+            .modal-body {
+                @include lt-md {
+                    padding: 40px;
+                }
+            }
+        }
+    }
+}
