@@ -3,7 +3,7 @@
         <div class="themeWrapper">
             <div class="mainThemeBar d-flex justify-content-between align-items-center">
                 <div class="left">
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center">
                         <div class="avatar">
                             <img src="/images/resume_themes/theme3/person.png" alt="profile pic">
                         </div>
@@ -15,6 +15,20 @@
                                 <div>
                                     Web Developer
                                 </div>
+                            </div>
+                        </div>
+                        <div class="media-btns">
+                            <div class="audio-btn NoDecor">
+                                <a href="javascript:void(0)">
+                                    <img src="/images/resume_themes/theme3/audio.svg" alt="audio">
+                                    Audio
+                                </a>
+                            </div>
+                            <div class="video-btn NoDecor">
+                                <a href="javascript:void(0)">
+                                    <img src="/images/resume_themes/theme3/video.svg" alt="video">
+                                    Video
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -39,7 +53,7 @@
                             Weekly Availability
                         </div>
                     </div>
-                    <div class="hire-me-btn">
+                    <div class="hire-me-btn NoDecor">
                         <a href="javascript:void(0)">
                             Hire me
                         </a>
@@ -422,7 +436,7 @@
 
     export default {
         name: "theme3",
-        props:['user','is_preview'],
+        props: ['user', 'is_preview'],
         components: {
             Slick
         },
@@ -454,7 +468,7 @@
                         }
                     ]
                 },
-                currentUser : this.user
+                currentUser: this.user
             }
         },
         methods: {
@@ -464,7 +478,7 @@
             setActiveSkillTab(tabName) {
                 this.activeSkillTab = tabName;
             },
-            setDummyUser(){
+            setDummyUser() {
                 this.currentUser = this.$store.state.dummyUser;
             }
         },
@@ -478,5 +492,1511 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "resources/sass/themes/theme3.scss";
+    .hideOnPhone {
+        @media only screen and (max-width: 765px) {
+            display: none !important;
+        }
+    }
+
+    .hideOnNotPhone {
+        @media only screen and (min-width: 765px) {
+            display: none !important;
+        }
+    }
+
+    .hideOnDesktop {
+        @media only screen and (min-width: 1280px) {
+            display: none !important;
+        }
+    }
+
+    .themeWrapper {
+        width: 100%;
+        max-width: 1920px;
+        background: white;
+        font-family: Roboto, sans-serif;
+
+        .mobileThemeBar {
+            background: #FFFFFF;
+            box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
+            height: 80px;
+            padding-left: 10px;
+            padding-right: 10px;
+            justify-content: space-between;
+
+            .avatar {
+                margin-right: 37px;
+                border-radius: 24px;
+
+                img {
+                    width: 180px;
+                    height: 180px;
+                    border-radius: 50%;
+                }
+
+                @media only screen and (max-width: 765px) {
+                    margin-right: 15px;
+                    img {
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+                @media only screen and (min-width: 1600px) {
+                    img {
+                        width: 197px;
+                        height: 197px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+                @media only screen and (max-width: 765px) {
+                    margin-top: 0;
+                }
+
+                .user-name {
+                    margin-left: -2px;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 30px;
+                    color: #333333;
+                    @media only screen and (max-width: 765px) {
+                        font-size: 16px;
+                    }
+                    @media only screen and (min-width: 1600px) {
+                        font-size: 50px;
+                        line-height: normal;
+                    }
+                }
+
+                .job-title {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 25px;
+                    color: #000000;
+
+                    img {
+                        width: 60px;
+                        height: 60px;
+                        margin-left: 20px;
+                    }
+
+                    @media only screen and (max-width: 765px) {
+                        font-size: 12px;
+                    }
+                    @media only screen and (min-width: 1600px) {
+                        font-size: 30px;
+                    }
+                }
+
+                .social-icons {
+                    margin-top: 42px;
+                    width: 20vw;
+                    display: flex;
+                    justify-content: space-between;
+                    overflow-x: auto;
+                    @media only screen and (max-width: 765px) {
+                        width: 100%;
+                    }
+
+                    img {
+                        width: 24px;
+                        height: 24px;
+                        @media only screen and (max-width: 765px) {
+                            margin-right: 25px;
+                        }
+                    }
+
+                    img:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+
+            .hire-me-btn-mobile {
+                a {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 30px;
+                    width: 90px;
+                    background: white;
+                    border: 1px solid #5289E7;
+                    color: #5289E7;
+                    font-size: 13px;
+                    border-radius: 35px;
+                }
+            }
+
+            .menu-icon {
+                img {
+                    width: 18px;
+                    height: 12px;
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        .mainThemeBar {
+            padding-top: 40px;
+            padding-left: 5%;
+            padding-right: 5%;
+            flex-wrap: wrap;
+            @media only screen and (max-width: 765px) {
+                padding-top: 0;
+            }
+
+            .left {
+                display: flex;
+                align-items: center;
+                @media only screen and (max-width: 765px) {
+                    align-items: center;
+                }
+
+                .avatar {
+                    margin-right: 37px;
+                    border-radius: 24px;
+
+                    img {
+                        width: 180px;
+                        height: 180px;
+                        border-radius: 50%;
+                    }
+
+                    @media only screen and (max-width: 765px) {
+                        margin-right: 15px;
+                        img {
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+                    @media only screen and (min-width: 1600px) {
+                        img {
+                            width: 197px;
+                            height: 197px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    @media only screen and (max-width: 765px) {
+                        margin-top: 5px;
+                    }
+
+                    .user-name {
+                        margin-left: -2px;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 30px;
+                        color: #333333;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 16px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            font-size: 50px;
+                            line-height: normal;
+                        }
+                    }
+
+                    .job-title {
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 25px;
+                        color: #000000;
+
+                        img {
+                            width: 60px;
+                            height: 60px;
+                            margin-left: 20px;
+                        }
+
+                        @media only screen and (max-width: 765px) {
+                            font-size: 12px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            font-size: 30px;
+                        }
+                    }
+
+                    .social-icons {
+                        margin-top: 42px;
+                        width: 20vw;
+                        display: flex;
+                        justify-content: space-between;
+                        overflow-x: auto;
+                        @media only screen and (max-width: 765px) {
+                            width: 100%;
+                        }
+
+                        img {
+                            width: 24px;
+                            height: 24px;
+                            @media only screen and (max-width: 765px) {
+                                margin-right: 25px;
+                            }
+                        }
+
+                        img:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+
+
+                .media-btns{
+                    display: flex;
+                    margin-left:27px;
+
+                    .audio-btn{
+                        margin-right:27px;
+                    }
+                    .audio-btn, .video-btn{
+                        a{
+                            width:122px;
+                            height:43px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border-radius: 25px;
+                            border: 1px solid #5289E7;
+                            font-size: 19px;
+                            color: #5289E7;
+                            img{
+                                width:19px;
+                                height:15px;
+                                margin-right:6px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right {
+                .hourly-rate {
+                    margin-right: 66px;
+                    @media only screen and (max-width: 765px) {
+                        margin-right: 27px;
+                    }
+                }
+
+                .weekly-availability {
+                    margin-right: 40px;
+                    @media only screen and (max-width: 765px) {
+                        margin-right: 19px;
+                    }
+                }
+
+                .hourly-rate-text {
+                    &:first-letter {
+                        text-transform: uppercase;
+                    }
+
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 30px;
+                    line-height: 60px;
+                    @media only screen and (max-width: 765px) {
+                        font-size: 12px;
+                    }
+                    @media only screen and (min-width: 1600px) {
+                        font-size: 50px;
+                        line-height: normal;
+                        line-height: 90px;
+                    }
+                }
+
+                .hourly-rate-text.light {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 20px;
+                    @media only screen and (min-width: 1600px) {
+                        font-size: 20px;
+                        line-height: 30px;
+                    }
+                }
+
+                .hire-me-btn {
+                    a {
+                        font-size: 24px;
+                        border-radius: 35px;
+                        background: white;
+                        border: 1px solid #5289E7;
+                        color: #5289E7;
+                        height: 67px;
+                        width: 217px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 12px;
+                            height: 34px;
+                            width: 105px;
+                            border-radius: 8px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            font-size: 30px;
+                            height: 67px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .tabs-bar {
+            margin-top: 30px;
+            @media only screen and (max-width: 765px) {
+                margin-top: 10px;
+            }
+
+            .tab-text {
+                font-style: normal;
+                font-weight: normal;
+                font-size: 25px;
+                line-height: 37px;
+                color: #000000;
+                padding-bottom: 9px;
+                position: relative;
+                @media only screen and (max-width: 765px) {
+                    font-size: 12px;
+                    margin-right: 10px;
+                    margin-left: 10px;
+                    padding-bottom: 0;
+                }
+            }
+
+            .tab-text:not(:last-child) {
+                margin-right: 70px;
+            }
+
+            .tab-text.active {
+                opacity: 1;
+            }
+
+            .tab-text.active:before {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                height: 1px;
+                width: 125%;
+                margin-left: -12.5%;
+                border: 3px solid #5289E7;
+                border-radius: 5px;
+                @media only screen and (max-width: 765px) {
+                    border: 2px solid #5289E7;
+                }
+            }
+
+            .tab-text:hover {
+                cursor: pointer;
+            }
+
+            .arrow {
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+
+        .main-tab-content {
+            margin-top: 86px;
+            min-height: 550px;
+            padding-bottom: 45px;
+            @media only screen and (max-width: 765px) {
+                margin-top: 35px;
+            }
+
+            .portfolio {
+                .portfolioSlides {
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: column;
+                    @media only screen and (max-width: 765px) {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                    }
+                    @media only screen and (min-width: 1600px) {
+                        padding-left: 135px;
+                        padding-right: 135px;
+                    }
+
+                    img {
+                        margin-right: 25px;
+                        margin-left: 25px;
+                        width: 510px !important;
+                        height: 400px;
+                        border-radius: 30px;
+                        @media only screen and (max-width: 765px) {
+                            width: 177px !important;
+                            height: 139px;
+                        }
+                    }
+
+                    .slide-text {
+                        margin-top: 15px;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 20px;
+                        line-height: 23px;
+                        color: #333333;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 10px;
+                            line-height: 12px;
+                            margin-bottom: 25px;
+                        }
+                    }
+                }
+            }
+
+            .skills-tabs {
+                display: flex;
+                justify-content: center;
+                overflow-x: auto;
+                width: 100%;
+                @media only screen and (max-width: 765px) {
+                    justify-content: space-between;
+                    margin-top: 30px;
+                }
+
+                .skills-tab-text {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 25px;
+                    line-height: 37px;
+                    padding: 16px 33px;
+                    color: #000000;
+                    white-space: nowrap;
+                    @media only screen and (max-width: 765px) {
+                        font-size: 10px;
+                        line-height: 15px;
+                        padding: 13px 29px;
+                    }
+                }
+
+                .skills-tab-text:hover {
+                    cursor: pointer;
+                }
+
+                .skills-tab-text.active {
+                    font-style: normal;
+                    font-weight: normal;
+                    background: #5289E7;
+                    border-radius: 35px;
+                    color: #FFFFFF;
+                }
+            }
+
+            .skills-icons-bar {
+                margin-top: 35.67px;
+                padding-bottom: 10px;
+                display: flex;
+                justify-content: center;
+                overflow-x: auto;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 45px;
+                    @media only screen and (max-width: 765px) {
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 30px;
+                    }
+                }
+
+                img:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            .work {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding-left: 40px;
+                padding-right: 40px;
+
+                .work-item {
+                    margin-bottom: 100px;
+                    display: flex;
+                    flex-basis: 48%;
+
+                    .work-icon {
+                        margin-right: 35px;
+
+                        img {
+                            width: 59px;
+                            height: 59px;
+                        }
+                    }
+
+                    .work-info {
+                        .date {
+                            margin-top: 6px;
+                            font-weight: normal;
+                            font-size: 16px;
+                            line-height: 15px;
+                            color: #000000;
+                        }
+
+                        .work-title {
+                            margin-top: 10px;
+                            font-weight: 300;
+                            font-size: 16px;
+                            line-height: 15px;
+                            color: #000000;
+                        }
+
+                        .work-details {
+                            margin-top: 35px;
+
+                            .company-name {
+                                font-size: 20px;
+                                line-height: 14px;
+                                color: #000000;
+                            }
+
+                            .job-roles {
+                                font-size: 16px;
+                                color: #000000;
+                                white-space: pre-line;
+                                line-height: 24px;
+                                font-weight: 300;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .education {
+            }
+        }
+    }
+
+    @media only screen and (max-width: 765px) {
+        // all phone styles
+        .themeWrapper {
+            width: 100%;
+            max-width: 1920px;
+            background: white;
+            border-radius: 15px;
+
+            .mobileThemeBar {
+                background: #FFFFFF;
+                box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
+                height: 80px;
+                padding-left: 10px;
+                padding-right: 10px;
+                justify-content: space-between;
+
+                .avatar {
+                    margin-right: 37px;
+                    border-radius: 24px;
+
+                    img {
+                        width: 180px;
+                        height: 180px;
+                        border-radius: 50%;
+                    }
+
+                    @media only screen and (max-width: 765px) {
+                        margin-right: 15px;
+                        img {
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+                    @media only screen and (min-width: 1600px) {
+                        img {
+                            width: 280px;
+                            height: 280px;
+                            border-radius: 50%;
+                        }
+                    }
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+                    @media only screen and (max-width: 765px) {
+                        margin-top: 0;
+                    }
+
+                    .user-name {
+                        margin-left: -2px;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 30px;
+                        color: #333333;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 16px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            font-size: 50px;
+                            line-height: normal;
+                        }
+                    }
+
+                    .job-title {
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 25px;
+                        color: #000000;
+
+                        img {
+                            width: 60px;
+                            height: 60px;
+                            margin-left: 20px;
+                        }
+
+                        @media only screen and (max-width: 765px) {
+                            font-size: 12px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            font-size: 30px;
+                        }
+                    }
+
+                    .social-icons {
+                        margin-top: 42px;
+                        width: 20vw;
+                        display: flex;
+                        justify-content: space-between;
+                        overflow-x: auto;
+                        @media only screen and (max-width: 765px) {
+                            width: 100%;
+                        }
+
+                        img {
+                            width: 24px;
+                            height: 24px;
+                            @media only screen and (max-width: 765px) {
+                                margin-right: 25px;
+                            }
+                        }
+
+                        img:last-child {
+                            margin-right: 0;
+                        }
+                    }
+                }
+
+                .hire-me-btn-mobile {
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 30px;
+                        width: 90px;
+                        font-size: 13px;
+                        background: white;
+                        border: 1px solid #5289E7;
+                        color: #5289E7;
+                        border-radius: 35px;
+                    }
+                }
+
+                .menu-icon {
+                    img {
+                        width: 18px;
+                        height: 12px;
+                        margin-left: 5px;
+                    }
+                }
+            }
+
+            .mainThemeBar {
+                padding-top: 40px;
+                padding-left: 5%;
+                padding-right: 5%;
+                flex-wrap: wrap;
+                box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
+                padding-bottom: 18px;
+                @media only screen and (max-width: 765px) {
+                    padding-top: 16px;
+                }
+
+                .left {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    width: 100%;
+                    @media only screen and (max-width: 765px) {
+                        align-items: center;
+                    }
+
+                    .avatar {
+                        margin-right: 37px;
+                        border-radius: 24px;
+
+                        img {
+                            width: 180px;
+                            height: 180px;
+                            border-radius: 50%;
+                        }
+
+                        @media only screen and (max-width: 765px) {
+                            margin-right: 15px;
+                            img {
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            img {
+                                width: 280px;
+                                height: 280px;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+
+                    .info {
+                        display: flex;
+                        flex-direction: column;
+                        @media only screen and (max-width: 765px) {
+                            margin-top: 0;
+                        }
+
+                        .user-name {
+                            margin-left: -2px;
+                            font-style: normal;
+                            font-weight: bold;
+                            font-size: 30px;
+                            color: #333333;
+                            @media only screen and (max-width: 765px) {
+                                font-size: 16px;
+                            }
+                            @media only screen and (min-width: 1600px) {
+                                font-size: 50px;
+                                line-height: normal;
+                            }
+                        }
+
+                        .job-title {
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 25px;
+                            color: #000000;
+
+                            img {
+                                width: 60px;
+                                height: 60px;
+                                margin-left: 20px;
+                            }
+
+                            @media only screen and (max-width: 765px) {
+                                font-size: 12px;
+                            }
+                            @media only screen and (min-width: 1600px) {
+                                font-size: 30px;
+                            }
+                        }
+
+                        .social-icons {
+                            margin-top: 42px;
+                            width: 20vw;
+                            display: flex;
+                            justify-content: space-between;
+                            overflow-x: auto;
+                            @media only screen and (max-width: 765px) {
+                                width: 100%;
+                            }
+
+                            img {
+                                width: 24px;
+                                height: 24px;
+                                @media only screen and (max-width: 765px) {
+                                    margin-right: 25px;
+                                }
+                            }
+
+                            img:last-child {
+                                margin-right: 0;
+                            }
+                        }
+                    }
+                }
+
+                .right {
+                    margin-top: 25px;
+                    width: 100%;
+                    justify-content: space-between;
+
+                    .hourly-rate {
+                        margin-right: 20px;
+                    }
+
+                    .weekly-availability {
+                        margin-right: 40px;
+                        @media only screen and (max-width: 765px) {
+                            margin-right: 19px;
+                        }
+                    }
+
+                    .hourly-rate-text {
+                        font-size: 30px;
+                        line-height: 16px;
+                        font-weight: bold;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 12px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            font-size: 50px;
+                            line-height: normal;
+                            line-height: 90px;
+                        }
+                    }
+
+                    .hourly-rate-text.light {
+                        font-size: 16px;
+                        line-height: 20px;
+                        text-align: left !important;
+                        @media only screen and (min-width: 1600px) {
+                            font-size: 20px;
+                            line-height: 30px;
+                        }
+                    }
+
+                    .hire-me-btn {
+                        a {
+                            font-size: 24px;
+                            background: white;
+                            border: 1px solid #5289E7;
+                            color: #5289E7;
+                            border-radius: 35px;
+                            height: 60px;
+                            width: 250px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            @media only screen and (max-width: 765px) {
+                                font-size: 12px;
+                                height: 34px;
+                                width: 105px;
+                                border-radius: 8px;
+                            }
+                            @media only screen and (min-width: 1600px) {
+                                font-size: 30px;
+                                height: 70px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .tabs-bar {
+                margin-top: 30px;
+                overflow: auto;
+                padding-left: 16px;
+                padding-right: 16px;
+                @media only screen and (max-width: 765px) {
+                    margin-top: 28px;
+                }
+
+                .tab-text {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 25px;
+                    line-height: 37px;
+                    color: #000000;
+                    padding-bottom: 9px;
+                    position: relative;
+                    @media only screen and (max-width: 765px) {
+                        font-size: 12px;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        padding-bottom: 0;
+                    }
+                }
+
+                .tab-text:not(:last-child) {
+                    margin-right: 37px;
+                }
+
+                .tab-text.active {
+                    opacity: 1;
+                }
+
+                .tab-text.active:before {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    height: 1px;
+                    width: 125%;
+                    margin-left: -12.5%;
+                    border: 3px solid #5289E7;
+                    border-radius: 5px;
+                    @media only screen and (max-width: 765px) {
+                        border: 2px solid #5289E7;
+                    }
+                }
+
+                .tab-text:hover {
+                    cursor: pointer;
+                }
+
+                .arrow {
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+
+            .main-tab-content {
+                margin-top: 86px;
+                min-height: 550px;
+                padding-bottom: 45px;
+                @media only screen and (max-width: 765px) {
+                    margin-top: 35px;
+                }
+
+                .portfolio {
+                    .portfolioSlides {
+                        padding-left: 40px;
+                        padding-right: 40px;
+                        @media only screen and (max-width: 765px) {
+                            padding-left: 0px;
+                            padding-right: 0px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            padding-left: 135px;
+                            padding-right: 135px;
+                        }
+                        display: flex;
+                        justify-content: center;
+
+                        img {
+                            margin-right: 25px;
+                            margin-left: 25px;
+                            width: 510px !important;
+                            height: 400px;
+                            @media only screen and (max-width: 765px) {
+                                width: 177px !important;
+                                height: 139px;
+                            }
+                        }
+
+                        .slide-text {
+                            margin-top: 15px;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 20px;
+                            line-height: 23px;
+                            color: #333333;
+                            @media only screen and (max-width: 765px) {
+                                font-size: 10px;
+                                line-height: 12px;
+                                margin-bottom: 25px;
+                            }
+                        }
+                    }
+                }
+
+                .skills-tabs {
+                    display: flex;
+                    justify-content: center;
+                    overflow-x: auto;
+                    width: 100%;
+                    @media only screen and (max-width: 765px) {
+                        justify-content: space-between;
+                        margin-top: 30px;
+                    }
+
+                    .skills-tab-text {
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 25px;
+                        line-height: 37px;
+                        padding: 16px 33px;
+                        color: #000000;
+                        white-space: nowrap;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 10px;
+                            line-height: 15px;
+                            padding: 13px 29px;
+                        }
+                    }
+
+                    .skills-tab-text:hover {
+                        cursor: pointer;
+                    }
+
+                    .skills-tab-text.active {
+                        font-style: normal;
+                        font-weight: normal;
+                        background: #5289E7;
+                        border-radius: 35px;
+                        color: #FFFFFF;
+                    }
+                }
+
+                .skills-icons-bar {
+                    margin-top: 35.67px;
+                    padding-bottom: 10px;
+                    display: flex;
+                    justify-content: center;
+                    overflow-x: auto;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 45px;
+                        @media only screen and (max-width: 765px) {
+                            width: 30px;
+                            height: 30px;
+                            margin-right: 30px;
+                        }
+                    }
+
+                    img:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                .work {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    padding-left: 40px;
+                    padding-right: 40px;
+
+                    .work-item {
+                        margin-bottom: 100px;
+                        display: flex;
+                        flex-basis: 100%;
+
+                        .work-icon {
+                            margin-right: 35px;
+
+                            img {
+                                width: 48px;
+                                height: 48px;
+                            }
+                        }
+
+                        .work-info {
+                            .date {
+                                font-weight: normal;
+                                font-size: 16px;
+                                line-height: 15px;
+                                color: #000000;
+                            }
+
+                            .work-title {
+                                margin-top: 10px;
+                                font-weight: 300;
+                                font-size: 16px;
+                                line-height: 15px;
+                                color: #000000;
+                            }
+
+                            .work-details {
+                                margin-top: 35px;
+
+                                .company-name {
+                                    font-size: 20px;
+                                    line-height: 14px;
+                                    color: #000000;
+                                }
+
+                                .job-roles {
+                                    font-size: 16px;
+                                    color: #000000;
+                                    white-space: pre-line;
+                                    line-height: 24px;
+                                    font-weight: 300;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .education {
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1280px) and (min-width: 765px) {
+        .themeWrapper {
+            .mainThemeBar {
+                box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
+                padding-bottom: 18px;
+                margin-bottom: 15px;
+
+                .left {
+                    margin-bottom: 45px;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    .avatar {
+                        img {
+                            width: 100px;
+                            height: 100px;
+                        }
+                    }
+
+                    .info {
+                        .user-name {
+                            font-size: 32px;
+                        }
+
+                        .job-title {
+                            font-size: 20px;
+
+                            img {
+                            }
+                        }
+
+                        .social-icons {
+                            img {
+                            }
+
+                            img:last-child {
+                            }
+                        }
+                    }
+
+                    .menu-icon {
+                        img {
+                            width: 25px;
+                            height: 25px;
+                            margin-top: 7px;
+                        }
+                    }
+                }
+
+                .right {
+                    justify-content: space-between;
+                    width: 100%;
+
+                    .hourly-rate {
+                    }
+
+                    .weekly-availability {
+                    }
+
+                    .hourly-rate-text {
+                    }
+
+                    .hourly-rate-text.light {
+                    }
+
+                    .hire-me-btn {
+                        a {
+                        }
+                    }
+                }
+            }
+
+            .tabs-bar {
+                margin-top: 30px;
+                overflow: auto;
+                padding-left: 16px;
+                padding-right: 16px;
+                @media only screen and (max-width: 765px) {
+                    margin-top: 28px;
+                }
+
+                .tab-text {
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 25px;
+                    line-height: 37px;
+                    color: #000000;
+                    padding-bottom: 9px;
+                    position: relative;
+                    @media only screen and (max-width: 765px) {
+                        font-size: 12px;
+                        margin-right: 10px;
+                        margin-left: 10px;
+                        padding-bottom: 0;
+                    }
+                }
+
+                .tab-text:not(:last-child) {
+                    margin-right: 37px;
+                }
+
+                .tab-text.active {
+                    opacity: 1;
+                }
+
+                .tab-text.active:before {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    height: 1px;
+                    width: 125%;
+                    margin-left: -12.5%;
+                    border: 3px solid #5289E7;
+                    border-radius: 5px;
+                    @media only screen and (max-width: 765px) {
+                        border: 2px solid #5289E7;
+                    }
+                }
+
+                .tab-text:hover {
+                    cursor: pointer;
+                }
+
+                .arrow {
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+            }
+
+            .main-tab-content {
+                margin-top: 86px;
+                min-height: 550px;
+                padding-bottom: 45px;
+                @media only screen and (max-width: 765px) {
+                    margin-top: 35px;
+                }
+
+                .portfolio {
+                    .portfolioSlides {
+                        padding-left: 40px;
+                        padding-right: 40px;
+                        @media only screen and (max-width: 765px) {
+                            padding-left: 0px;
+                            padding-right: 0px;
+                        }
+                        @media only screen and (min-width: 1600px) {
+                            padding-left: 135px;
+                            padding-right: 135px;
+                        }
+                        display: flex;
+                        justify-content: center;
+
+                        img {
+                            margin-right: 25px;
+                            margin-left: 25px;
+                            width: 510px !important;
+                            height: 400px;
+                            @media only screen and (max-width: 765px) {
+                                width: 177px !important;
+                                height: 139px;
+                            }
+                        }
+
+                        .slide-text {
+                            margin-top: 15px;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 20px;
+                            line-height: 23px;
+                            color: #333333;
+                            @media only screen and (max-width: 765px) {
+                                font-size: 10px;
+                                line-height: 12px;
+                                margin-bottom: 25px;
+                            }
+                        }
+                    }
+                }
+
+                .skills-tabs {
+                    display: flex;
+                    justify-content: center;
+                    overflow-x: auto;
+                    width: 100%;
+                    @media only screen and (max-width: 765px) {
+                        justify-content: space-between;
+                        margin-top: 30px;
+                    }
+
+                    .skills-tab-text {
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 25px;
+                        line-height: 37px;
+                        padding: 16px 33px;
+                        color: #000000;
+                        white-space: nowrap;
+                        @media only screen and (max-width: 765px) {
+                            font-size: 10px;
+                            line-height: 15px;
+                            padding: 13px 29px;
+                        }
+                    }
+
+                    .skills-tab-text:hover {
+                        cursor: pointer;
+                    }
+
+                    .skills-tab-text.active {
+                        font-style: normal;
+                        font-weight: normal;
+                        background: #5289E7;
+                        border-radius: 35px;
+                        color: #FFFFFF;
+                    }
+                }
+
+                .skills-icons-bar {
+                    margin-top: 35.67px;
+                    padding-bottom: 10px;
+                    display: flex;
+                    justify-content: center;
+                    overflow-x: auto;
+
+                    img {
+                        width: 30px;
+                        height: 30px;
+                        margin-right: 45px;
+                        @media only screen and (max-width: 765px) {
+                            width: 30px;
+                            height: 30px;
+                            margin-right: 30px;
+                        }
+                    }
+
+                    img:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                .work {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    padding-left: 40px;
+                    padding-right: 40px;
+
+                    .work-item {
+                        margin-bottom: 100px;
+                        display: flex;
+                        flex-basis: 100%;
+
+                        .work-icon {
+                            margin-right: 35px;
+
+                            img {
+                                width: 48px;
+                                height: 48px;
+                            }
+                        }
+
+                        .work-info {
+                            .date {
+                                font-weight: normal;
+                                font-size: 16px;
+                                line-height: 15px;
+                                color: #000000;
+                            }
+
+                            .work-title {
+                                margin-top: 10px;
+                                font-weight: 300;
+                                font-size: 16px;
+                                line-height: 15px;
+                                color: #000000;
+                            }
+
+                            .work-details {
+                                margin-top: 35px;
+
+                                .company-name {
+                                    font-size: 20px;
+                                    line-height: 14px;
+                                    color: #000000;
+                                }
+
+                                .job-roles {
+                                    font-size: 16px;
+                                    color: #000000;
+                                    white-space: pre-line;
+                                    line-height: 24px;
+                                    font-weight: 300;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .education {
+                }
+            }
+        }
+    }
+
+    /* scroll bar styles */
+    #style-2::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 0;
+    }
+
+    #style-2::-webkit-scrollbar {
+        width: 4px;
+        background-color: rgba(255, 255, 255, 0.35);
+    }
+
+    #style-2::-webkit-scrollbar-thumb {
+        border-radius: 1px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+        background-color: white;
+    }
+
+    #style-1::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 0;
+    }
+
+    #style-1::-webkit-scrollbar {
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.35);
+    }
+
+    #style-1::-webkit-scrollbar-thumb {
+        border-radius: 1px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
+        background-color: white;
+    }
+
+
+</style>
+
+<style lang="scss">
+
+    /*slick slides*/
+
+    .slick-dots {
+        bottom: -40px !important;
+    }
+
+    .slick-dots li button:before {
+        font-size: 10px !important;
+    @media only screen and (max-width: 765px) {
+        font-size: 6px !important;
+    }
+    }
+
+    .slick-dots li.slick-active button:before {
+        opacity: 1;
+        color: #5289E7;
+    }
+    .slick-dots li.slick-active button{
+        background-color: #5289E7;
+    }
+    .slick-dots li button{
+        background-color: #DEDEDE;
+        border: none;
+        width:12px;
+        height: 12px;
+    }
 </style>
