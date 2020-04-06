@@ -86,6 +86,7 @@ module.exports = {
             },
             borderRadius: {
                 'civ-15': '15px',
+                '25px': '15px',
                 'civ-50': '3.125‬‬rem', // 50px
                 'civ-50p': '50px', // 50px
             },
