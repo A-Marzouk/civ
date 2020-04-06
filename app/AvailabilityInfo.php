@@ -4,17 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PaymentInfo extends Model
+class AvailabilityInfo extends Model
 {
-    protected $table = 'payment_info';
+
+    protected $table = 'availability_info';
 
     protected $fillable = [
-       'salary','salary_frequency','currency','user_id'
+        'available_hours', 'available_hours_frequency', 'user_id'
     ];
 
 
     // relation belongs to
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
+
 }

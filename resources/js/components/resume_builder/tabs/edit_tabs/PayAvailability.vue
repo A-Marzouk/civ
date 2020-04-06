@@ -6,18 +6,18 @@
         </div>
         <div class="section-body-wrapper">
 
-            <div class="rates">
+            <div class="rates" v-if="currentPayment && currentAvailability">
                 <div class="hourly-rate">
                     <div class="title">
                         Hourly rate
                     </div>
                     <div class="pay-input">
-                        <label for="hourly-rate">My rate is: (USD)</label>
+                        <label for="hourly-rate">My rate is:</label>
                         <div class="input_wselect">
-                            <input type="number" min="3" max="100000" step="1" id="hourly-rate" v-model="paymentInfo.salary" @blur="updatePaymentInfo('auto')">
+                            <input type="number" min="3" max="100000" step="1" id="hourly-rate" v-model="currentPayment.salary"  @blur="updatePaymentInfo('auto')">
                             <div class="sel-wrap">
                                 <div class="sel-wrap-input" @click="showCurrencyOptions = !showCurrencyOptions">
-                                    <input type="text" id="currency_option" disabled placeholder="usd" v-model="currency.title">
+                                    <input type="text" id="currency_option" disabled placeholder="usd" v-model="currentPayment.currency">
                                     <img src="/images/resume_builder/arrow-down.png" alt="arrow" :class="{'toggled':showCurrencyOptions}">
                                 </div>
                                 <div class="sel-wrap-options" v-show="showCurrencyOptions">
@@ -26,10 +26,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#" class="save-option"><img src="/images/resume_builder/mark-white.svg" alt=""></a>
+                            <a href="javascript:void(0)" class="save-option"><img src="/images/resume_builder/mark-white.svg" alt=""></a>
                         </div>
-                        
-
                         
                         <div class="error" v-if="errors.salary">
                             {{ Array.isArray(errors.salary) ? errors.salary[0] : errors.salary}}
@@ -37,25 +35,20 @@
                     </div>
 
                     <div class="rate-per">
-                        <div :class="{active : paymentInfo.salary_frequency === 'monthly'}" @click="updateSalaryFrequency('monthly')">
-                            Monthly
+                        <div v-for="payment in paymentInfo" :key="'payment_' + payment.id" :class="{active : currentPayment.salary_frequency === payment.salary_frequency}"
+                             @click="selectCurrentPayment(payment.salary_frequency)">
+                            {{payment.salary_frequency}}
                         </div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'hourly'}" @click="updateSalaryFrequency('hourly')">
-                            Hourly
-                        </div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'yearly'}" @click="updateSalaryFrequency('yearly')">Yearly</div>
-                        <div :class="{active : paymentInfo.salary_frequency === 'weekly'}" @click="updateSalaryFrequency('weekly')">Weekly</div>
                     </div>
+
                     <div class="rate-per-tab">
                         <div class="nav-scrollbox">
-                            <a href="#" @click.prevent="prevRate"><img src="/images/resume_builder/arrow-left.svg" alt=""></a>
-                            <a href="#" @click.prevent="nextRate"><img src="/images/resume_builder/arrow-right.svg" alt=""></a>
+                            <a href="javascript:void(0)" @click.prevent="prevRate"><img src="/images/resume_builder/arrow-left.svg" alt=""></a>
+                            <a href="javascript:void(0)" @click.prevent="nextRate"><img src="/images/resume_builder/arrow-right.svg" alt=""></a>
                         </div>  
                         <slick ref="slickRate" :options="slickOptions" class="slider-rate">
-                            <div :class="{active : paymentInfo.salary_frequency === 'monthly'}" class="item-slide" @click="updateSalaryFrequency('monthly')">Monthly</div>
-                            <div :class="{active : paymentInfo.salary_frequency === 'hourly'}" class="item-slide" @click="updateSalaryFrequency('hourly')">Hourly</div>
-                            <div :class="{active : paymentInfo.salary_frequency === 'yearly'}" class="item-slide" @click="updateSalaryFrequency('yearly')">Yearly</div>
-                            <div :class="{active : paymentInfo.salary_frequency === 'weekly'}" class="item-slide" @click="updateSalaryFrequency('weekly')">Weekly</div>
+                            <div v-for="payment in paymentInfo" :key="'payment_slide_' + payment.id" :class="{active : currentPayment.salary_frequency === payment.salary_frequency}" class="item-slide"
+                                 @click="selectCurrentPayment(payment.salary_frequency)">{{payment.salary_frequency}}</div>
                         </slick>              
                     </div>
                 </div>
@@ -66,8 +59,8 @@
                     <div class="pay-input">
                         <label for="available">Available working hours:</label>
                         <div class="input_wselect">
-                            <input type="text" id="available" value="6 hours"  v-model="paymentInfo.available_hours" @blur="updatePaymentInfo('auto')">
-                            <a href="#" class="save-option"><img src="/images/resume_builder/mark-white.svg" alt=""></a>
+                            <input type="text" id="available" value="6 hours"  v-model="currentAvailability.available_hours"  @blur="updatePaymentInfo('auto')">
+                            <a href="javascript:void(0)" class="save-option"><img src="/images/resume_builder/mark-white.svg" alt="mark"></a>
                         </div>
                         
                         <div class="error" v-if="errors.available_hours">
@@ -76,19 +69,21 @@
                     </div>
 
                     <div class="rate-per">
-                        <div  :class="{active : paymentInfo.available_hours_frequency === 'weekly'}" @click="updateHoursAvailabilityFrequency('weekly')">Weekly</div>
-                        <div :class="{active : paymentInfo.available_hours_frequency === 'monthly'}" @click="updateHoursAvailabilityFrequency('monthly')">Monthly</div>
-                        <div :class="{active : paymentInfo.available_hours_frequency === 'yearly'}" @click="updateHoursAvailabilityFrequency('yearly')">Yearly</div>
+                        <div v-for="availability in availabilityInfo" :key="'availability_' + availability.id" :class="{active : currentAvailability.available_hours_frequency === availability.available_hours_frequency}"
+                             @click="selectCurrentAvailability(availability.available_hours_frequency)">
+                            {{availability.available_hours_frequency}}
+                        </div>
                     </div>
                     <div class="rate-per-tab">
                         <div class="nav-scrollbox">
-                            <a href="#" @click.prevent="prevHourFrequency"><img src="/images/resume_builder/arrow-left.svg" alt=""></a>
-                            <a href="#" @click.prevent="nextHourFrequency"><img src="/images/resume_builder/arrow-right.svg" alt=""></a>
+                            <a href="javascript:void(0)" @click.prevent="prevHourFrequency"><img src="/images/resume_builder/arrow-left.svg" alt=""></a>
+                            <a href="javascript:void(0)" @click.prevent="nextHourFrequency"><img src="/images/resume_builder/arrow-right.svg" alt=""></a>
                         </div>  
                         <slick ref="slickAvailableHours" :options="slickOptions" class="slider-rate">
-                            <div  :class="{active : paymentInfo.available_hours_frequency === 'weekly'}" class="item-slide" @click="updateHoursAvailabilityFrequency('weekly')">Weekly</div>
-                            <div :class="{active : paymentInfo.available_hours_frequency === 'monthly'}" class="item-slide" @click="updateHoursAvailabilityFrequency('monthly')">Monthly</div>
-                            <div :class="{active : paymentInfo.available_hours_frequency === 'yearly'}" class="item-slide" @click="updateHoursAvailabilityFrequency('yearly')">Yearly</div>
+                            <div v-for="availability in availabilityInfo" :key="'availability_' + availability.id"   class="item-slide" :class="{active : currentAvailability.available_hours_frequency === availability.available_hours_frequency}"
+                                 @click="selectCurrentAvailability(availability.available_hours_frequency)">
+                                {{availability.available_hours_frequency}}
+                            </div>
                         </slick>              
                     </div>
                 </div>
@@ -125,19 +120,45 @@
                     slidesToScroll: 1,
                     appendDots: '.nav-scrollbox',
                     arrows: false
-                }                 
+                },
+                currentAvailability:{},
+                currentPayment:{},
             }
         },
         computed: {
             paymentInfo() {
-                return this.$store.state.user.payment_info;
+                let info = this.$store.state.user.payment_info ;
+                if(info){
+                    this.currentPayment = info[0];
+                }
+                return info;
+            },
+            availabilityInfo() {
+                let info = this.$store.state.user.availability_info ;
+                if(info){
+                    this.currentAvailability = info[0];
+                }
+                return info;
             }
         },
 
         methods:{
             updatePaymentInfo(savingType){
                 this.errors = {};
-                axios.put('/api/user/payment-info',this.paymentInfo)
+                axios.put('/api/user/payment-info',this.currentPayment)
+                    .then((response) => {
+                        savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+
+                axios.put('/api/user/availability-info',this.currentAvailability)
                     .then((response) => {
                         savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
@@ -150,17 +171,28 @@
                         }
                     });
             },
-            updateSalaryFrequency(frequency){
-                this.paymentInfo.salary_frequency = frequency ;
-                this.updatePaymentInfo('auto');
+            selectCurrentPayment(frequency){
+                this.paymentInfo.forEach( payment => {
+                    if (payment.salary_frequency === frequency){
+                        this.currentPayment = payment;
+                    }
+                });
+            },
+            selectCurrentAvailability(frequency){
+                this.availabilityInfo.forEach( availability => {
+                    if (availability.available_hours_frequency === frequency){
+                        this.currentAvailability = availability;
+                    }
+                });
             },
             updateHoursAvailabilityFrequency(frequency){
                 this.paymentInfo.available_hours_frequency = frequency ;
                 this.updatePaymentInfo('auto');
             },
             selectCurrency(currency){
-                this.currency.title = currency;
+                this.currentPayment.currency = currency;
                 this.showCurrencyOptions = false;
+                this.updatePaymentInfo('auto');
             },
             nextRate() {
                 this.$refs.slickRate.next();
@@ -174,6 +206,10 @@
             prevHourFrequency() {
                 this.$refs.slickAvailableHours.prev();
             }
+        },
+
+        mounted(){
+
         }
     }
 </script>
@@ -459,6 +495,10 @@
                     @include lt-md {
                         display: block;
                     }
+                    @include lt-sm {
+                        max-width: 240px;
+                        margin-top: 29px;
+                    }
                     
                     .slider-rate{
                         border-radius: 24px;
@@ -472,12 +512,28 @@
                             font-weight: bold;
                             color: #C9CFF8;
 
+                            @include lt-sm {
+                                font-size: 11px;
+                            }
+
                             &.active{
                                 color: #001CE2;
                                 font-size: 18px;
 
+                                @include lt-sm {
+                                    font-size: 14px;
+                                }
+
                             }
                         }
+
+                        @include lt-sm {
+                            overflow: hidden;
+                            min-height: 53px;
+                            line-height: 50px;
+                        }
+
+
                     }
                     .nav-scrollbox{
                         position: relative;
@@ -489,16 +545,30 @@
                             width: 28.3px;
                             display: flex;
                             justify-content: center;
+                            position: absolute;
+                            top: 10px;
+
 
                             &:nth-child(1){
-                                position: absolute;
                                 left: -40px;
-                                top: 10px;
+                            
+                                @include lt-sm {
+                                    left: -32px;
+                                    top: 4px;
+                                }
                             }
                             &:nth-child(2){
-                                position: absolute;
                                 right: -40px;
-                                top: 10px;
+
+                                @include lt-sm {
+                                    right: -32px;
+                                    top: 4px;
+                                }
+                            }
+
+                            @include lt-sm {
+                                width: 21px;
+                                min-height: 46px;
                             }
                         }
                     }

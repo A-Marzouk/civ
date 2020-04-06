@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentInfoTable extends Migration
+class CreateAvailabilityInfoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreatePaymentInfoTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_info', function (Blueprint $table) {
+        Schema::create('availability_info', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-
-            $table->float('salary',16,2)->nullable();
-            $table->string('salary_frequency')->nullable();
-            $table->string('currency')->nullable();
-
+            $table->float('available_hours',16,2)->nullable();
+            $table->string('available_hours_frequency')->nullable();
 
             $table->integer('user_id')->unsigned();
+
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ class CreatePaymentInfoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_info');
+        Schema::dropIfExists('availability_info');
     }
 }

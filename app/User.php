@@ -68,6 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'imports',
             'languages',
             'personalInfo',
+            'availabilityInfo',
             'paymentInfo',
             'summary',
         ])->first();
@@ -143,7 +144,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function paymentInfo()
     {
-        return $this->hasOne(PaymentInfo::class);
+        return $this->hasMany(PaymentInfo::class);
+    }
+
+    public function availabilityInfo()
+    {
+        return $this->hasMany(AvailabilityInfo::class);
     }
 
     public function summary()

@@ -68,11 +68,12 @@
                         {{ Array.isArray(errors.address) ? errors.address[0] : errors.address}}
                     </div>
                 </div>
-
-                <a href="javascript:void(0)" @click="applyReferenceEdit('manual')" class="btn btn-filled">
-                    <img src="/images/resume_builder/profile/icon-save2.png" class="icon">
-                    Save reference
-                </a>
+                <div class="action-btns">
+                    <a href="javascript:void(0)" @click="applyReferenceEdit('manual')" class="btn btn-filled">
+                        <img src="/images/resume_builder/profile/icon-save2.png" class="icon">
+                        Save reference
+                    </a>
+                </div>
             </div>
 
             <div class="references d-flex flex-column" v-if="activeTab === 'Referee'">
@@ -144,10 +145,14 @@
                    </div>
                </div>
 
-                <a href="javascript:void(0)" @click="applyRefereeEdit('manual')" class="btn btn-filled">
-                    <img src="/images/resume_builder/profile/icon-save2.png" class="icon">
-                    Save referee
-                </a>
+               <div class="action-btns">
+                   <a href="javascript:void(0)" @click="applyRefereeEdit('manual')" class="btn btn-filled">
+                        <img src="/images/resume_builder/profile/icon-save2.png" class="icon">
+                        Save referee
+                    </a>
+               </div>
+
+                
             </div>
 
             <div class="about-section references d-flex flex-column" v-if="activeTab === 'Testimonials'">
@@ -560,6 +565,18 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
 
         .about-section {
             margin-top: 10px;
+            max-width: 585px;
+
+            .about-addnew{
+                width: 100%;
+
+                .about-input{
+                    width: 100%;
+                    textarea{
+                        width: 100%;
+                    }
+                }
+            }
 
             .about-input {
                 display: flex;
@@ -605,6 +622,14 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         color: #1f5de4;
                         opacity: 0.7;
                     }
+                }
+            }
+
+            .action-btns{
+                justify-content: space-between;
+
+                .add-new-work{
+                    margin: 0;
                 }
             }
         }
