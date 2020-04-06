@@ -24,7 +24,7 @@ class PaymentInfoController extends Controller
      */
     public function index()
     {
-        $paymentInfo = PaymentInfo::where('user_id',Auth::user()->id)->first();
+        $paymentInfo = PaymentInfo::where('user_id',Auth::user()->id)->get();
         return new PaymentInfoResource($paymentInfo);
     }
 
@@ -42,7 +42,7 @@ class PaymentInfoController extends Controller
 
         if($request->isMethod('put')){
             // update
-            $paymentInfo = Auth::user()->paymentInfo;
+            $paymentInfo = PaymentInfo::findOrFail($request->id);
             $paymentInfo->update($request->toArray());
         }
 
@@ -55,10 +55,9 @@ class PaymentInfoController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'currency' => ['required', 'string', 'max:255','min:2'],
             'salary_frequency' => ['required', 'string', 'max:255','min:3'],
             'salary' => ['required', 'numeric','min:3','max:9999999'],
-            'available_hours_frequency' => ['required', 'string','max:255','min:3'],
-            'available_hours' => ['required', 'numeric','min:10','max:5000'],
         ]);
     }
 }

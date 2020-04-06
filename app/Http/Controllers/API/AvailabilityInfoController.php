@@ -24,7 +24,7 @@ class AvailabilityInfoController extends Controller
      */
     public function index()
     {
-        $AvailabilityInfo = AvailabilityInfo::where('user_id',Auth::user()->id)->first();
+        $AvailabilityInfo = AvailabilityInfo::where('user_id',Auth::user()->id)->get();
         return new AvailabilityInfoResource($AvailabilityInfo);
     }
 
@@ -42,7 +42,7 @@ class AvailabilityInfoController extends Controller
 
         if($request->isMethod('put')){
             // update
-            $availabilityInfo = Auth::user()->availabilityInfo;
+            $availabilityInfo = AvailabilityInfo::findOrFail($request->id);
             $availabilityInfo->update($request->toArray());
         }
 
@@ -56,7 +56,7 @@ class AvailabilityInfoController extends Controller
     {
         return Validator::make($data, [
             'available_hours_frequency' => ['required', 'string','max:255','min:3'],
-            'available_hours' => ['required', 'numeric','min:10','max:5000'],
+            'available_hours' => ['required', 'numeric','min:10','max:9999999']
         ]);
     }
 }
