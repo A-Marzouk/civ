@@ -26,7 +26,7 @@
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent">
                               Carla Pipin Ranga
-                              <span class="mx-8 hidden-sm-and-down ">
+                              <span class="mx-8 hidden-sm-and-down">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -82,7 +82,6 @@
                             <v-card flat color="transparent">
                               <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
                             </v-card>
-                            
                           </v-list-item-title>
                         </v-list-item-content>
                       </v-list-item>
@@ -93,7 +92,11 @@
 
                 <!-- 2nd column only for tab and mobile version version -->
                 <v-col sm="5" cols="12" class="tablet-audio-video-flex">
-                  <v-card flat  color="transparent" class="mr-sm-5 mt-sm-0 my-sm-0 my-10 mt-n8 audio-video-card">
+                  <v-card
+                    flat
+                    color="transparent"
+                    class="mr-sm-5 mt-sm-0 my-sm-0 my-10 mt-n8 audio-video-card"
+                  >
                     <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -304,19 +307,31 @@
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
                         <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
-                            <v-card-title class="custom-work-title">
-                              <img
-                                class="mr-md-5 mr-sm-5"
-                                src="/images/resume_themes/theme203/images/ellipse.png"
-                              /> Google Inc. Introduction Google
-                            </v-card-title>
-                            <v-card-subtitle class="custom-work-subtitle">User interface designer</v-card-subtitle>
-                            <v-card-action class="custom-work-duration">2012- Current</v-card-action>
-                          </v-card>
-                        </v-col>
-                      </v-row>
+                          <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
+                            <v-card flat color="transparent">
+                              <v-list-item three-line>
+                                <v-list-item-icon>
+                                  <img
+                                    class="work-icon"
+                                    src="/images/resume_themes/theme203/images/ellipse.png"
+                                  />
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                  <v-list-item-title class="custom-work-title">
+                                    <v-card flat color="transparent">Google Inc. Introduction Google</v-card>
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle class="custom-work-subtitle">
+                                    <v-card flat color="transparent">User interface designer</v-card>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle class="custom-work-duration mt-6">
+                                    <v-card color="transparent" flat>2012- Current</v-card>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                              
+                            </v-card>
+                          </v-col>
+                        </v-row>
                       </v-container>
                     </v-card-text>
                   </v-card>
@@ -330,22 +345,31 @@
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
-                            <v-card-title class="custom-work-title">
-                              <img 
-                                class="mr-md-5 mr-sm-5"
-                                src="/images/resume_themes/theme203/images/ellipse.png"
-                              /> California Institute of technology
-                            </v-card-title>
-                            <v-card-subtitle class="custom-education-subtitle">
-                              <span>M.Sc in HCI,</span>
-                              <span class="mr-md-5">Dec 19 - Present</span>
-                            </v-card-subtitle>
-                            <v-card-text
-                              class="custom-education-details"
-                            >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card-text>
-                          </v-card>
-                        </v-col>
+                            <v-card flat color="transparent">
+                              <v-list-item three-line>
+                                <v-list-item-icon>
+                                  <img
+                                    class="work-icon"
+                                    src="/images/resume_themes/theme203/images/ellipse.png"
+                                  />
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                  <v-list-item-title class="custom-work-title">
+                                    <v-card flat color="transparent">California Insitute of Technology</v-card>
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle class="custom-education-subtitle">
+                                    <v-card flat color="transparent" style="color:#fbd76d;">User interface designer</v-card>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle class= "mt-6">
+                                    <v-card color="transparent" flat class="custom-education-details">
+                                      I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
+                                    </v-card>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                              
+                            </v-card>
+                          </v-col>
                       </v-row>
                     </v-container>
                   </v-card>
@@ -356,51 +380,51 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" flat>
-                      <v-row align="center" justify="center">
-                        <v-col
-                          cols="12"
-                          sm="12"
-                          md="5"
-                          class="mb-12"
-                          v-for="skill in skills"
-                          :key="skill.id"
-                        >
-                          <v-card flat color="transparent" class="mx-auto">
-                            <v-card-text>
-                              <v-list-item>
-                                <v-list-item-avatar
-                                  class="skill-circle mr-n1 mt-sm-2"
-                                  style="z-index:1;"
-                                >
-                                  <span>{{skill.icon_text}}</span>
-                                </v-list-item-avatar>
-                                <v-list-item-content class="mt-n6">
-                                  <v-list-item-subtitle>
-                                    <v-row no-gutters>
-                                      <v-col cols="6" class="skill-title-text">
-                                        <span class="ml-2">{{ skill.title }}</span>
-                                      </v-col>
-                                      <v-col
-                                        cols="6"
-                                        align="right"
-                                        class="skill-title-text"
-                                      >{{skill.skill_value_text}}</v-col>
-                                    </v-row>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle>
-                                    <v-progress-linear
-                                      color="#FCD259"
-                                      height="12"
-                                      rounded
-                                      :value="skill.skill_value"
-                                    ></v-progress-linear>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-card-text>
-                          </v-card>
-                        </v-col>
-                      </v-row>
+                    <v-row align="center" justify="center">
+                      <v-col
+                        cols="12"
+                        sm="12"
+                        md="5"
+                        class="mb-12"
+                        v-for="skill in skills"
+                        :key="skill.id"
+                      >
+                        <v-card flat color="transparent" class="mx-auto">
+                          <v-card-text>
+                            <v-list-item>
+                              <v-list-item-avatar
+                                class="skill-circle mr-n1 mt-sm-2"
+                                style="z-index:1;"
+                              >
+                                <span>{{skill.icon_text}}</span>
+                              </v-list-item-avatar>
+                              <v-list-item-content class="mt-n6">
+                                <v-list-item-subtitle>
+                                  <v-row no-gutters>
+                                    <v-col cols="6" class="skill-title-text">
+                                      <span class="ml-2">{{ skill.title }}</span>
+                                    </v-col>
+                                    <v-col
+                                      cols="6"
+                                      align="right"
+                                      class="skill-title-text"
+                                    >{{skill.skill_value_text}}</v-col>
+                                  </v-row>
+                                </v-list-item-subtitle>
+                                <v-list-item-subtitle>
+                                  <v-progress-linear
+                                    color="#FCD259"
+                                    height="12"
+                                    rounded
+                                    :value="skill.skill_value"
+                                  ></v-progress-linear>
+                                </v-list-item-subtitle>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
                   </v-card>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
@@ -526,11 +550,11 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
-  @media screen and (max-width:599px) {
+  @media screen and (max-width: 599px) {
     width: 15.5rem;
-    height:13.75rem;
+    height: 13.75rem;
   }
-  @media screen and (max-width:322px) {
+  @media screen and (max-width: 322px) {
     width: 14.5rem;
     height: 12.75rem;
   }
@@ -648,12 +672,12 @@ export default {
   font-weight: 100px !important;
   @media screen and (max-width: 599px) {
     width: 6.5rem;
-    font-size:12px;
+    font-size: 12px;
   }
 
   @media screen and (max-width: 330px) {
     width: 5.5rem;
-    font-size:12px;
+    font-size: 12px;
   }
 }
 
@@ -677,32 +701,26 @@ export default {
 // .........................Desktop Portfolio...........................
 
 // ................... Work Desktop......................................
+.work-icon {
+  width: 20px;
+  margin-top: 5px;
+}
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
   text-transform: capitalize;
-  img {
-    width: 20px !important;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 14px;
-    img{
-      width: 12px !important;
-    }
-  }
 }
 .custom-work-subtitle {
   font-size: 12px;
   color: #000000 !important;
   text-align: left;
-  margin-left: 62px;
   text-transform: capitalize;
 }
 .custom-work-duration {
   font-size: 12px;
   color: #000000 !important;
   text-align: left !important;
-  margin-left: 80px;
+
 }
 //...................... Work Desktop.....................................
 
@@ -712,14 +730,12 @@ export default {
   color: #fbd76d !important;
   line-height: 1.4375rem;
   font-weight: bold;
-  margin-left: 62px;
 }
 .custom-education-details {
   font-size: 0.75rem;
   line-height: 1.4375rem;
   font-weight: 300;
   color: #2d2d2d !important;
-  margin-left: 62px;
 }
 // ................ Education Desktop............................
 // ................Skills Desktop..................................
@@ -738,8 +754,6 @@ export default {
     font-size: 0.9rem;
     color: #ffffff;
   }
-
-
 }
 
 .skill-title-text {
