@@ -194,7 +194,7 @@
           <v-col cols="12" md="10">
             <v-card flat color="transparent">
               <v-card-text>
-                <v-tabs v-model="mainDataTab" color="black" grow hide-slider>
+                <v-tabs v-model="mainDataTab" color="black" centered grow hide-slider>
                   <v-tab
                     v-for="item in mainTabs"
                     :key="item.id"
@@ -209,7 +209,7 @@
       </v-container>
       <!-- ....................Tab Items ..........................-->
       <v-container style="width:100%">
-        <v-row class="mx-md-10 mx-sm-10 mx-5">
+        <v-row class="mx-md-10 mx-sm-10">
           <v-col>
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
@@ -328,7 +328,6 @@
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
-                              
                             </v-card>
                           </v-col>
                         </v-row>
@@ -345,31 +344,35 @@
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                            <v-card flat color="transparent">
-                              <v-list-item three-line>
-                                <v-list-item-icon>
-                                  <img
-                                    class="work-icon"
-                                    src="/images/resume_themes/theme203/images/ellipse.png"
-                                  />
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                  <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent">California Insitute of Technology</v-card>
-                                  </v-list-item-title>
-                                  <v-list-item-subtitle class="custom-education-subtitle">
-                                    <v-card flat color="transparent" style="color:#fbd76d;">M.Sc in HCI, <span class="ml-5">Dec 19 - Present</span></v-card>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle class= "mt-6">
-                                    <v-card color="transparent" flat class="custom-education-details">
-                                      I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
-                                    </v-card>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                              
-                            </v-card>
-                          </v-col>
+                          <v-card flat color="transparent">
+                            <v-list-item three-line>
+                              <v-list-item-icon>
+                                <img
+                                  class="work-icon"
+                                  src="/images/resume_themes/theme203/images/ellipse.png"
+                                />
+                              </v-list-item-icon>
+                              <v-list-item-content>
+                                <v-list-item-title class="custom-work-title">
+                                  <v-card flat color="transparent">California Insitute of Technology</v-card>
+                                </v-list-item-title>
+                                <v-list-item-subtitle class="custom-education-subtitle">
+                                  <v-card flat color="transparent" style="color:#fbd76d;">
+                                    M.Sc in HCI,
+                                    <span class="ml-5">Dec 19 - Present</span>
+                                  </v-card>
+                                </v-list-item-subtitle>
+                                <v-list-item-subtitle class="mt-6">
+                                  <v-card
+                                    color="transparent"
+                                    flat
+                                    class="custom-education-details"
+                                  >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
+                                </v-list-item-subtitle>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </v-card>
+                        </v-col>
                       </v-row>
                     </v-container>
                   </v-card>
@@ -720,7 +723,6 @@ export default {
   font-size: 12px;
   color: #000000 !important;
   text-align: left !important;
-
 }
 //...................... Work Desktop.....................................
 
@@ -781,12 +783,14 @@ export default {
 // Watermark text
 .watermark-text {
   position: absolute;
-  margin-top: 80px;
   font-size: 18vw;
   width: 100%;
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
 
