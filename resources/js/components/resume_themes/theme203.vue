@@ -216,7 +216,7 @@
       </v-container>
       <!-- ....................Tab Items ..........................-->
       <v-container style="width:100%">
-        <v-row class="mx-md-10 mx-sm-10">
+        <v-row class="mx-md-10 mx-sm-10 mx-5">
           <v-col>
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
@@ -718,7 +718,6 @@ export default {
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
-  text-transform: capitalize;
 }
 .custom-work-subtitle {
   font-size: 12px;
@@ -739,6 +738,10 @@ export default {
   color: #fbd76d !important;
   line-height: 1.4375rem;
   font-weight: bold;
+
+  @media screen and (max-width: 599px){
+    font-size: 0.7rem;
+  }
 }
 .custom-education-details {
   font-size: 0.75rem;
