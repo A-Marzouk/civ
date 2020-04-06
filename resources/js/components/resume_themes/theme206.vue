@@ -19,7 +19,7 @@
             </v-col>
             <v-col md="3">
               <!-- Hour rate -->
-              <v-card class="d-flex flex-row pa-0 ma-0" flat color="transparent">
+              <v-card class="d-flex flex-row hour-card" color="transparent" flat>
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
                     <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
@@ -41,7 +41,7 @@
                 <!-- Hour Rate -->
                 <!-- Weekly availibility -->
 
-                <v-list-item two-line>
+                <v-list-item two-line class="ml-n10">
                   <v-list-item-avatar size="16">
                     <img width="16" src="/images/resume_themes/theme206/icons/watch.png" />
                   </v-list-item-avatar>
@@ -64,7 +64,7 @@
 
             <!-- 3rd column -->
             <v-col md="5">
-              <v-card flat color="transparent" class="pa-0">
+              <v-card flat color="transparent" class="pa-0 hire-me-card">
                 <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
@@ -114,6 +114,21 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+.half-circle {
+  position: absolute;
+  width: 160px;
+  height: 80px; /* as the half of the width */
+  border-radius: 100px 100px 0px 0;
+  border-left: 5px solid #5843BE;
+  border-right: 5px solid #5843BE;
+  border-top: 5px solid #5843BE;
+  margin-top:10px;
+  margin-left: 15px;
+  transform: rotate(118deg);
+  
+  z-index: 1;
+}
 .custom-profile-title {
   font-family: "Open Sans" !important;
   font-size: 2rem;
@@ -136,10 +151,17 @@ export default {
   line-height: 1.6888rem;
 }
 
+.hour-card {
+  margin-top: -100px;
+}
+.hire-me-card {
+  margin-top: -70px;
+}
+
 .hour-rate {
   font-family: "Poppins", sans-serif !important;
   color: rgba(88, 67, 190, 0.5) !important;
-  font-size: 0.6rem !important;
+  font-size: 0.625rem !important;
   line-height: 1.313rem;
 }
 .rate {

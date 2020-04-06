@@ -32,7 +32,7 @@
                                   color="#FCD259"
                                   small
                                   depressed
-                                  class="mx-md-1 mx-sm-2 btn-email"
+                                  class="mx-md-auto mx-sm-2 btn-email"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -42,7 +42,7 @@
                                   color="#FCD259"
                                   x-small
                                   depressed
-                                  class="mx-md-0 mx-sm-2 btn-video-player"
+                                  class="mx-md-auto mx-sm-2 btn-video-player"
                                 >
                                   <img
                                     width="14"
@@ -55,7 +55,7 @@
                                   color="#FCD259"
                                   x-small
                                   depressed
-                                  class="btn-headphone mx-auto mx-sm-2"
+                                  class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                 >
                                   <img
                                     width="14"
@@ -63,7 +63,7 @@
                                   />
                                 </v-btn>
                               </span>
-                              <span class="mx-1 hidden-sm-and-down">
+                              <span class="social-media-block hidden-sm-and-down">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -640,6 +640,12 @@ export default {
 }
 
 /* Social Btn */
+.social-media-block{
+  margin-left: 7vw;
+  @media screen and (max-width: 1280px) {
+    margin-left: 1vw;
+  }
+}
 .social-btn {
   width: 2rem !important;
   height: 2rem !important;
