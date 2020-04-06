@@ -421,7 +421,8 @@
     import Slick from 'vue-slick';
 
     export default {
-        props: ['user'],
+        name: "theme3",
+        props:['user','is_preview'],
         components: {
             Slick
         },
@@ -453,6 +454,7 @@
                         }
                     ]
                 },
+                currentUser : this.user
             }
         },
         methods: {
@@ -461,10 +463,16 @@
             },
             setActiveSkillTab(tabName) {
                 this.activeSkillTab = tabName;
+            },
+            setDummyUser(){
+                this.currentUser = this.$store.state.dummyUser;
             }
         },
         mounted() {
-
+            // if there is no user or the preview is true, set dummy user
+            if (!this.currentUser || this.is_preview) {
+                this.setDummyUser();
+            }
         }
     }
 </script>
