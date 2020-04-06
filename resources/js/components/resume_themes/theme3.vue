@@ -21,13 +21,13 @@
                             <div class="audio-btn NoDecor">
                                 <a href="javascript:void(0)">
                                     <img src="/images/resume_themes/theme3/audio.svg" alt="audio">
-                                    Audio
+                                    <span class="hideOnPhone">Audio</span>
                                 </a>
                             </div>
                             <div class="video-btn NoDecor">
                                 <a href="javascript:void(0)">
                                     <img src="/images/resume_themes/theme3/video.svg" alt="video">
-                                    Video
+                                    <span class="hideOnPhone">Video</span>
                                 </a>
                             </div>
                         </div>
@@ -452,11 +452,18 @@
                     slidesToScroll: 1,
                     responsive: [
                         {
-                            breakpoint: 786,
+                            breakpoint: 600,
                             settings: {
                                 slidesToShow: 1,
                                 slidesToScroll: 1,
-                                rows: 3,
+                                rows:2,
+                            }
+                        },
+                        {
+                            breakpoint: 1200,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1,
                             }
                         },
                         {
@@ -465,7 +472,7 @@
                                 slidesToShow: 2,
                                 slidesToScroll: 1,
                             }
-                        }
+                        },
                     ]
                 },
                 currentUser: this.user
@@ -755,6 +762,9 @@
 
                     .audio-btn{
                         margin-right:27px;
+                        @media only screen and (max-width: 765px) {
+                            margin-right:10px;
+                        }
                     }
                     .audio-btn, .video-btn{
                         a{
@@ -771,6 +781,17 @@
                                 width:19px;
                                 height:15px;
                                 margin-right:6px;
+                            }
+
+                            @media only screen and (max-width: 600px) {
+                                width:auto;
+                                height:auto;
+                                border: none;
+                                img{
+                                    margin-right:0;
+                                    width:22px;
+                                    height:18px;
+                                }
                             }
                         }
                     }
@@ -838,7 +859,7 @@
                             font-size: 12px;
                             height: 34px;
                             width: 105px;
-                            border-radius: 8px;
+                            border-radius: 35px;
                         }
                         @media only screen and (min-width: 1600px) {
                             font-size: 30px;
@@ -930,6 +951,7 @@
                     }
 
                     img {
+                        margin-top: 25px;
                         margin-right: 25px;
                         margin-left: 25px;
                         width: 510px !important;
@@ -1195,13 +1217,13 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
+                        border-radius: 35px;
                         height: 30px;
                         width: 90px;
                         font-size: 13px;
                         background: white;
                         border: 1px solid #5289E7;
                         color: #5289E7;
-                        border-radius: 35px;
                     }
                 }
 
@@ -1384,7 +1406,7 @@
                                 font-size: 12px;
                                 height: 34px;
                                 width: 105px;
-                                border-radius: 8px;
+                                border-radius: 35px;
                             }
                             @media only screen and (min-width: 1600px) {
                                 font-size: 30px;
@@ -1478,6 +1500,7 @@
                         justify-content: center;
 
                         img {
+                            margin-top: 25px;
                             margin-right: 25px;
                             margin-left: 25px;
                             width: 510px !important;
@@ -1784,6 +1807,7 @@
                         justify-content: center;
 
                         img {
+                            margin-top: 25px;
                             margin-right: 25px;
                             margin-left: 25px;
                             width: 510px !important;
