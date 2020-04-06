@@ -9,7 +9,7 @@
         <span
           class="tm700-educations--span tw-rounded-full tw-p-2 tw-text-white tw-flex tw-items-center tw-bg-tm700-1 tw-mr-18px tw-w-44px tw-h-44px tw-flex-none"
         >{{id}}.</span>
-        <div class="flex flex-col justify-between">
+        <div class="flex flex-col justify-between tw-max-w-1/2">
           <div class="tm700-educations--info">
             <h3
               class="tm700-educations--title not-italic text-2xl text-black font-normal"
