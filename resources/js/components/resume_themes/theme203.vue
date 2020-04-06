@@ -185,7 +185,7 @@
       <!-- Header Row -->
 
       <!-- tab bar row -->
-      <v-container>
+      <v-container style="width:100%">
         <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" md="10">
@@ -302,12 +302,13 @@
                   <div class="watermark-text text-center">Work</div>
                   <v-card color="transparent" flat>
                     <v-card-text class>
-                      <v-row align="center" justify="center">
+                      <v-container fluid ma-0 pa-0 style="width:100%">
+                        <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
                           <v-card flat color="transparent">
                             <v-card-title class="custom-work-title">
                               <img
-                                class="mx-5"
+                                class="mr-md-5 mr-sm-5"
                                 src="/images/resume_themes/theme203/images/ellipse.png"
                               /> Google Inc. Introduction Google
                             </v-card-title>
@@ -316,6 +317,7 @@
                           </v-card>
                         </v-col>
                       </v-row>
+                      </v-container>
                     </v-card-text>
                   </v-card>
                 </v-tab-item>
@@ -325,13 +327,13 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" flat>
-                    <v-card-text class>
+                    <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
                           <v-card flat color="transparent">
                             <v-card-title class="custom-work-title">
-                              <img
-                                class="mx-5"
+                              <img 
+                                class="mr-md-5 mr-sm-5"
                                 src="/images/resume_themes/theme203/images/ellipse.png"
                               /> California Institute of technology
                             </v-card-title>
@@ -345,7 +347,7 @@
                           </v-card>
                         </v-col>
                       </v-row>
-                    </v-card-text>
+                    </v-container>
                   </v-card>
                 </v-tab-item>
                 <!--................... Tab item Education............................... -->
@@ -354,13 +356,11 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" flat>
-                    <v-card-text class>
                       <v-row align="center" justify="center">
                         <v-col
                           cols="12"
                           sm="12"
                           md="5"
-                          offset-md="1"
                           class="mb-12"
                           v-for="skill in skills"
                           :key="skill.id"
@@ -401,7 +401,6 @@
                           </v-card>
                         </v-col>
                       </v-row>
-                    </v-card-text>
                   </v-card>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
@@ -685,6 +684,12 @@ export default {
   img {
     width: 20px !important;
   }
+  @media screen and (max-width: 599px) {
+    font-size: 14px;
+    img{
+      width: 12px !important;
+    }
+  }
 }
 .custom-work-subtitle {
   font-size: 12px;
@@ -733,6 +738,8 @@ export default {
     font-size: 0.9rem;
     color: #ffffff;
   }
+
+
 }
 
 .skill-title-text {
@@ -740,6 +747,9 @@ export default {
   font-size: 1rem;
   line-height: 1.6875rem;
   color: #222d68 !important;
+  @media screen and (max-width: 599px) {
+    font-size: 0.7rem;
+  }
 }
 .tablet-audio-video-flex {
   display: none;
@@ -761,6 +771,8 @@ export default {
   font-size: 18vw;
   width: 100%;
   opacity: 0.1;
+  white-space: nowrap;
+  display: inline-block;
 }
 </style>
 
