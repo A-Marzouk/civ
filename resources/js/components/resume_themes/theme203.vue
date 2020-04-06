@@ -194,7 +194,14 @@
           <v-col cols="12" md="10">
             <v-card flat color="transparent">
               <v-card-text>
-                <v-tabs v-model="mainDataTab" color="black" centered grow hide-slider>
+                <v-tabs
+                  v-model="mainDataTab"
+                  color="black"
+                  centered
+                  grow
+                  show-arrows
+                  hide-slider
+                >
                   <v-tab
                     v-for="item in mainTabs"
                     :key="item.id"
