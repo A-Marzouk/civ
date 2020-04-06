@@ -227,6 +227,11 @@ import  ImportCV  from '../../components/ImportCV'
 
             @include lt-md {
                 padding: 0;
+
+                .import-cv-wrapper{
+                    padding: 0px;
+                }
+
             }
 
             .import-item {
@@ -298,9 +303,18 @@ import  ImportCV  from '../../components/ImportCV'
                         background: #fff;
                     }
 
+                    @include lt-sm {
+                        padding: 0px 15px;
+                    }
+
+                    
+
                     .import-name{
                         @include lt-md {
                             font-size: 22px;
+                        }
+                        @include lt-sm {
+                            font-size: 12px;
                         }
                     }
 
@@ -311,6 +325,9 @@ import  ImportCV  from '../../components/ImportCV'
                         @include lt-md {
                             padding: 0;
                             font-size: 22px;
+                        }
+                        @include lt-sm {
+                            font-size: 12px;
                         }
                     }
                 }

@@ -362,10 +362,14 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
             }
 
             @include lt-md {
-                display: flex !important;
+                display: flex;
                 justify-content: space-between;
                 width: 100%;
                 margin-top: 40px;
+            }
+
+            @include gt-sm{
+                display: none;
             }
 
             .add-award-btn {
@@ -557,7 +561,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 flex-direction: column;
                 width: 100%;
                 min-height: 140px;
-                padding: 0 43px;
+                padding: 10px 43px 30px 43px;
                 border-radius: 8px; 
 
                 @include lt-md {
@@ -721,6 +725,25 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                         border: 1px solid #1F5DE4;
                         position: relative;
                         z-index: 2;
+                    }
+                }
+
+                .editForm{
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+
+                    .add-award-section{
+                        width: 580px;
+
+                        @include lt-md {
+                            width: 100%;
+                        }
+                    }
+
+                    .action-btns{
+                        justify-content: space-between;
+                        width: 100%;
                     }
                 }
             }
