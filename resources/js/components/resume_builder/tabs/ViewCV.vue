@@ -16,11 +16,9 @@
                 </div>
 
                 <img :src="`/images/resume_themes/theme${activeTheme}/preview.png`" alt="theme-preview" class="active-theme-img">
-                <div class="preview-mobile-bar showOnMd">
-                    <div class="preview-btn">
-                        Active Theme <svg-vue :icon="'eye-icon'"></svg-vue>
-                    </div>
-                </div>
+                <a :href="'/' + user.username " target="_blank" class="preview-mobile-bar showOnMd justify-content-center">
+                    Active Theme <svg-vue class='icon' :icon="'eye-icon'"></svg-vue>
+                </a>
             </div>
         </div>
 
@@ -265,6 +263,8 @@ $mainBlue: #001CE2;
 
         .preview-theme {
 
+            position: relative;
+
             @include lt-lg {
                 flex-wrap: wrap;
             }
@@ -298,7 +298,36 @@ $mainBlue: #001CE2;
 
                 @include lt-md {
                     margin: 0;
-                    width: 150px;
+                    width: 280px;
+                }
+
+                @include lt-sm {
+                    margin: 0;
+                    width: 220px;
+                }
+            }
+
+            .preview-mobile-bar {
+                background: $mainBlue;
+                color: white;
+                border-radius: 15px;
+
+                svg, path, circle {
+                    fill: white;
+                }
+
+                .icon {
+                    width: 15px;
+                    margin-left: 9.5px;
+                }
+
+                @include lt-md {
+                    position: absolute;
+                    display: flex !important;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    padding: 5px;
                 }
             }
         }
@@ -333,26 +362,31 @@ $mainBlue: #001CE2;
             }
         }
         .themes{
-            justify-content: space-between;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-gap: 3rem;
+            grid-template-columns: repeat(12, 1fr);
+            width: 100%;
 
             @include lt-md {
-                justify-content: space-around;
+                grid-gap: 0;
             }
 
             .theme-item{
                 margin-top:100px;
+                grid-column: span 4;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 flex-direction: column;
-                max-width:540px;
-                min-width: 390px;
-                width: 30%;
-                height:460px;
+                max-width: 540px;
+
+                @include lt-lg {
+                    grid-column: span 6;
+                }
 
                 @include lt-md {
-                    height: 420px;
+                    grid-column: span 12;
+                    max-width: 100%;
                 }
 
                 img.theme-image{
