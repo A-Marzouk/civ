@@ -1,19 +1,19 @@
 <template>
     <div class="d-flex justify-content-center w-100">
-        <div class="themeWrapper">
+        <div class="themeWrapper" v-if="currentUser">
             <div class="mainThemeBar d-flex justify-content-between align-items-center">
                 <div class="left">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
-                            <img src="/images/resume_themes/theme3/person.png" alt="profile pic">
+                            <img :src="currentUser.personal_info.profile_pic" alt="profile pic">
                         </div>
                         <div class="info">
                             <div class="user-name">
-                                Micheal Fields
+                                {{currentUser.personal_info.full_name}}
                             </div>
                             <div class="job-title d-flex">
                                 <div>
-                                    Web Developer
+                                    {{currentUser.personal_info.designation}}
                                 </div>
                             </div>
                         </div>
@@ -38,19 +38,23 @@
                 </div>
                 <div class="right d-flex align-items-center">
                     <div class="hourly-rate">
-                        <div class="hourly-rate-text">
-                            $10
-                        </div>
-                        <div class="hourly-rate-text light text-center">
-                            Hourly Rate
-                        </div>
+                       <div>
+                           <div class="hourly-rate-text">
+                               ${{currentPayment.salary}}
+                           </div>
+                           <div class="hourly-rate-text light text-center">
+                               Hourly Rate
+                           </div>
+                       </div>
                     </div>
                     <div class="weekly-availability">
-                        <div class="hourly-rate-text">
-                            35 hours
-                        </div>
-                        <div class="hourly-rate-text light text-center">
-                            Weekly Availability
+                        <div>
+                            <div class="hourly-rate-text">
+                                {{currentAvailability.available_hours}} hours
+                            </div>
+                            <div class="hourly-rate-text light text-center">
+                                Weekly Availability
+                            </div>
                         </div>
                     </div>
                     <div class="hire-me-btn NoDecor">
@@ -456,7 +460,7 @@
                             settings: {
                                 slidesToShow: 1,
                                 slidesToScroll: 1,
-                                rows:2,
+                                rows: 2,
                             }
                         },
                         {
@@ -487,6 +491,14 @@
             },
             setDummyUser() {
                 this.currentUser = this.$store.state.dummyUser;
+            }
+        },
+        computed: {
+            currentPayment() {
+                return this.currentUser.payment_info[0];
+            },
+            currentAvailability() {
+                return this.currentUser.availability_info[0];
             }
         },
         mounted() {
@@ -756,20 +768,21 @@
                 }
 
 
-                .media-btns{
+                .media-btns {
                     display: flex;
-                    margin-left:27px;
+                    margin-left: 27px;
 
-                    .audio-btn{
-                        margin-right:27px;
+                    .audio-btn {
+                        margin-right: 27px;
                         @media only screen and (max-width: 765px) {
-                            margin-right:10px;
+                            margin-right: 10px;
                         }
                     }
-                    .audio-btn, .video-btn{
-                        a{
-                            width:122px;
-                            height:43px;
+
+                    .audio-btn, .video-btn {
+                        a {
+                            width: 122px;
+                            height: 43px;
                             display: flex;
                             align-items: center;
                             justify-content: center;
@@ -777,20 +790,21 @@
                             border: 1px solid #5289E7;
                             font-size: 19px;
                             color: #5289E7;
-                            img{
-                                width:19px;
-                                height:15px;
-                                margin-right:6px;
+
+                            img {
+                                width: 19px;
+                                height: 15px;
+                                margin-right: 6px;
                             }
 
                             @media only screen and (max-width: 600px) {
-                                width:auto;
-                                height:auto;
+                                width: auto;
+                                height: auto;
                                 border: none;
-                                img{
-                                    margin-right:0;
-                                    width:22px;
-                                    height:18px;
+                                img {
+                                    margin-right: 0;
+                                    width: 22px;
+                                    height: 18px;
                                 }
                             }
                         }
@@ -826,9 +840,8 @@
                         font-size: 12px;
                     }
                     @media only screen and (min-width: 1600px) {
-                        font-size: 50px;
+                        font-size: 30px;
                         line-height: normal;
-                        line-height: 90px;
                     }
                 }
 
@@ -1374,9 +1387,8 @@
                             font-size: 12px;
                         }
                         @media only screen and (min-width: 1600px) {
-                            font-size: 50px;
+                            font-size: 30px;
                             line-height: normal;
-                            line-height: 90px;
                         }
                     }
 
@@ -2005,22 +2017,24 @@
 
     .slick-dots li button:before {
         font-size: 10px !important;
-    @media only screen and (max-width: 765px) {
-        font-size: 6px !important;
-    }
+        @media only screen and (max-width: 765px) {
+            font-size: 6px !important;
+        }
     }
 
     .slick-dots li.slick-active button:before {
         opacity: 1;
         color: #5289E7;
     }
-    .slick-dots li.slick-active button{
+
+    .slick-dots li.slick-active button {
         background-color: #5289E7;
     }
-    .slick-dots li button{
+
+    .slick-dots li button {
         background-color: #DEDEDE;
         border: none;
-        width:12px;
+        width: 12px;
         height: 12px;
     }
 </style>
