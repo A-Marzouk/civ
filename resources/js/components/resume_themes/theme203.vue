@@ -209,7 +209,7 @@
       </v-container>
       <!-- ....................Tab Items ..........................-->
       <v-container style="width:100%">
-        <v-row class="mx-md-10 mx-sm-10 mx-5">
+        <v-row class="mx-md-10 mx-sm-10 mx-1">
           <v-col>
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
