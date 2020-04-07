@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="work" v-show="activeTab === 'work'">
-                    <div class="work-item">
+                    <div class="work-item" v-for="work in currentUser.work_experience" :key="work.id + 'work'">
                         <div class="work-icon hideOnPhone">
                             <img src="/images/resume_themes/theme3/work-icon.svg" alt="work-icon">
                         </div>
@@ -147,126 +147,26 @@
                                 </div>
                                 <div>
                                     <div class="date">
-                                        2018 - 2019
+                                       {{work.date_from}} - {{work.present ? 'Present' : work.date_to}}
                                     </div>
                                     <div class="work-title">
-                                        Graphic & web designer
+                                       {{work.job_title}}
                                     </div>
                                 </div>
                             </div>
                             <div class="work-details">
                                 <div class="company-name">
-                                    Company "React"
+                                    Company: "{{work.company_name}}"
                                 </div>
                                 <div class="job-roles">
-                                    - Company "React" - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications.
-                                    - Building websites that are easy to understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-icon hideOnPhone">
-                            <img src="/images/resume_themes/theme3/work-icon.svg" alt="work-icon">
-                        </div>
-                        <div class="work-info">
-                            <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
-                                    <img src="/images/resume_themes/theme3/work-icon.svg" alt="work-icon">
-                                </div>
-                                <div>
-                                    <div class="date">
-                                        2018 - 2019
-                                    </div>
-                                    <div class="work-title">
-                                        Graphic & web designer
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-details">
-                                <div class="company-name">
-                                    Company "React"
-                                </div>
-                                <div class="job-roles">
-                                    - Company "React" - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications.
-                                    - Building websites that are easy to understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-icon hideOnPhone">
-                            <img src="/images/resume_themes/theme3/work-icon.svg" alt="work-icon">
-                        </div>
-                        <div class="work-info">
-                            <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
-                                    <img src="/images/resume_themes/theme3/work-icon.svg" alt="work-icon">
-                                </div>
-                                <div>
-                                    <div class="date">
-                                        2018 - 2019
-                                    </div>
-                                    <div class="work-title">
-                                        Graphic & web designer
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-details">
-                                <div class="company-name">
-                                    Company "React"
-                                </div>
-                                <div class="job-roles">
-                                    - Company "React" - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications.
-                                    - Building websites that are easy to understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-icon hideOnPhone">
-                            <img src="/images/resume_themes/theme3/work-icon.svg" alt="work-icon">
-                        </div>
-                        <div class="work-info">
-                            <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
-                                    <img src="/images/resume_themes/theme3/work-icon.svg" alt="work-icon">
-                                </div>
-                                <div>
-                                    <div class="date">
-                                        2018 - 2019
-                                    </div>
-                                    <div class="work-title">
-                                        Graphic & web designer
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-details">
-                                <div class="company-name">
-                                    Company "React"
-                                </div>
-                                <div class="job-roles">
-                                    - Company "React" - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications.
-                                    - Building websites that are easy to understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
+                                    {{work.description}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="work" v-show="activeTab === 'education'">
-                    <div class="work-item">
+                    <div class="work-item" v-for="education in currentUser.education" :key="education.id + '_education'">
                         <div class="work-icon hideOnPhone">
                             <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
                         </div>
@@ -277,123 +177,19 @@
                                 </div>
                                 <div>
                                     <div class="date">
-                                        2015 - 2016
+                                        {{education.date_from}} - {{education.present ? 'Present' : education.date_to}}
                                     </div>
                                     <div class="work-title">
-                                        Master in web development
+                                        {{education.degree_title}}
                                     </div>
                                 </div>
                             </div>
                             <div class="work-details">
                                 <div class="company-name">
-                                    Envision Media, Inc., Santa Cruz
+                                   {{education.university_name}}
                                 </div>
                                 <div class="job-roles">
-                                    - Envision Media, Inc., Santa Cruz, CA
-                                    - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications. - Building websites that are easy to
-                                    understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-icon hideOnPhone">
-                            <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
-                        </div>
-                        <div class="work-info">
-                            <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
-                                    <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
-                                </div>
-                                <div>
-                                    <div class="date">
-                                        2015 - 2016
-                                    </div>
-                                    <div class="work-title">
-                                        Master in web development
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-details">
-                                <div class="company-name">
-                                    Envision Media, Inc., Santa Cruz
-                                </div>
-                                <div class="job-roles">
-                                    - Envision Media, Inc., Santa Cruz, CA
-                                    - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications. - Building websites that are easy to
-                                    understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-icon hideOnPhone">
-                            <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
-                        </div>
-                        <div class="work-info">
-                            <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
-                                    <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
-                                </div>
-                                <div>
-                                    <div class="date">
-                                        2015 - 2016
-                                    </div>
-                                    <div class="work-title">
-                                        Master in web development
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-details">
-                                <div class="company-name">
-                                    Envision Media, Inc., Santa Cruz
-                                </div>
-                                <div class="job-roles">
-                                    - Envision Media, Inc., Santa Cruz, CA
-                                    - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications. - Building websites that are easy to
-                                    understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="work-item">
-                        <div class="work-icon hideOnPhone">
-                            <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
-                        </div>
-                        <div class="work-info">
-                            <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
-                                    <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
-                                </div>
-                                <div>
-                                    <div class="date">
-                                        2015 - 2016
-                                    </div>
-                                    <div class="work-title">
-                                        Master in web development
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="work-details">
-                                <div class="company-name">
-                                    Envision Media, Inc., Santa Cruz
-                                </div>
-                                <div class="job-roles">
-                                    - Envision Media, Inc., Santa Cruz, CA
-                                    - Turning creative concepts into finished websites.
-                                    - Drawing up detailed website s pecifications. - Building websites that are easy to
-                                    understand, navigate and use.
-                                    - Designing sample page layouts. - Ensuring that the website complies with the
-                                    company’s brand guidelines.
+                                    {{education.institution_type}}
                                 </div>
                             </div>
                         </div>
