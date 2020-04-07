@@ -68,14 +68,14 @@ export const store = new Vuex.Store({
                 },
                 {
                     id: Math.random(),
-                    title: 'photoshop',
-                    category: 'design',
+                    title: 'phpstorm',
+                    category: 'software',
                     percentage: '90',
                 },
                 {
                     id: Math.random(),
                     title: 'photoshop',
-                    category: 'design',
+                    category: 'programming_languages',
                     percentage: '90',
                 },
             ],
