@@ -297,7 +297,7 @@
         }
 
         @include lt-sm {
-            padding: 100px 36px 50px;
+            padding: 100px 20px 50px;
         }
     }
 

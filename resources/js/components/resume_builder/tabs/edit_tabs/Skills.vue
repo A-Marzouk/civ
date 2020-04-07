@@ -164,12 +164,12 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
         name: "Skills",
         data() {
             return {
-                activeTab: 'Programming_languages',
+                activeTab: 'programming_languages',
                 tabs: [
-                    'Programming_languages',
-                    'Software',
-                    'Design',
-                    'Frameworks'
+                    'programming_languages',
+                    'software',
+                    'design',
+                    'frameworks'
                 ],
                 skill: {
                     category: '',
