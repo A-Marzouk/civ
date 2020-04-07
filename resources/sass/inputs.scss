@@ -106,3 +106,154 @@
         }
     }
 }
+
+.civ-input{
+    width: 32%;
+    max-width:269px;
+    margin-right: 30px;
+
+    @media (max-width: 1580px) {
+        width: 40%;
+        margin-right: 0;
+    }
+
+    @include lt-md {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    label{
+        text-align: left;
+        font: 600 22px Noto Sans;
+        letter-spacing: 0;
+        color: #505050;
+        opacity: 1;
+
+        @include lt-md {
+            color: $mainBlue;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        @include lt-sm {
+            font-size: 12px;
+        }
+    }
+
+    .civ-custom-select{
+
+        position: relative;
+
+
+        @include lt-md {
+
+            border-color: $mainBlue;
+        }
+
+        .civ-select-input{
+            img{
+                width:24px ;
+                height:12px;
+                position: absolute;
+                top: 35px;
+                right: 20px;
+
+                &.toggled{
+                    -webkit-transform: scaleY(-1);
+                    transform: scaleY(-1);
+                }
+
+                @include lt-sm {
+                    height: 9px;
+                    width: 18px;
+                    top: 15px;
+                    right: 15px;
+                }
+            }
+
+            ::placeholder {
+                opacity: .3;
+                font-weight: normal;
+            }
+
+            input{
+                width: 100%;
+                height:76px;
+                border: 1.5px #505050 solid;
+                padding: 5px 23px;
+                border-radius: 10px 10px 0 0;
+                border-bottom: 0;
+                color: black;
+                font-weight: bold;
+                font-size: 22px;
+                background: white;
+
+                @include lt-md {
+                    border-color: $mainBlue;
+                }
+
+                @include lt-sm {
+                    font-size: 14px;
+                    height: 38px
+                }
+
+                &:focus{
+                    outline: none !important;
+                }
+                &:hover{
+                    cursor: pointer;
+                }
+
+                &.with-border{
+                    border-bottom: 1.5px #505050 solid;
+                    border-radius: 10px;
+
+                    @include lt-md {
+
+                        border-color: $mainBlue;
+                    }
+                }
+            }
+
+        }
+
+        .civ-custom-options{
+            background: #f8fafc;
+            position: absolute;
+            border: 1.5px #505050 solid;
+            border-radius: 0 0 10px 10px;
+            opacity: 1;
+            margin-top: 0;
+            width: 100%;
+            border-top: 0;
+            height: auto;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 30;
+
+            @include lt-md {
+                border-color: $mainBlue;
+            }
+
+            div{
+                font-size: 22px;
+                padding-left: 23px;
+                margin-left: 1px;
+
+                @include lt-sm {
+                    font-size: 14px;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    background: lightcyan;
+                }
+
+                &:last-child:hover{
+                    border-radius:0 0 10px 10px ;
+                }
+            }
+        }
+    }
+
+}
