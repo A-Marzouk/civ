@@ -38,22 +38,32 @@
                 </div>
                 <div class="right d-flex align-items-center">
                     <div class="hourly-rate">
+                        <div class="rate-options">
+                            <span  @click="selectCurrentPayment('hourly')" :class="{active:currentPayment.salary_frequency === 'hourly'}">Hourly</span>
+                            <span  @click="selectCurrentPayment('weekly')" :class="{active:currentPayment.salary_frequency === 'weekly'}">Weekly</span>
+                            <span  @click="selectCurrentPayment('monthly')" :class="{active:currentPayment.salary_frequency === 'monthly'}">Monthly</span>
+                        </div>
                        <div>
                            <div class="hourly-rate-text">
                                ${{currentPayment.salary}}
                            </div>
                            <div class="hourly-rate-text light text-center">
-                               Hourly Rate
+                               Rate
                            </div>
                        </div>
                     </div>
                     <div class="weekly-availability">
+                        <div class="rate-options">
+                            <span  @click="selectCurrentAvailability('weekly')" :class="{active:currentAvailability.available_hours_frequency === 'weekly'}">Weekly</span>
+                            <span  @click="selectCurrentAvailability('monthly')" :class="{active:currentAvailability.available_hours_frequency === 'monthly'}">Monthly</span>
+                            <span  @click="selectCurrentAvailability('yearly')" :class="{active:currentAvailability.available_hours_frequency === 'yearly'}">Yearly</span>
+                        </div>
                         <div>
                             <div class="hourly-rate-text">
                                 {{currentAvailability.available_hours}} hours
                             </div>
                             <div class="hourly-rate-text light text-center">
-                                Weekly Availability
+                                Availability
                             </div>
                         </div>
                     </div>
@@ -479,7 +489,9 @@
                         },
                     ]
                 },
-                currentUser: this.user
+                currentUser: this.user,
+                currentPayment:{},
+                currentAvailability:{},
             }
         },
         methods: {
@@ -489,16 +501,28 @@
             setActiveSkillTab(tabName) {
                 this.activeSkillTab = tabName;
             },
+            selectCurrentPayment(frequency){
+                this.currentUser.payment_info.forEach( payment => {
+                    if (payment.salary_frequency === frequency){
+                        this.currentPayment= payment ;
+                    }
+                });
+            },
+            selectCurrentAvailability(frequency){
+                this.currentUser.availability_info.forEach( availability => {
+                    if (availability.available_hours_frequency === frequency){
+                        this.currentAvailability = availability;
+                    }
+                });
+            },
             setDummyUser() {
                 this.currentUser = this.$store.state.dummyUser;
-            }
-        },
-        computed: {
-            currentPayment() {
-                return this.currentUser.payment_info[0];
             },
-            currentAvailability() {
-                return this.currentUser.availability_info[0];
+            setDefaultRates(){
+                if(this.currentUser){
+                   this.currentPayment      =  this.currentUser.payment_info[0] ;
+                   this.currentAvailability =  this.currentUser.availability_info[0] ;
+                }
             }
         },
         mounted() {
@@ -506,6 +530,9 @@
             if (!this.currentUser || this.is_preview) {
                 this.setDummyUser();
             }
+
+            // set default payment and availability:
+            this.setDefaultRates();
         }
     }
 </script>
@@ -820,6 +847,19 @@
                     }
                 }
 
+                .rate-options{
+                    span{
+                        font-weight: 300;
+                        font-size: 14px;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                    span.active{
+                        font-weight: bold;
+                    }
+                }
+
                 .weekly-availability {
                     margin-right: 40px;
                     @media only screen and (max-width: 765px) {
@@ -832,6 +872,7 @@
                         text-transform: uppercase;
                     }
 
+                    text-align: left !important;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 30px;
