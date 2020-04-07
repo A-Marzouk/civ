@@ -98,51 +98,10 @@
             <div class="main-tab-content">
                 <div class="portfolio" v-show="activeTab === 'portfolio'">
                     <slick class="portfolioSlides" ref="slick" :options="slickOptions">
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/images/resume_themes/theme3/portfolio1.png" alt="portfolio image">
+                        <div class="d-flex flex-column align-items-center" v-for="project in currentUser.projects" :key="project.id + '_projectImage' ">
+                            <img :src="getProjectMainImage(project)" alt="portfolio image">
                             <div class="slide-text">
-                                🛒 Lorem ipsum dolor sit amet, consectetur elit.
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/images/resume_themes/theme3/portfolio2.png" alt="portfolio image">
-                            <div class="slide-text">
-                                📊 Lorem ipsum dolor sit amet, consectetur elit.
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/images/resume_themes/theme3/portfolio3.png" alt="portfolio image">
-                            <div class="slide-text">
-                                🛒 Lorem ipsum dolor sit amet, consectetur elit.
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/images/resume_themes/theme3/portfolio1.png" alt="portfolio image">
-                            <div class="slide-text">
-                                📊 Lorem ipsum dolor sit amet, consectetur elit.
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/images/resume_themes/theme3/portfolio2.png" alt="portfolio image">
-                            <div class="slide-text">
-                                🛒 Lorem ipsum dolor sit amet, consectetur elit.
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/images/resume_themes/theme3/portfolio2.png" alt="portfolio image">
-                            <div class="slide-text">
-                                🛒 Lorem ipsum dolor sit amet, consectetur elit.
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-column align-items-center">
-                            <img src="/images/resume_themes/theme3/portfolio2.png" alt="portfolio image">
-                            <div class="slide-text">
-                                🛒 Lorem ipsum dolor sit amet, consectetur elit.
+                                {{project.name}}.
                             </div>
                         </div>
                     </slick>
@@ -514,6 +473,18 @@
                         this.currentAvailability = availability;
                     }
                 });
+            },
+            getProjectMainImage(project) {
+                let mainImage = "";
+
+                let images = project.images;
+                images.forEach(image => {
+                    if (image.is_main) {
+                        mainImage = image;
+                    }
+                });
+
+                return mainImage.src;
             },
             setDummyUser() {
                 this.currentUser = this.$store.state.dummyUser;
