@@ -32,7 +32,7 @@
                                   color="#FCD259"
                                   small
                                   depressed
-                                  class="mx-md-1 mx-sm-2 btn-email"
+                                  class="mx-md-auto mx-sm-2 btn-email"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -42,7 +42,7 @@
                                   color="#FCD259"
                                   x-small
                                   depressed
-                                  class="mx-md-0 mx-sm-2 btn-video-player"
+                                  class="mx-md-auto mx-sm-2 btn-video-player"
                                 >
                                   <img
                                     width="14"
@@ -55,7 +55,7 @@
                                   color="#FCD259"
                                   x-small
                                   depressed
-                                  class="btn-headphone mx-auto mx-sm-2"
+                                  class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                 >
                                   <img
                                     width="14"
@@ -63,7 +63,7 @@
                                   />
                                 </v-btn>
                               </span>
-                              <span class="mx-1 hidden-sm-and-down">
+                              <span class="social-media-block hidden-sm-and-down">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -95,7 +95,7 @@
                   <v-card
                     flat
                     color="transparent"
-                    class="mr-sm-5 mt-sm-0 my-sm-0 my-10 mt-n8 audio-video-card"
+                    class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
                   >
                     <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
                       <v-icon class="icon-email">mdi-email</v-icon>
@@ -194,7 +194,7 @@
           <v-col cols="12" md="10">
             <v-card flat color="transparent">
               <v-card-text>
-                <v-tabs v-model="mainDataTab" color="black" grow hide-slider>
+                <v-tabs v-model="mainDataTab" color="black" centered grow show-arrows hide-slider>
                   <v-tab
                     v-for="item in mainTabs"
                     :key="item.id"
@@ -208,92 +208,33 @@
         <!-- Main navigation tab -->
       </v-container>
       <!-- ....................Tab Items ..........................-->
-      <v-container fluid style="width:100%">
-        <v-row class="mx-10">
+      <v-container style="width:100%">
+        <v-row class="mx-md-10 mx-sm-10 mx-1">
           <v-col>
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <v-card flat color="transparent">
-                    <v-card-text align="center">
-                      <v-row align="center" justify="center">
-                        <div class="watermark-text text-center">Portfolio</div>
-                        <!-- 1st column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/1.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/1.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
+                    <v-card-text>
+                      <v-row>
+                        <v-col cols="12">
+                          <div class="card-columns">
+                            <v-card
+                              v-for="item in portfolioItems"
+                              :key="item.id"
+                              class="mb-2 pa-2"
+                              align="left"
+                              width="800"
+                              flat 
+                              color="transparent"
+                            >
+                              <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
+                              <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
+                              <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
+                            </v-card>
+                          </div>
                         </v-col>
-                        <!-- 1st column -->
-
-                        <!-- 2nd column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/3.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/3.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
-                        </v-col>
-                        <!-- 2nd column -->
-
-                        <!-- 3rd column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/5.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/5.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
-                        </v-col>
-                        <!-- 3rd column -->
-
-                        <!-- 4th Column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/7.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/7.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
-                        </v-col>
-                        <!-- 4th Cloumn -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -328,7 +269,6 @@
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
-                              
                             </v-card>
                           </v-col>
                         </v-row>
@@ -345,31 +285,35 @@
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                            <v-card flat color="transparent">
-                              <v-list-item three-line>
-                                <v-list-item-icon>
-                                  <img
-                                    class="work-icon"
-                                    src="/images/resume_themes/theme203/images/ellipse.png"
-                                  />
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                  <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent">California Insitute of Technology</v-card>
-                                  </v-list-item-title>
-                                  <v-list-item-subtitle class="custom-education-subtitle">
-                                    <v-card flat color="transparent" style="color:#fbd76d;">User interface designer</v-card>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle class= "mt-6">
-                                    <v-card color="transparent" flat class="custom-education-details">
-                                      I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.
-                                    </v-card>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                              
-                            </v-card>
-                          </v-col>
+                          <v-card flat color="transparent">
+                            <v-list-item three-line>
+                              <v-list-item-icon>
+                                <img
+                                  class="work-icon"
+                                  src="/images/resume_themes/theme203/images/ellipse.png"
+                                />
+                              </v-list-item-icon>
+                              <v-list-item-content>
+                                <v-list-item-title class="custom-work-title">
+                                  <v-card flat color="transparent">California Insitute of Technology</v-card>
+                                </v-list-item-title>
+                                <v-list-item-subtitle class="custom-education-subtitle">
+                                  <v-card flat color="transparent" style="color:#fbd76d;">
+                                    M.Sc in HCI,
+                                    <span class="ml-5">Dec 19 - Present</span>
+                                  </v-card>
+                                </v-list-item-subtitle>
+                                <v-list-item-subtitle class="mt-6">
+                                  <v-card
+                                    color="transparent"
+                                    flat
+                                    class="custom-education-details"
+                                  >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
+                                </v-list-item-subtitle>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </v-card>
+                        </v-col>
                       </v-row>
                     </v-container>
                   </v-card>
@@ -474,6 +418,54 @@ export default {
           title: "Skills"
         }
       ],
+      portfolioItems: [
+        {
+          id: 1,
+          title: "Mobile App-Ice Cream",
+          subtitle: "Mobile app concept"
+        },
+        {
+          id: 2,
+          title: "Mobile App-Ice Cream",
+          subtitle: "Mobile app concept"
+        },
+        {
+          id: 3,
+          title: "Made market Concept",
+          subtitle: "Made market concept"
+        },
+        {
+          id: 4,
+          title: "Tracking App-Traq",
+          subtitle: "Tracking App-Traq"
+        },
+        {
+          id: 5,
+          title: "",
+          subtitle: ""
+        },
+
+        {
+          id: 6,
+          title: "Made market Concept",
+          subtitle: "Made market concept"
+        },
+        {
+          id: 7,
+          title: "Made market Concept",
+          subtitle: "Made market concept"
+        },
+        {
+          id: 8,
+          title: "Love custom app",
+          subtitle: "Love custom app"
+        },
+        {
+          id: 9,
+          title: "Love custom app",
+          subtitle: "Love custom app"
+        }
+      ],
       skills: [
         {
           id: 1,
@@ -523,6 +515,9 @@ export default {
   methods: {
     getSocialIcon(name) {
       return `/images/resume_themes/theme203/social_icons/${name}.webp`;
+    },
+    getPortfolioItems(id) {
+      return `/images/resume_themes/theme203/portfolio/${id}.png`;
     }
   }
 };
@@ -532,8 +527,19 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
-
+.card-columns {
+  @media screen and (min-width: 960px) {
+    column-count: 4;
+  }
+  @media screen and (max-width: 959px) {
+    column-count: 1;
+  }
+  @media screen and (max-width: 599px) {
+    column-count: 1;
+  }
+}
 /* Shapes */
 .triangle-top-left {
   left: 0;
@@ -585,7 +591,7 @@ export default {
   position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  height: 700vh;
+  height: 1000vh;
   z-index: 1;
   bottom: 0;
 }
@@ -630,9 +636,31 @@ export default {
 }
 
 /* Social Btn */
+.social-media-block {
+  margin-left: 7vw;
+  @media screen and (max-width: 1280px) {
+    margin-left: 1vw;
+  }
+}
 .social-btn {
   width: 2rem !important;
   height: 2rem !important;
+  @media screen and (max-width: 959px){
+    width: 2.56rem !important;
+    height: 2.56rem !important;
+    img{
+      width: 18px;
+    }
+  }
+
+  @media screen and (max-width: 599px){
+    width: 2rem !important;
+    height: 2rem !important;
+    img{
+      width: 14px;
+    }
+  }
+
 }
 /* Social Btn */
 
@@ -697,18 +725,28 @@ export default {
 .custom-portfolio-img {
   border-radius: 10px;
 }
-
+.custom-portfolio-title {
+  font-family:'Montserrat' !important;
+  font-size: 16px !important;
+  font-weight:bold;
+  margin-bottom: -20px;
+  margin-top:-20px;
+}
+.custom-portfolio-subtitle{
+  font-family:'Montserrat' !important;
+  color: #000000 !important;
+  font-size: 12px;
+}
 // .........................Desktop Portfolio...........................
 
 // ................... Work Desktop......................................
 .work-icon {
-  width: 20px;
-  margin-top: 5px;
+  width: 16px;
+  margin-top: 6px;
 }
 .custom-work-title {
   font-size: 24px;
   line-height: 2.6875rem;
-  text-transform: capitalize;
 }
 .custom-work-subtitle {
   font-size: 12px;
@@ -720,7 +758,6 @@ export default {
   font-size: 12px;
   color: #000000 !important;
   text-align: left !important;
-
 }
 //...................... Work Desktop.....................................
 
@@ -730,6 +767,10 @@ export default {
   color: #fbd76d !important;
   line-height: 1.4375rem;
   font-weight: bold;
+
+  @media screen and (max-width: 599px) {
+    font-size: 0.7rem;
+  }
 }
 .custom-education-details {
   font-size: 0.75rem;
@@ -781,12 +822,14 @@ export default {
 // Watermark text
 .watermark-text {
   position: absolute;
-  margin-top: 3vh;
   font-size: 18vw;
   width: 100%;
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
 
