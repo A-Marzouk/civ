@@ -104,7 +104,7 @@
               ]"
               >
                 <v-avatar tile>
-                  <img :src="getTabIcon(tab.id)" />
+                  <img :src="getTabIcon(tab.id)" class="mr-4" />
                 </v-avatar>
                 {{ tab.title }}
               </v-tab>
@@ -150,7 +150,7 @@
                           Ryerson University
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img width="50" src="/images/resume_themes/theme206/tabs/2.png" alt />
+                            <img  src="/images/resume_themes/theme206/tabs/2.png" alt />
                           </span>
                         </v-card-title>
                         <v-card-text
@@ -164,7 +164,25 @@
                 <!-- Education -->
 
                 <!-- Experience -->
-                <v-tab-item>Experience</v-tab-item>
+                <v-tab-item>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4" v-for="item in experienceItems" :key="item.id">
+                      <v-card class="card-education pa-5">
+                        <v-card-title class="education-title">
+                          {{item.title}}
+                          <v-spacer></v-spacer>
+                          <span class="ml-12">
+                            <img  src="/images/resume_themes/theme206/tabs/3.png" alt="" />
+                          </span>
+                        </v-card-title>
+                        <v-card-text
+                          class="education-subtitle"
+                        >{{item.detail}}</v-card-text>
+                        <v-card-actions class="education-session">{{item.session}}</v-card-actions>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
                 <!-- Experience -->
 
                 <!-- Skills -->
@@ -172,7 +190,7 @@
                   <v-row>
                     <v-col cols="12">
                       <v-card color="transparent" flat>
-                        <v-tabs centered hide-slider>
+                        <v-tabs v-model="skillTab" hide-slider centered>
                           <v-tab
                             v-for="skill in skills"
                             :key="skill.id"
@@ -181,6 +199,20 @@
                           >{{skill.title}}</v-tab>
                         </v-tabs>
                       </v-card>
+                      <!-- Child Tabs -->
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12">
+                      <!-- Child Tab Items -->
+                      <v-tabs-items v-model="skillTab">
+                        <v-tab-item>
+                          <v-card flat>
+                            <v-card-text>Item 1</v-card-text>
+                          </v-card>
+                        </v-tab-item>
+                      </v-tabs-items>
+                      <!-- Child tab items -->
                     </v-col>
                   </v-row>
                 </v-tab-item>
@@ -226,6 +258,29 @@ export default {
         { id: 6, image: 2 },
         { id: 7, image: 3 },
         { id: 8, image: 4 }
+      ],
+      experienceItems: [
+        {
+          id: 1,
+          title: "Front End Developer",
+          detail:
+            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
+          session: "2010-2013"
+        },
+        {
+          id: 2,
+          title: "UX/UI Designer",
+          detail:
+            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
+          session: "2010-2013"
+        },
+        {
+          id: 2,
+          title: "Graphic Design",
+          detail:
+            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
+          session: "2010-2013"
+        }
       ],
       skills: [
         { id: 1, title: "Programming Languages" },
@@ -366,6 +421,9 @@ export default {
   color: #333333 !important;
   font-weight: bold !important;
   line-height: 30px !important;
+  img{
+    width:40px;
+  }
 }
 .education-subtitle {
   font-family: "Roboto", sans-serif !important;
