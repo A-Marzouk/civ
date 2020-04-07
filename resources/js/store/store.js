@@ -252,20 +252,20 @@ export const store = new Vuex.Store({
                     category: 'social_link',
                     link: 'https://instagram.com',
                     link_title: 'Behance',
-                    is_active: true
-                },
-                {
-                    id: Math.random(),
-                    category: 'social_link',
-                    link: 'https://instagram.com',
-                    link_title: 'Linkedin',
                     is_active: false
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
                     link: 'https://instagram.com',
-                    link_title: 'Dribbble',
+                    link_title: 'Linkedin',
+                    is_active: true
+                },
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://instagram.com',
+                    link_title: 'facebook',
                     is_active: true
                 },
 
