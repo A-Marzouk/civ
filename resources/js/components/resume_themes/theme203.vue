@@ -231,7 +231,7 @@
                             >
                               <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
                               <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
-                              <v-card-subtitle>{{item.subtitle}}</v-card-subtitle>
+                              <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
                             </v-card>
                           </div>
                         </v-col>
@@ -715,6 +715,11 @@ export default {
   font-weight:bold;
   margin-bottom: -20px;
   margin-top:-20px;
+}
+.custom-portfolio-subtitle{
+  font-family:'Montserrat' !important;
+  color: #000000 !important;
+  font-size: 12px;
 }
 // .........................Desktop Portfolio...........................
 
