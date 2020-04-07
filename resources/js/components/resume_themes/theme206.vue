@@ -92,7 +92,7 @@
       <!-- Tab Container -->
       <v-container fluid style="width:100%">
         <v-row justify="center" align="center">
-          <v-col cols="12" md="10">
+          <v-col cols="12" md="11">
             <v-tabs v-model="mainDataTab" centered hide-slider grow>
               <v-tab
                 v-for="tab in tabItems"
@@ -114,7 +114,8 @@
         <!-- Main tab ends here -->
       </v-container>
       <!--Tab Container  -->
-      <v-container style="width:100%">
+      <!-- tab items container -->
+      <v-container fluid pa-md-10 mt-n12 style="width:100%">  
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
@@ -139,6 +140,7 @@
           </v-col>
         </v-row>
       </v-container>
+      <!-- Tab items container -->
     </v-container>
     <!-- Main container -->
   </v-app>
