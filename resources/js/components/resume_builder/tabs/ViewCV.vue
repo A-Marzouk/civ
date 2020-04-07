@@ -1,12 +1,12 @@
 <template>
     <div class="view-cv-wrapper">
         <div class="actions-wrapper d-flex justify-content-between align-items-start">
-            <h2 class="change-theme-text">
+            <div class="change-theme-text">
                 <svg-vue class="icon" :icon="'grid'"></svg-vue>
-                Change Theme
-            </h2>
+                <h2>Change Theme</h2>
+            </div>
             <div class="preview-theme d-flex">
-                <div class="preview-text">
+                <div class="preview-text hideOnMd">
                     <h2>Your Current Theme</h2>
 
                     <div class="btn btn-filled">
@@ -16,6 +16,11 @@
                 </div>
 
                 <img :src="`/images/resume_themes/theme${activeTheme}/preview.png`" alt="theme-preview" class="active-theme-img">
+                <div class="preview-mobile-bar showOnMd">
+                    <div class="preview-btn">
+                        Active Theme <svg-vue :icon="'eye-icon'"></svg-vue>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -216,29 +221,58 @@
 
 <style scoped lang="scss">
 @import '../../../../sass/media-queries';
+$mainBlue: #001CE2;
 
     .filters-wrapper {
 
         max-width: 740px;
         align-items: center;
 
+        @include lt-md {
+            margin-top: 2rem;
+
+        }
+
+        @include lt-sm {
+            flex-wrap: wrap;
+        }
+
         .civ-input {
             max-width: 300px;
             width: 48%;
             margin: 0;
+
+            @include lt-sm {
+                margin-bottom: 1rem;
+                min-width: 200px;
+            }
         }
 
         .grid-icon {
             height: 36px;
+
+            @include lt-md {
+                display: none;
+            }
         }
     }
 
     .view-cv-wrapper{
+
+        .actions-wrapper {
+            margin-top: 40px;
+        }
+
         .preview-theme {
+
+            @include lt-lg {
+                flex-wrap: wrap;
+            }
 
             .preview-text {
                 font-size: 30px;
                 color: #747474;
+                margin-bottom: 1rem;
 
                 h2 {
                     margin-bottom: 20px;
@@ -247,31 +281,55 @@
 
                 .btn {
                     width: 100% !important;
-                    min-width: 100px !important;
+                    min-width: 200px !important;
                 }
             }
 
             .active-theme-img {
                 width: 394px;
                 margin-left: 50px;
+                border: solid 3px $mainBlue;
+                border-radius: 15px;
+
+                @include lt-lg {
+                    margin: 2rem 0;
+
+                }
+
+                @include lt-md {
+                    margin: 0;
+                    width: 150px;
+                }
             }
         }
         .change-theme-text{
-            margin-top:50px;
             display: flex;
             justify-content: flex-start;
-            margin-left:140px;
             align-items: center;
-            font-family: "Noto Sans",serif;
+            font-family: "Noto Sans", sans-serif;
             font-weight: 500;
             font-size: 53px;
             text-align: left;
             color: #001ce2;
 
+            @include lt-md {
+                font-size: 30px;
+            }
+
             .icon {
                 width:56px;
                 height:56px;
                 margin-right: 55px;
+
+                @include lt-lg {
+                    margin-right: 30px;
+                }
+
+                @include lt-md {
+                    width: 24px;
+                    height: auto;
+                    margin-right: 10px;
+                }
             }
         }
         .themes{
@@ -279,14 +337,23 @@
             display: flex;
             flex-wrap: wrap;
 
+            @include lt-md {
+                justify-content: space-around;
+            }
+
             .theme-item{
                 margin-top:100px;
                 display: flex;
                 align-items: center;
                 flex-direction: column;
                 max-width:540px;
+                min-width: 354px;
                 width: 30%;
                 height:460px;
+
+                @include lt-md {
+                    height: 420px;
+                }
 
                 img.theme-image{
                     border: 1px solid black;
