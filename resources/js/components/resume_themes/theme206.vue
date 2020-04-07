@@ -2,7 +2,7 @@
   <v-app style="width:100%;">
     <v-container fluid ma-0 pa-0 style="width:100%;">
       <v-app-bar color="#fafafa" height="250">
-        <v-avatar size="120" class>
+        <v-avatar size="120" class="mr-5">
           <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
@@ -117,15 +117,15 @@ export default {
 
 .half-circle {
   position: absolute;
-  width: 160px;
-  height: 80px; /* as the half of the width */
+  width: 136px;
+  height: 68px; /* as the half of the width */
   border-radius: 100px 100px 0px 0;
   border-left: 5px solid #5843BE;
   border-right: 5px solid #5843BE;
   border-top: 5px solid #5843BE;
-  margin-top:10px;
-  margin-left: 15px;
-  transform: rotate(118deg);
+  margin-top:19px;
+  margin-left: 22px;
+  transform: rotate(122deg);
   
   z-index: 1;
 }
