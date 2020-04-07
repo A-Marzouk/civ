@@ -125,7 +125,7 @@
                   <v-card color="transparent" flat>
                     <v-card-text>
                       <v-row>
-                        <v-col md="4" v-for="item in portfolioItems" :key="item.id">
+                        <v-col cols="12" sm="6" md="4" v-for="item in portfolioItems" :key="item.id">
                           <v-card class="card-portfolio">
                             <v-img :src="getPortfolio(item.image)"></v-img>
                           </v-card>
@@ -138,7 +138,7 @@
                 <!-- Education -->
                 <v-tab-item>
                   <v-row>
-                    <v-col md="4" v-for="n in 3" :key="n">
+                    <v-col cols="12" sm="6" md="4" v-for="n in 3" :key="n">
                       <v-card class="card-education pa-5">
                         <v-card-title class="education-title">
                           Ryerson University
