@@ -104,7 +104,7 @@
                 currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
               ]"
             >
-            <v-avatar tile width="20" height="20">
+            <v-avatar tile>
               <img :src="getTabIcon(tab.id)" />
             </v-avatar>
             {{ tab.title }}
@@ -230,6 +230,10 @@ export default {
   border-radius: 5px;
   color: #5843be !important;
   line-height: 30px;
+  img{
+    width: 20px;
+    height: 20px;
+  }
 }
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
@@ -238,6 +242,10 @@ export default {
   box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
   border-radius: 5px;
+  img{
+    width: 24px;
+    height: 24px;
+  }
 }
 // Tabs
 </style>
