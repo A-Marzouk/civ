@@ -9,8 +9,8 @@
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center">
             <v-col md="4">
-              <v-card flat color="transparent">
-                <v-card-title class="custom-profile-title">Muha Nishad Islam</v-card-title>
+              <v-card flat color="transparent" class="pa-0">
+                <v-card-title class="custom-profile-title">Hean Prinsloo</v-card-title>
                 <v-card-subtitle class="custom-profile-subtitle">Graphic Designer</v-card-subtitle>
                 <v-card-text
                   class="custom-profile-text"
@@ -74,6 +74,7 @@
                   class="custom-social-btn mx-md-2"
                   v-for="item in socialIcons"
                   :key="item.title"
+                  color="#FAFAFA"
                 >
                   <img
                     :width="item.title == 'facebook'? '12' : '20' "
@@ -89,6 +90,31 @@
         </v-container>
       </v-app-bar>
     </v-container>
+    <!-- Tab Container -->
+    <v-container fluid style="width:100%">
+      <v-row justify="center" align="center">
+        <v-col cols="12" md="12">
+          <v-tabs centered grow hide-slider>
+            <v-tab
+              v-for="tab in tabItems"
+              :key="tab.id"
+              @click="currentTab=tab.id"
+              class="mx-md-5 text-capitalizer"
+              :class="[
+                currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
+              ]"
+            >
+            <v-avatar tile width="20" height="20">
+              <img :src="getTabIcon(tab.id)" />
+            </v-avatar>
+            {{ tab.title }}
+            
+            </v-tab>
+          </v-tabs>
+        </v-col>
+      </v-row>
+    </v-container>
+    <!--Tab Container  -->
   </v-app>
 </template>
 
@@ -96,16 +122,28 @@
 export default {
   data() {
     return {
+      currentTab: 1,
       socialIcons: [
         { id: 1, title: "twitter" },
         { id: 2, title: "facebook" },
         { id: 3, title: "instagram" }
+      ],
+      tabItems: [
+        { id: 1, title: "Portfolio" },
+        { id: 2, title: "Education" },
+        { id: 3, title: "Experience" },
+        { id: 4, title: "Skills" },
+        { id: 5, title: "Media" },
+        { id: 6, title: "About Me" }
       ]
     };
   },
   methods: {
     getSocialIcon(title) {
       return `/images/resume_themes/theme206/social_icons/${title}.webp`;
+    },
+    getTabIcon(id){
+      return `/images/resume_themes/theme206/tabs/${id}.png`;
     }
   }
 };
@@ -120,17 +158,18 @@ export default {
   width: 136px;
   height: 68px; /* as the half of the width */
   border-radius: 100px 100px 0px 0;
-  border-left: 5px solid #5843BE;
-  border-right: 5px solid #5843BE;
-  border-top: 5px solid #5843BE;
-  margin-top:19px;
+  border-left: 5px solid #5843be;
+  border-right: 5px solid #5843be;
+  border-top: 5px solid #5843be;
+  margin-top: 19px;
   margin-left: 22px;
   transform: rotate(122deg);
-  
+
   z-index: 1;
 }
 .custom-profile-title {
   font-family: "Open Sans" !important;
+  font-weight: bold;
   font-size: 2rem;
   line-height: 3.375rem;
   color: #333333 !important;
@@ -161,8 +200,12 @@ export default {
 .hour-rate {
   font-family: "Poppins", sans-serif !important;
   color: rgba(88, 67, 190, 0.5) !important;
-  font-size: 0.625rem !important;
+  font-size: 0.625rem;
   line-height: 1.313rem;
+  text-transform: uppercase;
+  @media screen and (max-width: 1280px) {
+    font-size: 0.55rem;
+  }
 }
 .rate {
   font-family: "Poppins", sans-serif !important;
@@ -179,4 +222,22 @@ export default {
   max-width: 40px !important;
   height: 51px !important;
 }
+// Tabs
+.ct-tab {
+  font-family: "Poppins", sans-serif !important;
+  background: #f0f0f3;
+  box-shadow: 1.5px 1.5px 3px rgba(174, 174, 192, 0.4), -1px -1px 3px #ffffff;
+  border-radius: 5px;
+  color: #5843be !important;
+  line-height: 30px;
+}
+.custom-active-tab {
+  font-family: "Poppins", sans-serif !important;
+  background: #eeeeee;
+  border: 3px solid #eeeeee;
+  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+}
+// Tabs
 </style>
