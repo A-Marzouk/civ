@@ -125,7 +125,7 @@
                   <v-card color="transparent" flat>
                     <v-card-text>
                       <v-row>
-                        <v-col cols="12" sm="6" md="4" v-for="item in portfolioItems" :key="item.id">
+                        <v-col cols="12" sm="6" md="3" v-for="item in portfolioItems" :key="item.id">
                           <v-card class="card-portfolio">
                             <v-img :src="getPortfolio(item.image)"></v-img>
                           </v-card>
@@ -190,9 +190,12 @@ export default {
         { id: 1, image: 1 },
         { id: 2, image: 2 },
         { id: 3, image: 3 },
-        { id: 4, image: 1 },
-        { id: 5, image: 2 },
-        { id: 6, image: 3 }
+        { id: 4, image: 4 },
+        { id: 5, image: 1 },
+        { id: 6, image: 2 },
+        { id: 7, image: 3 },
+        { id: 8, image: 4 },
+        
       ]
     };
   },
