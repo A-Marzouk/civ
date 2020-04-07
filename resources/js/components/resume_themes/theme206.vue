@@ -92,13 +92,13 @@
       <!-- Tab Container -->
       <v-container fluid style="width:100%">
         <v-row justify="center" align="center">
-          <v-col cols="12" md="12">
+          <v-col cols="12" md="10">
             <v-tabs v-model="mainDataTab" centered hide-slider grow>
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
-                class="mx-md-5 text-capitalizer"
+                class="mx-md-2 text-capitalizer"
                 :class="[
                 currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
               ]"
@@ -115,12 +115,24 @@
       </v-container>
       <!--Tab Container  -->
       <v-container style="width:100%">
-        <v-row>
+        <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
               <v-tabs-items v-model="mainDataTab">
                 <!-- Portfolio -->
-                <v-tab-item>1</v-tab-item>
+                <v-tab-item>
+                  <v-card color="transparent" flat>
+                    <v-card-text>
+                      <v-row>
+                        <v-col md="4" v-for="item in portfolioItems" :key="item.id">
+                          <v-card class="card-portfolio">
+                            <v-img :src="getPortfolio(item.image)"></v-img>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </v-tab-item>
                 <!-- Portfolio -->
               </v-tabs-items>
             </v-card>
@@ -167,6 +179,9 @@ export default {
     },
     getTabIcon(id) {
       return `/images/resume_themes/theme206/tabs/${id}.png`;
+    },
+    getPortfolio(image){
+      return `/images/resume_themes/theme206/portfolio/${image}.png`;
     }
   }
 };
@@ -272,4 +287,9 @@ export default {
   }
 }
 // Tabs
+// Portfolio
+.card-portfolio{
+  border-radius: 30px !important;
+}
+//Portfolio
 </style>
