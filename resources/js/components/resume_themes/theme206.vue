@@ -125,7 +125,13 @@
                   <v-card color="transparent" flat>
                     <v-card-text>
                       <v-row>
-                        <v-col cols="12" sm="6" md="3" v-for="item in portfolioItems" :key="item.id">
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="3"
+                          v-for="item in portfolioItems"
+                          :key="item.id"
+                        >
                           <v-card class="card-portfolio">
                             <v-img :src="getPortfolio(item.image)"></v-img>
                           </v-card>
@@ -144,7 +150,7 @@
                           Ryerson University
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img width="50" src="/images/resume_themes/theme206/tabs/2.png" alt="" /> 
+                            <img width="50" src="/images/resume_themes/theme206/tabs/2.png" alt />
                           </span>
                         </v-card-title>
                         <v-card-text
@@ -156,6 +162,29 @@
                   </v-row>
                 </v-tab-item>
                 <!-- Education -->
+
+                <!-- Experience -->
+                <v-tab-item>Experience</v-tab-item>
+                <!-- Experience -->
+
+                <!-- Skills -->
+                <v-tab-item>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-card color="transparent" flat>
+                        <v-tabs centered hide-slider>
+                          <v-tab
+                            v-for="skill in skills"
+                            :key="skill.id"
+                            @click="currentSkillTab = skill.id"
+                            :class="[currentSkillTab == skill.id ? 'skill-child-tab-active':'skill-child-tab' ]"
+                          >{{skill.title}}</v-tab>
+                        </v-tabs>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <!-- Skills -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -172,7 +201,9 @@ export default {
   data() {
     return {
       mainDataTab: "",
+      skillTab: "",
       currentTab: 1,
+      currentSkillTab: 1,
       socialIcons: [
         { id: 1, title: "twitter" },
         { id: 2, title: "facebook" },
@@ -194,8 +225,13 @@ export default {
         { id: 5, image: 1 },
         { id: 6, image: 2 },
         { id: 7, image: 3 },
-        { id: 8, image: 4 },
-        
+        { id: 8, image: 4 }
+      ],
+      skills: [
+        { id: 1, title: "Programming Languages" },
+        { id: 2, title: "Frameworks" },
+        { id: 3, title: "Design Skills" },
+        { id: 4, title: "Software" }
       ]
     };
   },
@@ -337,9 +373,25 @@ export default {
   line-height: 23px;
   font-size: 1.125rem !important;
 }
-.education-session{
+.education-session {
   font-family: "Roboto", sans-serif !important;
-  color:rgba(51, 51, 51, 0.5) !important;
+  color: rgba(51, 51, 51, 0.5) !important;
 }
 //education
+// Skill tab
+.skill-child-tab {
+  font-family: "Poppins", sans-serif !important;
+  color: #333333 !important;
+}
+
+.skill-child-tab-active {
+  font-family: "Poppins", sans-serif !important;
+  color: #5843be;
+  font-weight: 600;
+  background: #eeeeee;
+  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+}
+// Skill tab
 </style>
