@@ -23,14 +23,18 @@ const spacing = {
     '22px': '22px',
     '24px': '6rem',
     '25px': '25px',
+    '26px': '26px',
     '28px': '28px',
+    '30px': '1.875‬',
     '35px': '2.1875‬rem',
     '37px': '2.3125‬rem',
     '44px': '2.75rem',
+    '46px': '46px',
     '47px': '2.938rem',
     '52px': '3.25rem',
     '53px': '3.375‬rem',
     '54px': '3.375‬‬rem',
+    '56px': '65px',
     '60px': '3.75rem',
     '66px': '4.13rem',
     '78px': '4.875‬rem',
@@ -46,6 +50,8 @@ const spacing = {
     '128px': '8.75‬rem',
     '140px': '140px',
     '174px': '10.9‬rem',
+    '174px': '10.9‬rem',
+    '180px': '11.25‬rem',
     '336px': '21‬‬rem',
 };
 module.exports = {
@@ -63,6 +69,12 @@ module.exports = {
                     '6': '#2D2D2D',
                     '7': 'linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)',
                 },
+                tm701: {
+                    '1': '#28404A',
+                    '2': '#DBDEC4',
+                    '3': '#707070',
+                    '4': '#335E5E',
+                }
             },
             inset: {
                 '24px': '24px',
@@ -74,15 +86,18 @@ module.exports = {
                 lato: ['Lato', 'sans-serif'],
                 montserrat: ['Montserrat', 'sans-serif'],
                 gothampro: ['Gotham Pro', 'sans-serif'],
+                facultad: ['Facultad', 'sans-serif'],
             },
             maxWidth: {
                 'tm700-dw-1': '73.875rem',
                 'tm700-xl-1': '120rem',
                 'tm700-xl-2': '106.5625rem',
                 '1396px': '87.25rem',
+                '1767px': '1767px',
             },
             gridTemplateColumns: {
                 'tm700-d-skills-bar': '118px auto 48px',
+                'tm701-header': '1fr 4fr 2fr',
             },
             borderRadius: {
                 'civ-15': '15px',
@@ -105,6 +120,7 @@ module.exports = {
                 'tm700-18': '1.125rem', // 18px
                 'tm700-22': '1.375‬rem', // 22px
                 '18px': '1.125rem', // 22px
+                '25px': '25px', // 22px
             },
             lineHeight: {
                 '10px': '10px',
@@ -112,6 +128,7 @@ module.exports = {
                 'civ-22': '22px',
                 '22px': '1.375‬rem',
                 '23px': '23px',
+                '33px': '33px',
                 '37px': '37px',
                 'civ-29': '29‬px',
             },
