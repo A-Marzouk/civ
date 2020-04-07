@@ -95,7 +95,7 @@
                   <v-card
                     flat
                     color="transparent"
-                    class="mr-sm-5 mt-sm-0 my-sm-0 my-10 mt-n8 audio-video-card"
+                    class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
                   >
                     <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
                       <v-icon class="icon-email">mdi-email</v-icon>
@@ -645,6 +645,19 @@ export default {
 .social-btn {
   width: 2rem !important;
   height: 2rem !important;
+  @media screen and (max-width: 959px){
+    width: 2.56rem !important;
+    height: 2.56rem !important;
+    img{
+      width: 18px;
+    }
+  }
+
+  @media screen and (max-width: 599px){
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
 }
 /* Social Btn */
 
