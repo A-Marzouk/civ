@@ -115,7 +115,7 @@
       </v-container>
       <!--Tab Container  -->
       <!-- tab items container -->
-      <v-container fluid pa-md-10 mt-n12 style="width:100%">  
+      <v-container fluid pa-md-10 mt-n12 style="width:100%">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
@@ -135,6 +135,27 @@
                   </v-card>
                 </v-tab-item>
                 <!-- Portfolio -->
+                <!-- Education -->
+                <v-tab-item>
+                  <v-row>
+                    <v-col md="4" v-for="n in 3" :key="n">
+                      <v-card class="card-education pa-5">
+                        <v-card-title class="education-title">
+                          Ryerson University
+                          <v-spacer></v-spacer>
+                          <span class="ml-12">
+                            <img width="50" src="/images/resume_themes/theme206/tabs/2.png" alt="" /> 
+                          </span>
+                        </v-card-title>
+                        <v-card-text
+                          class="education-subtitle"
+                        >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-text>
+                        <v-card-actions class="education-session">2010-2013</v-card-actions>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <!-- Education -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -182,7 +203,7 @@ export default {
     getTabIcon(id) {
       return `/images/resume_themes/theme206/tabs/${id}.png`;
     },
-    getPortfolio(image){
+    getPortfolio(image) {
       return `/images/resume_themes/theme206/portfolio/${image}.png`;
     }
   }
@@ -192,6 +213,7 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .half-circle {
   position: absolute;
@@ -204,7 +226,6 @@ export default {
   margin-top: 19px;
   margin-left: 22px;
   transform: rotate(122deg);
-
   z-index: 1;
 }
 .custom-profile-title {
@@ -290,8 +311,32 @@ export default {
 }
 // Tabs
 // Portfolio
-.card-portfolio{
+.card-portfolio {
   border-radius: 30px !important;
 }
 //Portfolio
+
+//education
+.card-education {
+  background: linear-gradient(0deg, #fafafa, #fafafa) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 30px !important;
+}
+.education-title {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  font-weight: bold !important;
+  line-height: 30px !important;
+}
+.education-subtitle {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  line-height: 23px;
+  font-size: 1.125rem !important;
+}
+.education-session{
+  font-family: "Roboto", sans-serif !important;
+  color:rgba(51, 51, 51, 0.5) !important;
+}
+//education
 </style>
