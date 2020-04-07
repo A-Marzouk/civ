@@ -89,32 +89,46 @@
           </v-row>
         </v-container>
       </v-app-bar>
-    </v-container>
-    <!-- Tab Container -->
-    <v-container fluid style="width:100%">
-      <v-row justify="center" align="center">
-        <v-col cols="12" md="12">
-          <v-tabs centered grow hide-slider>
-            <v-tab
-              v-for="tab in tabItems"
-              :key="tab.id"
-              @click="currentTab=tab.id"
-              class="mx-md-5 text-capitalizer"
-              :class="[
+      <!-- Tab Container -->
+      <v-container fluid style="width:100%">
+        <v-row justify="center" align="center">
+          <v-col cols="12" md="12">
+            <v-tabs v-model="mainDataTab" centered hide-slider grow>
+              <v-tab
+                v-for="tab in tabItems"
+                :key="tab.id"
+                @click="currentTab=tab.id"
+                class="mx-md-5 text-capitalizer"
+                :class="[
                 currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
               ]"
-            >
-            <v-avatar tile>
-              <img :src="getTabIcon(tab.id)" />
-            </v-avatar>
-            {{ tab.title }}
-            
-            </v-tab>
-          </v-tabs>
-        </v-col>
-      </v-row>
+              >
+                <v-avatar tile>
+                  <img :src="getTabIcon(tab.id)" />
+                </v-avatar>
+                {{ tab.title }}
+              </v-tab>
+            </v-tabs>
+          </v-col>
+        </v-row>
+        <!-- Main tab ends here -->
+      </v-container>
+      <!--Tab Container  -->
+      <v-container style="width:100%">
+        <v-row>
+          <v-col cols="12">
+            <v-card flat color="transparent">
+              <v-tabs-items v-model="mainDataTab">
+                <!-- Portfolio -->
+                <v-tab-item>1</v-tab-item>
+                <!-- Portfolio -->
+              </v-tabs-items>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-container>
-    <!--Tab Container  -->
+    <!-- Main container -->
   </v-app>
 </template>
 
@@ -122,6 +136,7 @@
 export default {
   data() {
     return {
+      mainDataTab: "",
       currentTab: 1,
       socialIcons: [
         { id: 1, title: "twitter" },
@@ -135,6 +150,14 @@ export default {
         { id: 4, title: "Skills" },
         { id: 5, title: "Media" },
         { id: 6, title: "About Me" }
+      ],
+      portfolioItems: [
+        { id: 1, image: 1 },
+        { id: 2, image: 2 },
+        { id: 3, image: 3 },
+        { id: 4, image: 1 },
+        { id: 5, image: 2 },
+        { id: 6, image: 3 }
       ]
     };
   },
@@ -142,7 +165,7 @@ export default {
     getSocialIcon(title) {
       return `/images/resume_themes/theme206/social_icons/${title}.webp`;
     },
-    getTabIcon(id){
+    getTabIcon(id) {
       return `/images/resume_themes/theme206/tabs/${id}.png`;
     }
   }
@@ -230,7 +253,7 @@ export default {
   border-radius: 5px;
   color: #5843be !important;
   line-height: 30px;
-  img{
+  img {
     width: 20px;
     height: 20px;
   }
@@ -242,9 +265,10 @@ export default {
   box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
   border-radius: 5px;
-  img{
+  img {
     width: 24px;
     height: 24px;
+    transition: 1s;
   }
 }
 // Tabs
