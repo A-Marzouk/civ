@@ -194,14 +194,7 @@
           <v-col cols="12" md="10">
             <v-card flat color="transparent">
               <v-card-text>
-                <v-tabs
-                  v-model="mainDataTab"
-                  color="black"
-                  centered
-                  grow
-                  show-arrows
-                  hide-slider
-                >
+                <v-tabs v-model="mainDataTab" color="black" centered grow show-arrows hide-slider>
                   <v-tab
                     v-for="item in mainTabs"
                     :key="item.id"
@@ -224,83 +217,16 @@
                 <v-tab-item>
                   <v-card flat color="transparent">
                     <v-card-text align="center">
-                      <v-row align="center" justify="center">
-                        <div class="watermark-text text-center">Portfolio</div>
-                        <!-- 1st column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/1.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/1.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
+                      <v-row>
+                        <v-col cols="12">
+                          <div class="card-columns">
+                            <v-card flat color="transparent" v-for="n in 9" :key="n">
+                              <v-img src="/images/resume_themes/theme203/portfolio/1.png"></v-img>
+                              <v-card-title>Mobile App- Ice Cream</v-card-title>
+                              <v-card-subtitle>Mobile App Concept</v-card-subtitle>
+                            </v-card>
+                          </div>
                         </v-col>
-                        <!-- 1st column -->
-
-                        <!-- 2nd column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/3.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/3.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
-                        </v-col>
-                        <!-- 2nd column -->
-
-                        <!-- 3rd column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/5.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/5.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
-                        </v-col>
-                        <!-- 3rd column -->
-
-                        <!-- 4th Column -->
-                        <v-col cols="12" sm="12" md="3">
-                          <v-card class="pa-2" flat color="transparent">
-                            <div class="my-5 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/7.png"
-                              ></v-img>
-                            </div>
-                            <div class="my-2 image-box-custom">
-                              <v-img
-                                class="custom-portfolio-img"
-                                src="/images/resume_themes/theme203/portfolio/7.png"
-                              ></v-img>
-                            </div>
-                          </v-card>
-                        </v-col>
-                        <!-- 4th Cloumn -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -543,7 +469,17 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
-
+.card-columns {
+  @media screen and (min-width: 960px) {
+    column-count: 4;
+  }
+  @media screen and (max-width: 959px) {
+    column-count: 1;
+  }
+  @media screen and (max-width: 599px) {
+    column-count: 1;
+  }
+}
 /* Shapes */
 .triangle-top-left {
   left: 0;
@@ -640,7 +576,7 @@ export default {
 }
 
 /* Social Btn */
-.social-media-block{
+.social-media-block {
   margin-left: 7vw;
   @media screen and (max-width: 1280px) {
     margin-left: 1vw;
@@ -745,7 +681,7 @@ export default {
   line-height: 1.4375rem;
   font-weight: bold;
 
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 0.7rem;
   }
 }
