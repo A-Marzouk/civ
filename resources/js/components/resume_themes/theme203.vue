@@ -656,6 +656,9 @@ export default {
   @media screen and (max-width: 599px){
     width: 2rem !important;
     height: 2rem !important;
+    img{
+      width: 14px;
+    }
   }
 
 }
