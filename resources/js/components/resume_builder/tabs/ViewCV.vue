@@ -347,7 +347,7 @@ $mainBlue: #001CE2;
                 align-items: center;
                 flex-direction: column;
                 max-width:540px;
-                min-width: 354px;
+                min-width: 390px;
                 width: 30%;
                 height:460px;
 
@@ -436,6 +436,10 @@ $mainBlue: #001CE2;
                     width: 100%;
                     background: linear-gradient(#f8f8f8 0%, #f4f4f4 100%);
 
+                    @include lt-md {
+                        padding: 5px 10px;
+                    }
+
                     .left{
                         .activate-btn{
                            a{
@@ -451,6 +455,11 @@ $mainBlue: #001CE2;
                                text-align: left;
                                color: #fff;
 
+                               @include lt-md {
+                                   width: 100px;
+                                   font-size: 10px;
+                               }
+
                                img{
                                    width:15.72px;
                                    height:12.28px;
@@ -464,6 +473,7 @@ $mainBlue: #001CE2;
                         display: flex;
                         .my-data-btn{
                             margin-right: 19px;
+                            
                            a{
                                display: flex;
                                align-items: center;
@@ -478,6 +488,13 @@ $mainBlue: #001CE2;
                                color: #1b4bd2;
                                background: white;
                                border: 1px solid #1945d5;
+
+                               @include lt-md {
+                                   width: 100px;
+                                   font-size: 10px;
+                                   margin-right: 0;
+                               }
+
                                img{
                                    width:22.51px;
                                    height:14.35px;
@@ -499,6 +516,11 @@ $mainBlue: #001CE2;
                                 font-weight: 600;
                                 text-align: left;
                                 color: #fff;
+
+                                @include lt-md {
+                                   width: 100px;
+                                   font-size: 10px;
+                               }
 
                               img{
                                   width:22.51px;
