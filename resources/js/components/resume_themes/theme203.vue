@@ -216,14 +216,22 @@
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <v-card flat color="transparent">
-                    <v-card-text align="center">
+                    <v-card-text>
                       <v-row>
                         <v-col cols="12">
                           <div class="card-columns">
-                            <v-card flat color="transparent" v-for="n in 9" :key="n">
-                              <v-img src="/images/resume_themes/theme203/portfolio/1.png"></v-img>
-                              <v-card-title>Mobile App- Ice Cream</v-card-title>
-                              <v-card-subtitle>Mobile App Concept</v-card-subtitle>
+                            <v-card
+                              v-for="item in portfolioItems"
+                              :key="item.id"
+                              class="mb-2 pa-2"
+                              align="left"
+                              width="800"
+                              flat 
+                              color="transparent"
+                            >
+                              <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
+                              <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
+                              <v-card-subtitle>{{item.subtitle}}</v-card-subtitle>
                             </v-card>
                           </div>
                         </v-col>
@@ -410,6 +418,54 @@ export default {
           title: "Skills"
         }
       ],
+      portfolioItems: [
+        {
+          id: 1,
+          title: "Mobile App-Ice Cream",
+          subtitle: "Mobile app concept"
+        },
+        {
+          id: 2,
+          title: "Mobile App-Ice Cream",
+          subtitle: "Mobile app concept"
+        },
+        {
+          id: 3,
+          title: "Made market Concept",
+          subtitle: "Made market concept"
+        },
+        {
+          id: 4,
+          title: "Tracking App-Traq",
+          subtitle: "Tracking App-Traq"
+        },
+        {
+          id: 5,
+          title: "",
+          subtitle: ""
+        },
+
+        {
+          id: 6,
+          title: "Made market Concept",
+          subtitle: "Made market concept"
+        },
+        {
+          id: 7,
+          title: "Made market Concept",
+          subtitle: "Made market concept"
+        },
+        {
+          id: 8,
+          title: "Love custom app",
+          subtitle: "Love custom app"
+        },
+        {
+          id: 9,
+          title: "Love custom app",
+          subtitle: "Love custom app"
+        }
+      ],
       skills: [
         {
           id: 1,
@@ -459,6 +515,9 @@ export default {
   methods: {
     getSocialIcon(name) {
       return `/images/resume_themes/theme203/social_icons/${name}.webp`;
+    },
+    getPortfolioItems(id) {
+      return `/images/resume_themes/theme203/portfolio/${id}.png`;
     }
   }
 };
@@ -468,6 +527,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Rubik&display=swap");
 @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
 .card-columns {
   @media screen and (min-width: 960px) {
@@ -531,7 +591,7 @@ export default {
   position: absolute;
   background: #e6bf4e;
   width: 2rem;
-  height: 700vh;
+  height: 1000vh;
   z-index: 1;
   bottom: 0;
 }
@@ -649,12 +709,18 @@ export default {
 .custom-portfolio-img {
   border-radius: 10px;
 }
-
+.custom-portfolio-title {
+  font-family:'Montserrat' !important;
+  font-size: 16px !important;
+  font-weight:bold;
+  margin-bottom: -20px;
+  margin-top:-20px;
+}
 // .........................Desktop Portfolio...........................
 
 // ................... Work Desktop......................................
 .work-icon {
-  width: 20px;
+  width: 16px;
   margin-top: 6px;
 }
 .custom-work-title {
