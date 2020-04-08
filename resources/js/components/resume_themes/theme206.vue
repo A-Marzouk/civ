@@ -227,12 +227,12 @@
                                         >{{item.value_text}}</v-col>
                                         <v-col cols="12">
                                           <v-progress-linear
-                                            style="border:5px solid #F0F0F3;"
+                                            style="border:3px solid #F0F0F3; border-radius:12px;"
                                             class="custom-progress-bar"
                                             color="#5843BE"
                                             rounded
                                             background-color="#eeeeee"
-                                            height="25"
+                                            height="15"
                                             :value="item.value"
                                           ></v-progress-linear>
                                         </v-col>
@@ -263,13 +263,33 @@
                                 <v-list-content>
                                   <v-list-title>AUDIO 02 - 07/04/2020</v-list-title>
                                   <v-list-item-subtitle>1:05:00</v-list-item-subtitle>
-                                  <v-list-item-subtitle class="mt-5">progress bar</v-list-item-subtitle>
                                 </v-list-content>
                                 <v-spacer></v-spacer>
-                                <v-list-item-icon>
-                                  <v-icon>mdi-email</v-icon>
+                                <v-list-item-icon class>
+                                  <v-btn icon class="play-btn">
+                                    <img
+                                      class
+                                      src="/images/resume_themes/theme206/icons/play.png"
+                                      alt
+                                    />
+                                  </v-btn>
                                 </v-list-item-icon>
                               </v-list-item>
+                            </v-card-text>
+                            <v-card-text class="ml-3 mt-n10">
+                              <v-row>
+                                <v-col cols="9">
+                                  <v-progress-linear
+                                    style="border:3px solid #EEEEEE; border-radius:12px;"
+                                    class="custom-progress-bar"
+                                    color="#5843BE"
+                                    rounded
+                                    background-color="#eeeeee"
+                                    height="15"
+                                    :value="60"
+                                  ></v-progress-linear>
+                                </v-col>
+                              </v-row>
                             </v-card-text>
                           </v-card>
                         </v-col>
@@ -469,7 +489,7 @@ export default {
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
   background: #eeeeee;
-  border: 3px solid #eeeeee;
+  border: 5px solid #eeeeee;
   box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
   border-radius: 5px;
@@ -544,12 +564,12 @@ export default {
   font-size: 1rem;
   line-height: 1.438rem;
 }
-.custom-progress-bar {
-  background: #eeeeee !important;
-  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
-  border-radius: 12px !important;
-}
+// .custom-progress-bar {
+//   background: #eeeeee !important;
+//   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
+//     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
+//   border-radius: 12px !important;
+// }
 // Skill tab
 // about me
 .about-me-title {
@@ -562,12 +582,16 @@ export default {
   color: #000000 !important;
 }
 // about me
+.play-btn {
+  img {
+    width: 50px;
+  }
+}
 </style>
 
 <style>
 #resumeTheme206 .v-progress-linear__determinate {
-  border-radius: 12px;
-  height: 1rem !important;
+  border-color: #eeeeee !important;
 }
 
 #resumeTheme206 .v-progress-linear__background {
