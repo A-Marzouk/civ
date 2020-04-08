@@ -251,7 +251,7 @@ $mainBlue: #001CE2;
 
             .civ-select-input {
                 input {
-                    border: $mainBlue;
+                    border: 1px solid $mainBlue;
                 }
             }
 
