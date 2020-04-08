@@ -27,19 +27,19 @@
                             <v-container>
                                 <v-row>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
+                                        <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
+                                        <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
+                                        <v-text-field v-model="editedItem.username" label="Username"></v-text-field>
                                     </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
+                                    <v-col cols="12" sm="6" md="4" v-show="canEditPassword">
+                                        <v-text-field type="password" v-model="editedItem.password" label="Password"></v-text-field>
                                     </v-col>
-                                    <v-col cols="12" sm="6" md="4">
-                                        <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
+                                    <v-col cols="12" sm="6" md="4" v-show="canEditPassword">
+                                        <v-text-field type="password" v-model="editedItem.password_confirmation" label="Password Confirmation"></v-text-field>
                                     </v-col>
                                 </v-row>
                             </v-container>
@@ -107,24 +107,27 @@
             editedIndex: -1,
             editedItem: {
                 name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
+                email: '',
+                username: '',
+                password: '',
+                password_confirmation: ''
             },
             defaultItem: {
                 name: '',
-                calories: 0,
-                fat: 0,
-                carbs: 0,
-                protein: 0,
+                email: '',
+                username: '',
+                password: '',
+                password_confirmation: ''
             },
         }),
 
         computed: {
             formTitle () {
-                return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+                return this.editedIndex === -1 ? 'New User' : 'Edit User'
             },
+            canEditPassword(){
+                return this.editedIndex === -1;
+            }
         },
 
         watch: {
@@ -149,8 +152,8 @@
             },
 
             deleteItem (item) {
-                const index = this.tableUsers.indexOf(item)
-                confirm('Are you sure you want to delete this item?') && this.tableUsers.splice(index, 1)
+                const index = this.tableUsers.indexOf(item);
+                confirm('Are you sure you want to delete this item?') && this.tableUsers.splice(index, 1);
             },
 
             close () {
@@ -172,7 +175,7 @@
         },
 
         mounted() {
-            console.log(this.users);
+            // console.log(this.users);
         }
     }
 </script>
