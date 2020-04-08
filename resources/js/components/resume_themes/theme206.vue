@@ -132,7 +132,7 @@
                           v-for="item in portfolioItems"
                           :key="item.id"
                         >
-                          <v-card class="card-portfolio">
+                          <v-card class="card-portfolio" hover>
                             <v-img :src="getPortfolio(item.image)"></v-img>
                           </v-card>
                         </v-col>
@@ -145,7 +145,7 @@
                 <v-tab-item>
                   <v-row>
                     <v-col cols="12" sm="6" md="4" v-for="n in 3" :key="n">
-                      <v-card class="card-education pa-5">
+                      <v-card class="card-education pa-5" hover>
                         <v-card-title class="education-title">
                           Ryerson University
                           <v-spacer></v-spacer>
@@ -167,7 +167,7 @@
                 <v-tab-item>
                   <v-row>
                     <v-col cols="12" sm="6" md="4" v-for="item in experienceItems" :key="item.id">
-                      <v-card class="card-education pa-5">
+                      <v-card class="card-education pa-5" hover>
                         <v-card-title class="experience-title">
                           {{item.title}}
                           <v-spacer></v-spacer>
@@ -227,7 +227,7 @@
                                         >{{item.value_text}}</v-col>
                                         <v-col cols="12">
                                           <v-progress-linear
-                                            style="border:3px solid #F0F0F3;"
+                                            style="border:5px solid #F0F0F3;"
                                             class="custom-progress-bar"
                                             color="#5843BE"
                                             rounded
@@ -252,7 +252,31 @@
                 </v-tab-item>
                 <!-- Skills -->
                 <!-- Media -->
-                <v-tab-item>Media</v-tab-item>
+                <v-tab-item>
+                  <v-card flat color="transparent">
+                    <v-card-text>
+                      <v-row>
+                        <v-col cols="12" md="4">
+                          <v-card color="#F0F0F3" style="border-radius:9px;" hover>
+                            <v-card-text>
+                              <v-list-item>
+                                <v-list-content>
+                                  <v-list-title>AUDIO 02 - 07/04/2020</v-list-title>
+                                  <v-list-item-subtitle>1:05:00</v-list-item-subtitle>
+                                  <v-list-item-subtitle class="mt-5">progress bar</v-list-item-subtitle>
+                                </v-list-content>
+                                <v-spacer></v-spacer>
+                                <v-list-item-icon>
+                                  <v-icon>mdi-email</v-icon>
+                                </v-list-item-icon>
+                              </v-list-item>
+                            </v-card-text>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </v-tab-item>
                 <!-- Media -->
                 <!-- About Me -->
                 <v-tab-item>
@@ -543,6 +567,12 @@ export default {
 <style>
 #resumeTheme206 .v-progress-linear__determinate {
   border-radius: 12px;
-  height: 1.25rem !important;
+  height: 1rem !important;
+}
+
+#resumeTheme206 .v-progress-linear__background {
+  background: #eeeeee !important;
+  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
 </style>
