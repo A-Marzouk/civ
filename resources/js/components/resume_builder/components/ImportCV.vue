@@ -65,7 +65,14 @@
             </div>
 
             <div class="sections">
+                <div class="section" v-for="section in sections" :key="section.title">
+                    <div>
 
+                    </div>
+                    <div class="title">
+                        {{section.title}}
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -760,6 +767,48 @@
             </div>
         `
                 },
+                sections:[
+                    {
+                        title:'profile',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'summary',
+                        selected: 1,
+                        
+                    },
+                    {
+                        title:'work',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'education',
+                        selected: 1,
+                        
+                    },
+                    {
+                        title:'skills',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'achievements',
+                        selected: 1,
+                        
+                    },  
+                    {
+                        title:'hobbies',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'references',
+                        selected: 1,
+                        
+                    }
+                ],
             }
         },
         methods: {
@@ -1231,8 +1280,13 @@
             }
 
             .sections{
-                .section-title{
-
+                .section{
+                    .title{
+                        font-weight: bold;
+                        font-size: 46px;
+                        text-align: left;
+                        color: #081fe2;
+                    }
                 }
             }
         }
