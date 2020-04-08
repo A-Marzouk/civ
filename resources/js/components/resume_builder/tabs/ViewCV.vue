@@ -479,10 +479,9 @@ $mainBlue: #001CE2;
                     padding-right:23px;
                     background: whitesmoke;
                     border-radius: 10px;
-                    width: 619px;
                     height: 70px;
                     margin-top: -35px;
-                    width: 100%;
+                    width: 95%;
                     background: linear-gradient(#f8f8f8 0%, #f4f4f4 100%);
 
                     @include lt-md {

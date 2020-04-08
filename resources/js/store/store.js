@@ -30,17 +30,17 @@ export const store = new Vuex.Store({
                     currency: 'usd'
                 },
                 {
-                    salary: '10',
+                    salary: '100',
                     salary_frequency: 'weekly',
                     currency: 'usd'
                 },
                 {
-                    salary: '10',
+                    salary: '1000',
                     salary_frequency: 'monthly',
                     currency: 'usd'
                 },
                 {
-                    salary: '10',
+                    salary: '10000',
                     salary_frequency: 'yearly',
                     currency: 'usd'
                 },
@@ -48,14 +48,14 @@ export const store = new Vuex.Store({
             availability_info:[
                 {
                     available_hours: '40',
-                    available_hours_frequency: 'Weekly'
+                    available_hours_frequency: 'weekly'
                 },
                 {
-                    available_hours: '40',
+                    available_hours: '400',
                     available_hours_frequency: 'monthly'
                 },
                 {
-                    available_hours: '40',
+                    available_hours: '4000',
                     available_hours_frequency: 'yearly'
                 }
             ],
@@ -68,14 +68,14 @@ export const store = new Vuex.Store({
                 },
                 {
                     id: Math.random(),
-                    title: 'photoshop',
-                    category: 'design',
+                    title: 'phpstorm',
+                    category: 'software',
                     percentage: '90',
                 },
                 {
                     id: Math.random(),
                     title: 'photoshop',
-                    category: 'design',
+                    category: 'programming_languages',
                     percentage: '90',
                 },
             ],
@@ -252,20 +252,20 @@ export const store = new Vuex.Store({
                     category: 'social_link',
                     link: 'https://instagram.com',
                     link_title: 'Behance',
-                    is_active: true
-                },
-                {
-                    id: Math.random(),
-                    category: 'social_link',
-                    link: 'https://instagram.com',
-                    link_title: 'Linkedin',
                     is_active: false
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
                     link: 'https://instagram.com',
-                    link_title: 'Dribbble',
+                    link_title: 'Linkedin',
+                    is_active: true
+                },
+                {
+                    id: Math.random(),
+                    category: 'social_link',
+                    link: 'https://instagram.com',
+                    link_title: 'facebook',
                     is_active: true
                 },
 
