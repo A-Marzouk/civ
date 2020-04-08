@@ -2,7 +2,7 @@
     <v-data-table
             :headers="headers"
             :items="tableUsers"
-            sort-by="calories"
+            sort-by="name"
             class="elevation-1 users-table"
     >
         <template v-slot:top>
@@ -69,8 +69,13 @@
                 mdi-delete
             </v-icon>
         </template>
+        <template v-slot:item.profileLink="{ item }">
+            <div class="NoDecor">
+                <a :href="'/' + item.username" target="_blank">{{item.username}}</a>
+            </div>
+        </template>
         <template v-slot:no-data>
-            <v-btn color="primary" @click="initialize">Reset</v-btn>
+            No available data
         </template>
     </v-data-table>
 </template>
@@ -90,7 +95,7 @@
                     value: 'name',
                 },
                 { text: 'Email', value: 'email' },
-                { text: 'Link to profile', value: 'username' },
+                { text: 'Link to profile', value: 'profileLink'},
                 { text: 'Sub. Status', value: '' },
                 { text: 'Signup Date', value: 'created_at' },
                 { text: 'Sub. Renewal', value: '' },

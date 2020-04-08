@@ -481,7 +481,7 @@
 
 
     /** Forms fixes landing */
-    .v-text-field{
+    .v-text-field.custom-landing-input{
         input{
             background: #F8F8F8;
             box-shadow: -6px -6px 16px #FFFFFF,
