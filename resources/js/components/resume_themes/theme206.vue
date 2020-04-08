@@ -256,43 +256,92 @@
                   <v-card flat color="transparent">
                     <v-card-text>
                       <v-row>
-                        <v-col cols="12" md="4">
-                          <v-card color="#F0F0F3" style="border-radius:9px;" hover>
-                            <v-card-text>
-                              <v-list-item>
-                                <v-list-content>
-                                  <v-list-title>AUDIO 02 - 07/04/2020</v-list-title>
-                                  <v-list-item-subtitle>1:05:00</v-list-item-subtitle>
-                                </v-list-content>
-                                <v-spacer></v-spacer>
-                                <v-list-item-icon class>
-                                  <v-btn icon class="play-btn">
-                                    <img
-                                      class
-                                      src="/images/resume_themes/theme206/icons/play.png"
-                                      alt
-                                    />
-                                  </v-btn>
-                                </v-list-item-icon>
-                              </v-list-item>
-                            </v-card-text>
-                            <v-card-text class="ml-3 mt-n10">
-                              <v-row>
-                                <v-col cols="9">
-                                  <v-progress-linear
-                                    style="border:3px solid #EEEEEE; border-radius:12px;"
-                                    class="custom-progress-bar"
-                                    color="#5843BE"
-                                    rounded
-                                    background-color="#eeeeee"
-                                    height="15"
-                                    :value="60"
-                                  ></v-progress-linear>
-                                </v-col>
-                              </v-row>
-                            </v-card-text>
-                          </v-card>
+                        <!-- 1st column -->
+                        <v-col cols="8">
+                          <v-row>
+                            <v-col md="6" v-for="n in 4" :key="n">
+                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
+                                <v-card-text>
+                                  <v-list-item>
+                                    <v-list-content>
+                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
+                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
+                                    </v-list-content>
+                                    <v-spacer></v-spacer>
+                                    <v-list-item-icon>
+                                      <v-btn class="play-btn" color="#5843BE" fab small>
+                                        <img
+                                          class
+                                          src="/images/resume_themes/theme206/icons/play.png"
+                                          alt
+                                        />
+                                      </v-btn>
+                                    </v-list-item-icon>
+                                  </v-list-item>
+                                </v-card-text>
+                                <v-card-text class="ml-3 mt-n10">
+                                  <v-row>
+                                    <v-col cols="9">
+                                      <v-progress-linear
+                                        style="border:3px solid #EEEEEE; border-radius:12px;"
+                                        class="custom-progress-bar"
+                                        color="#5843BE"
+                                        rounded
+                                        background-color="#eeeeee"
+                                        height="15"
+                                        :value="60"
+                                      ></v-progress-linear>
+                                    </v-col>
+                                  </v-row>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                          </v-row>
                         </v-col>
+                        <!-- 1st column -->
+                        <!-- 2nd column -->
+                        <v-col cols="4">
+                          <v-row>
+                            <v-col cols="12" v-for="n in 2" :key="n">
+                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
+                                <v-card-text>
+                                  <v-list-item>
+                                    <v-list-content>
+                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
+                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
+                                    </v-list-content>
+                                    <v-spacer></v-spacer>
+                                    <v-list-item-icon>
+                                      <v-btn class="play-btn" color="#5843BE" fab small>
+                                        <img
+                                          class
+                                          src="/images/resume_themes/theme206/icons/play.png"
+                                          alt
+                                        />
+                                      </v-btn>
+                                    </v-list-item-icon>
+                                  </v-list-item>
+                                </v-card-text>
+                                <v-card-text class="ml-3 mt-n10">
+                                  <v-row>
+                                    <v-col cols="9">
+                                      <v-progress-linear
+                                        style="border:3px solid #EEEEEE; border-radius:12px;"
+                                        class="custom-progress-bar"
+                                        color="#5843BE"
+                                        rounded
+                                        background-color="#eeeeee"
+                                        height="15"
+                                        :value="60"
+                                      ></v-progress-linear>
+                                    </v-col>
+                                  </v-row>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- 2nd column -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -582,6 +631,16 @@ export default {
   color: #000000 !important;
 }
 // about me
+//media
+.audio-title {
+  font-family: "Poppins", sans-serif !important;
+  line-height: 27px;
+}
+.audio-duration {
+  font-family: "Poppins", sans-serif !important;
+  color: rgba(88, 67, 190, 0.55) !important;
+  font-size: 0.75rem !important;
+}
 .play-btn {
   img {
     width: 50px;
