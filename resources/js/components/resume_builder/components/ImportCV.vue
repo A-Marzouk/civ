@@ -59,13 +59,21 @@
                style="opacity:0; position: absolute; left:-500px;">
 
 
-        <div class="import-results"  v-show="extractedText.length > 0">
+        <div class="import-results" v-show="extractedText.length > 0">
             <div class="title">
                 Select <span>your information</span>
             </div>
 
             <div class="sections">
-
+                <div class="section" v-for="section in sections" :key="section.title">
+                    <div class="checkbox" @click="toggleSelectionOfSection(section)">
+                        <img v-if="section.selected" src="/images/resume_builder/import/checkedBox.svg" alt="checkbox">
+                        <img v-else src="/images/resume_builder/import/uncheckedBox.svg" alt="checkbox">
+                    </div>
+                    <div class="title" :class="{active : section.selected}">
+                        {{section.title}}
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -760,12 +768,53 @@
             </div>
         `
                 },
+                sections:[
+                    {
+                        title:'profile',
+                        selected: 0,
+                        
+                    },   
+                    {
+                        title:'summary',
+                        selected: 1,
+                        
+                    },
+                    {
+                        title:'work',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'education',
+                        selected: 1,
+                        
+                    },
+                    {
+                        title:'skills',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'achievements',
+                        selected: 1,
+                        
+                    },  
+                    {
+                        title:'hobbies',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'references',
+                        selected: 1,
+                        
+                    }
+                ],
             }
         },
         methods: {
 
             // handle file upload
-
             openBrowse() {
                 $('#uploadFileButton').click();
             },
@@ -911,6 +960,12 @@
                 this.searchForData();
             },
 
+
+            // selection:
+
+            toggleSelectionOfSection(section){
+                section.selected = !section.selected;
+            },
 
 
             // search functions
@@ -1231,8 +1286,39 @@
             }
 
             .sections{
-                .section-title{
 
+                width: 100%;
+                height: auto;
+                background: whitesmoke;
+                padding: 60px 70px;
+
+                .section{
+
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 1px solid #EEEEEE;
+
+                    .checkbox{
+                        margin-right:20px;
+
+                        img{
+                            width: 35px;
+                            height: 35px;
+                            margin-top: 9px;
+                        }
+                    }
+
+                    .title{
+                        font-weight: bold;
+                        font-size: 46px;
+                        text-align: left;
+                        color: #777777;
+                        text-transform: capitalize;
+
+                        &.active{
+                            color: #081fe2;
+                        }
+                    }
                 }
             }
         }
