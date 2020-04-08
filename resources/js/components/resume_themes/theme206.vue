@@ -168,7 +168,7 @@
                   <v-row>
                     <v-col cols="12" sm="6" md="4" v-for="item in experienceItems" :key="item.id">
                       <v-card class="card-education pa-5">
-                        <v-card-title class="education-title">
+                        <v-card-title class="experience-title">
                           {{item.title}}
                           <v-spacer></v-spacer>
                           <span class="ml-12">
@@ -475,6 +475,15 @@ export default {
   line-height: 30px !important;
   img {
     width: 40px;
+  }
+}
+.experience-title {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  font-weight: bold !important;
+  line-height: 30px !important;
+  img {
+    width: 30px;
   }
 }
 .education-subtitle {
