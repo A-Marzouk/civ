@@ -98,7 +98,7 @@
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
-                class="mx-md-2 text-capitalizer"
+                class="mx-md-2 text-capitalize"
                 :class="[
                 currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
               ]"
