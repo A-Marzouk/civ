@@ -3,7 +3,7 @@
 @section('content')
 
     <div id="adminDashboard">
-        <admin-dashboard></admin-dashboard>
+        <admin-dashboard @if(isset($users)) :users="{{$users}}" @endif></admin-dashboard>
     </div>
 
 @endsection

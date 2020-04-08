@@ -9,8 +9,8 @@
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center">
             <v-col md="4">
-              <v-card flat color="transparent">
-                <v-card-title class="custom-profile-title">Muha Nishad Islam</v-card-title>
+              <v-card flat color="transparent" class="pa-0">
+                <v-card-title class="custom-profile-title">Hean Prinsloo</v-card-title>
                 <v-card-subtitle class="custom-profile-subtitle">Graphic Designer</v-card-subtitle>
                 <v-card-text
                   class="custom-profile-text"
@@ -74,6 +74,7 @@
                   class="custom-social-btn mx-md-2"
                   v-for="item in socialIcons"
                   :key="item.title"
+                  color="#FAFAFA"
                 >
                   <img
                     :width="item.title == 'facebook'? '12' : '20' "
@@ -88,7 +89,189 @@
           </v-row>
         </v-container>
       </v-app-bar>
+      <!-- Tab Container -->
+      <v-container fluid style="width:100%">
+        <v-row justify="center" align="center">
+          <v-col cols="12" md="11">
+            <v-tabs v-model="mainDataTab" centered hide-slider grow>
+              <v-tab
+                v-for="tab in tabItems"
+                :key="tab.id"
+                @click="currentTab=tab.id"
+                class="mx-md-2 text-capitalize"
+                :class="[
+                currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
+              ]"
+              >
+                <v-avatar tile>
+                  <img :src="getTabIcon(tab.id)" class="mr-4" />
+                </v-avatar>
+                {{ tab.title }}
+              </v-tab>
+            </v-tabs>
+          </v-col>
+        </v-row>
+        <!-- Main tab ends here -->
+      </v-container>
+      <!--Tab Container  -->
+      <!-- tab items container -->
+      <v-container fluid pa-md-10 mt-n12 style="width:100%">
+        <v-row align="center" justify="center">
+          <v-col cols="12">
+            <v-card flat color="transparent">
+              <v-tabs-items v-model="mainDataTab">
+                <!-- Portfolio -->
+                <v-tab-item>
+                  <v-card color="transparent" flat>
+                    <v-card-text>
+                      <v-row>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="3"
+                          v-for="item in portfolioItems"
+                          :key="item.id"
+                        >
+                          <v-card class="card-portfolio">
+                            <v-img :src="getPortfolio(item.image)"></v-img>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </v-tab-item>
+                <!-- Portfolio -->
+                <!-- Education -->
+                <v-tab-item>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4" v-for="n in 3" :key="n">
+                      <v-card class="card-education pa-5">
+                        <v-card-title class="education-title">
+                          Ryerson University
+                          <v-spacer></v-spacer>
+                          <span class="ml-12">
+                            <img src="/images/resume_themes/theme206/tabs/2.png" alt />
+                          </span>
+                        </v-card-title>
+                        <v-card-text
+                          class="education-subtitle"
+                        >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-text>
+                        <v-card-actions class="education-session">2010-2013</v-card-actions>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <!-- Education -->
+
+                <!-- Experience -->
+                <v-tab-item>
+                  <v-row>
+                    <v-col cols="12" sm="6" md="4" v-for="item in experienceItems" :key="item.id">
+                      <v-card class="card-education pa-5">
+                        <v-card-title class="experience-title">
+                          {{item.title}}
+                          <v-spacer></v-spacer>
+                          <span class="ml-12">
+                            <img src="/images/resume_themes/theme206/tabs/3.png" alt />
+                          </span>
+                        </v-card-title>
+                        <v-card-text class="education-subtitle">{{item.detail}}</v-card-text>
+                        <v-card-actions class="education-session">{{item.session}}</v-card-actions>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <!-- Experience -->
+
+                <!-- Skills -->
+                <v-tab-item>
+                  <v-row>
+                    <v-col cols="12">
+                      <v-card color="transparent" flat>
+                        <v-tabs v-model="skillTab" hide-slider centered>
+                          <v-tab
+                            v-for="skill in skills"
+                            :key="skill.id"
+                            @click="currentSkillTab = skill.id"
+                            :class="[currentSkillTab == skill.id ? 'skill-child-tab-active':'skill-child-tab' ]"
+                          >{{skill.title}}</v-tab>
+                        </v-tabs>
+                      </v-card>
+                      <!-- Child Tabs -->
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="12">
+                      <!-- Child Tab Items -->
+                      <v-tabs-items v-model="skillTab">
+                        <!-- All Programming Languges -->
+                        <v-tab-item v-for="n in 4" :key="n">
+                          <v-card flat color="transparent">
+                            <v-card-text>
+                              <v-row>
+                                <v-col
+                                  md="4"
+                                  sm="12"
+                                  cols="12"
+                                  v-for="item in childSkills"
+                                  :key="item.id"
+                                >
+                                  <v-card color="#FAFAFA">
+                                    <v-card-text>
+                                      <v-row>
+                                        <v-col cols="6" class="skill-title">{{item.title}}</v-col>
+                                        <v-col
+                                          cols="6"
+                                          align="right"
+                                          class="skill-title"
+                                        >{{item.value_text}}</v-col>
+                                        <v-col cols="12">
+                                          <v-progress-linear
+                                            style="border:3px solid #F0F0F3;"
+                                            class="custom-progress-bar"
+                                            color="#5843BE"
+                                            rounded
+                                            background-color="#eeeeee"
+                                            height="25"
+                                            :value="item.value"
+                                          ></v-progress-linear>
+                                        </v-col>
+                                      </v-row>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                              </v-row>
+                            </v-card-text>
+                          </v-card>
+                        </v-tab-item>
+                      </v-tabs-items>
+                      <!-- All Programming Languages -->
+                      <!-- Child tab items -->
+                    </v-col>
+                  </v-row>
+                </v-tab-item>
+                <!-- Skills -->
+                <!-- Media -->
+                <v-tab-item>Media</v-tab-item>
+                <!-- Media -->
+                <!-- About Me -->
+                <v-tab-item>
+                  <v-card flat color="transparent">
+                    <v-card-title class="about-me-title">About Me</v-card-title>
+                    <v-card-text
+                      class="about-me-text"
+                    >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</v-card-text>
+                  </v-card>
+                </v-tab-item>
+                <!-- About Me -->
+              </v-tabs-items>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <!-- Tab items container -->
     </v-container>
+    <!-- Main container -->
   </v-app>
 </template>
 
@@ -96,16 +279,78 @@
 export default {
   data() {
     return {
+      mainDataTab: "",
+      skillTab: "",
+      currentTab: 1,
+      currentSkillTab: 1,
       socialIcons: [
         { id: 1, title: "twitter" },
         { id: 2, title: "facebook" },
         { id: 3, title: "instagram" }
+      ],
+      tabItems: [
+        { id: 1, title: "Portfolio" },
+        { id: 2, title: "Education" },
+        { id: 3, title: "Experience" },
+        { id: 4, title: "Skills" },
+        { id: 5, title: "Media" },
+        { id: 6, title: "About Me" }
+      ],
+      portfolioItems: [
+        { id: 1, image: 1 },
+        { id: 2, image: 2 },
+        { id: 3, image: 3 },
+        { id: 4, image: 4 },
+        { id: 5, image: 1 },
+        { id: 6, image: 2 },
+        { id: 7, image: 3 },
+        { id: 8, image: 4 }
+      ],
+      experienceItems: [
+        {
+          id: 1,
+          title: "Front End Developer",
+          detail:
+            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
+          session: "2010-2013"
+        },
+        {
+          id: 2,
+          title: "UX/UI Designer",
+          detail:
+            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
+          session: "2010-2013"
+        },
+        {
+          id: 2,
+          title: "Graphic Design",
+          detail:
+            "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
+          session: "2010-2013"
+        }
+      ],
+      skills: [
+        { id: 1, title: "Programming Languages" },
+        { id: 2, title: "Frameworks" },
+        { id: 3, title: "Design Skills" },
+        { id: 4, title: "Software" }
+      ],
+      childSkills: [
+        { id: 1, title: "Flutter", value: 85, value_text: "85%" },
+        { id: 2, title: "Angular", value: 85, value_text: "85%" },
+        { id: 3, title: "React", value: 85, value_text: "85%" }
       ]
     };
   },
   methods: {
     getSocialIcon(title) {
       return `/images/resume_themes/theme206/social_icons/${title}.webp`;
+    },
+    getTabIcon(id) {
+      return `/images/resume_themes/theme206/tabs/${id}.png`;
+    },
+    getPortfolio(image) {
+      return `/images/resume_themes/theme206/portfolio/${image}.png`;
     }
   }
 };
@@ -114,23 +359,24 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 .half-circle {
   position: absolute;
   width: 136px;
   height: 68px; /* as the half of the width */
   border-radius: 100px 100px 0px 0;
-  border-left: 5px solid #5843BE;
-  border-right: 5px solid #5843BE;
-  border-top: 5px solid #5843BE;
-  margin-top:19px;
+  border-left: 5px solid #5843be;
+  border-right: 5px solid #5843be;
+  border-top: 5px solid #5843be;
+  margin-top: 19px;
   margin-left: 22px;
   transform: rotate(122deg);
-  
   z-index: 1;
 }
 .custom-profile-title {
   font-family: "Open Sans" !important;
+  font-weight: bold;
   font-size: 2rem;
   line-height: 3.375rem;
   color: #333333 !important;
@@ -161,8 +407,12 @@ export default {
 .hour-rate {
   font-family: "Poppins", sans-serif !important;
   color: rgba(88, 67, 190, 0.5) !important;
-  font-size: 0.625rem !important;
+  font-size: 0.625rem;
   line-height: 1.313rem;
+  text-transform: uppercase;
+  @media screen and (max-width: 1280px) {
+    font-size: 0.55rem;
+  }
 }
 .rate {
   font-family: "Poppins", sans-serif !important;
@@ -178,5 +428,121 @@ export default {
 .custom-social-btn {
   max-width: 40px !important;
   height: 51px !important;
+}
+// Tabs
+.ct-tab {
+  font-family: "Poppins", sans-serif !important;
+  background: #f0f0f3;
+  box-shadow: 1.5px 1.5px 3px rgba(174, 174, 192, 0.4), -1px -1px 3px #ffffff;
+  border-radius: 5px;
+  color: #5843be !important;
+  line-height: 30px;
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.custom-active-tab {
+  font-family: "Poppins", sans-serif !important;
+  background: #eeeeee;
+  border: 3px solid #eeeeee;
+  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+  img {
+    width: 24px;
+    height: 24px;
+    transition: 1s;
+  }
+}
+// Tabs
+// Portfolio
+.card-portfolio {
+  border-radius: 30px !important;
+}
+//Portfolio
+
+//education
+.card-education {
+  background: linear-gradient(0deg, #fafafa, #fafafa) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 30px !important;
+}
+.education-title {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  font-weight: bold !important;
+  line-height: 30px !important;
+  img {
+    width: 40px;
+  }
+}
+.experience-title {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  font-weight: bold !important;
+  line-height: 30px !important;
+  img {
+    width: 30px;
+  }
+}
+.education-subtitle {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  line-height: 23px;
+  font-size: 1.125rem !important;
+}
+.education-session {
+  font-family: "Roboto", sans-serif !important;
+  color: rgba(51, 51, 51, 0.5) !important;
+}
+//education
+// Skill tab
+.skill-child-tab {
+  font-family: "Poppins", sans-serif !important;
+  color: #333333 !important;
+}
+
+.skill-child-tab-active {
+  font-family: "Poppins", sans-serif !important;
+  color: #5843be;
+  font-weight: 600;
+  background: #eeeeee;
+  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
+  border-radius: 5px;
+}
+
+.skill-title {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.438rem;
+}
+.custom-progress-bar {
+  background: #eeeeee !important;
+  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
+  border-radius: 12px !important;
+}
+// Skill tab
+// about me
+.about-me-title {
+  font-family: "Poppins", sans-serif !important;
+  color: #5843be !important;
+  font-weight: bold !important;
+}
+.about-me-text {
+  font-family: "Poppins", sans-serif !important;
+  color: #000000 !important;
+}
+// about me
+</style>
+
+<style>
+#resumeTheme206 .v-progress-linear__determinate {
+  border-radius: 12px;
+  height: 1.25rem !important;
 }
 </style>

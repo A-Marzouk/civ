@@ -16,11 +16,9 @@
                 </div>
 
                 <img :src="`/images/resume_themes/theme${activeTheme}/preview.png`" alt="theme-preview" class="active-theme-img">
-                <div class="preview-mobile-bar showOnMd">
-                    <div class="preview-btn">
-                        Active Theme <svg-vue :icon="'eye-icon'"></svg-vue>
-                    </div>
-                </div>
+                <a :href="'/' + user.username " target="_blank" class="preview-mobile-bar showOnMd justify-content-center">
+                    Active Theme <svg-vue class='icon' :icon="'eye-icon'"></svg-vue>
+                </a>
             </div>
         </div>
 
@@ -83,7 +81,7 @@
                             </a>
                         </div>
                         <div class="preview-btn NoDecor">
-                            <a :href="'/preview/theme' + theme.code" target="_blank">
+                            <a href="javascript:;" @click='showPreviewModal(theme.code)'>
                                 Preview
                                 <img src="/images/resume_builder/viewCV/eye-white.png" alt="eye-white">
                             </a>
@@ -95,6 +93,10 @@
 
             </div>
         </div>
+
+        <b-modal size="xl" centered id="previewModalContainer" ref="previewModal" title="Theme preview" hide-footer>
+            <iframe :src="`/preview/theme${previewCode}`"></iframe>
+        </b-modal>
         
     </div>
 </template>
@@ -126,6 +128,7 @@
                 showSpecialityOptions: false,
                 selectedProfession: 0,
                 selectedSpeciality: 0,
+                previewCode: null,
                 professionOptions: [
                     {
                         name: "Select a profession"
@@ -180,6 +183,10 @@
             }
         },
         methods:{
+            showPreviewModal (code) {
+                this.previewCode = code;
+                this.$refs.previewModal.show();
+            },
             openTheme(theme){
                 let url  = '/preview/theme'+theme.code ;
                 window.open(url, "_blank") || window.location.replace(url);
@@ -242,6 +249,12 @@ $mainBlue: #001CE2;
             width: 48%;
             margin: 0;
 
+            .civ-select-input {
+                input {
+                    border: 1px solid $mainBlue;
+                }
+            }
+
             @include lt-sm {
                 margin-bottom: 1rem;
                 min-width: 200px;
@@ -264,6 +277,8 @@ $mainBlue: #001CE2;
         }
 
         .preview-theme {
+
+            position: relative;
 
             @include lt-lg {
                 flex-wrap: wrap;
@@ -298,7 +313,36 @@ $mainBlue: #001CE2;
 
                 @include lt-md {
                     margin: 0;
-                    width: 150px;
+                    width: 280px;
+                }
+
+                @include lt-sm {
+                    margin: 0;
+                    width: 220px;
+                }
+            }
+
+            .preview-mobile-bar {
+                background: $mainBlue;
+                color: white;
+                border-radius: 15px;
+
+                svg, path, circle {
+                    fill: white;
+                }
+
+                .icon {
+                    width: 15px;
+                    margin-left: 9.5px;
+                }
+
+                @include lt-md {
+                    position: absolute;
+                    display: flex !important;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    padding: 5px;
                 }
             }
         }
@@ -333,26 +377,31 @@ $mainBlue: #001CE2;
             }
         }
         .themes{
-            justify-content: space-between;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-gap: 3rem;
+            grid-template-columns: repeat(12, 1fr);
+            width: 100%;
 
             @include lt-md {
-                justify-content: space-around;
+                grid-gap: 0;
             }
 
             .theme-item{
                 margin-top:100px;
+                grid-column: span 4;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 flex-direction: column;
-                max-width:540px;
-                min-width: 390px;
-                width: 30%;
-                height:460px;
+                max-width: 540px;
+
+                @include lt-lg {
+                    grid-column: span 6;
+                }
 
                 @include lt-md {
-                    height: 420px;
+                    grid-column: span 12;
+                    max-width: 100%;
                 }
 
                 img.theme-image{
@@ -430,10 +479,9 @@ $mainBlue: #001CE2;
                     padding-right:23px;
                     background: whitesmoke;
                     border-radius: 10px;
-                    width: 619px;
                     height: 70px;
                     margin-top: -35px;
-                    width: 100%;
+                    width: 95%;
                     background: linear-gradient(#f8f8f8 0%, #f4f4f4 100%);
 
                     @include lt-md {
@@ -537,6 +585,15 @@ $mainBlue: #001CE2;
             }
 
             margin-bottom: 100px;
+        }
+    }
+
+    #previewModalContainer {
+        width: 80%;
+
+        iframe { 
+            width: 90%;
+            height: 80vh;
         }
     }
 </style>
