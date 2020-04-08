@@ -209,12 +209,22 @@
                           <v-card flat color="transparent">
                             <v-card-text>
                               <v-row>
-                                <v-col md="4" v-for="item in childSkills" :key="item.id">
+                                <v-col
+                                  md="4"
+                                  sm="12"
+                                  cols="12"
+                                  v-for="item in childSkills"
+                                  :key="item.id"
+                                >
                                   <v-card color="#FAFAFA">
                                     <v-card-text>
                                       <v-row>
                                         <v-col cols="6" class="skill-title">{{item.title}}</v-col>
-                                        <v-col cols="6" align="right" class="skill-title">{{item.value_text}}</v-col>
+                                        <v-col
+                                          cols="6"
+                                          align="right"
+                                          class="skill-title"
+                                        >{{item.value_text}}</v-col>
                                         <v-col cols="12">
                                           <v-progress-linear
                                             style="border:3px solid #F0F0F3;"
@@ -241,6 +251,19 @@
                   </v-row>
                 </v-tab-item>
                 <!-- Skills -->
+                <!-- Media -->
+                <v-tab-item>Media</v-tab-item>
+                <!-- Media -->
+                <!-- About Me -->
+                <v-tab-item>
+                  <v-card flat color="transparent">
+                    <v-card-title class="about-me-title">About Me</v-card-title>
+                    <v-card-text
+                      class="about-me-text"
+                    >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</v-card-text>
+                  </v-card>
+                </v-tab-item>
+                <!-- About Me -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -495,6 +518,17 @@ export default {
   border-radius: 12px !important;
 }
 // Skill tab
+// about me
+.about-me-title {
+  font-family: "Poppins", sans-serif !important;
+  color: #5843be !important;
+  font-weight: bold !important;
+}
+.about-me-text {
+  font-family: "Poppins", sans-serif !important;
+  color: #000000 !important;
+}
+// about me
 </style>
 
 <style>
