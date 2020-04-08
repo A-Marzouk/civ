@@ -702,6 +702,7 @@
 
                 // mobile first
                 .work{
+                    padding-right: 15px;
                     .work-item{
                         color: #FFFFFF;
                         font-style: normal;
@@ -733,6 +734,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+                        padding-right: 0;
 
                         .work-item{
                             display:flex;
