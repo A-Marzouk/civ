@@ -1,7 +1,7 @@
 <template>
-  <div id="wrapper_theme701" class="xl:tw-w-full xl:bg-white font-facultad">
-    <Header></Header>
-
+  <div id="wrapper_theme701" class="xl:tw-w-full xl:bg-white tw-font-muli tw-box-border">
+    <Header />
+    <Main />
   </div>
 </template>
 
@@ -19,5 +19,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('/fonts/Facultad-Regular.otf');
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
 </style>

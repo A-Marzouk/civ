@@ -17,8 +17,10 @@ const spacing = {
     'civ-61': '61‬px',
     '9px': '9px',
     '10px': '0.625rem',
+    '14px': '14px',
     '15px': '15px',
     '18px': '18px',
+    '19px': '19px',
     '20px': '20px',
     '22px': '22px',
     '24px': '6rem',
@@ -27,26 +29,31 @@ const spacing = {
     '28px': '28px',
     '30px': '1.875‬',
     '35px': '2.1875‬rem',
+    '36px': '36px',
     '37px': '2.3125‬rem',
     '44px': '2.75rem',
     '46px': '46px',
     '47px': '2.938rem',
+    '50px': '50px',
     '52px': '3.25rem',
     '53px': '3.375‬rem',
     '54px': '3.375‬‬rem',
     '56px': '65px',
     '60px': '3.75rem',
+    '70px': '70px',
     '66px': '4.13rem',
     '78px': '4.875‬rem',
     '80px': '5rem',
     '82px': '5.125‬rem',
-    '84px': '5.25‬rem',
+    '84px': '84px',
+    '85px': '85px',
     '88px': '5.5rem',
     '92px': '5.75‬rem',
     '93px': '5.8125‬rem',
     '94px': '5.875‬rem',
     '96px': '6rem',
     '113px': '7rem',
+    '100px': '100px',
     '128px': '8.75‬rem',
     '140px': '140px',
     '174px': '10.9‬rem',
@@ -55,85 +62,90 @@ const spacing = {
     '336px': '21‬‬rem',
 };
 module.exports = {
-    prefix: 'tw-',
+    prefix: "tw-",
     theme: {
         extend: {
             spacing,
             colors: {
                 tm700: {
-                    '1': '#513ECD',
-                    '2': '#EBEBEB',
-                    '3': '#D9D9D9',
-                    '4': '#444444',
-                    '5': '#484848',
-                    '6': '#2D2D2D',
-                    '7': 'linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)',
+                    "1": "#513ECD",
+                    "2": "#EBEBEB",
+                    "3": "#D9D9D9",
+                    "4": "#444444",
+                    "5": "#484848",
+                    "6": "#2D2D2D",
+                    "7":
+                        "linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)"
                 },
                 tm701: {
-                    '1': '#28404A',
-                    '2': '#DBDEC4',
-                    '3': '#707070',
-                    '4': '#335E5E',
+                    "1": "#28404A",
+                    "2": "#DBDEC4",
+                    "3": "#707070",
+                    "4": "#335E5E",
+                    "5": "#315E5E",
+                    "6": "#2F5E5E",
                 }
             },
             inset: {
-                '24px': '24px',
-                '34px': '34px',
-                '94px': '94px',
-                'minus-80px': '-80px',
+                "24px": "24px",
+                "34px": "34px",
+                "94px": "94px",
+                "minus-80px": "-80px"
             },
             fontFamily: {
-                lato: ['Lato', 'sans-serif'],
-                montserrat: ['Montserrat', 'sans-serif'],
-                gothampro: ['Gotham Pro', 'sans-serif'],
-                facultad: ['Facultad', 'sans-serif'],
+                lato: ["Lato", "sans-serif"],
+                montserrat: ["Montserrat", "sans-serif"],
+                muli: ["Muli", "sans-serif"]
             },
             maxWidth: {
-                'tm700-dw-1': '73.875rem',
-                'tm700-xl-1': '120rem',
-                'tm700-xl-2': '106.5625rem',
-                '1396px': '87.25rem',
-                '1767px': '1767px',
+                "tm700-dw-1": "73.875rem",
+                "tm700-xl-1": "120rem",
+                "tm700-xl-2": "106.5625rem",
+                "1396px": "87.25rem",
+                "1767px": "1767px"
             },
             gridTemplateColumns: {
-                'tm700-d-skills-bar': '118px auto 48px',
-                'tm701-header': '1fr 4fr 2fr',
+                "tm700-d-skills-bar": "118px auto 48px",
+                "tm701-header": "1fr 4fr 2fr"
             },
             borderRadius: {
-                'civ-15': '15px',
-                '25px': '15px',
-                'civ-50': '3.125‬‬rem', // 50px
-                'civ-50p': '50px', // 50px
+                "civ-15": "15px",
+                "25px": "15px",
+                "civ-50": "3.125‬‬rem", // 50px
+                "civ-50p": "50px" // 50px
             },
             flex: {
-                'civ-1': '0.53',
-                'civ-1_2': '1.2',
-                'civ-3': '1.4',
-                'civ-4': '1.7',
-                'civ-1_5': '1.5',
-                'civ-2': '2',
+                "civ-1": "0.53",
+                "civ-1_2": "1.2",
+                "civ-3": "1.4",
+                "civ-4": "1.7",
+                "civ-1_5": "1.5",
+                "civ-2": "2"
             },
             borderWidth: {
-                '14': '14px',
+                "14": "14px"
             },
             fontSize: {
-                'tm700-18': '1.125rem', // 18px
-                'tm700-22': '1.375‬rem', // 22px
-                '18px': '1.125rem', // 22px
-                '25px': '25px', // 22px
+                "tm700-18": "1.125rem", // 18px
+                "tm700-22": "1.375‬rem", // 22px
+                "14px": "14px", // 22px
+                "18px": "1.125rem", // 22px
+                "25px": "25px", // 22px
+                "26px": "26px" // 22px
             },
             lineHeight: {
-                '10px': '10px',
-                '11px': '11px',
-                'civ-22': '22px',
-                '22px': '1.375‬rem',
-                '23px': '23px',
-                '33px': '33px',
-                '37px': '37px',
-                'civ-29': '29‬px',
-            },
-        },
+                "10px": "10px",
+                "11px": "11px",
+                "civ-22": "22px",
+                "22px": "1.375‬rem",
+                "23px": "23px",
+                "civ-29": "29‬px",
+                "33px": "33px",
+                "37px": "37px",
+                "64px": "64px"
+            }
+        }
     },
     variants: {},
-    plugins: [],
+    plugins: []
 };
