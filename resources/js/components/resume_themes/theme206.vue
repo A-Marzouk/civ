@@ -150,7 +150,7 @@
                           Ryerson University
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img  src="/images/resume_themes/theme206/tabs/2.png" alt />
+                            <img src="/images/resume_themes/theme206/tabs/2.png" alt />
                           </span>
                         </v-card-title>
                         <v-card-text
@@ -172,12 +172,10 @@
                           {{item.title}}
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img  src="/images/resume_themes/theme206/tabs/3.png" alt="" />
+                            <img src="/images/resume_themes/theme206/tabs/3.png" alt />
                           </span>
                         </v-card-title>
-                        <v-card-text
-                          class="education-subtitle"
-                        >{{item.detail}}</v-card-text>
+                        <v-card-text class="education-subtitle">{{item.detail}}</v-card-text>
                         <v-card-actions class="education-session">{{item.session}}</v-card-actions>
                       </v-card>
                     </v-col>
@@ -206,12 +204,38 @@
                     <v-col cols="12">
                       <!-- Child Tab Items -->
                       <v-tabs-items v-model="skillTab">
-                        <v-tab-item>
-                          <v-card flat>
-                            <v-card-text>Item 1</v-card-text>
+                        <!-- All Programming Languges -->
+                        <v-tab-item v-for="n in 4" :key="n">
+                          <v-card flat color="transparent">
+                            <v-card-text>
+                              <v-row>
+                                <v-col md="4" v-for="item in childSkills" :key="item.id">
+                                  <v-card color="#FAFAFA">
+                                    <v-card-text>
+                                      <v-row>
+                                        <v-col cols="6" class="skill-title">{{item.title}}</v-col>
+                                        <v-col cols="6" align="right" class="skill-title">{{item.value_text}}</v-col>
+                                        <v-col cols="12">
+                                          <v-progress-linear
+                                            style="border:3px solid #F0F0F3;"
+                                            class="custom-progress-bar"
+                                            color="#5843BE"
+                                            rounded
+                                            background-color="#eeeeee"
+                                            height="25"
+                                            :value="item.value"
+                                          ></v-progress-linear>
+                                        </v-col>
+                                      </v-row>
+                                    </v-card-text>
+                                  </v-card>
+                                </v-col>
+                              </v-row>
+                            </v-card-text>
                           </v-card>
                         </v-tab-item>
                       </v-tabs-items>
+                      <!-- All Programming Languages -->
                       <!-- Child tab items -->
                     </v-col>
                   </v-row>
@@ -287,6 +311,11 @@ export default {
         { id: 2, title: "Frameworks" },
         { id: 3, title: "Design Skills" },
         { id: 4, title: "Software" }
+      ],
+      childSkills: [
+        { id: 1, title: "Flutter", value: 85, value_text: "85%" },
+        { id: 2, title: "Angular", value: 85, value_text: "85%" },
+        { id: 3, title: "React", value: 85, value_text: "85%" }
       ]
     };
   },
@@ -421,8 +450,8 @@ export default {
   color: #333333 !important;
   font-weight: bold !important;
   line-height: 30px !important;
-  img{
-    width:40px;
+  img {
+    width: 40px;
   }
 }
 .education-subtitle {
@@ -451,5 +480,26 @@ export default {
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
   border-radius: 5px;
 }
+
+.skill-title {
+  font-family: "Roboto", sans-serif !important;
+  color: #333333 !important;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.438rem;
+}
+.custom-progress-bar {
+  background: #eeeeee !important;
+  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
+  border-radius: 12px !important;
+}
 // Skill tab
+</style>
+
+<style>
+#resumeTheme206 .v-progress-linear__determinate {
+  border-radius: 12px;
+  height: 1.25rem !important;
+}
 </style>
