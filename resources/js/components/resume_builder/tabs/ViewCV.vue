@@ -81,7 +81,7 @@
                             </a>
                         </div>
                         <div class="preview-btn NoDecor">
-                            <a :href="'/preview/theme' + theme.code" target="_blank">
+                            <a href="javascript:;" @click='showPreviewModal(theme.code)'>
                                 Preview
                                 <img src="/images/resume_builder/viewCV/eye-white.png" alt="eye-white">
                             </a>
@@ -93,6 +93,10 @@
 
             </div>
         </div>
+
+        <b-modal size="xl" centered id="previewModalContainer" ref="previewModal" title="Theme preview" hide-footer>
+            <iframe :src="`/preview/theme${previewCode}`"></iframe>
+        </b-modal>
         
     </div>
 </template>
@@ -124,6 +128,7 @@
                 showSpecialityOptions: false,
                 selectedProfession: 0,
                 selectedSpeciality: 0,
+                previewCode: null,
                 professionOptions: [
                     {
                         name: "Select a profession"
@@ -178,6 +183,10 @@
             }
         },
         methods:{
+            showPreviewModal (code) {
+                this.previewCode = code;
+                this.$refs.previewModal.show();
+            },
             openTheme(theme){
                 let url  = '/preview/theme'+theme.code ;
                 window.open(url, "_blank") || window.location.replace(url);
@@ -239,6 +248,12 @@ $mainBlue: #001CE2;
             max-width: 300px;
             width: 48%;
             margin: 0;
+
+            .civ-select-input {
+                input {
+                    border: $mainBlue;
+                }
+            }
 
             @include lt-sm {
                 margin-bottom: 1rem;
@@ -571,6 +586,15 @@ $mainBlue: #001CE2;
             }
 
             margin-bottom: 100px;
+        }
+    }
+
+    #previewModalContainer {
+        width: 80%;
+
+        iframe { 
+            width: 90%;
+            height: 80vh;
         }
     }
 </style>
