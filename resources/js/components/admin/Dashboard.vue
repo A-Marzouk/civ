@@ -54,6 +54,11 @@
             </v-card>
 
             <div class="content">
+                <div class="searchInput">
+                    <input type="text" v-model="searchValue" placeholder="Search by name">
+                </div>
+
+                <users-table :users="users"></users-table>
 
             </div>
         </div>
@@ -84,8 +89,13 @@
 </template>
 
 <script>
+    import UsersTable from './includes/UsersTable'
     export default {
         name: "Dashboard",
+        props:['users'],
+        components:{
+            'users-table' : UsersTable
+        },
         data() {
             return {
 
@@ -104,6 +114,8 @@
                 expandOnHover: false,
                 background: false,
 
+                // searhc
+                searchValue:''
             }
         },
         methods: {
@@ -125,9 +137,14 @@
         background: #E5E5E5;
 
         .content{
-            .input{
-                width: 400px;
-            }
+            padding-left: 50px;
+            padding-right: 50px;
+           .searchInput{
+               .input{
+                   width: 630px;
+               }
+           }
+
         }
 
         .admin-top-bar {

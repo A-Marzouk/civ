@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 
+use App\User;
+
 class AdminsController extends Controller
 {
     public function __construct(){
@@ -16,7 +18,9 @@ class AdminsController extends Controller
     }
 
     public function index(){
-        return view('admin.dashboard');
+        // get all users:
+        $users = User::all();
+        return view('admin.dashboard', compact('users'));
     }
 
 }
