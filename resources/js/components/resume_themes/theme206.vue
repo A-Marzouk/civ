@@ -132,7 +132,7 @@
                           v-for="item in portfolioItems"
                           :key="item.id"
                         >
-                          <v-card class="card-portfolio">
+                          <v-card class="card-portfolio" hover>
                             <v-img :src="getPortfolio(item.image)"></v-img>
                           </v-card>
                         </v-col>
@@ -145,7 +145,7 @@
                 <v-tab-item>
                   <v-row>
                     <v-col cols="12" sm="6" md="4" v-for="n in 3" :key="n">
-                      <v-card class="card-education pa-5">
+                      <v-card class="card-education pa-5" hover>
                         <v-card-title class="education-title">
                           Ryerson University
                           <v-spacer></v-spacer>
@@ -167,7 +167,7 @@
                 <v-tab-item>
                   <v-row>
                     <v-col cols="12" sm="6" md="4" v-for="item in experienceItems" :key="item.id">
-                      <v-card class="card-education pa-5">
+                      <v-card class="card-education pa-5" hover>
                         <v-card-title class="experience-title">
                           {{item.title}}
                           <v-spacer></v-spacer>
@@ -227,12 +227,12 @@
                                         >{{item.value_text}}</v-col>
                                         <v-col cols="12">
                                           <v-progress-linear
-                                            style="border:3px solid #F0F0F3;"
+                                            style="border:3px solid #F0F0F3; border-radius:12px;"
                                             class="custom-progress-bar"
                                             color="#5843BE"
                                             rounded
                                             background-color="#eeeeee"
-                                            height="25"
+                                            height="15"
                                             :value="item.value"
                                           ></v-progress-linear>
                                         </v-col>
@@ -252,7 +252,100 @@
                 </v-tab-item>
                 <!-- Skills -->
                 <!-- Media -->
-                <v-tab-item>Media</v-tab-item>
+                <v-tab-item>
+                  <v-card flat color="transparent">
+                    <v-card-text>
+                      <v-row>
+                        <!-- 1st column -->
+                        <v-col cols="8">
+                          <v-row>
+                            <v-col md="6" v-for="n in 4" :key="n">
+                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
+                                <v-card-text>
+                                  <v-list-item>
+                                    <v-list-content>
+                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
+                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
+                                    </v-list-content>
+                                    <v-spacer></v-spacer>
+                                    <v-list-item-icon>
+                                      <v-btn class="play-btn" color="#5843BE" fab small>
+                                        <img
+                                          class
+                                          src="/images/resume_themes/theme206/icons/play.png"
+                                          alt
+                                        />
+                                      </v-btn>
+                                    </v-list-item-icon>
+                                  </v-list-item>
+                                </v-card-text>
+                                <v-card-text class="ml-3 mt-n10">
+                                  <v-row>
+                                    <v-col cols="9">
+                                      <v-progress-linear
+                                        style="border:3px solid #EEEEEE; border-radius:12px;"
+                                        class="custom-progress-bar"
+                                        color="#5843BE"
+                                        rounded
+                                        background-color="#eeeeee"
+                                        height="15"
+                                        :value="60"
+                                      ></v-progress-linear>
+                                    </v-col>
+                                  </v-row>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- 1st column -->
+                        <!-- 2nd column -->
+                        <v-col cols="4">
+                          <v-row>
+                            <v-col cols="12" v-for="n in 2" :key="n">
+                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
+                                <v-card-text>
+                                  <v-list-item>
+                                    <v-list-content>
+                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
+                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
+                                    </v-list-content>
+                                    <v-spacer></v-spacer>
+                                    <v-list-item-icon>
+                                      <v-btn class="play-btn" color="#5843BE" fab small>
+                                        <img
+                                          class
+                                          src="/images/resume_themes/theme206/icons/play.png"
+                                          alt
+                                        />
+                                      </v-btn>
+                                    </v-list-item-icon>
+                                  </v-list-item>
+                                </v-card-text>
+                                <v-card-text class="ml-3 mt-n10">
+                                  <v-row>
+                                    <v-col cols="9">
+                                      <v-progress-linear
+                                        style="border:3px solid #EEEEEE; border-radius:12px;"
+                                        class="custom-progress-bar"
+                                        color="#5843BE"
+                                        rounded
+                                        background-color="#eeeeee"
+                                        height="15"
+                                        :value="60"
+                                      ></v-progress-linear>
+                                    </v-col>
+                                  </v-row>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- 2nd column -->
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </v-tab-item>
                 <!-- Media -->
                 <!-- About Me -->
                 <v-tab-item>
@@ -445,7 +538,7 @@ export default {
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
   background: #eeeeee;
-  border: 3px solid #eeeeee;
+  border: 5px solid #eeeeee;
   box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
   border-radius: 5px;
@@ -520,12 +613,12 @@ export default {
   font-size: 1rem;
   line-height: 1.438rem;
 }
-.custom-progress-bar {
-  background: #eeeeee !important;
-  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
-  border-radius: 12px !important;
-}
+// .custom-progress-bar {
+//   background: #eeeeee !important;
+//   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
+//     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
+//   border-radius: 12px !important;
+// }
 // Skill tab
 // about me
 .about-me-title {
@@ -538,11 +631,31 @@ export default {
   color: #000000 !important;
 }
 // about me
+//media
+.audio-title {
+  font-family: "Poppins", sans-serif !important;
+  line-height: 27px;
+}
+.audio-duration {
+  font-family: "Poppins", sans-serif !important;
+  color: rgba(88, 67, 190, 0.55) !important;
+  font-size: 0.75rem !important;
+}
+.play-btn {
+  img {
+    width: 50px;
+  }
+}
 </style>
 
 <style>
 #resumeTheme206 .v-progress-linear__determinate {
-  border-radius: 12px;
-  height: 1.25rem !important;
+  border-color: #eeeeee !important;
+}
+
+#resumeTheme206 .v-progress-linear__background {
+  background: #eeeeee !important;
+  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
 </style>
