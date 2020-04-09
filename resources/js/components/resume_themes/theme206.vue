@@ -613,12 +613,12 @@ export default {
   font-size: 1rem;
   line-height: 1.438rem;
 }
-// .custom-progress-bar {
-//   background: #eeeeee !important;
-//   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
-//     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
-//   border-radius: 12px !important;
-// }
+.custom-progress-bar {
+  background: #eeeeee !important;
+  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
+  border-radius: 12px !important;
+}
 // Skill tab
 // about me
 .about-me-title {
