@@ -7,7 +7,7 @@
         </v-avatar>
         <div class="half-circle"></div>
         <v-container fluid pa-0 ma-0 style="width:100%">
-          <v-row class align="center" justify="center">
+          <v-row class align="center" justify="center" dense>
             <v-col md="4">
               <v-card flat color="transparent" class="pa-0">
                 <v-card-title class="custom-profile-title">Hean Prinsloo</v-card-title>
@@ -259,7 +259,7 @@
                         <!-- 1st column -->
                         <v-col cols="8">
                           <v-row>
-                            <v-col md="6" v-for="n in 4" :key="n">
+                            <v-col md="6" v-for="n in 2" :key="n">
                               <v-card color="#F0F0F3" style="border-radius:9px;" hover>
                                 <v-card-text>
                                   <v-list-item>
@@ -269,12 +269,8 @@
                                     </v-list-content>
                                     <v-spacer></v-spacer>
                                     <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" fab small>
-                                        <img
-                                          class
-                                          src="/images/resume_themes/theme206/icons/play.png"
-                                          alt
-                                        />
+                                      <v-btn class="play-btn" color="#5843BE" depressed fab small>
+                                        <v-icon color="white">mdi-play</v-icon>
                                       </v-btn>
                                     </v-list-item-icon>
                                   </v-list-item>
@@ -296,13 +292,38 @@
                                 </v-card-text>
                               </v-card>
                             </v-col>
+                            <!-- Video Column -->
+                            <v-col md="6" v-for="n in 2" :key="n">
+                              <v-card style="border-radius:9px" hover height="295" class="mx-auto">
+                                <v-img
+                                  height="295"
+                                  src="/images/resume_themes/theme206/video-screen.png"
+                                >
+                                  <v-card-subtitle class="video-duration">
+                                    <v-card
+                                      class="pa-2"
+                                      width="80"
+                                      align="center"
+                                      color="#242424"
+                                      dark
+                                    >15:00</v-card>
+                                  </v-card-subtitle>
+                                  <!-- overlay -->
+                                  <v-btn class="video-play-btn" color="#5843BE"  depressed fab small>
+                                    <v-icon color="white">mdi-play</v-icon>
+                                  </v-btn>
+                                  <!-- overlay -->
+                                </v-img>
+                              </v-card>
+                            </v-col>
+                            <!-- Video Column -->
                           </v-row>
                         </v-col>
                         <!-- 1st column -->
                         <!-- 2nd column -->
                         <v-col cols="4">
                           <v-row>
-                            <v-col cols="12" v-for="n in 2" :key="n">
+                            <v-col cols="12" v-for="n in 3" :key="n">
                               <v-card color="#F0F0F3" style="border-radius:9px;" hover>
                                 <v-card-text>
                                   <v-list-item>
@@ -312,12 +333,8 @@
                                     </v-list-content>
                                     <v-spacer></v-spacer>
                                     <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" fab small>
-                                        <img
-                                          class
-                                          src="/images/resume_themes/theme206/icons/play.png"
-                                          alt
-                                        />
+                                      <v-btn class="play-btn" color="#5843BE" depressed fab small>
+                                        <v-icon color="white">mdi-play</v-icon>
                                       </v-btn>
                                     </v-list-item-icon>
                                   </v-list-item>
@@ -372,6 +389,7 @@
 export default {
   data() {
     return {
+      overlay: true,
       mainDataTab: "",
       skillTab: "",
       currentTab: 1,
@@ -641,9 +659,27 @@ export default {
   color: rgba(88, 67, 190, 0.55) !important;
   font-size: 0.75rem !important;
 }
+.video-duration {
+  font-family: Poppins;
+  position: absolute;
+  bottom: 8px;
+  left: 16px;
+  font-size: 12px !important;
+  border-radius: 3px;
+}
+
 .play-btn {
   img {
-    width: 50px;
+    width: 16px;
+  }
+}
+.video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  img{
+    width: 16px;
   }
 }
 </style>
