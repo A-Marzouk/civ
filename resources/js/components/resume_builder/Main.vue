@@ -490,7 +490,7 @@
                     text-decoration: none;
                 }
 
-                &.router-link-exact-active, &.router-link-active.has-inside-routes{
+                &.router-link-exact-active, &.router-link-active.has-inside-routes {
                     position: relative;
                     color: $mainBlue;
                 }
