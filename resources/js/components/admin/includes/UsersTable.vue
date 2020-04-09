@@ -176,6 +176,7 @@
 
                 // delete item:
                 axios.delete('/api/admin/delete-user/' + item.id).then( (response) => {
+                    this.$store.dispatch('flyingNotificationDelete');
                     this.tableUsers.splice(index, 1);
                 });
             },
@@ -195,6 +196,7 @@
                     axios.put('api/admin/update-user', this.editedItem)
                         .then( (response) => {
                             Object.assign(this.tableUsers[this.editedIndex], this.editedItem);
+                            this.$store.dispatch('flyingNotification');
                             this.close();
                         })
                         .catch(error => {
@@ -211,6 +213,7 @@
                     axios.post('api/admin/create-user', this.editedItem)
                         .then( (response) => {
                             this.tableUsers.push(response.data.user);
+                            this.$store.dispatch('flyingNotification');
                             this.close();
                         })
                         .catch(error => {

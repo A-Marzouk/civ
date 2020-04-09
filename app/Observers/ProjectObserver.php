@@ -36,7 +36,17 @@ class ProjectObserver
      */
     public function deleted(Project $project)
     {
-        //
+        $relatedImages = $project->images ;
+        if(count($relatedImages) > 0){
+            foreach ($relatedImages as $image){
+                // remove image from the system if the file exists
+                if (file_exists(public_path($image->src))) {
+                    unlink(public_path($image->src));
+                }
+                // delete the image record:
+                $image->delete();
+            }
+        }
     }
 
     /**
