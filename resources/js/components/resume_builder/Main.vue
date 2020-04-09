@@ -56,7 +56,7 @@
         </div>
 
         <div class="content" 
-            :class="{ 'hideInfoWrapper-md': false /*activeTab !== 'myAccount'*/ }"
+            :class="{ 'hideInfoWrapper': activeTab === 'viewCV' }"
         >
             <div class="info-wrapper justify-content-between" v-if="personalInfo">
                 <div class="d-flex align-items-center">
@@ -246,8 +246,11 @@
     .content {
         width: 100%;
 
+        &.hideInfoWrapper .info-wrapper {
+            display: none;
+        }
+
         .info-wrapper {
-        // &.hideInfoWrapper-md .info-wrapper {
            @include lt-md {
                 display: none !important;
             }
