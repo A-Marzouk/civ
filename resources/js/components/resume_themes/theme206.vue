@@ -269,7 +269,7 @@
                                     </v-list-content>
                                     <v-spacer></v-spacer>
                                     <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" fab>
+                                      <v-btn class="play-btn" color="#5843BE" fab small>
                                         <v-icon color="white">mdi-play</v-icon>
                                       </v-btn>
                                     </v-list-item-icon>
@@ -309,12 +309,8 @@
                                     >15:00</v-card>
                                   </v-card-subtitle>
                                   <!-- overlay -->
-                                  <v-btn class="video-play-btn" color="#5843BE" fab>
-                                    <img
-                                      class
-                                      src="/images/resume_themes/theme206/icons/video-play.png"
-                                      alt
-                                    />
+                                  <v-btn class="video-play-btn" color="#5843BE" fab small>
+                                    <v-icon color="white">mdi-play</v-icon>
                                   </v-btn>
                                   <!-- overlay -->
                                 </v-img>
@@ -337,7 +333,7 @@
                                     </v-list-content>
                                     <v-spacer></v-spacer>
                                     <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" fab>
+                                      <v-btn class="play-btn" color="#5843BE" fab small>
                                         <v-icon color="white">mdi-play</v-icon>
                                       </v-btn>
                                     </v-list-item-icon>
