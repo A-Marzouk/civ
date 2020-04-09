@@ -69,6 +69,7 @@
         <template v-slot:item.actions="{ item }">
             <v-icon
                     small
+                    v-show="!item.is_admin"
                     class="mr-2"
                     @click="editItem(item)"
             >
@@ -76,6 +77,7 @@
             </v-icon>
             <v-icon
                     small
+                    v-show="!item.is_admin"
                     @click="deleteItem(item)"
             >
                 mdi-delete
