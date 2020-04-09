@@ -3,7 +3,7 @@
     <div class="inner">
     <div class="tm700-portfolios tw-grid md:tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-3 tw-row-gap-24 tw-col-gap-25px">
         <div v-for="(portfolio,id) in portfolios" v-bind:key="id">
-            <img class="tw-w-full" v-bind:src="portfolio.url" />
+            <img class="tw-w-full tw-rounded-25px" v-bind:src="portfolio.url" />
         </div>
     </div>
     </div>

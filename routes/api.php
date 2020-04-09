@@ -120,6 +120,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/payment-info', 'API\PaymentInfoController@index');
     Route::put('/payment-info', 'API\PaymentInfoController@store');
 
+// Availability info api routes:
+    Route::get('/availability-info', 'API\AvailabilityInfoController@index');
+    Route::put('/availability-info', 'API\AvailabilityInfoController@store');
+
 // References api routes:
     Route::get('/reference', 'API\ReferencesController@index');
     Route::put('/reference', 'API\ReferencesController@store');

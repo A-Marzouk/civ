@@ -139,18 +139,16 @@
                                 </div>
                             </div>
                             <div class="action-btns">
-                                <div class="add-award-btn NoDecor">
-                                    <a href="javascript:void(0)" @click="applyEdit">
-                                        <img src="/images/resume_builder/work-ex/mark.png" alt="mark">
-                                        Save
-                                    </a>
-                                </div>
-                                <div class="auto-import-btn NoDecor">
-                                    <a href="javascript:void(0)" @click="cancelEdit">
-                                        Cancel
-                                    </a>
-                                </div>
+                                <a class="btn btn-filled" href="javascript:void(0)" @click="applyEdit">
+                                    <img src="/images/resume_builder/work-ex/mark.png" alt="mark" class="icon">
+                                    Save
+                                </a>
+                                <a class="btn btn-outline" href="javascript:void(0)" @click="cancelEdit">
+                                    Cancel
+                                </a>
                             </div>
+
+                            
                         </div>
                     </div>
                 </div>
@@ -166,12 +164,12 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
         name: "Skills",
         data() {
             return {
-                activeTab: 'Programming_languages',
+                activeTab: 'programming_languages',
                 tabs: [
-                    'Programming_languages',
-                    'Software',
-                    'Design',
-                    'Frameworks'
+                    'programming_languages',
+                    'software',
+                    'design',
+                    'frameworks'
                 ],
                 skill: {
                     category: '',
@@ -364,10 +362,14 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
             }
 
             @include lt-md {
-                display: flex !important;
+                display: flex;
                 justify-content: space-between;
                 width: 100%;
                 margin-top: 40px;
+            }
+
+            @include gt-sm{
+                display: none;
             }
 
             .add-award-btn {
@@ -468,6 +470,16 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                     color: #505050;
                     opacity: 1;
                 }
+
+                @include lt-md {
+                    width: 100%;
+
+                    input{
+                        width: 100%;
+                        max-height: 60px;
+                    }
+                }
+
             }
 
 
@@ -549,8 +561,17 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 flex-direction: column;
                 width: 100%;
                 min-height: 140px;
-                padding: 0 43px;
+                padding: 10px 43px 30px 43px;
                 border-radius: 8px; 
+
+                @include lt-md {
+                    padding: 1em 2em;
+                }
+
+                @include lt-sm {
+                    padding: 1em;
+                }
+
 
                 .skill-title {
                     font-family: "Noto Sans", serif;
@@ -702,6 +723,27 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
 
                     .extended-options.opened {
                         border: 1px solid #1F5DE4;
+                        position: relative;
+                        z-index: 2;
+                    }
+                }
+
+                .editForm{
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+
+                    .add-award-section{
+                        width: 580px;
+
+                        @include lt-md {
+                            width: 100%;
+                        }
+                    }
+
+                    .action-btns{
+                        justify-content: space-between;
+                        width: 100%;
                     }
                 }
             }

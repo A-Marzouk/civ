@@ -141,7 +141,7 @@
 
 <style lang="scss">
 @import '../../../../../sass/media-queries';
-$mainColor: #001CE2;
+$mainBlue: #001CE2;
     .achievements-bar.sub-bar {
         margin-top: 50px;
     }
@@ -167,6 +167,10 @@ $mainColor: #001CE2;
     .hold-edit{
         font-family: 'Noto Sans';
         padding: 40px 20px;
+
+        @include lt-sm {
+            padding: 40px 0;
+        }
 
         .user-cover{
             width: 144px;
@@ -204,7 +208,8 @@ $mainColor: #001CE2;
             }
 
             @include lt-sm {
-                width: calc(100% - 120px);
+                margin-top: 1rem;
+                width: 100%;
             }
         }
     }
@@ -335,7 +340,7 @@ $mainColor: #001CE2;
         margin-right: 29px;
         border-radius: 8px;
 
-        a{
+        a {
             text-decoration: none;
             margin-right: 37px;
 
@@ -349,6 +354,11 @@ $mainColor: #001CE2;
                 width: 44px;
                 height: 39px;
                 display: block;
+
+                @include lt-md {
+                    height: 20px;
+                    width: 35px;
+                }
                 
                 @include lt-sm {
                     height: 15px;
@@ -361,6 +371,11 @@ $mainColor: #001CE2;
                 width: 33.7px;
                 height: 39px;
                 display: block;
+
+                @include lt-md {
+                    height: 20px;
+                    width: 35px;
+                }
                 
                 @include lt-sm {
                     height: 15px;
@@ -373,6 +388,11 @@ $mainColor: #001CE2;
                 width: 44px;
                 height: 39px;
                 display: block;
+
+                @include lt-md {
+                    height: 20px;
+                    width: 35px;
+                }
                 
                 @include lt-sm {
                     height: 15px;
@@ -538,6 +558,10 @@ $mainColor: #001CE2;
 
             .lang {
                 display: flex;
+                
+                @include lt-md {
+                    flex-wrap: wrap;
+                }
             }
 
             .flagLang{

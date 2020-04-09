@@ -17,7 +17,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12 col-lg-12 col-12">
-                        <div class="v-input v-input--has-state theme--light v-text-field v-text-field--is-booted v-text-field--placeholder error--text">
+                        <div class="v-input v-input--has-state theme--light v-text-field custom-landing-input v-text-field--is-booted v-text-field--placeholder error--text">
                             <div class="v-input__control">
                                 <div class="v-input__slot">
                                     <div class="v-text-field__slot">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-lg-12 col-12">
-                        <div class="v-input v-input--has-state theme--light v-text-field v-text-field--is-booted v-text-field--placeholder error--text">
+                        <div class="v-input v-input--has-state theme--light v-text-field custom-landing-input v-text-field--is-booted v-text-field--placeholder error--text">
                             <div class="v-input__control">
                                 <div class="v-input__slot">
                                     <div class="v-text-field__slot">
@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-lg-12 col-12">
-                        <div class="v-input v-input--has-state theme--light v-text-field v-text-field--is-booted v-text-field--placeholder error--text">
+                        <div class="v-input v-input--has-state theme--light v-text-field custom-landing-input v-text-field--is-booted v-text-field--placeholder error--text">
                             <div class="v-input__control">
                                 <div class="v-input__slot">
                                     <div class="v-text-field__slot">
@@ -68,7 +68,7 @@
                         </div>
                     </div>
                     <div class="col-sm-12 col-lg-12 col-12">
-                        <div class="v-input v-input--has-state theme--light v-text-field v-text-field--is-booted v-text-field--placeholder error--text">
+                        <div class="v-input v-input--has-state theme--light v-text-field custom-landing-input v-text-field--is-booted v-text-field--placeholder error--text">
                             <div class="v-input__control">
                                 <div class="v-input__slot">
                                     <div class="v-text-field__slot">
@@ -154,6 +154,5 @@
             cursor: not-allowed;
         }
     }
-
     
 </style>

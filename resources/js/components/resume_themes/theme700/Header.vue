@@ -41,11 +41,11 @@ export default {
       grid-template-rows: auto auto;
     }
     @media (min-width: 1024px) {
-      grid-template-columns: 98px 4fr 2fr;
+      grid-template-columns: 98px 3fr 2fr;
         grid-template-rows: auto;
     }
     @media (min-width: 1280px) {
-      grid-template-columns: 172px 5fr 2fr;
+      grid-template-columns: 172px 4fr 2fr;
         grid-template-rows: auto;
     }
   }

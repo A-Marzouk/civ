@@ -16,6 +16,7 @@ if ($("#resumeTheme2").length !== 0) {
 import resumeTheme3 from './components/resume_themes/theme3';
 if ($("#resumeTheme3").length !== 0) {
     new Vue({
+        store,
         el: '#resumeTheme3',
         components: {
             'resume-theme-3': resumeTheme3
@@ -123,6 +124,7 @@ if ($("#resumeTheme300").length !== 0) {
 
     new Vue({
         el: '#resumeTheme300',
+        store,
         vuetify,
         components: {
             'resume-theme-300': resumeTheme300

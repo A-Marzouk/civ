@@ -3,36 +3,37 @@
 
         <div class="title">
             <img src="/images/resume_builder/import/pic.png" alt="icon">
-            Please upload <span> your cv in PDF format</span>
+            Please upload <span> your cv in PDF or DOCX format</span>
         </div>
 
         <div class="import-action-btns">
-            <div class="d-flex">
+            <div class="d-flex" v-if="extractedText.length < 1">
+                <a class="btn btn-outline" href="javascript:void(0)" @click="openBrowse">
+                    <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="add">
+                    Import  <span> PDF </span> file
+                </a>
                 <div class="auto-import-btn NoDecor">
-                    <a href="javascript:void(0)" @click="openBrowse">
-                        <img src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                        Import  <span> PDF </span> file
-                    </a>
-                </div>
-                <div class="auto-import-btn NoDecor"  v-show="file">
-                    <a href="javascript:void(0)" @click="uploadPDFFile">
+                    <a v-show="file" href="javascript:void(0)" @click="uploadPDFFile">
                         Extract file
                         <img class="extract" src="/images/resume_builder/import/extract.png" alt="add">
                     </a>
                 </div>
             </div>
 
-            <div class="progress-bar-wrapper" v-show="progress > 0">
+            <div class="progress-bar-wrapper" v-show="progress > 0" v-if="extractedText.length < 1">
                 <div class="upload-progress-bar" id="upload-progress-bar"></div>
                 <div class="progress-bar-value">
                     {{progress}}%
                 </div>
             </div>
+
             <div class="file-name"  v-show="file">
+                <img src="/images/resume_builder/import/pic.png" alt="icon">
                 {{file.name}}
+                <img class="close" src="/images/resume_builder/my_account/close-modal.png" alt="icon" @click="clearFile">
             </div>
 
-            <div>
+            <div class='w-100' v-if="extractedText.length < 1">
                 <vue2Dropzone class="upload-image-box d-flex justify-content-center align-items-center"
                               id="cvDropZone"
                               :options="dropzoneOptions"
@@ -58,13 +59,21 @@
                style="opacity:0; position: absolute; left:-500px;">
 
 
-        <div class="import-results"  v-show="extractedText.length > 0">
+        <div class="import-results" v-show="extractedText.length > 0">
             <div class="title">
                 Select <span>your information</span>
             </div>
 
             <div class="sections">
-
+                <div class="section" v-for="section in sections" :key="section.title">
+                    <div class="checkbox" @click="toggleSelectionOfSection(section)">
+                        <img v-if="section.selected" src="/images/resume_builder/import/checkedBox.svg" alt="checkbox">
+                        <img v-else src="/images/resume_builder/import/uncheckedBox.svg" alt="checkbox">
+                    </div>
+                    <div class="title" :class="{active : section.selected}">
+                        {{section.title}}
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -181,8 +190,8 @@
                 </div>
             </div>
 
-            <div v-show="errors.pdf_cv" style="color: red;" class="mt-3">
-                {{errors.pdf_cv}}
+            <div v-show="errors.cv" style="color: red;" class="mt-3">
+                {{errors.cv}}
             </div>
         </div>
     </div>
@@ -199,7 +208,7 @@
                 file: '',
                 extractedText: '',
                 originalText: '',
-                arrayOfExtractedText: '',
+                arrayOfExtractedText:[],
                 errors: [],
                 freelancerData: {
                     'name': '',
@@ -746,7 +755,7 @@
                     addRemoveLinks: true,
                     maxFiles: 1,
                     autoProcessQueue: false,
-                    acceptedFiles: 'application/pdf, image/*',
+                    acceptedFiles: '*',
                     previewTemplate: `
             <div class="dz-preview dz-file-preview">
                 <div class="dz-image">
@@ -759,12 +768,53 @@
             </div>
         `
                 },
+                sections:[
+                    {
+                        title:'profile',
+                        selected: 0,
+                        
+                    },   
+                    {
+                        title:'summary',
+                        selected: 1,
+                        
+                    },
+                    {
+                        title:'work',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'education',
+                        selected: 1,
+                        
+                    },
+                    {
+                        title:'skills',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'achievements',
+                        selected: 1,
+                        
+                    },  
+                    {
+                        title:'hobbies',
+                        selected: 1,
+                        
+                    },   
+                    {
+                        title:'references',
+                        selected: 1,
+                        
+                    }
+                ],
             }
         },
         methods: {
 
             // handle file upload
-
             openBrowse() {
                 $('#uploadFileButton').click();
             },
@@ -780,7 +830,7 @@
             uploadPDFFile() {
                 this.errors = [];
                 let formData = new FormData();
-                formData.append('pdf_cv', this.file);
+                formData.append('cv', this.file);
                 const config = {
                     onUploadProgress: progressEvent => {
                          this.progress = (progressEvent.loaded/progressEvent.total) * 100 ;
@@ -789,25 +839,40 @@
                     headers:{'Content-Type': 'multipart/form-data'}
                 };
 
-                axios.post('/resume-builder/import/pdf', formData, config)
-                    .then((response) => {
-                        if (response.data.length > 0) {
-                            this.extractedText = response.data;
-                            this.originalText = response.data;
-                            this.clearFreelancerData();
-                        } else {
-                            this.extractedText = 'This file does not contain any text to be extracted!';
-                        }
-                        this.arrayOfExtractedText = this.extractedText.split("\n");
-                        this.searchForData();
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            this.errors = error.response.data.errors;
-                        } else {
-                            this.errors = ['Something went wrong. Please try again.'];
-                        }
-                    });
+                if(this.file.type === 'application/pdf'){
+                    axios.post('/resume-builder/import/pdf', formData, config)
+                        .then((response) => {
+                            if (response.data.length > 0) {
+                                this.extractedText = response.data;
+                                this.originalText = response.data;
+                                this.clearFreelancerData();
+                            } else {
+                                this.extractedText = 'This file does not contain any text to be extracted!';
+                            }
+                            this.arrayOfExtractedText = this.extractedText.split("\n");
+                            this.searchForData();
+                        })
+                        .catch((error) => {
+                            if (typeof error.response.data === 'object') {
+                                this.errors = error.response.data.errors;
+                            } else {
+                                this.errors = ['Something went wrong. Please try again.'];
+                            }
+                        });
+                }else{
+                    axios.post('/resume-builder/import/docx', formData, config)
+                        .then((response) => {
+                           this.extractDocText(response.data) ;
+                        })
+                        .catch((error) => {
+                            if (typeof error.response.data === 'object') {
+                                this.errors = error.response.data.errors;
+                            } else {
+                                this.errors = ['Something went wrong. Please try again.'];
+                            }
+                        });
+                }
+
             },
             clearFreelancerData() {
                 this.freelancerData = {
@@ -825,6 +890,12 @@
                     'links': [], // done (might need more work for special social links)
                 };
             },
+            clearFile(){
+              this.clearFreelancerData();
+              this.file = '';
+              this.extractedText = '';
+              this.progress = 0;
+            },
             handleFileUpload() {
                 this.file = this.$refs.file.files[0];
             },
@@ -832,7 +903,7 @@
 
             // dropzone funcions
             handlingEvent: function (file) {
-                if (file.type === 'application/pdf') {
+                if (file.type === 'application/pdf' ) {
 
                     // Set default bg for pdf files
                     let thumbnail = document.querySelector('.thumbnail');
@@ -871,6 +942,31 @@
                     })(this)), 1);
                 }
             },
+
+            // document extracting text funtions:
+            extractDocText(sections){
+                sections.forEach( section => {
+                    section.elements.forEach( element => {
+                        if(element.elements.length > 0){
+                            if(element.elements[0].text){
+                                console.log(element.elements[0].text);
+                                this.extractedText += element.elements[0].text;
+                                this.arrayOfExtractedText.push(element.elements[0].text);
+                            }
+                        }
+                    });
+                });
+
+                this.searchForData();
+            },
+
+
+            // selection:
+
+            toggleSelectionOfSection(section){
+                section.selected = !section.selected;
+            },
+
 
             // search functions
 
@@ -998,6 +1094,7 @@
 </script>
 
 <style scoped lang="scss">
+    @import '../../../../sass/media-queries';
 
     $activeColor : #001CE2;
 
@@ -1006,17 +1103,20 @@
     }
 
     .import-cv-wrapper {
-        padding-left: 50px;
-        padding-right: 50px;
         margin-top: 100px;
+        width: 100%;
 
         .title {
-            display: flex;
-            align-items: center;
+             display: flex;
+            align-content: center;
             font-weight: 600;
             font-size: 40px;
             text-align: left;
             color: #081fe2;
+
+            @include lt-md {
+                font-size: 30px;
+            }
 
             span {
                 font-weight: 500;
@@ -1035,29 +1135,61 @@
             display: flex;
             align-items: flex-start;
             flex-direction: column;
-            width: 1405px;
+            width: 100%;
             height: auto;
             background: whitesmoke;
-            padding-left: 73px;
-            padding-top: 61px;
+            padding: 60px 70px;
+
+            .d-flex {
+                justify-content: flex-start;
+                width: 100%;
+
+                @include lt-sm {
+                    flex-wrap: wrap;
+                }
+            }
+
+
+            @include lt-sm {
+                padding: 40px;
+
+                .btn {
+                    width: 100%;
+                    min-width: 90px !important;
+                }
+            }
 
             .auto-import-btn {
-                margin-right: 65px;
+                margin-left: 15px;
+                width: 40%;
+                
+                @include lt-sm {
+                    height: 56px;
+                    margin-top: 1rem;
+                    width: 100%;
+                }
 
                 a {
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: 260px;
+                    max-width: 260px;
                     height: 72px;
 
                     border: 1.5px solid #001CE2;
                     border-radius: 8px;
                     opacity: 1;
+                    background: white;
 
                     font: 500 20px Noto Sans;
                     letter-spacing: 0;
                     color: #001CE2;
+
+                    @include lt-sm {
+                        padding: 10px 15px;
+                        font-size: 10px;
+                        height: 56px;
+                    }
 
                     span{
                         font-weight: 600;
@@ -1066,8 +1198,8 @@
                     }
 
                     img {
-                        width: 31.12px;
-                        height: 31.12px;
+                        // width: 31.12px;
+                        // height: 31.12px;
                         margin-right: 18.5px;
                     }
 
@@ -1075,6 +1207,12 @@
                         width: 50.74px;
                         height: 32.74px;
                         margin-left: 34px;
+
+                        @include lt-md {
+                            margin-left: 18px;
+                            height: 16px;
+                            width: auto;
+                        }
                     }
                 }
             }
@@ -1104,8 +1242,30 @@
 
 
             .file-name {
+                display: flex;
+                align-items: center;
                 margin-top: 32px;
                 padding-bottom: 101px;
+                font-size: 20px;
+                color: #081fe2;
+
+                img{
+                    width:25px;
+                    height:25px;
+                    margin-right:15px;
+
+                }
+
+                img.close{
+                    width:16px;
+                    height:auto;
+                    position: relative;
+                    right: -100px;
+                    margin-bottom: 5px;
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
             }
 
         }
@@ -1116,7 +1276,7 @@
                 display: flex;
                 align-items: center;
                 font-weight: 600;
-                font-size: 52px;
+                font-size: 36px;
                 text-align: left;
                 color: #081fe2;
 
@@ -1126,8 +1286,39 @@
             }
 
             .sections{
-                .section-title{
 
+                width: 100%;
+                height: auto;
+                background: whitesmoke;
+                padding: 60px 70px;
+
+                .section{
+
+                    display: flex;
+                    align-items: center;
+                    border-bottom: 1px solid #EEEEEE;
+
+                    .checkbox{
+                        margin-right:20px;
+
+                        img{
+                            width: 35px;
+                            height: 35px;
+                            margin-top: 9px;
+                        }
+                    }
+
+                    .title{
+                        font-weight: bold;
+                        font-size: 46px;
+                        text-align: left;
+                        color: #777777;
+                        text-transform: capitalize;
+
+                        &.active{
+                            color: #081fe2;
+                        }
+                    }
                 }
             }
         }
@@ -1139,7 +1330,7 @@
         /*border: darkgray dashed 1px;*/
         border:none;
         margin-top:55px;
-        width:884px;
+        width:100%;
         height:219px;
         /*border-radius: 25px;*/
         margin-bottom:55px;
