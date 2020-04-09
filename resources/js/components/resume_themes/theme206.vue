@@ -269,12 +269,8 @@
                                     </v-list-content>
                                     <v-spacer></v-spacer>
                                     <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" fab small>
-                                        <img
-                                          class
-                                          src="/images/resume_themes/theme206/icons/play.png"
-                                          alt
-                                        />
+                                      <v-btn class="play-btn" color="#5843BE" fab>
+                                        <v-icon color="white">mdi-play</v-icon>
                                       </v-btn>
                                     </v-list-item-icon>
                                   </v-list-item>
@@ -304,10 +300,23 @@
                                   src="/images/resume_themes/theme206/video-screen.png"
                                 >
                                   <v-card-subtitle class="video-duration">
-                                    <v-card class="pa-2" width="80" align="center" color="#242424" dark>
-                                        15:00
-                                    </v-card>
+                                    <v-card
+                                      class="pa-2"
+                                      width="80"
+                                      align="center"
+                                      color="#242424"
+                                      dark
+                                    >15:00</v-card>
                                   </v-card-subtitle>
+                                  <!-- overlay -->
+                                  <v-btn class="video-play-btn" color="#5843BE" fab>
+                                    <img
+                                      class
+                                      src="/images/resume_themes/theme206/icons/video-play.png"
+                                      alt
+                                    />
+                                  </v-btn>
+                                  <!-- overlay -->
                                 </v-img>
                               </v-card>
                             </v-col>
@@ -328,12 +337,8 @@
                                     </v-list-content>
                                     <v-spacer></v-spacer>
                                     <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" fab small>
-                                        <img
-                                          class
-                                          src="/images/resume_themes/theme206/icons/play.png"
-                                          alt
-                                        />
+                                      <v-btn class="play-btn" color="#5843BE" fab>
+                                        <v-icon color="white">mdi-play</v-icon>
                                       </v-btn>
                                     </v-list-item-icon>
                                   </v-list-item>
@@ -388,6 +393,7 @@
 export default {
   data() {
     return {
+      overlay: true,
       mainDataTab: "",
       skillTab: "",
       currentTab: 1,
@@ -668,7 +674,16 @@ export default {
 
 .play-btn {
   img {
-    width: 50px;
+    width: 16px;
+  }
+}
+.video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  img{
+    width: 16px;
   }
 }
 </style>
