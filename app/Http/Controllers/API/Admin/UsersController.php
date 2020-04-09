@@ -55,6 +55,10 @@ class UsersController extends Controller
         ];
     }
 
+    public function deleteUser(Request $request){
+
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
