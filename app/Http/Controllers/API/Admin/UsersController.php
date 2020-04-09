@@ -55,8 +55,17 @@ class UsersController extends Controller
         ];
     }
 
-    public function deleteUser(Request $request){
+    public function deleteUser($id){
+        $user = User::where([
+            'id' => $id,
+        ])->first();
 
+        if($user->delete()){
+            return ['data' => ['id' => $id] ];
+        }
+        else{
+            return 'fail';
+        }
     }
 
     protected function validator(array $data)

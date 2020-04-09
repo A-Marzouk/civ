@@ -170,14 +170,14 @@
 
             deleteItem (item) {
                 const index = this.tableUsers.indexOf(item);
-                if (!confirm('Do you want to delete this testimonial ?')) {
+                if (!confirm('Are you sure you want to permanently delete this user?')) {
                     return;
                 }
 
                 // delete item:
-                // axios.delete('').then( (response) => {
-                //     this.tableUsers.splice(index, 1)
-                // });
+                axios.delete('/api/admin/delete-user/' + item.id).then( (response) => {
+                    this.tableUsers.splice(index, 1);
+                });
             },
 
             close () {
