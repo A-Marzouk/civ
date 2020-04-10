@@ -17,10 +17,36 @@
                 >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices...</v-card-text>
               </v-card>
             </v-col>
+
+            <!-- Social Buttons for tablet only -->
+            <v-col sm="5" class="d-none d-sm-flex d-md-none">
+              <v-card flat color="transparent" class="pa-0 hire-me-card">
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
+                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
+                </v-btn>
+
+                <!-- social buttons -->
+                <v-btn
+                  class="custom-social-btn mx-2"
+                  v-for="item in socialIcons"
+                  :key="item.title"
+                  color="#FAFAFA"
+                >
+                  <img
+                    :width="item.title == 'facebook'? '12' : '20' "
+                    x-large
+                    :src="getSocialIcon(item.title)"
+                  />
+                </v-btn>
+                <!-- social buttons -->
+              </v-card>
+            </v-col>
+            <!-- Social Button for tablet only -->
+
             <!-- Availibility -->
-            <v-col md="3" sm="7" order-sm3>
+            <v-col md="3" sm="5">
               <!-- Hour rate -->
-              <v-card class="d-flex flex-row hour-card" color="transparent" flat>
+              <v-card class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-0" color="transparent" flat>
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
                     <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
@@ -65,7 +91,7 @@
             <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col md="5" sm="5">
+            <v-col md="5" class="hidden-sm-and-down">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
                 <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -88,6 +114,17 @@
               </v-card>
             </v-col>
             <!-- 3rd column -->
+
+            <!-- 4th column for tablet only -->
+            <v-col sm="2" class="d-none d-sm-flex d-md-none"></v-col>
+            <v-col sm="5" class="d-none d-sm-flex d-md-none">
+              <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
+                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
+                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
+                </v-btn>
+              </v-card>
+            </v-col>
+            <!-- 4th column for tablet only -->
           </v-row>
         </v-container>
       </v-app-bar>
@@ -311,7 +348,7 @@
                                     >15:00</v-card>
                                   </v-card-subtitle>
                                   <!-- overlay -->
-                                  <v-btn class="video-play-btn" color="#5843BE"  depressed fab small>
+                                  <v-btn class="video-play-btn" color="#5843BE" depressed fab small>
                                     <v-icon color="white">mdi-play</v-icon>
                                   </v-btn>
                                   <!-- overlay -->
@@ -486,6 +523,10 @@ export default {
   margin-left: 22px;
   transform: rotate(122deg);
   z-index: 1;
+  @media screen and (max-width: 959px){
+    margin-top: 38px;
+    margin-left: 24px;
+  }
 }
 .custom-profile-title {
   font-family: "Open Sans" !important;
@@ -524,6 +565,9 @@ export default {
 }
 .hire-me-card {
   margin-top: -70px;
+  @media screen and (max-width: 959px) {
+    margin-top: 0px;
+  }
 }
 
 .hour-rate {
@@ -535,6 +579,7 @@ export default {
   @media screen and (max-width: 1280px) {
     font-size: 0.55rem;
   }
+  
 }
 .rate {
   font-family: "Poppins", sans-serif !important;
@@ -546,10 +591,13 @@ export default {
 .btn-hire-me {
   text-transform: capitalize !important;
   width: 200px;
+  @media screen and (max-width: 959px){
+    width: 225px;
+  }
 }
 .custom-social-btn {
   max-width: 36px !important;
-  height: 51px !important; 
+  height: 51px !important;
 }
 // Tabs
 .ct-tab {
@@ -689,7 +737,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  img{
+  img {
     width: 16px;
   }
 }
