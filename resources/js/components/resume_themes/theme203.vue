@@ -119,7 +119,11 @@
                       depressed
                       class="btn-headphone mx-auto mx-sm-2"
                     >
-                      <img width="15" class="" src="/images/resume_themes/theme203/icons/headphones.webp" />
+                      <img
+                        width="15"
+                        class
+                        src="/images/resume_themes/theme203/icons/headphones.webp"
+                      />
                     </v-btn>
                   </v-card>
                 </v-col>
@@ -217,27 +221,25 @@
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <v-card flat color="transparent">
-                    <v-card-text>
-                      <v-row>
-                        <v-col cols="12">
-                          <div class="card-columns">
-                            <v-card
-                              v-for="item in portfolioItems"
-                              :key="item.id"
-                              class="mb-2 pa-2"
-                              align="left"
-                              width="800"
-                              flat 
-                              color="transparent"
-                            >
-                              <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
-                              <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
-                              <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
-                            </v-card>
-                          </div>
-                        </v-col>
-                      </v-row>
-                    </v-card-text>
+                    <v-row>
+                      <v-col cols="12">
+                        <div class="card-columns">
+                          <v-card
+                            v-for="item in portfolioItems"
+                            :key="item.id"
+                            class="mb-2"
+                            align="left"
+                            width="800"
+                            flat
+                            color="transparent"
+                          >
+                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
+                            <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
+                            <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
+                          </v-card>
+                        </div>
+                      </v-col>
+                    </v-row>
                   </v-card>
                 </v-tab-item>
                 <!-- .......................Portfolio.................................. -->
@@ -646,22 +648,21 @@ export default {
 .social-btn {
   width: 2rem !important;
   height: 2rem !important;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     width: 2.56rem !important;
     height: 2.56rem !important;
-    img{
+    img {
       width: 18px;
     }
   }
 
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     width: 2rem !important;
     height: 2rem !important;
-    img{
+    img {
       width: 14px;
     }
   }
-
 }
 /* Social Btn */
 
@@ -727,14 +728,14 @@ export default {
   border-radius: 10px;
 }
 .custom-portfolio-title {
-  font-family:'Montserrat' !important;
+  font-family: "Montserrat" !important;
   font-size: 16px !important;
-  font-weight:bold;
+  font-weight: bold;
   margin-bottom: -20px;
-  margin-top:-20px;
+  margin-top: -20px;
 }
-.custom-portfolio-subtitle{
-  font-family:'Montserrat' !important;
+.custom-portfolio-subtitle {
+  font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
 }
