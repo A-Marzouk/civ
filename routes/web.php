@@ -60,7 +60,6 @@ Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDoc
 // admin routes:
 Route::get('/workforce-admin', 'AdminsController@index')->name('admin.dashboard');
 
-
 // passport clients route:
 Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
 

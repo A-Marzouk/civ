@@ -18,7 +18,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username','theme_code', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id'
+        'name', 'username', 'theme_code', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id'
     ];
 
     /**
@@ -28,6 +28,49 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    public static $defaultRelations =
+        [
+            'skills',
+            'hobbies',
+            'education',
+            'workExperience',
+            'links',
+            'projects.images',
+            'achievements',
+            'media',
+            'reference',
+            'referee',
+            'testimonials',
+            'imports',
+            'languages',
+            'personalInfo',
+            'availabilityInfo',
+            'paymentInfo',
+            'summary'
+        ];
+
+    public static $defaultOneToOneRelations = [
+        'reference',
+        'referee',
+        'personalInfo',
+        'availabilityInfo',
+        'paymentInfo',
+        'summary'
+    ];
+    public static $defaultOneToManyRelations = [
+        'skills',
+        'hobbies',
+        'education',
+        'workExperience',
+        'links',
+        'projects',
+        'achievements',
+        'media',
+        'testimonials',
+        'imports',
+        'languages'
     ];
 
     /**
@@ -52,29 +95,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     //user with all relations
 
-    public static function withAllRelations($username){
-        return User::where('username',$username)->with([
-            'skills',
-            'hobbies',
-            'education',
-            'workExperience',
-            'links',
-            'projects.images',
-            'achievements',
-            'media',
-            'reference',
-            'referee',
-            'testimonials',
-            'imports',
-            'languages',
-            'personalInfo',
-            'availabilityInfo',
-            'paymentInfo',
-            'summary',
-        ])->first();
+    public static function withAllRelations($username)
+    {
+        return User::where('username', $username)->with(self::$defaultRelations)->first();
     }
 
-    public function testName(){
+    public function testName()
+    {
         return $this->name;
     }
 
@@ -119,10 +146,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Media::class);
     }
+
     public function imports()
     {
         return $this->hasMany(Import::class);
     }
+
     public function testimonials()
     {
         return $this->hasMany(Testimonial::class);
@@ -156,10 +185,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Summary::class);
     }
+
     public function reference()
     {
         return $this->hasOne(Reference::class);
     }
+
     public function referee()
     {
         return $this->hasOne(Referee::class);
