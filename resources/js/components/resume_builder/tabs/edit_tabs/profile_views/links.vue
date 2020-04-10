@@ -485,6 +485,7 @@
                     return;
                 }
 
+                link.user_id = this.$store.state.user.id
                 axios.post('/api/user/links', link)
                     .then((response) => {
                         let addedLink = response.data.data;
