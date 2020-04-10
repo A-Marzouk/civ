@@ -738,6 +738,9 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 22px !important;
   }
+  @media screen and (max-width: 330px){
+    font-size: 16px !important;
+  }
 }
 
 .hire-me-subtitle-text {
@@ -944,7 +947,7 @@ export default {
   /* circles */
 
   .v-btn.btn-hire-me {
-    height: 60px !important;
+    height: 50px !important;
     margin-top: -20px;
   }
 

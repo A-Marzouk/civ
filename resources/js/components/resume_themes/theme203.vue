@@ -45,7 +45,7 @@
                                   class="mx-md-auto mx-sm-2 btn-video-player"
                                 >
                                   <img
-                                    width="14"
+                                    width="15"
                                     src="/images/resume_themes/theme203/icons/video-player.webp"
                                   />
                                 </v-btn>
@@ -56,9 +56,10 @@
                                   x-small
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
+                                  align="center"
                                 >
                                   <img
-                                    width="14"
+                                    width="15"
                                     src="/images/resume_themes/theme203/icons/headphones.webp"
                                   />
                                 </v-btn>
@@ -73,7 +74,7 @@
                                   v-for="item in socialIcons"
                                   :key="item.id"
                                 >
-                                  <img width="14" :src="getSocialIcon(item.title)" />
+                                  <img width="15" :src="getSocialIcon(item.title)" />
                                 </v-btn>
                               </span>
                             </v-card>
@@ -108,7 +109,7 @@
                       depressed
                       class="mx-md-0 mx-sm-2 btn-video-player"
                     >
-                      <img width="14" src="/images/resume_themes/theme203/icons/video-player.webp" />
+                      <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
                     <v-btn
@@ -118,7 +119,7 @@
                       depressed
                       class="btn-headphone mx-auto mx-sm-2"
                     >
-                      <img width="14" src="/images/resume_themes/theme203/icons/headphones.webp" />
+                      <img width="15" class="" src="/images/resume_themes/theme203/icons/headphones.webp" />
                     </v-btn>
                   </v-card>
                 </v-col>
@@ -137,7 +138,7 @@
                         v-for="item in socialIcons"
                         :key="item.id"
                       >
-                        <img width="14" :src="getSocialIcon(item.title)" />
+                        <img width="15" :src="getSocialIcon(item.title)" />
                       </v-btn>
                     </v-card-text>
                   </v-card>
