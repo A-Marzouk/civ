@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Language;
 use App\Http\Resources\Language as LanguageResource;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,15 +36,17 @@ class LanguagesController extends Controller
     public function store(Request $request)
     {
        // attach a language to user:
-        Auth::user()->languages()->attach($request->language_id);
+        $user= User::find($request->user_id);
+        $user->languages()->attach($request->language_id);
         return ['language' => Language::find($request->language_id)];
     }
 
 
-    public function destroy($id)
+    public function destroy($id,$user_id)
     {
         // detach a language from user:
-        Auth::user()->languages()->detach($id);
+        $user= User::find($user_id);
+        $user->languages()->detach($id);
         return ['data' => ['id' => $id] ];
     }
 }

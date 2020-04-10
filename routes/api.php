@@ -91,7 +91,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/languages', 'API\LanguagesController@index');
     Route::get('/languages-list', 'API\LanguagesController@languagesList');
     Route::post('/languages', 'API\LanguagesController@store');
-    Route::delete('/languages/{id}', 'API\LanguagesController@destroy');
+    Route::delete('/languages/{id}/{user_id}', 'API\LanguagesController@destroy');
 
 // Projects api routes:
     Route::get('/projects', 'API\ProjectsController@index');
