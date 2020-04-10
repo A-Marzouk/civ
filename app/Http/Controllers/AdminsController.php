@@ -26,4 +26,9 @@ class AdminsController extends Controller
         return view('admin.dashboard', compact('users'));
     }
 
+    public function userFullEdit($username){
+        $user = User::withAllRelations($username);
+        return view('admin.resume-builder',compact('user'));
+    }
+
 }

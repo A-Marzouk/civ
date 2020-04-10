@@ -85,7 +85,7 @@
         </template>
         <template v-slot:item.profileLink="{ item }">
             <div class="NoDecor">
-                <a :href="'/' + item.username" target="_blank">{{item.username}}</a>
+                <a :href="'/workforce-admin/' + item.username + '/resume-builder'" target="_blank">{{item.username}}</a>
             </div>
         </template>
         <template v-slot:no-data>
@@ -109,7 +109,7 @@
                     value: 'name',
                 },
                 { text: 'Email', value: 'email' },
-                { text: 'Link to profile', value: 'profileLink'},
+                { text: 'Link to resume builder', value: 'profileLink'},
                 { text: 'Sub. Status', value: '' },
                 { text: 'Signup Date', value: 'created_at' },
                 { text: 'Sub. Renewal', value: '' },

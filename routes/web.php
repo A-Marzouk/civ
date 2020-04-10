@@ -58,7 +58,20 @@ Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDoc
 
 
 // admin routes:
-Route::get('/workforce-admin', 'AdminsController@index')->name('admin.dashboard');
+
+
+// Admin routes
+Route::group(['prefix' => 'workforce-admin'], function () {
+    Route::get('/', 'AdminsController@index')->name('admin.dashboard');
+    Route::get('/{username}/resume-builder/', 'AdminsController@userFullEdit')->name('admin.user_edit');
+    Route::get('/{username}/resume-builder/{any?}', 'ResumeBuilderController@index')->name('admin.resume.builder.main');
+    Route::get('/{username}/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name('admin.resume.builder.edit');
+    Route::get('/{username}/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('admin.resume.builder.edit');
+    Route::post('/{username}/resume-builder/account/submit', 'ResumeBuilderController@editAccountData')->name('admin.account.edit');
+    Route::post('/{username}/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('admin.account.validate');
+    Route::post('/{username}/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('admin.pdf.import.submit');
+    Route::post('/{username}/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('admin.docx.import');
+});
 
 // passport clients route:
 Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
