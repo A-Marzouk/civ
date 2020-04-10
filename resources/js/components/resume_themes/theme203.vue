@@ -215,13 +215,13 @@
       <!-- ....................Tab Items ..........................-->
       <v-container style="width:100%">
         <v-row class="mx-md-10 mx-sm-10 mx-1">
-          <v-col>
+          <v-col cols="12">
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
-                  <v-card flat color="transparent">
-                    <v-row>
+                  <v-card flat color="transparent" align="center">
+                    <v-row align="center" justify="center">
                       <v-col cols="12">
                         <div class="card-columns">
                           <v-card
@@ -229,11 +229,10 @@
                             :key="item.id"
                             class="mb-2"
                             align="left"
-                            width="800"
                             flat
-                            color="transparent"
+                            color="tranparent"
                           >
-                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
+                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)">
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
                             <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
                           </v-card>
@@ -726,6 +725,8 @@ export default {
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
   border-radius: 10px;
+  width:100% !important;
+  height: 100% !important;
 }
 .custom-portfolio-title {
   font-family: "Montserrat" !important;
