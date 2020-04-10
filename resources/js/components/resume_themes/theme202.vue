@@ -200,9 +200,9 @@
       </v-row>
 
       <!-- Tabs -->
-      <v-container class="themeWrapperBlue">
+      <v-container fluid ma-0 pa-0 style="width:100%">
         <v-row no-gutters class="tab-layout my-md-n11 my-sm-n11" justify="center" align="center">
-          <v-col cols="10" md="11" sm="10">
+          <v-col cols="10" md="11" sm="11">
             <v-card flat class="card-tab">
               <!-- Main Tab -->
               <v-tabs
@@ -296,65 +296,73 @@
               <!-- Portfolio -->
               <v-tab-item>
                 <v-card flat color="rgba(16, 78, 251, 0.06)">
-                  <v-card-text>
-                    <v-row align="center" justify="center">
-                      <v-col cols="12" sm="10" md="6" class="pa-md-8 mb-sm-10 mb-10">
-                        <v-card elevation="6" class="card-portfolio">
-                          <v-toolbar color="#104EFB" dark height="100">
-                            <v-toolbar-title>
-                              <div style="text-align:left;" class="ml-10">
-                                <div class="title">
-                                  <span class="portfolio-title">Mobile App "Join"</span>
-                                </div>
-                                <div class="caption">
-                                  <span class="portifolio-subtitle">Web Design, Ui/Ux</span>
-                                </div>
+                  <v-row align="center" justify="center">
+                    <v-col
+                      cols="12"
+                      sm="10"
+                      md="6"
+                      class="pa-md-8 pa-sm-0 pa-0 ma-0 mb-sm-10 mb-10"
+                    >
+                      <v-card elevation="6" class="card-portfolio">
+                        <v-toolbar color="#104EFB" dark height="100">
+                          <v-toolbar-title>
+                            <div style="text-align:left;" class="ml-10">
+                              <div class="title">
+                                <span class="portfolio-title">Mobile App "Join"</span>
                               </div>
-                            </v-toolbar-title>
-                            <v-spacer></v-spacer>
-                            <v-btn icon>
-                              <v-icon>mdi-dots-vertical</v-icon>
-                            </v-btn>
-                          </v-toolbar>
-
-                          <v-card-text align="center">
-                            <v-img
-                              aspect-ratio="1.4"
-                              src="/images/resume_themes/theme202/portfolio/1.png"
-                            ></v-img>
-                          </v-card-text>
-                        </v-card>
-                      </v-col>
-
-                      <v-col cols="12" sm="10" md="6" class="pa-md-8 mb-sm-10">
-                        <v-card elevation="6" class="card-portfolio">
-                          <v-toolbar color="#104EFB" dark height="100">
-                            <v-toolbar-title>
-                              <div style="text-align:left;" class="ml-10">
-                                <div class="title">
-                                  <span class="portfolio-title">Mobile App "Join"</span>
-                                </div>
-                                <div class="caption">
-                                  <span class="portifolio-subtitle">Web Design, Ui/Ux</span>
-                                </div>
+                              <div class="caption">
+                                <span class="portifolio-subtitle">Web Design, Ui/Ux</span>
                               </div>
-                            </v-toolbar-title>
-                            <v-spacer></v-spacer>
-                            <v-btn icon>
-                              <v-icon>mdi-dots-vertical</v-icon>
-                            </v-btn>
-                          </v-toolbar>
+                            </div>
+                          </v-toolbar-title>
+                          <v-spacer></v-spacer>
+                          <v-btn icon>
+                            <v-icon>mdi-dots-vertical</v-icon>
+                          </v-btn>
+                        </v-toolbar>
 
-                          <v-card-text align="center">
-                            <v-img
-                              aspect-ratio="1.4"
-                              src="/images/resume_themes/theme202/portfolio/2.png"
-                            ></v-img>
-                          </v-card-text>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                  </v-card-text>
+                        <v-card-text align="center">
+                          <v-img
+                            aspect-ratio="1.4"
+                            src="/images/resume_themes/theme202/portfolio/1.png"
+                          ></v-img>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="6"
+                      class="pa-md-8 pa-sm-0 pa-0 ma-0 mb-sm-10 mb-10"
+                    >
+                      <v-card elevation="6" class="card-portfolio">
+                        <v-toolbar color="#104EFB" dark height="100">
+                          <v-toolbar-title>
+                            <div style="text-align:left;" class="ml-10">
+                              <div class="title">
+                                <span class="portfolio-title">Mobile App "Join"</span>
+                              </div>
+                              <div class="caption">
+                                <span class="portifolio-subtitle">Web Design, Ui/Ux</span>
+                              </div>
+                            </div>
+                          </v-toolbar-title>
+                          <v-spacer></v-spacer>
+                          <v-btn icon>
+                            <v-icon>mdi-dots-vertical</v-icon>
+                          </v-btn>
+                        </v-toolbar>
+
+                        <v-card-text align="center">
+                          <v-img
+                            aspect-ratio="1.4"
+                            src="/images/resume_themes/theme202/portfolio/2.png"
+                          ></v-img>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
                   <v-card-text class="card-text-center">
                     <v-btn icon class="mr-5" color="primary">
                       <v-icon>mdi-arrow-left</v-icon>
@@ -371,72 +379,176 @@
               <!-- .............................. Work ............................................-->
               <v-tab-item>
                 <v-card flat color="rgba(16, 78, 251, 0.06)">
-                  <v-card-text>
-                    <v-row align="center" justify="center">
-                      <!-- 1st Card -->
-                      <v-col cols="12" md="6" class="ma-0 pa-5 mb-10" v-for="i in 4" :key="i">
-                        <v-card elevation="6" class="card-portfolio">
-                          <v-card-text>
-                            <v-row justify="center" align="center">
-                              <v-col cols="12" class="hidden-sm-and-down mt-5 mb-5">
-                                <div align="center">
-                                  <v-img
-                                    width="32"
-                                    height="30"
-                                    src="/images/resume_themes/theme202/icons/work.png"
-                                  ></v-img>
-                                </div>
-                              </v-col>
-                              <v-col cols="12" md="4" class="hidden-sm-and-down">
-                                <v-card flat>
-                                  <v-card-text>
-                                    <v-list-item three-line>
-                                      <v-list-item-content>
-                                        <v-list-item-title class="mb-12 card-work-title-left">
-                                          <span class>
-                                            Graphic &
-                                            <br />Web Designer
-                                          </span>
-                                        </v-list-item-title>
-                                        <v-list-item-subtitle class="card-work-subtitle">2018-2019</v-list-item-subtitle>
-                                      </v-list-item-content>
-                                    </v-list-item>
-                                  </v-card-text>
-                                </v-card>
-                              </v-col>
-                              <!-- This potion is only shows on sm and xs devices -->
-                              <v-col cols="12" class="hidden-md-and-up">
-                                <v-card color="transparent" flat>
-                                  <v-card-text class>
-                                    <v-container class="mx-sm-6">
-                                      <v-row>
-                                        <v-col cols="2" sm="2" class>
-                                          <img
-                                            width="25"
-                                            src="/images/resume_themes/theme202/icons/work.png"
-                                          />
-                                        </v-col>
-                                        <v-col cols="8" sm="6" class="mt-1">
-                                          <span
-                                            class="card-work-title-left text-center"
-                                          >Graphic & Web Designer</span>
-                                        </v-col>
-                                        <v-col cols="6" sm="4" class="mt-sm-1 offset-2 offset-sm-0">
-                                          <span class="card-work-subtitle">2018-2019</span>
-                                        </v-col>
-                                      </v-row>
-                                    </v-container>
-                                  </v-card-text>
-                                </v-card>
-                              </v-col>
-                              <!-- This potion is only shows on sm and xs devices -->
+                  <v-row align="center" justify="center">
+                    <!-- 1st Card -->
+                    <v-col
+                      cols="12"
+                      md="6"
+                      class="ma-0 pa-0 pa-sm-0 pa-md-5 mb-10"
+                      v-for="i in 4"
+                      :key="i"
+                    >
+                      <v-card elevation="6" class="card-portfolio">
+                        <v-card-text>
+                          <v-row justify="center" align="center">
+                            <v-col cols="12" class="hidden-sm-and-down mt-5 mb-5">
+                              <div align="center">
+                                <v-img
+                                  width="32"
+                                  height="30"
+                                  src="/images/resume_themes/theme202/icons/work.png"
+                                ></v-img>
+                              </div>
+                            </v-col>
+                            <v-col cols="12" md="4" class="hidden-sm-and-down">
+                              <v-card flat>
+                                <v-card-text>
+                                  <v-list-item three-line>
+                                    <v-list-item-content>
+                                      <v-list-item-title class="mb-12 card-work-title-left">
+                                        <span class>
+                                          Graphic &
+                                          <br />Web Designer
+                                        </span>
+                                      </v-list-item-title>
+                                      <v-list-item-subtitle class="card-work-subtitle">2018-2019</v-list-item-subtitle>
+                                    </v-list-item-content>
+                                  </v-list-item>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                            <!-- This potion is only shows on sm and xs devices -->
+                            <v-col cols="12" class="hidden-md-and-up">
+                              <v-card color="transparent" flat>
+                                <v-card-text class>
+                                  <v-container class="mx-sm-6">
+                                    <v-row>
+                                      <v-col cols="2" sm="2" class>
+                                        <img
+                                          width="25"
+                                          src="/images/resume_themes/theme202/icons/work.png"
+                                        />
+                                      </v-col>
+                                      <v-col cols="8" sm="6" class="mt-1">
+                                        <span
+                                          class="card-work-title-left text-center"
+                                        >Graphic & Web Designer</span>
+                                      </v-col>
+                                      <v-col cols="6" sm="4" class="mt-sm-1 offset-2 offset-sm-0">
+                                        <span class="card-work-subtitle">2018-2019</span>
+                                      </v-col>
+                                    </v-row>
+                                  </v-container>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                            <!-- This potion is only shows on sm and xs devices -->
 
-                              <v-col cols="12" md="8">
-                                <v-card flat class="mx-sm-5">
+                            <v-col cols="12" md="8">
+                              <v-card flat class="mx-sm-5">
+                                <v-list-item three-line>
+                                  <v-list-item-content>
+                                    <v-list-item-title class="caption">
+                                      <span class="card-work-title-right">Company "React"</span>
+                                    </v-list-item-title>
+
+                                    <v-list-item-subtitle
+                                      class="card-work-details"
+                                    >- Turning creative concepts into finished websites.</v-list-item-subtitle>
+                                    <v-list-item-subtitle
+                                      class="card-work-details"
+                                    >- Drawing up detailed website s pecifications.</v-list-item-subtitle>
+                                    <v-list-item-subtitle
+                                      class="card-work-details"
+                                    >- Building websites that are easy to understand, navigate and use.</v-list-item-subtitle>
+                                    <v-list-item-subtitle
+                                      class="card-work-details"
+                                    >- Designing sample page layouts.</v-list-item-subtitle>
+                                    <v-list-item-subtitle
+                                      class="card-work-details"
+                                    >- Ensuring that the website complies with the company’s brand guidelines.</v-list-item-subtitle>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                    <!-- 1st card -->
+                  </v-row>
+                </v-card>
+              </v-tab-item>
+              <!-- ........................Work........................................... -->
+
+              <!-- ......................................Education..................................... -->
+              <v-tab-item>
+                <v-card flat color="rgba(16, 78, 251, 0.06)">
+                  <v-row align="center" justify="center">
+                    <!-- 1st Card -->
+                    <v-col cols="12" md="6" class="ma-0 pa-0 pa-sm-0 pa-md-5 mb-10" v-for="i in 4" :key="i">
+                      <v-card elevation="6" class="card-portfolio">
+                        <v-card-text>
+                          <v-row justify="center" align="center">
+                            <!-- Hidden in sm and down -->
+                            <v-col cols="12" mt-5 mb-5 class="hidden-sm-and-down">
+                              <div align="center">
+                                <v-img
+                                  width="32"
+                                  height="30"
+                                  src="/images/resume_themes/theme202/icons/education.png"
+                                ></v-img>
+                              </div>
+                            </v-col>
+                            <v-col cols="12" md="4" class="hidden-sm-and-down mt-md-n12">
+                              <v-card flat>
+                                <v-card-text>
+                                  <div class="card-work-title-left mb-8 mx-2">
+                                    Master in
+                                    <br />Web Developer
+                                  </div>
+                                  <p class="card-work-subtitle mx-2">2015-2016</p>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                            <!-- Hidden and sm and down -->
+
+                            <!-- Hidden in md and up -->
+                            <v-col cols="12" class="hidden-md-and-up">
+                              <v-card color="transparent" flat>
+                                <v-card-text class>
+                                  <v-container class="mx-sm-6 grid-list-xs">
+                                    <v-row>
+                                      <v-col cols="2" sm="2" class>
+                                        <img
+                                          width="25"
+                                          src="/images/resume_themes/theme202/icons/education.png"
+                                        />
+                                      </v-col>
+                                      <v-col cols="8" sm="6" class="mt-1">
+                                        <span
+                                          class="card-work-title-left text-center"
+                                        >Master in Web Developer</span>
+                                      </v-col>
+                                      <v-col cols="6" sm="4" class="mt-sm-1 offset-2 offset-sm-0">
+                                        <span class="card-work-subtitle">2015-2016</span>
+                                      </v-col>
+                                    </v-row>
+                                  </v-container>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                            <!-- Hidden in md and up -->
+
+                            <v-col cols="12" md="8">
+                              <v-card flat>
+                                <v-card-text>
                                   <v-list-item three-line>
                                     <v-list-item-content>
                                       <v-list-item-title class="caption">
-                                        <span class="card-work-title-right">Company "React"</span>
+                                        <span
+                                          class="card-work-title-right"
+                                        >Envision Media, Inc., Santa Cruz, CA</span>
                                       </v-list-item-title>
 
                                       <v-list-item-subtitle
@@ -456,119 +568,15 @@
                                       >- Ensuring that the website complies with the company’s brand guidelines.</v-list-item-subtitle>
                                     </v-list-item-content>
                                   </v-list-item>
-                                </v-card>
-                              </v-col>
-                            </v-row>
-                          </v-card-text>
-                        </v-card>
-                      </v-col>
-                      <!-- 1st card -->
-
-                      <!-- 4th Card -->
-                    </v-row>
-                  </v-card-text>
-                </v-card>
-              </v-tab-item>
-              <!-- ........................Work........................................... -->
-
-              <!-- ......................................Education..................................... -->
-              <v-tab-item>
-                <v-card flat color="rgba(16, 78, 251, 0.06)">
-                  <v-card-text>
-                    <v-row align="center" justify="center">
-                      <!-- 1st Card -->
-                      <v-col cols="12" md="6" class="ma-0 pa-5 mb-10" v-for="i in 4" :key="i">
-                        <v-card elevation="6" class="card-portfolio">
-                          <v-card-text>
-                            <v-row justify="center" align="center">
-                              <!-- Hidden in sm and down -->
-                              <v-col cols="12" mt-5 mb-5 class="hidden-sm-and-down">
-                                <div align="center">
-                                  <v-img
-                                    width="32"
-                                    height="30"
-                                    src="/images/resume_themes/theme202/icons/education.png"
-                                  ></v-img>
-                                </div>
-                              </v-col>
-                              <v-col cols="12" md="4" class="hidden-sm-and-down mt-md-n12">
-                                <v-card flat>
-                                  <v-card-text>
-                                    <div class="card-work-title-left mb-8 mx-2">
-                                      Master in
-                                      <br />Web Developer
-                                    </div>
-                                    <p class="card-work-subtitle mx-2">2015-2016</p>
-                                  </v-card-text>
-                                </v-card>
-                              </v-col>
-                              <!-- Hidden and sm and down -->
-
-                              <!-- Hidden in md and up -->
-                              <v-col cols="12" class="hidden-md-and-up">
-                                <v-card color="transparent" flat>
-                                  <v-card-text class>
-                                    <v-container class="mx-sm-6 grid-list-xs">
-                                      <v-row>
-                                        <v-col cols="2" sm="2" class>
-                                          <img
-                                            width="25"
-                                            src="/images/resume_themes/theme202/icons/education.png"
-                                          />
-                                        </v-col>
-                                        <v-col cols="8" sm="6" class="mt-1">
-                                          <span
-                                            class="card-work-title-left text-center"
-                                          >Master in Web Developer</span>
-                                        </v-col>
-                                        <v-col cols="6" sm="4" class="mt-sm-1 offset-2 offset-sm-0">
-                                          <span class="card-work-subtitle">2015-2016</span>
-                                        </v-col>
-                                      </v-row>
-                                    </v-container>
-                                  </v-card-text>
-                                </v-card>
-                              </v-col>
-                              <!-- Hidden in md and up -->
-
-                              <v-col cols="12" md="8">
-                                <v-card flat>
-                                  <v-card-text>
-                                    <v-list-item three-line>
-                                      <v-list-item-content>
-                                        <v-list-item-title class="caption">
-                                          <span
-                                            class="card-work-title-right"
-                                          >Envision Media, Inc., Santa Cruz, CA</span>
-                                        </v-list-item-title>
-
-                                        <v-list-item-subtitle
-                                          class="card-work-details"
-                                        >- Turning creative concepts into finished websites.</v-list-item-subtitle>
-                                        <v-list-item-subtitle
-                                          class="card-work-details"
-                                        >- Drawing up detailed website s pecifications.</v-list-item-subtitle>
-                                        <v-list-item-subtitle
-                                          class="card-work-details"
-                                        >- Building websites that are easy to understand, navigate and use.</v-list-item-subtitle>
-                                        <v-list-item-subtitle
-                                          class="card-work-details"
-                                        >- Designing sample page layouts.</v-list-item-subtitle>
-                                        <v-list-item-subtitle
-                                          class="card-work-details"
-                                        >- Ensuring that the website complies with the company’s brand guidelines.</v-list-item-subtitle>
-                                      </v-list-item-content>
-                                    </v-list-item>
-                                  </v-card-text>
-                                </v-card>
-                              </v-col>
-                            </v-row>
-                          </v-card-text>
-                        </v-card>
-                      </v-col>
-                      <!-- 1st card -->
-                    </v-row>
-                  </v-card-text>
+                                </v-card-text>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-card-text>
+                      </v-card>
+                    </v-col>
+                    <!-- 1st card -->
+                  </v-row>
                 </v-card>
               </v-tab-item>
               <!-- .....................................Education................................................. -->
