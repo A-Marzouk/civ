@@ -151,10 +151,7 @@
                     justify="center"
                     class="mt-10 mt-md-0 mt-sm-0 mb-md-0 mb-sm-12"
                   >
-                    <v-card
-                      flat
-                      class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-n8"
-                    >
+                    <v-card flat class="hire-me pa-0 ml-md-n12 mt-md-0 mt-sm-0 mt-n8">
                       <v-card-text>
                         <v-row justify="center" align="center">
                           <v-col cols="6" sm="4" md="3" class="mt-md-0 mt-sm-0 mt-4">
@@ -162,12 +159,19 @@
                             <div class="hire-me-subtitle-text">Hourly Rate</div>
                           </v-col>
                           <v-col cols="6" sm="4" md="4" class="mt-md-0 mt-sm-0 mt-4">
-                            <div class="caption hire-me-title-text">35 HOURS</div>
-                            <div class="hire-me-subtitle-text">Weekly availibility</div>
+                            <v-card flat color="transparent" class="ml-sm-n11">
+                              <div class="caption hire-me-title-text">35 HOURS</div>
+                              <div class="hire-me-subtitle-text">Weekly availibility</div>
+                            </v-card>
                           </v-col>
-                          <v-col cols="5" sm="3" md="4" class="mb-md-0 mb-sm-0 mb-n1 mt-md-0 mt-sm-0 mt-n5">
-                            <div class="circle3 d-none d-sm-none d-md-flex"></div>
-                            <div class="circle4 d-none d-sm-none d-md-flex"></div>
+                          <v-col
+                            cols="5"
+                            sm="4"
+                            md="4"
+                            class="mb-md-0 mb-sm-0 mb-n1 mt-md-0 mt-sm-0 mt-n5"
+                          >
+                            <div class="circle3 hidden-sm-and-down"></div>
+                            <div class="circle4 hidden-sm-and-down"></div>
                             <div class="mt-10 hidden-sm-and-up"></div>
                             <!-- Hire Me Button -->
                             <div class="caption ml-md-3 mr-md-n3">
@@ -195,7 +199,7 @@
 
       <!-- Tabs -->
       <v-container class="themeWrapperBlue">
-        <v-row no-gutters class="tab-layout my-md-n11 my-sm-n11"  justify="center" align="center">
+        <v-row no-gutters class="tab-layout my-md-n11 my-sm-n11" justify="center" align="center">
           <v-col cols="10" md="11" sm="10">
             <v-card flat class="card-tab">
               <!-- Main Tab -->
@@ -368,11 +372,11 @@
                   <v-card-text>
                     <v-row align="center" justify="center">
                       <!-- 1st Card -->
-                      <v-col cols="12" md="6" class="ma-0 pa-5 mb-10 " v-for="i in 4" :key="i">
+                      <v-col cols="12" md="6" class="ma-0 pa-5 mb-10" v-for="i in 4" :key="i">
                         <v-card elevation="6" class="card-portfolio">
                           <v-card-text>
                             <v-row justify="center" align="center">
-                              <v-col cols="12"  class="hidden-sm-and-down mt-5 mb-5">
+                              <v-col cols="12" class="hidden-sm-and-down mt-5 mb-5">
                                 <div align="center">
                                   <v-img
                                     width="32"
@@ -415,11 +419,7 @@
                                             class="card-work-title-left text-center"
                                           >Graphic & Web Designer</span>
                                         </v-col>
-                                        <v-col
-                                          cols="6"
-                                          sm="4"
-                                          class="mt-sm-1 offset-2 offset-sm-0"
-                                        >
+                                        <v-col cols="6" sm="4" class="mt-sm-1 offset-2 offset-sm-0">
                                           <span class="card-work-subtitle">2018-2019</span>
                                         </v-col>
                                       </v-row>
@@ -489,7 +489,7 @@
                                   ></v-img>
                                 </div>
                               </v-col>
-                              <v-col cols="12" md="4"  class="hidden-sm-and-down mt-md-n12">
+                              <v-col cols="12" md="4" class="hidden-sm-and-down mt-md-n12">
                                 <v-card flat>
                                   <v-card-text>
                                     <div class="card-work-title-left mb-8 mx-2">
@@ -506,7 +506,7 @@
                               <v-col cols="12" class="hidden-md-and-up">
                                 <v-card color="transparent" flat>
                                   <v-card-text class>
-                                    <v-container class="mx-sm-6 grid-list-xs" >
+                                    <v-container class="mx-sm-6 grid-list-xs">
                                       <v-row>
                                         <v-col cols="2" sm="2" class>
                                           <img
@@ -721,6 +721,10 @@ export default {
   font-size: 12px !important;
   line-height: 0.75rem !important;
   color: #104efb;
+  @media screen and (max-width: 959px) {
+    font-size: 24px !important;
+    line-height: 40px !important;
+  }
 }
 
 .hire-me-subtitle-text {
