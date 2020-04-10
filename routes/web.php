@@ -67,11 +67,6 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/{username}/resume-builder/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.main');
     Route::get('/{username}/resume-builder/edit/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
-
-    Route::post('/{username}/resume-builder/account/submit', 'ResumeBuilderController@editAccountData')->name('admin.account.edit');
-    Route::post('/{username}/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('admin.account.validate');
-    Route::post('/{username}/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('admin.pdf.import.submit');
-    Route::post('/{username}/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('admin.docx.import');
 });
 
 // passport clients route:

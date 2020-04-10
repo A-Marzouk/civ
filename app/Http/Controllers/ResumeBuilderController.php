@@ -11,7 +11,7 @@ class ResumeBuilderController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth','role:agent']);
+        $this->middleware(['auth','role:agent'])->except('editAccountData','validateSingleField');
     }
 
     public function index(){
