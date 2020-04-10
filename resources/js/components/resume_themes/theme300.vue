@@ -551,7 +551,7 @@ export default {
 }
 </script>
 <style lang="scss">
-    @import 'resources/sass/themes/utils_theme300.scss';
+    @import 'resources/sass/themes/theme300.scss';
 </style>
 <style lang="scss" scoped>
 
@@ -924,6 +924,8 @@ export default {
             text-decoration: none;
             line-height: 32px;
             box-shadow: none;
+            justify-content: center;
+            align-items: center;
 
             img{
                 max-width: 24px;
