@@ -343,12 +343,15 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     }
                 });
 
+                formData['id'] = this.reference.id;
+
                 if(savingType === 'manual'){
                     formData = this.reference;
                 }
 
                 axios.put('/api/user/reference',formData)
                     .then((response) => {
+                        console.log(response.data);
                         savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
@@ -371,6 +374,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         }
                     }
                 });
+
+                formData['id'] = this.referee.id;
 
                 if(savingType === 'manual'){
                     formData = this.referee;
