@@ -232,7 +232,7 @@
                             class="mb-2"
                             align="left"
                             flat
-                            color="tranparent"
+                            color="transparent"
                           >
                             <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)">
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
