@@ -208,7 +208,8 @@
             }
         },
         mounted() {
-            this.$store.dispatch('getCurrentUser');
+            console.log(this.$attrs.tempuser);
+            this.$store.dispatch('setCurrentUser', this.$attrs.tempuser);
             let currentTab = 'myAccount';
             let pathArray = window.location.pathname.split('/');
             pathArray.forEach( (tab) => {
