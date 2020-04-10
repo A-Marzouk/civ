@@ -8,16 +8,17 @@
         <div class="half-circle"></div>
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
-            <v-col md="4">
+            <v-col md="4" sm="7">
               <v-card flat color="transparent" class="pa-0">
                 <v-card-title class="custom-profile-title">Hean Prinsloo</v-card-title>
                 <v-card-subtitle class="custom-profile-subtitle">Graphic Designer</v-card-subtitle>
                 <v-card-text
-                  class="custom-profile-text"
+                  class="custom-profile-text hidden-sm-and-down"
                 >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices...</v-card-text>
               </v-card>
             </v-col>
-            <v-col md="3">
+            <!-- Availibility -->
+            <v-col md="3" sm="7" order-sm3>
               <!-- Hour rate -->
               <v-card class="d-flex flex-row hour-card" color="transparent" flat>
                 <v-list-item two-line class>
@@ -61,17 +62,18 @@
                 <!-- Weekly availibility -->
               </v-card>
             </v-col>
+            <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col md="5">
+            <v-col md="5" sm="5">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
                 <!-- social buttons -->
                 <v-btn
-                  class="custom-social-btn mx-md-2"
+                  class="custom-social-btn mx-2"
                   v-for="item in socialIcons"
                   :key="item.title"
                   color="#FAFAFA"
@@ -491,6 +493,9 @@ export default {
   font-size: 2rem;
   line-height: 3.375rem;
   color: #333333 !important;
+  @media screen and(max-width:959px) {
+    font-size: 1.5rem;
+  }
 }
 
 .custom-profile-subtitle {
@@ -499,6 +504,9 @@ export default {
   font-size: 1.25rem !important;
   font-weight: bold;
   line-height: 1.875rem;
+  @media screen and(max-width:959px) {
+    font-size: 1rem !important;
+  }
 }
 
 .custom-profile-text {
@@ -510,6 +518,9 @@ export default {
 
 .hour-card {
   margin-top: -100px;
+  @media screen and (max-width: 959px) {
+    margin-top: 0px;
+  }
 }
 .hire-me-card {
   margin-top: -70px;
@@ -537,8 +548,8 @@ export default {
   width: 200px;
 }
 .custom-social-btn {
-  max-width: 40px !important;
-  height: 51px !important;
+  max-width: 36px !important;
+  height: 51px !important; 
 }
 // Tabs
 .ct-tab {
