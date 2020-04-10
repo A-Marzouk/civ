@@ -141,6 +141,7 @@
                   <!-- Social Icons -->
 
                   <v-col cols="12" md="10" class="hidden-sm-and-up mb-md-1 mb-sm-1"></v-col>
+
                   <!-- Availability -->
                   <v-col
                     cols="12"
@@ -703,7 +704,7 @@ export default {
 }
 
 .hire-me {
-  width: 700px;
+  // width: 700px;
   text-align: center !important;
   box-shadow: 0px 7px 9px rgba(16, 78, 251, 0.03) !important;
   border-radius: 50px !important;
@@ -860,10 +861,10 @@ export default {
   .btn-hire-me {
     border-radius: 20px !important;
   }
-  .hire-me {
-    margin-left: 30px;
-    margin-right: 30px;
-  }
+  // .hire-me {
+  //   margin-left: 30px;
+  //   margin-right: 30px;
+  // }
   .custom-social-btn {
     height: 45px;
   }
