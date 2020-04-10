@@ -132,20 +132,20 @@
       <v-container fluid style="width:100%">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
-            <v-tabs v-model="mainDataTab" centered hide-slider grow>
+            <v-tabs v-model="mainDataTab" centered hide-slider grow >
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
-                class="mx-md-2 text-capitalize"
+                class="mx-md-2 mx-sm-2  text-capitalize"
                 :class="[
                 currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
               ]"
               >
                 <v-avatar tile>
-                  <img :src="getTabIcon(tab.id)" class="mr-4" />
+                  <img :src="getTabIcon(tab.id)" class="mr-md-4" />
                 </v-avatar>
-                {{ tab.title }}
+                <span>{{ tab.title }}</span>  
               </v-tab>
             </v-tabs>
           </v-col>
@@ -523,10 +523,7 @@ export default {
   margin-left: 22px;
   transform: rotate(122deg);
   z-index: 1;
-  @media screen and (max-width: 959px){
-    margin-top: 38px;
-    margin-left: 24px;
-  }
+  
 }
 .custom-profile-title {
   font-family: "Open Sans" !important;
@@ -611,6 +608,13 @@ export default {
     width: 20px;
     height: 20px;
   }
+  @media screen and (max-width: 959px){
+    span{
+      display: none;
+    }
+    
+  }
+
 }
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
@@ -622,7 +626,17 @@ export default {
   img {
     width: 24px;
     height: 24px;
-    transition: 1s;
+    transition: 1s !important;
+  }
+  @media screen and (max-width:959px){
+    span{
+      font-size:14px !important;
+      display: inline;
+    }
+    img{
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 // Tabs
