@@ -155,11 +155,13 @@
                       <v-card-text>
                         <v-row justify="center" align="center">
                           <v-col cols="6" sm="4" md="3" class="mt-md-0 mt-sm-0 mt-4">
-                            <div class="caption hire-me-title-text">$10</div>
-                            <div class="hire-me-subtitle-text">Hourly Rate</div>
+                            <v-card flat color="transparent" class="ml-md-0 ml-sm-0 ml-n6">
+                              <div class="caption hire-me-title-text">$10</div>
+                              <div class="hire-me-subtitle-text">Hourly Rate</div>
+                            </v-card>
                           </v-col>
                           <v-col cols="6" sm="4" md="4" class="mt-md-0 mt-sm-0 mt-4">
-                            <v-card flat color="transparent" class="ml-sm-n11">
+                            <v-card flat color="transparent" class="ml-sm-n11 ml-md-0 ml-0">
                               <div class="caption hire-me-title-text">35 HOURS</div>
                               <div class="hire-me-subtitle-text">Weekly availibility</div>
                             </v-card>
@@ -725,6 +727,9 @@ export default {
     font-size: 24px !important;
     line-height: 40px !important;
   }
+  @media screen and (max-width: 599px) {
+    font-size: 22px !important;
+  }
 }
 
 .hire-me-subtitle-text {
@@ -911,7 +916,7 @@ export default {
   }
   /* Work/Portfolio */
   .custom-parent-card {
-    height: 550px !important;
+    height: 580px !important;
   }
   /* Parent tab text */
   .tab-layout {
