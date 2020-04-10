@@ -69,14 +69,13 @@ class AchievementsController extends Controller
 
     public function destroy($id)
     {
-        $achievement = Achievement::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
-        ])->first();
+        $achievement = Achievement::where(['id' => $id])->first();
 
         // remove the file from the directory if exists:
-        if (file_exists(public_path($achievement->image_src))) {
-            unlink(public_path($achievement->image_src));
+        if($achievement->image_src){
+            if (file_exists(public_path($achievement->image_src))) {
+                unlink(public_path($achievement->image_src));
+            }
         }
 
         if($achievement->delete()){
