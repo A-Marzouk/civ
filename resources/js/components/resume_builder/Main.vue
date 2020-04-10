@@ -209,13 +209,20 @@
         },
         mounted() {
             this.$store.dispatch('getCurrentUser');
-            let pathArray = window.location.pathname.split('/')
-            switch (pathArray[2]) {
+            let currentTab = 'myAccount';
+            let pathArray = window.location.pathname.split('/');
+            pathArray.forEach( (tab) => {
+                if(tab === 'resume-builder'){
+                     currentTab = pathArray[pathArray.indexOf(tab) + 1];
+                }
+            });
+
+            switch (currentTab) {
                 // edit Tab
                 case 'edit':
                     this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this);
                     break;
-                    
+
 
                 // view CV Tab
                 case 'view':
@@ -232,6 +239,7 @@
                     this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this);
                     break;
             }
+
         }
     }
 </script>
