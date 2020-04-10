@@ -97,8 +97,9 @@
                     flat
                     color="transparent"
                     class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
+                    style="z-index:2"
                   >
-                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
+                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 mx-1 btn-email">
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
 
@@ -107,7 +108,7 @@
                       color="#FCD259"
                       x-small
                       depressed
-                      class="mx-md-0 mx-sm-2 btn-video-player"
+                      class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
                     >
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
@@ -117,10 +118,11 @@
                       color="#FCD259"
                       x-small
                       depressed
-                      class="btn-headphone mx-auto mx-sm-2"
+                      class="btn-headphone mx-1 mx-sm-2"
                     >
                       <img
                         width="15"
+                        style="margin-left:1px;"
                         class
                         src="/images/resume_themes/theme203/icons/headphones.webp"
                       />
