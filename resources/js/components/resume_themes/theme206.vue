@@ -198,7 +198,29 @@
       <v-container fluid style="width:100%">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
-            <v-tabs v-model="mainDataTab" centered hide-slider grow>
+            <!-- for mobile version  -->
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="ml-n10">
+              <v-tab
+                class="hidden-sm-and-up"
+                v-for="tab in tabItemsMobile"
+                :key="tab.id"
+                @click="currentTab=tab.id"
+                :class="[
+                  currentTab == tab.id ? 'active-mobile-tab' : ''
+                ]"
+              >
+                <v-avatar tile size="16">
+                  <img
+                    :src="currentTab == tab.id ?getTabIcon(tab.id) :getTabIconMobile(tab.id) "
+                    width="16"
+                  />
+                </v-avatar>
+                <span class="ml-2" v-if="currentTab == tab.id">{{tab.title}}</span>
+              </v-tab>
+            </v-tabs>
+            <!-- for mobile version  -->
+            <!-- tab for desktop and tablet -->
+            <v-tabs v-model="mainDataTab" centered hide-slider grow class="hidden-xs-only">
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -214,6 +236,7 @@
                 <span>{{ tab.title }}</span>
               </v-tab>
             </v-tabs>
+            <!-- Tab for desktop and tablet -->
           </v-col>
         </v-row>
         <!-- Main tab ends here -->
@@ -518,6 +541,14 @@ export default {
         { id: 5, title: "Media" },
         { id: 6, title: "About Me" }
       ],
+
+      tabItemsMobile: [
+        { id: 1, title: "Portfolio" },
+        { id: 2, title: "Education" },
+        { id: 3, title: "Experience" },
+        { id: 4, title: "Skills" },
+        { id: 5, title: "Media" }
+      ],
       portfolioItems: [
         { id: 1, image: 1 },
         { id: 2, image: 2 },
@@ -570,6 +601,9 @@ export default {
     },
     getTabIcon(id) {
       return `/images/resume_themes/theme206/tabs/${id}.png`;
+    },
+    getTabIconMobile(id) {
+      return `/images/resume_themes/theme206/tabs-mobile/${id}.png`;
     },
     getPortfolio(image) {
       return `/images/resume_themes/theme206/portfolio/${image}.png`;
@@ -686,9 +720,9 @@ export default {
   @media screen and (max-width: 959px) {
     width: 225px;
   }
-  // @media screen and (max-width: 599px){
-  //   width: 316px;
-  // }
+  @media screen and (max-width: 599px) {
+    color: #5843be !important;
+  }
 }
 .custom-social-btn {
   max-width: 36px !important;
@@ -908,6 +942,19 @@ export default {
   font-size: 12px;
   line-height: 18px;
   color: #5843be !important;
+}
+.active-mobile-tab {
+  background: #eeeeee;
+  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
+  border-radius: 80px;
+  border: 3px solid #eeeeee;
+  span{
+    font-family: "Poppins" sans-serif !important;
+    color:#5843BE;
+    font-size:10px !important;
+    text-transform: capitalize;
+  }
 }
 </style>
 
