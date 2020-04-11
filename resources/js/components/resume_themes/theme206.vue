@@ -1,25 +1,55 @@
 <template>
   <v-app style="width:100%;">
     <v-container fluid ma-0 pa-0 style="width:100%;">
-      <v-app-bar color="#fafafa" height="250">
+      <!-- For Desktop and Tablet -->
+      <v-app-bar color="#fafafa" height="250" class="hidden-xs-only">
         <v-avatar size="120" class="mr-5">
           <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
-            <v-col md="4">
+            <v-col md="4" sm="7">
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">Hean Prinsloo</v-card-title>
-                <v-card-subtitle class="custom-profile-subtitle">Graphic Designer</v-card-subtitle>
-                <v-card-text
-                  class="custom-profile-text"
-                >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices...</v-card-text>
+                <v-card-title class="custom-profile-title">{{personalData.name}}</v-card-title>
+                <v-card-subtitle class="custom-profile-subtitle">{{personalData.designation}}</v-card-subtitle>
+                <v-card-text class="custom-profile-text hidden-sm-and-down">{{personalData.detail}}</v-card-text>
               </v-card>
             </v-col>
-            <v-col md="3">
+
+            <!-- Social Buttons for tablet only -->
+            <v-col sm="5" class="d-none d-sm-flex d-md-none">
+              <v-card flat color="transparent" class="pa-0 hire-me-card">
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
+                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
+                </v-btn>
+
+                <!-- social buttons -->
+                <v-btn
+                  class="custom-social-btn mx-2"
+                  v-for="item in socialIcons"
+                  :key="item.title"
+                  color="#FAFAFA"
+                >
+                  <img
+                    :width="item.title == 'facebook'? '12' : '20' "
+                    x-large
+                    :src="getSocialIcon(item.title)"
+                  />
+                </v-btn>
+                <!-- social buttons -->
+              </v-card>
+            </v-col>
+            <!-- Social Button for tablet only -->
+
+            <!-- Availibility -->
+            <v-col md="3" sm="6">
               <!-- Hour rate -->
-              <v-card class="d-flex flex-row hour-card" color="transparent" flat>
+              <v-card
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10"
+                color="transparent"
+                flat
+              >
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
                     <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
@@ -61,17 +91,18 @@
                 <!-- Weekly availibility -->
               </v-card>
             </v-col>
+            <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col md="5">
+            <v-col md="5" class="hidden-sm-and-down">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
                 <!-- social buttons -->
                 <v-btn
-                  class="custom-social-btn mx-md-2"
+                  class="custom-social-btn mx-2"
                   v-for="item in socialIcons"
                   :key="item.title"
                   color="#FAFAFA"
@@ -86,29 +117,126 @@
               </v-card>
             </v-col>
             <!-- 3rd column -->
+
+            <!-- 4th column for tablet only -->
+            <v-col sm="1" class="d-none d-sm-flex d-md-none"></v-col>
+            <v-col sm="5" class="d-none d-sm-flex d-md-none">
+              <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
+                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
+                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
+                </v-btn>
+              </v-card>
+            </v-col>
+            <!-- 4th column for tablet only -->
           </v-row>
         </v-container>
       </v-app-bar>
+      <!-- For Desktop and Tablet Version -->
+      <!-- ........................................................................................................ -->
+      <!-- For mobile version only -->
+      <v-app-bar class="hidden-sm-and-up" color="#fafafa">
+        <v-btn icon color="#333333" @click.stop="drawer = !drawer">
+          <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
+        </v-btn>
+        <v-toolbar-title class="custom-toolbar-title-mobile">{{personalData.name}}</v-toolbar-title>
+      </v-app-bar>
+      <v-navigation-drawer app color="#fafafa" v-model="drawer" temporary absolute width="350">
+        <v-card flat color="transparent">
+          <v-card-title class="profile-text-mobile">Profile</v-card-title>
+          <v-list-item class="mt-n12">
+            <v-list-item-avatar size="80">
+              <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
+            </v-list-item-avatar>
+            <div class="half-circle-mobile"></div>
+            <v-list-item-content class="mt-12">
+              <v-list-item-title>
+                <v-card color="transparent" class="pa-2" flat>
+                  <span class="profile-title-mobile">{{ personalData.name }}</span>
+                </v-card>
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                <v-card flat color="transparent" class="pa-2 mt-n5">
+                  <span class="profile-subtitle-mobile">{{ personalData.designation }}</span>
+                </v-card>
+              </v-list-item-subtitle>
+              <v-list-item-title>
+                <v-card height="50" flat color="transparent" class="mt-2">
+                  <v-btn
+                    x-small
+                    class="custom-social-btn mx-2"
+                    v-for="item in socialIcons"
+                    :key="item.title"
+                    color="#FAFAFA"
+                    height="40"
+                  >
+                    <img
+                      :width="item.title == 'facebook'? '8' : '14' "
+                      :src="getSocialIcon(item.title)"
+                    />
+                  </v-btn>
+                </v-card>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-card-text>
+            <v-btn color="#FAFAFA" class="btn-hire-me" block>
+              <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me
+            </v-btn>
+          </v-card-text>
+        </v-card>
+        <v-card flat color="transparent">
+          <v-card-title class="about-me-title-mobile">About Me</v-card-title>
+          <v-card-text
+            class="about-me-text-mobile"
+          >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor..</v-card-text>
+        </v-card>
+      </v-navigation-drawer>
+      <!-- For mobile version only -->
+      <!-- ....................................................................................................... -->
+
       <!-- Tab Container -->
       <v-container fluid style="width:100%">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
-            <v-tabs v-model="mainDataTab" centered hide-slider grow>
+            <!-- for mobile version  -->
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider>
+              <v-tab
+                class="hidden-sm-and-up"
+                v-for="tab in tabItems"
+                :key="tab.id"
+                @click="currentTab=tab.id"
+                :class="[
+                  currentTab == tab.id ? 'active-mobile-tab' : ''
+                ]"
+              >
+                <v-avatar tile size="16">
+                  <img
+                    :src="currentTab == tab.id ?getTabIcon(tab.id) :getTabIconMobile(tab.id) "
+                    width="16"
+                  />
+                </v-avatar>
+                <span class="ml-2" v-if="currentTab == tab.id">{{tab.title}}</span>
+              </v-tab>
+            </v-tabs>
+            <!-- for mobile version  -->
+            <!-- tab for desktop and tablet -->
+            <v-tabs v-model="mainDataTab" centered hide-slider grow class="hidden-xs-only">
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
-                class="mx-md-2 text-capitalize"
+                class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
                 currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
               ]"
               >
                 <v-avatar tile>
-                  <img :src="getTabIcon(tab.id)" class="mr-4" />
+                  <img :src="getTabIcon(tab.id)" class="mr-md-4" />
                 </v-avatar>
-                {{ tab.title }}
+                <span>{{ tab.title }}</span>
               </v-tab>
             </v-tabs>
+            <!-- Tab for desktop and tablet -->
           </v-col>
         </v-row>
         <!-- Main tab ends here -->
@@ -190,6 +318,7 @@
                       <v-card color="transparent" flat>
                         <v-tabs v-model="skillTab" hide-slider centered>
                           <v-tab
+                            class="custom-skill-tab"
                             v-for="skill in skills"
                             :key="skill.id"
                             @click="currentSkillTab = skill.id"
@@ -211,7 +340,7 @@
                               <v-row>
                                 <v-col
                                   md="4"
-                                  sm="12"
+                                  sm="6"
                                   cols="12"
                                   v-for="item in childSkills"
                                   :key="item.id"
@@ -256,109 +385,39 @@
                   <v-card flat color="transparent">
                     <v-card-text>
                       <v-row>
-                        <!-- 1st column -->
-                        <v-col cols="8">
-                          <v-row>
-                            <v-col md="6" v-for="n in 2" :key="n">
-                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
-                                <v-card-text>
-                                  <v-list-item>
-                                    <v-list-content>
-                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
-                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
-                                    </v-list-content>
-                                    <v-spacer></v-spacer>
-                                    <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" depressed fab small>
-                                        <v-icon color="white">mdi-play</v-icon>
-                                      </v-btn>
-                                    </v-list-item-icon>
-                                  </v-list-item>
-                                </v-card-text>
-                                <v-card-text class="ml-3 mt-n10">
-                                  <v-row>
-                                    <v-col cols="9">
-                                      <v-progress-linear
-                                        style="border:3px solid #EEEEEE; border-radius:12px;"
-                                        class="custom-progress-bar"
-                                        color="#5843BE"
-                                        rounded
-                                        background-color="#eeeeee"
-                                        height="15"
-                                        :value="60"
-                                      ></v-progress-linear>
-                                    </v-col>
-                                  </v-row>
-                                </v-card-text>
-                              </v-card>
-                            </v-col>
-                            <!-- Video Column -->
-                            <v-col md="6" v-for="n in 2" :key="n">
-                              <v-card style="border-radius:9px" hover height="295" class="mx-auto">
-                                <v-img
-                                  height="295"
-                                  src="/images/resume_themes/theme206/video-screen.png"
-                                >
-                                  <v-card-subtitle class="video-duration">
-                                    <v-card
-                                      class="pa-2"
-                                      width="80"
-                                      align="center"
-                                      color="#242424"
-                                      dark
-                                    >15:00</v-card>
-                                  </v-card-subtitle>
-                                  <!-- overlay -->
-                                  <v-btn class="video-play-btn" color="#5843BE"  depressed fab small>
+                        <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
+                          <v-card color="#F0F0F3" style="border-radius:9px;" hover>
+                            <v-card-text>
+                              <v-list-item>
+                                <v-list-content>
+                                  <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
+                                  <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
+                                </v-list-content>
+                                <v-spacer></v-spacer>
+                                <v-list-item-icon>
+                                  <v-btn class="play-btn" color="#5843BE" depressed fab small>
                                     <v-icon color="white">mdi-play</v-icon>
                                   </v-btn>
-                                  <!-- overlay -->
-                                </v-img>
-                              </v-card>
-                            </v-col>
-                            <!-- Video Column -->
-                          </v-row>
+                                </v-list-item-icon>
+                              </v-list-item>
+                            </v-card-text>
+                            <v-card-text class="ml-3 mt-n10">
+                              <v-row>
+                                <v-col cols="9">
+                                  <v-progress-linear
+                                    style="border:3px solid #EEEEEE; border-radius:12px;"
+                                    class="custom-progress-bar"
+                                    color="#5843BE"
+                                    rounded
+                                    background-color="#eeeeee"
+                                    height="15"
+                                    :value="60"
+                                  ></v-progress-linear>
+                                </v-col>
+                              </v-row>
+                            </v-card-text>
+                          </v-card>
                         </v-col>
-                        <!-- 1st column -->
-                        <!-- 2nd column -->
-                        <v-col cols="4">
-                          <v-row>
-                            <v-col cols="12" v-for="n in 3" :key="n">
-                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
-                                <v-card-text>
-                                  <v-list-item>
-                                    <v-list-content>
-                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
-                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
-                                    </v-list-content>
-                                    <v-spacer></v-spacer>
-                                    <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" depressed fab small>
-                                        <v-icon color="white">mdi-play</v-icon>
-                                      </v-btn>
-                                    </v-list-item-icon>
-                                  </v-list-item>
-                                </v-card-text>
-                                <v-card-text class="ml-3 mt-n10">
-                                  <v-row>
-                                    <v-col cols="9">
-                                      <v-progress-linear
-                                        style="border:3px solid #EEEEEE; border-radius:12px;"
-                                        class="custom-progress-bar"
-                                        color="#5843BE"
-                                        rounded
-                                        background-color="#eeeeee"
-                                        height="15"
-                                        :value="60"
-                                      ></v-progress-linear>
-                                    </v-col>
-                                  </v-row>
-                                </v-card-text>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-col>
-                        <!-- 2nd column -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -389,11 +448,17 @@
 export default {
   data() {
     return {
-      overlay: true,
+      drawer: false,
       mainDataTab: "",
       skillTab: "",
       currentTab: 1,
       currentSkillTab: 1,
+      personalData: {
+        name: "Hean Prinsloo",
+        designation: "Graphic Designer",
+        detail:
+          "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices..."
+      },
       socialIcons: [
         { id: 1, title: "twitter" },
         { id: 2, title: "facebook" },
@@ -460,6 +525,9 @@ export default {
     getTabIcon(id) {
       return `/images/resume_themes/theme206/tabs/${id}.png`;
     },
+    getTabIconMobile(id) {
+      return `/images/resume_themes/theme206/tabs-mobile/${id}.png`;
+    },
     getPortfolio(image) {
       return `/images/resume_themes/theme206/portfolio/${image}.png`;
     }
@@ -484,13 +552,41 @@ export default {
   margin-left: 22px;
   transform: rotate(122deg);
   z-index: 1;
+
+  @-moz-document url-prefix() {
+    margin-top: 37px !important;
+    margin-left: 23px !important;
+  }
 }
+
+.half-circle-mobile {
+  position: absolute;
+  width: 100px;
+  height: 50px; /* as the half of the width */
+  border-radius: 100px 100px 0px 0;
+  border-left: 3px solid #5843be;
+  border-right: 3px solid #5843be;
+  border-top: 3px solid #5843be;
+  margin-top: 13px;
+  margin-left: 10px;
+  transform: rotate(122deg);
+  z-index: 1;
+
+  @-moz-document url-prefix() {
+    margin-top: 23px !important;
+    margin-left: 9px !important;
+  }
+}
+
 .custom-profile-title {
   font-family: "Open Sans" !important;
   font-weight: bold;
   font-size: 2rem;
   line-height: 3.375rem;
   color: #333333 !important;
+  @media screen and(max-width:959px) {
+    font-size: 1.5rem;
+  }
 }
 
 .custom-profile-subtitle {
@@ -499,6 +595,9 @@ export default {
   font-size: 1.25rem !important;
   font-weight: bold;
   line-height: 1.875rem;
+  @media screen and(max-width:959px) {
+    font-size: 1rem !important;
+  }
 }
 
 .custom-profile-text {
@@ -509,10 +608,16 @@ export default {
 }
 
 .hour-card {
-  margin-top: -100px;
+  margin-top: -92px !important;
+  @media screen and (max-width: 959px) {
+    margin-top: 0px !important;
+  }
 }
 .hire-me-card {
   margin-top: -70px;
+  @media screen and (max-width: 959px) {
+    margin-top: 0px;
+  }
 }
 
 .hour-rate {
@@ -535,10 +640,23 @@ export default {
 .btn-hire-me {
   text-transform: capitalize !important;
   width: 200px;
+  @media screen and (max-width: 959px) {
+    width: 225px;
+  }
+  @media screen and (max-width: 599px) {
+    color: #5843be !important;
+  }
 }
 .custom-social-btn {
-  max-width: 40px !important;
+  max-width: 36px !important;
   height: 51px !important;
+  @media screen and (max-width: 599px) {
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 5px;
+    box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
+      -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
+  }
 }
 // Tabs
 .ct-tab {
@@ -552,6 +670,11 @@ export default {
     width: 20px;
     height: 20px;
   }
+  @media screen and (max-width: 959px) {
+    span {
+      display: none;
+    }
+  }
 }
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
@@ -563,7 +686,17 @@ export default {
   img {
     width: 24px;
     height: 24px;
-    transition: 1s;
+    transition: 1s !important;
+  }
+  @media screen and (max-width: 959px) {
+    span {
+      font-size: 14px !important;
+      display: inline;
+    }
+    img {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 // Tabs
@@ -678,8 +811,78 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  img{
+  img {
     width: 16px;
+  }
+}
+
+// Mobile version
+.custom-toolbar-title-mobile {
+  font-family: "Open Sans" !important;
+  font-weight: bold !important;
+  color: #333333;
+  font-size: 1rem !important;
+}
+.profile-text-mobile {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  color: #5843be;
+  opacity: 0.5;
+}
+
+.profile-title-mobile {
+  font-family: "Open Sans" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.25rem !important;
+  line-height: 33px;
+  color: #5843be !important;
+}
+
+.profile-subtitle-mobile {
+  font-family: "Open Sans" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.875rem !important;
+  line-height: 33px;
+  color: #5843be !important;
+}
+.about-me-title-mobile {
+  font-family: "Poppins" sans-serif !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  color: #5843be;
+}
+.about-me-text-mobile {
+  font-family: "Poppins" sans-serif !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
+  color: #5843be !important;
+}
+.active-mobile-tab {
+  background: #eeeeee;
+  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
+  border-radius: 80px;
+  border: 3px solid #eeeeee;
+  span {
+    font-family: "Poppins" sans-serif !important;
+    color: #5843be;
+    font-size: 10px !important;
+    text-transform: capitalize;
+  }
+}
+
+.custom-skill-tab {
+  @media screen and (max-width: 599px) {
+    font-size: 12px !important;
   }
 }
 </style>
@@ -693,5 +896,9 @@ export default {
   background: #eeeeee !important;
   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
+}
+
+#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
+  display: none !important;
 }
 </style>
