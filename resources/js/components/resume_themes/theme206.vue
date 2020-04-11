@@ -1,7 +1,8 @@
 <template>
   <v-app style="width:100%;">
     <v-container fluid ma-0 pa-0 style="width:100%;">
-      <v-app-bar color="#fafafa" height="250">
+      <!-- For Desktop and Tablet -->
+      <v-app-bar color="#fafafa" height="250" class="hidden-xs-only">
         <v-avatar size="120" class="mr-5">
           <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
         </v-avatar>
@@ -44,9 +45,9 @@
             <!-- Social Button for tablet only -->
 
             <!-- Availibility -->
-            <v-col md="3" sm="5">
+            <v-col md="3" sm="6">
               <!-- Hour rate -->
-              <v-card class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-0" color="transparent" flat>
+              <v-card class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10" color="transparent" flat>
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
                     <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
@@ -116,7 +117,7 @@
             <!-- 3rd column -->
 
             <!-- 4th column for tablet only -->
-            <v-col sm="2" class="d-none d-sm-flex d-md-none"></v-col>
+            <v-col sm="1" class="d-none d-sm-flex d-md-none"></v-col>
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
                 <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
@@ -128,6 +129,22 @@
           </v-row>
         </v-container>
       </v-app-bar>
+      <!-- For Desktop and Tablet Version -->
+
+      <!-- For mobile version only -->
+      <v-app-bar class="hidden-sm-and-up" color="#fafafa">
+        <v-btn icon color="#333333" @click.stop= "drawer = !drawer"  >
+          <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-navigation-drawer
+        v-model="drawer"
+        temporary
+      >
+
+      </v-navigation-drawer>
+      <!-- For mobile version only -->
+
       <!-- Tab Container -->
       <v-container fluid style="width:100%">
         <v-row justify="center" align="center">
@@ -428,7 +445,7 @@
 export default {
   data() {
     return {
-      overlay: true,
+      drawer: false,
       mainDataTab: "",
       skillTab: "",
       currentTab: 1,
@@ -523,7 +540,6 @@ export default {
   margin-left: 22px;
   transform: rotate(122deg);
   z-index: 1;
-  
 }
 .custom-profile-title {
   font-family: "Open Sans" !important;
@@ -555,9 +571,9 @@ export default {
 }
 
 .hour-card {
-  margin-top: -100px;
+  margin-top: -92px !important;
   @media screen and (max-width: 959px) {
-    margin-top: 0px;
+    margin-top: 0px !important;
   }
 }
 .hire-me-card {
