@@ -340,7 +340,7 @@
                               <v-row>
                                 <v-col
                                   md="4"
-                                  sm="12"
+                                  sm="6"
                                   cols="12"
                                   v-for="item in childSkills"
                                   :key="item.id"
@@ -385,7 +385,7 @@
                   <v-card flat color="transparent">
                     <v-card-text>
                       <v-row>
-                        <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
+                        <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
                           <v-card color="#F0F0F3" style="border-radius:9px;" hover>
                             <v-card-text>
                               <v-list-item>
