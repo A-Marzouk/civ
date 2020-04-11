@@ -936,7 +936,7 @@ export default {
   /* circles */
   .skill-img {
     width: 30px;
-    height: 30px;
+    height: 20px;
   }
 
   .skill-img-figma {

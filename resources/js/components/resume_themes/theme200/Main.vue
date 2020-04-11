@@ -105,7 +105,7 @@
                   <!-- Hourly rate -->
                   <v-col cols="12" class="hidden-sm-and-up">
                     <v-container fluid style="width:100%">
-                      <v-card color="white" light class="mr-1 pa-5" height="280" >
+                      <v-card color="white" light class="mr-1 pa-5" height="280">
                         <v-row no-gutters justify="center" align="center">
                           <!-- mobile parent hire me tab -->
                           <v-col cols="12" align="center">
@@ -313,7 +313,7 @@
                                     </v-tabs-items>
                                   </v-col>
                                   <v-col md="3" sm="12" align="center">
-                                    <v-card flat color="transparent" align="center" >
+                                    <v-card flat color="transparent" align="center">
                                       <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
                                         Hire Me
                                         <img
@@ -340,67 +340,76 @@
                       <v-card class color="rgba(37, 0, 0, 0.1)" flat width="705">
                         <v-row align="center" justify="center">
                           <!--tab1 column -->
-                          <v-col cols="10">
-                            <div class="d-flex flex-row bd-highlight align-items-center">
-                              <div class="p-4 bd-highlight">
-                                <v-tabs
-                                  class="hire-me-parent-tab"
-                                  height="60"
-                                  v-model="tabRate"
-                                  center-active
-                                  vertical
-                                  hide-slider
-                                  dense
-                                  background-color="transparent"
-                                >
-                                  <v-tab class="body-2 text-capitalize">Monthly</v-tab>
-                                  <v-tab class="body-2 text-capitalize">Weekly</v-tab>
-                                  <v-tab class="body-2 text-capitalize">Hourly</v-tab>
-                                </v-tabs>
-                              </div>
-                              <div class="p-4 bd-highlight mt-4">
-                                <v-tabs-items v-model="tabRate" style="background:transparent;">
-                                  <v-tab-item v-for="n in 3" :key="n">
-                                    <div class="hire-me-subtitle">Rate $ USD</div>
-                                    <div
-                                      class="hire-me-title hire-me-frequency-active"
-                                    >{{currentUser.payment_info.available_hours}}$</div>
-                                  </v-tab-item>
-                                </v-tabs-items>
-                              </div>
-                              <div class="p-4 bd-highlight">
-                                <v-tabs
-                                  class="hire-me-parent-tab"
-                                  height="60"
-                                  v-model="tabFrequency"
-                                  center-active
-                                  vertical
-                                  hide-slider
-                                  dense
-                                  background-color="transparent"
-                                >
-                                  <v-tab class="body-2 text-capitalize">Monthly</v-tab>
-                                  <v-tab class="body-2 text-capitalize">Weekly</v-tab>
-                                  <v-tab class="body-2 text-capitalize">Hourly</v-tab>
-                                </v-tabs>
-                              </div>
-                              <div class="p-4 bd-highlight mt-4">
-                                <v-tabs-items
-                                  v-model="tabFrequency"
-                                  style="background:transparent;"
-                                >
-                                  <v-tab-item v-for="n in 3" :key="n">
-                                    <div class="hire-me-subtitle">Availibilty Hourly</div>
-                                    <div
-                                      class="hire-me-title hire-me-frequency-active"
-                                    >{{currentUser.payment_info.salary}}$</div>
-                                  </v-tab-item>
-                                </v-tabs-items>
-                              </div>
-                            </div>
+                          <v-col cols="3">
+                            <v-card color="transparent" flat>
+                              <v-row align="center" justify="center">
+                                <v-col cols="6">
+                                  <v-tabs
+                                    class="hire-me-parent-tab"
+                                    height="60"
+                                    v-model="tabRate"
+                                    center-active
+                                    vertical
+                                    hide-slider
+                                    dense
+                                    background-color="transparent"
+                                  >
+                                    <v-tab class="body-2 text-capitalize">Monthly</v-tab>
+                                    <v-tab class="body-2 text-capitalize">Weekly</v-tab>
+                                    <v-tab class="body-2 text-capitalize">Hourly</v-tab>
+                                  </v-tabs>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-tabs-items v-model="tabRate" style="background:transparent;">
+                                    <v-tab-item v-for="n in 3" :key="n">
+                                      <div class="hire-me-subtitle">Rate $ USD</div>
+                                      <div
+                                        class="hire-me-title hire-me-frequency-active"
+                                      >{{currentUser.payment_info.available_hours}}$</div>
+                                    </v-tab-item>
+                                  </v-tabs-items>
+                                </v-col>
+                              </v-row>
+                            </v-card>
+                          </v-col>
+                         
+                          <v-col cols="4">
+                            <v-card color="transparent" flat>
+                              <v-row align="center" justify="center">
+                                <v-col cols="6">
+                                  <v-tabs
+                                    class="hire-me-parent-tab"
+                                    height="60"
+                                    v-model="tabFrequency"
+                                    center-active
+                                    vertical
+                                    hide-slider
+                                    dense
+                                    background-color="transparent"
+                                  >
+                                    <v-tab class="body-2 text-capitalize">Monthly</v-tab>
+                                    <v-tab class="body-2 text-capitalize">Weekly</v-tab>
+                                    <v-tab class="body-2 text-capitalize">Hourly</v-tab>
+                                  </v-tabs>
+                                </v-col>
+                                <v-col cols="6">
+                                  <v-tabs-items
+                                    v-model="tabFrequency"
+                                    style="background:transparent;"
+                                  >
+                                    <v-tab-item v-for="n in 3" :key="n">
+                                      <div class="hire-me-subtitle">Availibilty Hourly</div>
+                                      <div
+                                        class="hire-me-title hire-me-frequency-active"
+                                      >{{currentUser.payment_info.salary}}$</div>
+                                    </v-tab-item>
+                                  </v-tabs-items>
+                                </v-col>
+                              </v-row>
+                            </v-card>
                           </v-col>
                           <v-col cols="2">
-                            <v-card flat color="transparent" align="center" class="mx-n12">
+                            <v-card flat color="transparent" align="center" class>
                               <v-btn block color="#00CDF7" height="50" class="btn-hire-me">
                                 Hire Me
                                 <img
@@ -1402,10 +1411,9 @@ export default {
   margin-left: 13px !important;
 }
 
-.mobile-hire-me-btn{
+.mobile-hire-me-btn {
   margin-top: 6px;
 }
-
 </style>
 
 <style>
