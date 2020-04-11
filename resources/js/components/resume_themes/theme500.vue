@@ -17,15 +17,15 @@
               >Olivia Emily</p>
               <p class="pl-1 subhead text-left" style="color: whitesmoke;">UI/UX Designer</p>
 
-              <v-btn dark x-small class="pt-3 pb-6" color="#217BFF">
-                <v-icon dark small color="white">mdi-behance</v-icon>
+              <v-btn dark min-width="36" height="36" class="px-0" color="#217BFF">
+                <v-icon small dark color="white">mdi-behance</v-icon>
               </v-btn>
 
-              <v-btn x-small class="pt-3 pb-6" color="#EE588A">
-                <v-icon dark small color="white">mdi-dribbble</v-icon>
+              <v-btn dark color="#EE588A" min-width="36" height="36" class="px-0">
+                <v-icon small dark color="white">mdi-dribbble</v-icon>
               </v-btn>
-              <v-btn x-small class="pt-3 pb-6" color="#DD24BC">
-                <v-icon dark small color="white">mdi-instagram</v-icon>
+              <v-btn dark color="#DD24BC" min-width="36" height="36" class="px-0">
+                <v-icon small dark color="white">mdi-instagram</v-icon>
               </v-btn>
             </v-col>
             <v-col class="hidden-sm-and-up pt-12 mt-6" cols="2">
@@ -39,11 +39,12 @@
           </v-row>
         </v-col>
         <v-col class="col-md-6 col-sm-12" cols="12">
-          <v-row no-gutters class="justify-center align-center">
-            <v-col class="col-md-4 col-sm-4 hidden-sm-and-down">
-              <p class="subhead text-right mt-4 mr-4" style="color: whitesmoke;">Your Interviews :</p>
-            </v-col>
-            <v-col class="col-md-8 col-sm-8 hidden-sm-and-down">
+          <v-row no-gutters class="justify-end align-center pr-lg-12">
+            <v-col lg="12" class="col-md-8 col-sm-8 hidden-sm-and-down text-right pr-lg-2">
+              <div
+                class="subhead text-right mt-4 mr-4 d-inline-block"
+                style="color: whitesmoke;"
+              >Your Interviews :</div>
               <v-btn class="ma-2" outlined color="white" left>
                 Audio & Text
                 <v-icon right>mdi-volume-high</v-icon>
@@ -53,20 +54,23 @@
                 <v-icon right>ondemand_video</v-icon>
               </v-btn>
             </v-col>
-            <v-col class="col-md-10 col-sm-12 mt-8 marginr" cols="11">
+            <v-col lg="9" class="col-md-10 col-sm-12 mt-8 marginr" cols="11">
               <v-row
                 style="background: rgb(37, 29, 68,0.20);border-radius: 10px;"
                 class="align-center px-3 py-2"
                 no-gutters
               >
-                <v-col cols="4" md="4" sm="4" style="border-right: 1px solid whitesmoke;">
+                <v-col cols="4" md="4" sm="4" lg="3">
                   <div class="title text-left" style="color: whitesmoke;">15$</div>
                   <div class="caption text-left" style="color: #FFFFFF;opacity: 0.82">
                     Hourly
                     rate
                   </div>
                 </v-col>
-                <v-col cols="5" md="4" sm="4">
+                <v-col cols="1" align="center" class="mx-xl-n6">
+                  <div style="width:1px;height:2rem;background-color:#D7D7D7;"></div>
+                </v-col>
+                <v-col cols="5" md="4" sm="4" lg="3">
                   <div class="title text-left pl-3" style="color: whitesmoke;">40 hours</div>
                   <div class="caption text-left pl-3" style="color: #FFFFFF;opacity: 0.82">
                     Weekly
@@ -74,7 +78,7 @@
                   </div>
                 </v-col>
 
-                <v-col cols="3" md="4" sm="4" class="text-center">
+                <v-col cols="3" md="4" sm="4" lg="4" class="text-center">
                   <v-btn dark color="#23A565" large width="100%" class="ma-auto">
                     <div class="mini">Hire Me</div>
                   </v-btn>
@@ -349,39 +353,39 @@
       <v-tab-item value="tab-1">
         <v-container>
           <v-row class="justify-center">
-            <v-col class="col-md-8 col-sm-10" cols="12">
+            <v-col class="col-md-8 col-sm-12" cols="12">
               <v-row class="justify-center">
-                <v-col class="col-md-4 col-sm-6" cols="6">
+                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
                   <v-img
                     src="https://i.ibb.co/Dg4Tn3X/art-ios-app-concept-2x.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-6" cols="6">
+                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
                   <v-img
                     src="https://i.ibb.co/DMNZ73L/capcon-preview.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-6" cols="6">
+                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
                   <v-img
                     src="https://i.ibb.co/1d6Cv5R/xavier-designer-profiles-part-4.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-6" cols="6">
+                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
                   <v-img
                     src="https://i.ibb.co/KhW3mcH/fargostudio-by-ben-schade.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-6" cols="6">
+                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
                   <v-img
                     src="https://i.ibb.co/r3Kk2vJ/image-processing20191024-3744-10lw17z.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-6" cols="6">
+                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
                   <v-img
                     src="https://i.ibb.co/JF9gSdT/image-processing20191201-6286-1wvmanh.jpg"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
