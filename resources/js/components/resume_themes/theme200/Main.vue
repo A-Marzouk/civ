@@ -340,7 +340,7 @@
                       <v-card class color="rgba(37, 0, 0, 0.1)" flat width="705">
                         <v-row align="center" justify="center">
                           <!--tab1 column -->
-                          <v-col cols="4">
+                          <v-col cols="3">
                             <v-card color="transparent" flat>
                               <v-row align="center" justify="center">
                                 <v-col cols="6">
@@ -372,6 +372,7 @@
                               </v-row>
                             </v-card>
                           </v-col>
+                         
                           <v-col cols="4">
                             <v-card color="transparent" flat>
                               <v-row align="center" justify="center">

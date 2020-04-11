@@ -28,15 +28,27 @@
                                 <v-row>
                                     <v-col cols="12" sm="6" md="4">
                                         <v-text-field v-model="editedItem.name" label="Name"></v-text-field>
+                                        <div  class="error" style="background-color: white !important;"  v-if="errors.name">
+                                            {{ Array.isArray(errors.name) ? errors.name[0] : errors.name}}
+                                        </div>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
                                         <v-text-field v-model="editedItem.email" label="Email"></v-text-field>
+                                        <div  class="error" style="background-color: white !important;"  v-if="errors.email">
+                                            {{ Array.isArray(errors.email) ? errors.email[0] : errors.email}}
+                                        </div>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4">
                                         <v-text-field v-model="editedItem.username" label="Username"></v-text-field>
+                                        <div  class="error" style="background-color: white !important;"  v-if="errors.username">
+                                            {{ Array.isArray(errors.username) ? errors.username[0] : errors.username}}
+                                        </div>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4" v-show="canEditPassword">
                                         <v-text-field type="password" v-model="editedItem.password" label="Password"></v-text-field>
+                                        <div  class="error" style="background-color: white !important;"  v-if="errors.password">
+                                            {{ Array.isArray(errors.password) ? errors.password[0] : errors.password}}
+                                        </div>
                                     </v-col>
                                     <v-col cols="12" sm="6" md="4" v-show="canEditPassword">
                                         <v-text-field type="password" v-model="editedItem.password_confirmation" label="Password Confirmation"></v-text-field>
@@ -57,6 +69,7 @@
         <template v-slot:item.actions="{ item }">
             <v-icon
                     small
+                    v-show="!item.is_admin"
                     class="mr-2"
                     @click="editItem(item)"
             >
@@ -64,6 +77,7 @@
             </v-icon>
             <v-icon
                     small
+                    v-show="!item.is_admin"
                     @click="deleteItem(item)"
             >
                 mdi-delete
@@ -89,7 +103,7 @@
             dialog: false,
             headers: [
                 {
-                    text: 'User Name',
+                    text: 'Full name',
                     align: 'start',
                     sortable: false,
                     value: 'name',
@@ -106,6 +120,7 @@
             tableUsers: [],
             editedIndex: -1,
             editedItem: {
+                id: '',
                 name: '',
                 email: '',
                 username: '',
@@ -113,12 +128,14 @@
                 password_confirmation: ''
             },
             defaultItem: {
+                id: '',
                 name: '',
                 email: '',
                 username: '',
                 password: '',
                 password_confirmation: ''
             },
+            errors:[],
         }),
 
         computed: {
@@ -146,18 +163,26 @@
             },
 
             editItem (item) {
-                this.editedIndex = this.tableUsers.indexOf(item)
-                this.editedItem = Object.assign({}, item)
-                this.dialog = true
+                this.editedIndex = this.tableUsers.indexOf(item);
+                this.editedItem  = Object.assign({}, item);
+                this.dialog = true;
             },
 
             deleteItem (item) {
                 const index = this.tableUsers.indexOf(item);
-                confirm('Are you sure you want to delete this item?') && this.tableUsers.splice(index, 1);
+                if (!confirm('Are you sure you want to permanently delete this user?')) {
+                    return;
+                }
+
+                // delete item:
+                axios.delete('/api/admin/delete-user/' + item.id).then( (response) => {
+                    this.$store.dispatch('flyingNotificationDelete');
+                    this.tableUsers.splice(index, 1);
+                });
             },
 
             close () {
-                this.dialog = false
+                this.dialog = false;
                 setTimeout(() => {
                     this.editedItem = Object.assign({}, this.defaultItem)
                     this.editedIndex = -1
@@ -165,12 +190,41 @@
             },
 
             save () {
+                this.errors = [] ;
                 if (this.editedIndex > -1) {
-                    Object.assign(this.tableUsers[this.editedIndex], this.editedItem)
+                    // edit item
+                    axios.put('api/admin/update-user', this.editedItem)
+                        .then( (response) => {
+                            Object.assign(this.tableUsers[this.editedIndex], this.editedItem);
+                            this.$store.dispatch('flyingNotification');
+                            this.close();
+                        })
+                        .catch(error => {
+                            this.canSubmit = true;
+                            if (typeof error.response.data === 'object') {
+                                this.errors = error.response.data.errors;
+                            } else {
+                                this.errors = ['Something went wrong. Please try again.'];
+                            }
+                        });
+
                 } else {
-                    this.tableUsers.push(this.editedItem)
+                    // new item
+                    axios.post('api/admin/create-user', this.editedItem)
+                        .then( (response) => {
+                            this.tableUsers.push(response.data.user);
+                            this.$store.dispatch('flyingNotification');
+                            this.close();
+                        })
+                        .catch(error => {
+                            this.canSubmit = true;
+                            if (typeof error.response.data === 'object') {
+                                this.errors = error.response.data.errors;
+                            } else {
+                                this.errors = ['Something went wrong. Please try again.'];
+                            }
+                        });
                 }
-                this.close()
             },
         },
 
@@ -183,5 +237,9 @@
 <style lang="scss" scoped>
     .users-table{
         margin-top: 37px;
+    }
+
+    .error{
+        color: red;
     }
 </style>

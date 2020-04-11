@@ -67,21 +67,6 @@ class ProjectsController extends Controller
             'user_id' => Auth::user()->id
         ])->first();
 
-        // delete related images from database and remove files from the project directory:
-
-        $relatedImages = $project->images ;
-        if(count($relatedImages) > 0){
-            foreach ($relatedImages as $image){
-                // remove image from the system if the file exists
-                if (file_exists(public_path($image->src))) {
-                    unlink(public_path($image->src));
-                }
-                // delete the image record:
-                $image->delete();
-            }
-        }
-
-
         if($project->delete()){
             return ['data' => ['id' => $project->id] ];
         }

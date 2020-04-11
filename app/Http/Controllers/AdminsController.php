@@ -20,6 +20,9 @@ class AdminsController extends Controller
     public function index(){
         // get all users:
         $users = User::all();
+        foreach ($users as $user){
+            $user['is_admin'] = $user->hasRole('admin');
+        }
         return view('admin.dashboard', compact('users'));
     }
 
