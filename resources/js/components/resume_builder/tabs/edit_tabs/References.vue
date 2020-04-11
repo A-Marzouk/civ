@@ -395,6 +395,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             },
             addTestimonial(){
                 this.errors = { new:{}, edit:{}};
+                this.newTestimonial.user_id = this.$store.state.user.id;
                 axios.post('/api/user/testimonials', this.newTestimonial)
                     .then((response) => {
                         this.testimonials.unshift(response.data.data);

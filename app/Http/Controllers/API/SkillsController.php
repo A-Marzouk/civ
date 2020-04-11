@@ -46,7 +46,6 @@ class SkillsController extends Controller
             $skill->update($request->toArray());
         }else{
             // add
-            $request['user_id'] = $request->user_id;
             $skill =Skill::create($request->toArray());
         }
 
