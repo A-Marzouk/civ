@@ -158,6 +158,14 @@ Route::post('login', 'API\Auth\AuthController@login')->name('api.login');
 Route::post('register', 'API\Auth\AuthController@register');
 Route::post('logout', 'API\Auth\AuthController@logout');
 
+// API Admin routes
+Route::group(['prefix' => 'admin/'], function () {
+    Route::post('create-user', 'API\Admin\UsersController@createUser');
+    Route::put('update-user', 'API\Admin\UsersController@updateUser');
+    Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
+});
+
+
 // API users routes
 Route::get('user', 'API\UsersController@user');
 
