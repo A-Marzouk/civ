@@ -143,7 +143,7 @@
       <v-navigation-drawer app color="#fafafa" v-model="drawer" temporary absolute width="350">
         <v-card flat color="transparent">
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
-          <v-list-item>
+          <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
               <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
             </v-list-item-avatar>
