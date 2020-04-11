@@ -147,6 +147,7 @@
             <v-list-item-avatar size="80">
               <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
             </v-list-item-avatar>
+            <div class="half-circle-mobile"></div> 
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat><span class="profile-title-mobile">{{ personalData.name }}</span></v-card>
@@ -167,7 +168,7 @@
                     height="40"
                   >
                     <img
-                      :width="item.title == 'facebook'? '8' : '12' "
+                      :width="item.title == 'facebook'? '8' : '14' "
                       :src="getSocialIcon(item.title)"
                     />
                   </v-btn>
