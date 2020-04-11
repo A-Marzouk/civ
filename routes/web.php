@@ -62,6 +62,7 @@ Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDoc
 // Admin routes
 Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/', 'AdminsController@index')->name('admin.dashboard');
+    Route::get('/{any}', 'AdminsController@index')->name('admin.dashboard');
     Route::get('/{username}/resume-builder/', 'AdminsController@userFullEdit')->name('admin.user_edit');
     Route::get('/{username}/resume-builder/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.main');
     Route::get('/{username}/resume-builder/edit/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
