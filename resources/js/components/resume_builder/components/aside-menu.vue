@@ -1,7 +1,7 @@
 <template>
     <div>
         <div @click="() => false" class="edit-links d-flex flex-column mr-5">
-            <div @click="setActive" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
+            <div @click="setActiveTab(section.name)" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
                 <svg-vue class="aside-icon" :icon="`${section.name}-icon`"></svg-vue>
                 <router-link :to="`/resume-builder/edit/${section.name}`">
                     {{formatSectionString(section.name)}}
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { moveTabsHelper } from '../helpers/tab-animations'
+
 export default {
     data: () => ({
         asideSections: [
@@ -63,13 +65,9 @@ export default {
                 name: 'references',
                 icon: null
             }
-        ]
+        ],
+        activeTab: null
     }),
-    computed: {
-        activeTab () {
-            return window.location.pathname.split('/')[3]
-        }
-    },
     methods: {
         formatSectionString: (str) => {
             /**
@@ -89,17 +87,18 @@ export default {
 
             return formatedString;
         },
-        setActive (e) {
-            let activeNow = document.querySelector('.aside-link.active')
-            activeNow && activeNow.classList.toggle('active')
-            e.target.parentNode.classList.toggle('active')
+        setActiveTab (tab) {
+            this.activeTab = tab
 
             $([document.documentElement, document.body]).animate({
                 scrollTop: 130
             }, 600);
 
         }
-    }
+    },
+    mounted() {
+        this.activeTab = window.location.pathname.split('/')[3]
+    },
 }
 </script>
 
@@ -138,7 +137,7 @@ $disabledColor: #9f9e9e;
         }
     }
 
-    &.active {
+    &.active, &.router-link-exact-active.router-link-active {
         a {
             color: $activeColor;
             transition: all 1s ease;

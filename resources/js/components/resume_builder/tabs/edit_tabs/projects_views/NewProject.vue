@@ -177,6 +177,9 @@
                     formData.append('images[]', image);
                 });
 
+                formData.append('user_id', this.$store.state.user.id);
+
+
                 axios.post('/api/user/projects', formData, {headers:{'Content-Type': 'multipart/form-data'}})
                     .then((response) => {
                         this.clearProject();

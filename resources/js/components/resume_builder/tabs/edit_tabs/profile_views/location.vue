@@ -25,7 +25,7 @@
         },
         methods:{
             updateLocation(savingType){
-                axios.put('/api/user/personal-info/location',{location : this.personalInfo.location})
+                axios.put('/api/user/personal-info/location',{location : this.personalInfo.location, user_id:this.$store.state.user.id})
                     .then((response) => {
                         savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })

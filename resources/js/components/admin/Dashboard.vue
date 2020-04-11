@@ -36,9 +36,11 @@
                         <v-list-item
                                 v-for="item in items"
                                 :key="item.title"
+                                @click="setActiveTab(item)"
                                 link
+                                :to="item.url"
                                 class="side-bar-item"
-                                :class="{active : activeSideTab === item.title}"
+                                :class="{active : activeSideTab === item.value}"
 
                         >
                             <v-list-item-icon class="icon">
@@ -54,12 +56,7 @@
             </v-card>
 
             <div class="content">
-                <div class="searchInput">
-                    <input type="text" v-model="searchValue" placeholder="Search by name">
-                </div>
-
-                <users-table :users="users"></users-table>
-
+                <router-view :users="users"></router-view>
             </div>
         </div>
 
@@ -89,7 +86,7 @@
 </template>
 
 <script>
-    import UsersTable from './includes/UsersTable'
+    import UsersTable from './tabs/UsersTable'
     export default {
         name: "Dashboard",
         props:['users'],
@@ -99,23 +96,20 @@
         data() {
             return {
 
-                activeSideTab:'Users',
+                activeSideTab:'general',
 
                 //   navigation data
                 drawer: true,
                 items: [
-                    {title: 'General', icon: '/images/admin/general.svg'},
-                    {title: 'Account Settings', icon: '/images/admin/settings.svg'},
-                    {title: 'Users', icon: '/images/admin/users.svg'},
+                    {title: 'General', icon: '/images/admin/general.svg', value:'general',url:'/'},
+                    {title: 'Account Settings', icon: '/images/admin/settings.svg',value:'acc_settings',url:'account-settings'},
+                    {title: 'Users', icon: '/images/admin/users.svg',value:'users',url:'users'},
                 ],
                 color: 'primary',
                 right: false,
                 miniVariant: false,
                 expandOnHover: false,
                 background: false,
-
-                // searhc
-                searchValue:''
             }
         },
         methods: {
@@ -126,7 +120,14 @@
                         window.location.href = '/';
                     }
                 )
+            },
+            setActiveTab(tab){
+                this.activeSideTab = tab.value;
             }
+        },
+
+        mounted() {
+            this.activeSideTab = this.$router.currentRoute.name ;
         }
     }
 </script>
@@ -182,6 +183,7 @@
 
                     .icon{
                         margin-right:10px;
+                        filter: grayscale(100%);
                     }
 
                     .title {
@@ -197,6 +199,10 @@
                         border-right: 4px solid #176BEF;
                         .title {
                             color: #176BEF;
+                        }
+
+                        .icon{
+                            filter: grayscale(0%);
                         }
                     }
                 }

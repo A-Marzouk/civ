@@ -91,6 +91,7 @@ export default {
         applyEdit(savingType) {
             let formData = new FormData();
             formData.append("_method", "put");
+            formData.append("user_id", this.user.id);
 
             $.each(this.personalInfo, (field) => {
                 if(this.personalInfo[field] !== null){

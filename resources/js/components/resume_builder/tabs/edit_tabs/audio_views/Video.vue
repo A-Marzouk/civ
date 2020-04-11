@@ -186,6 +186,8 @@
                         formData.append(field, this.newVideo[field]);
                     }
                 });
+                formData.append('user_id', this.$store.state.user.id);
+
 
                 this.$bvModal.hide('main-upload-modal');
                 this.currentUploadMethod = 'general';

@@ -343,12 +343,15 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     }
                 });
 
+                formData['id'] = this.reference.id;
+
                 if(savingType === 'manual'){
                     formData = this.reference;
                 }
 
                 axios.put('/api/user/reference',formData)
                     .then((response) => {
+                        console.log(response.data);
                         savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
@@ -372,6 +375,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     }
                 });
 
+                formData['id'] = this.referee.id;
+
                 if(savingType === 'manual'){
                     formData = this.referee;
                 }
@@ -390,6 +395,7 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
             },
             addTestimonial(){
                 this.errors = { new:{}, edit:{}};
+                this.newTestimonial.user_id = this.$store.state.user.id;
                 axios.post('/api/user/testimonials', this.newTestimonial)
                     .then((response) => {
                         this.testimonials.unshift(response.data.data);
