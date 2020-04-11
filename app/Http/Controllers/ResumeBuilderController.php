@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -27,7 +28,7 @@ class ResumeBuilderController extends Controller
         ]);
 
 
-        $user = auth()->user();
+        $user = User::find($request->id);
 
 
         if (isset($request->username)) {
