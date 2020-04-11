@@ -621,8 +621,6 @@
         color: red;
         padding-top: 5px;
         padding-left: 3px;
-        position: absolute;
-        bottom: -35px;
     }
 
     .hold-tab {
