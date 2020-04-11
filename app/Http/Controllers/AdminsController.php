@@ -30,6 +30,9 @@ class AdminsController extends Controller
 
     public function userFullEdit($username){
         $tempUser = User::withAllRelations($username);
+        if(!$tempUser){
+            return redirect('/workforce-admin');
+        }
         return view('admin.resume-builder',compact('tempUser'));
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Route;
@@ -86,7 +86,6 @@ function demoUser($data = [])
 {
     return factory(User::class)->make(array_merge([
         'name' => 'John',
-        'surname' => 'Doe',
         'email' => 'john.doe@example.org',
     ], $data));
 }
@@ -94,16 +93,6 @@ function demoUser($data = [])
 function currentUser()
 {
     return auth()->user();
-}
-
-function currentAgent()
-{
-    return auth()->user()->agent;
-}
-
-function currentClient()
-{
-    return auth()->user()->client;
 }
 
 function previousUrl($route = null, $parameters = [])

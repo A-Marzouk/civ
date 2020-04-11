@@ -218,7 +218,7 @@
                     return;
                 }
 
-                axios.post('/resume-builder/account/validate', data)
+                axios.post('/api/user/account/validate', data)
                     .then((response) => {
                         if (response.data === 'success') {
                             this.fields[field_name] = 'success';
@@ -256,7 +256,7 @@
                     this.accountData.userNameChanged = true;
                 }
 
-                axios.post('/resume-builder/account/submit', this.accountData)
+                axios.post('/api/user/account/submit', this.accountData)
                     .then((response) => {
                         // changes saved pop-up
                         this.$store.dispatch('fullScreenNotification');
@@ -308,7 +308,7 @@
 
             // autosave submit
             autoSave(){
-                axios.post('/resume-builder/account/submit', this.accountData)
+                axios.post('/api/user/account/submit', this.accountData)
                     .then((response) => {
                         // changes saved pop-up
                         this.$store.dispatch('flyingNotification');

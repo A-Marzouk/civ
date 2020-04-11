@@ -77,6 +77,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/personal-info/location', 'API\PersonalInfoController@storeLocation');
     Route::put('/personal-info/single-field', 'API\PersonalInfoController@updateSingleField');
 
+//  Account user data:
+    Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
+    Route::post('/account/validate', 'API\UsersController@validateSingleField')->name('account.validate');
+
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
 
