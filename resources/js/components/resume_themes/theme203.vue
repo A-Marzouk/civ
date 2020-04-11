@@ -45,7 +45,7 @@
                                   class="mx-md-auto mx-sm-2 btn-video-player"
                                 >
                                   <img
-                                    width="14"
+                                    width="15"
                                     src="/images/resume_themes/theme203/icons/video-player.webp"
                                   />
                                 </v-btn>
@@ -56,9 +56,10 @@
                                   x-small
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
+                                  align="center"
                                 >
                                   <img
-                                    width="14"
+                                    width="15"
                                     src="/images/resume_themes/theme203/icons/headphones.webp"
                                   />
                                 </v-btn>
@@ -73,7 +74,7 @@
                                   v-for="item in socialIcons"
                                   :key="item.id"
                                 >
-                                  <img width="14" :src="getSocialIcon(item.title)" />
+                                  <img width="15" :src="getSocialIcon(item.title)" />
                                 </v-btn>
                               </span>
                             </v-card>
@@ -96,8 +97,9 @@
                     flat
                     color="transparent"
                     class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
+                    style="z-index:2"
                   >
-                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 btn-email">
+                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 mx-1 btn-email">
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
 
@@ -106,9 +108,9 @@
                       color="#FCD259"
                       x-small
                       depressed
-                      class="mx-md-0 mx-sm-2 btn-video-player"
+                      class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
                     >
-                      <img width="14" src="/images/resume_themes/theme203/icons/video-player.webp" />
+                      <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
                     <v-btn
@@ -116,9 +118,14 @@
                       color="#FCD259"
                       x-small
                       depressed
-                      class="btn-headphone mx-auto mx-sm-2"
+                      class="btn-headphone mx-1 mx-sm-2"
                     >
-                      <img width="14" src="/images/resume_themes/theme203/icons/headphones.webp" />
+                      <img
+                        width="15"
+                        style="margin-left:1px;"
+                        class
+                        src="/images/resume_themes/theme203/icons/headphones.webp"
+                      />
                     </v-btn>
                   </v-card>
                 </v-col>
@@ -137,7 +144,7 @@
                         v-for="item in socialIcons"
                         :key="item.id"
                       >
-                        <img width="14" :src="getSocialIcon(item.title)" />
+                        <img width="15" :src="getSocialIcon(item.title)" />
                       </v-btn>
                     </v-card-text>
                   </v-card>
@@ -210,33 +217,30 @@
       <!-- ....................Tab Items ..........................-->
       <v-container style="width:100%">
         <v-row class="mx-md-10 mx-sm-10 mx-1">
-          <v-col>
+          <v-col cols="12">
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
-                  <v-card flat color="transparent">
-                    <v-card-text>
-                      <v-row>
-                        <v-col cols="12">
-                          <div class="card-columns">
-                            <v-card
-                              v-for="item in portfolioItems"
-                              :key="item.id"
-                              class="mb-2 pa-2"
-                              align="left"
-                              width="800"
-                              flat 
-                              color="transparent"
-                            >
-                              <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
-                              <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
-                              <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
-                            </v-card>
-                          </div>
-                        </v-col>
-                      </v-row>
-                    </v-card-text>
+                  <v-card flat color="transparent" align="center">
+                    <v-row align="center" justify="center">
+                      <v-col cols="12">
+                        <div class="card-columns">
+                          <v-card
+                            v-for="item in portfolioItems"
+                            :key="item.id"
+                            class="mb-2"
+                            align="left"
+                            flat
+                            color="transparent"
+                          >
+                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)">
+                            <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
+                            <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
+                          </v-card>
+                        </div>
+                      </v-col>
+                    </v-row>
                   </v-card>
                 </v-tab-item>
                 <!-- .......................Portfolio.................................. -->
@@ -645,22 +649,21 @@ export default {
 .social-btn {
   width: 2rem !important;
   height: 2rem !important;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     width: 2.56rem !important;
     height: 2.56rem !important;
-    img{
+    img {
       width: 18px;
     }
   }
 
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     width: 2rem !important;
     height: 2rem !important;
-    img{
+    img {
       width: 14px;
     }
   }
-
 }
 /* Social Btn */
 
@@ -724,16 +727,18 @@ export default {
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
   border-radius: 10px;
+  width:100% !important;
+  height: 100% !important;
 }
 .custom-portfolio-title {
-  font-family:'Montserrat' !important;
+  font-family: "Montserrat" !important;
   font-size: 16px !important;
-  font-weight:bold;
+  font-weight: bold;
   margin-bottom: -20px;
-  margin-top:-20px;
+  margin-top: -20px;
 }
-.custom-portfolio-subtitle{
-  font-family:'Montserrat' !important;
+.custom-portfolio-subtitle {
+  font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
 }

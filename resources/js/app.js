@@ -38,6 +38,9 @@ require('./user-themes');
 // Resume builder components register
 require('./resume-builder');
 
+// Admin Resume builder components register
+require('./admin-resume-builder');
+
 // passport and Auth components register
 require('./passport');
 

@@ -49,7 +49,6 @@ class WorkExController extends Controller
             $workEx->update($request->toArray());
         }else{
             // add
-            $request['user_id'] = Auth::user()->id;
             $workEx = WorkEx::create($request->toArray());
         }
 
@@ -71,7 +70,6 @@ class WorkExController extends Controller
     {
         $workEx = WorkEx::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new WorkExResource($workEx);
@@ -82,7 +80,6 @@ class WorkExController extends Controller
     {
         $workEx = WorkEx::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         if($workEx->delete()){

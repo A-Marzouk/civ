@@ -42,7 +42,7 @@ class SummaryController extends Controller
 
         if($request->isMethod('put')){
             // update
-            $summary = Auth::user()->summary;
+            $summary = Summary::find($request->id);
             $summary->update($request->toArray());
         }
 

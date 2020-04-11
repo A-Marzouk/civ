@@ -195,6 +195,8 @@
                         formData.append(field, this.newAudio[field]);
                     }
                 });
+                formData.append('user_id', this.$store.state.user.id);
+
 
                 this.$bvModal.hide('main-upload-modal');
                 this.currentUploadMethod = null;

@@ -25,7 +25,7 @@ class RefereeController extends Controller
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put')){
-            $referee = Auth::user()->referee;
+            $referee = Referee::find($request->id);
             $referee->update($request->toArray());
         }else{
             // add
