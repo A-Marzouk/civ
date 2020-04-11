@@ -202,7 +202,7 @@
             <v-tabs v-model="mainDataTab" fixed-tabs hide-slider>
               <v-tab
                 class="hidden-sm-and-up"
-                v-for="tab in tabItemsMobile"
+                v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
                 :class="[
@@ -385,7 +385,7 @@
                   <v-card flat color="transparent">
                     <v-card-text>
                       <v-row>
-                        <v-col cols="12" sm="12" md="4" v-for="n in 3" :key="n">
+                        <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                           <v-card color="#F0F0F3" style="border-radius:9px;" hover>
                             <v-card-text>
                               <v-list-item>
@@ -418,108 +418,6 @@
                             </v-card-text>
                           </v-card>
                         </v-col>
-                        <!-- 1st column -->
-                        <!-- <v-col cols="12">
-                        <v-row>-->
-                        <!-- <v-col md="4" v-for="n in 2" :key="n">
-                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
-                                <v-card-text>
-                                  <v-list-item>
-                                    <v-list-content>
-                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
-                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
-                                    </v-list-content>
-                                    <v-spacer></v-spacer>
-                                    <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" depressed fab small>
-                                        <v-icon color="white">mdi-play</v-icon>
-                                      </v-btn>
-                                    </v-list-item-icon>
-                                  </v-list-item>
-                                </v-card-text>
-                                <v-card-text class="ml-3 mt-n10">
-                                  <v-row>
-                                    <v-col cols="9">
-                                      <v-progress-linear
-                                        style="border:3px solid #EEEEEE; border-radius:12px;"
-                                        class="custom-progress-bar"
-                                        color="#5843BE"
-                                        rounded
-                                        background-color="#eeeeee"
-                                        height="15"
-                                        :value="60"
-                                      ></v-progress-linear>
-                                    </v-col>
-                                  </v-row>
-                                </v-card-text>
-                              </v-card>
-                        </v-col>-->
-                        <!-- Video Column -->
-                        <!-- <v-col cols="12" md="4" v-for="n in 6" :key="n">
-                              <v-card style="border-radius:9px" hover height="295" class="mx-auto">
-                                <v-img
-                                  height="295"
-                                  src="/images/resume_themes/theme206/video-screen.png"
-                                >
-                                  <v-card-subtitle class="video-duration">
-                                    <v-card
-                                      class="pa-2"
-                                      width="80"
-                                      align="center"
-                                      color="#242424"
-                                      dark
-                                    >15:00</v-card>
-                                  </v-card-subtitle>
-
-                                  <v-btn class="video-play-btn" color="#5843BE" depressed fab small>
-                                    <v-icon color="white">mdi-play</v-icon>
-                                  </v-btn>
-                                </v-img>
-                              </v-card>
-                        </v-col>-->
-                        <!-- Video Column -->
-                        <!-- </v-row>
-                        </v-col>-->
-                        <!-- 1st column -->
-                        <!-- 2nd column -->
-                        <!-- <v-col cols="4">
-                          <v-row>
-                            <v-col cols="12" v-for="n in 3" :key="n">
-                              <v-card color="#F0F0F3" style="border-radius:9px;" hover>
-                                <v-card-text>
-                                  <v-list-item>
-                                    <v-list-content>
-                                      <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
-                                      <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
-                                    </v-list-content>
-                                    <v-spacer></v-spacer>
-                                    <v-list-item-icon>
-                                      <v-btn class="play-btn" color="#5843BE" depressed fab small>
-                                        <v-icon color="white">mdi-play</v-icon>
-                                      </v-btn>
-                                    </v-list-item-icon>
-                                  </v-list-item>
-                                </v-card-text>
-                                <v-card-text class="ml-3 mt-n10">
-                                  <v-row>
-                                    <v-col cols="9">
-                                      <v-progress-linear
-                                        style="border:3px solid #EEEEEE; border-radius:12px;"
-                                        class="custom-progress-bar"
-                                        color="#5843BE"
-                                        rounded
-                                        background-color="#eeeeee"
-                                        height="15"
-                                        :value="60"
-                                      ></v-progress-linear>
-                                    </v-col>
-                                  </v-row>
-                                </v-card-text>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-col>-->
-                        <!-- 2nd column -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -573,14 +471,6 @@ export default {
         { id: 4, title: "Skills" },
         { id: 5, title: "Media" },
         { id: 6, title: "About Me" }
-      ],
-
-      tabItemsMobile: [
-        { id: 1, title: "Portfolio" },
-        { id: 2, title: "Education" },
-        { id: 3, title: "Experience" },
-        { id: 4, title: "Skills" },
-        { id: 5, title: "Media" }
       ],
       portfolioItems: [
         { id: 1, image: 1 },
