@@ -147,10 +147,12 @@
             <v-list-item-avatar size="80">
               <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
             </v-list-item-avatar>
-            <div class="half-circle-mobile"></div> 
+            <div class="half-circle-mobile"></div>
             <v-list-item-content class="mt-12">
               <v-list-item-title>
-                <v-card color="transparent" class="pa-2" flat><span class="profile-title-mobile">{{ personalData.name }}</span></v-card>
+                <v-card color="transparent" class="pa-2" flat>
+                  <span class="profile-title-mobile">{{ personalData.name }}</span>
+                </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
                 <v-card flat color="transparent" class="pa-2 mt-n5">
@@ -176,6 +178,17 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+          <v-card-text>
+            <v-btn color="#FAFAFA" class="btn-hire-me" block>
+              <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me
+            </v-btn>
+          </v-card-text>
+        </v-card>
+        <v-card flat color="transparent">
+          <v-card-title class="about-me-title-mobile">About Me</v-card-title>
+          <v-card-text
+            class="about-me-text-mobile"
+          >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor..</v-card-text>
         </v-card>
       </v-navigation-drawer>
       <!-- For mobile version only -->
@@ -673,6 +686,9 @@ export default {
   @media screen and (max-width: 959px) {
     width: 225px;
   }
+  // @media screen and (max-width: 599px){
+  //   width: 316px;
+  // }
 }
 .custom-social-btn {
   max-width: 36px !important;
@@ -875,6 +891,22 @@ export default {
   font-weight: normal;
   font-size: 0.875rem !important;
   line-height: 33px;
+  color: #5843be !important;
+}
+.about-me-title-mobile {
+  font-family: "Poppins" sans-serif !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 18px;
+  color: #5843be;
+}
+.about-me-text-mobile {
+  font-family: "Poppins" sans-serif !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 18px;
   color: #5843be !important;
 }
 </style>
