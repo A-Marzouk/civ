@@ -26,7 +26,7 @@
             <div class="civ-input">
                 <div class="civ-custom-select">
                     <div class="civ-select-input profession-input" @click="showProfessionOptions = !showProfessionOptions">
-                        <input type="text" id="category" disabled v-model="professionOptions[selectedProfession].name" :class="{'with-border' : !showProfessionOptions}">
+                        <input type="text" id="category1" disabled v-model="professionOptions[selectedProfession].name" :class="{'with-border' : !showProfessionOptions}">
                         <img src="/icons/carot.svg" alt="arrow" :class="{'toggled':showSpecialityOptions}">
                     </div>
                     <div class="civ-custom-options" v-show="showProfessionOptions">
