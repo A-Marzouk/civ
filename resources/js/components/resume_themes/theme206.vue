@@ -385,10 +385,43 @@
                   <v-card flat color="transparent">
                     <v-card-text>
                       <v-row>
+                        <v-col cols="12" sm="12" md="4" v-for="n in 3" :key="n">
+                          <v-card color="#F0F0F3" style="border-radius:9px;" hover>
+                            <v-card-text>
+                              <v-list-item>
+                                <v-list-content>
+                                  <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
+                                  <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
+                                </v-list-content>
+                                <v-spacer></v-spacer>
+                                <v-list-item-icon>
+                                  <v-btn class="play-btn" color="#5843BE" depressed fab small>
+                                    <v-icon color="white">mdi-play</v-icon>
+                                  </v-btn>
+                                </v-list-item-icon>
+                              </v-list-item>
+                            </v-card-text>
+                            <v-card-text class="ml-3 mt-n10">
+                              <v-row>
+                                <v-col cols="9">
+                                  <v-progress-linear
+                                    style="border:3px solid #EEEEEE; border-radius:12px;"
+                                    class="custom-progress-bar"
+                                    color="#5843BE"
+                                    rounded
+                                    background-color="#eeeeee"
+                                    height="15"
+                                    :value="60"
+                                  ></v-progress-linear>
+                                </v-col>
+                              </v-row>
+                            </v-card-text>
+                          </v-card>
+                        </v-col>
                         <!-- 1st column -->
-                        <v-col cols="8">
-                          <v-row>
-                            <v-col md="6" v-for="n in 2" :key="n">
+                        <!-- <v-col cols="12">
+                        <v-row>-->
+                        <!-- <v-col md="4" v-for="n in 2" :key="n">
                               <v-card color="#F0F0F3" style="border-radius:9px;" hover>
                                 <v-card-text>
                                   <v-list-item>
@@ -420,9 +453,9 @@
                                   </v-row>
                                 </v-card-text>
                               </v-card>
-                            </v-col>
-                            <!-- Video Column -->
-                            <v-col md="6" v-for="n in 2" :key="n">
+                        </v-col>-->
+                        <!-- Video Column -->
+                        <!-- <v-col cols="12" md="4" v-for="n in 6" :key="n">
                               <v-card style="border-radius:9px" hover height="295" class="mx-auto">
                                 <v-img
                                   height="295"
@@ -437,20 +470,19 @@
                                       dark
                                     >15:00</v-card>
                                   </v-card-subtitle>
-                                  <!-- overlay -->
+
                                   <v-btn class="video-play-btn" color="#5843BE" depressed fab small>
                                     <v-icon color="white">mdi-play</v-icon>
                                   </v-btn>
-                                  <!-- overlay -->
                                 </v-img>
                               </v-card>
-                            </v-col>
-                            <!-- Video Column -->
-                          </v-row>
-                        </v-col>
+                        </v-col>-->
+                        <!-- Video Column -->
+                        <!-- </v-row>
+                        </v-col>-->
                         <!-- 1st column -->
                         <!-- 2nd column -->
-                        <v-col cols="4">
+                        <!-- <v-col cols="4">
                           <v-row>
                             <v-col cols="12" v-for="n in 3" :key="n">
                               <v-card color="#F0F0F3" style="border-radius:9px;" hover>
@@ -486,7 +518,7 @@
                               </v-card>
                             </v-col>
                           </v-row>
-                        </v-col>
+                        </v-col>-->
                         <!-- 2nd column -->
                       </v-row>
                     </v-card-text>
@@ -950,17 +982,17 @@ export default {
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
   border-radius: 80px;
   border: 3px solid #eeeeee;
-  span{
+  span {
     font-family: "Poppins" sans-serif !important;
-    color:#5843BE;
-    font-size:10px !important;
+    color: #5843be;
+    font-size: 10px !important;
     text-transform: capitalize;
   }
 }
 
-.custom-skill-tab{
-  @media screen and (max-width: 599px){
-      font-size: 12px !important;
+.custom-skill-tab {
+  @media screen and (max-width: 599px) {
+    font-size: 12px !important;
   }
 }
 </style>
@@ -976,7 +1008,7 @@ export default {
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
 
-#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled{
+#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
 </style>
