@@ -199,7 +199,7 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="ml-n10">
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider>
               <v-tab
                 class="hidden-sm-and-up"
                 v-for="tab in tabItemsMobile"
@@ -318,6 +318,7 @@
                       <v-card color="transparent" flat>
                         <v-tabs v-model="skillTab" hide-slider centered>
                           <v-tab
+                            class="custom-skill-tab"
                             v-for="skill in skills"
                             :key="skill.id"
                             @click="currentSkillTab = skill.id"
@@ -956,6 +957,12 @@ export default {
     text-transform: capitalize;
   }
 }
+
+.custom-skill-tab{
+  @media screen and (max-width: 599px){
+      font-size: 12px !important;
+  }
+}
 </style>
 
 <style>
@@ -967,5 +974,9 @@ export default {
   background: #eeeeee !important;
   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
+}
+
+#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled{
+  display: none !important;
 }
 </style>
