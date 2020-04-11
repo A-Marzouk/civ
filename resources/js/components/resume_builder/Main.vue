@@ -246,8 +246,12 @@
     .content {
         width: 100%;
 
-        &.hideInfoWrapper .info-wrapper {
-            display: none;
+        &.hideInfoWrapper {
+            margin: 0;
+
+            .info-wrapper {
+                display: none;
+            }
         }
 
         .info-wrapper {
