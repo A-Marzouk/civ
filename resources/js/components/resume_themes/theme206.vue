@@ -11,11 +11,9 @@
           <v-row class align="center" justify="center" dense>
             <v-col md="4" sm="7">
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">Hean Prinsloo</v-card-title>
-                <v-card-subtitle class="custom-profile-subtitle">Graphic Designer</v-card-subtitle>
-                <v-card-text
-                  class="custom-profile-text hidden-sm-and-down"
-                >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices...</v-card-text>
+                <v-card-title class="custom-profile-title">{{personalData.name}}</v-card-title>
+                <v-card-subtitle class="custom-profile-subtitle">{{personalData.designation}}</v-card-subtitle>
+                <v-card-text class="custom-profile-text hidden-sm-and-down">{{personalData.detail}}</v-card-text>
               </v-card>
             </v-col>
 
@@ -47,7 +45,11 @@
             <!-- Availibility -->
             <v-col md="3" sm="6">
               <!-- Hour rate -->
-              <v-card class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10" color="transparent" flat>
+              <v-card
+                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10"
+                color="transparent"
+                flat
+              >
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
                     <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
@@ -130,31 +132,64 @@
         </v-container>
       </v-app-bar>
       <!-- For Desktop and Tablet Version -->
-
+      <!-- ........................................................................................................ -->
       <!-- For mobile version only -->
       <v-app-bar class="hidden-sm-and-up" color="#fafafa">
-        <v-btn icon color="#333333" @click.stop= "drawer = !drawer"  >
+        <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
+        <v-toolbar-title class="custom-toolbar-title-mobile">{{personalData.name}}</v-toolbar-title>
       </v-app-bar>
-      <v-navigation-drawer
-        v-model="drawer"
-        temporary
-      >
-
+      <v-navigation-drawer app color="#fafafa" v-model="drawer" temporary absolute width="350">
+        <v-card flat color="transparent">
+          <v-card-title class="profile-text-mobile">Profile</v-card-title>
+          <v-list-item>
+            <v-list-item-avatar size="80">
+              <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
+            </v-list-item-avatar>
+            <v-list-item-content class="mt-12">
+              <v-list-item-title>
+                <v-card color="transparent" class="pa-2" flat><span class="profile-title-mobile">{{ personalData.name }}</span></v-card>
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                <v-card flat color="transparent" class="pa-2 mt-n5">
+                  <span class="profile-subtitle-mobile">{{ personalData.designation }}</span>
+                </v-card>
+              </v-list-item-subtitle>
+              <v-list-item-title>
+                <v-card height="50" flat color="transparent" class="mt-2">
+                  <v-btn
+                    x-small
+                    class="custom-social-btn mx-2"
+                    v-for="item in socialIcons"
+                    :key="item.title"
+                    color="#FAFAFA"
+                    height="40"
+                  >
+                    <img
+                      :width="item.title == 'facebook'? '8' : '12' "
+                      :src="getSocialIcon(item.title)"
+                    />
+                  </v-btn>
+                </v-card>
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
       </v-navigation-drawer>
       <!-- For mobile version only -->
+      <!-- ....................................................................................................... -->
 
       <!-- Tab Container -->
       <v-container fluid style="width:100%">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
-            <v-tabs v-model="mainDataTab" centered hide-slider grow >
+            <v-tabs v-model="mainDataTab" centered hide-slider grow>
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
-                class="mx-md-2 mx-sm-2  text-capitalize"
+                class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
                 currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
               ]"
@@ -162,7 +197,7 @@
                 <v-avatar tile>
                   <img :src="getTabIcon(tab.id)" class="mr-md-4" />
                 </v-avatar>
-                <span>{{ tab.title }}</span>  
+                <span>{{ tab.title }}</span>
               </v-tab>
             </v-tabs>
           </v-col>
@@ -450,6 +485,12 @@ export default {
       skillTab: "",
       currentTab: 1,
       currentSkillTab: 1,
+      personalData: {
+        name: "Hean Prinsloo",
+        designation: "Graphic Designer",
+        detail:
+          "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices..."
+      },
       socialIcons: [
         { id: 1, title: "twitter" },
         { id: 2, title: "facebook" },
@@ -540,7 +581,32 @@ export default {
   margin-left: 22px;
   transform: rotate(122deg);
   z-index: 1;
+
+  @-moz-document url-prefix() {
+    margin-top: 37px !important;
+    margin-left: 23px !important;
+  }
 }
+
+.half-circle-mobile {
+  position: absolute;
+  width: 100px;
+  height: 50px; /* as the half of the width */
+  border-radius: 100px 100px 0px 0;
+  border-left: 3px solid #5843be;
+  border-right: 3px solid #5843be;
+  border-top: 3px solid #5843be;
+  margin-top: 13px;
+  margin-left: 10px;
+  transform: rotate(122deg);
+  z-index: 1;
+
+  @-moz-document url-prefix() {
+    margin-top: 23px !important;
+    margin-left: 9px !important;
+  }
+}
+
 .custom-profile-title {
   font-family: "Open Sans" !important;
   font-weight: bold;
@@ -592,7 +658,6 @@ export default {
   @media screen and (max-width: 1280px) {
     font-size: 0.55rem;
   }
-  
 }
 .rate {
   font-family: "Poppins", sans-serif !important;
@@ -604,13 +669,20 @@ export default {
 .btn-hire-me {
   text-transform: capitalize !important;
   width: 200px;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     width: 225px;
   }
 }
 .custom-social-btn {
   max-width: 36px !important;
   height: 51px !important;
+  @media screen and (max-width: 599px) {
+    height: 30px !important;
+    width: 30px !important;
+    border-radius: 5px;
+    box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
+      -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
+  }
 }
 // Tabs
 .ct-tab {
@@ -624,13 +696,11 @@ export default {
     width: 20px;
     height: 20px;
   }
-  @media screen and (max-width: 959px){
-    span{
+  @media screen and (max-width: 959px) {
+    span {
       display: none;
     }
-    
   }
-
 }
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
@@ -644,12 +714,12 @@ export default {
     height: 24px;
     transition: 1s !important;
   }
-  @media screen and (max-width:959px){
-    span{
-      font-size:14px !important;
+  @media screen and (max-width: 959px) {
+    span {
+      font-size: 14px !important;
       display: inline;
     }
-    img{
+    img {
       width: 16px;
       height: 16px;
     }
@@ -770,6 +840,41 @@ export default {
   img {
     width: 16px;
   }
+}
+
+// Mobile version
+.custom-toolbar-title-mobile {
+  font-family: "Open Sans" !important;
+  font-weight: bold !important;
+  color: #333333;
+  font-size: 1rem !important;
+}
+.profile-text-mobile {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  color: #5843be;
+  opacity: 0.5;
+}
+
+.profile-title-mobile {
+  font-family: "Open Sans" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.25rem !important;
+  line-height: 33px;
+  color: #5843be !important;
+}
+
+.profile-subtitle-mobile {
+  font-family: "Open Sans" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.875rem !important;
+  line-height: 33px;
+  color: #5843be !important;
 }
 </style>
 
