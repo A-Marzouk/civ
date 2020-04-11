@@ -193,7 +193,7 @@
                 this.errors = [] ;
                 if (this.editedIndex > -1) {
                     // edit item
-                    axios.put('api/admin/update-user', this.editedItem)
+                    axios.put('/api/admin/update-user', this.editedItem)
                         .then( (response) => {
                             Object.assign(this.tableUsers[this.editedIndex], this.editedItem);
                             this.$store.dispatch('flyingNotification');
@@ -210,7 +210,7 @@
 
                 } else {
                     // new item
-                    axios.post('api/admin/create-user', this.editedItem)
+                    axios.post('/api/admin/create-user', this.editedItem)
                         .then( (response) => {
                             this.tableUsers.push(response.data.user);
                             this.$store.dispatch('flyingNotification');
