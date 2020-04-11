@@ -254,8 +254,12 @@
     .content {
         width: 100%;
 
-        &.hideInfoWrapper .info-wrapper {
-            display: none;
+        &.hideInfoWrapper {
+            margin: 0;
+
+            .info-wrapper {
+                display: none;
+            }
         }
 
         .info-wrapper {
@@ -501,7 +505,7 @@
                     text-decoration: none;
                 }
 
-                &.router-link-exact-active, &.router-link-active.has-inside-routes{
+                &.router-link-exact-active, &.router-link-active.has-inside-routes {
                     position: relative;
                     color: $mainBlue;
                 }
