@@ -59,7 +59,8 @@
                style="opacity:0; position: absolute; left:-500px;">
 
 
-        <div class="import-results" v-show="extractedText.length > 0">
+        <div class="import-results">
+            <!--v-show="extractedText.length > 0"-->
             <div class="title">
                 Select <span>your information</span>
             </div>
@@ -67,11 +68,24 @@
             <div class="sections">
                 <div class="section" v-for="section in sections" :key="section.title">
                     <div class="checkbox" @click="toggleSelectionOfSection(section)">
-                        <img v-if="section.selected" src="/images/resume_builder/import/checkedBox.svg" alt="checkbox">
-                        <img v-else src="/images/resume_builder/import/uncheckedBox.svg" alt="checkbox">
+                        <img v-show="section.selected" src="/images/resume_builder/import/checkedBox.svg" alt="checkbox">
+                        <img v-show="!section.selected" src="/images/resume_builder/import/uncheckedBox.svg" alt="checkbox">
                     </div>
-                    <div class="title" :class="{active : section.selected}">
-                        {{section.title}}
+                    <div class="section-content" :class="{active : section.selected}">
+                        <div class="import-section-title">
+                            <span  @click="toggleSelectionOfSection(section)">{{section.title}}</span>
+                            <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon" @click="editSection(section.title)">
+                        </div>
+                        <div class="section-content-items" v-show="section.title === 'profile'">
+                            <div class="content-item">
+                                <div class="bold">Email:</div>
+                                <div> {{freelancerData.email ? freelancerData.email : 'Couldn\'t find email' }}</div>
+                            </div>
+                            <div class="content-item">
+                                <div class="bold">Phone:</div>
+                                <div> {{freelancerData.phone ? freelancerData.phone : 'Couldn\'t find phone' }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,23 +99,6 @@
                     {{extractedText}}
                 </div>
                 <div class="col-4 pt-2" v-show="extractedText.length > 0">
-                    <div>
-                        <div v-if="freelancerData.email">
-                            Email: <b>{{freelancerData.email}}</b>
-                        </div>
-                        <div v-else>
-                            Email : No Email.
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.phone">
-                            Phone: <b>{{freelancerData.phone}}</b>
-                        </div>
-                        <div v-else>
-                            Phone : No Phone.
-                        </div>
-                    </div>
                     <hr>
                     <div>
                         <div v-if="freelancerData.job_title">
@@ -962,14 +959,12 @@
 
 
             // selection:
-
             toggleSelectionOfSection(section){
                 section.selected = !section.selected;
             },
 
 
             // search functions
-
             searchForData() {
                 let arrayOfData = this.arrayOfExtractedText;
 
@@ -1085,7 +1080,13 @@
                 }
                 // filter repeated elements in languages :
                 this.freelancerData.languages = Array.from(new Set(this.freelancerData.languages))
-            }
+            },
+
+
+            // edit function
+            editSection(section_title){
+                console.log(section_title);
+            },
         },
         mounted() {
 
@@ -1291,12 +1292,12 @@
                 height: auto;
                 background: whitesmoke;
                 padding: 60px 70px;
-
                 .section{
-
                     display: flex;
-                    align-items: center;
+                    align-items: flex-start;
                     border-bottom: 1px solid #EEEEEE;
+                    padding-bottom: 16px;
+                    padding-top: 16px;
 
                     .checkbox{
                         margin-right:20px;
@@ -1304,20 +1305,71 @@
                         img{
                             width: 35px;
                             height: 35px;
-                            margin-top: 9px;
+                            margin-top: 16px;
                         }
                     }
 
-                    .title{
-                        font-weight: bold;
-                        font-size: 46px;
-                        text-align: left;
+
+                    .section-content{
+                        line-height: normal;
                         color: #777777;
-                        text-transform: capitalize;
+
+                        .import-section-title{
+                            display: flex;
+                            align-items: center;
+                            font-weight: bold;
+                            font-size: 46px;
+                            text-align: left;
+                            text-transform: capitalize;
+                            width: fit-content;
+
+                            span{
+                                &:hover{
+                                    cursor: pointer;
+                                }
+                            }
+
+                            img{
+                                width:42px;
+                                height:42px;
+                                margin-left:24px;
+                                opacity: 0.6;
+                                filter: grayscale(100%);
+                                &:hover{
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+
+                        .section-content-items{
+                            .content-item{
+                                display: flex;
+                                color: inherit;
+                                font-size: 24px;
+                                text-align: left;
+                                text-transform: capitalize;
+                                margin-top: 22px;
+
+                                .bold{
+                                    font-weight: bold;
+                                    margin-right:6px;
+                                }
+
+                            }
+
+                        }
+
 
                         &.active{
                             color: #081fe2;
+                            .import-section-title{
+                                img{
+                                    filter: grayscale(0%);
+                                    opacity: 1;
+                                }
+                            }
                         }
+
                     }
                 }
             }
