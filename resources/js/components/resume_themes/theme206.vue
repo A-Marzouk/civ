@@ -94,7 +94,7 @@
             <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col md="5" class="hidden-sm-and-down">
+            <v-col md="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
                 <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -211,7 +211,7 @@
               >
                 <v-avatar tile size="16">
                   <img
-                    :src="currentTab == tab.id ?getTabIcon(tab.id) :getTabIconMobile(tab.id) "
+                    :src="getTabIcon(tab.id)"
                     width="16"
                   />
                 </v-avatar>
@@ -868,10 +868,10 @@ export default {
 }
 .active-mobile-tab {
   background: #eeeeee;
+  border: 3px solid #eeeeee;
   box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
-  border-radius: 80px;
-  border: 3px solid #eeeeee;
+  border-radius: 5px;
   span {
     font-family: "Poppins" sans-serif !important;
     color: #5843be;
