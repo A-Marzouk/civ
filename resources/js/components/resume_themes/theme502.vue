@@ -8,6 +8,7 @@
               src="/images/resume_themes/theme502/avatar.png"
               :aspect-ratio=".92"
               class="avatar mt-1"
+              style
             ></v-img>
           </v-col>
 
@@ -311,7 +312,9 @@
     </v-row>
   </v-app>
 </template>
-
+<style lang="scss" scoped>
+@import "resources/sass/themes/theme502.scss";
+</style>
 <script>
 export default {
   data() {
@@ -539,6 +542,4 @@ export default {
   }
 };
 </script>
-<style lang="scss" >
-@import "resources/sass/themes/theme502.scss";
-</style>
+
