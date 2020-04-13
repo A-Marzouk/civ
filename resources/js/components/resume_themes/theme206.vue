@@ -94,7 +94,7 @@
             <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col md="5" class="hidden-sm-and-down">
+            <v-col md="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
                 <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
