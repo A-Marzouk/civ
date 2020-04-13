@@ -340,7 +340,7 @@
                       <v-card class color="rgba(37, 0, 0, 0.1)" flat width="705">
                         <v-row align="center" justify="center">
                           <!--tab1 column -->
-                          <v-col cols="3">
+                          <v-col cols="4" class="ml-n11">
                             <v-card color="transparent" flat>
                               <v-row align="center" justify="center">
                                 <v-col cols="6">
@@ -360,20 +360,22 @@
                                   </v-tabs>
                                 </v-col>
                                 <v-col cols="6">
-                                  <v-tabs-items v-model="tabRate" style="background:transparent;">
-                                    <v-tab-item v-for="n in 3" :key="n">
-                                      <div class="hire-me-subtitle">Rate $ USD</div>
-                                      <div
-                                        class="hire-me-title hire-me-frequency-active"
-                                      >{{currentUser.payment_info.available_hours}}$</div>
-                                    </v-tab-item>
-                                  </v-tabs-items>
+                                  <v-card flat color="transparent" class="">
+                                    <v-tabs-items v-model="tabRate" style="background:transparent;">
+                                      <v-tab-item v-for="n in 3" :key="n">
+                                        <div class="hire-me-subtitle">Rate $ USD</div>
+                                        <div
+                                          class="hire-me-title hire-me-frequency-active"
+                                        >{{currentUser.payment_info.available_hours}}$</div>
+                                      </v-tab-item>
+                                    </v-tabs-items>
+                                  </v-card>
                                 </v-col>
                               </v-row>
                             </v-card>
                           </v-col>
-                         
-                          <v-col cols="4">
+
+                          <v-col cols="5">
                             <v-card color="transparent" flat>
                               <v-row align="center" justify="center">
                                 <v-col cols="6">
