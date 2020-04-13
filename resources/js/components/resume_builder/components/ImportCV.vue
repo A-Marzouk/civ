@@ -59,8 +59,8 @@
                style="opacity:0; position: absolute; left:-500px;">
 
 
-        <div class="import-results">
-            <!--v-show="extractedText.length > 0"-->
+        <div class="import-results" v-show="extractedText.length > 0">
+
             <div class="title">
                 Select <span>your information</span>
             </div>
@@ -84,6 +84,87 @@
                             <div class="content-item">
                                 <div class="bold">Phone:</div>
                                 <div> {{freelancerData.phone ? freelancerData.phone : 'Couldn\'t find phone' }}</div>
+                            </div>
+                            <div class="content-item">
+                                <div class="bold">Location:</div>
+                                <div> {{freelancerData.location ? freelancerData.location : 'Couldn\'t find location' }}</div>
+                            </div>
+                        </div>
+
+                        <div class="section-content-items" v-show="section.title === 'summary'">
+                            <div class="content-item">
+                                <div class="bold"> About: </div>
+                                <div>  {{freelancerData.about ? freelancerData.about : 'Couldn\'t find about information' }} </div>
+                            </div>
+                        </div>
+
+                        <div class="section-content-items" v-show="section.title === 'languages'">
+                            <div class="content-item">
+                                <div class="bold"> Languages: </div>
+                                <div>
+                                    <div  v-if="freelancerData.languages.length > 0" class="d-flex flex-wrap">
+                                        <div v-for="(language,index) in freelancerData.languages" :key="index" v-if="language.length > 0">
+                                            {{language}} <span v-if="index+1 < freelancerData.languages.length"> |</span>
+                                        </div>
+                                    </div>
+
+                                    <div v-else>
+                                        Couldn't find skills
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-content-items" v-show="section.title === 'work'">
+                            <div class="content-item">
+                                <div class="bold">  </div>
+                                <div> {{freelancerData.work_experience.length > 0 ? freelancerData.work_experience : 'Couldn\'t find work experience' }} </div>
+                            </div>
+                        </div>
+
+                        <div class="section-content-items" v-show="section.title === 'education'">
+                            <div class="content-item">
+                                <div class="bold"> </div>
+                                <div> {{freelancerData.education.length > 0 ? freelancerData.education : 'Couldn\'t find education' }} </div>
+                            </div>
+                        </div>
+
+                        <div class="section-content-items" v-show="section.title === 'skills'">
+                            <div class="content-item">
+                                <div class="bold"> Skills: </div>
+                                <div>
+                                    <div  v-if="freelancerData.skills.length > 0" class="d-flex flex-wrap">
+                                        <div v-for="(skill,index) in freelancerData.skills" :key="index" v-if="skill.length > 0">
+                                            {{skill}} <span v-if="index+1 < freelancerData.skills.length"> |</span>
+                                        </div>
+                                    </div>
+
+                                    <div v-else>
+                                        Couldn't find skills
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="section-content-items" v-show="section.title === 'achievements'">
+                            <div class="content-item">
+                                <div class="bold"> </div>
+                                <div> {{freelancerData.achievements.length > 0 ? freelancerData.achievements : 'Couldn\'t find achievements' }} </div>
+                            </div>
+                        </div>
+
+
+                        <div class="section-content-items" v-show="section.title === 'hobbies'">
+                            <div class="content-item">
+                                <div class="bold"> </div>
+                                <div> {{freelancerData.hobbies.length > 0 ? freelancerData.hobbies : 'Couldn\'t find hobbies' }} </div>
+                            </div>
+                        </div>
+
+                        <div class="section-content-items" v-show="section.title === 'references'">
+                            <div class="content-item">
+                                <div class="bold"></div>
+                                <div> {{freelancerData.references.length > 0 ? freelancerData.references : 'Couldn\'t find references' }} </div>
                             </div>
                         </div>
                     </div>
@@ -110,25 +191,15 @@
                     </div>
                     <hr>
                     <div>
-                        <div v-if="freelancerData.country">
-                            Country: <b>{{freelancerData.country}}</b>
+                        <div v-if="freelancerData.location">
+                            Country: <b>{{freelancerData.location}}</b>
                         </div>
                         <div v-else>
                             Country : No country.
                         </div>
                     </div>
                     <hr>
-                    <div>
-                        <div v-if="freelancerData.skills.length > 0">
-                            Skills:
-                            <div v-for="(skill,index) in freelancerData.skills" :key="index">
-                                <b>{{skill}}</b>
-                            </div>
-                        </div>
-                        <div v-else>
-                            Skills : No skills found.
-                        </div>
-                    </div>
+
                     <hr>
                     <div>
                         <div v-if="freelancerData.languages.length > 0">
@@ -208,17 +279,19 @@
                 arrayOfExtractedText:[],
                 errors: [],
                 freelancerData: {
-                    'name': '',
                     'phone': '',
                     'email': '',
                     'job_title': '',
                     'about': '',
+                    'location': '',
                     'work_experience': '',
                     'education': '',
-                    'references': '',
                     'skills': [],
                     'languages': [],
                     'links': [],
+                    'achievements': [],
+                    'hobbies': [],
+                    'references': [],
                 },
                 countryList: [
                     "Afghanistan",
@@ -768,13 +841,18 @@
                 sections:[
                     {
                         title:'profile',
-                        selected: 0,
+                        selected: 1,
                         
                     },   
                     {
                         title:'summary',
                         selected: 1,
                         
+                    },
+                    {
+                        title:'languages',
+                        selected: 1,
+
                     },
                     {
                         title:'work',
@@ -873,14 +951,15 @@
             },
             clearFreelancerData() {
                 this.freelancerData = {
-                    'name': '',
                     'phone': '', // done
                     'email': '', // done
                     'job_title': '', // done
-                    'country': '', // done
+                    'location': '', // done
                     'about': '',
                     'work_experience': [],
                     'education': [],
+                    'achievements': [],
+                    'hobbies': [],
                     'references': [],
                     'skills': [], //done
                     'languages': [], // done
@@ -940,6 +1019,7 @@
                 }
             },
 
+
             // document extracting text funtions:
             extractDocText(sections){
                 sections.forEach( section => {
@@ -980,7 +1060,7 @@
                     if (!this.freelancerData.job_title) {
                         this.searchForJobTitle(textLine);
                     }
-                    if (!this.freelancerData.country) {
+                    if (!this.freelancerData.location) {
                         this.searchForCountry(textLine);
                     }
 
@@ -1015,6 +1095,8 @@
                 let cleanTextLine = textLine.replace(/\s/g, "");
                 let emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+)/gi;
                 if (cleanTextLine.match(emailRegex)) {
+                    cleanTextLine = cleanTextLine.replace(/[&\/\\#,+()$~%'":*?<>{}]/g, '');
+                    cleanTextLine = cleanTextLine.replace('Email', '');
                     this.freelancerData.email = cleanTextLine;
                 }
             },
@@ -1024,6 +1106,7 @@
                 let phoneRegex = /(?:(?:\+?([1-9]|[0-9][0-9]|[0-9][0-9][0-9])\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([0-9][1-9]|[0-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?/;
                 let arrayOfNumbers = cleanTextLine.match(phoneRegex);
                 if (arrayOfNumbers) {
+                    cleanTextLine = cleanTextLine.replace(/\D/g,'');
                     this.freelancerData.phone = cleanTextLine;
                 }
             },
@@ -1048,7 +1131,7 @@
                 for (let i = 0; i < this.countryList.length; i++) {
                     let countryRegex = new RegExp(this.countryList[i], 'ig');
                     if (countryRegex.test(cleanTextLine)) {
-                        this.freelancerData.country = textLine;
+                        this.freelancerData.location = this.countryList[i];
                         break;
                     }
                 }
