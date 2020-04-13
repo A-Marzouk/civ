@@ -48,8 +48,7 @@ Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@ha
 Route::get('/resume-builder/{any?}', 'ResumeBuilderController@index')->name('resume.builder.main');
 Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
-Route::post('/resume-builder/account/submit', 'ResumeBuilderController@editAccountData')->name('account.edit');
-Route::post('/resume-builder/account/validate', 'ResumeBuilderController@validateSingleField')->name('account.validate');
+
 Route::post('/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('pdf.import.submit');
 Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('docx.import');
 
@@ -58,12 +57,21 @@ Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDoc
 
 
 // admin routes:
-Route::get('/workforce-admin', 'AdminsController@index')->name('admin.dashboard');
+
+
+// Admin routes
+Route::group(['prefix' => 'workforce-admin'], function () {
+    Route::get('/', 'AdminsController@index')->name('admin.dashboard');
+    Route::get('/{any}', 'AdminsController@index')->name('admin.dashboard');
+    Route::get('/{username}/resume-builder/', 'AdminsController@userFullEdit')->name('admin.user_edit');
+    Route::get('/{username}/resume-builder/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.main');
+    Route::get('/{username}/resume-builder/edit/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
+    Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
+    Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
+});
 
 // passport clients route:
-Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
 
 
 // public cv url
-
 Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data

@@ -21,8 +21,67 @@ class UserObserver
      */
     public function created(User $user)
     {
-        // create default one to one relations needed for user.
 
+        $this->assignDefaultValuesForNewUser($user);
+
+    }
+
+    /**
+     * Handle the user "updated" event.
+     *
+     * @param  \App\User $user
+     * @return void
+     */
+    public function updated(User $user)
+    {
+        //
+    }
+
+    /**
+     * Handle the user "deleted" event.
+     *
+     * @param  \App\User $user
+     * @return void
+     */
+    public function deleted(User $user)
+    {
+        // delete all user relations :
+
+        foreach (User::$defaultOneToOneRelations as $relation) {
+            $user->$relation()->delete();
+        }
+
+        foreach (User::$defaultOneToManyRelations as $relation) {
+            foreach ($user->$relation as $model) {
+                $model->delete();
+            }
+        }
+
+    }
+
+    /**
+     * Handle the user "restored" event.
+     *
+     * @param  \App\User $user
+     * @return void
+     */
+    public function restored(User $user)
+    {
+        //
+    }
+
+    /**
+     * Handle the user "force deleted" event.
+     *
+     * @param  \App\User $user
+     * @return void
+     */
+    public function forceDeleted(User $user)
+    {
+        //
+    }
+
+    protected function assignDefaultValuesForNewUser($user){
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
@@ -105,60 +164,5 @@ class UserObserver
             'user_id' => $user->id,
             'category' => 'payment_link',
         ]);
-    }
-
-    /**
-     * Handle the user "updated" event.
-     *
-     * @param  \App\User $user
-     * @return void
-     */
-    public function updated(User $user)
-    {
-        //
-    }
-
-    /**
-     * Handle the user "deleted" event.
-     *
-     * @param  \App\User $user
-     * @return void
-     */
-    public function deleted(User $user)
-    {
-        // delete all user relations :
-
-        foreach (User::$defaultOneToOneRelations as $relation) {
-            $user->$relation()->delete();
-        }
-
-        foreach (User::$defaultOneToManyRelations as $relation) {
-            foreach ($user->$relation as $model) {
-                $model->delete();
-            }
-        }
-
-    }
-
-    /**
-     * Handle the user "restored" event.
-     *
-     * @param  \App\User $user
-     * @return void
-     */
-    public function restored(User $user)
-    {
-        //
-    }
-
-    /**
-     * Handle the user "force deleted" event.
-     *
-     * @param  \App\User $user
-     * @return void
-     */
-    public function forceDeleted(User $user)
-    {
-        //
     }
 }

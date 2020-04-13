@@ -92,7 +92,7 @@
                     return;
                 }
 
-                axios.delete('/api/user/languages/' + lang.id)
+                axios.delete('/api/user/languages/' + lang.id + '/' + this.$store.state.user.id)
                     .then((response) => {
                         this.$store.dispatch('flyingNotificationDelete');
                         this.languages.forEach( (language,index) => {
@@ -113,7 +113,7 @@
             saveLanguage() {
                 let language_id = this.selectedLanguage.id;
                 this.errors = {};
-                axios.post('/api/user/languages', {language_id})
+                axios.post('/api/user/languages', {language_id, 'user_id' : this.$store.state.user.id})
                     .then((response) => {
                         this.languages.unshift(response.data.language);
                         this.selectedLanguage = 'selected'

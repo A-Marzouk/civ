@@ -294,6 +294,7 @@
             },
             addWorkEx(){
                 this.errors = {  new: {}, edit: {}};
+                this.newWork.user_id = this.$store.state.user.id;
                 axios.post('/api/user/work-experience', this.newWork)
                     .then((response) => {
                         this.works.unshift(response.data.data);

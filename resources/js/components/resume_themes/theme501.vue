@@ -3,8 +3,16 @@
     <v-card flat tile color="#623CEA">
       <v-row class="pa-4">
         <v-col class="col-md-6 col-sm-12">
-          <v-row class="justify-start">
-            <v-col class="col-md-3 col-sm-6">
+          <v-row class="justify-start" align="center">
+            <v-col
+              class="col-md-3 col-sm-6"
+              align-xl="center"
+              lg="3"
+              xl="2"
+              align-lg="center"
+              align-sm="start"
+              align-content="end"
+            >
               <v-avatar class="profile" color="grey" size="164">
                 <v-img
                   src="/images/resume_themes/theme501/man-crossed-arms-1516680.jpg"
@@ -12,7 +20,7 @@
                 ></v-img>
               </v-avatar>
             </v-col>
-            <v-col class="col-md-6 col-sm-6 pt-12 pl-6">
+            <v-col class="col-md-6 col-sm-6 pt-12 pl-lg-12">
               <p
                 class="headline font-weight-bold text-left"
                 style="color: whitesmoke;"
@@ -46,14 +54,12 @@
           </v-col>
         </v-col>
         <v-col class="col-md-6 col-sm-12">
-          <v-row no-gutters class="justify-center">
-            <v-col class="col-md-6 col-sm-6">
-              <p
-                class="subtitle-2 text-right mt-2 mr-4"
+          <v-row no-gutters justify-lg="end">
+            <v-col class="col-md-6 col-sm-6 text-right" lg="12">
+              <div
+                class="subtitle-2 text-right mt-2 mr-4 d-inline-block"
                 style="color: whitesmoke;"
-              >Your Interviews :</p>
-            </v-col>
-            <v-col class="col-md-6 col-sm-6">
+              >Your Interviews :</div>
               <v-btn class="ma-2" outlined color="white" left>
                 <v-icon left>mdi-volume-high</v-icon>Upload Audio
               </v-btn>
@@ -78,7 +84,7 @@
                   >Weekly Availability</div>
                 </v-col>
 
-                <v-col cols="4">
+                <v-col cols="4" class="text-center">
                   <v-btn dark color="#03CA9F" large width="100%" class="ma-auto">Hire Me</v-btn>
                 </v-col>
               </v-row>
@@ -109,6 +115,9 @@
 
             <v-tab href="#tab-3">
               <v-icon left>mdi-school</v-icon>Education
+            </v-tab>
+            <v-tab href="#tab-4">
+              <v-icon left>mdi-school</v-icon>Skills
             </v-tab>
           </v-tabs>
         </v-col>

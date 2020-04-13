@@ -35,7 +35,6 @@ class TestimonialsController extends Controller
             $testimonial->update($request->toArray());
         }else{
             // add
-            $request['user_id'] = Auth::user()->id;
             $testimonial =Testimonial::create($request->toArray());
         }
 
@@ -48,8 +47,7 @@ class TestimonialsController extends Controller
     public function show($id)
     {
         $testimonial = Testimonial::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
+            'id' => $id
         ])->first();
 
         return new TestimonialResource($testimonial);
@@ -64,8 +62,7 @@ class TestimonialsController extends Controller
     public function destroy($id)
     {
         $testimonial = Testimonial::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
+            'id' => $id
         ])->first();
 
         if($testimonial->delete()){

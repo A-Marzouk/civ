@@ -48,7 +48,6 @@ class HobbiesController extends Controller
             $hobby = Hobby::findOrFail($request->id);
             $hobby->update($request->toArray());
         }else{
-            $request['user_id'] = Auth::user()->id;
             $hobby =Hobby::create($request->toArray());
         }
 
@@ -68,7 +67,6 @@ class HobbiesController extends Controller
     {
         $hobby = Hobby::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new HobbyResource($hobby);
@@ -84,7 +82,6 @@ class HobbiesController extends Controller
     {
         $hobby = Hobby::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         if($hobby->delete()){

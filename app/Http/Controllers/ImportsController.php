@@ -35,7 +35,6 @@ class ImportsController extends Controller
     {
         // Read contents
         $phpWord = IOFactory::load($request->cv);
-
         return $phpWord->sections;
     }
 
