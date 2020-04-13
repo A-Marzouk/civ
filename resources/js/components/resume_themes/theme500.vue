@@ -1,10 +1,19 @@
 <template>
   <v-app>
     <v-card flat tile color="#3361D0">
-      <v-row class="justify-center">
-        <v-col class="col-md-6 col-sm-12" cols="12">
-          <v-row class="justify-center" no-gutters>
-            <v-col class="col-md-3 col-sm-6" cols="5">
+      <v-row class="justify-center pt-lg-4">
+        <v-col md="6" sm="12" lg="6" cols="12">
+          <v-row justify-lg="center" justify-sm="start" no-gutters>
+            <v-col
+              cols="5"
+              lg="3"
+              xl="3"
+              md="3"
+              sm="3"
+              align-lg="center"
+              align-sm="start"
+              class="ml-sm-6"
+            >
               <v-avatar class="profile" size="164">
                 <v-img src="https://i.ibb.co/rMYWhw2/man-crossed-arms-1516680-2x-1.png"></v-img>
                 <v-btn color="#23A565" absolute dark small style="bottom: 22px;">TAP TO CHAT</v-btn>
@@ -38,8 +47,15 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col class="col-md-6 col-sm-12" cols="12">
-          <v-row no-gutters class="justify-end align-center pr-lg-12">
+        <v-col class="col-md-6 col-sm-11 pr-lg-12" cols="12">
+          <v-row
+            no-gutters
+            justify-lg="end"
+            justify-xl="end"
+            justify-sm="center"
+            justify="center"
+            class="align-center pr-lg-12"
+          >
             <v-col lg="12" class="col-md-8 col-sm-8 hidden-sm-and-down text-right pr-lg-2">
               <div
                 class="subhead text-right mt-4 mr-4 d-inline-block"
@@ -54,23 +70,26 @@
                 <v-icon right>ondemand_video</v-icon>
               </v-btn>
             </v-col>
-            <v-col lg="9" class="col-md-10 col-sm-12 mt-8 marginr" cols="11">
+            <v-col lg="9" xl="7" class="col-md-10 col-sm-12 mt-8 marginr" cols="11">
               <v-row
                 style="background: rgb(37, 29, 68,0.20);border-radius: 10px;"
                 class="align-center px-3 py-2"
                 no-gutters
+                justify-lg="center"
+                justify-sm="space-between"
+                justify
               >
-                <v-col cols="4" md="4" sm="4" lg="3">
+                <v-col cols="3" md="4" sm="2" lg="2">
                   <div class="title text-left" style="color: whitesmoke;">15$</div>
                   <div class="caption text-left" style="color: #FFFFFF;opacity: 0.82">
                     Hourly
                     rate
                   </div>
                 </v-col>
-                <v-col cols="1" align="center" class="mx-xl-n6">
+                <v-col cols="1" align="center">
                   <div style="width:1px;height:2rem;background-color:#D7D7D7;"></div>
                 </v-col>
-                <v-col cols="5" md="4" sm="4" lg="3">
+                <v-col cols="5" md="4" sm="3" lg="3">
                   <div class="title text-left pl-3" style="color: whitesmoke;">40 hours</div>
                   <div class="caption text-left pl-3" style="color: #FFFFFF;opacity: 0.82">
                     Weekly
@@ -78,9 +97,9 @@
                   </div>
                 </v-col>
 
-                <v-col cols="3" md="4" sm="4" lg="4" class="text-center">
-                  <v-btn dark color="#23A565" large width="100%" class="ma-auto">
-                    <div class="mini">Hire Me</div>
+                <v-col cols="3" md="4" sm="3" lg="4" class="text-center ml-lg-6 ml-sm-0 ml-xs-0">
+                  <v-btn dark color="#23A565" large width="100%" class="ma-auto" elevation="0">
+                    <div class="mini text-capitalize">Hire Me</div>
                   </v-btn>
                 </v-col>
               </v-row>
@@ -89,7 +108,7 @@
         </v-col>
       </v-row>
       <v-row no-gutters class="justify-center align-center mt-10">
-        <v-col class="col-md-8 col-sm-12">
+        <v-col lg="10" xl="8" sm="12" md="8" cols="12">
           <v-tabs
             v-model="tab"
             background-color="rgb(255, 255, 255,0.0)"
@@ -121,7 +140,7 @@
         no-gutters
         style="background-color: #F0F3F1;"
       >
-        <v-col class="col-md-5 col-sm-12" cols="12">
+        <v-col class="col-md-5 col-sm-12 pl-xl-11" cols="12" lg="7" xl="6">
           <v-row class="justify-center text-center" no-gutters>
             <v-col
               md="3"
@@ -181,61 +200,81 @@
 
     <v-container>
       <v-row v-if="activetab === 1" class="justify-center">
-        <v-col class="col-md-10 col-sm-12">
-          <v-row class="justify-center">
-            <v-col class="col-md-3 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
+        <v-col class="col-md-10 col-sm-12" lg="12">
+          <v-row class="justify-center" align="start">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
                   <v-img src="https://i.ibb.co/G3zQ7md/Adobe-Illustrator-CC-icon.png"></v-img>
                 </v-col>
-                <v-col sm="7" md="7" class="hidden-xs-only">
-                  <div class="mini text-left">Illustrator</div>
-                  <v-progress-linear rounded value="90" color="#23A565"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Illustrator</div>
+                  <v-progress-linear
+                    value="90"
+                    height="10"
+                    background-color="#C5C5C5"
+                    color="#23A565"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-1 pr-2">
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
                   <span class="text-center subtitle-2">90%</span>
                 </v-col>
               </v-row>
             </v-col>
 
-            <v-col class="col-md-3 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
                   <v-img src="https://i.ibb.co/5LmT1d2/Group-296.png"></v-img>
                 </v-col>
-                <v-col sm="7" md="7" class="hidden-xs-only">
-                  <div class="mini text-left">Adobe XD</div>
-                  <v-progress-linear rounded value="70" color="#BF3B2C"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Adobe XD</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="70"
+                    color="#BF3B2C"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-1 pr-2">
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
                   <span class="text-center subtitle-2">70%</span>
                 </v-col>
               </v-row>
             </v-col>
-            <v-col class="col-md-3 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
                   <v-img src="https://i.ibb.co/XF4kff4/Group-298.png"></v-img>
                 </v-col>
-                <v-col sm="7" md="7" class="hidden-xs-only">
-                  <div class="mini text-left">Photoshop</div>
-                  <v-progress-linear rounded value="95" color="#109083"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Photoshop</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="95"
+                    color="#109083"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-1 pr-2">
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
                   <span class="text-center subtitle-2">95%</span>
                 </v-col>
               </v-row>
             </v-col>
-            <v-col class="col-md-3 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
                   <v-img src="https://i.ibb.co/XX03172/Group-300.png"></v-img>
                 </v-col>
-                <v-col sm="7" md="7" class="hidden-xs-only">
-                  <div class="mini text-left">Premiere Pro</div>
-                  <v-progress-linear rounded value="50" color="#F4B707"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Premiere Pro</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="50"
+                    color="#F4B707"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-1 pr-2">
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
                   <span class="text-center subtitle-2">50%</span>
                 </v-col>
               </v-row>
@@ -244,33 +283,42 @@
         </v-col>
       </v-row>
       <v-row v-if="activetab === 2" class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row class="justify-center">
-            <v-col class="col-md-4 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
-                  <v-img src="https://i.ibb.co/XX03172/Group-300.png"></v-img>
+        <v-col class="col-md-10 col-sm-12">
+          <v-row class="justify-center" align="start">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
+                  <v-img src="https://i.ibb.co/XF4kff4/Group-298.png"></v-img>
                 </v-col>
-                <v-col sm="6" md="6" class="hidden-xs-only">
-                  <div class="mini text-left">Premiere Pro</div>
-                  <v-progress-linear rounded value="50" color="#F4B707"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Photoshop</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="95"
+                    color="#109083"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-3 pr-2">
-                  <span class="text-center subtitle-2">50%</span>
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
+                  <span class="text-center subtitle-2">95%</span>
                 </v-col>
               </v-row>
             </v-col>
-
-            <v-col class="col-md-4 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
                   <v-img src="https://i.ibb.co/XX03172/Group-300.png"></v-img>
                 </v-col>
-                <v-col sm="6" md="6" class="hidden-xs-only">
-                  <div class="mini text-left">Premiere Pro</div>
-                  <v-progress-linear rounded value="50" color="#F4B707"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Premiere Pro</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="50"
+                    color="#F4B707"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-3 pr-2">
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
                   <span class="text-center subtitle-2">50%</span>
                 </v-col>
               </v-row>
@@ -279,33 +327,43 @@
         </v-col>
       </v-row>
       <v-row v-if="activetab === 3" class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row class="justify-center">
-            <v-col class="col-md-4 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
-                  <v-img src="https://i.ibb.co/XF4kff4/Group-298.png"></v-img>
+        <v-col class="col-md-10 col-sm-12">
+          <v-row class="justify-center" align="start">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
+                  <v-img src="https://i.ibb.co/5LmT1d2/Group-296.png"></v-img>
                 </v-col>
-                <v-col sm="6" md="6" class="hidden-xs-only">
-                  <div class="mini text-left">Photoshop</div>
-                  <v-progress-linear rounded value="95" color="#109083"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Adobe XD</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="70"
+                    color="#BF3B2C"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-3 pr-2">
-                  <span class="text-center subtitle-2">95%</span>
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
+                  <span class="text-center subtitle-2">70%</span>
                 </v-col>
               </v-row>
             </v-col>
-            <v-col class="col-md-4 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
-                  <v-img src="https://i.ibb.co/XX03172/Group-300.png"></v-img>
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
+                  <v-img src="https://i.ibb.co/XF4kff4/Group-298.png"></v-img>
                 </v-col>
-                <v-col sm="6" md="6" class="hidden-xs-only">
-                  <div class="mini text-left">Premiere Pro</div>
-                  <v-progress-linear rounded value="50" color="#F4B707"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Photoshop</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="95"
+                    color="#109083"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-3 pr-2">
-                  <span class="text-center subtitle-2">50%</span>
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
+                  <span class="text-center subtitle-2">95%</span>
                 </v-col>
               </v-row>
             </v-col>
@@ -313,34 +371,44 @@
         </v-col>
       </v-row>
       <v-row v-if="activetab === 4" class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row class="justify-center">
-            <v-col class="col-md-4 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
+        <v-col class="col-md-10 col-sm-12">
+          <v-row class="justify-center" align="start">
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
                   <v-img src="https://i.ibb.co/G3zQ7md/Adobe-Illustrator-CC-icon.png"></v-img>
                 </v-col>
-                <v-col sm="6" md="6" class="hidden-xs-only">
-                  <div class="mini text-left">Illustrator</div>
-                  <v-progress-linear rounded value="90" color="#23A565"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Illustrator</div>
+                  <v-progress-linear
+                    value="90"
+                    height="10"
+                    background-color="#C5C5C5"
+                    color="#23A565"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-3 pr-2">
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
                   <span class="text-center subtitle-2">90%</span>
                 </v-col>
               </v-row>
             </v-col>
 
-            <v-col class="col-md-4 col-sm-6" cols="3">
-              <v-row class="justify-end">
-                <v-col cols="12" sm="3" md="3">
-                  <v-img src="https://i.ibb.co/5LmT1d2/Group-296.png"></v-img>
+            <v-col class="col-md-3 col-sm-6" cols="6">
+              <v-row class="justify-end" dense>
+                <v-col cols="3" sm="3" md="3">
+                  <v-img src="https://i.ibb.co/XX03172/Group-300.png"></v-img>
                 </v-col>
-                <v-col sm="6" md="6" class="hidden-xs-only">
-                  <div class="mini text-left">Adobe XD</div>
-                  <v-progress-linear rounded value="70" color="#BF3B2C"></v-progress-linear>
+                <v-col cols="7" sm="7" md="7" class="mb-2" align-self="end">
+                  <div class="mini text-left pb-2">Premiere Pro</div>
+                  <v-progress-linear
+                    background-color="#C5C5C5"
+                    height="10"
+                    value="50"
+                    color="#F4B707"
+                  ></v-progress-linear>
                 </v-col>
-                <v-col sm="2" md="2" class="hidden-xs-only mt-3 pr-2">
-                  <span class="text-center subtitle-2">70%</span>
+                <v-col cols="2" sm="2" md="2" class="mb-1" align-self="end">
+                  <span class="text-center subtitle-2">50%</span>
                 </v-col>
               </v-row>
             </v-col>
@@ -353,39 +421,39 @@
       <v-tab-item value="tab-1">
         <v-container>
           <v-row class="justify-center">
-            <v-col class="col-md-8 col-sm-12" cols="12">
+            <v-col class="col-md-8 col-sm-12" cols="12" lg="12">
               <v-row class="justify-center">
-                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
+                <v-col class="col-md-4 col-sm-12 pa-sm-4" cols="12">
                   <v-img
                     src="https://i.ibb.co/Dg4Tn3X/art-ios-app-concept-2x.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
+                <v-col class="col-md-4 col-sm-12 pa-sm-4" cols="12">
                   <v-img
                     src="https://i.ibb.co/DMNZ73L/capcon-preview.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
+                <v-col class="col-md-4 col-sm-12 pa-sm-4" cols="12">
                   <v-img
                     src="https://i.ibb.co/1d6Cv5R/xavier-designer-profiles-part-4.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
+                <v-col class="col-md-4 col-sm-12 pa-sm-4" cols="12">
                   <v-img
                     src="https://i.ibb.co/KhW3mcH/fargostudio-by-ben-schade.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
+                <v-col class="col-md-4 col-sm-12 pa-sm-4" cols="12">
                   <v-img
                     src="https://i.ibb.co/r3Kk2vJ/image-processing20191024-3744-10lw17z.png"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                   ></v-img>
                 </v-col>
-                <v-col class="col-md-4 col-sm-12 pa-sm-10" cols="12">
+                <v-col class="col-md-4 col-sm-12 pa-sm-4" cols="12">
                   <v-img
                     src="https://i.ibb.co/JF9gSdT/image-processing20191201-6286-1wvmanh.jpg"
                     style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"

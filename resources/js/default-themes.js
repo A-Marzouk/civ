@@ -256,6 +256,19 @@ if ($("#resumeTheme501").length !== 0) {
         }
     });
 }
+import resumeTheme502 from './components/resume_themes/theme502';
+if ($("#resumeTheme502").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme502',
+        vuetify,
+        store,
+
+        components: {
+            'resume-theme-502': resumeTheme502
+        }
+    });
+}
 
 import resumeTheme206 from './components/resume_themes/theme206';
 if ($("#resumeTheme206").length !== 0) {

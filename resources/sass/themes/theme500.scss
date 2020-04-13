@@ -1,7 +1,11 @@
 #resumeTheme500 {
-.theme500{
-    padding-left:225px ;
-}
+ 
+  @media (min-width: 1904px){
+
+    .theme500{
+        padding-left:145px ;
+    }
+  }
 /* Style the tabs */
 .tabs {
   overflow: hidden;
@@ -193,7 +197,39 @@
   .tabtitle {
     font-size: 10px !important;
   }
+  .theme500{
+    padding-left:0 ;
+  }
+  .theme500 .v-tab {
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  font-size: 0.875rem;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0.0892857143em;
+  line-height: normal;
+  min-width: 90px;
+  max-width: 360px;
+  outline: none;
+  padding: 0 1px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  }
+  
 }
 
+  @media (min-width: 1264px){
+    .theme500{
+        padding-left:185px ;
+    }
+  }
 
 }
