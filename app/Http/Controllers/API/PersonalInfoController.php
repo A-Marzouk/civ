@@ -6,6 +6,7 @@ use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PersonalInfo as PersonalInfoResource;
 use App\PersonalInfo;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,14 +36,15 @@ class PersonalInfoController extends Controller
     public function store(Request $request)
     {
         $this->validator($request->all())->validate();
-        $personalInfo = Auth::user()->personalInfo;
+        $user = User::find($request->user_id);
+        $personalInfo = $user->personalInfo;
 
         if($request->isMethod('put')){
             $personalInfo->update($request->toArray());
         }
 
         if (isset($_FILES['profile_pic'])) {
-            $pathToPicture = Upload::profilePicture('profile_pic', Auth::user()->id);
+            $pathToPicture = Upload::profilePicture('profile_pic', $request->user_id);
             if($pathToPicture){
                 $personalInfo->update([
                     'profile_pic' => '/' . $pathToPicture
@@ -61,7 +63,8 @@ class PersonalInfoController extends Controller
 
 
     public function storeLocation(Request $request){
-        $personalInfo = Auth::user()->personalInfo;
+        $user = User::find($request->user_id);
+        $personalInfo = $user->personalInfo;
         $this->locationValidator($request->all())->validate();
         $personalInfo->update($request->toArray());
 

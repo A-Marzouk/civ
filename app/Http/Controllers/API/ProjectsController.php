@@ -35,8 +35,6 @@ class ProjectsController extends Controller
     {
 
         $this->validator($request->all())->validate();
-
-        $request['user_id'] = Auth::user()->id;
         $project = Project::create($request->toArray());
 
         if($request->hasfile('images')) {
@@ -53,8 +51,7 @@ class ProjectsController extends Controller
     public function show($id)
     {
         $project = Project::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
+            'id' => $id
         ])->first();
 
         return new ProjectResource($project);
@@ -63,8 +60,7 @@ class ProjectsController extends Controller
     public function destroy($id)
     {
         $project = Project::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
+            'id' => $id
         ])->first();
 
         if($project->delete()){

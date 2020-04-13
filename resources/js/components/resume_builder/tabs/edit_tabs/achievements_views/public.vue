@@ -254,6 +254,8 @@ export default {
             $.each(this.addCertificateForm, (field) => {
                 formData.append(field, this.addCertificateForm[field])
             });
+            formData.append('user_id', this.$store.state.user.id);
+
 
             axios.post('/api/user/achievements', formData)
                 .then((response) => {
@@ -289,6 +291,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    $activeColor: #001CE2;
+    @import '../../../../../../sass/media-queries';
+
     .certificates-section{
         margin-top: 72.5px;
 
@@ -418,6 +423,185 @@ export default {
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+    .certifications-list{
+        margin-top: 85px;
+        max-width: 920px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+
+        .certification-item{
+            display: flex;
+            position:relative;
+            justify-content: space-between;
+            width: 100%;
+
+            @include lt-md {
+                flex-direction: column;
+                width: 48%;
+                margin-right: 10px;
+            }
+
+            @include lt-sm {
+                width: 100%;
+                margin-right: 0;
+            }
+
+            .certification-preview{
+                width: 45%;
+
+                @include lt-md {
+                    width: 100%;
+                }
+
+                img{
+                    max-width: 376px;
+                    width: 100%;
+                    height: auto;
+                    margin-right: 36px;
+
+                    @include lt-md {
+                        margin: 0 auto;
+                    }
+                }
+            }
+
+            .certification-details{
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+
+                @include lt-md {
+                    width: 100%;
+                    margin-top: 1rem;
+                }
+
+                .title{
+                    font-family: "Noto Sans",serif;
+                    font-weight: 600;
+                    font-size: 30px;
+                    text-align: left;
+                    color: #001ce2;
+                    margin-bottom: 30px;
+
+                    @include lt-md {
+                        font-size: 19px;
+                    }
+
+                    @include lt-sm {
+                        font-size: 16px;
+                    }
+                }
+
+                .description{
+                    font-family: "Noto Sans",serif;
+                    font-weight: 500;
+                    font-size: 18px;
+                    text-align: left;
+                    color: #001ce2;
+
+                    @include lt-md {
+                        font-size: 14px;
+                    }
+
+                    @include lt-sm {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .options {
+                position: absolute;
+                right: 14px;
+                top: 0;
+
+                .options-btn {
+                    a {
+                        width: 88px;
+                        height: 29px;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        background: #FFFFFF 0 0 no-repeat padding-box;
+                        border: 1px solid #505050;
+                        border-radius: 5px;
+                        opacity: 1;
+
+                        font: 600 13px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 13.3px;
+                            height: 6.8px;
+                            margin-left: 8px;
+                        }
+
+                        img.optionsOpened {
+                            -webkit-transform: scaleY(-1);
+                            transform: scaleY(-1);
+                        }
+                    }
+
+                    a.opened {
+                        border: 1px solid #1F5DE4;
+                    }
+
+                    a:focus {
+                        outline: none !important;
+                        box-shadow: none !important;
+                    }
+                }
+
+                .extended-options {
+                    background: #FFFFFF 0 0 no-repeat padding-box;
+                    border: 1px solid #505050;
+                    border-radius: 5px;
+                    opacity: 1;
+                    margin-top: 8px;
+                    width: 88px;
+                    height: 45px;
+                    padding-top: 5px;
+                    padding-left: 8px;
+
+                    .edit-btn, .delete-btn {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        font: 600 13px Noto Sans;
+                        letter-spacing: 0;
+                        color: #505050;
+
+                        img {
+                            width: 15.75px;
+                            height: 14px;
+                            margin-right: 6px;
+                        }
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+
+                    .delete-btn {
+                        margin-top: 8px;
+
+                        img {
+                            width: 10.89px;
+                            height: 14px;
+                            margin-right: 9.5px;
+                        }
+                    }
+                }
+
+                .extended-options.opened {
+                    border: 1px solid #1F5DE4;
                 }
             }
         }

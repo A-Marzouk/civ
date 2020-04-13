@@ -46,8 +46,6 @@ class EducationController extends Controller
             $education = Education::findOrFail($request->id);
             $education->update($request->toArray());
         }else{
-            // add
-            $request['user_id'] = Auth::user()->id;
             $education = Education::create($request->toArray());
         }
 
@@ -67,7 +65,6 @@ class EducationController extends Controller
     {
         $education = Education::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new EducationResource($education);
@@ -83,7 +80,6 @@ class EducationController extends Controller
     {
         $education = Education::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         if($education->delete()){

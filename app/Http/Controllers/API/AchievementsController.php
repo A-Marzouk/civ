@@ -28,6 +28,7 @@ class AchievementsController extends Controller
     public function store(Request $request)
     {
 
+
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put')){
@@ -35,13 +36,11 @@ class AchievementsController extends Controller
             $achievement = Achievement::findOrFail($request->id);
             $achievement->update($request->toArray());
         }else{
-            // add
-            $request['user_id'] = Auth::user()->id;
             $achievement =Achievement::create($request->toArray());
         }
 
         if (isset($_FILES['file'])) {
-            $pathToPicture = Upload::certificate('file', Auth::user()->id);
+            $pathToPicture = Upload::certificate('file', $request->user_id);
             if($pathToPicture){
                 $achievement->update([
                     'image_src' => '/'.$pathToPicture
@@ -61,7 +60,6 @@ class AchievementsController extends Controller
     {
         $achievement = Achievement::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new AchievementResource($achievement);
@@ -69,14 +67,13 @@ class AchievementsController extends Controller
 
     public function destroy($id)
     {
-        $achievement = Achievement::where([
-            'id' => $id,
-            'user_id' => Auth::user()->id
-        ])->first();
+        $achievement = Achievement::where(['id' => $id])->first();
 
         // remove the file from the directory if exists:
-        if (file_exists(public_path($achievement->image_src))) {
-            unlink(public_path($achievement->image_src));
+        if($achievement->image_src){
+            if (file_exists(public_path($achievement->image_src))) {
+                unlink(public_path($achievement->image_src));
+            }
         }
 
         if($achievement->delete()){

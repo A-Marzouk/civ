@@ -1,0 +1,307 @@
+#resumeTheme302{
+    .hold-tabs .v-slide-group__content{
+        justify-content: center;
+    }
+    .skills-wrap .v-slide-group__content::after{
+        content: "";
+        height: 1px;
+        background: rgba(16, 78, 251, 0.12);
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+    }
+    
+    /** Custom progress bar circular */
+    .item-skill .v-progress-circular__info{
+        font-family: "Actor";
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        line-height: 29px;
+        color: #104EFB;
+    }
+    
+    .item-skill .v-progress-circular__underlay{
+        stroke: rgba(76, 113, 240, 0.02);
+    }
+    .item-skill .v-progress-circular__overlay{
+        stroke-linecap: round;
+    }
+    
+    /* Form theme13 **/
+    .form-wrap .sky-style .v-text-field{
+        padding: 0;
+        margin-bottom: 0px;
+        margin-top: 0;
+    }
+    .form-wrap .sky-style .v-text-field.v-text-field--enclosed{
+        margin-top: 0px;
+    }
+    .form-wrap .sky-style .v-text-field .v-label{
+        display: none;       
+    }
+    
+    
+    .form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot{
+        background: rgba(16, 78, 251, 0.06) !important;
+    }
+    
+    .form-wrap .sky-style .v-input input{
+        min-height: 138px;
+        max-height: 100%;
+        padding: 25px 35px;
+        font-family: "Raleway";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 42px;
+        line-height: 85px;
+        color: #104EFB !important;
+        box-shadow: none;
+    }
+    
+    .form-wrap .sky-style .v-text-field > .v-input__control > .v-input__slot:before{
+        border-color: #e5e5e5 !important;
+    }
+    
+    .form-wrap .sky-style .v-text-field--filled > .v-input__control > .v-input__slot{
+        background: rgba(16, 78, 251, 0.06) !important;
+    }
+    
+    .form-wrap .sky-style .v-textarea textarea{
+        padding:35px;
+        font-family: "Raleway";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 30px;
+        color: #104EFB !important;
+    }
+    
+    .form-wrap .sky-style .v-messages{
+        font-size: 30px;
+    }
+    
+    .hold-tabs .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
+        display: none;
+    }
+    .hold-slider{
+        margin-top: 13vh;
+        height: 75vh;
+        overflow: visible;
+    }
+    .hold-slider .slick-track{
+        display: block;
+        padding: 0;
+    }
+    .hold-slider .slick-list{
+        overflow: visible;
+    }
+    .hold-slider .slick-slider .slick-track{
+        transition: all 0.5s ease-in;
+    }
+    .hold-slider .slick-slide{
+        height: 54vh;
+        margin: 0px 40px;
+        width: 28vw !important;
+        transition: all 0.5s ease-in;
+        display: block;
+        float: left;
+    }
+    .hold-slider .slick-slide>div{
+        text-align: center;
+    }
+    .hold-slider .slick-slide .slide-item img{
+        width: 100%;
+        transition: all 0.5s ease-in;
+        border-radius: 40px;
+    }
+    .hold-slider .slick-slide .slide-item{
+        transition: all 0.5s ease-in;
+        padding-top: 16vh;
+        text-align: center;
+        border-radius: 40px;
+        box-shadow: 0px 54px 49px -64px rgba(0,0,0,0.51);
+        overflow: hidden;
+    }
+    .hold-slider .slick-slide.slick-current .slide-item{
+        padding: 0;
+    }
+    .hold-slider .slick-slide.slick-current .slide-item img{
+        width: 100%;
+        max-height: 82.6vh;
+    }
+    .hold-slider .slick-slide.slick-current{
+        margin-left: 0px;
+        width: 48.45vw !important;
+        height: 82.6vh;        
+    }
+    /** Fixes on vertical mode **/
+    
+    .hold-slider .slick-slider.slick-vertical .slick-slide{
+        width: 94vw !important;
+        height: 96.5vh;
+        margin-bottom: 18vh;
+    }
+    .hold-slider .slick-slider.slick-vertical .slick-slide .slide-item{
+        padding: 0;
+    }
+    .hold-slider .slick-slider.slick-vertical .slick-slide img{
+        max-height: 100%;
+    }
+    
+    .hold-skills .nav-slider,.hold-slider .nav-slider{
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .hold-skills .nav-slider .navDotsContents, .hold-slider .nav-slider .navDots{
+        margin: 0px 30px;
+    }
+    
+    .hold-skills .nav-slider .navDotsContents ul,.hold-slider .nav-slider .navDots ul{
+        padding-top: 0 !important;
+    }
+    .hold-skills .nav-slider .navDotsContents ul li, .hold-slider .nav-slider .navDots ul li{
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        margin: 0 .25rem;
+    }
+    .hold-skills .nav-slider .navDotsContents ul li.slick-active, .hold-slider .nav-slider .navDots ul li.slick-active{
+        border: 1px solid #1B33F2;
+    }
+    
+    .hold-skills .nav-slider .navDotsContents ul li button, .hold-slider .nav-slider .navDots ul li button{
+        width: 18px;
+        height: 18px;
+        background: #1B33F2;
+        border: 0;
+        outline: none;
+        opacity: .4;
+    }
+    .hold-skills .nav-slider .navDotsContents ul li.slick-active button, .hold-slider .nav-slider .navDots ul li.slick-active button{
+        opacity: 1;
+    }
+
+    .hold-payment .pay-method .v-input__control{
+        flex-grow: 1;
+    }
+    .hold-payment .pay-method.v-input--radio-group--row .v-input--radio-group__input{
+        flex-flow: row;
+        justify-content: space-around;
+    }
+    
+    .hold-payment .pay-method .v-radio i{
+        font-size: 41px;
+        color: #D8D8D8;
+    }
+    .hold-payment .pay-method .v-radio.v-item--active i{
+        color: #104EFB !important;
+    }
+    .hold-payment .pay-method .v-radio .v-input--selection-controls__input{
+        width: 41px;
+        height: 41px;
+    }
+    .hold-payment .pay-method .v-radio .v-input--selection-controls__input input[type=radio]{
+        max-height: 100%;
+    }
+      
+    
+    @media screen and (max-width: 768px) {
+        .hold-slider{
+            height: 245vh;
+            margin-bottom: 60px;
+        }
+        .hold-slider .nav-slider{
+            bottom: 0 !important;
+        }
+       
+        .hold-slider .slick-list{
+            padding: 0 3% !important;
+            overflow: hidden;
+        }
+        .hold-slider .slick-slide{
+            max-width: 720px ;
+            width: 100% !important;
+            transition: none;
+            margin: 0px auto;
+            height: 635px;
+        }
+        .hold-slider .slick-slide.slick-current {
+            margin:0px auto;
+            width: 100% !important;
+        }
+        .hold-slider .slick-slider .slick-track{
+            transition: none;
+        }
+        .hold-slider .slick-slide .slide-item img{
+            width: 100%;
+        }
+        .mc-subtabs_skills .hold-skills .slick-slide{
+            width: 70px;
+            margin: 0 7.5vw;
+        }
+    
+        .mc-subtabs_skills .hold-skills > div:nth-child(2){
+            margin-top: 2rem;
+            padding: 0;
+        }
+    
+        .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular{
+            max-width: 58px;
+        }
+    
+        .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular .v-progress-circular__info{
+            font-size: 18px;
+        }
+    }
+    @media only screen and (max-width: 480px) {
+        /** Mobile vertical slider **/
+        .hold-slider .slick-list{
+            padding: 0 !important;
+        }
+        
+        .hold-slider .slick-slider.slick-vertical .slick-slide{
+            height: 42vh;
+            margin-bottom: 2vh;
+        }
+        .main-tabs_theme13 .v-tabs-bar.v-tabs-bar--is-mobile{
+            height: 42px !important;
+        }
+        .main-tabs_theme13 .v-tabs-bar.v-tabs-bar--is-mobile .v-tab{
+            height: 42px;
+        }
+
+        .main-subtabs_skills .v-tabs-bar--is-mobile .v-slide-group__prev,
+        .main-subtabs_skills .v-tabs-bar--is-mobile .v-slide-group__next{
+            display: none;
+        }
+        .mc-subtabs_skills .hold-skills{
+            margin: 12vh auto !important;
+        }
+        .mc-subtabs_skills .hold-skills .slick-slide{
+            min-height: 170px;
+            width: auto ;
+        }
+        .mc-subtabs_skills .hold-skills > div:nth-child(2){
+            padding: 0 !important;
+            justify-content: center !important;
+        }
+    
+        .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular{
+            max-width: 86px;
+        }
+    
+        .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular .v-progress-circular__info{
+            font-size: 24px;
+        }
+    
+    }
+    
+
+}

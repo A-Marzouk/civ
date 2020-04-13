@@ -254,6 +254,7 @@ export default {
             $.each(this.addCertificateForm, (field) => {
                 formData.append(field, this.addCertificateForm[field])
             });
+            formData.append('user_id', this.$store.state.user.id);
 
             axios.post('/api/user/achievements', formData)
                 .then((response) => {

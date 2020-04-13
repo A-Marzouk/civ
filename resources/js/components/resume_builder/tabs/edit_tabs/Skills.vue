@@ -174,7 +174,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 skill: {
                     category: '',
                     title: '',
-                    percentage: ''
+                    percentage: '',
+                    user_id: this.$store.state.user.id,
                 },
                 addNewSkill: false,
                 optionSkillId: 0,
