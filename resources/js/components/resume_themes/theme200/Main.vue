@@ -226,9 +226,9 @@
                           </v-col>
                           <!-- Only shows on tablet desktop version -->
 
-                          <!-- Only shows in desktop and tablet version -->
+                          <!-- Only shows in desktop  -->
                           <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
-                            <v-card flat class="card-hire-me" color="rgba(37, 0, 0, 0.1)">
+                            <v-card flat class="card-hire-me mt-md-3" color="rgba(37, 0, 0, 0.1)">
                               <v-card-text>
                                 <v-row no-gutters align="center">
                                   <!-- for desktop -->
@@ -327,7 +327,7 @@
                               </v-card-text>
                             </v-card>
                           </v-col>
-                          <!-- only shows on desktop and tablet version -->
+                          <!-- only shows on desktop  -->
                         </v-row>
                       </v-card-text>
                     </v-card>
@@ -429,7 +429,7 @@
                   <v-col cols="12" md="12" sm="12" class="mt-n5 mb-n11 hidden-xs-only">
                     <v-row align="center" justify="center">
                       <v-col md="10">
-                        <v-card color="transparent" flat class="w-100">
+                        <v-card color="transparent" flat class="w-100 mt-md-n2 mt-sm-0 mt-0">
                           <v-card-text>
                             <!-- tabs -->
                             <v-tabs
