@@ -652,6 +652,7 @@ export default {
             }
             .profileCol{
                 margin-left: 0;
+                min-width: 42%;
 
                 .head-name{
                     font-size: 20px;
@@ -682,6 +683,7 @@ export default {
                 justify-content: flex-start;
                 padding: 0px;
                 height: 80px;
+                max-width: 250px;
 
                 .title-medium{
                     font-size: 0;
@@ -716,11 +718,11 @@ export default {
                 margin-top: 15px;
                 flex-flow: nowrap;
                 min-height: 69px;
-                padding: 0px 30px;
+                padding: 0 30px 0 0;
 
                 .rate-wrap{
 
-                    justify-content: flex-end;
+                    justify-content: space-between;
 
                     
 
@@ -728,6 +730,8 @@ export default {
 
                         justify-content: center;
                         display: flex;
+                        padding: 0;
+
                         .price{
                             &::before{
                                 content: "Hourly Rate:";
@@ -839,6 +843,11 @@ export default {
                         margin-right: 5px;
                     }
                 }
+
+                .head-name{
+                    font-size: 18px;
+                    line-height: 20px;
+                }
             }
 
             .interviewSection{
@@ -849,7 +858,7 @@ export default {
             }
 
             .rateSection{
-                padding: 0px 30px 0px 10px;
+                padding: 0px 3.6%;
             }
         }
 
@@ -1338,6 +1347,7 @@ export default {
                 max-width: 100%;
             }
         }
+        
         @media screen and (max-width: 960px) {
             .col-12{
                 max-width: 100%;
@@ -1351,6 +1361,11 @@ export default {
                 img{
                     width: 100%;
                 }
+            }
+        }
+        @media screen and (max-width: 380px) {
+            .box-photo{
+                padding: 5px;               
             }
         }
     }
