@@ -89,6 +89,10 @@
                                 <div class="bold">Location:</div>
                                 <div> {{freelancerData.location ? freelancerData.location : 'Couldn\'t find location' }}</div>
                             </div>
+                            <div class="content-item">
+                                <div class="bold">Designation:</div>
+                                <div> {{freelancerData.designation ? freelancerData.designation : 'Couldn\'t find designation' }}</div>
+                            </div>
                         </div>
 
                         <div class="section-content-items" v-show="section.title === 'summary'">
@@ -172,89 +176,19 @@
             </div>
         </div>
 
+        <div class="eye-icon" v-show="extractedText.length > 0" @click="showFullText = !showFullText" @mouseenter="showToolTip = true" @mouseleave="showToolTip = false">
+            <img src="/images/resume_builder/imports/eye.png" alt="eye icon">
+            <div class="custom-tooltip" v-show="showToolTip">
+                {{ showFullText ? 'Hide' : 'Show'}} full CV text
+            </div>
+        </div>
 
-        <div class="pl-5 pr-5 d-flex flex-column align-items-start ">
+
+        <div class="pl-5 pr-5" v-show="showFullText">
             <div class="row w-100">
-                <div class="col-7 border-dark m-3 p-2" style="white-space: pre-line; border: 1px dotted;"
+                <div class="col-12 border-dark m-3 p-2" style="white-space: pre-line; border: 1px dotted;"
                      v-show="extractedText.length > 0">
                     {{extractedText}}
-                </div>
-                <div class="col-4 pt-2" v-show="extractedText.length > 0">
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.job_title">
-                            Job title: <b>{{freelancerData.job_title}}</b>
-                        </div>
-                        <div v-else>
-                            Job title : No job title.
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.location">
-                            Country: <b>{{freelancerData.location}}</b>
-                        </div>
-                        <div v-else>
-                            Country : No country.
-                        </div>
-                    </div>
-                    <hr>
-
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.languages.length > 0">
-                            Languages:
-                            <div v-for="(language,index) in freelancerData.languages" :key="index">
-                                <b>{{language}}</b>
-                            </div>
-                        </div>
-                        <div v-else>
-                            Languages : No languages found.
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.links.length > 0">
-                            Links:
-                            <div v-for="(link,index) in freelancerData.links" :key="index">
-                                <b><a href="javascript:void(0)" @click="goToExternalURL(link)"
-                                      target="_blank">{{link}}</a></b>
-                            </div>
-                        </div>
-                        <div v-else>
-                            Links : No links found.
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.education">
-                            education:
-                            <b class="pre-formatted">{{nl2br(freelancerData.education)}}</b>
-                        </div>
-                        <div v-else>
-                            education : No education found.
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.work_experience">
-                            Work experience:
-                            <b class="pre-formatted">{{nl2br(freelancerData.work_experience)}}</b>
-                        </div>
-                        <div v-else>
-                            Work experience : No Work experience found.
-                        </div>
-                    </div>
-                    <hr>
-                    <div>
-                        <div v-if="freelancerData.references">
-                            References:
-                            <b class="pre-formatted">{{nl2br(freelancerData.references)}}</b>
-                        </div>
-                        <div v-else>
-                            References : No References found.
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -281,7 +215,7 @@
                 freelancerData: {
                     'phone': '',
                     'email': '',
-                    'job_title': '',
+                    'designation': '',
                     'about': '',
                     'location': '',
                     'work_experience': '',
@@ -842,12 +776,12 @@
                     {
                         title:'profile',
                         selected: 1,
-                        
-                    },   
+
+                    },
                     {
                         title:'summary',
                         selected: 1,
-                        
+
                     },
                     {
                         title:'languages',
@@ -857,34 +791,36 @@
                     {
                         title:'work',
                         selected: 1,
-                        
-                    },   
+
+                    },
                     {
                         title:'education',
                         selected: 1,
-                        
+
                     },
                     {
                         title:'skills',
                         selected: 1,
-                        
-                    },   
+
+                    },
                     {
                         title:'achievements',
                         selected: 1,
-                        
-                    },  
+
+                    },
                     {
                         title:'hobbies',
                         selected: 1,
-                        
-                    },   
+
+                    },
                     {
                         title:'references',
                         selected: 1,
-                        
+
                     }
                 ],
+                showFullText: false,
+                showToolTip: false
             }
         },
         methods: {
@@ -953,7 +889,7 @@
                 this.freelancerData = {
                     'phone': '', // done
                     'email': '', // done
-                    'job_title': '', // done
+                    'designation': '', // done
                     'location': '', // done
                     'about': '',
                     'work_experience': [],
@@ -1057,7 +993,7 @@
                     if (!this.freelancerData.phone) {
                         this.searchForPhone(textLine);
                     }
-                    if (!this.freelancerData.job_title) {
+                    if (!this.freelancerData.designation) {
                         this.searchForJobTitle(textLine);
                     }
                     if (!this.freelancerData.location) {
@@ -1139,9 +1075,9 @@
             },
             searchForJobTitle(textLine) {
                 let cleanTextLine = textLine.replace(/\s/g, "");
-                let jobTitleRegex = /engineer|developer|designer|programmer|senior|junior|middle/ig;
+                let jobTitleRegex = /developer|designer|programmer|senior|junior|middle|full-stack/ig;
                 if (jobTitleRegex.test(cleanTextLine)) {
-                    this.freelancerData.job_title = textLine
+                    this.freelancerData.designation = textLine
                 }
             },
             searchForSkills(textLine) {
@@ -1170,6 +1106,19 @@
             editSection(section_title){
                 console.log(section_title);
             },
+
+
+            // saving data:
+            savePersonalData(){
+                //    ( personal ) [email,phone,location,designation]
+            },
+            saveSkills(){
+                // we have only the title.
+            },
+            saveLanguages(){
+                // we have only the language title
+
+            }
         },
         mounted() {
 
@@ -1214,6 +1163,46 @@
             }
         }
 
+        .eye-icon{
+            width: fit-content;
+            margin-bottom: 40px;
+            max-height: 50px;
+            img{
+                margin-top: 25px;
+                border-radius: 5px;
+                width: fit-content;
+                padding: 10px;
+                border: whitesmoke solid 2px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+
+           .custom-tooltip{
+               position: relative;
+               bottom: 42px;
+               left: 80px;
+               border-radius: 5px;
+               padding: 5px;
+               width: 140px;
+               background-color: black;
+               color: #fff;
+               text-align: center;
+               &::after {
+                   content: "";
+                   position: absolute;
+                   top: 50%;
+                   right: 100%;
+                   margin-top: -5px;
+                   border-width: 5px;
+                   border-style: solid;
+                   border-color: transparent black transparent transparent;
+               }
+           }
+        }
+
+
+
         .import-action-btns {
             margin-top: 70px;
             display: flex;
@@ -1246,7 +1235,7 @@
             .auto-import-btn {
                 margin-left: 15px;
                 width: 40%;
-                
+
                 @include lt-sm {
                     height: 56px;
                     margin-top: 1rem;
