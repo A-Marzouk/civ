@@ -10,7 +10,7 @@
         <Right />
       </div>
     </div>
-  </header>
+      </header>
 
 </template>
 
