@@ -173,7 +173,7 @@
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"></div>
-                                        <div> {{freelancerData.education.length > 0 ? freelancerData.education : "Couldn't find education" }}
+                                        <div> {{education.university_name.length > 0 ? education.university_name : "Couldn't find education" }}
                                         </div>
                                     </div>
                                 </div>
@@ -314,6 +314,13 @@
                 },
                 summary:{
                     'about': '',
+                },
+                education:{
+                  university_name:'',
+                  degree_title:'Not set',
+                  institution_type:'',
+                  present: false,
+                  user_id: this.$store.state.user.id
                 },
                 countryList: [
                     "Afghanistan",
@@ -1130,13 +1137,33 @@
 
                 // check for long text fields like education, work experience and references :
 
-                this.searchForEducationText();
+                this.searchForEducationText(arrayOfData);
                 this.searchForExperienceText();
                 this.searchForReferencesText();
 
             },
-            searchForEducationText() {
-                // this.freelancerData.education = this.extractedText.match(/((?<=Education)|(?<=EDUCATION))[\S\s]*?((?=Languages)|(?=LANGUAGES)|(?<=Experience)|(?<=EXPERIENCE)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
+            searchForEducationText(arrayOfData) {
+
+                // check if any word of the text line is a country name
+                arrayOfData.forEach( (textLine) => {
+                    let possibleUniversityTitles = ['university', 'institute', 'college','academy', 'school','Faculty'];
+                    let cleanTextLine = textLine.replace(/-/g, "");
+
+                    for (let i = 0; i < possibleUniversityTitles.length; i++) {
+                        let universityNameReg = new RegExp(possibleUniversityTitles[i], 'ig');
+                        if (universityNameReg.test(cleanTextLine)) {
+                            this.education.university_name = cleanTextLine;
+                            this.education.institution_type = possibleUniversityTitles[i];
+                            break;
+                        }
+                    }
+
+                });
+
+
+                if(this.education.university_name.length > 1){
+                    this.sections.forEach( (section) => { section.title === 'education' ? section.selected = true : ''} );
+                }
             },
             searchForExperienceText() {
                 // this.freelancerData.work_experience = this.extractedText.match(/((?<=Experience)|(?<=EXPERIENCE)|(?<=Work)|(?<=WORK))[\S\s]*?((?=Education)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Languages)|(?=LANGUAGES)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
@@ -1250,6 +1277,9 @@
                         return this.saveLanguages();
                     })
                     .then( () => {
+                        return this.saveEducation();
+                    })
+                    .then( () => {
                         this.updateUserInfo();
                     })
              },
@@ -1325,8 +1355,26 @@
                     return;
                 }
 
-                axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
+                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
                     .then((response) => {
+
+                    })
+                    .catch((error) => {
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            async saveEducation() {
+                // we have only the language title
+                if(!this.isSectionSelected('education')){
+                    return;
+                }
+
+                await axios.post('/api/user/education', this.education )
+                    .then((response) => {
+                        console.log('Education: ');
                         console.log(response.data);
                     })
                     .catch((error) => {

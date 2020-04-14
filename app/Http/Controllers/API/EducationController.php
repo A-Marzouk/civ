@@ -93,8 +93,8 @@ class EducationController extends Controller
             'institution_type' => ['required','string','max:255'],
             'university_name' => ['required','string','max:255'],
             'degree_title' => ['required','string','max:2500'],
-            'date_from' => ['required','date','max:255'],
-            'date_to' => ['nullable','date','max:255'],
+            'date_from' => ['sometimes','date','max:255'],
+            'date_to' => ['sometimes','nullable','date','max:255'],
             'present' =>['boolean']
         ]);
     }
