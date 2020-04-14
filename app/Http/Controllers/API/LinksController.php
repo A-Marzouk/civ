@@ -39,7 +39,6 @@ class LinksController extends Controller
             $link->update($request->toArray());
         }else{
             // add
-            $request['user_id'] = Auth::user()->id;
             $link = Link::create($request->toArray());
         }
 
@@ -52,7 +51,6 @@ class LinksController extends Controller
     {
         $link = Link::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new LinkResource($link);
@@ -62,7 +60,6 @@ class LinksController extends Controller
     {
         $link = Link::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         if($link->delete()){

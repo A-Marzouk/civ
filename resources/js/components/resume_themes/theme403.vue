@@ -15,7 +15,7 @@
                   <img src="/images/resume_themes/theme403/profileimg.png" alt="profilepic" class="profile-img">
                 </div>
 
-                <v-avatar class="msg-icon" height="100" width="100">
+                <v-avatar class="msg-icon" height="200" width="200">
                    <img src="/images/resume_themes/theme403/msg.png" alt="msgpic" id="msg-icon-img">
                 </v-avatar>
               </div>
@@ -96,9 +96,10 @@
                   color="#6884F3" 
                   depressed 
                   rounded 
-                  class="text-capitalize white--text ml-6 hidden-sm-and-down">
+                  class="text-capitalize white--text hidden-sm-and-down ml-6">
                     Hire me
                 </v-btn>
+                <div class="mx-6 hidden-sm-and-down"></div>
               </div> 
             </div>
 
@@ -117,14 +118,16 @@
             </div>
 
             <div class="d-flex align-center justify-space-between">
-              <div class="text-center mr-6 hidden-md-and-up">
-                <div class="font-weight-bold body-2 white--text">$15</div>
-                <div class="white--text caption">Hourly</div>
-              </div>
+              <div class="d-flex">
+                <div class="text-center mr-5 hidden-md-and-up">
+                  <div class="font-weight-bold body-2 white--text">$15</div>
+                  <div class="white--text caption">Hourly</div>
+                </div>
 
-              <div class="text-center hidden-md-and-up">
-                <div class="font-weight-bold body-2 white--text">10 hours</div>
-                <div class="white--text caption">Weekly</div>
+                <div class="text-center hidden-md-and-up">
+                  <div class="font-weight-bold body-2 white--text">10 hours</div>
+                  <div class="white--text caption">Weekly</div>
+                </div>
               </div>
 
              
@@ -303,12 +306,12 @@
         <div>
           <div class="subtitle-2">Design Skills</div>
           <v-divider></v-divider>
-          <div class="d-flex mt-12">
+          <div class="d-flex justify-space-around mt-12">
             <div class="body-1 hidden-sm-and-down">100%</div>
-            <div class="bar-cont ml-9 d-flex align-end light-it" v-for="skill in skills" :key="skill.id">
+            <div class="bar-cont d-flex align-end light-it" v-for="skill in skills" :key="skill.id">
               
               <div>
-                <div :style="{ height: skill.value/5.8 + 'rem', width: '20rem' }" id="progress-2010" class="ct-primary pt-2 text-center">{{ skill.value }}%</div>
+                <div :style="{ height: skill.value/5.8 + 'rem' }" id="progress-2010" class="ct-primary pt-2 text-center">{{ skill.value }}%</div>
                 <div class="text-center caption white black--text pt-2">{{ skill.skill }}</div>
               </div>
             </div>
@@ -547,21 +550,21 @@
 }
 
 .msg-icon {
-  transform: translateY(-11.8rem) translateX(9.4rem);
+  transform: translateY(-15.2rem) translateX(6.5rem);
 }
 
 #msg-icon-img {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 2.2rem;
+  width: 2.2rem;
 }
 
 .msg-icon-2 {
-  transform: translateY(-5.5rem) translateX(4.7rem);
+  transform: translateY(-5.6rem) translateX(4.5rem);
 }
 
 #msg-icon-img-2 {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
 }
 
 
@@ -702,13 +705,39 @@
 /* Design skill style */
 .bar-cont {
   height: 20rem;
-  width: 1.5rem;
+  width: 8rem !important;
 }
 
 #progress-2010 {
-  width: 1.5rem !important;
-  font-size: 0.6rem;
+  width: 8rem !important;
+  font-size: 0.8rem;
   color: white;
+}
+
+@media only screen and (max-width: 945px) {
+  .bar-cont {
+  height: 20rem;
+  width: 6rem !important;
+}
+
+#progress-2010 {
+  width: 6rem !important;
+  font-size: 0.8rem;
+  color: white;
+}
+}
+
+@media only screen and (max-width: 520px) {
+  .bar-cont {
+  height: 20rem;
+  width: 2rem !important;
+}
+
+#progress-2010 {
+  width: 2rem !important;
+  font-size: 0.8rem;
+  color: white;
+}
 }
 
 </style>

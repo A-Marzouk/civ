@@ -42,7 +42,6 @@ class MediaController extends Controller
             $media->update($request->toArray());
         }else{
             // add
-            $request['user_id'] = Auth::user()->id;
             $media = Media::create($request->toArray());
 
             if($request->hasfile('mediaFile')) {
@@ -65,7 +64,6 @@ class MediaController extends Controller
     {
         $media = Media::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new MediaResource($media);
@@ -75,7 +73,6 @@ class MediaController extends Controller
     {
         $media = Media::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         // remove media from the system if the file exists

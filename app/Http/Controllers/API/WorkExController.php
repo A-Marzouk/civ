@@ -49,7 +49,6 @@ class WorkExController extends Controller
             $workEx->update($request->toArray());
         }else{
             // add
-            $request['user_id'] = Auth::user()->id;
             $workEx = WorkEx::create($request->toArray());
         }
 
@@ -71,7 +70,6 @@ class WorkExController extends Controller
     {
         $workEx = WorkEx::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new WorkExResource($workEx);
@@ -82,7 +80,6 @@ class WorkExController extends Controller
     {
         $workEx = WorkEx::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         if($workEx->delete()){
@@ -93,12 +90,12 @@ class WorkExController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'company_name' => ['required','string','max:255'],
+            'company_name' => ['sometimes','required','string','max:255'],
             'job_title' => ['required','string','max:255'],
             'description' => ['required','string','max:2500'],
-            'website' => ['nullable','string','max:255'],
-            'date_from' => ['required','date','max:255'],
-            'date_to' => ['nullable','date','max:255'],
+            'website' => ['sometimes','nullable','string','max:255'],
+            'date_from' => ['sometimes','date','max:255'],
+            'date_to' => ['sometimes','nullable','date','max:255'],
             'present' =>['boolean']
         ]);
     }

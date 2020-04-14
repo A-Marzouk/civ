@@ -27,11 +27,10 @@ class ReferencesController extends Controller
     }
     public function store(Request $request)
     {
-
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put')){
-            $reference = Auth::user()->reference;
+            $reference = Reference::find($request->id);
             $reference->update($request->toArray());
         }else{
             // add

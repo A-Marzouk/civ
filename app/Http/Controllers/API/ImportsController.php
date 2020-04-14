@@ -46,7 +46,6 @@ class ImportsController extends Controller
     {
         $import = Import::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new ImportResource($import);
@@ -56,7 +55,6 @@ class ImportsController extends Controller
     {
         $import = Import::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         if($import->delete()){

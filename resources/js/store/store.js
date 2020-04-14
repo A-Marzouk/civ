@@ -275,7 +275,7 @@ export const store = new Vuex.Store({
         access_token: Vue.$cookies.get('access_token') || null
     },
     mutations: {
-        getCurrentUser: (state, data) => {
+        setCurrentUser: (state, data) => {
             state.user = data;
         },
         updateThemeUser(state, themeUser) {
@@ -326,15 +326,19 @@ export const store = new Vuex.Store({
 
     },
     actions: {
-        getCurrentUser: (store) => {
-            axios.get('/api/user').then((response) => {
-                store.commit('getCurrentUser', response.data);
-            }).catch((error) => {
-                // if unauthorized : logout user [it means the cookie has been deleted or changed]
-                if (error.response.status === 401) {
-                    store.dispatch('logoutUnauthorizedUser');
-                }
-            });
+        setCurrentUser: (store,payload = {}) => {
+            if(payload.id){
+                store.commit('setCurrentUser', payload);
+            }else{
+                axios.get('/api/user').then((response) => {
+                    store.commit('setCurrentUser', response.data);
+                }).catch((error) => {
+                    // if unauthorized : logout user [it means the cookie has been deleted or changed]
+                    if (error.response.status === 401) {
+                        store.dispatch('logoutUnauthorizedUser');
+                    }
+                });
+            }
         },
         logoutUnauthorizedUser() {
             axios.post('/logout').then((response) => {

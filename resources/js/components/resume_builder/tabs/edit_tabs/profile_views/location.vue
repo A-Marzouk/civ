@@ -25,7 +25,7 @@
         },
         methods:{
             updateLocation(savingType){
-                axios.put('/api/user/personal-info/location',{location : this.personalInfo.location})
+                axios.put('/api/user/personal-info/location',{location : this.personalInfo.location, user_id:this.$store.state.user.id})
                     .then((response) => {
                         savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
@@ -35,6 +35,10 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             }
         },

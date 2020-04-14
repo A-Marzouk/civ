@@ -258,6 +258,10 @@
                         } else {
                             this.errors.edit = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             EditedSuccessfully(editedWork) {
@@ -294,6 +298,7 @@
             },
             addWorkEx(){
                 this.errors = {  new: {}, edit: {}};
+                this.newWork.user_id = this.$store.state.user.id;
                 axios.post('/api/user/work-experience', this.newWork)
                     .then((response) => {
                         this.works.unshift(response.data.data);
@@ -306,6 +311,10 @@
                         } else {
                             this.errors.new  = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             clearWorkEx(){

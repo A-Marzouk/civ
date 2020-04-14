@@ -24,9 +24,8 @@ class SkillsController extends Controller
      */
     public function index()
     {
-        // get skills
+        // get skills of current user.
         $skills = Skill::where('user_id',Auth::user()->id)->paginate(5);
-        // return the collection of skills as a resource:
         return SkillResource::collection($skills);
     }
 
@@ -47,13 +46,20 @@ class SkillsController extends Controller
             $skill->update($request->toArray());
         }else{
             // add
-            $request['user_id'] = Auth::user()->id;
             $skill =Skill::create($request->toArray());
         }
 
         if ($skill->id){
             return new SkillResource($skill);
         }
+    }
+
+    public function storeMany(Request $request)
+    {
+        if(Skill::insert($request->toArray())){
+           return ['status' =>'success'];
+        }
+
     }
 
     /**
@@ -67,7 +73,6 @@ class SkillsController extends Controller
     {
         $skill = Skill::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         return new SkillResource($skill);
@@ -83,7 +88,6 @@ class SkillsController extends Controller
     {
         $skill = Skill::where([
             'id' => $id,
-            'user_id' => Auth::user()->id
         ])->first();
 
         if($skill->delete()){

@@ -340,6 +340,10 @@
                         } else {
                             this.errors.edit = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             addPrefix(url){
@@ -406,6 +410,10 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             copyProfileLink() {
@@ -430,6 +438,10 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             copyPaymentLink() {
@@ -485,6 +497,7 @@
                     return;
                 }
 
+                link.user_id = this.$store.state.user.id
                 axios.post('/api/user/links', link)
                     .then((response) => {
                         let addedLink = response.data.data;
@@ -499,6 +512,10 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             clearLink() {
@@ -620,8 +637,6 @@
         color: red;
         padding-top: 5px;
         padding-left: 3px;
-        position: absolute;
-        bottom: -35px;
     }
 
     .hold-tab {

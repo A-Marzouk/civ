@@ -27,6 +27,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/skills/{id}', 'API\SkillsController@show');
     //create new skill
     Route::post('/skills', 'API\SkillsController@store');
+    //create many skill
+    Route::post('/skills-many', 'API\SkillsController@storeMany');
     //update a skill
     Route::put('/skills', 'API\SkillsController@store');
     //delete skill
@@ -77,6 +79,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/personal-info/location', 'API\PersonalInfoController@storeLocation');
     Route::put('/personal-info/single-field', 'API\PersonalInfoController@updateSingleField');
 
+//  Account user data:
+    Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
+    Route::post('/account/validate', 'API\UsersController@validateSingleField')->name('account.validate');
+
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
 
@@ -91,7 +97,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/languages', 'API\LanguagesController@index');
     Route::get('/languages-list', 'API\LanguagesController@languagesList');
     Route::post('/languages', 'API\LanguagesController@store');
-    Route::delete('/languages/{id}', 'API\LanguagesController@destroy');
+    Route::post('/languages-many', 'API\LanguagesController@storeMany');
+    Route::delete('/languages/{id}/{user_id}', 'API\LanguagesController@destroy');
 
 // Projects api routes:
     Route::get('/projects', 'API\ProjectsController@index');
@@ -157,6 +164,14 @@ Route::group(['prefix' => 'user/'], function () {
 Route::post('login', 'API\Auth\AuthController@login')->name('api.login');
 Route::post('register', 'API\Auth\AuthController@register');
 Route::post('logout', 'API\Auth\AuthController@logout');
+
+// API Admin routes
+Route::group(['prefix' => 'admin/'], function () {
+    Route::post('create-user', 'API\Admin\UsersController@createUser');
+    Route::put('update-user', 'API\Admin\UsersController@updateUser');
+    Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
+});
+
 
 // API users routes
 Route::get('user', 'API\UsersController@user');

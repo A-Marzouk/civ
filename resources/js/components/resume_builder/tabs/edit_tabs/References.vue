@@ -343,12 +343,15 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     }
                 });
 
+                formData['id'] = this.reference.id;
+
                 if(savingType === 'manual'){
                     formData = this.reference;
                 }
 
                 axios.put('/api/user/reference',formData)
                     .then((response) => {
+                        console.log(response.data);
                         savingType === 'manual' ? this.$store.dispatch('fullScreenNotification') :  this.$store.dispatch('flyingNotification')
                     })
                     .catch((error) => {
@@ -357,6 +360,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             applyRefereeEdit(savingType) {
@@ -372,6 +379,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                     }
                 });
 
+                formData['id'] = this.referee.id;
+
                 if(savingType === 'manual'){
                     formData = this.referee;
                 }
@@ -386,10 +395,15 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             addTestimonial(){
                 this.errors = { new:{}, edit:{}};
+                this.newTestimonial.user_id = this.$store.state.user.id;
                 axios.post('/api/user/testimonials', this.newTestimonial)
                     .then((response) => {
                         this.testimonials.unshift(response.data.data);
@@ -403,6 +417,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors.new  = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             closeOptionsBtn() {
@@ -428,6 +446,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors.edit = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             EditedSuccessfully(editedTestimonial) {

@@ -87,7 +87,7 @@
                                 Duration: {{education.date_from}} - {{education.present ? "present" : education.date_to}}
                             </div>
                             <div class="work-ex-detials">
-                                {{education.description || 'Dolor consectetur exercitation irure veniam pariatur laborum proident anim cupidatat anim duis et veniam. Irure non reprehenderit nisi in voluptate ad. Do consectetur consequat esse duis minim mollit exercitation nisi. Enim proident in excepteur commodo minim voluptate aliqua commodo ut. Duis dolore id in pariatur sit aliquip esse ut veniam. Velit est culpa tempor ullamco elit.'}}
+
                             </div>
                             <div class="optionsBtns showOnMd">
                                 <a href="javascript:;" @click="editEducation(education)">
@@ -203,7 +203,7 @@
                     degree_title:'',
                     date_from:'',
                     date_to:'',
-                    present: false,
+                    present: false
                 },
                 errors: {
                     new: {},
@@ -241,6 +241,10 @@
                         } else {
                             this.errors.edit = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             EditedSuccessfully(editedEducation) {
@@ -277,6 +281,7 @@
             },
             addEducation(){
                 this.errors = {  new: {}, edit: {}};
+                this.newEducation.user_id = this.$store.state.user.id
                 axios.post('/api/user/education', this.newEducation)
                     .then((response) => {
                         this.educations.unshift(response.data.data);
@@ -289,6 +294,10 @@
                         } else {
                             this.errors.new  = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             clearEducation(){
@@ -715,7 +724,7 @@ $mainBlue: #001CE2;
                 position: relative;
                 display: flex;
                 justify-content: flex-start;
-                max-width: 757px;
+                /*max-width: 757px;*/
                 width: 100%;
                 margin-bottom: 30px;
 

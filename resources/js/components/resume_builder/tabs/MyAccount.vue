@@ -168,6 +168,7 @@
                 this.usernameOldValue = this.currentUser.username;
 
                 return {
+                    id: user.id,
                     name: user.name,
                     email: user.email,
                     username: user.username,
@@ -217,7 +218,7 @@
                     return;
                 }
 
-                axios.post('/resume-builder/account/validate', data)
+                axios.post('/api/user/account/validate', data)
                     .then((response) => {
                         if (response.data === 'success') {
                             this.fields[field_name] = 'success';
@@ -234,6 +235,10 @@
                         } else {
                             this.errors = ['Something went wrong. Please try again.'];
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     })
             },
 
@@ -255,7 +260,7 @@
                     this.accountData.userNameChanged = true;
                 }
 
-                axios.post('/resume-builder/account/submit', this.accountData)
+                axios.post('/api/user/account/submit', this.accountData)
                     .then((response) => {
                         // changes saved pop-up
                         this.$store.dispatch('fullScreenNotification');
@@ -267,6 +272,10 @@
                         } else {
                             this.errors = ['Something went wrong. Please try again.'];
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     })
             },
             clearErrors() {
@@ -307,7 +316,7 @@
 
             // autosave submit
             autoSave(){
-                axios.post('/resume-builder/account/submit', this.accountData)
+                axios.post('/api/user/account/submit', this.accountData)
                     .then((response) => {
                         // changes saved pop-up
                         this.$store.dispatch('flyingNotification');
@@ -319,6 +328,10 @@
                         } else {
                             this.errors = ['Something went wrong. Please try again.'];
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     })
             },
             setUpAutoSave(){

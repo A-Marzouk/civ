@@ -91,6 +91,7 @@ export default {
         applyEdit(savingType) {
             let formData = new FormData();
             formData.append("_method", "put");
+            formData.append("user_id", this.user.id);
 
             $.each(this.personalInfo, (field) => {
                 if(this.personalInfo[field] !== null){
@@ -122,6 +123,10 @@ export default {
                     } else {
                         this.errors = 'Something went wrong. Please try again.';
                     }
+                    this.$store.dispatch('flyingNotification', {
+                        message: 'Error',
+                        iconSrc: '/images/resume_builder/error.png'
+                    });
                 });
         },
         handleProfilePictureUpload() {

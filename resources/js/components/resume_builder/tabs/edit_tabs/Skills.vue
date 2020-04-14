@@ -174,7 +174,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                 skill: {
                     category: '',
                     title: '',
-                    percentage: ''
+                    percentage: '',
+                    user_id: this.$store.state.user.id,
                 },
                 addNewSkill: false,
                 optionSkillId: 0,
@@ -229,6 +230,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                             } else {
                                 this.errors.new  = 'Something went wrong. Please try again.';
                             }
+                            this.$store.dispatch('flyingNotification', {
+                                message: 'Error',
+                                iconSrc: '/images/resume_builder/error.png'
+                            });
                         });
                 }
             },
@@ -279,6 +284,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             deleteSkill(skill) {
