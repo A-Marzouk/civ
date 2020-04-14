@@ -12,64 +12,70 @@
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col md="8" cols="12" sm="7">
+                <v-col md="5" cols="12" sm="7">
                   <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
-                      <v-list-item two-line>
-                        <v-list-item-content>
-                          <v-list-item-title class="profile-title">
-                            <v-card class="pa-0" flat color="transparent">
-                              Carla Pipin Ranga
-                              <span class="mx-8 hidden-sm-and-down">
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  depressed
-                                  class="mx-md-1 mx-sm-2 btn-email"
-                                >
-                                  <v-icon class="icon-email">mdi-email</v-icon>
-                                </v-btn>
+                      <v-row>
+                        <v-col cols="8">
+                          <v-list-item two-line class="ml-n4">
+                            <v-list-item-content>
+                              <v-list-item-title class="profile-title">
+                                <v-card class="pa-1" flat color="transparent">Carla Pipin Ranga</v-card>
+                              </v-list-item-title>
+                              <v-list-item-title class="mt-n2">
+                                <v-card flat color="transparent" class="pa-1">
+                                  <span
+                                    class="profile-subtitle"
+                                  >Web Ui/Ux Designer, Graphiс Designer</span>
+                                </v-card>
+                              </v-list-item-title>
+                              <v-list-item-subtitle class="ml-n1">
+                                <v-card flat color="transparent" class="mt-2 pa-1">
+                                  <v-btn
+                                    fab
+                                    style="overflow:hidden;"
+                                    color="#000000"
+                                    small
+                                    class="mx-md-1 mx-sm-2 mx-1 social-btn"
+                                    depressed
+                                    v-for="item in socialIcons2"
+                                    :key="item.id"
+                                  >
+                                    <img width="14" :src="getSocialIcon(item.title)" />
+                                  </v-btn>
+                                </v-card>
+                              </v-list-item-subtitle>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-col>
+                        <v-col cols="4">
+                          <v-card flat color="transparent" class="mt-5">
+                            <v-btn
+                              fab
+                              color="#FCD259"
+                              small
+                              depressed
+                              class="mx-md-1 mx-sm-2 btn-email"
+                            >
+                              <v-icon class="icon-email">mdi-email</v-icon>
+                            </v-btn>
 
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
-                                  class="btn-headphone mx-auto mx-sm-2 mx-md-1"
-                                  align="center"
-                                >
-                                  <img
-                                    width="27"
-                                    src="/images/resume_themes/theme205/icons/download-pdf.png"
-                                  />
-                                </v-btn>
-                              </span>
-                              <span class="social-media-block hidden-sm-and-down">
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  class="mx-md-1 mx-sm-2 social-btn"
-                                  depressed
-                                  v-for="item in socialIcons"
-                                  :key="item.id"
-                                >
-                                  <img
-                                    :width="item.title == 'map-markup'?11:16"
-                                    :src="getSocialIcon(item.title)"
-                                  />
-                                </v-btn>
-                              </span>
-                            </v-card>
-                          </v-list-item-title>
-                          <v-list-item-title>
-                            <v-card flat color="transparent">
-                              <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
-                            </v-card>
-                          </v-list-item-title>
-                        </v-list-item-content>
-                      </v-list-item>
+                            <v-btn
+                              fab
+                              color="#FCD259"
+                              x-small
+                              depressed
+                              class="btn-headphone mx-auto mx-sm-2 mx-md-1"
+                              align="center"
+                            >
+                              <img
+                                width="27"
+                                src="/images/resume_themes/theme205/icons/download-pdf.png"
+                              />
+                            </v-btn>
+                          </v-card>
+                        </v-col>
+                      </v-row>
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -108,54 +114,37 @@
                 <!-- 2nd column social media icons -->
                 <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
                   <v-card flat color="tranparent">
-                    <v-card-text class>
+                    <v-btn
+                      fab
+                      color="#000000"
+                      small
+                      class="mx-md-1 mx-sm-2 mx-1 social-btn"
+                      depressed
+                      v-for="item in socialIcons"
+                      :key="item.id"
+                    >
+                      <img width="15" :src="getSocialIcon(item.title)" />
+                    </v-btn>
+                  </v-card>
+                </v-col>
+                <!-- Social media icons -->
+                <v-col md="7">
+                  <v-card flat color="transparent" class="mt-n12">
+                    <v-card-text align="right">
                       <v-btn
                         fab
                         color="#FCD259"
                         small
-                        class="mx-md-1 mx-sm-2 mx-1 social-btn"
+                        class="mx-md-1 mx-sm-2 social-btn"
                         depressed
                         v-for="item in socialIcons"
                         :key="item.id"
                       >
-                        <img width="15" :src="getSocialIcon(item.title)" />
+                        <img
+                          :width="item.title == 'map-markup'?11:16"
+                          :src="getSocialIcon(item.title)"
+                        />
                       </v-btn>
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-                <!-- Social media icons -->
-
-                <v-col md="4" sm="8" cols="12" class="availibility-col">
-                  <v-card flat color="transparent" class="ma-0 pa-0">
-                    <v-card-text class="ml-md-n5">
-                      <v-row no-gutters align="center" justify="center">
-                        <v-col cols="4" class="d-flex">
-                          <v-card flat class="text-center" color="tranparent">
-                            <v-card-title class="hire-me-title">Hourly rate</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">$25 USD</v-card-subtitle>
-                          </v-card>
-                        </v-col>
-                        <div style="height:41px; border:1px solid #D7D7D7;"></div>
-                        <v-col cols="4" class="d-flex">
-                          <v-card flat class="text-center" color="transparent">
-                            <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">8 Hours</v-card-subtitle>
-                          </v-card>
-                        </v-col>
-
-                        <v-col cols="3" class="d-flex">
-                          <v-card flat color="transparent">
-                            <v-card-text>
-                              <v-btn
-                                color="#FCD259"
-                                class="mx-n6 btn-hire-me"
-                                height="45"
-                                depressed
-                              >Hire Me</v-btn>
-                            </v-card-text>
-                          </v-card>
-                        </v-col>
-                      </v-row>
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -394,6 +383,12 @@ export default {
         { id: 1, title: "map-markup" },
         { id: 2, title: "whatsapp" },
         { id: 3, title: "google-plus" }
+      ],
+      socialIcons2: [
+        { id: 1, title: "behance" },
+        { id: 2, title: "dribbble" },
+        { id: 3, title: "instagram" },
+        { id: 4, title: "linkedin" }
       ],
       mainDataTab: null,
       progressBarColor: "yellow",
