@@ -99,7 +99,6 @@
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
 
-
                     <v-btn fab color="#FCD259" small depressed class="btn-headphone mx-1 mx-sm-2">
                       <img
                         width="26"
@@ -209,7 +208,7 @@
                       <v-col cols="12">
                         <v-card flat color="transparent">
                           <div class="about-title">About</div>
-                          <br>
+                          <br />
                           <div class="about-detail">
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
@@ -602,6 +601,9 @@ export default {
   height: 1000vh;
   z-index: 1;
   bottom: 0;
+  @media screen and (max-width: 599px) {
+    width: 1rem;
+  }
 }
 /* Shapes */
 
@@ -747,7 +749,7 @@ export default {
   line-height: 15px !important;
   text-align: center;
   color: #373737 !important;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     text-align: left !important;
     font-size: 1.125rem !important;
     line-height: 25px !important;

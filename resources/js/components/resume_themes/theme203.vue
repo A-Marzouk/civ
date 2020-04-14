@@ -599,6 +599,9 @@ export default {
   height: 1000vh;
   z-index: 1;
   bottom: 0;
+  @media screen and (max-width: 599px){
+    width: 1rem;
+  }
 }
 /* Shapes */
 
