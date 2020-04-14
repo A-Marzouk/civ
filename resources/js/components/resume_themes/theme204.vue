@@ -42,25 +42,12 @@
                                   color="#FCD259"
                                   x-small
                                   depressed
-                                  class="mx-md-auto mx-sm-2 btn-video-player"
-                                >
-                                  <img
-                                    width="15"
-                                    src="/images/resume_themes/theme204/icons/video-player.webp"
-                                  />
-                                </v-btn>
-
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
                                   align="center"
                                 >
                                   <img
-                                    width="15"
-                                    src="/images/resume_themes/theme204/icons/headphones.webp"
+                                    width="27"
+                                    src="/images/resume_themes/theme204/icons/download-pdf.png"
                                   />
                                 </v-btn>
                               </span>
@@ -74,7 +61,10 @@
                                   v-for="item in socialIcons"
                                   :key="item.id"
                                 >
-                                  <img width="15" :src="getSocialIcon(item.title)" />
+                                  <img
+                                    :width="item.title == 'map-markup'?11:16"
+                                    :src="getSocialIcon(item.title)"
+                                  />
                                 </v-btn>
                               </span>
                             </v-card>
@@ -99,7 +89,13 @@
                     class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
                     style="z-index:2"
                   >
-                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 mx-1 btn-email">
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      small
+                      depressed
+                      class="mx-md-1 mx-sm-2 mx-1 btn-email"
+                    >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
 
@@ -113,13 +109,7 @@
                       <img width="15" src="/images/resume_themes/theme204/icons/video-player.webp" />
                     </v-btn>
 
-                    <v-btn
-                      fab
-                      color="#FCD259"
-                      x-small
-                      depressed
-                      class="btn-headphone mx-1 mx-sm-2"
-                    >
+                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
                       <img
                         width="15"
                         style="margin-left:1px;"
@@ -151,7 +141,7 @@
                 </v-col>
                 <!-- Social media icons -->
 
-                <v-col md="4" sm="8" cols="12">
+                <v-col md="4" sm="8" cols="12" class="availibility-col">
                   <v-card flat color="transparent" class="ma-0 pa-0">
                     <v-card-text class="ml-md-n5">
                       <v-row no-gutters align="center" justify="center">
@@ -220,8 +210,28 @@
           <v-col cols="12">
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
+                <!-- About -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">About</div>
+                  <v-card flat color="transparent" align="center">
+                    <v-row align="center" justify="center">
+                      <v-col cols="12">
+                        <v-card flat color="transparent">
+                          <div class="about-title">About</div>
+                          <v-card-text class="about-detail">
+                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-card>
+                </v-tab-item>
+                <!-- About -->
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
+                  <div class="watermark-text text-center">Portfolio</div>
                   <v-card flat color="transparent" align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
@@ -234,7 +244,7 @@
                             flat
                             color="transparent"
                           >
-                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)">
+                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
                             <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
                           </v-card>
@@ -396,29 +406,31 @@ export default {
   data() {
     return {
       socialIcons: [
-        { id: 1, title: "behance" },
-        { id: 2, title: "dribbble" },
-        { id: 3, title: "instagram" },
-        { id: 4, title: "linkedin" },
-        { id: 5, title: "google-plus" }
+        { id: 1, title: "map-markup" },
+        { id: 2, title: "whatsapp" },
+        { id: 3, title: "google-plus" }
       ],
       mainDataTab: null,
       progressBarColor: "yellow",
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio"
+          title: "About"
         },
         {
           id: 2,
-          title: "Work"
+          title: "Portfolio"
         },
         {
           id: 3,
-          title: "Education"
+          title: "Work"
         },
         {
           id: 4,
+          title: "Education"
+        },
+        {
+          id: 5,
           title: "Skills"
         }
       ],
@@ -724,10 +736,25 @@ export default {
   }
 }
 // ............................ Main Navigation Tab ...........................//
+// about
+.about-title {
+  font-family: "Open Sans" sans-serif !important;
+  font-size: 1.5rem;
+  line-height: 33px;
+  color: #000000 !important;
+}
+.about-details {
+  font-family: "Open Sans" sans-serif !important;
+  font-size: 0.75rem !important;
+  line-height: 15px;
+  text-align: center;
+  color: #373737 !important;
+}
+//about
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
   border-radius: 10px;
-  width:100% !important;
+  width: 100% !important;
   height: 100% !important;
 }
 .custom-portfolio-title {

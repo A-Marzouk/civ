@@ -99,7 +99,13 @@
                     class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
                     style="z-index:2"
                   >
-                    <v-btn fab color="#FCD259" small depressed class="mx-md-1 mx-sm-2 mx-1 btn-email">
+                    <v-btn
+                      fab
+                      color="#FCD259"
+                      small
+                      depressed
+                      class="mx-md-1 mx-sm-2 mx-1 btn-email"
+                    >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
 
@@ -113,13 +119,7 @@
                       <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
                     </v-btn>
 
-                    <v-btn
-                      fab
-                      color="#FCD259"
-                      x-small
-                      depressed
-                      class="btn-headphone mx-1 mx-sm-2"
-                    >
+                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
                       <img
                         width="15"
                         style="margin-left:1px;"
@@ -222,6 +222,7 @@
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
+                  <div class="watermark-text text-center">Portfolio</div>
                   <v-card flat color="transparent" align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
@@ -234,7 +235,7 @@
                             flat
                             color="transparent"
                           >
-                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)">
+                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
                             <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
                           </v-card>
@@ -727,7 +728,7 @@ export default {
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
   border-radius: 10px;
-  width:100% !important;
+  width: 100% !important;
   height: 100% !important;
 }
 .custom-portfolio-title {
