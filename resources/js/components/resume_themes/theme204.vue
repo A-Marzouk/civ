@@ -17,10 +17,10 @@
                     <v-card-text>
                       <v-list-item two-line>
                         <v-list-item-avatar size="120" class="hidden-xs-only custom-avatar">
-                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
+                          <v-img src="/images/resume_themes/theme204/images/avatar.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-avatar size="80" class="hidden-sm-and-up custom-avatar mr-2">
-                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
+                          <v-img src="/images/resume_themes/theme204/images/avatar.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
@@ -46,7 +46,7 @@
                                 >
                                   <img
                                     width="15"
-                                    src="/images/resume_themes/theme203/icons/video-player.webp"
+                                    src="/images/resume_themes/theme204/icons/video-player.webp"
                                   />
                                 </v-btn>
 
@@ -60,7 +60,7 @@
                                 >
                                   <img
                                     width="15"
-                                    src="/images/resume_themes/theme203/icons/headphones.webp"
+                                    src="/images/resume_themes/theme204/icons/headphones.webp"
                                   />
                                 </v-btn>
                               </span>
@@ -110,7 +110,7 @@
                       depressed
                       class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
                     >
-                      <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
+                      <img width="15" src="/images/resume_themes/theme204/icons/video-player.webp" />
                     </v-btn>
 
                     <v-btn
@@ -124,7 +124,7 @@
                         width="15"
                         style="margin-left:1px;"
                         class
-                        src="/images/resume_themes/theme203/icons/headphones.webp"
+                        src="/images/resume_themes/theme204/icons/headphones.webp"
                       />
                     </v-btn>
                   </v-card>
@@ -258,7 +258,7 @@
                                 <v-list-item-icon>
                                   <img
                                     class="work-icon"
-                                    src="/images/resume_themes/theme203/images/ellipse.png"
+                                    src="/images/resume_themes/theme204/images/ellipse.png"
                                   />
                                 </v-list-item-icon>
                                 <v-list-item-content>
@@ -294,7 +294,7 @@
                               <v-list-item-icon>
                                 <img
                                   class="work-icon"
-                                  src="/images/resume_themes/theme203/images/ellipse.png"
+                                  src="/images/resume_themes/theme204/images/ellipse.png"
                                 />
                               </v-list-item-icon>
                               <v-list-item-content>
@@ -518,10 +518,10 @@ export default {
   },
   methods: {
     getSocialIcon(name) {
-      return `/images/resume_themes/theme203/social_icons/${name}.webp`;
+      return `/images/resume_themes/theme204/social_icons/${name}.webp`;
     },
     getPortfolioItems(id) {
-      return `/images/resume_themes/theme203/portfolio/${id}.png`;
+      return `/images/resume_themes/theme204/portfolio/${id}.png`;
     }
   }
 };
@@ -839,7 +839,7 @@ export default {
 </style>
 
 <style>
-#resumeTheme203 .v-progress-linear__determinate {
+#resumeTheme204 .v-progress-linear__determinate {
   background-color: -moz-linear-gradient(
     138.05deg,
     #fcd259 1.07%,
