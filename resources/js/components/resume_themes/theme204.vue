@@ -40,13 +40,13 @@
                                 <v-btn
                                   fab
                                   color="#FCD259"
-                                  x-small
+                                  small
                                   depressed
                                   class="btn-headphone mx-auto mx-sm-2 mx-md-1"
                                   align="center"
                                 >
                                   <img
-                                    width="27"
+                                    width="16"
                                     src="/images/resume_themes/theme204/icons/download-pdf.png"
                                   />
                                 </v-btn>
@@ -89,20 +89,13 @@
                     class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
                     style="z-index:2"
                   >
-                    <v-btn
-                      fab
-                      color="#FCD259"
-                      small
-                      depressed
-                      class="mx-md-1 mx-sm-2 mx-1 btn-email"
-                    >
+                    <v-btn fab color="#FCD259" depressed class="mx-md-1 mx-sm-2 mx-1 btn-email">
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
 
-                    <v-btn fab color="#FCD259" small depressed class="btn-headphone mx-1 mx-sm-2">
+                    <v-btn fab color="#FCD259" depressed class="btn-headphone mx-1 mx-sm-2">
                       <img
-                        width="26"
-                        style="margin-left:1px;"
+                        width="16"
                         class
                         src="/images/resume_themes/theme204/icons/download-pdf.png"
                       />

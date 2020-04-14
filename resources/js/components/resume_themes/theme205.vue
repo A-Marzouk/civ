@@ -63,13 +63,12 @@
                             <v-btn
                               fab
                               color="#FCD259"
-                              x-small
                               depressed
                               class="btn-headphone mx-auto mx-sm-2 mx-md-1"
                               align="center"
                             >
                               <img
-                                width="27"
+                                width="16"
                                 src="/images/resume_themes/theme205/icons/download-pdf.png"
                               />
                             </v-btn>
