@@ -31,7 +31,7 @@
                 <img src="/images/resume_builder/import/pic.png" alt="icon">
                 {{file.name}}
                 <img class="close" src="/images/resume_builder/my_account/close-modal.png" alt="icon"
-                     @click="clearFile">
+                     @click="clearAll">
             </div>
 
             <div class='w-100' v-if="extractedText.length < 1">
@@ -78,7 +78,7 @@
                         </div>
                         <div class="section-content" :class="{active : section.selected}">
                             <div class="import-section-title">
-                                <span @click="toggleSelectionOfSection(section)">{{section.title}}</span>
+                                <span @click="toggleSelectionOfSection(section)">{{section.title.replace('_',' ')}}</span>
                                 <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
                                      @click="openEdit(section)" v-show="!section.edited">
                                 <img src="/images/resume_builder/import/exit.svg" alt="close icon"
@@ -157,23 +157,75 @@
 
                             </div>
 
-                            <div class="section-content-items" v-show="section.title === 'work'">
-                                <div class="edit-inputs" v-if="section.edited"></div>
+                            <div class="section-content-items" v-show="section.title === 'work_experience'">
+                                <div class="edit-inputs" v-if="section.edited">
+                                    <input class='shorter' type="text" id="companyName" placeholder="Company name" v-model="work_experience.company_name">
+                                    <div class="error" v-if="errors.company_name">
+                                        {{ Array.isArray(errors.company_name) ? errors.company_name[0] : errors.company_name}}
+                                    </div>
+                                    <input type="text" id="jobTitle" placeholder="Job title" v-model="work_experience.job_title">
+                                    <div class="error" v-if="errors.job_title">
+                                        {{ Array.isArray(errors.job_title) ? errors.job_title[0] : errors.job_title}}
+                                    </div>
+                                    <textarea type="text" id="description" placeholder="Description" v-model="work_experience.description"></textarea>
+                                    <div class="error" v-if="errors.description">
+                                        {{ Array.isArray(errors.description) ? errors.description[0] : errors.description}}
+                                    </div>
+                                    <input type="text" id="website" placeholder="Website" v-model="work_experience.website">
+                                    <div class="error" v-if="errors.website">
+                                        {{ Array.isArray(errors.website) ? errors.website[0] : errors.website}}
+                                    </div>
+                                    <input type="date" id="dateFromWork" v-model="work_experience.date_from">
+                                    <div class="error" v-if="errors.date_from">
+                                        {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                                    </div>
+                                    <label for="dateTo" class="light d-flex align-items-center mt-4">
+                                        <input type="checkbox" class="checkbox" v-model="work_experience.present"> I currently work here.
+                                    </label>
+                                    <input type="date" id="dateToWork" v-model="work_experience.date_to" :disabled="work_experience.present">
+                                    <div class="error" v-if="errors.date_to">
+                                        {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                    </div>
+                                </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"></div>
-                                        <div> {{freelancerData.work_experience.length > 0 ? freelancerData.work_experience : "Couldn't find work experience"}}
+                                        <div> {{work_experience.job_title.length > 0 ? work_experience.job_title : "Couldn't find work experience"}}
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'education'">
-                                <div class="edit-inputs" v-if="section.edited"></div>
+                                <div class="edit-inputs" v-if="section.edited">
+                                    <input type="text" id="institutionType" placeholder="Institution type"  class="shorter" v-model="education.institution_type">
+                                    <div class="error" v-if="errors.institution_type">
+                                        {{ Array.isArray(errors.institution_type) ? errors.institution_type[0] : errors.institution_type}}
+                                    </div>
+                                    <input type="text" id="universityName" placeholder="University name" v-model="education.university_name">
+                                    <div class="error" v-if="errors.university_name">
+                                        {{ Array.isArray(errors.university_name) ? errors.university_name[0] : errors.university_name}}
+                                    </div>
+                                    <input type="text" id="degreeTitle" placeholder="Degree title"  class="shorter" v-model="education.degree_title">
+                                    <div class="error" v-if="errors.degree_title">
+                                        {{ Array.isArray(errors.degree_title) ? errors.degree_title[0] : errors.degree_title}}
+                                    </div>
+                                    <input type="date" id="dateFrom" v-model="education.date_from">
+                                    <div class="error" v-if="errors.date_from">
+                                        {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                                    </div>
+                                    <label for="dateTo" class="light d-flex align-items-center mt-4">
+                                        <input type="checkbox" class="checkbox" v-model="education.present"> I currently study here.
+                                    </label>
+                                    <input type="date" id="dateTo" v-model="education.date_to" :disabled="education.present">
+                                    <div class="error" v-if="errors.date_to">
+                                        {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                    </div>
+                                </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"></div>
-                                        <div> {{freelancerData.education.length > 0 ? freelancerData.education : "Couldn't find education" }}
+                                        <div> {{education.university_name.length > 0 ? education.university_name : "Couldn't find education" }}
                                         </div>
                                     </div>
                                 </div>
@@ -295,7 +347,7 @@
                 extractedText: '',
                 originalText: '',
                 arrayOfExtractedText: [],
-                errors: [],
+                errors: {},
                 freelancerData: {
                     'work_experience': '',
                     'education': '',
@@ -314,6 +366,25 @@
                 },
                 summary:{
                     'about': '',
+                },
+                education:{
+                  university_name:'',
+                  degree_title:'Not set',
+                  institution_type:'',
+                  date_from:'2020-04-04',
+                  date_to:'2020-04-04',
+                  present: false,
+                  user_id: this.$store.state.user.id
+                },
+                work_experience:{
+                    company_name:'not-set',
+                    job_title:'',
+                    description:'',
+                    website:'not-set',
+                    date_from:'2020-04-04',
+                    date_to:'2020-04-04',
+                    present:false,
+                    user_id: this.$store.state.user.id
                 },
                 countryList: [
                     "Afghanistan",
@@ -878,7 +949,7 @@
                         edited: 0
                     },
                     {
-                        title: 'work',
+                        title: 'work_experience',
                         selected: 0,
                         edited: 0
                     },
@@ -910,7 +981,7 @@
                 ],
                 isAllSelected:false,
                 showFullText: false,
-                showToolTip: false
+                showToolTip: false,
             }
         },
         methods: {
@@ -1004,8 +1075,27 @@
                 this.summary = {
                     'about': ''
                 };
+                this.education ={
+                        university_name:'',
+                        degree_title:'Not set',
+                        institution_type:'',
+                        date_from:'2020-04-04',
+                        date_to:'2020-04-04',
+                        present: false,
+                        user_id: this.$store.state.user.id
+                };
+                this.work_experience={
+                        company_name:'not-set',
+                        job_title:'',
+                        description:'',
+                        website:'',
+                        date_from:'2020-04-04',
+                        date_to:'2020-04-04',
+                        present:false,
+                        user_id: this.$store.state.user.id
+                };
             },
-            clearFile() {
+            clearAll() {
                 this.clearFreelancerData();
                 this.file = '';
                 this.extractedText = '';
@@ -1130,16 +1220,55 @@
 
                 // check for long text fields like education, work experience and references :
 
-                this.searchForEducationText();
-                this.searchForExperienceText();
+                this.searchForEducationText(arrayOfData);
+                this.searchForExperienceText(arrayOfData);
                 this.searchForReferencesText();
 
             },
-            searchForEducationText() {
-                // this.freelancerData.education = this.extractedText.match(/((?<=Education)|(?<=EDUCATION))[\S\s]*?((?=Languages)|(?=LANGUAGES)|(?<=Experience)|(?<=EXPERIENCE)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
+            searchForEducationText(arrayOfData) {
+
+                // check if any word of the text line is a country name
+                arrayOfData.forEach( (textLine) => {
+                    let possibleUniversityTitles = ['university', 'institute', 'college','academy', 'school','Faculty'];
+                    let cleanTextLine = textLine.replace(/-/g, "");
+
+                    for (let i = 0; i < possibleUniversityTitles.length; i++) {
+                        let universityNameReg = new RegExp(possibleUniversityTitles[i], 'ig');
+                        if (universityNameReg.test(cleanTextLine)) {
+                            this.education.university_name = cleanTextLine;
+                            this.education.institution_type = possibleUniversityTitles[i];
+                            break;
+                        }
+                    }
+
+                });
+
+
+                if(this.education.university_name.length > 1){
+                    this.sections.forEach( (section) => { section.title === 'education' ? section.selected = true : ''} );
+                }
             },
-            searchForExperienceText() {
-                // this.freelancerData.work_experience = this.extractedText.match(/((?<=Experience)|(?<=EXPERIENCE)|(?<=Work)|(?<=WORK))[\S\s]*?((?=Education)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Languages)|(?=LANGUAGES)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
+            searchForExperienceText(arrayOfData) {
+                // check if any word of the text line is a country name
+                arrayOfData.forEach( (textLine) => {
+                    let possibleWorkTitles = ['developer', 'software engineer', 'designer','junior', 'middle','senior','freelancer'];
+                    let cleanTextLine = textLine.replace(/-/g, "");
+
+                    for (let i = 0; i < possibleWorkTitles.length; i++) {
+                        let universityNameReg = new RegExp(possibleWorkTitles[i], 'ig');
+                        if (universityNameReg.test(cleanTextLine)) {
+                            this.work_experience.job_title = cleanTextLine;
+                            this.work_experience.description = possibleWorkTitles[i];
+                            break;
+                        }
+                    }
+
+                });
+
+
+                if(this.work_experience.job_title.length > 1){
+                    this.sections.forEach( (section) => { section.title === 'work_experience' ? section.selected = true : ''} );
+                }
             },
             searchForReferencesText() {
                 // this.freelancerData.references = this.extractedText.match(/((?<=References)|(?<=REFEREES)|(?<=REFERENCES)|(?<=Referees))[\S\s]*?((?=Education)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=Experience)|(?=EXPERIENCE)|(?=Languages)|(?=LANGUAGES)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
@@ -1242,12 +1371,20 @@
 
             // import available Data:
              async importAvailableData(){
-                await this.savePersonalData()
+                 this.errors = {};
+
+                 await this.savePersonalData()
                     .then( () => {
                         return this.saveSkills();
                     })
                     .then( () => {
                         return this.saveLanguages();
+                    })
+                    .then( () => {
+                        return this.saveEducation();
+                    })
+                    .then( () => {
+                        return this.saveWork();
                     })
                     .then( () => {
                         this.updateUserInfo();
@@ -1280,10 +1417,6 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
                     });
 
             },
@@ -1309,14 +1442,10 @@
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            this.errors.new = error.response.data.errors;
+                            this.errors = error.response.data.errors;
                         } else {
-                            this.errors.new  = 'Something went wrong. Please try again.';
+                            this.errors  = 'Something went wrong. Please try again.';
                         }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
                     });
             },
             async saveLanguages() {
@@ -1325,15 +1454,53 @@
                     return;
                 }
 
-                axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
+                await axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
                     .then((response) => {
-                        console.log(response.data);
+
                     })
                     .catch((error) => {
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            async saveEducation() {
+                // we have only the language title
+                if(!this.isSectionSelected('education')){
+                    return;
+                }
+
+                await axios.post('/api/user/education', this.education )
+                    .then((response) => {
+
+
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+            },
+            async saveWork() {
+                // we have only the language title
+                if(!this.isSectionSelected('work_experience')){
+                    return;
+                }
+
+                await axios.post('/api/user/work-experience', this.work_experience )
+                    .then((response) => {
+
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
                     });
             },
 
@@ -1349,9 +1516,17 @@
                 return selected;
             },
             updateUserInfo(){
-                this.$store.dispatch('setCurrentUser',{});
-                this.$store.dispatch('flyingNotification');
-                this.clearFile();
+                if(Object.keys(this.errors).length === 0){
+                    this.$store.dispatch('setCurrentUser',{});
+                    this.$store.dispatch('flyingNotification');
+                    this.clearAll();
+                }else{
+                    console.log(this.errors);
+                    this.$store.dispatch('flyingNotification', {
+                        message: 'Error',
+                        iconSrc: '/images/resume_builder/error.png'
+                    });
+                }
             },
         },
         mounted() {
@@ -1682,7 +1857,7 @@
                                     flex-direction: row;
                                     flex-wrap: wrap;
                                 }
-                                input{
+                                input,textarea{
                                     font-size: 24px;
                                     margin-top:22px;
                                     width: 100%;
@@ -1696,6 +1871,13 @@
                                     &::placeholder{
                                         color: blue;
                                         opacity: 0.3;
+                                    }
+
+                                    &.checkbox{
+                                        font-size: 10px;
+                                        width: 20px;
+                                        height: 20px;
+                                        margin-top:0;
                                     }
                                 }
 
@@ -1835,5 +2017,11 @@
             // background: rgba($color: $activeColor, $alpha: .8);
             // background: none;
         }
+    }
+
+    .error{
+        color:red;
+        font-weight: bold;
+        margin-top: 8px;
     }
 </style>
