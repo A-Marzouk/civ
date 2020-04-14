@@ -78,7 +78,7 @@
                         </div>
                         <div class="section-content" :class="{active : section.selected}">
                             <div class="import-section-title">
-                                <span @click="toggleSelectionOfSection(section)">{{section.title}}</span>
+                                <span @click="toggleSelectionOfSection(section)">{{section.title.replace('_',' ')}}</span>
                                 <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
                                      @click="openEdit(section)" v-show="!section.edited">
                                 <img src="/images/resume_builder/import/exit.svg" alt="close icon"
@@ -157,12 +157,12 @@
 
                             </div>
 
-                            <div class="section-content-items" v-show="section.title === 'work'">
+                            <div class="section-content-items" v-show="section.title === 'work_experience'">
                                 <div class="edit-inputs" v-if="section.edited"></div>
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"></div>
-                                        <div> {{freelancerData.work_experience.length > 0 ? freelancerData.work_experience : "Couldn't find work experience"}}
+                                        <div> {{work_experience.job_title.length > 0 ? work_experience.job_title : "Couldn't find work experience"}}
                                         </div>
                                     </div>
                                 </div>
@@ -319,8 +319,20 @@
                   university_name:'',
                   degree_title:'Not set',
                   institution_type:'',
+                  date_from:'2020-04-04',
+                  date_to:'2020-04-04',
                   present: false,
                   user_id: this.$store.state.user.id
+                },
+                work_experience:{
+                    company_name:'not-set',
+                    job_title:'',
+                    description:'',
+                    website:'not-set',
+                    date_from:'2020-04-04',
+                    date_to:'2020-04-04',
+                    present:false,
+                    user_id: this.$store.state.user.id
                 },
                 countryList: [
                     "Afghanistan",
@@ -885,7 +897,7 @@
                         edited: 0
                     },
                     {
-                        title: 'work',
+                        title: 'work_experience',
                         selected: 0,
                         edited: 0
                     },
@@ -1010,6 +1022,25 @@
                 };
                 this.summary = {
                     'about': ''
+                };
+                this.education ={
+                        university_name:'',
+                        degree_title:'Not set',
+                        institution_type:'',
+                        date_from:'2020-04-04',
+                        date_to:'2020-04-04',
+                        present: false,
+                        user_id: this.$store.state.user.id
+                };
+                this.work_experience={
+                        company_name:'not-set',
+                        job_title:'',
+                        description:'',
+                        website:'',
+                        date_from:'2020-04-04',
+                        date_to:'2020-04-04',
+                        present:false,
+                        user_id: this.$store.state.user.id
                 };
             },
             clearFile() {
@@ -1138,7 +1169,7 @@
                 // check for long text fields like education, work experience and references :
 
                 this.searchForEducationText(arrayOfData);
-                this.searchForExperienceText();
+                this.searchForExperienceText(arrayOfData);
                 this.searchForReferencesText();
 
             },
@@ -1165,8 +1196,27 @@
                     this.sections.forEach( (section) => { section.title === 'education' ? section.selected = true : ''} );
                 }
             },
-            searchForExperienceText() {
-                // this.freelancerData.work_experience = this.extractedText.match(/((?<=Experience)|(?<=EXPERIENCE)|(?<=Work)|(?<=WORK))[\S\s]*?((?=Education)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=REFEREES)|(?=References)|(?=Languages)|(?=LANGUAGES)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
+            searchForExperienceText(arrayOfData) {
+                // check if any word of the text line is a country name
+                arrayOfData.forEach( (textLine) => {
+                    let possibleWorkTitles = ['developer', 'software engineer', 'designer','junior', 'middle','senior','freelancer'];
+                    let cleanTextLine = textLine.replace(/-/g, "");
+
+                    for (let i = 0; i < possibleWorkTitles.length; i++) {
+                        let universityNameReg = new RegExp(possibleWorkTitles[i], 'ig');
+                        if (universityNameReg.test(cleanTextLine)) {
+                            this.work_experience.job_title = cleanTextLine;
+                            this.work_experience.description = possibleWorkTitles[i];
+                            break;
+                        }
+                    }
+
+                });
+
+
+                if(this.work_experience.job_title.length > 1){
+                    this.sections.forEach( (section) => { section.title === 'work_experience' ? section.selected = true : ''} );
+                }
             },
             searchForReferencesText() {
                 // this.freelancerData.references = this.extractedText.match(/((?<=References)|(?<=REFEREES)|(?<=REFERENCES)|(?<=Referees))[\S\s]*?((?=Education)|(?=Skills)|(?=SKILLS)|(?=CAREER OBJECTIVE)|(?=Carrer Objective)|(?=Experience)|(?=EXPERIENCE)|(?=Languages)|(?=LANGUAGES)|(?=Technologies)|(?=TECHNOLOGIES)|(?=Summary)|(?=SUMMURY)|(?=Projects)|(?=PROJECTS))/);
@@ -1280,6 +1330,9 @@
                         return this.saveEducation();
                     })
                     .then( () => {
+                        return this.saveWork();
+                    })
+                    .then( () => {
                         this.updateUserInfo();
                     })
              },
@@ -1378,6 +1431,26 @@
                         console.log(response.data);
                     })
                     .catch((error) => {
+                        console.log(error.response.data.errors);
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            async saveWork() {
+                // we have only the language title
+                if(!this.isSectionSelected('work_experience')){
+                    return;
+                }
+
+                await axios.post('/api/user/work-experience', this.work_experience )
+                    .then((response) => {
+                        console.log('Work: ');
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        console.log(error.response.data.errors);
                         this.$store.dispatch('flyingNotification', {
                             message: 'Error',
                             iconSrc: '/images/resume_builder/error.png'
