@@ -219,6 +219,20 @@ if ($("#resumeTheme204").length !== 0) {
 }
 
 
+import resumeTheme205 from './components/resume_themes/theme205';
+if ($("#resumeTheme205").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme205',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components: {
+            'resume-theme-205': resumeTheme205
+        }
+    });
+}
+
 import resumeTheme301 from './components/resume_themes/theme301';
 if ($("#resumeTheme301").length !== 0) {
 
