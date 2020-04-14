@@ -54,6 +54,14 @@ class SkillsController extends Controller
         }
     }
 
+    public function storeMany(Request $request)
+    {
+        if(Skill::insert($request->toArray())){
+           return ['status' =>'success'];
+        }
+
+    }
+
     /**
      * Display the specified resource.
      *

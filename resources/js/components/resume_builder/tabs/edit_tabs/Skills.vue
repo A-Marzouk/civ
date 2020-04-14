@@ -230,6 +230,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                             } else {
                                 this.errors.new  = 'Something went wrong. Please try again.';
                             }
+                            this.$store.dispatch('flyingNotification', {
+                                message: 'Error',
+                                iconSrc: '/images/resume_builder/error.png'
+                            });
                         });
                 }
             },
@@ -280,6 +284,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             deleteSkill(skill) {
