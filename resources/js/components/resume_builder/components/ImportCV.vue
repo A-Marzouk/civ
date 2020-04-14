@@ -60,7 +60,8 @@
                style="opacity:0; position: absolute; left:-500px;">
 
 
-        <div v-show="extractedText.length > 0">
+        <div  v-show="extractedText.length > 0" >
+
             <div class="import-results">
 
                 <div class="title">
@@ -83,6 +84,7 @@
                                 <img src="/images/resume_builder/import/exit.svg" alt="close icon"
                                      @click="closeEdit(section)" v-show="section.edited">
                             </div>
+
                             <div class="section-content-items" v-show="section.title === 'profile'">
                                 <div class="edit-inputs" v-if="section.edited">
                                     <input type="email" placeholder="Email" v-model="personalInfo.email">
@@ -142,12 +144,11 @@
                                             </div>
 
                                             <div v-else>
-                                                Couldn't find skills
+                                                Couldn't find languages
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
 
                             </div>
 
@@ -204,7 +205,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="section-content-items" v-show="section.title === 'hobbies'">
                                 <div class="edit-inputs" v-if="section.edited"></div>
@@ -1045,7 +1045,6 @@
                     section.elements.forEach(element => {
                         if (element.elements.length > 0) {
                             if (element.elements[0].text) {
-                                console.log(element.elements[0].text);
                                 this.extractedText += element.elements[0].text;
                                 this.arrayOfExtractedText.push(element.elements[0].text);
                             }
@@ -1081,12 +1080,6 @@
                 })
             },
 
-            // import available Data:
-            importAvailableData(){
-                // get selected sections:
-                let selectedSections = this.sections.filter( (section) => { return section.selected});
-                console.log(selectedSections);
-            },
 
             // search functions
             searchForData() {
@@ -1224,17 +1217,57 @@
             },
 
 
+            // import available Data:
+            importAvailableData(){
+                // get selected sections:
+                let selectedSections = this.sections.filter( (section) => { return section.selected});
+                selectedSections.forEach( (section) => {
+                    section.title === 'profile' ? this.savePersonalData() : '';
+                    section.title === 'skills' ? this.saveSkills() : '';
+                    section.title === 'languages' ? this.saveLanguages() : '';
+                });
+            },
+
+
             // saving data:
             savePersonalData() {
-                //    ( personal ) [email,phone,location,designation]
+                let validatedData = {
+                    user_id : this.$store.state.user.id
+                };
+
+                $.each( this.personalInfo , (key,value) => {
+                    if(value.length > 0){
+                        validatedData[key] = value ;
+                    }
+                });
+
+                axios.put('/api/user/personal-info',validatedData)
+                    .then((response) => {
+                        this.updateUserInfo();
+                        this.$store.dispatch('flyingNotification');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                    });
+
             },
             saveSkills() {
                 // we have only the title.
+                console.log('save skills  data');
+
             },
             saveLanguages() {
                 // we have only the language title
+                console.log('save languages data');
 
-            }
+            },
+            updateUserInfo(){
+                this.$store.dispatch('setCurrentUser',{});
+            },
         },
         mounted() {
 
