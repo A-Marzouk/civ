@@ -128,8 +128,13 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'languages'">
-                                <div class="edit-inputs" v-if="section.edited">
-
+                                <div class="edit-inputs skills" v-if="section.edited">
+                                    <div v-for="(language,index) in freelancerData.languages" :key="language + index +'_language'">
+                                        <div class="skill-item">
+                                            {{language}}
+                                            <img src="/images/resume_builder/import/exit.svg" alt="remove skill" @click="removeLanguage(index)">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
@@ -175,7 +180,14 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'skills'">
-                                <div class="edit-inputs" v-if="section.edited"></div>
+                                <div class="edit-inputs skills" v-if="section.edited">
+                                    <div v-for="(skill,index) in freelancerData.skills" :key="skill + index +'_skill'">
+                                        <div class="skill-item">
+                                            {{skill}}
+                                            <img src="/images/resume_builder/import/exit.svg" alt="remove skill" @click="removeSkill(index)">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"> Skills:</div>
@@ -1209,11 +1221,14 @@
             openEdit(section) {
                 section.edited = true ;
             },
-            applyEdit(section) {
-               
-            },
             closeEdit(section) {
                 section.edited = false ;
+            },
+            removeSkill(index){
+                this.freelancerData.skills.splice(index,1);
+            },
+            removeLanguage(index){
+                this.freelancerData.languages.splice(index,1);
             },
 
 
@@ -1593,7 +1608,10 @@
                             .edit-inputs{
                                 display: flex;
                                 flex-direction: column;
-
+                                &.skills{
+                                    flex-direction: row;
+                                    flex-wrap: wrap;
+                                }
                                 input{
                                     font-size: 24px;
                                     margin-top:22px;
@@ -1608,6 +1626,25 @@
                                     &::placeholder{
                                         color: blue;
                                         opacity: 0.3;
+                                    }
+                                }
+
+                                .skill-item{
+                                    display: flex;
+                                    align-items:center;
+                                    font-size: 24px;
+                                    border: 1px solid;
+                                    padding: 10px;
+                                    margin: 10px;
+                                    border-radius: 10px;
+
+                                    img{
+                                        width: 24px;
+                                        height: 24px;
+                                        margin-left: 8px;
+                                        &:hover{
+                                            cursor: pointer;
+                                        }
                                     }
                                 }
                             }
