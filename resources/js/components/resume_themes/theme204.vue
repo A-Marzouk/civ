@@ -32,7 +32,7 @@
                                   color="#FCD259"
                                   small
                                   depressed
-                                  class="mx-md-auto mx-sm-2 btn-email"
+                                  class="mx-md-1 mx-sm-2 btn-email"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -42,7 +42,7 @@
                                   color="#FCD259"
                                   x-small
                                   depressed
-                                  class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
+                                  class="btn-headphone mx-auto mx-sm-2 mx-md-1"
                                   align="center"
                                 >
                                   <img
@@ -218,11 +218,12 @@
                       <v-col cols="12">
                         <v-card flat color="transparent">
                           <div class="about-title">About</div>
-                          <v-card-text class="about-detail">
+                          <br>
+                          <div class="about-detail">
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                          </v-card-text>
+                          </div>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -740,15 +741,26 @@ export default {
 .about-title {
   font-family: "Open Sans" sans-serif !important;
   font-size: 1.5rem;
-  line-height: 33px;
-  color: #000000 !important;
+  line-height: 33px !important;
+  font-weight: bold !important;
+  color: #000000;
+  @media screen and (max-width: 959px) {
+    font-size: 1.875rem;
+    color: #fcd259;
+    text-align: left !important;
+  }
 }
-.about-details {
+.about-detail {
   font-family: "Open Sans" sans-serif !important;
   font-size: 0.75rem !important;
-  line-height: 15px;
+  line-height: 15px !important;
   text-align: center;
   color: #373737 !important;
+  @media screen and (max-width: 959px){
+    text-align: left !important;
+    font-size: 1.125rem !important;
+    line-height: 25px !important;
+  }
 }
 //about
 // ..........................Desktop Portfolio.........................
