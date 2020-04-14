@@ -1324,6 +1324,17 @@
                 if(!this.isSectionSelected('languages')){
                     return;
                 }
+
+                axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
             },
 
             isSectionSelected(section_title){
