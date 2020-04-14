@@ -125,6 +125,10 @@
                         } else {
                             this.errors = ['Something went wrong. Please try again.'];
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
         },

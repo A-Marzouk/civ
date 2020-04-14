@@ -128,8 +128,13 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'languages'">
-                                <div class="edit-inputs" v-if="section.edited">
-
+                                <div class="edit-inputs skills" v-if="section.edited">
+                                    <div v-for="(language,index) in freelancerData.languages" :key="language + index +'_language'">
+                                        <div class="skill-item">
+                                            {{language}}
+                                            <img src="/images/resume_builder/import/exit.svg" alt="remove skill" @click="removeLanguage(index)">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
@@ -175,7 +180,14 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'skills'">
-                                <div class="edit-inputs" v-if="section.edited"></div>
+                                <div class="edit-inputs skills" v-if="section.edited">
+                                    <div v-for="(skill,index) in freelancerData.skills" :key="skill + index +'_skill'">
+                                        <div class="skill-item">
+                                            {{skill}}
+                                            <img src="/images/resume_builder/import/exit.svg" alt="remove skill" @click="removeSkill(index)">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"> Skills:</div>
@@ -947,6 +959,10 @@
                             } else {
                                 this.errors = ['Something went wrong. Please try again.'];
                             }
+                            this.$store.dispatch('flyingNotification', {
+                                message: 'Error',
+                                iconSrc: '/images/resume_builder/error.png'
+                            });
                         });
                 } else {
                     axios.post('/resume-builder/import/docx', formData, config)
@@ -959,6 +975,10 @@
                             } else {
                                 this.errors = ['Something went wrong. Please try again.'];
                             }
+                            this.$store.dispatch('flyingNotification', {
+                                message: 'Error',
+                                iconSrc: '/images/resume_builder/error.png'
+                            });
                         });
                 }
 
@@ -1209,28 +1229,37 @@
             openEdit(section) {
                 section.edited = true ;
             },
-            applyEdit(section) {
-               
-            },
             closeEdit(section) {
                 section.edited = false ;
+            },
+            removeSkill(index){
+                this.freelancerData.skills.splice(index,1);
+            },
+            removeLanguage(index){
+                this.freelancerData.languages.splice(index,1);
             },
 
 
             // import available Data:
-            importAvailableData(){
-                // get selected sections:
-                let selectedSections = this.sections.filter( (section) => { return section.selected});
-                selectedSections.forEach( (section) => {
-                    section.title === 'profile' ? this.savePersonalData() : '';
-                    section.title === 'skills' ? this.saveSkills() : '';
-                    section.title === 'languages' ? this.saveLanguages() : '';
-                });
-            },
+             async importAvailableData(){
+                await this.savePersonalData()
+                    .then( () => {
+                        return this.saveSkills();
+                    })
+                    .then( () => {
+                        return this.saveLanguages();
+                    })
+                    .then( () => {
+                        this.updateUserInfo();
+                    })
+             },
 
 
             // saving data:
-            savePersonalData() {
+            async savePersonalData() {
+                if(!this.isSectionSelected('profile')){
+                    return;
+                }
                 let validatedData = {
                     user_id : this.$store.state.user.id
                 };
@@ -1241,10 +1270,9 @@
                     }
                 });
 
-                axios.put('/api/user/personal-info',validatedData)
+                await axios.put('/api/user/personal-info',validatedData)
                     .then((response) => {
-                        this.updateUserInfo();
-                        this.$store.dispatch('flyingNotification');
+
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -1252,21 +1280,78 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
 
             },
-            saveSkills() {
-                // we have only the title.
-                console.log('save skills  data');
+            async saveSkills() {
+                if(!this.isSectionSelected('skills')){
+                    return;
+                }
 
+                let skills = [];
+
+                this.freelancerData.skills.forEach( (skill_title) => {
+                    skills.push({
+                        title: skill_title,
+                        user_id: this.$store.state.user.id,
+                        category:'programming_languages',
+                        percentage:85
+                    });
+                });
+
+                await axios.post('/api/user/skills-many', skills)
+                    .then((response) => {
+
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
             },
-            saveLanguages() {
+            async saveLanguages() {
                 // we have only the language title
-                console.log('save languages data');
+                if(!this.isSectionSelected('languages')){
+                    return;
+                }
 
+                axios.post('/api/user/languages-many', {langs: this.freelancerData.languages, 'user_id' : this.$store.state.user.id})
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+
+            isSectionSelected(section_title){
+                let selectedSections = this.sections.filter( (item) => { return item.selected});
+                let selected = false;
+                selectedSections.forEach( (section) => {
+                    if(section.title === section_title){
+                        selected =  true;
+                    }
+                });
+
+                return selected;
             },
             updateUserInfo(){
                 this.$store.dispatch('setCurrentUser',{});
+                this.$store.dispatch('flyingNotification');
+                this.clearFile();
             },
         },
         mounted() {
@@ -1593,7 +1678,10 @@
                             .edit-inputs{
                                 display: flex;
                                 flex-direction: column;
-
+                                &.skills{
+                                    flex-direction: row;
+                                    flex-wrap: wrap;
+                                }
                                 input{
                                     font-size: 24px;
                                     margin-top:22px;
@@ -1608,6 +1696,25 @@
                                     &::placeholder{
                                         color: blue;
                                         opacity: 0.3;
+                                    }
+                                }
+
+                                .skill-item{
+                                    display: flex;
+                                    align-items:center;
+                                    font-size: 24px;
+                                    border: 1px solid;
+                                    padding: 10px;
+                                    margin: 10px;
+                                    border-radius: 10px;
+
+                                    img{
+                                        width: 24px;
+                                        height: 24px;
+                                        margin-left: 8px;
+                                        &:hover{
+                                            cursor: pointer;
+                                        }
                                     }
                                 }
                             }
