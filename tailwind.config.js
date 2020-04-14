@@ -60,13 +60,16 @@ const spacing = {
     "140px": "140px",
     "174px": "10.9‬rem",
     "174px": "10.9‬rem",
-    "180px": "11.25‬rem",
+    //"180px": "11.25‬rem", not working
+    "256px": "256px",
     "279px": "279px",
     "286px": "286px",
     "336px": "21‬‬rem",
     "440px": "440px",
     "494px": "494px",
-    "603px": "603px"
+    "603px": "603px",
+    "8rem": "8rem",
+    "11rem": "11rem",
 };
 module.exports = {
     prefix: "tw-",
@@ -82,7 +85,7 @@ module.exports = {
                     "5": "#484848",
                     "6": "#2D2D2D",
                     "7":
-                        "linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)"
+                        "linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)",
                 },
                 tm701: {
                     "1": "#28404A",
@@ -91,19 +94,22 @@ module.exports = {
                     "4": "#335E5E",
                     "5": "#315E5E",
                     "6": "#2F5E5E",
-                    "7": "#DBDFC3"
-                }
+                    "7": "#DBDFC3",
+                    "8": "#838BA4",
+                    "9": "#DBE0C2",
+                },
             },
             inset: {
                 "24px": "24px",
                 "34px": "34px",
                 "94px": "94px",
-                "minus-80px": "-80px"
+                "minus-80px": "-80px",
             },
             fontFamily: {
                 lato: ["Lato", "sans-serif"],
                 montserrat: ["Montserrat", "sans-serif"],
-                muli: ["Muli", "sans-serif"]
+                muli: ["Muli", "sans-serif"],
+                poppins: ["Poppins", "sans-serif"],
             },
             maxWidth: {
                 "tm700-dw-1": "73.875rem",
@@ -111,17 +117,17 @@ module.exports = {
                 "tm700-xl-2": "106.5625rem",
                 "1396px": "87.25rem",
                 "1767px": "1767px",
-                "1727px": "1727px"
+                "1727px": "1727px",
             },
             gridTemplateColumns: {
                 "tm700-d-skills-bar": "118px auto 48px",
-                "tm701-header": "1fr 4fr 2fr"
+                "tm701-header": "1fr 4fr 2fr",
             },
             borderRadius: {
                 "civ-15": "15px",
                 "25px": "15px",
                 "civ-50": "3.125‬‬rem", // 50px
-                "civ-50p": "50px" // 50px
+                "civ-50p": "50px", // 50px
             },
             flex: {
                 "civ-1": "0.53",
@@ -129,10 +135,10 @@ module.exports = {
                 "civ-3": "1.4",
                 "civ-4": "1.7",
                 "civ-1_5": "1.5",
-                "civ-2": "2"
+                "civ-2": "2",
             },
             borderWidth: {
-                "14": "14px"
+                "14": "14px",
             },
             fontSize: {
                 "tm700-18": "1.125rem", // 18px
@@ -142,7 +148,7 @@ module.exports = {
                 "20px": "20px", // 20px
                 "22px": "22px", // 22px
                 "25px": "25px", // 22px
-                "26px": "26px" // 22px
+                "26px": "26px", // 22px
             },
             lineHeight: {
                 "10px": "10px",
@@ -151,15 +157,17 @@ module.exports = {
                 "civ-22": "22px",
                 "22px": "1.375‬rem",
                 "23px": "23px",
+                "24px": "24px",
+                "27px": "29‬px",
                 "civ-29": "29‬px",
                 "33px": "33px",
                 "36px": "36px",
                 "37px": "37px",
                 "40px": "40px",
-                "64px": "64px"
-            }
-        }
+                "64px": "64px",
+            },
+        },
     },
     variants: {},
-    plugins: []
+    plugins: [],
 };

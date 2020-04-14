@@ -16,30 +16,34 @@
           <v-tab
             @click="currentTab = id"
             :class="[
-                            currentTab == id
-                                ? 'tm701-active-tab tw-border tw-border-tm701-7 xl:tw-rounded-lg xl:tw-py-10px xl:tw-px-30px'
-                                : 'tw-text-black',
-                            'tm701-tabs--one xl:tw-mr-100px xl:tw-leading-64px w-font-bold tw-not-italic tw-text-tm701-6 tw-normal-case tw-list-none tw-text-20px'
-                        ]"
+              currentTab == id
+                ? 'tm701-active-tab tw-border tw-border-tm701-7 xl:tw-rounded-lg xl:tw-py-10px xl:tw-px-30px'
+                : 'tw-text-black',
+              'tm701-tabs--one xl:tw-mr-100px xl:tw-leading-64px w-font-bold tw-not-italic tw-text-tm701-6 tw-normal-case tw-list-none tw-text-20px',
+            ]"
             v-for="{ title, id } in tabs"
             :key="id"
             :href="`#tab-${id}`"
-          >{{ title }}</v-tab>
+            >{{ title }}</v-tab
+          >
         </v-tabs>
       </div>
     </div>
     <div>
       <div class="xl:tw-w-full xl:tw-max-w-1727px xl:tw-mx-auto">
-        <div class="xl:tw-flex xl:tw-justify-between xl:tw-max-h-screen-xl xl:tw-items-center">
+        <div
+          class="xl:tw-flex xl:tw-justify-between xl:tw-max-h-screen-xl xl:tw-items-center"
+        >
           <div class="xl:tw-flex xl:tw-flex-col xl:tw-items-center">
             <span
               class="xl:tw-transform xl:tw--rotate-90 xl:tw-block xl:tw-mb-4 tw-text-18px font-bold leading-40px"
-            >scroll</span>
+              >scroll</span
+            >
             <span class>
               <FontAwesomeIcon :icon="['fa', 'arrow-down']" />
             </span>
           </div>
-          <div>
+          <div class="xl:tw-flex-1 xl:tw-pr-265px xl:tw-pl-180px">
             <Portfolio :currentTab="currentTab" />
             <Work :currentTab="currentTab" />
           </div>
@@ -47,10 +51,12 @@
             <div class="xl:tw-mb-6">
               <span
                 class="xl:tw-transform xl:tw-rotate-90 xl:tw-block xl:tw-pr-6 tw-text-18px tw-font-bold leading-17px xl:tw-mb-8 tw-text-tm701-5"
-              >Social</span>
+                >Social</span
+              >
               <span
                 class="xl:tw-transform xl:tw-rotate-90 xl:tw-block xl:tw-pr-6 tw-text-18px tw-font-bold leading-17px tw-text-tm701-5"
-              >media</span>
+                >media</span
+              >
             </div>
             <div class="line xl:tw-mb-28px">
               <svg
@@ -71,11 +77,26 @@
               </svg>
             </div>
             <div class="xl:tw-flex xl:tw-flex-col tw-text-tm701-5">
-              <FontAwesomeIcon class="xl:tw-mb-26px" :icon="['fab', 'facebook-f']" />
-              <FontAwesomeIcon class="xl:tw-mb-26px" :icon="['fab', 'linkedin-in']" />
-              <FontAwesomeIcon class="xl:tw-mb-26px" :icon="['fab', 'behance']" />
-              <FontAwesomeIcon class="xl:tw-mb-26px" :icon="['fab', 'twitter']" />
-              <FontAwesomeIcon class="xl:tw-mb-26px" :icon="['fab', 'dribbble']" />
+              <FontAwesomeIcon
+                class="xl:tw-mb-26px"
+                :icon="['fab', 'facebook-f']"
+              />
+              <FontAwesomeIcon
+                class="xl:tw-mb-26px"
+                :icon="['fab', 'linkedin-in']"
+              />
+              <FontAwesomeIcon
+                class="xl:tw-mb-26px"
+                :icon="['fab', 'behance']"
+              />
+              <FontAwesomeIcon
+                class="xl:tw-mb-26px"
+                :icon="['fab', 'twitter']"
+              />
+              <FontAwesomeIcon
+                class="xl:tw-mb-26px"
+                :icon="['fab', 'dribbble']"
+              />
             </div>
           </div>
         </div>
@@ -100,7 +121,7 @@ import {
   faLinkedinIn,
   faBehance,
   faTwitter,
-  faDribbble
+  faDribbble,
 } from "@fortawesome/free-brands-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -129,10 +150,10 @@ export default {
         { title: "Work Experience", id: 2 },
         { title: "Education", id: 3 },
         { title: "Skills and languages", id: 4 },
-        { title: "About me and Awards", id: 5 }
-      ]
+        { title: "About me and Awards", id: 5 },
+      ],
     };
-  }
+  },
 };
 </script>
 

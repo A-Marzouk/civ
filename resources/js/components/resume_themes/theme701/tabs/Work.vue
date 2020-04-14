@@ -1,8 +1,8 @@
 <template>
-  <div class="tm701-work" v-if="currentTab === 2">
+  <div class="tm701-work tw-pl-11rem" v-if="currentTab === 2">
     <div class="tm701-work--inner xl:tw-grid xl:tw-grid-cols-2">
       <div class="xl:tw-col-start-1">
-        <div class="xl:tw-flex xl:tw-flex-row xl:tw-items-center">
+        <div class="xl:tw-flex xl:tw-flex-row xl:tw-items-center xl:tw-mb-18px">
           <svg
             class="xl:tw-mr-18px"
             xmlns="http://www.w3.org/2000/svg"
@@ -60,10 +60,45 @@
           >
             <rect id="Rectangle_75" data-name="Rectangle 75" width="48" height="1" fill="#dbe0c2" />
           </svg>
-          <span class="xl:tw-mr-2 tw-font-bold tw-text-20px tw-leading-24">{{name}}</span>
-          <span>September 2017 - Present</span>
+          <span class="xl:tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Google</span>
+          <span
+            class="xl:tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
+          >September 2017 - Present</span>
         </div>
-        <div></div>
+        <div class="xl:tw-pl-8rem">
+          <div>
+            <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+              <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+                <svg
+                  class="xl:tw-mr-4"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="7"
+                  height="7"
+                  viewBox="0 0 7 7"
+                >
+                  <circle
+                    id="Ellipse_178"
+                    data-name="Ellipse 178"
+                    cx="3.5"
+                    cy="3.5"
+                    r="3.5"
+                    fill="#2f5e5e"
+                  />
+                </svg>
+                <h3
+                  class="tw-font-normal tw-text-lg tw-leading-24px tw-font-poppins tw-text-tm701-6"
+                >Senior UX UI Designer</h3>
+              </div>  
+              <span
+                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 xl:tw-border xl:tw-border-tm701-9 xl:tw-rounded-lg"
+              >Full Time</span>
+            </div>
+
+            <p
+              class="tw-font-normal tw-text-lg tw-leading-27px tw-font-mudiv"
+            >Get, keoo and grow more customers with customer engagement Automation by kissmetrics. Get, keoo and grow more customers with customer engagement.</p>
+          </div>
+        </div>
       </div>
       <div class="xl:tw-col-span-1">
         <div class="xl:tw-flex xl:tw-flex-row xl:tw-items-center">
@@ -127,7 +162,6 @@
           <span class="xl:tw-mr-2 tw-font-bold tw-text-20px tw-leading-24">{{name}}</span>
           <span>September 2017 - Present</span>
         </div>
-        <div></div>
       </div>
     </div>
   </div>
@@ -150,6 +184,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 .tm700-work {
   .tm700-work--inner {
     justify-items: start;
