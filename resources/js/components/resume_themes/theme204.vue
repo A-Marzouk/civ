@@ -99,22 +99,13 @@
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
 
-                    <v-btn
-                      fab
-                      color="#FCD259"
-                      x-small
-                      depressed
-                      class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
-                    >
-                      <img width="15" src="/images/resume_themes/theme204/icons/video-player.webp" />
-                    </v-btn>
 
-                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
+                    <v-btn fab color="#FCD259" small depressed class="btn-headphone mx-1 mx-sm-2">
                       <img
-                        width="15"
+                        width="26"
                         style="margin-left:1px;"
                         class
-                        src="/images/resume_themes/theme204/icons/headphones.webp"
+                        src="/images/resume_themes/theme204/icons/download-pdf.png"
                       />
                     </v-btn>
                   </v-card>
