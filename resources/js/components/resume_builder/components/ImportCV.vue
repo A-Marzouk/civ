@@ -2018,4 +2018,10 @@
             // background: none;
         }
     }
+
+    .error{
+        color:red;
+        font-weight: bold;
+        margin-top: 8px;
+    }
 </style>
