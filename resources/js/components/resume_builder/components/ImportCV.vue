@@ -234,7 +234,7 @@
             <div class="import-action-btns no-background mb-5">
                 <div class="d-flex justify-space-between">
                    <div class="d-flex">
-                       <a class="btn btn-outline short" href="javascript:void(0)">
+                       <a class="btn btn-outline short" href="javascript:void(0)" @click="importAvailableData">
                            <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="add">
                            Import
                        </a>
@@ -857,46 +857,46 @@
                     },
                     {
                         title: 'summary',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     },
                     {
                         title: 'languages',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     },
                     {
                         title: 'work',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     },
                     {
                         title: 'education',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     },
                     {
                         title: 'skills',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     },
                     {
                         title: 'achievements',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     },
                     {
                         title: 'hobbies',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     },
                     {
                         title: 'references',
-                        selected: 1,
+                        selected: 0,
                         edited: 0
                     }
                 ],
-                isAllSelected:true,
+                isAllSelected:false,
                 showFullText: false,
                 showToolTip: false
             }
@@ -1081,7 +1081,12 @@
                 })
             },
 
-
+            // import available Data:
+            importAvailableData(){
+                // get selected sections:
+                let selectedSections = this.sections.filter( (section) => { return section.selected});
+                console.log(selectedSections);
+            },
 
             // search functions
             searchForData() {
@@ -1188,6 +1193,7 @@
                 let skillRegex = new RegExp(this.skillsList.join('|'), 'ig');
                 let skills = cleanTextLine.match(skillRegex);
                 if (skills !== null) {
+                    this.sections.forEach( (section) => { section.title === 'skills' ? section.selected = true : ''} );
                     this.freelancerData.skills.push(...skills);
                 }
                 // filter repeated elements in skills :
@@ -1198,6 +1204,7 @@
                 let languageRegex = new RegExp(this.languages.join('|'), 'ig');
                 let languages = cleanTextLine.match(languageRegex);
                 if (languages !== null) {
+                    this.sections.forEach( (section) => { section.title === 'languages' ? section.selected = true : ''} );
                     this.freelancerData.languages.push(...languages);
                 }
                 // filter repeated elements in languages :
