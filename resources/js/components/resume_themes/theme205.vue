@@ -12,12 +12,12 @@
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col md="5" cols="12" sm="7">
+                <v-col md="5" cols="12" sm="8">
                   <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-row>
                         <v-col cols="8">
-                          <v-list-item two-line class="ml-n4">
+                          <v-list-item two-line class="ml-n3">
                             <v-list-item-content>
                               <v-list-item-title class="profile-title">
                                 <v-card class="pa-1" flat color="transparent">Carla Pipin Ranga</v-card>
@@ -29,7 +29,7 @@
                                   >Web Ui/Ux Designer, Graphiс Designer</span>
                                 </v-card>
                               </v-list-item-title>
-                              <v-list-item-subtitle class="ml-n1">
+                              <v-list-item-subtitle class="ml-n1 hidden-sm-and-down">
                                 <v-card flat color="transparent" class="mt-2 pa-1">
                                   <v-btn
                                     fab
@@ -81,46 +81,16 @@
                 </v-col>
                 <!-- 1st column profile pic and icons -->
 
-                <!-- 2nd column only for tab and mobile version version -->
-                <v-col sm="5" cols="12" class="tablet-audio-video-flex">
-                  <v-card
-                    flat
-                    color="transparent"
-                    class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
-                    style="z-index:2"
-                  >
-                    <v-btn
-                      fab
-                      color="#FCD259"
-                      small
-                      depressed
-                      class="mx-md-1 mx-sm-2 mx-1 btn-email"
-                    >
-                      <v-icon class="icon-email">mdi-email</v-icon>
-                    </v-btn>
-
-                    <v-btn fab color="#FCD259" small depressed class="btn-headphone mx-1 mx-sm-2">
-                      <img
-                        width="26"
-                        style="margin-left:1px;"
-                        class
-                        src="/images/resume_themes/theme205/icons/download-pdf.png"
-                      />
-                    </v-btn>
-                  </v-card>
-                </v-col>
-                <!-- 2nd column only for tab and mobile version version -->
-
                 <!-- 2nd column social media icons -->
                 <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
                   <v-card flat color="tranparent">
                     <v-btn
                       fab
-                      color="#000000"
+                      color="#FCD259"
                       small
-                      class="mx-md-1 mx-sm-2 mx-1 social-btn"
+                      class="mx-md-1 mx-sm-2 mx-1 my-5 social-btn"
                       depressed
-                      v-for="item in socialIcons"
+                      v-for="item in socialIconsTablet"
                       :key="item.id"
                     >
                       <img width="15" :src="getSocialIcon(item.title)" />
@@ -128,8 +98,8 @@
                   </v-card>
                 </v-col>
                 <!-- Social media icons -->
-                <v-col md="7">
-                  <v-card flat color="transparent" class="mt-n12">
+                <v-col md="7" class="hidden-sm-and-down">
+                  <v-card flat color="transparent" class="mt-n12 mr-2">
                     <v-card-text align="right">
                       <v-btn
                         fab
@@ -185,7 +155,7 @@
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- About -->
                 <v-tab-item>
-                  <div class="watermark-text text-center">About</div>
+                  <div class="watermark-text text-center mt-12">About</div>
                   <v-card flat color="transparent" align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
@@ -390,6 +360,14 @@ export default {
         { id: 3, title: "instagram" },
         { id: 4, title: "linkedin" }
       ],
+
+      socialIconsTablet: [
+        { id: 1, title: "behance2" },
+        { id: 2, title: "dribbble2" },
+        { id: 3, title: "instagram2" },
+        { id: 4, title: "linkedin2" }
+      ],
+
       mainDataTab: null,
       progressBarColor: "yellow",
       mainTabs: [
@@ -552,9 +530,13 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (max-width: 959px) {
+    width: 23rem;
+    height: 15.75rem;
+  }
   @media screen and (max-width: 599px) {
-    width: 15.5rem;
-    height: 13.75rem;
+    width: 14.5rem;
+    height: 10.75rem;
   }
   @media screen and (max-width: 322px) {
     width: 14.5rem;

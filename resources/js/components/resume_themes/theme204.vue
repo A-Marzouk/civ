@@ -202,7 +202,7 @@
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- About -->
                 <v-tab-item>
-                  <div class="watermark-text text-center">About</div>
+                  <div class="watermark-text text-center mt-12">About</div>
                   <v-card flat color="transparent" align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
