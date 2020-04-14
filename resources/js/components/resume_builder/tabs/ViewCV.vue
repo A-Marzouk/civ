@@ -1,23 +1,59 @@
 <template>
     <div class="view-cv-wrapper">
-        <div class="action-btns">
-            <div class="change-structure-btn NoDecor">
-                <a href="javascript:void(0)">
-                    <img src="/images/resume_builder/viewCV/grid.png" alt="icon">
-                    Change Structure
-                </a>
+        <div class="actions-wrapper d-flex justify-content-between align-items-start">
+            <div class="change-theme-text">
+                <svg-vue class="icon" :icon="'grid'"></svg-vue>
+                <h2>Change Theme</h2>
             </div>
-            <div class="change-theme-btn NoDecor">
-                <a href="javascript:void(0)">
-                    <img src="/images/resume_builder/viewCV/img-holder.png" alt="icon">
-                    Change Theme
+            <div class="preview-theme d-flex">
+                <div class="preview-text hideOnMd">
+                    <h2>Your Current Theme</h2>
+
+                    <div class="btn btn-filled">
+                        View Theme
+                        <svg-vue class="icon" :icon="'eye-icon'"></svg-vue>
+                    </div>
+                </div>
+
+                <img :src="`/images/resume_themes/theme${activeTheme}/preview.png`" alt="theme-preview" class="active-theme-img">
+                <a :href="'/' + user.username " target="_blank" class="preview-mobile-bar showOnMd justify-content-center">
+                    Active Theme <svg-vue class='icon' :icon="'eye-icon'"></svg-vue>
                 </a>
             </div>
         </div>
-        <div class="change-structure-text">
-            <img src="/images/resume_builder/viewCV/img-holder.png" alt="icon">
-            Change Theme
+
+        <div class="filters-wrapper d-flex justify-content-between">
+            <div class="civ-input">
+                <div class="civ-custom-select">
+                    <div class="civ-select-input profession-input" @click="showProfessionOptions = !showProfessionOptions">
+                        <input type="text" id="category1" disabled v-model="professionOptions[selectedProfession].name" :class="{'with-border' : !showProfessionOptions}">
+                        <img src="/icons/carot.svg" alt="arrow" :class="{'toggled':showSpecialityOptions}">
+                    </div>
+                    <div class="civ-custom-options" v-show="showProfessionOptions">
+                        <div v-for="(profession,index) in professionOptions" :key="index + '_profession'" @click="selectProfession(index)">
+                            {{profession.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="civ-input">
+                <div class="civ-custom-select">
+                    <div class="civ-select-input speciality-input" @click="showSpecialityOptions = !showSpecialityOptions">
+                        <input type="text" id="category" disabled v-model="specialityOptions[selectedSpeciality].name" :class="{'with-border' : !showSpecialityOptions}">
+                        <img src="/icons/carot.svg" alt="arrow" :class="{'toggled':showSpecialityOptions}">
+                    </div>
+                    <div class="civ-custom-options" v-show="showSpecialityOptions">
+                        <div v-for="(speciality,index) in specialityOptions" :key="index + '_speciality'" @click="selectSpeciality(index)">
+                            {{speciality.name}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <svg-vue class="grid-icon" :icon="'open-grid-icon'"></svg-vue>
         </div>
+
+        <div class="separator"></div>
         
         <div class="themes">
             <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.code">
@@ -47,7 +83,7 @@
                             </a>
                         </div>
                         <div class="preview-btn NoDecor">
-                            <a :href="'/preview/theme' + theme.code" target="_blank">
+                            <a href="javascript:;" @click='showPreviewModal(theme.code)'>
                                 Preview
                                 <img src="/images/resume_builder/viewCV/eye-white.png" alt="eye-white">
                             </a>
@@ -59,6 +95,10 @@
 
             </div>
         </div>
+
+        <b-modal size="xl" centered id="previewModalContainer" ref="previewModal" title="Theme preview" hide-footer>
+            <iframe :src="`/preview/theme${previewCode}`"></iframe>
+        </b-modal>
         
     </div>
 </template>
@@ -84,6 +124,58 @@
                     {
                         code:300
                     },
+                ],
+                activeTheme: 201,
+                showProfessionOptions: false,
+                showSpecialityOptions: false,
+                selectedProfession: 0,
+                selectedSpeciality: 0,
+                previewCode: null,
+                professionOptions: [
+                    {
+                        name: "Select a profession"
+                    },
+                    {
+                        name: "Fullstack Developer",
+                    },
+                    {
+                        name: "Frontend Developer",
+                    },
+                    {
+                        name: "Database Specialist",
+                    },
+                    {
+                        name: "Big Data"
+                    },
+                    {
+                        name: "UX/UI Designer",
+                    },
+                    {
+                        name: "Graphic Designer"
+                    }
+                ],
+                specialityOptions: [
+                    {
+                        name: "Select a speciality"
+                    },
+                    {
+                        name: "Fullstack Developer",
+                    },
+                    {
+                        name: "Frontend Developer",
+                    },
+                    {
+                        name: "Database Specialist",
+                    },
+                    {
+                        name: "Big Data"
+                    },
+                    {
+                        name: "UX/UI Designer",
+                    },
+                    {
+                        name: "Graphic Designer"
+                    }
                 ]
             }
         },
@@ -93,6 +185,10 @@
             }
         },
         methods:{
+            showPreviewModal (code) {
+                this.previewCode = code;
+                this.$refs.previewModal.show();
+            },
             openTheme(theme){
                 let url  = '/preview/theme'+theme.code ;
                 window.open(url, "_blank") || window.location.replace(url);
@@ -115,102 +211,256 @@
                             this.errors = 'Something went wrong. Please try again.';
                         }
                     });
+            },
+            selectProfession (index) {
+                // Search profession on db using index
+                // axios request
+                this.selectedProfession = index;
+                this.showProfessionOptions = false;
+            },
+            selectSpeciality (index) {
+                // Search speciality on db using index
+                // axios request
+                this.selectedSpeciality = index;
+                this.showSpecialityOptions = false;
             }
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .view-cv-wrapper{
-        .action-btns{
-            display: flex;
-            justify-content: flex-end;
+@import '../../../../sass/media-queries';
+$mainBlue: #001CE2;
 
-            .change-structure-btn{
-                margin-right: 55px;
+    .separator {
+        width: 100%;
+        background: #E2E5FC;
+        height: 1px;
+        margin-top: 29.5px;
+        margin-bottom: 50px;
+    }
 
-                a{
+    .filters-wrapper {
 
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 221px;
-                    height: 79px;
-                    background: #001CE2;
-                    border-radius: 50px;
+        max-width: 740px;
+        align-items: center;
+        margin-top: -72px;
 
+        @media (max-width: 1380px) {
+            margin-top: 0;
+        }
 
-                    font-family: "Noto Sans", serif;
-                    font-weight: 500;
+        @include lt-md {
+            margin-top: 2rem;
+
+        }
+
+        @include lt-sm {
+            flex-wrap: wrap;
+        }
+
+        .civ-input {
+            max-width: 300px;
+            width: 48%;
+            margin: 0;
+
+            .civ-select-input {
+                input {
+                    border: 1px solid $mainBlue;
+                    color: #747474;
                     font-size: 16px;
-                    text-align: left;
-                    color: #ffffff;
 
+                    @include lt-sm {
+                        font-size: 14px;
+                        height: 50px;
+                        padding: 0 30px 0 15px;
+                    }
+                }
 
-                    img{
-                        width: 25px;
-                        height: 25px;
-                        margin-right: 15px;
+                @include lt-sm {
+                    img {
+                        top: 22px;
+                        width: 13px;
                     }
                 }
             }
-            .change-theme-btn{
-                a{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 253px;
-                    height: 79px;
-                    border:2px solid #001CE2;
-                    border-radius: 50px;
 
-                    font-family: "Noto Sans", serif;
-                    font-weight: 500;
-                    font-size: 16px;
-                    text-align: left;
-                    color: #001ce2;
+            @include lt-sm {
+                margin-bottom: 1rem;
+                min-width: 120px;
+            }
+        }
 
-                    img{
-                        width: 25px;
-                        height: 25px;
-                        margin-right: 15px;
+        .grid-icon {
+            height: 36px;
+
+            @include lt-md {
+                display: none;
+            }
+        }
+    }
+
+    .view-cv-wrapper{
+
+        @include lt-md {
+            margin-top: 3rem;
+        }
+
+        .preview-theme {
+
+            position: relative;
+
+            @include lt-lg {
+                flex-wrap: wrap;
+            }
+
+            .preview-text {
+                font-size: 30px;
+                color: #747474;
+                margin-bottom: 1rem;
+                margin-top: 80px;
+
+                @include lt-lg {
+                    margin-top: 3rem;
+                }
+
+                h2 {
+                    font-weight: 700;
+                    margin-bottom: 20px;
+                    max-width: 197px;
+                }
+
+                .btn {
+                    width: 100% !important;
+                    min-width: 200px !important;
+                    font-size: 14px !important;
+                    font-weight: 700;
+
+                    .icon {
+                        margin-right: 0 !important;
+                        margin-left: 10px;
+                        height: 12px;
+                        width: auto;
                     }
+                }
+            }
+
+            .active-theme-img {
+                width: 394px;
+                height: 335px;
+                margin-left: 50px;
+                border: solid 3px $mainBlue;
+                border-radius: 15px;
+
+                @include lt-lg {
+                    margin: 2rem 0;
+
+                }
+
+                @include lt-md {
+                    margin: 0;
+                    width: 280px;
+                    height: auto;
+                }
+
+                @include lt-sm {
+                    margin: 0;
+                    width: 220px;
+                }
+            }
+
+            .preview-mobile-bar {
+                background: $mainBlue;
+                color: white;
+                border-radius: 15px;
+
+                svg, path, circle {
+                    fill: white;
+                }
+
+                .icon {
+                    width: 15px;
+                    margin-left: 9.5px;
+                }
+
+                @include lt-md {
+                    position: absolute;
+                    display: flex !important;
+                    width: 100%;
+                    bottom: 0;
+                    left: 0;
+                    padding: 5px;
                 }
             }
         }
-        .change-structure-text{
-            margin-top:50px;
+        .change-theme-text{
             display: flex;
             justify-content: flex-start;
-            margin-left:140px;
             align-items: center;
-            font-family: "Noto Sans",serif;
-            font-weight: 500;
-            font-size: 47px;
+            font-family: "Noto Sans", sans-serif;
+            font-weight: 700;
+            font-size: 53px;
             text-align: left;
             color: #001ce2;
+            margin-top: 80px;
 
-            img{
-                width:90px;
-                height:90px;
+            @include lt-lg {
+                margin-top: 0;
+            }
+
+            @include lt-md {
+                font-size: 30px;
+            }
+
+            .icon {
+                width:56px;
+                height:56px;
                 margin-right: 55px;
+
+                @include lt-lg {
+                    margin-right: 30px;
+                }
+
+                @include lt-md {
+                    width: 24px;
+                    height: auto;
+                    margin-right: 10px;
+                }
             }
         }
         .themes{
-            justify-content: space-around;
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-gap: 50px;
+            grid-template-columns: repeat(12, 1fr);
+            width: 100%;
+
+            @include lt-md {
+                grid-gap: 0;
+            }
+
             .theme-item{
-                margin-top:100px;
+                grid-column: span 4;
                 display: flex;
                 align-items: center;
+                justify-content: center;
                 flex-direction: column;
+                max-width: 540px;
+
+                @include lt-lg {
+                    grid-column: span 6;
+                }
+
+                @include lt-md {
+                    grid-column: span 12;
+                    max-width: 100%;
+                }
+
                 img.theme-image{
                     border: 1px solid black;
-                    width:634px;
-                    height:451px;
-                    border-radius:25px;
+                    border-radius:20px;
                     transition: all 2s;
+                    width: 100%;
+                    height: 100%;
                     -webkit-box-shadow: 0px 35px 70px -20px rgba(25, 69, 213, 0.3);
                     -moz-box-shadow:  0px 35px 70px -20px rgba(25, 69, 213, 0.3);
                     box-shadow:   0px 35px 70px -20px rgba(25, 69, 213, 0.3);
@@ -278,31 +528,41 @@
                     padding-left:32px;
                     padding-right:23px;
                     background: whitesmoke;
-                    border-radius: 10px;
-                    width: 619px;
+                    border-radius: 18px;
                     height: 70px;
-                    margin-top: -35px;
+                    margin-top: -71px;
+                    width: calc(100% - 2px);
                     background: linear-gradient(#f8f8f8 0%, #f4f4f4 100%);
+
+                    @include lt-md {
+                        padding: 5px 10px;
+                    }
 
                     .left{
                         .activate-btn{
                            a{
                                display: flex;
                                align-items: center;
-                               justify-content: center;
-                               width:156px;
-                               height:42px;
-                               border-radius: 21px;
+                               justify-content: space-between;
+                               width:112px;
+                               height:34px;
+                               padding: 0 20px;
+                               font-size: 11px;
+                               text-transform: uppercase;
+                               border-radius: 8px;
                                background: #1945D5;
                                font-weight: 600;
-                               font-size: 15px;
                                text-align: left;
                                color: #fff;
 
+                               @include lt-md {
+                                   width: 100px;
+                                   font-size: 10px;
+                               }
+
                                img{
-                                   width:15.72px;
-                                   height:12.28px;
-                                   margin-left: 24.7px;
+                                   width:11.15px;
+                                   height:8.71px;
                                }
                            }
                         }
@@ -312,46 +572,60 @@
                         display: flex;
                         .my-data-btn{
                             margin-right: 19px;
+                            
                            a{
                                display: flex;
                                align-items: center;
-                               justify-content: center;
-                               width: 139px;
-                               height: 42px;
+                               justify-content: space-between;
+                               width:112px;
+                               height:34px;
+                               padding: 0 20px;
+                               font-size: 11px;
+                               text-transform: uppercase;
+                               border-radius: 8px;
                                font-weight: 600;
-                               font-size: 15px;
                                letter-spacing: 0.01em;
                                text-align: left;
                                color: #1b4bd2;
                                background: white;
-                               border-radius: 21px;
                                border: 1px solid #1945d5;
+
+                               @include lt-md {
+                                   width: 100px;
+                                   font-size: 10px;
+                                   margin-right: 0;
+                               }
+
                                img{
-                                   width:22.51px;
-                                   height:14.35px;
-                                   margin-left: 22.9px;
+                                   width:13.67px;
+                                   height:8.71px;
                                }
                            }
                         }
 
                         .preview-btn{
                           a{
-                              display: flex;
-                              align-items: center;
-                              justify-content: center;
-                              border-radius: 21px;
-                              background: #1945D5;
-                              font-weight: 600;
-                              font-size: 15px;
-                              text-align: left;
-                              color: #fff;
-                              width: 139px;
-                              height: 42px;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                width:112px;
+                                height:34px;
+                                padding: 0 20px;
+                                font-size: 11px;
+                                border-radius: 8px;
+                                background: #1945D5;
+                                font-weight: 600;
+                                text-align: left;
+                                color: #fff;
+
+                                @include lt-md {
+                                   width: 100px;
+                                   font-size: 10px;
+                               }
 
                               img{
-                                  width:22.51px;
-                                  height:14.35px;
-                                  margin-left: 19.9px;
+                                  width:13.67px;
+                                   height:8.71px; 
                               }
                           }
                         }
@@ -363,6 +637,15 @@
             }
 
             margin-bottom: 100px;
+        }
+    }
+
+    #previewModalContainer {
+        width: 80%;
+
+        iframe { 
+            width: 90%;
+            height: 80vh;
         }
     }
 </style>

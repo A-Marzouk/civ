@@ -169,6 +169,7 @@
             },
             addHobby() {
                 if (this.validateHobby()) {
+                    this.hobby.user_id = this.$store.state.user.id;
                     axios.post('/api/user/hobbies', this.hobby)
                         .then((response) => {
                             let addedHobby = response.data.data;
@@ -474,7 +475,7 @@ $mainBlue: #001CE2;
                 justify-content: flex-start;
                 max-width: 757px;
                 width: 100%;
-                margin-bottom: 40px;
+                margin-bottom: 70px;
 
                 .item-grid {
                     width: 100%;

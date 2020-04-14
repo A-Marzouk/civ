@@ -1,23 +1,17 @@
 <template>
     <v-app>
-        <div class="v-application v-application--is-ltr theme--light">
-            <div class="v-application--wrap">
-                <div class="v-content">
-                    <div class="v-content__wrap">
-                        <div class="my-container">
-                            <HeroSection />
-                            <VideoSection />
-                            <SliderSection />
-                            <TestimonioSection />
-                            <ContactSection />
-                        </div>
-                        <div class="footer-section w-100">
-                            <img src="/images/welcome_landing_page/logo/civie_logo_white.png" alt="">
-                        </div>
-                    </div>
-                </div>
+        <v-content>
+            <v-container style="max-width: 81%;">
+                <HeroSection />
+                <VideoSection />
+                <SliderSection />
+                <TestimonioSection />
+                <ContactSection />
+            </v-container>
+            <div class="footer-section">
+                <img src="/images/welcome_landing_page/logo/civie_logo_white.png" alt="">
             </div>
-        </div>
+        </v-content>
     </v-app>
 </template>
 <script>
@@ -43,6 +37,7 @@
         }),
     };
 </script>
+
 <style lang="scss">
 
 
@@ -487,7 +482,7 @@
 
 
     /** Forms fixes landing */
-    .v-text-field{
+    .v-text-field.custom-landing-input{
         input{
             background: #F8F8F8;
             box-shadow: -6px -6px 16px #FFFFFF,

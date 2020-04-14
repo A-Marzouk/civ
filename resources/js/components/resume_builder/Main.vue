@@ -56,7 +56,7 @@
         </div>
 
         <div class="content" 
-            :class="{ 'hideInfoWrapper-md': false /*activeTab !== 'myAccount'*/ }"
+            :class="{ 'hideInfoWrapper': activeTab === 'viewCV' }"
         >
             <div class="info-wrapper justify-content-between" v-if="personalInfo">
                 <div class="d-flex align-items-center">
@@ -208,14 +208,21 @@
             }
         },
         mounted() {
-            this.$store.dispatch('getCurrentUser');
-            let pathArray = window.location.pathname.split('/')
-            switch (pathArray[2]) {
+            this.$store.dispatch('setCurrentUser', this.$attrs.tempuser);
+            let currentTab = 'myAccount';
+            let pathArray = window.location.pathname.split('/');
+            pathArray.forEach( (tab) => {
+                if(tab === 'resume-builder'){
+                     currentTab = pathArray[pathArray.indexOf(tab) + 1];
+                }
+            });
+
+            switch (currentTab) {
                 // edit Tab
                 case 'edit':
                     this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this);
                     break;
-                    
+
 
                 // view CV Tab
                 case 'view':
@@ -232,6 +239,7 @@
                     this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this);
                     break;
             }
+
         }
     }
 </script>
@@ -246,8 +254,15 @@
     .content {
         width: 100%;
 
+        &.hideInfoWrapper {
+            margin: 0;
+
+            .info-wrapper {
+                display: none;
+            }
+        }
+
         .info-wrapper {
-        // &.hideInfoWrapper-md .info-wrapper {
            @include lt-md {
                 display: none !important;
             }
@@ -297,7 +312,7 @@
         }
 
         @include lt-sm {
-            padding: 100px 36px 50px;
+            padding: 100px 20px 50px;
         }
     }
 
@@ -490,7 +505,7 @@
                     text-decoration: none;
                 }
 
-                &.router-link-exact-active, &.router-link-active.has-inside-routes{
+                &.router-link-exact-active, &.router-link-active.has-inside-routes {
                     position: relative;
                     color: $mainBlue;
                 }
@@ -616,41 +631,6 @@
         color: #505050;
     }
 
-    .flying-notification{
-        position: fixed;
-        display: none;
-        bottom: 30px;
-        right: 50px;
-        width: 145px;
-        height: 65px;
-        background: whitesmoke;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 0 15px white;
-
-        img{
-            width: 40px;
-            margin-right: 15px;
-        }
-
-        .text{
-            font-weight: 600;
-            font-size:18px;
-        }
-
-        &.delete{
-            img{
-                width: 26px;
-                margin-right: 15px;
-            }
-
-            .text{
-                color: #f92727;
-            }
-        }
-
-
-    }
 
     #fullScreenNotificationModal{
         align-items: center;

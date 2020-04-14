@@ -79,6 +79,8 @@
             addAward () {
                 // Axios request here
                 this.errors= { new: {}, edit: {}};
+                this.newAward.user_id = this.$store.state.user.id;
+
                 axios.post('/api/user/achievements', this.newAward)
                     .then((response) => {
                         let addedAchievement = response.data.data;

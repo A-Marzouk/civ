@@ -1,7 +1,7 @@
 <template>
     <v-app style="width: 100%">
         <v-container class="hold_theme3" style="max-width: 1920px;">
-            <v-row class="freelancerCard">
+            <v-row class="freelancerCard" v-if="currentUser">
                 <v-col lg="12" md="12" cols="12" class="resumeCardRight">
                     <div class="showOnlyOnmd">
                         <v-row class="head-section">
@@ -10,13 +10,12 @@
                                 <a href="#" class="chat-option" @click.prevent="dialogMessage = true"><v-icon>mdi-message-text</v-icon></a>
                             </v-col>
                             <v-col lg="2" md="5" sm="4" cols="5" class="profileCol">
-                                <div class="head-name">Eduardo Acosta</div>
-                                <div class="head-profile">Front-end Developer</div>
+                                <div class="head-name">{{currentUser.personal_info.full_name}}</div>
+                                <div class="head-profile">{{currentUser.personal_info.designation}}</div>
                                 <div class="social-wrap">
-                                    <a href="" alt="Twitter" title="Twitter"><img src="/images/resume_themes/theme300/social_icons/twitter.webp" alt="twitter"></a>
-                                    <a href="" alt="Linkedin" title="Linkedin"><img src="/images/resume_themes/theme300/social_icons/linkedin.webp" alt="linkedin"></a>
-                                    <a href="" alt="Facebook" title="Facebook"><img src="/images/resume_themes/theme300/social_icons/facebook.webp" alt="facebook"></a>
-                                    <a href="" alt="Instagram" title="Instagram"><img src="/images/resume_themes/theme300/social_icons/instagram.webp" alt="instagram"></a>
+                                    <a :href="item.link" v-for="item in socialLinks" :key="item.id + '_link'" target="_blank" v-show="item.is_active">
+                                        <img :src="`/images/resume_themes/theme300/social_icons/${stringToLowerCase(item.link_title)}.webp`"  alt="social icon">
+                                    </a>
                                 </div>
                             </v-col>
                             <v-col lg="5" md="4" sm="5" cols="3" class="interviewSection">
@@ -30,18 +29,18 @@
                                 <v-row class="rate-wrap">
                                     <v-col lg="4" sm="5" cols="5">
                                         <span class="price">
-                                            $20
+                                            ${{currentPayment.salary}}
                                         </span>
                                         <span class="text_price">
-                                            Hourly rate
+                                            Rate
                                         </span>
                                     </v-col>
                                     <v-col lg="6" sm="5" cols="7">
                                         <span class="hours">
-                                            40 hrs
+                                               {{currentAvailability.available_hours}} hrs
                                         </span>
                                         <span class="text_hours">
-                                            Weekly Availability
+                                            Availability
                                         </span>
                                     </v-col>
                                 </v-row>
@@ -82,146 +81,91 @@
                         <v-tabs-items v-model="activeTab">
                             <v-tab-item class="portfolio-section" value="tab-0" transition="fade-transition" reverse-transition="fade-transition">
                                 <v-row class="portfolio-wrap"> 
-                                    <v-col lg="6" sm="12" cols="12">
+                                    <v-col lg="6" sm="12" cols="12" v-for="project in currentUser.projects" :key="project.id + '_projectImage' ">
                                         <div class="box-photo">
-                                            <img src="/images/resume_themes/theme300/picture1.png"/>
-                                        </div>
-                                    </v-col>
-                                    <v-col lg="6" sm="12" cols="12">
-                                        <div class="box-photo">
-                                            <img src="/images/resume_themes/theme300/picture2.png"/>
-                                        </div>
-                                    
-                                        <div class="box-photo">
-                                            <img src="/images/resume_themes/theme300/picture3.png"/>
+                                            <img  :src="getProjectMainImage(project)"  />
                                         </div>
                                     </v-col>
                                 </v-row>
                             </v-tab-item>
+
                             <v-tab-item class="work-section" value="tab-1" transition="fade-transition" reverse-transition="fade-transition">
                                 <v-timeline :reverse="reverseTimeline">
                                     <v-timeline-item
-                                        v-for="(work, index) in 4"
-                                        :key="index+'W'"
+                                        v-for="work in currentUser.work_experience" :key="work.id + 'work'"
                                         :small="smallTimeline"
                                         color="#fff"
                                         :hide-dot="false"                                        
                                     >
                                         <span slot="opposite">
-                                            2010
-                                            <span>- Present</span>
-                                                     
+                                            {{work.date_from}}
+                                            <span>- {{work.present ? 'Present' : work.data_to}}</span>
                                         </span>
                                         <v-card class="">
                                             <v-card-title class="headline">
                                                 <span class="title-job">
-                                                    Consultant web Senior
+                                                   {{work.job_title}}
                                                 </span>                                                
                                                 <span class="title-mob">
-                                                    2010
-                                                    <span>- Present</span>
+                                                    {{work.date_from}}
+                                                    <span>- {{work.present ? 'Present' : work.date_to}}</span>
                                                   
                                                 </span>                                                
                                             </v-card-title>
-                                            <v-card-text>Developming templates on vue... Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro omnis labore, quisquam alias in delectus dolorem quae vel odit reiciendis ratione. Praesentium natus eos ratione vero sunt eligendi numquam officiis?</v-card-text>
+                                            <v-card-text>
+                                                {{work.description}}
+                                            </v-card-text>
                                         </v-card>
                                     </v-timeline-item>
                                 </v-timeline>
                             </v-tab-item>
+
                             <v-tab-item class="education-section" value="tab-2" transition="fade-transition" reverse-transition="fade-transition">
                                 <v-timeline :reverse="reverseTimeline">
                                     <v-timeline-item
-                                        v-for="(education, index) in 4"
-                                        :key="index + 'E'"
+                                        v-for="(education, index) in currentUser.education"
+                                        :key="education.id + '_education'"
                                         :small="smallTimeline"
                                         :hide-dot="false"
                                     >
                                         <span slot="opposite">
-                                            2005
-                                            <span>- Present</span>       
+                                            {{education.date_from}}
+                                            <span>- {{education.present ? 'Present' : education.data_to}}</span>
                                         </span>
                                         <v-card class="">
                                             <v-card-title class="headline">
                                                 <span class="title-job">
-                                                    University Americana Barranquilla 
+                                                    {{education.university_name}}
                                                 </span>                                                
                                                 <span class="title-mob">
-                                                    2009
-                                                    <span>- 2014</span>
+                                                 {{education.date_from}}
+                                            <span>- {{education.present ? 'Present' : education.data_to}}</span>
                                                    
                                                 </span>                                                
                                             </v-card-title>
-                                            <v-card-text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit nostrum fugit itaque voluptatum, maiores aspernatur molestias perspiciatis harum veritatis alias!</v-card-text>
+                                            <v-card-text>
+                                                {{education.institution_type}}
+                                            </v-card-text>
                                         </v-card>
                                     </v-timeline-item>
                                 </v-timeline>
                             </v-tab-item>
+
                             <v-tab-item class="skills-section" value="tab-3" transition="fade-transition" reverse-transition="fade-transition">
                                 <v-row class="skills-wrap">
-                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
-                                        <div class="logo-skill icon_ps">Ps</div>
+                                    <v-col class="box-skill" cols="12" lg="4" sm="12" v-for="skill in currentUser.skills" :key="skill.id + '_skill'">
+                                        <img class="icon" :src="getSkillIcon(skill.title)" alt="skill-icon">
                                         <div class="info-skill">
                                             <div class="head-skill">
-                                                <span class="nameSkill">Photoshop</span>
-                                                <span class="percentSkill">95%</span>
+                                                <span class="nameSkill">{{skill.title}}</span>
+                                                <span class="percentSkill">{{skill.percentage}}%</span>
                                             </div>
                                             <v-progress-linear
                                                 buffer-value="100"
                                                 height="7px"
-                                                value="95"
+                                                :value="skill.percentage"
                                                 color="#2E9EF5"
                                                 background-color="rgba(46, 158, 245, 0.25)"
-                                                :rounded="true"
-                                            ></v-progress-linear>
-                                        </div>
-                                    </v-col>
-                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
-                                        <div class="logo-skill icon_ai">Ai</div>
-                                        <div class="info-skill">
-                                            <div class="head-skill">
-                                                <span class="nameSkill">Adobe Illustrator</span>
-                                                <span class="percentSkill">90%</span>
-                                            </div>
-                                            <v-progress-linear
-                                                buffer-value="100"
-                                                height="7px"
-                                                value="90"
-                                                color="#F4B400"
-                                                background-color="rgba(244, 180, 0, 0.25)"
-                                                :rounded="true"
-                                            ></v-progress-linear>
-                                        </div>
-                                    </v-col>
-                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
-                                        <div class="logo-skill icon_xd">Xd</div>
-                                        <div class="info-skill">
-                                            <div class="head-skill">
-                                                <span class="nameSkill">Adobe XD</span>
-                                                <span class="percentSkill">85%</span>
-                                            </div>
-                                            <v-progress-linear
-                                                buffer-value="100"
-                                                height="7px"
-                                                value="85"
-                                                color="#E535AB"
-                                                background-color="rgba(229, 53, 171, 0.25)"
-                                                :rounded="true"
-                                            ></v-progress-linear>
-                                        </div>
-                                    </v-col>
-                                    <v-col class="box-skill" cols="12" lg="4" sm="12">
-                                        <div class="logo-skill icon_id">Id</div>
-                                        <div class="info-skill">
-                                            <div class="head-skill">
-                                                <span class="nameSkill">Adobe InDesign</span>
-                                                <span class="percentSkill">75%</span>
-                                            </div>
-                                            <v-progress-linear
-                                                :buffer-value="100"
-                                                height="7px"
-                                                value="75"
-                                                color="#FF00AB"
-                                                background-color="rgba(255, 0, 171, 0.25)"
                                                 :rounded="true"
                                             ></v-progress-linear>
                                         </div>
@@ -351,6 +295,7 @@
 <script>
 export default {
     name: "theme300",
+    props: ['user', 'is_preview'],
     components: {},
     data() {
         return {
@@ -384,24 +329,134 @@ export default {
             dialogHireme: false,
             // --Player
             playing: false,
-            radioGroup: 1
+            radioGroup: 1,
+
+            currentUser: this.user,
+            currentPayment:{},
+            currentAvailability:{}
         }
     },
     watch: {
-
-        // freelancer: function () {
-        //     // update freelancer data when prop changes
-        //     this.skills = this.freelancer.skills;
-        //     this.worksHistory = this.freelancer.works_history;
-        //     this.educationsHistory = this.freelancer.educations_history;
-        // }
-        
+    },
+    computed:{
+        socialLinks(){
+            return this.currentUser.links.filter( (link) => {return link.category === 'social_link' ? link : false});
+        }
     },
     methods: {
         getFullYear(date){
             let newDate = new Date(date);
             let yyyy = newDate.getFullYear();
             return yyyy;
+        },
+        getSkillIcon(skill_title) {
+            let arrayOfSkillImages = {
+                "ui design": "/images/skills_icons/user_interface.png",
+                "ux design": "/images/skills_icons/user_experience.png",
+                "logo design": "/images/skills_icons/logo_design.png",
+                animation: "/images/skills_icons/animation.jpg",
+                "motion graphics": "/images/skills_icons/motion_graphics.png",
+                illustration: "/images/skills_icons/illustration.png",
+                advertising: "/images/skills_icons/advertising.png",
+                branding: "/images/skills_icons/branding.png",
+                "brochure Design": "/images/skills_icons/brochure_design.png",
+                "website design": "/images/skills_icons/web_design.png",
+                "game designer": "/images/skills_icons/game_designer.png",
+                "character design": "/images/skills_icons/character_design.png",
+                "digital painting": "/images/skills_icons/digital_painting.png",
+                "creative director": "/images/skills_icons/creative_director.png",
+                "html / css": "/images/skills_icons/HTML.png",
+                // 2-
+
+                "adobe after effects": "/images/skills_icons/AE.png",
+                sketch: "/images/skills_icons/Sketch.png",
+                "adobe illustrator": "/images/skills_icons/Illustrator.png",
+                "adobe xd": "/images/skills_icons/AdobeXD.png",
+                photoshop: "/images/skills_icons/Photoshop.png",
+                autocad: "/images/skills_icons/autocad.png",
+                solidworks: "/images/skills_icons/solid_works.png",
+                "adobe flash": "/images/skills_icons/adobe_flash.png",
+                "digital drawing Tablet":
+                    "/images/skills_icons/digital_drawing_tablet.png",
+                "adobe indesign": "/images/skills_icons/indesign.png",
+                coreldraw: "/images/skills_icons/corel_draw.png",
+                "3d max": "/images/skills_icons/3d_max.png",
+
+                // developer :
+                // 1-
+                javascript: "/images/skills_icons/javascript.png",
+                sql: "/images/skills_icons/mysql.png",
+                java: "resumeApp/resources/assets/images/skills_icons/java.png",
+                "c#": "/images/skills_icons/c#.png",
+                python: "/images/skills_icons/python.png",
+                php: "/images/skills_icons/php.png",
+                "c++": "/images/skills_icons/c_language.png",
+                c: "/images/skills_icons/c_language.png",
+                typescript: "/images/skills_icons/typescript.png",
+                ruby: "/images/skills_icons/ruby.png",
+                "objective-C": "/images/skills_icons/objective_c.png",
+                swift: "/images/skills_icons/swift.png",
+                "vb.net": "/images/skills_icons/vb_net.png",
+                go: "/images/skills_icons/go.png",
+                perl: "/images/skills_icons/perl.png",
+                scala: "/images/skills_icons/scala.png",
+                groovy: "/images/skills_icons/groovy.png",
+                assembly: "/images/skills_icons/assembly.png",
+                coffeescript: "/images/skills_icons/coffeeScript.png",
+                vba: "/images/skills_icons/vba.png",
+                r: "/images/skills_icons/r_lang.png",
+                matlab: "/images/skills_icons/matlab.png",
+                "visual basic 6": "/images/skills_icons/matlab.png",
+                lua: "/images/skills_icons/lua.png",
+                haskell: "/images/skills_icons/haskell.png",
+                html: "/images/skills_icons/HTML.png",
+                css: "/images/skills_icons/CSS.png",
+                laravel: "/images/skills_icons/laravel.png",
+                phpstorm: "/images/skills_icons/phpstorm.png",
+
+                //2-
+                angularjs: "/images/skills_icons/Angularjs.png",
+                "angular.js": "/images/skills_icons/Angularjs.png",
+                "node.js": "/images/skills_icons/node_js.png",
+                nodejs: "/images/skills_icons/node_js.png",
+                ".net Core": "/images/skills_icons/netcore.png",
+                react: "/images/skills_icons/react.png",
+                cordova: "/images/skills_icons/cordava.png",
+                firebase: "",
+                xamarin: "",
+                hadoop: "/images/skills_icons/hadoop.png",
+                spark: "/images/skills_icons/spark.png",
+                mysql: "/images/skills_icons/mysql.png",
+                "sql server": "/images/skills_icons/sql server.png",
+                postgresql: "/images/skills_icons/postgreSQL.png",
+                sqlite: "/images/skills_icons/SQLite.png",
+                mongodb: "/images/skills_icons/mongoDB.png",
+                oracle: "/images/skills_icons/Oracle.png",
+                redis: "/images/skills_icons/redis.png",
+                cassandra: "/images/skills_icons/cassandra.png"
+            };
+            if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
+                return arrayOfSkillImages[skill_title.toLowerCase()];
+            }
+            return "/images/skills_icons/skill.png";
+        },
+        stringToLowerCase(string){
+            if(string){
+                return string.toLowerCase();
+            }
+            return 'social_icon';
+        },
+        getProjectMainImage(project) {
+            let mainImage = "";
+
+            let images = project.images;
+            images.forEach(image => {
+                if (image.is_main) {
+                    mainImage = image;
+                }
+            });
+
+            return mainImage.src;
         },
         getTabName(label) {
             let arrayTabs = {
@@ -469,19 +524,34 @@ export default {
         cancelForm() {
             this.dialogMessage = false;
             this.$refs.formMessages.reset();
+        },
+        setDummyUser() {
+            this.currentUser = this.$store.state.dummyUser;
+        },
+        setDefaultRates(){
+            if(this.currentUser){
+                this.currentPayment      =  this.currentUser.payment_info[0] ;
+                this.currentAvailability =  this.currentUser.availability_info[0] ;
+            }
         }
     },
     beforeMount(){
         this.setTab('portfolio');
     },
-    mounted(){},
-    // created() {
-    //     this.setTab('portfolio');
-    // }
+    mounted() {
+        // if there is no user or the preview is true, set dummy user
+        if (!this.currentUser || this.is_preview) {
+            this.setDummyUser();
+        }
+
+        // set default payment and availability:
+        this.setDefaultRates();
+    }
+
 }
 </script>
 <style lang="scss">
-    @import 'resources/sass/themes/utils_theme300.scss';
+    @import 'resources/sass/themes/theme300.scss';
 </style>
 <style lang="scss" scoped>
 
@@ -582,6 +652,7 @@ export default {
             }
             .profileCol{
                 margin-left: 0;
+                min-width: 42%;
 
                 .head-name{
                     font-size: 20px;
@@ -612,6 +683,7 @@ export default {
                 justify-content: flex-start;
                 padding: 0px;
                 height: 80px;
+                max-width: 250px;
 
                 .title-medium{
                     font-size: 0;
@@ -646,11 +718,11 @@ export default {
                 margin-top: 15px;
                 flex-flow: nowrap;
                 min-height: 69px;
-                padding: 0px 30px;
+                padding: 0 30px 0 0;
 
                 .rate-wrap{
 
-                    justify-content: flex-end;
+                    justify-content: space-between;
 
                     
 
@@ -658,6 +730,8 @@ export default {
 
                         justify-content: center;
                         display: flex;
+                        padding: 0;
+
                         .price{
                             &::before{
                                 content: "Hourly Rate:";
@@ -769,6 +843,11 @@ export default {
                         margin-right: 5px;
                     }
                 }
+
+                .head-name{
+                    font-size: 18px;
+                    line-height: 20px;
+                }
             }
 
             .interviewSection{
@@ -779,7 +858,7 @@ export default {
             }
 
             .rateSection{
-                padding: 0px 30px 0px 10px;
+                padding: 0px 3.6%;
             }
         }
 
@@ -854,6 +933,8 @@ export default {
             text-decoration: none;
             line-height: 32px;
             box-shadow: none;
+            justify-content: center;
+            align-items: center;
 
             img{
                 max-width: 24px;
@@ -1260,11 +1341,13 @@ export default {
             box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
             margin-bottom: 20px;
             display: flex;
+            justify-content: center;
 
             img{
                 max-width: 100%;
             }
         }
+        
         @media screen and (max-width: 960px) {
             .col-12{
                 max-width: 100%;
@@ -1278,6 +1361,11 @@ export default {
                 img{
                     width: 100%;
                 }
+            }
+        }
+        @media screen and (max-width: 380px) {
+            .box-photo{
+                padding: 5px;               
             }
         }
     }
@@ -1296,6 +1384,11 @@ export default {
             margin-bottom: 2%;
             align-self: stretch;
             max-width: 460px;
+
+            img{
+                width: 63px;
+                height: 63px;
+            }
 
             .logo-skill{
                 width: 63px;

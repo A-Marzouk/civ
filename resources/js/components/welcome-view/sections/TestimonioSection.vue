@@ -69,16 +69,13 @@
                 </v-carousel>
                 <div class="paginator NoDecor" v-if="windowWidth <= 769">
                     <div class="nav-carousel">
-                        <a href="#" @click.prevent="carouselState--"><img
-                                src="/images/welcome_landing_page/icons/arrow-left.png" alt=""></a>
-                        <a href="#" @click.prevent="carouselState++"><img
-                                src="/images/welcome_landing_page/icons/arrow-next.png" alt=""></a>
+                        <a href="#" @click.prevent="carouselState--"><img src="/images/welcome_landing_page/icons/arrow-left.png" alt=""></a>
+                        <a href="#" @click.prevent="carouselState++"><img src="/images/welcome_landing_page/icons/arrow-next.png" alt=""></a>
                     </div>
                     <a href="#" class="btn-inset light__red"><i>Get started</i></a>
                 </div>
                 <div class="nav-carousel NoDecor" v-else>
-                    <a href="#" class="link_next" @click.prevent="carouselState++">Next comment <span><img
-                            src="/images/welcome_landing_page/icons/arrow-next.png" alt=""/></span></a>
+                    <a href="#" class="link_next" @click.prevent="carouselState++">Next comment <span><img src="/images/welcome_landing_page/icons/arrow-next.png" alt=""></span></a>
                 </div>
             </div>
         </div>

@@ -203,7 +203,7 @@
                     degree_title:'',
                     date_from:'',
                     date_to:'',
-                    present: false,
+                    present: false
                 },
                 errors: {
                     new: {},
@@ -277,6 +277,7 @@
             },
             addEducation(){
                 this.errors = {  new: {}, edit: {}};
+                this.newEducation.user_id = this.$store.state.user.id
                 axios.post('/api/user/education', this.newEducation)
                     .then((response) => {
                         this.educations.unshift(response.data.data);

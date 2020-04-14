@@ -9,6 +9,10 @@
 namespace App\Http\Controllers;
 
 
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 class AdminsController extends Controller
 {
     public function __construct(){
@@ -16,7 +20,19 @@ class AdminsController extends Controller
     }
 
     public function index(){
-        return view('admin.dashboard');
+        // get all users:
+        $users = User::all();
+        foreach ($users as $user){
+            $user['is_admin'] = $user->hasRole('admin');
+        }
+        return view('admin.dashboard', compact('users'));
     }
 
+    public function userFullEdit($username){
+        $tempUser = User::withAllRelations($username);
+        if(!$tempUser){
+            return redirect('/workforce-admin');
+        }
+        return view('admin.resume-builder',compact('tempUser'));
+    }
 }

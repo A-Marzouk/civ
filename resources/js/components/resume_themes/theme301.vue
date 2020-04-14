@@ -423,9 +423,10 @@
         </v-dialog>
     </v-app>
 </template>
+<style lang="scss">
+    @import 'resources/sass/themes/theme301.scss';
+</style>
 <style lang="scss" scoped>
-
-    @import 'resources/sass/themes/utils_theme301.scss';
 
     @import 'https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap';
     @import 'https://fonts.googleapis.com/css?family=Actor&display=swap';
