@@ -158,7 +158,35 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'work_experience'">
-                                <div class="edit-inputs" v-if="section.edited"></div>
+                                <div class="edit-inputs" v-if="section.edited">
+                                    <input class='shorter' type="text" id="companyName" placeholder="Company name" v-model="work_experience.company_name">
+                                    <div class="error" v-if="errors.company_name">
+                                        {{ Array.isArray(errors.company_name) ? errors.company_name[0] : errors.company_name}}
+                                    </div>
+                                    <input type="text" id="jobTitle" placeholder="Job title" v-model="work_experience.job_title">
+                                    <div class="error" v-if="errors.job_title">
+                                        {{ Array.isArray(errors.job_title) ? errors.job_title[0] : errors.job_title}}
+                                    </div>
+                                    <textarea type="text" id="description" placeholder="Description" v-model="work_experience.description"></textarea>
+                                    <div class="error" v-if="errors.description">
+                                        {{ Array.isArray(errors.description) ? errors.description[0] : errors.description}}
+                                    </div>
+                                    <input type="text" id="website" placeholder="Website" v-model="work_experience.website">
+                                    <div class="error" v-if="errors.website">
+                                        {{ Array.isArray(errors.website) ? errors.website[0] : errors.website}}
+                                    </div>
+                                    <input type="date" id="dateFromWork" v-model="work_experience.date_from">
+                                    <div class="error" v-if="errors.date_from">
+                                        {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                                    </div>
+                                    <label for="dateTo" class="light d-flex align-items-center mt-4">
+                                        <input type="checkbox" class="checkbox" v-model="work_experience.present"> I currently work here.
+                                    </label>
+                                    <input type="date" id="dateToWork" v-model="work_experience.date_to" :disabled="work_experience.present">
+                                    <div class="error" v-if="errors.date_to">
+                                        {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                    </div>
+                                </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"></div>
@@ -169,7 +197,31 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'education'">
-                                <div class="edit-inputs" v-if="section.edited"></div>
+                                <div class="edit-inputs" v-if="section.edited">
+                                    <input type="text" id="institutionType" placeholder="Institution type"  class="shorter" v-model="education.institution_type">
+                                    <div class="error" v-if="errors.institution_type">
+                                        {{ Array.isArray(errors.institution_type) ? errors.institution_type[0] : errors.institution_type}}
+                                    </div>
+                                    <input type="text" id="universityName" placeholder="University name" v-model="education.university_name">
+                                    <div class="error" v-if="errors.university_name">
+                                        {{ Array.isArray(errors.university_name) ? errors.university_name[0] : errors.university_name}}
+                                    </div>
+                                    <input type="text" id="degreeTitle" placeholder="Degree title"  class="shorter" v-model="education.degree_title">
+                                    <div class="error" v-if="errors.degree_title">
+                                        {{ Array.isArray(errors.degree_title) ? errors.degree_title[0] : errors.degree_title}}
+                                    </div>
+                                    <input type="date" id="dateFrom" v-model="education.date_from">
+                                    <div class="error" v-if="errors.date_from">
+                                        {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                                    </div>
+                                    <label for="dateTo" class="light d-flex align-items-center mt-4">
+                                        <input type="checkbox" class="checkbox" v-model="education.present"> I currently study here.
+                                    </label>
+                                    <input type="date" id="dateTo" v-model="education.date_to" :disabled="education.present">
+                                    <div class="error" v-if="errors.date_to">
+                                        {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                    </div>
+                                </div>
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"></div>
@@ -1390,9 +1442,9 @@
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            this.errors.new = error.response.data.errors;
+                            this.errors = error.response.data.errors;
                         } else {
-                            this.errors.new  = 'Something went wrong. Please try again.';
+                            this.errors  = 'Something went wrong. Please try again.';
                         }
                     });
             },
@@ -1805,7 +1857,7 @@
                                     flex-direction: row;
                                     flex-wrap: wrap;
                                 }
-                                input{
+                                input,textarea{
                                     font-size: 24px;
                                     margin-top:22px;
                                     width: 100%;
@@ -1819,6 +1871,13 @@
                                     &::placeholder{
                                         color: blue;
                                         opacity: 0.3;
+                                    }
+
+                                    &.checkbox{
+                                        font-size: 10px;
+                                        width: 20px;
+                                        height: 20px;
+                                        margin-top:0;
                                     }
                                 }
 
