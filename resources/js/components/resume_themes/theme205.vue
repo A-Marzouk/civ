@@ -12,176 +12,108 @@
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
-                <v-col md="8" cols="12" sm="7">
+                <v-col md="5" cols="12" sm="8">
                   <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
-                      <v-list-item two-line>
-                        <v-list-item-avatar size="120" class="hidden-xs-only custom-avatar">
-                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
-                        </v-list-item-avatar>
-                        <v-list-item-avatar size="80" class="hidden-sm-and-up custom-avatar mr-2">
-                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
-                        </v-list-item-avatar>
-                        <v-list-item-content>
-                          <v-list-item-title class="profile-title">
-                            <v-card class="pa-0" flat color="transparent">
-                              Carla Pipin Ranga
-                              <span class="mx-8 hidden-sm-and-down">
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  depressed
-                                  class="mx-md-auto mx-sm-2 btn-email"
-                                >
-                                  <v-icon class="icon-email">mdi-email</v-icon>
-                                </v-btn>
+                      <v-row>
+                        <v-col cols="8">
+                          <v-list-item two-line class="ml-n3">
+                            <v-list-item-content>
+                              <v-list-item-title class="profile-title">
+                                <v-card class="pa-1" flat color="transparent">Carla Pipin Ranga</v-card>
+                              </v-list-item-title>
+                              <v-list-item-title class="mt-n2">
+                                <v-card flat color="transparent" class="pa-1">
+                                  <span
+                                    class="profile-subtitle"
+                                  >Web Ui/Ux Designer, Graphiс Designer</span>
+                                </v-card>
+                              </v-list-item-title>
+                              <v-list-item-subtitle class="ml-n1 hidden-sm-and-down">
+                                <v-card flat color="transparent" class="mt-2 pa-1">
+                                  <v-btn
+                                    fab
+                                    style="overflow:hidden;"
+                                    color="#000000"
+                                    small
+                                    class="mx-md-1 mx-sm-2 mx-1 social-btn"
+                                    depressed
+                                    v-for="item in socialIcons2"
+                                    :key="item.id"
+                                  >
+                                    <img width="14" :src="getSocialIcon(item.title)" />
+                                  </v-btn>
+                                </v-card>
+                              </v-list-item-subtitle>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-col>
+                        <v-col cols="4">
+                          <v-card flat color="transparent" class="mt-5">
+                            <v-btn
+                              fab
+                              color="#FCD259"
+                              small
+                              depressed
+                              class="mx-md-1 mx-sm-2 btn-email"
+                            >
+                              <v-icon class="icon-email">mdi-email</v-icon>
+                            </v-btn>
 
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
-                                  class="mx-md-auto mx-sm-2 btn-video-player"
-                                >
-                                  <img
-                                    width="15"
-                                    src="/images/resume_themes/theme203/icons/video-player.webp"
-                                  />
-                                </v-btn>
-
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  x-small
-                                  depressed
-                                  class="btn-headphone mx-auto mx-sm-2 mx-md-auto"
-                                  align="center"
-                                >
-                                  <img
-                                    width="15"
-                                    src="/images/resume_themes/theme203/icons/headphones.webp"
-                                  />
-                                </v-btn>
-                              </span>
-                              <span class="social-media-block hidden-sm-and-down">
-                                <v-btn
-                                  fab
-                                  color="#FCD259"
-                                  small
-                                  class="mx-md-1 mx-sm-2 social-btn"
-                                  depressed
-                                  v-for="item in socialIcons"
-                                  :key="item.id"
-                                >
-                                  <img width="15" :src="getSocialIcon(item.title)" />
-                                </v-btn>
-                              </span>
-                            </v-card>
-                          </v-list-item-title>
-                          <v-list-item-title>
-                            <v-card flat color="transparent">
-                              <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
-                            </v-card>
-                          </v-list-item-title>
-                        </v-list-item-content>
-                      </v-list-item>
+                            <v-btn
+                              fab
+                              color="#FCD259"
+                              depressed
+                              class="btn-headphone mx-auto mx-sm-2 mx-md-1"
+                              align="center"
+                            >
+                              <img
+                                width="16"
+                                src="/images/resume_themes/theme205/icons/download-pdf.png"
+                              />
+                            </v-btn>
+                          </v-card>
+                        </v-col>
+                      </v-row>
                     </v-card-text>
                   </v-card>
                 </v-col>
                 <!-- 1st column profile pic and icons -->
 
-                <!-- 2nd column only for tab and mobile version version -->
-                <v-col sm="5" cols="12" class="tablet-audio-video-flex">
-                  <v-card
-                    flat
-                    color="transparent"
-                    class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
-                    style="z-index:2"
-                  >
+                <!-- 2nd column social media icons -->
+                <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
+                  <v-card flat color="tranparent">
                     <v-btn
                       fab
                       color="#FCD259"
                       small
+                      class="mx-md-1 mx-sm-2 mx-1 my-5 social-btn"
                       depressed
-                      class="mx-md-1 mx-sm-2 mx-1 btn-email"
+                      v-for="item in socialIconsTablet"
+                      :key="item.id"
                     >
-                      <v-icon class="icon-email">mdi-email</v-icon>
-                    </v-btn>
-
-                    <v-btn
-                      fab
-                      color="#FCD259"
-                      x-small
-                      depressed
-                      class="mx-md-0 mx-sm-2 mx-1 btn-video-player"
-                    >
-                      <img width="15" src="/images/resume_themes/theme203/icons/video-player.webp" />
-                    </v-btn>
-
-                    <v-btn fab color="#FCD259" x-small depressed class="btn-headphone mx-1 mx-sm-2">
-                      <img
-                        width="15"
-                        style="margin-left:1px;"
-                        class
-                        src="/images/resume_themes/theme203/icons/headphones.webp"
-                      />
+                      <img width="15" :src="getSocialIcon(item.title)" />
                     </v-btn>
                   </v-card>
                 </v-col>
-                <!-- 2nd column only for tab and mobile version version -->
-
-                <!-- 2nd column social media icons -->
-                <v-col md="3" sm="12" cols="12" class="mt-n3 pa-0 hidden-md-and-up" align="center">
-                  <v-card flat color="tranparent">
-                    <v-card-text class>
+                <!-- Social media icons -->
+                <v-col md="7" class="hidden-sm-and-down">
+                  <v-card flat color="transparent" class="mt-n12 mr-2">
+                    <v-card-text align="right">
                       <v-btn
                         fab
                         color="#FCD259"
                         small
-                        class="mx-md-1 mx-sm-2 mx-1 social-btn"
+                        class="mx-md-1 mx-sm-2 social-btn"
                         depressed
                         v-for="item in socialIcons"
                         :key="item.id"
                       >
-                        <img width="15" :src="getSocialIcon(item.title)" />
+                        <img
+                          :width="item.title == 'map-markup'?11:16"
+                          :src="getSocialIcon(item.title)"
+                        />
                       </v-btn>
-                    </v-card-text>
-                  </v-card>
-                </v-col>
-                <!-- Social media icons -->
-
-                <v-col md="4" sm="8" cols="12">
-                  <v-card flat color="transparent" class="ma-0 pa-0">
-                    <v-card-text class="ml-md-n5">
-                      <v-row no-gutters align="center" justify="center">
-                        <v-col cols="4" class="d-flex">
-                          <v-card flat class="text-center" color="tranparent">
-                            <v-card-title class="hire-me-title">Hourly rate</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">$25 USD</v-card-subtitle>
-                          </v-card>
-                        </v-col>
-                        <div style="height:41px; border:1px solid #D7D7D7;"></div>
-                        <v-col cols="4" class="d-flex">
-                          <v-card flat class="text-center" color="transparent">
-                            <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">8 Hours</v-card-subtitle>
-                          </v-card>
-                        </v-col>
-
-                        <v-col cols="3" class="d-flex">
-                          <v-card flat color="transparent">
-                            <v-card-text>
-                              <v-btn
-                                color="#FCD259"
-                                class="mx-n6 btn-hire-me"
-                                height="45"
-                                depressed
-                              >Hire Me</v-btn>
-                            </v-card-text>
-                          </v-card>
-                        </v-col>
-                      </v-row>
                     </v-card-text>
                   </v-card>
                 </v-col>
@@ -220,6 +152,26 @@
           <v-col cols="12">
             <v-card flat color="transparent" style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
+                <!-- About -->
+                <v-tab-item>
+                  <div class="watermark-text text-center mt-12">About</div>
+                  <v-card flat color="transparent" align="center">
+                    <v-row align="center" justify="center">
+                      <v-col cols="12">
+                        <v-card flat color="transparent">
+                          <div class="about-title">About</div>
+                          <br />
+                          <div class="about-detail">
+                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                          </div>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-card>
+                </v-tab-item>
+                <!-- About -->
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
@@ -259,7 +211,7 @@
                                 <v-list-item-icon>
                                   <img
                                     class="work-icon"
-                                    src="/images/resume_themes/theme203/images/ellipse.png"
+                                    src="/images/resume_themes/theme205/images/ellipse.png"
                                   />
                                 </v-list-item-icon>
                                 <v-list-item-content>
@@ -295,7 +247,7 @@
                               <v-list-item-icon>
                                 <img
                                   class="work-icon"
-                                  src="/images/resume_themes/theme203/images/ellipse.png"
+                                  src="/images/resume_themes/theme205/images/ellipse.png"
                                 />
                               </v-list-item-icon>
                               <v-list-item-content>
@@ -397,29 +349,45 @@ export default {
   data() {
     return {
       socialIcons: [
+        { id: 1, title: "map-markup" },
+        { id: 2, title: "whatsapp" },
+        { id: 3, title: "google-plus" }
+      ],
+      socialIcons2: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
         { id: 3, title: "instagram" },
-        { id: 4, title: "linkedin" },
-        { id: 5, title: "google-plus" }
+        { id: 4, title: "linkedin" }
       ],
+
+      socialIconsTablet: [
+        { id: 1, title: "behance2" },
+        { id: 2, title: "dribbble2" },
+        { id: 3, title: "instagram2" },
+        { id: 4, title: "linkedin2" }
+      ],
+
       mainDataTab: null,
       progressBarColor: "yellow",
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio"
+          title: "About"
         },
         {
           id: 2,
-          title: "Work"
+          title: "Portfolio"
         },
         {
           id: 3,
-          title: "Education"
+          title: "Work"
         },
         {
           id: 4,
+          title: "Education"
+        },
+        {
+          id: 5,
           title: "Skills"
         }
       ],
@@ -519,10 +487,10 @@ export default {
   },
   methods: {
     getSocialIcon(name) {
-      return `/images/resume_themes/theme203/social_icons/${name}.webp`;
+      return `/images/resume_themes/theme205/social_icons/${name}.webp`;
     },
     getPortfolioItems(id) {
-      return `/images/resume_themes/theme203/portfolio/${id}.png`;
+      return `/images/resume_themes/theme205/portfolio/${id}.png`;
     }
   }
 };
@@ -561,9 +529,13 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (max-width: 959px) {
+    width: 23rem;
+    height: 15.75rem;
+  }
   @media screen and (max-width: 599px) {
-    width: 15.5rem;
-    height: 13.75rem;
+    width: 14.5rem;
+    height: 10.75rem;
   }
   @media screen and (max-width: 322px) {
     width: 14.5rem;
@@ -599,7 +571,7 @@ export default {
   height: 1000vh;
   z-index: 1;
   bottom: 0;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     width: 1rem;
   }
 }
@@ -728,6 +700,32 @@ export default {
   }
 }
 // ............................ Main Navigation Tab ...........................//
+// about
+.about-title {
+  font-family: "Open Sans" sans-serif !important;
+  font-size: 1.5rem;
+  line-height: 33px !important;
+  font-weight: bold !important;
+  color: #000000;
+  @media screen and (max-width: 959px) {
+    font-size: 1.875rem;
+    color: #fcd259;
+    text-align: left !important;
+  }
+}
+.about-detail {
+  font-family: "Open Sans" sans-serif !important;
+  font-size: 0.75rem !important;
+  line-height: 15px !important;
+  text-align: center;
+  color: #373737 !important;
+  @media screen and (max-width: 959px) {
+    text-align: left !important;
+    font-size: 1.125rem !important;
+    line-height: 25px !important;
+  }
+}
+//about
 // ..........................Desktop Portfolio.........................
 .custom-portfolio-img {
   border-radius: 10px;
@@ -843,7 +841,7 @@ export default {
 </style>
 
 <style>
-#resumeTheme203 .v-progress-linear__determinate {
+#resumetheme205 .v-progress-linear__determinate {
   background-color: -moz-linear-gradient(
     138.05deg,
     #fcd259 1.07%,
