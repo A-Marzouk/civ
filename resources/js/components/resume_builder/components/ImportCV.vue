@@ -31,7 +31,7 @@
                 <img src="/images/resume_builder/import/pic.png" alt="icon">
                 {{file.name}}
                 <img class="close" src="/images/resume_builder/my_account/close-modal.png" alt="icon"
-                     @click="clearFile">
+                     @click="clearAll">
             </div>
 
             <div class='w-100' v-if="extractedText.length < 1">
@@ -295,7 +295,7 @@
                 extractedText: '',
                 originalText: '',
                 arrayOfExtractedText: [],
-                errors: [],
+                errors: {},
                 freelancerData: {
                     'work_experience': '',
                     'education': '',
@@ -929,7 +929,7 @@
                 ],
                 isAllSelected:false,
                 showFullText: false,
-                showToolTip: false
+                showToolTip: false,
             }
         },
         methods: {
@@ -1043,7 +1043,7 @@
                         user_id: this.$store.state.user.id
                 };
             },
-            clearFile() {
+            clearAll() {
                 this.clearFreelancerData();
                 this.file = '';
                 this.extractedText = '';
@@ -1319,7 +1319,9 @@
 
             // import available Data:
              async importAvailableData(){
-                await this.savePersonalData()
+                 this.errors = {};
+
+                 await this.savePersonalData()
                     .then( () => {
                         return this.saveSkills();
                     })
@@ -1363,10 +1365,6 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
                     });
 
             },
@@ -1396,10 +1394,6 @@
                         } else {
                             this.errors.new  = 'Something went wrong. Please try again.';
                         }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
                     });
             },
             async saveLanguages() {
@@ -1413,10 +1407,11 @@
 
                     })
                     .catch((error) => {
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
                     });
             },
             async saveEducation() {
@@ -1427,15 +1422,15 @@
 
                 await axios.post('/api/user/education', this.education )
                     .then((response) => {
-                        console.log('Education: ');
-                        console.log(response.data);
+
+
                     })
                     .catch((error) => {
-                        console.log(error.response.data.errors);
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
                     });
             },
             async saveWork() {
@@ -1446,15 +1441,14 @@
 
                 await axios.post('/api/user/work-experience', this.work_experience )
                     .then((response) => {
-                        console.log('Work: ');
-                        console.log(response.data);
+
                     })
                     .catch((error) => {
-                        console.log(error.response.data.errors);
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
                     });
             },
 
@@ -1470,9 +1464,17 @@
                 return selected;
             },
             updateUserInfo(){
-                this.$store.dispatch('setCurrentUser',{});
-                this.$store.dispatch('flyingNotification');
-                this.clearFile();
+                if(Object.keys(this.errors).length === 0){
+                    this.$store.dispatch('setCurrentUser',{});
+                    this.$store.dispatch('flyingNotification');
+                    this.clearAll();
+                }else{
+                    console.log(this.errors);
+                    this.$store.dispatch('flyingNotification', {
+                        message: 'Error',
+                        iconSrc: '/images/resume_builder/error.png'
+                    });
+                }
             },
         },
         mounted() {
