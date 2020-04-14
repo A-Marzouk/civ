@@ -910,6 +910,7 @@
                                           v-show="item.is_active"
                                         >
                                           <img
+                                            width="25"
                                             :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"
                                             alt="social icon"
                                           />
