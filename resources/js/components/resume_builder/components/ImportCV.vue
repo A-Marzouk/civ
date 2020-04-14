@@ -959,6 +959,10 @@
                             } else {
                                 this.errors = ['Something went wrong. Please try again.'];
                             }
+                            this.$store.dispatch('flyingNotification', {
+                                message: 'Error',
+                                iconSrc: '/images/resume_builder/error.png'
+                            });
                         });
                 } else {
                     axios.post('/resume-builder/import/docx', formData, config)
@@ -971,6 +975,10 @@
                             } else {
                                 this.errors = ['Something went wrong. Please try again.'];
                             }
+                            this.$store.dispatch('flyingNotification', {
+                                message: 'Error',
+                                iconSrc: '/images/resume_builder/error.png'
+                            });
                         });
                 }
 
@@ -1233,19 +1241,25 @@
 
 
             // import available Data:
-            importAvailableData(){
-                // get selected sections:
-                let selectedSections = this.sections.filter( (section) => { return section.selected});
-                selectedSections.forEach( (section) => {
-                    section.title === 'profile' ? this.savePersonalData() : '';
-                    section.title === 'skills' ? this.saveSkills() : '';
-                    section.title === 'languages' ? this.saveLanguages() : '';
-                });
-            },
+             async importAvailableData(){
+                await this.savePersonalData()
+                    .then( () => {
+                        return this.saveSkills();
+                    })
+                    .then( () => {
+                        return this.saveLanguages();
+                    })
+                    .then( () => {
+                        this.updateUserInfo();
+                    })
+             },
 
 
             // saving data:
-            savePersonalData() {
+            async savePersonalData() {
+                if(!this.isSectionSelected('profile')){
+                    return;
+                }
                 let validatedData = {
                     user_id : this.$store.state.user.id
                 };
@@ -1256,10 +1270,9 @@
                     }
                 });
 
-                axios.put('/api/user/personal-info',validatedData)
+                await axios.put('/api/user/personal-info',validatedData)
                     .then((response) => {
-                        this.updateUserInfo();
-                        this.$store.dispatch('flyingNotification');
+
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -1267,21 +1280,67 @@
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
 
             },
-            saveSkills() {
-                // we have only the title.
-                console.log('save skills  data');
+            async saveSkills() {
+                if(!this.isSectionSelected('skills')){
+                    return;
+                }
 
+                let skills = [];
+
+                this.freelancerData.skills.forEach( (skill_title) => {
+                    skills.push({
+                        title: skill_title,
+                        user_id: this.$store.state.user.id,
+                        category:'programming_languages',
+                        percentage:85
+                    });
+                });
+
+                await axios.post('/api/user/skills-many', skills)
+                    .then((response) => {
+
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.new = error.response.data.errors;
+                        } else {
+                            this.errors.new  = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
             },
-            saveLanguages() {
+            async saveLanguages() {
                 // we have only the language title
-                console.log('save languages data');
+                if(!this.isSectionSelected('languages')){
+                    return;
+                }
+            },
 
+            isSectionSelected(section_title){
+                let selectedSections = this.sections.filter( (item) => { return item.selected});
+                let selected = false;
+                selectedSections.forEach( (section) => {
+                    if(section.title === section_title){
+                        selected =  true;
+                    }
+                });
+
+                return selected;
             },
             updateUserInfo(){
                 this.$store.dispatch('setCurrentUser',{});
+                this.$store.dispatch('flyingNotification');
+                this.clearFile();
             },
         },
         mounted() {
