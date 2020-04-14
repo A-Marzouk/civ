@@ -203,22 +203,26 @@
                                   </v-col>
                                   <v-spacer class="hidden-md-only"></v-spacer>
                                   <v-col cols="12" md="4" sm="5" class>
-                                    <v-btn color="#03CA9F" class="btn-voice-call">
-                                      <img
-                                        class="mr-2"
-                                        src="/images/resume_themes/theme200/icons/phone.png"
-                                      />Voice
-                                      Call
-                                    </v-btn>
+                                    <v-card color="transparent" flat class="mt-md-0 mt-sm-7 mt-0">
+                                      <v-btn color="#03CA9F" class="btn-voice-call">
+                                        <img
+                                          class="mr-2"
+                                          src="/images/resume_themes/theme200/icons/phone.png"
+                                        />Voice
+                                        Call
+                                      </v-btn>
+                                    </v-card>
                                   </v-col>
 
                                   <v-col cols="12" md="4" sm="5" class>
-                                    <v-btn color="#2400FF" class="btn-upload">
-                                      <img
-                                        src="/images/resume_themes/theme200/icons/camera.png"
-                                        class="mr-2"
-                                      />Upload Video
-                                    </v-btn>
+                                    <v-card flat color="transparent" class="mt-md-0 mt-sm-7 mt-0">
+                                      <v-btn color="#2400FF" class="btn-upload">
+                                        <img
+                                          src="/images/resume_themes/theme200/icons/camera.png"
+                                          class="mr-2"
+                                        />Upload Video
+                                      </v-btn>
+                                    </v-card>
                                   </v-col>
                                 </v-row>
                               </v-card-text>
@@ -360,7 +364,7 @@
                                   </v-tabs>
                                 </v-col>
                                 <v-col cols="6">
-                                  <v-card flat color="transparent" class="">
+                                  <v-card flat color="transparent" class>
                                     <v-tabs-items v-model="tabRate" style="background:transparent;">
                                       <v-tab-item v-for="n in 3" :key="n">
                                         <div class="hire-me-subtitle">Rate $ USD</div>
@@ -906,6 +910,7 @@
                                           v-show="item.is_active"
                                         >
                                           <img
+                                            width="25"
                                             :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"
                                             alt="social icon"
                                           />
