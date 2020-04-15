@@ -18,13 +18,9 @@ class UserModelTest extends TestCase
         $user = User::create(['name' => 'john', 'email' => 'johny@doe.com']);
 
         //when: user updates the activity:
-
         $user->updateLastActivity();
-        $start  = new Carbon(Carbon::now()->toDateTimeString());
-        $end    = new Carbon($user->last_activity);
-        $totalDuration = $end->diffInSeconds($start);
 
         // then:  totalDuration between last activity and now should be 0 seconds.
-        $this->assertEquals($totalDuration,'0');
+        $this->assertEquals($user->last_activity,'0');
     }
 }

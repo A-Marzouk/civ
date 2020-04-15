@@ -88,6 +88,9 @@
                 <a :href="'/workforce-admin/' + item.username + '/resume-builder'" target="_blank">{{item.username}}</a>
             </div>
         </template>
+        <template v-slot:item.lastActivity="{ item }">
+            {{getElapsedTime(item.last_activity)}} ago
+        </template>
         <template v-slot:no-data>
             No available data
         </template>
@@ -111,7 +114,8 @@
                 { text: 'Email', value: 'email' },
                 { text: 'Link to resume builder', value: 'profileLink'},
                 { text: 'Sub. Status', value: '' },
-                { text: 'Signup Date', value: 'created_at' },
+                { text: 'Signup date', value: 'created_at' },
+                { text: 'Last activity', value: 'lastActivity' },
                 { text: 'Sub. Renewal', value: '' },
                 { text: 'Status', value: '', sortable: false },
                 { text: 'Notes', value: '', sortable: false },
@@ -234,6 +238,38 @@
                         });
                 }
             },
+            getElapsedTime (timeInSeconds) {
+                let days    =  Math.floor(timeInSeconds / 86400);
+                let hours   =  Math.floor((timeInSeconds % 86400) / 3600);
+                let minutes =  Math.floor(((timeInSeconds % 86400) % 3600) / 60);
+
+                let daysText = '';
+                let hoursText = '';
+                let minutesText = '';
+
+                if(days === 1 ){
+                    daysText = days + ' day '
+                }
+                if(days > 1){
+                    daysText = days + ' days '
+                }
+
+                if(hours === 1 ){
+                    hoursText = hours + ' hour '
+                }
+                if(hours > 1){
+                    hoursText = hours + ' hours '
+                }
+
+                if(minutes === 1 ){
+                    minutesText = minutes + ' minute '
+                }
+                if(minutes > 1){
+                    minutesText = minutes + ' minutes '
+                }
+
+                return daysText + hoursText + ( days >= 1 ? '' : minutesText) ;
+            }
         },
 
         mounted() {

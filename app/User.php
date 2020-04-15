@@ -200,11 +200,27 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     // user helper functions :
-
     public function updateLastActivity(){
         $this->update([
             'last_activity' => Carbon::now()->toDateTimeString()
         ]);
+    }
+
+    // user Accessors & Mutators:
+
+    public function getLastActivityAttribute($value)
+    {
+        return $this->getTimeDifferenceInSeconds($value);
+    }
+
+
+    protected function getTimeDifferenceInSeconds($value){
+        // return time difference in seconds
+        $start  = new Carbon(Carbon::now()->toDateTimeString());
+        $end    = new Carbon($value);
+        $totalDuration = $end->diffInSeconds($start);
+
+        return $totalDuration;
     }
 
 }
