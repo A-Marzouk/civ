@@ -1790,6 +1790,9 @@
                         padding: 16px 33px;
                         color: #000000;
                         white-space: nowrap;
+                        @media only screen and (max-width: 959px){
+                            font-size: 18px;
+                        }
                         @media only screen and (max-width: 765px) {
                             font-size: 10px;
                             line-height: 15px;
