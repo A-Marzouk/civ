@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -31,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->string('linkedin_id')->nullable();
             $table->string('facebook_id')->nullable();
             $table->string('instagram_id')->nullable();
+
+            $table->timestamp('last_activity')->default(Carbon::now()->toDateTimeString());
 
             $table->rememberToken();
             $table->timestamps();

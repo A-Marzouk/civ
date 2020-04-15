@@ -83,6 +83,9 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
     Route::post('/account/validate', 'API\UsersController@validateSingleField')->name('account.validate');
 
+// update activity
+    Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
+
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
 
