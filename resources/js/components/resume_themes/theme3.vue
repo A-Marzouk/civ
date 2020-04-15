@@ -1937,6 +1937,7 @@
 
     .slick-dots {
         bottom: -40px !important;
+        margin-top:20px;
     }
 
     .slick-dots li button:before {
