@@ -89,7 +89,7 @@
             </div>
         </template>
         <template v-slot:item.lastActivity="{ item }">
-            {{getElapsedTime(item.last_activity)}} ago
+            {{getElapsedTime(item.last_activity).length > 0 ? getElapsedTime(item.last_activity) : 'a few moments'}} ago
         </template>
         <template v-slot:no-data>
             No available data
