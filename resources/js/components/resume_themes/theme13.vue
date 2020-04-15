@@ -3,14 +3,17 @@
         <div class="theme-header">
 
             <div class="bg-header">
-                
+                <img class='left-bg' src="/images/resume_themes/theme13/bg-left.png" alt="">
+                <img src="/images/resume_themes/theme13/bg-top1.png" alt="" class="bg-top1">
+                <img src="/images/resume_themes/theme13/bg-top2.png" alt="" class="bg-top2">
+                <img src="/images/resume_themes/theme13/bg-right.png" alt="" class="bg-right">
             </div>
 
             <div class="user-info">
 
                 <div class="left">
                     <div class="user-img">
-                        <img src="" alt="">
+                        <img src="/images/resume_builder/default-user.jpg" alt="">
                     </div>
 
                     <div class="user-data">
@@ -54,36 +57,91 @@
         </div>
 
         <div class="theme-body">
-            <v-row
-                justify="space-around"
-            >
-                <v-col lg="12">
-                    <v-tabs
-                        centered
-                        :center="true"
-                    >
-                        <v-tabs-slider></v-tabs-slider>
-                        <v-tab>Item One</v-tab>
-                        <v-tab>Item Two</v-tab>
-                        <v-tab>Item Three</v-tab>
-                    </v-tabs>
-                </v-col>
-            </v-row>
+            <div class="wrapper">
+
+                <v-row
+                    justify="space-around"
+                >
+                    <v-col lg="12">
+                        <v-tabs
+                            v-model="tab"
+                            centered
+                            :center="true"
+                        >
+                            <v-tabs-slider></v-tabs-slider>
+                            <v-tab
+                                v-for="(tabItem) in viewTabs"
+                                :key="tabItem"
+                                :ripple="false"
+                            >
+                                {{ formatTab(tabItem) }}
+                            </v-tab>
+                        </v-tabs>
+                        <transition>
+                            <EducationTab v-if="viewTabs[tab] === 'education'" />
+                            <PortfolioTab v-else-if="viewTabs[tab] === 'portfolio'" />
+                            <WorkExperienceTab v-else-if="viewTabs[tab] === 'work-experience'" />
+                        </transition>
+                        <footer class="theme-footer">
+                            <a href="javascript:;">
+                                <svg-vue :icon="'fb-icon'"></svg-vue>
+                            </a>
+                            <a href="javascript:;">
+                                <svg-vue :icon="'linkedin-icon'"></svg-vue>
+                            </a>
+                            <a href="javascript:;">
+                                <svg-vue :icon="'behance-icon'"></svg-vue>
+                            </a>
+                            <a href="javascript:;">
+                                <svg-vue :icon="'twitter-icon'"></svg-vue>
+                            </a>
+                            <a href="javascript:;">
+                                <svg-vue :icon="'dribbble-icon'"></svg-vue>
+                            </a>
+                        </footer>
+                    </v-col>
+                </v-row>
+            </div>
         </div>
     </v-app>
 </template>
 
 <script>
+import EducationTab from './theme13/education'
+import WorkExperienceTab from './theme13/work-experience'
+import PortfolioTab from './theme13/portfolio'
+
 export default {
-    
+    components: {
+        EducationTab,
+        PortfolioTab,
+        WorkExperienceTab
+    },
+    data: () => ({
+        tab: 0,
+        viewTabs: [
+            'portfolio',
+            'work-experience',
+            'education',
+            'skills-and-language',
+            'about-me-&-awards'
+        ]
+    }),
+    methods: {
+        formatTab(tab) {
+            let tabArray = tab.split('-').map(t => t.charAt(0).toUpperCase() + t.slice(1))
+            return tabArray.join(" ")
+        }
+    }
 }
 </script>
 
 
-<style lang="scss" scope>
+<style lang="scss">
 
 @import '../../../sass/media-queries';
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 $mainColor: #28404A;
 $tabTextColor: #4D2F2D;
@@ -94,9 +152,45 @@ $purple: #686299;
     width: 100%;
     color: $mainColor;
     background: #FFF7F3;
+    position: relative;
 
     .theme-header {
         width: 100%;
+
+        .bg-header {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            .left-bg {
+                position: absolute;
+                left: -88px;
+            }
+
+            .bg-top1 {
+                position: absolute;
+                top: -44px;
+                right: 40%;
+            }
+            
+            .bg-top2 {
+                position: absolute;
+                top: -21.7px;
+                right: 39%;
+            }
+
+            .bg-right {
+                position: absolute;
+                top: -63.5px;
+                right: -29.7px;
+            }
+
+            .bg-bottom {
+                position: absolute;
+                bottom: -13px;
+                right: 46%;
+            }
+        }
 
         .left {
             display: flex;
@@ -177,12 +271,19 @@ $purple: #686299;
             display: flex;
             justify-content: space-between;
             padding: 56px 80px;
+            z-index: 1;
+            position: relative;
 
             .user-img {
                 display: inline-block;
                 width: 232px;
                 height: 232px;
-                border-radius: 50%;
+                margin-right: 55px;
+
+                img {
+                    width: 100%;
+                    border-radius: 50%;
+                }
             }
 
             .user-data {
@@ -202,6 +303,7 @@ $purple: #686299;
 
                 .speciallity {
                     display: flex;
+                    padding: 0;
                     
                     .item {
                         margin-right: 40px;
@@ -232,37 +334,74 @@ $purple: #686299;
     }
 
     .theme-body {
-        height: 400px;
+        height: auto;
         background: white;
         border-radius: 80px 80px 0 0;
+        z-index: 1;
+        position: relative;
 
-        .v-tabs {
-            font-family: 'Muli', sans-serif;
-            color: $tabTextColor;
-            margin-top: 61px;
-            
-            .v-tab {
-                padding: 12px 40px;
-                margin-right: 50px;
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 1700px;
+            margin: 0 auto;
 
-                &--active {
-                    color: white !important;
+            .v-tabs {
+                font-family: 'Muli', sans-serif;
+                color: $tabTextColor;
+                margin-top: 61px;
+                margin-bottom: 61px;
+                
+                .v-tab {
+                    padding: 12px 40px;
+                    text-transform: none;
+                    font-size: 20px;
+                    // margin-right: 50px;
+
+                    &--active {
+                        color: white !important;
+                        font-weight: 700;
+                    }
+
+                    &::before {
+                        display: none !important;
+                    }
                 }
-            }
 
-            &-slider-wrapper {
-                height: 100% !important;
-                z-index: -1;
+                &-slider-wrapper {
+                    height: 100% !important;
+                    z-index: -1;
 
-                .v-tabs-slider {
-                    background: $purple;
-                    border-radius: 25px;
+                    .v-tabs-slider {
+                        background: $purple;
+                        border-radius: 25px;
+                    }
                 }
             }
         }
-
     }
 
+    .theme-footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 63px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.16);
+        background: white;
+
+        a {
+            height: 14px;
+
+            svg {
+                height: 100%;
+            }
+        }
+    }
 }
     
 </style>
