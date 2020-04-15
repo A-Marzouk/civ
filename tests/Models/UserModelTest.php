@@ -15,7 +15,7 @@ class UserModelTest extends TestCase
     /** @test */
     public function user_can_update_last_activity(){
         // given: ( the environment )
-        $user = User::create(['name' => 'john', 'email' => 'john@d2oe.com']);
+        $user = User::create(['name' => 'john', 'email' => 'johny@doe.com']);
 
         //when: user updates the activity:
 
