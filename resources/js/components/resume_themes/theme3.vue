@@ -93,6 +93,7 @@
                         Education
                     </div>
                 </div>
+                <div class="transition-line"></div> 
             </div>
 
             <div class="main-tab-content">
@@ -420,7 +421,19 @@
         max-width: 1920px;
         background: white;
         font-family: Roboto, sans-serif;
-
+        .transition-line{
+            position: relative;
+            margin-top: -4px;
+            width: 100%;
+            height: 2px;
+            background:#DEDEDE;
+            border:1px solid #DEDEDE;
+            z-index:0;
+            @media screen and (max-width: 599px){
+                height: 1px;
+                margin-top: -3px;
+            }
+        }
         .mobileThemeBar {
             background: #FFFFFF;
             box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
@@ -1372,6 +1385,7 @@
 
                 .tab-text.active {
                     opacity: 1;
+                    z-index: 1;
                 }
 
                 .tab-text.active:before {
@@ -1677,6 +1691,7 @@
 
                 .tab-text.active {
                     opacity: 1;
+                    z-index: 1;
                 }
 
                 .tab-text.active:before {
