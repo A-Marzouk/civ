@@ -651,7 +651,7 @@ export default {
   max-width: 36px !important;
   height: 51px !important;
 
-  @media screen and (max-width: 1024px){
+  @media screen and (min-width: 960px) and (max-width: 1024px){
     min-width: 45px !important;
   }
 
