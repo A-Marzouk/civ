@@ -309,3 +309,15 @@ if ($("#resumeTheme206").length !== 0) {
         }
     });
 }
+import resumeTheme307 from './components/resume_themes/theme307';
+if ($("#resumeTheme307").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme307',
+        vuetify,
+        components: {
+            'resume-theme-307': resumeTheme307
+        }
+    });
+
+}
