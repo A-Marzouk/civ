@@ -262,7 +262,7 @@ export default {
         }
 
         .head-bar{
-            padding: 46px 70px;
+            padding: 39px 70px;
             mix-blend-mode: normal;
             box-shadow: -10px 2px 30px #FFFFFF, 
             16px 10px 48px rgba(136, 165, 191, 0.58);
@@ -430,6 +430,15 @@ export default {
                     background: linear-gradient(0deg, #E3EDF7, #E3EDF7);
                     box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
                     border-radius: 12px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img{
+                        max-width: 16px;
+                        max-height: 16px;
+
+                    }
                 }
             }
         }
