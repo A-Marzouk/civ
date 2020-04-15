@@ -360,6 +360,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             applyRefereeEdit(savingType) {
@@ -391,6 +395,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             addTestimonial(){
@@ -409,6 +417,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors.new  = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             closeOptionsBtn() {
@@ -434,6 +446,10 @@ import { moveTabsHelper } from '../../helpers/tab-animations'
                         } else {
                             this.errors.edit = 'Something went wrong. Please try again.';
                         }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
                     });
             },
             EditedSuccessfully(editedTestimonial) {
