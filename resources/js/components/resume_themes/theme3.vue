@@ -824,6 +824,7 @@
 
             .tab-text.active {
                 opacity: 1;
+                z-index: 1;
             }
 
             .tab-text.active:before {
