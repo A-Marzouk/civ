@@ -125,6 +125,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="right d-flex justify-content-center hideOnNotPhone">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="hire-me-btn NoDecor">
+                            <a href="javascript:void(0)">
+                                Hire me
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <!-- shows only on phone -->
             </div>
 
