@@ -1480,6 +1480,9 @@
                             line-height: 15px;
                             padding: 13px 29px;
                         }
+                        @media only screen and (max-width: 599px){
+                            margin-left:5px;
+                        }
                     }
                     .skills-tab-text:hover {
                         cursor: pointer;
