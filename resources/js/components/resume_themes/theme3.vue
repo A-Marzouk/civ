@@ -36,6 +36,7 @@
                         <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
                     </div>
                 </div>
+
                 <div class="right d-flex align-items-center hideOnPhone">
                     <div class="hourly-rate">
                         <div class="rate-options">
