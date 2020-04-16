@@ -36,7 +36,7 @@
                         <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
                     </div>
                 </div>
-                <div class="right d-flex align-items-center">
+                <div class="right d-flex align-items-center hideOnPhone">
                     <div class="hourly-rate">
                         <div class="rate-options">
                             <span  @click="selectCurrentPayment('hourly')" :class="{active:currentPayment.salary_frequency === 'hourly'}">Hourly</span>
@@ -73,6 +73,68 @@
                         </a>
                     </div>
                 </div>
+                <!-- Shows only on phone -->
+                <div class="right d-flex justify-content-center hideOnNotPhone">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div>
+                            <ul class="nav" id="myTab" role="tablist">
+                                <li class="nav-item" v-for="item in availibilityRateItems" :key="item.id">
+                                    <a 
+                                        @click="selectCurrentPayment(item.title)"
+                                        class="nav-link"
+                                        id="home-tab" 
+                                        data-toggle="tab" 
+                                        href="#home" 
+                                    >
+                                        <span class="text-capitalize mobile-frequency" :class="currentTab == item.title ? 'active' : ''">{{item.title}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="text-center mobile-rate-text">
+                            ${{currentPayment.salary}}
+                        </div>
+                        <div class="text-center mobile-frequency-rate-usd">
+                            Rate $ USD
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right d-flex justify-content-center hideOnNotPhone">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div>
+                            <ul class="nav" id="myTab" role="tablist">
+                                <li class="nav-item" v-for="item in availabilityHourItems" :key="item.id">
+                                    <a 
+                                        @click="selectCurrentAvailability(item.title)"
+                                        class="nav-link"
+                                        id="home-tab" 
+                                        data-toggle="tab" 
+                                        href="#home" 
+                                    >
+                                        <span class="text-capitalize mobile-frequency" :class="currentAvailableTab == item.title ? 'active' : ''">{{item.title}}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="text-center mobile-rate-text">
+                            {{currentAvailability.available_hours}} hours
+                        </div>
+                        <div class="text-center mobile-frequency-rate-usd">
+                            Availibility Hours
+                        </div>
+                    </div>
+                </div>
+                <div class="right d-flex justify-content-center hideOnNotPhone">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="hire-me-btn NoDecor">
+                            <a href="javascript:void(0)">
+                                Hire me
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- shows only on phone -->
             </div>
 
             <div class="w-100 d-flex flex-column align-items-center justify-content-center">
@@ -93,6 +155,7 @@
                         Education
                     </div>
                 </div>
+                <div class="transition-line"></div> 
             </div>
 
             <div class="main-tab-content">
@@ -212,6 +275,19 @@
         },
         data() {
             return {
+                currentTab:"hourly",
+                currentAvailableTab:"weekly",
+                availibilityRateItems:[
+                    {id:1, title: "hourly"},
+                    {id:2, title: "weekly"},
+                    {id:3, title: "monthly"},
+                ],
+                availabilityHourItems:[
+                    {id:1, title: "weekly"},
+                    {id:2, title: "monthly"},
+                    {id:3, title: "yearly"},
+                ],
+
                 activeTab: 'portfolio',
                 activeSkillTab: 'programming_languages',
                 slickOptions: {
@@ -220,34 +296,30 @@
                     arrows: false,
                     slidesToShow: 3,
                     slidesToScroll: 1,
-                    responsive: [
-                        {
-                            breakpoint: 600,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
-                                rows: 2,
-                            }
-                        },
-                        {
-                            breakpoint: 1200,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
-                            }
-                        },
-                        {
-                            breakpoint: 1600,
-                            settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 1,
-                            }
-                        },
-                    ]
+                    responsive: [{
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            rows: 2,
+                        }
+                    }, {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    }, {
+                        breakpoint: 1600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        }
+                    }, ]
                 },
                 currentUser: this.user,
-                currentPayment:{},
-                currentAvailability:{},
+                currentPayment: {},
+                currentAvailability: {},
             }
         },
         methods: {
@@ -257,16 +329,18 @@
             setActiveSkillTab(tabName) {
                 this.activeSkillTab = tabName;
             },
-            selectCurrentPayment(frequency){
-                this.currentUser.payment_info.forEach( payment => {
-                    if (payment.salary_frequency === frequency){
-                        this.currentPayment= payment ;
+            selectCurrentPayment(frequency) {
+                this.currentTab = frequency;
+                this.currentUser.payment_info.forEach(payment => {
+                    if (payment.salary_frequency === frequency) {
+                        this.currentPayment = payment;
                     }
                 });
             },
-            selectCurrentAvailability(frequency){
-                this.currentUser.availability_info.forEach( availability => {
-                    if (availability.available_hours_frequency === frequency){
+            selectCurrentAvailability(frequency) {
+                this.currentAvailableTab = frequency;
+                this.currentUser.availability_info.forEach(availability => {
+                    if (availability.available_hours_frequency === frequency) {
                         this.currentAvailability = availability;
                     }
                 });
@@ -298,8 +372,7 @@
                     autocad: "/images/skills_icons/autocad.png",
                     solidworks: "/images/skills_icons/solid_works.png",
                     "adobe flash": "/images/skills_icons/adobe_flash.png",
-                    "digital drawing Tablet":
-                        "/images/skills_icons/digital_drawing_tablet.png",
+                    "digital drawing Tablet": "/images/skills_icons/digital_drawing_tablet.png",
                     "adobe indesign": "/images/skills_icons/indesign.png",
                     coreldraw: "/images/skills_icons/corel_draw.png",
                     "3d max": "/images/skills_icons/3d_max.png",
@@ -377,10 +450,10 @@
             setDummyUser() {
                 this.currentUser = this.$store.state.dummyUser;
             },
-            setDefaultRates(){
-                if(this.currentUser){
-                   this.currentPayment      =  this.currentUser.payment_info[0] ;
-                   this.currentAvailability =  this.currentUser.availability_info[0] ;
+            setDefaultRates() {
+                if (this.currentUser) {
+                    this.currentPayment = this.currentUser.payment_info[0];
+                    this.currentAvailability = this.currentUser.availability_info[0];
                 }
             }
         },
@@ -397,29 +470,72 @@
 </script>
 
 <style lang="scss" scoped>
+    @import url(//db.onlinewebfonts.com/c/0be7748549934c0e481bdb7b8ba5270f?family=Gotham+Pro+Black);
     .hideOnPhone {
         @media only screen and (max-width: 765px) {
             display: none !important;
         }
     }
-
+    
     .hideOnNotPhone {
         @media only screen and (min-width: 765px) {
             display: none !important;
         }
     }
-
+    
     .hideOnDesktop {
         @media only screen and (min-width: 1280px) {
             display: none !important;
         }
     }
-
+    
     .themeWrapper {
         width: 100%;
         max-width: 1920px;
         background: white;
         font-family: Roboto, sans-serif;
+        .transition-line {
+            position: relative;
+            margin-top: -4px;
+            width: 100%;
+            height: 2px;
+            background: #DEDEDE;
+            border: 1px solid #DEDEDE;
+            z-index: 0;
+            @media screen and (max-width: 599px) {
+                height: 1px;
+                margin-top: -3px;
+            }
+        }
+        //mobile frequency
+        .mobile-frequency{
+           font-family: Gotham Pro;
+           font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 13px;
+            text-align: center;
+            letter-spacing: 0.2em;
+            text-transform: capitalize;
+            color: #333333;
+        }
+        .mobile-frequency.active{
+            font-size:18px;
+            font-weight: bold;
+        }
+        .mobile-rate-text{
+            margin-top:5px;
+            font-family: Gotham Pro;
+            font-size:24px;
+            line-height: 14px;
+        }
+        .mobile-frequency-rate-usd{
+            margin-top:9px;
+            font-family: Gotham Pro;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        //mobile frequency
 
         .mobileThemeBar {
             background: #FFFFFF;
@@ -428,17 +544,14 @@
             padding-left: 10px;
             padding-right: 10px;
             justify-content: space-between;
-
             .avatar {
                 margin-right: 37px;
                 border-radius: 24px;
-
                 img {
                     width: 180px;
                     height: 180px;
                     border-radius: 50%;
                 }
-
                 @media only screen and (max-width: 765px) {
                     margin-right: 15px;
                     img {
@@ -454,14 +567,12 @@
                     }
                 }
             }
-
             .info {
                 display: flex;
                 flex-direction: column;
                 @media only screen and (max-width: 765px) {
                     margin-top: 0;
                 }
-
                 .user-name {
                     margin-left: -2px;
                     font-style: normal;
@@ -476,19 +587,16 @@
                         line-height: normal;
                     }
                 }
-
                 .job-title {
                     font-style: normal;
                     font-weight: normal;
                     font-size: 25px;
                     color: #000000;
-
                     img {
                         width: 60px;
                         height: 60px;
                         margin-left: 20px;
                     }
-
                     @media only screen and (max-width: 765px) {
                         font-size: 12px;
                     }
@@ -496,7 +604,6 @@
                         font-size: 30px;
                     }
                 }
-
                 .social-icons {
                     margin-top: 42px;
                     width: 20vw;
@@ -506,7 +613,6 @@
                     @media only screen and (max-width: 765px) {
                         width: 100%;
                     }
-
                     img {
                         width: 24px;
                         height: 24px;
@@ -514,13 +620,11 @@
                             margin-right: 25px;
                         }
                     }
-
                     img:last-child {
                         margin-right: 0;
                     }
                 }
             }
-
             .hire-me-btn-mobile {
                 a {
                     display: flex;
@@ -535,7 +639,6 @@
                     border-radius: 35px;
                 }
             }
-
             .menu-icon {
                 img {
                     width: 18px;
@@ -544,7 +647,6 @@
                 }
             }
         }
-
         .mainThemeBar {
             padding-top: 40px;
             padding-left: 5%;
@@ -553,24 +655,20 @@
             @media only screen and (max-width: 765px) {
                 padding-top: 0;
             }
-
             .left {
                 display: flex;
                 align-items: center;
                 @media only screen and (max-width: 765px) {
                     align-items: center;
                 }
-
                 .avatar {
                     margin-right: 37px;
                     border-radius: 24px;
-
                     img {
                         width: 180px;
                         height: 180px;
                         border-radius: 50%;
                     }
-
                     @media only screen and (max-width: 765px) {
                         margin-right: 15px;
                         img {
@@ -586,14 +684,12 @@
                         }
                     }
                 }
-
                 .info {
                     display: flex;
                     flex-direction: column;
                     @media only screen and (max-width: 765px) {
                         margin-top: 5px;
                     }
-
                     .user-name {
                         margin-left: -2px;
                         font-style: normal;
@@ -608,19 +704,16 @@
                             line-height: normal;
                         }
                     }
-
                     .job-title {
                         font-style: normal;
                         font-weight: normal;
                         font-size: 25px;
                         color: #000000;
-
                         img {
                             width: 60px;
                             height: 60px;
                             margin-left: 20px;
                         }
-
                         @media only screen and (max-width: 765px) {
                             font-size: 12px;
                         }
@@ -628,7 +721,6 @@
                             font-size: 30px;
                         }
                     }
-
                     .social-icons {
                         margin-top: 42px;
                         width: 20vw;
@@ -638,7 +730,6 @@
                         @media only screen and (max-width: 765px) {
                             width: 100%;
                         }
-
                         img {
                             width: 24px;
                             height: 24px;
@@ -646,26 +737,22 @@
                                 margin-right: 25px;
                             }
                         }
-
                         img:last-child {
                             margin-right: 0;
                         }
                     }
                 }
-
-
                 .media-btns {
                     display: flex;
                     margin-left: 27px;
-
                     .audio-btn {
                         margin-right: 27px;
                         @media only screen and (max-width: 765px) {
                             margin-right: 10px;
                         }
                     }
-
-                    .audio-btn, .video-btn {
+                    .audio-btn,
+                    .video-btn {
                         a {
                             width: 122px;
                             height: 43px;
@@ -676,13 +763,11 @@
                             border: 1px solid #5289E7;
                             font-size: 19px;
                             color: #5289E7;
-
                             img {
                                 width: 19px;
                                 height: 15px;
                                 margin-right: 6px;
                             }
-
                             @media only screen and (max-width: 600px) {
                                 width: auto;
                                 height: auto;
@@ -697,7 +782,6 @@
                     }
                 }
             }
-
             .right {
                 .hourly-rate {
                     margin-right: 66px;
@@ -705,32 +789,28 @@
                         margin-right: 27px;
                     }
                 }
-
-                .rate-options{
-                    span{
+                .rate-options {
+                    span {
                         font-weight: 300;
                         font-size: 14px;
-                        &:hover{
+                        &:hover {
                             cursor: pointer;
                         }
                     }
-                    span.active{
+                    span.active {
                         font-weight: bold;
                     }
                 }
-
                 .weekly-availability {
                     margin-right: 40px;
                     @media only screen and (max-width: 765px) {
                         margin-right: 19px;
                     }
                 }
-
                 .hourly-rate-text {
                     &:first-letter {
                         text-transform: uppercase;
                     }
-
                     text-align: left !important;
                     font-style: normal;
                     font-weight: normal;
@@ -744,7 +824,6 @@
                         line-height: normal;
                     }
                 }
-
                 .hourly-rate-text.light {
                     font-style: normal;
                     font-weight: normal;
@@ -755,7 +834,6 @@
                         line-height: 30px;
                     }
                 }
-
                 .hire-me-btn {
                     a {
                         font-size: 24px;
@@ -782,13 +860,11 @@
                 }
             }
         }
-
         .tabs-bar {
             margin-top: 30px;
             @media only screen and (max-width: 765px) {
                 margin-top: 10px;
             }
-
             .tab-text {
                 font-style: normal;
                 font-weight: normal;
@@ -804,15 +880,13 @@
                     padding-bottom: 0;
                 }
             }
-
             .tab-text:not(:last-child) {
                 margin-right: 70px;
             }
-
             .tab-text.active {
                 opacity: 1;
+                z-index: 1;
             }
-
             .tab-text.active:before {
                 content: "";
                 position: absolute;
@@ -826,11 +900,9 @@
                     border: 2px solid #5289E7;
                 }
             }
-
             .tab-text:hover {
                 cursor: pointer;
             }
-
             .arrow {
                 img {
                     width: 30px;
@@ -838,7 +910,6 @@
                 }
             }
         }
-
         .main-tab-content {
             margin-top: 86px;
             min-height: 550px;
@@ -846,7 +917,6 @@
             @media only screen and (max-width: 765px) {
                 margin-top: 35px;
             }
-
             .portfolio {
                 .portfolioSlides {
                     padding-left: 40px;
@@ -862,7 +932,6 @@
                         padding-left: 135px;
                         padding-right: 135px;
                     }
-
                     img {
                         margin-top: 25px;
                         margin-right: 25px;
@@ -875,7 +944,6 @@
                             height: 139px;
                         }
                     }
-
                     .slide-text {
                         margin-top: 15px;
                         font-style: normal;
@@ -891,7 +959,6 @@
                     }
                 }
             }
-
             .skills-tabs {
                 display: flex;
                 justify-content: center;
@@ -901,7 +968,6 @@
                     justify-content: space-between;
                     margin-top: 30px;
                 }
-
                 .skills-tab-text {
                     font-style: normal;
                     font-weight: normal;
@@ -916,11 +982,9 @@
                         padding: 13px 29px;
                     }
                 }
-
                 .skills-tab-text:hover {
                     cursor: pointer;
                 }
-
                 .skills-tab-text.active {
                     font-style: normal;
                     font-weight: normal;
@@ -929,27 +993,24 @@
                     color: #FFFFFF;
                 }
             }
-
             .skills-icons-bar {
                 margin-top: 35.67px;
                 padding-bottom: 10px;
                 display: flex;
                 justify-content: center;
                 overflow-x: auto;
-
-                .skill-item{
+                .skill-item {
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     margin-right: 20px;
-                    color:black;
+                    color: black;
                     font-weight: bold;
-                    span{
-                        margin-top:7px;
+                    span {
+                        margin-top: 7px;
                     }
                 }
-
                 img {
                     width: 30px;
                     height: 30px;
@@ -959,33 +1020,27 @@
                         height: 30px;
                     }
                 }
-
                 img:last-child {
                     margin-right: 0;
                 }
             }
-
             .work {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
                 padding-left: 40px;
                 padding-right: 40px;
-
                 .work-item {
                     margin-bottom: 100px;
                     display: flex;
                     flex-basis: 48%;
-
                     .work-icon {
                         margin-right: 35px;
-
                         img {
                             width: 59px;
                             height: 59px;
                         }
                     }
-
                     .work-info {
                         .date {
                             margin-top: 6px;
@@ -994,7 +1049,6 @@
                             line-height: 15px;
                             color: #000000;
                         }
-
                         .work-title {
                             margin-top: 10px;
                             font-weight: 300;
@@ -1002,16 +1056,13 @@
                             line-height: 15px;
                             color: #000000;
                         }
-
                         .work-details {
                             margin-top: 35px;
-
                             .company-name {
                                 font-size: 20px;
                                 line-height: 14px;
                                 color: #000000;
                             }
-
                             .job-roles {
                                 font-size: 16px;
                                 color: #000000;
@@ -1023,12 +1074,12 @@
                     }
                 }
             }
-
-            .education {
-            }
+            .education {}
         }
-    }
 
+        
+    }
+    
     @media only screen and (max-width: 765px) {
         // all phone styles
         .themeWrapper {
@@ -1036,7 +1087,6 @@
             max-width: 1920px;
             background: white;
             border-radius: 15px;
-
             .mobileThemeBar {
                 background: #FFFFFF;
                 box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
@@ -1044,17 +1094,14 @@
                 padding-left: 10px;
                 padding-right: 10px;
                 justify-content: space-between;
-
                 .avatar {
                     margin-right: 37px;
                     border-radius: 24px;
-
                     img {
                         width: 180px;
                         height: 180px;
                         border-radius: 50%;
                     }
-
                     @media only screen and (max-width: 765px) {
                         margin-right: 15px;
                         img {
@@ -1070,14 +1117,12 @@
                         }
                     }
                 }
-
                 .info {
                     display: flex;
                     flex-direction: column;
                     @media only screen and (max-width: 765px) {
                         margin-top: 0;
                     }
-
                     .user-name {
                         margin-left: -2px;
                         font-style: normal;
@@ -1092,19 +1137,16 @@
                             line-height: normal;
                         }
                     }
-
                     .job-title {
                         font-style: normal;
                         font-weight: normal;
                         font-size: 25px;
                         color: #000000;
-
                         img {
                             width: 60px;
                             height: 60px;
                             margin-left: 20px;
                         }
-
                         @media only screen and (max-width: 765px) {
                             font-size: 12px;
                         }
@@ -1112,7 +1154,6 @@
                             font-size: 30px;
                         }
                     }
-
                     .social-icons {
                         margin-top: 42px;
                         width: 20vw;
@@ -1122,7 +1163,6 @@
                         @media only screen and (max-width: 765px) {
                             width: 100%;
                         }
-
                         img {
                             width: 24px;
                             height: 24px;
@@ -1130,13 +1170,11 @@
                                 margin-right: 25px;
                             }
                         }
-
                         img:last-child {
                             margin-right: 0;
                         }
                     }
                 }
-
                 .hire-me-btn-mobile {
                     a {
                         display: flex;
@@ -1151,7 +1189,6 @@
                         color: #5289E7;
                     }
                 }
-
                 .menu-icon {
                     img {
                         width: 18px;
@@ -1160,7 +1197,6 @@
                     }
                 }
             }
-
             .mainThemeBar {
                 padding-top: 40px;
                 padding-left: 5%;
@@ -1171,27 +1207,22 @@
                 @media only screen and (max-width: 765px) {
                     padding-top: 16px;
                 }
-
                 .left {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-
                     width: 100%;
                     @media only screen and (max-width: 765px) {
                         align-items: center;
                     }
-
                     .avatar {
                         margin-right: 37px;
                         border-radius: 24px;
-
                         img {
                             width: 180px;
                             height: 180px;
                             border-radius: 50%;
                         }
-
                         @media only screen and (max-width: 765px) {
                             margin-right: 15px;
                             img {
@@ -1207,14 +1238,12 @@
                             }
                         }
                     }
-
                     .info {
                         display: flex;
                         flex-direction: column;
                         @media only screen and (max-width: 765px) {
                             margin-top: 0;
                         }
-
                         .user-name {
                             margin-left: -2px;
                             font-style: normal;
@@ -1229,19 +1258,16 @@
                                 line-height: normal;
                             }
                         }
-
                         .job-title {
                             font-style: normal;
                             font-weight: normal;
                             font-size: 25px;
                             color: #000000;
-
                             img {
                                 width: 60px;
                                 height: 60px;
                                 margin-left: 20px;
                             }
-
                             @media only screen and (max-width: 765px) {
                                 font-size: 12px;
                             }
@@ -1249,7 +1275,6 @@
                                 font-size: 30px;
                             }
                         }
-
                         .social-icons {
                             margin-top: 42px;
                             width: 20vw;
@@ -1259,7 +1284,6 @@
                             @media only screen and (max-width: 765px) {
                                 width: 100%;
                             }
-
                             img {
                                 width: 24px;
                                 height: 24px;
@@ -1267,30 +1291,25 @@
                                     margin-right: 25px;
                                 }
                             }
-
                             img:last-child {
                                 margin-right: 0;
                             }
                         }
                     }
                 }
-
                 .right {
                     margin-top: 25px;
                     width: 100%;
                     justify-content: space-between;
-
                     .hourly-rate {
                         margin-right: 20px;
                     }
-
                     .weekly-availability {
                         margin-right: 40px;
                         @media only screen and (max-width: 765px) {
                             margin-right: 19px;
                         }
                     }
-
                     .hourly-rate-text {
                         font-size: 30px;
                         line-height: 16px;
@@ -1303,7 +1322,6 @@
                             line-height: normal;
                         }
                     }
-
                     .hourly-rate-text.light {
                         font-size: 16px;
                         line-height: 20px;
@@ -1313,7 +1331,6 @@
                             line-height: 30px;
                         }
                     }
-
                     .hire-me-btn {
                         a {
                             font-size: 24px;
@@ -1340,7 +1357,6 @@
                     }
                 }
             }
-
             .tabs-bar {
                 margin-top: 30px;
                 overflow: auto;
@@ -1349,7 +1365,6 @@
                 @media only screen and (max-width: 765px) {
                     margin-top: 28px;
                 }
-
                 .tab-text {
                     font-style: normal;
                     font-weight: normal;
@@ -1365,15 +1380,13 @@
                         padding-bottom: 0;
                     }
                 }
-
                 .tab-text:not(:last-child) {
                     margin-right: 37px;
                 }
-
                 .tab-text.active {
                     opacity: 1;
+                    z-index: 1;
                 }
-
                 .tab-text.active:before {
                     content: "";
                     position: absolute;
@@ -1387,11 +1400,9 @@
                         border: 2px solid #5289E7;
                     }
                 }
-
                 .tab-text:hover {
                     cursor: pointer;
                 }
-
                 .arrow {
                     img {
                         width: 30px;
@@ -1399,7 +1410,6 @@
                     }
                 }
             }
-
             .main-tab-content {
                 margin-top: 86px;
                 min-height: 550px;
@@ -1407,7 +1417,6 @@
                 @media only screen and (max-width: 765px) {
                     margin-top: 35px;
                 }
-
                 .portfolio {
                     .portfolioSlides {
                         padding-left: 40px;
@@ -1422,7 +1431,6 @@
                         }
                         display: flex;
                         justify-content: center;
-
                         img {
                             margin-top: 25px;
                             margin-right: 25px;
@@ -1430,11 +1438,11 @@
                             width: 510px !important;
                             height: 400px;
                             @media only screen and (max-width: 765px) {
-                                width: 177px !important;
-                                height: 139px;
+                                padding: 10px;
+                                width: 500px !important;
+                                height: auto;
                             }
                         }
-
                         .slide-text {
                             margin-top: 15px;
                             font-style: normal;
@@ -1443,14 +1451,13 @@
                             line-height: 23px;
                             color: #333333;
                             @media only screen and (max-width: 765px) {
-                                font-size: 10px;
+                                font-size: 12px;
                                 line-height: 12px;
                                 margin-bottom: 25px;
                             }
                         }
                     }
                 }
-
                 .skills-tabs {
                     display: flex;
                     justify-content: center;
@@ -1460,7 +1467,6 @@
                         justify-content: space-between;
                         margin-top: 30px;
                     }
-
                     .skills-tab-text {
                         font-style: normal;
                         font-weight: normal;
@@ -1474,12 +1480,13 @@
                             line-height: 15px;
                             padding: 13px 29px;
                         }
+                        @media only screen and (max-width: 599px){
+                            margin-left:5px;
+                        }
                     }
-
                     .skills-tab-text:hover {
                         cursor: pointer;
                     }
-
                     .skills-tab-text.active {
                         font-style: normal;
                         font-weight: normal;
@@ -1488,14 +1495,12 @@
                         color: #FFFFFF;
                     }
                 }
-
                 .skills-icons-bar {
                     margin-top: 35.67px;
                     padding-bottom: 10px;
                     display: flex;
                     justify-content: center;
                     overflow-x: auto;
-
                     img {
                         width: 30px;
                         height: 30px;
@@ -1504,33 +1509,27 @@
                             height: 30px;
                         }
                     }
-
                     img:last-child {
                         margin-right: 0;
                     }
                 }
-
                 .work {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
                     padding-left: 40px;
                     padding-right: 40px;
-
                     .work-item {
                         margin-bottom: 100px;
                         display: flex;
                         flex-basis: 100%;
-
                         .work-icon {
                             margin-right: 35px;
-
                             img {
                                 width: 48px;
                                 height: 48px;
                             }
                         }
-
                         .work-info {
                             .date {
                                 font-weight: normal;
@@ -1538,7 +1537,6 @@
                                 line-height: 15px;
                                 color: #000000;
                             }
-
                             .work-title {
                                 margin-top: 10px;
                                 font-weight: 300;
@@ -1546,16 +1544,13 @@
                                 line-height: 15px;
                                 color: #000000;
                             }
-
                             .work-details {
                                 margin-top: 35px;
-
                                 .company-name {
                                     font-size: 20px;
                                     line-height: 14px;
                                     color: #000000;
                                 }
-
                                 .job-roles {
                                     font-size: 16px;
                                     color: #000000;
@@ -1567,53 +1562,40 @@
                         }
                     }
                 }
-
-                .education {
-                }
+                .education {}
             }
         }
     }
-
+    
     @media only screen and (max-width: 1280px) and (min-width: 765px) {
         .themeWrapper {
             .mainThemeBar {
                 box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
                 padding-bottom: 18px;
                 margin-bottom: 15px;
-
                 .left {
                     margin-bottom: 45px;
                     justify-content: space-between;
                     width: 100%;
-
                     .avatar {
                         img {
                             width: 100px;
                             height: 100px;
                         }
                     }
-
                     .info {
                         .user-name {
                             font-size: 32px;
                         }
-
                         .job-title {
                             font-size: 20px;
-
-                            img {
-                            }
+                            img {}
                         }
-
                         .social-icons {
-                            img {
-                            }
-
-                            img:last-child {
-                            }
+                            img {}
+                            img:last-child {}
                         }
                     }
-
                     .menu-icon {
                         img {
                             width: 25px;
@@ -1622,30 +1604,18 @@
                         }
                     }
                 }
-
                 .right {
                     justify-content: space-between;
                     width: 100%;
-
-                    .hourly-rate {
-                    }
-
-                    .weekly-availability {
-                    }
-
-                    .hourly-rate-text {
-                    }
-
-                    .hourly-rate-text.light {
-                    }
-
+                    .hourly-rate {}
+                    .weekly-availability {}
+                    .hourly-rate-text {}
+                    .hourly-rate-text.light {}
                     .hire-me-btn {
-                        a {
-                        }
+                        a {}
                     }
                 }
             }
-
             .tabs-bar {
                 margin-top: 30px;
                 overflow: auto;
@@ -1654,7 +1624,6 @@
                 @media only screen and (max-width: 765px) {
                     margin-top: 28px;
                 }
-
                 .tab-text {
                     font-style: normal;
                     font-weight: normal;
@@ -1670,15 +1639,13 @@
                         padding-bottom: 0;
                     }
                 }
-
                 .tab-text:not(:last-child) {
                     margin-right: 37px;
                 }
-
                 .tab-text.active {
                     opacity: 1;
+                    z-index: 1;
                 }
-
                 .tab-text.active:before {
                     content: "";
                     position: absolute;
@@ -1692,11 +1659,9 @@
                         border: 2px solid #5289E7;
                     }
                 }
-
                 .tab-text:hover {
                     cursor: pointer;
                 }
-
                 .arrow {
                     img {
                         width: 30px;
@@ -1704,7 +1669,6 @@
                     }
                 }
             }
-
             .main-tab-content {
                 margin-top: 86px;
                 min-height: 550px;
@@ -1712,7 +1676,6 @@
                 @media only screen and (max-width: 765px) {
                     margin-top: 35px;
                 }
-
                 .portfolio {
                     .portfolioSlides {
                         padding-left: 40px;
@@ -1727,7 +1690,6 @@
                         }
                         display: flex;
                         justify-content: center;
-
                         img {
                             margin-top: 25px;
                             margin-right: 25px;
@@ -1739,7 +1701,6 @@
                                 height: 139px;
                             }
                         }
-
                         .slide-text {
                             margin-top: 15px;
                             font-style: normal;
@@ -1755,7 +1716,6 @@
                         }
                     }
                 }
-
                 .skills-tabs {
                     display: flex;
                     justify-content: center;
@@ -1765,7 +1725,6 @@
                         justify-content: space-between;
                         margin-top: 30px;
                     }
-
                     .skills-tab-text {
                         font-style: normal;
                         font-weight: normal;
@@ -1774,17 +1733,18 @@
                         padding: 16px 33px;
                         color: #000000;
                         white-space: nowrap;
+                        @media only screen and (max-width: 959px) {
+                            font-size: 18px;
+                        }
                         @media only screen and (max-width: 765px) {
                             font-size: 10px;
                             line-height: 15px;
                             padding: 13px 29px;
                         }
                     }
-
                     .skills-tab-text:hover {
                         cursor: pointer;
                     }
-
                     .skills-tab-text.active {
                         font-style: normal;
                         font-weight: normal;
@@ -1793,14 +1753,12 @@
                         color: #FFFFFF;
                     }
                 }
-
                 .skills-icons-bar {
                     margin-top: 35.67px;
                     padding-bottom: 10px;
                     display: flex;
                     justify-content: center;
                     overflow-x: auto;
-
                     img {
                         width: 30px;
                         height: 30px;
@@ -1809,33 +1767,27 @@
                             height: 30px;
                         }
                     }
-
                     img:last-child {
                         margin-right: 0;
                     }
                 }
-
                 .work {
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
                     padding-left: 40px;
                     padding-right: 40px;
-
                     .work-item {
                         margin-bottom: 100px;
                         display: flex;
                         flex-basis: 100%;
-
                         .work-icon {
                             margin-right: 35px;
-
                             img {
                                 width: 48px;
                                 height: 48px;
                             }
                         }
-
                         .work-info {
                             .date {
                                 font-weight: normal;
@@ -1843,7 +1795,6 @@
                                 line-height: 15px;
                                 color: #000000;
                             }
-
                             .work-title {
                                 margin-top: 10px;
                                 font-weight: 300;
@@ -1851,16 +1802,13 @@
                                 line-height: 15px;
                                 color: #000000;
                             }
-
                             .work-details {
                                 margin-top: 35px;
-
                                 .company-name {
                                     font-size: 20px;
                                     line-height: 14px;
                                     color: #000000;
                                 }
-
                                 .job-roles {
                                     font-size: 16px;
                                     color: #000000;
@@ -1872,73 +1820,69 @@
                         }
                     }
                 }
-
-                .education {
-                }
+                .education {}
             }
         }
     }
-
     /* scroll bar styles */
+    
     #style-2::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 0;
     }
-
+    
     #style-2::-webkit-scrollbar {
         width: 4px;
         background-color: rgba(255, 255, 255, 0.35);
     }
-
+    
     #style-2::-webkit-scrollbar-thumb {
         border-radius: 1px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
         background-color: white;
     }
-
+    
     #style-1::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
         border-radius: 0;
     }
-
+    
     #style-1::-webkit-scrollbar {
         height: 4px;
         background-color: rgba(255, 255, 255, 0.35);
     }
-
+    
     #style-1::-webkit-scrollbar-thumb {
         border-radius: 1px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .1);
         background-color: white;
     }
-
-
 </style>
 
 <style lang="scss">
-
     /*slick slides*/
-
+    
     .slick-dots {
         bottom: -40px !important;
+        margin-top: 20px;
     }
-
+    
     .slick-dots li button:before {
         font-size: 10px !important;
         @media only screen and (max-width: 765px) {
             font-size: 6px !important;
         }
     }
-
+    
     .slick-dots li.slick-active button:before {
         opacity: 1;
         color: #5289E7;
     }
-
+    
     .slick-dots li.slick-active button {
         background-color: #5289E7;
     }
-
+    
     .slick-dots li button {
         background-color: #DEDEDE;
         border: none;

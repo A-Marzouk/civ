@@ -41,6 +41,21 @@ class LanguagesController extends Controller
         return ['language' => Language::find($request->language_id)];
     }
 
+    public function storeMany(Request $request)
+    {
+       // attach a language to user:
+        $user= User::find($request->user_id);
+        // find the language id by name:
+        $languagesID = [];
+        foreach($request->langs as $language){
+            $languagesID[] = Language::where('label', $language)
+                ->orWhere('label', 'like', '%'.$language.'%')->first()->id;
+        }
+
+        $user->languages()->sync($languagesID, false);
+        return $user->languages;
+    }
+
 
     public function destroy($id,$user_id)
     {
