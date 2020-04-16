@@ -78,7 +78,7 @@
                     <div class="d-flex flex-column justify-content-center">
                         <div>
                             <ul class="nav" id="myTab" role="tablist">
-                                <li class="nav-item" v-for="item in availabilityItems" :key="item.id">
+                                <li class="nav-item" v-for="item in availibilityRateItems" :key="item.id">
                                     <a 
                                         @click="selectCurrentPayment(item.title)"
                                         class="nav-link"
@@ -104,25 +104,24 @@
                     <div class="d-flex flex-column justify-content-center">
                         <div>
                             <ul class="nav" id="myTab" role="tablist">
-                                <li class="nav-item" v-for="item in availabilityItems" :key="item.id">
+                                <li class="nav-item" v-for="item in availabilityHourItems" :key="item.id">
                                     <a 
-                                        @click="currentTab=item.id"
+                                        @click="selectCurrentAvailability(item.title)"
                                         class="nav-link"
-                                        :class="currentTab == item.id ? 'active' : ''"
                                         id="home-tab" 
                                         data-toggle="tab" 
                                         href="#home" 
                                     >
-                                        {{item.title}}
+                                        <span class="text-capitalize mobile-frequency" :class="currentAvailableTab == item.title ? 'active' : ''">{{item.title}}</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="text-center">
-                            10$
+                        <div class="text-center mobile-rate-text">
+                            {{currentAvailability.available_hours}} hours
                         </div>
-                        <div class="text-center">
-                            Rate $ USD
+                        <div class="text-center mobile-frequency-rate-usd">
+                            Availibility Hours
                         </div>
                     </div>
                 </div>
@@ -268,11 +267,18 @@
         data() {
             return {
                 currentTab:"hourly",
-                availabilityItems:[
+                currentAvailableTab:"weekly",
+                availibilityRateItems:[
                     {id:1, title: "hourly"},
                     {id:2, title: "weekly"},
                     {id:3, title: "monthly"},
                 ],
+                availabilityHourItems:[
+                    {id:1, title: "weekly"},
+                    {id:2, title: "monthly"},
+                    {id:3, title: "yearly"},
+                ],
+
                 activeTab: 'portfolio',
                 activeSkillTab: 'programming_languages',
                 slickOptions: {
@@ -323,6 +329,7 @@
                 });
             },
             selectCurrentAvailability(frequency) {
+                this.currentAvailableTab = frequency;
                 this.currentUser.availability_info.forEach(availability => {
                     if (availability.available_hours_frequency === frequency) {
                         this.currentAvailability = availability;
@@ -508,6 +515,7 @@
             font-weight: bold;
         }
         .mobile-rate-text{
+            margin-top:5px;
             font-family: Gotham Pro;
             font-size:24px;
             line-height: 14px;
