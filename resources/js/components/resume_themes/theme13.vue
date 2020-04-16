@@ -81,22 +81,24 @@
                             <EducationTab v-if="viewTabs[tab] === 'education'" />
                             <PortfolioTab v-else-if="viewTabs[tab] === 'portfolio'" />
                             <WorkExperienceTab v-else-if="viewTabs[tab] === 'work-experience'" />
+                            <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
+                            <SkillsTab v-else />
                         </transition>
                         <footer class="theme-footer">
                             <a href="javascript:;">
-                                <svg-vue :icon="'fb-icon'"></svg-vue>
+                                <font-awesome-icon :icon="['fab', 'facebook-f']"></font-awesome-icon>
                             </a>
                             <a href="javascript:;">
-                                <svg-vue :icon="'linkedin-icon'"></svg-vue>
+                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
                             </a>
                             <a href="javascript:;">
-                                <svg-vue :icon="'behance-icon'"></svg-vue>
+                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
                             </a>
                             <a href="javascript:;">
-                                <svg-vue :icon="'twitter-icon'"></svg-vue>
+                                <font-awesome-icon :icon="['fab', 'dribbble']"></font-awesome-icon>
                             </a>
                             <a href="javascript:;">
-                                <svg-vue :icon="'dribbble-icon'"></svg-vue>
+                                <font-awesome-icon :icon="['fab', 'twitter']"></font-awesome-icon>
                             </a>
                         </footer>
                     </v-col>
@@ -110,12 +112,16 @@
 import EducationTab from './theme13/education'
 import WorkExperienceTab from './theme13/work-experience'
 import PortfolioTab from './theme13/portfolio'
+import AboutTab from './theme13/about'
+import SkillsTab from './theme13/skills-and-languages'
 
 export default {
     components: {
+        AboutTab,
         EducationTab,
         PortfolioTab,
-        WorkExperienceTab
+        WorkExperienceTab,
+        SkillsTab
     },
     data: () => ({
         tab: 0,
@@ -379,6 +385,10 @@ $purple: #686299;
                     }
                 }
             }
+
+            .container {
+                padding-bottom: 100px;
+            }
         }
     }
 
@@ -391,14 +401,28 @@ $purple: #686299;
         position: absolute;
         bottom: 0;
         left: 0;
-        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.16);
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.16);
         background: white;
 
         a {
             height: 14px;
+            display: block;
+            margin: 0 17.2px;
+
+            &:hover {
+                svg {
+                    path, circle {
+                        fill: #686299;
+                    }
+                }
+            }
 
             svg {
                 height: 100%;
+                
+                path, circle {
+                    fill: #28404A;
+                }
             }
         }
     }
