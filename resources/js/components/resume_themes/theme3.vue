@@ -125,6 +125,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="right d-flex justify-content-center hideOnNotPhone">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="hire-me-btn NoDecor">
+                            <a href="javascript:void(0)">
+                                Hire me
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <!-- shows only on phone -->
             </div>
 
@@ -1429,8 +1438,9 @@
                             width: 510px !important;
                             height: 400px;
                             @media only screen and (max-width: 765px) {
-                                width: 177px !important;
-                                height: 139px;
+                                padding: 10px;
+                                width: 500px !important;
+                                height: auto;
                             }
                         }
                         .slide-text {
@@ -1441,7 +1451,7 @@
                             line-height: 23px;
                             color: #333333;
                             @media only screen and (max-width: 765px) {
-                                font-size: 10px;
+                                font-size: 12px;
                                 line-height: 12px;
                                 margin-bottom: 25px;
                             }
@@ -1469,6 +1479,9 @@
                             font-size: 10px;
                             line-height: 15px;
                             padding: 13px 29px;
+                        }
+                        @media only screen and (max-width: 599px){
+                            margin-left:5px;
                         }
                     }
                     .skills-tab-text:hover {
