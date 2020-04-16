@@ -1438,8 +1438,9 @@
                             width: 510px !important;
                             height: 400px;
                             @media only screen and (max-width: 765px) {
-                                width: 177px !important;
-                                height: 139px;
+                                padding: 10px;
+                                width: 500px !important;
+                                height: auto;
                             }
                         }
                         .slide-text {
@@ -1450,7 +1451,7 @@
                             line-height: 23px;
                             color: #333333;
                             @media only screen and (max-width: 765px) {
-                                font-size: 10px;
+                                font-size: 12px;
                                 line-height: 12px;
                                 margin-bottom: 25px;
                             }
