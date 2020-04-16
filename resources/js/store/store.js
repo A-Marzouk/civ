@@ -281,6 +281,13 @@ export const store = new Vuex.Store({
         updateThemeUser(state, themeUser) {
             state.themeUser = themeUser;
         },
+        updateActivity(state) {
+            axios.post('/api/user/update-last-activity',{user_id: state.user.id}).then((response) => {
+                console.log(response.data);
+            }).catch((error) => {
+                console.log('Error - last activity');
+            });
+        },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
 
@@ -296,6 +303,8 @@ export const store = new Vuex.Store({
             setTimeout(() => {
                 modal.modal('hide')
             }, 2000);
+
+            store.commit('updateActivity');
         },
         showFlyingNotification: (state, data) => {
             let notificationElement = $('#flyingNotification');
@@ -312,6 +321,9 @@ export const store = new Vuex.Store({
             setTimeout(() => {
                 notificationElement.slideToggle('slow');
             }, 2000);
+
+            store.commit('updateActivity');
+
         },
         showFlyingNotificationDelete: (state, data) => {
             let notificationElement = $('#flyingNotificationDelete');
@@ -322,6 +334,8 @@ export const store = new Vuex.Store({
             setTimeout(() => {
                 notificationElement.slideToggle('slow');
             }, 2000);
+
+            store.commit('updateActivity');
         }
 
     },
@@ -361,6 +375,9 @@ export const store = new Vuex.Store({
         },
         updateThemeUser(store, themeUser) {
             store.commit('updateThemeUser', themeUser);
-        }
+        },
+        updateLastActivity(store) {
+            store.commit('updateActivity');
+        },
     }
 });

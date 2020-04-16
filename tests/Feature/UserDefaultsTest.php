@@ -14,7 +14,7 @@ class UserDefaultsTest extends TestCase
     /** @test */
     public function default_value_of_personal_info_is_created_on_user_save(){
         // given: ( the environment )
-        $user = new User(['name' => 'john', 'email' => 'john@d2oe.com']);
+        $user = new User(['name' => 'john', 'email' => 'matt@doe.com']);
         //when: user save
         $user->save();
         // then:  app should assign defaults value of personal info

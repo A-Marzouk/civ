@@ -9,20 +9,20 @@
         <span
           class="tm700-educations--span tw-rounded-full tw-p-2 tw-text-white tw-flex tw-items-center tw-bg-tm700-1 tw-mr-18px tw-w-44px tw-h-44px tw-flex-none"
         >{{id}}.</span>
-        <div class="flex flex-col justify-between tw-max-w-1/2">
+        <div class="tw-flex tw-flex-col tw-justify-between">
           <div class="tm700-educations--info">
             <h3
-              class="tm700-educations--title not-italic text-2xl text-black font-normal"
+              class="tm700-educations--title tw-not-italic tw-text-2xl tw-text-black tw-font-normal"
             >California Institute of Technology</h3>
             <div
-              class="tm700-educations--when flex flex-row capitalize not-italic font-normal capitalize not-italic font-bold"
+              class="tm700-educations--when tw-flex tw-flex-row tw-capitalize tw-not-italic tw-font-normal tw-capitalize tw-not-italic tw-font-bold"
             >
-              <span class="tm700-educations--where text-tm700-1">M.Sc in HCI,</span>
-              <span class="tm700-educations--time text-tm700-1">Dec 19 - Present</span>
+              <span class="tm700-educations--where tw-text-tm700-1">M.Sc in HCI,</span>
+              <span class="tm700-educations--time tw-text-tm700-1">Dec 19 - Present</span>
             </div>
           </div>
           <p
-            class="tm700-educations--desc text-tm700-6 text-xs not-italic font-light"
+            class="tm700-educations--desc tw-text-tm700-6 tw-text-xs tw-not-italic tw-font-light tw-w-1/2"
           >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
         </div>
       </div>

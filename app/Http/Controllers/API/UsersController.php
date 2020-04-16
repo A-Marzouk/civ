@@ -109,4 +109,14 @@ class UsersController extends Controller
         return 'success';
     }
 
+    public function updateLastActivity(Request $request){
+        if (Auth::user()->hasRole('admin')){
+            Auth::user()->updateLastActivity();
+        }else{
+            $user = User::find($request->user_id);
+            $user->updateLastActivity();
+            return ['status' => 'success'];
+        }
+    }
+
 }

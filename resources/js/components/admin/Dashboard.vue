@@ -135,7 +135,7 @@
 <style lang="scss" scoped>
 
     .admin-container {
-        background: #E5E5E5;
+        background: floralwhite;
 
         .content{
             padding-left: 50px;
