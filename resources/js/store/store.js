@@ -260,15 +260,7 @@ export const store = new Vuex.Store({
                     link: 'https://instagram.com',
                     link_title: 'Linkedin',
                     is_active: true
-                },
-                {
-                    id: Math.random(),
-                    category: 'social_link',
-                    link: 'https://instagram.com',
-                    link_title: 'facebook',
-                    is_active: true
-                },
-
+                }
             ]
         },
         themeUser: {},

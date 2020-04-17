@@ -80,6 +80,7 @@ import resumeTheme10 from './components/resume_themes/theme10';
 if ($("#resumeTheme10").length !== 0) {
     new Vue({
         el: '#resumeTheme10',
+        store,
         components: {
             'resume-theme-10': resumeTheme10
         }
