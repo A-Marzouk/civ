@@ -138,10 +138,12 @@
               <section class="work-timeline">
                 <div class="work-content">
                   <div class="work-title">Senior UI/UX Designer</div>
-                  <div class="work-subtitle mb-10">
+                  <div class="work-subtitle">
                     <span>Big Bang Design</span> / May 2018 -Present
                   </div>
-                  <div>Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
+                  <div
+                    class="work-text"
+                  >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
                 </div>
               </section>
             </div>
@@ -226,7 +228,8 @@ export default {
   }
   .work-subtitle {
     margin-top: 15px;
-    font-family: "Archiivo" !important;
+    margin-bottom: 30px;
+    font-family: "Archivo" !important;
     font-size: 14px;
     line-height: 15px;
     font-style: italic;
@@ -237,25 +240,32 @@ export default {
       font-style: normal;
     }
   }
+  .work-text {
+    font-family: "Archivo" !important;
+    font-size: 18px;
+    line-height: 30px;
+    color: #9ca4c1;
+  }
 
   .work-timeline {
+    height: 300px;
     margin: 90px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
   }
 
   .work-content::before {
-    font-family: Archivo;
-    counter-increment:my-sec-counter;
-    content: "0"counter(my-sec-counter);
-    font-size: 50px;
-    color: rgba(1, 162, 254, 0.2);;
+    font-family: "Archivo" !important;
+    counter-increment: my-sec-counter;
+    content: "0" counter(my-sec-counter);
+    font-size: 72px;
+    color: rgba(1, 162, 254, 0.2);
     display: block;
     width: 60px;
     height: 60px;
     position: absolute;
-    top: 20px;
-    left: -8px;
+    top: -8px;
+    left: -15px;
   }
   // work
   .mainThemeBar {
