@@ -114,15 +114,15 @@
                     </div>
                 </div>
                 <div class="skills-icons-bar" id="style-1">
-                    <img class="icon" src="/images/resume_themes/theme4/PS.svg" alt="skill-icon">
-                    <img class="icon" src="/images/resume_themes/theme4/Ai.svg" alt="skill-icon">
-                    <img class="icon" src="/images/resume_themes/theme4/Lr.svg" alt="skill-icon">
-                    <img class="icon" src="/images/resume_themes/theme4/Xd.svg" alt="skill-icon">
-                    <img class="icon" src="/images/resume_themes/theme4/Id.svg" alt="skill-icon">
+                    <img class="icon" src="/images/resume_themes/theme4/skills/PS.png" alt="skill-icon">
+                    <img class="icon" src="/images/resume_themes/theme4/skills/Ai.png" alt="skill-icon">
+                    <img class="icon" src="/images/resume_themes/theme4/skills/Lr.png" alt="skill-icon">
+                    <img class="icon" src="/images/resume_themes/theme4/skills/Xd.png" alt="skill-icon">
+                    <img class="icon" src="/images/resume_themes/theme4/skilss/Id.png" alt="skill-icon">
                 </div>
             </div>
 
-            <div class="portfolio">
+            <div class="portfolio" v-show="activeTab === 'portfolio'">
                 <slick class="portfolioSlides" ref="slick" :options="slickOptions">
                     <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image">
                     <img src="/images/resume_themes/theme4/portfolio2.png" alt="portfolio image">
