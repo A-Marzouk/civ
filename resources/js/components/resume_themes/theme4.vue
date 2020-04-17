@@ -123,18 +123,17 @@
 
       <div class="portfolio" v-show="activeTab === 'portfolio'">
         <slick class="portfolioSlides" ref="slick" :options="slickOptions">
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio2.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio2.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
+          <img width="100" height="100" src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
+          <img width="100" height="100" src="/images/resume_themes/theme4/portfolio2.png" alt="portfolio image" />
+          <img width="100" height="100" src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+          
         </slick>
       </div>
       <!-- Work -->
       <div class="work mt-5" v-show="activeTab === 'work'">
         <div class="container" style="width:100%">
           <div class="row">
-            <div class="col-md-12 mx-auto work-column" v-for="n in 3" :key="n">
+            <div class="col-md-12 col-sm-10 col-xs-10 mx-auto work-column" v-for="n in 3" :key="n">
               <section class="work-timeline">
                 <div class="work-content">
                   <div class="work-title">Senior UI/UX Designer</div>
@@ -155,7 +154,7 @@
       <div class="work mt-5" v-show="activeTab === 'education'">
         <div class="container" style="width:100%">
           <div class="row">
-            <div class="col-md-12 mx-auto work-column" v-for="n in 3" :key="n">
+            <div class="col-12 mx-auto work-column" v-for="n in 3" :key="n">
               <section class="work-timeline">
                 <div class="work-content">
                   <div class="work-title">Udemy</div>
@@ -566,6 +565,7 @@ export default {
         margin-top: 100px;
         display: flex;
         justify-content: center;
+        flex-direction: column;
 
         img {
           padding: 30px;
