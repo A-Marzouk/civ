@@ -1,13 +1,10 @@
 <template>
 <!-- Developer: Jose Quintero -->
-    <v-app id="theme13" style="width: 100%">
+    <v-app id="theme12" style="width: 100%">
         <div class="theme-header">
 
             <div class="bg-header">
-                <img class='left-bg' src="/images/resume_themes/theme13/bg-left.png" alt="">
-                <img src="/images/resume_themes/theme13/bg-top1.png" alt="" class="bg-top1">
-                <img src="/images/resume_themes/theme13/bg-top2.png" alt="" class="bg-top2">
-                <img src="/images/resume_themes/theme13/bg-right.png" alt="" class="bg-right">
+                <img src="/images/resume_themes/theme12/bg-header.png" alt="" class="bg-header-img" />
             </div>
 
             <div class="user-info">
@@ -30,10 +27,10 @@
                 <div class="right">
                     <div class="actions-wrapper">
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme13/chat-icon.png"> Start a chat
+                            <img class="icon" src="/images/resume_themes/theme12/chat-icon.png"> Start a chat
                         </button>
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme13/suitcase-icon.png">Upload interviews
+                            <img class="icon" src="/images/resume_themes/theme12/suitcase-icon.png">Upload interviews
                         </button>
                     </div>
 
@@ -48,7 +45,7 @@
                         </div>
 
                         <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme13/hireMe-icon.png" alt="hire me icon" class="icon">
+                            <img src="/images/resume_themes/theme12/hireMe-icon.png" alt="hire me icon" class="icon">
                             Hire Me
                         </button>
                     </div>
@@ -109,11 +106,11 @@
 </template>
 
 <script>
-import EducationTab from './theme13/education'
-import WorkExperienceTab from './theme13/work-experience'
-import PortfolioTab from './theme13/portfolio'
-import AboutTab from './theme13/about'
-import SkillsTab from './theme13/skills-and-languages'
+import EducationTab from './theme12/education'
+import WorkExperienceTab from './theme12/work-experience'
+import PortfolioTab from './theme12/portfolio'
+import AboutTab from './theme12/about'
+import SkillsTab from './theme12/skills-and-languages'
 
 export default {
     components: {
@@ -149,15 +146,17 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-$mainColor: #28404A;
+$mainColor: #fff;
 $tabTextColor: #4D2F2D;
 $purple: #686299;
 
-#theme13 {
+$gradient: linear-gradient(to right, #9434CD, #EE3DC6);
+
+#theme12 {
     font-family: 'Muli', sans-serif;
     width: 100%;
     color: $mainColor;
-    background: #FFF7F3;
+    background: #1B1F28;
     position: relative;
 
     .theme-header {
@@ -168,33 +167,11 @@ $purple: #686299;
             height: 100%;
             position: absolute;
 
-            .left-bg {
+            &-img {
                 position: absolute;
-                left: -88px;
-            }
-
-            .bg-top1 {
-                position: absolute;
-                top: -44px;
-                right: 40%;
-            }
-            
-            .bg-top2 {
-                position: absolute;
-                top: -21.7px;
-                right: 39%;
-            }
-
-            .bg-right {
-                position: absolute;
-                top: -63.5px;
-                right: -29.7px;
-            }
-
-            .bg-bottom {
-                position: absolute;
-                bottom: -13px;
-                right: 46%;
+                left: -30px;
+                top: -100px;
+                width: 140%;
             }
         }
 
@@ -220,9 +197,11 @@ $purple: #686299;
                     padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
-                    background: #fff;
+                    background: #1B1F28;
                     outline: none;
+                    color: white;
                     border-radius: 9px;
+                    box-shadow: 7px 7px 12px rgba(0, 0, 0, .8);
 
                     &:first-child {
                         margin-right: 26px;
@@ -252,6 +231,7 @@ $purple: #686299;
                     small {
                         font-size: 15px;
                         font-weight: 400px;
+                        color: #BEC2D4;
                     }
                 }
 
@@ -259,7 +239,8 @@ $purple: #686299;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: $purple;
+                    background: $gradient;
+                    box-shadow: 7px 7px 12px rgba(0, 0, 0, .8);
                     padding: 23px 62px;
                     font-size: 18px;
                     font-weight: 700;
@@ -305,11 +286,13 @@ $purple: #686299;
 
                 .profession {
                     margin-bottom: 30px;
+                    color: #BEC2D4;
                 }
 
                 .speciallity {
                     display: flex;
                     padding: 0;
+                    color: #BEC2D4;
                     
                     .item {
                         margin-right: 40px;
@@ -328,7 +311,7 @@ $purple: #686299;
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #28404A;
+                            background: #FFFFFF;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);
@@ -341,7 +324,7 @@ $purple: #686299;
 
     .theme-body {
         height: auto;
-        background: white;
+        background: transparent;
         border-radius: 80px 80px 0 0;
         z-index: 1;
         position: relative;
@@ -355,14 +338,19 @@ $purple: #686299;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
-                color: $tabTextColor;
+                color: white;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                &-bar {
+                    background: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
                     text-transform: none;
                     font-size: 20px;
+                    color: white !important;
                     // margin-right: 50px;
 
                     &--active {
@@ -380,7 +368,7 @@ $purple: #686299;
                     z-index: -1;
 
                     .v-tabs-slider {
-                        background: $purple;
+                        background: $gradient;
                         border-radius: 25px;
                     }
                 }

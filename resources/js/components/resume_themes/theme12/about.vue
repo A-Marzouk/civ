@@ -35,14 +35,9 @@ export default {
 
         .content {
             width: 80%;
+            font-size: 20px;
+            color: #C2C6D8;
             margin-top: 0;
-            column-count: 2;
-            column-gap: 58px;
-
-            p {
-                font-size: 20px;
-                color: #C2C6D8;
-            }
         }
     }
 </style>
