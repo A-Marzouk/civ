@@ -134,7 +134,7 @@
       <div class="work mt-5" v-show="activeTab === 'work'">
         <div class="container" style="width:100%">
           <div class="row">
-            <div class="col-md-12 mx-auto" v-for="n in 3" :key="n">
+            <div class="col-md-12 mx-auto work-column" v-for="n in 3" :key="n">
               <section class="work-timeline">
                 <div class="work-content">
                   <div class="work-title">Senior UI/UX Designer</div>
@@ -219,6 +219,9 @@ export default {
   max-width: 1920px;
   background: white;
   // work
+  .work-column{
+    margin-top:-100px;
+  }
   .work-title {
     font-family: "Archivo" !important;
     font-weight: bold;
