@@ -1,33 +1,35 @@
 <template>
   <section class="tm701-main">
-    <div
-      class="tm701-tabs xl:tw-pt-50px xl:tw-pb-80px xl:tw-border-t-14 xl:tw-border-tm701-5 xl:tw-rounded-t-5rem"
-    >
-      <div class="tm701-inner">
-        <v-tabs
-          v-model="tab"
-          background-color="#FFF"
-          class="tabs--top xl:tw-flex xl:tw-justify-center tw-font-muli"
-          :centered="centered"
-          :grow="grow"
-          :vertical="vertical"
-          :right="right"
-          :icons-and-text="icons"
-        >
-          <v-tabs-slider></v-tabs-slider>
-          <v-tab
-            @click="currentTab = id"
-            :class="[
+    <div class="tm701-tabs--container">
+      <div
+        class="tm701-tabs xl:tw-pt-50px xl:tw-pb-80px xl:tw-border-t-14 xl:tw-border-tm701-5 xl:tw-rounded-t-5rem xl:tw-bg-white"
+      >
+        <div class="tm701-inner">
+          <v-tabs
+            v-model="tab"
+            background-color="#FFF"
+            class="tabs--top xl:tw-flex xl:tw-justify-center tw-font-muli"
+            :centered="centered"
+            :grow="grow"
+            :vertical="vertical"
+            :right="right"
+            :icons-and-text="icons"
+          >
+            <v-tabs-slider></v-tabs-slider>
+            <v-tab
+              @click="currentTab = id"
+              :class="[
               currentTab == id
                 ? 'tm701-active-tab tw-border tw-border-tm701-7 xl:tw-rounded-lg xl:tw-py-10px xl:tw-px-30px'
                 : 'tw-text-black',
               'tm701-tabs--one xl:tw-mr-100px xl:tw-leading-64px w-font-bold tw-not-italic tw-text-tm701-6 tw-normal-case tw-list-none tw-text-20px',
             ]"
-            v-for="{ title, id } in tabs"
-            :key="id"
-            :href="`#tab-${id}`"
-          >{{ title }}</v-tab>
-        </v-tabs>
+              v-for="{ title, id } in tabs"
+              :key="id"
+              :href="`#tab-${id}`"
+            >{{ title }}</v-tab>
+          </v-tabs>
+        </div>
       </div>
     </div>
     <div>
@@ -101,13 +103,6 @@
         </div>
       </div>
     </div>
-
-    <!--
-    <Portfolio :currentTab="currentTab" />
-    <Work :currentTab="currentTab" />
-    <Education :currentTab="currentTab" />
-    <Skills :currentTab="currentTab" />
-    -->
   </section>
 </template>
 <script>
@@ -159,6 +154,10 @@ export default {
 
 <style lang="scss">
 .tm701-main {
+  .tm701-tabs--container {
+    background-image: url("../../../../../public/images/resume_themes/theme701/header-mask.png");
+    background-color: #dbdec4;
+  }
   // Start Tabs
   .tm701-tabs {
     .tm701-tabs--one {
