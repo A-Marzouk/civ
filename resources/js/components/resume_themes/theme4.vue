@@ -151,6 +151,28 @@
         </div>
       </div>
       <!-- Work -->
+      <!-- Education -->
+      <div class="work mt-5" v-show="activeTab === 'education'">
+        <div class="container" style="width:100%">
+          <div class="row">
+            <div class="col-md-12 mx-auto work-column" v-for="n in 3" :key="n">
+              <section class="work-timeline">
+                <div class="work-content">
+                  <div class="work-title">Udemy</div>
+                  <div class="work-subtitle">
+                    <span>UI/UX DESIGN COURSE </span> / September 2015 - December 2015
+                  </div>
+                  <div
+                    class="work-text"
+                  >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
     </div>
   </div>
 </template>
