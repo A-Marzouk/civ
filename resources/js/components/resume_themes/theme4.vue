@@ -118,7 +118,7 @@
                     <img class="icon" src="/images/resume_themes/theme4/skills/Ai.png" alt="skill-icon">
                     <img class="icon" src="/images/resume_themes/theme4/skills/Lr.png" alt="skill-icon">
                     <img class="icon" src="/images/resume_themes/theme4/skills/Xd.png" alt="skill-icon">
-                    <img class="icon" src="/images/resume_themes/theme4/skilss/Id.png" alt="skill-icon">
+                    <img class="icon" src="/images/resume_themes/theme4/skills/Id.png" alt="skill-icon">
                 </div>
             </div>
 
