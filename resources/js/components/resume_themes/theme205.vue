@@ -17,7 +17,7 @@
                     <v-card-text>
                       <v-row>
                         <v-col cols="8">
-                          <v-list-item two-line class="ml-n3">
+                          <v-list-item two-line class="">
                             <v-list-item-content>
                               <v-list-item-title class="profile-title">
                                 <v-card class="pa-1" flat color="transparent">Carla Pipin Ranga</v-card>
@@ -97,7 +97,7 @@
                   </v-card>
                 </v-col>
                 <!-- Social media icons -->
-                <v-col md="7" class="hidden-sm-and-down">
+                <v-col md="6" class="hidden-sm-and-down">
                   <v-card flat color="transparent" class="mt-n12 mr-2">
                     <v-card-text align="right">
                       <v-btn
@@ -522,8 +522,8 @@ export default {
   margin: 0;
   position: absolute;
   background: #fcd259;
-  height: 18.75rem;
-  width: 27rem;
+  height: 20.75rem;
+  width: 30rem;
   -webkit-clip-path: polygon(100% 0, 0% 100%, 0 0);
   clip-path: polygon(100% 0, 0% 100%, 0 0);
   -webkit-box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
