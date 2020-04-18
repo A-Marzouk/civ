@@ -71,7 +71,7 @@
                 <!-- Hour Rate -->
                 <!-- Weekly availibility -->
 
-                <v-list-item two-line class="ml-n10">
+                <v-list-item two-line class="availibilty-col">
                   <v-list-item-avatar size="16">
                     <img width="16" src="/images/resume_themes/theme206/icons/watch.png" />
                   </v-list-item-avatar>
@@ -94,7 +94,7 @@
             <!-- Availibility  -->
 
             <!-- 3rd column -->
-            <v-col md="5" class="hidden-sm-and-down">
+            <v-col md="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
                 <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
@@ -210,10 +210,7 @@
                 ]"
               >
                 <v-avatar tile size="16">
-                  <img
-                    :src="currentTab == tab.id ?getTabIcon(tab.id) :getTabIconMobile(tab.id) "
-                    width="16"
-                  />
+                  <img :src="getTabIcon(tab.id)" width="16" />
                 </v-avatar>
                 <span class="ml-2" v-if="currentTab == tab.id">{{tab.title}}</span>
               </v-tab>
@@ -627,7 +624,7 @@ export default {
   line-height: 1.313rem;
   text-transform: uppercase;
   @media screen and (max-width: 1280px) {
-    font-size: 0.55rem;
+    font-size: 0.45rem;
   }
 }
 .rate {
@@ -640,6 +637,9 @@ export default {
 .btn-hire-me {
   text-transform: capitalize !important;
   width: 200px;
+  @media screen and (max-width: 1024px){
+    width: 120px;
+  }
   @media screen and (max-width: 959px) {
     width: 225px;
   }
@@ -650,6 +650,11 @@ export default {
 .custom-social-btn {
   max-width: 36px !important;
   height: 51px !important;
+
+  @media screen and (min-width: 960px) and (max-width: 1024px){
+    min-width: 45px !important;
+  }
+
   @media screen and (max-width: 599px) {
     height: 30px !important;
     width: 30px !important;
@@ -868,10 +873,10 @@ export default {
 }
 .active-mobile-tab {
   background: #eeeeee;
+  border: 3px solid #eeeeee;
   box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7);
-  border-radius: 80px;
-  border: 3px solid #eeeeee;
+  border-radius: 5px;
   span {
     font-family: "Poppins" sans-serif !important;
     color: #5843be;
@@ -883,6 +888,15 @@ export default {
 .custom-skill-tab {
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
+  }
+}
+
+.availibilty-col {
+  @media screen and (min-width: 1025px) {
+    margin-left: -52px;
+  }
+  @media screen and (max-width: 1024px) {
+    margin-left: -20px;
   }
 }
 </style>

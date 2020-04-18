@@ -11,7 +11,7 @@
       <div class="col col-12 col-lg-6 works-column">
         <work
           v-for="w in works.slice(0, middleIndex)"
-          :key="w.company"
+          :key="w.id"
           :work="w"
         ></work>
       </div>
@@ -19,7 +19,7 @@
       <div class="col col-12 col-lg-6 works-column">
         <work
           v-for="w in works.slice(middleIndex, works.length)"
-          :key="w.company"
+          :key="w.id + 'work'"
           :work="w"
         ></work>
       </div>

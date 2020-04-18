@@ -203,22 +203,26 @@
                                   </v-col>
                                   <v-spacer class="hidden-md-only"></v-spacer>
                                   <v-col cols="12" md="4" sm="5" class>
-                                    <v-btn color="#03CA9F" class="btn-voice-call">
-                                      <img
-                                        class="mr-2"
-                                        src="/images/resume_themes/theme200/icons/phone.png"
-                                      />Voice
-                                      Call
-                                    </v-btn>
+                                    <v-card color="transparent" flat class="mt-md-0 mt-sm-7 mt-0">
+                                      <v-btn color="#03CA9F" class="btn-voice-call">
+                                        <img
+                                          class="mr-2"
+                                          src="/images/resume_themes/theme200/icons/phone.png"
+                                        />Voice
+                                        Call
+                                      </v-btn>
+                                    </v-card>
                                   </v-col>
 
                                   <v-col cols="12" md="4" sm="5" class>
-                                    <v-btn color="#2400FF" class="btn-upload">
-                                      <img
-                                        src="/images/resume_themes/theme200/icons/camera.png"
-                                        class="mr-2"
-                                      />Upload Video
-                                    </v-btn>
+                                    <v-card flat color="transparent" class="mt-md-0 mt-sm-7 mt-0">
+                                      <v-btn color="#2400FF" class="btn-upload">
+                                        <img
+                                          src="/images/resume_themes/theme200/icons/camera.png"
+                                          class="mr-2"
+                                        />Upload Video
+                                      </v-btn>
+                                    </v-card>
                                   </v-col>
                                 </v-row>
                               </v-card-text>
@@ -226,9 +230,9 @@
                           </v-col>
                           <!-- Only shows on tablet desktop version -->
 
-                          <!-- Only shows in desktop and tablet version -->
+                          <!-- Only shows in desktop  -->
                           <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
-                            <v-card flat class="card-hire-me" color="rgba(37, 0, 0, 0.1)">
+                            <v-card flat class="card-hire-me mt-md-3" color="rgba(37, 0, 0, 0.1)">
                               <v-card-text>
                                 <v-row no-gutters align="center">
                                   <!-- for desktop -->
@@ -327,7 +331,7 @@
                               </v-card-text>
                             </v-card>
                           </v-col>
-                          <!-- only shows on desktop and tablet version -->
+                          <!-- only shows on desktop  -->
                         </v-row>
                       </v-card-text>
                     </v-card>
@@ -340,7 +344,7 @@
                       <v-card class color="rgba(37, 0, 0, 0.1)" flat width="705">
                         <v-row align="center" justify="center">
                           <!--tab1 column -->
-                          <v-col cols="3">
+                          <v-col cols="4" class="ml-n11">
                             <v-card color="transparent" flat>
                               <v-row align="center" justify="center">
                                 <v-col cols="6">
@@ -360,20 +364,22 @@
                                   </v-tabs>
                                 </v-col>
                                 <v-col cols="6">
-                                  <v-tabs-items v-model="tabRate" style="background:transparent;">
-                                    <v-tab-item v-for="n in 3" :key="n">
-                                      <div class="hire-me-subtitle">Rate $ USD</div>
-                                      <div
-                                        class="hire-me-title hire-me-frequency-active"
-                                      >{{currentUser.payment_info.available_hours}}$</div>
-                                    </v-tab-item>
-                                  </v-tabs-items>
+                                  <v-card flat color="transparent" class>
+                                    <v-tabs-items v-model="tabRate" style="background:transparent;">
+                                      <v-tab-item v-for="n in 3" :key="n">
+                                        <div class="hire-me-subtitle">Rate $ USD</div>
+                                        <div
+                                          class="hire-me-title hire-me-frequency-active"
+                                        >{{currentUser.payment_info.available_hours}}$</div>
+                                      </v-tab-item>
+                                    </v-tabs-items>
+                                  </v-card>
                                 </v-col>
                               </v-row>
                             </v-card>
                           </v-col>
-                         
-                          <v-col cols="4">
+
+                          <v-col cols="5">
                             <v-card color="transparent" flat>
                               <v-row align="center" justify="center">
                                 <v-col cols="6">
@@ -429,7 +435,7 @@
                   <v-col cols="12" md="12" sm="12" class="mt-n5 mb-n11 hidden-xs-only">
                     <v-row align="center" justify="center">
                       <v-col md="10">
-                        <v-card color="transparent" flat class="w-100">
+                        <v-card color="transparent" flat class="w-100 mt-md-n2 mt-sm-0 mt-0">
                           <v-card-text>
                             <!-- tabs -->
                             <v-tabs
@@ -904,6 +910,7 @@
                                           v-show="item.is_active"
                                         >
                                           <img
+                                            width="25"
                                             :src="`/images/resume_themes/theme200/social_icons/${item.link_title.toLowerCase()}.webp`"
                                             alt="social icon"
                                           />

@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Carbon\Carbon;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -18,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_code', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id'
+        'name', 'username', 'theme_code', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity'
     ];
 
     /**
@@ -194,6 +196,31 @@ class User extends Authenticatable implements MustVerifyEmail
     public function referee()
     {
         return $this->hasOne(Referee::class);
+    }
+
+
+    // user helper functions :
+    public function updateLastActivity(){
+        $this->update([
+            'last_activity' => Carbon::now()->toDateTimeString()
+        ]);
+    }
+
+    // user Accessors & Mutators:
+
+    public function getLastActivityAttribute($value)
+    {
+        return $this->getTimeDifferenceInSeconds($value);
+    }
+
+
+    protected function getTimeDifferenceInSeconds($value){
+        // return time difference in seconds
+        $start  = new Carbon(Carbon::now()->toDateTimeString());
+        $end    = new Carbon($value);
+        $totalDuration = $end->diffInSeconds($start);
+
+        return $totalDuration;
     }
 
 }

@@ -113,7 +113,9 @@
 <!-- Small screen social media icons -->
  
   <v-container class="d-flex justify-center">
-    <v-avatar v-for="n in 6" :key="n" class="mr-4 hidden-md-and-up">
+    <v-avatar v-for="n in 6" :key="n" class="hidden-md-and-up"
+      :class="[n == 6 ? '' : 'mr-2' ]"
+    >
       <img :src="getImgUrlSm(n)" alt="img" class="ct-icon-img" >
     </v-avatar>
   </v-container>
@@ -551,7 +553,7 @@
 /* new styles */
 .ct-small-txt-102 {
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 200;
   color: rgb(184, 184, 184);
 }
 

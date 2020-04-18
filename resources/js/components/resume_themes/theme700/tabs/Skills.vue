@@ -5,7 +5,7 @@
         <v-tabs
           v-model="tab"
           background-color="#FFF"
-          class="tm700-skill-tabs--top twflex tw-flex-row tw-justify-center tw-bg-tm700-7 tw-mt-113px"
+          class="tm700-skill-tabs--top tw-flex tw-flex-row tw-justify-center tw-bg-tm700-7 tw-mt-113px"
           :centered="centered"
           :grow="grow"
           :vertical="vertical"
