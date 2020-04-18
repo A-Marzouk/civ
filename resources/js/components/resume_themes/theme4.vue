@@ -123,10 +123,9 @@
 
       <div class="portfolio" v-show="activeTab === 'portfolio'">
         <slick class="portfolioSlides" ref="slick" :options="slickOptions">
-          <img width="100" height="100" src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-          <img width="100" height="100" src="/images/resume_themes/theme4/portfolio2.png" alt="portfolio image" />
-          <img width="100" height="100" src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
-          
+          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
+          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
+          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
         </slick>
       </div>
       <!-- Work -->
@@ -159,7 +158,7 @@
                 <div class="work-content">
                   <div class="work-title">Udemy</div>
                   <div class="work-subtitle">
-                    <span>UI/UX DESIGN COURSE </span> / September 2015 - December 2015
+                    <span>UI/UX DESIGN COURSE</span> / September 2015 - December 2015
                   </div>
                   <div
                     class="work-text"
@@ -240,8 +239,11 @@ export default {
   max-width: 1920px;
   background: white;
   // work
-  .work-column{
-    margin-top:-100px;
+  .work-column {
+    margin-top: -100px;
+    @media only screen and (max-width: 599px){
+      margin-top: 0px;
+    }
   }
   .work-title {
     font-family: "Archivo" !important;
@@ -269,6 +271,9 @@ export default {
     font-size: 18px;
     line-height: 30px;
     color: #9ca4c1;
+    @media only screen and (max-width:599px){
+      font-size:14px;
+    }
   }
 
   .work-timeline {
@@ -276,6 +281,12 @@ export default {
     margin: 90px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
+    @media only screen and (max-width:599px) {
+      margin: 28px auto;
+      margin-left:30px;
+      padding: 0 20px 0 30px;
+      height:416px
+    }
   }
 
   .work-content::before {
@@ -290,6 +301,11 @@ export default {
     position: absolute;
     top: -8px;
     left: -15px;
+    @media screen and (max-width: 599px){
+      font-size: 40px;
+      top:-33px;
+      left:24px
+    }
   }
   // work
   .mainThemeBar {
@@ -560,17 +576,30 @@ export default {
 
     .portfolio {
       .portfolioSlides {
-        padding-left: 0px;
-        padding-right: 0px;
-        margin-top: 100px;
+        padding-left: 40px;
+        padding-right: 40px;
         display: flex;
         justify-content: center;
         flex-direction: column;
-
+        @media only screen and (max-width: 765px) {
+          padding-left: 0px;
+          padding-right: 0px;
+        }
+        @media only screen and (min-width: 1600px) {
+          padding-left: 135px;
+          padding-right: 135px;
+        }
         img {
-          padding: 30px;
-          width: 723px !important;
-          height: 700px;
+          margin-top: 25px;
+          margin-right: 25px;
+          margin-left: 25px;
+          width: 510px !important;
+          height: 400px;
+          border-radius: 30px;
+          @media only screen and (max-width: 765px) {
+            width: 177px !important;
+            height: 139px;
+          }
         }
 
         .slide-text {
