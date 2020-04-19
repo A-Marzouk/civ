@@ -1,13 +1,13 @@
 <template>
-  <div class="tm701-skill xl:tw-pl-20 xl:tw-pr-24" v-if="currentTab === 4">
+  <div class="tm701-skill tw-pl-20 tw-pr-24" v-if="currentTab === 4">
     <div
-      class="tm701-skill--inner xl:tw-grid xl:tw-grid-cols-2 xl:tw-col-gap-247px xl:tw-grid-cols-tm701-skills--inner tw-font-muli"
+      class="tm701-skill--inner tw-grid tw-grid-cols-2 tw-col-gap-247px tw-grid-cols-tm701-skills--inner tw-font-muli"
     >
-      <div class="xl:tw-w-3/4">
+      <div class="tw-w-3/4">
         <span
-          class="xl:tw-mb-22px tw-text-tm701-10 tw-text-2xl tw-leading-40px tw-font-normal xl:tw-block"
+          class="tw-mb-22px tw-text-tm701-10 tw-text-2xl tw-leading-40px tw-font-normal tw-block"
         >Services</span>
-        <h2 class="tw-text-tm701-6 tw-text-40px tw-leading-50px xl:tw-mb-10">
+        <h2 class="tw-text-tm701-6 tw-text-40px tw-leading-50px tw-mb-10">
           Skills and
           Languages
         </h2>
@@ -16,10 +16,10 @@
           Table
         </p>
       </div>
-      <div class="tw-grid xl:tw-grid-cols-3 xl:tw-gap-16">
+      <div class="tw-grid tw-grid-cols-3 tw-gap-16">
         <div>
           <svg
-            class="xl:tw-mb-6"
+            class="tw-mb-6"
             xmlns="http://www.w3.org/2000/svg"
             width="73.814"
             height="73.749"
@@ -63,10 +63,10 @@
               />
             </g>
           </svg>
-          <span class="tw-text-tm701-6 tw-text-30px tw-leading-50px xl:tw-mb-3 xl:tw-block">Adobe Xd</span>
-          <div class="tw-flex xl:tw-flex-row xl:tw-items-center">
+          <span class="tw-text-tm701-6 tw-text-30px tw-leading-50px tw-mb-3 tw-block">Adobe Xd</span>
+          <div class="tw-flex tw-flex-row tw-items-center">
             <svg
-              class="xl:tw-mr-2"
+              class="tw-mr-2"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="2"
@@ -85,7 +85,7 @@
         </div>
         <div>
           <svg
-            class="xl:tw-mb-6"
+            class="tw-mb-6"
             xmlns="http://www.w3.org/2000/svg"
             width="73.814"
             height="73.749"
@@ -112,12 +112,10 @@
               fill="#2f5e5e"
             />
           </svg>
-          <span
-            class="tw-text-tm701-6 tw-text-30px tw-leading-50px xl:tw-mb-3 xl:tw-block"
-          >Adobe Indesign</span>
-          <div class="tw-flex xl:tw-flex-row xl:tw-items-center">
+          <span class="tw-text-tm701-6 tw-text-30px tw-leading-50px tw-mb-3 tw-block">Adobe Indesign</span>
+          <div class="tw-flex tw-flex-row tw-items-center">
             <svg
-              class="xl:tw-mr-2"
+              class="tw-mr-2"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="2"
@@ -136,7 +134,7 @@
         </div>
         <div>
           <svg
-            class="xl:tw-mb-6"
+            class="tw-mb-6"
             xmlns="http://www.w3.org/2000/svg"
             width="73.814"
             height="73.749"
@@ -165,11 +163,11 @@
           </svg>
 
           <span
-            class="tw-text-tm701-6 tw-text-30px tw-leading-50px xl:tw-mb-3 xl:tw-block"
+            class="tw-text-tm701-6 tw-text-30px tw-leading-50px tw-mb-3 tw-block"
           >Adobe Illustrator</span>
-          <div class="tw-flex xl:tw-flex-row xl:tw-items-center">
+          <div class="tw-flex tw-flex-row tw-items-center">
             <svg
-              class="xl:tw-mr-2"
+              class="tw-mr-2"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="2"
@@ -188,7 +186,7 @@
         </div>
         <div>
           <svg
-            class="xl:tw-mb-6"
+            class="tw-mb-6"
             xmlns="http://www.w3.org/2000/svg"
             width="73.814"
             height="73.749"
@@ -217,11 +215,11 @@
           </svg>
 
           <span
-            class="tw-text-tm701-6 tw-text-30px tw-leading-50px xl:tw-mb-3 xl:tw-block"
+            class="tw-text-tm701-6 tw-text-30px tw-leading-50px tw-mb-3 tw-block"
           >Adobe Photoshop</span>
-          <div class="tw-flex xl:tw-flex-row xl:tw-items-center">
+          <div class="tw-flex tw-flex-row tw-items-center">
             <svg
-              class="xl:tw-mr-2"
+              class="tw-mr-2"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="2"
@@ -240,7 +238,7 @@
         </div>
         <div>
           <svg
-            class="xl:tw-mb-6"
+            class="tw-mb-6"
             xmlns="http://www.w3.org/2000/svg"
             width="73.814"
             height="73.749"
@@ -268,12 +266,10 @@
             />
           </svg>
 
-          <span
-            class="tw-text-tm701-6 tw-text-30px tw-leading-50px xl:tw-mb-3 xl:tw-block"
-          >Adobe Indesign</span>
-          <div class="tw-flex xl:tw-flex-row xl:tw-items-center">
+          <span class="tw-text-tm701-6 tw-text-30px tw-leading-50px tw-mb-3 tw-block">Adobe Indesign</span>
+          <div class="tw-flex tw-flex-row tw-items-center">
             <svg
-              class="xl:tw-mr-2"
+              class="tw-mr-2"
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="2"

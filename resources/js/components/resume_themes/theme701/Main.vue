@@ -2,13 +2,13 @@
   <section class="tm701-main">
     <div class="tm701-tabs--container">
       <div
-        class="tm701-tabs xl:tw-pt-50px xl:tw-pb-80px xl:tw-border-t-14 xl:tw-border-tm701-5 xl:tw-rounded-t-5rem xl:tw-bg-white"
+        class="tm701-tabs tw-pt-50px tw-pb-80px tw-border-t-14 tw-border-tm701-5 tw-rounded-t-5rem tw-bg-white"
       >
         <div class="tm701-inner">
           <v-tabs
             v-model="tab"
             background-color="#FFF"
-            class="tabs--top xl:tw-flex xl:tw-justify-center tw-font-muli"
+            class="tabs--top tw-flex tw-justify-center tw-font-muli"
             :centered="centered"
             :grow="grow"
             :vertical="vertical"
@@ -20,9 +20,9 @@
               @click="currentTab = id"
               :class="[
               currentTab == id
-                ? 'tm701-active-tab tw-border tw-border-tm701-7 xl:tw-rounded-lg xl:tw-py-10px xl:tw-px-30px'
+                ? 'tm701-active-tab tw-border tw-border-tm701-7  tw-rounded-lg  tw-py-10px  tw-px-30px'
                 : 'tw-text-black',
-              'tm701-tabs--one xl:tw-mr-100px xl:tw-leading-64px w-font-bold tw-not-italic tw-text-tm701-6 tw-normal-case tw-list-none tw-text-20px',
+              'tm701-tabs--one  tw-mr-100px  tw-leading-64px w-font-bold tw-not-italic tw-text-tm701-6 tw-normal-case tw-list-none tw-text-20px',
             ]"
               v-for="{ title, id } in tabs"
               :key="id"
@@ -33,33 +33,33 @@
       </div>
     </div>
     <div>
-      <div class="xl:tw-w-full xl:tw-max-w-1727px xl:tw-mx-auto">
-        <div class="xl:tw-flex xl:tw-justify-between xl:tw-max-h-screen-xl xl:tw-items-center">
-          <div class="xl:tw-flex xl:tw-flex-col xl:tw-items-center">
+      <div class="tw-w-full tw-max-w-1727px tw-mx-auto">
+        <div class="tw-flex tw-justify-between tw-max-h-screen-xl tw-items-center">
+          <div class="tw-flex tw-flex-col tw-items-center">
             <span
-              class="xl:tw-transform xl:tw--rotate-90 xl:tw-block xl:tw-mb-4 tw-text-18px font-bold leading-40px"
+              class="tw-transform tw--rotate-90 tw-block tw-mb-4 tw-text-18px font-bold leading-40px"
             >scroll</span>
             <span class>
               <FontAwesomeIcon :icon="['fa', 'arrow-down']" />
             </span>
           </div>
-          <div class="xl:tw-flex-1 xl:tw-pr-265px xl:tw-pl-180px">
+          <div class="tw-flex-1 tw-pr-265px tw-pl-180px">
             <Portfolio :currentTab="currentTab" />
             <Work :currentTab="currentTab" />
             <Education :currentTab="currentTab" />
             <Skills :currentTab="currentTab" />
             <AboutMe :currentTab="currentTab" />
           </div>
-          <div class="xl:tw-flex xl:tw-flex-col xl:tw-items-center">
-            <div class="xl:tw-mb-6">
+          <div class="tw-flex tw-flex-col tw-items-center">
+            <div class="tw-mb-6">
               <span
-                class="xl:tw-transform xl:tw-rotate-90 xl:tw-block xl:tw-pr-6 tw-text-18px tw-font-bold leading-17px xl:tw-mb-8 tw-text-tm701-5"
+                class="tw-transform tw-rotate-90 tw-block tw-pr-6 tw-text-18px tw-font-bold leading-17px tw-mb-8 tw-text-tm701-5"
               >Social</span>
               <span
-                class="xl:tw-transform xl:tw-rotate-90 xl:tw-block xl:tw-pr-6 tw-text-18px tw-font-bold leading-17px tw-text-tm701-5"
+                class="tw-transform tw-rotate-90 tw-block tw-pr-6 tw-text-18px tw-font-bold leading-17px tw-text-tm701-5"
               >media</span>
             </div>
-            <div class="line xl:tw-mb-28px">
+            <div class="line tw-mb-28px">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="1"
@@ -77,25 +77,25 @@
                 />
               </svg>
             </div>
-            <div class="xl:tw-flex xl:tw-flex-col tw-text-tm701-5">
+            <div class="tw-flex tw-flex-col tw-text-tm701-5">
               <FontAwesomeIcon
-                class="xl:tw-mb-26px xl:tw-transform xl:tw-rotate-90"
+                class="tw-mb-26px tw-transform tw-rotate-90"
                 :icon="['fab', 'facebook-f']"
               />
               <FontAwesomeIcon
-                class="xl:tw-mb-26px xl:tw-transform xl:tw-rotate-90"
+                class="tw-mb-26px tw-transform tw-rotate-90"
                 :icon="['fab', 'linkedin-in']"
               />
               <FontAwesomeIcon
-                class="xl:tw-mb-26px xl:tw-transform xl:tw-rotate-90"
+                class="tw-mb-26px tw-transform tw-rotate-90"
                 :icon="['fab', 'behance']"
               />
               <FontAwesomeIcon
-                class="xl:tw-mb-26px xl:tw-transform xl:tw-rotate-90"
+                class="tw-mb-26px tw-transform tw-rotate-90"
                 :icon="['fab', 'twitter']"
               />
               <FontAwesomeIcon
-                class="xl:tw-mb-26px xl:tw-transform xl:tw-rotate-90"
+                class="tw-mb-26px tw-transform tw-rotate-90"
                 :icon="['fab', 'dribbble']"
               />
             </div>

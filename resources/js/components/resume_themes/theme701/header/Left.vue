@@ -1,6 +1,6 @@
 <template>
   <div class="tm701-left">
-    <img class="xl:tw-rounded-full xl:tw-max-w-xs" v-bind:src="logo" />
+    <img class="tw-rounded-full tw-max-w-xs" v-bind:src="logo" />
   </div>
 </template>
 

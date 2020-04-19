@@ -1,12 +1,12 @@
 <template>
   <div class="tm701-right">
-    <div class="chat xl:tw-pb-46px">
-      <div class="xl:tw-flex xm:tw-flex-row xl:tw-justify-end">
+    <div class="chat tw-pb-46px">
+      <div class="tw-flex xm:tw-flex-row tw-justify-end">
         <button
-          class="tw-bg-white xl:tw-py-22px xl:tw-pl-70px xl:tw-pr-36px xl:tw-rounded-lg xl:tw-mr-26px"
+          class="tw-bg-white tw-py-22px tw-px-5 tw-pl-70px tw-pr-36px tw-rounded-lg tw-mr-26px"
         >
           <svg
-            class="xl:tw-inline"
+            class="tw-inline"
             id="Group_3"
             data-name="Group 3"
             xmlns="http://www.w3.org/2000/svg"
@@ -31,9 +31,9 @@
           </svg>
           <span class="tw-text-18px tw-leading-23px">Start A Chat!</span>
         </button>
-        <button class="tw-bg-white xl:tw-py-22px xl:tw-pl-52px xl:tw-pr-18px xl:tw-rounded-lg">
+        <button class="tw-bg-white tw-py-22px tw-pl-52px tw-pr-18px tw-rounded-lg">
           <svg
-            class="xl:tw-inline"
+            class="tw-inline"
             id="Group_3"
             data-name="Group 3"
             xmlns="http://www.w3.org/2000/svg"
@@ -73,21 +73,19 @@
       </div>
     </div>
     <div class="hire">
-      <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-end xl:items-center">
-        <div class="hourly-rate xl:tw-flex xl:tw-flex-col xl:tw-mr-8">
-          <span class="tw-text-26px tw-font-bold tw-leading-33px xl:tw-mb-2">$45</span>
+      <div class="tw-flex tw-flex-row tw-justify-end items-center">
+        <div class="hourly-rate tw-flex tw-flex-col tw-mr-8">
+          <span class="tw-text-26px tw-font-bold tw-leading-33px tw-mb-2">$45</span>
           <span class="tw-text-15px tw-leading-19px">Hourly Rate</span>
         </div>
-        <div class="weekly-avaibility xl:tw-flex xl:tw-flex-col xl:tw-mr-8">
-          <span class="tw-text-26px tw-font-bold tw-leading-33px xl:tw-mb-2">45 Hr</span>
+        <div class="weekly-avaibility tw-flex tw-flex-col tw-mr-8">
+          <span class="tw-text-26px tw-font-bold tw-leading-33px tw-mb-2">45 Hr</span>
           <span class="tw-text-15px tw-leading-19px">Weekly Avaibility</span>
         </div>
         <div>
-          <button
-            class="tw-bg-tm701-4 xl:tw-py-22px xl:tw-pl-84px xl:tw-pr-70px xl:tw--lg-lg xl:tw-rounded-lg"
-          >
+          <button class="tw-bg-tm701-4 tw-py-22px tw-pl-84px tw-pr-70px tw-rounded-lg">
             <svg
-              class="xl:tw-inline xl:tw-mr-10px"
+              class="tw-inline tw-mr-10px"
               xmlns="http://www.w3.org/2000/svg"
               width="19"
               height="21"
