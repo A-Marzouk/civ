@@ -2,8 +2,8 @@
   <v-app style="width:100%;">
     <v-container fluid ma-0 pa-0 style="width:100%;">
       <!-- For Desktop and Tablet -->
-      <v-app-bar color="#272B2F" height="250" dark>
-        <v-avatar size="180" class="ml-md-8 ml-sm-8 custom-avatar" left tile>
+      <v-app-bar color="#272B2F" height="260" dark>
+        <v-avatar size="200" class="ml-md-8 ml-sm-8 custom-avatar" left tile>
           <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
@@ -13,8 +13,10 @@
               <v-card class="pa-0" align="center" color="transparent" flat>
                 <div class="custom-profile-title">{{ personalData.name }}</div>
                 <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
+                <div class="hr-line"></div>
               </v-card>
-              <v-card class="pa-0 mt-5" align="center" color="transparent" flat>
+
+              <v-card class="pa-0 mt-3" align="center" color="transparent" flat>
                 <v-row justify="center" align="center">
                   <v-col cols="6">
                     <div class="hour-rate">
@@ -449,6 +451,12 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
+.hr-line {
+  margin-top: 20px;
+  width: 85%;
+  border: 1px solid #ffffff;
+  opacity: 0.1;
+}
 .custom-avatar {
   background: #272b2f;
   border: 10px solid #272b2f;
