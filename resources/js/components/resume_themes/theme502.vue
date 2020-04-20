@@ -1,18 +1,18 @@
 <template>
   <v-app id="theme502">
-    <v-row class="mt-xl-6 mt-lg-6 mt-sm-6 mt-xs-6" no-gutters>
+    <v-row class="mt-6" no-gutters>
       <v-col xl="8" lg="8" md="8" sm="12" cols="12">
         <v-row align="center" no-gutters>
-          <v-col cols="3" sm="2" md="3" lg="2" xl="2" class="ml-md-0 ml-sm-12 ml-xs-4">
+          <v-col cols="3" sm="2" md="3" lg="2" xl="2" class="ml-md-0 ml-sm-12 ml-4">
             <v-img
               src="/images/resume_themes/theme502/avatar.png"
               :aspect-ratio=".92"
               class="avatar mt-1"
-              style
+              style="border-radius: 0px 1rem 2rem 0px ;"
             ></v-img>
           </v-col>
 
-          <v-col cols="7" sm="9" md="7" lg="9" xl="9" class="pl-sm-6 pl-md-3 pl-lg-6 pl-xs-3">
+          <v-col cols="7" sm="9" md="7" lg="9" xl="9" class="pl-sm-6 pl-md-3 pl-lg-6 pl-3">
             <div class="head font-weight-bold">
               Carla Pipin Ranga
               <div class="text-left d-sm-inline-block d-none">
@@ -44,7 +44,7 @@
             </div>
 
             <div
-              class="subhead grey--text text--darken-1 pb-sm-8 pb-xs-4"
+              class="subhead grey--text text--darken-1 pb-sm-8 pb-4"
             >Web Ui/Ux Designer, Graphiс Designer</div>
 
             <div class="text-left hidden-xs-only">
