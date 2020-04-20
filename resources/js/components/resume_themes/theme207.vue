@@ -129,7 +129,14 @@
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
-            <v-tabs v-model="mainDataTab" centered grow class="hidden-xs-only" slider-color="#FC413C" background-color="transparent">
+            <v-tabs
+              v-model="mainDataTab"
+              centered
+              grow
+              class="hidden-xs-only"
+              slider-color="#FC413C"
+              background-color="transparent"
+            >
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -165,17 +172,48 @@
                   <v-card color="transparent" flat>
                     <v-card-text>
                       <v-row>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          md="3"
-                          v-for="item in portfolioItems"
-                          :key="item.id"
-                        >
-                          <v-card class="card-portfolio" hover>
-                            <v-img :src="getPortfolio(item.image)"></v-img>
+                        <!-- column 1 -->
+                        <v-col md="3">
+                          <v-card color="transparent" class="card-portfolio">
+                            <v-img
+                              src="/images/resume_themes/theme207/portfolio/1.png"
+                              alt="Portfolio Image"
+                            ></v-img>
                           </v-card>
                         </v-col>
+                        <!-- Column 1 -->
+                        <!-- column 2 -->
+                        <v-col md="4">
+                          <v-row>
+                            <v-col cols="6" v-for="n in 4" :key="n">
+                              <v-card class="card-portfolio mt-n3 mb-3">
+                                <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- Column 2 -->
+                        <!-- column 3 -->
+                        <v-col md="3">
+                          <v-card color="transparent" class="card-portfolio">
+                            <v-img
+                              src="/images/resume_themes/theme207/portfolio/1.png"
+                              alt="Portfolio Image"
+                            ></v-img>
+                          </v-card>
+                        </v-col>
+                        <!-- Column 3 -->
+                        <!-- column 4 -->
+                        <v-col md="2">
+                          <v-row>
+                            <v-col cols="12" v-for="n in 2" :key="n">
+                              <v-card class="card-portfolio mt-n3 mb-3">
+                                <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- Column 4 -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -576,7 +614,7 @@ export default {
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
   font-weight: bold;
-  color:#FC413C !important;
+  color: #fc413c !important;
   @media screen and (max-width: 959px) {
     span {
       font-size: 14px !important;
@@ -591,7 +629,7 @@ export default {
 // Tabs
 // Portfolio
 .card-portfolio {
-  border-radius: 30px !important;
+  border-radius: 10px !important;
 }
 //Portfolio
 
