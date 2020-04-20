@@ -37,11 +37,11 @@
                 <v-icon small dark color="white">mdi-instagram</v-icon>
               </v-btn>
             </v-col>
-            <v-col class="hidden-sm-and-up pt-12 mt-6" cols="2">
-              <v-btn class="ma-2" outlined color="white" x-small>
+            <v-col class="hidden-md-and-up mt-5" cols="2">
+              <v-btn class="ma-2" min-width="36" height="36" outlined color="white" x-small>
                 <v-icon small>mdi-volume-high</v-icon>
               </v-btn>
-              <v-btn class="ma-2" outlined color="white" x-small>
+              <v-btn class="ma-2" min-width="36" height="36" outlined color="white" x-small>
                 <v-icon small lft>mdi-video</v-icon>
               </v-btn>
             </v-col>
@@ -111,10 +111,10 @@
         <v-col lg="10" xl="8" sm="12" md="8" cols="12">
           <v-tabs
             v-model="tab"
+            show-arrows
             background-color="rgb(255, 255, 255,0.0)"
             dark
             class="theme500"
-            show-arrows
           >
             <v-tabs-slider></v-tabs-slider>
 

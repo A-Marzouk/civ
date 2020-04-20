@@ -11,15 +11,15 @@
       <div class="col col-12 col-lg-6 educations-column">
         <education
           v-for="(e, i) in educations.slice(0, middleIndex)"
-          :key="e.school_title + i"
-          :education="w"
+          :key="e.id + i"
+          :education="e"
         ></education>
       </div>
 
       <div class="col col-12 col-lg-6 educations-column">
         <education
           v-for="(e, i) in educations.slice(middleIndex, educations.length)"
-          :key="e.school_title + i"
+          :key="e.id + i"
           :education="e"
         ></education>
       </div>

@@ -199,9 +199,8 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider>
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up my-10">
               <v-tab
-                class="hidden-sm-and-up"
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
@@ -217,7 +216,13 @@
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
-            <v-tabs v-model="mainDataTab" centered hide-slider grow class="hidden-xs-only">
+            <v-tabs
+              v-model="mainDataTab"
+              centered
+              hide-slider
+              grow
+              class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
+            >
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -637,7 +642,7 @@ export default {
 .btn-hire-me {
   text-transform: capitalize !important;
   width: 200px;
-  @media screen and (max-width: 1024px){
+  @media screen and (max-width: 1024px) {
     width: 120px;
   }
   @media screen and (max-width: 959px) {
@@ -651,7 +656,7 @@ export default {
   max-width: 36px !important;
   height: 51px !important;
 
-  @media screen and (min-width: 960px) and (max-width: 1024px){
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
     min-width: 45px !important;
   }
 

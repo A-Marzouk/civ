@@ -1,10 +1,10 @@
 <template>
-  <div class="tm701-work xl:tw-pl-11rem xl:tw-pr-11rem" v-if="currentTab === 2">
-    <div class="tm701-work--inner xl:tw-grid xl:tw-grid-cols-2 xl:tw-col-gap-48">
-      <div class="xl:tw-col-start-1">
-        <div class="xl:tw-flex xl:tw-flex-row xl:tw-items-center xl:tw-mb-18px">
+  <div class="tm701-work tw-pl-11rem tw-pr-11rem" v-if="currentTab === 2">
+    <div class="tm701-work--inner tw-grid tw-grid-cols-2 tw-col-gap-48">
+      <div class="tw-col-start-1">
+        <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
           <svg
-            class="xl:tw-mr-18px"
+            class="tw-mr-18px"
             xmlns="http://www.w3.org/2000/svg"
             width="44"
             height="44"
@@ -52,7 +52,7 @@
             </g>
           </svg>
           <svg
-            class="xl:tw-mr-18px"
+            class="tw-mr-18px"
             xmlns="http://www.w3.org/2000/svg"
             width="48"
             height="1"
@@ -60,19 +60,17 @@
           >
             <rect id="Rectangle_75" data-name="Rectangle 75" width="48" height="1" fill="#dbe0c2" />
           </svg>
-          <span class="xl:tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Google</span>
+          <span class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Google</span>
           <span
-            class="xl:tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
+            class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
           >September 2017 - Present</span>
         </div>
-        <div class="xl:tw-pl-96px">
-          <div class="xl:tw-pb-56px">
-            <div
-              class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center xl:tw-mb-4"
-            >
-              <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+        <div class="tw-pl-96px">
+          <div class="tw-pb-56px">
+            <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
+              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
                 <svg
-                  class="xl:tw-mr-4"
+                  class="tw-mr-4"
                   xmlns="http://www.w3.org/2000/svg"
                   width="7"
                   height="7"
@@ -92,7 +90,7 @@
                 >Senior UX UI Designer</h3>
               </div>
               <span
-                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 xl:tw-border xl:tw-border-tm701-9 xl:tw-rounded-lg xl:tw-py-5px xl:tw-px-10px"
+                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
               >Full Time</span>
             </div>
 
@@ -102,13 +100,11 @@
               customer engagement.
             </p>
           </div>
-          <div class="xl:tw-pb-56px">
-            <div
-              class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center xl:tw-mb-4"
-            >
-              <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+          <div class="tw-pb-56px">
+            <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
+              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
                 <svg
-                  class="xl:tw-mr-4"
+                  class="tw-mr-4"
                   xmlns="http://www.w3.org/2000/svg"
                   width="7"
                   height="7"
@@ -128,7 +124,7 @@
                 >Intern UI Designer</h3>
               </div>
               <span
-                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 xl:tw-border xl:tw-border-tm701-9 xl:tw-rounded-lg xl:tw-py-5px xl:tw-px-10px"
+                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
               >Full Time</span>
             </div>
 
@@ -138,13 +134,11 @@
               customer engagement.
             </p>
           </div>
-          <div class="xl:tw-pb-56px">
-            <div
-              class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center xl:tw-mb-4"
-            >
-              <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+          <div class="tw-pb-56px">
+            <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
+              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
                 <svg
-                  class="xl:tw-mr-4"
+                  class="tw-mr-4"
                   xmlns="http://www.w3.org/2000/svg"
                   width="7"
                   height="7"
@@ -164,7 +158,7 @@
                 >Intern UI Designer</h3>
               </div>
               <span
-                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 xl:tw-border xl:tw-border-tm701-9 xl:tw-rounded-lg xl:tw-py-5px xl:tw-px-10px"
+                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
               >Full Time</span>
             </div>
 
@@ -176,11 +170,11 @@
           </div>
         </div>
       </div>
-      <div class="xl:tw-col-start-2">
+      <div class="tw-col-start-2">
         <div>
-          <div class="xl:tw-flex xl:tw-flex-row xl:tw-items-center xl:tw-mb-18px">
+          <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
             <svg
-              class="xl:tw-mr-18px"
+              class="tw-mr-18px"
               xmlns="http://www.w3.org/2000/svg"
               width="44"
               height="44"
@@ -228,7 +222,7 @@
               </g>
             </svg>
             <svg
-              class="xl:tw-mr-18px"
+              class="tw-mr-18px"
               xmlns="http://www.w3.org/2000/svg"
               width="48"
               height="1"
@@ -242,21 +236,17 @@
                 fill="#dbe0c2"
               />
             </svg>
+            <span class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Microsoft</span>
             <span
-              class="xl:tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1"
-            >Microsoft</span>
-            <span
-              class="xl:tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
+              class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
             >September 2017 - 2018</span>
           </div>
-          <div class="xl:tw-pl-96px">
-            <div class="xl:tw-pb-56px">
-              <div
-                class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center xl:tw-mb-4"
-              >
-                <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+          <div class="tw-pl-96px">
+            <div class="tw-pb-56px">
+              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
+                <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
                   <svg
-                    class="xl:tw-mr-4"
+                    class="tw-mr-4"
                     xmlns="http://www.w3.org/2000/svg"
                     width="7"
                     height="7"
@@ -276,7 +266,7 @@
                   >Senior UX UI Designer</h3>
                 </div>
                 <span
-                  class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 xl:tw-border xl:tw-border-tm701-9 xl:tw-rounded-lg xl:tw-py-5px xl:tw-px-10px"
+                  class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
                 >Full Time</span>
               </div>
 
@@ -288,9 +278,9 @@
           </div>
         </div>
         <div>
-          <div class="xl:tw-flex xl:tw-flex-row xl:tw-items-center xl:tw-mb-18px">
+          <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
             <svg
-              class="xl:tw-mr-18px"
+              class="tw-mr-18px"
               xmlns="http://www.w3.org/2000/svg"
               width="44"
               height="44"
@@ -338,7 +328,7 @@
               </g>
             </svg>
             <svg
-              class="xl:tw-mr-18px"
+              class="tw-mr-18px"
               xmlns="http://www.w3.org/2000/svg"
               width="48"
               height="1"
@@ -352,19 +342,17 @@
                 fill="#dbe0c2"
               />
             </svg>
-            <span class="xl:tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Adobe</span>
+            <span class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Adobe</span>
             <span
-              class="xl:tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
+              class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
             >September 2017 - 2018</span>
           </div>
-          <div class="xl:tw-pl-96px">
-            <div class="xl:tw-pb-56px">
-              <div
-                class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center xl:tw-mb-4"
-              >
-                <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+          <div class="tw-pl-96px">
+            <div class="tw-pb-56px">
+              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
+                <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
                   <svg
-                    class="xl:tw-mr-4"
+                    class="tw-mr-4"
                     xmlns="http://www.w3.org/2000/svg"
                     width="7"
                     height="7"
@@ -384,7 +372,7 @@
                   >Senior UX UI Designer</h3>
                 </div>
                 <span
-                  class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 xl:tw-border xl:tw-border-tm701-9 xl:tw-rounded-lg xl:tw-py-5px xl:tw-px-10px"
+                  class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
                 >Full Time</span>
               </div>
 
@@ -396,9 +384,9 @@
           </div>
         </div>
         <div>
-          <div class="xl:tw-flex xl:tw-flex-row xl:tw-items-center xl:tw-mb-18px">
+          <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
             <svg
-              class="xl:tw-mr-18px"
+              class="tw-mr-18px"
               xmlns="http://www.w3.org/2000/svg"
               width="44"
               height="44"
@@ -446,7 +434,7 @@
               </g>
             </svg>
             <svg
-              class="xl:tw-mr-18px"
+              class="tw-mr-18px"
               xmlns="http://www.w3.org/2000/svg"
               width="48"
               height="1"
@@ -460,19 +448,17 @@
                 fill="#dbe0c2"
               />
             </svg>
-            <span class="xl:tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Adobe</span>
+            <span class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1">Adobe</span>
             <span
-              class="xl:tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
+              class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
             >September 2017 - 2018</span>
           </div>
-          <div class="xl:tw-pl-96px">
-            <div class="xl:tw-pb-56px">
-              <div
-                class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center xl:tw-mb-4"
-              >
-                <div class="xl:tw-flex xl:tw-flex-row xl:tw-justify-between xl:tw-items-center">
+          <div class="tw-pl-96px">
+            <div class="tw-pb-56px">
+              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
+                <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
                   <svg
-                    class="xl:tw-mr-4"
+                    class="tw-mr-4"
                     xmlns="http://www.w3.org/2000/svg"
                     width="7"
                     height="7"
@@ -492,7 +478,7 @@
                   >Senior UX UI Designer</h3>
                 </div>
                 <span
-                  class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 xl:tw-border xl:tw-border-tm701-9 xl:tw-rounded-lg xl:tw-py-5px xl:tw-px-10px"
+                  class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
                 >Full Time</span>
               </div>
 
