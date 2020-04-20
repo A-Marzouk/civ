@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper_theme701" class="xl:tw-w-full xl:bg-white tw-font-muli tw-box-border">
+  <div id="wrapper_theme701" class="tw-w-full bg-white tw-font-muli tw-box-border">
     <Header />
     <Main />
   </div>

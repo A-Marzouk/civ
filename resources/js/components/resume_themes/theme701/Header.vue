@@ -1,9 +1,11 @@
 <template>
   <header class="tm701-header">
     <div
-      class="tm701-inner xl:tw-p-0 xl:tw-w-full xl:tw-my-0 xl:tw-mx-auto xl:tw-max-w-1767px xl:tw-pt-56px xl:tw-pb-56px"
+      class="tm701-inner tw-p-0 tw-w-full tw-my-0 tw-mx-auto tw-max-w-full xl:tw-max-w-1767px tw-pt-56px tw-pb-56px"
     >
-      <div class="tm701-top xl:tw-grid xl:tw-items-center xl:tw-grid-cols-tm701-header font-muli">
+      <div
+        class="tm701-top tw-grid tw-items-center tw-grid-cols-3 tw-grid-cols-tm701-header font-muli"
+      >
         <!-- left -->
         <Left />
         <!-- center -->
