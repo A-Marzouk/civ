@@ -241,7 +241,7 @@ export default {
   // work
   .work-column {
     margin-top: -100px;
-    @media only screen and (max-width: 599px){
+    @media only screen and (max-width: 765px){
       margin-top: 0px;
     }
   }
@@ -271,7 +271,7 @@ export default {
     font-size: 18px;
     line-height: 30px;
     color: #9ca4c1;
-    @media only screen and (max-width:599px){
+    @media only screen and (max-width:765px){
       font-size:14px;
     }
   }
@@ -281,7 +281,7 @@ export default {
     margin: 90px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
-    @media only screen and (max-width:599px) {
+    @media only screen and (max-width:765px) {
       margin: 28px auto;
       margin-left:30px;
       padding: 0 20px 0 30px;
@@ -301,7 +301,7 @@ export default {
     position: absolute;
     top: -8px;
     left: -15px;
-    @media screen and (max-width: 599px){
+    @media screen and (max-width: 765px){
       font-size: 40px;
       top:-33px;
       left:24px
