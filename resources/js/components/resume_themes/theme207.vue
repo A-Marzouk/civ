@@ -108,7 +108,7 @@
       <!-- ....................................................................................................... -->
 
       <!-- Tab Container -->
-      <v-container fluid style="width:100%;">
+      <v-container fluid style="width:100%;" class="mt-10">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
