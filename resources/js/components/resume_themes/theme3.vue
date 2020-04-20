@@ -1,8 +1,8 @@
 <template>
     <div class="d-flex justify-content-center w-100">
         <div class="themeWrapper" v-if="currentUser">
-            <div class="mainThemeBar d-flex justify-content-between align-items-center">
-                <div class="left">
+            <div class="mainThemeBar d-flex flex-row justify-content-between align-items-center">
+                <div class="left title-flex">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
                             <img :src="currentUser.personal_info.profile_pic" alt="profile pic">
@@ -36,6 +36,7 @@
                         <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
                     </div>
                 </div>
+               
                 <div class="right d-flex align-items-center hideOnPhone">
                     <div class="hourly-rate">
                         <div class="rate-options">
@@ -44,7 +45,7 @@
                             <span  @click="selectCurrentPayment('monthly')" :class="{active:currentPayment.salary_frequency === 'monthly'}">Monthly</span>
                         </div>
                        <div>
-                           <div class="hourly-rate-text">
+                           <div class="hourly-rate-text text-center">
                                ${{currentPayment.salary}}
                            </div>
                            <div class="hourly-rate-text light text-center">
@@ -59,7 +60,7 @@
                             <span  @click="selectCurrentAvailability('yearly')" :class="{active:currentAvailability.available_hours_frequency === 'yearly'}">Yearly</span>
                         </div>
                         <div>
-                            <div class="hourly-rate-text">
+                            <div class="hourly-rate-text text-center">
                                 {{currentAvailability.available_hours}} hours
                             </div>
                             <div class="hourly-rate-text light text-center">
@@ -489,11 +490,22 @@
         }
     }
     
+    .hideNotOnDesktop{
+        @media only screen and (max-width:1279px){
+            display: none !important;
+        }
+    }
+    
     .themeWrapper {
         width: 100%;
         max-width: 1920px;
         background: white;
         font-family: Roboto, sans-serif;
+        .title-flex{
+            @media only screen and (min-width:1280px) {
+                margin-left: -40px;
+            }
+        }
         .transition-line {
             position: relative;
             margin-top: -4px;
@@ -665,8 +677,8 @@
                     margin-right: 37px;
                     border-radius: 24px;
                     img {
-                        width: 180px;
-                        height: 180px;
+                        width: 120px;
+                        height: 120px;
                         border-radius: 50%;
                     }
                     @media only screen and (max-width: 765px) {
@@ -694,7 +706,7 @@
                         margin-left: -2px;
                         font-style: normal;
                         font-weight: bold;
-                        font-size: 30px;
+                        font-size: 24px;
                         color: #333333;
                         @media only screen and (max-width: 765px) {
                             font-size: 16px;
@@ -707,7 +719,7 @@
                     .job-title {
                         font-style: normal;
                         font-weight: normal;
-                        font-size: 25px;
+                        font-size: 14px;
                         color: #000000;
                         img {
                             width: 60px;
@@ -785,6 +797,9 @@
             .right {
                 .hourly-rate {
                     margin-right: 66px;
+                    @media only screen and (min-width: 1280px){
+                        margin-right: 30px;
+                    }
                     @media only screen and (max-width: 765px) {
                         margin-right: 27px;
                     }
@@ -803,6 +818,9 @@
                 }
                 .weekly-availability {
                     margin-right: 40px;
+                    @media only screen and (min-width: 1280px){
+                        margin-right: 30px;
+                    }
                     @media only screen and (max-width: 765px) {
                         margin-right: 19px;
                     }
@@ -811,7 +829,7 @@
                     &:first-letter {
                         text-transform: uppercase;
                     }
-                    text-align: left !important;
+                    // text-align: left !important;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 30px;
@@ -1212,6 +1230,7 @@
                     justify-content: space-between;
                     align-items: center;
                     width: 100%;
+                    
                     @media only screen and (max-width: 765px) {
                         align-items: center;
                     }
