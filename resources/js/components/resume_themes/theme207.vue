@@ -1,19 +1,42 @@
 <template>
   <v-app style="width:100%;">
-    <v-container fluid ma-0 pa-0 style="width:100%;">
+    <v-container fluid ma-0 pa-0 style="width:100%; background:#212529;">
       <!-- For Desktop and Tablet -->
-      <v-app-bar color="#fafafa" height="250" class="hidden-xs-only">
-        <v-avatar size="120" class="mr-5">
-          <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
+      <v-app-bar color="#272B2F" height="260" dark>
+        <v-avatar size="200" class="custom-avatar" left tile>
+          <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
             <v-col md="4" sm="7">
-              <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">{{personalData.name}}</v-card-title>
-                <v-card-subtitle class="custom-profile-subtitle">{{personalData.designation}}</v-card-subtitle>
-                <v-card-text class="custom-profile-text hidden-sm-and-down">{{personalData.detail}}</v-card-text>
+              <v-card class="pa-0" align="center" color="transparent" flat>
+                <div class="custom-profile-title">{{ personalData.name }}</div>
+                <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
+                <div class="hr-line"></div>
+              </v-card>
+
+              <v-card class="pa-0 mt-3" align="center" color="transparent" flat>
+                <v-row justify="center" align="center">
+                  <v-col cols="6">
+                    <div class="hour-rate">
+                      <v-avatar left class="mt-n2 mr-n1">
+                        <img src="/images/resume_themes/theme207/icons/usd.png" />
+                      </v-avatar>
+                      <span>$20</span>
+                    </div>
+                    <div class="hour-rate-text">Hour Rate</div>
+                  </v-col>
+                  <v-col cols="6">
+                    <div class="hour-rate">
+                      <v-avatar left class="mt-n2 mr-n1">
+                        <img src="/images/resume_themes/theme207/icons/time.png" />
+                      </v-avatar>
+                      <span>25</span>
+                    </div>
+                    <div class="hour-rate-text">Weekly Availibility</div>
+                  </v-col>
+                </v-row>
               </v-card>
             </v-col>
 
@@ -42,70 +65,15 @@
             </v-col>
             <!-- Social Button for tablet only -->
 
-            <!-- Availibility -->
-            <v-col md="3" sm="6">
-              <!-- Hour rate -->
-              <v-card
-                class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10"
-                color="transparent"
-                flat
-              >
-                <v-list-item two-line class>
-                  <v-list-item-avatar size="18">
-                    <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle>
-                      <v-card color="transparent" flat class="pa-0 ma-0">
-                        <span class="hour-rate">Hour Rate</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle>
-                      <v-card color="transparent" flat>
-                        <span class="rate">20</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-
-                <!-- Hour Rate -->
-                <!-- Weekly availibility -->
-
-                <v-list-item two-line class="availibilty-col">
-                  <v-list-item-avatar size="16">
-                    <img width="16" src="/images/resume_themes/theme206/icons/watch.png" />
-                  </v-list-item-avatar>
-                  <v-list-item-content>
-                    <v-list-item-subtitle>
-                      <v-card color="transparent" flat>
-                        <span class="hour-rate">Weekly availibility</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                    <v-list-item-subtitle>
-                      <v-card color="transparent" class="pa-0 ma-0" flat>
-                        <span class="rate">250</span>
-                      </v-card>
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-                </v-list-item>
-                <!-- Weekly availibility -->
-              </v-card>
-            </v-col>
-            <!-- Availibility  -->
-
             <!-- 3rd column -->
-            <v-col md="5" class="hidden-sm-and-down" align="right">
+            <v-col md="7" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
-                </v-btn>
-
                 <!-- social buttons -->
                 <v-btn
-                  class="custom-social-btn mx-2"
+                  class="custom-social-btn mx-2 elevation-12"
                   v-for="item in socialIcons"
                   :key="item.title"
-                  color="#FAFAFA"
+                  color="#272B2F"
                 >
                   <img
                     :width="item.title == 'facebook'? '12' : '20' "
@@ -114,6 +82,9 @@
                   />
                 </v-btn>
                 <!-- social buttons -->
+                <v-btn color="#272B2F" class="btn-hire-me hidden-sm-and-down elevation-12" x-large>
+                  <v-icon color="#FC413C" left>mdi-email-outline</v-icon>
+                </v-btn>
               </v-card>
             </v-col>
             <!-- 3rd column -->
@@ -133,73 +104,15 @@
       </v-app-bar>
       <!-- For Desktop and Tablet Version -->
       <!-- ........................................................................................................ -->
-      <!-- For mobile version only -->
-      <v-app-bar class="hidden-sm-and-up" color="#fafafa">
-        <v-btn icon color="#333333" @click.stop="drawer = !drawer">
-          <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
-        </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">{{personalData.name}}</v-toolbar-title>
-      </v-app-bar>
-      <v-navigation-drawer app color="#fafafa" v-model="drawer" temporary absolute width="350">
-        <v-card flat color="transparent">
-          <v-card-title class="profile-text-mobile">Profile</v-card-title>
-          <v-list-item class="mt-n12">
-            <v-list-item-avatar size="80">
-              <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
-            </v-list-item-avatar>
-            <div class="half-circle-mobile"></div>
-            <v-list-item-content class="mt-12">
-              <v-list-item-title>
-                <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">{{ personalData.name }}</span>
-                </v-card>
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                <v-card flat color="transparent" class="pa-2 mt-n5">
-                  <span class="profile-subtitle-mobile">{{ personalData.designation }}</span>
-                </v-card>
-              </v-list-item-subtitle>
-              <v-list-item-title>
-                <v-card height="50" flat color="transparent" class="mt-2">
-                  <v-btn
-                    x-small
-                    class="custom-social-btn mx-2"
-                    v-for="item in socialIcons"
-                    :key="item.title"
-                    color="#FAFAFA"
-                    height="40"
-                  >
-                    <img
-                      :width="item.title == 'facebook'? '8' : '14' "
-                      :src="getSocialIcon(item.title)"
-                    />
-                  </v-btn>
-                </v-card>
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-          <v-card-text>
-            <v-btn color="#FAFAFA" class="btn-hire-me" block>
-              <v-icon color="#5843BE" left>mdi-email-outline</v-icon>Hire Me
-            </v-btn>
-          </v-card-text>
-        </v-card>
-        <v-card flat color="transparent">
-          <v-card-title class="about-me-title-mobile">About Me</v-card-title>
-          <v-card-text
-            class="about-me-text-mobile"
-          >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor..</v-card-text>
-        </v-card>
-      </v-navigation-drawer>
-      <!-- For mobile version only -->
+
       <!-- ....................................................................................................... -->
 
       <!-- Tab Container -->
-      <v-container fluid style="width:100%">
+      <v-container fluid style="width:100%;">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up my-10">
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up">
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -219,9 +132,10 @@
             <v-tabs
               v-model="mainDataTab"
               centered
-              hide-slider
               grow
-              class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
+              class="hidden-xs-only"
+              slider-color="#FC413C"
+              background-color="transparent"
             >
               <v-tab
                 v-for="tab in tabItems"
@@ -233,7 +147,10 @@
               ]"
               >
                 <v-avatar tile>
-                  <img :src="getTabIcon(tab.id)" class="mr-md-4" />
+                  <img
+                    :src="currentTab == tab.id ? getTabActiveIcon(tab.id): getTabIcon(tab.id)"
+                    class="mr-md-4"
+                  />
                 </v-avatar>
                 <span>{{ tab.title }}</span>
               </v-tab>
@@ -249,23 +166,54 @@
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
-              <v-tabs-items v-model="mainDataTab">
+              <v-tabs-items v-model="mainDataTab" style="background: transparent;">
                 <!-- Portfolio -->
                 <v-tab-item>
                   <v-card color="transparent" flat>
                     <v-card-text>
                       <v-row>
-                        <v-col
-                          cols="12"
-                          sm="6"
-                          md="3"
-                          v-for="item in portfolioItems"
-                          :key="item.id"
-                        >
-                          <v-card class="card-portfolio" hover>
-                            <v-img :src="getPortfolio(item.image)"></v-img>
+                        <!-- column 1 -->
+                        <v-col md="3">
+                          <v-card color="transparent" class="card-portfolio">
+                            <v-img
+                              src="/images/resume_themes/theme207/portfolio/1.png"
+                              alt="Portfolio Image"
+                            ></v-img>
                           </v-card>
                         </v-col>
+                        <!-- Column 1 -->
+                        <!-- column 2 -->
+                        <v-col md="4">
+                          <v-row>
+                            <v-col cols="6" v-for="n in 4" :key="n">
+                              <v-card class="card-portfolio mt-n3 mb-3">
+                                <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- Column 2 -->
+                        <!-- column 3 -->
+                        <v-col md="3">
+                          <v-card color="transparent" class="card-portfolio">
+                            <v-img
+                              src="/images/resume_themes/theme207/portfolio/1.png"
+                              alt="Portfolio Image"
+                            ></v-img>
+                          </v-card>
+                        </v-col>
+                        <!-- Column 3 -->
+                        <!-- column 4 -->
+                        <v-col md="2">
+                          <v-row>
+                            <v-col cols="12" v-for="n in 2" :key="n">
+                              <v-card class="card-portfolio mt-n3 mb-3">
+                                <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- Column 4 -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -280,7 +228,7 @@
                           Ryerson University
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img src="/images/resume_themes/theme206/tabs/2.png" alt />
+                            <img src="/images/resume_themes/theme207/tabs/2.png" alt />
                           </span>
                         </v-card-title>
                         <v-card-text
@@ -302,7 +250,7 @@
                           {{item.title}}
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img src="/images/resume_themes/theme206/tabs/3.png" alt />
+                            <img src="/images/resume_themes/theme207/tabs/3.png" alt />
                           </span>
                         </v-card-title>
                         <v-card-text class="education-subtitle">{{item.detail}}</v-card-text>
@@ -456,8 +404,8 @@ export default {
       currentTab: 1,
       currentSkillTab: 1,
       personalData: {
-        name: "Hean Prinsloo",
-        designation: "Graphic Designer",
+        name: "Liam McDevitt",
+        designation: "FrontEnd Developer",
         detail:
           "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices..."
       },
@@ -522,16 +470,19 @@ export default {
   },
   methods: {
     getSocialIcon(title) {
-      return `/images/resume_themes/theme206/social_icons/${title}.webp`;
+      return `/images/resume_themes/theme207/social_icons/${title}.webp`;
     },
     getTabIcon(id) {
-      return `/images/resume_themes/theme206/tabs/${id}.png`;
+      return `/images/resume_themes/theme207/tabs/${id}.png`;
+    },
+    getTabActiveIcon(id) {
+      return `/images/resume_themes/theme207/tabs/active/${id}.png`;
     },
     getTabIconMobile(id) {
-      return `/images/resume_themes/theme206/tabs-mobile/${id}.png`;
+      return `/images/resume_themes/theme207/tabs-mobile/${id}.png`;
     },
     getPortfolio(image) {
-      return `/images/resume_themes/theme206/portfolio/${image}.png`;
+      return `/images/resume_themes/theme207/portfolio/${image}.png`;
     }
   }
 };
@@ -542,50 +493,25 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.half-circle {
-  position: absolute;
-  width: 136px;
-  height: 68px; /* as the half of the width */
-  border-radius: 100px 100px 0px 0;
-  border-left: 5px solid #5843be;
-  border-right: 5px solid #5843be;
-  border-top: 5px solid #5843be;
-  margin-top: 19px;
-  margin-left: 22px;
-  transform: rotate(122deg);
-  z-index: 1;
-
-  @-moz-document url-prefix() {
-    margin-top: 37px !important;
-    margin-left: 23px !important;
-  }
+.hr-line {
+  margin-top: 20px;
+  width: 85%;
+  border: 1px solid #ffffff;
+  opacity: 0.1;
 }
-
-.half-circle-mobile {
-  position: absolute;
-  width: 100px;
-  height: 50px; /* as the half of the width */
-  border-radius: 100px 100px 0px 0;
-  border-left: 3px solid #5843be;
-  border-right: 3px solid #5843be;
-  border-top: 3px solid #5843be;
-  margin-top: 13px;
-  margin-left: 10px;
-  transform: rotate(122deg);
-  z-index: 1;
-
-  @-moz-document url-prefix() {
-    margin-top: 23px !important;
-    margin-left: 9px !important;
-  }
+.custom-avatar {
+  background: #272b2f;
+  border: 10px solid #272b2f;
+  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
+  border-radius: 9px;
 }
 
 .custom-profile-title {
   font-family: "Open Sans" !important;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 2.5rem;
   line-height: 3.375rem;
-  color: #333333 !important;
+  color: #ffffff !important;
   @media screen and(max-width:959px) {
     font-size: 1.5rem;
   }
@@ -593,7 +519,7 @@ export default {
 
 .custom-profile-subtitle {
   font-family: "Poppins", sans-serif !important;
-  color: #333333 !important;
+  color: #fc413c !important;
   font-size: 1.25rem !important;
   font-weight: bold;
   line-height: 1.875rem;
@@ -608,6 +534,22 @@ export default {
   font-size: 0.9rem;
   line-height: 1.6888rem;
 }
+// Availibility
+.hour-rate {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 2rem;
+  color: #febc2c;
+  img {
+    width: 35px;
+    height: 35px;
+  }
+}
+.hour-rate-text {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.875rem;
+  color: #febc2c;
+}
+// Availibilty
 
 .hour-card {
   margin-top: -92px !important;
@@ -622,25 +564,9 @@ export default {
   }
 }
 
-.hour-rate {
-  font-family: "Poppins", sans-serif !important;
-  color: rgba(88, 67, 190, 0.5) !important;
-  font-size: 0.625rem;
-  line-height: 1.313rem;
-  text-transform: uppercase;
-  @media screen and (max-width: 1280px) {
-    font-size: 0.45rem;
-  }
-}
-.rate {
-  font-family: "Poppins", sans-serif !important;
-  color: #5843be !important;
-  font-size: 2.5rem;
-  line-height: 3rem;
-  font-weight: bold;
-}
 .btn-hire-me {
   text-transform: capitalize !important;
+  border-radius: 5px !important;
   width: 200px;
   @media screen and (max-width: 1024px) {
     width: 120px;
@@ -655,6 +581,7 @@ export default {
 .custom-social-btn {
   max-width: 36px !important;
   height: 51px !important;
+  border-radius: 5px !important;
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     min-width: 45px !important;
@@ -671,11 +598,9 @@ export default {
 // Tabs
 .ct-tab {
   font-family: "Poppins", sans-serif !important;
-  background: #f0f0f3;
-  box-shadow: 1.5px 1.5px 3px rgba(174, 174, 192, 0.4), -1px -1px 3px #ffffff;
-  border-radius: 5px;
-  color: #5843be !important;
+  font-weight: 500;
   line-height: 30px;
+  color: #ffffff !important;
   img {
     width: 20px;
     height: 20px;
@@ -688,16 +613,8 @@ export default {
 }
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
-  background: #eeeeee;
-  border: 5px solid #eeeeee;
-  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
-  border-radius: 5px;
-  img {
-    width: 24px;
-    height: 24px;
-    transition: 1s !important;
-  }
+  font-weight: bold;
+  color: #fc413c !important;
   @media screen and (max-width: 959px) {
     span {
       font-size: 14px !important;
@@ -712,7 +629,7 @@ export default {
 // Tabs
 // Portfolio
 .card-portfolio {
-  border-radius: 30px !important;
+  border-radius: 10px !important;
 }
 //Portfolio
 
@@ -907,17 +824,17 @@ export default {
 </style>
 
 <style>
-#resumeTheme206 .v-progress-linear__determinate {
+#resumetheme207 .v-progress-linear__determinate {
   border-color: #eeeeee !important;
 }
 
-#resumeTheme206 .v-progress-linear__background {
+#resumetheme207 .v-progress-linear__background {
   background: #eeeeee !important;
   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
 
-#resumeTheme206 .v-slide-group__prev.v-slide-group__prev--disabled {
+#resumetheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
 </style>
