@@ -1,48 +1,55 @@
 <template>
     <div class="container skills-container">
-        <div class="skill">
-            <img src="/images/resume_themes/theme13/ux-icon.png" alt="">
-            <div class="skill-info">
-                <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
-            </div>
-        </div>
-        <div class="skill">
-            <img src="/images/resume_themes/theme13/ux-icon.png" alt="">
-            <div class="skill-info">
-                <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
-            </div>
-        </div>
-        <div class="skill">
-            <img src="/images/resume_themes/theme13/ux-icon.png" alt="">
-            <div class="skill-info">
-                <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
-            </div>
-        </div>
-        <div class="skill">
-            <img src="/images/resume_themes/theme13/ux-icon.png" alt="">
-            <div class="skill-info">
-                <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
-            </div>
-        </div>
-        <div class="skill">
-            <img src="/images/resume_themes/theme13/ux-icon.png" alt="">
-            <div class="skill-info">
-                <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
-            </div>
-        </div>
-        <div class="skill">
-            <img src="/images/resume_themes/theme13/ux-icon.png" alt="">
-            <div class="skill-info">
-                <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
+        <div v-for="(skill, index) in skillsList" :key="index + skill.name" class="skill">
+            <div class="chart">
+                <Apexchart type="radialBar"
+                    :options="{
+                        labels: [''],
+                        chart: {
+                            width: '100%',
+                            heigth: 'auto'
+                        },
+                        plotOptions: {
+                            radialBar: {
+                                hollow: {
+                                    margin: 15,
+                                    size: '70%'
+                                }
+                            }
+                        }
+                    }"
+                    :series="[skill.percentage]"
+                ></Apexchart>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
 export default {
     data: () => ({
+        options: {
 
+        },
+        skillsList: [
+            {
+                name: 'UX/UI Design',
+                percentage: 75
+            },
+            {
+                name: 'Javascript',
+                percentage: 80
+            },
+            {
+                name: 'Python',
+                percentage: 67
+            },
+            {
+                name: 'C#',
+                percentage: 50
+            }
+        ]
     })
 }
 </script>
@@ -60,10 +67,19 @@ export default {
             max-width: 310px;
             margin: 35px 100px;
 
-            img {
-                width: 92px;
-                margin-bottom: 42.7px;
+            .chart {
+                width: 70.81px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                img {
+                    position: absolute;
+                    width: 27.25px;
+                }
             }
+
 
             .skill-info {
                 display: flex;

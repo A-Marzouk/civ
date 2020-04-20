@@ -2,6 +2,7 @@ import vuetify from './vuetify';
 
 import { store } from './store/store';
 
+
 import resumeTheme2 from './components/resume_themes/theme2';
 if ($("#resumeTheme2").length !== 0) {
     new Vue({
@@ -95,7 +96,7 @@ if ($("#resumeTheme12").length !== 0) {
         store,
         iconfont: 'fa4',
         components: {
-            'resume-theme-12': resumeTheme12
+            'resume-theme-12': resumeTheme12,
         }
     });
 }
