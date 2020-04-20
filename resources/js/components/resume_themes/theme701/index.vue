@@ -1,5 +1,5 @@
 <template>
-  <div id="wrapper_theme701" class="xl:tw-w-full xl:bg-white tw-font-muli tw-box-border">
+  <div id="wrapper_theme701" class="tw-w-full bg-white tw-font-muli tw-box-border">
     <Header />
     <Main />
   </div>
@@ -19,5 +19,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap");
 </style>

@@ -15,6 +15,7 @@ const spacing = {
     "civ-18": "18px",
     "civ-21": "21‬px",
     "civ-61": "61‬px",
+    "5px": "5px",
     "9px": "9px",
     "10px": "0.625rem",
     "14px": "14px",
@@ -55,12 +56,15 @@ const spacing = {
     "96px": "6rem",
     "113px": "7rem",
     "100px": "100px",
+    "112px": "112px",
     "128px": "8.75‬rem",
     "135px": "135px",
     "140px": "140px",
     "174px": "10.9‬rem",
     "174px": "10.9‬rem",
+    "200px": "200px",
     //"180px": "11.25‬rem", not working
+    "247px": "247px",
     "256px": "256px",
     "279px": "279px",
     "286px": "286px",
@@ -69,6 +73,7 @@ const spacing = {
     "494px": "494px",
     "603px": "603px",
     "8rem": "8rem",
+    "5rem": "5rem",
     "11rem": "11rem",
 };
 module.exports = {
@@ -97,6 +102,8 @@ module.exports = {
                     "7": "#DBDFC3",
                     "8": "#838BA4",
                     "9": "#DBE0C2",
+                    "10": "#6C8E8E",
+                    "11": "#616887",
                 },
             },
             inset: {
@@ -122,10 +129,12 @@ module.exports = {
             gridTemplateColumns: {
                 "tm700-d-skills-bar": "118px auto 48px",
                 "tm701-header": "1fr 4fr 2fr",
+                "tm701-skills--inner": "1fr 3fr",
             },
             borderRadius: {
                 "civ-15": "15px",
                 "25px": "15px",
+                "5rem": "5rem",
                 "civ-50": "3.125‬‬rem", // 50px
                 "civ-50p": "50px", // 50px
             },
@@ -149,6 +158,8 @@ module.exports = {
                 "22px": "22px", // 22px
                 "25px": "25px", // 22px
                 "26px": "26px", // 22px
+                "30px": "30px", // 22px
+                "40px": "40px", // 22px
             },
             lineHeight: {
                 "10px": "10px",
@@ -160,10 +171,13 @@ module.exports = {
                 "24px": "24px",
                 "27px": "29‬px",
                 "civ-29": "29‬px",
+                "30px": "30px",
                 "33px": "33px",
+                "35px": "35px",
                 "36px": "36px",
                 "37px": "37px",
                 "40px": "40px",
+                "50px": "50px",
                 "64px": "64px",
             },
         },
