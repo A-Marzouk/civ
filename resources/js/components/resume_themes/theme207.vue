@@ -3,7 +3,7 @@
     <v-container fluid ma-0 pa-0 style="width:100%;">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" height="260" dark>
-        <v-avatar size="200" class="ml-md-8 ml-sm-8 custom-avatar" left tile>
+        <v-avatar size="200" class="custom-avatar" left tile>
           <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
@@ -66,18 +66,15 @@
             <!-- Social Button for tablet only -->
 
             <!-- 3rd column -->
-            <v-col md="8" class="hidden-sm-and-down" align="right">
+            <v-col md="7" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
-                </v-btn>
-
                 <!-- social buttons -->
                 <v-btn
-                  class="custom-social-btn mx-2"
+                  class="custom-social-btn mx-2 elevation-12"
                   v-for="item in socialIcons"
                   :key="item.title"
-                  color="#FAFAFA"
+
+                  color="#272B2F"
                 >
                   <img
                     :width="item.title == 'facebook'? '12' : '20' "
@@ -86,6 +83,9 @@
                   />
                 </v-btn>
                 <!-- social buttons -->
+                <v-btn color="#272B2F" class="btn-hire-me hidden-sm-and-down elevation-12" x-large>
+                  <v-icon color="#FC413C" left>mdi-email-outline</v-icon>
+                </v-btn>
               </v-card>
             </v-col>
             <!-- 3rd column -->
@@ -524,6 +524,7 @@ export default {
 
 .btn-hire-me {
   text-transform: capitalize !important;
+  border-radius: 5px !important;
   width: 200px;
   @media screen and (max-width: 1024px) {
     width: 120px;
@@ -538,6 +539,7 @@ export default {
 .custom-social-btn {
   max-width: 36px !important;
   height: 51px !important;
+  border-radius: 5px !important;
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     min-width: 45px !important;
