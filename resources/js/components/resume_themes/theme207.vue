@@ -129,7 +129,7 @@
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
-            <v-tabs v-model="mainDataTab" centered grow class="hidden-xs-only" color="#FC413C" background-color="transparent">
+            <v-tabs v-model="mainDataTab" centered grow class="hidden-xs-only" slider-color="#FC413C" background-color="transparent">
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -159,7 +159,7 @@
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
-              <v-tabs-items v-model="mainDataTab">
+              <v-tabs-items v-model="mainDataTab" style="background: transparent;">
                 <!-- Portfolio -->
                 <v-tab-item>
                   <v-card color="transparent" flat>
@@ -562,6 +562,7 @@ export default {
   font-family: "Poppins", sans-serif !important;
   font-weight: 500;
   line-height: 30px;
+  color: #ffffff !important;
   img {
     width: 20px;
     height: 20px;
@@ -575,6 +576,7 @@ export default {
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
   font-weight: bold;
+  color:#FC413C !important;
   @media screen and (max-width: 959px) {
     span {
       font-size: 14px !important;
