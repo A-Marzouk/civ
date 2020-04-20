@@ -1,6 +1,6 @@
 <template>
   <v-app style="width:100%;">
-    <v-container fluid ma-0 pa-0 style="width:100%;">
+    <v-container fluid ma-0 pa-0 style="width:100%; background:#212529;">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" height="260" dark>
         <v-avatar size="200" class="custom-avatar" left tile>
@@ -73,7 +73,6 @@
                   class="custom-social-btn mx-2 elevation-12"
                   v-for="item in socialIcons"
                   :key="item.title"
-
                   color="#272B2F"
                 >
                   <img
@@ -109,13 +108,12 @@
       <!-- ....................................................................................................... -->
 
       <!-- Tab Container -->
-      <v-container fluid style="width:100%">
+      <v-container fluid style="width:100%;">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider>
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up">
               <v-tab
-                class="hidden-sm-and-up"
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
@@ -131,7 +129,7 @@
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
-            <v-tabs v-model="mainDataTab" centered hide-slider grow class="hidden-xs-only">
+            <v-tabs v-model="mainDataTab" centered grow class="hidden-xs-only" color="#FC413C" background-color="transparent">
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -142,7 +140,10 @@
               ]"
               >
                 <v-avatar tile>
-                  <img :src="getTabIcon(tab.id)" class="mr-md-4" />
+                  <img
+                    :src="currentTab == tab.id ? getTabActiveIcon(tab.id): getTabIcon(tab.id)"
+                    class="mr-md-4"
+                  />
                 </v-avatar>
                 <span>{{ tab.title }}</span>
               </v-tab>
@@ -436,6 +437,9 @@ export default {
     getTabIcon(id) {
       return `/images/resume_themes/theme207/tabs/${id}.png`;
     },
+    getTabActiveIcon(id) {
+      return `/images/resume_themes/theme207/tabs/active/${id}.png`;
+    },
     getTabIconMobile(id) {
       return `/images/resume_themes/theme207/tabs-mobile/${id}.png`;
     },
@@ -556,10 +560,7 @@ export default {
 // Tabs
 .ct-tab {
   font-family: "Poppins", sans-serif !important;
-  background: #f0f0f3;
-  box-shadow: 1.5px 1.5px 3px rgba(174, 174, 192, 0.4), -1px -1px 3px #ffffff;
-  border-radius: 5px;
-  color: #5843be !important;
+  font-weight: 500;
   line-height: 30px;
   img {
     width: 20px;
@@ -573,16 +574,7 @@ export default {
 }
 .custom-active-tab {
   font-family: "Poppins", sans-serif !important;
-  background: #eeeeee;
-  border: 5px solid #eeeeee;
-  box-shadow: inset 1.5px 1.5px 1px rgba(174, 174, 192, 0.2),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.7);
-  border-radius: 5px;
-  img {
-    width: 24px;
-    height: 24px;
-    transition: 1s !important;
-  }
+  font-weight: bold;
   @media screen and (max-width: 959px) {
     span {
       font-size: 14px !important;
