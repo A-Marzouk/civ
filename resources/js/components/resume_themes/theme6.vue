@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-center w-100">
+    <div class="d-flex justify-content-center w-100" v-if="currentUser">
         <div class="freelancerCard w-100">
             <div class="row">
 
@@ -11,7 +11,7 @@
                             <div class="d-flex align-items-center">
                                 <div class="imageCol">
                                     <div class="imageContainer" style="padding: 10px;">
-                                        <img :src="getImageSrc(freelancer.user_data.photo)" alt="freelancer"
+                                        <img :src="currentUser.personal_info.profile_pic" alt="freelancer"
                                              class="freelancerImg"
                                              width="120" height="120">
                                     </div>
@@ -20,23 +20,23 @@
                                 <div class="freelancerCardLeft">
                                     <div class="nameArea">
                                         <div class="nameCard">
-                                            {{freelancer.user_data.first_name}}
+                                            {{currentUser.personal_info.full_name}}
                                         </div>
                                         <div class="jobTitle" style="color: white; font-size: 14px; padding-top: 7px;"
-                                             :id="'animatedText'+freelancer.id">
-                                            {{freelancer.user_data.jobTitle}}
+                                             :id="'animatedText'+currentUser.id">
+                                            {{currentUser.personal_info.about}}
                                         </div>
 
                                         <form action="/chat-room/start_conversation" method="post">
-                                            <input type="hidden" name="freelancer_id" :value="freelancer.id">
+                                            <input type="hidden" name="freelancer_id" :value="currentUser.id">
                                             <input type="submit" value="TAP TO CHAT"
                                                    class="tap-to-chat cursorPointerOnHover"
                                                    style="background: none; border:none; outline: none;">
                                         </form>
 
 
-                                        <div :id="'welcomeText'+freelancer.id" class="d-none">
-                                            Hi, I am {{freelancer.user_data.first_name}}, I am a {{freelancer.user_data.jobTitle}}, How
+                                        <div :id="'welcomeText'+currentUser.id" class="d-none">
+                                            Hi, I am {{currentUser.personal_info.full_name}}, I am a {{currentUser.personal_info.designation}}, How
                                             can I help
                                             you ?
                                         </div>
@@ -49,7 +49,7 @@
                                 <div class="row hireRow hireRowScoped w-100">
                                     <div class="col-md-4 text-center" style="font-size: 15px; color: white;">
                                     <span style="font-weight: bold;">
-                                        {{Math.ceil(freelancer.agent.hourly_rate)}}
+                                        {{Math.ceil(currentPayment.salary)}}
                                     </span>
                                         <div class="cardLabel" style="font-size: 13px; font-weight: normal;">Hourly
                                             rate
@@ -58,8 +58,7 @@
 
                                     <div class="col-md-4 text-center" style="font-size: 15px; color: white;">
                                         <span style="font-weight: bold;">
-                                            <span v-if="freelancer.user_data.available_hours_per_week !== null">{{freelancer.user_data.available_hours_per_week}}</span>
-                                            hours</span>
+                                            <span>{{currentAvailability.available_hours }}</span>hours</span>
                                         <div class="cardLabel" style="font-size: 13px; font-weight: normal;">Weekly
                                             Availability
                                         </div>
@@ -87,7 +86,7 @@
                         <div class="row cardMainInfo_mob">
                             <div class="col-6">
                                 <div class="imageContainer" style="padding: 20px 10px 10px 10px;">
-                                    <img :src="getImageSrc(freelancer.user_data.photo)" alt="freelancer"
+                                    <img :src="getImageSrc(currentUser.personal_info.profile_pic)" alt="freelancer"
                                          class="freelancerImg"
                                          width="120" height="120">
                                 </div>
@@ -95,28 +94,28 @@
                             <div class="col-6 resumeCardRight">
                                 <div class="nameArea">
                                     <div class="nameCard">
-                                        {{freelancer.user_data.first_name}}
+                                        {{currentUser.personal_info.full_name}}
                                     </div>
                                     <div class="jobTitle" style="font-size: 17px; padding-left: 0; color: #c1d1ff"
-                                         :id="'animatedText' + freelancer.id">
-                                        {{freelancer.user_data.jobTitle}}
+                                         :id="'animatedText' + currentUser.id">
+                                        {{currentUser.personal_info.designation}}
                                     </div>
                                     <div class="text-left" style="font-size: 15px; color: white; padding-top: 5px;">
                                         <div class="cardLabel" style="font-weight: 300; font-size:14px ;">Hourly rate :
                                             <span style="font-weight: bold;">
-                                            $ {{Math.ceil(freelancer.agent.hourly_rate)}}
+                                            $ {{Math.ceil(currentPayment.salary)}}
                                         </span>
                                         </div>
                                     </div>
                                     <div class="text-left" style="font-size: 15px; color: white; padding-top: 5px;">
                                         <div class="cardLabel" style="font-weight: 300; font-size:14px ;">Availability :
                                             <span style="font-weight: bold;">
-                                                <span v-if="freelancer.user_data.available_hours_per_week !== null">{{freelancer.user_data.available_hours_per_week}}</span>
+                                                <span v-if="currentAvailability.available_hours !== null">{{currentAvailability.available_hours}}</span>
                                                 h/week</span>
                                         </div>
                                     </div>
-                                    <div :id="'welcomeText'+freelancer.id" class="d-none">
-                                        Hi, I am {{freelancer.user_data.first_name}}, I am a {{freelancer.user_data.jobTitle}}, How
+                                    <div :id="'welcomeText'+currentUser.id" class="d-none">
+                                        Hi, I am {{currentUser.personal_info.full_name}}, I am a {{currentUser.personal_info.designation}}, How
                                         can I help
                                         you ?
                                     </div>
@@ -125,7 +124,7 @@
                             <div class="row">
                                 <div class="col-6" style="margin-top: -39px; padding-left: 28px;">
                                     <form action="/chat-room/start_conversation" method="post">
-                                        <input type="hidden" name="freelancer_id" :value="freelancer.id">
+                                        <input type="hidden" name="freelancer_id" :value="currentUser.id">
                                         <input type="submit" value="TAP TO CHAT"
                                                class="tap-to-chat cursorPointerOnHover"
                                                style="background: none; border:none; outline: none;">
@@ -184,24 +183,24 @@
                                     <ul class="nav nav-tabs display: flex;justify-content: center !important; pl-0" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link text-center active"
-                                               :href="'#languagesTab' + freelancer.id" role="tab" data-toggle="tab">
+                                               :href="'#languagesTab' + currentUser.id" role="tab" data-toggle="tab">
                                                 Programming Languages
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link text-center" :href="'#databases' + freelancer.id "
+                                            <a class="nav-link text-center" :href="'#databases' + currentUser.id "
                                                role="tab" data-toggle="tab">
                                                 Frameworks / Databases
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link text-center" :href="'#skillsTab' + freelancer.id "
+                                            <a class="nav-link text-center" :href="'#skillsTab' + currentUser.id "
                                                role="tab" data-toggle="tab">
                                                 Design Skills
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link text-center" :href="'#software' + freelancer.id "
+                                            <a class="nav-link text-center" :href="'#software' + currentUser.id "
                                                role="tab" data-toggle="tab">
                                                 Software
                                             </a>
@@ -210,7 +209,7 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane active firstItem"
-                                             :id="'languagesTab' + freelancer.id">
+                                             :id="'languagesTab' + currentUser.id">
                                             <div class="row"
                                                  style="padding-top: 17px;padding-bottom: 16px;background: #fdfdfd;">
                                                 <div class="col-md-12  text-center">
@@ -218,17 +217,17 @@
                                                          style="padding-top: 15px;">
                                                         <div @mouseover="highlightSkill(skill,0)"
                                                              @mouseleave="highlightSkill(skill,100)"
-                                                             v-for="(skill,index) in skills" :key="index"
-                                                             v-show="skill.type === 'programming'"
+                                                             v-for="(skill,index) in currentUser.skills" :key="index"
+                                                             v-show="skill.category === 'programming_languages'"
                                                              class="highlightSkill skills">
                                                             <!-- skill -->
                                                             <div class="skill text-left">
                                                                 <!-- title -->
                                                                 <div class="skill-title">
                                                                     <img style="width: 17px;padding-bottom: 3px;"
-                                                                         :src="getSkillIconSrc(skill.skill_title)"
+                                                                         :src="getSkillIconSrc(skill.title)"
                                                                          alt="skill" :id="'skillImage_' + skill.id">
-                                                                    {{skill.skill_title}}
+                                                                    {{skill.title}}
                                                                 </div>
                                                                 <!-- bar -->
                                                                 <div class="skill-bar" :data-bar="skill.percentage">
@@ -240,7 +239,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane " :id="'databases' + freelancer.id">
+                                        <div role="tabpanel" class="tab-pane " :id="'databases' + currentUser.id">
                                             <div class="row"
                                                  style="padding-top: 17px;padding-bottom: 16px;background: #fdfdfd;">
                                                 <div class="col-md-12  text-center">
@@ -248,17 +247,17 @@
                                                          style="padding-top: 15px;">
                                                         <div @mouseover="highlightSkill(skill,0)"
                                                              @mouseleave="highlightSkill(skill,100)"
-                                                             v-for="(skill,index) in skills" :key="index"
-                                                             v-show="skill.type === 'frameworks'"
+                                                             v-for="(skill,index) in currentUser.skills" :key="index"
+                                                             v-show="skill.category === 'frameworks'"
                                                              class="highlightSkill skills">
                                                             <!-- skill -->
                                                             <div class="skill text-left">
                                                                 <!-- title -->
                                                                 <div class="skill-title">
                                                                     <img style="width: 17px;padding-bottom: 3px;"
-                                                                         :src="getSkillIconSrc(skill.skill_title)"
+                                                                         :src="getSkillIconSrc(skill.title)"
                                                                          alt="skill" :id="'skillImage_' + skill.id">
-                                                                    {{skill.skill_title}}
+                                                                    {{skill.title}}
                                                                 </div>
                                                                 <!-- bar -->
                                                                 <div class="skill-bar" :data-bar="skill.percentage">
@@ -270,7 +269,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" :id="'skillsTab' + freelancer.id">
+                                        <div role="tabpanel" class="tab-pane" :id="'skillsTab' + currentUser.id">
                                             <div class="row"
                                                  style="padding-top: 17px;padding-bottom: 16px;background: #fdfdfd;">
                                                 <div class="col-md-12  text-center">
@@ -278,17 +277,17 @@
                                                          style="padding-top: 15px;">
                                                         <div @mouseover="highlightSkill(skill,0)"
                                                              @mouseleave="highlightSkill(skill,100)"
-                                                             v-for="(skill,index) in skills" :key="index"
-                                                             v-show="skill.type === 'design'"
+                                                             v-for="(skill,index) in currentUser.skills" :key="index"
+                                                             v-show="skill.category === 'design'"
                                                              class="highlightSkill skills">
                                                             <!-- skill -->
                                                             <div class="skill text-left">
                                                                 <!-- title -->
                                                                 <div class="skill-title">
                                                                     <img style="width: 17px;padding-bottom: 3px;"
-                                                                         :src="getSkillIconSrc(skill.skill_title)"
+                                                                         :src="getSkillIconSrc(skill.title)"
                                                                          alt="skill" :id="'skillImage_' + skill.id">
-                                                                    {{skill.skill_title}}
+                                                                    {{skill.title}}
                                                                 </div>
                                                                 <!-- bar -->
                                                                 <div class="skill-bar" :data-bar="skill.percentage">
@@ -300,7 +299,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane" :id="'software' + freelancer.id">
+                                        <div role="tabpanel" class="tab-pane" :id="'software' + currentUser.id">
                                             <div class="row"
                                                  style="padding-top: 17px;padding-bottom: 16px;background: #fdfdfd;">
                                                 <div class="col-md-12  text-center">
@@ -308,17 +307,17 @@
                                                          style="padding-top: 15px;">
                                                         <div @mouseover="highlightSkill(skill,0)"
                                                              @mouseleave="highlightSkill(skill,100)"
-                                                             v-for="(skill,index) in skills" :key="index"
-                                                             v-show="skill.type === 'software'"
+                                                             v-for="(skill,index) in currentUser.skills" :key="index"
+                                                             v-show="skill.category === 'software'"
                                                              class="highlightSkill skills">
                                                             <!-- skill -->
                                                             <div class="skill text-left">
                                                                 <!-- title -->
                                                                 <div class="skill-title">
                                                                     <img style="width: 17px;padding-bottom: 3px;"
-                                                                         :src="getSkillIconSrc(skill.skill_title)"
+                                                                         :src="getSkillIconSrc(skill.title)"
                                                                          alt="skill" :id="'skillImage_' + skill.id">
-                                                                    {{skill.skill_title}}
+                                                                    {{skill.title}}
                                                                 </div>
                                                                 <!-- bar -->
                                                                 <div class="skill-bar" :data-bar="skill.percentage">
@@ -340,102 +339,35 @@
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="col-12 educationSection">
                                         <div class="aboutText">
-                                            <div class="row" v-for="(work, index) in worksHistory" :key="index + 'V'">
+                                            <div class="row" v-for="(work, index) in currentUser.work_experience" :key="index + 'V'">
                                                 <div class="col-md-12 aboutSubText">
                                                     <div class="title work d-flex">
                                                         <span class="circle"></span>
                                                         <span class="seduHeader">{{work.job_title}}</span>
                                                     </div>
-                                                    <div class="company">{{work.company}}</div>
+                                                    <div class="company">{{work.company_name}}</div>
                                                     <div class="year">
                                                         <span class="work">
                                                             {{getDate(work.date_from)}}
-                                                            <span v-if="work.is_currently_working"> - Present </span>
+                                                            <span v-if="work.present"> - Present </span>
                                                             <span v-else> - {{getDate(work.date_to)}}</span>
                                                         </span>
                                                     </div>
-                                                    <div class="desc">{{work.job_description}}</div>
+                                                    <div class="desc">{{work.description}}</div>
                                                 </div>
 
                                                 <!-- related projects list -->
 
                                                 <!-- portfolio section -->
                                                 <div class="w-100">
-                                                    <slick class="projectsSection" ref="slickSlide" :id="work.id"
-                                                           :options="slickOptions">
-                                                        <div v-for="(project,index) in work.projects"
-                                                             :key="index + 'A'">
-                                                            <!-- class="d-flex justify-content-center" style="height: 250px !important; padding: 0 2px 0 2px; overflow: hidden;" -->
-
-                                                            <div class="workCard"
-                                                                 style="margin:10px; margin-bottom: 0px;">
-                                                                <div class="workImg">
-                                                                    <a href="javascript:void(0)"
-                                                                       style="outline: none;"
-                                                                       data-toggle="modal"
-                                                                       :data-target="'#project_modal_'+project.id"
-                                                                       @click="loadHDImage(project.id)">
-
-                                                                        <vue-load-image
-                                                                                class="d-flex justify-content-center align-items-center">
-                                                                            <img :src="getImageSrc(project.mainImage)"
-                                                                                 alt="" width="260" slot="image">
-                                                                            <img alt="" slot="preloader"
-                                                                                 src="/images/spinner-load.gif"
-                                                                                 style="width: 100px; height: 100px;"/>
-                                                                        </vue-load-image>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="workTitle">
-                                                                    <div class="row">
-                                                                        <div class="col-md-10 col-9">
-                                                                            {{project.projectName}}
-                                                                        </div>
-                                                                        <a class="col-md-1 col-1"
-                                                                           href="javascript:void(0)"
-                                                                           data-toggle="modal"
-                                                                           :data-target="'#project_modal_'+project.id"
-                                                                           style="outline: none; margin-left: 16px;">
-                                                                            <img src="/images/newResume/link.png"
-                                                                                 alt="view work">
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
+                                                    <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+                                                        <div class="d-flex flex-column align-items-center" v-for="project in currentUser.projects" :key="project.id + '_projectImage' ">
+                                                            <img :src="getProjectMainImage(project)" alt="portfolio image">
+                                                            <div class="slide-text">
+                                                                {{project.name}}.
                                                             </div>
-
-                                                            <!--<div>-->
-                                                            <!--<a @click="loadHDImage(project.id)" href="javascript:void(0)"   data-toggle="modal" :data-target="'#project_modal_'+project.id" style="outline:0; " >-->
-                                                            <!--<vue-load-image>-->
-                                                            <!--<img :src="getResizedImage(project.mainImage)" alt="" width="100%" slot="image" height="auto" style="min-height:250px; border-radius:10px;">-->
-                                                            <!--<img  alt="" slot="preloader" src="/images/spinner-load.gif"/>-->
-                                                            <!--</vue-load-image>-->
-                                                            <!--</a>-->
-                                                            <!--</div>-->
                                                         </div>
                                                     </slick>
-
-                                                    <div class="row carouselControls" style="width: 100%;"
-                                                         v-show="work.projects.length > 0">
-                                                        <div class=" col-12 text-center NoDecor">
-                                                            <a href="javascript:void(0)"
-                                                               class="cardLabel_interviews noScroll"
-                                                               @click="slidePrev(index)"
-                                                               style="color:#697786;">
-                                                                <img src="/images/left_arrow.png"
-                                                                     alt="prev" width="15px">
-                                                            </a>
-
-                                                            <span class="jobTitle" style="padding: 0 5px 0 5px"> <span>{{slides[index].number}}</span> / <span> {{calculateNumberOfRelatedSlides( work.projects.length)}} </span></span>
-
-                                                            <a href="javascript:void(0)" role="button" data-slide="next"
-                                                               class="cardLabel_interviews noScroll"
-                                                               @click="slideNext(index,work.projects.length)"
-                                                               style="color:#697786;">
-                                                                <img src="/images/right_arrow.png"
-                                                                     alt="next" width="15px">
-                                                            </a>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                                 <!-- end of portfolio section -->
@@ -454,23 +386,23 @@
                                 <div class="row" style="padding-top: 10px;">
                                     <div class="col-12 educationSection">
                                         <div class="aboutText">
-                                            <div class="row" v-for="(education, index) in educationsHistory"
+                                            <div class="row" v-for="(education, index) in currentUser.education"
                                                  :key="index + 'E'">
                                                 <div class="col-md-12 aboutSubText">
                                                     <div class="title work d-flex">
                                                         <span class="circle"></span>
                                                         <span class="seduHeader">
-                                                        {{education.school_title}}
+                                                        {{education.degree_title}}
                                                         </span>
                                                     </div>
                                                     <div class="year">
                                                         <span class="work">
                                                             {{getDate(education.date_from)}}
-                                                            <span v-if="education.is_currently_learning"> - Present </span>
+                                                            <span v-if="education.present"> - Present </span>
                                                             <span v-else> - {{getDate(education.date_to)}}</span>
                                                         </span>
                                                     </div>
-                                                    <div class="desc">{{education.description}}</div>
+                                                    <div class="desc">{{education.institution_type}}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -536,7 +468,7 @@
                                             </div>
                                             <div class="col-md-2 col-3 offset-5 offset-md-8 text-right jobTitle"
                                                  style="font-weight: bold;font-size: 12px; color: #30323D;">
-                                                {{freelancer.user_data.salary_month}} $
+                                                {{currentPayment.salary}} $
                                             </div>
                                         </div>
                                     </div>
@@ -550,7 +482,7 @@
                                     <div class="col-md-4 col-12 NoDecor whiteOnHover"
                                          style="padding-top: 17px; padding-bottom: 30px;">
                                         <a class="btn d-flex btn-block summaryBtn"
-                                           :href="'/stripe/hire?freelancerID=' + freelancer.id + '&hours=' + hours + '&weeks=' + weeks ">Booking
+                                           :href="'/stripe/hire?freelancerID=' + currentUser.id + '&hours=' + hours + '&weeks=' + weeks ">Booking
                                             Summary</a>
                                     </div>
                                 </div>
@@ -561,53 +493,6 @@
 
                 </div>
 
-            </div>
-        </div>
-
-        <div v-for="(work,index) in freelancer.works_history" :key="index + work.id">
-            <div v-for="(project,index) in work.projects" :key="index + project.id" class="modal fade"
-                 :id="'project_modal_'+project.id" tabindex="-1" role="dialog" aria-labelledby="certificate"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document" style="">
-                    <div class="modal-content modal-mobile-resume-new-homepage" data-dismiss="modal"
-                         aria-label="Close">
-                        <div class="modal-body" style="padding: 0;">
-                            <div class="row">
-                                <div class="col-md-9" style="padding: 0;">
-                                    <vue-load-image>
-                                        <img :src="getImageSrc(project.mainImage)"
-                                             :id="'projectModalPhoto' + project.id" alt="" width="100%" slot="image"
-                                             height="auto">
-                                        <img slot="preloader" src="/images/spinner-load.gif"/>
-                                    </vue-load-image>
-                                    <!--<div v-for="(image, index) in getProjectImages(project.images)" :key="index + 'a'">-->
-                                    <!--<iframe v-if="image.includes('embed')" height="400" width="100%" :src="image+'?bgcolor=%23191919'" allowfullscreen autoplay style="margin: 0px auto; display: block;"></iframe>-->
-                                    <!--<img v-else :src="image" alt="" width="100%" height="auto">-->
-                                    <!--</div>-->
-
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group" style="padding-top: 25px;">
-                                        <label class="panelFormLabel"> Name
-                                            <hr>
-                                        </label><br/>
-                                        <div class="panelFormLabel">
-                                            {{project.projectName}}
-                                        </div>
-                                    </div>
-                                    <div class="form-group" style="padding-top: 25px;">
-                                        <label class="panelFormLabel"> Description
-                                            <hr>
-                                        </label><br/>
-                                        <div class="panelFormLabel">
-                                            {{project.projectDesc}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -625,38 +510,39 @@
         },
         data() {
             return {
-                slides: [],
-                numberOfSlides: this.calculateNumberOfSlides(),
-                skills: this.freelancer.skills,
-                worksHistory: this.freelancer.works_history,
-                educationsHistory: this.freelancer.educations_history,
-                references: this.freelancer.references,
+                currentUser: this.user,
+                currentPayment: {},
+                currentAvailability: {},
                 currentTab: 'skills',
                 slickOptions: {
                     infinite: false,
-                    dots: false,
+                    dots: true,
                     arrows: false,
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    responsive: [
-                        {
-                            breakpoint: 786,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
-                            }
-                        },
-                        {
-                            breakpoint: 991,
-                            settings: {
-                                slidesToShow: 1,
-                                slidesToScroll: 1,
-                            }
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                    responsive: [{
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            rows: 2,
                         }
-                    ]
+                    }, {
+                        breakpoint: 1200,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                        }
+                    }, {
+                        breakpoint: 1600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1,
+                        }
+                    }, ]
                 },
                 weeks: 4,
-                hours: this.freelancer.user_data.available_hours_per_week === null ? 0 : this.freelancer.user_data.available_hours_per_week.replace(/[^0-9]/g, ''),
+                hours: 0,
                 portfolio: !this.hire,
                 showReferences: false,
             }
@@ -795,7 +681,7 @@
                 return src;
             },
             loadHDImage(project_id) {
-                let projects = this.freelancer.projects;
+                let projects = this.currentUser.projects;
                 $.each(projects, function (i) {
                     if (projects[i].id === project_id) {
                         $('#projectModalPhoto' + project_id).attr('src', projects[i].mainImage);
@@ -868,7 +754,7 @@
                 }
             },
             calculateNumberOfSlides() {
-                let numberOfProjects = this.freelancer.projects.length;
+                let numberOfProjects = this.currentUser.projects.length;
                 var width = $(window).width();
                 if (width < 991) {
                     return (numberOfProjects);
@@ -896,21 +782,67 @@
                 setTimeout(function () {
                     $(".skills .skill .skill-bar span b").animate({"opacity": "1"}, 1000);
                 }, 2000);
-            }
+            },
+
+
+            getProjectMainImage(project) {
+                let mainImage = "";
+
+                let images = project.images;
+                images.forEach(image => {
+                    if (image.is_main) {
+                        mainImage = image;
+                    }
+                });
+
+                return mainImage.src;
+            },
+            selectCurrentPayment(frequency) {
+                this.currentTab = frequency;
+                this.currentUser.payment_info.forEach(payment => {
+                    if (payment.salary_frequency === frequency) {
+                        this.currentPayment = payment;
+                    }
+                });
+            },
+            selectCurrentAvailability(frequency) {
+                this.currentAvailableTab = frequency;
+                this.currentUser.availability_info.forEach(availability => {
+                    if (availability.available_hours_frequency === frequency) {
+                        this.currentAvailability = availability;
+                    }
+                });
+            },
+            setDummyUser() {
+                this.currentUser = this.$store.state.dummyUser;
+            },
+            setDefaultRates() {
+                if (this.currentUser) {
+                    this.currentPayment = this.currentUser.payment_info[0];
+                    this.currentAvailability = this.currentUser.availability_info[0];
+                }
+            },
+            stringToLowerCase(string){
+                if(string){
+                    return string.toLowerCase();
+                }
+                return 'social_icon';
+            },
 
         },
         mounted() {
             this.skillsBar();
+
+            // if there is no user or the preview is true, set dummy user
+            if (!this.currentUser || this.is_preview) {
+                this.setDummyUser();
+            }
+
+            // set default payment and availability:
+            this.setDefaultRates();
         },
         created: function () {
             this.$parent.$on('update', this.updateSlick);
-            // create slides :
-            $.each(this.freelancer.works_history, (i) => {
-                this.slides.push({
-                    id: i,
-                    number: 1
-                });
-            });
         }
     }
 </script>

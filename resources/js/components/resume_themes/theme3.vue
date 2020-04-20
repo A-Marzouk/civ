@@ -1,8 +1,8 @@
 <template>
     <div class="d-flex justify-content-center w-100">
         <div class="themeWrapper" v-if="currentUser">
-            <div class="mainThemeBar d-flex justify-content-between align-items-center">
-                <div class="left">
+            <div class="mainThemeBar d-flex flex-row justify-content-between align-items-center">
+                <div class="left title-flex">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
                             <img :src="currentUser.personal_info.profile_pic" alt="profile pic">
@@ -36,6 +36,7 @@
                         <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
                     </div>
                 </div>
+               
                 <div class="right d-flex align-items-center hideOnPhone">
                     <div class="hourly-rate">
                         <div class="rate-options">
@@ -44,7 +45,7 @@
                             <span  @click="selectCurrentPayment('monthly')" :class="{active:currentPayment.salary_frequency === 'monthly'}">Monthly</span>
                         </div>
                        <div>
-                           <div class="hourly-rate-text">
+                           <div class="hourly-rate-text text-center">
                                ${{currentPayment.salary}}
                            </div>
                            <div class="hourly-rate-text light text-center">
@@ -59,7 +60,7 @@
                             <span  @click="selectCurrentAvailability('yearly')" :class="{active:currentAvailability.available_hours_frequency === 'yearly'}">Yearly</span>
                         </div>
                         <div>
-                            <div class="hourly-rate-text">
+                            <div class="hourly-rate-text text-center">
                                 {{currentAvailability.available_hours}} hours
                             </div>
                             <div class="hourly-rate-text light text-center">
@@ -78,24 +79,23 @@
                     <div class="d-flex flex-column justify-content-center">
                         <div>
                             <ul class="nav" id="myTab" role="tablist">
-                                <li class="nav-item" v-for="item in availabilityItems" :key="item.id">
+                                <li class="nav-item" v-for="item in availibilityRateItems" :key="item.id">
                                     <a 
-                                        @click="currentTab=item.id"
+                                        @click="selectCurrentPayment(item.title)"
                                         class="nav-link"
-                                        :class="currentTab == item.id ? 'active' : ''"
                                         id="home-tab" 
                                         data-toggle="tab" 
                                         href="#home" 
                                     >
-                                        {{item.title}}
+                                        <span class="text-capitalize mobile-frequency" :class="currentTab == item.title ? 'active' : ''">{{item.title}}</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="text-center">
-                            10$
+                        <div class="text-center mobile-rate-text">
+                            ${{currentPayment.salary}}
                         </div>
-                        <div class="text-center">
+                        <div class="text-center mobile-frequency-rate-usd">
                             Rate $ USD
                         </div>
                     </div>
@@ -105,25 +105,33 @@
                     <div class="d-flex flex-column justify-content-center">
                         <div>
                             <ul class="nav" id="myTab" role="tablist">
-                                <li class="nav-item" v-for="item in availabilityItems" :key="item.id">
+                                <li class="nav-item" v-for="item in availabilityHourItems" :key="item.id">
                                     <a 
-                                        @click="currentTab=item.id"
+                                        @click="selectCurrentAvailability(item.title)"
                                         class="nav-link"
-                                        :class="currentTab == item.id ? 'active' : ''"
                                         id="home-tab" 
                                         data-toggle="tab" 
                                         href="#home" 
                                     >
-                                        {{item.title}}
+                                        <span class="text-capitalize mobile-frequency" :class="currentAvailableTab == item.title ? 'active' : ''">{{item.title}}</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="text-center">
-                            10$
+                        <div class="text-center mobile-rate-text">
+                            {{currentAvailability.available_hours}} hours
                         </div>
-                        <div class="text-center">
-                            Rate $ USD
+                        <div class="text-center mobile-frequency-rate-usd">
+                            Availibility Hours
+                        </div>
+                    </div>
+                </div>
+                <div class="right d-flex justify-content-center hideOnNotPhone">
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="hire-me-btn NoDecor">
+                            <a href="javascript:void(0)">
+                                Hire me
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -268,12 +276,19 @@
         },
         data() {
             return {
-                currentTab:1,
-                availabilityItems:[
-                    {id:1, title: "Monthly"},
-                    {id:2, title: "Weekly"},
-                    {id:3, title: "Hourly"},
+                currentTab:"hourly",
+                currentAvailableTab:"weekly",
+                availibilityRateItems:[
+                    {id:1, title: "hourly"},
+                    {id:2, title: "weekly"},
+                    {id:3, title: "monthly"},
                 ],
+                availabilityHourItems:[
+                    {id:1, title: "weekly"},
+                    {id:2, title: "monthly"},
+                    {id:3, title: "yearly"},
+                ],
+
                 activeTab: 'portfolio',
                 activeSkillTab: 'programming_languages',
                 slickOptions: {
@@ -316,6 +331,7 @@
                 this.activeSkillTab = tabName;
             },
             selectCurrentPayment(frequency) {
+                this.currentTab = frequency;
                 this.currentUser.payment_info.forEach(payment => {
                     if (payment.salary_frequency === frequency) {
                         this.currentPayment = payment;
@@ -323,6 +339,7 @@
                 });
             },
             selectCurrentAvailability(frequency) {
+                this.currentAvailableTab = frequency;
                 this.currentUser.availability_info.forEach(availability => {
                     if (availability.available_hours_frequency === frequency) {
                         this.currentAvailability = availability;
@@ -454,6 +471,7 @@
 </script>
 
 <style lang="scss" scoped>
+    @import url(//db.onlinewebfonts.com/c/0be7748549934c0e481bdb7b8ba5270f?family=Gotham+Pro+Black);
     .hideOnPhone {
         @media only screen and (max-width: 765px) {
             display: none !important;
@@ -472,11 +490,22 @@
         }
     }
     
+    .hideNotOnDesktop{
+        @media only screen and (max-width:1279px){
+            display: none !important;
+        }
+    }
+    
     .themeWrapper {
         width: 100%;
         max-width: 1920px;
         background: white;
         font-family: Roboto, sans-serif;
+        .title-flex{
+            @media only screen and (min-width:1280px) {
+                margin-left: -40px;
+            }
+        }
         .transition-line {
             position: relative;
             margin-top: -4px;
@@ -490,6 +519,36 @@
                 margin-top: -3px;
             }
         }
+        //mobile frequency
+        .mobile-frequency{
+           font-family: Gotham Pro;
+           font-style: normal;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 13px;
+            text-align: center;
+            letter-spacing: 0.2em;
+            text-transform: capitalize;
+            color: #333333;
+        }
+        .mobile-frequency.active{
+            font-size:18px;
+            font-weight: bold;
+        }
+        .mobile-rate-text{
+            margin-top:5px;
+            font-family: Gotham Pro;
+            font-size:24px;
+            line-height: 14px;
+        }
+        .mobile-frequency-rate-usd{
+            margin-top:9px;
+            font-family: Gotham Pro;
+            font-size: 14px;
+            line-height: 14px;
+        }
+        //mobile frequency
+
         .mobileThemeBar {
             background: #FFFFFF;
             box-shadow: 1px 6px 6px rgba(0, 0, 0, 0.1);
@@ -618,8 +677,8 @@
                     margin-right: 37px;
                     border-radius: 24px;
                     img {
-                        width: 180px;
-                        height: 180px;
+                        width: 120px;
+                        height: 120px;
                         border-radius: 50%;
                     }
                     @media only screen and (max-width: 765px) {
@@ -647,7 +706,7 @@
                         margin-left: -2px;
                         font-style: normal;
                         font-weight: bold;
-                        font-size: 30px;
+                        font-size: 24px;
                         color: #333333;
                         @media only screen and (max-width: 765px) {
                             font-size: 16px;
@@ -660,7 +719,7 @@
                     .job-title {
                         font-style: normal;
                         font-weight: normal;
-                        font-size: 25px;
+                        font-size: 14px;
                         color: #000000;
                         img {
                             width: 60px;
@@ -738,6 +797,9 @@
             .right {
                 .hourly-rate {
                     margin-right: 66px;
+                    @media only screen and (min-width: 1280px){
+                        margin-right: 30px;
+                    }
                     @media only screen and (max-width: 765px) {
                         margin-right: 27px;
                     }
@@ -756,6 +818,9 @@
                 }
                 .weekly-availability {
                     margin-right: 40px;
+                    @media only screen and (min-width: 1280px){
+                        margin-right: 30px;
+                    }
                     @media only screen and (max-width: 765px) {
                         margin-right: 19px;
                     }
@@ -764,7 +829,7 @@
                     &:first-letter {
                         text-transform: uppercase;
                     }
-                    text-align: left !important;
+                    // text-align: left !important;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 30px;
@@ -1029,6 +1094,8 @@
             }
             .education {}
         }
+
+        
     }
     
     @media only screen and (max-width: 765px) {
@@ -1163,6 +1230,7 @@
                     justify-content: space-between;
                     align-items: center;
                     width: 100%;
+                    
                     @media only screen and (max-width: 765px) {
                         align-items: center;
                     }
@@ -1389,8 +1457,9 @@
                             width: 510px !important;
                             height: 400px;
                             @media only screen and (max-width: 765px) {
-                                width: 177px !important;
-                                height: 139px;
+                                padding: 10px;
+                                width: 500px !important;
+                                height: auto;
                             }
                         }
                         .slide-text {
@@ -1401,7 +1470,7 @@
                             line-height: 23px;
                             color: #333333;
                             @media only screen and (max-width: 765px) {
-                                font-size: 10px;
+                                font-size: 12px;
                                 line-height: 12px;
                                 margin-bottom: 25px;
                             }
@@ -1429,6 +1498,9 @@
                             font-size: 10px;
                             line-height: 15px;
                             padding: 13px 29px;
+                        }
+                        @media only screen and (max-width: 599px){
+                            margin-left:5px;
                         }
                     }
                     .skills-tab-text:hover {
