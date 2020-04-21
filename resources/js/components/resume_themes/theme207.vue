@@ -269,7 +269,13 @@
                     <v-col cols="12" sm="6" md="4" v-for="n in 4" :key="n">
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
-                          <v-avatar class="mt-6" tile size="100" height="120" color="rgba(252, 65, 60, 0.1)">
+                          <v-avatar
+                            class="mt-6"
+                            tile
+                            size="100"
+                            height="120"
+                            color="rgba(252, 65, 60, 0.1)"
+                          >
                             <v-img
                               max-width="50"
                               max-height="50"
@@ -296,7 +302,13 @@
                     <v-col cols="12" sm="6" md="4" v-for="n in 4" :key="n">
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
-                          <v-avatar class="mt-6" tile size="100" height="120" color="rgba(252, 65, 60, 0.1)">
+                          <v-avatar
+                            class="mt-6"
+                            tile
+                            size="100"
+                            height="120"
+                            color="rgba(252, 65, 60, 0.1)"
+                          >
                             <v-img
                               max-width="50"
                               max-height="50"
@@ -322,7 +334,12 @@
                   <v-row>
                     <v-col cols="12">
                       <v-card color="transparent" flat>
-                        <v-tabs v-model="skillTab" centered background-color="transparent" color="#fc413c">
+                        <v-tabs
+                          v-model="skillTab"
+                          centered
+                          background-color="transparent"
+                          color="#fc413c"
+                        >
                           <v-tab
                             class="custom-skill-tab"
                             v-for="skill in skills"
@@ -654,7 +671,7 @@ export default {
 //Portfolio
 
 //education
-.card-education{
+.card-education {
   border-radius: 9px !important;
 }
 .education-title {
@@ -840,11 +857,11 @@ export default {
 
 <style>
 #resumetheme207 .v-progress-linear__determinate {
-  border-color: #272B2F !important;
+  border-color: #272b2f !important;
 }
 
 #resumetheme207 .v-progress-linear__background {
-  background: #272B2F !important;
+  background: #272b2f !important;
   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
