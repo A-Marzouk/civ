@@ -83,6 +83,9 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
     Route::post('/account/validate', 'API\UsersController@validateSingleField')->name('account.validate');
 
+// update activity
+    Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
+
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
 
@@ -174,5 +177,5 @@ Route::group(['prefix' => 'admin/'], function () {
 
 
 // API users routes
-Route::get('user', 'API\UsersController@user');
+Route::get('user/{id}', 'API\UsersController@user');
 

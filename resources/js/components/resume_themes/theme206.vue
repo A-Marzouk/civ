@@ -71,7 +71,7 @@
                 <!-- Hour Rate -->
                 <!-- Weekly availibility -->
 
-                <v-list-item two-line class="ml-n10">
+                <v-list-item two-line class="availibilty-col">
                   <v-list-item-avatar size="16">
                     <img width="16" src="/images/resume_themes/theme206/icons/watch.png" />
                   </v-list-item-avatar>
@@ -199,9 +199,8 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider>
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up my-10">
               <v-tab
-                class="hidden-sm-and-up"
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
@@ -210,17 +209,20 @@
                 ]"
               >
                 <v-avatar tile size="16">
-                  <img
-                    :src="getTabIcon(tab.id)"
-                    width="16"
-                  />
+                  <img :src="getTabIcon(tab.id)" width="16" />
                 </v-avatar>
                 <span class="ml-2" v-if="currentTab == tab.id">{{tab.title}}</span>
               </v-tab>
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
-            <v-tabs v-model="mainDataTab" centered hide-slider grow class="hidden-xs-only">
+            <v-tabs
+              v-model="mainDataTab"
+              centered
+              hide-slider
+              grow
+              class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
+            >
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -627,7 +629,7 @@ export default {
   line-height: 1.313rem;
   text-transform: uppercase;
   @media screen and (max-width: 1280px) {
-    font-size: 0.55rem;
+    font-size: 0.45rem;
   }
 }
 .rate {
@@ -640,6 +642,9 @@ export default {
 .btn-hire-me {
   text-transform: capitalize !important;
   width: 200px;
+  @media screen and (max-width: 1024px) {
+    width: 120px;
+  }
   @media screen and (max-width: 959px) {
     width: 225px;
   }
@@ -650,6 +655,11 @@ export default {
 .custom-social-btn {
   max-width: 36px !important;
   height: 51px !important;
+
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    min-width: 45px !important;
+  }
+
   @media screen and (max-width: 599px) {
     height: 30px !important;
     width: 30px !important;
@@ -883,6 +893,15 @@ export default {
 .custom-skill-tab {
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
+  }
+}
+
+.availibilty-col {
+  @media screen and (min-width: 1025px) {
+    margin-left: -52px;
+  }
+  @media screen and (max-width: 1024px) {
+    margin-left: -20px;
   }
 }
 </style>

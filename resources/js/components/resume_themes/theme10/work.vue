@@ -5,18 +5,18 @@
         <p class="job_title">{{ work.job_title }}</p>
         <span class="date">
           <b
-            >{{ formatedDate(work.date_from) }} -
+            >{{ work.date_from }} -
             {{
-              work.is_currently_working
-                ? "actually"
-                : formatedDate(work.date_to)
+              work.present
+                ? "Present"
+                : work.date_to
             }}</b
           >
         </span>
       </div>
       <div class="col-12 col-md-8">
-        <h4 class="company-name">{{ work.company }}</h4>
-        <p class="work-description">{{ work.job_description }}</p>
+        <h4 class="company-name">{{ work.company_name }}</h4>
+        <p class="work-description">{{ work.description }}</p>
       </div>
     </div>
   </div>
@@ -28,9 +28,7 @@ import moment from "moment";
 export default {
   props: ["work"],
   methods: {
-    formatedDate: date => {
-      return moment(date).format("YYYY");
-    }
+
   }
 };
 </script>

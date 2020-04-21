@@ -22,9 +22,14 @@ class UsersController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function user()
+    public function user($id = '')
     {
-        $user = User::where('id',Auth::user()->id)->with([
+        if(!empty($id)){
+            $user_id = $id ;
+        }else{
+            $user_id = Auth::user()->id;
+        }
+        $user = User::where('id',$user_id)->with([
             'skills',
             'hobbies',
             'education',
@@ -49,7 +54,6 @@ class UsersController extends Controller
         return response()->json(['Error' => "Something went wrong."], 404);
     }
 
-
     public function updateUserTheme(Request $request){
         Auth::user()->update(
             ['theme_code' => $request->theme_code]
@@ -57,7 +61,6 @@ class UsersController extends Controller
 
         return ['status' => 'success'];
     }
-
 
     public function editAccountData(Request $request){
         $request->validate([
@@ -107,6 +110,16 @@ class UsersController extends Controller
         ]);
 
         return 'success';
+    }
+
+    public function updateLastActivity(Request $request){
+        if (Auth::user()->hasRole('admin')){
+            Auth::user()->updateLastActivity();
+        }else{
+            $user = User::find($request->user_id);
+            $user->updateLastActivity();
+            return ['status' => 'success'];
+        }
     }
 
 }

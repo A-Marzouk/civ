@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminsController extends Controller
 {
     public function __construct(){
-        $this->middleware('role:admin');
+        $this->middleware(['auth','role:admin']);
     }
 
     public function index(){

@@ -28,7 +28,7 @@
             </div>
             <div class="input-field">
                 <label for="email">Email adress</label>
-                <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email" :disabled="canEditEmail()" @blur="applyEdit('auto')">
+                <input type="email" id="email" placeholder="" name="email" v-model="personalInfo.email"  @blur="applyEdit('auto')">
                 <div class="error" v-if="errors.email">
                     {{ Array.isArray(errors.email) ? errors.email[0] :
                     errors.email}}

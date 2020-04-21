@@ -260,15 +260,7 @@ export const store = new Vuex.Store({
                     link: 'https://instagram.com',
                     link_title: 'Linkedin',
                     is_active: true
-                },
-                {
-                    id: Math.random(),
-                    category: 'social_link',
-                    link: 'https://instagram.com',
-                    link_title: 'facebook',
-                    is_active: true
-                },
-
+                }
             ]
         },
         themeUser: {},
@@ -280,6 +272,13 @@ export const store = new Vuex.Store({
         },
         updateThemeUser(state, themeUser) {
             state.themeUser = themeUser;
+        },
+        updateActivity(state) {
+            axios.post('/api/user/update-last-activity',{user_id: state.user.id}).then((response) => {
+                console.log(response.data);
+            }).catch((error) => {
+                console.log('Error - last activity');
+            });
         },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
@@ -296,6 +295,8 @@ export const store = new Vuex.Store({
             setTimeout(() => {
                 modal.modal('hide')
             }, 2000);
+
+            store.commit('updateActivity');
         },
         showFlyingNotification: (state, data) => {
             let notificationElement = $('#flyingNotification');
@@ -312,6 +313,9 @@ export const store = new Vuex.Store({
             setTimeout(() => {
                 notificationElement.slideToggle('slow');
             }, 2000);
+
+            store.commit('updateActivity');
+
         },
         showFlyingNotificationDelete: (state, data) => {
             let notificationElement = $('#flyingNotificationDelete');
@@ -322,6 +326,8 @@ export const store = new Vuex.Store({
             setTimeout(() => {
                 notificationElement.slideToggle('slow');
             }, 2000);
+
+            store.commit('updateActivity');
         }
 
     },
@@ -330,7 +336,11 @@ export const store = new Vuex.Store({
             if(payload.id){
                 store.commit('setCurrentUser', payload);
             }else{
-                axios.get('/api/user').then((response) => {
+                let id = '';
+                if(store.state.user.id !== undefined){
+                     id = store.state.user.id;
+                }
+                axios.get('/api/user/' + id).then((response) => {
                     store.commit('setCurrentUser', response.data);
                 }).catch((error) => {
                     // if unauthorized : logout user [it means the cookie has been deleted or changed]
@@ -361,6 +371,9 @@ export const store = new Vuex.Store({
         },
         updateThemeUser(store, themeUser) {
             store.commit('updateThemeUser', themeUser);
-        }
+        },
+        updateLastActivity(store) {
+            store.commit('updateActivity');
+        },
     }
 });

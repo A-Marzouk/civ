@@ -205,6 +205,7 @@
                           <div class="about-detail">
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            <br/><br/>
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                           </div>
                         </v-card>
@@ -746,6 +747,9 @@ export default {
     text-align: left !important;
     font-size: 1.125rem !important;
     line-height: 25px !important;
+  }
+  @media screen and (max-width: 599px){
+    font-size: 0.875rem !important;
   }
 }
 //about
