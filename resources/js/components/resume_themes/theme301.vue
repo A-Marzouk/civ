@@ -1,10 +1,10 @@
 <template>
     <v-app style="width: 100%">
         <v-container class="hold_theme21" style="max-width: 1920px;">
-            <v-row class="freelancerCard">
+            <v-row class="freelancerCard" no-gutters>
                 <v-col lg="12" md="12" cols="12" class="resumeCardRight">
                     <div class="showOnlyOnmd">
-                        <v-row class="head-section">
+                        <v-row class="head-section" no-gutters>
                             <v-col lg="2" md="2" sm="2" cols="3" class="imageCol">
                                 <span class="img_profile bs__superInset">
                                     <img src="/images/resume_themes/theme301/profile.jpg" alt="">    
@@ -18,10 +18,9 @@
                                <div class="option-wrap">
                                     <a href="#" @click.prevent="dialogAudio = true"><img src="/images/resume_themes/theme301/icons/headphones.png" alt=""></a>
                                     <a href="#" @click.prevent="dialogVideo = true"><img src="/images/resume_themes/theme301/icons/video-player.png" alt=""></a>
-                                </div>
-                               
+                                </div>                               
                             </v-col>
-                            <v-col lg="3" md="12" sm="12" cols="5" class="interviewSection">
+                            <v-col lg="4" md="12" sm="12" class="interviewSection">
                                 <div class="social-wrap">
                                     <a href="" alt="Behance" title="Behance">
                                         <img src="/images/resume_themes/theme301/social_icons/behance.webp" alt="">
@@ -42,9 +41,9 @@
                                </div>
                                 
                             </v-col>
-                            <v-col lg="5" md="12" sm="12" class="rateSection">
+                            <v-col lg="6" md="12" sm="12" class="rateSection">
                                 <a href="#" @click.prevent="dialogShare = true" class="shareOption"><img src="/images/resume_themes/theme301/icons/share.png" alt=""></a>
-                                <v-row class="rate-wrap">
+                                <v-row class="rate-wrap" no-gutters>
                                     <v-col lg="4" sm="4" cols="4">
                                         <span class="price">
                                             20
@@ -259,8 +258,6 @@
                             </v-tab-item>                        
                         </v-tabs-items>
                     </div>
-                    
-                    
                 </v-col>
             </v-row>
         </v-container>
@@ -523,8 +520,8 @@
     }
     .head-section{
         align-items: center;
-        padding: 70px 50px 30px 50px;
-        justify-content: space-between;
+        padding: 70px 0px 30px 0px;
+        justify-content: center;
         flex-flow: row;
 
         @media screen and (max-width: 769px) {
@@ -598,6 +595,8 @@
 
                     a{
                         margin-right: 2% !important;
+
+                        
                     }
                 }
                 a.showOnProfile{
@@ -835,6 +834,8 @@
         .profileCol{
             display: flex;
             flex-flow: column;
+            margin: 0 5em 0 2em;
+            max-width: 225px;
 
             .head-name{
                 font-family: "Montserrat";
@@ -880,7 +881,7 @@
                     justify-content: center;
                     align-items: center;
                     display: flex;
-                    margin-right: 15%;
+                    margin-right: 32px;
 
                     &:hover{
                         box-shadow: -6px -6px 16px #FFFFFF, 
@@ -888,6 +889,11 @@
                         inset 6px 4px 12px rgba(0, 0, 0, 0.25), 
                         inset -6px -4px 12px #FFFFFF;
                         border: 1px solid #fff;
+                    }
+
+                    img{
+                        max-width: 28px;
+                        max-height: 22px;
                     }
                 }
             }
@@ -911,6 +917,7 @@
         display: flex;
         max-width: 156px;
         flex-flow: column;
+        margin: 0;
 
 
         .img_profile{
@@ -964,7 +971,7 @@
             box-shadow: -6px -6px 16px #FFFFFF, 
             6px 6px 16px rgba(209, 205, 199, 0.4);
             border-radius: 15px;
-            margin: 0 14px;
+            margin: 0 12px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -976,6 +983,11 @@
                 inset -6px -4px 12px #FFFFFF;
                 border: 1px solid #fff;
             }
+
+            img{
+                max-width: 27px;
+                max-height: 27px;
+            }
             
 
         }
@@ -986,6 +998,7 @@
         justify-content: center;
         align-items: flex-start;
         flex-flow: column;
+        max-width: 460px;
     }
 
     .rateSection{
@@ -994,13 +1007,13 @@
         display: flex;
         align-items: center;
         position: relative;
-
         background: #F8F8F8;
         box-shadow: -6px -6px 16px #FFFFFF, 
         inset 6px 4px 12px rgba(0, 0, 0, 0.25), 
         inset -6px -4px 12px #FFFFFF;
         border-radius: 15px;
-        max-width: 43.8%;
+        max-width: 784px;
+        margin-left: 4em;
         
         .shareOption{
             width: 56px;
@@ -1018,10 +1031,10 @@
             justify-content: space-around;
             align-items: center;
             min-height: 154px;
-            padding: 0px 25px;
+            padding: 0px 15px;
 
             .col-4{
-                max-width: 31.68%;
+                max-width: 235px;
                 justify-content: center;
                 display: flex;
                 flex-flow: column;
