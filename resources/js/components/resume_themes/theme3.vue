@@ -1047,8 +1047,8 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                padding-left: 40px;
-                padding-right: 40px;
+                padding-left: 150px;
+                padding-right: 150px;
                 .work-item {
                     margin-bottom: 100px;
                     display: flex;
