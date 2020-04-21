@@ -175,6 +175,13 @@
                         <!-- column 1 -->
                         <v-col md="3">
                           <v-card color="transparent" class="card-portfolio">
+                            <v-speed-dial top right absolute>
+                              <template v-slot:activator>
+                                <v-btn icon color="transparent">
+                                  <img width="20" src="/images/resume_themes/theme207/icons/zoom.png" alt="">
+                                </v-btn>
+                              </template>
+                            </v-speed-dial>
                             <v-img
                               src="/images/resume_themes/theme207/portfolio/1.png"
                               alt="Portfolio Image"
