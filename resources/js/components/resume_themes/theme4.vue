@@ -69,19 +69,16 @@
       <div
         class="tab-text"
         @click="setActiveTab('portfolio')"
-        style="margin-left: -1px;"
         :class="{active : activeTab === 'portfolio',borderRight : activeTab === 'work'}"
       >Portfolio</div>
       <div
         class="tab-text"
         @click="setActiveTab('work')"
-        style="margin-right: -1px; margin-left: -1px;"
         :class="{active : activeTab === 'work', borderLeft : activeTab === 'portfolio',borderRight : activeTab === 'education'}"
       >Work</div>
       <div
         class="tab-text"
         @click="setActiveTab('education')"
-        style="margin-right: -1px;"
         :class="{active : activeTab === 'education',borderLeft : activeTab === 'work'}"
       >Education</div>
       <div class="tab-text w-100" :class="{borderLeft : activeTab === 'education'}">
