@@ -16,17 +16,17 @@
                   <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
-                        <v-list-item-avatar size="120" class="hidden-xs-only custom-avatar">
+                        <v-list-item-avatar class="hidden-xs-only custom-avatar">
                           <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
                         </v-list-item-avatar>
-                        <v-list-item-avatar size="80" class="hidden-sm-and-up custom-avatar mr-2">
+                        <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
                           <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent">
                               Carla Pipin Ranga
-                              <span class="mx-8 hidden-sm-and-down">
+                              <span class="mx-8 hidden-sm-and-down email-icon-block">
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -561,6 +561,11 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (max-width: 1200px) {
+    width: 17rem;
+    height:16rem;
+  }
+
   @media screen and (max-width: 599px) {
     width: 15.5rem;
     height: 13.75rem;
@@ -599,30 +604,54 @@ export default {
   height: 1000vh;
   z-index: 1;
   bottom: 0;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     width: 1rem;
   }
 }
 /* Shapes */
 
-.profile-title {
-  font-family: "Gotham Pro" !important;
-  font-size: 1.53rem !important;
-  @media screen and(max-width:599px) {
-    font-size: 1.12rem !important;
+.custom-avatar {
+  border: 5px solid white;
+  width: 120px !important;
+  height:120px !important;
+  max-width: 120px;
+  max-height: 120px;
+  @media screen and (max-width: 1200px) {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  @media screen and (max-width: 959px) {
+    height: 120px !important;
+    width: 120px !important;
   }
 }
 
-.custom-avatar {
-  border: 5px solid white;
+.profile-title {
+  font-family: "Gotham Pro" !important;
+  font-size: 1.53rem !important;
+  @media screen and (max-width: 1200px){
+    font-size: 1.0rem !important;
+  }
+  @media screen and(max-width:599px) {
+    font-size: 1.12rem !important;
+  }
 }
 
 .profile-subtitle {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
+  @media screen and (max-width: 1200px){
+    font-size: 0.6rem !important;
+  }
   @media screen and(max-width:599px) {
     font-size: 0.5rem !important;
+  }
+}
+
+.email-icon-block{
+  @media screen and (max-width: 1200px){
+    margin-left: 30px;
   }
 }
 .btn-email {
@@ -681,6 +710,9 @@ export default {
   font-size: 0.9rem !important;
   color: #8b8b8b !important;
   text-align: center !important;
+  @media screen and (max-width: 1200px){
+    font-size: 0.6rem !important;
+  }
   @media screen and (max-width: 959px) {
     font-size: 0.7rem !important;
   }
@@ -740,11 +772,17 @@ export default {
   font-weight: bold;
   margin-bottom: -20px;
   margin-top: -20px;
+  @media screen and (max-width: 1200px){
+    font-size: 12px !important;
+  }
 }
 .custom-portfolio-subtitle {
   font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
+  @media screen and (max-width: 1200px){
+    font-size: 10px !important;
+  }
 }
 // .........................Desktop Portfolio...........................
 
