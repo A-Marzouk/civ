@@ -775,6 +775,9 @@ export default {
   @media screen and (max-width: 1200px){
     font-size: 12px !important;
   }
+  @media screen and (max-width: 959px){
+    font-size: 16px !important;
+  }
 }
 .custom-portfolio-subtitle {
   font-family: "Montserrat" !important;
