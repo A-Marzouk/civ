@@ -1,5 +1,5 @@
 <template>
-    <div class="container portfolio-flex">
+    <div class="container portfolio-grid">
         
         <div class="portfolio-item">
             <img src="/images/resume_themes/theme13/portfolio-img1.png" alt="">
@@ -76,23 +76,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    .portfolio-flex {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-gap: 51px;
             
         .portfolio-item {
             grid-column: span 4;
-            margin: 0 20px 129px;
             position: relative;
             height: 455px;
+            overflow: hidden;
 
             &:last-child {
                 margin-bottom: 0;
             }
 
             img {
-                height: 100%;
+                width: 100%;
                 margin-right: 0;
             }
 

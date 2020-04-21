@@ -47,7 +47,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     .skills-container {
         margin-top: 34px;
         display: flex;

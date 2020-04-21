@@ -81,23 +81,21 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
-                        <footer class="theme-footer">
+                        <div class="theme-aside">
+                            Follow me - 
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'facebook-f']"></font-awesome-icon>
+                                Dribble
                             </a>
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                                LinkedIn
                             </a>
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
+                                Instagram
                             </a>
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'dribbble']"></font-awesome-icon>
+                                Behance
                             </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'twitter']"></font-awesome-icon>
-                            </a>
-                        </footer>
+                        </div>
                     </v-col>
                 </v-row>
             </div>
@@ -161,6 +159,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
     .theme-header {
         width: 100%;
+        overflow-x: hidden;
 
         .bg-header {
             width: 100%;
@@ -375,41 +374,43 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             }
 
             .container {
+                padding: 0 40px;
                 padding-bottom: 100px;
+                max-width: 1750px;
+                margin: 0 auto;
             }
         }
     }
 
-    .theme-footer {
+    .theme-aside {
         display: flex;
         justify-content: center;
+        height: 20px;
+        z-index: 5;
+        transform: rotateZ(-90deg);
         align-items: center;
-        width: 100%;
-        height: 63px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.16);
-        background: white;
+        position: fixed;
+        bottom: 250px;
+        right: -95px;
+        background: transparent;
 
         a {
             height: 14px;
             display: block;
-            margin: 0 17.2px;
+            margin: 7px;
+            color: white;
+            position: relative;
 
-            &:hover {
-                svg {
-                    path, circle {
-                        fill: #686299;
-                    }
-                }
+            &::after {
+                content: "/";
+                position: absolute;
+                right: -8px;
+                bottom: -10px;
             }
 
-            svg {
-                height: 100%;
-                
-                path, circle {
-                    fill: #28404A;
+            &:last-child {
+                &::after {
+                    display: none;
                 }
             }
         }

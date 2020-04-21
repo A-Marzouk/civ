@@ -37,7 +37,3 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 
 library.add(fab)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
-// apex charts
-import VueApexCharts from 'vue-apexcharts'
-Vue.component('Apexchart', VueApexCharts)
