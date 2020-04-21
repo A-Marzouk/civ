@@ -177,5 +177,5 @@ Route::group(['prefix' => 'admin/'], function () {
 
 
 // API users routes
-Route::get('user', 'API\UsersController@user');
+Route::get('user/{id}', 'API\UsersController@user');
 

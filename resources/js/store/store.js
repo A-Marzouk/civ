@@ -336,7 +336,11 @@ export const store = new Vuex.Store({
             if(payload.id){
                 store.commit('setCurrentUser', payload);
             }else{
-                axios.get('/api/user').then((response) => {
+                let id = '';
+                if(store.state.user.id !== undefined){
+                     id = store.state.user.id;
+                }
+                axios.get('/api/user/' + id).then((response) => {
                     store.commit('setCurrentUser', response.data);
                 }).catch((error) => {
                     // if unauthorized : logout user [it means the cookie has been deleted or changed]
