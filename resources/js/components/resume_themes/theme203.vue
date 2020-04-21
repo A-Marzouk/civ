@@ -26,7 +26,9 @@
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent">
                               Carla Pipin Ranga
-                              <span class="mx-8 hidden-sm-and-down email-icon-block">
+                              <span
+                                class="mx-8 hidden-sm-and-down email-icon-block"
+                              >
                                 <v-btn
                                   fab
                                   color="#FCD259"
@@ -561,9 +563,9 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
-  @media screen and (max-width: 1200px) {
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     width: 17rem;
-    height:16rem;
+    height: 16rem;
   }
 
   @media screen and (max-width: 599px) {
@@ -613,10 +615,10 @@ export default {
 .custom-avatar {
   border: 5px solid white;
   width: 120px !important;
-  height:120px !important;
+  height: 120px !important;
   max-width: 120px;
   max-height: 120px;
-  @media screen and (max-width: 1200px) {
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     width: 60px !important;
     height: 60px !important;
   }
@@ -629,8 +631,8 @@ export default {
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
-  @media screen and (max-width: 1200px){
-    font-size: 1.0rem !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 1rem !important;
   }
   @media screen and(max-width:599px) {
     font-size: 1.12rem !important;
@@ -641,7 +643,7 @@ export default {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
-  @media screen and (max-width: 1200px){
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     font-size: 0.6rem !important;
   }
   @media screen and(max-width:599px) {
@@ -649,8 +651,8 @@ export default {
   }
 }
 
-.email-icon-block{
-  @media screen and (max-width: 1200px){
+.email-icon-block {
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     margin-left: 30px;
   }
 }
@@ -710,7 +712,7 @@ export default {
   font-size: 0.9rem !important;
   color: #8b8b8b !important;
   text-align: center !important;
-  @media screen and (max-width: 1200px){
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     font-size: 0.6rem !important;
   }
   @media screen and (max-width: 959px) {
@@ -772,10 +774,10 @@ export default {
   font-weight: bold;
   margin-bottom: -20px;
   margin-top: -20px;
-  @media screen and (max-width: 1200px){
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     font-size: 12px !important;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     font-size: 16px !important;
   }
 }
@@ -783,7 +785,7 @@ export default {
   font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
-  @media screen and (max-width: 1200px){
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     font-size: 10px !important;
   }
 }
