@@ -37,7 +37,7 @@
                     </div>
                 </div>
                
-                <div class="right d-flex align-items-center hideOnPhone">
+                <div class="right d-flex align-items-center justify-content-between hideOnPhone">
                     <div class="hourly-rate">
                         <div class="rate-options">
                             <span  @click="selectCurrentPayment('hourly')" :class="{active:currentPayment.salary_frequency === 'hourly'}">Hourly</span>
@@ -798,7 +798,7 @@
                 .hourly-rate {
                     margin-right: 66px;
                     @media only screen and (min-width: 1280px){
-                        margin-right: 30px;
+                        margin-right: 50px;
                     }
                     @media only screen and (max-width: 765px) {
                         margin-right: 27px;
@@ -808,6 +808,7 @@
                     span {
                         font-weight: 300;
                         font-size: 14px;
+                        margin:5px;
                         &:hover {
                             cursor: pointer;
                         }
@@ -819,7 +820,7 @@
                 .weekly-availability {
                     margin-right: 40px;
                     @media only screen and (min-width: 1280px){
-                        margin-right: 30px;
+                        margin-right: 50px;
                     }
                     @media only screen and (max-width: 765px) {
                         margin-right: 19px;
@@ -854,13 +855,13 @@
                 }
                 .hire-me-btn {
                     a {
-                        font-size: 24px;
+                        font-size: 19px;
                         border-radius: 35px;
                         background: white;
                         border: 1px solid #5289E7;
                         color: #5289E7;
-                        height: 67px;
-                        width: 217px;
+                        height: 43px;
+                        width: 122px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
