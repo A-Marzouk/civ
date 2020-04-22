@@ -622,10 +622,6 @@ export default {
     width: 60px !important;
     height: 60px !important;
   }
-  @media screen and (max-width: 959px) {
-    height: 120px !important;
-    width: 120px !important;
-  }
 }
 
 .profile-title {
