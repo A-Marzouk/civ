@@ -16,10 +16,10 @@
                   <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
-                        <v-list-item-avatar size="120" class="hidden-xs-only custom-avatar">
+                        <v-list-item-avatar class="hidden-xs-only custom-avatar">
                           <v-img src="/images/resume_themes/theme204/images/avatar.png"></v-img>
                         </v-list-item-avatar>
-                        <v-list-item-avatar size="80" class="hidden-sm-and-up custom-avatar mr-2">
+                        <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
                           <v-img src="/images/resume_themes/theme204/images/avatar.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
@@ -205,8 +205,8 @@
                           <div class="about-detail">
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                            <br/><br/>
-                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            <br />
+                            <br />I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                           </div>
                         </v-card>
                       </v-col>
@@ -557,6 +557,9 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 22rem;
+  }
   @media screen and (max-width: 599px) {
     width: 15.5rem;
     height: 13.75rem;
@@ -600,23 +603,41 @@ export default {
   }
 }
 /* Shapes */
+.custom-avatar {
+  width: 120px !important;
+  height: 120px !important;
+  max-width: 120px;
+  max-height: 120px;
+  border: 5px solid white;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
 
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 1.2rem !important;
+    margin-bottom: -10px;
+  }
+  
   @media screen and(max-width:599px) {
     font-size: 1.12rem !important;
   }
+
 }
 
-.custom-avatar {
-  border: 5px solid white;
-}
+
 
 .profile-subtitle {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 0.6rem !important;
+  }
   @media screen and(max-width:599px) {
     font-size: 0.5rem !important;
   }
@@ -677,6 +698,9 @@ export default {
   font-size: 0.9rem !important;
   color: #8b8b8b !important;
   text-align: center !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 0.6rem !important;
+  }
   @media screen and (max-width: 959px) {
     font-size: 0.7rem !important;
   }
@@ -748,7 +772,7 @@ export default {
     font-size: 1.125rem !important;
     line-height: 25px !important;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 0.875rem !important;
   }
 }
@@ -765,11 +789,17 @@ export default {
   font-weight: bold;
   margin-bottom: -20px;
   margin-top: -20px;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 12px !important;
+  }
 }
 .custom-portfolio-subtitle {
   font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 10px !important;
+  }
 }
 // .........................Desktop Portfolio...........................
 
