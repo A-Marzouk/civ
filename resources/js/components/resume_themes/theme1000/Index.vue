@@ -1,6 +1,6 @@
 <template>
 	<div id="wrapper_theme1000" class="tw-w-full tw-bg-white">
-		<Header :currentTab="currentTab" @tabChanged="tabChanged" />
+		<Header :currentTab="currentTab" @tabChanged="currentTab = $event" />
 		<TabsContent :currentTab="currentTab" />
 	</div>
 </template>
@@ -16,16 +16,8 @@ export default {
 
 	data: () => {
 		return {
-			currentTab: "education"
+			currentTab: "portfolio"
 		};
-	},
-
-	methods: {
-		tabChanged(currentTab) {
-			console.log(currentTab);
-
-			this.currentTab = currentTab;
-		}
 	}
 };
 </script>

@@ -28,10 +28,10 @@ const spacing = {
     "25px": "25px",
     "26px": "26px",
     "28px": "28px",
-    "30px": "1.875‬",
+    "30px": "1.875rem",
     "35px": "2.1875‬rem",
     "36px": "36px",
-    "37px": "2.3125‬rem",
+    "37px": "2.3125rem",
     "44px": "2.75rem",
     "46px": "46px",
     "47px": "2.938rem",
@@ -134,7 +134,9 @@ module.exports = {
                 "tm701-skills--inner": "1fr 3fr"
             },
             borderRadius: {
+                "3px": "3px",
                 "civ-15": "15px",
+                "10px": "0.625rem",
                 "25px": "15px",
                 "5rem": "5rem",
                 "civ-50": "3.125‬‬rem", // 50px
@@ -167,7 +169,9 @@ module.exports = {
                 "10px": "10px",
                 "11px": "11px",
                 "17px": "17px",
+                "18px": "18px",
                 "civ-22": "22px",
+                "21px": "21px",
                 "22px": "1.375‬rem",
                 "23px": "23px",
                 "24px": "24px",
