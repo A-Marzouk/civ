@@ -17,7 +17,7 @@
                     <v-card-text>
                       <v-row>
                         <v-col cols="8">
-                          <v-list-item two-line class="">
+                          <v-list-item two-line class="profile-list">
                             <v-list-item-content>
                               <v-list-item-title class="profile-title">
                                 <v-card class="pa-1" flat color="transparent">Carla Pipin Ranga</v-card>
@@ -530,6 +530,9 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (min-width: 960px) and (max-width: 1200px){
+    width: 23rem;
+  }
   @media screen and (max-width: 959px) {
     width: 23rem;
     height: 15.75rem;
@@ -578,6 +581,12 @@ export default {
 }
 /* Shapes */
 
+.profile-list{
+  @media screen and (min-width: 960px) and (max-width: 1200px){
+    margin-left: -32px;
+  }
+}
+
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
@@ -594,6 +603,9 @@ export default {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px){
+    font-size: 0.6rem !important;
+  }
   @media screen and(max-width:599px) {
     font-size: 0.5rem !important;
   }
@@ -742,11 +754,17 @@ export default {
   font-weight: bold;
   margin-bottom: -20px;
   margin-top: -20px;
+  @media screen and (min-width: 960px) and (max-width: 1200px){
+    font-size: 12px !important;
+  }
 }
 .custom-portfolio-subtitle {
   font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
+  @media screen and (min-width: 960px) and (max-width: 1200px){
+    font-size: 10px;
+  }
 }
 // .........................Desktop Portfolio...........................
 
