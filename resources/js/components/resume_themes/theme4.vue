@@ -245,13 +245,12 @@ export default {
   // Custom tab item cotnainer
   .custom-tab-item-container{
     margin-top:40px;
-    padding-top:10px;
+    padding-top:15px;
     background: rgba(170, 207, 227, 0.1);
   }
   //Custom tab item container
   // work
   .work-column {
-    margin-top: -100px;
     @media only screen and (max-width: 765px) {
       margin-top: 0px;
     }
