@@ -1,8 +1,22 @@
 #resumeTheme301{
+
+
+    .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
+        display: none;
+    }
+
+
     .main-tabs_theme21>.v-tabs-bar{
         height: 100%;
         min-height: 184px;
         background: none !important;
+
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            min-height: 145px;
+        }
     }
     .main-tabs_theme21 .v-slide-group__content{
         justify-content: center;

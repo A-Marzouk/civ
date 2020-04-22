@@ -12,9 +12,11 @@
                                 <a href="#" @click.prevent="dialogMessage = true">Tap to chat</a>
                             </v-col>
                             <v-col lg="2" md="9" sm="9" cols="4" class="profileCol">
-                               <div class="head-name">Andres Perez</div>
-                               <div class="head-profile">UI Designer</div>
-                               <a href="#" @click.prevent="dialogMessage = true" class="showOnProfile">Tap to chat</a>
+                                <div class="option-info">
+                                    <div class="head-name">Andres Perez</div>
+                                    <div class="head-profile">UI Designer</div>
+                                    <a href="#" @click.prevent="dialogMessage = true" class="showOnProfile">Tap to chat</a>
+                                </div>                               
                                <div class="option-wrap">
                                     <a href="#" @click.prevent="dialogAudio = true"><img src="/images/resume_themes/theme301/icons/headphones.png" alt=""></a>
                                     <a href="#" @click.prevent="dialogVideo = true"><img src="/images/resume_themes/theme301/icons/video-player.png" alt=""></a>
@@ -524,12 +526,88 @@
         justify-content: center;
         flex-flow: row;
 
+
+        .profileCol{
+            display: flex;
+            flex-flow: column;
+            margin: 0 5em 0 2em;
+            max-width: 225px;
+
+            .head-name{
+                font-family: "Montserrat";
+                font-style: normal;
+                font-weight: bold;
+                font-size: 36px;
+                line-height: 36px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: #575757;
+            }
+
+            .head-profile{
+                font-family: "Montserrat";
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 16px;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: #575757;
+                padding-top: 17px;
+            }
+
+            .option-wrap{
+                margin-top: 10px;
+                justify-content: flex-start;
+                align-items: center;
+                display: flex;
+
+                .btn-default{
+                    margin: 0 15px;
+                }
+                
+                a{
+                    width: 59px;
+                    height: 59px;
+                    background: #F8F8F8;
+                    box-shadow: -6px -6px 16px #FFFFFF, 
+                    6px 6px 16px rgba(209, 205, 199, 0.4);
+                    border-radius: 40px;
+                    display: block;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    margin-right: 32px;
+
+                    &:hover{
+                        box-shadow: -6px -6px 16px #FFFFFF, 
+                        6px 6px 16px rgba(209, 205, 199, 0.4), 
+                        inset 6px 4px 12px rgba(0, 0, 0, 0.25), 
+                        inset -6px -4px 12px #FFFFFF;
+                        border: 1px solid #fff;
+                    }
+
+                    img{
+                        max-width: 28px;
+                        max-height: 22px;
+                    }
+                }
+            }
+            @media screen and (max-width: 769px) {
+                .head-name{
+                    font-size: 24px;
+                }
+            }
+
+
+        }
+
+        
         @media screen and (max-width: 769px) {
-            max-width: 98%;
             padding-top: 40px;
             padding-bottom: 0;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content:center;
 
             .showOnProfile{
                 display: block !important;
@@ -563,11 +641,14 @@
                 }
             }
             .profileCol{
-                margin-left: 0;
                 position: relative;
                 min-height: 120px;
+                flex-flow: row;
+                margin: 0;
+                max-width: 100%;
+                justify-content: space-around;
+                align-items: center;
 
-                
                 .head-profile{
                     font-size: 12px !important;
                     padding-top: 0px !important;
@@ -585,18 +666,16 @@
                 }
 
                 .option-wrap{
-                    position: absolute;
-                    right: 5%;
-                    top: 5%;
+                    position: relative;
                     margin-top: 0px !important;
-                    min-width: 168px;
+                    max-width: 210px;
                     justify-content: space-between !important;
                     display: flex;
 
                     a{
-                        margin-right: 2% !important;
-
-                        
+                        width: 69px;
+                        height: 69px;
+                        margin: 0px 18px;
                     }
                 }
                 a.showOnProfile{
@@ -653,7 +732,7 @@
                 flex-flow: nowrap;
                 min-height: 69px;
                 max-height: 147px;
-                max-width: 98%;
+                max-width: 748px;
 
                 .shareOption{
                     display: none;
@@ -735,6 +814,9 @@
             .profileCol{
                 max-width: 100%;
                 margin-left: 5%;
+                flex-flow: column;
+                justify-content: flex-start;
+                align-items: flex-start;
 
                 .head-name{
                     font-size: 18px !important;
@@ -750,6 +832,7 @@
                         width: 44px !important;
                         height: 44px !important;
                         margin-right: 20px !important;
+                        margin: 0;
 
                         img{
                             max-width: 21px;
@@ -787,9 +870,10 @@
                 min-width: 320px;
 
                 a{
-                    margin: 0px 2%;
+                    margin: 0px 9px;
                     width: 55px;
                     height: 55px;
+                    min-width: 55px;
 
                     img{
                         max-width: 24px;
@@ -800,6 +884,7 @@
 
             .rateSection{
                 max-height: 100%;
+                max-width: 353px;
                
 
                 .rate-wrap{
@@ -807,8 +892,8 @@
 
                     .col-4{
                         min-width: 50%;
-                        max-height: 60px;
-                        min-height: 60px !important;
+                        max-height: 65px;
+                        min-height: 65px !important;
                     }
 
                     .btn-action{
@@ -830,83 +915,6 @@
 
             
         }
-
-        .profileCol{
-            display: flex;
-            flex-flow: column;
-            margin: 0 5em 0 2em;
-            max-width: 225px;
-
-            .head-name{
-                font-family: "Montserrat";
-                font-style: normal;
-                font-weight: bold;
-                font-size: 36px;
-                line-height: 36px;
-                letter-spacing: 0.2em;
-                text-transform: uppercase;
-                color: #575757;
-            }
-
-            .head-profile{
-                font-family: "Montserrat";
-                font-style: normal;
-                font-weight: 500;
-                font-size: 16px;
-                line-height: 16px;
-                letter-spacing: 0.2em;
-                text-transform: uppercase;
-                color: #575757;
-                padding-top: 17px;
-            }
-
-            .option-wrap{
-                margin-top: 10px;
-                justify-content: flex-start;
-                align-items: center;
-                display: flex;
-
-                .btn-default{
-                    margin: 0 15px;
-                }
-                
-                a{
-                    width: 59px;
-                    height: 59px;
-                    background: #F8F8F8;
-                    box-shadow: -6px -6px 16px #FFFFFF, 
-                    6px 6px 16px rgba(209, 205, 199, 0.4);
-                    border-radius: 40px;
-                    display: block;
-                    justify-content: center;
-                    align-items: center;
-                    display: flex;
-                    margin-right: 32px;
-
-                    &:hover{
-                        box-shadow: -6px -6px 16px #FFFFFF, 
-                        6px 6px 16px rgba(209, 205, 199, 0.4), 
-                        inset 6px 4px 12px rgba(0, 0, 0, 0.25), 
-                        inset -6px -4px 12px #FFFFFF;
-                        border: 1px solid #fff;
-                    }
-
-                    img{
-                        max-width: 28px;
-                        max-height: 22px;
-                    }
-                }
-            }
-            @media screen and (max-width: 769px) {
-                .head-name{
-                    font-size: 24px;
-                }
-            }
-
-
-        }
-
-
 
     }
 
@@ -990,6 +998,19 @@
             }
             
 
+        }
+
+        @media screen and (max-width: 768px) {
+            a{
+                width: 93px;
+                height: 91px;
+                margin: 0px 16px;
+
+                img{
+                    max-width: 39.5px;
+                    max-height: 39.5px;
+                }
+            }
         }
     }
 
@@ -1174,6 +1195,7 @@
         @media screen and (max-width: 769px) {
 
             min-height: 77px;
+            max-height: 100%;
 
             .v-tab{
                 flex-flow: column;
@@ -1198,6 +1220,9 @@
         and (min-device-width: 320px) 
         and (max-device-width: 480px)
         and (-webkit-min-device-pixel-ratio: 2) {
+
+            max-height: 145px;
+
             .v-tab{
                 max-width: 241px;
                 max-height: 57px;
