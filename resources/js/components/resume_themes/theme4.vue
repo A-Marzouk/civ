@@ -121,9 +121,9 @@
       <div class="custom-tab-item-container">
         <div class="portfolio" v-show="activeTab === 'portfolio'">
           <slick class="portfolioSlides" ref="slick" :options="slickOptions">
-            <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-            <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-            <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
           </slick>
         </div>
         <!-- Work -->
@@ -603,7 +603,7 @@ export default {
           margin-top: 25px;
           margin-right: 25px;
           margin-left: 25px;
-          width: 510px !important;
+          width: 418px !important;
           height: 400px;
           border-radius: 30px;
           @media only screen and (max-width: 765px) {
@@ -984,7 +984,7 @@ export default {
 }
 
 //slick slides :
-
+/* the parent */
 .slick-dots {
   bottom: -27px !important;
 }
@@ -1040,3 +1040,4 @@ export default {
   background-color: white;
 }
 </style>
+
