@@ -365,11 +365,11 @@
                     "html / css": "/images/skills_icons/HTML.png",
                     // 2-
 
-                    "adobe after effects": "/images/skills_icons/AE.png",
+                    "adobe after effects": "/images/skills_icons/ae.png",
                     sketch: "/images/skills_icons/Sketch.png",
-                    "adobe illustrator": "/images/skills_icons/Illustrator.png",
-                    "adobe xd": "/images/skills_icons/AdobeXD.png",
-                    photoshop: "/images/skills_icons/Photoshop.png",
+                    "adobe illustrator": "/images/skills_icons/illustrator.png",
+                    "adobe xd": "/images/skills_icons/adobexd.png",
+                    photoshop: "/images/skills_icons/photoshop.png",
                     autocad: "/images/skills_icons/autocad.png",
                     solidworks: "/images/skills_icons/solid_works.png",
                     "adobe flash": "/images/skills_icons/adobe_flash.png",

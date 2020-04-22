@@ -117,57 +117,64 @@
           <img class="icon" src="/images/resume_themes/theme4/skills/Id.png" alt="skill-icon" />
         </div>
       </div>
-
-      <div class="portfolio" v-show="activeTab === 'portfolio'">
-        <slick class="portfolioSlides" ref="slick" :options="slickOptions">
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-        </slick>
-      </div>
-      <!-- Work -->
-      <div class="work mt-5" v-show="activeTab === 'work'">
-        <div class="container" style="width:100%">
-          <div class="row">
-            <div class="col-md-12 col-sm-10 col-xs-10 mx-auto work-column" v-for="n in 3" :key="n">
-              <section class="work-timeline">
-                <div class="work-content">
-                  <div class="work-title">Senior UI/UX Designer</div>
-                  <div class="work-subtitle">
-                    <span>Big Bang Design</span> / May 2018 -Present
+      <!-- All tab items -->
+      <div class="custom-tab-item-container">
+        <div class="portfolio" v-show="activeTab === 'portfolio'">
+          <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+          </slick>
+        </div>
+        <!-- Work -->
+        <div class="work mt-5" v-show="activeTab === 'work'">
+          <div class="container" style="width:100%">
+            <div class="row">
+              <div
+                class="col-md-12 col-sm-10 col-xs-10 mx-auto work-column"
+                v-for="n in 3"
+                :key="n"
+              >
+                <section class="work-timeline">
+                  <div class="work-content">
+                    <div class="work-title">Senior UI/UX Designer</div>
+                    <div class="work-subtitle">
+                      <span>Big Bang Design</span> / May 2018 -Present
+                    </div>
+                    <div
+                      class="work-text"
+                    >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
                   </div>
-                  <div
-                    class="work-text"
-                  >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Work -->
-      <!-- Education -->
-      <div class="work mt-5" v-show="activeTab === 'education'">
-        <div class="container" style="width:100%">
-          <div class="row">
-            <div class="col-12 mx-auto work-column" v-for="n in 3" :key="n">
-              <section class="work-timeline">
-                <div class="work-content">
-                  <div class="work-title">Udemy</div>
-                  <div class="work-subtitle">
-                    <span>UI/UX DESIGN COURSE</span> / September 2015 - December 2015
+        <!-- Work -->
+        <!-- Education -->
+        <div class="work mt-5" v-show="activeTab === 'education'">
+          <div class="container" style="width:100%">
+            <div class="row">
+              <div class="col-12 mx-auto work-column" v-for="n in 3" :key="n">
+                <section class="work-timeline">
+                  <div class="work-content">
+                    <div class="work-title">Udemy</div>
+                    <div class="work-subtitle">
+                      <span>UI/UX DESIGN COURSE</span> / September 2015 - December 2015
+                    </div>
+                    <div
+                      class="work-text"
+                    >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
                   </div>
-                  <div
-                    class="work-text"
-                  >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Education -->
+        <!-- Education -->
+      </div>
+      <!-- All Tab Items -->
     </div>
   </div>
 </template>
@@ -235,10 +242,16 @@ export default {
   width: 100%;
   max-width: 1920px;
   background: white;
+  // Custom tab item cotnainer
+  .custom-tab-item-container{
+    margin-top:40px;
+    padding-top:15px;
+    background: rgba(170, 207, 227, 0.1);
+  }
+  //Custom tab item container
   // work
   .work-column {
-    margin-top: -100px;
-    @media only screen and (max-width: 765px){
+    @media only screen and (max-width: 765px) {
       margin-top: 0px;
     }
   }
@@ -268,21 +281,21 @@ export default {
     font-size: 18px;
     line-height: 30px;
     color: #9ca4c1;
-    @media only screen and (max-width:765px){
-      font-size:14px;
+    @media only screen and (max-width: 765px) {
+      font-size: 14px;
     }
   }
 
   .work-timeline {
     height: 300px;
-    margin: 90px auto;
+    margin: 40px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
-    @media only screen and (max-width:765px) {
+    @media only screen and (max-width: 765px) {
       margin: 28px auto;
-      margin-left:30px;
+      margin-left: 30px;
       padding: 0 20px 0 30px;
-      height:416px
+      height: 416px;
     }
   }
 
@@ -296,12 +309,12 @@ export default {
     width: 60px;
     height: 60px;
     position: absolute;
-    top: -8px;
+    top: -56px;
     left: -15px;
-    @media screen and (max-width: 765px){
+    @media screen and (max-width: 765px) {
       font-size: 40px;
-      top:-33px;
-      left:24px
+      top: -33px;
+      left: 24px;
     }
   }
   // work
@@ -590,7 +603,7 @@ export default {
           margin-top: 25px;
           margin-right: 25px;
           margin-left: 25px;
-          width: 510px !important;
+          width: 418px !important;
           height: 400px;
           border-radius: 30px;
           @media only screen and (max-width: 765px) {
@@ -971,7 +984,7 @@ export default {
 }
 
 //slick slides :
-
+/* the parent */
 .slick-dots {
   bottom: -27px !important;
 }
@@ -1027,3 +1040,4 @@ export default {
   background-color: white;
 }
 </style>
+

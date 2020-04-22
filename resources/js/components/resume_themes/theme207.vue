@@ -1,6 +1,6 @@
 <template>
-  <v-app style="width:100%;">
-    <v-container fluid ma-0 pa-0 style="width:100%; background:#212529;">
+  <v-app style="width:100%; background:#212529;">
+    <v-container fluid ma-0 pa-0 style="width:100%; ">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" height="260" dark>
         <v-avatar size="200" class="custom-avatar" left tile>
@@ -174,7 +174,7 @@
                       <v-row>
                         <!-- column 1 -->
                         <v-col md="3">
-                          <v-card color="transparent" class="card-portfolio">
+                          <v-card color="transparent" class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
                                 <v-btn icon color="transparent">
@@ -197,7 +197,7 @@
                         <v-col md="4">
                           <v-row>
                             <v-col cols="6" v-for="n in 4" :key="n">
-                              <v-card class="card-portfolio mt-n3 mb-3">
+                              <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
                                     <v-btn icon color="transparent">
@@ -217,7 +217,7 @@
                         <!-- Column 2 -->
                         <!-- column 3 -->
                         <v-col md="3">
-                          <v-card color="transparent" class="card-portfolio">
+                          <v-card color="transparent" class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
                                 <v-btn icon color="transparent">
@@ -240,7 +240,7 @@
                         <v-col md="2">
                           <v-row>
                             <v-col cols="12" v-for="n in 2" :key="n">
-                              <v-card class="card-portfolio mt-n3 mb-3">
+                              <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
                                     <v-btn icon color="transparent">
@@ -266,7 +266,7 @@
                 <!-- Education -->
                 <v-tab-item>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="n in 4" :key="n">
+                    <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
                           <v-avatar
@@ -299,7 +299,7 @@
                 <!-- Experience -->
                 <v-tab-item>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="n in 4" :key="n">
+                    <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
                           <v-avatar

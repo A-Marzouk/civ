@@ -646,13 +646,10 @@ export default {
   }
 }
 .btn-hire-me {
+  width: 200px;
   text-transform: capitalize !important;
   @media screen and (min-width: 960px) and (max-width: 1200px) {
-    width: 145px;
-  }
-  width: 200px;
-  @media screen and (max-width: 1024px) {
-    width: 120px;
+    width: 130px;
   }
   @media screen and (max-width: 959px) {
     width: 225px;
