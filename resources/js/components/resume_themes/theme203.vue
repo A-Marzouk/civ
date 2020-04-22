@@ -629,6 +629,7 @@ export default {
   font-size: 1.53rem !important;
   @media screen and (min-width: 960px) and (max-width: 1200px) {
     font-size: 1rem !important;
+    margin-bottom: -10px;
   }
   @media screen and(max-width:599px) {
     font-size: 1.12rem !important;
