@@ -288,7 +288,7 @@ export default {
 
   .work-timeline {
     height: 300px;
-    margin: 90px auto;
+    margin: 40px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
     @media only screen and (max-width: 765px) {
@@ -309,7 +309,7 @@ export default {
     width: 60px;
     height: 60px;
     position: absolute;
-    top: -8px;
+    top: -56px;
     left: -15px;
     @media screen and (max-width: 765px) {
       font-size: 40px;
