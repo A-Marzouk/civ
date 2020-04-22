@@ -74,7 +74,7 @@ const spacing = {
     "603px": "603px",
     "8rem": "8rem",
     "5rem": "5rem",
-    "11rem": "11rem",
+    "11rem": "11rem"
 };
 module.exports = {
     prefix: "tw-",
@@ -90,7 +90,7 @@ module.exports = {
                     "5": "#484848",
                     "6": "#2D2D2D",
                     "7":
-                        "linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)",
+                        "linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)"
                 },
                 tm701: {
                     "1": "#28404A",
@@ -103,20 +103,22 @@ module.exports = {
                     "8": "#838BA4",
                     "9": "#DBE0C2",
                     "10": "#6C8E8E",
-                    "11": "#616887",
-                },
+                    "11": "#616887"
+                }
             },
             inset: {
                 "24px": "24px",
                 "34px": "34px",
                 "94px": "94px",
-                "minus-80px": "-80px",
+                "minus-80px": "-80px"
             },
             fontFamily: {
                 lato: ["Lato", "sans-serif"],
                 montserrat: ["Montserrat", "sans-serif"],
                 muli: ["Muli", "sans-serif"],
                 poppins: ["Poppins", "sans-serif"],
+                roboto: ["Roboto", "sans-serif"],
+                "open-sans": ["Open Sans", "sans-serif"]
             },
             maxWidth: {
                 "tm700-dw-1": "73.875rem",
@@ -124,19 +126,19 @@ module.exports = {
                 "tm700-xl-2": "106.5625rem",
                 "1396px": "87.25rem",
                 "1767px": "1767px",
-                "1727px": "1727px",
+                "1727px": "1727px"
             },
             gridTemplateColumns: {
                 "tm700-d-skills-bar": "118px auto 48px",
                 "tm701-header": "1fr 4fr 2fr",
-                "tm701-skills--inner": "1fr 3fr",
+                "tm701-skills--inner": "1fr 3fr"
             },
             borderRadius: {
                 "civ-15": "15px",
                 "25px": "15px",
                 "5rem": "5rem",
                 "civ-50": "3.125‬‬rem", // 50px
-                "civ-50p": "50px", // 50px
+                "civ-50p": "50px" // 50px
             },
             flex: {
                 "civ-1": "0.53",
@@ -144,10 +146,10 @@ module.exports = {
                 "civ-3": "1.4",
                 "civ-4": "1.7",
                 "civ-1_5": "1.5",
-                "civ-2": "2",
+                "civ-2": "2"
             },
             borderWidth: {
-                "14": "14px",
+                "14": "14px"
             },
             fontSize: {
                 "tm700-18": "1.125rem", // 18px
@@ -159,7 +161,7 @@ module.exports = {
                 "25px": "25px", // 22px
                 "26px": "26px", // 22px
                 "30px": "30px", // 22px
-                "40px": "40px", // 22px
+                "40px": "40px" // 22px
             },
             lineHeight: {
                 "10px": "10px",
@@ -178,10 +180,10 @@ module.exports = {
                 "37px": "37px",
                 "40px": "40px",
                 "50px": "50px",
-                "64px": "64px",
-            },
-        },
+                "64px": "64px"
+            }
+        }
     },
     variants: {},
-    plugins: [],
+    plugins: []
 };
