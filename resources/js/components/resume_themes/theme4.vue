@@ -130,11 +130,15 @@
         <div class="work mt-5" v-show="activeTab === 'work'">
           <div class="container" style="width:100%">
             <div class="row">
+              <div class="watermark-text-work">Work</div>
               <div
                 class="col-md-12 col-sm-10 col-xs-10 mx-auto work-column"
                 v-for="n in 3"
                 :key="n"
               >
+                <!-- Watermark text -->
+
+                <!-- Watermark text -->
                 <section class="work-timeline">
                   <div class="work-content">
                     <div class="work-title">Senior UI/UX Designer</div>
@@ -155,6 +159,9 @@
         <div class="work mt-5" v-show="activeTab === 'education'">
           <div class="container" style="width:100%">
             <div class="row">
+              <!-- Watermark Text -->
+              <div class="watermark-text-education">Education</div>
+              <!-- Watermark text -->
               <div class="col-12 mx-auto work-column" v-for="n in 3" :key="n">
                 <section class="work-timeline">
                   <div class="work-content">
@@ -244,6 +251,7 @@ export default {
   background: white;
   // Custom tab item cotnainer
   .custom-tab-item-container {
+    width: 100%;
     margin-top: 40px;
     padding-top: 15px;
     background: rgba(170, 207, 227, 0.1);
@@ -318,6 +326,37 @@ export default {
     }
   }
   // work
+  // watermark text
+
+  .watermark-text-work {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-top: 50%;
+    margin-right: -76%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 250px;
+    line-height: 272px;
+    text-transform: uppercase;
+    color: rgba(1, 162, 254, 0.05);
+    transform: rotate(-90deg);
+  }
+  .watermark-text-education {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    margin-top: 50%;
+    margin-right: -87%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 180px;
+    line-height: 272px;
+    text-transform: uppercase;
+    color: rgba(1, 162, 254, 0.05);
+    transform: rotate(-90deg);
+  }
+  //watermark text
   .mainThemeBar {
     padding-top: 40px;
     padding-left: 70px;
