@@ -22,9 +22,17 @@ class UsersController extends Controller
         $this->middleware('auth:api');
     }
 
-    public function user()
+    public function user(Request $request)
     {
-        $user = User::where('id',Auth::user()->id)->with([
+        $user_id = $request->get('user_id') ;
+        if($user_id){
+            $id = $user_id;
+        }
+        else{
+            $id = Auth::user()->id;
+        }
+
+        $user = User::where('id',$id)->with([
             'skills',
             'hobbies',
             'education',

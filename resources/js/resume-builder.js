@@ -6,6 +6,10 @@ import {store} from './store/store';
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
+import UUID from 'vue-uuid';
+Vue.use(UUID);
+
+
 import resumeBuilder from './components/resume_builder/Main';
 
 // main tabs

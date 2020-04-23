@@ -214,6 +214,7 @@ export default {
     .hold_theme307{
         background: #E3EDF7;
         padding: 0px;
+        min-height: 100%;
 
         
         h2,h3,h4,h5,p,span,em,a{
@@ -472,7 +473,7 @@ export default {
 
             .v-tabs{
                 background: #E3EDF7;
-                box-shadow: -6px -2px 16px rgba(255, 255, 255, 0.8),
+                box-shadow: -6px 2px 16px rgba(255, 255, 255, 0.8),
                  6px 2px 16px rgba(136, 165, 191, 0.48);
                 border-radius: 6px;
                 max-height: 100%;

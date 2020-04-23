@@ -1,8 +1,8 @@
 <template>
     <div class="d-flex justify-content-center w-100">
         <div class="themeWrapper" v-if="currentUser">
-            <div class="mainThemeBar d-flex justify-content-between align-items-center">
-                <div class="left">
+            <div class="mainThemeBar d-flex flex-row justify-content-between align-items-center">
+                <div class="left title-flex">
                     <div class="d-flex align-items-center">
                         <div class="avatar">
                             <img :src="currentUser.personal_info.profile_pic" alt="profile pic">
@@ -36,7 +36,8 @@
                         <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
                     </div>
                 </div>
-                <div class="right d-flex align-items-center hideOnPhone">
+               
+                <div class="right d-flex align-items-center justify-content-between hideOnPhone">
                     <div class="hourly-rate">
                         <div class="rate-options">
                             <span  @click="selectCurrentPayment('hourly')" :class="{active:currentPayment.salary_frequency === 'hourly'}">Hourly</span>
@@ -44,7 +45,7 @@
                             <span  @click="selectCurrentPayment('monthly')" :class="{active:currentPayment.salary_frequency === 'monthly'}">Monthly</span>
                         </div>
                        <div>
-                           <div class="hourly-rate-text">
+                           <div class="hourly-rate-text text-center">
                                ${{currentPayment.salary}}
                            </div>
                            <div class="hourly-rate-text light text-center">
@@ -59,7 +60,7 @@
                             <span  @click="selectCurrentAvailability('yearly')" :class="{active:currentAvailability.available_hours_frequency === 'yearly'}">Yearly</span>
                         </div>
                         <div>
-                            <div class="hourly-rate-text">
+                            <div class="hourly-rate-text text-center">
                                 {{currentAvailability.available_hours}} hours
                             </div>
                             <div class="hourly-rate-text light text-center">
@@ -364,11 +365,11 @@
                     "html / css": "/images/skills_icons/HTML.png",
                     // 2-
 
-                    "adobe after effects": "/images/skills_icons/AE.png",
+                    "adobe after effects": "/images/skills_icons/ae.png",
                     sketch: "/images/skills_icons/Sketch.png",
-                    "adobe illustrator": "/images/skills_icons/Illustrator.png",
-                    "adobe xd": "/images/skills_icons/AdobeXD.png",
-                    photoshop: "/images/skills_icons/Photoshop.png",
+                    "adobe illustrator": "/images/skills_icons/illustrator.png",
+                    "adobe xd": "/images/skills_icons/adobexd.png",
+                    photoshop: "/images/skills_icons/photoshop.png",
                     autocad: "/images/skills_icons/autocad.png",
                     solidworks: "/images/skills_icons/solid_works.png",
                     "adobe flash": "/images/skills_icons/adobe_flash.png",
@@ -489,11 +490,22 @@
         }
     }
     
+    .hideNotOnDesktop{
+        @media only screen and (max-width:1279px){
+            display: none !important;
+        }
+    }
+    
     .themeWrapper {
         width: 100%;
         max-width: 1920px;
         background: white;
         font-family: Roboto, sans-serif;
+        .title-flex{
+            @media only screen and (min-width:1280px) {
+                margin-left: -40px;
+            }
+        }
         .transition-line {
             position: relative;
             margin-top: -4px;
@@ -665,8 +677,8 @@
                     margin-right: 37px;
                     border-radius: 24px;
                     img {
-                        width: 180px;
-                        height: 180px;
+                        width: 120px;
+                        height: 120px;
                         border-radius: 50%;
                     }
                     @media only screen and (max-width: 765px) {
@@ -694,7 +706,7 @@
                         margin-left: -2px;
                         font-style: normal;
                         font-weight: bold;
-                        font-size: 30px;
+                        font-size: 24px;
                         color: #333333;
                         @media only screen and (max-width: 765px) {
                             font-size: 16px;
@@ -707,7 +719,7 @@
                     .job-title {
                         font-style: normal;
                         font-weight: normal;
-                        font-size: 25px;
+                        font-size: 14px;
                         color: #000000;
                         img {
                             width: 60px;
@@ -785,6 +797,9 @@
             .right {
                 .hourly-rate {
                     margin-right: 66px;
+                    @media only screen and (min-width: 1280px){
+                        margin-right: 50px;
+                    }
                     @media only screen and (max-width: 765px) {
                         margin-right: 27px;
                     }
@@ -793,6 +808,7 @@
                     span {
                         font-weight: 300;
                         font-size: 14px;
+                        margin:5px;
                         &:hover {
                             cursor: pointer;
                         }
@@ -803,6 +819,9 @@
                 }
                 .weekly-availability {
                     margin-right: 40px;
+                    @media only screen and (min-width: 1280px){
+                        margin-right: 50px;
+                    }
                     @media only screen and (max-width: 765px) {
                         margin-right: 19px;
                     }
@@ -811,7 +830,7 @@
                     &:first-letter {
                         text-transform: uppercase;
                     }
-                    text-align: left !important;
+                    // text-align: left !important;
                     font-style: normal;
                     font-weight: normal;
                     font-size: 30px;
@@ -836,13 +855,13 @@
                 }
                 .hire-me-btn {
                     a {
-                        font-size: 24px;
+                        font-size: 19px;
                         border-radius: 35px;
                         background: white;
                         border: 1px solid #5289E7;
                         color: #5289E7;
-                        height: 67px;
-                        width: 217px;
+                        height: 43px;
+                        width: 122px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -1028,8 +1047,8 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: space-between;
-                padding-left: 40px;
-                padding-right: 40px;
+                padding-left: 150px;
+                padding-right: 150px;
                 .work-item {
                     margin-bottom: 100px;
                     display: flex;
@@ -1037,7 +1056,7 @@
                     .work-icon {
                         margin-right: 35px;
                         img {
-                            width: 59px;
+                            width: 99px;
                             height: 59px;
                         }
                     }
@@ -1212,6 +1231,7 @@
                     justify-content: space-between;
                     align-items: center;
                     width: 100%;
+                    
                     @media only screen and (max-width: 765px) {
                         align-items: center;
                     }

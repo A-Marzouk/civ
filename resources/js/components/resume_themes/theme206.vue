@@ -199,9 +199,8 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider>
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up my-10">
               <v-tab
-                class="hidden-sm-and-up"
                 v-for="tab in tabItems"
                 :key="tab.id"
                 @click="currentTab=tab.id"
@@ -217,7 +216,13 @@
             </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
-            <v-tabs v-model="mainDataTab" centered hide-slider grow class="hidden-xs-only">
+            <v-tabs
+              v-model="mainDataTab"
+              centered
+              hide-slider
+              grow
+              class="hidden-xs-only mt-md-10 my-md-0 my-sm-3"
+            >
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -626,6 +631,9 @@ export default {
   @media screen and (max-width: 1280px) {
     font-size: 0.45rem;
   }
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 0.4rem;
+  }
 }
 .rate {
   font-family: "Poppins", sans-serif !important;
@@ -633,15 +641,21 @@ export default {
   font-size: 2.5rem;
   line-height: 3rem;
   font-weight: bold;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 2rem;
+  }
 }
 .btn-hire-me {
-  text-transform: capitalize !important;
   width: 200px;
-  @media screen and (max-width: 1024px){
-    width: 120px;
+  text-transform: capitalize !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 130px;
   }
   @media screen and (max-width: 959px) {
     width: 225px;
+  }
+   @media screen and (min-width: 600px) and (max-width: 759px){
+     width: 185px;
   }
   @media screen and (max-width: 599px) {
     color: #5843be !important;
@@ -650,11 +664,13 @@ export default {
 .custom-social-btn {
   max-width: 36px !important;
   height: 51px !important;
-
-  @media screen and (min-width: 960px) and (max-width: 1024px){
-    min-width: 45px !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    min-width: 51px !important;
   }
-
+  @media screen and (min-width: 600px) and (max-width: 759px){
+    min-width: 51px !important;
+  }
+  
   @media screen and (max-width: 599px) {
     height: 30px !important;
     width: 30px !important;
@@ -674,6 +690,9 @@ export default {
   img {
     width: 20px;
     height: 20px;
+  }
+  @media screen and (min-width: 960px) and (max-width:1200px){
+    margin-left:-2px !important;
   }
   @media screen and (max-width: 959px) {
     span {

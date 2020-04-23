@@ -1,15 +1,15 @@
 <template>
   <div class="tm701-portfolio" v-if="currentTab === 1">
-    <div class="inner xl:tw-w-full xl:tw-max-w-1727px xl:tw-mx-auto">
-      <div class="xl:tw-mr-63px xl:tw-ml-56px">
+    <div class="inner tw-w-full tw-max-w-1727px tw-mx-auto">
+      <div class="tw-mr-63px tw-ml-56px">
         <div class="tw-grid tw-grid-cols-3 tw-gap-6">
           <div>
             <img
-              class="xl:tw-mb-36px xl:tw-w-494px xl:tw-h-603px"
+              class="tw-mb-36px tw-w-494px tw-h-603px"
               src="../../../../../../public/images/resume_themes/theme701/portfolio1.png"
             />
-            <div class="xl:tw-w-2/3">
-              <h2 class="xl:tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
+            <div class="tw-w-2/3">
+              <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
                 Strategic vision and execution of a newly
                 integrated ecosystem of financial tools
               </h2>
@@ -19,13 +19,13 @@
             </div>
           </div>
           <div>
-            <div class="xl:tw-mb-135px">
+            <div class="tw-mb-135px">
               <img
-                class="xl:tw-mb-36px xl:tw-w-494px xl:tw-h-279px"
+                class="tw-mb-36px tw-w-494px tw-h-279px"
                 src="../../../../../../public/images/resume_themes/theme701/portfolio2.png"
               />
-              <div class="xl:tw-w-2/3">
-                <h2 class="xl:tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
+              <div class="tw-w-2/3">
+                <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
                   Protocol for validating interventions Impact
                   on populations with anxiety
                 </h2>
@@ -36,10 +36,10 @@
             </div>
             <div>
               <img
-                class="xl:tw-mb-36px xl:tw-w-494px xl:tw-h-286px"
+                class="tw-mb-36px tw-w-494px tw-h-286px"
                 src="../../../../../../public/images/resume_themes/theme701/portfolio3.png"
               />
-              <h2 class="xl:tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
+              <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
                 Strategic vision and execution of a newly
                 integrated ecosystem of financial tools
               </h2>
@@ -49,13 +49,13 @@
             </div>
           </div>
           <div>
-            <div class="xl:tw-mb-135px">
+            <div class="tw-mb-135px">
               <img
-                class="xl:tw-mb-36px xl:tw-w-494px xl:tw-h-440px"
+                class="tw-mb-36px tw-w-494px tw-h-440px"
                 src="../../../../../../public/images/resume_themes/theme701/portfolio4.png"
               />
-              <div class="xl:tw-w-2/3">
-                <h2 class="xl:tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
+              <div class="tw-w-2/3">
+                <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
                   Dynamic model of digital interventions
                   attribution with high predictive validity
                   for people with diabetes
@@ -67,10 +67,10 @@
             </div>
             <div>
               <img
-                class="xl:tw-mb-36px xl:tw-w-494px xl:tw-h-286px"
+                class="tw-mb-36px tw-w-494px tw-h-286px"
                 src="../../../../../../public/images/resume_themes/theme701/portfolio5.png"
               />
-              <h2 class="xl:tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
+              <h2 class="tw-mb-18px tw-text-22px tw-font-bold tw-leading-36px tw-text-tm701-1">
                 Strategic vision and execution of a newly
                 integrated ecosystem of financial tools
               </h2>
