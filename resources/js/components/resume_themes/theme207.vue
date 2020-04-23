@@ -384,7 +384,7 @@
                                         ></v-img>
                                       </v-avatar>
                                       <div class="flex-fill">
-                                        <v-card-title class="education-title mb-2 mt-n5">PHP</v-card-title>
+                                        <v-card-title class="education-title mb-2" style="margin-top:-22px;">PHP</v-card-title>
                                         <div class="ml-3">
                                           <v-progress-linear
                                             style="border:3px solid #272B2F; border-radius:12px;"
