@@ -190,7 +190,7 @@
                                         </div>
 
                                        <div v-if="editedWork === work.uuid" class="pt-3 pb-4">
-                                           <input class='shorter' type="text" id="companyName" placeholder="Company name" v-model="work.company_name">
+                                           <input class='shorter' type="text" placeholder="Company name" v-model="work.company_name">
                                            <div class="error" v-if="errors.company_name">
                                                {{ Array.isArray(errors.company_name) ? errors.company_name[0] : errors.company_name}}
                                            </div>
