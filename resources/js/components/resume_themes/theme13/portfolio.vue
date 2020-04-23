@@ -1,99 +1,85 @@
 <template>
     <div class="container portfolio-flex">
-        <div class="flex-column">
-            <div class="portfolio-item">
+        <div v-masonry="containerId" transition-duration="0.3s" item-selector=".item">
+            <div v-masonry-tile class="item">
                 <img src="/images/resume_themes/theme13/portfolio-img1.png" alt="">
                 <div class="content">
                     <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
                     <div class="description">
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
                     </div>
                 </div>
             </div>
-            <div class="portfolio-item">
+            <div v-masonry-tile class="item">
                 <img src="/images/resume_themes/theme13/portfolio-img2.png" alt="">
                 <div class="content">
                     <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
                     <div class="description">
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
                     </div>
                 </div>
             </div>
-            <div class="portfolio-item">
+            <div v-masonry-tile class="item">
                 <img src="/images/resume_themes/theme13/portfolio-img3.png" alt="">
                 <div class="content">
                     <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non.</p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="flex-column">
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
+        <div v-masonry-tile class="item">
+            <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
+            <div class="content">
+                <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non.</p>
                 </div>
             </div>
         </div>
-        <div class="flex-column">
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
+        <div v-masonry-tile class="item">
+            <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
+            <div class="content">
+                <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non.</p>
                 </div>
             </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
+        </div>
+        <div v-masonry-tile class="item">
+            <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
+            <div class="content">
+                <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non.</p>
                 </div>
             </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
+        </div>
+        <div v-masonry-tile class="item">
+            <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
+            <div class="content">
+                <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non.</p>
                 </div>
             </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
+        </div>
+        <div v-masonry-tile class="item">
+            <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
+            <div class="content">
+                <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non.</p>
+                </div>
+            </div>
+        </div>
+        <div v-masonry-tile class="item">
+            <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
+            <div class="content">
+                <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                <div class="description">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
                 </div>
             </div>
         </div>

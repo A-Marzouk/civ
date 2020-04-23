@@ -45,6 +45,7 @@
         "vue-color": "^2.7.0",
         "vue-cookies": "^1.6.1",
         "vue-load-image": "^0.1.9",
+        "vue-masonry": "^0.11.8",
         "vue-moment": "^4.1.0",
         "vue-particles": "^1.0.9",
         "vue-radial-progress": "^0.3.0",

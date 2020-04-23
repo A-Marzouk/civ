@@ -91,6 +91,19 @@ if ($("#resumeTheme10").length !== 0) {
 }
 
 // Jose's themes
+import resumeTheme11 from './components/resume_themes/theme11';
+if ($("#resumeTheme11").length !== 0) {
+    new Vue({
+        el: '#resumeTheme11',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components: {
+            'resume-theme-11': resumeTheme11,
+        }
+    });
+}
+
 import resumeTheme12 from './components/resume_themes/theme12';
 if ($("#resumeTheme12").length !== 0) {
     new Vue({

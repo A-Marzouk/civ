@@ -37,3 +37,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 
 library.add(fab)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// Masonry
+import {VueMasonryPlugin} from 'vue-masonry';
+Vue.use(VueMasonryPlugin)
