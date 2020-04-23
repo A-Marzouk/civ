@@ -345,6 +345,7 @@ export default {
       margin-right:-30%;
     }
     @media screen and (min-width: 600px) and (max-width: 959px){
+      margin-top:90%;
       margin-right:-40%;
     }
     @media screen and (max-width: 599px){
@@ -370,6 +371,7 @@ export default {
       margin-right: -39%;
     }
     @media screen and (min-width: 600px) and (max-width: 959px){
+      margin-top:90%;
       margin-right:-53%;
     }
     @media screen and (max-width: 599px){
