@@ -181,7 +181,6 @@
 
 <script>
 import Slick from "vue-slick";
-
 export default {
   props: ["user"],
   components: {
@@ -231,6 +230,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap"');
+
 .hideOnNotPhone {
   @media only screen and (min-width: 765px) {
     display: none !important;
@@ -243,9 +243,9 @@ export default {
   max-width: 1920px;
   background: white;
   // Custom tab item cotnainer
-  .custom-tab-item-container{
-    margin-top:40px;
-    padding-top:15px;
+  .custom-tab-item-container {
+    margin-top: 40px;
+    padding-top: 15px;
     background: rgba(170, 207, 227, 0.1);
   }
   //Custom tab item container
@@ -987,6 +987,7 @@ export default {
 /* the parent */
 .slick-dots {
   bottom: -27px !important;
+  padding-bottom: 40px !important;
 }
 
 .slick-dots li button:before {
@@ -1038,6 +1039,18 @@ export default {
   border-radius: 1px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: white;
+}
+</style>
+
+<style>
+#resumeTheme4 .slick-dots {
+  padding-bottom: 40px !important;
+}
+
+@media screen and (min-width: 1281px) {
+  #resumeTheme4 .slick-slide {
+    width: auto !important;
+  }
 }
 </style>
 
