@@ -1911,7 +1911,7 @@
     }
 </style>
 
-<style >
+<style>
 @media screen and (min-width: 1281px) {
   #resumeTheme3 .slick-slide {
     width: auto !important;
