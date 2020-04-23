@@ -384,7 +384,10 @@
                                         ></v-img>
                                       </v-avatar>
                                       <div class="flex-fill">
-                                        <v-card-title class="education-title mb-2" style="margin-top:-22px;">PHP</v-card-title>
+                                        <v-card-title
+                                          class="education-title mb-2"
+                                          style="margin-top:-22px;"
+                                        >PHP</v-card-title>
                                         <div class="ml-3">
                                           <v-progress-linear
                                             style="border:3px solid #272B2F; border-radius:12px;"
@@ -418,11 +421,17 @@
                 <!-- Media -->
                 <!-- About Me -->
                 <v-tab-item>
-                  <v-card flat color="transparent">
-                    <v-card-title class="about-me-title">About Me</v-card-title>
-                    <v-card-text
-                      class="about-me-text"
-                    >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</v-card-text>
+                  <v-card flat color="transparent" class="mt-5">
+                    <div class="d-flex flex-no-wrap">
+                      <v-avatar size="250" class="about-me-photo" tile>
+                        <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
+                      </v-avatar>
+                      <div class="flex-fill">
+                        <v-card-text
+                          class="about-me-text"
+                        >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</v-card-text>
+                      </div>
+                    </div>
                   </v-card>
                 </v-tab-item>
                 <!-- About Me -->
@@ -744,7 +753,7 @@ export default {
 }
 .about-me-text {
   font-family: "Poppins", sans-serif !important;
-  color: #000000 !important;
+  color: #ffffff !important;
 }
 // about me
 //media
@@ -815,6 +824,12 @@ export default {
   line-height: 33px;
   color: #5843be !important;
 }
+.about-me-photo {
+  background: #272b2f;
+  border: 15px solid #272b2f;
+  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
+  border-radius: 9px;
+}
 .about-me-title-mobile {
   font-family: "Poppins" sans-serif !important;
   font-style: normal;
@@ -859,6 +874,8 @@ export default {
     margin-left: -20px;
   }
 }
+
+
 </style>
 
 <style>
