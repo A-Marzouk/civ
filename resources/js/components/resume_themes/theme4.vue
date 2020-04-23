@@ -331,30 +331,52 @@ export default {
   .watermark-text-work {
     position: absolute;
     top: 50%;
-    right: 50%;
-    margin-top: 50%;
-    margin-right: -76%;
+    right: 0;
+    margin-top: 60%;
+    margin-right: -25%;
     font-style: normal;
     font-weight: bold;
-    font-size: 250px;
+    font-size: 15.625rem;
     line-height: 272px;
     text-transform: uppercase;
     color: rgba(1, 162, 254, 0.05);
     transform: rotate(-90deg);
+    @media screen and (min-width: 960px) and (max-width: 1100px){
+      margin-right:-30%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px){
+      margin-right:-40%;
+    }
+    @media screen and (max-width: 599px){
+      margin-top: 150%;
+      margin-right: -80%; 
+    }
   }
   .watermark-text-education {
     position: absolute;
     top: 50%;
-    right: 50%;
-    margin-top: 50%;
-    margin-right: -87%;
+    right: 0;
+    margin-top: 60%;
+    margin-right: -30%;
     font-style: normal;
     font-weight: bold;
-    font-size: 180px;
+    font-size: 10rem;
     line-height: 272px;
     text-transform: uppercase;
     color: rgba(1, 162, 254, 0.05);
     transform: rotate(-90deg);
+
+    @media screen and (min-width: 960px) and (max-width: 1100px){
+      margin-right: -39%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px){
+      margin-right:-53%;
+    }
+    @media screen and (max-width: 599px){
+      margin-top: 165%;
+      margin-right: -98%; 
+    }
+    
   }
   //watermark text
   .mainThemeBar {
