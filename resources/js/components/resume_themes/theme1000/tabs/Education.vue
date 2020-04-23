@@ -1,18 +1,22 @@
 <template>
 	<div class="tw-px-4 tw-pt-16">
 		<div :class="{'tw-mb-5': isLastEducation(education)}" v-for="education in educations" :key="education.id">
-			<EducationCard :education="education" />
+			<Card :details="education">
+				<svg width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill="#fff" d="M14 .75L.25 8.25l5 2.725v7.5L14 23.25l8.75-4.775v-7.5l2.5-1.362v8.637h2.5v-10L14 .75zm8.525 7.5L14 12.9 5.475 8.25 14 3.6l8.525 4.65zm-2.275 8.738L14 20.4l-6.25-3.412v-4.65L14 15.75l6.25-3.412v4.65z" />
+				</svg>
+			</Card>
 		</div>
 	</div>
 </template>
 
 <script>
-import EducationCard from "../components/EducationCard";
+import Card from "../components/Card";
 
 export default {
 	name: "education",
 
-	components: { EducationCard },
+	components: { Card },
 
 	data: () => {
 		return {
@@ -20,16 +24,16 @@ export default {
 				{
 					id: 1,
 					title: "UXUI Designer",
-					school: "IBM LAB",
-					detail:
+					subtitle: "IBM LAB",
+					description:
 						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat elit a lacus luctus, accumsan.",
 					duration: "2010-2013"
 				},
 				{
 					id: 2,
 					title: "UXUI Designer",
-					school: "IBM LAB",
-					detail:
+					subtitle: "IBM LAB",
+					description:
 						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat elit a lacus luctus, accumsan.",
 					duration: "2010-2013"
 				}
