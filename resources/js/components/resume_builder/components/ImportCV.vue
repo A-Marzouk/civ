@@ -138,7 +138,7 @@
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"> About:</div>
-                                        <div> {{freelancerData.about ? freelancerData.about : "Couldn't find about information"}}
+                                        <div> {{personalInfo.about ? personalInfo.about : "Couldn't find about information"}}
                                         </div>
                                     </div>
                                 </div>
@@ -1290,9 +1290,25 @@
 
                 this.searchForEducationText(arrayOfData);
                 this.searchForExperienceText(arrayOfData);
+                this.searchForSummary();
                 this.searchForReferencesText();
 
             },
+
+            searchForSummary(){
+                let summary = this.extractedText.substring(
+                    this.extractedText.lastIndexOf("Summary") + 7,
+                    this.extractedText.lastIndexOf("Experience")
+                );
+
+                this.personalInfo.about = summary;
+
+
+                if(summary.length > 1){
+                    this.sections.forEach( (section) => { section.title === 'summary' ? section.selected = true : ''} );
+                }
+            },
+
             searchForEducationText(arrayOfData) {
 
                 // check if any word of the text line is a country name
