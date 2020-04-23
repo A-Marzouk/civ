@@ -1163,6 +1163,7 @@
                 this.file = '';
                 this.extractedText = '';
                 this.progress = 0;
+                this.linkedInProfile = '';
             },
             handleFileUpload() {
                 this.file = this.$refs.file.files[0];

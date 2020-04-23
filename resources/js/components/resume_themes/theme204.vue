@@ -220,7 +220,10 @@
                   <v-card flat color="transparent" align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
-                        <div class="card-columns">
+                        <masonry
+                          :cols="{default: 4, 959: 1, 599: 1}"
+                          :gutter="{default: '30px', 700: '15px'}"
+                        >
                           <v-card
                             v-for="item in portfolioItems"
                             :key="item.id"
@@ -229,11 +232,11 @@
                             flat
                             color="transparent"
                           >
-                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
+                            <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" ></v-img>
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
                             <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
                           </v-card>
-                        </div>
+                        </masonry>
                       </v-col>
                     </v-row>
                   </v-card>
@@ -442,8 +445,8 @@ export default {
         },
         {
           id: 5,
-          title: "",
-          subtitle: ""
+          title: "Made market Concept",
+          subtitle: "Made market concept"
         },
 
         {
@@ -530,17 +533,7 @@ export default {
 @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
-.card-columns {
-  @media screen and (min-width: 960px) {
-    column-count: 4;
-  }
-  @media screen and (max-width: 959px) {
-    column-count: 1;
-  }
-  @media screen and (max-width: 599px) {
-    column-count: 1;
-  }
-}
+
 /* Shapes */
 .triangle-top-left {
   left: 0;

@@ -47,9 +47,14 @@ class LanguagesController extends Controller
         $user= User::find($request->user_id);
         // find the language id by name:
         $languagesID = [];
-        foreach($request->langs as $language){
-            $languagesID[] = Language::where('label', $language)
-                ->orWhere('label', 'like', '%'.$language.'%')->first()->id;
+        foreach($request->langs as $language_label){
+            $language = Language::where('label', $language_label)
+                ->orWhere('label', 'like', '%'.$language_label.'%')->first();
+
+            if($language){
+                $languagesID[] = $language->id;
+            }
+
         }
 
         $user->languages()->sync($languagesID, false);
