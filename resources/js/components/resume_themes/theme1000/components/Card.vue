@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-flex tw-justify-between education-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4">
+	<div class="tw-flex tw-justify-between bg-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4">
 		<div>
 			<h4 class="tw-font-bold tw-leading-21px tw-text-black tw-text-lg" v-text="details.title"></h4>
 			<div class="tw-font-medium tw-leading-21px tw-text-black tw-text-lg tw-pt-10px" v-text="details.subtitle"></div>
@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.education-card {
+.bg-card {
 	background: #eeeff1;
 }
 
