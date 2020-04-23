@@ -2,21 +2,21 @@
   <div class="education container">
     <div class="row">
       <div class="content-title col-12 col-md-4">
-        <p class="job_title">{{ education.school_title }}</p>
+        <p class="job_title">{{ education.degree_title }}</p>
         <span class="date">
           <b
-            >{{ formatedDate(education.date_from) }} -
+            >{{ (education.date_from) }} -
             {{
-              education.currently_learning
-                ? "actually"
-                : formatedDate(education.date_to)
+              education.present
+                ? "Present"
+                : (education.date_to)
             }}</b
           >
         </span>
       </div>
       <div class="col-12 col-md-8">
-        <h4 class="company-name">School name here</h4>
-        <p class="education-description">{{ education.description }}</p>
+        <h4 class="company-name">{{university_name}}</h4>
+        <p class="education-description">{{ education.institution_type }}</p>
       </div>
     </div>
   </div>
@@ -28,9 +28,7 @@ import moment from "moment";
 export default {
   props: ["education"],
   methods: {
-    formatedDate: date => {
-      return moment(date).format("YYYY");
-    }
+
   }
 };
 </script>

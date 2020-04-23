@@ -33,12 +33,14 @@
     "dependencies": {
         "@babel/preset-stage-2": "^7.8.3",
         "@fortawesome/fontawesome-svg-core": "^1.2.28",
+        "@fortawesome/free-brands-svg-icons": "^5.13.0",
+        "@fortawesome/free-regular-svg-icons": "^5.13.0",
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "@fortawesome/vue-fontawesome": "^0.1.9",
-        "@fortawesome/free-brands-svg-icons": "^5.13.0",
         "bootstrap-vue": "^2.7.0",
         "jquery": "^3.2",
         "laravel-mix-svg-vue": "^0.2.6",
+        "puppeteer": "^3.0.0",
         "tailwindcss": "^1.2.0",
         "vue-audio-recorder": "^3.0.1",
         "vue-color": "^2.7.0",
@@ -49,6 +51,7 @@
         "vue-router": "^3.1.5",
         "vue-slick": "^1.1.15",
         "vue-template-compiler": "^2.6.10",
+        "vue-uuid": "^1.1.1",
         "vue2-dropzone": "^3.6.0",
         "vuetify": "^2.2.12",
         "vuex": "^3.1.2"

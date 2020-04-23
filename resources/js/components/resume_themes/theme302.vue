@@ -915,6 +915,7 @@
             font-weight: normal;
             font-size: 20px;
             line-height: 28px;
+            margin-top: 1em;
         }
 
         .years-work{
@@ -1699,6 +1700,13 @@
                     speed: 500,
                     appendDots: '.navDotsContents',
                     responsive: [
+                        {
+                            breakpoint: 780,
+                            settings: {
+                                slidesToShow: 4,
+                                slidesToScroll: 1,
+                            }
+                        },
                         {
                             breakpoint: 480,
                             settings: {

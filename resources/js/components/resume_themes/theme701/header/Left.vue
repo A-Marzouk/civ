@@ -1,8 +1,8 @@
 <template>
   <div class="tm701-left">
-    <img class="xl:tw-rounded-full xl:tw-max-w-xs" v-bind:src="logo" />
+    <img class="tw-rounded-full tw-max-w-xs" v-bind:src="logo" />
   </div>
-  </template>
+</template>
 
 <script>
 export default {
@@ -10,6 +10,6 @@ export default {
     return {
       logo: "/images/resume_themes/theme701/profile.png"
     };
-  },
-}
+  }
+};
 </script>

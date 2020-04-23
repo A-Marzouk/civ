@@ -47,7 +47,7 @@ class UsersController extends Controller
 
         $user = User::findOrFail($request->id);
 
-        $user->update($request->toArray());
+        $user->update($request->only(['username', 'name' , 'email']));
 
         return [
             'status' => 'success',

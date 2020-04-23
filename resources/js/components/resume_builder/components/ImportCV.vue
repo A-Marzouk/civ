@@ -3,7 +3,7 @@
 
         <div class="title">
             <img src="/images/resume_builder/import/pic.png" alt="icon">
-            Please upload <span> your cv in PDF or DOCX format</span>
+            Please upload <span> your cv in PDF or DOCX format</span><br/>
         </div>
 
         <div class="import-action-btns">
@@ -59,6 +59,23 @@
         <input type="file" id="uploadFileButton" ref="file" @change="handleFileUpload"
                style="opacity:0; position: absolute; left:-500px;">
 
+
+        <div class="import-from-linkedIn mt-5 NoDecor" v-show="extractedText.length < 1">
+            <div class="title">
+                Or import from LinkedIn
+            </div>
+
+            <div class="input">
+                <input type="text" v-model="linkedInProfile" placeholder="Linkedin profile url">
+                <div class="error" v-show="errors.linkedInUrl">
+                    {{errors.linkedInUrl}}
+                </div>
+            </div>
+
+            <a href="javascript:void(0)" class="btn btn-outline mt-4" @click="importLinkedInProfile" :class="{disabled : importing}">
+                {{importing ? 'Importing.. ' + downloadProgress : 'Import'}}
+            </a>
+        </div>
 
         <div  v-show="extractedText.length > 0" >
 
@@ -347,7 +364,9 @@
                 extractedText: '',
                 originalText: '',
                 arrayOfExtractedText: [],
-                errors: {},
+                errors: {
+                    linkedInUrl:''
+                },
                 freelancerData: {
                     'work_experience': '',
                     'education': '',
@@ -910,6 +929,8 @@
                     "Zhuang, Chuang"
                 ],
                 progress: 0,
+                downloadProgress: 0,
+                importing: false,
                 dropzoneOptions: {
                     url: 'https://httpbin.org/post',
                     thumbnailWidth: 150,
@@ -982,6 +1003,7 @@
                 isAllSelected:false,
                 showFullText: false,
                 showToolTip: false,
+                linkedInProfile:''
             }
         },
         methods: {
@@ -999,13 +1021,54 @@
                 }
 
             },
+
+            importLinkedInProfile() {
+                if(this.importing){
+                    return;
+                }
+               this.importing = true;
+               this.errors = {};
+               if(!this.validateLinkedInUrl()){
+                   this.errors.linkedInUrl = 'Not a valid url';
+                   this.importing = false;
+                   return;
+               }
+
+                axios.post('https://pup-it.herokuapp.com/api/profile',
+                    {
+                        id: this.$uuid.v1(),
+                        link: this.linkedInProfile
+                    },
+                        {
+                            responseType: 'arraybuffer',
+                            onDownloadProgress: progressEvent => {
+                                this.downloadProgress = Math.ceil( (progressEvent.loaded / progressEvent.total) * 100);
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        let blob = new Blob([response.data], {type: 'application/pdf'});
+                        blob.name = 'LinkedIn imported profile';
+                        this.file = blob;
+                        this.uploadPDFFile();
+                        this.downloadProgress = 0 ;
+                        this.importing = false;
+                    }).catch( (error) => {
+                    this.importing = false;
+                });
+            },
+            validateLinkedInUrl(){
+                let url = this.linkedInProfile;
+                let linkedInRegex = /(https?)?:?(\/\/)?(([w]{3}||\w\w)\.)?linkedin.com(\w+:{0,1}\w*@)?(\S+)(:([0-9])+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
+                return url.match(linkedInRegex);
+            },
             uploadPDFFile() {
                 this.errors = [];
                 let formData = new FormData();
                 formData.append('cv', this.file);
                 const config = {
                     onUploadProgress: progressEvent => {
-                        this.progress = (progressEvent.loaded / progressEvent.total) * 100;
+                        this.progress =Math.ceil( (progressEvent.loaded / progressEvent.total) * 100);
                         $('#upload-progress-bar').css('width', this.progress + '%');
                     },
                     headers: {'Content-Type': 'multipart/form-data'}
@@ -1544,9 +1607,43 @@
         white-space: pre-line;
     }
 
+
+    .import-from-linkedIn{
+        .input{
+            input{
+                border: 2px solid blue;
+                max-width: 600px;
+                border-radius: 10px;
+                height: 70px;
+                width: 100%;
+                margin-top: 10px;
+                padding-left: 10px;
+                &:focus{
+                    outline: 0;
+                }
+            }
+        }
+
+        a.disabled{
+            &:hover{
+                cursor: not-allowed;
+            }
+        }
+
+        .btn{
+            max-width: 120px !important;
+            a{
+                &:focus{
+                    outline:none;
+                }
+            }
+        }
+    }
+
     .import-cv-wrapper {
         margin-top: 100px;
         width: 100%;
+
 
         .title {
             display: flex;

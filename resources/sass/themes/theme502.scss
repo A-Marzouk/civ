@@ -12,8 +12,8 @@
     .padleft{
     padding-left: 9rem !important;
     }
-    .avatar .v-image__image {
-    border-radius: 0px 15px 50px 0px ;
+    .avatar .v-responsive .v-image {
+    border-radius: 0px 1rem 2rem 0px ;
     }
     .v-image__image {
     border-radius: 20px;
@@ -142,7 +142,7 @@
     padding-left: 0rem !important;
     }
     #theme502{
-    margin: 0 0;
+    padding: 0 0;
     }
     .tablet:after {
         content: "";
@@ -176,7 +176,7 @@
 
     @media only screen and (max-width: 600px) {
     #theme502{
-    margin: 0 0;
+    padding: 0 0;
     }
     .margleft{
     margin-left: 0rem !important;
