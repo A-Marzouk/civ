@@ -29,3 +29,7 @@ Vue.use(VueCookies);
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
+
+//vue masonry
+import VueMasonry from 'vue-masonry-css'
+Vue.use(VueMasonry)
