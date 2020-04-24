@@ -471,13 +471,13 @@
       <!-- Tab items container -->
     </v-container>
     <!-- Main container -->
-    <v-footer class="font-weight-medium" color="#272B2F" v-show="currentTab==5" height="90">
+    <v-footer class="font-weight-medium" color="#272B2F" v-show="currentTab==5" height="100">
       <v-col cols="12">
         <div class="d-flex">
           <div class>
             <v-card flat tile color="transparent">
               <div class="d-flex flex-no-wrap">
-                <v-avatar tile size="60" color="rgba(252, 65, 60, 0.1)">
+                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
                   <v-img
                     max-width="30"
                     max-height="30"
@@ -492,17 +492,48 @@
             </v-card>
           </div>
           <!-- spectrum -->
-          <div class="mt-n2">
+          <div class="mt-n3">
             <v-card flat tile color="transparent" class="pa-2">
               <v-img class="img-spectrum" src="/images/resume_themes/theme207/spectrum.png"></v-img>
             </v-card>
-            <div class="d-flex justijustify-content-between">
-              <div class="media-duration">0:00</div>
+            <div class="d-flex justify-content-between">
+              <div class="media-duration-footer">0:00</div>
               <v-spacer></v-spacer>
-              <div class="media-duration">5:38</div>
+              <div class="media-duration-footer">5:38</div>
             </div>
           </div>
           <!-- spectrum -->
+          <!-- Audio Controlls -->
+          <div class="ml-12">
+            <div class="d-flex justify-content-between mt-5">
+              <div class="shuffle mx-2 mt-2">
+                <v-img
+                  width="20"
+                  height="auto"
+                  src="/images/resume_themes/theme207/audio/shuffle.png"
+                ></v-img>
+              </div>
+              <div class="mx-10">
+                <!-- previous button -->
+                <v-btn color="#272B2F" class="prev-btn">
+                  <img src="/images/resume_themes/theme207/audio/prev.png" />
+                </v-btn>
+                <v-btn color="#272B2F" class="pause-btn mx-n2" elevation="12">
+                  <img src="/images/resume_themes/theme207/audio/pause.png" />
+                </v-btn>
+                <v-btn color="#272B2F" class="prev-btn">
+                  <img src="/images/resume_themes/theme207/audio/next.png" />
+                </v-btn>
+                <!-- previous button -->
+              </div>
+              <!-- Repeat Button -->
+              <div class="shuffle mt-2">
+                <v-img width="20" height="auto" src="/images/resume_themes/theme207/audio/repeat.png"></v-img>
+              </div>
+              <!-- Repeat Button -->
+            </div>
+          </div>
+          <!-- Audio Controls -->
         </div>
       </v-col>
     </v-footer>
@@ -830,6 +861,39 @@ export default {
   color: #febc2c !important;
   line-height: 18px;
 }
+.media-duration-footer {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.75rem !important;
+  color: #ffffff !important;
+  line-height: 18px;
+}
+.img-spectrum {
+  width: 280px;
+  height: auto;
+}
+.prev-btn {
+  margin-top: -20px;
+  width: 80px !important;
+  height: 60px !important;
+  border-radius: 5px !important;
+  img {
+    width: 40px;
+    height: auto;
+  }
+}
+
+.pause-btn {
+  margin-top: -20px;
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 5px !important;
+  z-index: 2;
+  img {
+    width: 20px;
+    height: auto;
+  }
+}
+
 // media
 // about me
 .about-me-title {
@@ -842,38 +906,6 @@ export default {
   color: #ffffff !important;
 }
 // about me
-//media
-.audio-title {
-  font-family: "Poppins", sans-serif !important;
-  line-height: 27px;
-}
-.audio-duration {
-  font-family: "Poppins", sans-serif !important;
-  color: rgba(88, 67, 190, 0.55) !important;
-  font-size: 0.75rem !important;
-}
-.video-duration {
-  font-family: Poppins;
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-  font-size: 12px !important;
-  border-radius: 3px;
-}
-
-.img-spectrum {
-  width: 300px;
-  height: auto;
-}
-.video-play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  img {
-    width: 16px;
-  }
-}
 
 // Mobile version
 .custom-toolbar-title-mobile {
