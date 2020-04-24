@@ -110,11 +110,11 @@
           >Software</div>
         </div>
         <div class="skills-icons-bar" id="style-1">
-          <img class="icon" src="/images/resume_themes/theme4/skills/PS.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Ai.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Lr.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Xd.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Id.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ps.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ai.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/lr.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/xd.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/id.png" alt="skill-icon" />
         </div>
       </div>
       <!-- All tab items -->

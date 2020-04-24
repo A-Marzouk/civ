@@ -392,6 +392,7 @@
                                         >PHP</v-card-title>
                                         <div class="ml-3">
                                           <v-progress-linear
+                                            tile
                                             style="border:3px solid #272B2F; border-radius:12px;"
                                             class="custom-progress-bar"
                                             color="#eeeeee"
@@ -420,41 +421,29 @@
                 <v-tab-item>
                   <v-card flat color="transparent" tile>
                     <v-row>
-                      <v-col cols="12">
-                        <!-- First column -->
-                        <div class="d-flex">
-                          <div class="p-2" v-for="n in 4" :key="n">
-                            <v-card class="pa-5 card-education" hover color="#272B2F">
-                              <div class="d-flex flex-no-wrap justify-space-between">
-                                <v-avatar
-                                  class="mt-6"
-                                  tile
-                                  size="100"
-                                  height="120"
-                                  color="rgba(252, 65, 60, 0.1)"
-                                >
-                                  <v-img
-                                    max-width="50"
-                                    max-height="50"
-                                    src="/images/resume_themes/theme207/tabs/active/3.png"
-                                  ></v-img>
-                                </v-avatar>
-                                <div>
-                                  <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
-                                  <v-card-subtitle
-                                    class="education-subtitle"
-                                  >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
-                                  <v-card-subtitle
-                                    class="education-session mt-n6"
-                                    align="right"
-                                  >2010-2013</v-card-subtitle>
-                                </div>
+                      <template v-for="n in 4">
+                        <v-col md="3" :key="n">
+                          <v-card class="pa-5 card-education" hover color="#272B2F">
+                            <div class="d-flex flex-no-wrap justify-content-center">
+                              <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
+                                <v-img
+                                  max-width="30"
+                                  max-height="30"
+                                  src="/images/resume_themes/theme207/icons/play.png"
+                                ></v-img>
+                              </v-avatar>
+                              <div class="flex-fill mt-n5">
+                                <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
+                                <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
+                                <v-card-subtitle class="media-duration mt-n7">1:05:00</v-card-subtitle>
                               </div>
-                            </v-card>
-                          </div>
-                        </div>
-                        <!-- First Column -->
-                      </v-col>
+                            </div>
+                          </v-card>
+                          <!-- Video Card -->
+
+                          <!-- Video Card -->
+                        </v-col>
+                      </template>
                     </v-row>
                   </v-card>
                 </v-tab-item>
@@ -481,21 +470,78 @@
         </v-row>
       </v-container>
       <!-- Tab items container -->
-
-      <v-card height="50" v-show="currentTab==5" tile>
-        <v-footer absolute class="font-weight-medium" color="#272B2F">
-          <v-col class="text-center" cols="12">
-            <div class="d-flex">
-              <div class="p-2">Avatar</div>
-              <div class="p-2">Audio Name</div>
-              <div class="p-2">Avatar</div>
-              <div class="p-2">Player Controls</div>
-            </div>
-          </v-col>
-        </v-footer>
-      </v-card>
     </v-container>
     <!-- Main container -->
+    <v-footer class="font-weight-medium" color="#272B2F" v-show="currentTab==5" height="100">
+      <v-col cols="12">
+        <div class="d-flex">
+          <div class>
+            <v-card flat tile color="transparent">
+              <div class="d-flex flex-no-wrap">
+                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
+                  <v-img
+                    max-width="30"
+                    max-height="30"
+                    src="/images/resume_themes/theme207/icons/play.png"
+                  ></v-img>
+                </v-avatar>
+                <div class="mt-n5">
+                  <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
+                  <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
+                </div>
+              </div>
+            </v-card>
+          </div>
+          <!-- spectrum -->
+          <div class="mt-n3">
+            <v-card flat tile color="transparent" class="pa-2">
+              <v-img class="img-spectrum" src="/images/resume_themes/theme207/spectrum.png"></v-img>
+            </v-card>
+            <div class="d-flex justify-content-between">
+              <div class="media-duration-footer">0:00</div>
+              <v-spacer></v-spacer>
+              <div class="media-duration-footer">5:38</div>
+            </div>
+          </div>
+          <!-- spectrum -->
+          <!-- Audio Controlls -->
+          <div class="ml-12">
+            <div class="d-flex justify-content-between mt-5">
+              <div class="shuffle mx-2 mt-2">
+                <v-img
+                  width="20"
+                  height="auto"
+                  src="/images/resume_themes/theme207/audio/shuffle.png"
+                ></v-img>
+              </div>
+              <div class="mx-10">
+                <!-- previous button -->
+                <v-btn color="#272B2F" class="prev-btn">
+                  <img src="/images/resume_themes/theme207/audio/prev.png" />
+                </v-btn>
+                <v-btn color="#272B2F" class="pause-btn mx-n2" elevation="12">
+                  <img src="/images/resume_themes/theme207/audio/pause.png" />
+                </v-btn>
+                <v-btn color="#272B2F" class="prev-btn">
+                  <img src="/images/resume_themes/theme207/audio/next.png" />
+                </v-btn>
+                <!-- previous button -->
+              </div>
+              <!-- Repeat Button -->
+              <div class="shuffle mt-2">
+                <v-img
+                  width="20"
+                  height="auto"
+                  src="/images/resume_themes/theme207/audio/repeat.png"
+                ></v-img>
+              </div>
+              <!-- Repeat Button -->
+            </div>
+          </div>
+          <!-- Audio Controls -->
+        </div>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
@@ -673,6 +719,7 @@ export default {
   text-transform: capitalize !important;
   border-radius: 5px !important;
   width: 200px;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   @media screen and (max-width: 1024px) {
     width: 120px;
   }
@@ -687,6 +734,7 @@ export default {
   max-width: 36px !important;
   height: 51px !important;
   border-radius: 5px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     min-width: 45px !important;
@@ -696,8 +744,6 @@ export default {
     height: 30px !important;
     width: 30px !important;
     border-radius: 5px;
-    box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
-      -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
   }
 }
 // Tabs
@@ -798,6 +844,64 @@ export default {
   border-radius: 12px !important;
 }
 // Skill tab
+// media
+.media-title {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 0.9rem !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  line-height: 30px !important;
+}
+
+.media-subtitle {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.75rem !important;
+  color: #ffffff !important;
+  line-height: 18px;
+}
+
+.media-duration {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.75rem !important;
+  color: #febc2c !important;
+  line-height: 18px;
+}
+.media-duration-footer {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.75rem !important;
+  color: #ffffff !important;
+  line-height: 18px;
+}
+.img-spectrum {
+  width: 280px;
+  height: auto;
+}
+.prev-btn {
+  margin-top: -20px;
+  width: 80px !important;
+  height: 60px !important;
+  border-radius: 5px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  img {
+    width: 40px;
+    height: auto;
+  }
+}
+
+.pause-btn {
+  margin-top: -20px;
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 5px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  z-index: 2;
+  img {
+    width: 20px;
+    height: auto;
+  }
+}
+
+// media
 // about me
 .about-me-title {
   font-family: "Poppins", sans-serif !important;
@@ -809,39 +913,6 @@ export default {
   color: #ffffff !important;
 }
 // about me
-//media
-.audio-title {
-  font-family: "Poppins", sans-serif !important;
-  line-height: 27px;
-}
-.audio-duration {
-  font-family: "Poppins", sans-serif !important;
-  color: rgba(88, 67, 190, 0.55) !important;
-  font-size: 0.75rem !important;
-}
-.video-duration {
-  font-family: Poppins;
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-  font-size: 12px !important;
-  border-radius: 3px;
-}
-
-.play-btn {
-  img {
-    width: 16px;
-  }
-}
-.video-play-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  img {
-    width: 16px;
-  }
-}
 
 // Mobile version
 .custom-toolbar-title-mobile {
