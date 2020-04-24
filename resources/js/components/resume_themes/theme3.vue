@@ -755,6 +755,9 @@
                 .media-btns {
                     display: flex;
                     margin-left: 27px;
+                    @media screen and (max-width: 599px){
+                        margin-left: 128px;
+                    }
                     .audio-btn {
                         margin-right: 27px;
                         @media only screen and (max-width: 765px) {
