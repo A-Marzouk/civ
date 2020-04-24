@@ -26,29 +26,31 @@
                                 </div>
                             </v-col>
                             <v-col lg="3" md="12" sm="12" class="rateSection">
-                                <v-row class="rate-wrap">
-                                    <v-col lg="4" sm="5" cols="5">
-                                        <span class="price">
-                                            ${{currentPayment.salary}}
-                                        </span>
-                                        <span class="text_price">
-                                            Rate
-                                        </span>
-                                    </v-col>
-                                    <v-col lg="6" sm="5" cols="7">
-                                        <span class="hours">
-                                               {{currentAvailability.available_hours}} hrs
-                                        </span>
-                                        <span class="text_hours">
-                                            Availability
-                                        </span>
-                                    </v-col>
-                                </v-row>
-                                <v-row class="hire-wrap">
-                                    <v-col lg="10" sm="12" cols="12">
-                                        <a href="#" class="btn-action" @click.prevent="dialogHireme = true">Hire Me</a>
-                                    </v-col>    
-                                </v-row>                      
+                                <v-container class="hold-rates">
+                                    <v-row class="rate-wrap" no-gutters>
+                                        <v-col lg="4" sm="auto" cols="5">
+                                            <span class="price">
+                                                ${{currentPayment.salary}}
+                                            </span>
+                                            <span class="text_price">
+                                                Rate
+                                            </span>
+                                        </v-col>
+                                        <v-col lg="6" sm="auto" cols="7">
+                                            <span class="hours">
+                                                {{currentAvailability.available_hours}} hrs
+                                            </span>
+                                            <span class="text_hours">
+                                                Availability
+                                            </span>
+                                        </v-col>
+                                        <v-col lg="auto" sm="auto" cols="12" class="hireme-hold">
+                                            <a href="#" class="btn-action" @click.prevent="dialogHireme = true">Hire Me</a>
+                                        </v-col> 
+                                    </v-row>                          
+                                </v-container>
+
+                                                    
                             </v-col>
                         </v-row>
                     </div>
@@ -718,7 +720,17 @@ export default {
                 margin-top: 15px;
                 flex-flow: nowrap;
                 min-height: 69px;
-                padding: 0 30px 0 0;
+                padding: 0 28px 0 0;
+
+                .hold-rates{
+                    max-width: 50%;
+                    justify-content: flex-end;
+                    margin: 0 !important;
+                    padding: 0;
+                    align-items: center;
+
+                    
+                }
 
                 .rate-wrap{
 
@@ -764,15 +776,6 @@ export default {
                         .text_hours{
                             font-size: 0px;
                         }
-                    }
-                    
-                }
-                .hire-wrap{
-                    margin-top: 0px !important;
-
-                    .col-12{
-                        display: flex;
-                        justify-content: flex-end;
                     }
                     
                 }
@@ -966,7 +969,15 @@ export default {
         justify-content: flex-end;
         display: flex;
         align-items: center;
+
+        .hold-rates{
+            padding: 0;
+        }
+
+
         .rate-wrap{
+
+            justify-content: flex-end;
 
             .col-5{
                 display: flex;
@@ -1004,6 +1015,10 @@ export default {
             }
         }
 
+        .hireme-hold{
+            margin-top: 1.5em;
+        }
+
         >.row{
             justify-content: flex-end;
 
@@ -1011,6 +1026,11 @@ export default {
                 align-items: center;
                 justify-content: center;
                 display: flex;
+            }
+        }
+        @media screen and (max-width: 769px) {
+            .hireme-hold{
+                margin: 0;
             }
         }
 
@@ -1021,6 +1041,8 @@ export default {
                 }
             }
         }
+
+        
     }
 
     
@@ -1354,12 +1376,17 @@ export default {
             }
 
             .box-photo{
-                margin-bottom: 10px;
-                max-height: 372px;
-                padding: 10px;
+                max-height: 530px;
+                max-width: 670px;
+                padding: 0px;
+                background: transparent;
+                box-shadow: none;
+                margin: 0px auto 10px auto;
 
                 img{
                     width: 100%;
+                    object-fit: contain;
+                    object-position: center;
                 }
             }
         }

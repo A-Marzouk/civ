@@ -68,6 +68,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/work-experience/{id}', 'API\WorkExController@show');
     //create new workExperience
     Route::post('/work-experience', 'API\WorkExController@store');
+    //create many workExperience
+    Route::post('/work-experience-many', 'API\WorkExController@storeMany');
     //update a workExperience
     Route::put('/work-experience', 'API\WorkExController@store');
     //delete workExperience
@@ -177,5 +179,5 @@ Route::group(['prefix' => 'admin/'], function () {
 
 
 // API users routes
-Route::get('user/{id}', 'API\UsersController@user');
+Route::get('user', 'API\UsersController@user');
 

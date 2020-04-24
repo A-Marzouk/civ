@@ -3,7 +3,7 @@
 
         <div class="title">
             <img src="/images/resume_builder/import/pic.png" alt="icon">
-            Please upload <span> your cv in PDF or DOCX format</span>
+            Please upload <span> your cv in PDF or DOCX format</span><br/>
         </div>
 
         <div class="import-action-btns">
@@ -60,6 +60,23 @@
                style="opacity:0; position: absolute; left:-500px;">
 
 
+        <div class="import-from-linkedIn mt-5 NoDecor" v-show="extractedText.length < 1">
+            <div class="title">
+                Or import from LinkedIn
+            </div>
+
+            <div class="input">
+                <input type="text" v-model="linkedInProfile" placeholder="Linkedin profile url">
+                <div class="error" v-show="errors.linkedInUrl">
+                    {{errors.linkedInUrl}}
+                </div>
+            </div>
+
+            <a href="javascript:void(0)" class="btn btn-outline mt-4" @click="importLinkedInProfile" :class="{disabled : importing}">
+                {{importing ? 'Importing.. ' + downloadProgress : 'Import'}}
+            </a>
+        </div>
+
         <div  v-show="extractedText.length > 0" >
 
             <div class="import-results">
@@ -80,9 +97,9 @@
                             <div class="import-section-title">
                                 <span @click="toggleSelectionOfSection(section)">{{section.title.replace('_',' ')}}</span>
                                 <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
-                                     @click="openEdit(section)" v-show="!section.edited">
+                                     @click="openEdit(section)" v-show="!section.edited && section.title !== 'work_experience'">
                                 <img src="/images/resume_builder/import/exit.svg" alt="close icon"
-                                     @click="closeEdit(section)" v-show="section.edited">
+                                     @click="closeEdit(section)" v-show="section.edited && section.title !== 'work_experience'">
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'profile'">
@@ -121,7 +138,7 @@
                                 <div class="items" v-else>
                                     <div class="content-item">
                                         <div class="bold"> About:</div>
-                                        <div> {{freelancerData.about ? freelancerData.about : "Couldn't find about information"}}
+                                        <div> {{personalInfo.about ? personalInfo.about : "Couldn't find about information"}}
                                         </div>
                                     </div>
                                 </div>
@@ -158,39 +175,58 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'work_experience'">
-                                <div class="edit-inputs" v-if="section.edited">
-                                    <input class='shorter' type="text" id="companyName" placeholder="Company name" v-model="work_experience.company_name">
-                                    <div class="error" v-if="errors.company_name">
-                                        {{ Array.isArray(errors.company_name) ? errors.company_name[0] : errors.company_name}}
-                                    </div>
-                                    <input type="text" id="jobTitle" placeholder="Job title" v-model="work_experience.job_title">
-                                    <div class="error" v-if="errors.job_title">
-                                        {{ Array.isArray(errors.job_title) ? errors.job_title[0] : errors.job_title}}
-                                    </div>
-                                    <textarea type="text" id="description" placeholder="Description" v-model="work_experience.description"></textarea>
-                                    <div class="error" v-if="errors.description">
-                                        {{ Array.isArray(errors.description) ? errors.description[0] : errors.description}}
-                                    </div>
-                                    <input type="text" id="website" placeholder="Website" v-model="work_experience.website">
-                                    <div class="error" v-if="errors.website">
-                                        {{ Array.isArray(errors.website) ? errors.website[0] : errors.website}}
-                                    </div>
-                                    <input type="date" id="dateFromWork" v-model="work_experience.date_from">
-                                    <div class="error" v-if="errors.date_from">
-                                        {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                                    </div>
-                                    <label for="dateTo" class="light d-flex align-items-center mt-4">
-                                        <input type="checkbox" class="checkbox" v-model="work_experience.present"> I currently work here.
-                                    </label>
-                                    <input type="date" id="dateToWork" v-model="work_experience.date_to" :disabled="work_experience.present">
-                                    <div class="error" v-if="errors.date_to">
-                                        {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                <div class="edit-inputs">
+                                    <div v-for="work in work_experience">
+                                        <div class="d-flex align-items-center">
+                                            <div style="font-size: 2em">
+                                                {{work.job_title}}
+                                            </div>
+                                            <div class="ml-4">
+                                                <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
+                                                     @click="editedWork = work.uuid" v-show="editedWork !== work.uuid">
+                                                <img src="/images/resume_builder/import/exit.svg" alt="close icon"
+                                                     @click="editedWork = 0" v-show="editedWork === work.uuid">
+                                            </div>
+                                        </div>
+
+                                       <div v-if="editedWork === work.uuid" class="pt-3 pb-4">
+                                           <input class='shorter' type="text" placeholder="Company name" v-model="work.company_name">
+                                           <div class="error" v-if="errors.company_name">
+                                               {{ Array.isArray(errors.company_name) ? errors.company_name[0] : errors.company_name}}
+                                           </div>
+                                           <input type="text"  placeholder="Job title" v-model="work.job_title">
+                                           <div class="error" v-if="errors.job_title">
+                                               {{ Array.isArray(errors.job_title) ? errors.job_title[0] : errors.job_title}}
+                                           </div>
+                                           <textarea type="text"  placeholder="Description" v-model="work.description"></textarea>
+                                           <div class="error" v-if="errors.description">
+                                               {{ Array.isArray(errors.description) ? errors.description[0] : errors.description}}
+                                           </div>
+                                           <input type="text" placeholder="Website" v-model="work.website">
+                                           <div class="error" v-if="errors.website">
+                                               {{ Array.isArray(errors.website) ? errors.website[0] : errors.website}}
+                                           </div>
+                                           <input type="date" v-model="work.date_from">
+                                           <div class="error" v-if="errors.date_from">
+                                               {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                                           </div>
+                                           <label for="dateTo" class="light d-flex align-items-center mt-4">
+                                               <input type="checkbox" class="checkbox" v-model="work.present"> I currently work here.
+                                           </label>
+                                           <input type="date"  v-model="work.date_to" :disabled="work.present">
+                                           <div class="error" v-if="errors.date_to">
+                                               {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                           </div>
+                                       </div>
                                     </div>
                                 </div>
-                                <div class="items" v-else>
+                                <div class="items">
                                     <div class="content-item">
                                         <div class="bold"></div>
-                                        <div> {{work_experience.job_title.length > 0 ? work_experience.job_title : "Couldn't find work experience"}}
+                                        <div>
+                                            <div v-if="work_experience.length < 1">
+                                                Couldn't find work experience
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -298,9 +334,9 @@
             <div class="import-action-btns no-background mb-5">
                 <div class="d-flex justify-space-between">
                    <div class="d-flex">
-                       <a class="btn btn-outline short" href="javascript:void(0)" @click="importAvailableData">
+                       <a class="btn btn-outline short" href="javascript:void(0)" @click="importAvailableData" :class="{disabled : importingExtractedData}">
                            <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                           Import
+                           {{importingExtractedData ? 'Importing.. ' : 'Import'}}
                        </a>
                        <div class="auto-import-btn NoDecor">
                            <a href="javascript:void(0)" @click="toggleSelectAll">
@@ -347,7 +383,9 @@
                 extractedText: '',
                 originalText: '',
                 arrayOfExtractedText: [],
-                errors: {},
+                errors: {
+                    linkedInUrl:''
+                },
                 freelancerData: {
                     'work_experience': '',
                     'education': '',
@@ -376,16 +414,8 @@
                   present: false,
                   user_id: this.$store.state.user.id
                 },
-                work_experience:{
-                    company_name:'not-set',
-                    job_title:'',
-                    description:'',
-                    website:'not-set',
-                    date_from:'2020-04-04',
-                    date_to:'2020-04-04',
-                    present:false,
-                    user_id: this.$store.state.user.id
-                },
+                work_experience:[],
+                editedWork:0,
                 countryList: [
                     "Afghanistan",
                     "Albania",
@@ -910,6 +940,9 @@
                     "Zhuang, Chuang"
                 ],
                 progress: 0,
+                downloadProgress: 0,
+                importing: false,
+                importingExtractedData: false,
                 dropzoneOptions: {
                     url: 'https://httpbin.org/post',
                     thumbnailWidth: 150,
@@ -982,6 +1015,7 @@
                 isAllSelected:false,
                 showFullText: false,
                 showToolTip: false,
+                linkedInProfile:''
             }
         },
         methods: {
@@ -999,13 +1033,54 @@
                 }
 
             },
+
+            importLinkedInProfile() {
+                if(this.importing){
+                    return;
+                }
+               this.importing = true;
+               this.errors = {};
+               if(!this.validateLinkedInUrl()){
+                   this.errors.linkedInUrl = 'Not a valid url';
+                   this.importing = false;
+                   return;
+               }
+
+                axios.post('https://pup-it.herokuapp.com/api/profile',
+                    {
+                        id: this.$uuid.v1(),
+                        link: this.linkedInProfile
+                    },
+                        {
+                            responseType: 'arraybuffer',
+                            onDownloadProgress: progressEvent => {
+                                this.downloadProgress = Math.ceil( (progressEvent.loaded / progressEvent.total) * 100);
+                            },
+                        }
+                    )
+                    .then((response) => {
+                        let blob = new Blob([response.data], {type: 'application/pdf'});
+                        blob.name = 'LinkedIn imported profile';
+                        this.file = blob;
+                        this.uploadPDFFile();
+                        this.downloadProgress = 0 ;
+                        this.importing = false;
+                    }).catch( (error) => {
+                    this.importing = false;
+                });
+            },
+            validateLinkedInUrl(){
+                let url = this.linkedInProfile;
+                let linkedInRegex = /(https?)?:?(\/\/)?(([w]{3}||\w\w)\.)?linkedin.com(\w+:{0,1}\w*@)?(\S+)(:([0-9])+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/ ;
+                return url.match(linkedInRegex);
+            },
             uploadPDFFile() {
                 this.errors = [];
                 let formData = new FormData();
                 formData.append('cv', this.file);
                 const config = {
                     onUploadProgress: progressEvent => {
-                        this.progress = (progressEvent.loaded / progressEvent.total) * 100;
+                        this.progress =Math.ceil( (progressEvent.loaded / progressEvent.total) * 100);
                         $('#upload-progress-bar').css('width', this.progress + '%');
                     },
                     headers: {'Content-Type': 'multipart/form-data'}
@@ -1056,7 +1131,6 @@
             },
             clearFreelancerData() {
                 this.freelancerData = {
-                    'work_experience': [],
                     'education': [],
                     'achievements': [],
                     'hobbies': [],
@@ -1084,22 +1158,16 @@
                         present: false,
                         user_id: this.$store.state.user.id
                 };
-                this.work_experience={
-                        company_name:'not-set',
-                        job_title:'',
-                        description:'',
-                        website:'',
-                        date_from:'2020-04-04',
-                        date_to:'2020-04-04',
-                        present:false,
-                        user_id: this.$store.state.user.id
-                };
+                this.work_experience= [];
             },
             clearAll() {
                 this.clearFreelancerData();
                 this.file = '';
                 this.extractedText = '';
                 this.progress = 0;
+                this.linkedInProfile = '';
+                this.linkedInProfile = '';
+                this.importingExtractedData = false;
             },
             handleFileUpload() {
                 this.file = this.$refs.file.files[0];
@@ -1222,9 +1290,25 @@
 
                 this.searchForEducationText(arrayOfData);
                 this.searchForExperienceText(arrayOfData);
+                this.searchForSummary();
                 this.searchForReferencesText();
 
             },
+
+            searchForSummary(){
+                let summary = this.extractedText.substring(
+                    this.extractedText.lastIndexOf("Summary") + 7,
+                    this.extractedText.lastIndexOf("Experience")
+                );
+
+                this.personalInfo.about = summary;
+
+
+                if(summary.length > 1){
+                    this.sections.forEach( (section) => { section.title === 'summary' ? section.selected = true : ''} );
+                }
+            },
+
             searchForEducationText(arrayOfData) {
 
                 // check if any word of the text line is a country name
@@ -1253,20 +1337,41 @@
                 arrayOfData.forEach( (textLine) => {
                     let possibleWorkTitles = ['developer', 'software engineer', 'designer','junior', 'middle','senior','freelancer'];
                     let cleanTextLine = textLine.replace(/-/g, "");
-
                     for (let i = 0; i < possibleWorkTitles.length; i++) {
-                        let universityNameReg = new RegExp(possibleWorkTitles[i], 'ig');
-                        if (universityNameReg.test(cleanTextLine)) {
-                            this.work_experience.job_title = cleanTextLine;
-                            this.work_experience.description = possibleWorkTitles[i];
-                            break;
+                        let work = {
+                            uuid: this.$uuid.v1(),
+                            company_name:'not-set',
+                            job_title:'',
+                            description:'',
+                            website:'not-set',
+                            date_from:'2020-04-04',
+                            date_to:'2020-04-04',
+                            present:false,
+                            user_id: this.$store.state.user.id
+                        };
+
+                        let jobNameReg = new RegExp(possibleWorkTitles[i], 'ig');
+                        if (jobNameReg.test(cleanTextLine)) {
+                            work.job_title = cleanTextLine;
+                            work.description = possibleWorkTitles[i];
+
+                            let repeated = false;
+                            this.work_experience.forEach((my_work) => {
+                                if(my_work.job_title === cleanTextLine ){
+                                    repeated = true;
+                                }
+                            });
+
+                            if(!repeated){
+                                this.work_experience.push(work);
+                            }
                         }
                     }
 
                 });
 
 
-                if(this.work_experience.job_title.length > 1){
+                if(this.work_experience.length > 1){
                     this.sections.forEach( (section) => { section.title === 'work_experience' ? section.selected = true : ''} );
                 }
             },
@@ -1371,6 +1476,12 @@
 
             // import available Data:
              async importAvailableData(){
+                if(this.importingExtractedData){
+                    return;
+                }
+
+                 this.importingExtractedData = true;
+
                  this.errors = {};
 
                  await this.savePersonalData()
@@ -1491,11 +1602,12 @@
                     return;
                 }
 
-                await axios.post('/api/user/work-experience', this.work_experience )
+                await axios.post('/api/user/work-experience-many', this.work_experience )
                     .then((response) => {
-
+                        this.importingExtractedData = false;
                     })
                     .catch((error) => {
+                        this.importingExtractedData = false;
                         if (typeof error.response.data === 'object') {
                             this.errors = error.response.data.errors;
                         } else {
@@ -1544,9 +1656,43 @@
         white-space: pre-line;
     }
 
+
+    .import-from-linkedIn{
+        .input{
+            input{
+                border: 2px solid blue;
+                max-width: 600px;
+                border-radius: 10px;
+                height: 70px;
+                width: 100%;
+                margin-top: 10px;
+                padding-left: 10px;
+                &:focus{
+                    outline: 0;
+                }
+            }
+        }
+
+        a.disabled{
+            &:hover{
+                cursor: not-allowed;
+            }
+        }
+
+        .btn{
+            max-width: 120px !important;
+            a{
+                &:focus{
+                    outline:none;
+                }
+            }
+        }
+    }
+
     .import-cv-wrapper {
         margin-top: 100px;
         width: 100%;
+
 
         .title {
             display: flex;

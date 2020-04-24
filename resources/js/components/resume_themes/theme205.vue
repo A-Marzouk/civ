@@ -17,7 +17,7 @@
                     <v-card-text>
                       <v-row>
                         <v-col cols="8">
-                          <v-list-item two-line class="">
+                          <v-list-item two-line class="profile-list">
                             <v-list-item-content>
                               <v-list-item-title class="profile-title">
                                 <v-card class="pa-1" flat color="transparent">Carla Pipin Ranga</v-card>
@@ -164,8 +164,8 @@
                           <div class="about-detail">
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                            <br/><br/>
-                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            <br />
+                            <br />I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                           </div>
                         </v-card>
                       </v-col>
@@ -179,7 +179,10 @@
                   <v-card flat color="transparent" align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
-                        <div class="card-columns">
+                        <masonry
+                          :cols="{default: 4, 959: 1, 599: 1}"
+                          :gutter="{default: '30px', 700: '15px'}"
+                        >
                           <v-card
                             v-for="item in portfolioItems"
                             :key="item.id"
@@ -188,11 +191,11 @@
                             flat
                             color="transparent"
                           >
-                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
+                            <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)"></v-img>
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
                             <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
                           </v-card>
-                        </div>
+                        </masonry>
                       </v-col>
                     </v-row>
                   </v-card>
@@ -415,8 +418,8 @@ export default {
         },
         {
           id: 5,
-          title: "",
-          subtitle: ""
+          title: "Made market Concept",
+          subtitle: "Made market concept"
         },
 
         {
@@ -503,17 +506,6 @@ export default {
 @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
-.card-columns {
-  @media screen and (min-width: 960px) {
-    column-count: 4;
-  }
-  @media screen and (max-width: 959px) {
-    column-count: 1;
-  }
-  @media screen and (max-width: 599px) {
-    column-count: 1;
-  }
-}
 /* Shapes */
 .triangle-top-left {
   left: 0;
@@ -530,6 +522,9 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 23rem;
+  }
   @media screen and (max-width: 959px) {
     width: 23rem;
     height: 15.75rem;
@@ -578,6 +573,12 @@ export default {
 }
 /* Shapes */
 
+.profile-list {
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    margin-left: -32px;
+  }
+}
+
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
@@ -594,6 +595,9 @@ export default {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 0.6rem !important;
+  }
   @media screen and(max-width:599px) {
     font-size: 0.5rem !important;
   }
@@ -725,7 +729,7 @@ export default {
     font-size: 1.125rem !important;
     line-height: 25px !important;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 0.875rem !important;
   }
 }
@@ -742,11 +746,17 @@ export default {
   font-weight: bold;
   margin-bottom: -20px;
   margin-top: -20px;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 12px !important;
+  }
 }
 .custom-portfolio-subtitle {
   font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 10px;
+  }
 }
 // .........................Desktop Portfolio...........................
 
