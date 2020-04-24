@@ -32,9 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="menu-icon">
-                        <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
-                    </div>
+                    
                 </div>
                
                 <div class="right d-flex align-items-center justify-content-between hideOnPhone">
