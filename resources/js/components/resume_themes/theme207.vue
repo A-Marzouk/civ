@@ -420,41 +420,29 @@
                 <v-tab-item>
                   <v-card flat color="transparent" tile>
                     <v-row>
-                      <v-col cols="12">
-                        <!-- First column -->
-                        <div class="d-flex">
-                          <div class="p-2" v-for="n in 4" :key="n">
-                            <v-card class="pa-5 card-education" hover color="#272B2F">
-                              <div class="d-flex flex-no-wrap justify-space-between">
-                                <v-avatar
-                                  class="mt-6"
-                                  tile
-                                  size="100"
-                                  height="120"
-                                  color="rgba(252, 65, 60, 0.1)"
-                                >
-                                  <v-img
-                                    max-width="50"
-                                    max-height="50"
-                                    src="/images/resume_themes/theme207/tabs/active/3.png"
-                                  ></v-img>
-                                </v-avatar>
-                                <div>
-                                  <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
-                                  <v-card-subtitle
-                                    class="education-subtitle"
-                                  >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
-                                  <v-card-subtitle
-                                    class="education-session mt-n6"
-                                    align="right"
-                                  >2010-2013</v-card-subtitle>
-                                </div>
+                      <template v-for="n in 4">
+                        <v-col md="3" :key="n">
+                          <v-card class="pa-5 card-education" hover color="#272B2F">
+                            <div class="d-flex flex-no-wrap justify-content-center">
+                              <v-avatar tile size="80" color="rgba(252, 65, 60, 0.1)">
+                                <v-img
+                                  max-width="30"
+                                  max-height="30"
+                                  src="/images/resume_themes/theme207/icons/play.png"
+                                ></v-img>
+                              </v-avatar>
+                              <div>
+                                <v-card-title class="media-title mb-2">AUDIO_04/08/2020</v-card-title>
+                                <v-card-subtitle class="education-subtitle"></v-card-subtitle>
                               </div>
-                            </v-card>
-                          </div>
-                        </div>
-                        <!-- First Column -->
-                      </v-col>
+                            </div>
+                          </v-card>
+
+                          <v-card class="pa-5 card-education" hover color="#272B2F" v-if="n==2">
+                            2nd Card
+                          </v-card>
+                        </v-col>
+                      </template>
                     </v-row>
                   </v-card>
                 </v-tab-item>
@@ -798,6 +786,18 @@ export default {
   border-radius: 12px !important;
 }
 // Skill tab
+// media
+.media-title {
+  font-family: "Roboto", sans-serif !important;
+  font-size: 0.9rem !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+  line-height: 30px !important;
+  img {
+    width: 20px;
+  }
+}
+// media
 // about me
 .about-me-title {
   font-family: "Poppins", sans-serif !important;
