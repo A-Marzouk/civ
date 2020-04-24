@@ -49,6 +49,7 @@
                 class="d-flex flex-row hour-card mt-0 mt-sm-n5 mt-md-n10"
                 color="transparent"
                 flat
+                tile
               >
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
@@ -56,12 +57,12 @@
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
-                      <v-card color="transparent" flat class="pa-0 ma-0">
+                      <v-card color="transparent" flat class="pa-0 ma-0" tile>
                         <span class="hour-rate">Hour Rate</span>
                       </v-card>
                     </v-list-item-subtitle>
                     <v-list-item-subtitle>
-                      <v-card color="transparent" flat>
+                      <v-card color="transparent" flat tile>
                         <span class="rate">20</span>
                       </v-card>
                     </v-list-item-subtitle>
@@ -77,12 +78,12 @@
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
-                      <v-card color="transparent" flat>
+                      <v-card color="transparent" flat tile>
                         <span class="hour-rate">Weekly availibility</span>
                       </v-card>
                     </v-list-item-subtitle>
                     <v-list-item-subtitle>
-                      <v-card color="transparent" class="pa-0 ma-0" flat>
+                      <v-card color="transparent" class="pa-0 ma-0" flat tile>
                         <span class="rate">250</span>
                       </v-card>
                     </v-list-item-subtitle>

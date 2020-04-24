@@ -232,7 +232,7 @@
 
                           <!-- Only shows in desktop  -->
                           <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
-                            <v-card flat class="card-hire-me mt-md-3" color="rgba(37, 0, 0, 0.1)">
+                            <v-card flat tile class="card-hire-me mt-md-3" color="rgba(37, 0, 0, 0.1)">
                               <v-card-text>
                                 <v-row no-gutters align="center">
                                   <!-- for desktop -->
