@@ -16,7 +16,7 @@ export default {
 
 	data: () => {
 		return {
-			currentTab: "media"
+			currentTab: "portfolio"
 		};
 	}
 };
