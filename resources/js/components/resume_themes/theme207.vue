@@ -528,7 +528,11 @@
               </div>
               <!-- Repeat Button -->
               <div class="shuffle mt-2">
-                <v-img width="20" height="auto" src="/images/resume_themes/theme207/audio/repeat.png"></v-img>
+                <v-img
+                  width="20"
+                  height="auto"
+                  src="/images/resume_themes/theme207/audio/repeat.png"
+                ></v-img>
               </div>
               <!-- Repeat Button -->
             </div>
@@ -714,6 +718,7 @@ export default {
   text-transform: capitalize !important;
   border-radius: 5px !important;
   width: 200px;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   @media screen and (max-width: 1024px) {
     width: 120px;
   }
@@ -728,6 +733,7 @@ export default {
   max-width: 36px !important;
   height: 51px !important;
   border-radius: 5px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     min-width: 45px !important;
@@ -737,8 +743,6 @@ export default {
     height: 30px !important;
     width: 30px !important;
     border-radius: 5px;
-    box-shadow: 1.5px 1.5px 3px rgba(35, 35, 35, 0.4),
-      -1px -1px 3px rgba(206, 206, 206, 0.24) !important;
   }
 }
 // Tabs
@@ -782,6 +786,7 @@ export default {
 //education
 .card-education {
   border-radius: 9px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
 }
 .education-title {
   font-family: "Roboto", sans-serif !important;
@@ -876,6 +881,7 @@ export default {
   width: 80px !important;
   height: 60px !important;
   border-radius: 5px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   img {
     width: 40px;
     height: auto;
@@ -887,6 +893,7 @@ export default {
   width: 70px !important;
   height: 70px !important;
   border-radius: 5px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   z-index: 2;
   img {
     width: 20px;
