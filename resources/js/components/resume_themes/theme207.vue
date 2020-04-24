@@ -469,29 +469,43 @@
         </v-row>
       </v-container>
       <!-- Tab items container -->
-
-      <v-card height="100" v-show="currentTab==5" tile>
-        <v-footer absolute class="font-weight-medium" color="#272B2F">
-          <v-col class="text-center" cols="12">
-            <div class="d-flex">
-              <div class="p-2">
-                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
+    </v-container>
+    <!-- Main container -->
+    <v-footer class="font-weight-medium" color="#272B2F" v-show="currentTab==5" height="90">
+      <v-col cols="12">
+        <div class="d-flex">
+          <div class>
+            <v-card flat tile color="transparent">
+              <div class="d-flex flex-no-wrap">
+                <v-avatar tile size="60" color="rgba(252, 65, 60, 0.1)">
                   <v-img
                     max-width="30"
                     max-height="30"
                     src="/images/resume_themes/theme207/icons/play.png"
                   ></v-img>
                 </v-avatar>
+                <div class="mt-n5">
+                  <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
+                  <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
+                </div>
               </div>
-              <div class="p-2">Audio Name</div>
-              <div class="p-2">Avatar</div>
-              <div class="p-2">Player Controls</div>
+            </v-card>
+          </div>
+          <!-- spectrum -->
+          <div class="mt-n2">
+            <v-card flat tile color="transparent" class="pa-2">
+              <v-img class="img-spectrum" src="/images/resume_themes/theme207/spectrum.png"></v-img>
+            </v-card>
+            <div class="d-flex justijustify-content-between">
+              <div class="media-duration">0:00</div>
+              <v-spacer></v-spacer>
+              <div class="media-duration">5:38</div>
             </div>
-          </v-col>
-        </v-footer>
-      </v-card>
-    </v-container>
-    <!-- Main container -->
+          </div>
+          <!-- spectrum -->
+        </div>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
@@ -847,10 +861,9 @@ export default {
   border-radius: 3px;
 }
 
-.play-btn {
-  img {
-    width: 16px;
-  }
+.img-spectrum {
+  width: 300px;
+  height: auto;
 }
 .video-play-btn {
   position: absolute;
