@@ -341,16 +341,16 @@ export default {
     text-transform: uppercase;
     color: rgba(1, 162, 254, 0.05);
     transform: rotate(-90deg);
-    @media screen and (min-width: 960px) and (max-width: 1100px){
-      margin-right:-30%;
+    @media screen and (min-width: 960px) and (max-width: 1100px) {
+      margin-right: -30%;
     }
-    @media screen and (min-width: 600px) and (max-width: 959px){
-      margin-top:90%;
-      margin-right:-40%;
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      margin-top: 90%;
+      margin-right: -40%;
     }
-    @media screen and (max-width: 599px){
+    @media screen and (max-width: 599px) {
       margin-top: 150%;
-      margin-right: -80%; 
+      margin-right: -80%;
     }
   }
   .watermark-text-education {
@@ -367,18 +367,17 @@ export default {
     color: rgba(1, 162, 254, 0.05);
     transform: rotate(-90deg);
 
-    @media screen and (min-width: 960px) and (max-width: 1100px){
+    @media screen and (min-width: 960px) and (max-width: 1100px) {
       margin-right: -39%;
     }
-    @media screen and (min-width: 600px) and (max-width: 959px){
-      margin-top:90%;
-      margin-right:-53%;
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      margin-top: 90%;
+      margin-right: -53%;
     }
-    @media screen and (max-width: 599px){
+    @media screen and (max-width: 599px) {
       margin-top: 165%;
-      margin-right: -98%; 
+      margin-right: -98%;
     }
-    
   }
   //watermark text
   .mainThemeBar {
@@ -669,7 +668,11 @@ export default {
           width: 418px !important;
           height: 400px;
           border-radius: 30px;
-          @media only screen and (max-width: 765px) {
+          @media screen and (min-width: 760px) and (max-width: 1280px) {
+            width: 532px !important;
+            height: auto;
+          }
+          @media only screen and (max-width: 759px) {
             width: 177px !important;
             height: 139px;
           }
@@ -850,8 +853,8 @@ export default {
         .portfolioSlides {
           margin-top: 0;
           img {
-            width: 450px !important;
-            height: 400px;
+            width: 512px !important;
+            height: auto;
           }
 
           .slide-text {
