@@ -392,6 +392,7 @@
                                         >PHP</v-card-title>
                                         <div class="ml-3">
                                           <v-progress-linear
+                                            tile
                                             style="border:3px solid #272B2F; border-radius:12px;"
                                             class="custom-progress-bar"
                                             color="#eeeeee"
@@ -786,7 +787,6 @@ export default {
 //education
 .card-education {
   border-radius: 9px !important;
-  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
 }
 .education-title {
   font-family: "Roboto", sans-serif !important;
