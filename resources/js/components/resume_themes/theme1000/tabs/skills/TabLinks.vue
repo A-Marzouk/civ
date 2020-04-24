@@ -1,6 +1,6 @@
 <template>
 	<div class="tw-flex tw-overflow-y-hidden tab-links">
-		<TabLink v-for="(label, index) in tabsLabel" :label="label" :isActive="isLinkActive(label)" :key="index" />
+		<TabLink v-for="(label, index) in tabsLabel" :label="label" :isActive="isLinkActive(label)" :key="index" @click="$emit('activeLabelChanged', $event)" />
 	</div>
 </template>
 
@@ -23,11 +23,9 @@ export default {
 
 	components: { TabLink },
 
-	computed: {
-		isLinkActive() {
-			return label => {
-				return label.toLowerCase() == this.activeLabel.toLowerCase();
-			};
+	methods: {
+		isLinkActive(label) {
+			return label.toLowerCase() == this.activeLabel.toLowerCase();
 		}
 	}
 };

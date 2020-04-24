@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-font-poppins tw-text-sm tw-leading-21px tw-whitespace-no-wrap tw-mr-5 tw-border-b tab-link" :class="{'tw-border-black': isActive, ' tw-border-white': !isActive}">
+	<div class="tw-font-poppins tw-text-sm tw-leading-21px tw-whitespace-no-wrap tw-mr-5 tw-border-b tab-link" :class="{'tw-border-black': isActive, ' tw-border-white': !isActive}" @click="$emit('click', label)">
 		{{ label }}
 	</div>
 </template>
