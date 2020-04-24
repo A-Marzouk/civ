@@ -110,11 +110,11 @@
           >Software</div>
         </div>
         <div class="skills-icons-bar" id="style-1">
-          <img class="icon" src="/images/resume_themes/theme4/skills/PS.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Ai.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Lr.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Xd.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Id.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ps.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ai.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/lr.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/xd.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/id.png" alt="skill-icon" />
         </div>
       </div>
       <!-- All tab items -->
@@ -130,11 +130,15 @@
         <div class="work mt-5" v-show="activeTab === 'work'">
           <div class="container" style="width:100%">
             <div class="row">
+              <div class="watermark-text-work">Work</div>
               <div
                 class="col-md-12 col-sm-10 col-xs-10 mx-auto work-column"
                 v-for="n in 3"
                 :key="n"
               >
+                <!-- Watermark text -->
+
+                <!-- Watermark text -->
                 <section class="work-timeline">
                   <div class="work-content">
                     <div class="work-title">Senior UI/UX Designer</div>
@@ -155,6 +159,9 @@
         <div class="work mt-5" v-show="activeTab === 'education'">
           <div class="container" style="width:100%">
             <div class="row">
+              <!-- Watermark Text -->
+              <div class="watermark-text-education">Education</div>
+              <!-- Watermark text -->
               <div class="col-12 mx-auto work-column" v-for="n in 3" :key="n">
                 <section class="work-timeline">
                   <div class="work-content">
@@ -181,7 +188,6 @@
 
 <script>
 import Slick from "vue-slick";
-
 export default {
   props: ["user"],
   components: {
@@ -231,6 +237,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap"');
+
 .hideOnNotPhone {
   @media only screen and (min-width: 765px) {
     display: none !important;
@@ -243,9 +250,10 @@ export default {
   max-width: 1920px;
   background: white;
   // Custom tab item cotnainer
-  .custom-tab-item-container{
-    margin-top:40px;
-    padding-top:15px;
+  .custom-tab-item-container {
+    width: 100%;
+    margin-top: 40px;
+    padding-top: 15px;
     background: rgba(170, 207, 227, 0.1);
   }
   //Custom tab item container
@@ -318,6 +326,61 @@ export default {
     }
   }
   // work
+  // watermark text
+
+  .watermark-text-work {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: 60%;
+    margin-right: -25%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15.625rem;
+    line-height: 272px;
+    text-transform: uppercase;
+    color: rgba(1, 162, 254, 0.05);
+    transform: rotate(-90deg);
+    @media screen and (min-width: 960px) and (max-width: 1100px){
+      margin-right:-30%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px){
+      margin-top:90%;
+      margin-right:-40%;
+    }
+    @media screen and (max-width: 599px){
+      margin-top: 150%;
+      margin-right: -80%; 
+    }
+  }
+  .watermark-text-education {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: 60%;
+    margin-right: -30%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10rem;
+    line-height: 272px;
+    text-transform: uppercase;
+    color: rgba(1, 162, 254, 0.05);
+    transform: rotate(-90deg);
+
+    @media screen and (min-width: 960px) and (max-width: 1100px){
+      margin-right: -39%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px){
+      margin-top:90%;
+      margin-right:-53%;
+    }
+    @media screen and (max-width: 599px){
+      margin-top: 165%;
+      margin-right: -98%; 
+    }
+    
+  }
+  //watermark text
   .mainThemeBar {
     padding-top: 40px;
     padding-left: 70px;
@@ -987,6 +1050,7 @@ export default {
 /* the parent */
 .slick-dots {
   bottom: -27px !important;
+  padding-bottom: 40px !important;
 }
 
 .slick-dots li button:before {
@@ -1038,6 +1102,18 @@ export default {
   border-radius: 1px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
   background-color: white;
+}
+</style>
+
+<style>
+#resumeTheme4 .slick-dots {
+  padding-bottom: 40px !important;
+}
+
+@media screen and (min-width: 1281px) {
+  #resumeTheme4 .slick-slide {
+    width: auto !important;
+  }
 }
 </style>
 

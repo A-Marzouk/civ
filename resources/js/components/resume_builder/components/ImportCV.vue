@@ -97,9 +97,9 @@
                             <div class="import-section-title">
                                 <span @click="toggleSelectionOfSection(section)">{{section.title.replace('_',' ')}}</span>
                                 <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
-                                     @click="openEdit(section)" v-show="!section.edited && section.title !== 'work_experience'">
+                                     @click="openEdit(section)" v-show="!section.edited && section.title !== 'work_experience' && section.title !== 'education'">
                                 <img src="/images/resume_builder/import/exit.svg" alt="close icon"
-                                     @click="closeEdit(section)" v-show="section.edited && section.title !== 'work_experience'">
+                                     @click="closeEdit(section)" v-show="section.edited && section.title !== 'work_experience' && section.title !== 'education'">
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'profile'">
@@ -233,35 +233,52 @@
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'education'">
-                                <div class="edit-inputs" v-if="section.edited">
-                                    <input type="text" id="institutionType" placeholder="Institution type"  class="shorter" v-model="education.institution_type">
-                                    <div class="error" v-if="errors.institution_type">
-                                        {{ Array.isArray(errors.institution_type) ? errors.institution_type[0] : errors.institution_type}}
-                                    </div>
-                                    <input type="text" id="universityName" placeholder="University name" v-model="education.university_name">
-                                    <div class="error" v-if="errors.university_name">
-                                        {{ Array.isArray(errors.university_name) ? errors.university_name[0] : errors.university_name}}
-                                    </div>
-                                    <input type="text" id="degreeTitle" placeholder="Degree title"  class="shorter" v-model="education.degree_title">
-                                    <div class="error" v-if="errors.degree_title">
-                                        {{ Array.isArray(errors.degree_title) ? errors.degree_title[0] : errors.degree_title}}
-                                    </div>
-                                    <input type="date" id="dateFrom" v-model="education.date_from">
-                                    <div class="error" v-if="errors.date_from">
-                                        {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                                    </div>
-                                    <label for="dateTo" class="light d-flex align-items-center mt-4">
-                                        <input type="checkbox" class="checkbox" v-model="education.present"> I currently study here.
-                                    </label>
-                                    <input type="date" id="dateTo" v-model="education.date_to" :disabled="education.present">
-                                    <div class="error" v-if="errors.date_to">
-                                        {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                <div class="edit-inputs">
+                                    <div v-for="education in educations">
+                                        <div class="d-flex align-items-center">
+                                            <div style="font-size: 2em">
+                                                {{education.university_name}}
+                                            </div>
+                                            <div class="ml-4">
+                                                <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
+                                                     @click="editedEducation = education.uuid" v-show="editedEducation !== education.uuid">
+                                                <img src="/images/resume_builder/import/exit.svg" alt="close icon"
+                                                     @click="editedEducation = 0" v-show="editedEducation === education.uuid">
+                                            </div>
+                                        </div>
+
+                                        <div v-if="editedEducation === education.uuid" >
+                                            <input type="text"  placeholder="Institution type"  class="shorter" v-model="education.institution_type">
+                                            <div class="error" v-if="errors.institution_type">
+                                                {{ Array.isArray(errors.institution_type) ? errors.institution_type[0] : errors.institution_type}}
+                                            </div>
+                                            <input type="text" placeholder="University name" v-model="education.university_name">
+                                            <div class="error" v-if="errors.university_name">
+                                                {{ Array.isArray(errors.university_name) ? errors.university_name[0] : errors.university_name}}
+                                            </div>
+                                            <input type="text" placeholder="Degree title"  class="shorter" v-model="education.degree_title">
+                                            <div class="error" v-if="errors.degree_title">
+                                                {{ Array.isArray(errors.degree_title) ? errors.degree_title[0] : errors.degree_title}}
+                                            </div>
+                                            <input type="date"  v-model="education.date_from">
+                                            <div class="error" v-if="errors.date_from">
+                                                {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                                            </div>
+                                            <label  class="light d-flex align-items-center mt-4">
+                                                <input type="checkbox" class="checkbox" v-model="education.present"> I currently study here.
+                                            </label>
+                                            <input type="date"  v-model="education.date_to" :disabled="education.present">
+                                            <div class="error" v-if="errors.date_to">
+                                                {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-                                <div class="items" v-else>
+                                <div class="items">
                                     <div class="content-item">
-                                        <div class="bold"></div>
-                                        <div> {{education.university_name.length > 0 ? education.university_name : "Couldn't find education" }}
+                                        <div v-if="work_experience.length < 1">
+                                            Couldn't find work experience
                                         </div>
                                     </div>
                                 </div>
@@ -405,17 +422,10 @@
                 summary:{
                     'about': '',
                 },
-                education:{
-                  university_name:'',
-                  degree_title:'Not set',
-                  institution_type:'',
-                  date_from:'2020-04-04',
-                  date_to:'2020-04-04',
-                  present: false,
-                  user_id: this.$store.state.user.id
-                },
+                educations:[],
                 work_experience:[],
                 editedWork:0,
+                editedEducation:0,
                 countryList: [
                     "Afghanistan",
                     "Albania",
@@ -1149,15 +1159,7 @@
                 this.summary = {
                     'about': ''
                 };
-                this.education ={
-                        university_name:'',
-                        degree_title:'Not set',
-                        institution_type:'',
-                        date_from:'2020-04-04',
-                        date_to:'2020-04-04',
-                        present: false,
-                        user_id: this.$store.state.user.id
-                };
+                this.educations =[];
                 this.work_experience= [];
             },
             clearAll() {
@@ -1318,17 +1320,37 @@
 
                     for (let i = 0; i < possibleUniversityTitles.length; i++) {
                         let universityNameReg = new RegExp(possibleUniversityTitles[i], 'ig');
+                        let education = {
+                            uuid:this.$uuid.v1(),
+                            university_name:'',
+                            degree_title:'Not set',
+                            institution_type:'',
+                            date_from:'2020-04-04',
+                            date_to:'2020-04-04',
+                            present: false,
+                            user_id: this.$store.state.user.id
+                        };
                         if (universityNameReg.test(cleanTextLine)) {
-                            this.education.university_name = cleanTextLine;
-                            this.education.institution_type = possibleUniversityTitles[i];
-                            break;
+                            education.university_name = cleanTextLine;
+                            education.institution_type = possibleUniversityTitles[i];
+
+                            let repeated = false;
+                            this.educations.forEach((my_education) => {
+                                if(my_education.university_name === cleanTextLine ){
+                                    repeated = true;
+                                }
+                            });
+
+                            if(!repeated){
+                                this.educations.push(education);
+                            }
                         }
                     }
 
                 });
 
 
-                if(this.education.university_name.length > 1){
+                if(this.educations.length > 1){
                     this.sections.forEach( (section) => { section.title === 'education' ? section.selected = true : ''} );
                 }
             },
@@ -1583,9 +1605,8 @@
                     return;
                 }
 
-                await axios.post('/api/user/education', this.education )
+                await axios.post('/api/user/education-many', this.educations )
                     .then((response) => {
-
 
                     })
                     .catch((error) => {
