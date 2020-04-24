@@ -1,7 +1,7 @@
 <template>
-	<keep-alive>
+	<div class="tw-max-w-4xl tw-mx-auto">
 		<component v-bind:is="currentTab"></component>
-	</keep-alive>
+	</div>
 </template>
 
 <script>

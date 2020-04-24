@@ -1,5 +1,5 @@
 <template>
-	<div class="skills tw-px-4 tw-pt-12">
+	<div class="skills tw-px-4 tw-pt-12 md:tw-px-37px">
 		<TabLinks :tabsLabel="tabsLabel" :activeLabel="activeLabel" @activeLabelChanged="changeActiveLabel" />
 
 		<div class="tw-pt-8">
@@ -72,8 +72,8 @@ export default {
 				programmingLanguages: [
 					{
 						id: 1,
-						language: "C++",
-						progress: 50
+						language: "Flutter",
+						progress: 54
 					},
 					{
 						id: 2,

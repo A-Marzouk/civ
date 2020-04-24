@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-px-4 tw-pt-16">
+	<div class="tw-px-4 tw-pt-16 md:tw-px-37px">
 		<div :class="{'tw-mb-5': isLastExperience(experience)}" v-for="experience in experiences" :key="experience.id">
 			<Card :details="experience" iconBgColor="lima">
 				<svg width="26" height="25" fill="none" xmlns="http://www.w3.org/2000/svg">

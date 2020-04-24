@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-px-4 tw-pt-16">
+	<div class="tw-px-4 tw-pt-16 md:tw-px-37px">
 		<div :class="{'tw-mb-5': isLastEducation(education)}" v-for="education in educations" :key="education.id">
 			<Card :details="education">
 				<svg width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">

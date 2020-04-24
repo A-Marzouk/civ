@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-flex bg-card tw-rounded-9px tw-p-28px">
+	<div class="tw-flex tw-items-center bg-card tw-rounded-9px tw-p-28px md:tw-h-full">
 		<img class="tw-rounded-9px" :src="media.thumbnail">
 		<div class="tw-pl-20px">
 			<h4 class="tw-font-poppins tw-font-bold tw-leading-21px tw-text-black tw-text-lg" v-text="media.title"></h4>
