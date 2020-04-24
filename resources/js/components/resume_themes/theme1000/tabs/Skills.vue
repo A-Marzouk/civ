@@ -61,7 +61,7 @@ export default {
 
 	data: () => {
 		return {
-			activeLabel: "Frameworks",
+			activeLabel: "Programming languages",
 			tabsLabel: [
 				"Programming languages",
 				"Frameworks",
