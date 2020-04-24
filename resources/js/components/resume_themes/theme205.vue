@@ -7,30 +7,30 @@
       <v-row no-gutters>
         <v-col cols="12">
           <!-- Main header card -->
-          <v-card flat color="transparent">
+          <v-card flat color="transparent" tile>
             <!-- Child Row -->
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
                 <v-col md="5" cols="12" sm="8">
-                  <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
+                  <v-card color="transparent" tile flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-row>
                         <v-col cols="8">
                           <v-list-item two-line class="profile-list">
                             <v-list-item-content>
                               <v-list-item-title class="profile-title">
-                                <v-card class="pa-1" flat color="transparent">Carla Pipin Ranga</v-card>
+                                <v-card class="pa-1" flat color="transparent" tile>Carla Pipin Ranga</v-card>
                               </v-list-item-title>
                               <v-list-item-title class="mt-n2">
-                                <v-card flat color="transparent" class="pa-1">
+                                <v-card flat color="transparent" tile class="pa-1">
                                   <span
                                     class="profile-subtitle"
                                   >Web Ui/Ux Designer, Graphiс Designer</span>
                                 </v-card>
                               </v-list-item-title>
                               <v-list-item-subtitle class="ml-n1 hidden-sm-and-down">
-                                <v-card flat color="transparent" class="mt-2 pa-1">
+                                <v-card flat color="transparent" tile class="mt-2 pa-1">
                                   <v-btn
                                     fab
                                     style="overflow:hidden;"
@@ -49,7 +49,7 @@
                           </v-list-item>
                         </v-col>
                         <v-col cols="4">
-                          <v-card flat color="transparent" class="mt-5">
+                          <v-card flat color="transparent" tile class="mt-5">
                             <v-btn
                               fab
                               color="#FCD259"
@@ -98,7 +98,7 @@
                 </v-col>
                 <!-- Social media icons -->
                 <v-col md="6" class="hidden-sm-and-down">
-                  <v-card flat color="transparent" class="mt-n12 mr-2">
+                  <v-card flat color="transparent" tile class="mt-n12 mr-2">
                     <v-card-text align="right">
                       <v-btn
                         fab
@@ -131,7 +131,7 @@
         <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" md="10">
-            <v-card flat color="transparent">
+            <v-card flat color="transparent" tile>
               <v-card-text>
                 <v-tabs v-model="mainDataTab" color="black" centered grow show-arrows hide-slider>
                   <v-tab
@@ -150,15 +150,15 @@
       <v-container style="width:100%">
         <v-row class="mx-md-10 mx-sm-10 mx-1">
           <v-col cols="12">
-            <v-card flat color="transparent" style="z-index:1;">
+            <v-card flat color="transparent" tile style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- About -->
                 <v-tab-item>
                   <div class="watermark-text text-center mt-12">About</div>
-                  <v-card flat color="transparent" align="center">
+                  <v-card flat color="transparent" tile align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
-                        <v-card flat color="transparent">
+                        <v-card flat color="transparent" tile>
                           <div class="about-title">About</div>
                           <br />
                           <div class="about-detail">
@@ -176,7 +176,7 @@
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
-                  <v-card flat color="transparent" align="center">
+                  <v-card flat color="transparent" tile align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
                         <masonry
@@ -189,7 +189,7 @@
                             class="mb-2"
                             align="left"
                             flat
-                            color="transparent"
+                            color="transparent" tile
                           >
                             <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)"></v-img>
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
@@ -205,12 +205,12 @@
                 <!-- ...................Tab Item Work............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Work</div>
-                  <v-card color="transparent" flat>
+                  <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
                         <v-row align="center" justify="center">
                           <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                            <v-card flat color="transparent">
+                            <v-card flat color="transparent" tile>
                               <v-list-item three-line>
                                 <v-list-item-icon>
                                   <img
@@ -220,13 +220,13 @@
                                 </v-list-item-icon>
                                 <v-list-item-content>
                                   <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent">Google Inc. Introduction Google</v-card>
+                                    <v-card flat color="transparent" tile>Google Inc. Introduction Google</v-card>
                                   </v-list-item-title>
                                   <v-list-item-subtitle class="custom-work-subtitle">
-                                    <v-card flat color="transparent">User interface designer</v-card>
+                                    <v-card flat color="transparent" tile>User interface designer</v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class="custom-work-duration mt-6">
-                                    <v-card color="transparent" flat>2012- Current</v-card>
+                                    <v-card color="transparent" tile flat>2012- Current</v-card>
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
@@ -242,11 +242,11 @@
                 <!-- ...................Tab Item Education............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Education</div>
-                  <v-card color="transparent" flat>
+                  <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
+                          <v-card flat color="transparent" tile>
                             <v-list-item three-line>
                               <v-list-item-icon>
                                 <img
@@ -256,17 +256,17 @@
                               </v-list-item-icon>
                               <v-list-item-content>
                                 <v-list-item-title class="custom-work-title">
-                                  <v-card flat color="transparent">California Insitute of Technology</v-card>
+                                  <v-card flat color="transparent" tile>California Insitute of Technology</v-card>
                                 </v-list-item-title>
                                 <v-list-item-subtitle class="custom-education-subtitle">
-                                  <v-card flat color="transparent" style="color:#fbd76d;">
+                                  <v-card flat color="transparent" tile style="color:#fbd76d;">
                                     M.Sc in HCI,
                                     <span class="ml-5">Dec 19 - Present</span>
                                   </v-card>
                                 </v-list-item-subtitle>
                                 <v-list-item-subtitle class="mt-6">
                                   <v-card
-                                    color="transparent"
+                                    color="transparent" tile
                                     flat
                                     class="custom-education-details"
                                   >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
@@ -284,7 +284,7 @@
                 <!-- ...................Tab Item Skills............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
-                  <v-card color="transparent" flat>
+                  <v-card color="transparent" tile flat>
                     <v-row align="center" justify="center">
                       <v-col
                         cols="12"
@@ -294,7 +294,7 @@
                         v-for="skill in skills"
                         :key="skill.id"
                       >
-                        <v-card flat color="transparent" class="mx-auto">
+                        <v-card flat color="transparent" tile class="mx-auto">
                           <v-card-text>
                             <v-list-item>
                               <v-list-item-avatar

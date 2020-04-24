@@ -10,13 +10,13 @@
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
             <v-col md="4" sm="7">
-              <v-card class="pa-0" align="center" color="transparent" flat>
+              <v-card class="pa-0" align="center" color="transparent" tile flat>
                 <div class="custom-profile-title">{{ personalData.name }}</div>
                 <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
                 <div class="hr-line"></div>
               </v-card>
 
-              <v-card class="pa-0 mt-3" align="center" color="transparent" flat>
+              <v-card class="pa-0 mt-3" align="center" color="transparent" tile flat>
                 <v-row justify="center" align="center">
                   <v-col cols="6">
                     <div class="hour-rate">
@@ -42,7 +42,7 @@
 
             <!-- Social Buttons for tablet only -->
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
-              <v-card flat color="transparent" class="pa-0 hire-me-card">
+              <v-card flat color="transparent" tile class="pa-0 hire-me-card">
                 <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
@@ -67,7 +67,7 @@
 
             <!-- 3rd column -->
             <v-col md="7" class="hidden-sm-and-down" align="right">
-              <v-card flat color="transparent" class="pa-0 hire-me-card">
+              <v-card flat color="transparent" tile class="pa-0 hire-me-card">
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-2 elevation-12"
@@ -136,6 +136,7 @@
               class="hidden-xs-only"
               slider-color="#FC413C"
               background-color="transparent"
+              tile
             >
               <v-tab
                 v-for="tab in tabItems"
@@ -165,19 +166,19 @@
       <v-container fluid pa-md-10 mt-n12 style="width:100%">
         <v-row align="center" justify="center">
           <v-col cols="12">
-            <v-card flat color="transparent">
+            <v-card flat color="transparent" tile>
               <v-tabs-items v-model="mainDataTab" style="background: transparent;">
                 <!-- Portfolio -->
                 <v-tab-item>
-                  <v-card color="transparent" flat>
+                  <v-card color="transparent" tile flat>
                     <v-card-text>
                       <v-row>
                         <!-- column 1 -->
                         <v-col md="3">
-                          <v-card color="transparent" class="card-portfolio" hover>
+                          <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
-                                <v-btn icon color="transparent">
+                                <v-btn icon color="transparent" tile>
                                   <img
                                     width="20"
                                     src="/images/resume_themes/theme207/icons/zoom.png"
@@ -200,7 +201,7 @@
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
-                                    <v-btn icon color="transparent">
+                                    <v-btn icon color="transparent" tile>
                                       <img
                                         width="20"
                                         src="/images/resume_themes/theme207/icons/zoom.png"
@@ -217,10 +218,10 @@
                         <!-- Column 2 -->
                         <!-- column 3 -->
                         <v-col md="3">
-                          <v-card color="transparent" class="card-portfolio" hover>
+                          <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
-                                <v-btn icon color="transparent">
+                                <v-btn icon color="transparent" tile>
                                   <img
                                     width="20"
                                     src="/images/resume_themes/theme207/icons/zoom.png"
@@ -243,7 +244,7 @@
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
-                                    <v-btn icon color="transparent">
+                                    <v-btn icon color="transparent" tile>
                                       <img
                                         width="20"
                                         src="/images/resume_themes/theme207/icons/zoom.png"
@@ -333,11 +334,12 @@
                 <v-tab-item>
                   <v-row>
                     <v-col cols="12">
-                      <v-card color="transparent" flat>
+                      <v-card color="transparent" tile flat>
                         <v-tabs
                           v-model="skillTab"
                           centered
                           background-color="transparent"
+                          tile
                           color="#fc413c"
                         >
                           <v-tab
@@ -358,7 +360,7 @@
                       <v-tabs-items v-model="skillTab" style="background:transparent;">
                         <!-- All Programming Languges -->
                         <v-tab-item v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
+                          <v-card flat color="transparent" tile>
                             <v-card-text>
                               <v-row>
                                 <v-col
@@ -416,12 +418,50 @@
                 <!-- Skills -->
                 <!-- Media -->
                 <v-tab-item>
-                  <v-card flat color="transparent"></v-card>
+                  <v-card flat color="transparent" tile>
+                    <v-row>
+                      <v-col cols="12">
+                        <!-- First column -->
+                        <div class="d-flex">
+                          <div class="p-2" v-for="n in 4" :key="n">
+                            <v-card class="pa-5 card-education" hover color="#272B2F">
+                              <div class="d-flex flex-no-wrap justify-space-between">
+                                <v-avatar
+                                  class="mt-6"
+                                  tile
+                                  size="100"
+                                  height="120"
+                                  color="rgba(252, 65, 60, 0.1)"
+                                >
+                                  <v-img
+                                    max-width="50"
+                                    max-height="50"
+                                    src="/images/resume_themes/theme207/tabs/active/3.png"
+                                  ></v-img>
+                                </v-avatar>
+                                <div>
+                                  <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
+                                  <v-card-subtitle
+                                    class="education-subtitle"
+                                  >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
+                                  <v-card-subtitle
+                                    class="education-session mt-n6"
+                                    align="right"
+                                  >2010-2013</v-card-subtitle>
+                                </div>
+                              </div>
+                            </v-card>
+                          </div>
+                        </div>
+                        <!-- First Column -->
+                      </v-col>
+                    </v-row>
+                  </v-card>
                 </v-tab-item>
                 <!-- Media -->
                 <!-- About Me -->
                 <v-tab-item>
-                  <v-card flat color="transparent" class="mt-5">
+                  <v-card flat color="transparent" tile class="mt-5">
                     <div class="d-flex flex-no-wrap">
                       <v-avatar size="250" class="about-me-photo" tile>
                         <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
@@ -441,6 +481,19 @@
         </v-row>
       </v-container>
       <!-- Tab items container -->
+
+      <v-card height="50" v-show="currentTab==5" tile>
+        <v-footer absolute class="font-weight-medium" color="#272B2F">
+          <v-col class="text-center" cols="12">
+            <div class="d-flex">
+              <div class="p-2">Avatar</div>
+              <div class="p-2">Audio Name</div>
+              <div class="p-2">Avatar</div>
+              <div class="p-2">Player Controls</div>
+            </div>
+          </v-col>
+        </v-footer>
+      </v-card>
     </v-container>
     <!-- Main container -->
   </v-app>
@@ -874,8 +927,6 @@ export default {
     margin-left: -20px;
   }
 }
-
-
 </style>
 
 <style>
