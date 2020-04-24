@@ -441,6 +441,19 @@
         </v-row>
       </v-container>
       <!-- Tab items container -->
+
+      <v-card height="50" v-show="currentTab==5" tile>
+        <v-footer absolute class="font-weight-medium" color="#272B2F">
+          <v-col class="text-center" cols="12">
+            <div class="d-flex">
+              <div class="p-2">Avatar</div>
+              <div class="p-2">Audio Name</div>
+              <div class="p-2">Avatar</div>
+              <div class="p-2">Player Controls</div>
+            </div>
+          </v-col>
+        </v-footer>
+      </v-card>
     </v-container>
     <!-- Main container -->
   </v-app>
@@ -874,8 +887,6 @@ export default {
     margin-left: -20px;
   }
 }
-
-
 </style>
 
 <style>
