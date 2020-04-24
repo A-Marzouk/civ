@@ -97,9 +97,9 @@
                             <div class="import-section-title">
                                 <span @click="toggleSelectionOfSection(section)">{{section.title.replace('_',' ')}}</span>
                                 <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
-                                     @click="openEdit(section)" v-show="!section.edited && (section.title !== 'work_experience' || section.title !== 'education')">
+                                     @click="openEdit(section)" v-show="!section.edited && section.title !== 'work_experience' && section.title !== 'education'">
                                 <img src="/images/resume_builder/import/exit.svg" alt="close icon"
-                                     @click="closeEdit(section)" v-show="section.edited && (section.title !== 'work_experience' || section.title !== 'education')">
+                                     @click="closeEdit(section)" v-show="section.edited && section.title !== 'work_experience' && section.title !== 'education'">
                             </div>
 
                             <div class="section-content-items" v-show="section.title === 'profile'">
