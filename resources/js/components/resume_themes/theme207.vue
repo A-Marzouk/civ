@@ -424,23 +424,23 @@
                         <v-col md="3" :key="n">
                           <v-card class="pa-5 card-education" hover color="#272B2F">
                             <div class="d-flex flex-no-wrap justify-content-center">
-                              <v-avatar tile size="80" color="rgba(252, 65, 60, 0.1)">
+                              <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
                                 <v-img
                                   max-width="30"
                                   max-height="30"
                                   src="/images/resume_themes/theme207/icons/play.png"
                                 ></v-img>
                               </v-avatar>
-                              <div>
-                                <v-card-title class="media-title mb-2">AUDIO_04/08/2020</v-card-title>
-                                <v-card-subtitle class="education-subtitle"></v-card-subtitle>
+                              <div class="flex-fill mt-n5">
+                                <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
+                                <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
+                                <v-card-subtitle class="media-duration mt-n7">1:05:00</v-card-subtitle>
                               </div>
                             </div>
                           </v-card>
+                          <!-- Video Card -->
 
-                          <v-card class="pa-5 card-education" hover color="#272B2F" v-if="n==2">
-                            2nd Card
-                          </v-card>
+                          <!-- Video Card -->
                         </v-col>
                       </template>
                     </v-row>
@@ -470,11 +470,19 @@
       </v-container>
       <!-- Tab items container -->
 
-      <v-card height="50" v-show="currentTab==5" tile>
+      <v-card height="100" v-show="currentTab==5" tile>
         <v-footer absolute class="font-weight-medium" color="#272B2F">
           <v-col class="text-center" cols="12">
             <div class="d-flex">
-              <div class="p-2">Avatar</div>
+              <div class="p-2">
+                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
+                  <v-img
+                    max-width="30"
+                    max-height="30"
+                    src="/images/resume_themes/theme207/icons/play.png"
+                  ></v-img>
+                </v-avatar>
+              </div>
               <div class="p-2">Audio Name</div>
               <div class="p-2">Avatar</div>
               <div class="p-2">Player Controls</div>
@@ -793,9 +801,20 @@ export default {
   color: #ffffff !important;
   font-weight: bold !important;
   line-height: 30px !important;
-  img {
-    width: 20px;
-  }
+}
+
+.media-subtitle {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.75rem !important;
+  color: #ffffff !important;
+  line-height: 18px;
+}
+
+.media-duration {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 0.75rem !important;
+  color: #febc2c !important;
+  line-height: 18px;
 }
 // media
 // about me
