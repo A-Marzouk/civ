@@ -25,11 +25,11 @@
             style="margin-right:20px;"
           >Your interviews:</div>
           <div class="upload-btn-box" style="margin-bottom:20px;">
-            <img src="/images/resume_themes/theme4/Icon-1.svg" alt />
+            <img width="25" src="/images/resume_themes/theme4/Icon-1.svg" alt />
             <div class="hideMeOnPhone">AUDIO</div>
           </div>
           <div class="upload-btn-box">
-            <img src="/images/resume_themes/theme4/Icon.svg" alt />
+            <img width="25" src="/images/resume_themes/theme4/Icon.svg" alt />
             <div class="hideMeOnPhone">VIDEO</div>
           </div>
         </div>
@@ -267,22 +267,21 @@ export default {
     left: 119px;
     overflow: hidden;
     display: flex;
-    img{
+    img {
       width: 19px;
-      height:19px;
+      height: 19px;
     }
     @media screen and (max-width: 765px) {
       width: 20px;
       height: 20px;
       border: 2px solid #ffffff;
-      top:114px;
-      left:110px;
-      img{
-        width:9.5px;
-        height:9.5px;
+      top: 114px;
+      left: 110px;
+      img {
+        width: 9.5px;
+        height: 9.5px;
       }
     }
-    
   }
   // Custom tab item cotnainer
   .custom-tab-item-container {
@@ -1162,6 +1161,21 @@ export default {
 @media screen and (min-width: 1281px) {
   #resumeTheme4 .slick-slide {
     width: auto !important;
+  }
+}
+
+@media screen and (min-width: 766px) and (max-width: 1279px) {
+  #resumeTheme4 .slick-slide {
+    width: 400px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  #resumeTheme4 .slick-slide {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 </style>
