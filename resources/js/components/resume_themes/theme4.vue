@@ -478,18 +478,22 @@ export default {
           border-radius: 6px;
           width: 170px;
           height: 60px;
-
           font-weight: 600;
           font-size: 14px;
           line-height: 15px;
           text-align: center;
           color: #00a3ff;
+          cursor: pointer !important;
 
           img {
             width: 20px;
             height: 16px;
             margin-right: 10px;
           }
+        }
+        .upload-btn-box:hover{
+          opacity: 0.7;
+          transition: 0.3s;
         }
       }
 
@@ -537,6 +541,11 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
+          }
+
+          a:hover{
+            opacity: 0.8;
+            transition: 0.3s;
           }
         }
       }
