@@ -267,6 +267,7 @@ export default {
     left: 119px;
     overflow: hidden;
     display: flex;
+    cursor: pointer;
     img {
       width: 19px;
       height: 19px;
@@ -282,6 +283,11 @@ export default {
         height: 9.5px;
       }
     }
+  }
+
+  .chat-btn-container:hover{
+    background: #fac7a5;
+    transition: 2s;
   }
   // Custom tab item cotnainer
   .custom-tab-item-container {
