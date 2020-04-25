@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-max-w-4xl tw-mx-auto">
+	<div class="tw-max-w-4xl tw-mx-auto tw-pb-50px">
 		<component v-bind:is="currentTab"></component>
 	</div>
 </template>

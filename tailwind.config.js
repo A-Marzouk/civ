@@ -82,6 +82,9 @@ module.exports = {
     theme: {
         extend: {
             spacing,
+            screens: {
+                xxl: "1620px"
+            },
             colors: {
                 tm700: {
                     "1": "#513ECD",
@@ -126,6 +129,7 @@ module.exports = {
                 "tm700-xl-1": "120rem",
                 "tm700-xl-2": "106.5625rem",
                 "1396px": "87.25rem",
+                "1568px": "1568px",
                 "1767px": "1767px",
                 "1727px": "1727px"
             },

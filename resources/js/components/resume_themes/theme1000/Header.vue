@@ -11,7 +11,7 @@
 		<div class="tw-hidden tw-mx-auto tw-max-w-4xl md:tw-block">
 			<div class="tw-flex tw-justify-between tw-pt-30px tw-px-30px">
 				<div class="tw-pl-22px tw-pt-30px">
-					<img class="tw-w-125px tw-h-125px tw-rounded-lg" :src="currentUser.avatar" />
+					<img class="tw-w-125px tw-h-125px tw-rounded-lg xxl:tw-w-56 xxl:tw-h-56" :src="currentUser.avatar" />
 				</div>
 				<div class="tw-flex-1 tw-pl-63px">
 					<h3 class="tw-font-open-sans tw-font-bold tw-text-4xl tw-text-white tw-leading-snug" v-text="currentUser.fullname"></h3>
