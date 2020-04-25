@@ -505,14 +505,12 @@
           </div>
           <!-- spectrum -->
           <!-- Audio Controlls -->
-          <div class="ml-12">
+          <div class="ml-12 flex-fill">
             <div class="d-flex justify-content-between mt-5">
-              <div class="shuffle mx-2 mt-2">
-                <v-img
-                  width="20"
-                  height="auto"
-                  src="/images/resume_themes/theme207/audio/shuffle.png"
-                ></v-img>
+              <div class="shuffle mx-2 mt-1">
+                <v-btn icon>
+                  <img src="/images/resume_themes/theme207/audio/shuffle.png" alt="">
+                </v-btn>
               </div>
               <div class="mx-10">
                 <!-- previous button -->
@@ -528,12 +526,16 @@
                 <!-- previous button -->
               </div>
               <!-- Repeat Button -->
-              <div class="shuffle mt-2">
-                <v-img
-                  width="20"
-                  height="auto"
-                  src="/images/resume_themes/theme207/audio/repeat.png"
-                ></v-img>
+              <div class="shuffle mt-1">
+                <v-btn icon>
+                  <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
+                </v-btn>
+              </div>
+
+              <div class="btn-fullscreen">
+                <v-btn icon depressed>
+                  <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
+                </v-btn>
               </div>
               <!-- Repeat Button -->
             </div>
@@ -888,6 +890,14 @@ export default {
   }
 }
 
+.shuffle {
+  margin-top: -15px;
+  img {
+    width: 20px;
+    height: auto;
+  }
+}
+
 .pause-btn {
   margin-top: -20px;
   width: 70px !important;
@@ -897,6 +907,14 @@ export default {
   z-index: 2;
   img {
     width: 20px;
+    height: auto;
+  }
+}
+
+.btn-fullscreen {
+  margin-left: 200px;
+  img {
+    width: 18px;
     height: auto;
   }
 }
