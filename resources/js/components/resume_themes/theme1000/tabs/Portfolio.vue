@@ -1,6 +1,6 @@
 <template>
-	<div class="tw-flex tw-flex-wrap tw-w-full tw-p-37px">
-		<div v-for="portfolio in portfolios" :key="portfolio.id" class="tw-w-1/3 tw-p-9px">
+	<div class="tw-flex tw-flex-wrap tw-w-full tw-p-37px xxl:tw-grid xxl:tw-grid-cols-6 xxl:tw-gap-4">
+		<div v-for="(portfolio, index) in portfolios" :key="portfolio.id" class="tw-w-1/3 tw-p-9px xxl:tw-p-0 xxl:tw-w-auto" :style="getItemStyle(index)">
 			<div class="tw-relative" @click="showSelectedPortfolio(portfolio)">
 				<div class="tw-absolute tw-top-0 tw-right-0 tw-text-black tw-pt-10px tw-pr-10px md:tw-pt-15px md:tw-pr-15px">
 					<svg viewBox="0 0 9 10" class="tw-w-9px tw-h-10px tw-fill-current md:tw-w-22px md:tw-h-22px" xmlns="http://www.w3.org/2000/svg">
@@ -49,13 +49,62 @@ export default {
 				{
 					id: 6,
 					url: "/images/resume_themes/theme1000/portfolio/6.png"
+				},
+				{
+					id: 7,
+					url: "/images/resume_themes/theme1000/portfolio/1.png"
+				},
+				{
+					id: 8,
+					url: "/images/resume_themes/theme1000/portfolio/2.png"
+				},
+				{
+					id: 9,
+					url: "/images/resume_themes/theme1000/portfolio/3.png"
+				},
+				{
+					id: 10,
+					url: "/images/resume_themes/theme1000/portfolio/4.png"
+				},
+				{
+					id: 11,
+					url: "/images/resume_themes/theme1000/portfolio/5.png"
+				},
+				{
+					id: 12,
+					url: "/images/resume_themes/theme1000/portfolio/6.png"
 				}
 			],
 			selectedPortfolio: {
 				url: "",
 				isOpen: false
-			}
+			},
+			gridAreaValues: [],
+			windowWidth: window.innerWidth
 		};
+	},
+
+	computed: {
+		getItemStyle() {
+			return index => {
+				if (this.gridAreaValues.length == 0) {
+					return "";
+				}
+
+				if (this.windowWidth < 768) {
+					return "";
+				}
+
+				let [
+					startRow,
+					startColumn,
+					endRow,
+					endColumn
+				] = this.gridAreaValues[index];
+
+				return `grid-area: ${startRow} / ${startColumn} / ${endRow} / ${endColumn};`;
+			};
+		}
 	},
 
 	methods: {
@@ -65,7 +114,75 @@ export default {
 
 		hideSelectedPortfolio() {
 			this.selectedPortfolio = { url: "", isOpen: false };
+		},
+
+		initGridAreas() {
+			let currentColumn = 0,
+				columns = [
+					[1, 3],
+					[3, 4],
+					[4, 5],
+					[3, 4],
+					[4, 5],
+					[5, 7]
+				],
+				currentRow = 0,
+				rows = [
+					[1, 3],
+					[1, 2],
+					[1, 2],
+					[2, 3],
+					[2, 3],
+					[1, 3]
+				];
+
+			this.gridAreaValues = this.portfolios.map((item, index) => {
+				if (index % 6 === 0) {
+					currentColumn = 0;
+					currentRow = 0;
+
+					rows = rows.map(row => {
+						return [row[0] + 2, row[1] + 2];
+					});
+
+					console.log("rows", rows);
+				} else {
+					currentColumn++;
+					currentRow++;
+				}
+
+				/*
+                    0 1 2 3     4 5 6 7     8 9 10 11   12 13 14 15     16  17 18 19 20
+                    0 1 2 3     0 1 2 3     0 1 2  3    0  1  2  3      0   1  2  3  0
+                */
+
+				console.log(
+					"currentRow: ",
+					currentRow,
+					"currentColumn: ",
+					currentColumn
+				);
+
+				console.log(
+					columns[currentColumn][0] +
+						" / " +
+						columns[currentColumn][1],
+					rows[currentRow][0] + " / " + rows[currentRow][1]
+				);
+
+				return [
+					rows[currentRow][0],
+					columns[currentColumn][0],
+					rows[currentRow][1],
+					columns[currentColumn][1]
+				];
+			});
 		}
+	},
+
+	mounted() {
+		this.initGridAreas();
+		window.onresize = e => (this.windowWidth = e.target.innerWidth);
 	}
 };
 </script>

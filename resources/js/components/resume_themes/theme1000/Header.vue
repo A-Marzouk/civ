@@ -16,7 +16,7 @@
 				<div class="tw-flex-1 tw-pl-63px">
 					<h3 class="tw-font-open-sans tw-font-bold tw-text-4xl tw-text-white tw-leading-snug" v-text="currentUser.fullname"></h3>
 					<h4 class="tw-font-poppins tw-font-bold tw-text-base tw-leading-24px tw-text-white tw-pt-10px" v-text="currentUser.jobTitleDescription"></h4>
-					<div class="tw-font-poppins tw-text-xs tw-leading-18px tw-text-white tw-pt-15px tw-max-w-sm" v-html="getShortString(currentUser.motivationLetter)"></div>
+					<div class="tw-font-poppins tw-text-xs tw-leading-18px tw-text-white tw-pt-15px tw-max-w-sm xxl:tw-max-w-md" v-html="getShortString(currentUser.motivationLetter)"></div>
 					<div class="tw-font-poppins tw-flex tw-pt-5">
 						<div class="tw-uppercase tw-text-14px tw-leading-21px text-semi-white">Hour rate <strong class="tw-text-white tw-text-xl tw-ml-15px">${{ currentUser.hourRate }}</strong></div>
 						<div class="tw-uppercase tw-text-14px tw-leading-21px text-semi-white tw-ml-20px">Weekly availability <strong class="tw-text-white tw-text-xl tw-ml-15px">${{ currentUser.weeklyAvailability }}</strong></div>

@@ -156,9 +156,7 @@ export default {
 
 	methods: {
 		initGridAreas() {
-			let renderedAudioMedia = 0,
-				renderedVideoMedia = 0,
-				startRow = 1,
+			let startRow = 1,
 				endRow = 2,
 				startColumn = 1,
 				endColumn = 2;
