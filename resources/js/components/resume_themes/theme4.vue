@@ -251,10 +251,12 @@ export default {
   background: white;
   // Custom tab item cotnainer
   .custom-tab-item-container {
+    position:relative;
     width: 100%;
     margin-top: 40px;
     padding-top: 15px;
     background: rgba(170, 207, 227, 0.1);
+    overflow:hidden !important;
   }
   //Custom tab item container
   // work
@@ -264,7 +266,7 @@ export default {
     }
   }
   .work-title {
-    font-family: "Archivo" !important;
+    font-family: 'Archivo', sans-serif !important;
     font-weight: bold;
     font-size: 24px;
     line-height: 26px;
@@ -273,7 +275,7 @@ export default {
   .work-subtitle {
     margin-top: 15px;
     margin-bottom: 30px;
-    font-family: "Archivo" !important;
+    font-family: 'Archivo', sans-serif !important;
     font-size: 14px;
     line-height: 15px;
     font-style: italic;
@@ -285,7 +287,7 @@ export default {
     }
   }
   .work-text {
-    font-family: "Archivo" !important;
+    font-family: 'Archivo', sans-serif !important;
     font-size: 18px;
     line-height: 30px;
     color: #9ca4c1;
@@ -299,6 +301,9 @@ export default {
     margin: 40px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
+    @media only screen and (min-width: 1025px) {
+      padding: 0 250px 0 80px;
+    }
     @media only screen and (max-width: 765px) {
       margin: 28px auto;
       margin-left: 30px;
@@ -308,7 +313,7 @@ export default {
   }
 
   .work-content::before {
-    font-family: "Archivo" !important;
+    font-family: 'Archivo', sans-serif !important;
     counter-increment: my-sec-counter;
     content: "0" counter(my-sec-counter);
     font-size: 72px;
@@ -330,13 +335,13 @@ export default {
 
   .watermark-text-work {
     position: absolute;
-    top: 50%;
+    top:40%;
     right: 0;
-    margin-top: 60%;
-    margin-right: -25%;
+    margin-right: -29%;
+    font-family: 'Archivo', sans-serif !important;
     font-style: normal;
     font-weight: bold;
-    font-size: 15.625rem;
+    font-size: 250px;
     line-height: 272px;
     text-transform: uppercase;
     color: rgba(1, 162, 254, 0.05);
@@ -345,38 +350,35 @@ export default {
       margin-right: -30%;
     }
     @media screen and (min-width: 600px) and (max-width: 959px) {
-      margin-top: 90%;
-      margin-right: -40%;
+      margin-right: -42%;
     }
     @media screen and (max-width: 599px) {
-      margin-top: 150%;
       margin-right: -80%;
     }
   }
   .watermark-text-education {
+    font-family: 'Archivo', sans-serif !important;
+    float: right;
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 0;
-    margin-top: 60%;
-    margin-right: -30%;
+    margin-right: -52%;
     font-style: normal;
     font-weight: bold;
-    font-size: 10rem;
+    font-size: 250px;
     line-height: 272px;
     text-transform: uppercase;
     color: rgba(1, 162, 254, 0.05);
     transform: rotate(-90deg);
-
+    z-index: 1;
     @media screen and (min-width: 960px) and (max-width: 1100px) {
-      margin-right: -39%;
+      margin-right: -66%;
     }
     @media screen and (min-width: 600px) and (max-width: 959px) {
-      margin-top: 90%;
-      margin-right: -53%;
+      margin-right: -86%;
     }
     @media screen and (max-width: 599px) {
-      margin-top: 165%;
-      margin-right: -98%;
+      margin-right: -161%;
     }
   }
   //watermark text
