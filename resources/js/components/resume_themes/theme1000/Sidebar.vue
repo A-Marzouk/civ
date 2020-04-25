@@ -1,5 +1,5 @@
 <template>
-	<div class="sidebar-wrapper tw-overflow-hidden tw-z-30" :class="{'open': isOpen}" ref="sidebar" @click="onClose">
+	<div class="sidebar-wrapper tw-overflow-hidden tw-z-30 md:tw-hidden" :class="{'open': isOpen}" ref="sidebar" @click="onClose">
 		<div class="sidebar tw-relative tw-overflow-x-hidden tw-pb-10">
 			<div class="tw-absolute tw-top-0 tw-right-0 tw-text-white tw-p-5px tw-mt-20px tw-mr-25px tw-cursor-pointer" @click="$emit('onClose')">
 				<svg viewBox="0 0 9 10" class="tw-w-10px tw-h-10px tw-fill-current" xmlns="http://www.w3.org/2000/svg">

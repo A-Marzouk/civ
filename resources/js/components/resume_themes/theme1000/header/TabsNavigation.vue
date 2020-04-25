@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-flex tw-items-center tw-justify-around tw-max-w-xs tw-mx-auto">
+	<div class="tw-flex tw-items-center tw-justify-around tw-max-w-xs tw-mx-auto md:tw-max-w-2xl">
 		<TabButton label="Portfolio" :isActive="currentTab == 'portfolio'" @click="$emit('tabChanged', 'portfolio')">
 			<svg class="tw-w-6 tw-h-6 tw-fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 				<path d="M21.6 2.4V16.8H7.2V2.4H21.6ZM21.6 0H7.2C5.88 0 4.8 1.08 4.8 2.4V16.8C4.8 18.12 5.88 19.2 7.2 19.2H21.6C22.92 19.2 24 18.12 24 16.8V2.4C24 1.08 22.92 0 21.6 0ZM11.4 11.604L13.428 14.316L16.404 10.596L20.4 15.6H8.4L11.4 11.604ZM0 4.8V21.6C0 22.92 1.08 24 2.4 24H19.2V21.6H2.4V4.8H0Z" />
@@ -25,7 +25,7 @@
 				<path d="M2 4H0V18C0 19.1 0.9 20 2 20H16V18H2V4ZM18 0H6C4.9 0 4 0.9 4 2V14C4 15.1 4.9 16 6 16H18C19.1 16 20 15.1 20 14V2C20 0.9 19.1 0 18 0ZM18 14H6V2H18V14ZM10 3.5V12.5L16 8L10 3.5Z" />
 			</svg>
 		</TabButton>
-		<TabButton class="tw-hidden sm:tw-block" label="About Me" :isActive="currentTab == 'about-me'" @click="$emit('tabChanged', 'about-me')">
+		<TabButton class="tw-hidden md:tw-flex" label="About Me" :isActive="currentTab == 'about-me'" @click="$emit('tabChanged', 'about-me')">
 			<svg class="tw-w-6 tw-h-6 tw-fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 				<path d="M10 2.5C11.375 2.5 12.5 3.625 12.5 5C12.5 6.375 11.375 7.5 10 7.5C8.625 7.5 7.5 6.375 7.5 5C7.5 3.625 8.625 2.5 10 2.5ZM10 15C13.375 15 17.25 16.6125 17.5 17.5H2.5C2.7875 16.6 6.6375 15 10 15ZM10 0C7.2375 0 5 2.2375 5 5C5 7.7625 7.2375 10 10 10C12.7625 10 15 7.7625 15 5C15 2.2375 12.7625 0 10 0ZM10 12.5C6.6625 12.5 0 14.175 0 17.5V20H20V17.5C20 14.175 13.3375 12.5 10 12.5Z" />
 			</svg>
