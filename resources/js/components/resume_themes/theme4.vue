@@ -6,6 +6,9 @@
           <div class="avatar">
             <img src="/images/resume_themes/theme4/person.png" alt="profile pic" />
           </div>
+          <div class="chat-btn-container">
+            <img src="/images/resume_themes/theme4/chat.png" alt="chat button" />
+          </div>
           <div class="info">
             <div class="user-name">Zoyee Allena</div>
             <div class="job-title">Visual deisgner</div>
@@ -249,14 +252,46 @@ export default {
   width: 100%;
   max-width: 1920px;
   background: white;
+  //chat btn
+  .chat-btn-container {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #ffeee3;
+    border: 4px solid #ffffff;
+    box-shadow: 0px 4px 20px rgba(62, 62, 62, 0.1);
+    border-radius: 200px;
+    top: 135px;
+    left: 119px;
+    overflow: hidden;
+    display: flex;
+    img{
+      width: 19px;
+      height:19px;
+    }
+    @media screen and (max-width: 765px) {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ffffff;
+      top:114px;
+      left:110px;
+      img{
+        width:9.5px;
+        height:9.5px;
+      }
+    }
+    
+  }
   // Custom tab item cotnainer
   .custom-tab-item-container {
-    position:relative;
+    position: relative;
     width: 100%;
     margin-top: 40px;
     padding-top: 15px;
     background: rgba(170, 207, 227, 0.1);
-    overflow:hidden !important;
+    overflow: hidden !important;
   }
   //Custom tab item container
   // work
@@ -266,7 +301,7 @@ export default {
     }
   }
   .work-title {
-    font-family: 'Archivo', sans-serif !important;
+    font-family: "Archivo", sans-serif !important;
     font-weight: bold;
     font-size: 24px;
     line-height: 26px;
@@ -275,7 +310,7 @@ export default {
   .work-subtitle {
     margin-top: 15px;
     margin-bottom: 30px;
-    font-family: 'Archivo', sans-serif !important;
+    font-family: "Archivo", sans-serif !important;
     font-size: 14px;
     line-height: 15px;
     font-style: italic;
@@ -287,7 +322,7 @@ export default {
     }
   }
   .work-text {
-    font-family: 'Archivo', sans-serif !important;
+    font-family: "Archivo", sans-serif !important;
     font-size: 18px;
     line-height: 30px;
     color: #9ca4c1;
@@ -313,7 +348,7 @@ export default {
   }
 
   .work-content::before {
-    font-family: 'Archivo', sans-serif !important;
+    font-family: "Archivo", sans-serif !important;
     counter-increment: my-sec-counter;
     content: "0" counter(my-sec-counter);
     font-size: 72px;
@@ -335,10 +370,10 @@ export default {
 
   .watermark-text-work {
     position: absolute;
-    top:40%;
+    top: 40%;
     right: 0;
     margin-right: -29%;
-    font-family: 'Archivo', sans-serif !important;
+    font-family: "Archivo", sans-serif !important;
     font-style: normal;
     font-weight: bold;
     font-size: 250px;
@@ -357,7 +392,7 @@ export default {
     }
   }
   .watermark-text-education {
-    font-family: 'Archivo', sans-serif !important;
+    font-family: "Archivo", sans-serif !important;
     float: right;
     position: absolute;
     top: 40%;
@@ -491,7 +526,7 @@ export default {
             margin-right: 10px;
           }
         }
-        .upload-btn-box:hover{
+        .upload-btn-box:hover {
           opacity: 0.7;
           transition: 0.3s;
         }
@@ -543,7 +578,7 @@ export default {
             align-items: center;
           }
 
-          a:hover{
+          a:hover {
             opacity: 0.8;
             transition: 0.3s;
           }
