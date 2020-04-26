@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-flex tw-items-center tw-justify-around tw-max-w-xs tw-mx-auto md:tw-max-w-2xl xxl:tw-max-w-1568px">
+	<div class="tw-flex tw-items-center tw-justify-around tw-max-w-xs tw-mx-auto md:tw-max-w-2xl xxl:tw-max-w-1522px">
 		<TabButton label="Portfolio" :isActive="currentTab == 'portfolio'" @click="$emit('tabChanged', 'portfolio')">
 			<svg class="tw-w-6 tw-h-6 tw-fill-current md:tw-w-30px md:tw-h-30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 				<path d="M21.6 2.4V16.8H7.2V2.4H21.6ZM21.6 0H7.2C5.88 0 4.8 1.08 4.8 2.4V16.8C4.8 18.12 5.88 19.2 7.2 19.2H21.6C22.92 19.2 24 18.12 24 16.8V2.4C24 1.08 22.92 0 21.6 0ZM11.4 11.604L13.428 14.316L16.404 10.596L20.4 15.6H8.4L11.4 11.604ZM0 4.8V21.6C0 22.92 1.08 24 2.4 24H19.2V21.6H2.4V4.8H0Z" />

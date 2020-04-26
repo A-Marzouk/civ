@@ -83,7 +83,7 @@ module.exports = {
         extend: {
             spacing,
             screens: {
-                xxl: "1620px"
+                xxl: "1920px"
             },
             colors: {
                 tm700: {
@@ -129,9 +129,10 @@ module.exports = {
                 "tm700-xl-1": "120rem",
                 "tm700-xl-2": "106.5625rem",
                 "1396px": "87.25rem",
-                "1568px": "1568px",
+                "1522px": "1522px",
+                "1727px": "1727px",
                 "1767px": "1767px",
-                "1727px": "1727px"
+                "1784px": "1784px"
             },
             gridTemplateColumns: {
                 "tm700-d-skills-bar": "118px auto 48px",

@@ -1,5 +1,5 @@
 <template>
-	<div class="bg-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4 md:tw-px-54px md:tw-pb-44px md:tw-pt-10">
+	<div class="bg-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4 md:tw-px-54px md:tw-pb-44px md:tw-pt-10 xxl:tw-px-10">
 		<div class="tw-flex tw-justify-between tw-items-center">
 			<h4 class="tw-font-bold tw-leading-30px tw-text-black tw-text-2xl md:tw-text-4xl" v-text="title"></h4>
 			<div class="tw-flex tw-items-center tw-justify-center tw-rounded-9px tw-w-60px tw-h-60px" :class="`bg-${iconBgColor}`">

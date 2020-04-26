@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-font-poppins tw-text-sm tw-leading-21px tw-whitespace-no-wrap tw-mr-5 tw-border-b tw-cursor-pointer tab-link" :class="{'tw-border-black': isActive, ' tw-border-white': !isActive}" @click="$emit('click', label)">
+	<div class="tw-font-poppins tw-text-sm tw-leading-21px tw-whitespace-no-wrap tw-mr-5 tw-border-b tw-cursor-pointer tab-link xxl:tw-text-26px xxl:tw-leading-37px xxl:tw-mr-70px" :class="{'tw-border-black': isActive, ' tw-border-white': !isActive}" @click="$emit('click', label)">
 		{{ label }}
 	</div>
 </template>
@@ -24,6 +24,6 @@ export default {
 <style lang="scss" scoped>
 .tab-link {
 	color: #333333;
-	padding: 5px 0;
+	padding: 10px 1px 5px;
 }
 </style>

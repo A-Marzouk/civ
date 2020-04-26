@@ -8,12 +8,12 @@
 				{{ currentUser.fullname }}
 			</h3>
 		</div>
-		<div class="tw-hidden tw-mx-auto tw-max-w-4xl md:tw-block">
-			<div class="tw-flex tw-justify-between tw-pt-30px tw-px-30px">
-				<div class="tw-pl-22px tw-pt-30px">
+		<div class="tw-hidden tw-mx-auto tw-max-w-4xl md:tw-block xxl:tw-max-w-5xl">
+			<div class="tw-flex tw-justify-between tw-pt-30px tw-px-30px xxl:tw-px-0">
+				<div class="tw-pl-22px tw-pt-30px xxl:tw-pl-0">
 					<img class="tw-w-125px tw-h-125px tw-rounded-lg xxl:tw-w-56 xxl:tw-h-56" :src="currentUser.avatar" />
 				</div>
-				<div class="tw-flex-1 tw-pl-63px">
+				<div class="tw-flex-1 tw-pl-63px xxl:tw-pl-80px">
 					<h3 class="tw-font-open-sans tw-font-bold tw-text-4xl tw-text-white tw-leading-snug" v-text="currentUser.fullname"></h3>
 					<h4 class="tw-font-poppins tw-font-bold tw-text-base tw-leading-24px tw-text-white tw-pt-10px" v-text="currentUser.jobTitleDescription"></h4>
 					<div class="tw-font-poppins tw-text-xs tw-leading-18px tw-text-white tw-pt-15px tw-max-w-sm xxl:tw-max-w-md" v-html="getShortString(currentUser.motivationLetter)"></div>
