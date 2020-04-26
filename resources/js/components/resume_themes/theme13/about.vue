@@ -29,7 +29,7 @@ export default {
         
         .about-title {
             font-size: 40px;
-            color: white;
+            color: #686299;
             font-weight: 700;
         }
 
@@ -41,7 +41,7 @@ export default {
 
             p {
                 font-size: 20px;
-                color: #C2C6D8;
+                color: #616887;
             }
         }
     }

@@ -162,11 +162,13 @@ $purple: #686299;
 
     .theme-header {
         width: 100%;
+        position: relative;
 
         .bg-header {
             width: 100%;
             height: 100%;
             position: absolute;
+            overflow: hidden;
 
             .left-bg {
                 position: absolute;
@@ -401,7 +403,7 @@ $purple: #686299;
         align-items: center;
         width: 100%;
         height: 63px;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.16);

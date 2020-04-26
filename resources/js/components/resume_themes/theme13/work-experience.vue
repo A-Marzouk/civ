@@ -120,7 +120,7 @@ export default {
             }
 
             .date {
-                color: $lineColor;
+                color: #838BA4;
                 font-size: 15px;
                 margin-left: 13px;
             }
@@ -137,7 +137,7 @@ export default {
 
             .work-description,
             .work-description p {
-                color: $lineColor;
+                color: #838BA4;
                 font-size: 17px;
             }
         }
