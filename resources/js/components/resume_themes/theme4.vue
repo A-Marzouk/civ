@@ -782,11 +782,12 @@ export default {
           }
 
           .job-title {
+            margin-top:-5px;
             font-size: 16px;
           }
 
           .social-icons {
-            margin-top: 20px;
+            margin-top: 23px;
             img {
               width: 34px;
               height: 34px;
