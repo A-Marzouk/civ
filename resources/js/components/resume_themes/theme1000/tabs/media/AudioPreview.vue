@@ -1,6 +1,6 @@
 <template>
-	<div class="tw-flex tw-items-center bg-card tw-rounded-9px tw-p-28px md:tw-h-full">
-		<img class="tw-rounded-9px" :src="media.thumbnail">
+	<div class="tw-flex tw-items-center bg-card tw-rounded-9px tw-px-30px tw-pt-8 tw-pb-30px xxl:tw-py-35px">
+		<img class="tw-rounded-9px tw-h-78px tw-w-78px" :src="media.thumbnail">
 		<div class="tw-pl-20px">
 			<h4 class="tw-font-poppins tw-font-bold tw-leading-21px tw-text-black tw-text-lg" v-text="media.title"></h4>
 			<div class="tw-font-poppins tw-leading-21px text-semi-black tw-text-xs tw-pt-5px" v-text="media.artist"></div>

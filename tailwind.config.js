@@ -44,7 +44,7 @@ const spacing = {
     "63px": "63px",
     "70px": "70px",
     "66px": "4.13rem",
-    "78px": "4.875‬rem",
+    "78px": "4.875rem",
     "80px": "5rem",
     "82px": "5.125‬rem",
     "84px": "84px",
