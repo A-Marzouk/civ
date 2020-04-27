@@ -63,10 +63,10 @@ export default {
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        padding: 0 80px !important;
+        padding: 0 100px !important;
 
         .skill {
-            width: 48%;
+            width: 45%;
             margin-bottom: 60px;
             grid-column: span 4;
 

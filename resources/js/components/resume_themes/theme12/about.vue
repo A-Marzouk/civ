@@ -26,11 +26,15 @@ export default {
 <style lang="scss" scoped>
     .about {
         display: flex;
+        padding: 0 190px !important;
         
         .about-title {
             font-size: 40px;
             color: white;
             font-weight: 700;
+            max-width: 270px;
+            width: 100%;
+            margin-right: 192px;
         }
 
         .content {
@@ -41,8 +45,8 @@ export default {
             margin-top: 0;
 
             p {
-
                 color: #C2C6D8;
+                font-family: 'Muli', sans-serif;
             }
         }
     }

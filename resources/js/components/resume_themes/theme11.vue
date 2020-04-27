@@ -3,9 +3,9 @@
     <v-app id="theme11" style="width: 100%">
         <div class="theme-header">
 
-            <div class="bg-header">
+            <!-- <div class="bg-header">
                 <img src="/images/resume_themes/theme11/bg-header-bottom-right.svg" alt="" class="bg-header-bottom-right" />
-            </div>
+            </div> -->
 
             <div class="user-info">
                 <div class="left">
@@ -157,13 +157,17 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     font-family: 'Muli', sans-serif;
     width: 100%;
     color: white;
-    background: #4327AB;
+    background-color: #4327AB;
+    background-image: url('/images/resume_themes/theme11/bg-img.png');
+    background-size: 119% auto;
+    background-position: center -20px;
+    background-repeat: no-repeat;
     position: relative;
     overflow-x: hidden;
 
     .theme-header {
         width: 100%;
-        background: linear-gradient(to bottom, #7566E5, #4327AB);
+        // background: linear-gradient(to bottom, #7566E5, #4327AB);
         position: relative;
 
         .bg-header {
