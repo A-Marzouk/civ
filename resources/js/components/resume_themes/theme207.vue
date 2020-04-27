@@ -88,7 +88,6 @@
               </v-card>
             </v-col>
             <!-- 3rd column -->
-
           </v-row>
         </v-container>
       </v-app-bar>
@@ -153,7 +152,7 @@
       </v-container>
       <!--Tab Container  -->
       <!-- tab items container -->
-      <v-container fluid pa-md-10 mt-n12 style="width:100%">
+      <v-container fluid pa-md-10 mt-md-n12 mt-sm-n6 style="width:100%">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent" tile>
@@ -259,41 +258,46 @@
                 <!-- Portfolio -->
                 <!-- Education -->
                 <v-tab-item>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
-                      <v-card class="pa-5 card-education" hover color="#272B2F">
-                        <div class="d-flex flex-no-wrap justify-space-between">
-                          <v-avatar
-                            class="mt-6"
-                            tile
-                            size="100"
-                            height="120"
-                            color="rgba(252, 65, 60, 0.1)"
-                          >
-                            <v-img
-                              max-width="50"
-                              max-height="50"
-                              src="/images/resume_themes/theme207/tabs/active/2.png"
-                            ></v-img>
-                          </v-avatar>
-                          <div>
-                            <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
-                            <v-card-subtitle
-                              class="education-subtitle"
-                            >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
-                            <v-card-subtitle class="education-session mt-n6" align="right">2010-2013</v-card-subtitle>
+                  <v-container style="width:100%" fluid class="md-pa-0 pa-5">
+                    <v-row>
+                      <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
+                        <v-card class="pa-5 card-education" hover color="#272B2F">
+                          <div class="d-flex flex-no-wrap justify-space-between">
+                            <v-avatar
+                              class="mt-6"
+                              tile
+                              size="100"
+                              height="120"
+                              color="rgba(252, 65, 60, 0.1)"
+                            >
+                              <v-img
+                                max-width="50"
+                                max-height="50"
+                                src="/images/resume_themes/theme207/tabs/active/2.png"
+                              ></v-img>
+                            </v-avatar>
+                            <div>
+                              <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
+                              <v-card-subtitle
+                                class="education-subtitle"
+                              >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
+                              <v-card-subtitle
+                                class="education-session mt-n6"
+                                align="right"
+                              >2010-2013</v-card-subtitle>
+                            </div>
                           </div>
-                        </div>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-tab-item>
                 <!-- Education -->
 
                 <!-- Experience -->
                 <v-tab-item>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
+                    <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
                           <v-avatar
@@ -358,7 +362,7 @@
                               <v-row>
                                 <v-col
                                   md="4"
-                                  sm="6"
+                                  sm="12"
                                   cols="12"
                                   v-for="item in childSkills"
                                   :key="item.id"
@@ -644,7 +648,7 @@ export default {
   width: 85%;
   border: 1px solid #ffffff;
   opacity: 0.1;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     width: 60%;
   }
 }
@@ -671,7 +675,7 @@ export default {
   font-size: 2.5rem;
   line-height: 3.375rem;
   color: #ffffff !important;
-  @media screen and (min-width: 960px) and (max-width: 1054px){
+  @media screen and (min-width: 960px) and (max-width: 1054px) {
     font-size: 1.8rem;
   }
   @media screen and(max-width:959px) {
@@ -707,9 +711,9 @@ export default {
   }
   @media screen and (min-width: 960px) and (max-width: 1209px) {
     font-size: 1.2rem;
-    img{
+    img {
       width: 20px;
-      height:20px;
+      height: 20px;
     }
   }
 
@@ -840,6 +844,9 @@ export default {
   color: #ffffff !important;
   line-height: 23px;
   font-size: 0.875rem !important;
+  @media screen and (max-width:959px){
+    width: 60% !important;
+  }
 }
 .education-session {
   font-family: "Roboto", sans-serif !important;
