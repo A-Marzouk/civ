@@ -3,7 +3,7 @@
     <v-container fluid ma-0 pa-0 style="width:100%; ">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" height="260" dark>
-        <v-avatar size="200" class="custom-avatar" left tile>
+        <v-avatar class="custom-avatar" left tile>
           <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
@@ -18,7 +18,7 @@
 
               <v-card class="pa-0 mt-3" align="center" color="transparent" tile flat>
                 <v-row justify="center" align="center">
-                  <v-col cols="6">
+                  <v-col cols="6" sm="5">
                     <div class="hour-rate">
                       <v-avatar left class="mt-n2 mr-n1">
                         <img src="/images/resume_themes/theme207/icons/usd.png" />
@@ -27,7 +27,7 @@
                     </div>
                     <div class="hour-rate-text">Hour Rate</div>
                   </v-col>
-                  <v-col cols="6">
+                  <v-col cols="6" sm="5">
                     <div class="hour-rate">
                       <v-avatar left class="mt-n2 mr-n1">
                         <img src="/images/resume_themes/theme207/icons/time.png" />
@@ -43,8 +43,8 @@
             <!-- Social Buttons for tablet only -->
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
+                <v-btn color="#272B2F" class="btn-hire-me my-8 mt-n8 ml-2" x-large>
+                  <v-icon color="#FC413C" left>mdi-email-outline</v-icon>
                 </v-btn>
 
                 <!-- social buttons -->
@@ -52,7 +52,7 @@
                   class="custom-social-btn mx-2"
                   v-for="item in socialIcons"
                   :key="item.title"
-                  color="#FAFAFA"
+                  color="#272B2F"
                 >
                   <img
                     :width="item.title == 'facebook'? '12' : '20' "
@@ -89,16 +89,6 @@
             </v-col>
             <!-- 3rd column -->
 
-            <!-- 4th column for tablet only -->
-            <v-col sm="1" class="d-none d-sm-flex d-md-none"></v-col>
-            <v-col sm="5" class="d-none d-sm-flex d-md-none">
-              <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
-                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
-                </v-btn>
-              </v-card>
-            </v-col>
-            <!-- 4th column for tablet only -->
           </v-row>
         </v-container>
       </v-app-bar>
@@ -509,7 +499,7 @@
             <div class="d-flex justify-content-between mt-5">
               <div class="shuffle mx-2 mt-1">
                 <v-btn icon>
-                  <img src="/images/resume_themes/theme207/audio/shuffle.png" alt="">
+                  <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
                 </v-btn>
               </div>
               <div class="mx-10">
@@ -557,7 +547,7 @@ export default {
       currentTab: 1,
       currentSkillTab: 1,
       personalData: {
-        name: "Liam McDevitt",
+        name: "Hean Prinsloo",
         designation: "FrontEnd Developer",
         detail:
           "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices..."
@@ -651,12 +641,25 @@ export default {
   width: 85%;
   border: 1px solid #ffffff;
   opacity: 0.1;
+  @media screen and (max-width: 959px){
+    width: 60%;
+  }
 }
 .custom-avatar {
   background: #272b2f;
   border: 10px solid #272b2f;
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
   border-radius: 9px;
+  width: 200px !important;
+  height: 200px !important;
+  max-height: 200px;
+  max-width: 200px;
+  @media screen and (max-width: 959px) {
+    width: 120px !important;
+    height: 120px !important;
+    max-height: 120px;
+    max-width: 120px;
+  }
 }
 
 .custom-profile-title {
@@ -666,7 +669,7 @@ export default {
   line-height: 3.375rem;
   color: #ffffff !important;
   @media screen and(max-width:959px) {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -695,6 +698,13 @@ export default {
   img {
     width: 35px;
     height: 35px;
+  }
+  @media screen and (max-width: 959px) {
+    font-size: 1.5rem;
+    img {
+      width: 26px;
+      height: 26px;
+    }
   }
 }
 .hour-rate-text {
