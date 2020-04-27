@@ -627,6 +627,7 @@ export default {
 
     .tab-text.active {
       color: #00a3ff;
+      font-weight: bold;
       background-color: white;
     }
 
