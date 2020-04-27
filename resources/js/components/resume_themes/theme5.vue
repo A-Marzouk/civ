@@ -324,16 +324,18 @@ export default {
               dots: false,
               arrows: false,
               centerMode: true,
-              slidesToShow: 1
+              slidesToShow: 1,
+              slidesToScroll: 1
             }
           },
           {
-            breakpoint: 425,
+            breakpoint: 480,
             settings: {
               dots: false,
               arrows: false,
 
-              slidesToShow: 5
+              slidesToShow: 5,
+              slidesToScroll: 5
             }
           }
         ]
@@ -878,6 +880,12 @@ export default {
     color: #918f97;
     margin-right: 16px;
     white-space: nowrap;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .slick-initialized .slick-slider .slick-slide .slick-active {
+    width: 40px !important;
   }
 }
 
@@ -1796,7 +1804,7 @@ export default {
                 #1f5de4 40%,
                 rgba(255, 255, 255, 0) 20%
               );
-              background-position: left;
+              background-position: 8px 0%;
               background-size: 1.5px 18px;
               background-repeat: repeat-y;
             }
@@ -1807,7 +1815,7 @@ export default {
                 #548aff 40%,
                 rgba(255, 255, 255, 0) 20%
               );
-              background-position: left;
+              background-position: 8px 0%;
               background-size: 1.5px 18px;
               background-repeat: repeat-y;
             }
