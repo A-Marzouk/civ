@@ -101,28 +101,13 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up">
-              <v-tab
-                v-for="tab in tabItems"
-                :key="tab.id"
-                @click="currentTab=tab.id"
-                :class="[
-                  currentTab == tab.id ? 'active-mobile-tab' : ''
-                ]"
-              >
-                <v-avatar tile size="16">
-                  <img :src="getTabIcon(tab.id)" width="16" />
-                </v-avatar>
-                <span class="ml-2" v-if="currentTab == tab.id">{{tab.title}}</span>
-              </v-tab>
-            </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
             <v-tabs
               v-model="mainDataTab"
               centered
               grow
-              class="hidden-xs-only"
+              class=""
               slider-color="#FC413C"
               background-color="transparent"
               tile
