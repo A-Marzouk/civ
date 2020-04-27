@@ -85,6 +85,7 @@ export default {
     .work-item {
         max-width: 529px;
         width: 48%;
+        margin:0 41px;
         margin-bottom: 74px;
 
         .work-header {
