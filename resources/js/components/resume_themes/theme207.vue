@@ -668,6 +668,9 @@ export default {
   font-size: 2.5rem;
   line-height: 3.375rem;
   color: #ffffff !important;
+  @media screen and (min-width: 960px) and (max-width: 1054px){
+    font-size: 1.8rem;
+  }
   @media screen and(max-width:959px) {
     font-size: 1.8rem;
   }
@@ -699,6 +702,14 @@ export default {
     width: 35px;
     height: 35px;
   }
+  @media screen and (min-width: 960px) and (max-width: 1209px) {
+    font-size: 1.2rem;
+    img{
+      width: 20px;
+      height:20px;
+    }
+  }
+
   @media screen and (max-width: 959px) {
     font-size: 1.5rem;
     img {
@@ -711,6 +722,9 @@ export default {
   font-family: "Poppins", sans-serif !important;
   font-size: 0.875rem;
   color: #febc2c;
+  @media screen and (min-width: 960px) and (max-width: 1209px) {
+    font-size: 0.7rem;
+  }
 }
 // Availibilty
 
