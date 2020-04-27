@@ -164,7 +164,7 @@
                     <v-card-text>
                       <v-row>
                         <!-- column 1 -->
-                        <v-col md="3">
+                        <v-col md="3" sm="6" cols="6">
                           <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
@@ -178,6 +178,7 @@
                               </template>
                             </v-speed-dial>
                             <v-img
+                              class="portfolio-small-img"
                               src="/images/resume_themes/theme207/portfolio/1.png"
                               alt="Portfolio Image"
                             ></v-img>
@@ -185,7 +186,7 @@
                         </v-col>
                         <!-- Column 1 -->
                         <!-- column 2 -->
-                        <v-col md="4">
+                        <v-col md="4" sm="6" cols="6">
                           <v-row>
                             <v-col cols="6" v-for="n in 4" :key="n">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
@@ -206,8 +207,9 @@
                           </v-row>
                         </v-col>
                         <!-- Column 2 -->
+                        <!-- this two columns will not shown on tablets and mobiles-->
                         <!-- column 3 -->
-                        <v-col md="3">
+                        <v-col md="3" class="hidden-sm-and-down">
                           <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
@@ -230,7 +232,7 @@
                         <!-- column 4 -->
                         <v-col md="2">
                           <v-row>
-                            <v-col cols="12" v-for="n in 2" :key="n">
+                            <v-col cols="12" v-for="n in 2" :key="n" class="hidden-sm-and-down">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
@@ -249,6 +251,7 @@
                           </v-row>
                         </v-col>
                         <!-- Column 4 -->
+                        <!-- This two columns will not show on tablets and mobiles -->
                       </v-row>
                     </v-card-text>
                   </v-card>
