@@ -23,7 +23,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
     .about {
         display: flex;
         
@@ -36,8 +36,14 @@ export default {
         .content {
             width: 80%;
             font-size: 20px;
-            color: #C2C6D8;
+            column-count: 2;
+            column-gap: 58px;
             margin-top: 0;
+
+            p {
+
+                color: #C2C6D8;
+            }
         }
     }
 </style>

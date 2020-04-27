@@ -1,22 +1,12 @@
 <template>
     <div class="container skills-container">
         <div v-for="(skill, index) in skillsList" :key="index + skill.name" class="skill">
-            <div class="chart">
-                <radial-progress-bar :diameter="70.81"
-                    :completed-steps="skill.percentage"
-                    total-steps="100"
-                    startColor="#E43CC6"
-                    stopColor="#E43CC6"
-                    strokeWidth="3"
-                    innerStrokeColor="#D3D6E4"
-                    strokeLinecap="square"
-                >
-                </radial-progress-bar>
-                <img src="/images/resume_themes/theme12/adobexd-icon.png" alt="">
-            </div>
             <div class="skill-info">
                 <div class="skill-name">{{ skill.name }}</div>
                 <div class="skill-percentage">{{ skill.percentage }} %</div>
+            </div>
+            <div class="skill-progress">
+                <div class="value" :style="{width: skill.percentage + '%'}"></div>
             </div>
         </div>
     </div>
@@ -70,32 +60,19 @@ export default {
 <style lang="scss" scoped>
     .skills-container {
         margin-top: 34px;
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-gap: 30px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 0 80px !important;
 
         .skill {
-            max-width: 310px;
-            margin: 35px 100px;
+            width: 48%;
+            margin-bottom: 60px;
             grid-column: span 4;
-
-            .chart {
-                position: relative;
-                width: 70.8px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                    position: absolute;
-                    width: 27.25px;
-                }
-            }
-
 
             .skill-info {
                 display: flex;
-                flex-direction: column;
+                justify-content: space-between;
                 margin-top: 24.3px;
 
                 .skill-name {
@@ -110,16 +87,22 @@ export default {
                     font-weight: 700;
                     color: #C2C6D8;
                     position: relative;
+                }
+            }
 
-                    &::after {
-                        content: "";
-                        top: 50%;
-                        position: absolute;
-                        background: #616887;
-                        height: 2px;
-                        width: 24px;
-                        left: -32.4px;
-                    }
+            .skill-progress {
+                position: relative;
+                width: 100%;
+                height: 6px;
+                border-radius: 3px;
+                background: rgba(255, 255, 255, 0.15);
+
+                .value {
+                    position: absolute;
+                    height: 100%;
+                    content: "";
+                    background: #56EDF0;
+                    border-radius: 3px;
                 }
             }
         }

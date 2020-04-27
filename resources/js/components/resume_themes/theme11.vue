@@ -96,6 +96,9 @@
                                 Behance
                             </a>
                         </div>
+                        <div class="scroll-top">
+                            <a href="javascript:;" v-scroll-to="'#theme13'">Scroll to top</a>
+                        </div>
                     </v-col>
                 </v-row>
             </div>
@@ -156,6 +159,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     color: white;
     background: #4327AB;
     position: relative;
+    overflow-x: hidden;
 
     .theme-header {
         width: 100%;
@@ -414,6 +418,29 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 &::after {
                     display: none;
                 }
+            }
+        }
+    }
+
+    .scroll-top {
+        position: fixed;
+        left: 45px;
+        bottom: 250px;
+        transform: rotateZ(-90deg);
+
+        a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: white;
+
+            &::after {
+                position: absolute;
+                content: "";
+                left: -89px;
+                height: 3px;
+                width: 63px;
+                background: rgba(236, 237, 244, 0.15);
             }
         }
     }

@@ -4,10 +4,10 @@
             <div class="chart">
                 <radial-progress-bar :diameter="70.81"
                     :completed-steps="skill.percentage"
-                    total-steps="100"
+                    :total-steps="100"
                     startColor="#E43CC6"
                     stopColor="#E43CC6"
-                    strokeWidth="3"
+                    :strokeWidth="3"
                     innerStrokeColor="#D3D6E4"
                     strokeLinecap="square"
                 >
