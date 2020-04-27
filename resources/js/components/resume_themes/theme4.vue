@@ -268,15 +268,25 @@ export default {
     overflow: hidden;
     display: flex;
     cursor: pointer;
-    
+
     img {
       width: 19px;
       height: 19px;
     }
 
     @media screen and (min-width: 1281px) {
-      top:224px;
+      top: 224px;
       left: 222px;
+    }
+    @media screen and (min-width: 766px) and (max-width: 1280px) {
+      width: 30px;
+      height: 30px;
+      top: 136px;
+      left: 126px;
+      img {
+        width: 14px;
+        height: 14px;
+      }
     }
     @media screen and (max-width: 765px) {
       width: 20px;
@@ -291,7 +301,7 @@ export default {
     }
   }
 
-  .chat-btn-container:hover{
+  .chat-btn-container:hover {
     background: #fac7a5;
     transition: 2s;
   }
@@ -783,7 +793,7 @@ export default {
           }
 
           .job-title {
-            margin-top:-5px;
+            margin-top: -5px;
             font-size: 16px;
           }
 
