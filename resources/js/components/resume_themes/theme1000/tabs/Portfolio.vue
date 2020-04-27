@@ -110,10 +110,12 @@ export default {
 	methods: {
 		showSelectedPortfolio(portfolio) {
 			this.selectedPortfolio = { url: portfolio.url, isOpen: true };
+			document.body.classList.add("tw-overflow-hidden");
 		},
 
 		hideSelectedPortfolio() {
 			this.selectedPortfolio = { url: "", isOpen: false };
+			document.body.classList.remove("tw-overflow-hidden");
 		},
 
 		initGridAreas() {

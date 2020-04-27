@@ -16,7 +16,7 @@ export default {
 
 	data: () => {
 		return {
-			currentTab: "about-me"
+			currentTab: "portfolio"
 		};
 	}
 };
