@@ -51,6 +51,7 @@
         "vue-particles": "^1.0.9",
         "vue-radial-progress": "^0.3.0",
         "vue-router": "^3.1.5",
+        "vue-scrollto": "^2.18.1",
         "vue-slick": "^1.1.15",
         "vue-template-compiler": "^2.6.10",
         "vue-uuid": "^1.1.1",
