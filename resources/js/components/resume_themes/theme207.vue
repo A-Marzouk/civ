@@ -3,7 +3,7 @@
     <v-container fluid ma-0 pa-0 style="width:100%; ">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" height="260" dark>
-        <v-avatar size="200" class="custom-avatar" left tile>
+        <v-avatar class="custom-avatar" left tile>
           <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
@@ -18,7 +18,7 @@
 
               <v-card class="pa-0 mt-3" align="center" color="transparent" tile flat>
                 <v-row justify="center" align="center">
-                  <v-col cols="6">
+                  <v-col cols="6" sm="5">
                     <div class="hour-rate">
                       <v-avatar left class="mt-n2 mr-n1">
                         <img src="/images/resume_themes/theme207/icons/usd.png" />
@@ -27,7 +27,7 @@
                     </div>
                     <div class="hour-rate-text">Hour Rate</div>
                   </v-col>
-                  <v-col cols="6">
+                  <v-col cols="6" sm="5">
                     <div class="hour-rate">
                       <v-avatar left class="mt-n2 mr-n1">
                         <img src="/images/resume_themes/theme207/icons/time.png" />
@@ -43,8 +43,8 @@
             <!-- Social Buttons for tablet only -->
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
+                <v-btn color="#272B2F" class="btn-hire-me my-8 mt-n8 ml-2" x-large>
+                  <v-icon color="#FC413C" left>mdi-email-outline</v-icon>
                 </v-btn>
 
                 <!-- social buttons -->
@@ -52,7 +52,7 @@
                   class="custom-social-btn mx-2"
                   v-for="item in socialIcons"
                   :key="item.title"
-                  color="#FAFAFA"
+                  color="#272B2F"
                 >
                   <img
                     :width="item.title == 'facebook'? '12' : '20' "
@@ -88,17 +88,6 @@
               </v-card>
             </v-col>
             <!-- 3rd column -->
-
-            <!-- 4th column for tablet only -->
-            <v-col sm="1" class="d-none d-sm-flex d-md-none"></v-col>
-            <v-col sm="5" class="d-none d-sm-flex d-md-none">
-              <v-card flat color="tranparent" class="ml-2 mt-0 mt-n5">
-                <v-btn color="#FAFAFA" class="btn-hire-me" x-large>
-                  <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
-                </v-btn>
-              </v-card>
-            </v-col>
-            <!-- 4th column for tablet only -->
           </v-row>
         </v-container>
       </v-app-bar>
@@ -112,28 +101,13 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up">
-              <v-tab
-                v-for="tab in tabItems"
-                :key="tab.id"
-                @click="currentTab=tab.id"
-                :class="[
-                  currentTab == tab.id ? 'active-mobile-tab' : ''
-                ]"
-              >
-                <v-avatar tile size="16">
-                  <img :src="getTabIcon(tab.id)" width="16" />
-                </v-avatar>
-                <span class="ml-2" v-if="currentTab == tab.id">{{tab.title}}</span>
-              </v-tab>
-            </v-tabs>
             <!-- for mobile version  -->
             <!-- tab for desktop and tablet -->
             <v-tabs
               v-model="mainDataTab"
               centered
               grow
-              class="hidden-xs-only"
+              class=""
               slider-color="#FC413C"
               background-color="transparent"
               tile
@@ -163,7 +137,7 @@
       </v-container>
       <!--Tab Container  -->
       <!-- tab items container -->
-      <v-container fluid pa-md-10 mt-n12 style="width:100%">
+      <v-container fluid pa-md-10 mt-md-n12 mt-sm-n6 style="width:100%">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent" tile>
@@ -174,7 +148,7 @@
                     <v-card-text>
                       <v-row>
                         <!-- column 1 -->
-                        <v-col md="3">
+                        <v-col md="3" sm="6" cols="6">
                           <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
@@ -188,6 +162,7 @@
                               </template>
                             </v-speed-dial>
                             <v-img
+                              class="portfolio-small-img"
                               src="/images/resume_themes/theme207/portfolio/1.png"
                               alt="Portfolio Image"
                             ></v-img>
@@ -195,7 +170,7 @@
                         </v-col>
                         <!-- Column 1 -->
                         <!-- column 2 -->
-                        <v-col md="4">
+                        <v-col md="4" sm="6" cols="6">
                           <v-row>
                             <v-col cols="6" v-for="n in 4" :key="n">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
@@ -216,8 +191,9 @@
                           </v-row>
                         </v-col>
                         <!-- Column 2 -->
+                        <!-- this two columns will not shown on tablets and mobiles-->
                         <!-- column 3 -->
-                        <v-col md="3">
+                        <v-col md="3" class="hidden-sm-and-down">
                           <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
@@ -240,7 +216,7 @@
                         <!-- column 4 -->
                         <v-col md="2">
                           <v-row>
-                            <v-col cols="12" v-for="n in 2" :key="n">
+                            <v-col cols="12" v-for="n in 2" :key="n" class="hidden-sm-and-down">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
@@ -259,6 +235,7 @@
                           </v-row>
                         </v-col>
                         <!-- Column 4 -->
+                        <!-- This two columns will not show on tablets and mobiles -->
                       </v-row>
                     </v-card-text>
                   </v-card>
@@ -266,41 +243,46 @@
                 <!-- Portfolio -->
                 <!-- Education -->
                 <v-tab-item>
-                  <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
-                      <v-card class="pa-5 card-education" hover color="#272B2F">
-                        <div class="d-flex flex-no-wrap justify-space-between">
-                          <v-avatar
-                            class="mt-6"
-                            tile
-                            size="100"
-                            height="120"
-                            color="rgba(252, 65, 60, 0.1)"
-                          >
-                            <v-img
-                              max-width="50"
-                              max-height="50"
-                              src="/images/resume_themes/theme207/tabs/active/2.png"
-                            ></v-img>
-                          </v-avatar>
-                          <div>
-                            <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
-                            <v-card-subtitle
-                              class="education-subtitle"
-                            >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
-                            <v-card-subtitle class="education-session mt-n6" align="right">2010-2013</v-card-subtitle>
+                  <v-container style="width:100%" fluid class="md-pa-0 pa-5">
+                    <v-row>
+                      <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
+                        <v-card class="pa-5 card-education" hover color="#272B2F">
+                          <div class="d-flex flex-no-wrap justify-space-between">
+                            <v-avatar
+                              class="mt-6"
+                              tile
+                              size="100"
+                              height="120"
+                              color="rgba(252, 65, 60, 0.1)"
+                            >
+                              <v-img
+                                max-width="50"
+                                max-height="50"
+                                src="/images/resume_themes/theme207/tabs/active/2.png"
+                              ></v-img>
+                            </v-avatar>
+                            <div>
+                              <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
+                              <v-card-subtitle
+                                class="education-subtitle"
+                              >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
+                              <v-card-subtitle
+                                class="education-session mt-n6"
+                                align="right"
+                              >2010-2013</v-card-subtitle>
+                            </div>
                           </div>
-                        </div>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-tab-item>
                 <!-- Education -->
 
                 <!-- Experience -->
                 <v-tab-item>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
+                    <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
                           <v-avatar
@@ -365,7 +347,7 @@
                               <v-row>
                                 <v-col
                                   md="4"
-                                  sm="6"
+                                  sm="12"
                                   cols="12"
                                   v-for="item in childSkills"
                                   :key="item.id"
@@ -505,14 +487,12 @@
           </div>
           <!-- spectrum -->
           <!-- Audio Controlls -->
-          <div class="ml-12">
+          <div class="ml-12 flex-fill">
             <div class="d-flex justify-content-between mt-5">
-              <div class="shuffle mx-2 mt-2">
-                <v-img
-                  width="20"
-                  height="auto"
-                  src="/images/resume_themes/theme207/audio/shuffle.png"
-                ></v-img>
+              <div class="shuffle mx-2 mt-1">
+                <v-btn icon>
+                  <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
+                </v-btn>
               </div>
               <div class="mx-10">
                 <!-- previous button -->
@@ -528,12 +508,16 @@
                 <!-- previous button -->
               </div>
               <!-- Repeat Button -->
-              <div class="shuffle mt-2">
-                <v-img
-                  width="20"
-                  height="auto"
-                  src="/images/resume_themes/theme207/audio/repeat.png"
-                ></v-img>
+              <div class="shuffle mt-1">
+                <v-btn icon>
+                  <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
+                </v-btn>
+              </div>
+
+              <div class="btn-fullscreen">
+                <v-btn icon depressed>
+                  <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
+                </v-btn>
               </div>
               <!-- Repeat Button -->
             </div>
@@ -555,7 +539,7 @@ export default {
       currentTab: 1,
       currentSkillTab: 1,
       personalData: {
-        name: "Liam McDevitt",
+        name: "Hean Prinsloo",
         designation: "FrontEnd Developer",
         detail:
           "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices..."
@@ -649,12 +633,25 @@ export default {
   width: 85%;
   border: 1px solid #ffffff;
   opacity: 0.1;
+  @media screen and (max-width: 959px) {
+    width: 60%;
+  }
 }
 .custom-avatar {
   background: #272b2f;
   border: 10px solid #272b2f;
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
   border-radius: 9px;
+  width: 200px !important;
+  height: 200px !important;
+  max-height: 200px;
+  max-width: 200px;
+  @media screen and (max-width: 959px) {
+    width: 120px !important;
+    height: 120px !important;
+    max-height: 120px;
+    max-width: 120px;
+  }
 }
 
 .custom-profile-title {
@@ -663,8 +660,11 @@ export default {
   font-size: 2.5rem;
   line-height: 3.375rem;
   color: #ffffff !important;
+  @media screen and (min-width: 960px) and (max-width: 1054px) {
+    font-size: 1.8rem;
+  }
   @media screen and(max-width:959px) {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -694,11 +694,29 @@ export default {
     width: 35px;
     height: 35px;
   }
+  @media screen and (min-width: 960px) and (max-width: 1209px) {
+    font-size: 1.2rem;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  @media screen and (max-width: 959px) {
+    font-size: 1.5rem;
+    img {
+      width: 26px;
+      height: 26px;
+    }
+  }
 }
 .hour-rate-text {
   font-family: "Poppins", sans-serif !important;
   font-size: 0.875rem;
   color: #febc2c;
+  @media screen and (min-width: 960px) and (max-width: 1209px) {
+    font-size: 0.7rem;
+  }
 }
 // Availibilty
 
@@ -811,6 +829,9 @@ export default {
   color: #ffffff !important;
   line-height: 23px;
   font-size: 0.875rem !important;
+  @media screen and (max-width:959px){
+    width: 60% !important;
+  }
 }
 .education-session {
   font-family: "Roboto", sans-serif !important;
@@ -888,6 +909,14 @@ export default {
   }
 }
 
+.shuffle {
+  margin-top: -15px;
+  img {
+    width: 20px;
+    height: auto;
+  }
+}
+
 .pause-btn {
   margin-top: -20px;
   width: 70px !important;
@@ -897,6 +926,14 @@ export default {
   z-index: 2;
   img {
     width: 20px;
+    height: auto;
+  }
+}
+
+.btn-fullscreen {
+  margin-left: 200px;
+  img {
+    width: 18px;
     height: auto;
   }
 }
