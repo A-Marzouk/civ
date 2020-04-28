@@ -279,32 +279,37 @@
 
                 <!-- Experience -->
                 <v-tab-item>
-                  <v-row>
-                    <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
-                      <v-card class="pa-5 card-education" hover color="#272B2F">
-                        <div class="d-flex flex-no-wrap justify-space-between education-inner-block">
-                          <v-avatar
-                            class="mt-md-6 mt-sm-5 education-avatar"
-                            tile
-                            color="rgba(252, 65, 60, 0.1)"
-                          >
-                            <v-img
-                              max-width="50"
-                              max-height="50"
-                              src="/images/resume_themes/theme207/tabs/active/3.png"
-                            ></v-img>
-                          </v-avatar>
-                          <div>
-                            <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
-                            <v-card-subtitle
-                              class="education-subtitle"
-                            >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
-                            <v-card-subtitle class="education-session mt-n6" align="right">2010-2013</v-card-subtitle>
+                  <v-container style="width:100%" fluid class="md-pa-0 pa-5">
+                    <v-row>
+                      <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
+                        <v-card class="pa-5 card-education" hover color="#272B2F">
+                          <div class="d-flex flex-no-wrap justify-space-between education-inner-block">
+                            <v-avatar
+                              class="mt-md-6 mt-sm-5 education-avatar"
+                              tile
+                              color="rgba(252, 65, 60, 0.1)"
+                            >
+                              <v-img
+                                max-width="50"
+                                max-height="50"
+                                src="/images/resume_themes/theme207/tabs/active/3.png"
+                              ></v-img>
+                            </v-avatar>
+                            <div>
+                              <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
+                              <v-card-subtitle
+                                class="education-subtitle"
+                              >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-subtitle>
+                              <v-card-subtitle
+                                class="education-session mt-n6"
+                                align="right"
+                              >2010-2013</v-card-subtitle>
+                            </div>
                           </div>
-                        </div>
-                      </v-card>
-                    </v-col>
-                  </v-row>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-tab-item>
                 <!-- Experience -->
 
