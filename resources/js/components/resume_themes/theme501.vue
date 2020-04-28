@@ -101,15 +101,8 @@
                   <div class="info-subtitle text-center" style="opacity: 0.82">Weekly Availability</div>
                 </v-col>
 
-                <v-col cols="3" class="text-center" lg="4">
-                  <v-btn
-                    dark
-                    color="#03CA9F"
-                    width="100%"
-                    height="100%"
-                    elevation="0"
-                    class="ma-auto"
-                  >
+                <v-col cols="3" class="text-center" lg="4" align-self="center">
+                  <v-btn dark color="#03CA9F" elevation="0" class="buttonsize">
                     <div class="subhead">Hire Me</div>
                   </v-btn>
                 </v-col>
@@ -218,7 +211,7 @@
     <v-tabs-items v-model="tab">
       <v-tab-item value="tab-1">
         <v-row class="justify-center mt-xl-6 mt-lg-12 mt-sm-4 mx-lg-12" no-gutters>
-          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8" cols="12">
+          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3" cols="11">
             <v-card elevation="8" class="mx-lg-4">
               <div style="padding:10px 10px;">
                 <v-img
@@ -239,7 +232,7 @@
               </v-row>
             </v-card>
           </v-col>
-          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8" cols="12">
+          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3" cols="11">
             <v-card elevation="8" class="mx-lg-4">
               <div style="padding:10px 10px;">
                 <v-img
@@ -260,7 +253,7 @@
               </v-row>
             </v-card>
           </v-col>
-          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8" cols="12">
+          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3" cols="11">
             <v-card elevation="8" class="mx-lg-4">
               <div style="padding:10px 10px;">
                 <v-img
