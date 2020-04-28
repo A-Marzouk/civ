@@ -28,6 +28,8 @@ if ($("#welcomeView").length !== 0) {
 //admin components
 require('./admin');
 
+// stripe payments
+
 
 // Default themes preview components registrations:
 require('./default-themes');

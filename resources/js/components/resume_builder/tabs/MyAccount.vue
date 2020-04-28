@@ -97,7 +97,7 @@
                             <img class='icon' src="/images/resume_builder/my_account/check-solid.svg" alt="edit">
                             Save changes
                         </a>
-                        <a href="javascript:void(0)" class="btn btn-outline purchase-btn" data-toggle="modal" data-target="#prices" v-if="subscription==='on'">
+                        <a href="/subscription" class="btn btn-outline purchase-btn" data-toggle="modal" data-target="#prices" v-if="subscription==='on'">
                             Purchase subscription
                         </a>
                     </div>

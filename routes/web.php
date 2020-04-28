@@ -53,6 +53,10 @@ Route::post('/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF'
 Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('docx.import');
 
 
+// subscription routes
+Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
+
+
 
 
 
