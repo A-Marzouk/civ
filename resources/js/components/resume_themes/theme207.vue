@@ -657,7 +657,7 @@
               </div>
 
               <div class="btn-fullscreen">
-                <v-btn icon depressed>
+                <v-btn icon depressed color="transparent">
                   <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
                 </v-btn>
               </div>
