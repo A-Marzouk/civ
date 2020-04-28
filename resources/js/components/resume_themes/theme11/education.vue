@@ -5,7 +5,8 @@
                 <div class="education-icon">
                     <img src="/images/resume_themes/theme13/education-icon.png" />
                 </div>
-                <h2 class="college-name">Simon Bolívar University</h2><div class="date">2014 - 2020</div>
+                <div class="date">2014 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
             </div>
             <div class="education-body">
                 <div class="grade-title">Applied Mathematics</div>
@@ -20,7 +21,8 @@
                 <div class="education-icon">
                     <img src="/images/resume_themes/theme13/education-icon.png" />
                 </div>
-                <h2 class="college-name">Simon Bolívar University</h2><div class="date">2014 - 2020</div>
+                <div class="date">2014 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
             </div>
             <div class="education-body">
                 <div class="grade-title">Applied Mathematics</div>
@@ -35,7 +37,8 @@
                 <div class="education-icon">
                     <img src="/images/resume_themes/theme13/education-icon.png" />
                 </div>
-                <h2 class="college-name">Simon Bolívar University</h2><div class="date">2014 - 2020</div>
+                <div class="date">2014 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
             </div>
             <div class="education-body">
                 <div class="grade-title">Applied Mathematics</div>
@@ -50,7 +53,8 @@
                 <div class="education-icon">
                     <img src="/images/resume_themes/theme13/education-icon.png" />
                 </div>
-                <h2 class="college-name">Simon Bolívar University</h2><div class="date">2014 - 2020</div>
+                <div class="date">2014 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
             </div>
             <div class="education-body">
                 <div class="grade-title">Applied Mathematics</div>
@@ -72,7 +76,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    $lineColor: #BEC2D4;
+    $lineColor: #838BA4;
 
 
     .education-flex {
@@ -88,12 +92,13 @@ export default {
         margin-bottom: 74px;
 
         .education-header {
-            display: flex;
+            // display: flex;
             align-items: center;
-            margin-bottom: 24.5px;
+            margin-bottom: 13px;
 
             .education-icon {
-                display: flex;
+                // display: flex;
+                display: none;
                 justify-content: center;
                 align-items: center;
                 margin-right: 81px;
@@ -102,42 +107,46 @@ export default {
                 width: 44px;
                 height: 44px;
                 position: relative;
+            }
 
+            .college-name {
+                color: white;
+                font-weight: 700;
+                font-size: 32px;
+            }
+
+            .date {
+                margin-left: calc(17px + 48px);
+                margin-bottom: 13px;
+                position: relative;
+                color: white;
+                font-size: 19px;
+                font-weight: 500;
+                
                 &::after {
                     content: "";
                     width: 48px;
                     height: 1px;
-                    background: $lineColor;
+                    background: white;
                     position: absolute;
-                    right: calc(-17px - 48px);
+                    left: calc(-17px - 48px);
+                    top: 50%;
                 }
-            }
-
-            .college-name {
-                color: black;
-                font-weight: 700;
-                font-size: 20px;
-            }
-
-            .date {
-                color: #838BA4;
-                font-size: 15px;
-                margin-left: 13px;
             }
         }
 
         .education-body {
-            padding-left: calc(81px + 44px);
 
             .grade-title {
-                color: black;
-                font-size: 17px;
-                margin-bottom: 10px;
+                color: white;
+                font-weight: 700;
+                font-size: 20px;
+                margin-bottom: 36px;
             }
 
             .education-description,
             .education-description p {
-                color: #838BA4;
+                color: $lineColor;
                 font-size: 17px;
             }
         }

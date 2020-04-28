@@ -1,102 +1,147 @@
 <template>
     <div class="container portfolio-flex">
-        <div class="flex-column">
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img1.png" alt="">
+        <masonry
+            :cols="{default: 3, 959: 1, 599: 1}"
+            :gutter="{default: '39px', 700: '15px'}"
+            class="masonry"
+        >
+            <v-card
+                v-for="item in portfolioItems"
+                :key="item.id"
+                align="left"
+                flat
+                color="transparent" tile
+                >
+                <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" ></v-img>
+                <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
+                <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
+            </v-card>
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img1.png" alt=""></v-img>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img2.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img3.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </v-card>
 
-        <div class="flex-column">
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >        
+                <v-img src="/images/resume_themes/theme13/portfolio-img2.png" alt=""></v-img>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
+            </v-card>
+
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img3.png" alt=""></v-img>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="flex-column">
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
+            </v-card>
+
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img4.png" alt=""></v-img>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
+            </v-card>
+
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img5.png" alt=""></v-img>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img4.png" alt="">
+            </v-card>
+
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img4.png" alt=""></v-img>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
                 </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme13/portfolio-img5.png" alt="">
+            </v-card>
+
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img5.png" alt=""></v-img>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
                     <div class="description">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla, molestias obcaecati repellendus a magni quae praesentium non, aliquam, in consectetur est. Veritatis neque voluptatibus debitis deserunt quos nostrum officia aliquam.</p>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequuntur culpa odit perspiciatis corrupti eius amet qui temporibus et veniam repellat eos provident minima, in aliquam libero! Inventore, eum quibusdam! Neque.</p>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                     </div>
                 </div>
-            </div>
-        </div>
+            </v-card>
+
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img4.png" alt=""></v-img>
+                <div class="content">
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
+                    <div class="description">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    </div>
+                </div>
+            </v-card>
+
+            <v-card
+                align="left"
+                flat
+                color="transparent" tile
+            >
+                <v-img src="/images/resume_themes/theme13/portfolio-img5.png" alt=""></v-img>
+                <div class="content">
+                    <v-card-title class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</v-card-title>
+                    <div class="description">
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                    </div>
+                </div>
+            </v-card>
+        </masonry>
     </div>
 </template>
 
@@ -111,17 +156,16 @@ export default {
 <style scoped lang="scss">
     .portfolio-flex {
         width: 100%;
+        max-width: 1400px;
         display: flex;
         justify-content: space-between;
 
-        .flex-column {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .masonry {
+            width: 100%;
             
-            .portfolio-item {
+            .v-card {
                 grid-column: span 4;
-                margin: 0 20px 129px;
+                margin: 0 20px 129px !important;
 
                 &:last-child {
                     margin-bottom: 0;
@@ -134,12 +178,15 @@ export default {
 
                 .content {
                     .title {
-                        font-size: 22px;
+                        font-size: 22px !important;
                         max-width: 337px;
+                        padding: 0;
+                        margin-right: 0;
                         margin-bottom: 20px;
                     }
                     .description p {
-                        font-size: 19px;
+                        font-size: 19px !important;
+                        
                     }
                 }
             }

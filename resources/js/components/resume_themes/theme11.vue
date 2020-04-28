@@ -1,14 +1,11 @@
 <template>
 <!-- Developer: Jose Quintero -->
-    <v-app id="theme13" style="width: 100%">
+    <v-app id="theme11" style="width: 100%">
         <div class="theme-header">
 
-            <div class="bg-header">
-                <img class='left-bg' src="/images/resume_themes/theme13/bg-left.png" alt="">
-                <img src="/images/resume_themes/theme13/bg-top1.png" alt="" class="bg-top1">
-                <img src="/images/resume_themes/theme13/bg-top2.png" alt="" class="bg-top2">
-                <img src="/images/resume_themes/theme13/bg-right.png" alt="" class="bg-right">
-            </div>
+            <!-- <div class="bg-header">
+                <img src="/images/resume_themes/theme11/bg-header-bottom-right.svg" alt="" class="bg-header-bottom-right" />
+            </div> -->
 
             <div class="user-info">
                 <div class="left">
@@ -30,10 +27,10 @@
                 <div class="right">
                     <div class="actions-wrapper">
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme13/chat-icon.png"> Start a chat
+                            <img class="icon" src="/images/resume_themes/theme11/chat-icon.png"> Start a chat
                         </button>
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme13/suitcase-icon.png">Upload interviews
+                            <img class="icon" src="/images/resume_themes/theme11/suitcase-icon.png">Upload interviews
                         </button>
                     </div>
 
@@ -48,7 +45,7 @@
                         </div>
 
                         <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme13/hireMe-icon.png" alt="hire me icon" class="icon">
+                            <img src="/images/resume_themes/theme11/hireMe-icon.png" alt="hire me icon" class="icon">
                             Hire Me
                         </button>
                     </div>
@@ -84,23 +81,24 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
-                        <footer class="theme-footer">
+                        <div class="theme-aside">
+                            Follow me - 
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'facebook-f']"></font-awesome-icon>
+                                Dribble
                             </a>
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                                LinkedIn
                             </a>
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
+                                Instagram
                             </a>
                             <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'dribbble']"></font-awesome-icon>
+                                Behance
                             </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'twitter']"></font-awesome-icon>
-                            </a>
-                        </footer>
+                        </div>
+                        <div class="scroll-top">
+                            <a href="javascript:;" v-scroll-to="'#theme13'">Scroll to top</a>
+                        </div>
                     </v-col>
                 </v-row>
             </div>
@@ -109,11 +107,11 @@
 </template>
 
 <script>
-import EducationTab from './theme13/education'
-import WorkExperienceTab from './theme13/work-experience'
-import PortfolioTab from './theme13/portfolio'
-import AboutTab from './theme13/about'
-import SkillsTab from './theme13/skills-and-languages'
+import EducationTab from './theme11/education'
+import WorkExperienceTab from './theme11/work-experience'
+import PortfolioTab from './theme11/portfolio'
+import AboutTab from './theme11/about'
+import SkillsTab from './theme11/skills-and-languages'
 
 export default {
     components: {
@@ -149,54 +147,39 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-$mainColor: #28404A;
+$mainColor: #2BFAFE;
 $tabTextColor: #4D2F2D;
 $purple: #686299;
 
-#theme13 {
+$gradient: linear-gradient(to right, #9434CD, #EE3DC6);
+
+#theme11 {
     font-family: 'Muli', sans-serif;
     width: 100%;
-    color: $mainColor;
-    background: #FFF7F3;
+    color: white;
+    background-color: #4327AB;
+    background-image: url('/images/resume_themes/theme11/bg-img.png');
+    background-size: 119% auto;
+    background-position: center -20px;
+    background-repeat: no-repeat;
     position: relative;
+    overflow-x: hidden;
 
     .theme-header {
         width: 100%;
+        // background: linear-gradient(to bottom, #7566E5, #4327AB);
         position: relative;
 
         .bg-header {
             width: 100%;
             height: 100%;
             position: absolute;
-            overflow: hidden;
 
-            .left-bg {
+            &-bottom-right {
                 position: absolute;
-                left: -88px;
-            }
-
-            .bg-top1 {
-                position: absolute;
-                top: -44px;
-                right: 40%;
-            }
-            
-            .bg-top2 {
-                position: absolute;
-                top: -21.7px;
-                right: 39%;
-            }
-
-            .bg-right {
-                position: absolute;
-                top: -63.5px;
-                right: -29.7px;
-            }
-
-            .bg-bottom {
-                position: absolute;
-                bottom: -13px;
-                right: 46%;
+                right: 0;
+                opacity: 1;
+                bottom: -100px;
             }
         }
 
@@ -209,7 +192,6 @@ $purple: #686299;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            justify-content: center;
 
             .actions-wrapper {
                 display: flex;
@@ -223,8 +205,10 @@ $purple: #686299;
                     padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
-                    background: #fff;
+                    background: transparent;
+                    border: 4px solid #56EDF0;
                     outline: none;
+                    color: white;
                     border-radius: 9px;
 
                     &:first-child {
@@ -255,6 +239,7 @@ $purple: #686299;
                     small {
                         font-size: 15px;
                         font-weight: 400px;
+                        color: white;
                     }
                 }
 
@@ -262,11 +247,11 @@ $purple: #686299;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: $purple;
+                    background: $mainColor;
                     padding: 23px 62px;
                     font-size: 18px;
                     font-weight: 700;
-                    color: white;
+                    color: #4030A1;
                     border-radius: 9px;
 
                     .icon {
@@ -292,13 +277,13 @@ $purple: #686299;
                 img {
                     width: 100%;
                     border-radius: 50%;
+                    border: 6px solid $mainColor;
+                    box-shadow: 0px 0px 40px rgba(86, 237, 240, 0.6);
                 }
             }
 
             .user-data {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
+                display: inline-block;
                 font-size: 26px;
                 font-weight: 400;
 
@@ -310,11 +295,13 @@ $purple: #686299;
 
                 .profession {
                     margin-bottom: 30px;
+                    color: white;
                 }
 
                 .speciallity {
                     display: flex;
                     padding: 0;
+                    color: white;
                     
                     .item {
                         margin-right: 40px;
@@ -333,7 +320,7 @@ $purple: #686299;
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #28404A;
+                            background: #FFFFFF;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);
@@ -346,7 +333,7 @@ $purple: #686299;
 
     .theme-body {
         height: auto;
-        background: white;
+        background: transparent;
         border-radius: 80px 80px 0 0;
         z-index: 1;
         position: relative;
@@ -360,18 +347,23 @@ $purple: #686299;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
-                color: $tabTextColor;
+                color: white;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                &-bar {
+                    background: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
                     text-transform: none;
                     font-size: 20px;
+                    color: white !important;
                     // margin-right: 50px;
 
                     &--active {
-                        color: white !important;
+                        color: #2D2584 !important;
                         font-weight: 700;
                     }
 
@@ -385,49 +377,74 @@ $purple: #686299;
                     z-index: -1;
 
                     .v-tabs-slider {
-                        background: $purple;
+                        background: $mainColor;
                         border-radius: 25px;
                     }
                 }
             }
 
             .container {
+                padding: 0 40px;
                 padding-bottom: 100px;
+                max-width: 1750px;
+                margin: 0 auto;
             }
         }
     }
 
-    .theme-footer {
+    .theme-aside {
         display: flex;
         justify-content: center;
+        height: 20px;
+        z-index: 5;
+        transform: rotateZ(-90deg);
         align-items: center;
-        width: 100%;
-        height: 63px;
         position: fixed;
-        bottom: 0;
-        left: 0;
-        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.16);
-        background: white;
+        bottom: 250px;
+        right: -95px;
+        background: transparent;
 
         a {
             height: 14px;
             display: block;
-            margin: 0 17.2px;
+            margin: 7px;
+            color: white;
+            position: relative;
 
-            &:hover {
-                svg {
-                    path, circle {
-                        fill: #686299;
-                    }
-                }
+            &::after {
+                content: "/";
+                position: absolute;
+                right: -8px;
+                bottom: -10px;
             }
 
-            svg {
-                height: 100%;
-                
-                path, circle {
-                    fill: #28404A;
+            &:last-child {
+                &::after {
+                    display: none;
                 }
+            }
+        }
+    }
+
+    .scroll-top {
+        position: fixed;
+        left: 45px;
+        bottom: 250px;
+        transform: rotateZ(-90deg);
+
+        a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: white;
+
+            &::after {
+                position: absolute;
+                content: "";
+                left: -89px;
+                height: 3px;
+                width: 63px;
+                background: rgba(236, 237, 244, 0.15);
             }
         }
     }
