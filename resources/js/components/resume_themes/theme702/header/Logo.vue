@@ -1,0 +1,24 @@
+<template>
+  <div class="tm702-logo">
+    <img class="logo" v-bind:src="logo" />
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      logo: "/images/resume_themes/theme702/profile.png"
+    };
+  }
+};
+</script>
+<style lang="scss">
+.tm702-logo 
+{
+	.logo {
+		border-radius: 9999px;
+		width: 78px;
+		height: 78px;
+	}
+}
+</style>
