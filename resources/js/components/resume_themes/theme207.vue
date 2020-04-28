@@ -249,7 +249,7 @@
                         <v-card class="pa-5 card-education" hover color="#272B2F">
                           <div class="d-flex flex-no-wrap justify-space-between">
                             <v-avatar
-                              class="mt-6 education-avatar"
+                              class="mt-md-6 mt-sm-5 education-avatar"
                               tile
                               color="rgba(252, 65, 60, 0.1)"
                             >
@@ -284,7 +284,7 @@
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
                           <v-avatar
-                            class="mt-6 education-avatar"
+                            class="mt-md-6 mt-sm-5 education-avatar"
                             tile
                             color="rgba(252, 65, 60, 0.1)"
                           >
@@ -519,7 +519,7 @@
                       <v-col md="3" sm="12">
                         <v-row class="flex-column">
                           <v-col cols="12">
-                            <v-card class="pa-5 card-education text-center" hover color="#272B2F">
+                            <v-card class="pa-5 card-video-big  text-center" hover color="#272B2F">
                               <v-img
                                 class="white--text align-center"
                                 min-height="332"
@@ -1092,6 +1092,10 @@ export default {
     min-height: 202px;
     min-width: 240px;
   }
+}
+
+.card-video-big{
+  border-radius: 9px !important;
 }
 
 .video-duration-preview-1 {
