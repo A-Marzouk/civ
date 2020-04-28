@@ -408,14 +408,16 @@
                       <v-col md="3" sm="6">
                         <v-row class="flex-column">
                           <v-col cols="12" v-for="i in 3" :key="i">
-                            <v-card class="pa-5 card-media" hover color="#272B2F">
+                            <v-card class="pa-5 card-media" color="#272B2F" hover>
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
                                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -441,11 +443,13 @@
                               >
                                 <!-- Play Button -->
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.25)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <!-- Play button -->
                                 <!-- duration -->
@@ -471,11 +475,13 @@
                             <v-card class="pa-5 card-media" hover color="#272B2F">
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
                                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -496,11 +502,13 @@
                             <v-card class="pa-5 card-media" hover color="#272B2F">
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
                                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -526,11 +534,13 @@
                               >
                                 <!-- Play Button -->
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.25)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <!-- Play button -->
                                 <!-- duration -->
@@ -591,11 +601,13 @@
             <v-card flat tile color="transparent">
               <div class="d-flex flex-no-wrap">
                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                  <v-img
-                    max-width="30"
-                    max-height="30"
-                    src="/images/resume_themes/theme207/icons/play.png"
-                  ></v-img>
+                  <v-btn icon depressed color="transparent">
+                    <v-img
+                      max-width="30"
+                      max-height="30"
+                      src="/images/resume_themes/theme207/icons/play.png"
+                    ></v-img>
+                  </v-btn>
                 </v-avatar>
                 <div class="mt-n5">
                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -620,7 +632,7 @@
           <div class="ml-12 flex-fill">
             <div class="d-flex justify-content-between mt-5">
               <div class="shuffle mx-2">
-                <v-btn icon>
+                <v-btn icon color="transparent" depressed>
                   <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
                 </v-btn>
               </div>
@@ -639,7 +651,7 @@
               </div>
               <!-- Repeat Button -->
               <div class="shuffle">
-                <v-btn icon>
+                <v-btn icon depressed color="transparent">
                   <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
                 </v-btn>
               </div>
