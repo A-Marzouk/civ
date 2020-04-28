@@ -1,9 +1,9 @@
 <template>
 	<div class="tw-flex tw-items-center">
-		<div class="tw-flex-1 tw-relative tw-h-10px tw-rounded-full md:tw-h-15px" :class="`bg-${color}`">
+		<div class="tw-flex-1 tw-relative tw-h-10px tw-rounded-full screen425px:tw-h-15px" :class="`bg-${color}`">
 			<div class="bg-gray tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-rounded-full" :style="{width:  progress+'%'}"></div>
 		</div>
-		<div class="tw-leading-21px tw-text-black tw-text-lg tw-pl-3 md:tw-text-2xl md:tw-leading-27px">{{ progress }}%</div>
+		<div class="tw-leading-21px tw-text-black tw-text-lg tw-pl-3 screen425px:tw-text-2xl screen425px:tw-leading-27px">{{ progress }}%</div>
 	</div>
 </template>
 

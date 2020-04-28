@@ -1,7 +1,7 @@
 <template>
-	<div class="bg-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4 md:tw-px-54px md:tw-pb-44px md:tw-pt-10 xxl:tw-px-10">
+	<div class="bg-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4 screen425px:tw-px-54px screen425px:tw-pb-44px screen425px:tw-pt-10 screen1024px:tw-px-10">
 		<div class="tw-flex tw-justify-between tw-items-center">
-			<h4 class="tw-font-bold tw-leading-30px tw-text-black tw-text-2xl md:tw-text-4xl" v-text="title"></h4>
+			<h4 class="tw-font-bold tw-leading-30px tw-text-black tw-text-2xl screen425px:tw-text-4xl screen1024px:tw-text-3xl screen1920px:tw-text-4xl" v-text="title"></h4>
 			<div class="tw-flex tw-items-center tw-justify-center tw-rounded-9px tw-w-60px tw-h-60px" :class="`bg-${iconBgColor}`">
 				<slot></slot>
 			</div>

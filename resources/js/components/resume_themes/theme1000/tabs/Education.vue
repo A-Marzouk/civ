@@ -1,6 +1,6 @@
 <template>
-	<div class="tw-px-4 tw-pt-16 md:tw-px-37px xxl:tw-flex xxl:tw-px-0">
-		<div class="xxl:tw-w-1/3 xxl:tw-px-15px" :class="{'tw-mb-5': isLastEducation(education)}" v-for="education in educations" :key="education.id">
+	<div class="tw-px-4 tw-pt-16 screen425px:tw-px-37px screen1024px:tw-flex screen1024px:tw-flex-wrap screen1024px:tw-px-0">
+		<div class="screen1024px:tw-w-1/2 screen1024px:tw-px-15px screen1920px:tw-w-1/3" :class="{'tw-mb-5': isLastEducation(education)}" v-for="education in educations" :key="education.id">
 			<Card :details="education">
 				<svg width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill="#fff" d="M14 .75L.25 8.25l5 2.725v7.5L14 23.25l8.75-4.775v-7.5l2.5-1.362v8.637h2.5v-10L14 .75zm8.525 7.5L14 12.9 5.475 8.25 14 3.6l8.525 4.65zm-2.275 8.738L14 20.4l-6.25-3.412v-4.65L14 15.75l6.25-3.412v4.65z" />

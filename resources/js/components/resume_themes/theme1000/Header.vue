@@ -1,6 +1,6 @@
 <template>
 	<div class="header">
-		<div class="tw-flex tw-items-center tw-px-3 tw-py-4 md:tw-hidden">
+		<div class="tw-flex tw-items-center tw-px-3 tw-py-4 screen425px:tw-hidden">
 			<div @click="isSidebarOpen=true">
 				<img class="tw-w-12 tw-h-12 tw-rounded-lg" :src="currentUser.avatar" />
 			</div>
@@ -8,15 +8,15 @@
 				{{ currentUser.fullname }}
 			</h3>
 		</div>
-		<div class="tw-hidden tw-mx-auto tw-max-w-4xl md:tw-block xxl:tw-max-w-5xl">
-			<div class="tw-flex tw-justify-between tw-pt-30px tw-px-30px xxl:tw-px-0">
-				<div class="tw-pl-22px tw-pt-30px xxl:tw-pl-0">
-					<img class="tw-w-125px tw-h-125px tw-rounded-lg xxl:tw-w-56 xxl:tw-h-56" :src="currentUser.avatar" />
+		<div class="tw-hidden tw-mx-auto tw-max-w-4xl screen425px:tw-block screen1920px:tw-max-w-5xl">
+			<div class="tw-flex tw-justify-between tw-pt-30px tw-px-30px screen1024px:tw-px-0">
+				<div class="tw-pl-22px tw-pt-30px screen1024px:tw-pl-0">
+					<img class="tw-w-125px tw-h-125px tw-rounded-lg screen1024px:tw-w-56 screen1024px:tw-h-56" :src="currentUser.avatar" />
 				</div>
-				<div class="tw-flex-1 tw-pl-63px xxl:tw-pl-80px">
+				<div class="tw-flex-1 tw-pl-63px screen1024px:tw-pl-80px">
 					<h3 class="tw-font-open-sans tw-font-bold tw-text-4xl tw-text-white tw-leading-snug" v-text="currentUser.fullname"></h3>
 					<h4 class="tw-font-poppins tw-font-bold tw-text-base tw-leading-24px tw-text-white tw-pt-10px" v-text="currentUser.jobTitleDescription"></h4>
-					<div class="tw-font-poppins tw-text-xs tw-leading-18px tw-text-white tw-pt-15px tw-max-w-sm xxl:tw-max-w-md" v-html="getShortString(currentUser.motivationLetter)"></div>
+					<div class="tw-font-poppins tw-text-xs tw-leading-18px tw-text-white tw-pt-15px tw-max-w-sm screen1024px:tw-max-w-md" v-html="getShortString(currentUser.motivationLetter)"></div>
 					<div class="tw-font-poppins tw-flex tw-pt-5">
 						<div class="tw-uppercase tw-text-14px tw-leading-21px text-semi-white">Hour rate <strong class="tw-text-white tw-text-xl tw-ml-15px">${{ currentUser.hourRate }}</strong></div>
 						<div class="tw-uppercase tw-text-14px tw-leading-21px text-semi-white tw-ml-20px">Weekly availability <strong class="tw-text-white tw-text-xl tw-ml-15px">${{ currentUser.weeklyAvailability }}</strong></div>
@@ -25,9 +25,9 @@
 					<!-- social media links -->
 					<div class="tw-flex tw-pt-30px tw-pb-50px">
 						<!-- Hire Me link -->
-						<a href="#" class="tw-flex tw-items-center tw-justify-center tw-font-poppins tw-h-60px tw-px-53px tw-font-bold tw-bg-white tw-text-14px tw-leading-21px hire-btn tw-rounded-3px">
-							<svg width="20" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-								<path fill="#FFB400" d="M20 2c0-1.1-.9-2-2-2H2C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2zm-2 0l-8 5-8-5h16zm0 12H2V4l8 5 8-5v10z" />
+						<a href="#" class="tw-flex tw-items-center tw-justify-center tw-font-poppins tw-h-60px tw-px-53px tw-font-bold tw-bg-white tw-text-14px tw-leading-21px hire-btn tw-rounded-3px hover:tw-no-underline">
+							<svg class="tw-fill-current" width="20" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M20 2c0-1.1-.9-2-2-2H2C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2zm-2 0l-8 5-8-5h16zm0 12H2V4l8 5 8-5v10z" />
 							</svg>
 							<span class="tw-pl-5 tw-text-xl tw-leading-30px">Hire me</span>
 						</a>
@@ -122,6 +122,10 @@ export default {
 
 .hire-btn {
 	color: #ffb400;
+
+	&:hover {
+		color: #e6a200;
+	}
 }
 
 @media (min-width: 768px) {

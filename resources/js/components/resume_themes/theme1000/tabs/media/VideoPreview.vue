@@ -5,7 +5,7 @@
 				<path fill="#fff" d="M16.5 8.634a1 1 0 010 1.732L2.25 18.593a1 1 0 01-1.5-.866V1.273a1 1 0 011.5-.866L16.5 8.634z" />
 			</svg>
 		</div>
-		<div class="tw-absolute tw-bottom-0 tw-left-0 tw-pl-30px tw-pb-20px">
+		<div class="tw-absolute tw-bottom-0 tw-left-0 tw-pl-30px tw-pb-20px screen1024px:tw-pb-25px screen1024px:tw-pb-20px">
 			<div class="tw-flex tw-items-center tw-justify-center tw-font-poppins tw-leading-18px tw-bg-black tw-text-white tw-text-xs tw-h-35px tw-w-75px" v-text="media.duration"></div>
 		</div>
 	</div>
@@ -46,7 +46,9 @@ export default {
 
 	mounted() {
 		this.width = this.$el.offsetWidth;
-		window.onresize = () => (this.width = this.$el.offsetWidth);
+		window.onresize = () => {
+			this.width = this.$el.offsetWidth;
+		};
 	}
 };
 </script>

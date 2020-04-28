@@ -83,7 +83,11 @@ module.exports = {
         extend: {
             spacing,
             screens: {
-                xxl: "1920px"
+                screen425px: "425px",
+                screen768px: "768px",
+                screen1024px: "1024px",
+                screen1920px: "1920px",
+                screen2560px: "2560px"
             },
             colors: {
                 tm700: {
