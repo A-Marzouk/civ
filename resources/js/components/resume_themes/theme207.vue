@@ -137,7 +137,7 @@
       </v-container>
       <!--Tab Container  -->
       <!-- tab items container -->
-      <v-container fluid pa-md-10 mt-md-n12 mt-sm-n6 style="width:100%">
+      <v-container fluid pa-md-10 mt-md-n6 mt-sm-n6 style="width:100%">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent" tile>
