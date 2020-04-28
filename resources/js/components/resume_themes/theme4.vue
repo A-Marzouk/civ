@@ -6,6 +6,9 @@
           <div class="avatar">
             <img src="/images/resume_themes/theme4/person.png" alt="profile pic" />
           </div>
+          <div class="chat-btn-container">
+            <img src="/images/resume_themes/theme4/chat.png" alt="chat button" />
+          </div>
           <div class="info">
             <div class="user-name">Zoyee Allena</div>
             <div class="job-title">Visual deisgner</div>
@@ -22,11 +25,11 @@
             style="margin-right:20px;"
           >Your interviews:</div>
           <div class="upload-btn-box" style="margin-bottom:20px;">
-            <img src="/images/resume_themes/theme4/Icon-1.svg" alt />
+            <img width="25" src="/images/resume_themes/theme4/Icon-1.svg" alt />
             <div class="hideMeOnPhone">AUDIO</div>
           </div>
           <div class="upload-btn-box">
-            <img src="/images/resume_themes/theme4/Icon.svg" alt />
+            <img width="25" src="/images/resume_themes/theme4/Icon.svg" alt />
             <div class="hideMeOnPhone">VIDEO</div>
           </div>
         </div>
@@ -110,11 +113,11 @@
           >Software</div>
         </div>
         <div class="skills-icons-bar" id="style-1">
-          <img class="icon" src="/images/resume_themes/theme4/skills/PS.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Ai.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Lr.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Xd.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Id.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ps.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ai.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/lr.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/xd.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/id.png" alt="skill-icon" />
         </div>
       </div>
       <!-- All tab items -->
@@ -249,12 +252,67 @@ export default {
   width: 100%;
   max-width: 1920px;
   background: white;
+  //chat btn
+  .chat-btn-container {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #ffeee3;
+    border: 4px solid #ffffff;
+    box-shadow: 0px 4px 20px rgba(62, 62, 62, 0.1);
+    border-radius: 200px;
+    top: 135px;
+    left: 119px;
+    overflow: hidden;
+    display: flex;
+    cursor: pointer;
+
+    img {
+      width: 19px;
+      height: 19px;
+    }
+
+    @media screen and (min-width: 1281px) {
+      top: 224px;
+      left: 222px;
+    }
+    @media screen and (min-width: 766px) and (max-width: 1280px) {
+      width: 30px;
+      height: 30px;
+      top: 136px;
+      left: 126px;
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    @media screen and (max-width: 765px) {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ffffff;
+      top: 114px;
+      left: 110px;
+      img {
+        width: 9.5px;
+        height: 9.5px;
+      }
+    }
+  }
+
+  .chat-btn-container:hover {
+    background: #fac7a5;
+    transition: 2s;
+  }
   // Custom tab item cotnainer
   .custom-tab-item-container {
+    position: relative;
     width: 100%;
     margin-top: 40px;
     padding-top: 15px;
     background: rgba(170, 207, 227, 0.1);
+    overflow: hidden !important;
   }
   //Custom tab item container
   // work
@@ -264,7 +322,7 @@ export default {
     }
   }
   .work-title {
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     font-weight: bold;
     font-size: 24px;
     line-height: 26px;
@@ -273,7 +331,7 @@ export default {
   .work-subtitle {
     margin-top: 15px;
     margin-bottom: 30px;
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     font-size: 14px;
     line-height: 15px;
     font-style: italic;
@@ -285,7 +343,7 @@ export default {
     }
   }
   .work-text {
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     font-size: 18px;
     line-height: 30px;
     color: #9ca4c1;
@@ -299,6 +357,9 @@ export default {
     margin: 40px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
+    @media only screen and (min-width: 1025px) {
+      padding: 0 250px 0 80px;
+    }
     @media only screen and (max-width: 765px) {
       margin: 28px auto;
       margin-left: 30px;
@@ -308,7 +369,7 @@ export default {
   }
 
   .work-content::before {
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     counter-increment: my-sec-counter;
     content: "0" counter(my-sec-counter);
     font-size: 72px;
@@ -330,55 +391,51 @@ export default {
 
   .watermark-text-work {
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 0;
-    margin-top: 60%;
-    margin-right: -25%;
+    margin-right: -29%;
+    font-family: "Archivo", sans-serif !important;
     font-style: normal;
     font-weight: bold;
-    font-size: 15.625rem;
+    font-size: 250px;
     line-height: 272px;
     text-transform: uppercase;
     color: rgba(1, 162, 254, 0.05);
     transform: rotate(-90deg);
-    @media screen and (min-width: 960px) and (max-width: 1100px){
-      margin-right:-30%;
+    @media screen and (min-width: 960px) and (max-width: 1100px) {
+      margin-right: -30%;
     }
-    @media screen and (min-width: 600px) and (max-width: 959px){
-      margin-top:90%;
-      margin-right:-40%;
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      margin-right: -42%;
     }
-    @media screen and (max-width: 599px){
-      margin-top: 150%;
-      margin-right: -80%; 
+    @media screen and (max-width: 599px) {
+      margin-right: -80%;
     }
   }
   .watermark-text-education {
+    font-family: "Archivo", sans-serif !important;
+    float: right;
     position: absolute;
-    top: 50%;
+    top: 40%;
     right: 0;
-    margin-top: 60%;
-    margin-right: -30%;
+    margin-right: -52%;
     font-style: normal;
     font-weight: bold;
-    font-size: 10rem;
+    font-size: 250px;
     line-height: 272px;
     text-transform: uppercase;
     color: rgba(1, 162, 254, 0.05);
     transform: rotate(-90deg);
-
-    @media screen and (min-width: 960px) and (max-width: 1100px){
-      margin-right: -39%;
+    z-index: 1;
+    @media screen and (min-width: 960px) and (max-width: 1100px) {
+      margin-right: -66%;
     }
-    @media screen and (min-width: 600px) and (max-width: 959px){
-      margin-top:90%;
-      margin-right:-53%;
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      margin-right: -86%;
     }
-    @media screen and (max-width: 599px){
-      margin-top: 165%;
-      margin-right: -98%; 
+    @media screen and (max-width: 599px) {
+      margin-right: -161%;
     }
-    
   }
   //watermark text
   .mainThemeBar {
@@ -477,18 +534,22 @@ export default {
           border-radius: 6px;
           width: 170px;
           height: 60px;
-
           font-weight: 600;
           font-size: 14px;
           line-height: 15px;
           text-align: center;
           color: #00a3ff;
+          cursor: pointer !important;
 
           img {
             width: 20px;
             height: 16px;
             margin-right: 10px;
           }
+        }
+        .upload-btn-box:hover {
+          opacity: 0.7;
+          transition: 0.3s;
         }
       }
 
@@ -537,6 +598,11 @@ export default {
             justify-content: center;
             align-items: center;
           }
+
+          a:hover {
+            opacity: 0.8;
+            transition: 0.3s;
+          }
         }
       }
     }
@@ -571,6 +637,7 @@ export default {
 
     .tab-text.active {
       color: #00a3ff;
+      font-weight: bold;
       background-color: white;
     }
 
@@ -669,7 +736,11 @@ export default {
           width: 418px !important;
           height: 400px;
           border-radius: 30px;
-          @media only screen and (max-width: 765px) {
+          @media screen and (min-width: 760px) and (max-width: 1280px) {
+            width: 532px !important;
+            height: auto;
+          }
+          @media only screen and (max-width: 759px) {
             width: 177px !important;
             height: 139px;
           }
@@ -722,11 +793,12 @@ export default {
           }
 
           .job-title {
+            margin-top: -5px;
             font-size: 16px;
           }
 
           .social-icons {
-            margin-top: 20px;
+            margin-top: 23px;
             img {
               width: 34px;
               height: 34px;
@@ -850,8 +922,8 @@ export default {
         .portfolioSlides {
           margin-top: 0;
           img {
-            width: 450px !important;
-            height: 400px;
+            width: 512px !important;
+            height: auto;
           }
 
           .slide-text {
@@ -1113,6 +1185,21 @@ export default {
 @media screen and (min-width: 1281px) {
   #resumeTheme4 .slick-slide {
     width: auto !important;
+  }
+}
+
+@media screen and (min-width: 766px) and (max-width: 1279px) {
+  #resumeTheme4 .slick-slide {
+    width: 400px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  #resumeTheme4 .slick-slide {
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 </style>

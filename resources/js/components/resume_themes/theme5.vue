@@ -324,7 +324,18 @@ export default {
               dots: false,
               arrows: false,
               centerMode: true,
-              slidesToShow: 1
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              dots: false,
+              arrows: false,
+
+              slidesToShow: 5,
+              slidesToScroll: 5
             }
           }
         ]
@@ -860,10 +871,31 @@ export default {
   }
 }
 
+@media only screen and (max-width: 425px) {
+  .theme-container .tabs-wrapper .tabs-bar .tab-text {
+    display: flex !important;
+    justify-content: center !important;
+    line-height: 27px;
+    font-size: 13px;
+    color: #918f97;
+    margin-right: 16px;
+    white-space: nowrap;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .slick-initialized .slick-slider .slick-slide .slick-active {
+    width: 40px !important;
+  }
+}
+
 @media only screen and (max-width: 1280px) and (min-width: 425px) {
   /* CSS that should be displayed if width is equal to or less than 1024px and larger
          than 425px goes here */
 
+  .slick-slide {
+    width: 40px;
+  }
   .theme-container {
     align-items: center;
     width: 100%;
@@ -1619,12 +1651,12 @@ export default {
 
         width: 100%;
         height: 71px;
-
+        text-align: center;
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding-right: 12px;
-        padding-left: 12px;
+        padding-right: 6px;
+        padding-left: 6px;
         border-radius: 8px;
         background: #f8f8f8;
 
@@ -1633,7 +1665,7 @@ export default {
           justify-content: center !important;
 
           line-height: 27px;
-          font-size: 17px;
+          font-size: 15px;
           color: #918f97;
           margin-right: 16px;
           white-space: nowrap;
@@ -1772,7 +1804,7 @@ export default {
                 #1f5de4 40%,
                 rgba(255, 255, 255, 0) 20%
               );
-              background-position: left;
+              background-position: 8px 0%;
               background-size: 1.5px 18px;
               background-repeat: repeat-y;
             }
@@ -1783,7 +1815,7 @@ export default {
                 #548aff 40%,
                 rgba(255, 255, 255, 0) 20%
               );
-              background-position: left;
+              background-position: 8px 0%;
               background-size: 1.5px 18px;
               background-repeat: repeat-y;
             }

@@ -40,3 +40,9 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 
 library.add(fab)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// vue scroll
+import VueScrollTo from  'vue-scrollto'
+
+Vue.use(VueScrollTo)
+
