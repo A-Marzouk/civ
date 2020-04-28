@@ -249,10 +249,8 @@
                         <v-card class="pa-5 card-education" hover color="#272B2F">
                           <div class="d-flex flex-no-wrap justify-space-between">
                             <v-avatar
-                              class="mt-6"
+                              class="mt-6 education-avatar"
                               tile
-                              size="100"
-                              height="120"
                               color="rgba(252, 65, 60, 0.1)"
                             >
                               <v-img
@@ -286,10 +284,8 @@
                       <v-card class="pa-5 card-education" hover color="#272B2F">
                         <div class="d-flex flex-no-wrap justify-space-between">
                           <v-avatar
-                            class="mt-6"
+                            class="mt-6 education-avatar"
                             tile
-                            size="100"
-                            height="120"
                             color="rgba(252, 65, 60, 0.1)"
                           >
                             <v-img
@@ -355,10 +351,8 @@
                                   <v-card class="pa-5 card-education" hover color="#272B2F">
                                     <div class="d-flex flex-no-wrap">
                                       <v-avatar
-                                        class
+                                        class="education-avatar"
                                         tile
-                                        size="100"
-                                        height="120"
                                         color="rgba(252, 65, 60, 0.1)"
                                       >
                                         <v-img
@@ -948,6 +942,14 @@ export default {
 .card-education {
   border-radius: 9px !important;
 }
+
+.education-avatar{
+  min-width: 100px !important;
+  width: 100px !important;
+  height:120px !important;
+}
+
+
 .education-title {
   font-family: "Roboto", sans-serif !important;
   color: #ffffff !important;
