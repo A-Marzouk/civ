@@ -380,3 +380,30 @@ if ($("#resumeTheme701").length !== 0) {
         }
     });
 }
+
+import resumeTheme503 from './components/resume_themes/theme503';
+if ($("#resumeTheme503").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme503',
+        vuetify,
+        store,
+
+        components: {
+            'resume-theme-503': resumeTheme503
+        }
+    });
+}
+import resumeTheme504 from './components/resume_themes/theme504';
+if ($("#resumeTheme504").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme504',
+        vuetify,
+        store,
+
+        components: {
+            'resume-theme-504': resumeTheme504
+        }
+    });
+}
