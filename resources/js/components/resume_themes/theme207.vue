@@ -369,7 +369,7 @@
                                       </v-avatar>
                                       <div class="flex-fill">
                                         <v-card-title
-                                          class="education-title mb-2"
+                                          class="education-title mb-5"
                                           style="margin-top:-22px;"
                                         >PHP</v-card-title>
                                         <div class="ml-3">
