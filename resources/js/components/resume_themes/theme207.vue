@@ -137,7 +137,7 @@
       </v-container>
       <!--Tab Container  -->
       <!-- tab items container -->
-      <v-container fluid pa-md-10 mt-md-n12 mt-sm-n6 style="width:100%">
+      <v-container fluid pa-md-10 mt-md-n6 mt-sm-n6 style="width:100%">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent" tile>
@@ -405,17 +405,19 @@
                     <!-- Media Main Row -->
                     <v-row>
                       <!-- Media Main Column 1 -->
-                      <v-col md="3">
+                      <v-col md="3" sm="6">
                         <v-row class="flex-column">
                           <v-col cols="12" v-for="i in 3" :key="i">
-                            <v-card class="pa-5 card-media" hover color="#272B2F">
+                            <v-card class="pa-5 card-media" color="#272B2F" hover>
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
                                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -430,25 +432,56 @@
                       <!-- Media Main Column 1-->
 
                       <!-- Media Main Column 2 -->
-                      <v-col md="3">
+                      <v-col md="3" sm="6">
                         <v-row class="flex-column">
                           <v-col cols="12">
-                            <v-card class="pa-5 card-video" hover color="#272B2F">
+                            <v-card class="pa-5 card-video text-center" hover color="#272B2F">
                               <v-img
                                 src="/images/resume_themes/theme207/video-preview1.png"
                                 alt="Video"
-                              ></v-img>
+                                class="white--text align-center preview-1"
+                              >
+                                <!-- Play Button -->
+                                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.25)">
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
+                                </v-avatar>
+                                <!-- Play button -->
+                                <!-- duration -->
+                                <div class="d-flex video-duration-preview-1">
+                                  <v-card
+                                    color="rgba(0, 0, 0, 0.8)"
+                                    class="pa-0"
+                                    justify="center"
+                                    align="center"
+                                    style="border-radius:3px;"
+                                    dark
+                                    height="40"
+                                    width="80"
+                                  >
+                                    <div class="video-duration-text">15.00</div>
+                                  </v-card>
+                                </div>
+                                <!-- duration -->
+                              </v-img>
                             </v-card>
                           </v-col>
                           <v-col cols="12">
                             <v-card class="pa-5 card-media" hover color="#272B2F">
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
                                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -463,17 +496,19 @@
                       <!-- Media Main Column 2 -->
 
                       <!-- Media Column 3 -->
-                      <v-col md="3">
+                      <v-col md="3" sm="6" class="hidden-sm-and-down">
                         <v-row class="flex-column">
                           <v-col cols="12" v-for="i in 3" :key="i">
                             <v-card class="pa-5 card-media" hover color="#272B2F">
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                                  <v-img
-                                    max-width="30"
-                                    max-height="30"
-                                    src="/images/resume_themes/theme207/icons/play.png"
-                                  ></v-img>
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
                                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -487,15 +522,44 @@
                       </v-col>
                       <!-- Media Column 3 -->
                       <!-- Media 4th Column -->
-                      <v-col md="3">
+                      <v-col md="3" sm="12">
                         <v-row class="flex-column">
                           <v-col cols="12">
-                            <v-card class="pa-5 card-education" hover color="#272B2F">
+                            <v-card class="pa-5 card-education text-center" hover color="#272B2F">
                               <v-img
+                                class="white--text align-center"
                                 min-height="332"
                                 src="/images/resume_themes/theme207/video-preview2.png"
                                 alt="Video"
-                              ></v-img>
+                              >
+                                <!-- Play Button -->
+                                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.25)">
+                                  <v-btn icon depressed color="transparent">
+                                    <v-img
+                                      max-width="30"
+                                      max-height="30"
+                                      src="/images/resume_themes/theme207/icons/play.png"
+                                    ></v-img>
+                                  </v-btn>
+                                </v-avatar>
+                                <!-- Play button -->
+                                <!-- duration -->
+                                <div class="d-flex video-duration-preview-2">
+                                  <v-card
+                                    color="rgba(0, 0, 0, 0.8)"
+                                    class="pa-0"
+                                    justify="center"
+                                    align="center"
+                                    style="border-radius:3px;"
+                                    dark
+                                    height="40"
+                                    width="80"
+                                  >
+                                    <div class="video-duration-text">15.00</div>
+                                  </v-card>
+                                </div>
+                                <!-- duration -->
+                              </v-img>
                             </v-card>
                           </v-col>
                         </v-row>
@@ -531,17 +595,19 @@
     </v-container>
     <!-- Main container -->
     <v-footer class="font-weight-medium" color="#272B2F" v-show="currentTab==5" height="100">
-      <v-col cols="12">
+      <v-col cols="12" class="hidden-sm-and-down">
         <div class="d-flex">
           <div class>
             <v-card flat tile color="transparent">
               <div class="d-flex flex-no-wrap">
                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                  <v-img
-                    max-width="30"
-                    max-height="30"
-                    src="/images/resume_themes/theme207/icons/play.png"
-                  ></v-img>
+                  <v-btn icon depressed color="transparent">
+                    <v-img
+                      max-width="30"
+                      max-height="30"
+                      src="/images/resume_themes/theme207/icons/play.png"
+                    ></v-img>
+                  </v-btn>
                 </v-avatar>
                 <div class="mt-n5">
                   <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
@@ -565,8 +631,8 @@
           <!-- Audio Controlls -->
           <div class="ml-12 flex-fill">
             <div class="d-flex justify-content-between mt-5">
-              <div class="shuffle mx-2 mt-1">
-                <v-btn icon>
+              <div class="shuffle mx-2">
+                <v-btn icon color="transparent" depressed>
                   <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
                 </v-btn>
               </div>
@@ -584,8 +650,8 @@
                 <!-- previous button -->
               </div>
               <!-- Repeat Button -->
-              <div class="shuffle mt-1">
-                <v-btn icon>
+              <div class="shuffle">
+                <v-btn icon depressed color="transparent">
                   <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
                 </v-btn>
               </div>
@@ -986,7 +1052,6 @@ export default {
 }
 
 .shuffle {
-  margin-top: -15px;
   img {
     width: 20px;
     height: auto;
@@ -1021,10 +1086,28 @@ export default {
 
 .card-video {
   border-radius: 9px !important;
-  .v-responsive.v-image {
+  .v-responsive.v-image.preview-1 {
     min-height: 202px;
     min-width: 240px;
   }
+}
+
+.video-duration-preview-1 {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.video-duration-preview-2 {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}
+.video-duration-text {
+  margin-top: 11px;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 14px;
+  color: #ffffff !important;
 }
 
 // media
