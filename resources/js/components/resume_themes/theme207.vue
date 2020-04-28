@@ -247,7 +247,7 @@
                     <v-row>
                       <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                         <v-card class="pa-5 card-education" hover color="#272B2F">
-                          <div class="d-flex flex-no-wrap justify-space-between">
+                          <div class="d-flex flex-no-wrap justify-space-between education-inner-block">
                             <v-avatar
                               class="mt-md-6 mt-sm-5 education-avatar"
                               tile
@@ -282,7 +282,7 @@
                   <v-row>
                     <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                       <v-card class="pa-5 card-education" hover color="#272B2F">
-                        <div class="d-flex flex-no-wrap justify-space-between">
+                        <div class="d-flex flex-no-wrap justify-space-between education-inner-block">
                           <v-avatar
                             class="mt-md-6 mt-sm-5 education-avatar"
                             tile
@@ -349,7 +349,7 @@
                                   :key="item.id"
                                 >
                                   <v-card class="pa-5 card-education" hover color="#272B2F">
-                                    <div class="d-flex flex-no-wrap">
+                                    <div class="d-flex flex-no-wrap mt-0 mt-md-0 mt-sm-1">
                                       <v-avatar
                                         class="education-avatar"
                                         tile
@@ -941,7 +941,17 @@ export default {
 //education
 .card-education {
   border-radius: 9px !important;
+  @media screen and (max-width: 959px){
+    height: 170px;
+  }
+  .education-inner-block{
+    @media screen and (max-width: 959px) {
+      margin-top: -12px !important;
+    }
+  }
 }
+
+
 
 .education-avatar{
   min-width: 100px !important;
