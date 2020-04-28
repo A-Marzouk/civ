@@ -13,12 +13,15 @@ export default {
 };
 </script>
 <style lang="scss">
-.tm702-logo 
-{
-	.logo {
-		border-radius: 9999px;
-		width: 78px;
-		height: 78px;
-	}
+.tm702-logo {
+  .logo {
+    border-radius: 9999px;
+    width: 78px;
+    height: 78px;
+    @media screen and (min-width: 768px) {
+      width: 236px;
+      height: 236px;
+    }
+  }
 }
 </style>
