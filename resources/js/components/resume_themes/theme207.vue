@@ -107,7 +107,7 @@
               v-model="mainDataTab"
               centered
               grow
-              class=""
+              class
               slider-color="#FC413C"
               background-color="transparent"
               tile
@@ -402,31 +402,107 @@
                 <!-- Media -->
                 <v-tab-item>
                   <v-card flat color="transparent" tile>
+                    <!-- Media Main Row -->
                     <v-row>
-                      <template v-for="n in 4">
-                        <v-col md="3" :key="n">
-                          <v-card class="pa-5 card-education" hover color="#272B2F">
-                            <div class="d-flex flex-no-wrap justify-content-center">
-                              <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
-                                <v-img
-                                  max-width="30"
-                                  max-height="30"
-                                  src="/images/resume_themes/theme207/icons/play.png"
-                                ></v-img>
-                              </v-avatar>
-                              <div class="flex-fill mt-n5">
-                                <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
-                                <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
-                                <v-card-subtitle class="media-duration mt-n7">1:05:00</v-card-subtitle>
+                      <!-- Media Main Column 1 -->
+                      <v-col md="3">
+                        <v-row class="flex-column">
+                          <v-col cols="12" v-for="i in 3" :key="i">
+                            <v-card class="pa-5 card-media" hover color="#272B2F">
+                              <div class="d-flex flex-no-wrap justify-content-center">
+                                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
+                                  <v-img
+                                    max-width="30"
+                                    max-height="30"
+                                    src="/images/resume_themes/theme207/icons/play.png"
+                                  ></v-img>
+                                </v-avatar>
+                                <div class="flex-fill mt-n5">
+                                  <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
+                                  <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
+                                  <v-card-subtitle class="media-duration mt-n7">1:05:00</v-card-subtitle>
+                                </div>
                               </div>
-                            </div>
-                          </v-card>
-                          <!-- Video Card -->
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <!-- Media Main Column 1-->
 
-                          <!-- Video Card -->
-                        </v-col>
-                      </template>
+                      <!-- Media Main Column 2 -->
+                      <v-col md="3">
+                        <v-row class="flex-column">
+                          <v-col cols="12">
+                            <v-card class="pa-5 card-video" hover color="#272B2F">
+                              <v-img
+                                src="/images/resume_themes/theme207/video-preview1.png"
+                                alt="Video"
+                              ></v-img>
+                            </v-card>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-card class="pa-5 card-media" hover color="#272B2F">
+                              <div class="d-flex flex-no-wrap justify-content-center">
+                                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
+                                  <v-img
+                                    max-width="30"
+                                    max-height="30"
+                                    src="/images/resume_themes/theme207/icons/play.png"
+                                  ></v-img>
+                                </v-avatar>
+                                <div class="flex-fill mt-n5">
+                                  <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
+                                  <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
+                                  <v-card-subtitle class="media-duration mt-n7">1:05:00</v-card-subtitle>
+                                </div>
+                              </div>
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <!-- Media Main Column 2 -->
+
+                      <!-- Media Column 3 -->
+                      <v-col md="3">
+                        <v-row class="flex-column">
+                          <v-col cols="12" v-for="i in 3" :key="i">
+                            <v-card class="pa-5 card-media" hover color="#272B2F">
+                              <div class="d-flex flex-no-wrap justify-content-center">
+                                <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
+                                  <v-img
+                                    max-width="30"
+                                    max-height="30"
+                                    src="/images/resume_themes/theme207/icons/play.png"
+                                  ></v-img>
+                                </v-avatar>
+                                <div class="flex-fill mt-n5">
+                                  <v-card-title class="media-title">AUDIO_04/08/2020</v-card-title>
+                                  <v-card-subtitle class="media-subtitle">Heans Prinslo</v-card-subtitle>
+                                  <v-card-subtitle class="media-duration mt-n7">1:05:00</v-card-subtitle>
+                                </div>
+                              </div>
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <!-- Media Column 3 -->
+                      <!-- Media 4th Column -->
+                      <v-col md="3">
+                        <v-row class="flex-column">
+                          <v-col cols="12">
+                            <v-card class="pa-5 card-education" hover color="#272B2F">
+                              <v-img
+                                min-height="332"
+                                src="/images/resume_themes/theme207/video-preview2.png"
+                                alt="Video"
+                              ></v-img>
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <!-- Media 4th Column -->
                     </v-row>
+                    <!-- Media Main Row -->
                   </v-card>
                 </v-tab-item>
                 <!-- Media -->
@@ -829,7 +905,7 @@ export default {
   color: #ffffff !important;
   line-height: 23px;
   font-size: 0.875rem !important;
-  @media screen and (max-width:959px){
+  @media screen and (max-width: 959px) {
     width: 60% !important;
   }
 }
@@ -935,6 +1011,19 @@ export default {
   img {
     width: 18px;
     height: auto;
+  }
+}
+
+.card-media {
+  border-radius: 9px !important;
+  height: 108px;
+}
+
+.card-video {
+  border-radius: 9px !important;
+  .v-responsive.v-image {
+    min-height: 202px;
+    min-width: 240px;
   }
 }
 
