@@ -111,6 +111,7 @@ export default {
                     font-weight: 700;
                     max-width: 337px;
                     margin-bottom: 20px;
+                    color: white;
                 }
 
                 .seeMore {
