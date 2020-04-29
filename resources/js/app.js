@@ -29,7 +29,7 @@ if ($("#welcomeView").length !== 0) {
 require('./admin');
 
 // stripe payments
-
+require('./stripe_payments');
 
 // Default themes preview components registrations:
 require('./default-themes');

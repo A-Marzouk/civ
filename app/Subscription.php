@@ -13,7 +13,7 @@ class Subscription extends Model
         'payment_method',
         'sub_frequency',
         'sub_status',
-        'sub_id',
+        'customer_id',
         'user_id',
     ];
 

@@ -1,3 +1,11 @@
-import {loadStripe} from '@stripe/stripe-js';
+// welcome page view component registration:
+import subscriptionComponent from './components/subscription/Main';
 
-const stripe = loadStripe('pk_test_ONs0RLUvvsJy9P3XWHOkCWRB');
+if ($("#subscriptionComponent").length !== 0) {
+    new Vue({
+        el: '#subscriptionComponent',
+        components:{
+            'subscription-component':subscriptionComponent
+        }
+    });
+}
