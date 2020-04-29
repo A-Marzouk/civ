@@ -30,9 +30,19 @@ import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
+//vue masonry
+import VueMasonry from 'vue-masonry-css'
+Vue.use(VueMasonry)
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 
 library.add(fab)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// vue scroll
+import VueScrollTo from  'vue-scrollto'
+
+Vue.use(VueScrollTo)
+

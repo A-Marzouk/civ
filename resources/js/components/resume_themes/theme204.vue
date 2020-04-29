@@ -7,24 +7,24 @@
       <v-row no-gutters>
         <v-col cols="12">
           <!-- Main header card -->
-          <v-card flat color="transparent">
+          <v-card flat color="transparent" tile>
             <!-- Child Row -->
             <v-container fluid ma-0 pa-0 style="max-width:100%">
               <v-row no-gutters align="center" justify="center">
                 <!-- 1st column profile pic and icons -->
                 <v-col md="8" cols="12" sm="7">
-                  <v-card color="transparent" flat style="z-index:2;" class="pa-0 ma-0">
+                  <v-card color="transparent" tile flat style="z-index:2;" class="pa-0 ma-0">
                     <v-card-text>
                       <v-list-item two-line>
-                        <v-list-item-avatar size="120" class="hidden-xs-only custom-avatar">
+                        <v-list-item-avatar class="hidden-xs-only custom-avatar">
                           <v-img src="/images/resume_themes/theme204/images/avatar.png"></v-img>
                         </v-list-item-avatar>
-                        <v-list-item-avatar size="80" class="hidden-sm-and-up custom-avatar mr-2">
+                        <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
                           <v-img src="/images/resume_themes/theme204/images/avatar.png"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
-                            <v-card class="pa-0" flat color="transparent">
+                            <v-card class="pa-0" flat color="transparent" tile>
                               Carla Pipin Ranga
                               <span class="mx-8 hidden-sm-and-down">
                                 <v-btn
@@ -70,7 +70,7 @@
                             </v-card>
                           </v-list-item-title>
                           <v-list-item-title>
-                            <v-card flat color="transparent">
+                            <v-card flat color="transparent" tile>
                               <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
                             </v-card>
                           </v-list-item-title>
@@ -85,7 +85,7 @@
                 <v-col sm="5" cols="12" class="tablet-audio-video-flex">
                   <v-card
                     flat
-                    color="transparent"
+                    color="transparent" tile
                     class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
                     style="z-index:2"
                   >
@@ -125,7 +125,7 @@
                 <!-- Social media icons -->
 
                 <v-col md="4" sm="8" cols="12" class="availibility-col">
-                  <v-card flat color="transparent" class="ma-0 pa-0">
+                  <v-card flat color="transparent" tile class="ma-0 pa-0">
                     <v-card-text class="ml-md-n5">
                       <v-row no-gutters align="center" justify="center">
                         <v-col cols="4" class="d-flex">
@@ -136,14 +136,14 @@
                         </v-col>
                         <div style="height:41px; border:1px solid #D7D7D7;"></div>
                         <v-col cols="4" class="d-flex">
-                          <v-card flat class="text-center" color="transparent">
+                          <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
                             <v-card-subtitle class="hire-me-subtitle">8 Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
                         <v-col cols="3" class="d-flex">
-                          <v-card flat color="transparent">
+                          <v-card flat color="transparent" tile>
                             <v-card-text>
                               <v-btn
                                 color="#FCD259"
@@ -172,7 +172,7 @@
         <!-- main Navigation tab -->
         <v-row no-gutters align="center" justify="center">
           <v-col cols="12" md="10">
-            <v-card flat color="transparent">
+            <v-card flat color="transparent" tile>
               <v-card-text>
                 <v-tabs v-model="mainDataTab" color="black" centered grow show-arrows hide-slider>
                   <v-tab
@@ -191,22 +191,22 @@
       <v-container style="width:100%">
         <v-row class="mx-md-10 mx-sm-10 mx-1">
           <v-col cols="12">
-            <v-card flat color="transparent" style="z-index:1;">
+            <v-card flat color="transparent" tile style="z-index:1;">
               <v-tabs-items v-model="mainDataTab" style="background-color:transparent;">
                 <!-- About -->
                 <v-tab-item>
                   <div class="watermark-text text-center mt-12">About</div>
-                  <v-card flat color="transparent" align="center">
+                  <v-card flat color="transparent" tile align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
-                        <v-card flat color="transparent">
+                        <v-card flat color="transparent" tile>
                           <div class="about-title">About</div>
                           <br />
                           <div class="about-detail">
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                             I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                            <br/><br/>
-                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                            <br />
+                            <br />I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
                           </div>
                         </v-card>
                       </v-col>
@@ -217,23 +217,26 @@
                 <!-- ................Portfolio............................... -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
-                  <v-card flat color="transparent" align="center">
+                  <v-card flat color="transparent" tile align="center">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
-                        <div class="card-columns">
+                        <masonry
+                          :cols="{default: 4, 959: 1, 599: 1}"
+                          :gutter="{default: '30px', 700: '15px'}"
+                        >
                           <v-card
                             v-for="item in portfolioItems"
                             :key="item.id"
                             class="mb-2"
                             align="left"
                             flat
-                            color="transparent"
+                            color="transparent" tile
                           >
-                            <img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" />
+                            <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)" ></v-img>
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
                             <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
                           </v-card>
-                        </div>
+                        </masonry>
                       </v-col>
                     </v-row>
                   </v-card>
@@ -243,12 +246,12 @@
                 <!-- ...................Tab Item Work............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Work</div>
-                  <v-card color="transparent" flat>
+                  <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
                         <v-row align="center" justify="center">
                           <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                            <v-card flat color="transparent">
+                            <v-card flat color="transparent" tile>
                               <v-list-item three-line>
                                 <v-list-item-icon>
                                   <img
@@ -258,13 +261,13 @@
                                 </v-list-item-icon>
                                 <v-list-item-content>
                                   <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent">Google Inc. Introduction Google</v-card>
+                                    <v-card flat color="transparent" tile>Google Inc. Introduction Google</v-card>
                                   </v-list-item-title>
                                   <v-list-item-subtitle class="custom-work-subtitle">
-                                    <v-card flat color="transparent">User interface designer</v-card>
+                                    <v-card flat color="transparent" tile>User interface designer</v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class="custom-work-duration mt-6">
-                                    <v-card color="transparent" flat>2012- Current</v-card>
+                                    <v-card color="transparent" tile flat>2012- Current</v-card>
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
@@ -280,11 +283,11 @@
                 <!-- ...................Tab Item Education............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Education</div>
-                  <v-card color="transparent" flat>
+                  <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent">
+                          <v-card flat color="transparent" tile>
                             <v-list-item three-line>
                               <v-list-item-icon>
                                 <img
@@ -294,17 +297,17 @@
                               </v-list-item-icon>
                               <v-list-item-content>
                                 <v-list-item-title class="custom-work-title">
-                                  <v-card flat color="transparent">California Insitute of Technology</v-card>
+                                  <v-card flat color="transparent" tile>California Insitute of Technology</v-card>
                                 </v-list-item-title>
                                 <v-list-item-subtitle class="custom-education-subtitle">
-                                  <v-card flat color="transparent" style="color:#fbd76d;">
+                                  <v-card flat color="transparent" tile style="color:#fbd76d;">
                                     M.Sc in HCI,
                                     <span class="ml-5">Dec 19 - Present</span>
                                   </v-card>
                                 </v-list-item-subtitle>
                                 <v-list-item-subtitle class="mt-6">
                                   <v-card
-                                    color="transparent"
+                                    color="transparent" tile
                                     flat
                                     class="custom-education-details"
                                   >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
@@ -322,7 +325,7 @@
                 <!-- ...................Tab Item Skills............................. -->
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
-                  <v-card color="transparent" flat>
+                  <v-card color="transparent" tile flat>
                     <v-row align="center" justify="center">
                       <v-col
                         cols="12"
@@ -332,7 +335,7 @@
                         v-for="skill in skills"
                         :key="skill.id"
                       >
-                        <v-card flat color="transparent" class="mx-auto">
+                        <v-card flat color="transparent" tile class="mx-auto">
                           <v-card-text>
                             <v-list-item>
                               <v-list-item-avatar
@@ -442,8 +445,8 @@ export default {
         },
         {
           id: 5,
-          title: "",
-          subtitle: ""
+          title: "Made market Concept",
+          subtitle: "Made market concept"
         },
 
         {
@@ -530,17 +533,7 @@ export default {
 @import url("//db.onlinewebfonts.com/c/07a38bbad54db72a40b406bed1c72f53?family=Gotham+Pro");
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 /* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
-.card-columns {
-  @media screen and (min-width: 960px) {
-    column-count: 4;
-  }
-  @media screen and (max-width: 959px) {
-    column-count: 1;
-  }
-  @media screen and (max-width: 599px) {
-    column-count: 1;
-  }
-}
+
 /* Shapes */
 .triangle-top-left {
   left: 0;
@@ -557,6 +550,9 @@ export default {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1);
   z-index: 2;
   float: left;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 22rem;
+  }
   @media screen and (max-width: 599px) {
     width: 15.5rem;
     height: 13.75rem;
@@ -600,23 +596,41 @@ export default {
   }
 }
 /* Shapes */
+.custom-avatar {
+  width: 120px !important;
+  height: 120px !important;
+  max-width: 120px;
+  max-height: 120px;
+  border: 5px solid white;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 100px !important;
+    height: 100px !important;
+  }
+}
 
 .profile-title {
   font-family: "Gotham Pro" !important;
   font-size: 1.53rem !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 1.2rem !important;
+    margin-bottom: -10px;
+  }
+  
   @media screen and(max-width:599px) {
     font-size: 1.12rem !important;
   }
+
 }
 
-.custom-avatar {
-  border: 5px solid white;
-}
+
 
 .profile-subtitle {
   font-family: "Gotham Pro" !important;
   font-size: 0.8rem !important;
   color: #444444 !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 0.6rem !important;
+  }
   @media screen and(max-width:599px) {
     font-size: 0.5rem !important;
   }
@@ -677,6 +691,9 @@ export default {
   font-size: 0.9rem !important;
   color: #8b8b8b !important;
   text-align: center !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    font-size: 0.6rem !important;
+  }
   @media screen and (max-width: 959px) {
     font-size: 0.7rem !important;
   }
@@ -748,7 +765,7 @@ export default {
     font-size: 1.125rem !important;
     line-height: 25px !important;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 0.875rem !important;
   }
 }
@@ -765,11 +782,17 @@ export default {
   font-weight: bold;
   margin-bottom: -20px;
   margin-top: -20px;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 12px !important;
+  }
 }
 .custom-portfolio-subtitle {
   font-family: "Montserrat" !important;
   color: #000000 !important;
   font-size: 12px;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    width: 10px !important;
+  }
 }
 // .........................Desktop Portfolio...........................
 

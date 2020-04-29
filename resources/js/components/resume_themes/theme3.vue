@@ -32,9 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="menu-icon">
-                        <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
-                    </div>
+                    
                 </div>
                
                 <div class="right d-flex align-items-center justify-content-between hideOnPhone">
@@ -231,12 +229,12 @@
                 </div>
                 <div class="work" v-show="activeTab === 'education'">
                     <div class="work-item" v-for="education in currentUser.education" :key="education.id + '_education'">
-                        <div class="work-icon hideOnPhone">
+                        <div class="education-icon hideOnPhone">
                             <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
                         </div>
                         <div class="work-info">
                             <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
+                                <div class="education-icon hideOnNotPhone">
                                     <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
                                 </div>
                                 <div>
@@ -365,11 +363,11 @@
                     "html / css": "/images/skills_icons/HTML.png",
                     // 2-
 
-                    "adobe after effects": "/images/skills_icons/AE.png",
+                    "adobe after effects": "/images/skills_icons/ae.png",
                     sketch: "/images/skills_icons/Sketch.png",
-                    "adobe illustrator": "/images/skills_icons/Illustrator.png",
-                    "adobe xd": "/images/skills_icons/AdobeXD.png",
-                    photoshop: "/images/skills_icons/Photoshop.png",
+                    "adobe illustrator": "/images/skills_icons/illustrator.png",
+                    "adobe xd": "/images/skills_icons/adobexd.png",
+                    photoshop: "/images/skills_icons/photoshop.png",
                     autocad: "/images/skills_icons/autocad.png",
                     solidworks: "/images/skills_icons/solid_works.png",
                     "adobe flash": "/images/skills_icons/adobe_flash.png",
@@ -757,6 +755,9 @@
                 .media-btns {
                     display: flex;
                     margin-left: 27px;
+                    @media screen and (max-width: 599px){
+                        margin-left: 128px;
+                    }
                     .audio-btn {
                         margin-right: 27px;
                         @media only screen and (max-width: 765px) {
@@ -1058,6 +1059,13 @@
                         img {
                             width: 99px;
                             height: 59px;
+                        }
+                    }
+                    .education-icon{    
+                        margin-right:17px;
+                        img{
+                            width: 80px;
+                            height:auto;
                         }
                     }
                     .work-info {
@@ -1550,6 +1558,13 @@
                                 height: 48px;
                             }
                         }
+                        .education-icon{
+                            margin-right:35px;
+                            img{
+                                width: 48px;
+                                height:auto;
+                            }
+                        }
                         .work-info {
                             .date {
                                 font-weight: normal;
@@ -1804,8 +1819,15 @@
                         .work-icon {
                             margin-right: 35px;
                             img {
-                                width: 48px;
-                                height: 48px;
+                                width: 99px;
+                                height: 59px;
+                            }
+                        }
+                        .education-icon {
+                            margin-right: 35px;
+                            img {
+                                width: 80px;
+                                height: 59px;
                             }
                         }
                         .work-info {
@@ -1909,4 +1931,12 @@
         width: 12px;
         height: 12px;
     }
+</style>
+
+<style>
+@media screen and (min-width: 1281px) {
+  #resumeTheme3 .slick-slide {
+    width: auto !important;
+  }
+}
 </style>
