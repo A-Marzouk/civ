@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Stripe\{Plan, Product, Stripe, Charge, Customer};
 use Stripe\Subscription as StripeSubscription;
 
@@ -40,6 +41,7 @@ class SubscriptionController extends Controller
     {
 
         $plan = $request->plan;
+        Session::put('plan', $plan);
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
@@ -65,12 +67,12 @@ class SubscriptionController extends Controller
         // if success we create a subscription
         Subscription::create([
             'payment_method' => 'stripe',
-            'sub_frequency' => 'monthly',
+            'sub_frequency' => Session::get('plan'),
             'sub_status' => 'active',
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect('http://localhost:8080/resume-builder');
+        return redirect('http://localhost:8080/resume-builder?redirect_from=stripe&status=success');
     }
 
     /**

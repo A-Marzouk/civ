@@ -55,11 +55,11 @@
                                 Re-type password
                             </label>
                         </div>
-                        <div class="my-subscription" v-if="accountData.subscription">
+                        <div class="my-subscription">
                             <div class="form-title sub">
                                 My subscription
                             </div>
-                            <div class="toggle-panel smaller" v-if="!accountData.subscription.id">
+                            <div class="toggle-panel smaller" v-if="accountData.subscription === null">
                                 <div class="aux-fill" :class="{left: subscription === 'on',right: subscription === 'off'}"></div>
                                 <div class="buttons">
                                     <button class="toggle-btn monthly" @click="subscription = 'on' ">On
@@ -142,7 +142,7 @@
                     <div class="modal-body d-flex align-items-center" v-if="accountData.subscription">
                         You have a {{accountData.subscription.sub_frequency}} subscription
                         <br/>
-                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '15 USD' : '99 USD'}}
+                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '15 USD/month' : '99 USD/year'}}
                         <br/>
                         Payment method: Stripe
                     </div>
@@ -365,6 +365,18 @@
         },
         mounted() {
             this.setUpAutoSave();
+
+            let searchParams = new URLSearchParams(window.location.search);
+
+            if (searchParams.has('redirect_from')) {
+                let redirect_from = searchParams.get('redirect_from');
+                let status = searchParams.get('status');
+                if(redirect_from === 'stripe' && status === 'success'){
+                    setTimeout(() => {
+                        this.$store.dispatch('flyingNotification',{message:'Subscribed',iconSrc:'/images/resume_builder/tick.svg'});
+                    },1500);
+                }
+            }
         }
 
     }
