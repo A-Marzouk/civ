@@ -37,7 +37,6 @@
         "@fortawesome/free-regular-svg-icons": "^5.13.0",
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "@fortawesome/vue-fontawesome": "^0.1.9",
-        "@stripe/stripe-js": "^1.4.0",
         "bootstrap-vue": "^2.7.0",
         "jquery": "^3.2",
         "laravel-mix-svg-vue": "^0.2.6",
