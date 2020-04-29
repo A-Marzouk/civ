@@ -247,17 +247,15 @@
                     <v-row>
                       <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                         <v-card class="pa-5 card-education" hover color="#272B2F">
-                          <div class="d-flex flex-no-wrap justify-space-between education-inner-block">
+                          <div
+                            class="d-flex flex-no-wrap justify-space-between education-inner-block"
+                          >
                             <v-avatar
                               class="mt-md-6 mt-sm-5 education-avatar"
                               tile
                               color="rgba(252, 65, 60, 0.1)"
                             >
-                              <v-img
-                                max-width="50"
-                                max-height="50"
-                                src="/images/resume_themes/theme207/tabs/active/2.png"
-                              ></v-img>
+                              <img src="/images/resume_themes/theme207/tabs/active/2.png" />
                             </v-avatar>
                             <div>
                               <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
@@ -283,17 +281,15 @@
                     <v-row>
                       <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                         <v-card class="pa-5 card-education" hover color="#272B2F">
-                          <div class="d-flex flex-no-wrap justify-space-between education-inner-block">
+                          <div
+                            class="d-flex flex-no-wrap justify-space-between education-inner-block"
+                          >
                             <v-avatar
                               class="mt-md-6 mt-sm-5 education-avatar"
                               tile
                               color="rgba(252, 65, 60, 0.1)"
                             >
-                              <v-img
-                                max-width="50"
-                                max-height="50"
-                                src="/images/resume_themes/theme207/tabs/active/3.png"
-                              ></v-img>
+                              <img src="/images/resume_themes/theme207/tabs/active/3.png" />
                             </v-avatar>
                             <div>
                               <v-card-title class="education-title mb-2">Ryerson University</v-card-title>
@@ -360,11 +356,7 @@
                                         tile
                                         color="rgba(252, 65, 60, 0.1)"
                                       >
-                                        <v-img
-                                          max-width="50"
-                                          max-height="50"
-                                          src="/images/resume_themes/theme207/tabs/active/4.png"
-                                        ></v-img>
+                                        <img src="/images/resume_themes/theme207/tabs/active/4.png" />
                                       </v-avatar>
                                       <div class="flex-fill">
                                         <v-card-title
@@ -411,11 +403,7 @@
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
                                   <v-btn icon depressed color="transparent">
-                                    <v-img
-                                      max-width="30"
-                                      max-height="30"
-                                      src="/images/resume_themes/theme207/icons/play.png"
-                                    ></v-img>
+                                    <img src="/images/resume_themes/theme207/icons/play.png" />
                                   </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
@@ -433,7 +421,7 @@
                       <!-- Media Main Column 2 -->
                       <v-col md="3" sm="6">
                         <v-row class="flex-column">
-                          <v-col cols="12">
+                          <v-col cols="12" class="ml-md-0 ml-sm-n4 ml-0">
                             <v-card class="pa-5 card-video text-center" hover color="#272B2F">
                               <v-img
                                 src="/images/resume_themes/theme207/video-preview1.png"
@@ -470,16 +458,12 @@
                               </v-img>
                             </v-card>
                           </v-col>
-                          <v-col cols="12">
+                          <v-col cols="12" class="ml-md-0 ml-sm-n4 ml-0">
                             <v-card class="pa-5 card-media" hover color="#272B2F">
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
                                   <v-btn icon depressed color="transparent">
-                                    <v-img
-                                      max-width="30"
-                                      max-height="30"
-                                      src="/images/resume_themes/theme207/icons/play.png"
-                                    ></v-img>
+                                    <img src="/images/resume_themes/theme207/icons/play.png" />
                                   </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
@@ -502,11 +486,7 @@
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
                                   <v-btn icon depressed color="transparent">
-                                    <v-img
-                                      max-width="30"
-                                      max-height="30"
-                                      src="/images/resume_themes/theme207/icons/play.png"
-                                    ></v-img>
+                                    <img src="/images/resume_themes/theme207/icons/play.png" />
                                   </v-btn>
                                 </v-avatar>
                                 <div class="flex-fill mt-n5">
@@ -521,12 +501,12 @@
                       </v-col>
                       <!-- Media Column 3 -->
                       <!-- Media 4th Column -->
-                      <v-col md="3" sm="12">
+                      <v-col md="3" sm="12" class>
                         <v-row class="flex-column">
                           <v-col cols="12">
-                            <v-card class="pa-5 card-video-big  text-center" hover color="#272B2F">
+                            <v-card class="pa-5 card-video-big text-center" hover color="#272B2F">
                               <v-img
-                                class="white--text align-center"
+                                class="white--text align-center preview-big"
                                 min-height="332"
                                 src="/images/resume_themes/theme207/video-preview2.png"
                                 alt="Video"
@@ -946,24 +926,25 @@ export default {
 //education
 .card-education {
   border-radius: 9px !important;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     height: 170px;
   }
-  .education-inner-block{
+  .education-inner-block {
     @media screen and (max-width: 959px) {
       margin-top: -12px !important;
     }
   }
 }
 
-
-
-.education-avatar{
+.education-avatar {
   min-width: 100px !important;
   width: 100px !important;
-  height:120px !important;
+  height: 120px !important;
+  img {
+    width: 50px;
+    height: 50px;
+  }
 }
-
 
 .education-title {
   font-family: "Roboto", sans-serif !important;
@@ -1099,18 +1080,34 @@ export default {
 .card-media {
   border-radius: 9px !important;
   height: 108px;
+  img {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .card-video {
   border-radius: 9px !important;
+  height: 240px;
   .v-responsive.v-image.preview-1 {
     min-height: 202px;
     min-width: 240px;
+    @media screen and (max-width: 959px) {
+      height: 0px;
+      margin: -1px;
+    }
   }
 }
 
-.card-video-big{
+.card-video-big {
   border-radius: 9px !important;
+  @media screen and(max-width: 959px) {
+    width: 98%;
+    margin-top: -24px;
+  }
+  .v-responsive.v-image.preview-big {
+    height: 0px;
+  }
 }
 
 .video-duration-preview-1 {
@@ -1240,7 +1237,6 @@ export default {
   box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
     inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
 }
-
 #resumetheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
