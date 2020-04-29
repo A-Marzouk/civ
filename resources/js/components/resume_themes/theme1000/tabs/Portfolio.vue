@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ImagePreview from "./portfolio/ImagePreview";
+import ImagePreview from "./../components/portfolio/ImagePreview";
 
 export default {
 	name: "portfolio",

@@ -1,7 +1,15 @@
 <template>
-	<div class="tw-px-4 tw-pt-16 tw-pb-12 tw-max-w-xl tw-mx-auto screen768px:tw-max-w-none screen768px:tw-px-37px">
+	<div v-if="false" class="tw-px-4 tw-pt-30px tw-pb-12 tw-max-w-xl tw-mx-auto screen768px:tw-max-w-none screen768px:tw-px-37px">
 		<div v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
-			<div v-masonry-tile class="tw-p-10px tw-w-full screen768px:tw-w-1/2 screen1024px:tw-w-1/3 screen1920px:tw-w-1/4 item" v-for="item in media" :key="item.id">
+			<div v-masonry-tile class="tw-p-10px tw-w-full screen768px:tw-w-1/2 screen1024px:tw-w-1/4 item" v-for="item in media" :key="item.id">
+				<AudioPreview v-if="item.type == 'audio'" :media="item" />
+				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
+			</div>
+		</div>
+	</div>
+	<div v-else class="media">
+		<div v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
+			<div v-masonry-tile class="tw-p-10px tw-w-full screen768px:tw-w-1/2 screen1024px:tw-w-1/4 item" v-for="item in media" :key="item.id">
 				<AudioPreview v-if="item.type == 'audio'" :media="item" />
 				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
 			</div>
@@ -10,8 +18,8 @@
 </template>
 
 <script>
-import AudioPreview from "./media/AudioPreview";
-import VideoPreview from "./media/VideoPreview";
+import AudioPreview from "./../components/media/AudioPreview";
+import VideoPreview from "./../components/media/VideoPreview";
 
 export default {
 	name: "media",
@@ -104,4 +112,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
+
+.media {
+}
 </style>

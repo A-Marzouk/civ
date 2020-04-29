@@ -51,8 +51,8 @@
 </template>
 
 <script>
-import ProgressCard from "../components/ProgressCard";
-import TabLinks from "./skills/TabLinks";
+import ProgressCard from "./../components/ProgressCard";
+import TabLinks from "./../components/skills/TabLinks";
 
 export default {
 	name: "skills",
