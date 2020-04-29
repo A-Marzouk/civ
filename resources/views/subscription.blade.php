@@ -3,19 +3,7 @@
 @section('content')
 
 
-
-    <div id="subscriptionComponent">
-        Subscriptions
-        <form action="/subscription" method="post">
-            {{csrf_field()}}
-
-            <button type="submit">Subscribe</button>
-        </form>
-    </div>
-
-
     <script src="https://js.stripe.com/v3/"></script>
-
     <script>
         var stripe = Stripe('pk_test_ONs0RLUvvsJy9P3XWHOkCWRB');
         let searchParams = new URLSearchParams(window.location.search);
@@ -34,8 +22,6 @@
         }else{
             console.log('coming');
         }
-
-
     </script>
-
 @endsection
+

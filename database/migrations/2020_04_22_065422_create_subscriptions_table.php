@@ -21,7 +21,7 @@ class CreateSubscriptionsTable extends Migration
             $table->string('sub_status')->nullable();
 
 
-            $table->int('user_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }

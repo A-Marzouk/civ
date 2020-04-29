@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Stripe\{Stripe, Charge, Customer};
+use Stripe\{Plan, Product, Stripe, Charge, Customer};
+use Stripe\Subscription as StripeSubscription;
 
 
 class SubscriptionController extends Controller
@@ -35,56 +36,30 @@ class SubscriptionController extends Controller
     }
 
 
-    public function subscribeMonthly(Request $request)
+    public function subscribe(Request $request)
     {
 
-        Stripe::setApiKey(config('services.stripe.secret'));
-
-        // we might create customer and store the customer id in the subscription we are making.
-
-        // create subscription on our database
-
-        $session = \Stripe\Checkout\Session::create([
-            'payment_method_types' => ['card'],
-
-            // if the user has a subscription don't allow him to create new one.
-
-
-
-            'subscription_data' => [
-                'items' => [
-                    [
-                        'plan' => 'monthly',
-                    ]
-                ],
-            ],
-            'success_url' => 'http://localhost:8080/subscription/success',
-            'cancel_url' => 'http://localhost:8080/subscription/cancel',
-        ]);
-
-        return redirect('http://localhost:8080/subscription?session_id=' . $session->id);
-    }
-
-    public function subscribeYearly(Request $request)
-    {
+        $plan = $request->plan;
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
+
             'subscription_data' => [
                 'items' => [
                     [
-                        'plan' => 'monthly',
+                        'plan' => $plan,
                     ]
                 ],
             ],
-            'success_url' => 'http://localhost:8080/subscription/success',
-            'cancel_url' => 'http://localhost:8080/subscription/cancel',
+            'success_url' => url('/') . '/subscription/success',
+            'cancel_url' =>  url('/') . '/subscription/cancel',
         ]);
 
         return redirect('http://localhost:8080/subscription?session_id=' . $session->id);
     }
+
 
     public function subscriptionSuccess(Request $request){
         // if success we create a subscription
@@ -94,6 +69,7 @@ class SubscriptionController extends Controller
             'sub_status' => 'active',
             'user_id' => auth()->user()->id
         ]);
+
         return redirect('http://localhost:8080/resume-builder');
     }
 

@@ -22,14 +22,17 @@
       </div>
 
 
-      <div class="btn filled">
-        <div class="d-flex flex-column">
-          <span>
-              Start Free Trial
-          </span>
-          <small>7 days free trial</small>
+
+      <form action="/subscribe" method="post" id="subscribe_form">
+        <input type="hidden" :value="csrf_token" name="_token">
+        <input type="hidden" value="yearly" name="plan">
+        <div class="btn filled" @click="submitForm">
+          <div class="d-flex flex-column">
+            <button type="submit">Start Free Trial</button>
+            <small>7 days free trial</small>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </template>
@@ -43,8 +46,14 @@ export default {
       "Export PDF",
       "Visual Builder",
       "Free Domain URL"
-    ]
-  })
+    ],
+    csrf_token: $('meta[name="csrf-token"]').attr('content')
+  }),
+  methods:{
+    submitForm(){
+      $('#subscribe_form').submit();
+    }
+  }
 };
 </script>
 

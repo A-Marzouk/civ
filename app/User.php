@@ -50,7 +50,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'personalInfo',
             'availabilityInfo',
             'paymentInfo',
-            'summary'
+            'summary',
+            'subscription'
         ];
 
     public static $defaultOneToOneRelations = [
@@ -59,7 +60,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'personalInfo',
         'availabilityInfo',
         'paymentInfo',
-        'summary'
+        'summary',
+        'subscription'
     ];
     public static $defaultOneToManyRelations = [
         'skills',
