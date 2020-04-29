@@ -605,7 +605,7 @@
                 <v-tab-item>
                   <v-card flat color="transparent" tile class="mt-5">
                     <v-container style="width:100%">
-                      <v-row justify="center" align="center">
+                      <v-row>
                         <v-col md="3" sm="3" cols="12">
                           <v-avatar size="250" class="about-me-photo" tile>
                             <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
@@ -1211,9 +1211,7 @@ img.pofolio-lg-img {
 .about-me-text {
   font-family: "Poppins", sans-serif !important;
   color: #ffffff !important;
-  @media screen and (max-width: 959px) {
-    margin-top: 30px;
-  }
+  font-size: 1.125rem !important;
 }
 // about me
 
@@ -1257,7 +1255,6 @@ img.pofolio-lg-img {
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
   border-radius: 9px;
   @media screen and (max-width: 959px) {
-    margin-top: -60px;
     height: 175px !important;
     width: 175px !important;
     min-width: 175px !important;
