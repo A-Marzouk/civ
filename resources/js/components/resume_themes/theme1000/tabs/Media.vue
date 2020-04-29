@@ -1,8 +1,11 @@
 <template>
-	<div class="v-masonry-container" v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
-		<div v-masonry-tile class="media_outer" v-for="item in media" :key="item.id">
-			<AudioPreview v-if="item.type == 'audio'" :media="item" />
-			<VideoPreview v-else-if="item.type == 'video'" :media="item" />
+	<div class="tw-pb-140px">
+		<div class="tw-w-full" v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
+			<div v-masonry-tile class="media_outer item" v-for="item in media" :key="item.id">
+				<AudioPreview v-if="item.type == 'audio'" :media="item" />
+				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
+			</div>
+
 		</div>
 
 		<AudioPlayer :track="track" />
@@ -115,12 +118,8 @@ export default {
 <style lang="scss" scoped>
 @import "./../scss/variables";
 
-.v-masonry-container {
+.media_outer {
 	width: 100%;
-	padding-bottom: 140px;
-
-	.media_outer {
-		padding: 10px;
-	}
+	padding: 10px;
 }
 </style>

@@ -27,7 +27,7 @@
 		<div class="audio-player__progress">
 			<div class="progress__meta">
 				<span>{{ formatDuration(position) }}</span>
-				<span>1:05:00</span>
+				<span>{{ formatDuration(track.duration) }}</span>
 			</div>
 			<div class="progress__bar">
 				<div class="bar__outer">
@@ -51,7 +51,7 @@ export default {
 
 	data: () => {
 		return {
-			position: 5 * 60
+			position: 60 * 5
 		};
 	},
 
@@ -63,13 +63,15 @@ export default {
 				seconds = "0" + seconds;
 			}
 
-			let minutes = Math.floor(durationSeconds % 60) % 60;
+			let minutes = Math.floor(durationSeconds / 60) % 60;
 
 			if (minutes < 10) {
 				minutes = "0" + minutes;
 			}
 
 			let hours = Math.floor(durationSeconds / 3600);
+
+			console.log(hours, minutes, seconds);
 
 			return hours > 0
 				? `${hours}:${minutes}:${seconds}`
