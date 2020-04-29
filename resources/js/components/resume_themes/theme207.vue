@@ -146,9 +146,10 @@
                 <v-tab-item>
                   <v-card color="transparent" tile flat>
                     <v-card-text>
-                      <v-row>
+                      <!-- Will be hidden in tablets and mobile -->
+                      <v-row class="hidden-sm-and-down">
                         <!-- column 1 -->
-                        <v-col md="3" sm="6" cols="6">
+                        <v-col md="3" sm="5" cols="6">
                           <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
@@ -161,16 +162,16 @@
                                 </v-btn>
                               </template>
                             </v-speed-dial>
-                            <v-img
-                              class="portfolio-small-img"
+                            <img
+                              class="pofolio-lg-img"
                               src="/images/resume_themes/theme207/portfolio/1.png"
                               alt="Portfolio Image"
-                            ></v-img>
+                            />
                           </v-card>
                         </v-col>
                         <!-- Column 1 -->
                         <!-- column 2 -->
-                        <v-col md="4" sm="6" cols="6">
+                        <v-col md="4" sm="7" cols="6">
                           <v-row>
                             <v-col cols="6" v-for="n in 4" :key="n">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
@@ -191,9 +192,9 @@
                           </v-row>
                         </v-col>
                         <!-- Column 2 -->
-                        <!-- this two columns will not shown on tablets and mobiles-->
+
                         <!-- column 3 -->
-                        <v-col md="3" class="hidden-sm-and-down">
+                        <v-col md="3">
                           <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
@@ -216,7 +217,7 @@
                         <!-- column 4 -->
                         <v-col md="2">
                           <v-row>
-                            <v-col cols="12" v-for="n in 2" :key="n" class="hidden-sm-and-down">
+                            <v-col cols="12" v-for="n in 2" :key="n">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
@@ -235,8 +236,59 @@
                           </v-row>
                         </v-col>
                         <!-- Column 4 -->
-                        <!-- This two columns will not show on tablets and mobiles -->
                       </v-row>
+                      <!-- Will be hidden in tablets and mobile devices -->
+
+                      <!-- Only For tablet and mobile version -->
+                      <template v-for="n in 2"> 
+                        <v-row class="hidden-md-and-up ml-sm-n2" :key="n" :class="n>1 ?'mt-sm-n3 mt-0':''">
+                          <!-- column 1 -->
+                          <v-col md="3" sm="5" cols="6">
+                            <v-card color="transparent" tile class="card-portfolio" hover>
+                              <v-speed-dial top right absolute>
+                                <template v-slot:activator>
+                                  <v-btn icon color="transparent" tile>
+                                    <img
+                                      width="20"
+                                      src="/images/resume_themes/theme207/icons/zoom.png"
+                                      alt
+                                    />
+                                  </v-btn>
+                                </template>
+                              </v-speed-dial>
+                              <img
+                                class="pofolio-lg-img"
+                                src="/images/resume_themes/theme207/portfolio/1.png"
+                                alt="Portfolio Image"
+                              />
+                            </v-card>
+                          </v-col>
+                          <!-- Column 1 -->
+                          <!-- column 2 -->
+                          <v-col md="4" sm="7" cols="6" :class="(n%2)==0 ? 'order-first':''">
+                            <v-row>
+                              <v-col cols="6" v-for="n in 4" :key="n">
+                                <v-card class="card-portfolio mt-n3 mb-3" hover>
+                                  <v-speed-dial top right absolute>
+                                    <template v-slot:activator>
+                                      <v-btn icon color="transparent" tile>
+                                        <img
+                                          width="20"
+                                          src="/images/resume_themes/theme207/icons/zoom.png"
+                                          alt
+                                        />
+                                      </v-btn>
+                                    </template>
+                                  </v-speed-dial>
+                                  <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                                </v-card>
+                              </v-col>
+                            </v-row>
+                          </v-col>
+                          <!-- Column 2 -->
+                        </v-row>
+                      </template>
+                      <!-- Only for tablet and mobile version -->
                     </v-card-text>
                   </v-card>
                 </v-tab-item>
@@ -658,6 +710,7 @@
 export default {
   data() {
     return {
+      windowWidth: window.innerWidth,
       drawer: false,
       mainDataTab: "",
       skillTab: "",
@@ -728,6 +781,13 @@ export default {
       ]
     };
   },
+  //mounted
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  },
+  //methods
   methods: {
     getSocialIcon(title) {
       return `/images/resume_themes/theme207/social_icons/${title}.webp`;
@@ -924,6 +984,11 @@ export default {
 // Portfolio
 .card-portfolio {
   border-radius: 10px !important;
+}
+img.pofolio-lg-img {
+  @media screen and (max-width: 959px) {
+    height: 394px;
+  }
 }
 //Portfolio
 
@@ -1146,7 +1211,7 @@ export default {
 .about-me-text {
   font-family: "Poppins", sans-serif !important;
   color: #ffffff !important;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     margin-top: 30px;
   }
 }
