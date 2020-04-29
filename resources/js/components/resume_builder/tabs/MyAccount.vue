@@ -55,21 +55,23 @@
                                 Re-type password
                             </label>
                         </div>
-                        <div class="my-subscription">
+                        <div class="my-subscription" v-if="accountData.subscription">
                             <div class="form-title sub">
                                 My subscription
                             </div>
-                            <div>
-                                <div class="toggle-panel smaller">
-                                    <div class="aux-fill" :class="{left: subscription === 'on',right: subscription === 'off'}"></div>
-                                    <div class="buttons">
-                                        <button class="toggle-btn monthly" @click="subscription = 'on' ">On
-                                        </button>
-                                        <button class="toggle-btn yearly"  @click="subscription = 'off' ">Off
-                                        </button>
-                                    </div>
+                            <div class="toggle-panel smaller" v-if="!accountData.subscription.id">
+                                <div class="aux-fill" :class="{left: subscription === 'on',right: subscription === 'off'}"></div>
+                                <div class="buttons">
+                                    <button class="toggle-btn monthly" @click="subscription = 'on' ">On
+                                    </button>
+                                    <button class="toggle-btn yearly"  @click="subscription = 'off' ">Off
+                                    </button>
                                 </div>
-
+                            </div>
+                            <div v-else class="view-sub-btn NoDecor">
+                                <a href="javascript:void(0)"  data-toggle="modal" data-target="#subscription">
+                                    View
+                                </a>
                             </div>
                         </div>
                         <div class="input-field" :class="{'active': fields.username , 'error': errors.username}">
@@ -132,6 +134,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="subscription" tabindex="-1" role="dialog" aria-labelledby="subscription" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body d-flex align-items-center" v-if="accountData.subscription">
+                        You have a {{accountData.subscription.sub_frequency}} subscription
+                        <br/>
+                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '15 USD' : '99 USD'}}
+                        <br/>
+                        Payment method: Stripe
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -174,7 +191,8 @@
                     username: user.username,
                     userNameChanged: false,
                     password: '',
-                    password_confirmation: ''
+                    password_confirmation: '',
+                    subscription:user.subscription
                 }
             }
         },
@@ -361,6 +379,22 @@
     $bg-color: white;
     $input-bg: #f1f8fc;
     $placeholder-color: #9ba1ad;
+
+
+    .view-sub-btn{
+
+        a{
+            border: 1px solid $primary;
+            width: 60px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $primary;
+            border-radius: 15px;
+        }
+
+    }
 
     .my-account-tab-wrapper {
         .info-wrapper {
