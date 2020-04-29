@@ -89,8 +89,7 @@ module.exports = {
                     "4": "#444444",
                     "5": "#484848",
                     "6": "#2D2D2D",
-                    "7":
-                        "linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)",
+                    "7": "linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%)",
                 },
                 tm701: {
                     "1": "#28404A",
@@ -107,6 +106,8 @@ module.exports = {
                 },
             },
             inset: {
+                "14px": "14px",
+                "17px": "17px",
                 "24px": "24px",
                 "34px": "34px",
                 "94px": "94px",
@@ -152,6 +153,7 @@ module.exports = {
             fontSize: {
                 "tm700-18": "1.125rem", // 18px
                 "tm700-22": "1.375‬rem", // 22px
+                "12px": "12px", // 22px
                 "14px": "14px", // 22px
                 "18px": "1.125rem", // 22px
                 "20px": "20px", // 20px
@@ -180,6 +182,10 @@ module.exports = {
                 "50px": "50px",
                 "64px": "64px",
             },
+            minHeight: {
+                '169px': '169px',
+                '226px': '226px',
+            }
         },
     },
     variants: {},

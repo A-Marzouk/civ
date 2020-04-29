@@ -50,6 +50,7 @@ class UsersController extends Controller
             'paymentInfo',
             'availabilityInfo',
             'summary',
+            'subscription'
         ])->first();
         if($user){
             return response()->json($user, 200);

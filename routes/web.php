@@ -48,9 +48,14 @@ Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@ha
 Route::get('/resume-builder/{any?}', 'ResumeBuilderController@index')->name('resume.builder.main');
 Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
-
 Route::post('/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('pdf.import.submit');
 Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('docx.import');
+
+
+// subscription routes
+Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
+Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
+Route::post('/subscribe', 'SubscriptionController@subscribe')->name('subscription.yearly');
 
 
 
