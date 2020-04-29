@@ -1,8 +1,6 @@
 @extends('layouts.my-app')
 
 @section('content')
-
-
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         var stripe = Stripe('pk_test_ONs0RLUvvsJy9P3XWHOkCWRB');

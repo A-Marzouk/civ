@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Subscription;
 use Illuminate\Http\Request;
 
 // Used to process plans
 
+use Illuminate\Support\Facades\Auth;
 use PayPal\Api\ChargeModel;
 use PayPal\Api\Currency;
 use PayPal\Api\MerchantPreferences;
 use PayPal\Api\PaymentDefinition;
 use PayPal\Api\Plan;
+use PayPal\Api\Payer;
 use PayPal\Api\Patch;
 use PayPal\Api\PatchRequest;
+use PayPal\Api\Agreement as Agreement;
 use PayPal\Common\PayPalModel;
 use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
@@ -23,6 +27,7 @@ class PaypalController extends Controller
     private $mode;
     private $client_id;
     private $secret;
+    private $plan_id;
 
     // Create a new instance with our paypal credentials
     public function __construct()
@@ -31,9 +36,11 @@ class PaypalController extends Controller
         if(config('paypal.settings.mode') == 'live'){
             $this->client_id = config('paypal.live_client_id');
             $this->secret = config('paypal.live_secret');
+            $this->plan_id = env('PAYPAL_LIVE_PLAN_ID', '');
         } else {
             $this->client_id = config('paypal.sandbox_client_id');
             $this->secret = config('paypal.sandbox_secret');
+            $this->plan_id = env('PAYPAL_SANDBOX_PLAN_ID', '');
         }
 
         // Set the Paypal API Context/Credentials
@@ -60,8 +67,8 @@ class PaypalController extends Controller
 
         // Set merchant preferences
         $merchantPreferences = new MerchantPreferences();
-        $merchantPreferences->setReturnUrl('https://website.dev/subscribe/paypal/return')
-            ->setCancelUrl('https://website.dev/subscribe/paypal/return')
+        $merchantPreferences->setReturnUrl(url('/') . '/subscribe/paypal/return')
+            ->setCancelUrl(url('/') . '/subscribe/paypal/return')
             ->setAutoBillAmount('yes')
             ->setInitialFailAmountAction('CONTINUE')
             ->setMaxFailAttempts('0');
@@ -101,6 +108,67 @@ class PaypalController extends Controller
             die($ex);
         }
 
+    }
+
+
+    public function paypalRedirect(){
+        // Create new agreement
+        $agreement = new Agreement();
+        $agreement->setName('CIV Monthly Subscription Agreement')
+            ->setDescription('Basic Subscription')
+            ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
+
+        // Set plan id
+        $plan = new Plan();
+        $plan->setId($this->plan_id);
+        $agreement->setPlan($plan);
+
+        // Add payer type
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+        $agreement->setPayer($payer);
+
+        try {
+            // Create agreement
+            $agreement = $agreement->create($this->apiContext);
+
+            // Extract approval URL to redirect user
+            $approvalUrl = $agreement->getApprovalLink();
+
+            return redirect($approvalUrl);
+        } catch (PayPal\Exception\PayPalConnectionException $ex) {
+            echo $ex->getCode();
+            echo $ex->getData();
+            die($ex);
+        } catch (Exception $ex) {
+            die($ex);
+        }
+
+    }
+
+    public function paypalReturn(Request $request){
+
+        $token = $request->token;
+        $agreement = new Agreement();
+
+        try {
+            // Execute agreement
+            $result = $agreement->execute($token, $this->apiContext);
+            $user = Auth::user();
+            Subscription::create([
+                'payment_method' => 'paypal',
+                'sub_frequency' => 'monthly',
+                'sub_status' => 'active',
+                'paypal_agreement_id' => $result->id,
+                'user_id' => $user->id
+            ]);
+
+
+            return redirect(url('/') . '/resume-builder?redirect_from=paypal&status=success');
+
+        } catch (\PayPal\Exception\PayPalConnectionException $ex) {
+            return redirect(url('/') . '/resume-builder?redirect_from=paypal&status=fail');
+        }
     }
 
 

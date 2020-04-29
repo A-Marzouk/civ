@@ -57,6 +57,15 @@ Route::get('/subscription', 'SubscriptionController@index')->name('subscription'
 Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
 Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
 
+// paypal
+
+//Route::get('/subscribe/create-paypal-plan', 'PaypalController@create_plan');
+
+
+Route::get('/subscribe/paypal', 'PaypalController@paypalRedirect')->name('paypal.redirect');
+Route::get('/subscribe/paypal/return', 'PaypalController@paypalReturn')->name('paypal.return');
+
+
 
 
 // admin routes:
