@@ -32,9 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="menu-icon">
-                        <img src="/images/resume_themes/theme3/menu.svg" alt="menu" class="hideOnDesktop">
-                    </div>
+                    
                 </div>
                
                 <div class="right d-flex align-items-center justify-content-between hideOnPhone">
@@ -231,12 +229,12 @@
                 </div>
                 <div class="work" v-show="activeTab === 'education'">
                     <div class="work-item" v-for="education in currentUser.education" :key="education.id + '_education'">
-                        <div class="work-icon hideOnPhone">
+                        <div class="education-icon hideOnPhone">
                             <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
                         </div>
                         <div class="work-info">
                             <div class="d-flex">
-                                <div class="work-icon hideOnNotPhone">
+                                <div class="education-icon hideOnNotPhone">
                                     <img src="/images/resume_themes/theme3/education-icon.svg" alt="work-icon">
                                 </div>
                                 <div>
@@ -757,6 +755,9 @@
                 .media-btns {
                     display: flex;
                     margin-left: 27px;
+                    @media screen and (max-width: 599px){
+                        margin-left: 128px;
+                    }
                     .audio-btn {
                         margin-right: 27px;
                         @media only screen and (max-width: 765px) {
@@ -1058,6 +1059,13 @@
                         img {
                             width: 99px;
                             height: 59px;
+                        }
+                    }
+                    .education-icon{    
+                        margin-right:17px;
+                        img{
+                            width: 80px;
+                            height:auto;
                         }
                     }
                     .work-info {
@@ -1550,6 +1558,13 @@
                                 height: 48px;
                             }
                         }
+                        .education-icon{
+                            margin-right:35px;
+                            img{
+                                width: 48px;
+                                height:auto;
+                            }
+                        }
                         .work-info {
                             .date {
                                 font-weight: normal;
@@ -1804,8 +1819,15 @@
                         .work-icon {
                             margin-right: 35px;
                             img {
-                                width: 48px;
-                                height: 48px;
+                                width: 99px;
+                                height: 59px;
+                            }
+                        }
+                        .education-icon {
+                            margin-right: 35px;
+                            img {
+                                width: 80px;
+                                height: 59px;
                             }
                         }
                         .work-info {

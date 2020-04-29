@@ -175,6 +175,10 @@
     }
 
     @media only screen and (max-width: 600px) {
+        .v-slide-group__wrapper{
+            cursor: auto;
+            margin-left: -25px !important;
+        }
     #theme502{
     padding: 0 0;
     }
