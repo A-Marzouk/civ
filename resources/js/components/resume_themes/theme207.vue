@@ -552,16 +552,20 @@
                 <!-- About Me -->
                 <v-tab-item>
                   <v-card flat color="transparent" tile class="mt-5">
-                    <div class="d-flex flex-no-wrap">
-                      <v-avatar size="250" class="about-me-photo" tile>
-                        <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
-                      </v-avatar>
-                      <div class="flex-fill">
-                        <v-card-text
-                          class="about-me-text"
-                        >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</v-card-text>
-                      </div>
-                    </div>
+                    <v-container style="width:100%">
+                      <v-row justify="center" align="center">
+                        <v-col md="3" sm="3" cols="12">
+                          <v-avatar size="250" class="about-me-photo" tile>
+                            <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
+                          </v-avatar>
+                        </v-col>
+                        <v-col md="9" sm="9" cols="12">
+                          <div
+                            class="about-me-text"
+                          >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</div>
+                        </v-col>
+                      </v-row>
+                    </v-container>
                   </v-card>
                 </v-tab-item>
                 <!-- About Me -->
@@ -1142,6 +1146,9 @@ export default {
 .about-me-text {
   font-family: "Poppins", sans-serif !important;
   color: #ffffff !important;
+  @media screen and (max-width: 959px){
+    margin-top: 30px;
+  }
 }
 // about me
 
@@ -1184,6 +1191,12 @@ export default {
   border: 15px solid #272b2f;
   box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
   border-radius: 9px;
+  @media screen and (max-width: 959px) {
+    margin-top: -60px;
+    height: 175px !important;
+    width: 175px !important;
+    min-width: 175px !important;
+  }
 }
 .about-me-title-mobile {
   font-family: "Poppins" sans-serif !important;
