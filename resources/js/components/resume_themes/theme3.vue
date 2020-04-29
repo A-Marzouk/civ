@@ -464,6 +464,7 @@
 
             // set default payment and availability:
             this.setDefaultRates();
+
         }
     }
 </script>
@@ -871,10 +872,6 @@
                             height: 34px;
                             width: 105px;
                             border-radius: 35px;
-                        }
-                        @media only screen and (min-width: 1600px) {
-                            font-size: 30px;
-                            height: 67px;
                         }
                     }
                 }
