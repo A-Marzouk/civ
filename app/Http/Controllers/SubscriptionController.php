@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Stripe\{Plan, Product, Stripe, Charge, Customer};
-use Stripe\Subscription as StripeSubscription;
-
 
 class SubscriptionController extends Controller
 {
@@ -26,18 +24,8 @@ class SubscriptionController extends Controller
         return view('subscription');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-
-    public function subscribe(Request $request)
+    public function subscribeStripe(Request $request)
     {
 
         $plan = $request->plan;
@@ -59,7 +47,7 @@ class SubscriptionController extends Controller
             'cancel_url' =>  url('/') . '/subscription/cancel',
         ]);
 
-        return redirect('http://localhost:8080/subscription?session_id=' . $session->id);
+        return redirect(url('/') . '/subscription?session_id=' . $session->id);
     }
 
 
@@ -72,51 +60,7 @@ class SubscriptionController extends Controller
             'user_id' => auth()->user()->id
         ]);
 
-        return redirect('http://localhost:8080/resume-builder?redirect_from=stripe&status=success');
+        return redirect(url('/') . '/resume-builder?redirect_from=stripe&status=success');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }
