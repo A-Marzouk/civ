@@ -55,9 +55,7 @@ Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDoc
 // subscription routes
 Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
 Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
-Route::post('/subscribe', 'SubscriptionController@subscribe')->name('subscription.yearly');
-
-
+Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
 
 
 
