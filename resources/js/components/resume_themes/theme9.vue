@@ -316,6 +316,7 @@ $purple: #24325D;
 
         .bg-body {
             position: absolute;
+            z-index: -1;
             width: 100%;
             height: 100%;
             background-image: url("/images/resume_themes/theme9/bg-body.png");
@@ -351,6 +352,7 @@ $purple: #24325D;
                     &--active {
                         color: #5BFFFE !important;
                         font-weight: 700;
+                        background: none;
                     }
 
                     &::before {
