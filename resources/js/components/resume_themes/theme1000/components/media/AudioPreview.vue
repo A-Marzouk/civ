@@ -51,6 +51,7 @@ export default {
 
 		.detail__title {
 			font-size: 13px;
+			word-break: break-word;
 			line-height: 27px;
 			font-weight: 700;
 		}
@@ -70,21 +71,15 @@ export default {
 
 @media (min-width: $sm) {
 	.audio-preview {
-		display: grid;
-		grid-template-columns: 2fr 3fr;
-		background: #eeeff1;
 		height: 87px;
 		border-radius: 9px;
 
 		.audio-preview__thumbnail {
-			width: 78%;
-			align-self: center;
-			justify-self: center;
-			border-radius: 4px;
+			padding-left: 8.5px;
 		}
 
 		.audio-preview__detail {
-			align-self: center;
+			padding-left: 8.5px;
 
 			.detail__title {
 				font-size: 13px;
@@ -99,6 +94,31 @@ export default {
 
 			.detail__track-duration {
 				font-size: 12px;
+			}
+		}
+	}
+}
+
+@media (min-width: $md) {
+	.audio-preview {
+		height: 126px;
+
+		.audio-preview__thumbnail {
+			padding-left: 30px;
+		}
+
+		.audio-preview__detail {
+			padding-left: 20px;
+
+			.detail__title {
+				font-size: 18px;
+				line-height: 27px;
+			}
+
+			.detail__artist-name {
+			}
+
+			.detail__track-duration {
 			}
 		}
 	}

@@ -122,4 +122,17 @@ export default {
 	width: 100%;
 	padding: 10px;
 }
+
+@media (min-width: $sm) {
+	.media_outer {
+		width: 50%;
+		padding: 6px;
+	}
+}
+
+@media (min-width: $md) {
+	.media_outer {
+		padding: 10px;
+	}
+}
 </style>

@@ -83,17 +83,17 @@ export default {
 @media (min-width: $md) {
 	.tab-button {
 		height: 60px;
-
-		.tab-button__label {
-			display: flex;
-			font-size: 16px;
-		}
 	}
 }
 
 @media (min-width: $lg) {
 	.tab-button {
 		max-width: 280px;
+
+		.tab-button__label {
+			display: block;
+			font-size: 16px;
+		}
 	}
 }
 
