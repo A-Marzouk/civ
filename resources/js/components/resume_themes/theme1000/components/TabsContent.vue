@@ -1,5 +1,5 @@
 <template>
-	<div class="tw-max-w-4xl tw-mx-auto tw-pb-50px screen1024px:tw-max-w-6xl screen1920px:tw-max-w-1784px">
+	<div class="tabs-content">
 		<component v-bind:is="currentTab"></component>
 	</div>
 </template>
@@ -25,3 +25,9 @@ export default {
 	}
 };
 </script>
+
+<style lang="scss" scoped>
+.tabs-content {
+	padding: 10px;
+}
+</style>

@@ -1,6 +1,8 @@
 <template>
 	<div v-if="true || media.id===1" class="audio-preview">
-		<img class="audio-preview__thumbnail" :src="media.thumbnail">
+		<div class="audio-preview__thumbnail">
+			<img :src="media.thumbnail">
+		</div>
 		<div class="audio-preview__detail tw-font-poppins">
 			<h4 class="detail__title" v-text="media.title"></h4>
 			<div class="detail__artist-name" v-text="media.artist"></div>
@@ -25,6 +27,46 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../../scss/variables";
+
+.audio-preview {
+	height: 130px;
+	display: flex;
+	align-items: center;
+	background: #eeeff1;
+	border-radius: 9px;
+
+	.audio-preview__thumbnail {
+		padding-left: 25px;
+
+		img {
+			width: 70px;
+			height: 70px;
+			border-radius: 9px;
+		}
+	}
+
+	.audio-preview__detail {
+		flex: 1;
+		padding-left: 20px;
+
+		.detail__title {
+			font-size: 13px;
+			line-height: 27px;
+			font-weight: 700;
+		}
+
+		.detail__artist-name {
+			color: rgba(0, 0, 0, 0.55);
+			font-size: 12px;
+			line-height: 18px;
+		}
+
+		.detail__track-duration {
+			font-size: 12px;
+			line-height: 18px;
+		}
+	}
+}
 
 @media (min-width: $sm) {
 	.audio-preview {

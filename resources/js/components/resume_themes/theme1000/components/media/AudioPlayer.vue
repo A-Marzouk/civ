@@ -1,33 +1,38 @@
 <template>
 	<div class="audio-player">
-		<div class="controls tw-relative tw-flex tw-justify-center tw-items-center">
-			<a href="#" class="tw-absolute tw-top-0 tw-right-0" @click.prevent>
-				<svg class="tw-fill-current" xmlns="http://www.w3.org/2000/svg">
-					<path d="M2 9H0v5h5v-2H2V9zM0 5h2V2h3V0H0v5zm12 7H9v2h5V9h-2v3zM9 0v2h3v3h2V0H9z" />
+		<div class="audio-player__controls tw-relative tw-flex tw-justify-center tw-items-center">
+			<a href="#" class="controls__button--expand" @click.prevent>
+				<svg class="tw-fill-current" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+					<path d="M2 9H0V14H5V12H2V9ZM0 5H2V2H5V0H0V5ZM12 12H9V14H14V9H12V12ZM9 0V2H12V5H14V0H9Z" />
 				</svg>
 			</a>
-			<a href="#" class="controls__button--previous" @click.prevent>
-				<svg class="tw-fill-current" xmlns="http://www.w3.org/2000/svg">
-					<path d="M9.262 13.738L3.537 8l5.725-5.737L7.5.5 0 8l7.5 7.5 1.762-1.762zM19.262 13.738L13.537 8l5.725-5.737L17.5.5 10 8l7.5 7.5 1.762-1.762z" />
+			<a href="#" class="controls__button controls__button--previous" @click.prevent>
+				<svg class="tw-fill-current" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M9.26245 13.7375L3.53745 8L9.26245 2.2625L7.49995 0.5L-4.95911e-05 8L7.49995 15.5L9.26245 13.7375Z" />
+					<path d="M19.2625 13.7375L13.5375 8L19.2625 2.2625L17.5 0.5L9.99995 8L17.5 15.5L19.2625 13.7375Z" />
 				</svg>
 			</a>
-			<a href="#" class="controls__button--play" @click.prevent>
-				<svg class="tw-fill-current" xmlns="http://www.w3.org/2000/svg">
-					<path d="M.5 17.75h5V.25h-5v17.5zm10-17.5v17.5h5V.25h-5z" />
+			<a href="#" class="controls__button controls__button--play" @click.prevent>
+				<svg class="tw-fill-current" viewBox="0 0 16 18" xmlns="http://www.w3.org/2000/svg">
+					<path d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
 				</svg>
 			</a>
-			<a href="#" class="controls__button--next" @click.prevent>
-				<svg xmlns="http://www.w3.org/2000/svg">
-					<path d="M10.738 13.738L16.462 8l-5.724-5.737L12.5.5 20 8l-7.5 7.5-1.762-1.762zM.738 13.738L6.463 8 .738 2.263 2.5.5 10 8l-7.5 7.5-1.762-1.762z" />
+			<a href="#" class="controls__button controls__button--next" @click.prevent>
+				<svg class="tw-fill-current" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
+					<path d="M10.7375 13.7375L16.4625 8L10.7375 2.2625L12.5 0.5L20 8L12.5 15.5L10.7375 13.7375Z" />
+					<path d="M0.737549 13.7375L6.46255 8L0.737549 2.2625L2.50005 0.5L10 8L2.50005 15.5L0.737549 13.7375Z" />
 				</svg>
 			</a>
 		</div>
-		<div class="progress">
-			<div class="progress__duration">
-
+		<div class="audio-player__progress">
+			<div class="progress__meta">
+				<span>{{ formatDuration(position) }}</span>
+				<span>1:05:00</span>
 			</div>
 			<div class="progress__bar">
-
+				<div class="bar__outer">
+					<div class="bar__inner" :style="`width: ${(position/track.duration) * 100}%`"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -35,9 +40,131 @@
 
 <script>
 export default {
-	name: "audio-player"
+	name: "audio-player",
+
+	props: {
+		track: {
+			type: Object,
+			required: true
+		}
+	},
+
+	data: () => {
+		return {
+			position: 5 * 60
+		};
+	},
+
+	methods: {
+		formatDuration(durationSeconds) {
+			let seconds = Math.floor(durationSeconds % 60);
+
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			let minutes = Math.floor(durationSeconds % 60) % 60;
+
+			if (minutes < 10) {
+				minutes = "0" + minutes;
+			}
+
+			let hours = Math.floor(durationSeconds / 3600);
+
+			return hours > 0
+				? `${hours}:${minutes}:${seconds}`
+				: `${minutes}:${seconds}`;
+		}
+	}
 };
 </script>
 
 <style lang="scss" scoped>
+.audio-player {
+	left: 0;
+	right: 0;
+	height: 140px;
+	bottom: 0;
+	padding: 25px 25px 15px;
+	position: fixed;
+	background: #eeeff1;
+}
+
+.audio-player__controls {
+	.controls__button--expand {
+		top: 0;
+		right: 0;
+		color: black;
+		width: 14px;
+		height: 14px;
+		position: absolute;
+	}
+
+	.controls__button {
+		width: 60px;
+		height: 60px;
+		display: flex;
+		align-items: center;
+		border-radius: 5px;
+		justify-content: center;
+
+		&.controls__button--previous {
+			color: #000000;
+			svg {
+				width: 20px;
+				height: 16px;
+			}
+		}
+		&.controls__button--play {
+			color: #ffffff;
+			background: #3f38dd;
+			margin-left: 15px;
+			margin-right: 15px;
+
+			svg {
+				width: 16px;
+				height: 18px;
+			}
+		}
+		&.controls__button--next {
+			color: #000000;
+			svg {
+				width: 20px;
+				height: 16px;
+			}
+		}
+	}
+}
+
+.audio-player__progress {
+	padding-top: 11px;
+
+	.progress__meta {
+		width: 100%;
+		display: flex;
+		font-size: 8px;
+		list-style: 12px;
+		justify-content: space-between;
+	}
+
+	.progress__bar {
+		padding-top: 8px;
+
+		.bar__outer {
+			height: 8px;
+			position: relative;
+			background: #f4f8fb;
+			border-radius: 20px;
+		}
+
+		.bar__inner {
+			top: 0;
+			left: 0;
+			bottom: 0;
+			position: absolute;
+			background: #3f38dd;
+			border-radius: 20px;
+		}
+	}
+}
 </style>

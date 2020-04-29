@@ -1,30 +1,23 @@
 <template>
-	<div v-if="false" class="tw-px-4 tw-pt-30px tw-pb-12 tw-max-w-xl tw-mx-auto screen768px:tw-max-w-none screen768px:tw-px-37px">
-		<div v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
-			<div v-masonry-tile class="tw-p-10px tw-w-full screen768px:tw-w-1/2 screen1024px:tw-w-1/4 item" v-for="item in media" :key="item.id">
-				<AudioPreview v-if="item.type == 'audio'" :media="item" />
-				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
-			</div>
+	<div class="v-masonry-container" v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
+		<div v-masonry-tile class="media_outer" v-for="item in media" :key="item.id">
+			<AudioPreview v-if="item.type == 'audio'" :media="item" />
+			<VideoPreview v-else-if="item.type == 'video'" :media="item" />
 		</div>
-	</div>
-	<div v-else class="media">
-		<div v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
-			<div v-masonry-tile class="tw-p-10px tw-w-full screen768px:tw-w-1/2 screen1024px:tw-w-1/4 item" v-for="item in media" :key="item.id">
-				<AudioPreview v-if="item.type == 'audio'" :media="item" />
-				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
-			</div>
-		</div>
+
+		<AudioPlayer :track="track" />
 	</div>
 </template>
 
 <script>
 import AudioPreview from "./../components/media/AudioPreview";
 import VideoPreview from "./../components/media/VideoPreview";
+import AudioPlayer from "./../components/media/AudioPlayer";
 
 export default {
 	name: "media",
 
-	components: { AudioPreview, VideoPreview },
+	components: { AudioPreview, VideoPreview, AudioPlayer },
 
 	data: () => {
 		return {
@@ -105,7 +98,15 @@ export default {
 					duration: "1:05:00",
 					type: "audio"
 				}
-			]
+			],
+			track: {
+				id: 1,
+				title: "AUDIO_04/08/2020",
+				thumbnail: "/images/resume_themes/theme1000/media/1.png",
+				artist: "Hean Prinsloo",
+				duration: 1 * 3600 + 5 * 60,
+				type: "audio"
+			}
 		};
 	}
 };
@@ -114,6 +115,12 @@ export default {
 <style lang="scss" scoped>
 @import "./../scss/variables";
 
-.media {
+.v-masonry-container {
+	width: 100%;
+	padding-bottom: 140px;
+
+	.media_outer {
+		padding: 10px;
+	}
 }
 </style>
