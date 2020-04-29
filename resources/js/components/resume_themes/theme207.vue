@@ -421,7 +421,7 @@
                       <!-- Media Main Column 2 -->
                       <v-col md="3" sm="6">
                         <v-row class="flex-column">
-                          <v-col cols="12" class="ml-md-0 ml-sm-n4 ml-0">
+                          <v-col cols="12" class="col-video-1">
                             <v-card class="pa-5 card-video text-center" hover color="#272B2F">
                               <v-img
                                 src="/images/resume_themes/theme207/video-preview1.png"
@@ -458,7 +458,7 @@
                               </v-img>
                             </v-card>
                           </v-col>
-                          <v-col cols="12" class="ml-md-0 ml-sm-n4 ml-0">
+                          <v-col cols="12" class="col-video-1">
                             <v-card class="pa-5 card-media" hover color="#272B2F">
                               <div class="d-flex flex-no-wrap justify-content-center">
                                 <v-avatar tile size="70" color="rgba(252, 65, 60, 0.1)">
@@ -1102,7 +1102,7 @@ export default {
 .card-video-big {
   border-radius: 9px !important;
   @media screen and(max-width: 959px) {
-    width: 98%;
+    width: 98.2%;
     margin-top: -24px;
   }
   .v-responsive.v-image.preview-big {
@@ -1127,7 +1127,11 @@ export default {
   font-size: 14px;
   color: #ffffff !important;
 }
-
+.col-video-1 {
+  @media screen and(max-width: 959px) {
+    margin-left: -14px;
+  }
+}
 // media
 // about me
 .about-me-title {
