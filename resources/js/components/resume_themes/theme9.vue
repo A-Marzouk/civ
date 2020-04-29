@@ -252,6 +252,7 @@ $purple: #24325D;
                 margin-right: 55px;
 
                 img {
+                    border: 7px solid #24325D;
                     width: 100%;
                     border-radius: 50%;
                 }
