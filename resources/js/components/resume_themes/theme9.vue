@@ -1,12 +1,7 @@
 <template>
 <!-- Developer: Jose Quintero -->
-    <v-app id="theme12" style="width: 100%">
+    <v-app id="theme9" style="width: 100%">
         <div class="theme-header">
-
-            <div class="bg-header">
-                <img src="/images/resume_themes/theme12/bg-header.png" alt="" class="bg-header-img" />
-            </div>
-
             <div class="user-info">
                 <div class="left">
                     <div class="user-img">
@@ -27,10 +22,10 @@
                 <div class="right">
                     <div class="actions-wrapper">
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme12/chat-icon.png"> Start a chat
+                            <img class="icon" src="/images/resume_themes/theme9/chat-icon.png"> Start a chat
                         </button>
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme12/suitcase-icon.png">Upload interviews
+                            <img class="icon" src="/images/resume_themes/theme9/suitcase-icon.png">Upload interviews
                         </button>
                     </div>
 
@@ -45,7 +40,7 @@
                         </div>
 
                         <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme12/hireMe-icon.png" alt="hire me icon" class="icon">
+                            <img src="/images/resume_themes/theme9/hireMe-icon.png" alt="hire me icon" class="icon">
                             Hire Me
                         </button>
                     </div>
@@ -54,6 +49,8 @@
         </div>
 
         <div class="theme-body">
+            <div class="bg-body"></div>
+
             <div class="wrapper">
 
                 <v-row
@@ -97,7 +94,7 @@
                             </a>
                         </div>
                         <div class="scroll-top">
-                            <a href="javascript:;" v-scroll-to="'#theme12'">Scroll to top</a>
+                            <a href="javascript:;" v-scroll-to="'#theme13'">Scroll to top</a>
                         </div>
                     </v-col>
                 </v-row>
@@ -107,11 +104,11 @@
 </template>
 
 <script>
-import EducationTab from './theme12/education'
-import WorkExperienceTab from './theme12/work-experience'
-import PortfolioTab from './theme12/portfolio'
-import AboutTab from './theme12/about'
-import SkillsTab from './theme12/skills-and-languages'
+import EducationTab from './theme9/education'
+import WorkExperienceTab from './theme9/work-experience'
+import PortfolioTab from './theme9/portfolio'
+import AboutTab from './theme9/about'
+import SkillsTab from './theme9/skills-and-languages'
 
 export default {
     components: {
@@ -147,35 +144,22 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-$mainColor: #fff;
-$tabTextColor: #4D2F2D;
-$purple: #686299;
+$mainColor: #24325D;
+$tabTextColor: #BEC2D4;
+$purple: #24325D;
 
-$gradient: linear-gradient(to right, #9434CD, #EE3DC6);
-
-#theme12 {
+#theme9 {
     font-family: 'Muli', sans-serif;
     width: 100%;
     color: $mainColor;
-    background: #1B1F28;
+    background-color: #F8CDCC;
+    background-image: url('/images/resume_themes/theme9/bg-header.png');
+    background-position: top center;
     position: relative;
 
     .theme-header {
         width: 100%;
-        overflow-x: hidden;
-
-        .bg-header {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-
-            &-img {
-                position: absolute;
-                left: -30px;
-                top: -100px;
-                width: 140%;
-            }
-        }
+        position: relative;
 
         .left {
             display: flex;
@@ -200,11 +184,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
-                    background: #1B1F28;
+                    background: transparent;
+                    border: 3px solid $mainColor;
                     outline: none;
-                    color: white;
                     border-radius: 9px;
-                    box-shadow: 7px 7px 12px rgba(0, 0, 0, .8);
 
                     &:first-child {
                         margin-right: 26px;
@@ -234,7 +217,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     small {
                         font-size: 15px;
                         font-weight: 400px;
-                        color: #BEC2D4;
                     }
                 }
 
@@ -242,8 +224,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: $gradient;
-                    box-shadow: 7px 7px 12px rgba(0, 0, 0, .8);
+                    background: $purple;
                     padding: 23px 62px;
                     font-size: 18px;
                     font-weight: 700;
@@ -271,6 +252,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin-right: 55px;
 
                 img {
+                    border: 7px solid #24325D;
                     width: 100%;
                     border-radius: 50%;
                 }
@@ -291,13 +273,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                 .profession {
                     margin-bottom: 30px;
-                    color: #BEC2D4;
                 }
 
                 .speciallity {
                     display: flex;
                     padding: 0;
-                    color: #BEC2D4;
                     
                     .item {
                         margin-right: 40px;
@@ -316,7 +296,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #FFFFFF;
+                            background: #28404A;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);
@@ -329,10 +309,20 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
     .theme-body {
         height: auto;
-        background: transparent;
+        background-color: $mainColor;
         border-radius: 80px 80px 0 0;
         z-index: 1;
         position: relative;
+
+        .bg-body {
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background-image: url("/images/resume_themes/theme9/bg-body.png");
+            background-repeat: repeat;
+            opacity: 0.02;
+        }
 
         .wrapper {
             display: flex;
@@ -343,23 +333,24 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
-                color: white;
+                color: $tabTextColor;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
                 &-bar {
-                    background: none;
+                    background: transparent !important;
+
                 }
                 
                 .v-tab {
                     padding: 12px 40px;
                     text-transform: none;
                     font-size: 20px;
-                    color: white !important;
+                    color: $tabTextColor;
                     // margin-right: 50px;
 
                     &--active {
-                        color: white !important;
+                        color: #5BFFFE !important;
                         font-weight: 700;
                         background: none;
                     }
@@ -374,17 +365,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     z-index: -1;
 
                     .v-tabs-slider {
-                        background: $gradient;
+                        background: transparent;
                         border-radius: 25px;
                     }
                 }
             }
 
             .container {
-                padding: 0 40px;
                 padding-bottom: 100px;
-                max-width: 1750px;
-                margin: 0 auto;
             }
         }
     }
@@ -425,7 +413,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
     .scroll-top {
         position: fixed;
-        left: 0;
+        left: 45px;
         bottom: 250px;
         transform: rotateZ(-90deg);
 
@@ -441,7 +429,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 left: -89px;
                 height: 3px;
                 width: 63px;
-                background: #B6B6B7;
+                background: rgba(236, 237, 244, 0.15);
             }
         }
     }
