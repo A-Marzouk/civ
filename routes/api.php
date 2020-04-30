@@ -55,6 +55,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/education/{id}', 'API\EducationController@show');
     //create new education
     Route::post('/education', 'API\EducationController@store');
+    //create many educations
+    Route::post('/education-many', 'API\EducationController@storeMany');
     //update a education
     Route::put('/education', 'API\EducationController@store');
     //delete education
@@ -68,6 +70,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/work-experience/{id}', 'API\WorkExController@show');
     //create new workExperience
     Route::post('/work-experience', 'API\WorkExController@store');
+    //create many workExperience
+    Route::post('/work-experience-many', 'API\WorkExController@storeMany');
     //update a workExperience
     Route::put('/work-experience', 'API\WorkExController@store');
     //delete workExperience

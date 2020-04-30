@@ -28,23 +28,23 @@
                             <v-col lg="3" md="12" sm="12" class="rateSection">
                                 <v-container class="hold-rates">
                                     <v-row class="rate-wrap" no-gutters>
-                                        <v-col lg="4" sm="auto" cols="5">
+                                        <v-col lg="4" md="4" sm="4">
                                             <span class="price">
                                                 ${{currentPayment.salary}}
                                             </span>
                                             <span class="text_price">
-                                                Rate
+                                                Hourly Rate
                                             </span>
                                         </v-col>
-                                        <v-col lg="6" sm="auto" cols="7">
+                                        <v-col lg="6" md="4" sm="4">
                                             <span class="hours">
                                                 {{currentAvailability.available_hours}} hrs
                                             </span>
                                             <span class="text_hours">
-                                                Availability
+                                                Weekly Avaiablitys
                                             </span>
                                         </v-col>
-                                        <v-col lg="auto" sm="auto" cols="12" class="hireme-hold">
+                                        <v-col lg="auto" md="4" sm="4" class="hold-hireme">
                                             <a href="#" class="btn-action" @click.prevent="dialogHireme = true">Hire Me</a>
                                         </v-col> 
                                     </v-row>                          
@@ -723,7 +723,7 @@ export default {
                 padding: 0 28px 0 0;
 
                 .hold-rates{
-                    max-width: 50%;
+                    max-width: 60%;
                     justify-content: flex-end;
                     margin: 0 !important;
                     padding: 0;
@@ -738,7 +738,7 @@ export default {
 
                     
 
-                    .col-5,.col-7{
+                    .col-md-4{
 
                         justify-content: center;
                         display: flex;
@@ -775,6 +775,11 @@ export default {
                         }
                         .text_hours{
                             font-size: 0px;
+                        }
+
+                        &.hold-hireme{
+                            align-items: flex-end;
+                            max-width: 100px;
                         }
                     }
                     
@@ -813,6 +818,12 @@ export default {
 
             .rateSection{
                 padding: 0px 20px;
+
+                .hold-rates{
+                    max-width: 100%;
+                }
+
+
                 .hire-wrap{
                     .col-12{
                         justify-content: flex-end;
@@ -861,7 +872,35 @@ export default {
             }
 
             .rateSection{
-                padding: 0px 3.6%;
+                padding: 0px 0.5px;
+
+                .rate-wrap{
+
+                    
+
+                    .col-sm-4{
+                        justify-content: center;
+                        display: flex;
+                        padding: 0;
+
+                        .price, .hours{
+                            &::before{
+                                content: "";
+                            }
+                        }
+                        .text_price,.text_hours{
+                            font-size: 10px;
+                            font-style: italic;
+                            font-weight: normal;
+                            font-family: "Roboto";
+                            color: #5F6368;
+                        }
+
+                        &.hold-hireme{
+                            align-items: flex-end;
+                        }
+                    }
+                }
             }
         }
 
@@ -979,11 +1018,16 @@ export default {
 
             justify-content: flex-end;
 
-            .col-5{
+            .col-md-2,.col-md-4{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 flex-flow: column;
+
+                &:first-child{
+                    max-width: 95px;
+                }
+                
 
                 .price{
                     font-size: 30px;
@@ -995,23 +1039,9 @@ export default {
                     font-family: 'Roboto';
                     color: #5F6368;
                 }
-            }
-            .col-7{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-flow: column;
 
-                .hours{
-                    font-size: 30px;
-                    font-family: 'Roboto Medium';
-                    color: #202124;
-                }
-                .text_hours{
-                    font-size: 16px;
-                    font-family: 'Roboto';
-                    color: #5F6368;
-                }
+
+
             }
         }
 
@@ -1029,15 +1059,33 @@ export default {
             }
         }
         @media screen and (max-width: 769px) {
+
+            .hold-rates{
+                max-width: 60%;
+            }
+
             .hireme-hold{
                 margin: 0;
             }
         }
 
         @media screen and (max-width: 380px) {
+            .hold-rates{
+                max-width: 100%;
+            }
+
+
             .rate-wrap{
+                max-width: 100%;
+                flex-flow: row;
+                align-items: center;
+
                 >div{
                     padding: 0;
+                }
+
+                .col-sm-4{
+                    padding: 0px;
                 }
             }
         }

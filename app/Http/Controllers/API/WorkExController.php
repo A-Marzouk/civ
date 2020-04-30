@@ -57,6 +57,17 @@ class WorkExController extends Controller
         }
     }
 
+   public function storeMany(Request $request)
+    {
+        foreach ($request->toArray() as $work){
+            $this->validator($work)->validate();
+            WorkEx::create($work);
+        }
+
+        return ['status' =>'success'];
+
+    }
+
 
 
     /**

@@ -45,7 +45,7 @@
               </div>
 
               <div class="hidden-md-and-up mt-sm-8">
-                <v-btn dark elevation="0" class="px-0 iconsize" color="#217BFF">
+                <v-btn dark elevation="0" class="px-0 mr-1 iconsize" color="#217BFF">
                   <v-icon dark small color="white">mdi-behance</v-icon>
                 </v-btn>
                 <v-btn dark elevation="0" class="px-0 mx-1 iconsize" color="#EE588A">
@@ -59,7 +59,7 @@
                 </v-btn>
               </div>
             </v-col>
-            <v-col class="hidden-md-and-up pl-4 pl-sm-2" cols="2">
+            <v-col class="hidden-md-and-up pl-4 pl-sm-10" cols="2">
               <v-btn dark class="px-0 my-4 d-block iconsize" color="#03CA9F">
                 <v-icon dark small color="white">mdi-phone</v-icon>
               </v-btn>
@@ -68,13 +68,13 @@
               </v-btn>
             </v-col>
           </v-row>
-          <v-col class="col-md-12 col-sm-12 mt-sm-n12 mx-auto hidden-xs-only ml-sm-6">
+          <v-col class="col-md-12 col-sm-12 mt-sm-n12 mx-auto hidden-xs-only pl-sm-9">
             <v-btn color="#04C79B" dark rounded small>
               <span class="pl-4 pr-4">TAP TO CHAT</span>
             </v-btn>
           </v-col>
         </v-col>
-        <v-col class="col-md-6 col-sm-12 mt-sm-12 my-6">
+        <v-col class="col-md-6 col-sm-12 mt-sm-12 my-6 my-xl-0 my-lg-0 my-sm-0 mt-lg-0 mt-xl-0">
           <v-row no-gutters justify-lg="end" justify-sm="center" justify="center">
             <v-col class="col-md-6 text-right mb-md-8 hidden-sm-and-down" lg="12">
               <div
@@ -101,15 +101,8 @@
                   <div class="info-subtitle text-center" style="opacity: 0.82">Weekly Availability</div>
                 </v-col>
 
-                <v-col cols="3" class="text-center" lg="4">
-                  <v-btn
-                    dark
-                    color="#03CA9F"
-                    width="100%"
-                    height="100%"
-                    elevation="0"
-                    class="ma-auto"
-                  >
+                <v-col cols="3" class="text-center" lg="4" align-self="center">
+                  <v-btn dark color="#03CA9F" elevation="0" class="buttonsize">
                     <div class="subhead">Hire Me</div>
                   </v-btn>
                 </v-col>
@@ -164,12 +157,12 @@
           >
             <v-tab v-for="tab in tabs" :key="tab.link" :href="tab.link" class="tablet">
               <v-icon left>{{tab.icon}}</v-icon>
-              <div class="title text-capitalize font-weight-bold">{{tab.name}}</div>
+              <div class="title text-capitalize">{{tab.name}}</div>
             </v-tab>
           </v-tabs>
         </v-col>
         <v-col cols="12" class="hidden-sm-and-up" align="center">
-          <v-card flat>
+          <v-card flat tile>
             <v-tabs
               background-color="transparent"
               height="100"
@@ -199,7 +192,7 @@
           </v-card>
         </v-col>
         <v-col cols="12" align="center" class="hidden-sm-and-up">
-          <v-card flat>
+          <v-card flat tile>
             <v-btn
               fab
               text
@@ -217,9 +210,9 @@
 
     <v-tabs-items v-model="tab">
       <v-tab-item value="tab-1">
-        <v-row class="justify-center mt-xl-6 mt-lg-12 mt-sm-4">
-          <v-col class="col-md-3 col-sm-12 mx-4 px-sm-12 py-sm-3" cols="12">
-            <v-card elevation="8">
+        <v-row class="justify-center mt-xl-6 mt-lg-12 mt-sm-4 mx-lg-12" no-gutters>
+          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3" cols="11">
+            <v-card elevation="8" class="mx-lg-4">
               <div style="padding:10px 10px;">
                 <v-img
                   :aspect-ratio=".96"
@@ -239,8 +232,8 @@
               </v-row>
             </v-card>
           </v-col>
-          <v-col class="col-md-3 col-sm-12 mx-4 px-sm-12 py-sm-3" cols="12">
-            <v-card elevation="8">
+          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3" cols="11">
+            <v-card elevation="8" class="mx-lg-4">
               <div style="padding:10px 10px;">
                 <v-img
                   :aspect-ratio=".96"
@@ -260,8 +253,8 @@
               </v-row>
             </v-card>
           </v-col>
-          <v-col class="col-md-3 col-sm-12 mx-4 px-sm-12 py-sm-3" cols="12">
-            <v-card elevation="8">
+          <v-col class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3" cols="11">
+            <v-card elevation="8" class="mx-lg-4">
               <div style="padding:10px 10px;">
                 <v-img
                   :aspect-ratio=".96"
@@ -912,12 +905,18 @@
         </v-container>
       </v-tab-item>
       <v-tab-item value="tab-5">
-        <v-row justify="center" class="mt-xl-6 mt-lg-10">
-          <v-col cols="11" class="hidden-sm-and-up mt-12">
+        <v-row
+          justify="start"
+          justify-sm="start"
+          justify-lg="center"
+          class="mt-xl-6 mt-lg-10 mx-sm-6 mx-6 mx-lg-2"
+          no-gutters
+        >
+          <v-col cols="9" sm="11" class="hidden-md-and-up mt-12">
             <v-img src="/images/resume_themes/theme501/about.png" class="box-layer" contain></v-img>
           </v-col>
-          <v-col md="6" sm="6" cols="11" class="mt-12">
-            <div>Hello, I'm</div>
+          <v-col md="6" sm="12" cols="11" class="mt-12 mt-sm-10">
+            <div class="mt-sm-10 mt-10 mt-lg-10">Hello, I'm</div>
             <div class="display-2 mt-md-6 mt-sm-6">Mickel David</div>
             <div class="display-2 mt-md-2 mt-sm-2">
               a
@@ -929,7 +928,7 @@
               <v-col cols="1">
                 <div class="line"></div>
               </v-col>
-              <v-col cols="10" sm="11" lg="9">
+              <v-col cols="11" sm="12" lg="9">
                 <div
                   class="title"
                   style="color:#656565;"
@@ -956,7 +955,6 @@
           </v-col>
         </v-row>
       </v-tab-item>
-      <v-tab-item value="tab-6"></v-tab-item>
     </v-tabs-items>
   </v-app>
 </template>
@@ -1026,11 +1024,6 @@ export default {
           link: "#tab-5",
           name: "About Me",
           icon: "mdi-comment-edit"
-        },
-        {
-          link: "#tab-6",
-          name: "Achievement",
-          icon: "mdi-trophy"
         }
       ]
     };

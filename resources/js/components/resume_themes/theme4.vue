@@ -6,6 +6,9 @@
           <div class="avatar">
             <img src="/images/resume_themes/theme4/person.png" alt="profile pic" />
           </div>
+          <div class="chat-btn-container">
+            <img src="/images/resume_themes/theme4/chat.png" alt="chat button" />
+          </div>
           <div class="info">
             <div class="user-name">Zoyee Allena</div>
             <div class="job-title">Visual deisgner</div>
@@ -22,11 +25,11 @@
             style="margin-right:20px;"
           >Your interviews:</div>
           <div class="upload-btn-box" style="margin-bottom:20px;">
-            <img src="/images/resume_themes/theme4/Icon-1.svg" alt />
+            <img width="25" src="/images/resume_themes/theme4/Icon-1.svg" alt />
             <div class="hideMeOnPhone">AUDIO</div>
           </div>
           <div class="upload-btn-box">
-            <img src="/images/resume_themes/theme4/Icon.svg" alt />
+            <img width="25" src="/images/resume_themes/theme4/Icon.svg" alt />
             <div class="hideMeOnPhone">VIDEO</div>
           </div>
         </div>
@@ -110,71 +113,84 @@
           >Software</div>
         </div>
         <div class="skills-icons-bar" id="style-1">
-          <img class="icon" src="/images/resume_themes/theme4/skills/PS.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Ai.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Lr.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Xd.png" alt="skill-icon" />
-          <img class="icon" src="/images/resume_themes/theme4/skills/Id.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ps.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/ai.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/lr.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/xd.png" alt="skill-icon" />
+          <img class="icon" src="/images/resume_themes/theme4/skills/id.png" alt="skill-icon" />
         </div>
       </div>
+      <!-- All tab items -->
+      <div class="custom-tab-item-container">
+        <div class="portfolio" v-show="activeTab === 'portfolio'">
+          <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+            <img src="/images/resume_themes/theme4/portfolio3.png" alt="portfolio image" />
+          </slick>
+        </div>
+        <!-- Work -->
+        <div class="work mt-5" v-show="activeTab === 'work'">
+          <div class="container" style="width:100%">
+            <div class="row">
+              <div class="watermark-text-work">Work</div>
+              <div
+                class="col-md-12 col-sm-10 col-xs-10 mx-auto work-column"
+                v-for="n in 3"
+                :key="n"
+              >
+                <!-- Watermark text -->
 
-      <div class="portfolio" v-show="activeTab === 'portfolio'">
-        <slick class="portfolioSlides" ref="slick" :options="slickOptions">
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-          <img src="/images/resume_themes/theme4/portfolio1.png" alt="portfolio image" />
-        </slick>
-      </div>
-      <!-- Work -->
-      <div class="work mt-5" v-show="activeTab === 'work'">
-        <div class="container" style="width:100%">
-          <div class="row">
-            <div class="col-md-12 col-sm-10 col-xs-10 mx-auto work-column" v-for="n in 3" :key="n">
-              <section class="work-timeline">
-                <div class="work-content">
-                  <div class="work-title">Senior UI/UX Designer</div>
-                  <div class="work-subtitle">
-                    <span>Big Bang Design</span> / May 2018 -Present
+                <!-- Watermark text -->
+                <section class="work-timeline">
+                  <div class="work-content">
+                    <div class="work-title">Senior UI/UX Designer</div>
+                    <div class="work-subtitle">
+                      <span>Big Bang Design</span> / May 2018 -Present
+                    </div>
+                    <div
+                      class="work-text"
+                    >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
                   </div>
-                  <div
-                    class="work-text"
-                  >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- Work -->
-      <!-- Education -->
-      <div class="work mt-5" v-show="activeTab === 'education'">
-        <div class="container" style="width:100%">
-          <div class="row">
-            <div class="col-12 mx-auto work-column" v-for="n in 3" :key="n">
-              <section class="work-timeline">
-                <div class="work-content">
-                  <div class="work-title">Udemy</div>
-                  <div class="work-subtitle">
-                    <span>UI/UX DESIGN COURSE</span> / September 2015 - December 2015
+        <!-- Work -->
+        <!-- Education -->
+        <div class="work mt-5" v-show="activeTab === 'education'">
+          <div class="container" style="width:100%">
+            <div class="row">
+              <!-- Watermark Text -->
+              <div class="watermark-text-education">Education</div>
+              <!-- Watermark text -->
+              <div class="col-12 mx-auto work-column" v-for="n in 3" :key="n">
+                <section class="work-timeline">
+                  <div class="work-content">
+                    <div class="work-title">Udemy</div>
+                    <div class="work-subtitle">
+                      <span>UI/UX DESIGN COURSE</span> / September 2015 - December 2015
+                    </div>
+                    <div
+                      class="work-text"
+                    >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
                   </div>
-                  <div
-                    class="work-text"
-                  >Partners with clients, ranging from small businesses to Fortune 500 companies, to create cutting-edge digital marketing designs targeting the American market. Forms a creative vision and clearly conveys ideas using both visual and verbal communication. Collaborates with a creative team consisting of web developers, content creators, and digital designers, to create engaging digital collateral. Creates the end-to-end design for responsive websites using a mobile-first approach.</div>
-                </div>
-              </section>
+                </section>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Education -->
+        <!-- Education -->
+      </div>
+      <!-- All Tab Items -->
     </div>
   </div>
 </template>
 
 <script>
 import Slick from "vue-slick";
-
 export default {
   props: ["user"],
   components: {
@@ -224,6 +240,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Archivo&display=swap"');
+
 .hideOnNotPhone {
   @media only screen and (min-width: 765px) {
     display: none !important;
@@ -235,15 +252,77 @@ export default {
   width: 100%;
   max-width: 1920px;
   background: white;
+  //chat btn
+  .chat-btn-container {
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #ffeee3;
+    border: 4px solid #ffffff;
+    box-shadow: 0px 4px 20px rgba(62, 62, 62, 0.1);
+    border-radius: 200px;
+    top: 135px;
+    left: 119px;
+    overflow: hidden;
+    display: flex;
+    cursor: pointer;
+
+    img {
+      width: 19px;
+      height: 19px;
+    }
+
+    @media screen and (min-width: 1281px) {
+      top: 224px;
+      left: 222px;
+    }
+    @media screen and (min-width: 766px) and (max-width: 1280px) {
+      width: 30px;
+      height: 30px;
+      top: 136px;
+      left: 126px;
+      img {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    @media screen and (max-width: 765px) {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #ffffff;
+      top: 114px;
+      left: 110px;
+      img {
+        width: 9.5px;
+        height: 9.5px;
+      }
+    }
+  }
+
+  .chat-btn-container:hover {
+    background: #fac7a5;
+    transition: 2s;
+  }
+  // Custom tab item cotnainer
+  .custom-tab-item-container {
+    position: relative;
+    width: 100%;
+    margin-top: 40px;
+    padding-top: 15px;
+    background: rgba(170, 207, 227, 0.1);
+    overflow: hidden !important;
+  }
+  //Custom tab item container
   // work
   .work-column {
-    margin-top: -100px;
-    @media only screen and (max-width: 765px){
+    @media only screen and (max-width: 765px) {
       margin-top: 0px;
     }
   }
   .work-title {
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     font-weight: bold;
     font-size: 24px;
     line-height: 26px;
@@ -252,7 +331,7 @@ export default {
   .work-subtitle {
     margin-top: 15px;
     margin-bottom: 30px;
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     font-size: 14px;
     line-height: 15px;
     font-style: italic;
@@ -264,30 +343,33 @@ export default {
     }
   }
   .work-text {
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     font-size: 18px;
     line-height: 30px;
     color: #9ca4c1;
-    @media only screen and (max-width:765px){
-      font-size:14px;
+    @media only screen and (max-width: 765px) {
+      font-size: 14px;
     }
   }
 
   .work-timeline {
     height: 300px;
-    margin: 90px auto;
+    margin: 40px auto;
     padding: 0 20px 0 80px;
     border-left: 2px solid #c6e8fc;
-    @media only screen and (max-width:765px) {
+    @media only screen and (min-width: 1025px) {
+      padding: 0 250px 0 80px;
+    }
+    @media only screen and (max-width: 765px) {
       margin: 28px auto;
-      margin-left:30px;
+      margin-left: 30px;
       padding: 0 20px 0 30px;
-      height:416px
+      height: 416px;
     }
   }
 
   .work-content::before {
-    font-family: "Archivo" !important;
+    font-family: "Archivo", sans-serif !important;
     counter-increment: my-sec-counter;
     content: "0" counter(my-sec-counter);
     font-size: 72px;
@@ -296,15 +378,66 @@ export default {
     width: 60px;
     height: 60px;
     position: absolute;
-    top: -8px;
+    top: -56px;
     left: -15px;
-    @media screen and (max-width: 765px){
+    @media screen and (max-width: 765px) {
       font-size: 40px;
-      top:-33px;
-      left:24px
+      top: -33px;
+      left: 24px;
     }
   }
   // work
+  // watermark text
+
+  .watermark-text-work {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    margin-right: -29%;
+    font-family: "Archivo", sans-serif !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 250px;
+    line-height: 272px;
+    text-transform: uppercase;
+    color: rgba(1, 162, 254, 0.05);
+    transform: rotate(-90deg);
+    @media screen and (min-width: 960px) and (max-width: 1100px) {
+      margin-right: -30%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      margin-right: -42%;
+    }
+    @media screen and (max-width: 599px) {
+      margin-right: -80%;
+    }
+  }
+  .watermark-text-education {
+    font-family: "Archivo", sans-serif !important;
+    float: right;
+    position: absolute;
+    top: 40%;
+    right: 0;
+    margin-right: -52%;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 250px;
+    line-height: 272px;
+    text-transform: uppercase;
+    color: rgba(1, 162, 254, 0.05);
+    transform: rotate(-90deg);
+    z-index: 1;
+    @media screen and (min-width: 960px) and (max-width: 1100px) {
+      margin-right: -66%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      margin-right: -86%;
+    }
+    @media screen and (max-width: 599px) {
+      margin-right: -161%;
+    }
+  }
+  //watermark text
   .mainThemeBar {
     padding-top: 40px;
     padding-left: 70px;
@@ -401,18 +534,22 @@ export default {
           border-radius: 6px;
           width: 170px;
           height: 60px;
-
           font-weight: 600;
           font-size: 14px;
           line-height: 15px;
           text-align: center;
           color: #00a3ff;
+          cursor: pointer !important;
 
           img {
             width: 20px;
             height: 16px;
             margin-right: 10px;
           }
+        }
+        .upload-btn-box:hover {
+          opacity: 0.7;
+          transition: 0.3s;
         }
       }
 
@@ -461,6 +598,11 @@ export default {
             justify-content: center;
             align-items: center;
           }
+
+          a:hover {
+            opacity: 0.8;
+            transition: 0.3s;
+          }
         }
       }
     }
@@ -495,6 +637,7 @@ export default {
 
     .tab-text.active {
       color: #00a3ff;
+      font-weight: bold;
       background-color: white;
     }
 
@@ -590,10 +733,14 @@ export default {
           margin-top: 25px;
           margin-right: 25px;
           margin-left: 25px;
-          width: 510px !important;
+          width: 418px !important;
           height: 400px;
           border-radius: 30px;
-          @media only screen and (max-width: 765px) {
+          @media screen and (min-width: 760px) and (max-width: 1280px) {
+            width: 532px !important;
+            height: auto;
+          }
+          @media only screen and (max-width: 759px) {
             width: 177px !important;
             height: 139px;
           }
@@ -646,11 +793,12 @@ export default {
           }
 
           .job-title {
+            margin-top: -5px;
             font-size: 16px;
           }
 
           .social-icons {
-            margin-top: 20px;
+            margin-top: 23px;
             img {
               width: 34px;
               height: 34px;
@@ -774,8 +922,8 @@ export default {
         .portfolioSlides {
           margin-top: 0;
           img {
-            width: 450px !important;
-            height: 400px;
+            width: 512px !important;
+            height: auto;
           }
 
           .slide-text {
@@ -971,9 +1119,10 @@ export default {
 }
 
 //slick slides :
-
+/* the parent */
 .slick-dots {
   bottom: -27px !important;
+  padding-bottom: 40px !important;
 }
 
 .slick-dots li button:before {
@@ -1027,3 +1176,31 @@ export default {
   background-color: white;
 }
 </style>
+
+<style>
+#resumeTheme4 .slick-dots {
+  padding-bottom: 40px !important;
+}
+
+@media screen and (min-width: 1281px) {
+  #resumeTheme4 .slick-slide {
+    width: auto !important;
+  }
+}
+
+@media screen and (min-width: 766px) and (max-width: 1279px) {
+  #resumeTheme4 .slick-slide {
+    width: 400px !important;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 765px) {
+  #resumeTheme4 .slick-slide {
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}
+</style>
+

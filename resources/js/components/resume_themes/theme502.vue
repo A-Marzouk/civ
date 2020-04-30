@@ -96,7 +96,7 @@
         md="4"
         sm="10"
         cols="10"
-        class="mt-xs-8 ml-lg-auto ml-md-auto ml-xl-auto ml-sm-12 ml-xs-auto pr-xl-0 pr-lg-0 pr-md-0 pr-sm-12 mt-sm-12 ml-sm-0"
+        class="mt-8 ml-lg-auto ml-md-auto ml-xl-auto ml-sm-12 ml-auto pr-xl-0 pr-lg-0 pr-md-0 pr-sm-12 mt-sm-12 ml-sm-0"
       >
         <v-row
           justify-lg="start"
@@ -119,15 +119,15 @@
             <div class="text-center grey--text text--darken-1 subtitle-2 font-light">Available for</div>
             <div class="text-center textcol title font-weight-medium">8 hours</div>
           </v-col>
-          <v-col cols="6" sm="4" md="6" lg="4" xl="4" class="mt-xs-6 mt-lg-0 mt-sm-0">
+          <v-col cols="6" sm="4" md="6" lg="4" xl="4" class="mt-6 mt-lg-0 mt-sm-0">
             <v-btn color="#2943c7" style="border-radius: 10px;height:50px;" class="hire">
               <div class="text-center grey--text text--lighten-5 font-weight-medium">HIRE ME</div>
             </v-btn>
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="12" class="hidden-sm-and-up mt-xs-12">
-        <div class="text-center mt-xs-6">
+      <v-col cols="12" class="hidden-sm-and-up mt-12">
+        <div class="text-center mt-6">
           <v-btn
             class="px-0 mr-4"
             color="#3E56CD"
@@ -143,11 +143,11 @@
       </v-col>
     </v-row>
     <v-row
-      class="mt-sm-12 mt-md-6 mt-xs-6 mt-lg-4 pt-md-0 pt-xs-6 pt-lg-0 margleft"
+      class="mt-sm-12 mt-md-6 mt-6 mt-lg-4 pt-md-0 pt-6 pt-lg-0 margleft"
       justify="start"
       no-gutters
     >
-      <v-col lg="8" sm="12" cols="12" xl="8" class="tablet mr-xl-12 mr-sm-0 mt-sm-4">
+      <v-col lg="8" sm="12" cols="12" xl="8" class="tablet mr-xl-12 mr-sm-0 mt-sm-12">
         <v-tabs background-color="transparent" hide-arrows grow>
           <v-tab class="text-center" @click="tab = 'Portfolio'">
             <div class="tabtitle textcol font-weight-bold text-capitalize">Portfolio</div>
@@ -168,19 +168,14 @@
     <v-row no-gutters>
       <v-slide-x-reverse-transition>
         <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tab=='Portfolio'" key="one">
-          <v-row
-            justify="center"
-            align="center"
-            class="padleft mt-lg-12 mt-xs-2 mt-sm-6"
-            no-gutters
-          >
+          <v-row justify="center" align="center" class="padleft mt-lg-12 mt-2 mt-sm-6" no-gutters>
             <v-col
               xl="3"
               md="4"
               lg="4"
               cols="12"
               sm="12"
-              class="mx-xl-3 px-lg-3 px-sm-4 py-xl-6 py-sm-2 px-xs-4 py-xs-2"
+              class="mx-xl-3 px-lg-3 px-sm-4 py-xl-6 py-sm-2 px-4 py-2"
               v-for="img in images"
               :key="img.id"
             >
@@ -195,9 +190,9 @@
       </v-slide-x-reverse-transition>
       <v-slide-x-reverse-transition>
         <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tab=='Work'" key="two">
-          <v-row no-gutters class="px-xs-4 px-lg-0 mt-xs-6">
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
             <v-col md="6" sm="12" cols="12" lg="6" v-for="n in 4" :key="n" class="mt-4 padleft">
-              <v-row class="mt-xs-4" no-gutters>
+              <v-row class="mt-4" no-gutters>
                 <v-col md="12" sm="12" cols="12">
                   <h1 class="textcol headline font-weight-bold">{{ temp.title }}</h1>
                 </v-col>
@@ -213,7 +208,7 @@
                   >{{ temp.duration }}</h1>
                 </v-col>
                 <v-col md="12" sm="12" cols="12" xl="12" class="my-6">
-                  <h1 class="grey--text text--darken-1 sfont pb-2 font-weight-thin">{{ temp.para }}</h1>
+                  <div class="grey--text text--darken-1 sfont pb-2 font-weight-thin">{{ temp.para }}</div>
                 </v-col>
               </v-row>
             </v-col>
@@ -222,10 +217,10 @@
       </v-slide-x-reverse-transition>
       <v-slide-x-reverse-transition>
         <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tab=='Education'" key="three">
-          <v-row justify="start" no-gutters class="px-xs-4 px-lg-0 mt-xs-6">
+          <v-row justify="start" no-gutters class="px-4 px-lg-0 px-sm-6 mt-6">
             <v-col md="6" sm="12" cols="12" lg="6" v-for="n in 4" :key="n" class="mt-4 padleft">
               <v-row justify="start" class no-gutters>
-                <v-row class="mt-md-4 mt-xs-4" no-gutters>
+                <v-row class="mt-md-4 mt-4" no-gutters>
                   <v-col md="12" sm="12" cols="12">
                     <h1 class="textcol headline font-weight-bold">{{ emp.title }}</h1>
                   </v-col>
@@ -236,7 +231,9 @@
                   </v-col>
 
                   <v-col md="12" sm="12" cols="12" xl="12">
-                    <h1 class="grey--text text--darken-1 sfont pb-2 font-weight-thin">{{ emp.para }}</h1>
+                    <div
+                      class="grey--text text--darken-1 sfont pb-2 font-weight-thin"
+                    >{{ emp.para }}</div>
                   </v-col>
                 </v-row>
               </v-row>
@@ -279,11 +276,11 @@
                           cols="12"
                           v-for="(s, index) in item.skills"
                           :key="index"
-                          class="px-md-6 my-4 px-xs-2 mx-xs-2"
+                          class="px-md-6 my-4 px-2 mx-2"
                         >
                           <v-row
                             no-gutters
-                            class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-xs-4"
+                            class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-4"
                             justify="center"
                             align="center"
                           >
@@ -294,7 +291,7 @@
                             </v-col>
 
                             <v-col cols="12" sm="12" md="9" lg="8">
-                              <div class="pro-back ml-md-11 my-xs-5">
+                              <div class="pro-back ml-md-11 my-5">
                                 <div class="progress" :style="'width:'+ s.val "></div>
                               </div>
                             </v-col>
@@ -314,6 +311,11 @@
 </template>
 <style lang="scss" scoped>
 @import "resources/sass/themes/theme502.scss";
+.v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes)
+  .v-slide-group__prev {
+  display: none !important;
+  visibility: hidden;
+}
 </style>
 <script>
 export default {
