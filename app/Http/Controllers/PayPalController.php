@@ -27,7 +27,8 @@ class PaypalController extends Controller
     private $mode;
     private $client_id;
     private $secret;
-    private $plan_id;
+    private $monthly_plan_id;
+    private $yearly_plan_id;
 
     // Create a new instance with our paypal credentials
     public function __construct()
@@ -36,11 +37,13 @@ class PaypalController extends Controller
         if(config('paypal.settings.mode') == 'live'){
             $this->client_id = config('paypal.live_client_id');
             $this->secret = config('paypal.live_secret');
-            $this->plan_id = env('PAYPAL_LIVE_PLAN_ID', '');
+            $this->monthly_plan_id = env('PAYPAL_LIVE_MONTHLY_PLAN_ID', '');
+            $this->yearly_plan_id = env('PAYPAL_LIVE_YEARLY_PLAN_ID', '');
         } else {
             $this->client_id = config('paypal.sandbox_client_id');
             $this->secret = config('paypal.sandbox_secret');
-            $this->plan_id = env('PAYPAL_SANDBOX_PLAN_ID', '');
+            $this->monthly_plan_id = env('PAYPAL_SANDBOX_MONTHLY_PLAN_ID', '');
+            $this->yearly_plan_id = env('PAYPAL_SANDBOX_YEARLY_PLAN_ID', '');
         }
 
         // Set the Paypal API Context/Credentials
@@ -48,22 +51,37 @@ class PaypalController extends Controller
         $this->apiContext->setConfig(config('paypal.settings'));
     }
 
-    public function create_plan(){
+    public function create_plan($plan_period){
+
+         // plan_period Month or Year
+        $amount = 15 ;
+        if($plan_period === 'Year'){
+            $amount = 99 ;
+        }
 
         // Create a new billing plan
         $plan = new Plan();
-        $plan->setName('CIV Monthly Billing')
-            ->setDescription('Monthly Subscription to CIV')
+        $plan->setName('CIV '. $plan_period .'ly Billing')
+            ->setDescription( $plan_period .'ly Subscription to CIV')
             ->setType('infinite');
+
+        // set trial paymenty definition:
+        $trialPaymentDefinition = new PaymentDefinition();
+        $trialPaymentDefinition->setName('Free Trial')
+            ->setType('TRIAL')
+            ->setFrequency('DAY')
+            ->setFrequencyInterval('1')
+            ->setCycles('7')
+            ->setAmount(new Currency(array('value' => '0.01', 'currency' => 'USD')));
 
         // Set billing plan definitions
         $paymentDefinition = new PaymentDefinition();
         $paymentDefinition->setName('Regular Payments')
             ->setType('REGULAR')
-            ->setFrequency('Month')
+            ->setFrequency($plan_period)
             ->setFrequencyInterval('1')
             ->setCycles('0')
-            ->setAmount(new Currency(array('value' => 15, 'currency' => 'USD')));
+            ->setAmount(new Currency(array('value' => $amount, 'currency' => 'USD')));
 
         // Set merchant preferences
         $merchantPreferences = new MerchantPreferences();
@@ -73,7 +91,7 @@ class PaypalController extends Controller
             ->setInitialFailAmountAction('CONTINUE')
             ->setMaxFailAttempts('0');
 
-        $plan->setPaymentDefinitions(array($paymentDefinition));
+        $plan->setPaymentDefinitions(array($trialPaymentDefinition,$paymentDefinition));
         $plan->setMerchantPreferences($merchantPreferences);
 
         //create the plan
@@ -108,10 +126,10 @@ class PaypalController extends Controller
             die($ex);
         }
 
-    }
+    } // we use it only twice to create our plans
 
 
-    public function paypalRedirect(){
+    public function paypalRedirectMonthly(){
         // Create new agreement
         $agreement = new Agreement();
         $agreement->setName('CIV Monthly Subscription Agreement')
@@ -120,7 +138,42 @@ class PaypalController extends Controller
 
         // Set plan id
         $plan = new Plan();
-        $plan->setId($this->plan_id);
+        $plan->setId($this->monthly_plan_id);
+        $agreement->setPlan($plan);
+
+        // Add payer type
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
+        $agreement->setPayer($payer);
+
+        try {
+            // Create agreement
+            $agreement = $agreement->create($this->apiContext);
+
+            // Extract approval URL to redirect user
+            $approvalUrl = $agreement->getApprovalLink();
+
+            return redirect($approvalUrl);
+        } catch (PayPal\Exception\PayPalConnectionException $ex) {
+            echo $ex->getCode();
+            echo $ex->getData();
+            die($ex);
+        } catch (Exception $ex) {
+            die($ex);
+        }
+
+    }
+
+    public function paypalRedirectYearly(){
+        // Create new agreement
+        $agreement = new Agreement();
+        $agreement->setName('CIV Yearly Subscription Agreement')
+            ->setDescription('Basic Subscription')
+            ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
+
+        // Set plan id
+        $plan = new Plan();
+        $plan->setId($this->yearly_plan_id);
         $agreement->setPlan($plan);
 
         // Add payer type
