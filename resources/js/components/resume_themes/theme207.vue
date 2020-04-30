@@ -762,7 +762,7 @@
             <!-- 2nd inner footer column -->
             <v-col cols="6">
               <v-card color="transparent" flat tile>
-                <v-progress-linear color="#FEBC2C" rounded height="10" value="70"></v-progress-linear>
+                <v-progress-linear color="#FEBC2C" background-color="" rounded  height="10" value="70"></v-progress-linear>
               </v-card>
             </v-col>
             <v-col cols="2">
@@ -1427,16 +1427,8 @@ img.pofolio-lg-img {
 </style>
 
 <style>
-#resumetheme207 .v-progress-linear__determinate {
-  border-color: #272b2f !important;
-}
-
-#resumetheme207 .v-progress-linear__background {
-  background: #272b2f !important;
-  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
-}
 #resumetheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
+
 </style>
