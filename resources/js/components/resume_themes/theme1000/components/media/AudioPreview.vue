@@ -123,4 +123,59 @@ export default {
 		}
 	}
 }
+
+@media (min-width: $lg) {
+	.audio-preview {
+		height: 86px;
+		border-radius: 9px;
+
+		.audio-preview__thumbnail {
+			padding-left: 8.5px;
+		}
+
+		.audio-preview__detail {
+			padding-left: 8.5px;
+
+			.detail__title {
+				font-size: 13px;
+				line-height: 18px;
+				font-weight: 700;
+			}
+
+			.detail__artist-name {
+				font-size: 12px;
+				color: rgba(0, 0, 0, 0.55);
+			}
+
+			.detail__track-duration {
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+@media (min-width: 1600px) {
+	.audio-preview {
+		height: 135px;
+
+		.audio-preview__thumbnail {
+			padding-left: 30px;
+		}
+
+		.audio-preview__detail {
+			padding-left: 20px;
+
+			.detail__title {
+				font-size: 18px;
+				line-height: 27px;
+			}
+
+			.detail__artist-name {
+			}
+
+			.detail__track-duration {
+			}
+		}
+	}
+}
 </style>

@@ -135,4 +135,17 @@ export default {
 		padding: 10px;
 	}
 }
+
+@media (min-width: $lg) {
+	.media_outer {
+		width: 25%;
+		padding: 6px;
+	}
+}
+
+@media (min-width: 1600px) {
+	.media_outer {
+		padding: 10px;
+	}
+}
 </style>

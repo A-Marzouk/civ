@@ -28,6 +28,13 @@ export default {
 
 <style lang="scss" scoped>
 .tabs-content {
-	padding: 10px;
+	padding: 25px 10px;
+}
+
+@media (min-width: 1600px) {
+	.tabs-content {
+		max-width: 1600px;
+		margin: 0 auto;
+	}
 }
 </style>
