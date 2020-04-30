@@ -35,6 +35,15 @@
 				</div>
 			</div>
 		</div>
+		<div class="audio-player__preview">
+			<div class="audio-preview__thumbnail">
+				<img :src="track.thumbnail">
+			</div>
+			<div class="audio-preview__detail tw-font-poppins">
+				<h4 class="detail__title" v-text="track.title"></h4>
+				<div class="detail__artist-name" v-text="track.artist"></div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -82,6 +91,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../../scss/variables";
+
 .audio-player {
 	left: 0;
 	right: 0;
@@ -167,6 +178,97 @@ export default {
 			background: #3f38dd;
 			border-radius: 20px;
 		}
+	}
+}
+
+.audio-player__preview {
+	display: none;
+}
+
+@media (min-width: $sm) {
+	.audio-player__progress {
+		max-width: 415px;
+		margin: 0 auto;
+	}
+
+	.audio-player__preview {
+		top: 0;
+		left: 0;
+		padding: 25px;
+		display: flex;
+		position: absolute;
+		border-radius: 9px;
+
+		.audio-preview__thumbnail {
+			img {
+				width: 52px;
+				height: 52px;
+				border-radius: 9px;
+			}
+		}
+
+		.audio-preview__detail {
+			flex: 1;
+			padding-left: 15px;
+
+			.detail__title {
+				font-size: 12px;
+				word-break: break-word;
+				line-height: 18px;
+				font-weight: 700;
+			}
+
+			.detail__artist-name {
+				color: rgba(0, 0, 0, 0.55);
+				font-size: 10px;
+				line-height: 15px;
+				padding-top: 5px;
+			}
+
+			.detail__track-duration {
+				font-size: 12px;
+				line-height: 18px;
+			}
+		}
+	}
+}
+
+@media (min-width: $md) {
+	.audio-player {
+		height: 100px;
+		padding-top: 20px;
+	}
+
+	.audio-player__preview {
+		padding-left: 60px;
+	}
+
+	.audio-player__progress {
+		left: 20%;
+		right: 0;
+		margin: unset;
+		bottom: 5px;
+		max-width: 20%;
+		position: absolute;
+	}
+}
+
+@media (min-width: 1600px) {
+	.audio-player {
+		padding-top: 20px;
+	}
+
+	.audio-player__controls {
+		.controls__button--expand {
+			top: 25px;
+			right: 25px;
+		}
+	}
+
+	.audio-player__progress {
+		left: 262px;
+		bottom: 20px;
+		max-width: 415px;
 	}
 }
 </style>

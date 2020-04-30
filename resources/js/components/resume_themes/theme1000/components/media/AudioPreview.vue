@@ -1,5 +1,5 @@
 <template>
-	<div v-if="true || media.id===1" class="audio-preview">
+	<div class="audio-preview">
 		<div class="audio-preview__thumbnail">
 			<img :src="media.thumbnail">
 		</div>
@@ -9,7 +9,6 @@
 			<div class="detail__track-duration tw-text-black" v-text="media.duration"></div>
 		</div>
 	</div>
-
 </template>
 
 <script>
