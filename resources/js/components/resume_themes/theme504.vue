@@ -71,108 +71,7 @@
       </v-row>
     </v-card>
 
-    <!-- <v-row no-gutters class="justify-center mt-12">
-        <v-col class="col-md-8 col-sm-12">
-          <v-tabs v-model="taboo" background-color="rgb(255, 255, 255,0.0)" centered grow dark text show-arrows>
-            <v-tabs-slider></v-tabs-slider>
-
-            <v-tab href="#taboo-1" class="taboo">
-
-              Programing Languages
-            </v-tab>
-
-            <v-tab href="#taboo-2" class="taboo">
-
-              Frameworks/Databases
-            </v-tab>
-
-            <v-tab href="#taboo-3" class="taboo">
-
-              Design Skills
-            </v-tab>
-            <v-tab href="#taboo-4" class="taboo">
-
-              Software
-            </v-tab>
-          </v-tabs>
-        </v-col>
-      </v-row>
-      <v-tabs-items v-model="taboo">
-        <v-tab-item value="taboo-1">
-          <v-container>
-            <v-row class="justify-center">
-
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/jT2HsgH/PS.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3">
-                <v-img src="https://i.ibb.co/fn1m4mw/Ai.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/nzf9CFS/Lr.png"></v-img>
-              </v-col>
-
-
-            </v-row>
-          </v-container>
-        </v-tab-item>
-        <v-tab-item value="taboo-2">
-          <v-container>
-            <v-row class="justify-center">
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/jT2HsgH/PS.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3">
-                <v-img src="https://i.ibb.co/fn1m4mw/Ai.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/nzf9CFS/Lr.png"></v-img>
-              </v-col>
-
-
-            </v-row>
-          </v-container>
-        </v-tab-item>
-        <v-tab-item value="taboo-3">
-          <v-container>
-            <v-row class="justify-center">
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/jT2HsgH/PS.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3">
-                <v-img src="https://i.ibb.co/fn1m4mw/Ai.png"></v-img>
-              </v-col>
-
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/MVhmWNJ/Xd.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/DGMZXDH/Id.png"></v-img>
-              </v-col>
-
-            </v-row>
-          </v-container>
-        </v-tab-item>
-
-        <v-tab-item value="taboo-4">
-          <v-container>
-            <v-row class="justify-center">
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/jT2HsgH/PS.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3">
-                <v-img src="https://i.ibb.co/fn1m4mw/Ai.png"></v-img>
-              </v-col>
-              <v-col class="col-md-2 col-sm-3 ">
-                <v-img src="https://i.ibb.co/nzf9CFS/Lr.png"></v-img>
-              </v-col>
-
-
-            </v-row>
-          </v-container>
-        </v-tab-item>
-    </v-tabs-items>-->
-    <v class="tabs pt-8" style="text-align:center;">
+    <div class="tabs pt-8" style="text-align:center;">
       <a
         v-on:click="activetab=1"
         v-bind:class="[ activetab === 1 ? 'active' : '' ]"
@@ -180,7 +79,7 @@
       <a v-on:click="activetab=2" v-bind:class="[ activetab === 2 ? 'active' : '' ]">Frameworks</a>
       <a v-on:click="activetab=3" v-bind:class="[ activetab === 3 ? 'active' : '' ]">Design Skills</a>
       <a v-on:click="activetab=4" v-bind:class="[ activetab === 4 ? 'active' : '' ]">Software</a>
-    </v>
+    </div>
 
     <v-container>
       <v-row v-if="activetab === 1" class="justify-center">
@@ -351,7 +250,10 @@
                   <div class="title">Senior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ May 2018 - Present</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ May 2018 - Present</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -379,7 +281,10 @@
                   <div class="title">Junior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ July 2017 - May 2018</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ July 2017 - May 2018</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -407,7 +312,10 @@
                   <div class="title">Senior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ May 2018 - Present</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ May 2018 - Present</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -442,7 +350,10 @@
                   <div class="title">Senior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ May 2018 - Present</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ May 2018 - Present</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -470,7 +381,10 @@
                   <div class="title">Junior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ July 2017 - May 2018</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ July 2017 - May 2018</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -498,7 +412,10 @@
                   <div class="title">Senior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ May 2018 - Present</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ May 2018 - Present</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -525,7 +442,10 @@
                   <div class="title">Junior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ July 2017 - May 2018</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ July 2017 - May 2018</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -553,7 +473,10 @@
                   <div class="title">Senior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ May 2018 - Present</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ May 2018 - Present</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -580,7 +503,10 @@
                   <div class="title">Junior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ July 2017 - May 2018</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ July 2017 - May 2018</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -602,7 +528,7 @@
 </template>
 
 
-<style>
+<style lang="scss" scoped>
 /* Style the tabs */
 .tabs {
   overflow: hidden;

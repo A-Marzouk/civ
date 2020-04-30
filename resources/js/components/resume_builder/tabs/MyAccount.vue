@@ -144,7 +144,7 @@
                         <br/>
                         Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '15 USD/month' : '99 USD/year'}}
                         <br/>
-                        Payment method: Stripe
+                        Payment method: {{accountData.subscription.payment_method}}
                     </div>
                 </div>
             </div>
@@ -371,9 +371,13 @@
             if (searchParams.has('redirect_from')) {
                 let redirect_from = searchParams.get('redirect_from');
                 let status = searchParams.get('status');
-                if(redirect_from === 'stripe' && status === 'success'){
+                if(status === 'success'){
                     setTimeout(() => {
                         this.$store.dispatch('flyingNotification',{message:'Subscribed',iconSrc:'/images/resume_builder/tick.svg'});
+                    },1500);
+                }else{
+                    setTimeout(() => {
+                        this.$store.dispatch('flyingNotification',{message:'Error',iconSrc:'/images/resume_builder/error.png'});
                     },1500);
                 }
             }

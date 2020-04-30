@@ -154,9 +154,9 @@
 
           <div class="work-item d-flex">
             <div class="blue-circle">
-              <img src="/images/resume_themes/theme5/blue-circle-2.svg" alt="blue circle" />
+              <img src="/images/resume_themes/theme5/blue-circle.svg" alt="blue circle" />
             </div>
-            <div class="d-flex flex-column work-info dotted-gradient-2">
+            <div class="d-flex flex-column work-info dotted-gradient">
               <div class="work-title">123Workforce</div>
               <div class="work-position">User interface designer, Oct 2018 - Nov 2019</div>
               <div class="work-details">
@@ -169,7 +169,7 @@
 
           <div class="work-item d-flex">
             <div class="blue-circle">
-              <img src="/images/resume_themes/theme5/blue-circle-3.svg" alt="blue circle" />
+              <img src="/images/resume_themes/theme5/blue-circle.svg" alt="blue circle" />
             </div>
             <div class="d-flex flex-column work-info dotted-gradient">
               <div class="work-title">Wedevs</div>
@@ -192,6 +192,12 @@
           <div class="education-item">
             <div class="education-type">College</div>
             <div class="education-name">Lethbride College</div>
+            <div class="education-date">M.Sc in HCI, Dec 19 - present</div>
+            <div class="education-info">CGPA - 3.70 out of 4.0</div>
+          </div>
+          <div class="education-item">
+            <div class="education-type">University</div>
+            <div class="education-name">University of Toronto</div>
             <div class="education-date">M.Sc in HCI, Dec 19 - present</div>
             <div class="education-info">CGPA - 3.70 out of 4.0</div>
           </div>
@@ -277,6 +283,20 @@
               class="percentage"
             >85%</div>
           </div>
+          <div class="skill-item skills d-flex align-items-end">
+            <div class="skill">
+              <div class="skill-title">Adobe XD</div>
+              <!-- bar -->
+              <div class="skill-bar" :data-bar="85">
+                <span></span>
+              </div>
+            </div>
+
+            <div
+              style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
+              class="percentage"
+            >85%</div>
+          </div>
         </div>
         <div class="about" v-show="activeTab === 'about'" :class="{active : activeTab === 'about'}">
           <div class="about-me">
@@ -333,9 +353,9 @@ export default {
             settings: {
               dots: false,
               arrows: false,
-
-              slidesToShow: 5,
-              slidesToScroll: 5
+              centerMode: true,
+              slidesToShow: 1,
+              slidesToScroll: 1
             }
           }
         ]
@@ -501,9 +521,10 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-
-            color: white;
-            font-size: 18px;
+            span {
+              color: white;
+              font-size: 18px;
+            }
 
             img {
               width: 22.5px;
@@ -549,8 +570,10 @@ export default {
             justify-content: center;
             align-items: center;
 
-            color: white;
-            font-size: 18px;
+            span {
+              color: white;
+              font-size: 18px;
+            }
 
             img {
               width: 18px;
@@ -629,10 +652,14 @@ export default {
 
         span.left {
           padding-right: 7px;
+          font-size: 20px;
+          color: #1f5de4;
         }
 
         span.right {
           padding-left: 7px;
+          font-size: 20px;
+          color: #1f5de4;
         }
       }
 
@@ -645,6 +672,16 @@ export default {
       .tab-text.active {
         color: #1f5de4;
         font-weight: bold;
+
+        span.left {
+          font-size: 20px;
+          color: #1f5de4;
+        }
+
+        span.right {
+          font-size: 20px;
+          color: #1f5de4;
+        }
       }
     }
 
@@ -764,15 +801,15 @@ export default {
       .education {
         display: flex;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: center;
         width: 100%;
 
         .education-item {
           margin-right: 30px;
           margin-bottom: 29px;
-          width: 100%;
-          max-width: 806px;
-          height: 258px;
+          width: 45%;
+
+          height: 300px;
           background: #f8f8f8;
           padding: 39px 60px 39px 60px;
           border-radius: 8px;
@@ -816,8 +853,12 @@ export default {
       }
 
       .skills-tab {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
         .skill-item {
-          width: 100%;
+          width: 45%;
           height: 176px;
           background: #f8f8f8;
           border-radius: 8px;
@@ -961,7 +1002,7 @@ export default {
           display: flex;
           flex-direction: row;
           align-items: center;
-          justify-content: center;
+          justify-content: flex-end;
           margin-right: 0 !important;
           margin-left: 0;
 
@@ -1041,8 +1082,7 @@ export default {
           display: flex;
           flex-direction: row-reverse !important;
           align-items: flex-end;
-          justify-content: center;
-          margin-left: 0;
+          justify-content: flex-start;
 
           .follow-text {
             font-size: 20px;

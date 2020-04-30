@@ -9,29 +9,42 @@
             </h3>
             <h4 class="plan-offer">
                 <small>Now Only</small>
-                <sup>$</sup>15
+                15$
                 <small class="not-bold">(Save 40%)</small>
             </h4>
             <div class="help-text">Per Month $15</div>
             <!-- Comment here -->
 
             <div class="plan-info">
-                <div class="benefit" v-for="(benefit, index) in benefits" :key="index">
+                <div class="benefit d-flex align-items-center" v-for="(benefit, index) in benefits" :key="index">
                     <img src="/images/resume_builder/check_circle.svg" alt="check circle"/>
                     {{benefit}}
                 </div>
             </div>
 
-            <form action="/subscribe" method="post" id="subscribe_form">
-                <input type="hidden" :value="csrf_token" name="_token">
-                <input type="hidden" value="monthly" name="plan">
-                <div class="btn filled" @click="submitForm">
-                    <div class="d-flex flex-column">
-                        <button type="submit">Start Free Trial</button>
-                        <small>7 days free trial</small>
-                    </div>
+
+            <div class="btn filled" v-if="!showPaymentOptions" @click="showPayOptions">
+                <div class="d-flex flex-column">
+                    Start Free Trial
+                    <small>7 days free trial</small>
                 </div>
-            </form>
+            </div>
+
+            <div class="payment-options" v-if="showPaymentOptions">
+                <form action="/subscribe" method="post" id="subscribe_form">
+                    <input type="hidden" :value="csrf_token" name="_token">
+                    <input type="hidden" value="monthly" name="plan">
+                    <button class="stripe-btn" type="submit">
+                        <img src="/images/resume_builder/my_account/stripe.png" alt="stripe">
+                    </button>
+                </form>
+
+                <div class="paypal-btn NoDecor">
+                    <a href="/subscribe/paypal/monthly">
+                        <img src="/images/resume_builder/my_account/paypal.png" alt="stripe">
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -46,11 +59,15 @@
                 "Visual Builder",
                 "Free Domain URL"
             ],
-            csrf_token: $('meta[name="csrf-token"]').attr('content')
+            csrf_token: $('meta[name="csrf-token"]').attr('content'),
+            showPaymentOptions: false
         }),
-        methods:{
-            submitForm(){
+        methods: {
+            submitForm() {
                 $('#subscribe_form').submit();
+            },
+            showPayOptions() {
+                this.showPaymentOptions = true;
             }
         }
     };
@@ -63,6 +80,28 @@
     $bg-color: white;
     $input-bg: #f1f8fc;
     $placeholder-color: #9ba1ad;
+
+
+    .payment-options {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 30px;
+
+        .paypal-btn{
+            img{
+                width: 90px;
+            }
+        }
+
+        .stripe-btn{
+            img{
+                width: 90px;
+            }
+        }
+
+    }
 
     .plan-container {
         display: flex;

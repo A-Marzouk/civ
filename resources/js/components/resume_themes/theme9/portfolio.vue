@@ -80,6 +80,7 @@ export default {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 51px;
+        padding: 0 100px !important;
             
         .portfolio-item {
             grid-column: span 4;

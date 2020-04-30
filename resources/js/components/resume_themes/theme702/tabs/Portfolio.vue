@@ -53,9 +53,25 @@ export default {
     padding-left: 23px;
     padding-right: 21px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(620px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
     grid-row-gap: 26px;
     grid-column-gap: 10px;
+    @media screen and(min-width: 768px) {
+      padding-left: 46px;
+      padding-right: 46px;
+    }
+  }
+  img {
+    width: 332px;
+    height: 260px;
+    @media screen and(min-width: 768px) {
+      width: 677px;
+      height: 530px;
+    }
+    @media screen and(min-width: 1200px) {
+      width: 488px;
+      height: 382px;
+    }
   }
 }
 </style>
