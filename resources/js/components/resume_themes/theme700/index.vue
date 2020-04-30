@@ -21,7 +21,7 @@ export default {
   methods: {}
 };
 </script>
-<style >
+<style scoped >
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 .v-slide-group__next,
