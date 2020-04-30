@@ -633,8 +633,8 @@
       <!-- Tab items container -->
     </v-container>
     <!-- Main container -->
-    <v-footer class="font-weight-medium" color="#272B2F" v-show="currentTab==5" height="100">
-      <v-col cols="12" class="hidden-sm-and-down">
+    <v-footer class="hidden-sm-and-down" color="#272B2F" v-show="currentTab==5" height="100">
+      <v-col cols="12">
         <div class="d-flex">
           <div class>
             <v-card flat tile color="transparent">
@@ -706,8 +706,9 @@
           <!-- Audio Controls -->
         </div>
       </v-col>
-
-      <!-- Only For tablet and mobile -->
+    </v-footer>
+    <!-- Only For tablet and mobile -->
+    <v-footer class="hidden-md-and-up" color="#272B2F" v-show="currentTab==5">
       <v-row align="center" justify="center" class="hidden-md-and-up">
         <v-col cols="12" align="center">
           <!-- Audio Controlls -->
@@ -739,12 +740,43 @@
             <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
           </v-btn>
           <!-- full screen button -->
-
           <!-- Audio Controls -->
         </v-col>
+        <!-- 2nd column -->
+        <v-col cols="12">
+          <v-row dense align="center" justify="center">
+            <!-- 1st inner footer column -->
+            <v-col cols="4">
+              <v-avatar tile size="30" class="mx-sm-4 mx-2" color="rgba(252, 65, 60, 0.25)">
+                <v-btn icon depressed color="transparent">
+                  <v-img
+                    max-width="15"
+                    max-height="15"
+                    src="/images/resume_themes/theme207/icons/play.png"
+                  ></v-img>
+                </v-btn>
+              </v-avatar>
+              <span class="media-title-tablet mx-2">AUDIO_04/09/2020</span>
+            </v-col>
+            <!-- 1st inner footer column -->
+            <!-- 2nd inner footer column -->
+            <v-col cols="6">
+              <v-card color="transparent" flat tile>
+                <v-progress-linear color="#FEBC2C" rounded height="10" value="70"></v-progress-linear>
+              </v-card>
+            </v-col>
+            <v-col cols="2">
+              <v-card class="transparent" flat tile>
+                <v-card-title class="media-duration-footer">1:05:00</v-card-title>
+              </v-card>
+            </v-col>
+            <!-- 2nd inner footer column -->
+          </v-row>
+        </v-col>
+        <!-- 2nd column -->
       </v-row>
-      <!-- Only For tablet and mobile -->
     </v-footer>
+    <!-- Only For tablet and mobile -->
   </v-app>
 </template>
 
@@ -1154,8 +1186,8 @@ img.pofolio-lg-img {
     width: 20px;
     height: auto;
   }
-  @media screen and (max-width: 959px){
-    img{
+  @media screen and (max-width: 959px) {
+    img {
       width: 14px;
       height: auto;
     }
@@ -1179,7 +1211,6 @@ img.pofolio-lg-img {
   }
 }
 
-
 .pause-btn {
   margin-top: -20px;
   width: 70px !important;
@@ -1195,7 +1226,7 @@ img.pofolio-lg-img {
     margin-top: 0px;
     width: 60px !important;
     height: 60px !important;
-    img{
+    img {
       width: 15px;
     }
   }
@@ -1209,13 +1240,31 @@ img.pofolio-lg-img {
   }
   @media screen and (max-width: 959px) {
     margin-left: 20px;
-    position:absolute;
-    margin-top:20px;
-    img{
+    position: absolute;
+    margin-top: 20px;
+    img {
       width: 12px;
     }
   }
 }
+
+//media footer
+.media-title-tablet {
+  @media screen and (max-width: 959px) {
+    font-family: "Poppins", sans-serif !important;
+    font-size: 0.75rem;
+    color: #ffffff;
+  }
+}
+
+.media-duration-footer {
+  @media screen and (max-width: 959px) {
+    font-family: "Poppins", sans-serif !important;
+    font-size: 0.75rem !important;
+    color: #febc2c !important;
+  }
+}
+// media footer
 
 .card-media {
   border-radius: 9px !important;
