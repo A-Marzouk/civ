@@ -92,12 +92,18 @@ export default {
   .v-slide-group__prev {
     max-width: 16px;
     min-width: 0;
+    @media screen and(min-width: 1200px) {
+      min-width: 52px;
+      max-width: auto;
+    }
   }
 
   // Start Tabs
 
   .tabs--top {
-    margin-bottom: 61px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid rgba(122, 169, 239, 0.45);
+    padding-bottom: 26px;
   }
 
   .tm702-default-tab {
@@ -109,7 +115,6 @@ export default {
     padding: 0;
     margin-right: 38px;
     font-family: "Open Sans", sans-serif;
-
     &:hover {
       background: none;
     }

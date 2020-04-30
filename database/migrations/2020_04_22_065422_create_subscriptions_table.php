@@ -18,6 +18,7 @@ class CreateSubscriptionsTable extends Migration
             $table->string('payment_method')->nullable();
             $table->string('sub_frequency')->nullable();
             $table->string('customer_id')->nullable();
+            $table->string('paypal_agreement_id')->nullable();
             $table->string('sub_status')->nullable();
 
 
