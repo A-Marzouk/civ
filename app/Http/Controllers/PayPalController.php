@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 // Used to process plans
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use PayPal\Api\ChargeModel;
 use PayPal\Api\Currency;
 use PayPal\Api\MerchantPreferences;
@@ -72,7 +73,7 @@ class PaypalController extends Controller
             ->setFrequency('DAY')
             ->setFrequencyInterval('1')
             ->setCycles('7')
-            ->setAmount(new Currency(array('value' => '0.01', 'currency' => 'USD')));
+            ->setAmount(new Currency(array('value' => '0.00', 'currency' => 'USD')));
 
         // Set billing plan definitions
         $paymentDefinition = new PaymentDefinition();
@@ -131,9 +132,11 @@ class PaypalController extends Controller
 
     public function paypalRedirectMonthly(){
         // Create new agreement
+        Session::put('plan', 'monthly');
+
         $agreement = new Agreement();
         $agreement->setName('CIV Monthly Subscription Agreement')
-            ->setDescription('Basic Subscription')
+            ->setDescription('Monthly Subscription - 15$ | 7 days free trial')
             ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
 
         // Set plan id
@@ -165,10 +168,11 @@ class PaypalController extends Controller
     }
 
     public function paypalRedirectYearly(){
+        Session::put('plan', 'yearly');
         // Create new agreement
         $agreement = new Agreement();
         $agreement->setName('CIV Yearly Subscription Agreement')
-            ->setDescription('Basic Subscription')
+            ->setDescription('Yearly Subscription - 99$ | 7 days free trial')
             ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
 
         // Set plan id
@@ -210,7 +214,7 @@ class PaypalController extends Controller
             $user = Auth::user();
             Subscription::create([
                 'payment_method' => 'paypal',
-                'sub_frequency' => 'monthly',
+                'sub_frequency' => Session::get('plan'),
                 'sub_status' => 'active',
                 'paypal_agreement_id' => $result->id,
                 'user_id' => $user->id
