@@ -1148,6 +1148,20 @@ img.pofolio-lg-img {
   width: 280px;
   height: auto;
 }
+
+.shuffle {
+  img {
+    width: 20px;
+    height: auto;
+  }
+  @media screen and (max-width: 959px){
+    img{
+      width: 14px;
+      height: auto;
+    }
+  }
+}
+
 .prev-btn {
   margin-top: -20px;
   width: 80px !important;
@@ -1160,15 +1174,11 @@ img.pofolio-lg-img {
   }
   @media screen and (max-width: 959px) {
     margin-top: 0px;
+    width: 57.19px !important;
+    height: 45px !important;
   }
 }
 
-.shuffle {
-  img {
-    width: 20px;
-    height: auto;
-  }
-}
 
 .pause-btn {
   margin-top: -20px;
@@ -1183,6 +1193,11 @@ img.pofolio-lg-img {
   }
   @media screen and (max-width: 959px) {
     margin-top: 0px;
+    width: 60px !important;
+    height: 60px !important;
+    img{
+      width: 15px;
+    }
   }
 }
 
@@ -1196,6 +1211,9 @@ img.pofolio-lg-img {
     margin-left: 20px;
     position:absolute;
     margin-top:20px;
+    img{
+      width: 12px;
+    }
   }
 }
 
