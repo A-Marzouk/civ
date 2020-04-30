@@ -78,7 +78,7 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/{username}/resume-builder/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.main');
     Route::get('/{username}/resume-builder/edit/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
-    Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
+    Route::get('/developer/api', 'APIController@APIClients')->name('create.api.client');
 });
 
 // passport clients route:
