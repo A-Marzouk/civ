@@ -14,6 +14,7 @@ class Subscription extends Model
         'sub_frequency',
         'sub_status',
         'customer_id',
+        'paypal_agreement_id',
         'user_id',
     ];
 

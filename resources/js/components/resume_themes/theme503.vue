@@ -136,104 +136,80 @@
             <v-tab href="#tab-2">Work</v-tab>
 
             <v-tab href="#tab-3">Education</v-tab>
+
+            <v-tab href="#tab-4">Education</v-tab>
           </v-tabs>
         </v-col>
       </v-row>
     </v-card>
 
-    <v-row class="justify-center">
-      <v-col
-        class="col-md-8 col-sm-8"
-        style="height:auto;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;"
-      >
-        <v-row class="justify-center">
-          <v-col class="col-md-3 col-sm-6">
-            <div class="subtitle-2 text-center">Programing Languages</div>
-          </v-col>
-          <v-col class="col-md-3 col-sm-6">
-            <div class="subtitle-2 text-center">Frameworks/Databases</div>
-            <!-- <span
-            style="position: absolute; left: 37.50%;right: 54.50%;top: 36.5%; bottom: 62.70%;background: #03CA9F;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);mix-blend-mode: normal;border-radius:10px"></span>-->
-          </v-col>
-
-          <v-col class="col-md-3 col-sm-6">
-            <div
-              class="subtitle-2 text-center"
-              style="color:#08A6FF;border-bottom:2px solid #08A6FF;"
-            >Design Skills</div>
-          </v-col>
-          <v-col class="col-md-3 col-sm-6">
-            <div class="subtitle-2 text-center">Software</div>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-    <v-container>
-      <v-row class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row>
-            <v-col class="col-md-2 col-sm-3">
-              <v-img src="https://i.ibb.co/jT2HsgH/PS.png"></v-img>
-            </v-col>
-            <v-col class="col-md-2 col-sm-3">
-              <v-img src="https://i.ibb.co/fn1m4mw/Ai.png"></v-img>
-            </v-col>
-            <v-col class="col-md-2 col-sm-3">
-              <v-img src="https://i.ibb.co/nzf9CFS/Lr.png"></v-img>
-            </v-col>
-            <v-col class="col-md-2 col-sm-3">
-              <v-img src="https://i.ibb.co/MVhmWNJ/Xd.png"></v-img>
-            </v-col>
-            <v-col class="col-md-2 col-sm-3">
-              <v-img src="https://i.ibb.co/DGMZXDH/Id.png"></v-img>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
     <v-tabs-items v-model="tab">
       <v-tab-item value="tab-1">
         <v-container>
-          <v-row class="justify-center">
-            <v-col class="col-md-3 col-sm-6">
-              <v-card elevation="8">
-                <div style="padding:10px 10px;">
-                  <v-img
-                    src="https://i.ibb.co/hCSX2Q1/Mask-Group-4.png"
-                    style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
-                  ></v-img>
-                </div>
-              </v-card>
-            </v-col>
-            <v-col class="col-md-3 col-sm-6">
-              <v-card elevation="8">
-                <div style="padding:10px 10px;">
-                  <v-img
-                    src="https://i.ibb.co/tZ0H6j2/Mask-Group-8.png"
-                    style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
-                  ></v-img>
-                </div>
-              </v-card>
-            </v-col>
-            <v-col class="col-md-3 col-sm-6">
-              <v-card elevation="8">
-                <div style="padding:10px 10px;">
-                  <v-img
-                    src="https://i.ibb.co/1KSwfzs/Mask-Group-7.png"
-                    style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
-                  ></v-img>
-                </div>
-              </v-card>
-            </v-col>
-            <v-col class="col-md-3 col-sm-6">
-              <v-card elevation="8">
-                <div style="padding:10px 10px;">
-                  <v-img
-                    src="https://i.ibb.co/H7jNspq/Mask-Group-5.png"
-                    style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
-                  ></v-img>
-                </div>
-              </v-card>
+          <v-row class="justify-center" no-gutters>
+            <v-col lg="10" sm="11" cols="11">
+              <v-row no-gutters justify="center">
+                <v-col class="col-lg-4 col-sm-6 pa-lg-8">
+                  <v-card elevation="8">
+                    <div style="padding:10px 10px;">
+                      <v-img
+                        src="https://i.ibb.co/hCSX2Q1/Mask-Group-4.png"
+                        style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                      ></v-img>
+                    </div>
+                  </v-card>
+                </v-col>
+                <v-col class="col-lg-4 col-sm-6 pa-lg-8">
+                  <v-card elevation="8">
+                    <div style="padding:10px 10px;">
+                      <v-img
+                        src="https://i.ibb.co/tZ0H6j2/Mask-Group-8.png"
+                        style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                      ></v-img>
+                    </div>
+                  </v-card>
+                </v-col>
+                <v-col class="col-lg-4 col-sm-6 pa-lg-8">
+                  <v-card elevation="8">
+                    <div style="padding:10px 10px;">
+                      <v-img
+                        src="https://i.ibb.co/1KSwfzs/Mask-Group-7.png"
+                        style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                      ></v-img>
+                    </div>
+                  </v-card>
+                </v-col>
+                <v-col class="col-lg-4 col-sm-6 pa-lg-8">
+                  <v-card elevation="8">
+                    <div style="padding:10px 10px;">
+                      <v-img
+                        src="https://i.ibb.co/H7jNspq/Mask-Group-5.png"
+                        style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                      ></v-img>
+                    </div>
+                  </v-card>
+                </v-col>
+                <v-col class="col-lg-4 col-sm-6 pa-lg-8">
+                  <v-card elevation="8">
+                    <div style="padding:10px 10px;">
+                      <v-img
+                        src="https://i.ibb.co/1KSwfzs/Mask-Group-7.png"
+                        style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                      ></v-img>
+                    </div>
+                  </v-card>
+                </v-col>
+                <v-col class="col-lg-4 col-sm-6 pa-lg-8">
+                  <v-card elevation="8">
+                    <div style="padding:10px 10px;">
+                      <v-img
+                        src="https://i.ibb.co/H7jNspq/Mask-Group-5.png"
+                        style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                      ></v-img>
+                    </div>
+                  </v-card>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
         </v-container>
@@ -258,7 +234,10 @@
                   <div class="title">Senior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ May 2018 - Present</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ May 2018 - Present</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -279,7 +258,10 @@
                   <div class="title">Junior UI/UX Designer</div>
                   <div class="subtitle-2" style="color:#01A2FE;">
                     Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">/ July 2017 - May 2018</span>
+                    <span
+                      class="caption font-italic"
+                      style="color:#A4A6AE;"
+                    >/ July 2017 - May 2018</span>
                   </div>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
@@ -352,12 +334,83 @@
           </v-row>
         </v-container>
       </v-tab-item>
+      <v-tab-item value="tab-4">
+        <v-row class="justify-center mt-lg-6">
+          <v-col
+            class="col-md-8 col-sm-8"
+            style="height:auto;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;"
+          >
+            <v-row class="justify-center tabs">
+              <v-col class="col-md-3 col-sm-6 text-center">
+                <a
+                  v-on:click="activetab=1"
+                  v-bind:class="[ activetab === 1 ? 'active pb-2' : '' ]"
+                >Programming languages</a>
+              </v-col>
+              <v-col class="col-md-3 col-sm-6 text-center">
+                <a
+                  v-on:click="activetab=2"
+                  v-bind:class="[ activetab === 2 ? 'active pb-2' : '' ]"
+                >Frameworks</a>
+              </v-col>
+
+              <v-col class="col-md-3 col-sm-6 text-center">
+                <a
+                  v-on:click="activetab=3"
+                  v-bind:class="[ activetab === 3 ? 'active pb-2' : '' ]"
+                >Design Skills</a>
+              </v-col>
+              <v-col class="col-md-3 col-sm-6 text-center">
+                <a
+                  v-on:click="activetab=4"
+                  v-bind:class="[ activetab === 4 ? 'active pb-2' : '' ]"
+                >Software</a>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+        <v-container>
+          <v-row class="justify-center">
+            <v-col class="col-md-6 col-sm-12">
+              <v-row>
+                <v-col class="col-md-2 col-sm-3">
+                  <v-img src="https://i.ibb.co/jT2HsgH/PS.png"></v-img>
+                </v-col>
+                <v-col class="col-md-2 col-sm-3">
+                  <v-img src="https://i.ibb.co/fn1m4mw/Ai.png"></v-img>
+                </v-col>
+                <v-col class="col-md-2 col-sm-3">
+                  <v-img src="https://i.ibb.co/nzf9CFS/Lr.png"></v-img>
+                </v-col>
+                <v-col class="col-md-2 col-sm-3">
+                  <v-img src="https://i.ibb.co/MVhmWNJ/Xd.png"></v-img>
+                </v-col>
+                <v-col class="col-md-2 col-sm-3">
+                  <v-img src="https://i.ibb.co/DGMZXDH/Id.png"></v-img>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-tab-item>
     </v-tabs-items>
   </v-app>
 </template>
 
 
-<style>
+<style lang="scss" scoped>
+/* Change background color of tabs on hover */
+.tabs a:hover {
+  color: #5289e7;
+}
+
+/* Styling for active tab */
+.tabs a.active {
+  border-bottom: 2px solid #5289e7;
+  color: #5289e7;
+
+  cursor: default;
+}
 .large_dot:before {
   bottom: 0;
   content: "";
@@ -447,6 +500,7 @@
 export default {
   data() {
     return {
+      activetab: 1,
       tab: null,
       text: [
         "",

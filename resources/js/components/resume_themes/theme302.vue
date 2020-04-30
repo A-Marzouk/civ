@@ -46,7 +46,7 @@
                                     </div>
                                 </v-col>
                             </v-row>
-                            <v-row>
+                            <v-row class="social-section">
                                 <v-col class="social-hold">
                                     <a href="" @click.prevent="">
                                         <img src="/images/resume_themes/theme302/social_icons/behance.webp" alt="">
@@ -520,6 +520,10 @@
         }
     }
 
+    .social-section{
+        flex-flow: column;
+    }
+
     .imageCol{
         position: relative;
         align-items: center;
@@ -752,12 +756,16 @@
             min-height: 120px;
 
             a{
-                margin-right: 75px;
-                max-height: 38px;
+                margin: 0px 20px;
+                max-height: 34px;
 
                 img{
-                    width: 38px;
-                    max-height: 38px;
+                    width: 24px;
+                    max-height: 24px;
+                }
+
+                &:last-child{
+                    margin: 0px 20px;
                 }
             }
         }
@@ -1120,6 +1128,7 @@
 
                     img{
                         max-width: 100%;
+                        margin-top: 8%;
                     }
                 }
 
@@ -1138,6 +1147,13 @@
             .mc-subtabs_skills{
                 .hold-skills{
                     width: 100%;
+
+                    .item-skill{
+
+                        img{
+                            margin-top: 15px;
+                        }
+                    }
                 }
             }
         }
@@ -1454,13 +1470,20 @@
         }
         .social-hold{
             min-height: 75px;
+            width: 100%;
+            flex-wrap: wrap;
                
 
             a{
-                margin-right: 43px;
+                margin: 0px 15px;
+
                 img{
-                    width: 24px;
-                    height: 24px;
+                    width: 20px;
+                    height: 20px;
+                }
+
+                :last-child{
+                    margin: 0;
                 }
             }
         }
