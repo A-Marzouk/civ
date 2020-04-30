@@ -240,8 +240,12 @@
                       <!-- Will be hidden in tablets and mobile devices -->
 
                       <!-- Only For tablet and mobile version -->
-                      <template v-for="n in 2"> 
-                        <v-row class="hidden-md-and-up ml-sm-n2" :key="n" :class="n>1 ?'mt-sm-n3 mt-0':''">
+                      <template v-for="n in 2">
+                        <v-row
+                          class="hidden-md-and-up ml-sm-n2"
+                          :key="n"
+                          :class="n>1 ?'mt-sm-n3 mt-0':''"
+                        >
                           <!-- column 1 -->
                           <v-col md="3" sm="5" cols="6">
                             <v-card color="transparent" tile class="card-portfolio" hover>
@@ -702,6 +706,44 @@
           <!-- Audio Controls -->
         </div>
       </v-col>
+
+      <!-- Only For tablet and mobile -->
+      <v-row align="center" justify="center" class="hidden-md-and-up">
+        <v-col cols="12" align="center">
+          <!-- Audio Controlls -->
+          <!-- Tablet mobile repeat button -->
+          <v-btn icon color="transparent" class="shuffle mx-5" depressed>
+            <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
+          </v-btn>
+          <!-- tablet mobile repeat button -->
+
+          <!-- Play controlls for tablet and mobile -->
+
+          <v-btn color="#272B2F" class="prev-btn">
+            <img src="/images/resume_themes/theme207/audio/prev.png" />
+          </v-btn>
+          <v-btn color="#272B2F" class="pause-btn mx-n2" elevation="12">
+            <img src="/images/resume_themes/theme207/audio/pause.png" />
+          </v-btn>
+          <v-btn color="#272B2F" class="prev-btn">
+            <img src="/images/resume_themes/theme207/audio/next.png" />
+          </v-btn>
+          <!-- play controlls for tablet and mobile -->
+          <!-- Shuffle button -->
+          <v-btn icon depressed color="transparent" class="shuffle mx-5">
+            <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
+          </v-btn>
+          <!-- Shuffle button -->
+          <!-- full screen button -->
+          <v-btn class="btn-fullscreen" icon depressed color="transparent">
+            <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
+          </v-btn>
+          <!-- full screen button -->
+
+          <!-- Audio Controls -->
+        </v-col>
+      </v-row>
+      <!-- Only For tablet and mobile -->
     </v-footer>
   </v-app>
 </template>
@@ -1116,6 +1158,9 @@ img.pofolio-lg-img {
     width: 40px;
     height: auto;
   }
+  @media screen and (max-width: 959px) {
+    margin-top: 0px;
+  }
 }
 
 .shuffle {
@@ -1136,6 +1181,9 @@ img.pofolio-lg-img {
     width: 20px;
     height: auto;
   }
+  @media screen and (max-width: 959px) {
+    margin-top: 0px;
+  }
 }
 
 .btn-fullscreen {
@@ -1143,6 +1191,11 @@ img.pofolio-lg-img {
   img {
     width: 18px;
     height: auto;
+  }
+  @media screen and (max-width: 959px) {
+    margin-left: 20px;
+    position:absolute;
+    margin-top:20px;
   }
 }
 
