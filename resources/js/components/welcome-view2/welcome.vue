@@ -29,6 +29,17 @@
                 <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
               </v-card-subtitle>
             </v-card>
+
+            <v-card color="transparent" flat tile>
+              <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
+              <v-card-subtitle class="reserve-input">
+                <v-text-field outlined placeholder="www.civ.ie/yourname" background-color="#ffffff">
+                  <template slot="append">
+                    <img src="/images/welcome_landing_page/icons/input-success.png" />
+                  </template>
+                </v-text-field>
+              </v-card-subtitle>
+            </v-card>
           </v-col>
           <v-col md="6">Column2</v-col>
         </v-row>
@@ -41,7 +52,7 @@
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
+$text-field-border-radius: 10px;
 //logo
 .logo {
   width: 169px;
@@ -77,6 +88,7 @@
   line-height: 36px;
   color: #828282 !important;
 }
+
 .btn-get-started {
   font-family: "Montserrat" sans-serif !important;
   font-weight: bold;
@@ -85,5 +97,22 @@
     4px 4px 50px rgba(233, 30, 99, 0.2) !important;
   border-radius: 10px !important;
 }
+//reserve title
+.reserve-title {
+  font-family: "Open Sans" sans-serif !important;
+  font-weight: bold;
+  font-size: 18px !important;
+  line-height: 36px;
+  color: #313131 !important;
+}
+//reserve input
+.reserve-input {
+  img {
+    width: auto;
+    height: 20px;
+  }
+}
+
 // .... upper left block..............
 </style>
+
