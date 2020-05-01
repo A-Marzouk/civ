@@ -30,7 +30,7 @@
               </v-card-subtitle>
             </v-card>
 
-            <v-card color="transparent" flat tile>
+            <v-card color="transparent" flat tile class="mt-5">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
               <v-card-subtitle class="reserve-input">
                 <v-text-field outlined placeholder="www.civ.ie/yourname" background-color="#ffffff">
@@ -116,3 +116,22 @@ $text-field-border-radius: 10px;
 // .... upper left block..............
 </style>
 
+<style>
+#welcomeView2 .v-text-field {
+  border-radius: 10px !important;
+  border-color: #ffffff !important;
+}
+
+#welcomeView2 .v-text-field input {
+  color: #aeaeae !important;
+}
+
+#welcomeView2
+  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+  border: 2px solid #ffffff !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
+}
+</style>
