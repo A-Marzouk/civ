@@ -27,7 +27,9 @@
       </div>
     </div>
     <div class="tm700-skill--proglang" v-if="currentSkillsTab === 1">
-      <div class="tm700-skill-proglang--inner tw-w-full tw-max-w-tm700-dw-1 tw-my-0 tw-mx-auto tw-grid tw-grid-cols-1">
+      <div
+        class="tm700-skill-proglang--inner tw-w-full tw-max-w-tm700-dw-1 tw-my-0 tw-mx-auto tw-grid tw-grid-cols-1"
+      >
         <div
           v-for="{id, name, percentage} in programingLanguages"
           v-bind:key="id"
