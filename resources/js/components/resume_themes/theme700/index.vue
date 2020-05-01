@@ -21,11 +21,14 @@ export default {
   methods: {}
 };
 </script>
-<style scoped >
+<style lang="scss">
+:root {
+  --tm700-blue-1: #513ecd;
+  --tm700-blue-2: #ebebeb;
+}
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
-
-.v-slide-group__next,
-.v-slide-group__prev {
+#wrapper_theme700 .v-slide-group__next,
+#wrapper_theme700 .v-slide-group__prev {
   min-width: 0 !important;
   flex-basis: 8px;
 }
