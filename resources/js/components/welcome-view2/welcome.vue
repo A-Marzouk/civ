@@ -74,6 +74,11 @@
           <v-col md="6">
             <v-card color="#F8F8F8" elevation="12" class="card-login-form" align="center">
               <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
+              <v-card-subtitle>
+                <v-btn class="social-icon mx-2" color="#ffffff" v-for="icon in socialMediaIcons" :key="icon.title">
+                  <img :src="getSocialIcon(icon.title)" alt="">
+                </v-btn>
+              </v-card-subtitle>
             </v-card>
           </v-col>
         </v-row>
@@ -82,7 +87,26 @@
     <!-- main container -->
   </v-app>
 </template>
-
+<script>
+export default {
+  data() {
+    return {
+      socialMediaIcons: [
+        { id: 1, title: "instagram" },
+        { id: 2, title: "linkedin" },
+        { id: 3, title: "google" },
+        { id: 4, title: "facebook" },
+        { id: 5, title: "github" }
+      ]
+    };
+  },
+  methods: {
+    getSocialIcon(title) {
+      return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
+    }
+  }
+};
+</script>
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
@@ -170,6 +194,17 @@ $text-field-border-radius: 10px;
   font-family: "Montserrat" sans-serif !important;
   color: #0046fe !important;
   font-size: 18px;
+}
+.social-icon{ 
+  border-radius: 10px !important;
+  height: 39px !important;
+  width: 39px !important;
+  min-width: 39px !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
+  img{
+    width:14px;
+    height: auto;
+  }
 }
 //upper right block
 </style>
