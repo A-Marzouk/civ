@@ -72,13 +72,31 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="6">
-            <v-card color="#F8F8F8" elevation="12" class="card-login-form" align="center">
+            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
               <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
               <v-card-subtitle>
-                <v-btn class="social-icon mx-2" color="#ffffff" v-for="icon in socialMediaIcons" :key="icon.title">
-                  <img :src="getSocialIcon(icon.title)" alt="">
+                <v-btn
+                  class="social-icon mx-2"
+                  color="#ffffff"
+                  v-for="icon in socialMediaIcons"
+                  :key="icon.title"
+                >
+                  <img :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
+              <!-- Login Form -->
+              <v-card-subtitle>
+                <v-form>
+                  <v-text-field
+                    dense
+                    outlined
+                    background-color="#ffffff"
+                    label="Name"
+                  >
+                  </v-text-field>
+                </v-form>
+              </v-card-subtitle>
+              <!-- Login Form -->
             </v-card>
           </v-col>
         </v-row>
@@ -195,14 +213,14 @@ $text-field-border-radius: 10px;
   color: #0046fe !important;
   font-size: 18px;
 }
-.social-icon{ 
+.social-icon {
   border-radius: 10px !important;
   height: 39px !important;
   width: 39px !important;
   min-width: 39px !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
-  img{
-    width:14px;
+  img {
+    width: 14px;
     height: auto;
   }
 }
