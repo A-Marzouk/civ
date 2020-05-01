@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth')->except('welcome','privacy','terms');
+        $this->middleware('auth')->except('welcome','welcome2','privacy','terms');
     }
 
     /**
