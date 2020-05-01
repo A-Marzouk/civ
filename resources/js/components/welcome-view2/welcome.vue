@@ -40,6 +40,36 @@
                 </v-text-field>
               </v-card-subtitle>
             </v-card>
+
+            <!-- play store ios buttons -->
+            <v-card color="transparent" tile flat>
+              <v-card-text>
+                <v-row align="center">
+                  <v-col cols="6">
+                    <div class="download-text">Download for ios and android:</div>
+                  </v-col>
+                  <v-col cols="3">
+                    <a href="#">
+                      <img
+                        class="app-store-logo"
+                        src="/images/welcome_landing_page/icons/app-store.png"
+                        alt
+                      />
+                    </a>
+                  </v-col>
+                  <v-col cols="3">
+                    <a href="#">
+                      <img
+                        class="app-store-logo"
+                        src="/images/welcome_landing_page/icons/play-store.png"
+                        alt
+                      />
+                    </a>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-card>
+            <!-- play store ios buttons -->
           </v-col>
           <v-col md="6">Column2</v-col>
         </v-row>
@@ -104,6 +134,7 @@ $text-field-border-radius: 10px;
   font-size: 18px !important;
   line-height: 36px;
   color: #313131 !important;
+  margin-bottom: 20px;
 }
 //reserve input
 .reserve-input {
@@ -112,7 +143,17 @@ $text-field-border-radius: 10px;
     height: 20px;
   }
 }
-
+//Download text
+.download-text {
+  font-family: "Open Sans" sans-serif !important;
+  font-size: 16px;
+  color: #313131;
+}
+.app-store-logo {
+    width: 170px;
+    height: auto;
+    max-width: 108% !important;
+}
 // .... upper left block..............
 </style>
 
