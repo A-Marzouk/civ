@@ -1,6 +1,8 @@
 <template>
   <div class="tm700-education" v-if="currentTab === 3">
-    <div class="tm700-education--inner tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-w-full tw-max-w-1396px tw-my-0 tw-mx-auto md:tw-row-gap-128px lg:tw-row-gap-174px md:tw-pl-52px lg:tw-pl-0">
+    <div
+      class="tm700-education--inner tw-grid tw-grid-cols-1 lg:tw-grid-cols-2 tw-w-full tw-max-w-1396px tw-my-0 tw-mx-auto md:tw-row-gap-128px lg:tw-row-gap-174px md:tw-pl-52px lg:tw-pl-0"
+    >
       <div
         v-for="({id}) in educations"
         v-bind:key="id"
