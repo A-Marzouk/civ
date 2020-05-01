@@ -71,7 +71,11 @@
             </v-card>
             <!-- play store ios buttons -->
           </v-col>
-          <v-col md="6">Column2</v-col>
+          <v-col md="6">
+            <v-card color="#F8F8F8" elevation="12" class="card-login-form" align="center">
+              <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
+            </v-card>
+          </v-col>
         </v-row>
       </v-container>
     </v-container>
@@ -150,12 +154,24 @@ $text-field-border-radius: 10px;
   color: #313131;
 }
 .app-store-logo {
-    margin-left:-20px;
-    width: 170px;
-    height: auto;
-    max-width: 127% !important;
+  margin-left: -20px;
+  width: 170px;
+  height: auto;
+  max-width: 127% !important;
 }
 // .... upper left block..............
+
+//upper right block
+.card-login-form {
+  border-radius: 15px !important;
+}
+
+.login-title {
+  font-family: "Montserrat" sans-serif !important;
+  color: #0046fe !important;
+  font-size: 18px;
+}
+//upper right block
 </style>
 
 <style>
