@@ -40,6 +40,7 @@ class LoginController extends Controller
      */
     protected function sendLoginResponse(Request $request)
     {
+        return 123;
         $request->session()->regenerate();
         $this->clearLoginAttempts($request);
         $token = $this->authenticated($request, $this->guard()->user());
