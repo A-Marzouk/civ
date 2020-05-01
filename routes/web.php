@@ -23,6 +23,7 @@ Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume p
 Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
+Route::get('/home2', 'HomeController@welcome2')->name('home2');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
