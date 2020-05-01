@@ -150,9 +150,10 @@ $text-field-border-radius: 10px;
   color: #313131;
 }
 .app-store-logo {
+    margin-left:-20px;
     width: 170px;
     height: auto;
-    max-width: 108% !important;
+    max-width: 127% !important;
 }
 // .... upper left block..............
 </style>
