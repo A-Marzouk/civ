@@ -5,7 +5,7 @@
       <v-app-bar color="transparent" flat tile height="100">
         <img
           class="logo mx-auto"
-          src="/images/welcome_landing_page/logo/civie_logo-01.png"
+          src="/images/welcome_landing_page/logo/civie_logo-blue.png"
           alt="logo"
         />
         <v-spacer></v-spacer>
@@ -182,7 +182,7 @@
               <v-row>
                 <template v-for="n in 6">
                   <v-col md="4" :key="n">
-                    <v-card flat tile color="transparent" class=card-gallery>
+                    <v-card flat tile color="transparent" class="card-gallery">
                       <img :src="getGalleryImages(n)" alt="gallery" />
                     </v-card>
                   </v-col>
@@ -193,8 +193,94 @@
         </v-row>
       </v-container>
       <!-- 3rd inner container starts here -->
+      <!-- 3rd inner container -->
+      <v-container style="width:100%">
+        <v-row align="center" justify="center">
+          <v-col cols="12" align="center">
+            <v-card flat tile color="transparent">
+              <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
+              <v-card-subtitle
+                class="build-resume-subtitle mt-n8"
+              >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
+              <v-card-text>
+                <v-row align="center" justify="center">
+                  <template v-for="item in integrations">
+                    <v-col md="4" :key="item.id">
+                      <v-card flat tile color="transparent">
+                        <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
+                      </v-card>
+                    </v-col>
+                  </template>
+                </v-row>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <!-- 3rd inner container -->
     </v-container>
     <!-- main container -->
+    <!-- Footer -->
+    <v-footer color="#0F4CEE">
+      <v-card color="transparent" flat tile>
+        <v-container fluid ma-0 pa-0 style="width:100%">
+          <v-row align="center" justify="center">
+            <v-col md="2" cols="6">
+              <img class="logo-footer" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
+            </v-col>
+            <v-col md="7" cols="6">
+              <v-card flat tile color="transparent">
+                <v-card-text class="follow-us-text">
+                  <v-row align="center" justify="center">
+                    <v-col>Follow Us:</v-col>
+                    <v-col>
+                      <v-btn fab small color="#ffffff" class="footer-social-icon">
+                        <img
+                          src="/images/welcome_landing_page/icons/social_icons/facebook.png"
+                          alt="facebook"
+                        />
+                      </v-btn>
+                      <span>14,044 Followers</span>
+                    </v-col>
+                    <v-col>
+                      <v-btn fab small color="#ffffff" class="footer-social-icon">
+                        <img
+                          src="/images/welcome_landing_page/icons/social_icons/instagram.png"
+                          alt="instagram"
+                        />
+                      </v-btn>
+                      <span>733 Followers</span>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </v-card>
+            </v-col>
+
+            <v-col cols="3">
+              <v-card color="transparent" flat tile>
+                <v-card-text class="follow-us-text">
+                  Contact Us:
+                  <span>
+                    <v-btn
+
+                      fab
+                      small
+                      color="#ffffff"
+                      class="footer-social-icon mx-1"
+                      v-for="i in contactIcons"
+                      :key="i.title"
+                    >
+                      <img :src="getContactIcons(i.title)" />
+                    </v-btn>
+                  </span>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
+    </v-footer>
+    <!-- footer -->
   </v-app>
 </template>
 <script>
@@ -207,6 +293,18 @@ export default {
         { id: 3, title: "google" },
         { id: 4, title: "facebook" },
         { id: 5, title: "github" }
+      ],
+      integrations: [
+        { id: 1, title: "Connect your online profiles" },
+        { id: 2, title: "Integrate your social account" },
+        { id: 3, title: "Allow potential employers to contact you easly" }
+      ],
+      contactIcons: [
+        { id: 1, title: "email" },
+        { id: 2, title: "messenger" },
+        { id: 3, title: "skype" },
+        { id: 4, title: "whatsapp" },
+        { id: 5, title: "slack" }
       ]
     };
   },
@@ -216,6 +314,9 @@ export default {
     },
     getGalleryImages(id) {
       return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
+    },
+    getContactIcons(title) {
+      return `/images/welcome_landing_page/icons/${title}.png`;
     }
   }
 };
@@ -400,12 +501,45 @@ $text-field-border-radius: 10px;
   }
 }
 
-.card-gallery{
-  img{
+.card-gallery {
+  img {
     border-radius: 10px !important;
   }
 }
 // build resume section
+
+//integration section
+.integration-title {
+  font-family: "Montserrat" sans-serif !important;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 29px;
+  color: #575757 !important;
+}
+//integration section
+//footer
+.follow-us-text {
+  font-family: "Montserrat" sans-serif !important;
+  font-weight: bold;
+  font-size: 32px;
+  color: #ffffff !important;
+  line-height: 39px;
+  span {
+    font-family: "Open Sans" sans-serif !important;
+    font-size: 12px;
+  }
+}
+.footer-logo {
+  width: 201px;
+  height: auto;
+}
+.footer-social-icon {
+  img {
+    width: 14px;
+    height: auto;
+  }
+}
+//footer
 </style>
 
 
