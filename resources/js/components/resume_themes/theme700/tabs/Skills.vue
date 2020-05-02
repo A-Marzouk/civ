@@ -1,7 +1,7 @@
 <template>
   <div class="tm700-skill" v-if="currentTab === 4">
     <div class="tm700-skill--tabs tw-font-lato tw-mb-tm700-2">
-      <div class="tm700-skill--inner-tabs tw-w-full tw-my-0 tw-mx-auto xl:tw-mx-336px">
+      <div class="tm700-skill--inner-tabs">
         <v-tabs
           v-model="tab"
           background-color="#FFF"
@@ -16,7 +16,7 @@
           <v-tab
             @click="currentSkillsTab = id"
             :class="[
-                currentSkillsTab == id ? 'tm700-skill-tabs-active--tab tw-text-tm700-1' : 'tw-text-tm700-3', 'tm700-skill-tabs--one  tw-font-bold tw-not-italic tw-text-2xl tw-list-none tw-normal-case tw-p-0 tw-tracking-normal tw-font-lato',
+                currentSkillsTab == id ? 'tm700-skill-tabs-active--tab tw-text-tm700-1' : 'tm700-skill-tabs-inactive--tab', 'tm700-skill-tabs--default',
                 id === 4 ? 'tw-mr-0': 'tw-mr-tm700-1'
             ]"
             v-for="{title, id} in Skillstabs"
@@ -32,7 +32,7 @@
       >
         <div
           v-for="{id, name, percentage} in programingLanguages"
-          v-bind:key="id"
+          :key="id"
           class="tm700-skill-proglangs tw-grid tw-gap-8 tw-font-lato tw-grid-cols-tm700-d-skills-bar tw-mb-tm700-6 tw-items-center md:tw-mx-35px lg:tw-mx-0"
         >
           <span
@@ -89,12 +89,28 @@ export default {
 .tm700-skill {
   .tm700-skill--tabs {
     .tm700-skill-tabs--top {
-      .v-tabs-slider {
-        @apply bg-tm700-1 my-0 mx-auto w-2/4 h-tm700-3;
-        box-shadow: 2px 5px 30px rgba(192, 18, 159, 0.37);
-        border-radius: 15px;
+      .v-tabs-slider-wrapper {
+        height: 0;
+        width: 0;
       }
     }
+    .tm700-skill-tabs-active--tab {
+      color: var(--tm700-blue-1);
+    }
+    .tm700-skill-tabs-inactive--tab {
+      color: var(--tm700-gray-2);
+    }
+    .tm700-skill-tabs--default {
+      font-family: "Lato";
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 17px;
+      padding: 0;
+      text-transform: capitalize;
+    }
+  }
+  .tm700-skill--inner-tabs {
   }
 }
 </style>

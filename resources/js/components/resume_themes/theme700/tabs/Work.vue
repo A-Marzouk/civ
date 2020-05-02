@@ -1,13 +1,7 @@
 <template>
   <div class="tm700-work tw-mt-20" v-if="currentTab === 2">
-    <div
-      class="tm700-work--inner lg:tw-grid-cols-2 tw-w-full tw-max-w-1396px tw-my-0 tw-mx-auto tw-row-gap-6 md:tw-row-gap-128px lg:tw-row-gap-174px md:tw-pl-52px lg:tw-pl-0"
-    >
-      <div
-        v-for="({id}) in works"
-        v-bind:key="id"
-        class="tm700-works tw-flex tw-flex-row tw-items-start tw-font-gothampro"
-      >
+    <div class="tm700-work--inner">
+      <div v-for="({id}) in works" v-bind:key="id" class="tm700-works">
         <span class="tm700-works--span">{{id}}.</span>
         <div class="flex flex-col justify-between">
           <div class="tm700-works--info tw-mb-35px">
@@ -45,7 +39,10 @@ export default {
     }
   }
   .tm700-works {
-    //margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin: auto;
     @media screen and (min-width: 768px) {
       margin: 0;
       padding-left: 41px;
@@ -72,7 +69,11 @@ export default {
       .tm700-works--title {
         font-size: 14px;
         font-weight: 500;
+        line-height: 0.9;
         color: var(--tm700-blue-1);
+        @media screen and (min-width: 768px) {
+          font-size: 24px;
+        }
       }
       .tm700-works--slogan {
         color: #000;

@@ -25,6 +25,16 @@ export default {
 :root {
   --tm700-blue-1: #513ecd;
   --tm700-blue-2: #ebebeb;
+  --tm700-gray-1: #2d2d2d;
+  --tm700-gray-2: #d9d9d9;
+}
+@font-face {
+  font-family: "Lato", sans-serif;
+  src: "https://fonts.googleapis.com/css2?family=Lato&display=swap";
+}
+@font-face {
+  font-family: "Lato", sans-serif;
+  src: "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 #wrapper_theme700 .v-slide-group__next,
