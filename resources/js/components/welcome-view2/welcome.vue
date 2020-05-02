@@ -539,6 +539,9 @@ $text-field-border-radius: 10px;
 .integrationImg{
   height: 226px;
   width: auto;
+  @media screen and (max-width: 959px){
+    height:auto;
+  }
 }
 //integration section
 //footer
