@@ -17,7 +17,7 @@
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
         <v-row justify="center" align="center" class="resume-row">
-          <v-col md="6">
+          <v-col md="6" sm="12" cols="12"> 
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
                 Make Your
@@ -72,7 +72,7 @@
             </v-card>
             <!-- play store ios buttons -->
           </v-col>
-          <v-col md="6">
+          <v-col md="6" sm="12" cols="12">
             <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
               <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
               <v-card-subtitle>
