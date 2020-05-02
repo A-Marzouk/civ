@@ -135,6 +135,7 @@
       <v-container style="width:100%">
         <v-row align="center" justify="center">
           <v-col cols="12" align="center">
+            <!-- 1st card -->
             <v-card flat tile color="transparent">
               <v-card-subtitle class="build-resume-title">
                 Build a resume that you
@@ -144,6 +145,20 @@
                 class="build-resume-subtitle"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
             </v-card>
+            <!-- 1st card -->
+            <!-- 2nd card -->
+            <v-card class="card-video pa-0 ma-0" hover>
+              <v-img
+                cover
+                src="/images/welcome_landing_page/icons/poster-video.png"
+                class="align-center"
+              >
+                <v-btn fab color="#F8F8F8" class="btn-play" x-large>
+                  <img src="/images/welcome_landing_page/icons/play.png" />
+                </v-btn>
+              </v-img>
+            </v-card>
+            <!-- 2nd card -->
           </v-col>
         </v-row>
       </v-container>
@@ -338,12 +353,28 @@ $text-field-border-radius: 10px;
   font-family: "Open Sans" sans-serif !important;
   font-size: 18px !important;
   line-height: 36px;
-  /* identical to box height, or 200% */
   text-align: center;
   color: #575757 !important;
 }
+.card-video {
+  border-radius: 20px !important;
+}
+.btn-play {
+  width: 128px;
+  height: 128px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+  img {
+    width: 71px;
+    height: auto;
+  }
+}
 // build resume section
 </style>
+
+
+
+
+
 
 <style>
 #welcomeView2 .v-text-field {
