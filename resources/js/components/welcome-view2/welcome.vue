@@ -84,16 +84,29 @@
                   <img :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
+              <v-card-subtitle class="singin-email">
+                or Sign Up with Email
+              </v-card-subtitle>
               <!-- Login Form -->
               <v-card-subtitle>
                 <v-form>
+                  <v-text-field  outlined background-color="#ffffff" label="Name"></v-text-field>
+                  <v-text-field  outlined background-color="#ffffff" label="Email Adddress"></v-text-field>
                   <v-text-field
-                    dense
+                    type="password"
+                    
                     outlined
                     background-color="#ffffff"
-                    label="Name"
-                  >
-                  </v-text-field>
+                    label="Password"
+                  ></v-text-field>
+
+                  <v-text-field
+                    type="password"
+                    
+                    outlined
+                    background-color="#ffffff"
+                    label="Confirm Password"
+                  ></v-text-field>
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
@@ -225,6 +238,14 @@ $text-field-border-radius: 10px;
   }
 }
 //upper right block
+
+.signin-email{
+  font-family: "Montserrat" sans-serif !important;
+  color: #616161 !important;
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 500;
+}
 </style>
 
 <style>
