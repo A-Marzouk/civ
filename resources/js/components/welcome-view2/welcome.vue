@@ -17,7 +17,7 @@
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
         <v-row justify="center" align="center" class="resume-row">
-          <v-col md="6" sm="12" cols="12"> 
+          <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
                 Make Your
@@ -164,19 +164,35 @@
       </v-container>
       <!-- 2nd inner container ends here -->
 
-    <!-- 3rd inner container starts here -->
-    <v-container style="width:100%">
-      <v-row align="center" justify="center">
-        <v-col cols="12">
-          <v-card flat tile color="transparent">
-            <v-card-title class="build-resume-title">40+ Beautiful Themes <br>to choose from</v-card-title>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-    <!-- 3rd inner container starts here -->
+      <!-- 3rd inner container starts here -->
+      <v-container style="width:100%">
+        <v-row align="center" justify="center">
+          <v-col cols="12">
+            <v-card flat tile color="transparent">
+              <v-card-title class="build-resume-title">
+                40+ Beautiful Themes
+                <br />to choose from
+              </v-card-title>
+              <v-card-subtitle
+                class="build-resume-subtitle mt-1"
+              >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-card-subtitle>
+            </v-card>
 
-
+            <v-card tile flat color="transparent">
+              <v-row>
+                <template v-for="n in 6">
+                  <v-col md="4" :key="n">
+                    <v-card flat tile color="transparent" class=card-gallery>
+                      <img :src="getGalleryImages(n)" alt="gallery" />
+                    </v-card>
+                  </v-col>
+                </template>
+              </v-row>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <!-- 3rd inner container starts here -->
     </v-container>
     <!-- main container -->
   </v-app>
@@ -197,6 +213,9 @@ export default {
   methods: {
     getSocialIcon(title) {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
+    },
+    getGalleryImages(id) {
+      return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
     }
   }
 };
@@ -366,7 +385,6 @@ $text-field-border-radius: 10px;
   font-family: "Open Sans" sans-serif !important;
   font-size: 18px !important;
   line-height: 36px;
-  text-align: center;
   color: #575757 !important;
 }
 .card-video {
@@ -379,6 +397,12 @@ $text-field-border-radius: 10px;
   img {
     width: 71px;
     height: auto;
+  }
+}
+
+.card-gallery{
+  img{
+    border-radius: 10px !important;
   }
 }
 // build resume section
