@@ -222,63 +222,54 @@
     <!-- main container -->
     <!-- Footer -->
     <v-footer color="#0F4CEE">
-      <v-card color="transparent" flat tile>
-        <v-container fluid ma-0 pa-0 style="width:100%">
-          <v-row align="center" justify="center">
-            <v-col md="2" cols="6">
+      <v-container>
+        <v-row justify="center" align="center">
+          <v-col md="2" cols="6">
+            <v-card flat color="transparent" tile>
               <img class="logo-footer" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
-            </v-col>
-            <v-col md="7" cols="6">
-              <v-card flat tile color="transparent">
-                <v-card-text class="follow-us-text">
-                  <v-row align="center" justify="center">
-                    <v-col>Follow Us:</v-col>
-                    <v-col>
-                      <v-btn fab small color="#ffffff" class="footer-social-icon">
-                        <img
-                          src="/images/welcome_landing_page/icons/social_icons/facebook.png"
-                          alt="facebook"
-                        />
-                      </v-btn>
-                      <span>14,044 Followers</span>
-                    </v-col>
-                    <v-col>
-                      <v-btn fab small color="#ffffff" class="footer-social-icon">
-                        <img
-                          src="/images/welcome_landing_page/icons/social_icons/instagram.png"
-                          alt="instagram"
-                        />
-                      </v-btn>
-                      <span>733 Followers</span>
-                    </v-col>
-                  </v-row>
-                </v-card-text>
-              </v-card>
-            </v-col>
+            </v-card>
+          </v-col>
+          <v-col md="5" cols="6">
+            <v-card flat tile color="transparent" align="right">
+              <v-card-text class="follow-us-text">
+                Follow Us:
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon">
+                  <img
+                    src="/images/welcome_landing_page/icons/social_icons/facebook.png"
+                    alt="facebook"
+                  />
+                </v-btn>
+                <span>14,044 Followers</span>
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-1 ml-sm-0 ml-0">
+                  <img
+                    src="/images/welcome_landing_page/icons/social_icons/instagram.png"
+                    alt="instagram"
+                  />
+                </v-btn>
+                <span>733 Followers</span>
+              </v-card-text>
+            </v-card>
+          </v-col>
 
-            <v-col cols="3">
-              <v-card color="transparent" flat tile>
-                <v-card-text class="follow-us-text">
-                  Contact Us:
-                  <span>
-                    <v-btn
-
-                      fab
-                      small
-                      color="#ffffff"
-                      class="footer-social-icon mx-1"
-                      v-for="i in contactIcons"
-                      :key="i.title"
-                    >
-                      <img :src="getContactIcons(i.title)" />
-                    </v-btn>
-                  </span>
-                </v-card-text>
-              </v-card>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-card>
+          <v-col md="5" cols="12">
+            <v-card color="transparent" flat tile>
+              <v-card-text class="follow-us-text">
+                Contact Us:
+                <v-btn
+                  fab
+                  x-small
+                  color="#ffffff"
+                  class="footer-social-icon mx-1"
+                  v-for="i in contactIcons"
+                  :key="i.title"
+                >
+                  <img :src="getContactIcons(i.title)" />
+                </v-btn>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-footer>
     <!-- footer -->
   </v-app>
@@ -521,9 +512,8 @@ $text-field-border-radius: 10px;
 .follow-us-text {
   font-family: "Montserrat" sans-serif !important;
   font-weight: bold;
-  font-size: 32px;
+  font-size: 22px;
   color: #ffffff !important;
-  line-height: 39px;
   span {
     font-family: "Open Sans" sans-serif !important;
     font-size: 12px;
