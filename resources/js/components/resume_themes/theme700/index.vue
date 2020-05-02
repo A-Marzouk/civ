@@ -21,8 +21,14 @@ export default {
   methods: {}
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 :root {
+  --tm700-blue-1: #513ecd;
+  --tm700-blue-2: #ebebeb;
+  --tm700-gray-1: #2d2d2d;
+  --tm700-gray-2: #d9d9d9;
+}
+#wrapper_theme700 {
   --tm700-blue-1: #513ecd;
   --tm700-blue-2: #ebebeb;
   --tm700-gray-1: #2d2d2d;
