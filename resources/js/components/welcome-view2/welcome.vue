@@ -147,9 +147,8 @@
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
-            <v-card class="card-video pa-0 ma-0" hover>
+            <v-card class="card-video" color="transparent" flat tile>
               <v-img
-                cover
                 src="/images/welcome_landing_page/icons/poster-video.png"
                 class="align-center"
               >
@@ -203,15 +202,14 @@
                 class="build-resume-subtitle mt-n8"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text>
-                <v-row align="center" justify="center">
-                  <template v-for="item in integrations">
-                    <v-col md="4" :key="item.id">
-                      <v-card flat tile color="transparent">
-                        <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
-                      </v-card>
-                    </v-col>
-                  </template>
-                </v-row>
+                <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+                  <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
+                    <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
+                    <v-card-text>
+                      <img :src="getIntegrationImage(item.id)" />
+                    </v-card-text>
+                  </v-card>
+                </slick>
               </v-card-text>
             </v-card>
           </v-col>
@@ -275,7 +273,11 @@
   </v-app>
 </template>
 <script>
+import Slick from "vue-slick";
 export default {
+  components: {
+    Slick
+  },
   data() {
     return {
       socialMediaIcons: [
@@ -296,7 +298,31 @@ export default {
         { id: 3, title: "skype" },
         { id: 4, title: "whatsapp" },
         { id: 5, title: "slack" }
-      ]
+      ],
+      slickOptions: {
+        centerMode: true,
+        infinite: true,
+        dots: true,
+        arrows: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        responsive: [
+          {
+            breakpoint: 959,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 599,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
     };
   },
   methods: {
@@ -306,6 +332,10 @@ export default {
     getGalleryImages(id) {
       return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
     },
+    getIntegrationImage(id) {
+      return `/images/welcome_landing_page/imgs/integration/${id}.png`;
+    },
+
     getContactIcons(title) {
       return `/images/welcome_landing_page/icons/${title}.png`;
     }
