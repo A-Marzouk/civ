@@ -223,7 +223,7 @@
     <!-- Footer -->
     <v-footer color="#0F4CEE">
       <v-container>
-        <v-row justify="center" align="center">
+        <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="6">
             <v-card flat color="transparent" tile>
               <img class="logo-footer" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
@@ -233,7 +233,7 @@
             <v-card flat tile color="transparent" align="right">
               <v-card-text class="follow-us-text">
                 Follow Us:
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/facebook.png"
                     alt="facebook"
@@ -251,7 +251,7 @@
             </v-card>
           </v-col>
 
-          <v-col md="5" cols="12">
+          <v-col md="5" cols="12" align="right">
             <v-card color="transparent" flat tile>
               <v-card-text class="follow-us-text">
                 Contact Us:
@@ -512,11 +512,11 @@ $text-field-border-radius: 10px;
 .follow-us-text {
   font-family: "Montserrat" sans-serif !important;
   font-weight: bold;
-  font-size: 22px;
+  font-size: 24px;
   color: #ffffff !important;
   span {
     font-family: "Open Sans" sans-serif !important;
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 .footer-logo {
