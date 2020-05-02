@@ -14,10 +14,10 @@
           <span>&nbsp;in</span>
         </v-btn>
       </v-app-bar>
-      <v-container style="width:100%">
-        <v-row justify="center" align="center">
+      <v-container style="width:100%" class="container-resume">
+        <v-row justify="center" align="center" class="resume-row">
           <v-col md="6">
-            <v-card color="transparent" flat tile>
+            <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
                 Make Your
                 <br />Online Resume
@@ -84,17 +84,14 @@
                   <img :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
-              <v-card-subtitle class="singin-email">
-                or Sign Up with Email
-              </v-card-subtitle>
+              <v-card-subtitle class="singin-email">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
               <v-card-subtitle>
                 <v-form>
-                  <v-text-field  outlined background-color="#ffffff" label="Name"></v-text-field>
-                  <v-text-field  outlined background-color="#ffffff" label="Email Adddress"></v-text-field>
+                  <v-text-field outlined background-color="#ffffff" label="Name"></v-text-field>
+                  <v-text-field outlined background-color="#ffffff" label="Email Adddress"></v-text-field>
                   <v-text-field
                     type="password"
-                    
                     outlined
                     background-color="#ffffff"
                     label="Password"
@@ -102,14 +99,31 @@
 
                   <v-text-field
                     type="password"
-                    
                     outlined
                     background-color="#ffffff"
                     label="Confirm Password"
                   ></v-text-field>
+
+                  <v-checkbox dense>
+                    <template slot="label">
+                      <div class="agree-text">
+                        I accept your
+                        <span>Terms of Use</span> &
+                        <span>Privacy Policy.</span>
+                      </div>
+                    </template>
+                  </v-checkbox>
+
+                  <v-btn color="#0046FE" class="btn-signup">
+                    <span>Sign Up</span>
+                  </v-btn>
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
+              <v-card-subtitle class="account-exists">
+                Already have account?
+                <span>Login</span>
+              </v-card-subtitle>
             </v-card>
           </v-col>
         </v-row>
@@ -160,6 +174,13 @@ $text-field-border-radius: 10px;
   }
 }
 
+.container-resume{
+  margin-top:-80px;
+}
+
+.card-resume{
+  margin-top: 152px;
+}
 //resume title
 .resume-title {
   font-family: "Montserrat" sans-serif !important;
@@ -239,12 +260,48 @@ $text-field-border-radius: 10px;
 }
 //upper right block
 
-.signin-email{
+.signin-email {
   font-family: "Montserrat" sans-serif !important;
   color: #616161 !important;
   line-height: 20px;
   font-size: 16px;
   font-weight: 500;
+}
+
+.agree-text {
+  font-family: "Montserrat" sans-serif !important;
+  color: #838ca3 !important;
+  font-size: 14px;
+  font-weight: 500;
+  span {
+    color: #0046fe !important;
+  }
+}
+
+.btn-signup {
+  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
+    4px 4px 20px rgba(25, 0, 180, 0.2) !important;
+  border-radius: 10px !important;
+  width: 181px !important;
+  height: 58px !important;
+  span {
+    font-family: "Montserrat" sans-serif !important;
+    color: #ffffff !important;
+    letter-spacing: 0.2em !important;
+    font-size: 14px !important;
+  }
+}
+
+.account-exists {
+  font-family: "Montserrat" sans-serif !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #000000;
+  span {
+    color: #0046fe !important;
+  }
 }
 </style>
 
