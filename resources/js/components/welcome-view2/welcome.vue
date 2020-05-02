@@ -224,8 +224,8 @@
               <img class="logo-footer" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
             </v-card>
           </v-col>
-          <v-col md="5" cols="6">
-            <v-card flat tile color="transparent" align="right">
+          <v-col md="6" cols="6" align="right">
+            <v-card flat tile color="transparent">
               <v-card-text class="follow-us-text">
                 Follow Us:
                 <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0">
@@ -246,7 +246,7 @@
             </v-card>
           </v-col>
 
-          <v-col md="5" cols="12" align="right">
+          <v-col md="4" cols="12" align="right">
             <v-card color="transparent" flat tile>
               <v-card-text class="follow-us-text">
                 Contact Us:
