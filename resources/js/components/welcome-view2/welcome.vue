@@ -199,11 +199,11 @@
                 class="build-resume-subtitle mt-n8"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text>
-                <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+                <slick class="integrationSlides" ref="slick" :options="slickOptions">
                   <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
                     <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
                     <v-card-text>
-                      <img :src="getIntegrationImage(item.id)" />
+                      <img width="auto" :class="item.id== 4 ?'integrationImg':''" :src="getIntegrationImage(item.id)" />
                     </v-card-text>
                   </v-card>
                 </slick>
@@ -535,6 +535,10 @@ $text-field-border-radius: 10px;
   font-size: 22px;
   line-height: 29px;
   color: #575757 !important;
+}
+.integrationImg{
+  height: 226px;
+  width: auto;
 }
 //integration section
 //footer
