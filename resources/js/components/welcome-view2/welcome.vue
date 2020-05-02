@@ -163,6 +163,20 @@
         </v-row>
       </v-container>
       <!-- 2nd inner container ends here -->
+
+    <!-- 3rd inner container starts here -->
+    <v-container style="width:100%">
+      <v-row align="center" justify="center">
+        <v-col cols="12">
+          <v-card flat tile color="transparent">
+            <v-card-title class="build-resume-title">40+ Beautiful Themes <br>to choose from</v-card-title>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+    <!-- 3rd inner container starts here -->
+
+
     </v-container>
     <!-- main container -->
   </v-app>
@@ -345,7 +359,6 @@ $text-field-border-radius: 10px;
   font-weight: bold;
   font-size: 48px;
   line-height: 55px;
-  text-align: center;
   color: #0046fe !important;
 }
 
