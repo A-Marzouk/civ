@@ -148,10 +148,7 @@
             <!-- 1st card -->
             <!-- 2nd card -->
             <v-card class="card-video" color="transparent" flat tile>
-              <v-img
-                src="/images/welcome_landing_page/icons/poster-video.png"
-                class="align-center"
-              >
+              <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center">
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
@@ -290,7 +287,9 @@ export default {
       integrations: [
         { id: 1, title: "Connect your online profiles" },
         { id: 2, title: "Integrate your social account" },
-        { id: 3, title: "Allow potential employers to contact you easly" }
+        { id: 3, title: "Allow potential employers to contact you easly" },
+        { id: 4, title: "Import your data/Export to PDF" },
+        { id: 5, title: "Easy acception line payments" }
       ],
       contactIcons: [
         { id: 1, title: "email" },
@@ -300,7 +299,7 @@ export default {
         { id: 5, title: "slack" }
       ],
       slickOptions: {
-        centerMode: true,
+        centerMode: false,
         infinite: true,
         dots: true,
         arrows: false,
@@ -585,4 +584,5 @@ $text-field-border-radius: 10px;
   border: 2px solid #ffffff !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
+
 </style>
