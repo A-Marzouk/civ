@@ -14,6 +14,7 @@
           <span>&nbsp;in</span>
         </v-btn>
       </v-app-bar>
+      <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
         <v-row justify="center" align="center" class="resume-row">
           <v-col md="6">
@@ -128,6 +129,25 @@
           </v-col>
         </v-row>
       </v-container>
+      <!-- 1st inner container ends here -->
+
+      <!-- 2nd inner container starts here -->
+      <v-container style="width:100%">
+        <v-row align="center" justify="center">
+          <v-col cols="12" align="center">
+            <v-card flat tile color="transparent">
+              <v-card-subtitle class="build-resume-title">
+                Build a resume that you
+                <br />can be proud of
+              </v-card-subtitle>
+              <v-card-subtitle
+                class="build-resume-subtitle"
+              >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <!-- 2nd inner container ends here -->
     </v-container>
     <!-- main container -->
   </v-app>
@@ -174,11 +194,11 @@ $text-field-border-radius: 10px;
   }
 }
 
-.container-resume{
-  margin-top:-80px;
+.container-resume {
+  margin-top: -80px;
 }
 
-.card-resume{
+.card-resume {
   margin-top: 152px;
 }
 //resume title
@@ -303,6 +323,26 @@ $text-field-border-radius: 10px;
     color: #0046fe !important;
   }
 }
+
+// build resume section
+.build-resume-title {
+  font-family: "Montserrat" sans-serif !important;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 55px;
+  text-align: center;
+  color: #0046fe !important;
+}
+
+.build-resume-subtitle {
+  font-family: "Open Sans" sans-serif !important;
+  font-size: 18px !important;
+  line-height: 36px;
+  /* identical to box height, or 200% */
+  text-align: center;
+  color: #575757 !important;
+}
+// build resume section
 </style>
 
 <style>
