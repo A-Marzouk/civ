@@ -91,7 +91,7 @@ export default {};
     align-items: center;
     a {
       border-radius: 9999px;
-      background-color: var(--tm700-blue-2);
+      background-color: var(--gray-3);
       margin-right: 12px;
       padding: 1rem;
       display: flex;
