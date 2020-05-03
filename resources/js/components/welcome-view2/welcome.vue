@@ -16,9 +16,14 @@
       </v-app-bar>
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
-        <div class="make-your-resume">
-          ake you
+        <!-- watermark text -->
+        <div class="float-github">
+          <img src="/images/welcome_landing_page/icons/social_icons/github.png" alt="github">
         </div>
+        <div class="make-your-resume">ake you</div>
+
+        <!-- watermark text -->
+
         <v-row justify="center" align="center" class="resume-row">
           <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
@@ -355,7 +360,8 @@ export default {
   font-family: "Segoe UI Bold";
   font-style: normal;
   font-weight: normal;
-  src: local("Segoe UI Bold"), url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
+  src: local("Segoe UI Bold"),
+    url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
 }
 
 //logo
@@ -586,18 +592,25 @@ export default {
   position: absolute;
   float: left;
   top: 226px;
-  left: -50px;
-  font-size: 300px;
+  left: -10px;
+  font-size: 260px;
   line-height: 80px;
   color: rgba(236, 236, 236, 0.2);
-  img {
-    width: 300%;
-    height: 200%;
-  }
 }
 
-.make-your-resume::selection{
-  color:rgba(236, 236, 236, 0.2);
+.make-your-resume::selection {
+  color: rgba(236, 236, 236, 0.2);
+}
+
+.float-github {
+  position: absolute;
+  top: 200px;
+  left: 15px;
+  transform: rotate(5deg);
+  img{
+    width:40px;
+    height: auto;
+  }
 }
 //...............Watermark Text.........................//
 </style>
