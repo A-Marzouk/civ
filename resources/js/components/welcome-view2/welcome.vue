@@ -18,7 +18,7 @@
       <v-container style="width:100%" class="container-resume">
         <!-- watermark text -->
         <div class="float-github">
-          <img src="/images/welcome_landing_page/icons/social_icons/github.png" alt="github">
+          <img src="/images/welcome_landing_page/icons/social_icons/github.png" alt="github" />
         </div>
         <div class="make-your-resume">ake you</div>
 
@@ -27,6 +27,9 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
+              <div class="float-upwork">
+                <img src="/images/welcome_landing_page/icons/upwork.png" alt="upwork" />
+              </div>
               <v-card-title class="resume-title">
                 Make Your
                 <br />Online Resume
@@ -607,18 +610,23 @@ export default {
   top: 200px;
   left: 15px;
   transform: rotate(5deg);
-  img{
-    width:40px;
+  img {
+    width: 40px;
+    height: auto;
+  }
+}
+.float-upwork {
+  position: absolute;
+  top: 77px;
+  left: 449px;
+  transform: rotate(-8deg);
+  img {
+    width: 60px;
     height: auto;
   }
 }
 //...............Watermark Text.........................//
 </style>
-
-
-
-
-
 
 <style>
 #welcomeView2 .v-text-field {
