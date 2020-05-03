@@ -16,6 +16,9 @@
       </v-app-bar>
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
+        <div class="make-your-resume">
+          ake you
+        </div>
         <v-row justify="center" align="center" class="resume-row">
           <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
@@ -203,7 +206,11 @@
                   <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
                     <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
                     <v-card-text>
-                      <img width="auto" :class="item.id== 4 ?'integrationImg':''" :src="getIntegrationImage(item.id)" />
+                      <img
+                        width="auto"
+                        :class="item.id== 4 ?'integrationImg':''"
+                        :src="getIntegrationImage(item.id)"
+                      />
                     </v-card-text>
                   </v-card>
                 </slick>
@@ -344,7 +351,13 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-$text-field-border-radius: 10px;
+@font-face {
+  font-family: "Segoe UI Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Segoe UI Bold"), url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
+}
+
 //logo
 .logo {
   width: 169px;
@@ -375,13 +388,13 @@ $text-field-border-radius: 10px;
   font-family: "Montserrat" sans-serif !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 72px;
+  font-size: 60px;
   line-height: 80px;
 }
 
 //resume subtitle
 .resume-subtitle {
-  margin-top: 30px;
+  margin-top: 10px;
   font-family: "Open Sans" sans-serif !important;
   font-size: 18px !important;
   line-height: 36px;
@@ -536,11 +549,11 @@ $text-field-border-radius: 10px;
   line-height: 29px;
   color: #575757 !important;
 }
-.integrationImg{
+.integrationImg {
   height: 226px;
   width: auto;
-  @media screen and (max-width: 959px){
-    height:auto;
+  @media screen and (max-width: 959px) {
+    height: auto;
   }
 }
 //integration section
@@ -566,6 +579,27 @@ $text-field-border-radius: 10px;
   }
 }
 //footer
+
+//...............Watermark text......................... 693384524//
+.make-your-resume {
+  font-family: "Segoe UI Bold";
+  position: absolute;
+  float: left;
+  top: 226px;
+  left: -50px;
+  font-size: 300px;
+  line-height: 80px;
+  color: rgba(236, 236, 236, 0.2);
+  img {
+    width: 300%;
+    height: 200%;
+  }
+}
+
+.make-your-resume::selection{
+  color:rgba(236, 236, 236, 0.2);
+}
+//...............Watermark Text.........................//
 </style>
 
 
@@ -591,5 +625,4 @@ $text-field-border-radius: 10px;
   border: 2px solid #ffffff !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
-
 </style>
