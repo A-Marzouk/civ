@@ -2,8 +2,8 @@
 
 @section('content')
 
-    <div>
-        API
+    <div id="apiView">
+        <api-view></api-view>
     </div>
 
 @endsection

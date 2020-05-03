@@ -19,7 +19,7 @@ Auth::routes(['verify' => true]);
 // public routes
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
 
-Route::get('/api/docs', 'HomeController@docs'); // API Docs
+Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 
 // Download Resume routes
 Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
