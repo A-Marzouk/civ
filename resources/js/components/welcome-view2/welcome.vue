@@ -513,6 +513,7 @@ export default {
   color: #000000;
   a {
     color: #0046fe !important;
+    font-weight: 500;
   }
 }
 
