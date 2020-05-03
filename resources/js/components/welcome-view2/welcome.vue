@@ -29,6 +29,7 @@
             <v-card color="transparent" flat tile class="card-resume">
               <div class="float-upwork">
                 <img src="/images/welcome_landing_page/icons/upwork.png" alt="upwork" />
+                <div class="blue-circle"></div>
               </div>
               <v-card-title class="resume-title">
                 Make Your
@@ -134,7 +135,7 @@
               <!-- Login Form -->
               <v-card-subtitle class="account-exists">
                 Already have account?
-                <span>Login</span>
+                <a href="#">Login</a>
               </v-card-subtitle>
             </v-card>
           </v-col>
@@ -510,7 +511,7 @@ export default {
   font-size: 16px;
   line-height: 22px;
   color: #000000;
-  span {
+  a {
     color: #0046fe !important;
   }
 }
@@ -623,6 +624,14 @@ export default {
   img {
     width: 60px;
     height: auto;
+  }
+  .blue-circle{
+    width: 32px;
+    height: 32px;
+    border-radius: 200px;
+    margin-top:50px;
+    margin-left: 42px;
+    background: rgba(0, 70, 254, 0.07);
   }
 }
 //...............Watermark Text.........................//
