@@ -27,7 +27,7 @@
             <v-toolbar-title>CIV API Docs</v-toolbar-title>
         </v-app-bar>
 
-        <v-content>
+        <v-content style="background:none">
             <v-container>
 
                 <router-view></router-view>

@@ -7,15 +7,18 @@
             </div>
             <div class="steps">
                 <div>
-                    1- Get CLIENT_ID and CLIENT_SECRET for your website/application from CIV admin.
+                    1- Get <b>CLIENT_ID</b> and <b>CLIENT_SECRET</b> for your website/application from CIV admin.
                 </div>
                 <div>
-                    2- Make a request to authenticate a user ( register/login) a user. ( In this step you will need to send your CLIENT_ID and CLIENT_SECRET along with
-                    user's email and password )
+                    2- Make a request to authenticate a user. <br/>
+
+                    <small> (Make sure In this step to send your <b>CLIENT_ID</b> and <b>CLIENT_SECRET</b> along with
+                        the request data - example included).</small>
                 </div>
                 <div>
-                    3- From last request you will get an access_token that you will use in all coming requests. ( you will need to save this access_token and send as a
-                    header in all API requests, you will find example of a header with access_token in these docs)
+                    3- From the previous request you will get an access_token that you will use in all coming requests. <br/>
+                    <small> ( you will need to save this access_token and send as a
+                        header in all API requests, you will find example of a header with access_token in these docs)</small>
                 </div>
                 <div>
                     4- As soon as you have authenticated your website/application and got user access_token back, you will be able to access all CIV API end points.
@@ -173,9 +176,10 @@ axios.post('/api/register',
         }
 
         .steps{
+            margin-left:25px;
             font-size: 18px;
             div{
-                margin-bottom: 8px;
+                margin-bottom: 20px;
             }
         }
     }
