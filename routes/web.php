@@ -19,10 +19,14 @@ Auth::routes(['verify' => true]);
 // public routes
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
 
+Route::get('/api/docs', 'HomeController@docs'); // API Docs
+Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
+
 // Download Resume routes
 Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
+Route::get('/home2', 'HomeController@welcome2')->name('home2');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
@@ -48,10 +52,21 @@ Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@ha
 Route::get('/resume-builder/{any?}', 'ResumeBuilderController@index')->name('resume.builder.main');
 Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
-
 Route::post('/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('pdf.import.submit');
 Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('docx.import');
 
+
+// subscription routes
+Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
+Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
+Route::post('/subscribe', 'SubscriptionController@subscribeStripe')->name('subscribe.stripe');
+
+// paypal
+
+Route::get('/subscribe/create-paypal-plan/{plan_period}', 'PaypalController@create_plan');
+Route::get('/subscribe/paypal/monthly', 'PaypalController@paypalRedirectMonthly')->name('paypal.redirect.monthly');
+Route::get('/subscribe/paypal/yearly', 'PaypalController@paypalRedirectYearly')->name('paypal.redirect.yearly');
+Route::get('/subscribe/paypal/return', 'PaypalController@paypalReturn')->name('paypal.return');
 
 
 
@@ -67,7 +82,7 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/{username}/resume-builder/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.main');
     Route::get('/{username}/resume-builder/edit/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
-    Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
+    Route::get('/developer/api', 'APIController@APIClients')->name('create.api.client');
 });
 
 // passport clients route:

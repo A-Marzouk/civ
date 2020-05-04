@@ -15,21 +15,36 @@
       <div class="help-text">Per year $99</div>
 
       <div class="plan-info">
-        <div class="benefit" v-for="(benefit, index) in benefits" :key="index">
+        <div class="benefit d-flex align-items-center" v-for="(benefit, index) in benefits" :key="index">
           <img src="/images/resume_builder/check_circle.svg" alt="check circle" />
           {{benefit}}
         </div>
       </div>
 
 
-      <div class="btn filled">
+      <div class="btn filled" v-if="!showPaymentOptions" @click="showPayOptions">
         <div class="d-flex flex-column">
-          <span>
-              Start Free Trial
-          </span>
+          Start Free Trial
           <small>7 days free trial</small>
         </div>
       </div>
+
+      <div class="payment-options" v-if="showPaymentOptions">
+        <form action="/subscribe" method="post" id="subscribe_form">
+          <input type="hidden" :value="csrf_token" name="_token">
+          <input type="hidden" value="yearly" name="plan">
+          <button class="stripe-btn" type="submit">
+            <img src="/images/resume_builder/my_account/stripe.png" alt="stripe">
+          </button>
+        </form>
+
+        <div class="paypal-btn NoDecor">
+          <a href="/subscribe/paypal/yearly">
+            <img src="/images/resume_builder/my_account/paypal.png" alt="stripe">
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -43,8 +58,19 @@ export default {
       "Export PDF",
       "Visual Builder",
       "Free Domain URL"
-    ]
-  })
+    ],
+    csrf_token: $('meta[name="csrf-token"]').attr('content'),
+    showPaymentOptions:false
+  }),
+  methods:{
+    submitForm(){
+      $('#subscribe_form').submit();
+    },
+    showPayOptions() {
+      this.showPaymentOptions = true;
+    }
+
+  }
 };
 </script>
 

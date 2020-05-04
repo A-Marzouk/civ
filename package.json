@@ -27,7 +27,8 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
-        "vue": "^2.6.11"
+        "vue": "^2.6.11",
+        "vue-masonry-css": "^1.0.3"
     },
     "dependencies": {
         "@babel/preset-stage-2": "^7.8.3",
@@ -37,7 +38,7 @@
         "@fortawesome/free-solid-svg-icons": "^5.13.0",
         "@fortawesome/vue-fontawesome": "^0.1.9",
         "bootstrap-vue": "^2.7.0",
-        "jquery": "^3.2",
+        "jquery": "^3.5",
         "laravel-mix-svg-vue": "^0.2.6",
         "puppeteer": "^3.0.0",
         "tailwindcss": "^1.2.0",
@@ -48,9 +49,12 @@
         "vue-masonry": "^0.11.8",
         "vue-moment": "^4.1.0",
         "vue-particles": "^1.0.9",
+        "vue-radial-progress": "^0.3.0",
         "vue-router": "^3.1.5",
+        "vue-scrollto": "^2.18.1",
         "vue-slick": "^1.1.15",
         "vue-template-compiler": "^2.6.10",
+        "vue-uuid": "^1.1.1",
         "vue2-dropzone": "^3.6.0",
         "vuetify": "^2.2.12",
         "vuex": "^3.1.2"

@@ -54,6 +54,17 @@ class EducationController extends Controller
         }
     }
 
+    public function storeMany(Request $request)
+    {
+        foreach ($request->toArray() as $education){
+            $this->validator($education)->validate();
+            Education::create($education);
+        }
+
+        return ['status' =>'success'];
+
+    }
+
     /**
      * Display the specified resource.
      *

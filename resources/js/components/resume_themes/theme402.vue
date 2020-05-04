@@ -367,7 +367,7 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 /* Global style */
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
@@ -508,6 +508,10 @@
     height: 20rem;
     width: 22rem;
     border-radius: 1.4rem;
+    @media screen and (min-width: 600px) and (max-width: 959px){
+      width: 45rem;
+      height: auto;
+    }
   }
 
   /* Work */

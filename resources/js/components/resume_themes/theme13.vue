@@ -1,4 +1,5 @@
 <template>
+<!-- Developer: Jose Quintero -->
     <v-app id="theme13" style="width: 100%">
         <div class="theme-header">
 
@@ -10,7 +11,6 @@
             </div>
 
             <div class="user-info">
-
                 <div class="left">
                     <div class="user-img">
                         <img src="/images/resume_builder/default-user.jpg" alt="">
@@ -162,11 +162,13 @@ $purple: #686299;
 
     .theme-header {
         width: 100%;
+        position: relative;
 
         .bg-header {
             width: 100%;
             height: 100%;
             position: absolute;
+            overflow: hidden;
 
             .left-bg {
                 position: absolute;
@@ -207,6 +209,7 @@ $purple: #686299;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
+            justify-content: center;
 
             .actions-wrapper {
                 display: flex;
@@ -293,7 +296,9 @@ $purple: #686299;
             }
 
             .user-data {
-                display: inline-block;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
                 font-size: 26px;
                 font-weight: 400;
 
@@ -398,7 +403,7 @@ $purple: #686299;
         align-items: center;
         width: 100%;
         height: 63px;
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.16);

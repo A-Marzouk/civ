@@ -237,7 +237,8 @@
     }
 
     .section-body-wrapper{
-        width: 1337px;
+        max-width: 1337px;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -248,7 +249,7 @@
 
         .rates{
             display: flex;
-            width:100%;
+            width: 100%;
             margin-top: 85px;
             justify-content: space-between;
 
@@ -259,9 +260,11 @@
             }
 
             .hourly-rate{
+                width: 48%;
 
                 @include lt-md {
                     margin-bottom: 3em;
+                    width: 100%;
                 }
 
                 .title{
@@ -289,7 +292,7 @@
 
 
                     input,select {
-                        width: 490px;
+                        width: 100%;
                         height: 80px;
                         border: 1px solid #001CE2;
                         border-radius: 10px;
@@ -348,7 +351,7 @@
                             .sel-wrap-input{
                                 position: relative;
                                 
-                                img{
+                                img {
                                     width: 13.8px;
                                     height: 6.9px;
                                     position: absolute;
