@@ -82,7 +82,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .tm702-main {
   .tm702-tabs--container {
     background-color: var(--white);

@@ -39,7 +39,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .tm700-header {
   .tm700-header--inner {
     padding: 0;
