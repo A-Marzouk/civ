@@ -3,15 +3,18 @@
 
         <div class="main-steps">
             <div class="title">
-                Each user has personal info object that can be updated.
+                Each user has personal info object that can be retrieved or updated.
             </div>
             <div class="steps">
                 <div>
-                    Note that to update user's personal info use the method PUT. <small>(Example included)</small>
+                    Note: allowed methods: GET & PUT <small>(Examples included)</small>
+                </div>
+                <div>
+                    Note: Please make sure to include current user_id in your request data when updating user. <small>(Examples included)</small>
                 </div>
                 <div>
                     <div class="mb-2">
-                        Fields that can be updated in Personal info object :
+                        Fields that can be retrieved or updated in Personal info object : <small>(Examples included)</small>
                     </div>
                     <code class="p-4">
 personal_info_contains = [
@@ -23,6 +26,64 @@ personal_info_contains = [
         </div>
 
         <v-card class="mx-auto mb-5" max-width="95%" outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="overline mb-4">Retrieve personal info of current user | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> GET: api/user/personal-info </v-list-item-title>
+                    <v-list-item-subtitle class="d-flex flex-column">
+
+                        Headers:
+
+                        <code class="mb-5 prettyprint lang-js p-4">
+{{headers_after_auth}}
+                        </code>
+
+                        Request example:
+
+                        <code class="prettyprint p-4 mb-5 lang-js code">
+axios.get('/api/user/personal-info');
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "data": {
+        "id": 4,
+        "full_name": "Agent -11",
+        "email": "agent11@civ.ie",
+        "designation": null,
+        "profile_pic": "/images/resume_builder/profile/holder.png",
+        "phone": null,
+        "location": null,
+        "about": null,
+        "user_id": 4,
+        "created_at": "2020-05-03 12:38:43",
+        "updated_at": "2020-05-03 12:38:43"
+    },
+    "version": "1.0.0",
+    "author_url": "https://civ.ie"
+}
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
+
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "message": "Unauthenticated."
+}
+                        </code>
+
+
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-card>
+
+        <hr>
+
+        <v-card class="mx-auto mt-5" max-width="95%" outlined>
             <v-list-item three-line>
                 <v-list-item-content>
                     <div class="overline mb-4">Update User's personal info | <b>Example request</b> | Javascript</div>
@@ -79,9 +140,9 @@ axios.put('/api/user/personal-info',
         data() {
             return {
                 headers_after_auth: "{ " +
-                    "'Accept':'application/json'," +
-                    "'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhb.....'" +
-                    "}" +
+                    "'Accept':'application/json', " +
+                    " 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhb.....'" +
+                    " }" +
                     "\n" +
                     "  ",
                 headers_before_auth: "{ " +

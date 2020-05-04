@@ -35,10 +35,15 @@ class PersonalInfoController extends Controller
 
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
         $this->validator($request->all())->validate();
         $user = User::find($request->user_id);
-        $personalInfo = $user->personalInfo;
 
+        $personalInfo = $user->personalInfo;
         if($request->isMethod('put')){
             $personalInfo->update($request->toArray());
         }
@@ -63,6 +68,10 @@ class PersonalInfoController extends Controller
 
 
     public function storeLocation(Request $request){
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
         $user = User::find($request->user_id);
         $personalInfo = $user->personalInfo;
         $this->locationValidator($request->all())->validate();
@@ -90,5 +99,9 @@ class PersonalInfoController extends Controller
         return Validator::make($data, [
             'location' => ['required', 'string', 'max:255','min:3'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id === $request->user_id || Auth::user()->hasRole('admin'));
     }
 }
