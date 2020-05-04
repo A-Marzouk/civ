@@ -16,20 +16,11 @@
       </v-app-bar>
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
-        <!-- watermark text -->
-        <div class="float-github">
-          <img src="/images/welcome_landing_page/icons/social_icons/github.png" alt="github" />
-        </div>
-        <div class="make-your-resume">ake you</div>
-
-        <!-- watermark text -->
-
         <v-row justify="center" align="center" class="resume-row">
           <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
-              <div class="float-upwork">
-                <img src="/images/welcome_landing_page/icons/upwork.png" alt="upwork" />
-                <div class="blue-circle"></div>
+              <div class="top-github-background">
+                <img src="/images/welcome_landing_page/imgs/background-images/top_image_background.png">
               </div>
               <v-card-title class="resume-title">
                 Make Your
@@ -343,10 +334,8 @@ export default {
         v => !!v || "Confirm password is required",
         v => (v && v == this.password) || "Password must match"
       ],
-      agreeCheck:false,
-      agreeCheckRules:[
-        v=> (v && v == false) || ""
-      ],
+      agreeCheck: false,
+      agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
         { id: 1, title: "instagram" },
@@ -438,7 +427,6 @@ export default {
   src: local("Segoe UI Bold"),
     url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
 }
-
 
 //logo
 .logo {
@@ -591,11 +579,11 @@ export default {
 }
 
 // build resume section
-.build-resume-container{
-  margin-top:130px;
+.build-resume-container {
+  margin-top: 130px;
 }
-.gallery-container{
-  margin-top:120px;
+.gallery-container {
+  margin-top: 120px;
 }
 .build-resume-title {
   font-family: "Montserrat" !important;
@@ -670,51 +658,18 @@ export default {
 }
 //footer
 
-//...............Watermark text......................... 693384524//
-.make-your-resume {
-  font-family: "Segoe UI Bold";
+// backgrounds
+.top-github-background{
   position: absolute;
-  float: left;
-  top: 262px;
-  left: -56px;
-  font-size: 290px;
-  line-height: 80px;
-  color: rgba(236, 236, 236, 0.2);
-}
-
-.make-your-resume::selection {
-  color: rgba(236, 236, 236, 0.2);
-}
-
-.float-github {
-  position: absolute;
-  top: 234px;
-  left: 15px;
-  transform: rotate(5deg);
-  img {
-    width: 40px;
+  width: 1720px;
+  top:-27px;
+  left:-116px;
+  img{
+    width: 79%;
     height: auto;
   }
 }
-.float-upwork {
-  position: absolute;
-  top: 75px;
-  left: 474px;
-  transform: rotate(-8deg);
-  img {
-    width: 60px;
-    height: auto;
-  }
-  .blue-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 200px;
-    margin-top: 50px;
-    margin-left: 20px;
-    background: rgba(0, 70, 254, 0.07);
-  }
-}
-//...............Watermark Text.........................//
+// backgrounds
 </style>
 
 <style>
@@ -736,8 +691,7 @@ export default {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
 
-
-#welcomeView2 .v-text-field .v-input__control .v-input__slot{
+#welcomeView2 .v-text-field .v-input__control .v-input__slot {
   min-height: 60px !important;
 }
 </style>
