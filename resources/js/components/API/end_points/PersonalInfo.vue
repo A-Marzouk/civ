@@ -3,7 +3,7 @@
 
         <div class="main-steps">
             <div class="title">
-                Each user has personal info object that can be retrieved or updated.
+                {{current_endpoint}} | Each user has {{current_endpoint}} object that can be retrieved or updated.
             </div>
             <div class="steps">
                 <div>
@@ -14,7 +14,7 @@
                 </div>
                 <div>
                     <div class="mb-2">
-                        Fields that can be retrieved or updated in Personal info object : <small>(Examples included)</small>
+                        Fields that can be retrieved or updated in {{current_endpoint}} object : <small>(Examples included)</small>
                     </div>
                     <code class="p-4">
 personal_info_contains = [
@@ -28,8 +28,8 @@ personal_info_contains = [
         <v-card class="mx-auto mb-5" max-width="95%" outlined>
             <v-list-item three-line>
                 <v-list-item-content>
-                    <div class="overline mb-4">Retrieve personal info of current user | <b>Example request</b> | Javascript</div>
-                    <v-list-item-title class="headline mb-1 mb-3"> GET: api/user/personal-info </v-list-item-title>
+                    <div class="overline mb-4">Retrieve {{current_endpoint}} of current user | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> GET: api/user/{{current_endpoint_url}} </v-list-item-title>
                     <v-list-item-subtitle class="d-flex flex-column">
 
                         Headers:
@@ -41,7 +41,7 @@ personal_info_contains = [
                         Request example:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">
-axios.get('/api/user/personal-info');
+axios.get('/api/user/{{current_endpoint_url}}');
                         </code>
 
                         <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
@@ -86,8 +86,8 @@ axios.get('/api/user/personal-info');
         <v-card class="mx-auto mt-5" max-width="95%" outlined>
             <v-list-item three-line>
                 <v-list-item-content>
-                    <div class="overline mb-4">Update User's personal info | <b>Example request</b> | Javascript</div>
-                    <v-list-item-title class="headline mb-1 mb-3"> PUT: api/user/personal-info </v-list-item-title>
+                    <div class="overline mb-4">Update User's {{current_endpoint}} | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> PUT: api/user/{{current_endpoint_url}} </v-list-item-title>
                     <v-list-item-subtitle class="d-flex flex-column">
 
                         Headers:
@@ -99,7 +99,7 @@ axios.get('/api/user/personal-info');
                         Request data:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">
-axios.put('/api/user/personal-info',
+axios.put('/api/user/{{current_endpoint_url}}',
     {
         'full_name':'Updated user name',
         'user_id': 4
@@ -165,6 +165,9 @@ axios.put('/api/user/personal-info',
                     "}" +
                     "\n" +
                     "  ",
+                current_endpoint: 'Personal Info',
+                current_endpoint_single: 'personal info',
+                current_endpoint_url: 'personal-info',
             }
         }
     }
