@@ -1,7 +1,5 @@
 <template>
-  <div class="tm702-profile">
-    Profile
-  </div>
+  <div class="tm702-profile">Profile</div>
 </template>
 
 <script>

@@ -1,9 +1,7 @@
 <template>
   <div class="tm700-portfolio tw-mt-47px" v-if="currentTab === 1">
-    <div class="inner">
-      <div
-        class="tm700-portfolios tw-grid md:tw-grid-cols-1 lg:tw-grid-cols-2 xl:tw-grid-cols-3 tw-row-gap-24 tw-col-gap-25px"
-      >
+    <div class="tm700-portfolio__inner">
+      <div class="tm700-portfolios">
         <div v-for="(portfolio,id) in portfolios" v-bind:key="id">
           <img class="tw-w-full tw-rounded-25px" v-bind:src="portfolio.url" />
         </div>
@@ -52,6 +50,9 @@ export default {
 .tm700-portfolio {
   padding-left: 16px;
   padding-right: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 25px;
   @media (min-height: 768px) {
     padding-left: 41px;
     padding-right: 44px;

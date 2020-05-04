@@ -6,7 +6,7 @@
  * Time: 12:31 AM
  */
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,20 +23,34 @@ class AuthController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api')->except('register'); // user already received the access_token - he can login / logout
+        $this->middleware('auth:api')->except('login','register');
     }
 
-    /**
-     * login api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function login(){
+
+    public function login(Request $request){
 
         if(Auth::check()){
             return response()->json(['user' => Auth::user()], $this->successStatus);
         }
-        return response()->json(['error'=>'Unauthorised'], 401);
+        // check client_id and client_secret as first step:
+        if($request->client_id){
+            $client = Client::where('id',$request->client_id)->first();
+        }else{
+            return response()->json(['error'=> 'Wrong client credentials - No client ID provided.'], 401);
+        }
+
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        if (auth()->attempt($credentials)) {
+            $access_token = auth()->user()->createToken(auth()->user()->name. '| USER ID:' . auth()->user()->id)->accessToken;
+            return response()->json(['access_token'=>$access_token], $this-> successStatus);
+        } else {
+            return response()->json(['error' => 'UnAuthorised'], 401);
+        }
     }
     /**
      * Register api
@@ -45,6 +59,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+
         // check client_id and client_secret as first step:
         if($request->client_id){
             $client = Client::where('id',$request->client_id)->first();
@@ -52,23 +67,28 @@ class AuthController extends Controller
             return response()->json(['error'=> 'Wrong client credentials - No client ID provided.'], 401);
         }
 
+
         if($request->client_secret === $client->secret && !$client->revoked){
+            // validate:
+
             $validator = Validator::make($request->all(), [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
+
             if ($validator->fails()) {
-                return response()->json(['error'=>$validator->errors()], 401);
+                return response()->json(['error'=>$validator->errors()], 422);
             }
+
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ])->assignRole('agent');
-            $success['access_token'] = $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
-            $success['user'] =  $user;
-            return response()->json(['success'=>$success], $this-> successStatus);
+
+            $access_token= $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
+            return response()->json(['access_token'=>$access_token], $this-> successStatus);
         }else{
             return response()->json(['error'=> 'Wrong client credentials.'], 401);
         }
@@ -83,7 +103,7 @@ class AuthController extends Controller
     {
         if (Auth::check()) {
             Auth::user()->token()->revoke();
-            return response()->json(['success' => 'Logged out', 'access_token' => Auth::user()->token()], $this-> successStatus);
+            return response()->json(['success' => 'Logged out - user token revoked'], $this-> successStatus);
         }
     }
 }
