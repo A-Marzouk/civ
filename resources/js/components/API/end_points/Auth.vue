@@ -35,7 +35,7 @@
 
                         Headers:
 
-                        <code class="mb-5 prettyprint lang-js">
+                        <code class="mb-5 prettyprint lang-js p-4">
 {{headers_before_auth}}
                         </code>
 
@@ -89,7 +89,7 @@ axios.post('/api/login',
 
                         Headers:
 
-                        <code class="mb-5 prettyprint lang-js">
+                        <code class="mb-5 prettyprint lang-js p-4">
 {{headers_before_auth}}
                         </code>
 
@@ -160,7 +160,7 @@ axios.post('/api/register',
     }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 
     .code{
         white-space: pre;
