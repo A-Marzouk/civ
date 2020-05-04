@@ -20,7 +20,9 @@
           <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
               <div class="top-github-background">
-                <img src="/images/welcome_landing_page/imgs/background-images/top_image_background.png">
+                <img
+                  src="/images/welcome_landing_page/imgs/background-images/top-background-img.png"
+                />
               </div>
               <v-card-title class="resume-title">
                 Make Your
@@ -36,6 +38,12 @@
 
             <v-card color="transparent" flat tile class="mt-5">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
+              <div class="top-make-resume">
+                <img
+                  src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
+                  alt
+                />
+              </div>
               <v-card-subtitle class="reserve-input">
                 <v-text-field
                   outlined
@@ -658,25 +666,40 @@ export default {
 //footer
 
 // backgrounds
-.top-github-background{
+.top-github-background {
   position: absolute;
   width: 1720px;
-  top:-27px;
-  left:-116px;
-  img{
+  top: -27px;
+  left: -116px;
+  img {
     width: 79%;
     height: auto;
   }
-  @media screen and (min-width:960px) and (max-width: 1280px){
+  @media screen and (min-width: 960px) and (max-width: 1280px) {
     width: 1420px;
-    top:-12px;
-    left:-76px;
-    img{
+    top: -12px;
+    left: -76px;
+    img {
       width: 90%;
     }
   }
-  
-  
+}
+
+.top-make-resume {
+  position: absolute;
+  width: 1720px;
+  top: 0px;
+  left: -111px;
+  img {
+    width: 78%;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1280px) {
+    top: -6px;
+    left: -68px;
+    img {
+      width: 74%;
+    }
+  }
 }
 // backgrounds
 </style>
