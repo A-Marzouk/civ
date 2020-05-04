@@ -170,7 +170,7 @@
       <!-- 1st inner container ends here -->
 
       <!-- 2nd inner container starts here -->
-      <v-container style="width:100%">
+      <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
           <v-col cols="12" align="center">
             <!-- 1st card -->
@@ -199,7 +199,7 @@
       <!-- 2nd inner container ends here -->
 
       <!-- 3rd inner container starts here -->
-      <v-container style="width:100%">
+      <v-container style="width:100%" class="gallery-container">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat tile color="transparent">
@@ -228,7 +228,7 @@
       </v-container>
       <!-- 3rd inner container starts here -->
       <!-- 3rd inner container -->
-      <v-container style="width:100%">
+      <v-container style="width:100%" class="mt-md-10 mt-sm-0 mt-0">
         <v-row align="center" justify="center">
           <v-col cols="12" align="center">
             <v-card flat tile color="transparent">
@@ -570,6 +570,7 @@ export default {
   height: 58px !important;
   span {
     font-family: "Montserrat" !important;
+    font-weight: bold;
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
     font-size: 14px !important;
@@ -590,6 +591,12 @@ export default {
 }
 
 // build resume section
+.build-resume-container{
+  margin-top:130px;
+}
+.gallery-container{
+  margin-top:120px;
+}
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
