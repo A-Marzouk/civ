@@ -102,6 +102,6 @@ class PersonalInfoController extends Controller
     }
 
     protected function is_auth($request){
-        return (Auth::user()->id === $request->user_id || Auth::user()->hasRole('admin'));
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }
