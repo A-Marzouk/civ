@@ -101,7 +101,8 @@ axios.get('/api/user/personal-info');
                         <code class="prettyprint p-4 mb-5 lang-js code">
 axios.put('/api/user/personal-info',
     {
-
+        'full_name':'Updated user name',
+        'user_id': 4
     }
 );
                         </code>
@@ -110,7 +111,21 @@ axios.put('/api/user/personal-info',
 
                         <code class="prettyprint p-4 lang-js">
 {
-
+    "data": {
+        "id": 4,
+        "full_name": "Agent 4",
+        "email": "agent11@civ.ie",
+        "designation": null,
+        "profile_pic": "/images/resume_builder/profile/holder.png",
+        "phone": null,
+        "location": null,
+        "about": null,
+        "user_id": "4",
+        "created_at": "2020-05-03 12:38:43",
+        "updated_at": "2020-05-04 13:24:11"
+    },
+    "version": "1.0.0",
+    "author_url": "https://civ.ie"
 }
                         </code>
 
@@ -119,7 +134,7 @@ axios.put('/api/user/personal-info',
 
                         <code class="prettyprint p-4 lang-js">
 {
-    "error": ""
+    "message": "Not Authenticated!"
 }
                         </code>
 

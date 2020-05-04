@@ -121,7 +121,7 @@
                 color="indigo"
                 app
         >
-            <span class="white--text">&copy; 2019</span>
+            <span class="white--text">civ.ie</span>
         </v-footer>
     </v-app>
 </template>
