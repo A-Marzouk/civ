@@ -46,9 +46,16 @@
             <v-card color="transparent" flat tile class="mt-5">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
               <v-card-subtitle class="reserve-input">
-                <v-text-field outlined placeholder="www.civ.ie/yourname" background-color="#ffffff">
+                <v-text-field
+                  outlined
+                  placeholder="www.civ.ie/yourname"
+                  v-model="username"
+                  background-color="#ffffff"
+                  @keyup="checkUser"
+                >
                   <template slot="append">
-                    <img src="/images/welcome_landing_page/icons/input-success.png" />
+                    <v-icon color="#1DBF73" v-show="userFound == true">mdi-check-circle</v-icon>
+                    <v-icon color="#E91E63" v-show="userFound == false">mdi-close-circle</v-icon>
                   </template>
                 </v-text-field>
               </v-card-subtitle>
@@ -311,6 +318,8 @@ export default {
   },
   data() {
     return {
+      username: "",
+      userFound: null,
       valid: false,
       lazy: false,
       name: "",
@@ -355,6 +364,7 @@ export default {
         { id: 4, title: "whatsapp" },
         { id: 5, title: "slack" }
       ],
+      users: ["nishad", "ahmed", "anton"],
       slickOptions: {
         centerMode: false,
         infinite: true,
@@ -384,6 +394,18 @@ export default {
   methods: {
     validate() {
       this.$refs.form.validate();
+    },
+    checkUser() {
+      if (this.username == "") {
+        this.userFound = null;
+      } else {
+        let index = this.username.search("/");
+        if (index >= 0) {
+          let splitStr = this.username.split("/");
+          var found = this.users.indexOf(splitStr[1]);
+          found > -1 ? (this.userFound = true) : (this.userFound = false);
+        }
+      }
     },
     getSocialIcon(title) {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
