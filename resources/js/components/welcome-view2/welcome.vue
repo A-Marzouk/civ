@@ -46,9 +46,16 @@
             <v-card color="transparent" flat tile class="mt-5">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
               <v-card-subtitle class="reserve-input">
-                <v-text-field outlined placeholder="www.civ.ie/yourname" background-color="#ffffff">
+                <v-text-field
+                  outlined
+                  placeholder="civ.ie/yourname"
+                  v-model="username"
+                  background-color="#ffffff"
+                  @keyup="checkUser"
+                >
                   <template slot="append">
-                    <img src="/images/welcome_landing_page/icons/input-success.png" />
+                    <v-icon color="#1DBF73" v-show="userFound == true">mdi-check-circle</v-icon>
+                    <v-icon color="#E91E63" v-show="userFound == false">mdi-close-circle</v-icon>
                   </template>
                 </v-text-field>
               </v-card-subtitle>
@@ -84,7 +91,7 @@
             </v-card>
             <!-- play store ios buttons -->
           </v-col>
-          <v-col md="6" sm="12" cols="12">
+          <v-col md="5" sm="12" cols="12">
             <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
               <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
               <v-card-subtitle>
@@ -100,14 +107,30 @@
               <v-card-subtitle class="singin-email">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
               <v-card-subtitle>
-                <v-form>
-                  <v-text-field outlined background-color="#ffffff" label="Name"></v-text-field>
-                  <v-text-field outlined background-color="#ffffff" label="Email Adddress"></v-text-field>
+                <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+                  <v-text-field
+                    type="text"
+                    outlined
+                    background-color="#ffffff"
+                    label="Name"
+                    v-model="name"
+                    :rules="nameRules"
+                  ></v-text-field>
+                  <v-text-field
+                    type="email"
+                    outlined
+                    background-color="#ffffff"
+                    label="Email Adddress"
+                    v-model="email"
+                    :rules="emailRules"
+                  ></v-text-field>
                   <v-text-field
                     type="password"
                     outlined
                     background-color="#ffffff"
                     label="Password"
+                    v-model="password"
+                    :rules="passwordRules"
                   ></v-text-field>
 
                   <v-text-field
@@ -115,9 +138,11 @@
                     outlined
                     background-color="#ffffff"
                     label="Confirm Password"
+                    v-model="confirmPassword"
+                    :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense>
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -127,7 +152,7 @@
                     </template>
                   </v-checkbox>
 
-                  <v-btn color="#0046FE" class="btn-signup">
+                  <v-btn color="#0046FE" class="btn-signup" @click="validate">
                     <span>Sign Up</span>
                   </v-btn>
                 </v-form>
@@ -139,6 +164,7 @@
               </v-card-subtitle>
             </v-card>
           </v-col>
+          <v-col md="1"></v-col>
         </v-row>
       </v-container>
       <!-- 1st inner container ends here -->
@@ -293,6 +319,35 @@ export default {
   },
   data() {
     return {
+      username: "civ.ie/",
+      userFound: null,
+      valid: false,
+      lazy: false,
+      name: "",
+      nameRules: [
+        v => !!v || "Name is required",
+        v => (v && v.length >= 3) || "Name must be less than 3 characters"
+      ],
+      email: "",
+      emailRules: [
+        v => !!v || "E-mail is required",
+        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      ],
+      password: "",
+      passwordRules: [
+        v => !!v || "Password is required",
+        v => (v && v.length >= 6) || "Password must be less than 6 characters"
+      ],
+      confirmPassword: "",
+      confirmPasswordRules: [
+        v => !!v || "Confirm password is required",
+        v => (v && v == this.password) || "Password must match"
+      ],
+      agreeCheck:false,
+      agreeCheckRules:[
+        v=> (v && v == false) || ""
+      ],
+
       socialMediaIcons: [
         { id: 1, title: "instagram" },
         { id: 2, title: "linkedin" },
@@ -314,6 +369,7 @@ export default {
         { id: 4, title: "whatsapp" },
         { id: 5, title: "slack" }
       ],
+      users: ["nishad", "ahmed", "anton"],
       slickOptions: {
         centerMode: false,
         infinite: true,
@@ -341,6 +397,21 @@ export default {
     };
   },
   methods: {
+    validate() {
+      this.$refs.form.validate();
+    },
+    checkUser() {
+      if (this.username == "") {
+        this.userFound = null;
+      } else {
+        let index = this.username.search("/");
+        if (index >= 0) {
+          let splitStr = this.username.split("/");
+          var found = this.users.indexOf(splitStr[1]);
+          found > -1 ? (this.userFound = true) : (this.userFound = false);
+        }
+      }
+    },
     getSocialIcon(title) {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
     },
@@ -368,16 +439,17 @@ export default {
     url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
 }
 
+
 //logo
 .logo {
-  width: 169px;
-  height: auto;
+  width: 163px;
+  height: 69px;
 }
 
 //..................Upper Left Block.................
 //appbar login btn
 .btn-appbar-login {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-size: 1.125rem !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
@@ -387,7 +459,7 @@ export default {
 }
 
 .container-resume {
-  margin-top: -80px;
+  margin-top: -60px;
 }
 
 .card-resume {
@@ -395,24 +467,24 @@ export default {
 }
 //resume title
 .resume-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 60px;
+  font-size: 54px;
   line-height: 80px;
 }
 
 //resume subtitle
 .resume-subtitle {
   margin-top: 10px;
-  font-family: "Open Sans" sans-serif !important;
-  font-size: 18px !important;
+  font-family: "Open Sans" !important;
+  font-size: 17px !important;
   line-height: 36px;
   color: #828282 !important;
 }
 
 .btn-get-started {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
   line-height: 10px;
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
@@ -421,7 +493,7 @@ export default {
 }
 //reserve title
 .reserve-title {
-  font-family: "Open Sans" sans-serif !important;
+  font-family: "Open Sans" !important;
   font-weight: bold;
   font-size: 18px !important;
   line-height: 36px;
@@ -437,7 +509,7 @@ export default {
 }
 //Download text
 .download-text {
-  font-family: "Open Sans" sans-serif !important;
+  font-family: "Open Sans" !important;
   font-size: 16px;
   color: #313131;
 }
@@ -455,7 +527,7 @@ export default {
 }
 
 .login-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 18px;
 }
@@ -473,7 +545,7 @@ export default {
 //upper right block
 
 .signin-email {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #616161 !important;
   line-height: 20px;
   font-size: 16px;
@@ -481,7 +553,7 @@ export default {
 }
 
 .agree-text {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #838ca3 !important;
   font-size: 14px;
   font-weight: 500;
@@ -497,7 +569,7 @@ export default {
   width: 181px !important;
   height: 58px !important;
   span {
-    font-family: "Montserrat" sans-serif !important;
+    font-family: "Montserrat" !important;
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
     font-size: 14px !important;
@@ -505,7 +577,7 @@ export default {
 }
 
 .account-exists {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -519,7 +591,7 @@ export default {
 
 // build resume section
 .build-resume-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
   font-size: 48px;
   line-height: 55px;
@@ -527,7 +599,7 @@ export default {
 }
 
 .build-resume-subtitle {
-  font-family: "Open Sans" sans-serif !important;
+  font-family: "Open Sans" !important;
   font-size: 18px !important;
   line-height: 36px;
   color: #575757 !important;
@@ -554,7 +626,7 @@ export default {
 
 //integration section
 .integration-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
   font-size: 22px;
   line-height: 29px;
@@ -570,12 +642,12 @@ export default {
 //integration section
 //footer
 .follow-us-text {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   color: #ffffff !important;
   span {
-    font-family: "Open Sans" sans-serif !important;
+    font-family: "Open Sans" !important;
     font-size: 14px;
   }
 }
@@ -596,9 +668,9 @@ export default {
   font-family: "Segoe UI Bold";
   position: absolute;
   float: left;
-  top: 226px;
-  left: -10px;
-  font-size: 260px;
+  top: 262px;
+  left: -56px;
+  font-size: 290px;
   line-height: 80px;
   color: rgba(236, 236, 236, 0.2);
 }
@@ -609,7 +681,7 @@ export default {
 
 .float-github {
   position: absolute;
-  top: 200px;
+  top: 234px;
   left: 15px;
   transform: rotate(5deg);
   img {
@@ -619,19 +691,19 @@ export default {
 }
 .float-upwork {
   position: absolute;
-  top: 77px;
-  left: 449px;
+  top: 75px;
+  left: 474px;
   transform: rotate(-8deg);
   img {
     width: 60px;
     height: auto;
   }
-  .blue-circle{
+  .blue-circle {
     width: 32px;
     height: 32px;
     border-radius: 200px;
-    margin-top:50px;
-    margin-left: 42px;
+    margin-top: 50px;
+    margin-left: 20px;
     background: rgba(0, 70, 254, 0.07);
   }
 }

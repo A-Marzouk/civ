@@ -43,7 +43,7 @@ class UsersController extends Controller
     }
 
     public function updateUser(Request $request){
-        $this->validator($request->all())->validate();
+        $this->updateValidator($request->all())->validate();
 
         $user = User::findOrFail($request->id);
 
@@ -75,6 +75,16 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users,email,'. $data['id'].',id',
             'username' => 'required|unique:users,username,'. $data['id'].',id',
             'password' => 'sometimes|string|min:6|confirmed',
+        ]);
+    }
+
+
+    protected function updateValidator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,'. $data['id'].',id',
+            'username' => 'required|unique:users,username,'. $data['id'].',id',
         ]);
     }
 
