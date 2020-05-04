@@ -21,7 +21,7 @@ export default {
   methods: {}
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 :root {
   --tm700-blue-1: #513ecd;
   --tm700-blue-2: #ebebeb;
