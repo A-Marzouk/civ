@@ -234,7 +234,15 @@ export default {
     align-items: center;
 
     .tm702-profile {
+      font-size: 40px;
+      line-height: 54px;
+      font-size: 40px;
+      line-height: 54px;
       h2 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 40px;
+        line-height: 54px;
         @media screen and (min-width: 768px) {
           font-size: 40px;
         }
