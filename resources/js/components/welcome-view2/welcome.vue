@@ -728,4 +728,9 @@ export default {
   border: 2px solid #ffffff !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
+
+
+#welcomeView2 .v-text-field .v-input__control .v-input__slot{
+  min-height: 60px !important;
+}
 </style>
