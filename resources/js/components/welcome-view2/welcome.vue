@@ -91,7 +91,7 @@
             </v-card>
             <!-- play store ios buttons -->
           </v-col>
-          <v-col md="6" sm="12" cols="12">
+          <v-col md="5" sm="12" cols="12">
             <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
               <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
               <v-card-subtitle>
@@ -164,6 +164,7 @@
               </v-card-subtitle>
             </v-card>
           </v-col>
+          <v-col md="1"></v-col>
         </v-row>
       </v-container>
       <!-- 1st inner container ends here -->
@@ -344,7 +345,7 @@ export default {
       ],
       agreeCheck:false,
       agreeCheckRules:[
-        v=> (v && v == false) || "You have to agree"
+        v=> (v && v == false) || ""
       ],
 
       socialMediaIcons: [
@@ -438,16 +439,17 @@ export default {
     url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
 }
 
+
 //logo
 .logo {
-  width: 169px;
-  height: auto;
+  width: 163px;
+  height: 69px;
 }
 
 //..................Upper Left Block.................
 //appbar login btn
 .btn-appbar-login {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-size: 1.125rem !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
@@ -457,7 +459,7 @@ export default {
 }
 
 .container-resume {
-  margin-top: -80px;
+  margin-top: -60px;
 }
 
 .card-resume {
@@ -465,24 +467,24 @@ export default {
 }
 //resume title
 .resume-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 60px;
+  font-size: 54px;
   line-height: 80px;
 }
 
 //resume subtitle
 .resume-subtitle {
   margin-top: 10px;
-  font-family: "Open Sans" sans-serif !important;
-  font-size: 18px !important;
+  font-family: "Open Sans" !important;
+  font-size: 17px !important;
   line-height: 36px;
   color: #828282 !important;
 }
 
 .btn-get-started {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
   line-height: 10px;
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
@@ -491,7 +493,7 @@ export default {
 }
 //reserve title
 .reserve-title {
-  font-family: "Open Sans" sans-serif !important;
+  font-family: "Open Sans" !important;
   font-weight: bold;
   font-size: 18px !important;
   line-height: 36px;
@@ -507,7 +509,7 @@ export default {
 }
 //Download text
 .download-text {
-  font-family: "Open Sans" sans-serif !important;
+  font-family: "Open Sans" !important;
   font-size: 16px;
   color: #313131;
 }
@@ -525,7 +527,7 @@ export default {
 }
 
 .login-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 18px;
 }
@@ -543,7 +545,7 @@ export default {
 //upper right block
 
 .signin-email {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #616161 !important;
   line-height: 20px;
   font-size: 16px;
@@ -551,7 +553,7 @@ export default {
 }
 
 .agree-text {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   color: #838ca3 !important;
   font-size: 14px;
   font-weight: 500;
@@ -567,7 +569,7 @@ export default {
   width: 181px !important;
   height: 58px !important;
   span {
-    font-family: "Montserrat" sans-serif !important;
+    font-family: "Montserrat" !important;
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
     font-size: 14px !important;
@@ -575,7 +577,7 @@ export default {
 }
 
 .account-exists {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -589,7 +591,7 @@ export default {
 
 // build resume section
 .build-resume-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
   font-size: 48px;
   line-height: 55px;
@@ -597,7 +599,7 @@ export default {
 }
 
 .build-resume-subtitle {
-  font-family: "Open Sans" sans-serif !important;
+  font-family: "Open Sans" !important;
   font-size: 18px !important;
   line-height: 36px;
   color: #575757 !important;
@@ -624,7 +626,7 @@ export default {
 
 //integration section
 .integration-title {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
   font-size: 22px;
   line-height: 29px;
@@ -640,12 +642,12 @@ export default {
 //integration section
 //footer
 .follow-us-text {
-  font-family: "Montserrat" sans-serif !important;
+  font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   color: #ffffff !important;
   span {
-    font-family: "Open Sans" sans-serif !important;
+    font-family: "Open Sans" !important;
     font-size: 14px;
   }
 }
@@ -666,9 +668,9 @@ export default {
   font-family: "Segoe UI Bold";
   position: absolute;
   float: left;
-  top: 226px;
-  left: -10px;
-  font-size: 260px;
+  top: 262px;
+  left: -56px;
+  font-size: 290px;
   line-height: 80px;
   color: rgba(236, 236, 236, 0.2);
 }
@@ -689,8 +691,8 @@ export default {
 }
 .float-upwork {
   position: absolute;
-  top: 77px;
-  left: 449px;
+  top: 75px;
+  left: 474px;
   transform: rotate(-8deg);
   img {
     width: 60px;
@@ -701,7 +703,7 @@ export default {
     height: 32px;
     border-radius: 200px;
     margin-top: 50px;
-    margin-left: 42px;
+    margin-left: 20px;
     background: rgba(0, 70, 254, 0.07);
   }
 }
