@@ -3,7 +3,7 @@
 
         <div class="main-steps">
             <div class="title">
-                How CIV API actually works ?
+               Authenticating a user | How CIV API actually works ?
             </div>
             <div class="steps">
                 <div>
