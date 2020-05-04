@@ -1,6 +1,6 @@
 require('./modules');
 
-let token = 'Bearer ' + ( Vue.$cookies.get('access_token') || null );
+let token = 'Bearer ' + (Vue.$cookies.get('access_token') || null);
 axios.defaults.headers.Authorization = token;
 
 // Vuetify
@@ -9,7 +9,7 @@ import vuetify from './vuetify';
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        'Accept':'application/json'
+        'Accept': 'application/json'
     }
 });
 
@@ -19,11 +19,27 @@ if ($("#welcomeView").length !== 0) {
     new Vue({
         el: '#welcomeView',
         vuetify,
-        components:{
-            'welcome-view':welcomeView
+        components: {
+            'welcome-view': welcomeView
         }
     });
 }
+
+import welcomeView2 from './components/welcome-view2/welcome';
+if ($("#welcomeView2").length !== 0) {
+    new Vue({
+        el: '#welcomeView2',
+        vuetify,
+        components: {
+            'welcome-view2': welcomeView2
+        }
+    });
+}
+
+
+
+//api components
+require('./API');
 
 //admin components
 require('./admin');
@@ -42,4 +58,3 @@ require('./admin-resume-builder');
 
 // passport and Auth components register
 require('./passport');
-
