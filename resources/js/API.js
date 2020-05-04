@@ -1,4 +1,5 @@
-// admin dash board
+// API
+
 import vuetify from './vuetify';
 
 // VueRouter
