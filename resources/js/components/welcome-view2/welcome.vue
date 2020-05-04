@@ -53,7 +53,7 @@
             </v-card>
 
             <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat>
+            <v-card color="transparent" tile flat class="mt-n5">
               <v-card-text>
                 <v-row align="center">
                   <v-col cols="6">
@@ -133,7 +133,7 @@
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules">
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n5">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -464,7 +464,6 @@ export default {
 
 //resume subtitle
 .resume-subtitle {
-  margin-top: 10px;
   font-family: "Open Sans" !important;
   font-size: 17px !important;
   line-height: 36px;
@@ -668,6 +667,16 @@ export default {
     width: 79%;
     height: auto;
   }
+  @media screen and (min-width:960px) and (max-width: 1280px){
+    width: 1420px;
+    top:-12px;
+    left:-76px;
+    img{
+      width: 90%;
+    }
+  }
+  
+  
 }
 // backgrounds
 </style>
