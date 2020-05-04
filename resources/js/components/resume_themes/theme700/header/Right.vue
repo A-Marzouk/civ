@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="tm700-right tw-py-12 tw-col-start-1 lg:tw-col-start-4 tw-col-end-3 lg:tw-col-end-5 tw-row-start-3 lg:tw-row-start-1"
-  >
+  <div class="tm700-right">
     <div class="tw-flex tw-items-center tw-justify-between">
       <div class="hourly--rate tw-flex tw-flex-row tw-items-center md:tw-ml-5 lg:tw-ml-0">
         <div class="tw-flex tw-flex-col">
@@ -40,13 +38,22 @@ export default {};
 }
 .tm700-right {
   padding: 3rem 14px 3rem 16px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
   @media only screen and (min-width: 768px) {
     padding-left: 128px;
     padding-right: 127px;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
   }
-  @media only screen and (min-width: 992px) {
-    padding-left: 0;
-    padding-right: 0;
+  @media screen and (min-width: 1200px) {
+    grid-column-start: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    padding: 0;
   }
   button {
     //tw-pt-5 tw-pr-66px tw-pb-18px tw-pl-60px

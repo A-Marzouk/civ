@@ -19,10 +19,14 @@ Auth::routes(['verify' => true]);
 // public routes
 Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
 
+Route::get('/api/docs', 'HomeController@docs'); // API Docs
+Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
+
 // Download Resume routes
 Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
+Route::get('/home2', 'HomeController@welcome2')->name('home2');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
@@ -78,7 +82,7 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/{username}/resume-builder/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.main');
     Route::get('/{username}/resume-builder/edit/{any?}', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
-    Route::get('/developer', 'APIController@APIClients')->name('create.api.client');
+    Route::get('/developer/api', 'APIController@APIClients')->name('create.api.client');
 });
 
 // passport clients route:
