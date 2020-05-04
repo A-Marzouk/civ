@@ -99,7 +99,6 @@
                 axios.post('/login', this.formData)
                     .then(response => {
                         // save the access token then redirect:
-                        console.log(response.data);
                         Vue.$cookies.set('access_token', response.data.access_token, "3y");
                         if(response.data.is_admin){
                             window.location.href = '/workforce-admin';
