@@ -37,8 +37,12 @@ class PersonalInfoController extends Controller
     {
         $this->validator($request->all())->validate();
         $user = User::find($request->user_id);
-        $personalInfo = $user->personalInfo;
 
+        if(Auth::user()->id !== $user->id || Auth::user()->hasRole('admin')){
+            throw new Exception('Not Authenticated!');
+        }
+
+        $personalInfo = $user->personalInfo;
         if($request->isMethod('put')){
             $personalInfo->update($request->toArray());
         }
