@@ -180,7 +180,7 @@
                 <br />can be proud of
               </v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle"
+                class="build-resume-subtitle mt-n5 mb-5"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
             </v-card>
             <!-- 1st card -->
@@ -234,7 +234,7 @@
             <v-card flat tile color="transparent">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-n8"
+                class="build-resume-subtitle mt-n8 mb-3"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text>
                 <slick class="integrationSlides" ref="slick" :options="slickOptions">
@@ -450,7 +450,7 @@ export default {
 //appbar login btn
 .btn-appbar-login {
   font-family: "Montserrat" !important;
-  font-size: 1.125rem !important;
+  font-size: 16px !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
   span {
@@ -463,7 +463,7 @@ export default {
 }
 
 .card-resume {
-  margin-top: 152px;
+  margin-top: 182px;
 }
 //resume title
 .resume-title {
