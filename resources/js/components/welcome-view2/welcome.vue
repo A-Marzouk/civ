@@ -100,14 +100,30 @@
               <v-card-subtitle class="singin-email">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
               <v-card-subtitle>
-                <v-form>
-                  <v-text-field outlined background-color="#ffffff" label="Name"></v-text-field>
-                  <v-text-field outlined background-color="#ffffff" label="Email Adddress"></v-text-field>
+                <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+                  <v-text-field
+                    type="text"
+                    outlined
+                    background-color="#ffffff"
+                    label="Name"
+                    v-model="name"
+                    :rules="nameRules"
+                  ></v-text-field>
+                  <v-text-field
+                    type="email"
+                    outlined
+                    background-color="#ffffff"
+                    label="Email Adddress"
+                    v-model="email"
+                    :rules="emailRules"
+                  ></v-text-field>
                   <v-text-field
                     type="password"
                     outlined
                     background-color="#ffffff"
                     label="Password"
+                    v-model="password"
+                    :rules="passwordRules"
                   ></v-text-field>
 
                   <v-text-field
@@ -115,6 +131,8 @@
                     outlined
                     background-color="#ffffff"
                     label="Confirm Password"
+                    v-model="confirmPassword"
+                    :rules="confirmPasswordRules"
                   ></v-text-field>
 
                   <v-checkbox dense>
@@ -127,7 +145,7 @@
                     </template>
                   </v-checkbox>
 
-                  <v-btn color="#0046FE" class="btn-signup">
+                  <v-btn color="#0046FE" class="btn-signup" @click="validate">
                     <span>Sign Up</span>
                   </v-btn>
                 </v-form>
@@ -293,6 +311,29 @@ export default {
   },
   data() {
     return {
+      valid: false,
+      lazy: false,
+      name: "",
+      nameRules: [
+        v => !!v || "Name is required",
+        v => (v && v.length >= 3) || "Name must be less than 3 characters"
+      ],
+      email: "",
+      emailRules: [
+        v => !!v || "E-mail is required",
+        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+      ],
+      password: "",
+      passwordRules: [
+        v => !!v || "Password is required",
+        v => (v && v.length >= 6) || "Password must be less than 6 characters"
+      ],
+      confirmPassword: "",
+      confirmPasswordRules: [
+        v => !!v || "Confirm password is required",
+        v => (v && v == this.password) || "Password must match"
+      ],
+
       socialMediaIcons: [
         { id: 1, title: "instagram" },
         { id: 2, title: "linkedin" },
@@ -341,6 +382,9 @@ export default {
     };
   },
   methods: {
+    validate() {
+      this.$refs.form.validate();
+    },
     getSocialIcon(title) {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
     },
@@ -626,11 +670,11 @@ export default {
     width: 60px;
     height: auto;
   }
-  .blue-circle{
+  .blue-circle {
     width: 32px;
     height: 32px;
     border-radius: 200px;
-    margin-top:50px;
+    margin-top: 50px;
     margin-left: 42px;
     background: rgba(0, 70, 254, 0.07);
   }
