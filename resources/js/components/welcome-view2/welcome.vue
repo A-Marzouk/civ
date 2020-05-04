@@ -48,7 +48,7 @@
               <v-card-subtitle class="reserve-input">
                 <v-text-field
                   outlined
-                  placeholder="www.civ.ie/yourname"
+                  placeholder="civ.ie/yourname"
                   v-model="username"
                   background-color="#ffffff"
                   @keyup="checkUser"
@@ -318,7 +318,7 @@ export default {
   },
   data() {
     return {
-      username: "",
+      username: "civ.ie/",
       userFound: null,
       valid: false,
       lazy: false,
