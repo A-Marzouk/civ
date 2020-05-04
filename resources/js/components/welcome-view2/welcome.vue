@@ -681,7 +681,7 @@ export default {
 
 .float-github {
   position: absolute;
-  top: 200px;
+  top: 234px;
   left: 15px;
   transform: rotate(5deg);
   img {
