@@ -142,7 +142,7 @@
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense>
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -341,6 +341,10 @@ export default {
       confirmPasswordRules: [
         v => !!v || "Confirm password is required",
         v => (v && v == this.password) || "Password must match"
+      ],
+      agreeCheck:false,
+      agreeCheckRules:[
+        v=> (v && v == false) || "You have to agree"
       ],
 
       socialMediaIcons: [
