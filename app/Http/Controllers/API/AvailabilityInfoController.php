@@ -8,6 +8,8 @@ use App\Http\Resources\AvailabilityInfo as AvailabilityInfoResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Exception;
+
 
 
 class AvailabilityInfoController extends Controller
