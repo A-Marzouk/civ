@@ -758,8 +758,8 @@ export default {
 
   @media screen and (min-width: 1025px) and (max-width: 1280px) {
     width: 1420px;
-    top: -12px;
-    left: -76px;
+    top: -44px;
+    left: -66px;
     img {
       width: 90%;
     }
