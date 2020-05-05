@@ -152,7 +152,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tm701-main {
   .tm701-tabs--container {
     background-image: url("../../../../../public/images/resume_themes/theme701/header-mask.png");

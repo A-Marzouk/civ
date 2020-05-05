@@ -196,7 +196,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .tm702-header {
   padding-top: 26px;
   padding-bottom: 42px;

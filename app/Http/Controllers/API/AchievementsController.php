@@ -21,13 +21,16 @@ class AchievementsController extends Controller
 
     public function index()
     {
-       $achievements = Achievement::where('user_id',Auth::user()->id)->paginate(5);
+       $achievements = Achievement::where('user_id',Auth::user()->id)->paginate(10);
         return AchievementResource::collection($achievements);
     }
 
     public function store(Request $request)
     {
 
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
 
         $this->validator($request->all())->validate();
 
@@ -69,6 +72,10 @@ class AchievementsController extends Controller
     {
         $achievement = Achievement::where(['id' => $id])->first();
 
+        if(!$this->is_auth($achievement)){
+            throw new Exception('Not Authenticated!');
+        }
+
         // remove the file from the directory if exists:
         if($achievement->image_src){
             if (file_exists(public_path($achievement->image_src))) {
@@ -90,5 +97,9 @@ class AchievementsController extends Controller
             'file' => ['nullable','file'],
             'url' => ['nullable','max:255'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }

@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .tm701-header {
   background-image: url("../../../../../public/images/resume_themes/theme701/header-mask.png");
   background-color: #dbdec4;
