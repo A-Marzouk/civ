@@ -140,7 +140,7 @@
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n3">
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n4">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -476,11 +476,11 @@ export default {
 }
 
 .container-resume {
-  margin-top: -24px;
+  margin-top: -50px;
 }
 
 .card-resume {
-  margin-top: 60px;
+  margin-top: 150px;
 }
 //resume title
 .resume-title {
@@ -537,13 +537,11 @@ export default {
 
 //Download text
 .download-text {
-  margin-top: 4.88vh;
   font-family: "Open Sans" !important;
   font-size: 1.02vw;
   color: #313131;
 }
 .app-store-logo {
-  margin-top: 4.88vh;
   margin-left: -20px;
   width: 170px;
   height: auto;
@@ -560,7 +558,6 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 1.23vw;
-  line-height: 1.49vh;
 }
 .social-icon {
   border-radius: 10px !important;
@@ -568,8 +565,8 @@ export default {
   width: 39px !important;
   min-width: 39px !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
-  margin-top:1.02vw;
-  margin-bottom: 1.02vw;
+  margin-top:0.5vw;
+  margin-bottom: 0.8vw;
   img {
     width: 14px;
     height: auto;
@@ -612,14 +609,14 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 150px !important;
-  height: 48px !important;
+  width: 9.30vw !important;
+  height: 2.98vw !important;
   span {
     font-family: "Montserrat" !important;
     font-weight: bold;
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
-    font-size: 14px !important;
+    font-size: 0.72vw !important;
   }
 }
 
@@ -728,37 +725,37 @@ export default {
     height: auto;
   }
 
-  @media screen and (min-width: 1400px) and (max-width: 1659px) {
-    top: -7%;
-    left: -25%;
-    img {
-      width: 74%;
-    }
-  }
+  // @media screen and (min-width: 1400px) and (max-width: 1659px) {
+  //   top: -7%;
+  //   left: -25%;
+  //   img {
+  //     width: 74%;
+  //   }
+  // }
 
-  @media screen and (min-width: 1700px) and (max-width: 1920px) {
-    top: -25%;
-    left: -11%;
-    img {
-      width: 100%;
-    }
-  }
+  // @media screen and (min-width: 1700px) and (max-width: 1920px) {
+  //   top: -25%;
+  //   left: -11%;
+  //   img {
+  //     width: 100%;
+  //   }
+  // }
 
-  @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    width: 1420px;
-    top: -12px;
-    left: -76px;
-    img {
-      width: 90%;
-    }
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    top: -40px;
-    left: -84px;
-    img {
-      width: 52%;
-    }
-  }
+  // @media screen and (min-width: 1025px) and (max-width: 1280px) {
+  //   width: 1420px;
+  //   top: -12px;
+  //   left: -76px;
+  //   img {
+  //     width: 90%;
+  //   }
+  // }
+  // @media screen and (min-width: 960px) and (max-width: 1024px) {
+  //   top: -40px;
+  //   left: -84px;
+  //   img {
+  //     width: 52%;
+  //   }
+  // }
 }
 
 .top-make-resume {
