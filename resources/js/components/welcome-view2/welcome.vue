@@ -214,7 +214,7 @@
                 <br />to choose from
               </v-card-title>
               <v-card-subtitle
-                class="build-resume-subtitle mt-1"
+                class="build-resume-subtitle  build-resume-width mt-1"
               >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-card-subtitle>
             </v-card>
 
@@ -228,22 +228,28 @@
                   </v-col>
                 </template>
               </v-row>
+              <div class="middle-layer-background3">
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer3.png" />
+              </div>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
       <!-- 3rd inner container starts here -->
       <!-- 3rd inner container -->
-      <v-container style="width:100%" class="mt-md-10 mt-sm-0 mt-0">
+      <v-container style="width:100%;" class="mt-md-10 mt-sm-0 mt-0">
         <v-row align="center" justify="center">
           <v-col cols="12" align="center">
             <v-card flat tile color="transparent">
+              <div class="middle-layer-background4">
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.png" />
+              </div>
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-n8 mb-3"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
-              <v-card-text>
-                <slick class="integrationSlides" ref="slick" :options="slickOptions">
+              <v-card-text style="z-index:2;">
+                <slick class="integrationSlides" ref="slick" :options="slickOptions" style="z-index:2;">
                   <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
                     <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
                     <v-card-text>
@@ -256,7 +262,11 @@
                   </v-card>
                 </slick>
               </v-card-text>
+              <div class="middle-layer-background5">
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.png" />
+              </div>
             </v-card>
+            
           </v-col>
         </v-row>
       </v-container>
@@ -637,6 +647,7 @@ export default {
   font-size: 16px !important;
   line-height: 36px;
   color: #575757 !important;
+  width: 60%;
 }
 .card-video {
   border-radius: 20px !important;
@@ -783,9 +794,9 @@ export default {
     width: 78%;
   }
   @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    top:30%;
+    top: 30%;
     left: -43.5%;
-    img{
+    img {
       width: 73%;
     }
   }
@@ -796,6 +807,40 @@ export default {
     }
   }
 }
+
+.middle-layer-background3 {
+  position: absolute;
+  width: 1920px;
+  top: 5%;
+  left: -10%;
+  img{
+    width: 70%;
+  }
+}
+
+.middle-layer-background4 {
+  position: absolute;
+  width: 1920px;
+  top: 4%;
+  left: -37%;
+  z-index: 0;
+  img{
+    width: 67%;
+  }
+}
+
+.middle-layer-background5 {
+  position: absolute;
+  width: 1920px;
+  top: 88%;
+  left: -37%;
+  z-index: 0;
+  img{
+    width: 67%;
+  }
+}
+
+
 // backgrounds
 </style>
 
