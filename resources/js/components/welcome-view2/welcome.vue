@@ -16,20 +16,13 @@
       </v-app-bar>
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
-        <!-- watermark text -->
-        <div class="float-github">
-          <img src="/images/welcome_landing_page/icons/social_icons/github.png" alt="github" />
-        </div>
-        <div class="make-your-resume">ake you</div>
-
-        <!-- watermark text -->
-
         <v-row justify="center" align="center" class="resume-row">
           <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
-              <div class="float-upwork">
-                <img src="/images/welcome_landing_page/icons/upwork.png" alt="upwork" />
-                <div class="blue-circle"></div>
+              <div class="top-layer-background">
+                <img
+                  src="/images/welcome_landing_page/imgs/background-images/top-background-img.png"
+                />
               </div>
               <v-card-title class="resume-title">
                 Make Your
@@ -44,7 +37,14 @@
             </v-card>
 
             <v-card color="transparent" flat tile class="mt-5">
+              <div class="top-make-resume">
+                <img
+                  src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
+                  alt
+                />
+              </div>
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
+
               <v-card-subtitle class="reserve-input">
                 <v-text-field
                   outlined
@@ -62,7 +62,7 @@
             </v-card>
 
             <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat>
+            <v-card color="transparent" tile flat class="mt-n3">
               <v-card-text>
                 <v-row align="center">
                   <v-col cols="6">
@@ -93,10 +93,10 @@
           </v-col>
           <v-col md="5" sm="12" cols="12">
             <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
-              <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
+              <v-card-subtitle class="login-title mt-n3">Create new account</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn
-                  class="social-icon mx-2"
+                  class="social-icon mx-2 mt-n2"
                   color="#ffffff"
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
@@ -104,7 +104,7 @@
                   <img :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
-              <v-card-subtitle class="singin-email">or Sign Up with Email</v-card-subtitle>
+              <v-card-subtitle class="signin-email mt-n3">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
               <v-card-subtitle>
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -112,37 +112,35 @@
                     type="text"
                     outlined
                     background-color="#ffffff"
-                    label="Name"
-                    v-model="name"
+                    placeholder="Name"
                     :rules="nameRules"
                   ></v-text-field>
                   <v-text-field
                     type="email"
                     outlined
                     background-color="#ffffff"
-                    label="Email Adddress"
-                    v-model="email"
+                    placeholder="Email Address"
                     :rules="emailRules"
                   ></v-text-field>
                   <v-text-field
                     type="password"
                     outlined
+                    placeholder="Password"
                     background-color="#ffffff"
-                    label="Password"
                     v-model="password"
                     :rules="passwordRules"
                   ></v-text-field>
 
                   <v-text-field
                     type="password"
+                    placeholder="Confirm Password"
                     outlined
                     background-color="#ffffff"
-                    label="Confirm Password"
                     v-model="confirmPassword"
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules">
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n3">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -158,7 +156,7 @@
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists">
+              <v-card-subtitle class="account-exists mt-n2">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
@@ -170,17 +168,20 @@
       <!-- 1st inner container ends here -->
 
       <!-- 2nd inner container starts here -->
-      <v-container style="width:100%">
+      <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
           <v-col cols="12" align="center">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
+              <div class="middle-layer-background1">
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
+              </div>
               <v-card-subtitle class="build-resume-title">
                 Build a resume that you
                 <br />can be proud of
               </v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle"
+                class="build-resume-subtitle mt-n5 mb-5"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
             </v-card>
             <!-- 1st card -->
@@ -199,7 +200,7 @@
       <!-- 2nd inner container ends here -->
 
       <!-- 3rd inner container starts here -->
-      <v-container style="width:100%">
+      <v-container style="width:100%" class="gallery-container">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat tile color="transparent">
@@ -228,13 +229,13 @@
       </v-container>
       <!-- 3rd inner container starts here -->
       <!-- 3rd inner container -->
-      <v-container style="width:100%">
+      <v-container style="width:100%" class="mt-md-10 mt-sm-0 mt-0">
         <v-row align="center" justify="center">
           <v-col cols="12" align="center">
             <v-card flat tile color="transparent">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-n8"
+                class="build-resume-subtitle mt-n8 mb-3"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text>
                 <slick class="integrationSlides" ref="slick" :options="slickOptions">
@@ -343,10 +344,8 @@ export default {
         v => !!v || "Confirm password is required",
         v => (v && v == this.password) || "Password must match"
       ],
-      agreeCheck:false,
-      agreeCheckRules:[
-        v=> (v && v == false) || ""
-      ],
+      agreeCheck: false,
+      agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
         { id: 1, title: "instagram" },
@@ -439,7 +438,6 @@ export default {
     url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
 }
 
-
 //logo
 .logo {
   width: 163px;
@@ -450,7 +448,7 @@ export default {
 //appbar login btn
 .btn-appbar-login {
   font-family: "Montserrat" !important;
-  font-size: 1.125rem !important;
+  font-size: 16px !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
   span {
@@ -459,11 +457,11 @@ export default {
 }
 
 .container-resume {
-  margin-top: -60px;
+  margin-top: -24px;
 }
 
 .card-resume {
-  margin-top: 152px;
+  margin-top: 60px;
 }
 //resume title
 .resume-title {
@@ -472,11 +470,11 @@ export default {
   font-weight: bold;
   font-size: 54px;
   line-height: 80px;
+  margin-bottom: 10px;
 }
 
 //resume subtitle
 .resume-subtitle {
-  margin-top: 10px;
   font-family: "Open Sans" !important;
   font-size: 17px !important;
   line-height: 36px;
@@ -548,14 +546,21 @@ export default {
   font-family: "Montserrat" !important;
   color: #616161 !important;
   line-height: 20px;
-  font-size: 16px;
+  font-size: 14px !important;
   font-weight: 500;
+}
+.label-text {
+  font-family: "Montserrat" !important;
+  font-size: 12px !important;
+  text-align: left !important;
+  font-weight: 500;
+  color: #616161;
 }
 
 .agree-text {
   font-family: "Montserrat" !important;
   color: #838ca3 !important;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   span {
     color: #0046fe !important;
@@ -566,10 +571,11 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 181px !important;
-  height: 58px !important;
+  width: 150px !important;
+  height: 48px !important;
   span {
     font-family: "Montserrat" !important;
+    font-weight: bold;
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
     font-size: 14px !important;
@@ -580,7 +586,7 @@ export default {
   font-family: "Montserrat" !important;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   color: #000000;
   a {
@@ -590,17 +596,23 @@ export default {
 }
 
 // build resume section
+.build-resume-container {
+  margin-top: 70px;
+}
+.gallery-container {
+  margin-top: 120px;
+}
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 55px;
   color: #0046fe !important;
 }
 
 .build-resume-subtitle {
   font-family: "Open Sans" !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
   line-height: 36px;
   color: #575757 !important;
 }
@@ -663,51 +675,60 @@ export default {
 }
 //footer
 
-//...............Watermark text......................... 693384524//
-.make-your-resume {
-  font-family: "Segoe UI Bold";
+// backgrounds
+.top-layer-background {
+  position: absolute;
+  width: 1720px;
+  top: -22px;
+  left: -117px;
+  img {
+    width: 80%;
+    height: auto;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1280px) {
+    width: 1420px;
+    top: -12px;
+    left: -76px;
+    img {
+      width: 90%;
+    }
+  }
+}
+
+.top-make-resume {
+  position: absolute;
+  width: 1720px;
+  top: -30px;
+  left: -111px;
+  img {
+    width: 78%;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1280px) {
+    top: -24px;
+    left: -68px;
+    img {
+      width: 74%;
+    }
+  }
+}
+
+.middle-layer-background1 {
   position: absolute;
   float: left;
-  top: 262px;
-  left: -56px;
-  font-size: 290px;
-  line-height: 80px;
-  color: rgba(236, 236, 236, 0.2);
-}
+  width: 1420px;
+  top: -114px;
+  left: -150px;
+  img{
+    width: 92%;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1280px) {
+    img{
+      width: 86%;
+    }
+  }
 
-.make-your-resume::selection {
-  color: rgba(236, 236, 236, 0.2);
 }
-
-.float-github {
-  position: absolute;
-  top: 234px;
-  left: 15px;
-  transform: rotate(5deg);
-  img {
-    width: 40px;
-    height: auto;
-  }
-}
-.float-upwork {
-  position: absolute;
-  top: 75px;
-  left: 474px;
-  transform: rotate(-8deg);
-  img {
-    width: 60px;
-    height: auto;
-  }
-  .blue-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 200px;
-    margin-top: 50px;
-    margin-left: 20px;
-    background: rgba(0, 70, 254, 0.07);
-  }
-}
-//...............Watermark Text.........................//
+// backgrounds
 </style>
 
 <style>
@@ -727,5 +748,9 @@ export default {
   fieldset {
   border: 2px solid #ffffff !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
+}
+
+#welcomeView2 .v-text-field .v-input__control .v-input__slot {
+  min-height: 40px !important;
 }
 </style>
