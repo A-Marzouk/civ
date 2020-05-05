@@ -96,7 +96,7 @@
               <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn
-                  class="social-icon mx-2 "
+                  class="social-icon mx-2"
                   color="#ffffff"
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
@@ -140,7 +140,7 @@
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="">
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class>
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -513,15 +513,15 @@ export default {
 }
 
 .btn-get-started {
-  margin-top:2.35vh;
+  margin-top: 2.35vh;
   font-family: "Montserrat" !important;
   font-weight: bold;
   line-height: 10px;
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 50px rgba(233, 30, 99, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.10vw;
-  height:2.92vw !important;
+  width: 9.1vw;
+  height: 2.92vw !important;
   font-size: 0.71vw !important;
 }
 //reserve title
@@ -533,8 +533,8 @@ export default {
   line-height: 1.85vw;
   color: #313131 !important;
   margin-bottom: 20px;
-  @media screen and (max-width: 1280px){
-    margin-top:4.52vh;
+  @media screen and (max-width: 1280px) {
+    margin-top: 4.52vh;
   }
 }
 
@@ -543,8 +543,11 @@ export default {
   font-family: "Open Sans" !important;
   font-size: 1.02vw;
   color: #313131;
-  @media screen and (max-width:1280px){
-    margin-top:18px;
+  @media screen and (max-width: 1280px) {
+    margin-top: 14px;
+  }
+  @media screen and (max-width: 1366px) {
+    margin-top: 22px;
   }
 }
 .app-store-logo {
@@ -552,8 +555,11 @@ export default {
   width: 170px;
   height: auto;
   max-width: 127% !important;
-  @media screen and (max-width:1280px){
-    margin-top:18px;
+  @media screen and (max-width: 1280px) {
+    margin-top: 14px;
+  }
+  @media screen and (min-width:1281px) and (max-width: 1366px) {
+    margin-top: 22px;
   }
 }
 // .... upper left block..............
@@ -574,7 +580,7 @@ export default {
   width: 39px !important;
   min-width: 39px !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
-  margin-top:0.5vw;
+  margin-top: 0.5vw;
   margin-bottom: 0.8vw;
   img {
     width: 14px;
@@ -618,7 +624,7 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.30vw !important;
+  width: 9.3vw !important;
   height: 2.98vw !important;
   span {
     font-family: "Montserrat" !important;
@@ -899,6 +905,4 @@ export default {
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
   min-height: 3.08vw !important;
 }
-
-
 </style>
