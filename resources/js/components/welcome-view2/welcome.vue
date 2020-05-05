@@ -37,13 +37,14 @@
             </v-card>
 
             <v-card color="transparent" flat tile class="mt-5">
-              <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
               <div class="top-make-resume">
                 <img
                   src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
                   alt
                 />
               </div>
+              <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
+
               <v-card-subtitle class="reserve-input">
                 <v-text-field
                   outlined
@@ -103,7 +104,7 @@
                   <img :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
-              <v-card-subtitle class="singin-email mt-n3">or Sign Up with Email</v-card-subtitle>
+              <v-card-subtitle class="signin-email mt-n3">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
               <v-card-subtitle>
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -111,32 +112,30 @@
                     type="text"
                     outlined
                     background-color="#ffffff"
-                    label="Name"
-                    v-model="name"
+                    placeholder="Name"
                     :rules="nameRules"
                   ></v-text-field>
                   <v-text-field
                     type="email"
                     outlined
                     background-color="#ffffff"
-                    label="Email Adddress"
-                    v-model="email"
+                    placeholder="Email Address"
                     :rules="emailRules"
                   ></v-text-field>
                   <v-text-field
                     type="password"
                     outlined
+                    placeholder="Password"
                     background-color="#ffffff"
-                    label="Password"
                     v-model="password"
                     :rules="passwordRules"
                   ></v-text-field>
 
                   <v-text-field
                     type="password"
+                    placeholder="Confirm Password"
                     outlined
                     background-color="#ffffff"
-                    label="Confirm Password"
                     v-model="confirmPassword"
                     :rules="confirmPasswordRules"
                   ></v-text-field>
@@ -157,7 +156,7 @@
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists mt-n4">
+              <v-card-subtitle class="account-exists mt-n2">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
@@ -455,7 +454,7 @@ export default {
 }
 
 .container-resume {
-  margin-top: 0px;
+  margin-top: -24px;
 }
 
 .card-resume {
@@ -468,8 +467,7 @@ export default {
   font-weight: bold;
   font-size: 54px;
   line-height: 80px;
-  
-
+  margin-bottom: 10px;
 }
 
 //resume subtitle
@@ -545,14 +543,21 @@ export default {
   font-family: "Montserrat" !important;
   color: #616161 !important;
   line-height: 20px;
-  font-size: 16px;
+  font-size: 14px !important;
   font-weight: 500;
+}
+.label-text{
+  font-family: "Montserrat" !important;
+  font-size: 12px !important;
+  text-align: left !important;
+  font-weight: 500;
+  color: #616161;
 }
 
 .agree-text {
   font-family: "Montserrat" !important;
   color: #838ca3 !important;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   span {
     color: #0046fe !important;
@@ -563,8 +568,8 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 181px !important;
-  height: 58px !important;
+  width: 150px !important;
+  height: 48px !important;
   span {
     font-family: "Montserrat" !important;
     font-weight: bold;
@@ -578,7 +583,7 @@ export default {
   font-family: "Montserrat" !important;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 22px;
   color: #000000;
   a {
@@ -671,10 +676,10 @@ export default {
 .top-github-background {
   position: absolute;
   width: 1720px;
-  top: -27px;
-  left: -116px;
+  top: -22px;
+  left: -117px;
   img {
-    width: 79%;
+    width: 80%;
     height: auto;
   }
   @media screen and (min-width: 960px) and (max-width: 1280px) {
@@ -690,13 +695,13 @@ export default {
 .top-make-resume {
   position: absolute;
   width: 1720px;
-  top: 0px;
+  top: -30px;
   left: -111px;
   img {
     width: 78%;
   }
   @media screen and (min-width: 960px) and (max-width: 1280px) {
-    top: 8px;
+    top: -24px;
     left: -68px;
     img {
       width: 74%;
@@ -726,6 +731,6 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 60px !important;
+  min-height: 40px !important;
 }
 </style>
