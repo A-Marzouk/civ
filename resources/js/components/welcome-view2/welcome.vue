@@ -61,7 +61,7 @@
             </v-card>
 
             <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat class="mt-n5">
+            <v-card color="transparent" tile flat class="mt-n3">
               <v-card-text>
                 <v-row align="center">
                   <v-col cols="6">
@@ -92,10 +92,10 @@
           </v-col>
           <v-col md="5" sm="12" cols="12">
             <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
-              <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
+              <v-card-subtitle class="login-title mt-n3">Create new account</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn
-                  class="social-icon mx-2"
+                  class="social-icon mx-2 mt-n2"
                   color="#ffffff"
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
@@ -103,7 +103,7 @@
                   <img :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
-              <v-card-subtitle class="singin-email">or Sign Up with Email</v-card-subtitle>
+              <v-card-subtitle class="singin-email mt-n3">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
               <v-card-subtitle>
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -141,7 +141,7 @@
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n5">
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n3">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -157,7 +157,7 @@
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists">
+              <v-card-subtitle class="account-exists mt-n4">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
@@ -455,11 +455,11 @@ export default {
 }
 
 .container-resume {
-  margin-top: -60px;
+  margin-top: 0px;
 }
 
 .card-resume {
-  margin-top: 182px;
+  margin-top: 60px;
 }
 //resume title
 .resume-title {
@@ -468,6 +468,8 @@ export default {
   font-weight: bold;
   font-size: 54px;
   line-height: 80px;
+  
+
 }
 
 //resume subtitle
