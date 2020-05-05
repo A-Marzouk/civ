@@ -36,7 +36,7 @@
               </v-card-subtitle>
             </v-card>
 
-            <v-card color="transparent" flat tile class="mt-5">
+            <v-card color="transparent" flat tile>
               <div class="top-make-resume">
                 <img
                   src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
@@ -93,10 +93,10 @@
           </v-col>
           <v-col md="5" sm="12" cols="12">
             <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
-              <v-card-subtitle class="login-title mt-n3">Create new account</v-card-subtitle>
+              <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn
-                  class="social-icon mx-2 mt-n2"
+                  class="social-icon mx-2 "
                   color="#ffffff"
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
@@ -487,61 +487,63 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 54px;
-  line-height: 80px;
+  font-size: 3.7vw;
+  line-height: 4.11vw;
   margin-bottom: 10px;
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 40px;
-    line-height: 40px;
-  }
+  // @media screen and (min-width: 960px) and (max-width: 1024px) {
+  //   font-size: 40px;
+  //   line-height: 40px;
+  // }
 }
 
 //resume subtitle
 .resume-subtitle {
+  margin-top: 2vh;
   font-family: "Open Sans" !important;
-  font-size: 17px !important;
-  line-height: 36px;
+  font-size: 1.23vw !important;
+  line-height: 1.85vw;
   color: #828282 !important;
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 12px !important;
-    line-height: 30px;
-  }
+  // @media screen and (min-width: 1681px) {
+  //   font-size: 24px !important;
+  // }
+  // @media screen and (min-width: 960px) and (max-width: 1024px) {
+  //   font-size: 12px !important;
+  //   line-height: 30px;
+  // }
 }
 
 .btn-get-started {
+  margin-top:2.35vh;
   font-family: "Montserrat" !important;
   font-weight: bold;
   line-height: 10px;
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 50px rgba(233, 30, 99, 0.2) !important;
   border-radius: 10px !important;
+  width: 9.10vw;
+  height:2.92vw !important;
+  font-size: 0.71vw !important;
 }
 //reserve title
 .reserve-title {
+  margin-top: 3.52vh;
   font-family: "Open Sans" !important;
   font-weight: bold;
-  font-size: 18px !important;
-  line-height: 36px;
+  font-size: 1.23vw !important;
+  line-height: 1.85vw;
   color: #313131 !important;
   margin-bottom: 20px;
 }
-//reserve input
-.reserve-input {
-  img {
-    width: auto;
-    height: 20px;
-  }
-}
+
 //Download text
 .download-text {
+  margin-top: 4.88vh;
   font-family: "Open Sans" !important;
-  font-size: 16px;
+  font-size: 1.02vw;
   color: #313131;
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 12px;
-  }
 }
 .app-store-logo {
+  margin-top: 4.88vh;
   margin-left: -20px;
   width: 170px;
   height: auto;
@@ -557,7 +559,8 @@ export default {
 .login-title {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
-  font-size: 18px;
+  font-size: 1.23vw;
+  line-height: 1.49vh;
 }
 .social-icon {
   border-radius: 10px !important;
@@ -565,6 +568,8 @@ export default {
   width: 39px !important;
   min-width: 39px !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
+  margin-top:1.02vw;
+  margin-bottom: 1.02vw;
   img {
     width: 14px;
     height: auto;
@@ -578,8 +583,8 @@ export default {
 .signin-email {
   font-family: "Montserrat" !important;
   color: #616161 !important;
-  line-height: 20px;
-  font-size: 14px !important;
+  line-height: 1.02vh;
+  font-size: 0.82vw !important;
   font-weight: 500;
 }
 .label-text {
@@ -886,6 +891,8 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 40px !important;
+  min-height: 3.08vw !important;
 }
+
+
 </style>
