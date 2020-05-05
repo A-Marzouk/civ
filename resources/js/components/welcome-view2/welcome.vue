@@ -764,6 +764,13 @@ export default {
   img {
     width: 78%;
   }
+  @media screen and (min-width: 1400px) and (max-width: 1659px) {
+    left: -28%;
+    img {
+      width: 82%;
+    }
+  }
+
   @media screen and (min-width: 1025px) and (max-width: 1280px) {
     top: -24px;
     left: -68px;
@@ -781,6 +788,9 @@ export default {
   left: -150px;
   img {
     width: 92%;
+  }
+  @media screen and (min-width: 1400px) and (max-width: 1659px) {
+    left: -27%;
   }
   @media screen and (min-width: 1025px) and (max-width: 1280px) {
     left: -25%;
