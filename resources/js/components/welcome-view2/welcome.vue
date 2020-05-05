@@ -62,7 +62,7 @@
             </v-card>
 
             <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat class="mt-n3">
+            <v-card color="transparent" tile flat class="mt-n4">
               <v-card-text>
                 <v-row align="center">
                   <v-col cols="6">
@@ -140,7 +140,7 @@
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n4">
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -156,7 +156,7 @@
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists mt-n2">
+              <v-card-subtitle class="account-exists">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
@@ -533,6 +533,9 @@ export default {
   line-height: 1.85vw;
   color: #313131 !important;
   margin-bottom: 20px;
+  @media screen and (max-width: 1280px){
+    margin-top:4.52vh;
+  }
 }
 
 //Download text
@@ -540,12 +543,18 @@ export default {
   font-family: "Open Sans" !important;
   font-size: 1.02vw;
   color: #313131;
+  @media screen and (max-width:1280px){
+    margin-top:18px;
+  }
 }
 .app-store-logo {
   margin-left: -20px;
   width: 170px;
   height: auto;
   max-width: 127% !important;
+  @media screen and (max-width:1280px){
+    margin-top:18px;
+  }
 }
 // .... upper left block..............
 
@@ -725,37 +734,37 @@ export default {
     height: auto;
   }
 
-  // @media screen and (min-width: 1400px) and (max-width: 1659px) {
-  //   top: -7%;
-  //   left: -25%;
-  //   img {
-  //     width: 74%;
-  //   }
-  // }
+  @media screen and (min-width: 1300px) and (max-width: 1659px) {
+    top: -16%;
+    left: -27%;
+    img {
+      width: 76%;
+    }
+  }
 
-  // @media screen and (min-width: 1700px) and (max-width: 1920px) {
-  //   top: -25%;
-  //   left: -11%;
-  //   img {
-  //     width: 100%;
-  //   }
-  // }
+  @media screen and (min-width: 1700px) and (max-width: 1920px) {
+    top: -22%;
+    left: -11%;
+    img {
+      width: 100%;
+    }
+  }
 
-  // @media screen and (min-width: 1025px) and (max-width: 1280px) {
-  //   width: 1420px;
-  //   top: -12px;
-  //   left: -76px;
-  //   img {
-  //     width: 90%;
-  //   }
-  // }
-  // @media screen and (min-width: 960px) and (max-width: 1024px) {
-  //   top: -40px;
-  //   left: -84px;
-  //   img {
-  //     width: 52%;
-  //   }
-  // }
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
+    width: 1420px;
+    top: -12px;
+    left: -76px;
+    img {
+      width: 90%;
+    }
+  }
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    top: -40px;
+    left: -84px;
+    img {
+      width: 52%;
+    }
+  }
 }
 
 .top-make-resume {
