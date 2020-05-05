@@ -170,12 +170,13 @@
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
-          <v-col cols="12" align="center">
+          <v-col cols="10" align="center">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
+
               <v-card-subtitle class="build-resume-title">
                 Build a resume that you
                 <br />can be proud of
@@ -192,7 +193,11 @@
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
               </v-img>
+              <div class="middle-layer-background2">
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
+              </div>
             </v-card>
+
             <!-- 2nd card -->
           </v-col>
         </v-row>
@@ -471,6 +476,10 @@ export default {
   font-size: 54px;
   line-height: 80px;
   margin-bottom: 10px;
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    font-size: 40px;
+    line-height: 40px;
+  }
 }
 
 //resume subtitle
@@ -479,6 +488,10 @@ export default {
   font-size: 17px !important;
   line-height: 36px;
   color: #828282 !important;
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    font-size: 12px !important;
+    line-height: 30px;
+  }
 }
 
 .btn-get-started {
@@ -510,6 +523,9 @@ export default {
   font-family: "Open Sans" !important;
   font-size: 16px;
   color: #313131;
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    font-size: 12px;
+  }
 }
 .app-store-logo {
   margin-left: -20px;
@@ -539,6 +555,9 @@ export default {
     width: 14px;
     height: auto;
   }
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    margin-left: 2px !important;
+  }
 }
 //upper right block
 
@@ -564,6 +583,9 @@ export default {
   font-weight: 500;
   span {
     color: #0046fe !important;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    font-size: 10px;
   }
 }
 
@@ -600,7 +622,7 @@ export default {
   margin-top: 70px;
 }
 .gallery-container {
-  margin-top: 120px;
+  margin-top: 66px;
 }
 .build-resume-title {
   font-family: "Montserrat" !important;
@@ -678,19 +700,34 @@ export default {
 // backgrounds
 .top-layer-background {
   position: absolute;
-  width: 1720px;
+  width: 1920px;
   top: -22px;
   left: -117px;
   img {
     width: 80%;
     height: auto;
   }
-  @media screen and (min-width: 960px) and (max-width: 1280px) {
+  @media screen and (min-width: 1700px) and (max-width: 1920px) {
+    top: -25%;
+    left: -11%;
+    img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
     width: 1420px;
     top: -12px;
     left: -76px;
     img {
       width: 90%;
+    }
+  }
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    top: -40px;
+    left: -84px;
+    img {
+      width: 58%;
     }
   }
 }
@@ -703,7 +740,7 @@ export default {
   img {
     width: 78%;
   }
-  @media screen and (min-width: 960px) and (max-width: 1280px) {
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
     top: -24px;
     left: -68px;
     img {
@@ -718,15 +755,28 @@ export default {
   width: 1420px;
   top: -114px;
   left: -150px;
-  img{
+  img {
     width: 92%;
   }
-  @media screen and (min-width: 960px) and (max-width: 1280px) {
-    img{
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
+    left: -25%;
+    img {
       width: 86%;
     }
   }
+}
 
+.middle-layer-background2 {
+  position: absolute;
+  float: left;
+  width: 1720px;
+  top: 25%;
+  left: -43%;
+  img {
+    width: 78%;
+  }
+  @media screen and (min-width: 1025px) and (max-width: 1280px) {
+  }
 }
 // backgrounds
 </style>
