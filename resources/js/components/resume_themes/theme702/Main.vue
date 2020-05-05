@@ -101,20 +101,19 @@ export default {
   // Start Tabs
 
   .tabs--top {
-    margin-bottom: 35px;
     border-bottom: 1px solid rgba(122, 169, 239, 0.45);
     padding-bottom: 26px;
   }
 
   .tm702-default-tab {
     font-size: 24px;
-    line-height: 1.4;
+    line-height: 33px;
     font-weight: bold;
     background: none;
     text-transform: capitalize;
     padding: 0;
     margin-right: 38px;
-    font-family: "Open Sans", sans-serif;
+    font-style: normal;
     &:hover {
       background: none;
     }

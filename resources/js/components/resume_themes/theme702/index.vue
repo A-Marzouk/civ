@@ -24,6 +24,8 @@ export default {
 #wrapper_theme702 {
   --blue: #005bd1;
   --gray: #767676;
+  --gray-1: #6d6d6d;
+  --gray-2: #1f2021;
   --gray-shadow: #2466ca;
   --gray-tab: #b3cef1;
   --gray-about: #828282;

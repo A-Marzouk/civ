@@ -1,7 +1,7 @@
 <template>
   <div class="tm702-education" v-if="currentTab === 4">
     <div class="tm702-education--inner">
-      <div v-for="{id, university} in educations">
+      <div v-for="{id} in educations" :key="id">
         <span>University</span>
         <h1>California Institute of Technology</h1>
         <div>
@@ -50,22 +50,46 @@ export default {
     padding-left: 25px;
     padding-right: 21px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-row-gap: 35px;
-
+    margin-top: 69px;
+    @media screen and (min-width: 768px) {
+      margin-top: 84px;
+    }
+    @media screen and (min-width: 1200px) {
+      margin-top: 104px;
+    }
     > div {
       span {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 19px;
+        color: var(--gray-2);
+        padding-bottom: 10px;
+        display: block;
+        @media screen and (min-width: 768px) {
+          font-size: 24px;
+          line-height: 33px;
+        }
       }
-
       h1 {
         color: var(--blue);
-        font-size: 21px;
         font-weight: normal;
-        line-height: 1.4;
         display: flex;
         flex-direction: column;
         margin-bottom: 40px;
-
+        font-style: normal;
+        font-weight: 300;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 21px;
+        line-height: 29px;
+        color: var(--blue);
+        @media screen and (min-width: 768px) {
+          font-size: 32px;
+          line-height: 44px;
+        }
         &::after {
           content: " ";
           width: 57px;
@@ -73,21 +97,34 @@ export default {
           background-color: var(--blue);
         }
       }
-
       > div {
+        display: flex;
         margin-bottom: 14px;
-
         span {
           font-weight: 300;
-          color: var(--blue);
           font-size: 18px;
+          font-style: normal;
+          line-height: 25px;
+          color: var(--blue);
+          @media screen and (min-width: 768px) {
+            font-size: 18px;
+            line-height: 25px;
+          }
+          &:first-child {
+            margin-right: 6px;
+          }
         }
       }
-
       p {
-        font-weight: 300;
         color: var(--gray-p);
+        font-style: normal;
+        font-weight: 300;
         font-size: 12px;
+        line-height: 23px;
+        @media screen and (min-width: 768px) {
+          font-size: 14px;
+          line-height: 23px;
+        }
       }
     }
   }
