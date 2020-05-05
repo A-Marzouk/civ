@@ -19,7 +19,7 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
-              <div class="top-github-background">
+              <div class="top-layer-background">
                 <img
                   src="/images/welcome_landing_page/imgs/background-images/top-background-img.png"
                 />
@@ -173,6 +173,9 @@
           <v-col cols="12" align="center">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
+              <div class="middle-layer-background1">
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
+              </div>
               <v-card-subtitle class="build-resume-title">
                 Build a resume that you
                 <br />can be proud of
@@ -546,7 +549,7 @@ export default {
   font-size: 14px !important;
   font-weight: 500;
 }
-.label-text{
+.label-text {
   font-family: "Montserrat" !important;
   font-size: 12px !important;
   text-align: left !important;
@@ -594,7 +597,7 @@ export default {
 
 // build resume section
 .build-resume-container {
-  margin-top: 130px;
+  margin-top: 70px;
 }
 .gallery-container {
   margin-top: 120px;
@@ -602,14 +605,14 @@ export default {
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 55px;
   color: #0046fe !important;
 }
 
 .build-resume-subtitle {
   font-family: "Open Sans" !important;
-  font-size: 18px !important;
+  font-size: 16px !important;
   line-height: 36px;
   color: #575757 !important;
 }
@@ -673,7 +676,7 @@ export default {
 //footer
 
 // backgrounds
-.top-github-background {
+.top-layer-background {
   position: absolute;
   width: 1720px;
   top: -22px;
@@ -707,6 +710,23 @@ export default {
       width: 74%;
     }
   }
+}
+
+.middle-layer-background1 {
+  position: absolute;
+  float: left;
+  width: 1420px;
+  top: -114px;
+  left: -150px;
+  img{
+    width: 92%;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1280px) {
+    img{
+      width: 86%;
+    }
+  }
+
 }
 // backgrounds
 </style>
