@@ -214,7 +214,7 @@
                 <br />to choose from
               </v-card-title>
               <v-card-subtitle
-                class="build-resume-subtitle  build-resume-width mt-1"
+                class="build-resume-subtitle build-resume-width mt-1"
               >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-card-subtitle>
             </v-card>
 
@@ -249,7 +249,12 @@
                 class="build-resume-subtitle mt-n8 mb-3"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text style="z-index:2;">
-                <slick class="integrationSlides" ref="slick" :options="slickOptions" style="z-index:2;">
+                <slick
+                  class="integrationSlides"
+                  ref="slick"
+                  :options="slickOptions"
+                  style="z-index:2;"
+                >
                   <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
                     <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
                     <v-card-text>
@@ -266,7 +271,6 @@
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.png" />
               </div>
             </v-card>
-            
           </v-col>
         </v-row>
       </v-container>
@@ -718,6 +722,15 @@ export default {
     width: 80%;
     height: auto;
   }
+
+  @media screen and (min-width: 1400px) and (max-width: 1659px) {
+    top: -7%;
+    left: -25%;
+    img {
+      width: 74%;
+    }
+  }
+
   @media screen and (min-width: 1700px) and (max-width: 1920px) {
     top: -25%;
     left: -11%;
@@ -813,7 +826,7 @@ export default {
   width: 1920px;
   top: 5%;
   left: -10%;
-  img{
+  img {
     width: 70%;
   }
 }
@@ -824,7 +837,7 @@ export default {
   top: 4%;
   left: -37%;
   z-index: 0;
-  img{
+  img {
     width: 67%;
   }
 }
@@ -835,11 +848,10 @@ export default {
   top: 88%;
   left: -37%;
   z-index: 0;
-  img{
+  img {
     width: 67%;
   }
 }
-
 
 // backgrounds
 </style>
