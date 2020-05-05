@@ -33,6 +33,7 @@ export default {
   --bg-color: #f9f9f9;
   --bg-gray: #e5e5e5;
   --green: #6aefbf;
+  --yellow: #ffb340;
   --white: #fff;
   --size: 24px;
   --breakpoint-xs: 0;
