@@ -487,7 +487,7 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 3.7vw;
+  font-size: 3.8vw;
   line-height: 4.11vw;
   margin-bottom: 10px;
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
@@ -500,7 +500,7 @@ export default {
 .resume-subtitle {
   margin-top: 2vh;
   font-family: "Open Sans" !important;
-  font-size: 1.23vw !important;
+  font-size: 1.4vw !important;
   line-height: 1.85vw;
   color: #828282 !important;
   // @media screen and (min-width: 1681px) {
@@ -759,7 +759,7 @@ export default {
   @media screen and (min-width: 1025px) and (max-width: 1280px) {
     width: 1420px;
     top: -44px;
-    left: -66px;
+    left: -72px;
     img {
       width: 90%;
     }
