@@ -8,7 +8,7 @@
                 CIV API ENDPOINTS
             </div>
             <v-list dense class="NoDecor">
-                <v-list-item link to="/api/docs/auth">
+                <v-list-item link to="/api/docs">
                     <v-list-item-content>
                         <v-list-item-title>Authentication</v-list-item-title>
                     </v-list-item-content>
