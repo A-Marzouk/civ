@@ -33,7 +33,8 @@ import apiWorkEx from './components/API/end_points/WorkEx';
 if ($("#apiView").length !== 0) {
 
     const routes = [
-        {path: '/api/docs', component: apiAuth, name:'Auth'},
+        {path: '/api/docs/', redirect:'/api/docs/auth'},
+        {path: '/api/docs/auth', component: apiAuth, name:'Auth'},
         {path: '/api/docs/personal-info', component: apiPersonalInfo, name:'PersonalInfo'},
         {path: '/api/docs/achievements', component: apiAchievements, name:'Achievements'},
         {path: '/api/docs/availability-info', component: apiAvailabilityInfo, name:'AvailabilityInfo'},

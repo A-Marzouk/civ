@@ -1,16 +1,5 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/app-vuetify.css": "/css/app-vuetify.css",
-    "/js/app.41ea1216d506a12a13dd.hot-update.js": "/js/app.41ea1216d506a12a13dd.hot-update.js",
-    "/js/app.59bef4c3d5e47895eb18.hot-update.js": "/js/app.59bef4c3d5e47895eb18.hot-update.js",
-    "/js/app.512af8517bcc5c78ae68.hot-update.js": "/js/app.512af8517bcc5c78ae68.hot-update.js",
-    "/js/app.04cf54afa26874305780.hot-update.js": "/js/app.04cf54afa26874305780.hot-update.js",
-    "/js/app.b688028b39a160ec1ce8.hot-update.js": "/js/app.b688028b39a160ec1ce8.hot-update.js",
-    "/js/app.57937f699fada714d265.hot-update.js": "/js/app.57937f699fada714d265.hot-update.js",
-    "/js/app.c4eb35d4fbed75f7f93f.hot-update.js": "/js/app.c4eb35d4fbed75f7f93f.hot-update.js",
-    "/js/app.21e83ac0af259aeae7dc.hot-update.js": "/js/app.21e83ac0af259aeae7dc.hot-update.js",
-    "/js/app.97c36f3f20dfc340cab1.hot-update.js": "/js/app.97c36f3f20dfc340cab1.hot-update.js",
-    "/js/app.05c1780ced006b798742.hot-update.js": "/js/app.05c1780ced006b798742.hot-update.js",
-    "/js/app.1e7031a1ccbaf555e4e5.hot-update.js": "/js/app.1e7031a1ccbaf555e4e5.hot-update.js"
+    "/css/app-vuetify.css": "/css/app-vuetify.css"
 }
