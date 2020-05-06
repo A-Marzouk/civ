@@ -548,7 +548,7 @@ export default {
     margin-top: -35px;
   }
   @media screen and (max-width: 1440px) {
-    margin-top: -40px;
+    margin-top: -14px;
   }
 }
 //Download text
