@@ -483,7 +483,7 @@ if ($("#resumeTheme506").length !== 0) {
         }
     });
 }
-
+/*
 import resumeTheme1000 from "./components/resume_themes/theme1000";
 if ($("#resumeTheme1000").length !== 0) {
     new Vue({
@@ -493,3 +493,4 @@ if ($("#resumeTheme1000").length !== 0) {
         }
     });
 }
+*/
