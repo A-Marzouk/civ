@@ -653,7 +653,7 @@ export default {
 
 // build resume section
 .build-resume-container {
-  margin-top: 70px;
+  margin-top: 65px;
 }
 .gallery-container {
   margin-top: 66px;
@@ -778,53 +778,24 @@ export default {
 
 .top-make-resume {
   position: absolute;
-  width: 1720px;
-  top: -30px;
-  left: -111px;
+  width: 1920px;
+  top: -43%;
+  left: -12%;
   img {
-    width: 78%;
+    width: 100%;
   }
-  @media screen and (min-width: 1400px) and (max-width: 1659px) {
-    left: -28%;
-    img {
-      width: 82%;
-    }
-  }
-
-  @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    top: -24px;
-    left: -68px;
-    img {
-      width: 74%;
-    }
-  }
+  
 }
 
 .middle-layer-background1 {
   position: absolute;
-  float: left;
-  width: 1420px;
+  width: 1920px;
   top: -114px;
-  left: -150px;
+  left: -18%;
   img {
-    width: 92%;
+    width: 95%;
   }
-  @media screen and (min-width: 1400px) and (max-width: 1659px) {
-    left: -27%;
-  }
-  @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    left: -25%;
-    img {
-      width: 86%;
-    }
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    top: -46%;
-    left: -52%;
-    img {
-      width: 68%;
-    }
-  }
+  
 }
 
 .middle-layer-background2 {
