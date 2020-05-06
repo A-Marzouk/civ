@@ -174,7 +174,7 @@
             <!-- 1st card -->
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.svg" />
               </div>
 
               <v-card-subtitle class="build-resume-title">
@@ -653,7 +653,10 @@ export default {
 
 // build resume section
 .build-resume-container {
-  margin-top: 65px;
+  margin-top: 130px;
+  @media screen and (max-width: 1440px) {
+    margin-top: 80px;
+  }
 }
 .gallery-container {
   margin-top: 114px;
@@ -661,7 +664,7 @@ export default {
     margin-top: 52px;
   }
   @media screen and (max-width: 1280px) {
-    margin-top: -8px;
+    margin-top: 26px;
   }
 }
 .build-resume-title {
@@ -670,6 +673,9 @@ export default {
   font-size: 2.5vw;
   line-height: 2.84vw;
   color: #0046fe !important;
+  @media screen and (max-width: 1440px) {
+    font-size: 34px;
+  }
 }
 
 .build-resume-subtitle {
@@ -678,6 +684,9 @@ export default {
   line-height: 36px;
   color: #575757 !important;
   width: 60%;
+  @media screen and (max-width: 1440px){
+    font-size: 16px !important;
+  }
 }
 .card-video {
   border-radius: 20px !important;
@@ -742,7 +751,7 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: -18%;
+  top: -18.5%;
   left: -11%;
   right: 0;
   margin-right: auto;
@@ -755,10 +764,10 @@ export default {
     width: 1366px;
     left: -20%;
   }
-  @media screen and (max-width: 1280px){
+  @media screen and (max-width: 1280px) {
     width: 1280px;
-    top:-10%;
-    left:-10%;
+    top: -10%;
+    left: -10%;
   }
 
   // @media screen and (min-width: 1300px) and (max-width: 1659px) {
@@ -824,25 +833,20 @@ export default {
 .middle-layer-background1 {
   position: absolute;
   width: 1920px;
-  top: -114px;
+  top: -83%;
   left: -18%;
-  img {
-    width: 92%;
-  }
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -28%;
-  }
-  @media screen and (max-width: 1380px) {
-    left: -27%;
-    img {
-      width: 90%;
-    }
+    top: -80%;
   }
   @media screen and (max-width: 1280px) {
-    img {
-      width: 84%;
-    }
+    width: 1280px;
+    left: -18%;
+    top: -80%;
   }
 }
 
@@ -852,36 +856,21 @@ export default {
   width: 1920px;
   top: 260%;
   left: -17.5%;
-  img {
-    width: 100%;
-  }
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 193%;
+    top: 182%;
     left: -25.5%;
-    img {
-      width: 96%;
-    }
   }
+
   @media screen and (max-width: 1280px) {
-    left: -26.5%;
-    img {
-      width: 88%;
-    }
+    width: 1280px;
+    top: 216%;
+    left: -17.5%;
   }
-  // @media screen and (min-width: 1025px) and (max-width: 1280px) {
-  //   top: 30%;
-  //   left: -43.5%;
-  //   img {
-  //     width: 73%;
-  //   }
-  // }
-  // @media screen and (min-width: 960px) and (max-width: 1024px) {
-  //   left: -73%;
-  //   img {
-  //     width: 58%;
-  //   }
-  // }
 }
 
 .middle-layer-background3 {
