@@ -21,9 +21,11 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap");
 
-:root {
+#wrapper_theme702 {
   --blue: #005bd1;
   --gray: #767676;
+  --gray-1: #6d6d6d;
+  --gray-2: #1f2021;
   --gray-shadow: #2466ca;
   --gray-tab: #b3cef1;
   --gray-about: #828282;
@@ -31,6 +33,7 @@ export default {
   --bg-color: #f9f9f9;
   --bg-gray: #e5e5e5;
   --green: #6aefbf;
+  --yellow: #ffb340;
   --white: #fff;
   --size: 24px;
   --breakpoint-xs: 0;

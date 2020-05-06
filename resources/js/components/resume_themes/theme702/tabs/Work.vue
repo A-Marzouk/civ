@@ -70,11 +70,21 @@ export default {
     padding-left: 15px;
     padding-right: 4px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmap(300px, 1fr));
-    grid-row-gap: 58px;
+    grid-template-columns: repeat(1, minmap(0, 1fr));
+    grid-row-gap: 122px;
+    margin-top: 61px;
     @media screen and (min-width: 768px) {
       padding-left: 34px;
       padding-right: 21px;
+      margin-top: 102px;
+    }
+    @media screen and (min-width: 1200px) {
+      width: 80%;
+      margin: auto;
+      margin-top: 106px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-column-gap: 217px;
+      grid-row-gap: 122px;
     }
   }
 
@@ -83,16 +93,19 @@ export default {
 
     .tm702-left {
       flex: 1;
-
       h1 {
         color: var(--blue);
-        font-size: 18px;
+        font-size: 24px;
+        line-height: 33px;
+        font-style: normal;
         font-weight: normal;
-        line-height: 1.4;
         display: flex;
         flex-direction: column;
         margin-bottom: 42px;
-
+        @media screen and (min-width: 768px) {
+          font-size: 36px;
+          line-height: 49px;
+        }
         &::after {
           content: " ";
           width: 35px;
@@ -101,18 +114,19 @@ export default {
           margin-top: 4px;
         }
       }
-
       > div {
         display: flex;
         flex-direction: column;
-
         span {
-          font-size: 14px;
+          font-style: normal;
           font-weight: 300;
-          line-height: 2.2;
-
+          font-size: 14px;
+          line-height: 22px;
+          @media screen and (min-width: 768px) {
+            font-size: 19px;
+            line-height: 30px;
+          }
           &:last-child {
-            font-size: 12px;
             color: var(--blue);
           }
         }
@@ -121,16 +135,31 @@ export default {
 
     .tm702-right {
       flex: 2;
-
       span {
-        font-size: 18px;
         margin-bottom: 52px;
         display: block;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 25px;
+        color: var(--gray-1);
+        padding-top: 6px;
+        @media screen and (min-width: 768px) {
+          font-size: 22px;
+          line-height: 30px;
+        }
       }
 
       p {
-        font-size: 14px;
-        line-height: 1.9;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 23px;
+        color: var(--gray-p);
+        @media screen and (min-width: 768px) {
+          font-size: 14px;
+          line-height: 23px;
+        }
       }
     }
   }
