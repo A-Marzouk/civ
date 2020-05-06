@@ -4,11 +4,11 @@
           Create new account
         </span>
         <div class="social-wrap">
-            <a href="/register/instagram"><img src="/images/welcome_landing_page/icons/instagram.png" alt=""></a>
-            <a href="/register/linkedin"><img src="/images/welcome_landing_page/icons/linkedin.png" alt=""></a>
-            <a href="/register/google"><img src="/images/welcome_landing_page/icons/google.png" alt=""></a>
-            <a href="/register/facebook"><img src="/images/welcome_landing_page/icons/facebook.png" alt=""></a>
-            <a href="/register/github"><img src="/images/welcome_landing_page/icons/github.png" alt=""></a>
+            <a href="/register/instagram"><img src="/images/welcome_landing_page/icons/social_icons/instagram.png" alt=""></a>
+            <a href="/register/linkedin"><img src="/images/welcome_landing_page/icons/social_icons/linkedin.png" alt=""></a>
+            <a href="/register/google"><img src="/images/welcome_landing_page/icons/social_icons/google.png" alt=""></a>
+            <a href="/register/facebook"><img src="/images/welcome_landing_page/icons/social_icons/facebook.png" alt=""></a>
+            <a href="/register/github"><img src="/images/welcome_landing_page/icons/social_icons/github.png" alt=""></a>
         </div>
         <span class="title-inline">
           or Sign Up with Email
@@ -152,6 +152,15 @@
 </script>
 
 <style scoped lang="scss">
+
+    .social-wrap{
+        a{
+            img{
+                width: 18px;
+                height: auto;
+            }
+        }
+    }
 
     .disabled{
         a:hover {

@@ -196,7 +196,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .tm702-header {
   padding-top: 26px;
   padding-bottom: 42px;
@@ -232,16 +232,24 @@ export default {
     flex-direction: row;
     //margin-bottom: 34px;
     align-items: center;
-
     .tm702-profile {
       h2 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 30px;
+        color: var(--blue);
         @media screen and (min-width: 768px) {
           font-size: 40px;
+          line-height: 45px;
         }
       }
       span {
+        font-size: 12px;
+        line-height: 16px;
         @media screen and (min-width: 768px) {
           font-size: 21px;
+          line-height: 29px;
         }
       }
     }

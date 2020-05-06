@@ -1,7 +1,7 @@
 <template>
   <div class="tm702-portfolio" v-if="currentTab === 2">
     <div class="tm702-portfolio-container">
-      <a href="#" v-for="{id, url, alt} in portfolios" :key="id">
+      <a href="#" v-for="{ id, url, alt } in portfolios" :key="id">
         <img :src="url" :alt="alt" />
       </a>
     </div>
@@ -50,27 +50,36 @@ export default {
 <style lang="scss">
 .tm702-portfolio {
   .tm702-portfolio-container {
-    padding-left: 23px;
-    padding-right: 21px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     grid-row-gap: 26px;
     grid-column-gap: 10px;
+    margin-top: 39px;
     @media screen and(min-width: 768px) {
-      padding-left: 46px;
-      padding-right: 46px;
-    }
-  }
-  img {
-    width: 332px;
-    height: 260px;
-    @media screen and(min-width: 768px) {
-      width: 677px;
-      height: 530px;
+      margin-top: 83px;
     }
     @media screen and(min-width: 1200px) {
-      width: 488px;
-      height: 382px;
+      margin-top: 108px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    @media screen and(min-width: 1800px) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  a {
+    display: block;
+    margin: auto;
+    img {
+      width: 332px;
+      height: 260px;
+      @media screen and(min-width: 768px) {
+        width: 677px;
+        height: 530px;
+      }
+      @media screen and(min-width: 1200px) {
+        width: 488px;
+        height: 382px;
+      }
     }
   }
 }

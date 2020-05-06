@@ -192,6 +192,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             display: flex;
             flex-direction: column;
             align-items: flex-end;
+            justify-content: center;
 
             .actions-wrapper {
                 display: flex;
@@ -283,7 +284,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             }
 
             .user-data {
-                display: inline-block;
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
                 font-size: 26px;
                 font-weight: 400;
 
@@ -365,6 +368,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     &--active {
                         color: #2D2584 !important;
                         font-weight: 700;
+                        background: none;
                     }
 
                     &::before {

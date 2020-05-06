@@ -1,11 +1,8 @@
 <template>
-  <div
-    class="tm700-left md:tw-pl-96px md:tw-py-16 tw-py-12 tw-flex tw-justify-end tw-bg-tm700-1 tw-relative md:tw-items-center tw-min-h-169px sm:tw-min-h-226px"
-  >
-    <img
-      class="tw-rounded-full tw-max-w-xs tw-absolute tw-border-14 tw-border-white tw-right- sm:tw-right-auto sm:tw-right-minus-80px tw-left-17px sm:tw-left-auto sm:tw-right-minus-80px tw-top-14px sm:tw-top-24px md:tw-top-34px tw-w-140px md:tw-w-auto tw-h-140px md:tw-h-auto"
-      v-bind:src="logo"
-    />
+  <div class="tm700-left">
+    <div>
+      <img v-bind:src="logo" />
+    </div>
   </div>
 </template>
 <script>
@@ -17,3 +14,48 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.tm700-left {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  > div {
+    --height: 169px;
+    --width: 66px;
+    position: relative;
+    background-color: var(--tm700-blue-1);
+    height: var(--height);
+    width: var(--width);
+    @media screen and (min-width: 768px) {
+      --height: 220px;
+      --width: 107px;
+    }
+    @media screen and (min-width: 1200px) {
+      --height: 225px;
+      --width: 178px;
+    }
+    img {
+      --left: 5px;
+      --top: 24px;
+      border-radius: 9999px;
+      position: absolute;
+      border-width: 14px;
+      border-color: #fff;
+      left: var(--left);
+      top: var(--top);
+      min-width: 124px;
+      --height: 124px;
+      @media screen and (min-width: 768px) {
+        --left: 23px;
+        --top: 33px;
+        min-width: 166px;
+        --height: 166px;
+      }
+      @media screen and (min-width: 1200px) {
+        --left: 96px;
+      }
+    }
+  }
+}
+</style>
