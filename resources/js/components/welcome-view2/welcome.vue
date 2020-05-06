@@ -719,6 +719,9 @@ export default {
 .integrationImg {
   height: 226px;
   width: auto;
+  @media screen and (min-width: 1600px) {
+    height: 300px;
+  }
   @media screen and (max-width: 959px) {
     height: auto;
   }
