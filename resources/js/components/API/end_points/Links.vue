@@ -13,7 +13,7 @@
                     Note: Please make sure to include current user_id in your request data when sending any POST request. <small>(Examples included)</small>
                 </div>
                 <div>
-                    <b>Note: Available Link Categories are : [ 'profile_link' , 'payment_link' , 'social_link' , 'portfolio_link' ]</b>
+                    <b>Note: Allowed Link Categories are : [ 'profile_link' , 'payment_link' , 'social_link' , 'portfolio_link' ]</b>
                 </div>
                 <div>
                     <div class="mb-2">

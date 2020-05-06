@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Media;
+use Exception;
 use App\Http\Resources\Media as MediaResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,10 @@ class MediaController extends Controller
     public function store(Request $request)
     {
 
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
 
         $this->validator($request->all())->validate();
 
@@ -75,6 +80,11 @@ class MediaController extends Controller
             'id' => $id,
         ])->first();
 
+
+        if(!$this->is_auth($media)){
+            throw new Exception('Not Authenticated!');
+        }
+
         // remove media from the system if the file exists
         if (file_exists(public_path($media->url))) {
             unlink(public_path($media->url));
@@ -94,5 +104,9 @@ class MediaController extends Controller
             'mediaFile' => ['sometimes', 'file'],
             'transcript' => ['string','max:2500'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }
