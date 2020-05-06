@@ -490,6 +490,7 @@ export default {
   font-size: 3.72vw;
   line-height: 4.13vw;
   margin-bottom: 10px;
+
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
   //   font-size: 40px;
   //   line-height: 40px;
@@ -503,6 +504,9 @@ export default {
   font-size: 1.4vw !important;
   line-height: 1.85vw;
   color: #828282 !important;
+  @media screen and (max-width: 1440px) {
+    font-size: 17px !important;
+  }
   // @media screen and (min-width: 1681px) {
   //   font-size: 24px !important;
   // }
@@ -738,44 +742,56 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: -22px;
-  left: -117px;
-  img {
-    width: 80%;
-    height: auto;
-  }
-
-  @media screen and (min-width: 1300px) and (max-width: 1659px) {
-    top: -16%;
+  top: -18%;
+  left: -11%;
+  right: 0;
+  margin-right: auto;
+  margin-left: auto;
+  @media screen and (max-width: 1440px) {
+    width: 1440px;
     left: -27%;
-    img {
-      width: 76%;
-    }
+  }
+  @media screen and (max-width: 1366px) {
+    width: 1366px;
+    left: -20%;
+  }
+  @media screen and (max-width: 1280px){
+    width: 1280px;
+    top:-10%;
+    left:-10%;
   }
 
-  @media screen and (min-width: 1700px) and (max-width: 1920px) {
-    top: -18%;
-    left: -11%;
-    img {
-      width: 100%;
-    }
-  }
+  // @media screen and (min-width: 1300px) and (max-width: 1659px) {
+  //   top: -16%;
+  //   left: -27%;
+  //   img {
+  //     width: 76%;
+  //   }
+  // }
 
-  @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    width: 1420px;
-    top: -44px;
-    left: -72px;
-    img {
-      width: 90%;
-    }
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    top: -40px;
-    left: -84px;
-    img {
-      width: 52%;
-    }
-  }
+  // @media screen and (min-width: 1700px) and (max-width: 1920px) {
+  //   top: -18%;
+  //   left: -11%;
+  //   img {
+  //     width: 100%;
+  //   }
+  // }
+
+  // @media screen and (min-width: 1025px) and (max-width: 1280px) {
+  //   width: 1420px;
+  //   top: -44px;
+  //   left: -72px;
+  //   img {
+  //     width: 90%;
+  //   }
+  // }
+  // @media screen and (min-width: 960px) and (max-width: 1024px) {
+  //   top: -40px;
+  //   left: -84px;
+  //   img {
+  //     width: 52%;
+  //   }
+  // }
 }
 
 .top-make-resume {
@@ -912,9 +928,9 @@ export default {
 .middle-layer-background5 {
   position: absolute;
   width: 1920px;
-  top:93%;
-  left:0;
-  right:0;
+  top: 93%;
+  left: 0;
+  right: 0;
   margin-left: auto;
   margin-right: auto;
   @media screen and (max-width: 1440px) {
@@ -923,7 +939,6 @@ export default {
   @media screen and (max-width: 1280px) {
     width: 1280px;
   }
-
 }
 
 // backgrounds
