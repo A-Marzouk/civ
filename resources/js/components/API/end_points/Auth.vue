@@ -84,7 +84,7 @@ axios.post('/api/login',
             <v-list-item three-line>
                 <v-list-item-content>
                     <div class="overline mb-4">Register a User | <b>Example request</b> | Javascript</div>
-                    <v-list-item-title class="headline mb-1 mb-3"> POST: api/register </v-list-item-title>
+                    <v-list-item-title class="headline mb-1 mb-3"> POST: api/civ_register </v-list-item-title>
                     <v-list-item-subtitle class="d-flex flex-column">
 
                         Headers:
@@ -96,7 +96,7 @@ axios.post('/api/login',
                         Request data:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">
-axios.post('/api/register',
+axios.post('/api/civ_register',
     {
         name: 'AGENT - API',
         email: 'agent_new@civ.ie',

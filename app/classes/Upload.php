@@ -258,6 +258,8 @@ class Upload
 
     public static function media(Request $request)
     {
+        // TODO: validate allowed formats for the API
+
         $file = $request->file('mediaFile');
         $name = date(time()) . '_' . $file->getClientOriginalName();
         if (strpos($name, 'blob') !== false) { // audio record

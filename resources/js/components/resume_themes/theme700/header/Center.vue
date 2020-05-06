@@ -21,8 +21,6 @@ export default {};
   flex-direction: column;
   align-items: stretch;
   align-self: end;
-  @media screen and (min-width: 768px) {
-  }
   @media screen and (min-width: 1200px) {
     align-self: center;
   }

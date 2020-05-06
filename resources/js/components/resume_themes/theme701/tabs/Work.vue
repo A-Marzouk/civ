@@ -512,8 +512,8 @@ export default {
 
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-.tm700-work {
-  .tm700-work--inner {
+.tm701-work {
+  .tm701-work--inner {
     justify-items: start;
   }
 }

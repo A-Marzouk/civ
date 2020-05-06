@@ -137,7 +137,7 @@
 
             <v-tab href="#tab-3">Education</v-tab>
 
-            <v-tab href="#tab-4">Education</v-tab>
+            <v-tab href="#tab-4">Skills</v-tab>
           </v-tabs>
         </v-col>
       </v-row>
