@@ -62,7 +62,7 @@
             </v-card>
 
             <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat class="mt-n4">
+            <v-card color="transparent" tile flat class="card-download">
               <v-card-text>
                 <v-row align="center">
                   <v-col cols="6">
@@ -538,6 +538,19 @@ export default {
   }
 }
 
+//card download
+.card-download{
+  @media screen and (min-width: 1720px){
+    margin-top:-20px;
+  }
+  @media screen and (max-width: 1440px){
+    margin-top:-27px;
+  }
+  @media screen and (max-width: 1280px){
+    margin-top:-20px;
+  }
+  
+}
 //Download text
 .download-text {
   font-family: "Open Sans" !important;
@@ -555,8 +568,8 @@ export default {
 //upper right block
 .card-login-form {
   border-radius: 15px !important;
-  padding-left:39px !important;
-  padding-right: 39px !important;
+  padding-left:2.01vw !important;
+  padding-right: 2.01vw !important;
 }
 
 .login-title {
@@ -614,7 +627,7 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.46vw !important;
+  width: 9.43vw !important;
   height: 3.0vw !important;
   span {
     font-family: "Montserrat" !important;
