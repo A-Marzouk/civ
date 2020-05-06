@@ -1,8 +1,5 @@
 <template>
-    <div
-        id="wrapper_theme701"
-        class="tw-w-full bg-white tw-font-muli tw-box-border"
-    >
+    <div id="wrapper_theme701">
         <Header />
         <Main />
     </div>
@@ -22,5 +19,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap");
+@font-face {
+    font-family: "Lato", sans-serif;
+    src: "https://fonts.googleapis.com/css2?family=Muli:wght@300;400;600&display=swap";
+}
+#wrapper_theme701 {
+    width: 100%;
+    background-color: #fff;
+    font-family: Muli, sans-serif;
+    box-sizing: border-box;
+}
 </style>

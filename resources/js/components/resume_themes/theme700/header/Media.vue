@@ -61,25 +61,29 @@ export default {};
 
 <style lang="scss">
 .tm700-media {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  --column-start: 2;
+  --column-end: 3;
+  --row-start: 2;
+  --row-end: 3;
+  grid-column-start: var(--column-start);
+  grid-column-end: var(--column-end);
+  grid-row-start: var(--row-start);
+  grid-row-end: var(--row-start);
   align-self: start;
   padding-top: 19px;
   @media only screen and (min-width: 768px) {
-    grid-column-start: 3;
-    grid-column-end: 4;
-    grid-row-start: 1;
-    grid-row-end: 2;
+    --column-start: 3;
+    --column-end: 4;
+    --row-start: 1;
+    --row-end: 2;
     align-self: end;
     padding-top: 0;
   }
   @media only screen and (min-width: 1200px) {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    --column-start: 2;
+    --column-end: 3;
+    --row-start: 2;
+    --row-end: 3;
     align-self: start;
   }
   > div {
@@ -87,7 +91,7 @@ export default {};
     align-items: center;
     a {
       border-radius: 9999px;
-      background-color: var(--tm700-blue-2);
+      background-color: var(--gray-3);
       margin-right: 12px;
       padding: 1rem;
       display: flex;
@@ -102,52 +106,57 @@ export default {};
         padding: 13px;
       }
       // Mail icon
-      &.tm700-media__mail {
-        width: 48px;
-        height: 48px;
+      --width: 48px;
+      --height: 48px;
+      width: var(--width);
+      height: var(--height);
+      @media screen and (min-width: 768px) {
+        --width: 57px;
+        --height: 57px;
+      }
+      svg {
+        --min-width: 19px;
+        --min-height: 17px;
+        min-width: var(--min-width);
+        min-height: var(--min-height);
         @media screen and (min-width: 768px) {
-          width: 57px;
-          height: 57px;
+          --min-width: 22px;
+          --min-height: 20px;
         }
-        svg {
-          min-width: 19px;
-          min-height: 17px;
-          @media screen and (min-width: 768px) {
-            min-width: 22px;
-            min-height: 20px;
-          }
-        }
+      }
+      &.tm700-media__mail {
+        // get the first proprieties without setting up
       }
       // video player icon
       &.tm700-video__player {
-        width: 35px;
-        height: 34px;
+        --width: 35px;
+        --height: 34px;
         @media screen and (min-width: 768px) {
-          width: 41px;
-          height: 40px;
+          --width: 41px;
+          --height: 40px;
         }
         svg {
-          min-width: 15px;
-          min-height: 11px;
+          --min-width: 15px;
+          --min-height: 11px;
           @media screen and (min-width: 768px) {
-            min-width: 17px;
-            min-height: 13px;
+            --min-width: 17px;
+            --min-height: 13px;
           }
         }
       }
       &.tm700-headphones {
-        width: 35px;
-        height: 34px;
+        --width: 35px;
+        --height: 34px;
         @media screen and (min-width: 768px) {
-          width: 42px;
-          height: 40px;
+          --width: 42px;
+          --height: 40px;
         }
         svg {
-          min-width: 14px;
-          min-height: 13px;
+          --min-width: 14px;
+          --min-height: 13px;
           @media screen and (min-width: 768px) {
-            min-width: 17px;
-            min-height: 16px;
+            --min-width: 17px;
+            --min-height: 16px;
           }
         }
       }
