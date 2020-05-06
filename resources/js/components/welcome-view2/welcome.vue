@@ -652,7 +652,7 @@ export default {
   margin-top: 65px;
 }
 .gallery-container {
-  margin-top: 66px;
+  margin-top: 114px;
 }
 .build-resume-title {
   font-family: "Montserrat" !important;
@@ -803,7 +803,7 @@ export default {
   position: absolute;
   width: 1920px;
   top: -114px;
-  left: -28%;
+  left: -18%;
   img {
     width: 92%;
   }
@@ -811,9 +811,9 @@ export default {
     width: 1440px;
     left: -36%;
   }
-  @media screen and (max-width: 1380px){
-    left:-27%;
-    img{
+  @media screen and (max-width: 1380px) {
+    left: -27%;
+    img {
       width: 90%;
     }
   }
@@ -833,17 +833,17 @@ export default {
   img {
     width: 100%;
   }
-  @media screen and (max-width: 1440px){
+  @media screen and (max-width: 1440px) {
     width: 1440px;
-    top:193%;
-    left:-25.5%;
-    img{
+    top: 193%;
+    left: -25.5%;
+    img {
       width: 96%;
     }
   }
-  @media screen and (max-width: 1280px){
+  @media screen and (max-width: 1280px) {
     left: -26.5%;
-    img{
+    img {
       width: 88%;
     }
   }
@@ -866,10 +866,23 @@ export default {
   position: absolute;
   width: 1920px;
   top: 5%;
-  left: -10%;
+  left: -5.5%;
   img {
-    width: 70%;
+    width: 100%;
   }
+  @media screen and (max-width: 1440px) {
+    max-width: 1440px;
+    left: -14.5%;
+  }
+  @media screen and (max-width: 1366px) {
+    max-width: 1366px;
+    left: -10%;
+  }
+  @media screen and (max-width: 1280px){
+    max-width: 1280px;
+    left:-5%;
+  }
+
 }
 
 .middle-layer-background4 {
