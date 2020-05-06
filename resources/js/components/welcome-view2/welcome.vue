@@ -653,12 +653,18 @@ export default {
 }
 .gallery-container {
   margin-top: 114px;
+  @media screen and (max-width: 1440px){
+    margin-top:70px;
+  }
+  @media screen and (max-width: 1280px){
+    margin-top:16px;
+  }
 }
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
   font-size: 2.5vw;
-  line-height: 55px;
+  line-height: 2.84vw;
   color: #0046fe !important;
 }
 
@@ -809,7 +815,7 @@ export default {
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    left: -36%;
+    left: -28%;
   }
   @media screen and (max-width: 1380px) {
     left: -27%;
