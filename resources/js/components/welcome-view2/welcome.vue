@@ -242,7 +242,7 @@
           <v-col cols="12" align="center">
             <v-card flat tile color="transparent">
               <div class="middle-layer-background4">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.png" />
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
               </div>
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
@@ -267,14 +267,14 @@
                   </v-card>
                 </slick>
               </v-card-text>
-              <div class="middle-layer-background5">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.png" />
-              </div>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
       <!-- 3rd inner container -->
+      <div class="middle-layer-background5">
+        <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.svg" />
+      </div>
     </v-container>
     <!-- main container -->
     <!-- Footer -->
@@ -653,11 +653,11 @@ export default {
 }
 .gallery-container {
   margin-top: 114px;
-  @media screen and (max-width: 1440px){
-    margin-top:70px;
+  @media screen and (max-width: 1440px) {
+    margin-top: 52px;
   }
-  @media screen and (max-width: 1280px){
-    margin-top:16px;
+  @media screen and (max-width: 1280px) {
+    margin-top: -8px;
   }
 }
 .build-resume-title {
@@ -877,40 +877,53 @@ export default {
     width: 100%;
   }
   @media screen and (max-width: 1440px) {
-    max-width: 1440px;
+    width: 1440px;
     left: -14.5%;
   }
   @media screen and (max-width: 1366px) {
-    max-width: 1366px;
+    width: 1366px;
     left: -10%;
   }
-  @media screen and (max-width: 1280px){
-    max-width: 1280px;
-    left:-5%;
+  @media screen and (max-width: 1280px) {
+    width: 1280px;
+    left: -5%;
   }
-
 }
 
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top: 4%;
-  left: -37%;
+  left: -5%;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 0;
-  img {
-    width: 67%;
+  @media screen and (max-width: 1440px) {
+    width: 1440px;
+    top: 3%;
+    left: -13%;
+  }
+  @media screen and (max-width: 1280px) {
+    width: 1280px;
+    left: -6.5%;
   }
 }
 
 .middle-layer-background5 {
   position: absolute;
   width: 1920px;
-  top: 88%;
-  left: -37%;
-  z-index: 0;
-  img {
-    width: 67%;
+  top:93%;
+  left:0;
+  right:0;
+  margin-left: auto;
+  margin-right: auto;
+  @media screen and (max-width: 1440px) {
+    width: 1440px;
   }
+  @media screen and (max-width: 1280px) {
+    width: 1280px;
+  }
+
 }
 
 // backgrounds
