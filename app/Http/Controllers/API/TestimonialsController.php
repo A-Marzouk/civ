@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Testimonial;
 use App\Http\Resources\Testimonial as TestimonialResource;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -26,6 +27,10 @@ class TestimonialsController extends Controller
 
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
 
         $this->validator($request->all())->validate();
 
@@ -65,6 +70,10 @@ class TestimonialsController extends Controller
             'id' => $id
         ])->first();
 
+        if(!$this->is_auth($testimonial)){
+            throw new Exception('Not Authenticated!');
+        }
+
         if($testimonial->delete()){
             return ['data' => ['id' => $testimonial->id] ];
         }
@@ -74,9 +83,13 @@ class TestimonialsController extends Controller
     {
         return Validator::make($data, [
             'name' => ['nullable', 'string', 'max:255','min:3'],
-            'title' => ['required', 'string','min:3', 'max:255'],
+            'title' => ['sometimes', 'string','min:3', 'max:255'],
             'company' => ['nullable', 'string','min:3', 'max:255'],
-            'description' => ['required', 'string','min:30', 'max:2500'],
+            'description' => ['sometimes', 'string','min:30', 'max:2500'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }

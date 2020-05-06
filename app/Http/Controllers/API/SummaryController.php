@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Summary;
 use App\Http\Resources\Summary as SummaryResource;
+use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -29,22 +31,19 @@ class SummaryController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \App\Http\Resources\Summary
-     */
+
     public function store(Request $request)
     {
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
         // here we will not save new we will directly update info.
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
-            // update
-            $summary = Summary::find($request->id);
-            $summary->update($request->toArray());
-        }
+        $user = User::find($request->user_id);
+        $summary = $user->summary;
+        $summary->update($request->toArray());
 
         if (isset($summary)){
             return new SummaryResource($summary);
@@ -60,4 +59,7 @@ class SummaryController extends Controller
         ]);
     }
 
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
+    }
 }

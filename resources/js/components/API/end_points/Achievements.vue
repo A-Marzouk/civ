@@ -7,7 +7,7 @@
             </div>
             <div class="steps">
                 <div>
-                    Note: allowed methods: GET, POST, PUT & DELETE <small>(Examples included)</small>
+                    Note: allowed methods: GET, POST & DELETE <small>(Examples included)</small>
                 </div>
                 <div>
                     Note: Please make sure to include current user_id in your request data when sending any POST request. <small>(Examples included)</small>

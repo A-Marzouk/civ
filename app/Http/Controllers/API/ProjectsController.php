@@ -11,6 +11,7 @@ use App\Http\Resources\Project as ProjectResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\Console\Input\Input;
+use Exception;
 
 
 class ProjectsController extends Controller
@@ -28,11 +29,15 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::where('user_id',Auth::user()->id)->paginate(5);
+        $projects = Project::where('user_id',Auth::user()->id)->with('images')->paginate(5);
         return ProjectResource::collection($projects);
     }
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
 
         $this->validator($request->all())->validate();
         $project = Project::create($request->toArray());
@@ -63,6 +68,10 @@ class ProjectsController extends Controller
             'id' => $id
         ])->first();
 
+        if(!$this->is_auth($project)){
+            throw new Exception('Not Authenticated!');
+        }
+
         if($project->delete()){
             return ['data' => ['id' => $project->id] ];
         }
@@ -88,5 +97,9 @@ class ProjectsController extends Controller
             ]);
             $is_main = false;
         }
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }

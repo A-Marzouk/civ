@@ -17,9 +17,9 @@
                         Fields that can be retrieved or updated in {{current_endpoint}} object : <small>(Examples included)</small>
                     </div>
                     <code class="p-4">
-                        personal_info_contains = [
-                        'full_name','email','designation','profile_pic','location', 'phone','about'
-                        ];
+{{current_endpoint_single}}_contains = [
+    'user_id','name','title','phone','email','company','address','reference_text','notes'
+];
                     </code>
                 </div>
             </div>
@@ -35,44 +35,45 @@
                         Headers:
 
                         <code class="mb-5 prettyprint lang-js p-4">
-                            {{headers_after_auth}}
+{{headers_after_auth}}
                         </code>
 
                         Request example:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">
-                            axios.get('/api/user/{{current_endpoint_url}}');
+axios.get('/api/user/{{current_endpoint_url}}');
                         </code>
 
                         <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
 
                         <code class="prettyprint p-4 lang-js">
-                            {
-                            "data": {
-                            "id": 4,
-                            "full_name": "Agent -11",
-                            "email": "agent11@civ.ie",
-                            "designation": null,
-                            "profile_pic": "/images/resume_builder/profile/holder.png",
-                            "phone": null,
-                            "location": null,
-                            "about": null,
-                            "user_id": 4,
-                            "created_at": "2020-05-03 12:38:43",
-                            "updated_at": "2020-05-03 12:38:43"
-                            },
-                            "version": "1.0.0",
-                            "author_url": "https://civ.ie"
-                            }
+{
+    "data": {
+        "id": 2,
+        "name": null,
+        "title": null,
+        "phone": null,
+        "email": null,
+        "company": null,
+        "address": null,
+        "reference_text": null,
+        "notes": null,
+        "user_id": 2,
+        "created_at": "2020-04-29 13:46:35",
+        "updated_at": "2020-04-29 13:46:35"
+    },
+    "version": "1.0.0",
+    "author_url": "https://civ.ie"
+}
                         </code>
 
                         <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
 
 
                         <code class="prettyprint p-4 lang-js">
-                            {
-                            "message": "Unauthenticated."
-                            }
+{
+    "message": "Unauthenticated."
+}
                         </code>
 
 
@@ -93,49 +94,50 @@
                         Headers:
 
                         <code class="mb-5 prettyprint lang-js p-4">
-                            {{headers_after_auth}}
+{{headers_after_auth}}
                         </code>
 
                         Request data:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">
-                            axios.put('/api/user/{{current_endpoint_url}}',
-                            {
-                            'full_name':'Updated user name',
-                            'user_id': 4
-                            }
-                            );
+axios.put('/api/user/{{current_endpoint_url}}',
+    {
+        title:'Assistant',
+        user_id: 4
+    }
+);
                         </code>
 
                         <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
 
                         <code class="prettyprint p-4 lang-js">
-                            {
-                            "data": {
-                            "id": 4,
-                            "full_name": "Agent 4",
-                            "email": "agent11@civ.ie",
-                            "designation": null,
-                            "profile_pic": "/images/resume_builder/profile/holder.png",
-                            "phone": null,
-                            "location": null,
-                            "about": null,
-                            "user_id": "4",
-                            "created_at": "2020-05-03 12:38:43",
-                            "updated_at": "2020-05-04 13:24:11"
-                            },
-                            "version": "1.0.0",
-                            "author_url": "https://civ.ie"
-                            }
+{
+    "data": {
+        "id": 2,
+        "name": null,
+        "title": "Assistant",
+        "phone": null,
+        "email": null,
+        "company": null,
+        "address": null,
+        "reference_text": null,
+        "notes": null,
+        "user_id": "2",
+        "created_at": "2020-04-29 13:46:35",
+        "updated_at": "2020-05-06 09:20:44"
+    },
+    "version": "1.0.0",
+    "author_url": "https://civ.ie"
+}
                         </code>
 
                         <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
 
 
                         <code class="prettyprint p-4 lang-js">
-                            {
-                            "message": "Not Authenticated!"
-                            }
+{
+    "message": "Not Authenticated!"
+}
                         </code>
 
 
@@ -165,9 +167,9 @@
                     "}" +
                     "\n" +
                     "  ",
-                current_endpoint: 'References',
+                current_endpoint: 'Reference',
                 current_endpoint_single: 'reference',
-                current_endpoint_url: 'references',
+                current_endpoint_url: 'reference',
             }
         }
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Link;
+use Exception;
 use App\Http\Resources\Link as LinkResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,11 @@ class LinksController extends Controller
 
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
 
         $this->validator($request->all())->validate();
 
@@ -62,6 +68,11 @@ class LinksController extends Controller
             'id' => $id,
         ])->first();
 
+        if(!$this->is_auth($link)){
+            throw new Exception('Not Authenticated!');
+        }
+
+
         if($link->delete()){
             return ['data' => ['id' => $link->id] ];
         }
@@ -75,5 +86,9 @@ class LinksController extends Controller
             'link' => ['required', 'string','max:255'],
             'is_active' => ['max:255'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }
