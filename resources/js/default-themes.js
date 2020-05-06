@@ -40,6 +40,8 @@ import resumeTheme5 from './components/resume_themes/theme5';
 if ($("#resumeTheme5").length !== 0) {
     new Vue({
         el: '#resumeTheme5',
+        vuetify,
+        store,
         components: {
             'resume-theme-5': resumeTheme5
         }
@@ -310,7 +312,6 @@ if ($("#resumeTheme500").length !== 0) {
         el: '#resumeTheme500',
         vuetify,
         store,
-
         components: {
             'resume-theme-500': resumeTheme500
         }
@@ -323,7 +324,6 @@ if ($("#resumeTheme501").length !== 0) {
         el: '#resumeTheme501',
         vuetify,
         store,
-
         components: {
             'resume-theme-501': resumeTheme501
         }
@@ -336,7 +336,6 @@ if ($("#resumeTheme502").length !== 0) {
         el: '#resumeTheme502',
         vuetify,
         store,
-
         components: {
             'resume-theme-502': resumeTheme502
         }
@@ -415,7 +414,6 @@ if ($("#resumeTheme503").length !== 0) {
         el: '#resumeTheme503',
         vuetify,
         store,
-
         components: {
             'resume-theme-503': resumeTheme503
         }
@@ -428,7 +426,6 @@ if ($("#resumeTheme504").length !== 0) {
         el: '#resumeTheme504',
         vuetify,
         store,
-
         components: {
             'resume-theme-504': resumeTheme504
 
@@ -444,6 +441,32 @@ if ($("#resumeTheme702").length !== 0) {
         iconfont: 'mdi',
         components: {
             'resume-theme-702': resumeTheme702
+        }
+    });
+}
+import resumeTheme505 from './components/resume_themes/theme505';
+if ($("#resumeTheme505").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme505',
+        vuetify,
+        store,
+        components: {
+            'resume-theme-505': resumeTheme505
+
+        }
+    });
+}
+import resumeTheme506 from './components/resume_themes/theme506';
+if ($("#resumeTheme506").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme506',
+        vuetify,
+        store,
+        components: {
+            'resume-theme-506': resumeTheme506
+
         }
     });
 }
