@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Language;
 use App\Http\Resources\Language as LanguageResource;
 use App\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,6 +36,9 @@ class LanguagesController extends Controller
 
     public function store(Request $request)
     {
+        if(!$this->is_auth($request->user_id)){
+            throw new Exception('Not Authenticated!');
+        }
        // attach a language to user:
         $user= User::find($request->user_id);
         $user->languages()->attach($request->language_id);
@@ -64,9 +68,16 @@ class LanguagesController extends Controller
 
     public function destroy($id,$user_id)
     {
+        if(!$this->is_auth($user_id)){
+            throw new Exception('Not Authenticated!');
+        }
         // detach a language from user:
         $user= User::find($user_id);
         $user->languages()->detach($id);
         return ['data' => ['id' => $id] ];
+    }
+
+    protected function is_auth($user_id){
+        return (Auth::user()->id == $user_id || Auth::user()->hasRole('admin'));
     }
 }
