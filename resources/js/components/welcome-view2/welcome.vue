@@ -657,7 +657,7 @@ export default {
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 2.48vw;
+  font-size: 2.5vw;
   line-height: 55px;
   color: #0046fe !important;
 }
@@ -823,9 +823,23 @@ export default {
   float: left;
   width: 1920px;
   top: 260%;
-  left: -18.5%;
+  left: -17.5%;
   img {
-    width: 98%;
+    width: 100%;
+  }
+  @media screen and (max-width: 1440px){
+    width: 1440px;
+    top:193%;
+    left:-25.5%;
+    img{
+      width: 96%;
+    }
+  }
+  @media screen and (max-width: 1280px){
+    left: -26.5%;
+    img{
+      width: 88%;
+    }
   }
   // @media screen and (min-width: 1025px) and (max-width: 1280px) {
   //   top: 30%;
