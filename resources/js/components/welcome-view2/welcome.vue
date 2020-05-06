@@ -754,7 +754,7 @@ export default {
   }
 
   @media screen and (min-width: 1700px) and (max-width: 1920px) {
-    top: -22%;
+    top: -18%;
     left: -11%;
     img {
       width: 100%;
