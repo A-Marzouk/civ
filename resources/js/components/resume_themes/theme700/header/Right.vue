@@ -37,7 +37,9 @@ export default {};
   width: 1px;
 }
 .tm700-right {
-  padding: 3rem 14px 3rem 16px;
+  padding-top: 55px;
+  padding-left: 16px;
+  padding-right: 14px;
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 4;
