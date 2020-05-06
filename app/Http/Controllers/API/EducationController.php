@@ -6,6 +6,7 @@ use App\Education;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Education as EducationResource;
 use Illuminate\Http\Request;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
