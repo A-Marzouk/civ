@@ -659,14 +659,14 @@ export default {
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 2.48vw;
   line-height: 55px;
   color: #0046fe !important;
 }
 
 .build-resume-subtitle {
   font-family: "Open Sans" !important;
-  font-size: 0.82vw !important;
+  font-size: 0.93vw !important;
   line-height: 36px;
   color: #575757 !important;
   width: 60%;
