@@ -229,7 +229,7 @@
                 </template>
               </v-row>
               <div class="middle-layer-background3">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer3.png" />
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer3.svg" />
               </div>
             </v-card>
           </v-col>
