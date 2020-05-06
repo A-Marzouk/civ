@@ -174,7 +174,7 @@
             <!-- 1st card -->
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.svg" />
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
               <v-card-subtitle class="build-resume-title">
@@ -185,7 +185,7 @@
                 class="build-resume-subtitle mt-n5 mb-5"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
               <div class="middle-layer-background2">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.svg" />
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
               </div>
             </v-card>
             <!-- 1st card -->
@@ -752,14 +752,14 @@ export default {
 .footer-social-icon {
   img {
     width: 14px;
-    height: 14px;
+    height: auto;
   }
   @media screen and (min-width: 1600px) {
     width: 41px !important;
     height: 41px !important;
     img {
       width: 18.25px;
-      height: 18.25px;
+      height: auto;
     }
   }
 }
@@ -856,15 +856,17 @@ export default {
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  img{
+    width: 90%;
+  }
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -28%;
-    top: -80%;
+    top: -58%;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: -18%;
-    top: -80%;
   }
 }
 
@@ -882,12 +884,15 @@ export default {
     width: 1440px;
     top: 182%;
     left: -25.5%;
+    img{
+      width:94%;
+    }
   }
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: 216%;
-    left: -17.5%;
+    top: 210%;
+    left: -20.5%;
   }
 }
 
@@ -983,7 +988,15 @@ export default {
 
 #welcomeView2 .slick-dots li.slick-active button{
   background-color: #0F4CEE;
+  outline: none;
+  transition: width 5s ease-out 0s;
 }
+
+#welcomeView2 .slick-dots li button:focus {
+  outline: none !important;
+}
+
+
 
 @media screen and (min-width: 1700px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
