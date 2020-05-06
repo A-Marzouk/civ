@@ -974,6 +974,17 @@ export default {
   min-height: 3.1vw !important;
 }
 
+#welcomeView2 .slick-dots li button {
+  width: 110px;
+  height: 12px;
+  border-radius: 0px;
+  margin-left: -10px;
+}
+
+#welcomeView2 .slick-dots li.slick-active button{
+  background-color: #0F4CEE;
+}
+
 @media screen and (min-width: 1700px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     max-width: 700px !important;
