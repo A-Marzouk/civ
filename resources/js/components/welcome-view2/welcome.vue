@@ -184,18 +184,18 @@
               <v-card-subtitle
                 class="build-resume-subtitle mt-n5 mb-5"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
+              <div class="middle-layer-background2">
+                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.svg" />
+              </div>
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
-            <v-card class="card-video" color="transparent" flat tile>
+            <v-card class="card-video pa-8" color="transparent" flat tile>
               <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center">
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
               </v-img>
-              <div class="middle-layer-background2">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
-              </div>
             </v-card>
 
             <!-- 2nd card -->
@@ -803,34 +803,43 @@ export default {
   position: absolute;
   width: 1920px;
   top: -114px;
-  left: -14%;
+  left: -28%;
   img {
     width: 92%;
+  }
+  @media screen and (max-width: 1440px) {
+    width: 1440px;
+    left: -36%;
+  }
+  @media screen and (max-width: 1280px) {
+    img {
+      width: 84%;
+    }
   }
 }
 
 .middle-layer-background2 {
   position: absolute;
   float: left;
-  width: 1720px;
-  top: 25%;
-  left: -43%;
+  width: 1920px;
+  top: 260%;
+  left: -18.5%;
   img {
-    width: 78%;
+    width: 98%;
   }
-  @media screen and (min-width: 1025px) and (max-width: 1280px) {
-    top: 30%;
-    left: -43.5%;
-    img {
-      width: 73%;
-    }
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    left: -73%;
-    img {
-      width: 58%;
-    }
-  }
+  // @media screen and (min-width: 1025px) and (max-width: 1280px) {
+  //   top: 30%;
+  //   left: -43.5%;
+  //   img {
+  //     width: 73%;
+  //   }
+  // }
+  // @media screen and (min-width: 960px) and (max-width: 1024px) {
+  //   left: -73%;
+  //   img {
+  //     width: 58%;
+  //   }
+  // }
 }
 
 .middle-layer-background3 {
