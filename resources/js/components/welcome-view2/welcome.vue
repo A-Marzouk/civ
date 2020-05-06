@@ -65,10 +65,10 @@
             <v-card color="transparent" tile flat class="card-download">
               <v-card-text>
                 <v-row align="center">
-                  <v-col cols="6">
+                  <v-col xl="5" cols="6">
                     <div class="download-text">Download for ios and android:</div>
                   </v-col>
-                  <v-col cols="3">
+                  <v-col xl="3" cols="3">
                     <a href="#">
                       <img
                         class="app-store-logo"
@@ -77,7 +77,7 @@
                       />
                     </a>
                   </v-col>
-                  <v-col cols="3">
+                  <v-col xl="3" cols="3">
                     <a href="#">
                       <img
                         class="app-store-logo"
@@ -539,15 +539,13 @@ export default {
 }
 
 //card download
-.card-download{
-  @media screen and (min-width: 1720px){
-    margin-top:-35px;
+.card-download {
+  @media screen and (min-width: 1720px) {
+    margin-top: -35px;
   }
-  @media screen and (max-width: 1440px){
-    margin-top:-40px;
+  @media screen and (max-width: 1440px) {
+    margin-top: -40px;
   }
-  
-  
 }
 //Download text
 .download-text {
@@ -566,7 +564,7 @@ export default {
 //upper right block
 .card-login-form {
   border-radius: 15px !important;
-  padding-left:2.01vw !important;
+  padding-left: 2.01vw !important;
   padding-right: 2.01vw !important;
 }
 
@@ -626,7 +624,7 @@ export default {
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
   width: 9.43vw !important;
-  height: 3.0vw !important;
+  height: 3vw !important;
   span {
     font-family: "Montserrat" !important;
     font-weight: bold;
@@ -784,22 +782,21 @@ export default {
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top:-27%;
-    left:-27%;
+    top: -27%;
+    left: -27%;
 
-    img{
+    img {
       width: 95%;
     }
   }
 
   @media screen and (max-width: 1280px) {
     top: -20%;
-    left:-12%;
-    img{
+    left: -12%;
+    img {
       width: 88%;
     }
   }
-  
 }
 
 .middle-layer-background1 {
@@ -810,7 +807,6 @@ export default {
   img {
     width: 92%;
   }
-  
 }
 
 .middle-layer-background2 {
@@ -893,5 +889,11 @@ export default {
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
   min-height: 3.1vw !important;
+}
+
+@media screen and (min-width: 1700px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    max-width: 700px !important;
+  }
 }
 </style>
