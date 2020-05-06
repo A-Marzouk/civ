@@ -1,7 +1,7 @@
-@extends('layouts.my-app')
+@extends('layouts.theme-vuetify')
 
 @section('content')
-    <div id="resumeTheme5" class="d-flex justify-content-center">
-        <resume-theme-5 page="resume"></resume-theme-5>
+    <div id="resumeTheme5" >
+        <resume-theme-5 page="resume" @if(isset($user)) :user="{{$user}}" @endif :is_preview="{{$is_preview}}"></resume-theme-5>
     </div>
 @endsection
