@@ -684,7 +684,7 @@ export default {
   line-height: 36px;
   color: #575757 !important;
   width: 60%;
-  @media screen and (max-width: 1440px){
+  @media screen and (max-width: 1440px) {
     font-size: 16px !important;
   }
 }
@@ -728,11 +728,18 @@ export default {
 .follow-us-text {
   font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 32px;
   color: #ffffff !important;
   span {
     font-family: "Open Sans" !important;
-    font-size: 14px;
+    font-size: 18px;
+  }
+
+  @media screen and (max-width: 1440px) {
+    font-size: 20px;
+    span {
+      font-size: 14px;
+    }
   }
 }
 .footer-logo {
@@ -742,7 +749,15 @@ export default {
 .footer-social-icon {
   img {
     width: 14px;
-    height: auto;
+    height: 14px;
+  }
+  @media screen and (min-width: 1600px) {
+    width: 41px !important;
+    height: 41px !important;
+    img {
+      width: 18.25px;
+      height: 18.25px;
+    }
   }
 }
 //footer
