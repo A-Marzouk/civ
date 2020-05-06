@@ -487,8 +487,8 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 3.8vw;
-  line-height: 4.11vw;
+  font-size: 3.72vw;
+  line-height: 4.13vw;
   margin-bottom: 10px;
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
   //   font-size: 40px;
@@ -520,17 +520,17 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 50px rgba(233, 30, 99, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.1vw;
-  height: 2.92vw !important;
-  font-size: 0.71vw !important;
+  width: 9.4vw;
+  height: 3vw !important;
+  font-size: 0.74vw !important;
 }
 //reserve title
 .reserve-title {
   margin-top: 3.52vh;
   font-family: "Open Sans" !important;
   font-weight: bold;
-  font-size: 1.23vw !important;
-  line-height: 1.85vw;
+  font-size: 1.27vw !important;
+  line-height: 1.9vw;
   color: #313131 !important;
   margin-bottom: 20px;
   @media screen and (max-width: 1280px) {
@@ -541,38 +541,28 @@ export default {
 //Download text
 .download-text {
   font-family: "Open Sans" !important;
-  font-size: 1.02vw;
+  font-size: 1.05vw;
   color: #313131;
-  @media screen and (max-width: 1280px) {
-    margin-top: 14px;
-  }
-  @media screen and (max-width: 1366px) {
-    margin-top: 22px;
-  }
 }
 .app-store-logo {
   margin-left: -20px;
   width: 170px;
   height: auto;
   max-width: 127% !important;
-  @media screen and (max-width: 1280px) {
-    margin-top: 14px;
-  }
-  @media screen and (min-width:1281px) and (max-width: 1366px) {
-    margin-top: 22px;
-  }
 }
 // .... upper left block..............
 
 //upper right block
 .card-login-form {
   border-radius: 15px !important;
+  padding-left:39px !important;
+  padding-right: 39px !important;
 }
 
 .login-title {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
-  font-size: 1.23vw;
+  font-size: 1.27vw;
 }
 .social-icon {
   border-radius: 10px !important;
@@ -596,7 +586,7 @@ export default {
   font-family: "Montserrat" !important;
   color: #616161 !important;
   line-height: 1.02vh;
-  font-size: 0.82vw !important;
+  font-size: 0.85vw !important;
   font-weight: 500;
 }
 .label-text {
@@ -624,8 +614,8 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.3vw !important;
-  height: 2.98vw !important;
+  width: 9.46vw !important;
+  height: 3.0vw !important;
   span {
     font-family: "Montserrat" !important;
     font-weight: bold;
@@ -903,6 +893,6 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 3.08vw !important;
+  min-height: 3.1vw !important;
 }
 </style>
