@@ -541,14 +541,12 @@ export default {
 //card download
 .card-download{
   @media screen and (min-width: 1720px){
-    margin-top:-20px;
+    margin-top:-35px;
   }
   @media screen and (max-width: 1440px){
-    margin-top:-27px;
+    margin-top:-40px;
   }
-  @media screen and (max-width: 1280px){
-    margin-top:-20px;
-  }
+  
   
 }
 //Download text
@@ -668,7 +666,7 @@ export default {
 
 .build-resume-subtitle {
   font-family: "Open Sans" !important;
-  font-size: 16px !important;
+  font-size: 0.82vw !important;
   line-height: 36px;
   color: #575757 !important;
   width: 60%;
@@ -784,6 +782,23 @@ export default {
   img {
     width: 100%;
   }
+  @media screen and (max-width: 1440px) {
+    width: 1440px;
+    top:-27%;
+    left:-27%;
+
+    img{
+      width: 95%;
+    }
+  }
+
+  @media screen and (max-width: 1280px) {
+    top: -20%;
+    left:-12%;
+    img{
+      width: 88%;
+    }
+  }
   
 }
 
@@ -791,9 +806,9 @@ export default {
   position: absolute;
   width: 1920px;
   top: -114px;
-  left: -18%;
+  left: -14%;
   img {
-    width: 95%;
+    width: 92%;
   }
   
 }
