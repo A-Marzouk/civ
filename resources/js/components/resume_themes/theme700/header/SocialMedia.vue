@@ -1,10 +1,7 @@
 <template>
   <div class="tm700-social__media">
     <div class="tw-flex tw-items-center">
-      <a
-        href="#"
-        class="tw-rounded-full tw-bg-tm700-2 md:tw-mr-47px lg:tw-mr-tm700-10 xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px"
-      >
+      <a href="#">
         <svg
           width="19"
           height="19"
@@ -23,10 +20,7 @@
           />
         </svg>
       </a>
-      <a
-        href="#"
-        class="tw-rounded-full tw-bg-tm700-2 md:tw-mr-47px lg:tw-mr-tm700-10 xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px"
-      >
+      <a href="#">
         <svg
           width="17"
           height="17"
@@ -64,10 +58,7 @@
           />
         </svg>
       </a>
-      <a
-        href="#"
-        class="tw-rounded-full tw-bg-tm700-2 md:tw-mr-47px lg:tw-mr-tm700-10 xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px"
-      >
+      <a href="#">
         <svg
           width="16"
           height="16"
@@ -89,10 +80,7 @@
           />
         </svg>
       </a>
-      <a
-        href="#"
-        class="tw-rounded-full tw-bg-tm700-2 md:tw-mr-47px lg:tw-mr-tm700-10 xl:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px"
-      >
+      <a href="#">
         <svg
           width="17"
           height="17"
@@ -111,10 +99,7 @@
           />
         </svg>
       </a>
-      <a
-        href="#"
-        class="tw-rounded-full tw-bg-tm700-2 md:tw-mr-47px lg:tw-mr-tm700-10 tw-p-9px md:tw-p-18px lg:tw-p-9px"
-      >
+      <a href="#">
         <svg
           width="19"
           height="19"
@@ -166,8 +151,36 @@ export default {};
     align-self: center;
   }
   > div {
+    display: flex;
+    align-items: center;
+
     a {
       margin-right: 30px;
+      border-radius: 9999px;
+      background-color: var(--gray-3);
+      --height: 37px;
+      --width: 37px;
+      height: var(--height);
+      width: var(--width);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media screen and (min-width: 768px) {
+        margin-right: 47px;
+        --height: 58px;
+        --width: 58px;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      svg {
+        height: 18px;
+        width: 18px;
+        @media screen and (min-width: 768px) {
+          height: 28px;
+          width: 28px;
+        }
+      }
     }
   }
 }
