@@ -19,11 +19,6 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
-              <div class="top-layer-background">
-                <img
-                  src="/images/welcome_landing_page/imgs/background-images/top-background-img.png"
-                />
-              </div>
               <v-card-title class="resume-title">
                 Make Your
                 <br />Online Resume
@@ -35,7 +30,11 @@
                 <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
               </v-card-subtitle>
             </v-card>
-
+            <div class="top-layer-background">
+                <img
+                  src="/images/welcome_landing_page/imgs/background-images/top-background-img.png"
+                />
+              </div>
             <v-card color="transparent" flat tile>
               <div class="top-make-resume">
                 <img
@@ -482,11 +481,15 @@ export default {
 }
 
 .container-resume {
-  margin-top: -50px;
+  margin-top: 0px;
 }
 
 .card-resume {
   margin-top: 150px;
+  z-index: 1;
+  @media screen and (min-width: 1600px){
+    margin-top: 80px;
+  }
 }
 //resume title
 .resume-title {
@@ -775,8 +778,8 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: -18.5%;
-  left: -24%;
+  top: 9rem;
+  left: 0;
   right: 0;
   margin-right: auto;
   margin-left: auto;
