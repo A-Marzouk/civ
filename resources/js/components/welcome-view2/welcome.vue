@@ -3,11 +3,7 @@
     <!-- main container -->
     <v-container style="width:100%; ">
       <v-app-bar color="transparent" flat tile height="100">
-        <img
-          class="logo"
-          src="/images/welcome_landing_page/logo/civie_logo-blue.png"
-          alt="logo"
-        />
+        <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
         <v-btn text color="#0046FE" class="btn-appbar-login">
           Log
@@ -19,11 +15,6 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
-              <div class="top-layer-background">
-                <img
-                  src="/images/welcome_landing_page/imgs/background-images/top-background-img.png"
-                />
-              </div>
               <v-card-title class="resume-title">
                 Make Your
                 <br />Online Resume
@@ -35,7 +26,9 @@
                 <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
               </v-card-subtitle>
             </v-card>
-
+            <div class="top-layer-background">
+              <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
+            </div>
             <v-card color="transparent" flat tile>
               <div class="top-make-resume">
                 <img
@@ -54,8 +47,8 @@
                   @keyup="checkUser"
                 >
                   <template slot="append">
-                    <v-icon color="#1DBF73" v-show="userFound == true">mdi-check-circle</v-icon>
-                    <v-icon color="#E91E63" v-show="userFound == false">mdi-close-circle</v-icon>
+                    <v-icon color="#1DBF73" class="custom-append-icon" v-show="userFound == true">mdi-check-circle</v-icon>
+                    <v-icon color="#E91E63" class="custom-append-icon" v-show="userFound == false">mdi-close-circle</v-icon>
                   </template>
                 </v-text-field>
               </v-card-subtitle>
@@ -65,7 +58,7 @@
             <v-card color="transparent" tile flat class="card-download">
               <v-card-text>
                 <v-row align="center">
-                  <v-col xl="5" cols="6">
+                  <v-col xl="6" cols="6">
                     <div class="download-text">Download for ios and android:</div>
                   </v-col>
                   <v-col xl="3" cols="3">
@@ -92,55 +85,64 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="5" sm="12" cols="12">
-            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
-              <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
-              <v-card-subtitle>
+            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-xl-5 pa-md-0">
+              <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
+              <v-card-subtitle align="center">
                 <v-btn
                   class="social-icon mx-2"
                   color="#ffffff"
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
                 >
-                  <img :src="getSocialIcon(icon.title)" alt />
+                  <img :width="icon.width" :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
-              <v-card-subtitle class="signin-email mt-n3">or Sign Up with Email</v-card-subtitle>
+              <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle>
+              <v-card-subtitle class="login-form">
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
-                  <v-text-field
-                    type="text"
-                    outlined
-                    background-color="#ffffff"
-                    placeholder="Name"
-                    :rules="nameRules"
-                  ></v-text-field>
-                  <v-text-field
-                    type="email"
-                    outlined
-                    background-color="#ffffff"
-                    placeholder="Email Address"
-                    :rules="emailRules"
-                  ></v-text-field>
-                  <v-text-field
-                    type="password"
-                    outlined
-                    placeholder="Password"
-                    background-color="#ffffff"
-                    v-model="password"
-                    :rules="passwordRules"
-                  ></v-text-field>
+                  <div class="input-div">
+                    <label for="name">Name</label>
+                    <v-text-field
+                      type="text"
+                      outlined
+                      background-color="#ffffff"
+                      :rules="nameRules"
+                      v-model="name"
+                    ></v-text-field>
+                  </div>
+                  <div class="input-div">
+                    <label for="email">Email Address</label>
+                    <v-text-field
+                      type="email"
+                      outlined
+                      background-color="#ffffff"
+                      :rules="emailRules"
+                      v-model="email"
+                    ></v-text-field>
+                  </div>
+                  <div class="input-div">
+                    <label for="password">Password</label>
+                    <v-text-field
+                      type="password"
+                      outlined
+                      background-color="#ffffff"
+                      v-model="password"
+                      :rules="passwordRules"
+                    ></v-text-field>
+                  </div>
+                  <div class="input-div">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <v-text-field
+                      type="password"
+                      outlined
+                      background-color="#ffffff"
+                      v-model="confirmPassword"
+                      :rules="confirmPasswordRules"
+                    ></v-text-field>
+                  </div>
 
-                  <v-text-field
-                    type="password"
-                    placeholder="Confirm Password"
-                    outlined
-                    background-color="#ffffff"
-                    v-model="confirmPassword"
-                    :rules="confirmPasswordRules"
-                  ></v-text-field>
-
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class>
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n5">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -149,14 +151,15 @@
                       </div>
                     </template>
                   </v-checkbox>
-
-                  <v-btn color="#0046FE" class="btn-signup" @click="validate">
-                    <span>Sign Up</span>
-                  </v-btn>
+                  <v-card-text align="center">
+                    <v-btn color="#0046FE" class="btn-signup" @click="validate">
+                      <span>Sign Up</span>
+                    </v-btn>
+                  </v-card-text>
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists">
+              <v-card-subtitle class="account-exists mt-n3" align="center">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
@@ -170,7 +173,7 @@
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
-          <v-col cols="10" align="center">
+          <v-col xl="9" cols="10" align="center">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1">
@@ -345,33 +348,33 @@ export default {
       lazy: false,
       name: "",
       nameRules: [
-        v => !!v || "Name is required",
-        v => (v && v.length >= 3) || "Name must be less than 3 characters"
+        v => !!v || "",
+        v => (v && v.length >= 3) || ""
       ],
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || "",
+        v => /.+@.+\..+/.test(v) || ""
       ],
       password: "",
       passwordRules: [
-        v => !!v || "Password is required",
-        v => (v && v.length >= 6) || "Password must be less than 6 characters"
+        v => !!v || "",
+        v => (v && v.length >= 6) || ""
       ],
       confirmPassword: "",
       confirmPasswordRules: [
-        v => !!v || "Confirm password is required",
-        v => (v && v == this.password) || "Password must match"
+        v => !!v || "",
+        v => (v && v == this.password) || ""
       ],
       agreeCheck: false,
       agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
-        { id: 1, title: "instagram" },
-        { id: 2, title: "linkedin" },
-        { id: 3, title: "google" },
-        { id: 4, title: "facebook" },
-        { id: 5, title: "github" }
+        { id: 1, title: "instagram", width: 18 },
+        { id: 2, title: "linkedin", width: 16 },
+        { id: 3, title: "google", width: 14 },
+        { id: 4, title: "facebook", width: 18 },
+        { id: 5, title: "github", width: 22 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -449,13 +452,6 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-@font-face {
-  font-family: "Segoe UI Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: local("Segoe UI Bold"),
-    url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
-}
 
 //logo
 .logo {
@@ -465,6 +461,27 @@ export default {
     margin-left: 78px;
   }
 }
+
+.custom-append-icon{
+  @media screen and (min-width: 960px) and (max-width: 1440px){
+    margin-top: -6px;
+  }
+}
+
+//form
+.login-form {
+  label {
+    font-family: "Montserrat" !important;
+    font-size: 14px;
+    text-align: left !important;
+    font-weight: 500;
+    color: #616161 !important;
+  }
+  .input-div {
+    margin-top: -20px;
+  }
+}
+//form
 
 //..................Upper Left Block.................
 //appbar login btn
@@ -476,17 +493,21 @@ export default {
   span {
     text-transform: lowercase !important;
   }
-  @media screen and (min-width: 1600px){
+  @media screen and (min-width: 1600px) {
     margin-right: 100px;
   }
 }
 
 .container-resume {
-  margin-top: -50px;
+  margin-top: -80px;
 }
 
 .card-resume {
-  margin-top: 150px;
+  margin-top: 90px;
+  z-index: 1;
+  @media screen and (min-width: 1600px) {
+    margin-top: 121px;
+  }
 }
 //resume title
 .resume-title {
@@ -494,8 +515,12 @@ export default {
   color: #0046fe !important;
   font-weight: bold;
   font-size: 4.2rem;
-  line-height: 4.5rem;
+  line-height: 5rem;
   margin-bottom: 10px;
+  @media screen and (max-width: 1440px) {
+    font-size: 3.3rem;
+    line-height: 4rem;
+  }
 
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
   //   font-size: 40px;
@@ -505,10 +530,9 @@ export default {
 
 //resume subtitle
 .resume-subtitle {
-  margin-top: 2vh;
   font-family: "Open Sans" !important;
   font-size: 1.375rem !important;
-  line-height: 1.85vw;
+  line-height: 2.25rem;
   color: #828282 !important;
   @media screen and (max-width: 1440px) {
     font-size: 17px !important;
@@ -523,36 +547,37 @@ export default {
 }
 
 .btn-get-started {
-  margin-top: 2.35vh;
+  //margin-top: 2.35vh;
+  margin-top: 30px;
   font-family: "Montserrat" !important;
   font-weight: bold;
   line-height: 10px;
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 50px rgba(233, 30, 99, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.4vw;
-  height: 3vw !important;
-  font-size: 0.74vw !important;
+  width: 11.065rem;
+  height: 3.55rem !important;
+  font-size: 0.875rem !important;
 }
 //reserve title
 .reserve-title {
-  margin-top: 3.52vh;
+  //margin-top: 3.52vh;
+  margin-top: 30px;
   font-family: "Open Sans" !important;
   font-weight: bold;
-  font-size: 1.27vw !important;
-  line-height: 1.9vw;
+  font-size: 1.5rem !important;
+  line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
-  @media screen and (max-width: 1280px) {
-    margin-top: 4.52vh;
+  @media screen and (max-width: 1440px) {
+    font-size: 1rem !important;
   }
 }
 
 //card download
+
 .card-download {
-  @media screen and (min-width: 1720px) {
-    margin-top: -35px;
-  }
+  margin-top: 32px;
   @media screen and (max-width: 1440px) {
     margin-top: -14px;
   }
@@ -560,28 +585,42 @@ export default {
 //Download text
 .download-text {
   font-family: "Open Sans" !important;
-  font-size: 1.05vw;
+  font-size: 1.125rem;
   color: #313131;
+  @media screen and (max-width: 1440px) {
+    font-size: 1rem;
+  }
 }
 .app-store-logo {
   margin-left: -20px;
   width: 170px;
   height: auto;
   max-width: 127% !important;
+  @media screen and (min-width: 1600px) {
+    margin-left: 0px;
+  }
 }
 // .... upper left block..............
 
 //upper right block
 .card-login-form {
   border-radius: 15px !important;
-  padding-left: 2.01vw !important;
-  padding-right: 2.01vw !important;
+  padding-left: 2.38rem !important;
+  padding-right: 2.38rem !important;
+  @media screen and (max-width: 1440px) {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
 }
 
 .login-title {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
-  font-size: 1.27vw;
+  font-size: 1.5rem;
+  @media screen and (max-width: 1440px) {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
 }
 .social-icon {
   border-radius: 10px !important;
@@ -589,31 +628,26 @@ export default {
   width: 39px !important;
   min-width: 39px !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
-  margin-top: 0.5vw;
-  margin-bottom: 0.8vw;
-  img {
-    width: 14px;
-    height: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  @media screen and (max-width: 1440px) {
+    margin-top: -10px;
+    margin-bottom: -5px;
   }
+
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     margin-left: 2px !important;
   }
 }
+
 //upper right block
 
 .signin-email {
   font-family: "Montserrat" !important;
   color: #616161 !important;
-  line-height: 1.02vh;
-  font-size: 0.85vw !important;
+  line-height: 1.25rem;
+  font-size: 1rem !important;
   font-weight: 500;
-}
-.label-text {
-  font-family: "Montserrat" !important;
-  font-size: 12px !important;
-  text-align: left !important;
-  font-weight: 500;
-  color: #616161;
 }
 
 .agree-text {
@@ -633,14 +667,14 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.43vw !important;
-  height: 3vw !important;
+  width: 11.31rem !important;
+  height: 3.625rem !important;
   span {
     font-family: "Montserrat" !important;
     font-weight: bold;
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
-    font-size: 0.72vw !important;
+    font-size: 0.875rem !important;
   }
 }
 
@@ -676,8 +710,8 @@ export default {
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 2.5vw;
-  line-height: 2.84vw;
+  font-size: 3rem;
+  line-height: 3.438rem;
   color: #0046fe !important;
   @media screen and (max-width: 1440px) {
     font-size: 34px;
@@ -686,8 +720,8 @@ export default {
 
 .build-resume-subtitle {
   font-family: "Open Sans" !important;
-  font-size: 0.93vw !important;
-  line-height: 36px;
+  font-size: 1.125rem !important;
+  line-height: 2.25rem;
   color: #575757 !important;
   width: 60%;
   @media screen and (max-width: 1440px) {
@@ -708,6 +742,7 @@ export default {
 }
 
 .card-gallery {
+  z-index: 1;
   img {
     border-radius: 10px !important;
   }
@@ -775,33 +810,35 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: -18.5%;
-  left: -24%;
+  top: 6rem;
+  left: -0.625rem;
   right: 0;
   margin-right: auto;
   margin-left: auto;
-  img{
+  img {
     width: 95%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    left: -27%;
-    img{
-      width:100%;
+    top: 5.5rem;
+    left: 0;
+    img {
+      width: 100%;
     }
   }
   @media screen and (max-width: 1366px) {
+    left: 0;
+    top: 6.5rem;
     width: 1366px;
-    left: -20%;
-    img{
+    img {
       width: 100%;
     }
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: -14%;
-    left: -10%;
-    img{
+    left: 0;
+    top: 7rem;
+    img {
       width: 100%;
     }
   }
@@ -842,27 +879,26 @@ export default {
 .top-make-resume {
   position: absolute;
   width: 1920px;
-  top: -43%;
-  left: -12%;
+  top: -10rem;
+  left: -10.5rem;
   img {
     width: 100%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: -27%;
-    left: -27%;
-
-    img {
-      width: 95%;
-    }
+    top: -6rem;
+    left: -9.5rem;
+  }
+  @media screen and (max-width: 1366px) {
+    width: 1366px;
+    top: -6rem;
+    left: -7.2rem;
   }
 
   @media screen and (max-width: 1280px) {
-    top: -20%;
-    left: -12%;
-    img {
-      width: 88%;
-    }
+    width: 1280px;
+    top: -5rem;
+    left: -4rem;
   }
 }
 
@@ -874,7 +910,7 @@ export default {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  img{
+  img {
     width: 90%;
   }
   @media screen and (max-width: 1440px) {
@@ -898,12 +934,17 @@ export default {
   margin-left: auto;
   margin-right: auto;
 
+  @media screen and (min-width: 1441px){
+    top:210%;
+    left:-24.5%;
+  }
+
   @media screen and (max-width: 1440px) {
     width: 1440px;
     top: 182%;
     left: -25.5%;
-    img{
-      width:94%;
+    img {
+      width: 94%;
     }
   }
 
@@ -918,7 +959,7 @@ export default {
   position: absolute;
   width: 1920px;
   top: 5%;
-  left: -5.5%;
+  left: -10.5%;
   img {
     width: 100%;
   }
@@ -939,18 +980,20 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  left: -5%;
+  top:3%;
+  left: -10.5%;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 3%;
     left: -13%;
+    top:4.5%;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
+    top:5%;
     left: -6.5%;
   }
 }
@@ -994,7 +1037,7 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 3.1vw !important;
+  min-height: 3.75rem !important;
 }
 
 #welcomeView2 .slick-dots li button {
@@ -1004,8 +1047,8 @@ export default {
   margin-left: -10px;
 }
 
-#welcomeView2 .slick-dots li.slick-active button{
-  background-color: #0F4CEE;
+#welcomeView2 .slick-dots li.slick-active button {
+  background-color: #0f4cee;
   outline: none;
   transition: width 5s ease-out 0s;
 }
@@ -1014,11 +1057,15 @@ export default {
   outline: none !important;
 }
 
-
-
 @media screen and (min-width: 1700px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     max-width: 700px !important;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 2.812rem !important;
   }
 }
 </style>
