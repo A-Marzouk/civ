@@ -585,7 +585,7 @@ export default {
   font-family: "Open Sans" !important;
   font-size: 1.125rem;
   color: #313131;
-  @media screen and (max-width:1440px){
+  @media screen and (max-width: 1440px) {
     font-size: 1rem;
   }
 }
@@ -615,9 +615,9 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 1.5rem;
-  @media screen and (max-width: 1440px){
+  @media screen and (max-width: 1440px) {
     font-size: 1.2rem;
-    margin-top:10px;
+    margin-top: 10px;
   }
 }
 .social-icon {
@@ -628,8 +628,8 @@ export default {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
   margin-top: 10px;
   margin-bottom: 15px;
-  @media screen and (max-width: 1440px){
-    margin-top:-10px;
+  @media screen and (max-width: 1440px) {
+    margin-top: -10px;
     margin-bottom: -5px;
   }
 
@@ -807,7 +807,7 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: 7.5rem;
+  top: 6rem;
   left: -0.625rem;
   right: 0;
   margin-right: auto;
@@ -817,22 +817,24 @@ export default {
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    left: -27%;
+    top: 5.5rem;
+    left: 0;
     img {
       width: 100%;
     }
   }
   @media screen and (max-width: 1366px) {
+    left:0;
+    top:6.5rem;
     width: 1366px;
-    left: -20%;
     img {
       width: 100%;
     }
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: -14%;
-    left: -10%;
+    left:0;
+    top: 7rem;
     img {
       width: 100%;
     }
