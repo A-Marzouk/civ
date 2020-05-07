@@ -493,8 +493,8 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 3.72vw;
-  line-height: 4.13vw;
+  font-size: 4.2rem;
+  line-height: 4.5rem;
   margin-bottom: 10px;
 
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
@@ -507,7 +507,7 @@ export default {
 .resume-subtitle {
   margin-top: 2vh;
   font-family: "Open Sans" !important;
-  font-size: 1.4vw !important;
+  font-size: 1.375rem !important;
   line-height: 1.85vw;
   color: #828282 !important;
   @media screen and (max-width: 1440px) {
@@ -776,22 +776,34 @@ export default {
   position: absolute;
   width: 1920px;
   top: -18.5%;
-  left: -11%;
+  left: -24%;
   right: 0;
   margin-right: auto;
   margin-left: auto;
+  img{
+    width: 95%;
+  }
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -27%;
+    img{
+      width:100%;
+    }
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
     left: -20%;
+    img{
+      width: 100%;
+    }
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
     top: -14%;
     left: -10%;
+    img{
+      width: 100%;
+    }
   }
 
   // @media screen and (min-width: 1300px) and (max-width: 1659px) {
