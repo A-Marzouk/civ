@@ -563,7 +563,7 @@ export default {
 //Download text
 .download-text {
   font-family: "Open Sans" !important;
-  font-size: 1.05vw;
+  font-size: 1.125rem;
   color: #313131;
 }
 .app-store-logo {
@@ -779,7 +779,7 @@ export default {
   position: absolute;
   width: 1920px;
   top: 9rem;
-  left: 0;
+  left: -0.625rem;
   right: 0;
   margin-right: auto;
   margin-left: auto;
@@ -845,8 +845,8 @@ export default {
 .top-make-resume {
   position: absolute;
   width: 1920px;
-  top: -43%;
-  left: -12%;
+  top: -10rem;
+  left: -11rem;
   img {
     width: 100%;
   }
