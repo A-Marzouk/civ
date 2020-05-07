@@ -378,7 +378,7 @@ export default {
         { id: 2, title: "linkedin", width: 16 },
         { id: 3, title: "google", width: 14 },
         { id: 4, title: "facebook", width: 18 },
-        { id: 5, title: "github", width:22 }
+        { id: 5, title: "github", width: 22 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -456,13 +456,6 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-@font-face {
-  font-family: "Segoe UI Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: local("Segoe UI Bold"),
-    url("/fonts/segoe/Segoe UI Bold.woff") format("woff");
-}
 
 //logo
 .logo {
@@ -508,7 +501,7 @@ export default {
 }
 
 .card-resume {
-  margin-top: 150px;
+  margin-top: 90px;
   z-index: 1;
   @media screen and (min-width: 1600px) {
     margin-top: 121px;
@@ -522,6 +515,9 @@ export default {
   font-size: 4.2rem;
   line-height: 5rem;
   margin-bottom: 10px;
+  @media screen and (max-width: 1440px) {
+    font-size: 3.3rem;
+  }
 
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
   //   font-size: 40px;
@@ -531,7 +527,6 @@ export default {
 
 //resume subtitle
 .resume-subtitle {
-  margin-top: 2vh;
   font-family: "Open Sans" !important;
   font-size: 1.375rem !important;
   line-height: 2.25rem;
@@ -549,7 +544,8 @@ export default {
 }
 
 .btn-get-started {
-  margin-top: 2.35vh;
+  //margin-top: 2.35vh;
+  margin-top:30px;
   font-family: "Montserrat" !important;
   font-weight: bold;
   line-height: 10px;
@@ -562,7 +558,8 @@ export default {
 }
 //reserve title
 .reserve-title {
-  margin-top: 3.52vh;
+  //margin-top: 3.52vh;
+  margin-top: 30px;
   font-family: "Open Sans" !important;
   font-weight: bold;
   font-size: 1.5rem !important;
@@ -577,10 +574,7 @@ export default {
 //card download
 
 .card-download {
-  margin-top: 0px !important;
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    margin-top: 32px;
-  }
+  margin-top: 32px;
   @media screen and (max-width: 1440px) {
     margin-top: -14px;
   }
