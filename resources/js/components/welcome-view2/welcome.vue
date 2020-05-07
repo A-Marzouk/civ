@@ -85,7 +85,7 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="5" sm="12" cols="12">
-            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5">
+            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-xl-5 pa-md-0">
               <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
               <v-card-subtitle align="center">
                 <v-btn
@@ -517,6 +517,7 @@ export default {
   margin-bottom: 10px;
   @media screen and (max-width: 1440px) {
     font-size: 3.3rem;
+    line-height: 4rem;
   }
 
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
@@ -545,7 +546,7 @@ export default {
 
 .btn-get-started {
   //margin-top: 2.35vh;
-  margin-top:30px;
+  margin-top: 30px;
   font-family: "Montserrat" !important;
   font-weight: bold;
   line-height: 10px;
@@ -566,8 +567,8 @@ export default {
   line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
-  @media screen and (max-width: 1280px) {
-    margin-top: 88px;
+  @media screen and (max-width: 1440px) {
+    font-size: 1rem !important;
   }
 }
 
@@ -584,6 +585,9 @@ export default {
   font-family: "Open Sans" !important;
   font-size: 1.125rem;
   color: #313131;
+  @media screen and (max-width:1440px){
+    font-size: 1rem;
+  }
 }
 .app-store-logo {
   margin-left: -20px;
@@ -601,12 +605,20 @@ export default {
   border-radius: 15px !important;
   padding-left: 2.38rem !important;
   padding-right: 2.38rem !important;
+  @media screen and (max-width: 1440px) {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
 }
 
 .login-title {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 1.5rem;
+  @media screen and (max-width: 1440px){
+    font-size: 1.2rem;
+    margin-top:10px;
+  }
 }
 .social-icon {
   border-radius: 10px !important;
@@ -616,6 +628,11 @@ export default {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
   margin-top: 10px;
   margin-bottom: 15px;
+  @media screen and (max-width: 1440px){
+    margin-top:-10px;
+    margin-bottom: -5px;
+  }
+
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     margin-left: 2px !important;
   }
@@ -1032,6 +1049,12 @@ export default {
 @media screen and (min-width: 1700px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     max-width: 700px !important;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 2.812rem !important;
   }
 }
 </style>
