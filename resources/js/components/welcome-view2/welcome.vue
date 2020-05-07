@@ -64,7 +64,7 @@
             <v-card color="transparent" tile flat class="card-download">
               <v-card-text>
                 <v-row align="center">
-                  <v-col xl="5" cols="6">
+                  <v-col xl="6" cols="6">
                     <div class="download-text">Download for ios and android:</div>
                   </v-col>
                   <v-col xl="3" cols="3">
@@ -571,6 +571,9 @@ export default {
   width: 170px;
   height: auto;
   max-width: 127% !important;
+  @media screen and (min-width: 1600px) {
+    margin-left: 0px;
+  }
 }
 // .... upper left block..............
 
