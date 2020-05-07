@@ -3,11 +3,7 @@
     <!-- main container -->
     <v-container style="width:100%; ">
       <v-app-bar color="transparent" flat tile height="100">
-        <img
-          class="logo"
-          src="/images/welcome_landing_page/logo/civie_logo-blue.png"
-          alt="logo"
-        />
+        <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
         <v-btn text color="#0046FE" class="btn-appbar-login">
           Log
@@ -31,10 +27,8 @@
               </v-card-subtitle>
             </v-card>
             <div class="top-layer-background">
-                <img
-                  src="/images/welcome_landing_page/imgs/background-images/top-background-img.png"
-                />
-              </div>
+              <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
+            </div>
             <v-card color="transparent" flat tile>
               <div class="top-make-resume">
                 <img
@@ -91,9 +85,9 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="5" sm="12" cols="12">
-            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5" align="center">
-              <v-card-subtitle class="login-title">Create new account</v-card-subtitle>
-              <v-card-subtitle>
+            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-5">
+              <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
+              <v-card-subtitle align="center">
                 <v-btn
                   class="social-icon mx-2"
                   color="#ffffff"
@@ -103,43 +97,56 @@
                   <img :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
-              <v-card-subtitle class="signin-email mt-n3">or Sign Up with Email</v-card-subtitle>
+              <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle>
+              <v-card-subtitle class="login-form">
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
-                  <v-text-field
-                    type="text"
-                    outlined
-                    background-color="#ffffff"
-                    placeholder="Name"
-                    :rules="nameRules"
-                  ></v-text-field>
-                  <v-text-field
-                    type="email"
-                    outlined
-                    background-color="#ffffff"
-                    placeholder="Email Address"
-                    :rules="emailRules"
-                  ></v-text-field>
-                  <v-text-field
-                    type="password"
-                    outlined
-                    placeholder="Password"
-                    background-color="#ffffff"
-                    v-model="password"
-                    :rules="passwordRules"
-                  ></v-text-field>
+                  <div class="input-div">
+                    <label for="name">Name</label>
+                    <v-text-field
+                      type="text"
+                      outlined
+                      background-color="#ffffff"
+                      placeholder="Name"
+                      :rules="nameRules"
+                      v-model="name"
+                    ></v-text-field>
+                  </div>
+                  <div class="input-div">
+                    <label for="email">Email Address</label>
+                    <v-text-field
+                      type="email"
+                      outlined
+                      background-color="#ffffff"
+                      placeholder="Email Address"
+                      :rules="emailRules"
+                      v-model="email"
+                    ></v-text-field>
+                  </div>
+                  <div class="input-div">
+                    <label for="password">Password</label>
+                    <v-text-field
+                      type="password"
+                      outlined
+                      placeholder="Password"
+                      background-color="#ffffff"
+                      v-model="password"
+                      :rules="passwordRules"
+                    ></v-text-field>
+                  </div>
+                  <div class="input-div">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <v-text-field
+                      type="password"
+                      placeholder="Confirm Password"
+                      outlined
+                      background-color="#ffffff"
+                      v-model="confirmPassword"
+                      :rules="confirmPasswordRules"
+                    ></v-text-field>
+                  </div>
 
-                  <v-text-field
-                    type="password"
-                    placeholder="Confirm Password"
-                    outlined
-                    background-color="#ffffff"
-                    v-model="confirmPassword"
-                    :rules="confirmPasswordRules"
-                  ></v-text-field>
-
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules">
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n5">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -148,14 +155,15 @@
                       </div>
                     </template>
                   </v-checkbox>
-
-                  <v-btn color="#0046FE" class="btn-signup" @click="validate">
-                    <span>Sign Up</span>
-                  </v-btn>
+                  <v-card-text align="center">
+                    <v-btn color="#0046FE" class="btn-signup" @click="validate">
+                      <span>Sign Up</span>
+                    </v-btn>
+                  </v-card-text>
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists">
+              <v-card-subtitle class="account-exists mt-n3" align="center">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
@@ -465,6 +473,21 @@ export default {
   }
 }
 
+//form
+.login-form {
+  label {
+    font-family: "Montserrat" !important;
+    font-size: 14px;
+    text-align: left !important;
+    font-weight: 500;
+    color: #616161 !important;
+  }
+  .input-div{
+    margin-top:-20px;
+  }
+}
+//form
+
 //..................Upper Left Block.................
 //appbar login btn
 .btn-appbar-login {
@@ -475,7 +498,7 @@ export default {
   span {
     text-transform: lowercase !important;
   }
-  @media screen and (min-width: 1600px){
+  @media screen and (min-width: 1600px) {
     margin-right: 100px;
   }
 }
@@ -487,7 +510,7 @@ export default {
 .card-resume {
   margin-top: 150px;
   z-index: 1;
-  @media screen and (min-width: 1600px){
+  @media screen and (min-width: 1600px) {
     margin-top: 121px;
   }
 }
@@ -610,16 +633,9 @@ export default {
 .signin-email {
   font-family: "Montserrat" !important;
   color: #616161 !important;
-  line-height: 1.02vh;
-  font-size: 0.85vw !important;
+  line-height: 1.25rem;
+  font-size: 1rem !important;
   font-weight: 500;
-}
-.label-text {
-  font-family: "Montserrat" !important;
-  font-size: 12px !important;
-  text-align: left !important;
-  font-weight: 500;
-  color: #616161;
 }
 
 .agree-text {
@@ -639,8 +655,8 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 20px rgba(25, 0, 180, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.43vw !important;
-  height: 3vw !important;
+  width: 11.31rem !important;
+  height: 3.625rem !important;
   span {
     font-family: "Montserrat" !important;
     font-weight: bold;
@@ -786,20 +802,20 @@ export default {
   right: 0;
   margin-right: auto;
   margin-left: auto;
-  img{
+  img {
     width: 95%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -27%;
-    img{
-      width:100%;
+    img {
+      width: 100%;
     }
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
     left: -20%;
-    img{
+    img {
       width: 100%;
     }
   }
@@ -807,7 +823,7 @@ export default {
     width: 1280px;
     top: -14%;
     left: -10%;
-    img{
+    img {
       width: 100%;
     }
   }
@@ -880,7 +896,7 @@ export default {
   right: 0;
   margin-left: auto;
   margin-right: auto;
-  img{
+  img {
     width: 90%;
   }
   @media screen and (max-width: 1440px) {
@@ -908,8 +924,8 @@ export default {
     width: 1440px;
     top: 182%;
     left: -25.5%;
-    img{
-      width:94%;
+    img {
+      width: 94%;
     }
   }
 
@@ -1010,8 +1026,8 @@ export default {
   margin-left: -10px;
 }
 
-#welcomeView2 .slick-dots li.slick-active button{
-  background-color: #0F4CEE;
+#welcomeView2 .slick-dots li.slick-active button {
+  background-color: #0f4cee;
   outline: none;
   transition: width 5s ease-out 0s;
 }
@@ -1019,8 +1035,6 @@ export default {
 #welcomeView2 .slick-dots li button:focus {
   outline: none !important;
 }
-
-
 
 @media screen and (min-width: 1700px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
