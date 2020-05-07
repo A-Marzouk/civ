@@ -19,13 +19,16 @@ export default {
 <style lang="scss">
 .tm702-about {
   .tm702-about-container {
+    margin-top: 61px;
     padding-left: 12px;
     padding-right: 26px;
     @media screen and(min-width: 768px) {
+      margin-top: 52px;
       padding-left: 34px;
       padding-right: 39px;
     }
     @media screen and(min-width: 1200px) {
+      margin-top: 102px;
       text-align: center;
     }
   }
@@ -33,14 +36,35 @@ export default {
   h1 {
     color: var(--blue);
     font-size: 18px;
+    line-height: 25px;
     font-weight: bold;
-    line-height: 1.4;
-    padding-left: 5px;
     margin-bottom: 23px;
+    font-style: normal;
+    @media screen and (min-width: 768px) {
+      font-size: 36px;
+      line-height: 42px;
+    }
+    @media screen and (min-width: 1200px) {
+      font-size: 30px;
+      line-height: 41px;
+    }
   }
 
   p {
     margin-bottom: 10px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--gray-about);
+    @media screen and (min-width: 768px) {
+      font-size: 18px;
+      line-height: 25px;
+    }
+    @media screen and (min-width: 1200px) {
+      font-size: 14px;
+      line-height: 15px;
+    }
   }
 }
 </style>

@@ -28,14 +28,26 @@ export default {
 
 <style lang="scss">
 .tm700-work {
+  // parent grid
   .tm700-work--inner {
+    --row-gap: 82px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-row-gap: var(--row-gap);
+    grid-template-columns: 1fr;
+    justify-items: center;
+    @media screen and (min-width: 600px) {
+    }
     @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      --row-gap: 128px;
     }
     @media screen and (min-width: 1200px) {
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      grid-template-columns: 1fr 1fr;
+      --row-gap: 174px;
+      grid-column-gap: 100px;
+    }
+    @media screen and (min-width: 1800px) {
+      --row-gap: 174px;
+      grid-column-gap: 100px;
     }
   }
   .tm700-works {

@@ -96,6 +96,11 @@ axios.get('/api/user/{{current_endpoint_url}}');
 {{headers_after_auth}}
                         </code>
 
+                        Please not that when updating profile picture you need to add this to your header:
+                        <code class="mb-5 prettyprint lang-js p-4">
+'Content-Type': 'multipart/form-data'
+                        </code>
+
                         Request data:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">

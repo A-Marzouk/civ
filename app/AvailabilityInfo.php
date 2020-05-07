@@ -10,7 +10,7 @@ class AvailabilityInfo extends Model
     protected $table = 'availability_info';
 
     protected $fillable = [
-        'available_hours', 'available_hours_frequency', 'user_id'
+        'available_hours', 'user_id'
     ];
 
 

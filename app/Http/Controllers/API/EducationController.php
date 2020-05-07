@@ -6,6 +6,7 @@ use App\Education;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Education as EducationResource;
 use Illuminate\Http\Request;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -38,6 +39,10 @@ class EducationController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
 
         $this->validator($request->all())->validate();
 
@@ -89,9 +94,14 @@ class EducationController extends Controller
      */
     public function destroy($id)
     {
+
         $education = Education::where([
             'id' => $id,
         ])->first();
+
+        if(!$this->is_auth($education)){
+            throw new Exception('Not Authenticated!');
+        }
 
         if($education->delete()){
             return ['data' => ['id' => $education->id] ];
@@ -101,12 +111,16 @@ class EducationController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'institution_type' => ['required','string','max:255'],
-            'university_name' => ['required','string','max:255'],
-            'degree_title' => ['required','string','max:2500'],
-            'date_from' => ['sometimes','date','max:255'],
+            'institution_type' => ['sometimes','string','max:255','min:3'],
+            'university_name' => ['sometimes','string','max:255','min:3'],
+            'degree_title' => ['sometimes','string','max:2500','min:3'],
+            'date_from' => ['sometimes','date','max:255','min:3'],
             'date_to' => ['sometimes','nullable','date','max:255'],
             'present' =>['boolean']
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }

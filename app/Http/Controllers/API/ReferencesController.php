@@ -5,8 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Reference;
 use App\Http\Resources\Reference as ReferenceResource;
+use App\User;
 use Illuminate\Http\Request;use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Exception;
 
 class ReferencesController extends Controller
 {
@@ -27,16 +29,17 @@ class ReferencesController extends Controller
     }
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
+
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
-            $reference = Reference::find($request->id);
-            $reference->update($request->toArray());
-        }else{
-            // add
-            $request['user_id'] = Auth::user()->id;
-            $reference = Reference::create($request->toArray());
-        }
+        $user = User::find($request->user_id);
+        $reference = $user->reference;
+        $reference->update($request->toArray());
 
         if ($reference->id){
             return new ReferenceResource($reference);
@@ -46,7 +49,7 @@ class ReferencesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255','min:3'],
+            'name' => ['sometimes', 'string', 'max:255','min:3'],
             'title' => ['sometimes','required', 'string', 'max:255'],
             'phone' => ['sometimes','required','min:7' ,'numeric'],
             'email' => ['sometimes','required', 'email', 'max:255'],
@@ -55,5 +58,9 @@ class ReferencesController extends Controller
             'reference_text' => ['sometimes','nullable','string', 'max:2500'],
             'notes' => ['sometimes','nullable','string', 'max:2500'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }

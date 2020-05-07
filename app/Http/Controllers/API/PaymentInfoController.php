@@ -8,6 +8,8 @@ use App\Http\Resources\PaymentInfo as PaymentInfoResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Exception;
+
 
 
 class PaymentInfoController extends Controller
@@ -37,6 +39,10 @@ class PaymentInfoController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
         // here we will not save new we will directly update info.
         $this->validator($request->all())->validate();
 
@@ -56,8 +62,11 @@ class PaymentInfoController extends Controller
     {
         return Validator::make($data, [
             'currency' => ['required', 'string', 'max:255','min:2'],
-            'salary_frequency' => ['required', 'string', 'max:255','min:3'],
             'salary' => ['required', 'numeric','min:3','max:9999999'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }
