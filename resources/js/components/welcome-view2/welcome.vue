@@ -47,8 +47,8 @@
                   @keyup="checkUser"
                 >
                   <template slot="append">
-                    <v-icon color="#1DBF73" v-show="userFound == true">mdi-check-circle</v-icon>
-                    <v-icon color="#E91E63" v-show="userFound == false">mdi-close-circle</v-icon>
+                    <v-icon color="#1DBF73" class="custom-append-icon" v-show="userFound == true">mdi-check-circle</v-icon>
+                    <v-icon color="#E91E63" class="custom-append-icon" v-show="userFound == false">mdi-close-circle</v-icon>
                   </template>
                 </v-text-field>
               </v-card-subtitle>
@@ -352,23 +352,23 @@ export default {
       lazy: false,
       name: "",
       nameRules: [
-        v => !!v || "Name is required",
-        v => (v && v.length >= 3) || "Name must be less than 3 characters"
+        v => !!v || "",
+        v => (v && v.length >= 3) || ""
       ],
       email: "",
       emailRules: [
-        v => !!v || "E-mail is required",
-        v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+        v => !!v || "",
+        v => /.+@.+\..+/.test(v) || ""
       ],
       password: "",
       passwordRules: [
-        v => !!v || "Password is required",
-        v => (v && v.length >= 6) || "Password must be less than 6 characters"
+        v => !!v || "",
+        v => (v && v.length >= 6) || ""
       ],
       confirmPassword: "",
       confirmPasswordRules: [
-        v => !!v || "Confirm password is required",
-        v => (v && v == this.password) || "Password must match"
+        v => !!v || "",
+        v => (v && v == this.password) || ""
       ],
       agreeCheck: false,
       agreeCheckRules: [v => (v && v == false) || ""],
@@ -463,6 +463,12 @@ export default {
   height: 69px;
   @media screen and (min-width: 1600px) {
     margin-left: 78px;
+  }
+}
+
+.custom-append-icon{
+  @media screen and (min-width: 960px) and (max-width: 1440px){
+    margin-top: -6px;
   }
 }
 
