@@ -4,7 +4,7 @@
     <v-container style="width:100%; ">
       <v-app-bar color="transparent" flat tile height="100">
         <img
-          class="logo mx-auto"
+          class="logo"
           src="/images/welcome_landing_page/logo/civie_logo-blue.png"
           alt="logo"
         />
@@ -17,7 +17,7 @@
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
         <v-row justify="center" align="center" class="resume-row">
-          <v-col md="6" sm="12" cols="12">
+          <v-col xl="5" md="6" sm="12" cols="12">
             <v-card color="transparent" flat tile class="card-resume">
               <div class="top-layer-background">
                 <img
@@ -207,7 +207,7 @@
       <!-- 3rd inner container starts here -->
       <v-container style="width:100%" class="gallery-container">
         <v-row align="center" justify="center">
-          <v-col cols="12">
+          <v-col xl="11" cols="12">
             <v-card flat tile color="transparent">
               <v-card-title class="build-resume-title">
                 40+ Beautiful Themes
@@ -239,7 +239,7 @@
       <!-- 3rd inner container -->
       <v-container style="width:100%;" class="mt-md-10 mt-sm-0 mt-0">
         <v-row align="center" justify="center">
-          <v-col cols="12" align="center">
+          <v-col xl="11" cols="12" align="center">
             <v-card flat tile color="transparent">
               <div class="middle-layer-background4">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
@@ -461,17 +461,23 @@ export default {
 .logo {
   width: 163px;
   height: 69px;
+  @media screen and (min-width: 1600px) {
+    margin-left: 78px;
+  }
 }
 
 //..................Upper Left Block.................
 //appbar login btn
 .btn-appbar-login {
   font-family: "Montserrat" !important;
-  font-size: 16px !important;
+  font-size: 1rem !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
   span {
     text-transform: lowercase !important;
+  }
+  @media screen and (min-width: 1600px){
+    margin-right: 100px;
   }
 }
 
