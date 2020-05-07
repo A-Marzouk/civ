@@ -69,6 +69,9 @@
                                 :ripple="false"
                             >
                                 {{ formatTab(tabItem) }}
+                                <span v-if="tabItem === 'work-experience'">Where I've worked</span>
+                                <span v-else-if="tabItem === 'education'">Where I've learned</span>
+                                <span v-else-if="tabItem === 'skills-and-language'">What I Bring To The Table</span>
                             </v-tab>
                         </v-tabs>
                         <transition>
@@ -330,12 +333,16 @@ $purple: #24325D;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            
+            .v-slide-group__wrapper {
+                height: 100px;
+            }
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $tabTextColor;
                 margin-top: 61px;
-                margin-bottom: 61px;
+                margin-bottom: 111px;
 
                 &-bar {
                     background: transparent !important;
@@ -347,16 +354,34 @@ $purple: #24325D;
                     text-transform: none;
                     font-size: 20px;
                     color: $tabTextColor;
+                    position: relative;
+                    align-items: flex-start;
                     // margin-right: 50px;
 
                     &--active {
                         color: #5BFFFE !important;
                         font-weight: 700;
                         background: none;
+
+                        span {
+                            opacity: 1 !important;
+                            transition: all .5s ease;
+                        }
                     }
 
                     &::before {
                         display: none !important;
+                    }
+
+                    span {
+                        opacity: 0;
+                        transition: all .5s ease;
+                        position: absolute;
+                        color: #616887;
+                        font-size: 20px;
+                        display: block;
+                        width: 100%;
+                        top: 50px;
                     }
                 }
 
@@ -412,7 +437,7 @@ $purple: #24325D;
     }
 
     .scroll-top {
-        position: fixed;
+        position: absolute;
         left: 45px;
         bottom: 250px;
         transform: rotateZ(-90deg);

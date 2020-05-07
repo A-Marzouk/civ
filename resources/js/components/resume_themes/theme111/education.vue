@@ -146,7 +146,7 @@ export default {
 
             .education-description,
             .education-description p {
-                color: $lineColor;
+                color: #E2E7FF;
                 font-size: 17px;
             }
         }
