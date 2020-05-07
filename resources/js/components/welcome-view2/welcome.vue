@@ -94,7 +94,7 @@
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
                 >
-                  <img :src="getSocialIcon(icon.title)" alt />
+                  <img :width="icon.width" :src="getSocialIcon(icon.title)" alt />
                 </v-btn>
               </v-card-subtitle>
               <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
@@ -374,11 +374,11 @@ export default {
       agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
-        { id: 1, title: "instagram" },
-        { id: 2, title: "linkedin" },
-        { id: 3, title: "google" },
-        { id: 4, title: "facebook" },
-        { id: 5, title: "github" }
+        { id: 1, title: "instagram", width: 18 },
+        { id: 2, title: "linkedin", width: 16 },
+        { id: 3, title: "google", width: 14 },
+        { id: 4, title: "facebook", width: 18 },
+        { id: 5, title: "github", width:22 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -482,8 +482,8 @@ export default {
     font-weight: 500;
     color: #616161 !important;
   }
-  .input-div{
-    margin-top:-20px;
+  .input-div {
+    margin-top: -20px;
   }
 }
 //form
@@ -534,7 +534,7 @@ export default {
   margin-top: 2vh;
   font-family: "Open Sans" !important;
   font-size: 1.375rem !important;
-  line-height: 1.85vw;
+  line-height: 2.25rem;
   color: #828282 !important;
   @media screen and (max-width: 1440px) {
     font-size: 17px !important;
@@ -556,28 +556,30 @@ export default {
   box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
     4px 4px 50px rgba(233, 30, 99, 0.2) !important;
   border-radius: 10px !important;
-  width: 9.4vw;
-  height: 3vw !important;
-  font-size: 0.74vw !important;
+  width: 11.065rem;
+  height: 3.55rem !important;
+  font-size: 0.875rem !important;
 }
 //reserve title
 .reserve-title {
   margin-top: 3.52vh;
   font-family: "Open Sans" !important;
   font-weight: bold;
-  font-size: 1.27vw !important;
-  line-height: 1.9vw;
+  font-size: 1.5rem !important;
+  line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
   @media screen and (max-width: 1280px) {
-    margin-top: 4.52vh;
+    margin-top: 88px;
   }
 }
 
 //card download
+
 .card-download {
-  @media screen and (min-width: 1600px) {
-    margin-top: -7px;
+  margin-top: 0px !important;
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    margin-top: 32px;
   }
   @media screen and (max-width: 1440px) {
     margin-top: -14px;
@@ -603,14 +605,14 @@ export default {
 //upper right block
 .card-login-form {
   border-radius: 15px !important;
-  padding-left: 2.01vw !important;
-  padding-right: 2.01vw !important;
+  padding-left: 2.38rem !important;
+  padding-right: 2.38rem !important;
 }
 
 .login-title {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
-  font-size: 1.27vw;
+  font-size: 1.5rem;
 }
 .social-icon {
   border-radius: 10px !important;
@@ -618,16 +620,13 @@ export default {
   width: 39px !important;
   min-width: 39px !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
-  margin-top: 0.5vw;
-  margin-bottom: 0.8vw;
-  img {
-    width: 14px;
-    height: auto;
-  }
+  margin-top: 10px;
+  margin-bottom: 15px;
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     margin-left: 2px !important;
   }
 }
+
 //upper right block
 
 .signin-email {
@@ -662,7 +661,7 @@ export default {
     font-weight: bold;
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
-    font-size: 0.72vw !important;
+    font-size: 0.875rem !important;
   }
 }
 
@@ -698,8 +697,8 @@ export default {
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
-  font-size: 2.5vw;
-  line-height: 2.84vw;
+  font-size: 3rem;
+  line-height: 3.438rem;
   color: #0046fe !important;
   @media screen and (max-width: 1440px) {
     font-size: 34px;
@@ -708,8 +707,8 @@ export default {
 
 .build-resume-subtitle {
   font-family: "Open Sans" !important;
-  font-size: 0.93vw !important;
-  line-height: 36px;
+  font-size: 1.125rem !important;
+  line-height: 2.25rem;
   color: #575757 !important;
   width: 60%;
   @media screen and (max-width: 1440px) {
@@ -1016,7 +1015,7 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 3.1vw !important;
+  min-height: 3.75rem !important;
 }
 
 #welcomeView2 .slick-dots li button {
