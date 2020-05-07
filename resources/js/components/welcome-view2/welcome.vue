@@ -107,7 +107,6 @@
                       type="text"
                       outlined
                       background-color="#ffffff"
-                      placeholder="Name"
                       :rules="nameRules"
                       v-model="name"
                     ></v-text-field>
@@ -118,7 +117,6 @@
                       type="email"
                       outlined
                       background-color="#ffffff"
-                      placeholder="Email Address"
                       :rules="emailRules"
                       v-model="email"
                     ></v-text-field>
@@ -128,7 +126,6 @@
                     <v-text-field
                       type="password"
                       outlined
-                      placeholder="Password"
                       background-color="#ffffff"
                       v-model="password"
                       :rules="passwordRules"
@@ -138,7 +135,6 @@
                     <label for="confirmPassword">Confirm Password</label>
                     <v-text-field
                       type="password"
-                      placeholder="Confirm Password"
                       outlined
                       background-color="#ffffff"
                       v-model="confirmPassword"
