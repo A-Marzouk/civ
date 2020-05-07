@@ -824,8 +824,8 @@ export default {
     }
   }
   @media screen and (max-width: 1366px) {
-    left:0;
-    top:6.5rem;
+    left: 0;
+    top: 6.5rem;
     width: 1366px;
     img {
       width: 100%;
@@ -833,7 +833,7 @@ export default {
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    left:0;
+    left: 0;
     top: 7rem;
     img {
       width: 100%;
@@ -877,26 +877,25 @@ export default {
   position: absolute;
   width: 1920px;
   top: -10rem;
-  left: -11rem;
+  left: -10.5rem;
   img {
     width: 100%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: -27%;
-    left: -27%;
-
-    img {
-      width: 95%;
-    }
+    top: -6rem;
+    left: -9.5rem;
+  }
+  @media screen and (max-width: 1366px) {
+    width: 1366px;
+    top: -6rem;
+    left: -7.2rem;
   }
 
   @media screen and (max-width: 1280px) {
-    top: -20%;
-    left: -12%;
-    img {
-      width: 88%;
-    }
+    width: 1280px;
+    top: -5rem;
+    left: -4rem;
   }
 }
 
