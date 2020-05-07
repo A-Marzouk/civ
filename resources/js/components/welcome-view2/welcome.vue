@@ -177,7 +177,7 @@
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
-          <v-col cols="10" align="center">
+          <v-col xl="9" cols="10" align="center">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1">
@@ -930,6 +930,11 @@ export default {
   right: 0;
   margin-left: auto;
   margin-right: auto;
+
+  @media screen and (min-width: 1441px){
+    top:210%;
+    left:-24.5%;
+  }
 
   @media screen and (max-width: 1440px) {
     width: 1440px;
