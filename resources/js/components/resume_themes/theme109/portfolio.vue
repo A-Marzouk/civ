@@ -1,67 +1,10 @@
 <template>
     <div class="container">
         <div class="portfolio-grid">
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img1.png" alt="">
+            <div v-for="(project, index) in projects" class="portfolio-item" :class="{ isLarge: isLarge(project) }" :style="{ backgroundImage: `url(${project.img})` }" :key="'project-' + index" style>
                 <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img2.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img3.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img4.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img5.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img4.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img5.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img4.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <img src="/images/resume_themes/theme113/portfolio-img5.png" alt="">
-                <div class="content">
-                    <h2 class="title">Est irure in duis minim exercitation voluptate occaecat ullamco.</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme12/project-link.png" alt=""></a>
+                    <h2 class="title">{{ project.title }}</h2>
+                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme112/project-link.png" alt=""></a>
                 </div>
             </div>
         </div>
@@ -72,8 +15,40 @@
 <script>
 export default {
     data: () => ({
+        projects: [
+            {
+                title: 'Project title',
+                img: '/images/resume_themes/theme113/portfolio-img1.png'
+            },
+            {
+                title: 'Project title',
+                img: '/images/resume_themes/theme109/portfolio-img2.png'
+            },
+            {
+                title: 'Project title',
+                img: '/images/resume_themes/theme109/portfolio-img1.png'
+            },
+            {
+                title: 'Project title',
+                img: '/images/resume_themes/theme109/portfolio-img3.png'
+            },
+            {
+                title: 'Project title',
+                img: '/images/resume_themes/theme109/portfolio-img4.png'
+            }
+        ]
+    }),
+    methods: {
+        isLarge (project) {
+            let img = new Image()
+            img.src = project.img
+            img.onload = e => {
+                e.target
+            }
 
-    })
+            return img.width > img.height
+        }
+    }
 }
 </script>
 
@@ -89,6 +64,12 @@ export default {
             position: relative;
             height: 455px;
             overflow: hidden;
+            background-size: cover;
+            background-position: top center;
+
+            &.isLarge {
+                grid-column: span 8;
+            }
 
             &:last-child {
                 margin-bottom: 0;

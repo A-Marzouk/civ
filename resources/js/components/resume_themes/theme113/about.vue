@@ -26,6 +26,7 @@ export default {
 <style lang="scss" scoped>
     .about {
         display: flex;
+        max-width: 1400px;
         
         .about-title {
             font-size: 40px;
