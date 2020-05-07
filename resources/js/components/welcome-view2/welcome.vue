@@ -139,7 +139,7 @@
                     :rules="confirmPasswordRules"
                   ></v-text-field>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class>
+                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules">
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -481,14 +481,14 @@ export default {
 }
 
 .container-resume {
-  margin-top: 0px;
+  margin-top: -80px;
 }
 
 .card-resume {
   margin-top: 150px;
   z-index: 1;
   @media screen and (min-width: 1600px){
-    margin-top: 80px;
+    margin-top: 121px;
   }
 }
 //resume title
@@ -497,7 +497,7 @@ export default {
   color: #0046fe !important;
   font-weight: bold;
   font-size: 4.2rem;
-  line-height: 4.5rem;
+  line-height: 5rem;
   margin-bottom: 10px;
 
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
@@ -553,8 +553,8 @@ export default {
 
 //card download
 .card-download {
-  @media screen and (min-width: 1720px) {
-    margin-top: -35px;
+  @media screen and (min-width: 1600px) {
+    margin-top: -7px;
   }
   @media screen and (max-width: 1440px) {
     margin-top: -14px;
@@ -781,7 +781,7 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: 9rem;
+  top: 7.5rem;
   left: -0.625rem;
   right: 0;
   margin-right: auto;
