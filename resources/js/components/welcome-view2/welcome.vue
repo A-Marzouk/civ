@@ -740,6 +740,7 @@ export default {
 }
 
 .card-gallery {
+  z-index: 1;
   img {
     border-radius: 10px !important;
   }
@@ -956,7 +957,7 @@ export default {
   position: absolute;
   width: 1920px;
   top: 5%;
-  left: -5.5%;
+  left: -10.5%;
   img {
     width: 100%;
   }
@@ -977,18 +978,20 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  left: -5%;
+  top:3%;
+  left: -10.5%;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 3%;
     left: -13%;
+    top:4.5%;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
+    top:5%;
     left: -6.5%;
   }
 }
