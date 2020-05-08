@@ -29,15 +29,14 @@
             <div class="top-layer-background">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
-            <v-card color="transparent" flat tile>
-              <div class="top-make-resume">
-                <img
-                  src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
-                  alt
-                />
-              </div>
+            <div class="top-make-resume">
+              <img
+                src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
+                alt
+              />
+            </div>
+            <v-card color="transparent" flat tile style="z-index:1;">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
-
               <v-card-subtitle class="reserve-input">
                 <v-text-field
                   outlined
@@ -47,8 +46,16 @@
                   @keyup="checkUser"
                 >
                   <template slot="append">
-                    <v-icon color="#1DBF73" class="custom-append-icon" v-show="userFound == true">mdi-check-circle</v-icon>
-                    <v-icon color="#E91E63" class="custom-append-icon" v-show="userFound == false">mdi-close-circle</v-icon>
+                    <v-icon
+                      color="#1DBF73"
+                      class="custom-append-icon"
+                      v-show="userFound == true"
+                    >mdi-check-circle</v-icon>
+                    <v-icon
+                      color="#E91E63"
+                      class="custom-append-icon"
+                      v-show="userFound == false"
+                    >mdi-close-circle</v-icon>
                   </template>
                 </v-text-field>
               </v-card-subtitle>
@@ -347,20 +354,11 @@ export default {
       valid: false,
       lazy: false,
       name: "",
-      nameRules: [
-        v => !!v || "",
-        v => (v && v.length >= 3) || ""
-      ],
+      nameRules: [v => !!v || "", v => (v && v.length >= 3) || ""],
       email: "",
-      emailRules: [
-        v => !!v || "",
-        v => /.+@.+\..+/.test(v) || ""
-      ],
+      emailRules: [v => !!v || "", v => /.+@.+\..+/.test(v) || ""],
       password: "",
-      passwordRules: [
-        v => !!v || "",
-        v => (v && v.length >= 6) || ""
-      ],
+      passwordRules: [v => !!v || "", v => (v && v.length >= 6) || ""],
       confirmPassword: "",
       confirmPasswordRules: [
         v => !!v || "",
@@ -462,8 +460,8 @@ export default {
   }
 }
 
-.custom-append-icon{
-  @media screen and (min-width: 960px) and (max-width: 1440px){
+.custom-append-icon {
+  @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
 }
@@ -569,6 +567,7 @@ export default {
   line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
+  z-index: 1;
   @media screen and (max-width: 1440px) {
     font-size: 1rem !important;
   }
@@ -725,7 +724,7 @@ export default {
   color: #575757 !important;
   width: 60%;
   @media screen and (max-width: 1440px) {
-    font-size: 16px !important;
+    font-size: 15px !important;
   }
 }
 .card-video {
@@ -879,26 +878,23 @@ export default {
 .top-make-resume {
   position: absolute;
   width: 1920px;
-  top: -10rem;
-  left: -10.5rem;
+  top: 27rem;
+  left: -0.3rem;
   img {
     width: 100%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: -6rem;
-    left: -9.5rem;
+    left: 0;
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
-    top: -6rem;
-    left: -7.2rem;
+    left: 0;
   }
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: -5rem;
-    left: -4rem;
+    left: 0;
   }
 }
 
@@ -934,9 +930,9 @@ export default {
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 1441px){
-    top:210%;
-    left:-24.5%;
+  @media screen and (min-width: 1441px) {
+    top: 210%;
+    left: -24.5%;
   }
 
   @media screen and (max-width: 1440px) {
@@ -980,7 +976,7 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top:3%;
+  top: 3%;
   left: -10.5%;
   right: 0;
   margin-left: auto;
@@ -989,11 +985,11 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -13%;
-    top:4.5%;
+    top: 4.5%;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top:5%;
+    top: 5%;
     left: -6.5%;
   }
 }
