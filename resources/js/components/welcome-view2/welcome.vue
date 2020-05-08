@@ -29,15 +29,14 @@
             <div class="top-layer-background">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
-            <v-card color="transparent" flat tile>
-              <div class="top-make-resume">
-                <img
-                  src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
-                  alt
-                />
-              </div>
+            <div class="top-make-resume">
+              <img
+                src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
+                alt
+              />
+            </div>
+            <v-card color="transparent" flat tile style="z-index:1;">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
-
               <v-card-subtitle class="reserve-input">
                 <v-text-field
                   outlined
@@ -47,8 +46,16 @@
                   @keyup="checkUser"
                 >
                   <template slot="append">
-                    <v-icon color="#1DBF73" class="custom-append-icon" v-show="userFound == true">mdi-check-circle</v-icon>
-                    <v-icon color="#E91E63" class="custom-append-icon" v-show="userFound == false">mdi-close-circle</v-icon>
+                    <v-icon
+                      color="#1DBF73"
+                      class="custom-append-icon"
+                      v-show="userFound == true"
+                    >mdi-check-circle</v-icon>
+                    <v-icon
+                      color="#E91E63"
+                      class="custom-append-icon"
+                      v-show="userFound == false"
+                    >mdi-close-circle</v-icon>
                   </template>
                 </v-text-field>
               </v-card-subtitle>
@@ -85,7 +92,7 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="5" sm="12" cols="12">
-            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-xl-5 pa-md-0">
+            <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
               <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
               <v-card-subtitle align="center">
                 <v-btn
@@ -216,9 +223,16 @@
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
-              <v-card-subtitle
-                class="build-resume-subtitle build-resume-width mt-1"
-              >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-card-subtitle>
+              <v-card-subtitle class="build-resume-subtitle mt-1">
+                <v-row>
+                  <v-col
+                    cols="6"
+                  >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-col>
+                  <v-col cols="6" align="right">
+                    <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
+                  </v-col>
+                </v-row>
+              </v-card-subtitle>
             </v-card>
 
             <v-card tile flat color="transparent">
@@ -240,13 +254,13 @@
       </v-container>
       <!-- 3rd inner container starts here -->
       <!-- 3rd inner container -->
-      <v-container style="width:100%;" class="mt-md-10 mt-sm-0 mt-0">
+      <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
         <v-row align="center" justify="center">
-          <v-col xl="11" cols="12" align="center">
-            <v-card flat tile color="transparent">
-              <div class="middle-layer-background4">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
-              </div>
+          <v-col cols="12" align="center">
+            <div class="middle-layer-background4">
+              <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
+            </div>
+            <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-n8 mb-3"
@@ -347,20 +361,11 @@ export default {
       valid: false,
       lazy: false,
       name: "",
-      nameRules: [
-        v => !!v || "",
-        v => (v && v.length >= 3) || ""
-      ],
+      nameRules: [v => !!v || "", v => (v && v.length >= 3) || ""],
       email: "",
-      emailRules: [
-        v => !!v || "",
-        v => /.+@.+\..+/.test(v) || ""
-      ],
+      emailRules: [v => !!v || "", v => /.+@.+\..+/.test(v) || ""],
       password: "",
-      passwordRules: [
-        v => !!v || "",
-        v => (v && v.length >= 6) || ""
-      ],
+      passwordRules: [v => !!v || "", v => (v && v.length >= 6) || ""],
       confirmPassword: "",
       confirmPasswordRules: [
         v => !!v || "",
@@ -462,8 +467,8 @@ export default {
   }
 }
 
-.custom-append-icon{
-  @media screen and (min-width: 960px) and (max-width: 1440px){
+.custom-append-icon {
+  @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
 }
@@ -559,6 +564,24 @@ export default {
   height: 3.55rem !important;
   font-size: 0.875rem !important;
 }
+
+.btn-get-started-middle {
+  margin-top: -90px;
+  width: 200px !important;
+  height: 57px !important;
+  font-family: "Montserrat" !important;
+  font-weight: bold;
+  font-size: 0.875rem !important;
+  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
+    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.2em;
+  line-height: 0;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  @media screen and (max-width: 1440px) {
+  }
+}
 //reserve title
 .reserve-title {
   //margin-top: 3.52vh;
@@ -569,6 +592,7 @@ export default {
   line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
+  z-index: 1;
   @media screen and (max-width: 1440px) {
     font-size: 1rem !important;
   }
@@ -585,7 +609,7 @@ export default {
 //Download text
 .download-text {
   font-family: "Open Sans" !important;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: #313131;
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
@@ -715,6 +739,7 @@ export default {
   color: #0046fe !important;
   @media screen and (max-width: 1440px) {
     font-size: 34px;
+    line-height: 2.438rem;
   }
 }
 
@@ -723,9 +748,9 @@ export default {
   font-size: 1.125rem !important;
   line-height: 2.25rem;
   color: #575757 !important;
-  width: 60%;
   @media screen and (max-width: 1440px) {
-    font-size: 16px !important;
+    font-size: 14px !important;
+    line-height: 1.5rem;
   }
 }
 .card-video {
@@ -742,7 +767,7 @@ export default {
 }
 
 .card-gallery {
-  z-index: 1;
+  z-index: 2;
   img {
     border-radius: 10px !important;
   }
@@ -750,6 +775,11 @@ export default {
 // build resume section
 
 //integration section
+.container-integration{
+  @media screen and (max-width: 1440px){
+    margin-top:15px;
+  }
+}
 .integration-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
@@ -879,26 +909,23 @@ export default {
 .top-make-resume {
   position: absolute;
   width: 1920px;
-  top: -10rem;
-  left: -10.5rem;
+  top: 27rem;
+  left: -0.3rem;
   img {
     width: 100%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: -6rem;
-    left: -9.5rem;
+    left: 0;
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
-    top: -6rem;
-    left: -7.2rem;
+    left: 0;
   }
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: -5rem;
-    left: -4rem;
+    left: 0;
   }
 }
 
@@ -906,7 +933,7 @@ export default {
   position: absolute;
   width: 1920px;
   top: -83%;
-  left: -18%;
+  left: -26%;
   right: 0;
   margin-left: auto;
   margin-right: auto;
@@ -916,7 +943,7 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -28%;
-    top: -58%;
+    top: -81%;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
@@ -934,15 +961,15 @@ export default {
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 1441px){
-    top:210%;
-    left:-24.5%;
+  @media screen and (min-width: 1441px) {
+    top: 210%;
+    left: -24.5%;
   }
 
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 182%;
-    left: -25.5%;
+    top: 215%;
+    left: -26.5%;
     img {
       width: 94%;
     }
@@ -950,7 +977,7 @@ export default {
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: 210%;
+    top: 246%;
     left: -20.5%;
   }
 }
@@ -960,6 +987,7 @@ export default {
   width: 1920px;
   top: 5%;
   left: -10.5%;
+  z-index: 1;
   img {
     width: 100%;
   }
@@ -980,21 +1008,25 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top:3%;
-  left: -10.5%;
+  top: 76.5%;
+  left: -0.2rem;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    left: -13%;
-    top:4.5%;
+    top:76.4%;
+    left: 3px;
+  }
+  @media screen and (max-width: 1366px){
+    width: 1366px;
+    top:76.7%;
+    left:-2px;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top:5%;
-    left: -6.5%;
+    left:-0.8125rem;
   }
 }
 
@@ -1042,7 +1074,7 @@ export default {
 
 #welcomeView2 .slick-dots li button {
   width: 110px;
-  height: 12px;
+  height: 6px;
   border-radius: 0px;
   margin-left: -10px;
 }
