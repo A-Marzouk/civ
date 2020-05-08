@@ -223,9 +223,16 @@
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
-              <v-card-subtitle
-                class="build-resume-subtitle build-resume-width mt-1"
-              >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-card-subtitle>
+              <v-card-subtitle class="build-resume-subtitle mt-1">
+                <v-row>
+                  <v-col
+                    cols="6"
+                  >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-col>
+                  <v-col cols="6" align="right">
+                    <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
+                  </v-col>
+                </v-row>
+              </v-card-subtitle>
             </v-card>
 
             <v-card tile flat color="transparent">
@@ -557,6 +564,25 @@ export default {
   height: 3.55rem !important;
   font-size: 0.875rem !important;
 }
+
+.btn-get-started-middle {
+  margin-top: -90px;
+  width: 200px !important;
+  height: 57px !important;
+  font-family: "Montserrat" !important;
+  font-weight: bold;
+  font-size: 0.875rem !important;
+  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
+    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.2em;
+  line-height: 0;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  @media screen and (max-width: 1440px){
+    
+  }
+}
 //reserve title
 .reserve-title {
   //margin-top: 3.52vh;
@@ -584,7 +610,7 @@ export default {
 //Download text
 .download-text {
   font-family: "Open Sans" !important;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: #313131;
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
@@ -722,9 +748,9 @@ export default {
   font-size: 1.125rem !important;
   line-height: 2.25rem;
   color: #575757 !important;
-  width: 60%;
   @media screen and (max-width: 1440px) {
-    font-size: 15px !important;
+    font-size: 14px !important;
+    line-height: 1.5rem;
   }
 }
 .card-video {
