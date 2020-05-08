@@ -256,7 +256,7 @@
       <!-- 3rd inner container -->
       <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
         <v-row align="center" justify="center">
-          <v-col xl="11" cols="12" align="center">
+          <v-col cols="12" align="center">
             <div class="middle-layer-background4">
               <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
             </div>
@@ -1008,7 +1008,7 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top: 77%;
+  top: 76.5%;
   left: -0.2rem;
   right: 0;
   margin-left: auto;
