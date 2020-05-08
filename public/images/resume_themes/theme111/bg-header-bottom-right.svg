@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="612.387" height="378.794" viewBox="0 0 612.387 378.794">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.626" cy="0.382" r="0.585" gradientTransform="matrix(1, 0, 0, -1, 17.58, -1.043)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#7b95a9"/>
+      <stop offset="0.106" stop-color="#8ea4b5"/>
+      <stop offset="0.397" stop-color="#becbd5"/>
+      <stop offset="0.654" stop-color="#e1e7eb"/>
+      <stop offset="0.864" stop-color="#f7f8f9"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+    <radialGradient id="radial-gradient-2" cx="0.626" cy="0.382" r="0.585" gradientTransform="matrix(1, 0, 0, -1, 15.729, -0.17)" xlink:href="#radial-gradient"/>
+    <radialGradient id="radial-gradient-3" cx="0.374" cy="0.618" r="0.585" gradientTransform="matrix(-1, 0, 0, 1, 0.748, 0)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#0022ef"/>
+      <stop offset="0.197" stop-color="#0018af"/>
+      <stop offset="0.409" stop-color="#001071"/>
+      <stop offset="0.602" stop-color="#000940"/>
+      <stop offset="0.772" stop-color="#00041d"/>
+      <stop offset="0.91" stop-color="#000107"/>
+      <stop offset="1"/>
+    </radialGradient>
+  </defs>
+  <g id="Group_11162" data-name="Group 11162" transform="translate(-1478.445 -220.593)">
+    <path id="Path_8141" data-name="Path 8141" d="M724.783,627.109,458.675,361A188.084,188.084,0,0,0,413.859,483.13c0,104.274,84.544,188.795,188.8,188.795A188.083,188.083,0,0,0,724.783,627.109Z" transform="translate(1064.585 -72.538)" fill="url(#radial-gradient)" style="mix-blend-mode: multiply;isolation: isolate"/>
+    <path id="Path_8139" data-name="Path 8139" d="M580.923,559.239,314.815,293.131A188.079,188.079,0,0,0,270,415.26c0,104.273,84.544,188.795,188.8,188.795A188.088,188.088,0,0,0,580.923,559.239Z" transform="translate(1352.307 -72.538)" fill="url(#radial-gradient-2)" style="mix-blend-mode: multiply;isolation: isolate"/>
+    <path id="Path_8140" data-name="Path 8140" d="M112.4,403.387l217.25,217.25A154.136,154.136,0,0,0,112.4,403.387Z" transform="translate(1724.598 -72.538)" fill="url(#radial-gradient-3)" style="mix-blend-mode: screen;isolation: isolate"/>
+  </g>
+</svg>
