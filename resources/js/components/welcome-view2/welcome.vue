@@ -254,7 +254,7 @@
       </v-container>
       <!-- 3rd inner container starts here -->
       <!-- 3rd inner container -->
-      <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0">
+      <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12" align="center">
             <div class="middle-layer-background4">
@@ -775,6 +775,11 @@ export default {
 // build resume section
 
 //integration section
+.container-integration{
+  @media screen and (max-width: 1440px){
+    margin-top:15px;
+  }
+}
 .integration-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
@@ -1003,7 +1008,7 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top: 207rem;
+  top: 77%;
   left: -0.2rem;
   right: 0;
   margin-left: auto;
@@ -1011,13 +1016,17 @@ export default {
   z-index: 0;
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    left: -13%;
-    top: 3.5%;
+    top:76.4%;
+    left: 3px;
+  }
+  @media screen and (max-width: 1366px){
+    width: 1366px;
+    top:76.7%;
+    left:-2px;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: 5%;
-    left: -6.5%;
+    left:-0.8125rem;
   }
 }
 
