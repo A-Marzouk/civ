@@ -740,6 +740,7 @@ export default {
   color: #0046fe !important;
   @media screen and (max-width: 1440px) {
     font-size: 34px;
+    line-height: 2.438rem;
   }
 }
 
@@ -928,7 +929,7 @@ export default {
   position: absolute;
   width: 1920px;
   top: -83%;
-  left: -18%;
+  left: -26%;
   right: 0;
   margin-left: auto;
   margin-right: auto;
@@ -938,7 +939,7 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -28%;
-    top: -58%;
+    top: -81%;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
@@ -963,8 +964,8 @@ export default {
 
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 182%;
-    left: -25.5%;
+    top: 215%;
+    left: -26.5%;
     img {
       width: 94%;
     }
@@ -972,7 +973,7 @@ export default {
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: 210%;
+    top: 246%;
     left: -20.5%;
   }
 }
@@ -1011,7 +1012,7 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -13%;
-    top: 4.5%;
+    top: 3.5%;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
