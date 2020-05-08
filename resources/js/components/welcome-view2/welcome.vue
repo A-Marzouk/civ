@@ -254,13 +254,13 @@
       </v-container>
       <!-- 3rd inner container starts here -->
       <!-- 3rd inner container -->
-      <v-container style="width:100%;" class="mt-md-10 mt-sm-0 mt-0">
+      <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0">
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12" align="center">
-            <v-card flat tile color="transparent">
-              <div class="middle-layer-background4">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
-              </div>
+            <div class="middle-layer-background4">
+              <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
+            </div>
+            <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-n8 mb-3"
@@ -579,8 +579,7 @@ export default {
   line-height: 0;
   text-transform: uppercase;
   color: #ffffff !important;
-  @media screen and (max-width: 1440px){
-    
+  @media screen and (max-width: 1440px) {
   }
 }
 //reserve title
@@ -768,7 +767,7 @@ export default {
 }
 
 .card-gallery {
-  z-index: 1;
+  z-index: 2;
   img {
     border-radius: 10px !important;
   }
@@ -983,6 +982,7 @@ export default {
   width: 1920px;
   top: 5%;
   left: -10.5%;
+  z-index: 1;
   img {
     width: 100%;
   }
@@ -1003,8 +1003,8 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top: 3%;
-  left: -10.5%;
+  top: 207rem;
+  left: -0.2rem;
   right: 0;
   margin-left: auto;
   margin-right: auto;
