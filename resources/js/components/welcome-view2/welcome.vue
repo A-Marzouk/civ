@@ -1074,7 +1074,7 @@ export default {
 
 #welcomeView2 .slick-dots li button {
   width: 110px;
-  height: 12px;
+  height: 6px;
   border-radius: 0px;
   margin-left: -10px;
 }
