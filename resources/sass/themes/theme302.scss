@@ -141,7 +141,7 @@
     
     .hold-slider .slick-slider.slick-vertical .slick-slide{
         width: 94vw !important;
-        height: 96.5vh;
+        height: auto;
         margin-bottom: 18vh;
     }
     .hold-slider .slick-slider.slick-vertical .slick-slide .slide-item{
@@ -271,8 +271,20 @@
         
         .hold-slider .slick-slider.slick-vertical .slick-slide{
             height: 42vh;
-            margin-bottom: 2vh;
+            margin-bottom: 35px;
         }
+
+        .hold-slider .slick-slider.slick-vertical .slick-slide .slide-item{
+            max-height: 230px;
+            border-radius: 20px;
+        }
+        .hold-slider .slick-slider.slick-vertical .slick-slide .slide-item img{
+            max-height: 230px;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
         .main-tabs_theme13 .v-tabs-bar.v-tabs-bar--is-mobile{
             height: 42px !important;
         }
@@ -301,7 +313,7 @@
         }
     
         .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular .v-progress-circular__info{
-            font-size: 24px;
+            font-size: 13px;
         }
     
     }
