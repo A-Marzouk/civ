@@ -92,7 +92,7 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="5" sm="12" cols="12">
-            <v-card color="#F8F8F8" elevation="6" class="card-login-form pa-xl-5 pa-md-0">
+            <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
               <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
               <v-card-subtitle align="center">
                 <v-btn
