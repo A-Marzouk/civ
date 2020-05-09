@@ -96,7 +96,7 @@
               <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
               <v-card-subtitle align="center">
                 <v-btn
-                  class="social-icon mx-2"
+                  class="social-icon mx-md-2 mx-sm-3 mx-2"
                   color="#ffffff"
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
@@ -150,7 +150,12 @@
                     ></v-text-field>
                   </div>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n5">
+                  <v-checkbox
+                    dense
+                    v-model="agreeCheck"
+                    :rules="agreeCheckRules"
+                    class="hidden-sm-only mt-n5"
+                  >
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -159,6 +164,21 @@
                       </div>
                     </template>
                   </v-checkbox>
+
+                  <v-checkbox
+                    v-model="agreeCheck"
+                    :rules="agreeCheckRules"
+                    class="d-none d-flex d-md-none"
+                  >
+                    <template slot="label">
+                      <div class="agree-text">
+                        I accept your
+                        <span>Terms of Use</span> &
+                        <span>Privacy Policy.</span>
+                      </div>
+                    </template>
+                  </v-checkbox>
+
                   <v-card-text align="center">
                     <v-btn color="#0046FE" class="btn-signup" @click="validate">
                       <span>Sign Up</span>
@@ -167,7 +187,7 @@
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists mt-n3" align="center">
+              <v-card-subtitle class="account-exists mt-md-n3 mt-sm-0 mt-0" align="center">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
@@ -497,6 +517,12 @@ export default {
   .input-div {
     margin-top: -20px;
   }
+
+  @media screen and (max-width: 959px) {
+    .input-div {
+      margin-top: 0px;
+    }
+  }
 }
 //form
 
@@ -538,6 +564,10 @@ export default {
     font-size: 3.3rem;
     line-height: 4rem;
   }
+  @media screen and (max-width: 959px) {
+    font-size: 4rem;
+    line-height: 4.375rem;
+  }
   @media screen and (max-width: 599px) {
     font-size: 2.625rem;
     line-height: 2.813rem;
@@ -553,6 +583,10 @@ export default {
   color: #828282 !important;
   @media screen and (max-width: 1440px) {
     font-size: 17px !important;
+  }
+  @media screen and (max-width: 959px) {
+    font-size: 1.125rem !important;
+    line-height: 1.875rem;
   }
   @media screen and (max-width: 599px) {
     font-size: 0.875rem !important;
@@ -572,6 +606,11 @@ export default {
   width: 11.065rem;
   height: 3.55rem !important;
   font-size: 0.875rem !important;
+
+  @media screen and (max-width: 959px) {
+    margin-top: 0px;
+  }
+
   @media screen and (max-width: 599px) {
     margin-top: 0px;
     width: 9.5rem !important;
@@ -582,7 +621,6 @@ export default {
 
 //reserve title
 .reserve-title {
-  //margin-top: 3.52vh;
   margin-top: 30px;
   font-family: "Open Sans" !important;
   font-weight: bold;
@@ -593,6 +631,9 @@ export default {
   z-index: 1;
   @media screen and (max-width: 1440px) {
     font-size: 1rem !important;
+  }
+  @media screen and (max-width: 959px) {
+    font-weight: 600;
   }
   @media screen and (max-width: 599px) {
     margin-top: 0px;
@@ -605,7 +646,7 @@ export default {
 .card-download {
   margin-top: 32px;
   @media screen and (max-width: 1440px) {
-    margin-top: -14px;
+    margin-top: -19px;
   }
 }
 //Download text
@@ -638,7 +679,8 @@ export default {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
   }
-  @media screen and (max-width: 599px) {
+  @media screen and (max-width: 959px) {
+    height: 960px;
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -652,6 +694,10 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 1.2rem;
     margin-top: 10px;
+  }
+  @media screen and (max-width: 959px){
+    font-size:1.875rem;
+    line-height: 2.313rem;
   }
 }
 .social-icon {
@@ -669,6 +715,12 @@ export default {
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     margin-left: 2px !important;
+  }
+  @media screen and (max-width: 959px){
+    width: 66px !important;
+    height: 66px !important;
+    margin-top: 15px;
+    margin-bottom: 20px;
   }
 
   @media screen and (max-width: 599px) {
@@ -698,6 +750,9 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     font-size: 10px;
   }
+  @media screen and (max-width: 959px) {
+    font-size: 1.125rem;
+  }
 }
 
 .btn-signup {
@@ -725,6 +780,10 @@ export default {
   a {
     color: #0046fe !important;
     font-weight: 500;
+  }
+
+  @media screen and (max-width: 959px) {
+    font-size: 1.375rem;
   }
 }
 
@@ -1138,7 +1197,13 @@ export default {
     min-height: 2.812rem !important;
   }
 }
-
+/* tablet screen */
+@media screen and (max-width: 959px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 4.688rem !important;
+  }
+}
+/* tablet screen */
 /* mobile screen */
 @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
