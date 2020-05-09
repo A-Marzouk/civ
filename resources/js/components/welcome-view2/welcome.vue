@@ -1,7 +1,7 @@
 <template>
   <v-app style="width:100%; background-color: #f8f8f8;">
     <!-- main container -->
-    <v-container style="width:100%; ">
+    <v-container class="main-container">
       <v-app-bar color="transparent" flat tile height="100">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
@@ -459,7 +459,9 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
+.main-container{
+  width: 100%;
+}
 //logo
 .logo {
   width: 163px;
@@ -843,7 +845,7 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: 6rem;
+  top: 5.6rem;
   left: -0.625rem;
   right: 0;
   margin-right: auto;
@@ -861,7 +863,7 @@ export default {
   }
   @media screen and (max-width: 1366px) {
     left: 0;
-    top: 6.5rem;
+    top: 6.2rem;
     width: 1366px;
     img {
       width: 100%;
