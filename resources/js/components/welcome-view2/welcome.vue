@@ -638,7 +638,7 @@ export default {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
   }
-  @media screen and (max-width:599px){
+  @media screen and (max-width: 599px) {
     padding-left: 0px;
     padding-right: 0px;
   }
@@ -648,7 +648,7 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 1.5rem;
-  font-weight:500;
+  font-weight: 500;
   @media screen and (max-width: 1440px) {
     font-size: 1.2rem;
     margin-top: 10px;
@@ -671,7 +671,7 @@ export default {
     margin-left: 2px !important;
   }
 
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     widows: 42px !important;
     height: 42px !important;
   }
@@ -1074,10 +1074,12 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
   }
-  @media screen and (max-width: 1366px){
+  @media screen and (max-width: 1366px) {
     width: 1366px;
+    top: 92.5%;
   }
   @media screen and (max-width: 1280px) {
+    top: 93%;
     width: 1280px;
   }
 }
