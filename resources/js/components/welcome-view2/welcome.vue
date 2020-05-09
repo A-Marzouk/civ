@@ -631,6 +631,7 @@ export default {
   border-radius: 15px !important;
   padding-left: 2.38rem !important;
   padding-right: 2.38rem !important;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   @media screen and (max-width: 1440px) {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
