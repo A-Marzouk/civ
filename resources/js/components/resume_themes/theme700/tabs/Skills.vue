@@ -106,9 +106,35 @@ export default {
     }
     .tm700-skill-tabs-active--tab {
       color: var(--blue-1);
+      &:after {
+        content: "";
+        max-width: 80%;
+        height: 4px;
+        margin-top: 28px;
+        background-color: var(--blue-1);
+        border-radius: 2px;
+        width: 80%;
+        @media screen and (min-width: 768px) {
+          width: 80%;
+          margin-top: 14px;
+        }
+      }
     }
     .tm700-skill-tabs-inactive--tab {
       color: var(--gray-2);
+      &:after {
+        content: "";
+        max-width: 80%;
+        height: 4px;
+        margin-top: 28px;
+        background: none;
+        border-radius: 2px;
+        width: 80%;
+        @media screen and (min-width: 768px) {
+          width: 80%;
+          margin-top: 14px;
+        }
+      }
     }
     .tm700-skill-tabs--default {
       font-style: normal;
@@ -122,19 +148,6 @@ export default {
       @media screen and (min-width: 768px) {
         font-size: 24px;
         line-height: 29px;
-      }
-      &:after {
-        content: "";
-        max-width: 80%;
-        height: 4px;
-        margin-top: 28px;
-        background-color: var(--blue-1);
-        border-radius: 2px;
-        width: 80%;
-        @media screen and (min-width: 768px) {
-          width: 80%;
-          margin-top: 14px;
-        }
       }
     }
     .tm700-skill-tabs-last-child {
