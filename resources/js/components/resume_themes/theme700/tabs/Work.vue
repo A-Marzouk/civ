@@ -14,18 +14,29 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   props: ["currentTab"],
   data() {
     return {
-      works: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+      works: [
+        {
+          id: 1
+        },
+        {
+          id: 2
+        },
+        {
+          id: 3
+        },
+        {
+          id: 4
+        }
+      ]
     };
   }
 };
 </script>
-
 <style lang="scss">
 .tm700-work {
   // parent grid
@@ -84,7 +95,8 @@ export default {
       }
     }
     .tm700-works--info {
-      margin-bottom: 35px;
+      margin-bottom: 23px;
+
       .tm700-works--title {
         font-style: normal;
         font-weight: normal;
