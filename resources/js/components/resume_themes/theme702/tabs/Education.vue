@@ -50,7 +50,7 @@ export default {
     padding-left: 25px;
     padding-right: 21px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(1, minmap(0, 1fr));
     grid-row-gap: 35px;
     margin-top: 69px;
     @media screen and (min-width: 768px) {
@@ -58,6 +58,7 @@ export default {
     }
     @media screen and (min-width: 1200px) {
       margin-top: 104px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     > div {
       span {
