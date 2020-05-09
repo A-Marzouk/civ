@@ -184,7 +184,7 @@
           <v-col xl="9" cols="10" align="center">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
-              <div class="middle-layer-background1">
+              <div class="middle-layer-background1 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
@@ -463,8 +463,7 @@ export default {
 .main-container {
   width: 100%;
   @media screen and (max-width: 599px) {
-    min-width: 112%;
-    margin-left: -5.9%;
+    overflow-x: hidden !important;
   }
 }
 //logo
