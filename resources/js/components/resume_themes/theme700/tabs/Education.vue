@@ -111,7 +111,6 @@ export default {
           font-weight: bold;
           font-size: 8px;
           line-height: 23px;
-          margin-bottom: 15px;
           @media screen and (min-width: 768px) {
             font-size: 14px;
           }
