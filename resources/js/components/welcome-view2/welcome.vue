@@ -426,6 +426,7 @@ export default {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
+        pauseOnDotsHover:true,
         responsive: [
           {
             breakpoint: 959,
@@ -681,8 +682,8 @@ export default {
   }
   @media screen and (max-width: 959px) {
     height: 960px;
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 }
 
