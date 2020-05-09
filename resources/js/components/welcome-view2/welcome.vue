@@ -62,7 +62,7 @@
             </v-card>
 
             <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat class="card-download">
+            <v-card color="transparent" tile flat class="card-download hidden-sm-and-down">
               <v-card-text>
                 <v-row align="center">
                   <v-col xl="6" cols="6">
@@ -111,6 +111,7 @@
                   <div class="input-div">
                     <label for="name">Name</label>
                     <v-text-field
+                      class="login-input-field"
                       type="text"
                       outlined
                       background-color="#ffffff"
@@ -172,7 +173,7 @@
               </v-card-subtitle>
             </v-card>
           </v-col>
-          <v-col md="1"></v-col>
+          <v-col md="1" class="hidden-sm-and-down"></v-col>
         </v-row>
       </v-container>
       <!-- 1st inner container ends here -->
@@ -462,8 +463,8 @@ export default {
 .main-container {
   width: 100%;
   @media screen and (max-width: 599px) {
-    min-width: 110%;
-    margin-left: -6%;
+    min-width: 112%;
+    margin-left: -5.9%;
   }
 }
 //logo
@@ -573,7 +574,7 @@ export default {
   height: 3.55rem !important;
   font-size: 0.875rem !important;
   @media screen and (max-width: 599px) {
-    margin-top:0px;
+    margin-top: 0px;
     width: 9.5rem !important;
     height: 3.048rem !important;
     font-size: 0.75rem !important;
@@ -593,6 +594,10 @@ export default {
   z-index: 1;
   @media screen and (max-width: 1440px) {
     font-size: 1rem !important;
+  }
+  @media screen and (max-width: 599px) {
+    margin-top: 0px;
+    margin-bottom: 5px;
   }
 }
 
@@ -634,12 +639,17 @@ export default {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
   }
+  @media screen and (max-width:599px){
+    padding-left: 0px;
+    padding-right: 0px;
+  }
 }
 
 .login-title {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 1.5rem;
+  font-weight:500;
   @media screen and (max-width: 1440px) {
     font-size: 1.2rem;
     margin-top: 10px;
@@ -660,6 +670,11 @@ export default {
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     margin-left: 2px !important;
+  }
+
+  @media screen and (max-width: 599px){
+    widows: 42px !important;
+    height: 42px !important;
   }
 }
 
@@ -1052,7 +1067,7 @@ export default {
 .middle-layer-background5 {
   position: absolute;
   width: 1920px;
-  top: 93%;
+  top: 92%;
   left: 0;
   right: 0;
   margin-left: auto;
@@ -1119,4 +1134,12 @@ export default {
     min-height: 2.812rem !important;
   }
 }
+
+/* mobile screen */
+@media screen and (max-width: 959px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 3.75rem !important;
+  }
+}
+/* mobile screen */
 </style>
