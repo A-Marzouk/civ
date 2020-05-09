@@ -77,7 +77,7 @@ export default {
       font-weight: bold;
       font-size: 12px;
 
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 640px) {
         width: 44px;
         height: 44px;
         font-size: 18px;
@@ -91,7 +91,7 @@ export default {
         font-size: 14px;
         line-height: 13px;
         color: var(--blue-1);
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 640px) {
           font-size: 24px;
           line-height: 23px;
         }
@@ -103,7 +103,7 @@ export default {
         line-height: 9px;
         text-transform: capitalize;
         color: #000000;
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: 640px) {
           font-size: 12px;
           line-height: 11px;
         }
@@ -112,7 +112,7 @@ export default {
     .tm700-works--when {
       font-size: 9px;
       line-height: 11px;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 640px) {
         font-size: 12px;
         line-height: 11px;
       }
