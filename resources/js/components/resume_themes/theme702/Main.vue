@@ -1,6 +1,6 @@
 <template>
   <section class="tm702-main">
-    <div class="tm702-tabs--container">
+    <div class="tm702-tabs--inner">
       <v-tabs
         v-model="tab"
         background-color="#FFF"
@@ -84,8 +84,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tm702-main {
-  .tm702-tabs--container {
+  .tm702-tabs--inner {
     background-color: var(--white);
+    @media screen and (min-width: 1280px) {
+      margin-left: 30px;
+      margin-right: 30px;
+    }
   }
 
   .v-slide-group__next,
