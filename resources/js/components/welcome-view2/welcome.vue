@@ -26,10 +26,10 @@
                 <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
               </v-card-subtitle>
             </v-card>
-            <div class="top-layer-background">
+            <div class="top-layer-background hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
-            <div class="top-make-resume">
+            <div class="top-make-resume hidden-sm-and-down">
               <img
                 src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
                 alt
@@ -194,7 +194,7 @@
               <v-card-subtitle
                 class="build-resume-subtitle mt-n5 mb-5"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
-              <div class="middle-layer-background2">
+              <div class="middle-layer-background2 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
               </div>
             </v-card>
@@ -245,7 +245,7 @@
                   </v-col>
                 </template>
               </v-row>
-              <div class="middle-layer-background3">
+              <div class="middle-layer-background3 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer3.svg" />
               </div>
             </v-card>
@@ -257,7 +257,7 @@
       <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
         <v-row align="center" justify="center">
           <v-col cols="12" align="center">
-            <div class="middle-layer-background4">
+            <div class="middle-layer-background4 hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
             </div>
             <v-card flat tile color="transparent" style="z-index:1;">
@@ -289,7 +289,7 @@
         </v-row>
       </v-container>
       <!-- 3rd inner container -->
-      <div class="middle-layer-background5">
+      <div class="middle-layer-background5 hidden-sm-and-down">
         <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.svg" />
       </div>
     </v-container>
@@ -403,8 +403,8 @@ export default {
         arrows: false,
         slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay:true,
-        autoplaySpeed:5000,
+        autoplay: true,
+        autoplaySpeed: 5000,
         responsive: [
           {
             breakpoint: 959,
@@ -459,8 +459,12 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-.main-container{
+.main-container {
   width: 100%;
+  @media screen and (max-width: 599px) {
+    min-width: 110%;
+    margin-left: -6%;
+  }
 }
 //logo
 .logo {
@@ -468,6 +472,10 @@ export default {
   height: 69px;
   @media screen and (min-width: 1600px) {
     margin-left: 78px;
+  }
+  @media screen and (max-width: 599px) {
+    width: 126px;
+    height: 53px;
   }
 }
 
@@ -530,11 +538,11 @@ export default {
     font-size: 3.3rem;
     line-height: 4rem;
   }
-
-  // @media screen and (min-width: 960px) and (max-width: 1024px) {
-  //   font-size: 40px;
-  //   line-height: 40px;
-  // }
+  @media screen and (max-width: 599px) {
+    font-size: 2.625rem;
+    line-height: 2.813rem;
+    margin-bottom: 20px;
+  }
 }
 
 //resume subtitle
@@ -546,13 +554,10 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 17px !important;
   }
-  // @media screen and (min-width: 1681px) {
-  //   font-size: 24px !important;
-  // }
-  // @media screen and (min-width: 960px) and (max-width: 1024px) {
-  //   font-size: 12px !important;
-  //   line-height: 30px;
-  // }
+  @media screen and (max-width: 599px) {
+    font-size: 0.875rem !important;
+    line-height: 1.375rem;
+  }
 }
 
 .btn-get-started {
@@ -567,25 +572,14 @@ export default {
   width: 11.065rem;
   height: 3.55rem !important;
   font-size: 0.875rem !important;
-}
-
-.btn-get-started-middle {
-  margin-top: -90px;
-  width: 200px !important;
-  height: 57px !important;
-  font-family: "Montserrat" !important;
-  font-weight: bold;
-  font-size: 0.875rem !important;
-  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
-    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
-  border-radius: 10px !important;
-  letter-spacing: 0.2em;
-  line-height: 0;
-  text-transform: uppercase;
-  color: #ffffff !important;
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 599px) {
+    margin-top:0px;
+    width: 9.5rem !important;
+    height: 3.048rem !important;
+    font-size: 0.75rem !important;
   }
 }
+
 //reserve title
 .reserve-title {
   //margin-top: 3.52vh;
@@ -727,6 +721,25 @@ export default {
     margin-top: 80px;
   }
 }
+
+.btn-get-started-middle {
+  margin-top: -90px;
+  width: 200px !important;
+  height: 57px !important;
+  font-family: "Montserrat" !important;
+  font-weight: bold;
+  font-size: 0.875rem !important;
+  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
+    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.2em;
+  line-height: 0;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  @media screen and (max-width: 1440px) {
+  }
+}
+
 .gallery-container {
   margin-top: 114px;
   @media screen and (max-width: 1440px) {
@@ -780,9 +793,9 @@ export default {
 // build resume section
 
 //integration section
-.container-integration{
-  @media screen and (max-width: 1440px){
-    margin-top:15px;
+.container-integration {
+  @media screen and (max-width: 1440px) {
+    margin-top: 15px;
   }
 }
 .integration-title {
@@ -1021,18 +1034,18 @@ export default {
   z-index: 0;
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top:76.6%;
+    top: 76.6%;
     left: 3px;
   }
-  @media screen and (max-width: 1366px){
+  @media screen and (max-width: 1366px) {
     width: 1366px;
-    top:76.8%;
-    left:-2px;
+    top: 76.8%;
+    left: -2px;
   }
   @media screen and (max-width: 1280px) {
-    top:76.9%;
+    top: 76.9%;
     width: 1280px;
-    left:-0.8125rem;
+    left: -0.8125rem;
   }
 }
 
