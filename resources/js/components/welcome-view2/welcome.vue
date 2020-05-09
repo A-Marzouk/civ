@@ -1066,13 +1066,16 @@ export default {
 .middle-layer-background5 {
   position: absolute;
   width: 1920px;
-  top: 92%;
+  top: 93%;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   @media screen and (max-width: 1440px) {
     width: 1440px;
+  }
+  @media screen and (max-width: 1366px){
+    width: 1366px;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
