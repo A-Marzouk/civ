@@ -86,6 +86,8 @@ export default {
 .tm702-main {
   .tm702-tabs--inner {
     background-color: var(--white);
+    margin-left: 30px;
+    margin-right: 30px;
     @media screen and (min-width: 1280px) {
       margin-left: 30px;
       margin-right: 30px;
