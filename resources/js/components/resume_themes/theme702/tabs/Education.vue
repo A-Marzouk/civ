@@ -56,9 +56,11 @@ export default {
     @media screen and (min-width: 768px) {
       margin-top: 84px;
     }
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
     @media screen and (min-width: 1200px) {
       margin-top: 104px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     > div {
       span {
@@ -122,9 +124,9 @@ export default {
         font-weight: 300;
         font-size: 12px;
         line-height: 23px;
+        width: 50%;
         @media screen and (min-width: 768px) {
           font-size: 14px;
-          line-height: 23px;
         }
       }
     }
