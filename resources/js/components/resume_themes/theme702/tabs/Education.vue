@@ -52,6 +52,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(1, minmap(0, 1fr));
     grid-row-gap: 35px;
+    grid-column-gap: 35px;
     margin-top: 69px;
     @media screen and (min-width: 768px) {
       margin-top: 84px;
