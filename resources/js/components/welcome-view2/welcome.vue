@@ -965,7 +965,7 @@ export default {
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    left: 5px;
+    left: 0;
     top:5.7rem;
     img {
       width: 100%;
@@ -1008,23 +1008,26 @@ export default {
 .top-make-resume {
   position: absolute;
   width: 1920px;
-  top: 27rem;
+  top: 32.7rem;
   left: -0.3rem;
   img {
     width: 100%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
+    top:31rem;
     left: 0;
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
     left: 0;
+    top:31.5rem;
   }
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: 0;
+    top:32rem;
   }
 }
 
