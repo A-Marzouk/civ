@@ -212,7 +212,7 @@
 
           <!-- for tab and mobile -->
           <v-col cols="7" class="hidden-md-and-up" align="center">
-            <v-card color="transparent" flat tile>
+            <v-card color="transparent" flat tile class="card-download">
               <v-card-subtitle class="download-text">Download for ios and android:</v-card-subtitle>
               <v-card-subtitle>
                 <v-row>
@@ -271,7 +271,7 @@
             <!-- 1st card -->
             <!-- 2nd card -->
             <v-card
-              class="card-video pa-md-8 pa-sm-0 pa-0"
+              class="card-video pa-md-8 pa-sm-0 pa-0 mt-md-0 mt-sm-5"
               color="transparent"
               flat
               tile
@@ -372,7 +372,7 @@
             <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n5 mt-n5"
+                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text style="z-index:2;">
                 <slick
@@ -824,6 +824,9 @@ export default {
   @media screen and (max-width: 1440px) {
     margin-top: -19px;
   }
+  @media screen and (max-width: 959px){
+    margin-top: 36px;
+  }
 }
 //Download text
 .download-text {
@@ -861,7 +864,7 @@ export default {
   }
   @media screen and (max-width: 959px) {
     height: 960px;
-    margin-top: 120px;
+    margin-top: 80px;
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
@@ -1392,7 +1395,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 8%;
+  top: 7%;
 }
 
 .make-resume-background {
@@ -1401,7 +1404,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 21%;
+  top: 19%;
 }
 
 .tablet-layer3 {
@@ -1411,7 +1414,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 32%;
+  top: 30.8%;
 }
 
 .tablet-layer4 {
@@ -1421,7 +1424,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 45.5%;
+  top: 44.2%;
 }
 
 .tablet-layer5 {
@@ -1431,7 +1434,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 56%;
+  top: 54.3%;
 }
 
 .tablet-layer6 {
@@ -1439,9 +1442,9 @@ export default {
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 14%;
+  left: 16%;
   right: 0;
-  top: 59.6%;
+  top: 58.4%;
   z-index: 3;
   img {
     width: 95%;
@@ -1455,7 +1458,7 @@ export default {
   margin-right: auto;
   left: 14%;
   right: 0;
-  top: 76.8%;
+  top: 76.6%;
   img {
     width: 80%;
   }
@@ -1526,6 +1529,8 @@ export default {
 @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 3.75rem !important;
+  }
+  #welcomeView2 .slick-dots{
   }
 }
 /* mobile screen */
