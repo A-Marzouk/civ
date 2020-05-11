@@ -1,7 +1,7 @@
 <template>
   <v-app style="width:100%; background-color: #f8f8f8;">
     <!-- main container -->
-    <v-container style="width:100%; ">
+    <v-container class="main-container">
       <v-app-bar color="transparent" flat tile height="100">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
@@ -26,18 +26,17 @@
                 <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
               </v-card-subtitle>
             </v-card>
-            <div class="top-layer-background">
+            <div class="top-layer-background hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
-            <v-card color="transparent" flat tile>
-              <div class="top-make-resume">
-                <img
-                  src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
-                  alt
-                />
-              </div>
+            <div class="top-make-resume hidden-sm-and-down">
+              <img
+                src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
+                alt
+              />
+            </div>
+            <v-card color="transparent" flat tile style="z-index:1;">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
-
               <v-card-subtitle class="reserve-input">
                 <v-text-field
                   outlined
@@ -47,15 +46,23 @@
                   @keyup="checkUser"
                 >
                   <template slot="append">
-                    <v-icon color="#1DBF73" class="custom-append-icon" v-show="userFound == true">mdi-check-circle</v-icon>
-                    <v-icon color="#E91E63" class="custom-append-icon" v-show="userFound == false">mdi-close-circle</v-icon>
+                    <v-icon
+                      color="#1DBF73"
+                      class="custom-append-icon"
+                      v-show="userFound == true"
+                    >mdi-check-circle</v-icon>
+                    <v-icon
+                      color="#E91E63"
+                      class="custom-append-icon"
+                      v-show="userFound == false"
+                    >mdi-close-circle</v-icon>
                   </template>
                 </v-text-field>
               </v-card-subtitle>
             </v-card>
 
             <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat class="card-download">
+            <v-card color="transparent" tile flat class="card-download hidden-sm-and-down">
               <v-card-text>
                 <v-row align="center">
                   <v-col xl="6" cols="6">
@@ -85,11 +92,11 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="5" sm="12" cols="12">
-            <v-card color="#F8F8F8" elevation="12" class="card-login-form pa-xl-5 pa-md-0">
+            <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
               <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
               <v-card-subtitle align="center">
                 <v-btn
-                  class="social-icon mx-2"
+                  class="social-icon mx-md-2 mx-sm-3 mx-2"
                   color="#ffffff"
                   v-for="icon in socialMediaIcons"
                   :key="icon.title"
@@ -104,6 +111,7 @@
                   <div class="input-div">
                     <label for="name">Name</label>
                     <v-text-field
+                      class="login-input-field"
                       type="text"
                       outlined
                       background-color="#ffffff"
@@ -142,7 +150,12 @@
                     ></v-text-field>
                   </div>
 
-                  <v-checkbox dense v-model="agreeCheck" :rules="agreeCheckRules" class="mt-n5">
+                  <v-checkbox
+                    dense
+                    v-model="agreeCheck"
+                    :rules="agreeCheckRules"
+                    class="hidden-sm-only mt-n5"
+                  >
                     <template slot="label">
                       <div class="agree-text">
                         I accept your
@@ -151,6 +164,21 @@
                       </div>
                     </template>
                   </v-checkbox>
+
+                  <v-checkbox
+                    v-model="agreeCheck"
+                    :rules="agreeCheckRules"
+                    class="d-none d-flex d-md-none"
+                  >
+                    <template slot="label">
+                      <div class="agree-text">
+                        I accept your
+                        <span>Terms of Use</span> &
+                        <span>Privacy Policy.</span>
+                      </div>
+                    </template>
+                  </v-checkbox>
+
                   <v-card-text align="center">
                     <v-btn color="#0046FE" class="btn-signup" @click="validate">
                       <span>Sign Up</span>
@@ -159,13 +187,13 @@
                 </v-form>
               </v-card-subtitle>
               <!-- Login Form -->
-              <v-card-subtitle class="account-exists mt-n3" align="center">
+              <v-card-subtitle class="account-exists mt-md-n3 mt-sm-0 mt-0" align="center">
                 Already have account?
                 <a href="#">Login</a>
               </v-card-subtitle>
             </v-card>
           </v-col>
-          <v-col md="1"></v-col>
+          <v-col md="1" class="hidden-sm-and-down"></v-col>
         </v-row>
       </v-container>
       <!-- 1st inner container ends here -->
@@ -173,10 +201,10 @@
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
-          <v-col xl="9" cols="10" align="center">
+          <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
-              <div class="middle-layer-background1">
+              <div class="middle-layer-background1 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
@@ -187,13 +215,19 @@
               <v-card-subtitle
                 class="build-resume-subtitle mt-n5 mb-5"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
-              <div class="middle-layer-background2">
+              <div class="middle-layer-background2 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
               </div>
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
-            <v-card class="card-video pa-8" color="transparent" flat tile>
+            <v-card
+              class="card-video pa-md-8 pa-sm-0 pa-0"
+              color="transparent"
+              flat
+              tile
+              align="center"
+            >
               <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center">
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
@@ -216,9 +250,16 @@
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
-              <v-card-subtitle
-                class="build-resume-subtitle build-resume-width mt-1"
-              >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-card-subtitle>
+              <v-card-subtitle class="build-resume-subtitle mt-1">
+                <v-row>
+                  <v-col
+                    cols="6"
+                  >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-col>
+                  <v-col cols="6" align="right">
+                    <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
+                  </v-col>
+                </v-row>
+              </v-card-subtitle>
             </v-card>
 
             <v-card tile flat color="transparent">
@@ -231,7 +272,7 @@
                   </v-col>
                 </template>
               </v-row>
-              <div class="middle-layer-background3">
+              <div class="middle-layer-background3 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer3.svg" />
               </div>
             </v-card>
@@ -240,13 +281,13 @@
       </v-container>
       <!-- 3rd inner container starts here -->
       <!-- 3rd inner container -->
-      <v-container style="width:100%;" class="mt-md-10 mt-sm-0 mt-0">
+      <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
         <v-row align="center" justify="center">
-          <v-col xl="11" cols="12" align="center">
-            <v-card flat tile color="transparent">
-              <div class="middle-layer-background4">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
-              </div>
+          <v-col cols="12" align="center">
+            <div class="middle-layer-background4 hidden-sm-and-down">
+              <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
+            </div>
+            <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-n8 mb-3"
@@ -275,7 +316,7 @@
         </v-row>
       </v-container>
       <!-- 3rd inner container -->
-      <div class="middle-layer-background5">
+      <div class="middle-layer-background5 hidden-sm-and-down">
         <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.svg" />
       </div>
     </v-container>
@@ -342,25 +383,17 @@ export default {
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       username: "civ.ie/",
       userFound: null,
       valid: false,
       lazy: false,
       name: "",
-      nameRules: [
-        v => !!v || "",
-        v => (v && v.length >= 3) || ""
-      ],
+      nameRules: [v => !!v || "", v => (v && v.length >= 3) || ""],
       email: "",
-      emailRules: [
-        v => !!v || "",
-        v => /.+@.+\..+/.test(v) || ""
-      ],
+      emailRules: [v => !!v || "", v => /.+@.+\..+/.test(v) || ""],
       password: "",
-      passwordRules: [
-        v => !!v || "",
-        v => (v && v.length >= 6) || ""
-      ],
+      passwordRules: [v => !!v || "", v => (v && v.length >= 6) || ""],
       confirmPassword: "",
       confirmPasswordRules: [
         v => !!v || "",
@@ -398,6 +431,9 @@ export default {
         arrows: false,
         slidesToShow: 3,
         slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        pauseOnDotsHover: true,
         responsive: [
           {
             breakpoint: 959,
@@ -415,6 +451,12 @@ export default {
           }
         ]
       }
+    };
+  },
+  //mounted
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
     };
   },
   methods: {
@@ -452,7 +494,12 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
+.main-container {
+  width: 100%;
+  @media screen and (max-width: 599px) {
+    overflow-x: hidden !important;
+  }
+}
 //logo
 .logo {
   width: 163px;
@@ -460,10 +507,14 @@ export default {
   @media screen and (min-width: 1600px) {
     margin-left: 78px;
   }
+  @media screen and (max-width: 599px) {
+    width: 126px;
+    height: 53px;
+  }
 }
 
-.custom-append-icon{
-  @media screen and (min-width: 960px) and (max-width: 1440px){
+.custom-append-icon {
+  @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
 }
@@ -479,6 +530,12 @@ export default {
   }
   .input-div {
     margin-top: -20px;
+  }
+
+  @media screen and (max-width: 959px) {
+    .input-div {
+      margin-top: 0px;
+    }
   }
 }
 //form
@@ -521,11 +578,15 @@ export default {
     font-size: 3.3rem;
     line-height: 4rem;
   }
-
-  // @media screen and (min-width: 960px) and (max-width: 1024px) {
-  //   font-size: 40px;
-  //   line-height: 40px;
-  // }
+  @media screen and (max-width: 959px) {
+    font-size: 4rem;
+    line-height: 4.375rem;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 2.625rem;
+    line-height: 2.813rem;
+    margin-bottom: 20px;
+  }
 }
 
 //resume subtitle
@@ -537,13 +598,14 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 17px !important;
   }
-  // @media screen and (min-width: 1681px) {
-  //   font-size: 24px !important;
-  // }
-  // @media screen and (min-width: 960px) and (max-width: 1024px) {
-  //   font-size: 12px !important;
-  //   line-height: 30px;
-  // }
+  @media screen and (max-width: 959px) {
+    font-size: 1.125rem !important;
+    line-height: 1.875rem;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 0.875rem !important;
+    line-height: 1.375rem;
+  }
 }
 
 .btn-get-started {
@@ -558,10 +620,21 @@ export default {
   width: 11.065rem;
   height: 3.55rem !important;
   font-size: 0.875rem !important;
+
+  @media screen and (max-width: 959px) {
+    margin-top: 0px;
+  }
+
+  @media screen and (max-width: 599px) {
+    margin-top: 0px;
+    width: 9.5rem !important;
+    height: 3.048rem !important;
+    font-size: 0.75rem !important;
+  }
 }
+
 //reserve title
 .reserve-title {
-  //margin-top: 3.52vh;
   margin-top: 30px;
   font-family: "Open Sans" !important;
   font-weight: bold;
@@ -569,8 +642,16 @@ export default {
   line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
+  z-index: 1;
   @media screen and (max-width: 1440px) {
     font-size: 1rem !important;
+  }
+  @media screen and (max-width: 959px) {
+    font-weight: 600;
+  }
+  @media screen and (max-width: 599px) {
+    margin-top: 0px;
+    margin-bottom: 5px;
   }
 }
 
@@ -579,13 +660,13 @@ export default {
 .card-download {
   margin-top: 32px;
   @media screen and (max-width: 1440px) {
-    margin-top: -14px;
+    margin-top: -19px;
   }
 }
 //Download text
 .download-text {
   font-family: "Open Sans" !important;
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   color: #313131;
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
@@ -607,9 +688,16 @@ export default {
   border-radius: 15px !important;
   padding-left: 2.38rem !important;
   padding-right: 2.38rem !important;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1;
   @media screen and (max-width: 1440px) {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
+  }
+  @media screen and (max-width: 959px) {
+    height: 960px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
   }
 }
 
@@ -617,9 +705,14 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-size: 1.5rem;
+  font-weight: 500;
   @media screen and (max-width: 1440px) {
     font-size: 1.2rem;
     margin-top: 10px;
+  }
+  @media screen and (max-width: 959px) {
+    font-size: 1.875rem;
+    line-height: 2.313rem;
   }
 }
 .social-icon {
@@ -637,6 +730,17 @@ export default {
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     margin-left: 2px !important;
+  }
+  @media screen and (max-width: 959px) {
+    width: 66px !important;
+    height: 66px !important;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (max-width: 599px) {
+    widows: 42px !important;
+    height: 42px !important;
   }
 }
 
@@ -660,6 +764,9 @@ export default {
   }
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     font-size: 10px;
+  }
+  @media screen and (max-width: 959px) {
+    font-size: 1.125rem;
   }
 }
 
@@ -689,6 +796,10 @@ export default {
     color: #0046fe !important;
     font-weight: 500;
   }
+
+  @media screen and (max-width: 959px) {
+    font-size: 1.375rem;
+  }
 }
 
 // build resume section
@@ -698,6 +809,25 @@ export default {
     margin-top: 80px;
   }
 }
+
+.btn-get-started-middle {
+  margin-top: -90px;
+  width: 200px !important;
+  height: 57px !important;
+  font-family: "Montserrat" !important;
+  font-weight: bold;
+  font-size: 0.875rem !important;
+  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
+    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
+  border-radius: 10px !important;
+  letter-spacing: 0.2em;
+  line-height: 0;
+  text-transform: uppercase;
+  color: #ffffff !important;
+  @media screen and (max-width: 1440px) {
+  }
+}
+
 .gallery-container {
   margin-top: 114px;
   @media screen and (max-width: 1440px) {
@@ -715,6 +845,7 @@ export default {
   color: #0046fe !important;
   @media screen and (max-width: 1440px) {
     font-size: 34px;
+    line-height: 2.438rem;
   }
 }
 
@@ -723,9 +854,9 @@ export default {
   font-size: 1.125rem !important;
   line-height: 2.25rem;
   color: #575757 !important;
-  width: 60%;
   @media screen and (max-width: 1440px) {
-    font-size: 16px !important;
+    font-size: 14px !important;
+    line-height: 1.5rem;
   }
 }
 .card-video {
@@ -742,7 +873,7 @@ export default {
 }
 
 .card-gallery {
-  z-index: 1;
+  z-index: 2;
   img {
     border-radius: 10px !important;
   }
@@ -750,6 +881,11 @@ export default {
 // build resume section
 
 //integration section
+.container-integration {
+  @media screen and (max-width: 1440px) {
+    margin-top: 15px;
+  }
+}
 .integration-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
@@ -810,8 +946,8 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: 6rem;
-  left: -0.625rem;
+  top: 3.7rem;
+  left: 0;
   right: 0;
   margin-right: auto;
   margin-left: auto;
@@ -820,16 +956,16 @@ export default {
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 5.5rem;
     left: 0;
+    top: 3.9rem;
     img {
       width: 100%;
     }
   }
   @media screen and (max-width: 1366px) {
     left: 0;
-    top: 6.5rem;
     width: 1366px;
+    top: 4.8rem;
     img {
       width: 100%;
     }
@@ -837,7 +973,7 @@ export default {
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: 0;
-    top: 7rem;
+    top: 5.7rem;
     img {
       width: 100%;
     }
@@ -879,48 +1015,50 @@ export default {
 .top-make-resume {
   position: absolute;
   width: 1920px;
-  top: -10rem;
-  left: -10.5rem;
+  top: 32.7rem;
+  left: -0.3rem;
   img {
     width: 100%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: -6rem;
-    left: -9.5rem;
+    top: 31rem;
+    left: 0;
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
-    top: -6rem;
-    left: -7.2rem;
+    left: 0;
+    top: 31.5rem;
   }
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: -5rem;
-    left: -4rem;
+    left: 0;
+    top: 32rem;
   }
 }
 
 .middle-layer-background1 {
   position: absolute;
   width: 1920px;
-  top: -83%;
-  left: -18%;
+  top: -17.8rem;
+  left: -26%;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  z-index: 0;
   img {
     width: 90%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -28%;
-    top: -58%;
+    top: -13.3rem;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: -18%;
+    top: -13rem;
   }
 }
 
@@ -934,15 +1072,15 @@ export default {
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 1441px){
-    top:210%;
-    left:-24.5%;
+  @media screen and (min-width: 1441px) {
+    top: 210%;
+    left: -24.5%;
   }
 
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 182%;
-    left: -25.5%;
+    top: 215%;
+    left: -26.5%;
     img {
       width: 94%;
     }
@@ -950,7 +1088,7 @@ export default {
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: 210%;
+    top: 246%;
     left: -20.5%;
   }
 }
@@ -960,6 +1098,7 @@ export default {
   width: 1920px;
   top: 5%;
   left: -10.5%;
+  z-index: 1;
   img {
     width: 100%;
   }
@@ -980,21 +1119,26 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top:3%;
-  left: -10.5%;
+  top: 76.6%;
+  left: -0.2rem;
   right: 0;
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    left: -13%;
-    top:4.5%;
+    top: 76.6%;
+    left: 3px;
+  }
+  @media screen and (max-width: 1366px) {
+    width: 1366px;
+    top: 76.8%;
+    left: -2px;
   }
   @media screen and (max-width: 1280px) {
+    top: 76.9%;
     width: 1280px;
-    top:5%;
-    left: -6.5%;
+    left: -0.8125rem;
   }
 }
 
@@ -1009,7 +1153,12 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
   }
+  @media screen and (max-width: 1366px) {
+    width: 1366px;
+    top: 92.5%;
+  }
   @media screen and (max-width: 1280px) {
+    top: 93%;
     width: 1280px;
   }
 }
@@ -1042,7 +1191,7 @@ export default {
 
 #welcomeView2 .slick-dots li button {
   width: 110px;
-  height: 12px;
+  height: 6px;
   border-radius: 0px;
   margin-left: -10px;
 }
@@ -1068,4 +1217,18 @@ export default {
     min-height: 2.812rem !important;
   }
 }
+/* tablet screen */
+@media screen and (max-width: 959px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 4.688rem !important;
+  }
+}
+/* tablet screen */
+/* mobile screen */
+@media screen and (max-width: 959px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 3.75rem !important;
+  }
+}
+/* mobile screen */
 </style>

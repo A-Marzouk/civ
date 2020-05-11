@@ -1239,11 +1239,12 @@ img.pofolio-lg-img {
     height: auto;
   }
   @media screen and (max-width: 959px) {
-    margin-left: 20px;
+    margin-left: 150px;
     position: absolute;
-    margin-top: 20px;
+    margin-top: 58px;
     img {
-      width: 12px;
+      width: 14px;
+      height:14px;
     }
   }
 }
