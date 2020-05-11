@@ -194,6 +194,37 @@
             </v-card>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
+
+          <!-- for tab and mobile -->
+          <v-col cols="7" class="hidden-md-and-up" align="center">
+            <v-card color="transparent" flat tile>
+              <v-card-subtitle class="download-text">Download for ios and android:</v-card-subtitle>
+              <v-card-subtitle>
+                <v-row>
+                  <v-col cols="6">
+                    <a href="#">
+                      <img
+                        class="app-store-logo"
+                        src="/images/welcome_landing_page/icons/app-store.png"
+                        alt
+                      />
+                    </a>
+                  </v-col>
+
+                  <v-col cols="6">
+                    <a href="#">
+                      <img
+                        class="app-store-logo"
+                        src="/images/welcome_landing_page/icons/play-store.png"
+                        alt
+                      />
+                    </a>
+                  </v-col>
+                </v-row>
+              </v-card-subtitle>
+            </v-card>
+          </v-col>
+          <!-- for tab and mobile -->
         </v-row>
       </v-container>
       <!-- 1st inner container ends here -->
@@ -253,9 +284,9 @@
               <v-card-subtitle class="build-resume-subtitle mt-1">
                 <v-row>
                   <v-col
-                    cols="6"
+                    md="6" cols="12"
                   >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-col>
-                  <v-col cols="6" align="right">
+                  <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
                   </v-col>
                 </v-row>
@@ -264,7 +295,7 @@
 
             <v-card tile flat color="transparent">
               <v-row>
-                <template v-for="n in 6">
+                <template v-for="n in 6" class="hidden-sm-and-down">
                   <v-col md="4" :key="n">
                     <v-card flat tile color="transparent" class="card-gallery">
                       <img :src="getGalleryImages(n)" alt="gallery" />
@@ -290,7 +321,7 @@
             <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-n8 mb-3"
+                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n5 mt-n5"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text style="z-index:2;">
                 <slick
@@ -671,6 +702,9 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
   }
+  // @media screen and (max-width: 959px) {
+  //   font-size: 1rem !important;
+  // }
 }
 .app-store-logo {
   margin-left: -20px;
@@ -826,6 +860,9 @@ export default {
   color: #ffffff !important;
   @media screen and (max-width: 1440px) {
   }
+  @media screen and (max-width: 959px){
+    margin-top: 0px;
+  }
 }
 
 .gallery-container {
@@ -847,6 +884,10 @@ export default {
     font-size: 34px;
     line-height: 2.438rem;
   }
+  @media screen and (max-width: 959px) {
+    font-size: 3rem;
+    line-height: 3.25rem;
+  }
 }
 
 .build-resume-subtitle {
@@ -856,6 +897,10 @@ export default {
   color: #575757 !important;
   @media screen and (max-width: 1440px) {
     font-size: 14px !important;
+    line-height: 1.5rem;
+  }
+  @media screen and (max-width: 959px){
+    font-size: 1.125rem !important;
     line-height: 1.5rem;
   }
 }
