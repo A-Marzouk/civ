@@ -221,7 +221,13 @@
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
-            <v-card class="card-video pa-md-8 pa-sm-0 pa-0" color="transparent" flat tile align="center">
+            <v-card
+              class="card-video pa-md-8 pa-sm-0 pa-0"
+              color="transparent"
+              flat
+              tile
+              align="center"
+            >
               <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center">
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
@@ -683,6 +689,7 @@ export default {
   padding-left: 2.38rem !important;
   padding-right: 2.38rem !important;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
+  z-index: 1;
   @media screen and (max-width: 1440px) {
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
@@ -950,7 +957,7 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: 0;
-    top:3.9rem;
+    top: 3.9rem;
     img {
       width: 100%;
     }
@@ -958,7 +965,7 @@ export default {
   @media screen and (max-width: 1366px) {
     left: 0;
     width: 1366px;
-    top:4.8rem;
+    top: 4.8rem;
     img {
       width: 100%;
     }
@@ -966,7 +973,7 @@ export default {
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: 0;
-    top:5.7rem;
+    top: 5.7rem;
     img {
       width: 100%;
     }
@@ -1015,41 +1022,43 @@ export default {
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top:31rem;
+    top: 31rem;
     left: 0;
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
     left: 0;
-    top:31.5rem;
+    top: 31.5rem;
   }
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: 0;
-    top:32rem;
+    top: 32rem;
   }
 }
 
 .middle-layer-background1 {
   position: absolute;
   width: 1920px;
-  top: -83%;
+  top: -18rem;
   left: -26%;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  z-index: 0;
   img {
     width: 90%;
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -28%;
-    top: -81%;
+    top: -13.5rem;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: -18%;
+    top: -13rem;
   }
 }
 
