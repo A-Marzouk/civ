@@ -277,7 +277,12 @@
               tile
               align="center"
             >
-              <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center">
+              <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center hidden-sm-and-down">
+                <v-btn fab color="#F8F8F8" class="btn-play" x-large>
+                  <img src="/images/welcome_landing_page/icons/play.png" />
+                </v-btn>
+              </v-img>
+              <v-img src="/images/welcome_landing_page/icons/poster-video-tablet.png" class="align-center hidden-md-and-up">
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
