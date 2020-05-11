@@ -1041,7 +1041,7 @@ export default {
 .middle-layer-background1 {
   position: absolute;
   width: 1920px;
-  top: -18rem;
+  top: -17.8rem;
   left: -26%;
   right: 0;
   margin-left: auto;
@@ -1053,7 +1053,7 @@ export default {
   @media screen and (max-width: 1440px) {
     width: 1440px;
     left: -28%;
-    top: -13.5rem;
+    top: -13.3rem;
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
