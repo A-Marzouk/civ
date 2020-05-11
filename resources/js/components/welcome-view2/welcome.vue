@@ -15,7 +15,11 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
             <div class="tablet-layer1 hidden-md-and-up">
-              <img :width="windowWidth" src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png" alt />
+              <img
+                :width="windowWidth"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
+                alt
+              />
             </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
@@ -30,7 +34,10 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer2 hidden-md-and-up">
-              <img :width="windowWidth" src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png" />
+              <img
+                :width="windowWidth"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
+              />
             </div>
             <div class="top-layer-background hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
@@ -41,6 +48,7 @@
                 alt
               />
             </div>
+
             <v-card color="transparent" flat tile style="z-index:1;">
               <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
               <v-card-subtitle class="reserve-input">
@@ -98,6 +106,12 @@
             <!-- play store ios buttons -->
           </v-col>
           <v-col md="5" sm="12" cols="12">
+            <div class="make-resume-background hidden-md-and-up">
+              <img
+                :width="windowWidth"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/make-resume-background.png"
+              />
+            </div>
             <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
               <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
               <v-card-subtitle align="center">
@@ -198,6 +212,12 @@
                 <a href="#">Login</a>
               </v-card-subtitle>
             </v-card>
+            <div class="tablet-layer3 hidden-md-and-up">
+              <img
+                :width="windowWidth"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
+              />
+            </div>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
 
@@ -250,7 +270,7 @@
                 <br />can be proud of
               </v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-n5 mb-5"
+                class="build-resume-subtitle mt-md-n5 mb-md-5 mt-0"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
               <div class="middle-layer-background2 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
@@ -697,7 +717,7 @@ export default {
     margin-top: 121px;
   }
 }
-//resume title
+//resume
 .resume-title {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
@@ -778,7 +798,7 @@ export default {
     font-size: 1rem !important;
   }
   @media screen and (max-width: 959px) {
-    margin-top:80px;
+    margin-top: 80px;
     font-weight: 600;
   }
   @media screen and (max-width: 599px) {
@@ -831,7 +851,7 @@ export default {
   }
   @media screen and (max-width: 959px) {
     height: 960px;
-    margin-top: 80px;
+    margin-top: 120px;
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
@@ -1353,6 +1373,25 @@ export default {
   left: 0;
   right: 0;
   top: 8%;
+}
+
+.make-resume-background {
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 21%;
+}
+
+.tablet-layer3 {
+  position: absolute;
+  // width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 33%;
 }
 
 //background tablet and mobile
