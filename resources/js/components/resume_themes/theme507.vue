@@ -1,4 +1,4 @@
-//theme-27-v2
+//theme-27-v3
 <template>
   <v-app>
     <section class="back">
@@ -6,23 +6,53 @@
         <v-col xl="7" lg="7" md="7" sm="12" cols="12">
           <div class="mx-lg-5 my-lg-3 my-5 py-3">
             <v-row align="center" no-gutters>
-              <v-col cols="4" sm="3" md="3" lg="3" xl="3" justify="center" align="center">
-                <v-avatar
-                  class="ma-4 pa-1"
-                  style="background: linear-gradient(132.84deg, #C10FA0 -2.15%, #270556 101.91%);"
-                >
-                  <v-img
-                    src="/images/resume_themes/theme505/avatar.png"
-                    contain
-                    :aspect-ratio="1"
-                    class="mt-1"
-                  ></v-img>
-                </v-avatar>
-              </v-col>
-
-              <v-col cols="8" sm="8" md="7" lg="8" xl="8" class="pl-sm-0 pl-md-3 pl-3 pl-lg-1">
-                <div class="head textcol font-weight-black">
+              <v-col
+                cols="12"
+                sm="12"
+                md="7"
+                lg="8"
+                xl="8"
+                class="pl-sm-0 pl-md-3 pl-3 pl-lg-1 mt-lg-2"
+              >
+                <div class="head textcol font-weight-black ml-2 ml-sm-7 ml-md-6">
                   Beverly Andrews
+                  <v-btn
+                    fab
+                    color="#C10FA0"
+                    class="mr-sm-6 mr-4 mt-4 mt-md-0 margleft"
+                    style="border: 2px solid #C10FA0;"
+                  >
+                    <v-img
+                      src="/images/resume_themes/theme505/email.svg"
+                      width="24"
+                      height="24"
+                      class="mt-1"
+                      contain
+                    ></v-img>
+                  </v-btn>
+                  <v-btn
+                    fab
+                    color="#C10FA0"
+                    text
+                    small
+                    class="mr-0 mt-4 mt-md-0"
+                    style="border: 2px solid #C10FA0;"
+                  >
+                    <v-img
+                      src="/images/resume_themes/theme505/pdf.png"
+                      width="24"
+                      height="24"
+                      class
+                      contain
+                    ></v-img>
+                  </v-btn>
+                </div>
+
+                <div
+                  class="subtitle-2 grey--text text--lighten-2 pb-2 mt-n6 ml-2 ml-sm-7 ml-md-6 mt-sm-n4"
+                >User interface designer</div>
+
+                <div class="ml-lg-3 ml-md-n2 ml-sm-3 hidden-xs-only mt-3">
                   <v-btn
                     fab
                     color="#C10FA0"
@@ -30,40 +60,53 @@
                     small
                     v-for="c in con"
                     :key="c.id"
-                    class="ml-4 hidden-xs-only"
+                    class="ml-4 d-none d-sm-inline d-md-none"
                     style="border: 2px solid #C10FA0;"
                   >
                     <v-img :src="c.src" width="18" height="18" class contain></v-img>
                   </v-btn>
+                  <v-btn
+                    class="px-0 ml-2 mr-0 hidden-sm-and-down"
+                    text
+                    color="white"
+                    v-for="icon in icons"
+                    :key="icon.id"
+                    min-width="48px"
+                  >
+                    <v-img width="40" height="40" contain :src="icon.src"></v-img>
+                  </v-btn>
                 </div>
-
-                <div class="subtitle-1 grey--text text--lighten-2 pb-2">User interface designer</div>
-
-                <v-btn fab color="#C10FA0" class="mr-4" style="border: 2px solid #C10FA0;">
-                  <v-img
-                    src="/images/resume_themes/theme505/email.svg"
-                    width="24"
-                    height="24"
-                    class="mt-1"
-                    contain
-                  ></v-img>
-                </v-btn>
-                <v-btn
-                  fab
-                  color="#C10FA0"
-                  text
-                  small
-                  class="mr-sm-4 mr-xs-0"
-                  style="border: 2px solid #C10FA0;"
+                <v-sheet
+                  class="mx-auto hidden-md-and-up mt-12 mt-sm-6"
+                  width="100%"
+                  color="transparent"
                 >
-                  <v-img
-                    src="/images/resume_themes/theme505/pdf.png"
-                    width="24"
-                    height="24"
-                    class
-                    contain
-                  ></v-img>
-                </v-btn>
+                  <v-slide-group multiple>
+                    <v-slide-item v-for="icon in con" :key="icon.id" class="hidden-sm-and-up mx-2">
+                      <v-btn fab color="#C10FA0" text small style="border: 2px solid #C10FA0;">
+                        <v-img width="18" height="18" contain :src="icon.src"></v-img>
+                      </v-btn>
+                    </v-slide-item>
+                    <v-slide-item
+                      v-for="icon in media"
+                      :key="icon.id"
+                      class="mx-auto mt-1 hidden-xs-only"
+                    >
+                      <v-btn class text color="white">
+                        <v-img width="44" height="44" contain :src="icon.src"></v-img>
+                      </v-btn>
+                    </v-slide-item>
+                    <v-slide-item
+                      v-for="icon in media"
+                      :key="icon.id"
+                      class="hidden-sm-and-up mt-1 mx-n2 mx-sm-0"
+                    >
+                      <v-btn class text color="white">
+                        <v-img width="44" height="44" contain :src="icon.src"></v-img>
+                      </v-btn>
+                    </v-slide-item>
+                  </v-slide-group>
+                </v-sheet>
               </v-col>
             </v-row>
           </div>
@@ -81,46 +124,21 @@
         >
           <div class="text-center hidden-sm-and-down mt-3">
             <v-btn
-              class="px-0 mx-1"
+              fab
+              color="#C10FA0"
               text
-              color="white"
-              v-for="icon in icons"
-              :key="icon.id"
-              min-width="48px"
+              small
+              v-for="c in con"
+              :key="c.id"
+              class="ml-4 hidden-xs-only"
+              style="border: 2px solid #C10FA0;"
             >
-              <v-img width="40" height="40" contain :src="icon.src"></v-img>
+              <v-img :src="c.src" width="18" height="18" class contain></v-img>
             </v-btn>
           </div>
-          <v-sheet class="mx-auto hidden-md-and-up" width="100%" color="transparent">
-            <v-slide-group multiple>
-              <v-slide-item v-for="icon in con" :key="icon.id" class="hidden-sm-and-up mx-2">
-                <v-btn fab color="#C10FA0" text small style="border: 2px solid #C10FA0;">
-                  <v-img width="18" height="18" contain :src="icon.src"></v-img>
-                </v-btn>
-              </v-slide-item>
-              <v-slide-item
-                v-for="icon in media"
-                :key="icon.id"
-                class="mx-auto mt-1 hidden-xs-only"
-              >
-                <v-btn class text color="white">
-                  <v-img width="44" height="44" contain :src="icon.src"></v-img>
-                </v-btn>
-              </v-slide-item>
-              <v-slide-item
-                v-for="icon in media"
-                :key="icon.id"
-                class="hidden-sm-and-up mt-1 mx-n2"
-              >
-                <v-btn class text color="white">
-                  <v-img width="44" height="44" contain :src="icon.src"></v-img>
-                </v-btn>
-              </v-slide-item>
-            </v-slide-group>
-          </v-sheet>
         </v-col>
       </v-row>
-      <v-row class="mt-md-6 mt-12 pt-6">
+      <v-row class="mt-md-6 mt-12 pt-6" no-gutters>
         <v-col lg="12" sm="12" cols="12" class="tablet">
           <v-tabs
             background-color="transparent"
@@ -148,7 +166,7 @@
           </v-tabs>
         </v-col>
       </v-row>
-      <v-row>
+      <v-row no-gutters>
         <v-slide-x-reverse-transition>
           <v-col
             md="12"
@@ -161,7 +179,7 @@
             style="height:100vh;"
           >
             <v-row justify="center" align="center" class="mt-12" no-gutters>
-              <v-col cols="12" sm="12" md="8" lg="8" xl="8" class="px-3">
+              <v-col cols="12" sm="12" md="6" lg="6" xl="6" class="px-3 px-sm-6">
                 <div class="head font-weight-bold textcol text-sm-center text-xs-left my-3">About</div>
                 <div
                   class="body-2 grey--text text--lighten-2 text-md-center text-xs-left my-5 my-md-3"
@@ -366,8 +384,13 @@
 </template>
 
 <style lang="scss" scoped>
+.v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes)
+  .v-slide-group__prev {
+  display: none !important;
+  visibility: hidden;
+}
 @import "https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap";
-@import "resources/sass/themes/theme506.scss";
+@import "resources/sass/themes/theme507.scss";
 </style>
 
 <script>
