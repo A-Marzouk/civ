@@ -1,5 +1,5 @@
 <template>
-  <v-app style="width:100%; background-color: #f8f8f8;">
+  <v-app style="width:100%; background-color: #ffffff;">
     <!-- main container -->
     <v-container class="main-container">
       <v-app-bar color="transparent" flat tile height="100">
@@ -1066,20 +1066,20 @@ export default {
   position: absolute;
   float: left;
   width: 1920px;
-  top: 260%;
+  top: 25.8rem;
   left: -17.5%;
   right: 0;
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: 1441px) {
-    top: 210%;
+  @media screen and (min-width: 1920px) {
+    top: 215%;
     left: -24.5%;
   }
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1900px) {
     width: 1440px;
-    top: 215%;
+    top: 219%;
     left: -26.5%;
     img {
       width: 94%;
@@ -1088,7 +1088,7 @@ export default {
 
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    top: 246%;
+    top: 249%;
     left: -20.5%;
   }
 }
