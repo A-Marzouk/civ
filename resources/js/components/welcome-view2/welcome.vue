@@ -260,6 +260,12 @@
         <v-row align="center" justify="center">
           <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
+            <div class="tablet-layer4 hidden-md-and-up">
+              <img
+                :width="windowWidth"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
+              />
+            </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
@@ -270,7 +276,7 @@
                 <br />can be proud of
               </v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n5 mb-md-5 mt-0"
+                class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-10 mt-0"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
               <div class="middle-layer-background2 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
@@ -1392,6 +1398,16 @@ export default {
   left: 0;
   right: 0;
   top: 33%;
+}
+
+.tablet-layer4{
+  position: absolute;
+  // width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 46%;
 }
 
 //background tablet and mobile
