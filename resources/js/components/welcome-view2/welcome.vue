@@ -15,7 +15,7 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
             <div class="tablet-layer1 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png" alt="">
+              <img :width="windowWidth" src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png" alt />
             </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
@@ -29,6 +29,9 @@
                 <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
               </v-card-subtitle>
             </v-card>
+            <div class="tablet-layer2 hidden-md-and-up">
+              <img :width="windowWidth" src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png" />
+            </div>
             <div class="top-layer-background hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
@@ -382,8 +385,14 @@
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <959 ?'center':'left' ">
             <v-card flat color="transparent" tile>
-              <img class="logo-footer hidden-sm-and-down" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
-              <img class="logo-footer hidden-md-and-up" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
+              <img
+                class="logo-footer hidden-sm-and-down"
+                src="/images/welcome_landing_page/logo/civie_logo-01.png"
+              />
+              <img
+                class="logo-footer hidden-md-and-up"
+                src="/images/welcome_landing_page/logo/civie_logo-01.png"
+              />
             </v-card>
           </v-col>
           <v-col md="6" cols="6" align="right" class="hidden-sm-and-down">
@@ -769,6 +778,7 @@ export default {
     font-size: 1rem !important;
   }
   @media screen and (max-width: 959px) {
+    margin-top:80px;
     font-weight: 600;
   }
   @media screen and (max-width: 599px) {
@@ -821,6 +831,7 @@ export default {
   }
   @media screen and (max-width: 959px) {
     height: 960px;
+    margin-top: 80px;
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
@@ -1324,16 +1335,26 @@ export default {
 
 // backgrounds
 // background tablet and mobile
-.tablet-layer1{
+.tablet-layer1 {
   position: absolute;
-  width: 100%;
+  // width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
-  right:0;
-  top:1.5%;
-
+  right: 0;
+  top: 1.5%;
 }
+
+.tablet-layer2 {
+  position: absolute;
+  // width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 8%;
+}
+
 //background tablet and mobile
 </style>
 
