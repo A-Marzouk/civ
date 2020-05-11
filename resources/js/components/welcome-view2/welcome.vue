@@ -293,9 +293,9 @@
               </v-card-subtitle>
             </v-card>
 
-            <v-card tile flat color="transparent">
+            <v-card tile flat color="transparent" class="hidden-sm-and-down">
               <v-row>
-                <template v-for="n in 6" class="hidden-sm-and-down">
+                <template v-for="n in 6">
                   <v-col md="4" :key="n">
                     <v-card flat tile color="transparent" class="card-gallery">
                       <img :src="getGalleryImages(n)" alt="gallery" />
