@@ -14,6 +14,9 @@
       <v-container style="width:100%" class="container-resume">
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
+            <div class="tablet-layer1 hidden-md-and-up">
+              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png" alt="">
+            </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
                 Make Your
@@ -427,13 +430,13 @@
             <v-card flat tile color="transparent" align="center">
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/facebook.png"
                     alt="facebook"
                   />
                 </v-btn>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
@@ -451,7 +454,7 @@
                   fab
                   x-small
                   color="#ffffff"
-                  class="footer-social-icon mx-sm-2 mx-1"
+                  class="footer-social-icon mx-sm-2 mx-1 mt-n2"
                   v-for="i in contactIcons"
                   :key="i.title"
                 >
@@ -1320,6 +1323,18 @@ export default {
 }
 
 // backgrounds
+// background tablet and mobile
+.tablet-layer1{
+  position: absolute;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right:0;
+  top:1.5%;
+
+}
+//background tablet and mobile
 </style>
 
 <style>
