@@ -284,13 +284,34 @@
               <v-card-subtitle class="build-resume-subtitle mt-1">
                 <v-row>
                   <v-col
-                    md="6" cols="12"
+                    md="6"
+                    cols="12"
                   >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
                   </v-col>
                 </v-row>
               </v-card-subtitle>
+            </v-card>
+
+            <v-card tile color="transparet" flat class="card-gallery hidden-md-and-up">
+              <slick
+                class="integrationSlides"
+                ref="slick"
+                :options="slickOptionsGallery"
+                style="z-index:2;"
+              >
+                <v-card
+                  flat
+                  tile
+                  color="transparent"
+                  v-for="n in 6"
+                  :key="n"
+                  class="card-gallery-items"
+                >
+                  <img :src="getGalleryImages(n)" alt="gallery" />
+                </v-card>
+              </slick>
             </v-card>
 
             <v-card tile flat color="transparent" class="hidden-sm-and-down">
@@ -356,12 +377,13 @@
     <v-footer color="#0F4CEE">
       <v-container>
         <v-row justify="center" align="center" class="justify-space-around">
-          <v-col md="2" cols="6">
+          <v-col md="2" cols="12" :align="windowWidth <959 ?'center':'left' ">
             <v-card flat color="transparent" tile>
-              <img class="logo-footer" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
+              <img class="logo-footer hidden-sm-and-down" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
+              <img class="logo-footer hidden-md-and-up" src="/images/welcome_landing_page/logo/civie_logo-01.png" />
             </v-card>
           </v-col>
-          <v-col md="6" cols="6" align="right">
+          <v-col md="6" cols="6" align="right" class="hidden-sm-and-down">
             <v-card flat tile color="transparent">
               <v-card-text class="follow-us-text">
                 Follow Us:
@@ -383,7 +405,7 @@
             </v-card>
           </v-col>
 
-          <v-col md="4" cols="12" align="right">
+          <v-col md="4" cols="12" align="right" class="hidden-sm-and-down">
             <v-card color="transparent" flat tile>
               <v-card-text class="follow-us-text">
                 Contact Us:
@@ -398,6 +420,44 @@
                   <img :src="getContactIcons(i.title)" />
                 </v-btn>
               </v-card-text>
+            </v-card>
+          </v-col>
+
+          <v-col cols="4" class="hidden-md-and-up">
+            <v-card flat tile color="transparent" align="center">
+              <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
+              <v-card-subtitle>
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1">
+                  <img
+                    src="/images/welcome_landing_page/icons/social_icons/facebook.png"
+                    alt="facebook"
+                  />
+                </v-btn>
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1">
+                  <img
+                    src="/images/welcome_landing_page/icons/social_icons/instagram.png"
+                    alt="instagram"
+                  />
+                </v-btn>
+              </v-card-subtitle>
+            </v-card>
+          </v-col>
+
+          <v-col cols="8" class="hidden-md-and-up">
+            <v-card flat tile color="transparent">
+              <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
+              <v-card-subtitle>
+                <v-btn
+                  fab
+                  x-small
+                  color="#ffffff"
+                  class="footer-social-icon mx-sm-2 mx-1"
+                  v-for="i in contactIcons"
+                  :key="i.title"
+                >
+                  <img :src="getContactIcons(i.title)" />
+                </v-btn>
+              </v-card-subtitle>
             </v-card>
           </v-col>
         </v-row>
@@ -455,6 +515,35 @@ export default {
         { id: 5, title: "slack" }
       ],
       users: ["nishad", "ahmed", "anton"],
+      slickOptionsGallery: {
+        centerMode: true,
+        infinite: true,
+        centerPadding: "0px",
+        dots: true,
+        arrows: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        pauseOnDotsHover: true,
+        variableWidt: true,
+        responsive: [
+          {
+            breakpoint: 959,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 599,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      },
       slickOptions: {
         centerMode: false,
         infinite: true,
@@ -549,7 +638,6 @@ export default {
     margin-top: -6px;
   }
 }
-
 //form
 .login-form {
   label {
@@ -657,7 +745,7 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    margin-top: 0px;
+    margin-top: 20px;
     width: 9.5rem !important;
     height: 3.048rem !important;
     font-size: 0.75rem !important;
@@ -860,8 +948,8 @@ export default {
   color: #ffffff !important;
   @media screen and (max-width: 1440px) {
   }
-  @media screen and (max-width: 959px){
-    margin-top: 0px;
+  @media screen and (max-width: 959px) {
+    margin-top: 20px;
   }
 }
 
@@ -899,7 +987,7 @@ export default {
     font-size: 14px !important;
     line-height: 1.5rem;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     font-size: 1.125rem !important;
     line-height: 1.5rem;
   }
@@ -922,6 +1010,12 @@ export default {
   img {
     border-radius: 10px !important;
   }
+  @media screen and (max-width: 959px) {
+    padding: 0;
+    img {
+      width: 100%;
+    }
+  }
 }
 // build resume section
 
@@ -937,6 +1031,9 @@ export default {
   font-size: 22px;
   line-height: 29px;
   color: #575757 !important;
+  @media screen and (max-width: 959px) {
+    font-size: 1.125rem;
+  }
 }
 .integrationImg {
   height: 226px;
@@ -966,10 +1063,17 @@ export default {
       font-size: 14px;
     }
   }
+  @media screen and (max-width: 959px) {
+    font-size: 1.125rem;
+  }
 }
-.footer-logo {
+.logo-footer {
   width: 201px;
   height: auto;
+
+  @media screen and (max-width: 959px) {
+    width: 223px;
+  }
 }
 .footer-social-icon {
   img {
@@ -982,6 +1086,13 @@ export default {
     img {
       width: 18.25px;
       height: auto;
+    }
+  }
+  @media screen and (max-width: 959px) {
+    width: 69.07px;
+    height: 69.07px;
+    img {
+      width: 25px;
     }
   }
 }
