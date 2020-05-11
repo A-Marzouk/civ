@@ -4,7 +4,7 @@
     <section class="back">
       <v-row no-gutters>
         <v-col xl="4" lg="5" md="6" sm="12" cols="12">
-          <div class="mx-lg-5 my-lg-3 my-xs-5 py-3">
+          <div class="mx-lg-5 my-lg-3 my-5 py-3">
             <v-row align="center" no-gutters>
               <v-col cols="4" sm="3" md="5" lg="4" xl="4">
                 <v-avatar
@@ -47,7 +47,7 @@
           >Links to my profiles:</div>
           <div class="text-center mt-6">
             <v-btn
-              class="px-0 mx-xs-1"
+              class="px-0 mx-1"
               text
               color="white"
               v-for="icon in icons"
@@ -87,7 +87,7 @@
         <v-col lg="12" sm="12" cols="12" class="tablet">
           <v-tabs
             background-color="transparent"
-            class="tabhigh"
+            height="60"
             hide-slider
             hide-arrows
             center-active
@@ -97,7 +97,7 @@
               v-for="tab in tabs"
               :key="tab.id"
               @click="tablet = tab.name"
-              class="ml-md-5 mr-md-10 mx-xs-2 text-left ml-0"
+              class="ml-md-5 mr-md-10 mx-2 text-left ml-0"
               exact-active-class
             >
               <v-btn fab text elevation="0" color="white">
@@ -117,10 +117,10 @@
             <v-row justify="center" align="center" class="mt-12" no-gutters>
               <v-col
                 xl="3"
-                md="4"
+                md="3"
                 cols="12"
                 sm="12"
-                class="mx-xl-3 px-sm-4 py-sm-8 pl-1 py-xs-4"
+                class="mx-md-3 px-sm-6 py-sm-8 px-4 py-4"
                 v-for="img in images"
                 :key="img.id"
               >
@@ -139,30 +139,30 @@
               <v-col md="10" sm="12">
                 <v-row justify="center">
                   <v-col md="6" sm="12" cols="12" v-for="n in 4" :key="n">
-                    <v-row justify="start" class="layer ma-md-4 py-md-6 mx-xs-4 py-xs-2" no-gutters>
+                    <v-row justify="start" class="layer ma-md-4 py-md-6 mx-4 py-2" no-gutters>
                       <v-row class="pl-md-12 ml-sm-12 pl-6 mt-md-4 mt-4" no-gutters>
                         <v-col md="2" sm="3" cols="12">
-                          <h1 class="textcol headline font-weight-bold">{{ temp.title }}</h1>
+                          <div class="textcol headline font-weight-bold">{{ temp.title }}</div>
                         </v-col>
                         <v-col md="8" sm="7" cols="12" class="text-md-center pr-md-12">
-                          <h1
+                          <div
                             class="subtitle-2 pb-2 mr-12 grey--text text--lighten-2"
-                          >{{ temp.sub }}</h1>
+                          >{{ temp.sub }}</div>
                         </v-col>
                         <v-row class="pr-6 mt-md-8 pb-6">
                           <v-col md="3" sm="3" cols="12">
-                            <h1
+                            <div
                               class="d-inline-block subtitle-2 grey--text text--lighten-2"
-                            >Duration :</h1>
-                            <h1
+                            >Duration :</div>
+                            <div
                               class="d-inline-block subtitle-2 font-weight-bold textcol"
                               style="color:#F97CB3;"
-                            >{{ temp.duration }}</h1>
+                            >{{ temp.duration }}</div>
                           </v-col>
                           <v-col md="8" sm="7" cols="12" class="px-md-12 pb-12 pr-12">
-                            <h1
+                            <div
                               class="grey--text text--lighten-2 sfont pb-2 font-weight-thin"
-                            >{{ temp.para }}</h1>
+                            >{{ temp.para }}</div>
                           </v-col>
                         </v-row>
                       </v-row>
@@ -177,30 +177,30 @@
           <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tablet=='Education'" key="three">
             <v-row justify="center" class="mt-12">
               <v-col md="10" sm="12">
-                <v-row justify="center" class="mx-xs-1">
+                <v-row justify="center" class="mx-1">
                   <v-col md="6" sm="12" cols="12" v-for="n in 4" :key="n">
-                    <v-row justify="center" class="layer ma-md-4 py-md-6 ma-1 py-xs-3" no-gutters>
+                    <v-row justify="center" class="layer ma-md-4 py-md-6 ma-1 py-3" no-gutters>
                       <v-col cols="12" md="12" class="pl-md-6 pl-3">
                         <v-row class="pl-md-12 ml-sm-12 pl-6 mt-md-4" no-gutters>
                           <v-col md="3" sm="3" cols="3" class="text-center pr-12 mt-4">
-                            <h1
+                            <div
                               class="grey--text text--lighten-3 subtitle-2 pb-2 mr-12"
-                            >{{ emp.sub }}</h1>
+                            >{{ emp.sub }}</div>
                           </v-col>
                           <v-col md="12" sm="12" cols="12">
-                            <h1 class="textcol headline font-weight-bold">{{ emp.title }}</h1>
+                            <div class="textcol headline font-weight-bold">{{ emp.title }}</div>
                           </v-col>
                           <v-row no-gutters class="pr-6 mt-md-4 pb-sm-6 mt-2">
-                            <v-col md="6" sm="6" cols="12" class="my-xs-4">
-                              <h1
+                            <v-col md="6" sm="6" cols="12" class="my-4">
+                              <div
                                 class="subtitle-2 font-weight-bold grey--text text--lighten-2"
-                              >{{ emp.duration }}</h1>
+                              >{{ emp.duration }}</div>
                             </v-col>
 
                             <v-col md="8" sm="8" cols="12" class="pb-6 pr-0">
-                              <h1
+                              <div
                                 class="grey--text text--lighten-1 sfont pb-2 font-weight-thin"
-                              >{{ emp.para }}</h1>
+                              >{{ emp.para }}</div>
                             </v-col>
                           </v-row>
                         </v-row>
@@ -223,8 +223,8 @@
             key="four"
             style="height:100vh;"
           >
-            <v-row no-gutters justify="start" class="padleft">
-              <v-col md="12" lg="12">
+            <v-row no-gutters justify="center" class="mt-10">
+              <v-col md="8" lg="10">
                 <v-tabs
                   v-model="tabskill"
                   background-color="transparent"
@@ -243,15 +243,15 @@
                   >{{ item.name }}</v-tab>
                 </v-tabs>
 
-                <v-row no-gutters class="mt-4">
+                <v-row no-gutters class="mt-12">
                   <v-col md="12" sm="12" cols="12">
                     <v-tabs-items v-model="tabskill" style="background-color:transparent;">
                       <v-tab-item v-for="item in items" :key="item.id">
                         <v-row class="justify-center py-2" align="center" no-gutters>
                           <v-col
-                            xl="8"
-                            lg="8"
-                            md="8"
+                            xl="6"
+                            lg="6"
+                            md="6"
                             sm="12"
                             cols="12"
                             v-for="(s, index) in item.skills"
@@ -260,20 +260,27 @@
                           >
                             <v-row
                               no-gutters
-                              class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-4"
+                              class="mx-md-0 mx-sm-12 mx-4"
                               justify="center"
                               align="center"
                             >
-                              <v-col cols="12" sm="12" md="3" lg="4" xl="3">
+                              <v-col cols="6" sm="6" md="2" lg="2">
                                 <div
-                                  class="skilltext text-left font-weight-bold mb-sm-1 mb-1"
-                                >{{ s.name }} - {{ s.val }}</div>
+                                  class="skilltext text-left grey--text text--lighten-2 mb-sm-1 mb-1 mr-6"
+                                >{{ s.name }}</div>
                               </v-col>
-
-                              <v-col cols="12" sm="12" md="9" lg="8">
-                                <div class="pro-back ml-md-11 my-5">
-                                  <div class="progress" :style="'width:'+ s.val "></div>
+                              <v-col cols="6" sm="6" class="hidden-md-and-up">
+                                <div class="skilltext textcol text-right mb-sm-1 mb-1">{{ s.val }}</div>
+                              </v-col>
+                              <v-col cols="12" sm="12" md="8" lg="8">
+                                <div class="pro-back ml-md-11">
+                                  <div class="progress" style="width:70%;"></div>
                                 </div>
+                              </v-col>
+                              <v-col md="2" class="hidden-sm-and-down">
+                                <div
+                                  class="skilltext textcol font-weight-bold text-left ml-6"
+                                >{{ s.val }}</div>
                               </v-col>
                             </v-row>
                           </v-col>
