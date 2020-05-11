@@ -1,4 +1,4 @@
-#resumeTheme505 {
+#resumeTheme507 {
     .tablet:after {
     content: "";
     position: absolute;
@@ -67,6 +67,7 @@
     }
     .head {
     font-size: 1.5rem;
+    line-height: 20px;
     font-family: 'Rubik';
     color: #c10fa0;
 
@@ -80,11 +81,14 @@
     height: 64px !important;
     }
     @media only screen and (max-width: 768px) {
-    .back {
-        background: url("/images/resume_themes/theme505/tabdesign.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+        .margleft {
+            margin-left: 20rem !important;
+        }
+        .back {
+            background: url("/images/resume_themes/theme505/tabdesign.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
     }
 
     @media only screen and (max-width: 600px) {
@@ -229,15 +233,17 @@
     .basil--text {
     color: #104efb !important;
     }
-    .margleft {
-    margin-left: 24px;
-    }
+    
     @media only screen and (max-width: 600px) {
+        .margleft {
+            margin-left: 16px !important;
+        }
     .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes)
         .v-slide-group__prev {
         display: none !important;
         visibility: hidden;
     }
+    
 
     .v-tabs--grow > .v-tabs-bar .v-tab {
         -webkit-box-flex: 1;
