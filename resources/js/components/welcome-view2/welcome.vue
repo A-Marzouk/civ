@@ -15,11 +15,7 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
             <div class="tablet-layer1 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
-                alt
-              />
+              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png" alt />
             </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
@@ -34,10 +30,7 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer2 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
-              />
+              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png" />
             </div>
             <div class="top-layer-background hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
@@ -108,7 +101,6 @@
           <v-col md="5" sm="12" cols="12">
             <div class="make-resume-background hidden-md-and-up">
               <img
-                :width="windowWidth"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/make-resume-background.png"
               />
             </div>
@@ -213,10 +205,7 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer3 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
-              />
+              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png" />
             </div>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
@@ -261,10 +250,7 @@
           <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
             <div class="tablet-layer4 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
-              />
+              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png" />
             </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
@@ -308,17 +294,28 @@
       <v-container style="width:100%" class="gallery-container">
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12">
-            <v-card flat tile color="transparent">
+            <div class="tablet-layer5 hidden-md-and-up">
+              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png" />
+            </div>
+            <div class="tablet-layer6 hidden-md-and-up">
+              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png" />
+            </div>
+            <v-card flat tile color="transparent" class="card-choose-theme">
               <v-card-title class="build-resume-title">
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
               <v-card-subtitle class="build-resume-subtitle mt-1">
                 <v-row>
-                  <v-col
-                    md="6"
-                    cols="12"
-                  >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</v-col>
+                  <v-col md="6" cols="12">
+                    <span
+                      class="hidden-sm-and-down"
+                    >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
+                    <span class="hidden-md-and-up">
+                      Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out
+                      <br />and make a great first impression with any hiring manager.
+                    </span>
+                  </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
                   </v-col>
@@ -367,10 +364,11 @@
       <!-- 3rd inner container -->
       <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
         <v-row align="center" justify="center">
-          <v-col cols="12" align="center">
+          <v-col cols="12" :align="windowWidth <=959 ? 'left' : 'center'">
             <div class="middle-layer-background4 hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
             </div>
+
             <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
               <v-card-subtitle
@@ -396,6 +394,12 @@
                 </slick>
               </v-card-text>
             </v-card>
+            <div class="tablet-layer7 hidden-md-and-up">
+              <img
+                :width="windowWidth"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer7.png"
+              />
+            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -409,7 +413,7 @@
     <v-footer color="#0F4CEE">
       <v-container>
         <v-row justify="center" align="center" class="justify-space-around">
-          <v-col md="2" cols="12" :align="windowWidth <959 ?'center':'left' ">
+          <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
             <v-card flat color="transparent" tile>
               <img
                 class="logo-footer hidden-sm-and-down"
@@ -990,6 +994,7 @@ export default {
   }
   @media screen and (max-width: 959px) {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 
@@ -1015,6 +1020,12 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 3rem;
     line-height: 3.25rem;
+  }
+}
+
+.card-choose-theme {
+  @media screen and (max-width: 959px) {
+    margin-top: 80px;
   }
 }
 
@@ -1063,6 +1074,9 @@ export default {
 .container-integration {
   @media screen and (max-width: 1440px) {
     margin-top: 15px;
+  }
+  @media screen and (max-width: 959px) {
+    margin-top: 80px !important;
   }
 }
 .integration-title {
@@ -1397,17 +1411,54 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 33%;
+  top: 32%;
 }
 
-.tablet-layer4{
+.tablet-layer4 {
   position: absolute;
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 46%;
+  top: 45.5%;
+}
+
+.tablet-layer5 {
+  position: absolute;
+  // width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 3%;
+  right: 0;
+  top: 56%;
+}
+
+.tablet-layer6 {
+  position: absolute;
+  // width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 14%;
+  right: 0;
+  top: 59.6%;
+  z-index: 3;
+  img {
+    width: 95%;
+  }
+}
+
+.tablet-layer7 {
+  position: absolute;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 14%;
+  right: 0;
+  top: 76.8%;
+  img {
+    width: 80%;
+  }
 }
 
 //background tablet and mobile
