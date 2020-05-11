@@ -1,66 +1,72 @@
 <template>
-    <div class="container work-flex">
-        <div class="work-item">
-            <div class="work-header">
-                <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+<div class="container">
+    <div class="education-flex">
+        <div class="education-item">
+            <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme110/education-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
+                <div class="date">2014 - 2020</div>
             </div>
-            <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
-                <div class="work-description">
+            <div class="education-body">
+                <div class="grade-title">Applied Mathematics</div>
+                <div class="education-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
-        <div class="work-item">
-            <div class="work-header">
-                <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+        <div class="education-item">
+            <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme110/education-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
+                <div class="date">2014 - 2020</div>
             </div>
-            <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
-                <div class="work-description">
+            <div class="education-body">
+                <div class="grade-title">Applied Mathematics</div>
+                <div class="education-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
-        <div class="work-item">
-            <div class="work-header">
-                <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+        <div class="education-item">
+            <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme110/education-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
+                <div class="date">2014 - 2020</div>
             </div>
-            <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
-                <div class="work-description">
+            <div class="education-body">
+                <div class="grade-title">Applied Mathematics</div>
+                <div class="education-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
-        <div class="work-item">
-            <div class="work-header">
-                <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+        <div class="education-item">
+            <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme110/education-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="college-name">Simon Bolívar University</h2>
+                <div class="date">2014 - 2020</div>
             </div>
-            <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
-                <div class="work-description">
+            <div class="education-body">
+                <div class="grade-title">Applied Mathematics</div>
+                <div class="education-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -72,32 +78,41 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    $lineColor: #BEC2D4;
+$lineColor: #D3D6E4;
+$mainColor: #492163;
+
+.container {
+
+    background-image: url('/images/resume_themes/theme110/education-decoImg.png');
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+}
 
 
-    .work-flex {
+    .education-flex {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: wrap;    
         justify-content: space-between;
         max-width: 1300px !important;
+        margin: 0 auto;
     }
 
-    .work-item {
+    .education-item {
         max-width: 529px;
         width: 48%;
         margin-bottom: 74px;
 
-        .work-header {
+        .education-header {
             display: flex;
             align-items: center;
             margin-bottom: 24.5px;
 
-            .work-icon {
+            .education-icon {
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 margin-right: 81px;
-                border: 1px solid $lineColor;
+                border: 1px solid $mainColor;
                 border-radius: 50%;
                 width: 44px;
                 height: 44px;
@@ -113,8 +128,8 @@ export default {
                 }
             }
 
-            .company-name {
-                color: black;
+            .college-name {
+                color: $mainColor;
                 font-weight: 700;
                 font-size: 20px;
             }
@@ -126,17 +141,29 @@ export default {
             }
         }
 
-        .work-body {
+        .education-body {
             padding-left: calc(81px + 44px);
 
-            .job-title {
-                color: black;
+            .grade-title {
+                color: $mainColor;
                 font-size: 17px;
                 margin-bottom: 10px;
+                position: relative;
+                
+                &::after {
+                    position: absolute;
+                    left: -23px;
+                    top: calc(50% - 3.5px);
+                    height: 7px;
+                    width: 7px;
+                    content: "";
+                    border-radius: 50%;
+                    background: $mainColor;
+                }
             }
 
-            .work-description,
-            .work-description p {
+            .education-description,
+            .education-description p {
                 color: #838BA4;
                 font-size: 17px;
             }

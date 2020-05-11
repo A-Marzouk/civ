@@ -1,66 +1,68 @@
 <template>
-    <div class="container work-flex">
+<div class="container">
+    <div class="work-flex">
         <div class="work-item">
             <div class="work-header">
                 <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+                    <img src="/images/resume_themes/theme110/work-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="company-name">123Workforce</h2>
+                <div class="date">2019 - 2020</div>
             </div>
             <div class="work-body">
                 <div class="job-title">Fullstack Developer</div>
                 <div class="work-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
         <div class="work-item">
             <div class="work-header">
                 <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+                    <img src="/images/resume_themes/theme110/work-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="company-name">123Workforce</h2>
+                <div class="date">2019 - 2020</div>
             </div>
             <div class="work-body">
                 <div class="job-title">Fullstack Developer</div>
                 <div class="work-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
         <div class="work-item">
             <div class="work-header">
                 <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+                    <img src="/images/resume_themes/theme110/work-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="company-name">123Workforce</h2>
+                <div class="date">2019 - 2020</div>
             </div>
             <div class="work-body">
                 <div class="job-title">Fullstack Developer</div>
                 <div class="work-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
         <div class="work-item">
             <div class="work-header">
                 <div class="work-icon">
-                    <img src="/images/resume_themes/theme113/work-exp-icon.png" />
+                    <img src="/images/resume_themes/theme110/work-icon.png" />
                 </div>
-                <h2 class="company-name">123Workforce</h2><div class="date">2019 - 2020</div>
+                <h2 class="company-name">123Workforce</h2>
+                <div class="date">2019 - 2020</div>
             </div>
             <div class="work-body">
                 <div class="job-title">Fullstack Developer</div>
                 <div class="work-description">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum expedita tenetur placeat voluptas vel nisi repellat voluptatibus cupiditate quae quidem temporibus ea laudantium quod atque, quas fugiat eius suscipit!</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -72,7 +74,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    $lineColor: #BEC2D4;
+    $mainColor: #492163;
+    $lineColor: #838BA4;
+
+   .container {
+
+        background-image: url('/images/resume_themes/theme110/work-decoImg.png');
+        background-position: 60px 100%;
+        background-repeat: no-repeat;
+    }
 
 
     .work-flex {
@@ -80,6 +90,8 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         max-width: 1300px !important;
+        padding: 0 60px;
+        margin: 0 auto;
     }
 
     .work-item {
@@ -114,7 +126,7 @@ export default {
             }
 
             .company-name {
-                color: black;
+                color: $mainColor ;
                 font-weight: 700;
                 font-size: 20px;
             }
@@ -130,9 +142,21 @@ export default {
             padding-left: calc(81px + 44px);
 
             .job-title {
-                color: black;
+                color: $mainColor;
                 font-size: 17px;
                 margin-bottom: 10px;
+                position: relative;
+                
+                &::after {
+                    position: absolute;
+                    left: -23px;
+                    top: calc(50% - 3.5px);
+                    height: 7px;
+                    width: 7px;
+                    content: "";
+                    border-radius: 50%;
+                    background: $mainColor;
+                }
             }
 
             .work-description,

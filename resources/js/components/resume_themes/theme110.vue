@@ -1,7 +1,12 @@
 <template>
 <!-- Developer: Jose Quintero -->
-    <v-app id="theme109" style="width: 100%">
+    <v-app id="theme110" style="width: 100%">
         <div class="theme-header">
+
+            <!-- <div class="bg-header">
+                <img src="/images/resume_themes/theme110/bg-header-bottom-right.svg" alt="" class="bg-header-bottom-right" />
+            </div> -->
+
             <div class="user-info">
                 <div class="left">
                     <div class="user-img">
@@ -22,10 +27,10 @@
                 <div class="right">
                     <div class="actions-wrapper">
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme109/chat-icon.png"> Start a chat
+                            <img class="icon" src="/images/resume_themes/theme110/chat-icon.png"> Start a chat
                         </button>
                         <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme109/suitcase-icon.png">Upload interviews
+                            <img class="icon" src="/images/resume_themes/theme110/suitcase-icon.png">Upload interviews
                         </button>
                     </div>
 
@@ -40,7 +45,7 @@
                         </div>
 
                         <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme109/hireMe-icon.png" alt="hire me icon" class="icon">
+                            <img src="/images/resume_themes/theme110/hireMe-icon.png" alt="hire me icon" class="icon">
                             Hire Me
                         </button>
                     </div>
@@ -49,8 +54,6 @@
         </div>
 
         <div class="theme-body">
-            <div class="bg-body"></div>
-
             <div class="wrapper">
 
                 <v-row
@@ -69,9 +72,6 @@
                                 :ripple="false"
                             >
                                 {{ formatTab(tabItem) }}
-                                <span v-if="tabItem === 'work-experience'">Where I've worked</span>
-                                <span v-else-if="tabItem === 'education'">Where I've learned</span>
-                                <span v-else-if="tabItem === 'skills-and-language'">What I Bring To The Table</span>
                             </v-tab>
                         </v-tabs>
                         <transition>
@@ -97,7 +97,10 @@
                             </a>
                         </div>
                         <div class="scroll-top">
-                            <a href="javascript:;" v-scroll-to="'#theme109'">Scroll to top</a>
+                            <a href="javascript:;" v-scroll-to="'#theme110'">
+                                <span class="decorator"></span>    
+                                Scroll to top
+                            </a>
                         </div>
                     </v-col>
                 </v-row>
@@ -107,11 +110,11 @@
 </template>
 
 <script>
-import EducationTab from './theme109/education'
-import WorkExperienceTab from './theme109/work-experience'
-import PortfolioTab from './theme109/portfolio'
-import AboutTab from './theme109/about'
-import SkillsTab from './theme109/skills-and-languages'
+import EducationTab from './theme110/education'
+import WorkExperienceTab from './theme110/work-experience'
+import PortfolioTab from './theme110/portfolio'
+import AboutTab from './theme110/about'
+import SkillsTab from './theme110/skills-and-languages'
 
 export default {
     components: {
@@ -147,22 +150,40 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-$mainColor: #24325D;
-$tabTextColor: #BEC2D4;
-$purple: #24325D;
+$mainColor: #492163;
+$tabTextColor: #4D2F2D;
+$purple: #686299;
 
-#theme109 {
+$gradient: linear-gradient(to right, #9434CD, #EE3DC6);
+
+#theme110 {
     font-family: 'Muli', sans-serif;
     width: 100%;
     color: $mainColor;
-    background-color: #F8CDCC;
-    background-image: url('/images/resume_themes/theme109/bg-header.png');
-    background-position: top center;
+    background-color: #ECEDF4;
+    background-image: url('/images/resume_themes/theme110/bg-img.png');
+    background-size: 109% auto;
+    background-position: center -70px;
+    background-repeat: no-repeat;
     position: relative;
+    overflow-x: hidden;
 
     .theme-header {
         width: 100%;
         position: relative;
+
+        .bg-header {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+
+            &-bottom-right {
+                position: absolute;
+                right: 0;
+                opacity: 1;
+                bottom: -100px;
+            }
+        }
 
         .left {
             display: flex;
@@ -187,9 +208,9 @@ $purple: #24325D;
                     padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
-                    background: transparent;
-                    border: 3px solid $mainColor;
+                    background: #fff;
                     outline: none;
+                    color: $mainColor;
                     border-radius: 9px;
 
                     &:first-child {
@@ -220,6 +241,7 @@ $purple: #24325D;
                     small {
                         font-size: 15px;
                         font-weight: 400px;
+                        color: $mainColor;
                     }
                 }
 
@@ -227,7 +249,7 @@ $purple: #24325D;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: $purple;
+                    background: $mainColor;
                     padding: 23px 62px;
                     font-size: 18px;
                     font-weight: 700;
@@ -255,7 +277,6 @@ $purple: #24325D;
                 margin-right: 55px;
 
                 img {
-                    border: 7px solid #24325D;
                     width: 100%;
                     border-radius: 50%;
                 }
@@ -276,11 +297,13 @@ $purple: #24325D;
 
                 .profession {
                     margin-bottom: 30px;
+                    color: $mainColor;
                 }
 
                 .speciallity {
                     display: flex;
                     padding: 0;
+                    color: $mainColor;
                     
                     .item {
                         margin-right: 40px;
@@ -299,7 +322,7 @@ $purple: #24325D;
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #28404A;
+                            background: $mainColor;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);
@@ -312,20 +335,10 @@ $purple: #24325D;
 
     .theme-body {
         height: auto;
-        background-color: $mainColor;
+        background: white;
         border-radius: 80px 80px 0 0;
         z-index: 1;
         position: relative;
-
-        .bg-body {
-            position: absolute;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url("/images/resume_themes/theme109/bg-body.png");
-            background-repeat: repeat;
-            opacity: 0.02;
-        }
 
         .wrapper {
             display: flex;
@@ -333,55 +346,31 @@ $purple: #24325D;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
-            
-            .v-slide-group__wrapper {
-                height: 100px;
-            }
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
-                color: $tabTextColor;
+                color: white;
                 margin-top: 61px;
-                margin-bottom: 111px;
+                margin-bottom: 61px;
 
                 &-bar {
-                    background: transparent !important;
-
+                    background: none;
                 }
                 
                 .v-tab {
                     padding: 12px 40px;
                     text-transform: none;
                     font-size: 20px;
-                    color: $tabTextColor;
-                    position: relative;
-                    align-items: flex-start;
-                    // margin-right: 50px;
+                    color: #A88EB9 !important;
 
                     &--active {
-                        color: #5BFFFE !important;
+                        color: $mainColor !important;
                         font-weight: 700;
                         background: none;
-
-                        span {
-                            opacity: 1 !important;
-                            transition: all .5s ease;
-                        }
                     }
 
                     &::before {
                         display: none !important;
-                    }
-
-                    span {
-                        opacity: 0;
-                        transition: all .5s ease;
-                        position: absolute;
-                        color: #616887;
-                        font-size: 20px;
-                        display: block;
-                        width: 100%;
-                        top: 50px;
                     }
                 }
 
@@ -392,12 +381,28 @@ $purple: #24325D;
                     .v-tabs-slider {
                         background: transparent;
                         border-radius: 25px;
+                        position: relative;
+
+                        &::after {
+                            position: absolute;
+                            content: "";
+                            left: 35px;
+                            top: 5px;
+                            transform: rotateZ(-45deg);
+                            height: 50px;
+                            width: 25px;
+                            border-radius: 50px 0 0 50px;
+                            background: rgba(73, 33, 99, 0.1);
+                        }
                     }
                 }
             }
 
             .container {
+                padding: 0 40px;
                 padding-bottom: 100px;
+                max-width: 1750px;
+                margin: 0 auto;
             }
         }
     }
@@ -410,7 +415,7 @@ $purple: #24325D;
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 200px;
+        top: 400px;
         right: -95px;
         background: transparent;
 
@@ -418,7 +423,7 @@ $purple: #24325D;
             height: 14px;
             display: block;
             margin: 7px;
-            color: white;
+            color: $mainColor;
             position: relative;
 
             &::after {
@@ -446,16 +451,25 @@ $purple: #24325D;
             position: relative;
             display: flex;
             align-items: center;
-            color: white;
+            color: $mainColor;
 
-            &::after {
-                position: absolute;
-                content: "";
-                left: -89px;
+            .decorator {
+                width: 80px;
                 height: 3px;
-                width: 63px;
-                background: rgba(236, 237, 244, 0.15);
+                left: -16.5px;
+                position: relative;
+                background: rgba(73, 33, 99, 0.1);
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    right: 0;
+                    height: 3px;
+                    width: 17px;
+                    background: $mainColor;
+                }
             }
+
         }
     }
 }
