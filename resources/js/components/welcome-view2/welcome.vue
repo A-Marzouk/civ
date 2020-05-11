@@ -201,7 +201,7 @@
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
-          <v-col xl="9" cols="10" align="center">
+          <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
@@ -221,7 +221,7 @@
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
-            <v-card class="card-video pa-8" color="transparent" flat tile>
+            <v-card class="card-video pa-md-8 pa-sm-0 pa-0" color="transparent" flat tile align="center">
               <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center">
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
@@ -377,6 +377,7 @@ export default {
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       username: "civ.ie/",
       userFound: null,
       valid: false,
@@ -426,7 +427,7 @@ export default {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 5000,
-        pauseOnDotsHover:true,
+        pauseOnDotsHover: true,
         responsive: [
           {
             breakpoint: 959,
@@ -444,6 +445,12 @@ export default {
           }
         ]
       }
+    };
+  },
+  //mounted
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
     };
   },
   methods: {
@@ -696,8 +703,8 @@ export default {
     font-size: 1.2rem;
     margin-top: 10px;
   }
-  @media screen and (max-width: 959px){
-    font-size:1.875rem;
+  @media screen and (max-width: 959px) {
+    font-size: 1.875rem;
     line-height: 2.313rem;
   }
 }
@@ -717,7 +724,7 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     margin-left: 2px !important;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     width: 66px !important;
     height: 66px !important;
     margin-top: 15px;
@@ -932,8 +939,8 @@ export default {
 .top-layer-background {
   position: absolute;
   width: 1920px;
-  top: 5.6rem;
-  left: -0.625rem;
+  top: 3.7rem;
+  left: 0;
   right: 0;
   margin-right: auto;
   margin-left: auto;
@@ -942,24 +949,24 @@ export default {
   }
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 5.5rem;
     left: 0;
+    top:3.9rem;
     img {
       width: 100%;
     }
   }
   @media screen and (max-width: 1366px) {
     left: 0;
-    top: 6.2rem;
     width: 1366px;
+    top:4.8rem;
     img {
       width: 100%;
     }
   }
   @media screen and (max-width: 1280px) {
     width: 1280px;
-    left: 0;
-    top: 7rem;
+    left: 5px;
+    top:5.7rem;
     img {
       width: 100%;
     }
