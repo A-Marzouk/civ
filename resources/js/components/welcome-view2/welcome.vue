@@ -1099,6 +1099,7 @@ export default {
     height: 300px;
   }
   @media screen and (max-width: 959px) {
+    height: 400px !important;
     height: auto;
   }
 }
@@ -1414,7 +1415,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 30.8%;
+  top: 31.5%;
 }
 
 .tablet-layer4 {
@@ -1424,7 +1425,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 44.2%;
+  top: 45.1%;
 }
 
 .tablet-layer5 {
@@ -1434,7 +1435,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 54.3%;
+  top: 55.3%;
 }
 
 .tablet-layer6 {
@@ -1444,7 +1445,7 @@ export default {
   margin-right: auto;
   left: 16%;
   right: 0;
-  top: 58.4%;
+  top: 59.5%;
   z-index: 3;
   img {
     width: 95%;
@@ -1458,7 +1459,7 @@ export default {
   margin-right: auto;
   left: 14%;
   right: 0;
-  top: 76.6%;
+  top: 78.2%;
   img {
     width: 80%;
   }
