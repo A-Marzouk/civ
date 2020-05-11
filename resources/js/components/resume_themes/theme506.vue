@@ -1,1066 +1,633 @@
+//theme-27-v2
 <template>
   <v-app>
-    <v-toolbar elevation="6" height="80" class="hidden-sm-and-up">
-      <v-avatar class="profile mt-1" color="grey" size="50">
-        <v-img src="https://i.ibb.co/gRrW6dL/Ellipse-17.png"></v-img>
-      </v-avatar>
-      <v-row no-gutters class="ml-3">
-        <v-col cols="12">
-          <div class="font-weight-bold" style="font-size:14px;color:#222B4C;line-height: 24px;">
-            Zoyee
-            Allena
+    <section class="back">
+      <v-row no-gutters>
+        <v-col xl="7" lg="7" md="7" sm="12" cols="12">
+          <div class="mx-lg-5 my-lg-3 my-5 py-3">
+            <v-row align="center" no-gutters>
+              <v-col cols="4" sm="3" md="3" lg="3" xl="3" justify="center" align="center">
+                <v-avatar
+                  class="ma-4 pa-1"
+                  style="background: linear-gradient(132.84deg, #C10FA0 -2.15%, #270556 101.91%);"
+                >
+                  <v-img
+                    src="/images/resume_themes/theme505/avatar.png"
+                    contain
+                    :aspect-ratio="1"
+                    class="mt-1"
+                  ></v-img>
+                </v-avatar>
+              </v-col>
+
+              <v-col cols="8" sm="8" md="7" lg="8" xl="8" class="pl-sm-0 pl-md-3 pl-3 pl-lg-1">
+                <div class="head textcol font-weight-black">
+                  Beverly Andrews
+                  <v-btn
+                    fab
+                    color="#C10FA0"
+                    text
+                    small
+                    v-for="c in con"
+                    :key="c.id"
+                    class="ml-4 hidden-xs-only"
+                    style="border: 2px solid #C10FA0;"
+                  >
+                    <v-img :src="c.src" width="18" height="18" class contain></v-img>
+                  </v-btn>
+                </div>
+
+                <div class="subtitle-1 grey--text text--lighten-2 pb-2">User interface designer</div>
+
+                <v-btn fab color="#C10FA0" class="mr-4" style="border: 2px solid #C10FA0;">
+                  <v-img
+                    src="/images/resume_themes/theme505/email.svg"
+                    width="24"
+                    height="24"
+                    class="mt-1"
+                    contain
+                  ></v-img>
+                </v-btn>
+                <v-btn
+                  fab
+                  color="#C10FA0"
+                  text
+                  small
+                  class="mr-sm-4 mr-xs-0"
+                  style="border: 2px solid #C10FA0;"
+                >
+                  <v-img
+                    src="/images/resume_themes/theme505/pdf.png"
+                    width="24"
+                    height="24"
+                    class
+                    contain
+                  ></v-img>
+                </v-btn>
+              </v-col>
+            </v-row>
           </div>
         </v-col>
-        <v-col cols="12">
-          <span class style="font-size:10px;color:#222B4C;line-height: 15px;">Web Developer</span>
-        </v-col>
-      </v-row>
-      <v-menu bottom left offset-y transition="slide-x-transition">
-        <template v-slot:activator="{ on }">
-          <v-btn color="#000" class="ma-2 float-right" text v-on="on">
-            <v-icon class="hidden-md-and-up">menu</v-icon>
-          </v-btn>
-        </template>
-        <v-list>
-          <v-list-item v-for="(item, index) in items" :key="index">
-            <v-list-item-title :style="'color:'+item.color">
-              <v-icon left :style="'color:'+item.color">{{item.icon}}</v-icon>
-              {{ item.title }}
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-toolbar>
-    <v-card flat tile elevation="4">
-      <v-row class="justify-center">
-        <v-col class="col-md-6 col-sm-12" cols="12">
-          <v-row>
-            <v-col class="col-md-3 col-sm-12 pl-6">
-              <p class="title hidden-md-and-up">Edit Profile</p>
-              <v-avatar class="profile" color="grey" size="164">
-                <v-img src="https://i.ibb.co/gRrW6dL/Ellipse-17.png"></v-img>
-                <v-btn dark absolute fab bottom right x-small color="#5289E7" class="mb-3">
-                  <v-icon x-small>mdi-pencil</v-icon>
+        <v-col
+          xl="3"
+          lg="3"
+          md="3"
+          offset-xl="2"
+          offset-lg="2"
+          offset-md="2"
+          sm="12"
+          justify="start"
+          class="mt-xl-12 mt-lg-12 mt-md-12 pl-3"
+        >
+          <div class="text-center hidden-sm-and-down mt-3">
+            <v-btn
+              class="px-0 mx-1"
+              text
+              color="white"
+              v-for="icon in icons"
+              :key="icon.id"
+              min-width="48px"
+            >
+              <v-img width="40" height="40" contain :src="icon.src"></v-img>
+            </v-btn>
+          </div>
+          <v-sheet class="mx-auto hidden-md-and-up" width="100%" color="transparent">
+            <v-slide-group multiple>
+              <v-slide-item v-for="icon in con" :key="icon.id" class="hidden-sm-and-up mx-2">
+                <v-btn fab color="#C10FA0" text small style="border: 2px solid #C10FA0;">
+                  <v-img width="18" height="18" contain :src="icon.src"></v-img>
                 </v-btn>
-              </v-avatar>
-            </v-col>
-            <v-col class="col-md-6 col-sm-6 pt-12 pl-6 d-none">
-              <p class="display-1 font-weight-bold text-left" style="color:#222B4C;">Zoyee Allena</p>
-              <p
-                class="text-left"
-                style="font-family: Poppins;font-style: regular;font-size: 24px;"
+              </v-slide-item>
+              <v-slide-item
+                v-for="icon in media"
+                :key="icon.id"
+                class="mx-auto mt-1 hidden-xs-only"
               >
-                Web Developer
-                <v-btn dark small color="#5289E7" elevation="4" style="color:#fff;">
-                  <v-icon dark small color="#fff">mdi-message-text</v-icon>
+                <v-btn class text color="white">
+                  <v-img width="44" height="44" contain :src="icon.src"></v-img>
                 </v-btn>
-              </p>
-            </v-col>
-            <v-col class="col-md-6 col-sm-12 pl-6" cols="8">
-              <v-text-field
-                label="Name"
-                value="Zoyee Allena"
-                style="font-family: Poppins;font-style: regular;font-size: 24px;text-align: left;"
-              ></v-text-field>
-              <v-text-field
-                label="Job"
-                value="Web Developer"
-                style="font-family: Poppins;font-style: regular;font-size: 24px;text-align: left;"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col class="col-md-6 col-sm-12" cols="12">
-          <v-row no-gutters class="justify-end">
-            <v-col class="col-md-6 col-sm-12 hidden-sm-and-down pr-12 pb-6">
-              <v-btn
-                class="ma-2 elevation-0 d-none"
-                rounded
-                outlined
-                color="#5289E7"
-                right
-                style="color:#5289E7;font-size:14px;"
+              </v-slide-item>
+              <v-slide-item
+                v-for="icon in media"
+                :key="icon.id"
+                class="hidden-sm-and-up mt-1 mx-n2"
               >
-                <v-icon left color="#5289E7">mdi-music-box-outline</v-icon>Audio
+                <v-btn class text color="white">
+                  <v-img width="44" height="44" contain :src="icon.src"></v-img>
+                </v-btn>
+              </v-slide-item>
+            </v-slide-group>
+          </v-sheet>
+        </v-col>
+      </v-row>
+      <v-row class="mt-md-6 mt-12 pt-6">
+        <v-col lg="12" sm="12" cols="12" class="tablet">
+          <v-tabs
+            background-color="transparent"
+            height="60"
+            hide-slider
+            hide-arrows
+            center-active
+            grow
+          >
+            <v-tab
+              v-for="tab in tabs"
+              :key="tab.id"
+              @click="tablet = tab.name"
+              class="ml-md-5 mr-md-10 mx-2 text-left ml-0"
+              exact-active-class
+            >
+              <v-btn fab text elevation="0" color="white">
+                <v-img :src="tab.icon" width="64" height="64" contain></v-img>
               </v-btn>
-              <v-btn
-                class="ma-2 elevation-0 d-none"
-                rounded
-                outlined
-                color="#5289E7"
-                right
-                style="color:#5289E7;font-size:14px;"
-              >
-                <v-icon left color="#5289E7">mdi-video</v-icon>Video
-              </v-btn>
-              <v-menu bottom left offset-y transition="slide-x-transition">
-                <template v-slot:activator="{ on }">
-                  <v-btn color="#5289E7" class="ma-2 float-right" text v-on="on">
-                    <v-icon class="hidden-sm-and-down">mdi-dots-vertical</v-icon>
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item v-for="(item, index) in items" :key="index">
-                    <v-list-item-title :style="'color:'+item.color">
-                      <v-icon left :style="'color:'+item.color">{{item.icon}}</v-icon>
-                      {{ item.title }}
-                    </v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-              <v-btn
-                class="ma-2 elevation-0 float-right"
-                rounded
-                outlined
-                color="#5289E7"
-                right
-                style="color:#5289E7;font-size:14px;"
-              >
-                <v-icon left color="#5289E7">mdi-content-save</v-icon>Saved
-              </v-btn>
-            </v-col>
-            <v-col class="col-md-12 col-sm-12">
-              <v-row>
-                <v-col class="col-md-4 col-sm-6 d-none">
-                  <div class="display-1 text-center">15$</div>
-                  <div class="caption text-center" style="opacity: 0.82">Hourly rate</div>
-                </v-col>
-                <v-col class="col-md-4 col-sm-6 d-none">
-                  <div class="display-1 text-center">35 hrs</div>
-                  <div class="caption text-center" style="opacity: 0.82">Weekly Availability</div>
-                </v-col>
-                <v-col class="col-md-4 col-sm-6 d-none">
-                  <v-btn dark color="#5289E7" x-large rounded width="80%" class="ma-auto">
-                    <div
-                      style="font-family: Poppins;font-style: normal;font-weight: normal;font-size:16px;text-align: center;"
-                    >Hire Me</div>
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-col>
 
-            <v-col class="col-md-6 col-sm-6" cols="6">
-              <v-row class="justify-center" no-gutters>
-                <v-col class="col-md-2 col-sm-2" cols="4">
-                  <v-btn
-                    color="#5289E7"
-                    fab
-                    class="hidden-xs-only"
-                    @click="increaseScore(player_one)"
-                  >
-                    <v-icon large>mdi-plus</v-icon>
-                  </v-btn>
-                  <v-btn
-                    color="#000"
-                    text
-                    right
-                    small
-                    class="hidden-sm-and-up"
-                    @click="increaseScore(player_one)"
-                  >
-                    <v-icon small>mdi-plus</v-icon>
-                  </v-btn>
-                </v-col>
-                <v-col class="col-md-4 col-sm-4 hidden-sm-and-down">
-                  <!-- <v-text-field placeholder="10" :value="player_one.score"
-                                            style="font-size: 40px;text-align: center;">
-                  </v-text-field>-->
-
-                  <h1 style="font-size: 40px;text-align: center;">$ {{player_one.score}}</h1>
-                  <div
-                    class="font-weight-bold text-center"
-                    style="opacity: 0.82;font-size: 14px;"
-                  >Hourly rate</div>
-                </v-col>
-                <v-col class="col-md-4 col-sm-4 hidden-md-and-up" cols="4">
-                  <!-- <v-text-field placeholder="10" :value="player_one.score"
-                                                                                style="font-size: 40px;text-align: center;">
-                  </v-text-field>-->
-
-                  <h1 style="font-size: 14px;text-align: center;">$ {{player_one.score}}</h1>
-                  <div
-                    class="font-weight-bold text-center"
-                    style="opacity: 0.82;font-size: 10px;"
-                  >Hourly rate</div>
-                </v-col>
-                <v-col class="col-md-2 col-sm-2" cols="4">
-                  <v-btn
-                    color="#5289E7"
-                    fab
-                    @click="decreaseScore(player_one)"
-                    class="hidden-xs-only"
-                  >
-                    <v-icon large>mdi-minus</v-icon>
-                  </v-btn>
-                  <v-btn
-                    color="#000"
-                    text
-                    left
-                    small
-                    class="hidden-sm-and-up"
-                    @click="decreaseScore(player_one)"
-                  >
-                    <v-icon>mdi-minus</v-icon>
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-col>
-            <v-col class="col-md-6 col-sm-6" cols="6">
-              <v-row class="justify-center" no-gutters>
-                <v-col class="col-md-2 col-sm-2" cols="4">
-                  <v-btn
-                    color="#5289E7"
-                    fab
-                    class="hidden-xs-only"
-                    @click="increaseScore(player_two)"
-                  >
-                    <v-icon large>mdi-plus</v-icon>
-                  </v-btn>
-                  <v-btn
-                    color="#000"
-                    text
-                    right
-                    small
-                    class="hidden-sm-and-up"
-                    @click="increaseScore(player_two)"
-                  >
-                    <v-icon small>mdi-plus</v-icon>
-                  </v-btn>
-                </v-col>
-                <v-col class="col-md-4 col-sm-4 hidden-sm-and-down">
-                  <!-- <v-text-field placeholder="250" style="font-size: 40px;text-align: center;"
-                                            :value="player_two.score">
-                  </v-text-field>-->
-                  <h1 style="font-size: 40px;text-align: center;">{{player_two.score}}</h1>
-                  <div
-                    class="font-weight-bold text-center"
-                    style="opacity: 0.82;font-size: 14px;"
-                  >Weekly Availability</div>
-                </v-col>
-                <v-col class="col-md-4 col-sm-4 hidden-md-and-up" cols="4">
-                  <!-- <v-text-field placeholder="10" :value="player_one.score"
-                                                                                                                    style="font-size: 40px;text-align: center;">
-                  </v-text-field>-->
-
-                  <h1 style="font-size: 14px;text-align: center;">$ {{player_two.score}}</h1>
-                  <div
-                    class="font-weight-bold text-center"
-                    style="opacity: 0.82;font-size: 10px;"
-                  >Weekly Availability</div>
-                </v-col>
-                <v-col class="col-md-2 col-sm-2" cols="4">
-                  <v-btn
-                    color="#5289E7"
-                    fab
-                    @click="decreaseScore(player_two)"
-                    class="hidden-xs-only"
-                  >
-                    <v-icon large>mdi-minus</v-icon>
-                  </v-btn>
-                  <v-btn
-                    color="#000"
-                    text
-                    left
-                    small
-                    class="hidden-sm-and-up"
-                    @click="decreaseScore(player_two)"
-                  >
-                    <v-icon>mdi-minus</v-icon>
-                  </v-btn>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-          <v-row class="hidden-md-and-up align-center" no-gutters>
-            <v-col cols="12" class="text-center">
-              <v-btn
-                class="my-2 elevation-0"
-                rounded
-                outlined
-                color="#5289E7"
-                style="color:#5289E7;font-size:14px;"
-              >
-                <v-icon left color="#5289E7">mdi-content-save</v-icon>Saved
-              </v-btn>
-            </v-col>
-          </v-row>
+              <div
+                class="tabtitle textcol font-weight-bold text-capitalize mx-md-4 pl-2 mr-5"
+              >{{ tab.name }}</div>
+            </v-tab>
+          </v-tabs>
         </v-col>
       </v-row>
-    </v-card>
-
-    <div class="tabs pt-8 hidden-sm-and-down" style="text-align:center;">
-      <a
-        v-on:click="activetab=1"
-        v-bind:class="[ activetab === 1 ? 'active' : '' ]"
-      >Programming languages</a>
-      <a v-on:click="activetab=2" v-bind:class="[ activetab === 2 ? 'active' : '' ]">Frameworks</a>
-      <a v-on:click="activetab=3" v-bind:class="[ activetab === 3 ? 'active' : '' ]">Design Skills</a>
-      <a v-on:click="activetab=4" v-bind:class="[ activetab === 4 ? 'active' : '' ]">Software</a>
-    </div>
-    <div class="tabmob pt-8 hidden-md-and-up" style="text-align:center;">
-      <a
-        v-on:click="activetab=1"
-        v-bind:class="[ activetab === 1 ? 'active' : '' ]"
-      >Programming languages</a>
-      <a v-on:click="activetab=2" v-bind:class="[ activetab === 2 ? 'active' : '' ]">Frameworks</a>
-      <a v-on:click="activetab=3" v-bind:class="[ activetab === 3 ? 'active' : '' ]">Design Skills</a>
-      <a v-on:click="activetab=4" v-bind:class="[ activetab === 4 ? 'active' : '' ]">Software</a>
-    </div>
-    <v-container>
-      <v-row v-if="activetab === 1" class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row>
-            <v-col class="col-lg-4 col-md-4 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/SQQ2FSK/Group-64.png"
-                width="30"
-                hegiht="30"
-                style="float:right"
-              ></v-img>
-            </v-col>
-
-            <v-col class="col-md-4 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/98vvcb0/Group-65.png"
-                width="30"
-                hegiht="30"
-                style="margin:auto;"
-              ></v-img>
-            </v-col>
-            <v-col class="col-md-4 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/VMfy3BS/Group-66.png"
-                width="30"
-                hegiht="30"
-                style="float:left"
-              ></v-img>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row v-if="activetab === 2" class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row>
-            <v-col class="col-lg-6 col-md-6 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/qr5r7wD/Group-76.png"
-                width="30"
-                hegiht="30"
-                style="float:right;"
-              ></v-img>
-            </v-col>
-
-            <v-col class="col-lg-6 col-md-6 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/4fDL6Xx/Group-77.png"
-                width="30"
-                hegiht="30"
-                style="float:left;"
-              ></v-img>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row v-if="activetab === 3" class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row>
-            <v-col class="col-lg-4 col-md-4 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/JHc04GB/Group-80.png"
-                width="30"
-                hegiht="30"
-                style="float:right"
-              ></v-img>
-            </v-col>
-
-            <v-col class="col-md-4 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/QXgYHwt/Group-81.png"
-                width="30"
-                hegiht="30"
-                style="margin:auto;"
-              ></v-img>
-            </v-col>
-            <v-col class="col-md-4 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/k34J4PC/Group-83.png"
-                width="30"
-                hegiht="30"
-                style="float:left"
-              ></v-img>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row v-if="activetab === 4" class="justify-center">
-        <v-col class="col-md-6 col-sm-12">
-          <v-row>
-            <v-col class="col-lg-6 col-md-6 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/qr5r7wD/Group-76.png"
-                width="30"
-                hegiht="30"
-                style="float:right;"
-              ></v-img>
-            </v-col>
-
-            <v-col class="col-lg-6 col-md-6 col-sm-3">
-              <v-img
-                src="https://i.ibb.co/4fDL6Xx/Group-77.png"
-                width="30"
-                hegiht="30"
-                style="float:left;"
-              ></v-img>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <v-row no-gutters class="justify-center mt-12">
-      <v-col class="col-md-8 col-sm-12">
-        <v-tabs v-model="tab" background-color="transparent" color="#5289E7" centered show-arrows>
-          <v-tabs-slider></v-tabs-slider>
-
-          <v-tab href="#tab-1" class="tab">Portfolio</v-tab>
-
-          <v-tab href="#tab-2" class="tab">Work</v-tab>
-
-          <v-tab href="#tab-3" class="tab">Education</v-tab>
-        </v-tabs>
-      </v-col>
-    </v-row>
-
-    <v-tabs-items v-model="tab">
-      <v-tab-item value="tab-1">
-        <v-row class="justify-center">
-          <v-col class="col-md-8 col-sm-12">
-            <v-row class="justify-center">
-              <v-col class="col-md-4 col-sm-6 px-6" cols="6">
-                <v-img src="https://i.ibb.co/2gcH3gC/Rectangle-3.png"></v-img>
-                <p class="pt-2 hidden-md-and-up" style="font-size:12px;">
-                  🛒Lorem ipsum dolor sit
-                  amet, consectetur
-                  adipiscing
-                  elit.
-                </p>
-                <p class="subtitle-2 pt-2 hidden-sm-and-down">
-                  🛒Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing
-                  elit.
-                </p>
-              </v-col>
-              <v-col class="col-md-4 col-sm-6 px-6" cols="6">
-                <v-img src="https://i.ibb.co/crdVTbK/Rectangle-4.png"></v-img>
-                <p class="pt-2 hidden-md-and-up" style="font-size:12px;">
-                  🛒Lorem ipsum dolor sit
-                  amet, consectetur
-                  adipiscing
-                  elit.
-                </p>
-                <p class="subtitle-2 pt-2 hidden-sm-and-down">
-                  🛒Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing
-                  elit.
-                </p>
-              </v-col>
-              <v-col class="col-md-4 col-sm-6 px-6" cols="6">
-                <v-img src="https://i.ibb.co/BT5S6YC/Rectangle-5.png"></v-img>
-                <p class="pt-2 hidden-md-and-up" style="font-size:12px;">
-                  🛒Lorem ipsum dolor sit
-                  amet, consectetur
-                  adipiscing
-                  elit.
-                </p>
-                <p class="subtitle-2 pt-2 hidden-sm-and-down">
-                  🛒Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing
-                  elit.
-                </p>
-              </v-col>
-              <v-col class="col-md-4 col-sm-6 px-6" cols="6">
-                <v-img src="https://i.ibb.co/2gcH3gC/Rectangle-3.png"></v-img>
-                <p class="pt-2 hidden-md-and-up" style="font-size:12px;">
-                  🛒Lorem ipsum dolor sit
-                  amet, consectetur
-                  adipiscing
-                  elit.
-                </p>
-                <p class="subtitle-2 pt-2 hidden-sm-and-down">
-                  🛒Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing
-                  elit.
-                </p>
-              </v-col>
-              <v-col class="col-md-4 col-sm-6 px-6" cols="6">
-                <v-img src="https://i.ibb.co/crdVTbK/Rectangle-4.png"></v-img>
-                <p class="pt-2 hidden-md-and-up" style="font-size:12px;">
-                  🛒Lorem ipsum dolor sit
-                  amet, consectetur
-                  adipiscing
-                  elit.
-                </p>
-                <p class="subtitle-2 pt-2 hidden-sm-and-down">
-                  🛒Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing
-                  elit.
-                </p>
-              </v-col>
-              <v-col class="col-md-4 col-sm-6 px-6" cols="6">
-                <v-img src="https://i.ibb.co/BT5S6YC/Rectangle-5.png"></v-img>
-                <p class="pt-2 hidden-md-and-up" style="font-size:12px;">
-                  🛒Lorem ipsum dolor sit
-                  amet, consectetur
-                  adipiscing
-                  elit.
-                </p>
-                <p class="subtitle-2 pt-2 hidden-sm-and-down">
-                  🛒Lorem ipsum dolor sit amet,
-                  consectetur
-                  adipiscing
-                  elit.
-                </p>
+      <v-row>
+        <v-slide-x-reverse-transition>
+          <v-col
+            md="12"
+            cols="12"
+            xl="12"
+            lg="12"
+            sm="12"
+            v-if="tablet=='About'"
+            key="one"
+            style="height:100vh;"
+          >
+            <v-row justify="center" align="center" class="mt-12" no-gutters>
+              <v-col cols="12" sm="12" md="8" lg="8" xl="8" class="px-3">
+                <div class="head font-weight-bold textcol text-sm-center text-xs-left my-3">About</div>
+                <div
+                  class="body-2 grey--text text--lighten-2 text-md-center text-xs-left my-5 my-md-3"
+                >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</div>
+                <div
+                  class="body-2 grey--text text--lighten-2 text-md-center text-xs-left my-5 my-md-3"
+                >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</div>
+                <div
+                  class="body-2 grey--text text--lighten-2 text-md-center text-xs-left my-5 my-md-3"
+                >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</div>
+                <div
+                  class="body-2 grey--text text--lighten-2 text-md-center text-xs-left my-5 my-md-3"
+                >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</div>
               </v-col>
             </v-row>
           </v-col>
-          <v-dialog v-model="dialog" width="500">
-            <template v-slot:activator="{ on }">
-              <v-btn absolute dark fab bottom right fixed color="#5289E7" v-on="on" class="mb-12">
-                <v-icon>mdi-plus</v-icon>
-              </v-btn>
-            </template>
+        </v-slide-x-reverse-transition>
+        <v-slide-x-reverse-transition>
+          <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tablet=='Portfolio'" key="one">
+            <v-row justify="center" align="center" class="mt-12" no-gutters>
+              <v-col
+                xl="3"
+                md="3"
+                cols="12"
+                sm="12"
+                class="mx-md-3 px-sm-6 py-sm-8 px-4 py-4"
+                v-for="img in images"
+                :key="img.id"
+              >
+                <v-img
+                  :src="img.src"
+                  aspect-ratio="1.2"
+                  style="box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);border-radius:20px;"
+                ></v-img>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-slide-x-reverse-transition>
+        <v-slide-x-reverse-transition>
+          <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tablet=='Work'" key="two">
+            <v-row justify="center" class="mt-12">
+              <v-col md="10" sm="12">
+                <v-row justify="center">
+                  <v-col md="6" sm="12" cols="12" v-for="n in 4" :key="n">
+                    <v-row justify="start" class="layer ma-md-4 py-md-6 mx-4 py-2" no-gutters>
+                      <v-row class="pl-md-12 ml-sm-12 pl-6 mt-md-4 mt-4" no-gutters>
+                        <v-col md="2" sm="3" cols="12">
+                          <div class="textcol headline font-weight-bold">{{ temp.title }}</div>
+                        </v-col>
+                        <v-col md="8" sm="7" cols="12" class="text-md-center pr-md-12">
+                          <div
+                            class="subtitle-2 pb-2 mr-12 grey--text text--lighten-2"
+                          >{{ temp.sub }}</div>
+                        </v-col>
+                        <v-row class="pr-6 mt-md-8 pb-6">
+                          <v-col md="3" sm="3" cols="12">
+                            <div
+                              class="d-inline-block subtitle-2 grey--text text--lighten-2"
+                            >Duration :</div>
+                            <div
+                              class="d-inline-block subtitle-2 font-weight-bold textcol"
+                              style="color:#F97CB3;"
+                            >{{ temp.duration }}</div>
+                          </v-col>
+                          <v-col md="8" sm="7" cols="12" class="px-md-12 pb-12 pr-12">
+                            <div
+                              class="grey--text text--lighten-2 sfont pb-2 font-weight-thin"
+                            >{{ temp.para }}</div>
+                          </v-col>
+                        </v-row>
+                      </v-row>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-slide-x-reverse-transition>
+        <v-slide-x-reverse-transition>
+          <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tablet=='Education'" key="three">
+            <v-row justify="center" class="mt-12">
+              <v-col md="10" sm="12">
+                <v-row justify="center" class="mx-1">
+                  <v-col md="6" sm="12" cols="12" v-for="n in 4" :key="n">
+                    <v-row justify="center" class="layer ma-md-4 py-md-6 ma-1 py-3" no-gutters>
+                      <v-col cols="12" md="12" class="pl-md-6 pl-3">
+                        <v-row class="pl-md-12 ml-sm-12 pl-6 mt-md-4" no-gutters>
+                          <v-col md="3" sm="3" cols="3" class="text-center pr-12 mt-4">
+                            <div
+                              class="grey--text text--lighten-3 subtitle-2 pb-2 mr-12"
+                            >{{ emp.sub }}</div>
+                          </v-col>
+                          <v-col md="12" sm="12" cols="12">
+                            <div class="textcol headline font-weight-bold">{{ emp.title }}</div>
+                          </v-col>
+                          <v-row no-gutters class="pr-6 mt-md-4 pb-sm-6 mt-2">
+                            <v-col md="6" sm="6" cols="12" class="my-4">
+                              <div
+                                class="subtitle-2 font-weight-bold grey--text text--lighten-2"
+                              >{{ emp.duration }}</div>
+                            </v-col>
 
-            <v-card class="mx-auto pa-6">
-              <v-row class="justify-center">
-                <v-col
-                  class="col-md-12 ma-12"
-                  style="border-style: dotted;border-color:#A4A6AE;padding:80px 10px; cursor:pointer;border-radius:10px;background:rgba(222, 222, 222, 0.8);"
+                            <v-col md="8" sm="8" cols="12" class="pb-6 pr-0">
+                              <div
+                                class="grey--text text--lighten-1 sfont pb-2 font-weight-thin"
+                              >{{ emp.para }}</div>
+                            </v-col>
+                          </v-row>
+                        </v-row>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-slide-x-reverse-transition>
+        <v-slide-x-reverse-transition>
+          <v-col
+            md="12"
+            cols="12"
+            xl="12"
+            lg="12"
+            sm="12"
+            v-if="tablet=='Skills'"
+            key="four"
+            style="height:100vh;"
+          >
+            <v-row no-gutters justify="center" class="mt-10">
+              <v-col md="8" lg="10">
+                <v-tabs
+                  v-model="tabskill"
+                  background-color="transparent"
+                  height="60"
+                  color="#C10FA0"
+                  center-active
+                  hide-arrows
+                  grow
                 >
-                  <v-img src="https://i.ibb.co/1bc2HqR/Vector.png" width="50%" class="mx-auto"></v-img>
-                  <div class="subtitle-2 text-center" style="color: #A4A6AE;">New file here</div>
-                </v-col>
-              </v-row>
-              <v-row class="justify-center">
-                <v-text-field label="Description" value="Lorem Ipsum"></v-text-field>
-              </v-row>
+                  <v-tabs-slider style="height:0px;padding:0 0 !important;"></v-tabs-slider>
+                  <v-tab
+                    v-for="item in items"
+                    :key="item.id"
+                    exact
+                    class="subtitle-1 text-capitalize textcol skilltab"
+                  >{{ item.name }}</v-tab>
+                </v-tabs>
 
-              <v-row class="justify-center">
-                <v-btn class="mx-2" dark large rounded color="primary">Upload</v-btn>
-              </v-row>
-            </v-card>
-          </v-dialog>
-        </v-row>
-      </v-tab-item>
-      <v-tab-item value="tab-2">
-        <v-container>
-          <v-row style="overflow: scroll;" v-if="work==0">
-            <v-col class="col-md-4 col-sm-12">
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-briefcase"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Senior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / May 2018 -
-                      Present
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Partners with clients, ranging from small businesses to Fortune 500
-                    companies, to create
-                    cutting-edge digital marketing designs targeting the American market. Forms
-                    a creative vision and
-                    clearly conveys ideas using both visual and verbal communication.
-                    Collaborates with a creative
-                    team consisting of web developers, content creators, and digital designers,
-                    to create engaging
-                    digital collateral. Creates the end-to-end design for responsive websites
-                    using a mobile-first
-                    approach.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-briefcase"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Junior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / July 2017 - May
-                      2018
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Conducted in-depth market research to construct creative design solutions
-                    for a variety of clients
-                    in the pharma industry. Utilized Adobe Creative Suite to draft print and
-                    digital collateral,
-                    including packaging, flyers, logos, and business cards. Managed
-                    relationships with vendors in
-                    print, web development, and copywriting, to bring design ideas to fruition
-                    Utilized expertise in
-                    UI/UX to create user-focused design concepts that quickly produce a ROI.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-col>
-            <v-col class="col-md-4 col-sm-12">
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-briefcase"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Senior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / May 2018 -
-                      Present
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Partners with clients, ranging from small businesses to Fortune 500
-                    companies, to create
-                    cutting-edge digital marketing designs targeting the American market. Forms
-                    a creative vision and
-                    clearly conveys ideas using both visual and verbal communication.
-                    Collaborates with a creative
-                    team consisting of web developers, content creators, and digital designers,
-                    to create engaging
-                    digital collateral. Creates the end-to-end design for responsive websites
-                    using a mobile-first
-                    approach.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-col>
-
-            <v-col cols="12" class="text-center">
-              <v-btn
-                class="my-2 elevation-0"
-                rounded
-                outlined
-                color="#5289E7"
-                style="color:#5289E7;font-size:14px;"
-                @click="work=1"
-                v-if="work==0"
-              >
-                <v-icon left color="#5289E7">mdi-pencil</v-icon>Add new work
-              </v-btn>
-            </v-col>
-            <v-btn
-              absolute
-              dark
-              fab
-              bottom
-              right
-              fixed
-              color="#5289E7"
-              @click="work=1"
-              v-if="work==0"
-              class="mb-12"
-            >
-              <v-icon>mdi-pencil</v-icon>
-            </v-btn>
-          </v-row>
-          <v-row v-if="work==1">
-            <v-col cols="12">
-              <div class="title">Work History</div>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field label="Start date" placeholder="June 2010"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field label="Final date" placeholder="June 2013"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field label="Job" placeholder="Front-End Web Developer"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field label="Description" placeholder="Front-End Web Developer"></v-text-field>
-            </v-col>
-            <v-col cols="12" class="text-left">
-              <v-btn
-                class="my-2 elevation-0"
-                small
-                text
-                color="#5289E7"
-                style="color:#5289E7;font-size:12px;"
-              >
-                <v-icon left color="#5289E7" small>mdi-plus</v-icon>Add another job
-              </v-btn>
-            </v-col>
-            <v-col cols="12" class="text-center">
-              <v-btn
-                class="my-2 elevation-0"
-                rounded
-                outlined
-                color="#5289E7"
-                style="color:#5289E7;font-size:14px;"
-              >
-                <v-icon left color="#5289E7">mdi-content-save</v-icon>Saved
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-tab-item>
-      <v-tab-item value="tab-3">
-        <v-container>
-          <v-row style="overflow: scroll;" v-if="edu==0">
-            <v-col class="col-md-4 col-sm-12">
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-school"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Senior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / May 2018 -
-                      Present
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Partners with clients, ranging from small businesses to Fortune 500
-                    companies, to create
-                    cutting-edge digital marketing designs targeting the American market. Forms
-                    a creative vision and
-                    clearly conveys ideas using both visual and verbal communication.
-                    Collaborates with a creative
-                    team consisting of web developers, content creators, and digital designers,
-                    to create engaging
-                    digital collateral. Creates the end-to-end design for responsive websites
-                    using a mobile-first
-                    approach.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-school"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Junior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / July 2017 - May
-                      2018
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Conducted in-depth market research to construct creative design solutions
-                    for a variety of clients
-                    in the pharma industry. Utilized Adobe Creative Suite to draft print and
-                    digital collateral,
-                    including packaging, flyers, logos, and business cards. Managed
-                    relationships with vendors in
-                    print, web development, and copywriting, to bring design ideas to fruition
-                    Utilized expertise in
-                    UI/UX to create user-focused design concepts that quickly produce a ROI.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-col>
-            <v-col class="col-md-4 col-sm-12">
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-school"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Senior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / May 2018 -
-                      Present
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Partners with clients, ranging from small businesses to Fortune 500
-                    companies, to create
-                    cutting-edge digital marketing designs targeting the American market. Forms
-                    a creative vision and
-                    clearly conveys ideas using both visual and verbal communication.
-                    Collaborates with a creative
-                    team consisting of web developers, content creators, and digital designers,
-                    to create engaging
-                    digital collateral. Creates the end-to-end design for responsive websites
-                    using a mobile-first
-                    approach.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-school"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Junior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / July 2017 - May
-                      2018
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Conducted in-depth market research to construct creative design solutions
-                    for a variety of clients
-                    in the pharma industry. Utilized Adobe Creative Suite to draft print and
-                    digital collateral,
-                    including packaging, flyers, logos, and business cards. Managed
-                    relationships with vendors in
-                    print, web development, and copywriting, to bring design ideas to fruition
-                    Utilized expertise in
-                    UI/UX to create user-focused design concepts that quickly produce a ROI.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-col>
-            <v-col class="col-md-4 col-sm-12">
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-school"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Senior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    BIG BANG DESIGN
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / May 2018 -
-                      Present
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Partners with clients, ranging from small businesses to Fortune 500
-                    companies, to create
-                    cutting-edge digital marketing designs targeting the American market. Forms
-                    a creative vision and
-                    clearly conveys ideas using both visual and verbal communication.
-                    Collaborates with a creative
-                    team consisting of web developers, content creators, and digital designers,
-                    to create engaging
-                    digital collateral. Creates the end-to-end design for responsive websites
-                    using a mobile-first
-                    approach.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  large
-                  color="#5289E7"
-                  icon-color="#FFFFFF"
-                  icon="mdi-school"
-                ></v-timeline-item>
-
-                <v-timeline-item right hide-dot>
-                  <div class="title">Junior UI/UX Designer</div>
-                  <div class="subtitle-2" style="color:#01A2FE;">
-                    Western Ltd.
-                    <span class="caption font-italic" style="color:#A4A6AE;">
-                      / July 2017 - May
-                      2018
-                    </span>
-                  </div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Conducted in-depth market research to construct creative design solutions
-                    for a variety of clients
-                    in the pharma industry. Utilized Adobe Creative Suite to draft print and
-                    digital collateral,
-                    including packaging, flyers, logos, and business cards. Managed
-                    relationships with vendors in
-                    print, web development, and copywriting, to bring design ideas to fruition
-                    Utilized expertise in
-                    UI/UX to create user-focused design concepts that quickly produce a ROI.
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-col>
-
-            <v-col cols="12" class="text-center">
-              <v-btn
-                class="my-2 elevation-0"
-                rounded
-                outlined
-                color="#5289E7"
-                style="color:#5289E7;font-size:14px;"
-                @click="edu=1"
-                v-if="edu==0"
-              >
-                <v-icon left color="#5289E7">mdi-school</v-icon>Add new Education
-              </v-btn>
-            </v-col>
-            <v-btn
-              absolute
-              dark
-              fab
-              bottom
-              right
-              fixed
-              color="#5289E7"
-              @click="edu=1"
-              v-if="edu==0"
-              class="mb-12"
-            >
-              <v-icon>mdi-school</v-icon>
-            </v-btn>
-          </v-row>
-          <v-row v-if="edu==1">
-            <v-col cols="12">
-              <div class="title">Education History</div>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field label="Degree" placeholder="Master JavaScript"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field label="In" placeholder="June 2013"></v-text-field>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field label="From" placeholder="Lorem Ipsum"></v-text-field>
-            </v-col>
-
-            <v-col cols="12" class="text-left">
-              <v-btn
-                class="my-2 elevation-0"
-                small
-                text
-                color="#5289E7"
-                style="color:#5289E7;font-size:12px;"
-              >
-                <v-icon left color="#5289E7" small>mdi-plus</v-icon>Add another Education
-              </v-btn>
-            </v-col>
-            <v-col cols="12" class="text-center">
-              <v-btn
-                class="my-2 elevation-0"
-                rounded
-                outlined
-                color="#5289E7"
-                style="color:#5289E7;font-size:14px;"
-              >
-                <v-icon left color="#5289E7">mdi-content-save</v-icon>Saved
-              </v-btn>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-tab-item>
-    </v-tabs-items>
+                <v-row no-gutters class="mt-12">
+                  <v-col md="12" sm="12" cols="12">
+                    <v-tabs-items v-model="tabskill" style="background-color:transparent;">
+                      <v-tab-item v-for="item in items" :key="item.id">
+                        <v-row class="justify-center py-2" align="center" no-gutters>
+                          <v-col
+                            xl="6"
+                            lg="6"
+                            md="6"
+                            sm="12"
+                            cols="12"
+                            v-for="(s, index) in item.skills"
+                            :key="index"
+                            class="px-md-6 my-4 px-2 mx-2"
+                          >
+                            <v-row
+                              no-gutters
+                              class="mx-md-0 mx-sm-12 mx-4"
+                              justify="center"
+                              align="center"
+                            >
+                              <v-col cols="6" sm="6" md="2" lg="2">
+                                <div
+                                  class="skilltext text-left grey--text text--lighten-2 mb-sm-1 mb-1 mr-6"
+                                >{{ s.name }}</div>
+                              </v-col>
+                              <v-col cols="6" sm="6" class="hidden-md-and-up">
+                                <div class="skilltext textcol text-right mb-sm-1 mb-1">{{ s.val }}</div>
+                              </v-col>
+                              <v-col cols="12" sm="12" md="8" lg="8">
+                                <div class="pro-back ml-md-11">
+                                  <div class="progress" style="width:70%;"></div>
+                                </div>
+                              </v-col>
+                              <v-col md="2" class="hidden-sm-and-down">
+                                <div
+                                  class="skilltext textcol font-weight-bold text-left ml-6"
+                                >{{ s.val }}</div>
+                              </v-col>
+                            </v-row>
+                          </v-col>
+                        </v-row>
+                      </v-tab-item>
+                    </v-tabs-items>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-slide-x-reverse-transition>
+      </v-row>
+    </section>
   </v-app>
 </template>
+
+<style lang="scss" scoped>
+@import "https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap";
+@import "resources/sass/themes/theme506.scss";
+</style>
 
 <script>
 export default {
   data() {
     return {
-      dialog: false,
-      tab: null,
-      taboo: null,
-      activetab: 1,
-      work: 0,
-      edu: 0,
-      items: [
+      tablet: "About",
+      tabskill: null,
+      media: [
         {
-          title: "Edit Profile",
-          color: "black",
-          icon: ""
+          id: 4,
+          src: "/images/resume_themes/theme505/instagram.svg"
         },
         {
-          title: "Audio",
-          color: "#5289E7",
-          icon: "mdi-music-box-outline"
+          id: 5,
+          src: "/images/resume_themes/theme505/linkedin.svg"
         },
         {
-          title: "Video",
-          color: "#5289E7",
-          icon: "mdi-video"
+          id: 6,
+          src: "/images/resume_themes/theme505/facebook.svg"
+        },
+        {
+          id: 7,
+          src: "/images/resume_themes/theme505/behance.svg"
+        },
+        {
+          id: 8,
+          src: "/images/resume_themes/theme505/instagram.svg"
+        },
+        {
+          id: 9,
+          src: "/images/resume_themes/theme505/linkedin.svg"
+        },
+        {
+          id: 10,
+          src: "/images/resume_themes/theme505/facebook.svg"
+        },
+        {
+          id: 11,
+          src: "/images/resume_themes/theme505/behance.svg"
         }
       ],
-      player_one: {
-        score: 10
+      con: [
+        {
+          id: 33,
+          src: "/images/resume_themes/theme505/pin.svg"
+        },
+        {
+          id: 32,
+          src: "/images/resume_themes/theme505/whatsapp.svg"
+        },
+        {
+          id: 31,
+          src: "/images/resume_themes/theme505/google-plus.svg"
+        }
+      ],
+      icons: [
+        {
+          id: 1,
+          src: "/images/resume_themes/theme505/instagram.svg"
+        },
+        {
+          id: 2,
+          src: "/images/resume_themes/theme505/linkedin.svg"
+        },
+        {
+          id: 3,
+          src: "/images/resume_themes/theme505/facebook.svg"
+        },
+        {
+          id: 4,
+          src: "/images/resume_themes/theme505/behance.svg"
+        }
+      ],
+      images: [
+        {
+          id: 1,
+          src: "/images/resume_themes/theme505/img1.png"
+        },
+        {
+          id: 2,
+          src: "/images/resume_themes/theme505/img2.png"
+        },
+        {
+          id: 3,
+          src: "/images/resume_themes/theme505/img3.png"
+        },
+        {
+          id: 4,
+          src: "/images/resume_themes/theme505/img4.png"
+        },
+        {
+          id: 5,
+          src: "/images/resume_themes/theme505/img5.png"
+        },
+        {
+          id: 6,
+          src: "/images/resume_themes/theme505/img6.png"
+        }
+      ],
+      tabs: [
+        {
+          id: 0,
+          name: "About",
+          icon: "/images/resume_themes/theme505/about.svg",
+          link: "/about"
+        },
+        {
+          id: 1,
+          name: "Portfolio",
+          icon: "/images/resume_themes/theme505/portfolio.svg",
+          link: "/"
+        },
+        {
+          id: 2,
+          name: "Work",
+          icon: "/images/resume_themes/theme505/work.svg",
+          link: "/work"
+        },
+        {
+          id: 3,
+          name: "Education",
+          icon: "/images/resume_themes/theme505/education.svg",
+          link: "/education"
+        },
+        {
+          id: 4,
+          name: "Skills",
+          icon: "/images/resume_themes/theme505/skills.svg",
+          link: "/skills"
+        }
+      ],
+      temp: {
+        icon: "/images/resume_themes/theme505/work.svg",
+        title: "Google",
+        sub: "User interface designer",
+        duration: "Dec 19 - Present",
+        para:
+          "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
       },
-      player_two: {
-        score: 250
+      emp: {
+        icon: "/images/resume_themes/theme505/education.svg",
+        title: "California Institute of Technology",
+        sub: "University",
+        duration: "M.Sc in HCI, Dec 19 - Present",
+        para:
+          "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your  and make changes."
       },
-      text: [
-        "",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "asdasdasdasd"
+      items: [
+        {
+          id: 1,
+          name: "Programming Languages",
+          skills: [
+            {
+              name: "Photoshop",
+              val: "90%",
+              icon: "ph"
+            },
+
+            {
+              name: "Illustrator",
+              val: "80%",
+              icon: "ill"
+            },
+
+            {
+              name: "Figma",
+              val: "75%",
+              icon: "fig"
+            },
+            {
+              name: "Photoshop",
+              val: "90%",
+              icon: "ph"
+            },
+
+            {
+              name: "Illustrator",
+              val: "80%",
+              icon: "ill"
+            },
+
+            {
+              name: "Figma",
+              val: "75%",
+              icon: "fig"
+            }
+          ]
+        },
+        {
+          id: 2,
+          name: "Frameworks/ Databases",
+          skills: [
+            {
+              name: "Photoshop",
+              val: "90%",
+              icon: "ph"
+            },
+            {
+              name: "Illustrator",
+              val: "80%",
+              icon: "ill"
+            },
+
+            {
+              name: "Figma",
+              val: "75%",
+              icon: "fig"
+            },
+            {
+              name: "Figma",
+              val: "75%",
+              icon: "fig"
+            }
+          ]
+        },
+        {
+          id: 3,
+          name: "Design Skills",
+          skills: [
+            {
+              name: "Photoshop",
+              val: "90%",
+              icon: "ph"
+            },
+            {
+              name: "Photoshop",
+              val: "90%",
+              icon: "ph"
+            },
+
+            {
+              name: "Figma",
+              val: "75%",
+              icon: "fig"
+            },
+            {
+              name: "Figma",
+              val: "75%",
+              icon: "fig"
+            }
+          ]
+        },
+        {
+          id: 4,
+          name: "Software",
+          skills: [
+            {
+              name: "Photoshop",
+              val: "90%",
+              icon: "ph"
+            },
+
+            {
+              name: "Figma",
+              val: "75%",
+              icon: "fig"
+            }
+          ]
+        }
       ]
     };
   },
@@ -1068,17 +635,6 @@ export default {
     scrollToEnd: function() {
       var container = this.$el.querySelector("#container");
       container.scrollTop = container.scrollHeight;
-    },
-    method() {
-      // Perform an action
-    },
-    increaseScore(player) {
-      player.score += 1;
-    },
-    decreaseScore(player) {
-      if (player.score > 0) {
-        player.score -= 1;
-      }
     }
   }
 };
@@ -1087,155 +643,3 @@ export default {
 
 
 
-<style lang="scss" scoped>
-/* Style the tabs */
-.tabs {
-  overflow: hidden;
-  margin-left: 20px;
-  margin-bottom: -2px;
-}
-
-.tabs ul {
-  list-style-type: none;
-  margin-left: 20px;
-}
-
-.tabmob {
-  overflow: hidden;
-}
-
-.tabmob a {
-  color: #000;
-  cursor: pointer;
-
-  font-size: 10px;
-  padding: 2px 4px;
-
-  margin: auto;
-  text-align: center;
-  display: inline-block;
-}
-
-.tabmob a.active {
-  background-color: #5289e7;
-  border-radius: 500px;
-  color: #fff;
-  padding: 10px 20px;
-  font-weight: bold;
-  cursor: default;
-}
-
-.tabs a {
-  color: #000;
-  cursor: pointer;
-  padding: 12px 24px;
-  transition: background-color 0.5s;
-  border-radius: 500px;
-
-  font-weight: bold;
-  margin: auto;
-  text-align: center;
-  display: inline-block;
-}
-
-/* Change background color of tabs on hover */
-.tabs a:hover {
-  color: #5289e7;
-}
-
-/* Styling for active tab */
-.tabs a.active {
-  background-color: #5289e7;
-  border-radius: 500px;
-  color: #fff;
-
-  cursor: default;
-}
-
-/* Style the tab content */
-.tabcontent {
-  padding: 30px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 3px 3px 6px #e1e1e1;
-}
-
-.large_dot:before {
-  bottom: 0;
-  content: "";
-
-  position: absolute;
-  top: 50px;
-  width: 5px;
-  background: #5289e7 !important;
-}
-
-.v-timeline-item__dot--small {
-  height: 10px;
-  left: calc(50% - 12px);
-  width: 10px;
-}
-
-.v-timeline-item__dot--large {
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.169);
-}
-
-.v-timeline-item {
-  display: flex;
-  padding-bottom: 6px;
-}
-
-.mainPoint {
-  margin-left: 10px;
-  height: 5px;
-  border-radius: 15px;
-  width: 40px;
-  background-color: #03ca9f;
-}
-
-.mainPoint::before {
-  content: "";
-  display: block;
-
-  margin-left: 50px;
-  height: 5px;
-  border-radius: 15px;
-  width: 20px;
-  background-color: #03ca9f;
-}
-
-.lilPoint {
-  margin-left: 90px;
-  height: 5px;
-  border-radius: 15px;
-  width: 40px;
-  background-color: #03ca9f;
-  margin-top: -5px;
-}
-
-.basil {
-  background-color: #5289e7 !important;
-}
-
-.basil--text {
-  color: #356859 !important;
-}
-
-@media only screen and (max-width: 600px) {
-  .col-xs-12 {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex-basis: 100% !important;
-  }
-
-  .col-xs-6 {
-    width: 50% !important;
-    max-width: 50% !important;
-    flex-basis: 50% !important;
-  }
-}
-
-.v-timeline-item__dot {
-  box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0.2);
-}
-</style>
