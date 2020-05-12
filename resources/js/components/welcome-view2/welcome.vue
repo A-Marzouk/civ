@@ -674,8 +674,8 @@ export default {
   width: 100%;
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
-    min-width: 102%;
-    margin-left: 22px;
+    min-width: 110%;
+    margin-left: -27px;
   }
 }
 //logo
