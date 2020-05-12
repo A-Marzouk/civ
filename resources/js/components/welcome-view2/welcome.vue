@@ -1201,7 +1201,7 @@ export default {
   @media screen and (max-width: 959px) {
     margin-top: 80px !important;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     margin-top: 30px;
   }
 }
@@ -1588,7 +1588,7 @@ export default {
     width: 100%;
     top: 79.6%;
     left: 32%;
-    img{
+    img {
       width: 66%;
     }
   }
@@ -1672,14 +1672,6 @@ export default {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 3.75rem !important;
   }
-
-  #welcomeView2 .slick-dots li button {
-    width: 40px;
-    height: 6px;
-    border-radius: 0px;
-    margin-left: -10px;
-  }
-
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
   }
@@ -1687,6 +1679,12 @@ export default {
 @media screen and (max-width: 599px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 50px !important;
+  }
+  #welcomeView2 .slick-dots li button {
+    width: 40px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
   }
 }
 /* mobile screen */
