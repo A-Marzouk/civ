@@ -37,10 +37,10 @@ export default {
   --white: #fff;
   --size: 24px;
   --breakpoint-xs: 0;
-  --breakpoint-sm: 600px;
+  --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
   --breakpoint-xxl: 1800px;
 }
 

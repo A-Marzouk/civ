@@ -55,12 +55,15 @@ export default {
     grid-row-gap: 26px;
     grid-column-gap: 10px;
     margin-top: 39px;
+
     @media screen and(min-width: 768px) {
       margin-top: 83px;
     }
     @media screen and(min-width: 1200px) {
       margin-top: 108px;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-left: 80px;
+      padding-right: 80px;
     }
     @media screen and(min-width: 1800px) {
       grid-template-columns: repeat(3, minmax(0, 1fr));

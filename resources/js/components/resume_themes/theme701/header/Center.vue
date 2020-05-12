@@ -1,16 +1,16 @@
 <template>
-  <div class="tm701-center tw-text-tm701-1 tw-pl-50px">
-    <div class="info tw-mb-8">
-      <h2 class="name tw-text-3xl tw-font-bold tw-leading-10 tw-mr-19px">Christoher M. Wallacev</h2>
-      <span class="profession tw-text-26px tw-font-normal tw-leading-10">UX UI Designer</span>
+  <div class="tm701-center">
+    <div class="info">
+      <h2 class="name">Christoher M. Wallacev</h2>
+      <span class="profession">UX UI Designer</span>
     </div>
     <div class="skills">
-      <ul class="tw-flex tw-flex-row tw-text-26px tw-font-normal tw-leading-10">
+      <ul>
         <li class="tw-mr-18px">
           <span>Adobe XD</span>
         </li>
-        <li class="tw-mr-18px tw-flex tw-items-center">
-          <span class="tw-mr-14px">
+        <li>
+          <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 7 7">
               <circle
                 id="Ellipse_179"
@@ -24,8 +24,8 @@
           </span>
           <span>Adobe Sketch</span>
         </li>
-        <li class="tw-mr-18px tw-flex tw-items-center">
-          <span class="tw-mr-14px">
+        <li>
+          <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 7 7">
               <circle
                 id="Ellipse_179"
@@ -49,4 +49,45 @@ export default {};
 </script>
 
 <style lang="scss">
+.tm701-center {
+  color: var(--blue-1);
+  padding-left: 50px;
+  .info {
+    margin-bottom: 2rem;
+    .name {
+      font-size: 1.875rem;
+      font-weight: 700;
+      line-height: 2.5rem;
+      margin-right: 19px;
+    }
+    .profession {
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 2.5rem;
+    }
+  }
+  .skills {
+    ul {
+      display: flex;
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 2.5rem;
+      li {
+        &:first-child {
+          margin-right: 18px;
+        }
+        &:not(:first-child) {
+          display: flex;
+          align-items: center;
+          margin-right: 18px;
+          span {
+            &:first-child {
+              margin-right: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>

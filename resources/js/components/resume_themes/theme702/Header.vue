@@ -213,10 +213,12 @@ export default {
       grid-template-columns: 236px auto;
       grid-column-gap: 34px;
     }
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
       grid-template-columns: 210px 400px auto;
       grid-template-rows: auto auto;
       grid-column-gap: 15px;
+      margin-left: 30px;
+      margin-right: 30px;
     }
   }
   .tm702-logoo {
