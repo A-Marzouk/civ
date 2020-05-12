@@ -79,7 +79,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        max-width: 1300px;
+        max-width: 1300px !important;
     }
 
     .work-item {

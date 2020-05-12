@@ -48,6 +48,12 @@ Route::group(['prefix' => 'user/'], function () {
     Route::delete('hobbies/{id}', 'API\HobbiesController@destroy');
 
 
+
+// Themes api routes:
+    Route::get('/themes-list', 'API\ThemesController@themesList');
+
+
+
 // Education api routes:
     //list education
     Route::get('/education', 'API\EducationController@index');
