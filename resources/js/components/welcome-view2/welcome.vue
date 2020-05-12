@@ -721,7 +721,7 @@ export default {
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
     min-width: 110%;
-    margin-left: -27px;
+    margin-left: -24px;
   }
 }
 //logo
