@@ -222,8 +222,14 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer3 hidden-md-and-up">
-              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png" />
-              <img class="hidden-sm-and-up" src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
+              />
+              <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png"
+              />
             </div>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
@@ -268,8 +274,14 @@
           <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
             <div class="tablet-layer4 hidden-md-and-up">
-              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png" />
-              <img class="hidden-sm-and-up" src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
+              />
+              <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png"
+              />
             </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
@@ -325,10 +337,24 @@
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12">
             <div class="tablet-layer5 hidden-md-and-up">
-              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
+              />
+              <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
+              />
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
-              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
+              />
+              <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
+              />
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme">
               <v-card-title class="build-resume-title">
@@ -339,9 +365,9 @@
                 <v-row>
                   <v-col md="6" cols="12">
                     <span
-                      class="hidden-sm-and-down"
+                      class="hidden-sm-only"
                     >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
-                    <span class="hidden-md-and-up">
+                    <span class="d-none d-sm-flex d-md-none">
                       Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out
                       <br />and make a great first impression with any hiring manager.
                     </span>
@@ -426,6 +452,7 @@
             </v-card>
             <div class="tablet-layer7 hidden-md-and-up">
               <img
+                class="hidden-xs-only"
                 :width="windowWidth"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer7.png"
               />
@@ -1066,6 +1093,11 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  @media screen and (margin: 599px) {
+    width: 9.5rem !important;
+    height: 3.048rem !important;
+    font-size: 0.75rem !important;
+  }
 }
 
 .gallery-container {
@@ -1168,6 +1200,9 @@ export default {
   }
   @media screen and (max-width: 959px) {
     margin-top: 80px !important;
+  }
+  @media screen and (max-width: 599px){
+    margin-top: 30px;
   }
 }
 .integration-title {
@@ -1505,8 +1540,8 @@ export default {
   left: 0;
   right: 0;
   top: 32.8%;
-  @media screen and (max-width: 599px){
-    top: 38.5%;
+  @media screen and (max-width: 599px) {
+    top: 38.7%;
   }
 }
 
@@ -1518,8 +1553,8 @@ export default {
   left: 0;
   right: 0;
   top: 47.1%;
-  @media screen and (max-width: 599px){
-    top:48.6%
+  @media screen and (max-width: 599px) {
+    top: 48.6%;
   }
 }
 
@@ -1531,6 +1566,10 @@ export default {
   left: 3%;
   right: 0;
   top: 57.3%;
+  @media screen and (max-width: 599px) {
+    top: 63.8%;
+    left: 39%;
+  }
 }
 
 .tablet-layer6 {
@@ -1544,6 +1583,14 @@ export default {
   z-index: 3;
   img {
     width: 95%;
+  }
+  @media screen and (max-width: 599px) {
+    width: 100%;
+    top: 79.6%;
+    left: 32%;
+    img{
+      width: 66%;
+    }
   }
 }
 
