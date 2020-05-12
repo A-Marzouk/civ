@@ -112,4 +112,30 @@ export default {};
 </script>
 
 <style lang="scss">
+.tm701-right {
+  .chat {
+    padding-bottom: 46px;
+    > div {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        background-color: #fff;
+        padding-top: 22px;
+        padding-bottom: 22px;
+        border-radius: 0.5rem;
+        margin-right: 26px;
+        &:first-child {
+          padding-left: 70px;
+          padding-right: 36px;
+        }
+        &:nth-child(2) {
+          padding-left: 3.25rem;
+          padding-right: 18px;
+        }
+      }
+    }
+  }
+  .hire {
+  }
+}
 </style>

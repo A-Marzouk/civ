@@ -18,6 +18,8 @@ class CreateSummaryTable extends Migration
 
             $table->text('objective')->nullable();
             $table->text('overview')->nullable();
+            $table->boolean('is_objective_public')->default(true);
+            $table->boolean('is_overview_public')->default(true);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

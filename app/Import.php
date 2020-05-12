@@ -8,7 +8,7 @@ class Import extends Model
 {
     protected $table = 'imports';
     protected $fillable = [
-        'title','url','category','user_id'
+        'is_public','title','url','category','user_id'
     ];
 
     public function user(){

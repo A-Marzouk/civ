@@ -23,6 +23,7 @@ class CreateWorkExperienceTable extends Migration
             $table->date('date_from')->nullable();
             $table->date('date_to')->nullable();
             $table->boolean('present')->nullable();
+            $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();
