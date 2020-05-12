@@ -19,7 +19,7 @@ class CreateThemesTable extends Migration
             $table->string('title');
             $table->string('category');
             $table->string('color');
-            $table->string('code');
+            $table->string('code')->unique();
             $table->string('image');
 
             $table->timestamps();
