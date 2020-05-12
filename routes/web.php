@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 
 
 // public routes
-Route::get('/preview/{themeCode}', 'ResumeController@themePreview'); // resume preview
+Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
 
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
