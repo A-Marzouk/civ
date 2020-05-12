@@ -884,6 +884,10 @@ export default {
     padding-left: 0px !important;
     padding-right: 0px !important;
   }
+  @media screen and (max-width: 599px) {
+    margin-top: 0px;
+    height: auto !important;
+  }
 }
 
 .login-title {
@@ -959,7 +963,7 @@ export default {
     font-size: 10px;
   }
   @media screen and (max-width: 959px) {
-    font-size: 10px !important;
+    font-size: 12px !important;
   }
 }
 
@@ -1142,8 +1146,12 @@ export default {
     height: 300px;
   }
   @media screen and (max-width: 959px) {
-    height: 300px !important;
+    height: 300px;
     height: auto;
+  }
+
+  @media screen and (max-width: 599px){
+    height: 150px;
   }
 }
 //integration section
