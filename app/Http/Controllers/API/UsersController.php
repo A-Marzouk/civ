@@ -50,6 +50,7 @@ class UsersController extends Controller
             'paymentInfo',
             'availabilityInfo',
             'summary',
+            'theme',
             'subscription'
         ])->first();
         if($user){
@@ -60,8 +61,9 @@ class UsersController extends Controller
 
 
     public function updateUserTheme(Request $request){
+
         Auth::user()->update(
-            ['theme_code' => $request->theme_code]
+            ['theme_id' => $request->theme_id]
         );
 
         return ['status' => 'success'];

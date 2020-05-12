@@ -1,19 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\Controller;
+use App\Theme;
+use App\Http\Resources\Theme as ThemeResource;
 use Illuminate\Http\Request;
 
 class ThemesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\ResourceCollection
      */
-    public function index()
+    public function themesList()
     {
-        //
+        $themes = Theme::all();
+        return ThemeResource::collection($themes);
     }
 
     /**
