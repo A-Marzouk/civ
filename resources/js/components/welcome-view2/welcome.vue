@@ -693,6 +693,9 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
+  @media screen and (max-width: 599px) {
+    margin-top: -5px;
+  }
 }
 //form
 .login-form {
@@ -1592,6 +1595,11 @@ export default {
 
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
+  }
+}
+@media screen and (max-width: 599px){
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 50px !important;
   }
 }
 /* mobile screen */
