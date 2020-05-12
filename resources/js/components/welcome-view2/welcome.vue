@@ -476,7 +476,7 @@
             </v-card>
           </v-col>
 
-          <v-col cols="4" class="hidden-md-and-up">
+          <v-col cols="4" class="hidden-md-and-up mt-n12">
             <v-card flat tile color="transparent" align="center">
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
@@ -496,7 +496,7 @@
             </v-card>
           </v-col>
 
-          <v-col cols="8" class="hidden-md-and-up" align="right">
+          <v-col cols="8" class="hidden-md-and-up mt-n10" align="right">
             <v-card flat tile color="transparent">
               <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
               <v-card-subtitle align="center">
@@ -800,7 +800,7 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    margin-top: 20px;
+    margin-top:0px;
     width: 9.5rem !important;
     height: 3.048rem !important;
     font-size: 0.75rem !important;
@@ -849,6 +849,9 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
   }
+  @media screen and (max-width: 599px){
+    font-size: 12px !important;
+  }
   // @media screen and (max-width: 959px) {
   //   font-size: 1rem !important;
   // }
@@ -896,6 +899,10 @@ export default {
     font-size: 1.875rem;
     line-height: 2.313rem;
   }
+  @media screen and (max-width: 599px){
+    font-size: 1.125rem;
+    line-height: 1.275rem;
+  }
 }
 .social-icon {
   border-radius: 10px !important;
@@ -921,7 +928,7 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    widows: 42px !important;
+    width: 42px !important;
     height: 42px !important;
   }
 }
@@ -934,6 +941,10 @@ export default {
   line-height: 1.25rem;
   font-size: 1rem !important;
   font-weight: 500;
+  @media screen and (max-width: 599px){
+    font-size: 12px !important;
+    line-height: 15px;
+  }
 }
 
 .agree-text {
@@ -948,7 +959,7 @@ export default {
     font-size: 10px;
   }
   @media screen and (max-width: 959px) {
-    font-size: 1.125rem;
+    font-size: 10px !important;
   }
 }
 
@@ -981,6 +992,10 @@ export default {
 
   @media screen and (max-width: 959px) {
     font-size: 1.375rem;
+  }
+
+  @media screen and (max-width: 599px){
+    font-size: 1.125rem;
   }
 }
 
@@ -1043,6 +1058,10 @@ export default {
     font-size: 3rem;
     line-height: 3.25rem;
   }
+  @media screen and (max-width: 599px){
+    font-size: 1.5rem;
+    line-height: 32px;
+  }
 }
 
 .card-choose-theme {
@@ -1063,6 +1082,10 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 1.125rem !important;
     line-height: 1.5rem;
+  }
+  @media screen and (max-width: 599px){
+    font-size: 14px !important;
+    line-height: 24px;
   }
 }
 .card-video {
@@ -1106,6 +1129,10 @@ export default {
   color: #575757 !important;
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
+  }
+  @media screen and (max-width: 599px){
+    font-size: 12px;
+    line-height: 15px;
   }
 }
 .integrationImg {
