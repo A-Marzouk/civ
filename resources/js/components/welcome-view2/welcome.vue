@@ -288,7 +288,7 @@
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
-              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7">
+              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7 margin-n50">
                 Build a resume that you
                 <br />can be proud of
               </v-card-subtitle>
@@ -356,8 +356,8 @@
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
               />
             </div>
-            <v-card flat tile color="transparent" class="card-choose-theme">
-              <v-card-title class="build-resume-title">
+            <v-card flat tile color="transparent" class="card-choose-theme margin-0">
+              <v-card-title class="build-resume-title margin-n30">
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
@@ -425,8 +425,8 @@
               <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
             </div>
 
-            <v-card flat tile color="transparent" style="z-index:1;">
-              <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
+            <v-card flat tile color="transparent" style="z-index:1;" >
+              <v-card-subtitle class="build-resume-title margin-n30">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
@@ -728,6 +728,22 @@ export default {
     margin-left: -25px;
   }
 }
+.margin-n50{
+  @media screen and (max-width: 380px){
+    margin-top: -50px !important;
+  }
+}
+.margin-n30{
+  @media screen and (max-width: 599px){
+    margin-top: -30px !important;
+  }
+}
+
+.margin-0{
+  @media screen and (max-width: 380px){
+    margin-top: 0px !important;
+  }
+}
 //logo
 .logo {
   width: 163px;
@@ -765,6 +781,11 @@ export default {
   @media screen and (max-width: 959px) {
     .input-div {
       margin-top: 0px;
+    }
+  }
+  @media screen and (max-width: 599px){
+    label{
+      font-size: 12px;
     }
   }
 }
@@ -840,6 +861,9 @@ export default {
     font-size: 0.875rem !important;
     line-height: 1.375rem;
   }
+  @media screen and (max-width: 380px){
+    font-size:11px !important;
+  }
 }
 
 .btn-get-started {
@@ -865,6 +889,12 @@ export default {
     height: 3.048rem !important;
     font-size: 0.75rem !important;
   }
+  @media screen and (max-width: 380px){
+    width: 8rem !important;
+    height: 3rem !important;
+    font-size: 0.65rem !important;
+    margin-top: -20px;
+  }
 }
 
 //reserve title
@@ -887,6 +917,10 @@ export default {
   @media screen and (max-width: 599px) {
     margin-top: 0px;
     margin-bottom: 5px;
+  }
+  @media screen and (max-width: 380px){
+    font-size: 1rem !important;
+    margin-top: -20px;
   }
 }
 
@@ -914,6 +948,9 @@ export default {
   }
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
+  }
+  @media screen and (max-width: 380px){
+    font-size:10px !important;
   }
   // @media screen and (max-width: 959px) {
   //   font-size: 1rem !important;
@@ -954,6 +991,9 @@ export default {
   @media screen and (max-width: 599px) {
     margin-top: 0px;
     height: 818px;
+  }
+  @media screen and (max-width: 380px) {
+    margin-top: -30px;
   }
 }
 
@@ -1068,6 +1108,9 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.125rem;
   }
+  @media screen and (max-width: 380px){
+    font-size:12px;
+  }
 }
 
 // build resume section
@@ -1106,6 +1149,11 @@ export default {
     height: 3.048rem !important;
     font-size: 0.75rem !important;
   }
+  @media screen and (max-width: 380px){
+    width: 8rem !important;
+    height: 3rem !important;
+    font-size: 0.65rem !important;
+  }
 }
 
 .gallery-container {
@@ -1138,6 +1186,10 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.5rem;
     line-height: 32px;
+  }
+  @media screen and (max-width: 380px){
+    font-size: 1.2rem;
+    line-height: 24px;
   }
 }
 
@@ -1506,6 +1558,12 @@ export default {
     top: 2%;
     left: 22px;
   }
+  @media screen and (max-width: 380px){
+    top:2.3%;
+    img{
+      width: 88%;
+    }
+  }
 }
 
 .tablet-layer2 {
@@ -1519,7 +1577,7 @@ export default {
   @media screen and (max-width: 599px) {
     width: 100%;
     left: 56px;
-    top: 7.9%;
+    top: 7.2%;
     img {
       width: 82%;
     }
@@ -1544,7 +1602,7 @@ export default {
   right: 0;
   top: 32.8%;
   @media screen and (max-width: 599px) {
-    top: 38.4%;
+    top: 39.1%;
   }
 }
 
@@ -1557,7 +1615,7 @@ export default {
   right: 0;
   top: 47.1%;
   @media screen and (max-width: 599px) {
-    top: 48.8%;
+    top: 49.5%;
   }
 }
 
@@ -1589,7 +1647,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     width: 100%;
-    top: 79.6%;
+    top: 79.3%;
     left: 32%;
     img {
       width: 66%;
