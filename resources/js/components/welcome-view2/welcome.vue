@@ -216,7 +216,7 @@
               <v-card-subtitle class="download-text">Download for ios and android:</v-card-subtitle>
               <v-card-subtitle>
                 <v-row>
-                  <v-col cols="6">
+                  <v-col sm="6" cols="6">
                     <a href="#">
                       <img
                         class="app-store-logo"
@@ -226,7 +226,7 @@
                     </a>
                   </v-col>
 
-                  <v-col cols="6">
+                  <v-col sm="6" cols="6">
                     <a href="#">
                       <img
                         class="app-store-logo"
@@ -476,7 +476,7 @@
             </v-card>
           </v-col>
 
-          <v-col cols="4" class="hidden-md-and-up mt-n12">
+          <v-col sm="4" cols="4" class="hidden-md-and-up mt-n12">
             <v-card flat tile color="transparent" align="center">
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
@@ -486,7 +486,7 @@
                     alt="facebook"
                   />
                 </v-btn>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
@@ -496,7 +496,7 @@
             </v-card>
           </v-col>
 
-          <v-col cols="8" class="hidden-md-and-up mt-n10" align="right">
+          <v-col sm="8" cols="8" class="hidden-md-and-up mt-n10" align="right">
             <v-card flat tile color="transparent">
               <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
               <v-card-subtitle align="center">
@@ -620,6 +620,7 @@ export default {
           {
             breakpoint: 599,
             settings: {
+              centerMode: true,
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -800,7 +801,7 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    margin-top:0px;
+    margin-top: 0px;
     width: 9.5rem !important;
     height: 3.048rem !important;
     font-size: 0.75rem !important;
@@ -840,6 +841,9 @@ export default {
   @media screen and (max-width: 959px) {
     margin-top: 36px;
   }
+  @media screen and (max-width: 599px) {
+    margin-top: 10px;
+  }
 }
 //Download text
 .download-text {
@@ -849,7 +853,7 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
   // @media screen and (max-width: 959px) {
@@ -863,6 +867,9 @@ export default {
   max-width: 127% !important;
   @media screen and (min-width: 1600px) {
     margin-left: 0px;
+  }
+  @media screen and (max-width: 599px) {
+    max-width: 100% !important;
   }
 }
 // .... upper left block..............
@@ -903,7 +910,7 @@ export default {
     font-size: 1.875rem;
     line-height: 2.313rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 1.125rem;
     line-height: 1.275rem;
   }
@@ -945,7 +952,7 @@ export default {
   line-height: 1.25rem;
   font-size: 1rem !important;
   font-weight: 500;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 12px !important;
     line-height: 15px;
   }
@@ -998,7 +1005,7 @@ export default {
     font-size: 1.375rem;
   }
 
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 1.125rem;
   }
 }
@@ -1062,7 +1069,7 @@ export default {
     font-size: 3rem;
     line-height: 3.25rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 1.5rem;
     line-height: 32px;
   }
@@ -1087,7 +1094,7 @@ export default {
     font-size: 1.125rem !important;
     line-height: 1.5rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 14px !important;
     line-height: 24px;
   }
@@ -1102,6 +1109,13 @@ export default {
   img {
     width: 71px;
     height: auto;
+  }
+  @media screen and (max-width: 599px) {
+    width: 57.02px;
+    height: 56px;
+    img {
+      width: 30px;
+    }
   }
 }
 
@@ -1134,7 +1148,7 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 12px;
     line-height: 15px;
   }
@@ -1150,7 +1164,7 @@ export default {
     height: auto;
   }
 
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     height: 150px;
   }
 }
@@ -1174,6 +1188,9 @@ export default {
   }
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 14px;
   }
 }
 .logo-footer {
@@ -1205,10 +1222,10 @@ export default {
     }
   }
   @media screen and (max-width: 599px) {
-    width: 39px;
-    height: 39px;
+    width: 28px;
+    height: 28px;
     img {
-      width: 16px;
+      width: 12px;
     }
   }
 }
@@ -1451,7 +1468,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 47.3%;
+  top: 47.1%;
 }
 
 .tablet-layer5 {
@@ -1461,7 +1478,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 57.8%;
+  top: 57.3%;
 }
 
 .tablet-layer6 {
@@ -1471,7 +1488,7 @@ export default {
   margin-right: auto;
   left: 13%;
   right: 0;
-  top: 62.5%;
+  top: 62%;
   z-index: 3;
   img {
     width: 95%;
@@ -1557,7 +1574,14 @@ export default {
     min-height: 3.75rem !important;
   }
 
-  #welcomeView2 .gallerySlides{
+  #welcomeView2 .slick-dots li button {
+    width: 40px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
+  }
+
+  #welcomeView2 .gallerySlides {
     margin-top: -120px;
   }
 }
