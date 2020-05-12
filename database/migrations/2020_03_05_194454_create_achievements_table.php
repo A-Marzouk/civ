@@ -21,6 +21,7 @@ class CreateAchievementsTable extends Migration
             $table->text('description')->nullable();
             $table->string('image_src')->nullable();
             $table->string('url')->nullable();
+            $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();
