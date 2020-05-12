@@ -403,8 +403,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         z-index: 5;
         transform: rotateZ(-90deg);
         align-items: center;
-        position: fixed;
-        bottom: 250px;
+        position: absolute;
+        top: 200px;
         right: -95px;
         background: transparent;
 

@@ -11,14 +11,14 @@
                     <radial-progress-bar :diameter="70.81"
                         :completed-steps="skill.percentage"
                         :total-steps="100"
-                        startColor="#E43CC6"
-                        stopColor="#E43CC6"
+                        startColor="#492163"
+                        stopColor="#492163"
                         :strokeWidth="3"
-                        innerStrokeColor="#D3D6E4"
-                        strokeLinecap="square"
+                        innerStrokeColor="#EEEEEE"
+                        strokeLinecap="round"
                     >
                     </radial-progress-bar>
-                    <img :src="'/images/resume_themes/theme112/' + skill.icon" alt="">
+                    <img :src="'/images/resume_themes/theme110/' + skill.icon" alt="">
                 </div>
                 <div class="skill-info">
                     <div class="skill-name">{{ skill.name }}</div>
@@ -67,11 +67,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$mainColor: #492163;
+
 .container {
     margin-top: 34px;
+    position: relative;
     display: flex !important;
     justify-content: space-between;
     max-width: 1500px !important;
+    background-image: url('/images/resume_themes/theme110/skills-decoImg.png');
+    background-position: 0 114%;
+    background-repeat: no-repeat;
 
     .left {
         max-width: 228px;
@@ -79,7 +85,7 @@ export default {
 
         .small {
             font-size: 24px;
-            color: #C2C6D8;
+            color: #616887;
         }
 
         h1 {
@@ -87,7 +93,7 @@ export default {
             margin-bottom: 38px;
             line-height: 50px;
             font-size: 40px;
-            color: white;
+            color: $mainColor;
         }
     }
 }
@@ -122,14 +128,14 @@ export default {
                 .skill-name {
                     font-size: 30px;
                     font-weight: 700;
-                    color: white;
+                    color: $mainColor;
                 }
 
                 .skill-percentage {
                     margin-left: 32.4px;
                     font-size: 20px;
                     font-weight: 700;
-                    color: #C2C6D8;
+                    color: #616887;
                     position: relative;
 
                     &::after {
