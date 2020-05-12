@@ -1613,7 +1613,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 47.1%;
+  top: 46.8%;
   @media screen and (max-width: 599px) {
     top: 49.5%;
   }
