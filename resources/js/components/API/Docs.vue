@@ -13,9 +13,14 @@
                         <v-list-item-title>Authentication</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item link to="/api/docs/user-info">
+                    <v-list-item-content>
+                        <v-list-item-title>User information</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
                 <v-list-item link to="/api/docs/personal-info">
                     <v-list-item-content>
-                        <v-list-item-title>PersonalInfo</v-list-item-title>
+                        <v-list-item-title>Personal information</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item link to="/api/docs/achievements">
