@@ -357,7 +357,7 @@
               />
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
-              <v-card-title class="build-resume-title margin-n30">
+              <v-card-title class="build-resume-title margin-20">
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
@@ -425,7 +425,7 @@
               <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
             </div>
 
-            <v-card flat tile color="transparent" style="z-index:1;" >
+            <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title margin-n30">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0"
@@ -613,7 +613,7 @@ export default {
         { id: 4, title: "whatsapp" },
         { id: 5, title: "slack" }
       ],
-      users: ["nishad", "ahmed", "anton","gladwin"],
+      users: ["nishad", "ahmed", "anton", "gladwin"],
       slickOptionsGallery: {
         centerMode: true,
         infinite: true,
@@ -723,24 +723,30 @@ export default {
     min-width: 110%;
     margin-left: -24px;
   }
-  @media screen and (max-width: 380px){
+  @media screen and (max-width: 380px) {
     min-width: 114%;
     margin-left: -25px;
   }
 }
-.margin-n50{
-  @media screen and (max-width: 380px){
+.margin-n50 {
+  @media screen and (max-width: 380px) {
     margin-top: -50px !important;
   }
 }
-.margin-n30{
-  @media screen and (max-width: 599px){
+.margin-n30 {
+  @media screen and (max-width: 599px) {
     margin-top: -30px !important;
   }
 }
 
-.margin-0{
-  @media screen and (max-width: 380px){
+.margin-20 {
+  @media screen and (max-width: 599px) {
+    margin-top: 20px !important;
+  }
+}
+
+.margin-0 {
+  @media screen and (max-width: 380px) {
     margin-top: 0px !important;
   }
 }
@@ -783,8 +789,8 @@ export default {
       margin-top: 0px;
     }
   }
-  @media screen and (max-width: 599px){
-    label{
+  @media screen and (max-width: 599px) {
+    label {
       font-size: 12px;
     }
   }
@@ -838,7 +844,7 @@ export default {
     line-height: 2.813rem;
     margin-bottom: 20px;
   }
-  @media screen and (max-width: 380px){
+  @media screen and (max-width: 380px) {
     font-size: 2rem;
     line-height: 2.1rem;
   }
@@ -861,8 +867,8 @@ export default {
     font-size: 0.875rem !important;
     line-height: 1.375rem;
   }
-  @media screen and (max-width: 380px){
-    font-size:11px !important;
+  @media screen and (max-width: 380px) {
+    font-size: 11px !important;
   }
 }
 
@@ -889,7 +895,7 @@ export default {
     height: 3.048rem !important;
     font-size: 0.75rem !important;
   }
-  @media screen and (max-width: 380px){
+  @media screen and (max-width: 380px) {
     width: 8rem !important;
     height: 3rem !important;
     font-size: 0.65rem !important;
@@ -918,7 +924,7 @@ export default {
     margin-top: 0px;
     margin-bottom: 5px;
   }
-  @media screen and (max-width: 380px){
+  @media screen and (max-width: 380px) {
     font-size: 1rem !important;
     margin-top: -20px;
   }
@@ -949,8 +955,8 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
-  @media screen and (max-width: 380px){
-    font-size:10px !important;
+  @media screen and (max-width: 380px) {
+    font-size: 10px !important;
   }
   // @media screen and (max-width: 959px) {
   //   font-size: 1rem !important;
@@ -1108,8 +1114,8 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.125rem;
   }
-  @media screen and (max-width: 380px){
-    font-size:12px;
+  @media screen and (max-width: 380px) {
+    font-size: 12px;
   }
 }
 
@@ -1149,7 +1155,7 @@ export default {
     height: 3.048rem !important;
     font-size: 0.75rem !important;
   }
-  @media screen and (max-width: 380px){
+  @media screen and (max-width: 380px) {
     width: 8rem !important;
     height: 3rem !important;
     font-size: 0.65rem !important;
@@ -1187,7 +1193,7 @@ export default {
     font-size: 1.5rem;
     line-height: 32px;
   }
-  @media screen and (max-width: 380px){
+  @media screen and (max-width: 380px) {
     font-size: 1.2rem;
     line-height: 24px;
   }
@@ -1558,9 +1564,15 @@ export default {
     top: 2%;
     left: 22px;
   }
-  @media screen and (max-width: 380px){
-    top:2.3%;
-    img{
+  @media screen and (max-width: 380px) {
+    top: 2.3%;
+    img {
+      width: 88%;
+    }
+  }
+  @media screen and (max-width: 340px) {
+    top: 2.3%;
+    img {
       width: 88%;
     }
   }
@@ -1581,6 +1593,13 @@ export default {
     img {
       width: 82%;
     }
+  }
+  @media screen and (max-width: 380px) {
+    top: 7.5%;
+  }
+
+  @media screen and (max-width: 340px) {
+    top: 7.5%;
   }
 }
 
@@ -1604,6 +1623,21 @@ export default {
   @media screen and (max-width: 599px) {
     top: 39.1%;
   }
+  @media screen and (max-width: 380px) {
+    top: 40.1%;
+    left: 20px;
+    img {
+      width: 89%;
+    }
+  }
+
+  @media screen and (max-width: 340px) {
+    top: 40.1%;
+    left: 20px;
+    img {
+      width: 89%;
+    }
+  }
 }
 
 .tablet-layer4 {
@@ -1616,6 +1650,13 @@ export default {
   top: 46.8%;
   @media screen and (max-width: 599px) {
     top: 49.5%;
+  }
+  @media screen and (max-width: 380px) {
+    top: 99rem;
+  }
+
+  @media screen and (max-width: 340px) {
+    top: 99rem;
   }
 }
 
@@ -1630,6 +1671,12 @@ export default {
   @media screen and (max-width: 599px) {
     top: 63.8%;
     left: 39%;
+  }
+  @media screen and (max-width: 380px) {
+    top: 127rem;
+  }
+  @media screen and (max-width: 340px) {
+    top: 127rem;
   }
 }
 
@@ -1652,6 +1699,12 @@ export default {
     img {
       width: 66%;
     }
+  }
+  @media screen and (max-width: 380px) {
+    top: 157.3rem;
+  }
+  @media screen and (max-width: 340px) {
+    top: 157.3rem;
   }
 }
 
