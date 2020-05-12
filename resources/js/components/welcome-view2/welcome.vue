@@ -180,7 +180,7 @@
                   <v-checkbox
                     v-model="agreeCheck"
                     :rules="agreeCheckRules"
-                    class="d-none d-flex d-md-none"
+                    class="d-none d-sm-flex d-md-none"
                   >
                     <template slot="label">
                       <div class="agree-text">
@@ -1158,6 +1158,13 @@ export default {
       width: 25px;
     }
   }
+  @media screen and (max-width: 599px){
+    width: 39px;
+    height: 39px;
+    img{
+      width: 16px;
+    }
+  }
 }
 //footer
 
@@ -1197,38 +1204,6 @@ export default {
       width: 100%;
     }
   }
-
-  // @media screen and (min-width: 1300px) and (max-width: 1659px) {
-  //   top: -16%;
-  //   left: -27%;
-  //   img {
-  //     width: 76%;
-  //   }
-  // }
-
-  // @media screen and (min-width: 1700px) and (max-width: 1920px) {
-  //   top: -18%;
-  //   left: -11%;
-  //   img {
-  //     width: 100%;
-  //   }
-  // }
-
-  // @media screen and (min-width: 1025px) and (max-width: 1280px) {
-  //   width: 1420px;
-  //   top: -44px;
-  //   left: -72px;
-  //   img {
-  //     width: 90%;
-  //   }
-  // }
-  // @media screen and (min-width: 960px) and (max-width: 1024px) {
-  //   top: -40px;
-  //   left: -84px;
-  //   img {
-  //     width: 52%;
-  //   }
-  // }
 }
 
 .top-make-resume {
