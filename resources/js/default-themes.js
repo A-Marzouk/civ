@@ -496,6 +496,7 @@ if ($("#resumeTheme506").length !== 0) {
         }
     });
 }
+
 import resumeTheme507 from './components/resume_themes/theme507';
 if ($("#resumeTheme507").length !== 0) {
 
@@ -519,3 +520,4 @@ if ($("#resumeTheme1000").length !== 0) {
         }
     });
 }
+*/

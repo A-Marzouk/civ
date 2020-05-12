@@ -16,10 +16,15 @@
           <v-tab
             @click="currentSkillsTab = id"
             :class="[
-                currentSkillsTab == id ? 'tm700-skill-tabs-active--tab tw-text-tm700-1' : 'tm700-skill-tabs-inactive--tab', 'tm700-skill-tabs--default',
-                id === 4 ? 'tm700-skill-tabs-last-child': 'tm700-skill-tabs-not-last-child'
-            ]"
-            v-for="{title, id} in Skillstabs"
+                            currentSkillsTab == id
+                                ? 'tm700-skill-tabs-active--tab tw-text-tm700-1'
+                                : 'tm700-skill-tabs-inactive--tab',
+                            'tm700-skill-tabs--default',
+                            id === 4
+                                ? 'tm700-skill-tabs-last-child'
+                                : 'tm700-skill-tabs-not-last-child'
+                        ]"
+            v-for="{ title, id } in Skillstabs"
             :key="id"
             :href="`#tab-${id}`"
           >{{ title }}</v-tab>
@@ -29,15 +34,15 @@
     <div class="tm700-skill--proglang" v-if="currentSkillsTab === 1">
       <div class="tm700-skill-proglang--inner">
         <div
-          v-for="{id, name, percentage} in programingLanguages"
+          v-for="{ id, name, percentage } in programingLanguages"
           :key="id"
           class="tm700-skill-proglangs"
         >
-          <span class="tm700-skill-proglangs--name">{{name}}</span>
+          <span class="tm700-skill-proglangs--name">{{ name }}</span>
           <span class="tm700-skill-proglangs--bar">
-            <span class="tm700-skill-proglangs-bar--blue" :style="{width:percentage + '%'}"></span>
+            <span class="tm700-skill-proglangs-bar--blue" :style="{ width: percentage + '%' }"></span>
           </span>
-          <span class="tm700-skill-proglangs-percentage">{{percentage}}%</span>
+          <span class="tm700-skill-proglangs-percentage">{{ percentage }}%</span>
         </div>
       </div>
     </div>
@@ -100,10 +105,36 @@ export default {
       }
     }
     .tm700-skill-tabs-active--tab {
-      color: var(--tm700-blue-1);
+      color: var(--blue-1);
+      &:after {
+        content: "";
+        max-width: 80%;
+        height: 4px;
+        margin-top: 28px;
+        background-color: var(--blue-1);
+        border-radius: 2px;
+        width: 80%;
+        @media screen and (min-width: 768px) {
+          width: 80%;
+          margin-top: 14px;
+        }
+      }
     }
     .tm700-skill-tabs-inactive--tab {
-      color: var(--tm700-gray-2);
+      color: var(--gray-2);
+      &:after {
+        content: "";
+        max-width: 80%;
+        height: 4px;
+        margin-top: 28px;
+        background: none;
+        border-radius: 2px;
+        width: 80%;
+        @media screen and (min-width: 768px) {
+          width: 80%;
+          margin-top: 14px;
+        }
+      }
     }
     .tm700-skill-tabs--default {
       font-style: normal;
@@ -117,17 +148,6 @@ export default {
       @media screen and (min-width: 768px) {
         font-size: 24px;
         line-height: 29px;
-      }
-      &:after {
-        content: "";
-        width: 80%;
-        height: 4px;
-        margin-top: 28px;
-        background-color: var(--tm700-blue-1);
-        border-radius: 2px;
-        @media screen and (min-width: 768px) {
-          width: 80%;
-        }
       }
     }
     .tm700-skill-tabs-last-child {
@@ -190,7 +210,7 @@ export default {
       .tm700-skill-proglangs--name {
         font-style: normal;
         font-weight: 800;
-        color: var(--tm700-blue-1);
+        color: var(--blue-1);
       }
       .tm700-skill-proglangs--bar {
         --grid-column: 1 / 3;
@@ -203,7 +223,7 @@ export default {
           --grid-row: 1 / 2;
         }
         .tm700-skill-proglangs-bar--blue {
-          background-color: var(--tm700-blue-1);
+          background-color: var(--blue-1);
           border-radius: 15px;
           height: 7px;
           @media screen and (min-width: 768px) {
@@ -217,7 +237,7 @@ export default {
         justify-self: flex-end;
         font-style: normal;
         font-weight: bold;
-        color: var(--tm700-blue-1);
+        color: var(--blue-1);
         @media screen and (min-width: 1200px) {
           --grid-column: 3 / 4;
           --grid-row: 1 / 2;
