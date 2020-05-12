@@ -2,7 +2,7 @@
   <v-app style="width:100%; background-color: #ffffff;">
     <!-- main container -->
     <v-container class="main-container">
-      <v-app-bar color="transparent" flat tile height="100">
+      <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
         <v-btn text color="#0046FE" class="btn-appbar-login">
@@ -613,7 +613,7 @@ export default {
         { id: 4, title: "whatsapp" },
         { id: 5, title: "slack" }
       ],
-      users: ["nishad", "ahmed", "anton"],
+      users: ["nishad", "ahmed", "anton","gladwin"],
       slickOptionsGallery: {
         centerMode: true,
         infinite: true,
@@ -723,6 +723,10 @@ export default {
     min-width: 110%;
     margin-left: -24px;
   }
+  @media screen and (max-width: 380px){
+    min-width: 114%;
+    margin-left: -25px;
+  }
 }
 //logo
 .logo {
@@ -812,6 +816,10 @@ export default {
     font-size: 2.625rem;
     line-height: 2.813rem;
     margin-bottom: 20px;
+  }
+  @media screen and (max-width: 380px){
+    font-size: 2rem;
+    line-height: 2.1rem;
   }
 }
 
@@ -1112,12 +1120,7 @@ export default {
     margin-top: -20px;
   }
 }
-.gallerySlidess {
-  @media screen and (max-width: 959px) {
-    img {
-    }
-  }
-}
+
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
@@ -1500,7 +1503,7 @@ export default {
   right: 0;
   top: 1.5%;
   @media screen and (max-width: 599px) {
-    top: 2.8%;
+    top: 2%;
     left: 22px;
   }
 }
@@ -1516,7 +1519,7 @@ export default {
   @media screen and (max-width: 599px) {
     width: 100%;
     left: 56px;
-    top: 8.2%;
+    top: 7.9%;
     img {
       width: 82%;
     }
@@ -1541,7 +1544,7 @@ export default {
   right: 0;
   top: 32.8%;
   @media screen and (max-width: 599px) {
-    top: 38.7%;
+    top: 38.4%;
   }
 }
 
@@ -1554,7 +1557,7 @@ export default {
   right: 0;
   top: 47.1%;
   @media screen and (max-width: 599px) {
-    top: 48.6%;
+    top: 48.8%;
   }
 }
 
