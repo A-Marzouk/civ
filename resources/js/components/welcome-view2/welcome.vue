@@ -842,7 +842,7 @@ export default {
     margin-top: 36px;
   }
   @media screen and (max-width: 599px) {
-    margin-top: 10px;
+    margin-top: 0px;
   }
 }
 //Download text
@@ -869,7 +869,7 @@ export default {
     margin-left: 0px;
   }
   @media screen and (max-width: 599px) {
-    max-width: 100% !important;
+    max-width: 130% !important;
   }
 }
 // .... upper left block..............
@@ -1016,6 +1016,9 @@ export default {
   @media screen and (max-width: 1440px) {
     margin-top: 80px;
   }
+  @media screen and (max-width: 599px){
+    margin-top: -4px;
+  }
 }
 
 .btn-get-started-middle {
@@ -1047,6 +1050,9 @@ export default {
   }
   @media screen and (max-width: 1280px) {
     margin-top: 26px;
+  }
+  @media screen and (max-width: 599px){
+    margin-top: -20px;
   }
 }
 .gallerySlidess {
@@ -1199,6 +1205,9 @@ export default {
 
   @media screen and (max-width: 959px) {
     width: 223px;
+  }
+  @media screen and (max-width:599px){
+    width: 123px;
   }
 }
 .footer-social-icon {
