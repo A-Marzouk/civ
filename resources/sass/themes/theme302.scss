@@ -328,6 +328,30 @@
         }
     
     }
+
+    @media only screen and (max-width: 380px) {
+        .hold-slider .slick-slider.slick-vertical .slick-slide{
+            height: auto;
+            margin-bottom: 2em !important;
+            width: auto;            
+        }
+        .imageCol .profile-img{
+            width: 60px;
+            height: 60px;
+        }
+        .profileCol{
+            margin-left: 2%;
+
+            .head-name{
+                font-size: 16px;
+                line-height: 16px;
+            }
+            .head-profile{
+                font-size: 14px;
+                line-height: 14px;
+            }
+        }
+    }
     
 
 }
