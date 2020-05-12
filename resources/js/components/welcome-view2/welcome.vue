@@ -674,6 +674,8 @@ export default {
   width: 100%;
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
+    min-width: 102%;
+    margin-left: -6px;
   }
 }
 //logo
@@ -1019,7 +1021,7 @@ export default {
   @media screen and (max-width: 1440px) {
     margin-top: 80px;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     margin-top: -4px;
   }
 }
@@ -1054,7 +1056,7 @@ export default {
   @media screen and (max-width: 1280px) {
     margin-top: 26px;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     margin-top: -20px;
   }
 }
@@ -1209,7 +1211,7 @@ export default {
   @media screen and (max-width: 959px) {
     width: 223px;
   }
-  @media screen and (max-width:599px){
+  @media screen and (max-width: 599px) {
     width: 123px;
   }
 }
@@ -1597,7 +1599,7 @@ export default {
     margin-top: -120px;
   }
 }
-@media screen and (max-width: 599px){
+@media screen and (max-width: 599px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 50px !important;
   }
