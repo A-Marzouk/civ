@@ -675,7 +675,7 @@ export default {
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
     min-width: 102%;
-    margin-left: -6px;
+    margin-left: 22px;
   }
 }
 //logo
@@ -1444,6 +1444,9 @@ export default {
   left: 0;
   right: 0;
   top: 1.5%;
+  @media screen and (max-width: 599px){
+    top:3%;
+  }
 }
 
 .tablet-layer2 {
@@ -1514,9 +1517,9 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 14%;
+  left:9%;
   right: 0;
-  top: 79%;
+  top: 78.3%;
   img {
     width: 80%;
   }
