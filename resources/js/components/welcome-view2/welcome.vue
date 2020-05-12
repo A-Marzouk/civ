@@ -277,12 +277,18 @@
               tile
               align="center"
             >
-              <v-img src="/images/welcome_landing_page/icons/poster-video.png" class="align-center hidden-sm-and-down">
+              <v-img
+                src="/images/welcome_landing_page/icons/poster-video.png"
+                class="align-center hidden-sm-and-down"
+              >
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
               </v-img>
-              <v-img src="/images/welcome_landing_page/icons/poster-video-tablet.png" class="align-center hidden-md-and-up">
+              <v-img
+                src="/images/welcome_landing_page/icons/poster-video-tablet.png"
+                class="align-center hidden-md-and-up"
+              >
                 <v-btn fab color="#F8F8F8" class="btn-play" x-large>
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
@@ -330,7 +336,7 @@
 
             <v-card tile color="transparet" flat class="card-gallery hidden-md-and-up">
               <slick
-                class="integrationSlides"
+                class="gallerySlidess"
                 ref="slick"
                 :options="slickOptionsGallery"
                 style="z-index:2;"
@@ -379,7 +385,7 @@
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
-              <v-card-text style="z-index:2;">
+              <v-card-text style="z-index:2;" class="mt-md-0 mt-sm-12 mt-12">
                 <slick
                   class="integrationSlides"
                   ref="slick"
@@ -490,10 +496,10 @@
             </v-card>
           </v-col>
 
-          <v-col cols="8" class="hidden-md-and-up">
+          <v-col cols="8" class="hidden-md-and-up" align="right">
             <v-card flat tile color="transparent">
               <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
-              <v-card-subtitle>
+              <v-card-subtitle align="center">
                 <v-btn
                   fab
                   x-small
@@ -565,7 +571,6 @@ export default {
       slickOptionsGallery: {
         centerMode: true,
         infinite: true,
-        centerPadding: "0px",
         dots: true,
         arrows: false,
         slidesToShow: 3,
@@ -573,11 +578,12 @@ export default {
         autoplay: false,
         autoplaySpeed: 5000,
         pauseOnDotsHover: true,
-        variableWidt: true,
         responsive: [
           {
             breakpoint: 959,
             settings: {
+              centerPadding: "100px",
+              slidesPerRow: 1,
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -605,6 +611,8 @@ export default {
           {
             breakpoint: 959,
             settings: {
+              centerMode: true,
+              centerPadding: "100px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -829,7 +837,7 @@ export default {
   @media screen and (max-width: 1440px) {
     margin-top: -19px;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     margin-top: 36px;
   }
 }
@@ -1015,6 +1023,12 @@ export default {
     margin-top: 26px;
   }
 }
+.gallerySlidess {
+  @media screen and (max-width: 959px) {
+    img {
+    }
+  }
+}
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
@@ -1071,9 +1085,6 @@ export default {
   }
   @media screen and (max-width: 959px) {
     padding: 0;
-    img {
-      width: 100%;
-    }
   }
 }
 // build resume section
@@ -1104,7 +1115,7 @@ export default {
     height: 300px;
   }
   @media screen and (max-width: 959px) {
-    height: 400px !important;
+    height: 300px !important;
     height: auto;
   }
 }
@@ -1158,10 +1169,10 @@ export default {
       width: 25px;
     }
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     width: 39px;
     height: 39px;
-    img{
+    img {
       width: 16px;
     }
   }
@@ -1376,7 +1387,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 7%;
+  top: 7.4%;
 }
 
 .make-resume-background {
@@ -1395,7 +1406,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 31.5%;
+  top: 32.8%;
 }
 
 .tablet-layer4 {
@@ -1405,7 +1416,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 45.1%;
+  top: 47.3%;
 }
 
 .tablet-layer5 {
@@ -1415,7 +1426,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 55.3%;
+  top: 57.8%;
 }
 
 .tablet-layer6 {
@@ -1423,9 +1434,9 @@ export default {
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 16%;
+  left: 13%;
   right: 0;
-  top: 59.5%;
+  top: 62.5%;
   z-index: 3;
   img {
     width: 95%;
@@ -1439,12 +1450,11 @@ export default {
   margin-right: auto;
   left: 14%;
   right: 0;
-  top: 78.2%;
+  top: 79%;
   img {
     width: 80%;
   }
 }
-
 //background tablet and mobile
 </style>
 
@@ -1511,7 +1521,9 @@ export default {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 3.75rem !important;
   }
-  #welcomeView2 .slick-dots{
+
+  #welcomeView2 .gallerySlides{
+    margin-top: -120px;
   }
 }
 /* mobile screen */
