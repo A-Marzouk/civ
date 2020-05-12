@@ -38,6 +38,19 @@ class ResumeController extends Controller
         return view('defaultThemes.theme' . $theme->code,compact('is_preview'));
     }
 
+    public function themePreviewByCode ($themeCode, Request $request) {
+        $authUser = Auth::user();
+        $is_preview = $request->real === 'true' ? 'false' : 'true' ;
+        if($is_preview === 'false' && $authUser){
+            $user = User::withAllRelations($authUser->username);
+            if($user){
+                return view('defaultThemes.' . $themeCode,compact('user','is_preview'));
+            }
+        }
+        return view('defaultThemes.' . $themeCode,compact('is_preview'));
+    }
+
+
     public function downloadPDFResume ($themeCode, $userName) {
         // search the userdata using userName
 
