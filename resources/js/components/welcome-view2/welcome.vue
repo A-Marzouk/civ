@@ -15,7 +15,16 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
             <div class="tablet-layer1 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png" alt />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
+                alt
+              />
+              <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer1.png"
+                alt
+              />
             </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
@@ -30,8 +39,16 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer2 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
+              />
+              <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer2.png"
+              />
             </div>
+
             <div class="top-layer-background hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
@@ -205,7 +222,8 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer3 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png" />
+              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png" />
+              <img class="hidden-sm-and-up" src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png" />
             </div>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
@@ -250,19 +268,20 @@
           <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
             <div class="tablet-layer4 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png" />
+              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png" />
+              <img class="hidden-sm-and-up" src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png" />
             </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
-              <v-card-subtitle class="build-resume-title">
+              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7">
                 Build a resume that you
                 <br />can be proud of
               </v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-10 mt-0"
+                class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-4 mt-n4"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
               <div class="middle-layer-background2 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
@@ -306,10 +325,10 @@
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12">
             <div class="tablet-layer5 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png" />
+              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png" />
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png" />
+              <img class="hidden-xs-only" src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png" />
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme">
               <v-card-title class="build-resume-title">
@@ -875,6 +894,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     max-width: 130% !important;
+    margin-top: -35px;
   }
 }
 // .... upper left block..............
@@ -898,7 +918,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     margin-top: 0px;
-    height: auto !important;
+    height: 818px;
   }
 }
 
@@ -1022,7 +1042,7 @@ export default {
     margin-top: 80px;
   }
   @media screen and (max-width: 599px) {
-    margin-top: -4px;
+    margin-top: 0px;
   }
 }
 
@@ -1444,8 +1464,9 @@ export default {
   left: 0;
   right: 0;
   top: 1.5%;
-  @media screen and (max-width: 599px){
-    top:3%;
+  @media screen and (max-width: 599px) {
+    top: 2.8%;
+    left: 22px;
   }
 }
 
@@ -1454,9 +1475,17 @@ export default {
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 0;
+  left: 15px;
   right: 0;
   top: 7.4%;
+  @media screen and (max-width: 599px) {
+    width: 100%;
+    left: 56px;
+    top: 8.2%;
+    img {
+      width: 82%;
+    }
+  }
 }
 
 .make-resume-background {
@@ -1476,6 +1505,9 @@ export default {
   left: 0;
   right: 0;
   top: 32.8%;
+  @media screen and (max-width: 599px){
+    top: 38.5%;
+  }
 }
 
 .tablet-layer4 {
@@ -1486,6 +1518,9 @@ export default {
   left: 0;
   right: 0;
   top: 47.1%;
+  @media screen and (max-width: 599px){
+    top:48.6%
+  }
 }
 
 .tablet-layer5 {
@@ -1517,7 +1552,7 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left:9%;
+  left: 9%;
   right: 0;
   top: 78.3%;
   img {
