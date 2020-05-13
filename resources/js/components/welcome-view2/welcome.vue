@@ -675,7 +675,7 @@ export default {
             breakpoint: 599,
             settings: {
               centerMode: true,
-              centerPadding:"50",
+              centerPadding:"50px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -1310,7 +1310,7 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    height: 150px !important;
+    height: auto !important;
   }
 }
 .integrationSlides{
@@ -1835,8 +1835,14 @@ export default {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 50px !important;
   }
-  #welcomeView2 .slick-dots li button {
+  #welcomeView2 .gallerySlidess .slick-dots li button {
     width: 40px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
+  }
+  #welcomeView2 .integrationSlides .slick-dots li button {
+    width: 50px;
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
@@ -1846,7 +1852,8 @@ export default {
     width: 300px !important;
   }
   #welcomeView2 .integrationSlides .slick-slide{
-    margin-left: 0px !important;
+    margin-left: -30px !important;
+    margin-top: 0px !important;
   }
 }
 /* mobile screen */
