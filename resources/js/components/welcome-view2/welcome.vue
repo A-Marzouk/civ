@@ -295,7 +295,7 @@
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
-              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7 margin-n50">
+              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7">
                 Build a resume that you
                 <br />can be proud of
               </v-card-subtitle>
@@ -364,11 +364,11 @@
               />
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
-              <v-card-title class="build-resume-title margin-20">
+              <v-card-title class="build-resume-title margin-n30">
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
-              <v-card-subtitle class="build-resume-subtitle mt-1">
+              <v-card-subtitle class="build-resume-subtitle mt-1 margin-n10">
                 <v-row>
                   <v-col md="6" cols="12">
                     <span
@@ -433,7 +433,7 @@
             </div>
 
             <v-card flat tile color="transparent" style="z-index:1;">
-              <v-card-subtitle class="build-resume-title margin-n30">Integrations</v-card-subtitle>
+              <v-card-subtitle class="build-resume-title margin-n50">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0 mb-sm-0 mb-n11"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
@@ -549,7 +549,7 @@
             </v-card>
           </v-col>
 
-          <v-col sm="8" cols="8" class="hidden-md-and-up mt-n10" align="right">
+          <v-col sm="8" cols="8" class="hidden-md-and-up mt-n12" align="right">
             <v-card flat tile color="transparent">
               <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
               <v-card-subtitle align="center">
@@ -666,7 +666,7 @@ export default {
             breakpoint: 959,
             settings: {
               centerMode: true,
-              centerPadding: "60px",
+              centerPadding: "80px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -675,6 +675,7 @@ export default {
             breakpoint: 599,
             settings: {
               centerMode: true,
+              centerPadding: "50px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -731,13 +732,13 @@ export default {
     min-width: 110%;
     margin-left: -24px;
   }
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 400px) {
     min-width: 114%;
     margin-left: -25px;
   }
 }
 .margin-n50 {
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 599px) {
     margin-top: -50px !important;
   }
 }
@@ -747,6 +748,17 @@ export default {
   }
 }
 
+.margin-n10 {
+  @media screen and (max-width: 599px) {
+    margin-top: -10px !important;
+  }
+}
+
+.margin-n15 {
+  @media screen and (max-width: 599px) {
+    margin-top: -20px !important;
+  }
+}
 .margin-20 {
   @media screen and (max-width: 599px) {
     margin-top: 20px !important;
@@ -754,7 +766,7 @@ export default {
 }
 
 .margin-0 {
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 400px) {
     margin-top: 0px !important;
   }
 }
@@ -775,8 +787,8 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
-  @media screen and (max-width: 959px){
-    margin-top:9px;
+  @media screen and (max-width: 959px) {
+    margin-top: 9px;
   }
   @media screen and (max-width: 599px) {
     margin-top: 0px;
@@ -855,10 +867,6 @@ export default {
     line-height: 2.813rem;
     margin-bottom: 20px;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 2rem;
-    line-height: 2.1rem;
-  }
 }
 
 //resume subtitle
@@ -878,9 +886,7 @@ export default {
     font-size: 0.875rem !important;
     line-height: 1.375rem;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 11px !important;
-  }
+
 }
 
 .btn-get-started {
@@ -902,16 +908,11 @@ export default {
 
   @media screen and (max-width: 599px) {
     margin-top: 0px;
-    width: 9.5rem !important;
-    height: 3.048rem !important;
+    width: 157px !important;
+    height: 48.76px !important;
     font-size: 0.75rem !important;
   }
-  @media screen and (max-width: 380px) {
-    width: 8rem !important;
-    height: 3rem !important;
-    font-size: 0.65rem !important;
-    margin-top: -20px;
-  }
+  
 }
 
 //reserve title
@@ -935,10 +936,7 @@ export default {
     margin-top: 0px;
     margin-bottom: 5px;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 1rem !important;
-    margin-top: -20px;
-  }
+
 }
 
 //card download
@@ -966,9 +964,7 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 10px !important;
-  }
+  
   // @media screen and (max-width: 959px) {
   //   font-size: 1rem !important;
   // }
@@ -1012,9 +1008,7 @@ export default {
     margin-top: 0px;
     height: 818px;
   }
-  @media screen and (max-width: 380px) {
-    margin-top: -30px;
-  }
+  
 }
 
 .login-title {
@@ -1064,7 +1058,6 @@ export default {
     margin-top: -10px;
     margin-bottom: 0px;
   }
-
 }
 
 //upper right block
@@ -1131,9 +1124,7 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.125rem;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 12px;
-  }
+  
 }
 
 // build resume section
@@ -1172,11 +1163,6 @@ export default {
     height: 3.048rem !important;
     font-size: 0.75rem !important;
   }
-  @media screen and (max-width: 380px) {
-    width: 8rem !important;
-    height: 3rem !important;
-    font-size: 0.65rem !important;
-  }
 }
 
 .gallery-container {
@@ -1209,10 +1195,6 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.5rem;
     line-height: 32px;
-  }
-  @media screen and (max-width: 380px) {
-    font-size: 1.2rem;
-    line-height: 24px;
   }
 }
 
@@ -1309,7 +1291,15 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    height: 150px !important;
+    width: 150px;
+    height: auto !important;
+  }
+}
+.integrationSlides {
+  @media screen and (max-width: 959px) {
+    img {
+      width: 85%;
+    }
   }
 }
 //integration section
@@ -1334,8 +1324,11 @@ export default {
     font-size: 1.125rem;
   }
   @media screen and (max-width: 599px) {
-    font-size: 14px;
+    font-size: 12px;
+    margin-bottom: -20px;
+    margin-top: 20px;
   }
+  
 }
 .logo-footer {
   width: 201px;
@@ -1346,6 +1339,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     width: 123px;
+    margin-top: -18px;
   }
 }
 .footer-social-icon {
@@ -1375,6 +1369,7 @@ export default {
       width: 12px;
     }
   }
+  
 }
 //footer
 
@@ -1581,12 +1576,12 @@ export default {
     top: 2%;
     left: 22px;
   }
-  @media screen and (max-width: 380px) {
-    top: 2.3%;
-    img {
-      width: 88%;
-    }
+  @media screen and (max-width: 400px){
+    width:88%;
+    top: 2.4%;
+    left: -12px;
   }
+
   @media screen and (max-width: 340px) {
     top: 2.3%;
     img {
@@ -1605,14 +1600,11 @@ export default {
   top: 7.4%;
   @media screen and (max-width: 599px) {
     width: 100%;
-    left: 56px;
-    top: 7.2%;
+    left: 63px;
+    top: 7.7%;
     img {
       width: 82%;
     }
-  }
-  @media screen and (max-width: 380px) {
-    top: 7.5%;
   }
 
   @media screen and (max-width: 340px) {
@@ -1636,16 +1628,9 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 32.4%;
+  top: 33.4%;
   @media screen and (max-width: 599px) {
-    top: 39.1%;
-  }
-  @media screen and (max-width: 380px) {
-    top: 40.1%;
-    left: 20px;
-    img {
-      width: 89%;
-    }
+    top: 40.2%;
   }
 
   @media screen and (max-width: 340px) {
@@ -1664,15 +1649,12 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 46.8%;
+  top: 47.4%;
   img {
     width: 95%;
   }
   @media screen and (max-width: 599px) {
-    top: 49.5%;
-  }
-  @media screen and (max-width: 380px) {
-    top: 99rem;
+    top: 50.8%;
   }
 
   @media screen and (max-width: 340px) {
@@ -1687,14 +1669,12 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 57%;
+  top: 57.7%;
   @media screen and (max-width: 599px) {
-    top: 63.8%;
+    top: 64.9%;
     left: 39%;
   }
-  @media screen and (max-width: 380px) {
-    top: 127rem;
-  }
+
   @media screen and (max-width: 340px) {
     top: 127rem;
   }
@@ -1708,21 +1688,19 @@ export default {
   left: 16%;
   right: 0;
   z-index: 0;
-  top: 61.6%;
+  top: 62.5%;
   img {
     width: 95%;
   }
   @media screen and (max-width: 599px) {
     width: 100%;
-    top: 79.3%;
+    top: 79.8%;
     left: 32%;
     img {
       width: 66%;
     }
   }
-  @media screen and (max-width: 380px) {
-    top: 157.3rem;
-  }
+
   @media screen and (max-width: 340px) {
     top: 157.3rem;
   }
@@ -1735,7 +1713,7 @@ export default {
   margin-right: auto;
   left: 9%;
   right: 0;
-  top: 78%;
+  top: 79%;
   img {
     width: 80%;
   }
@@ -1809,22 +1787,48 @@ export default {
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
   }
-  #welcomeView2 .slick-slide {
+  #welcomeView2 .gallerySlidess .slick-slide {
     margin-left: -78px;
+  }
+  #welcomeView2 .integrationSlides .slick-slide {
+    margin-left: -35px !important;
+  }
+  #welcomeView2 .integrationSlides .slick-dots li button {
+    width: 130px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
+    margin-top: -30px;
   }
 }
 @media screen and (max-width: 599px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 50px !important;
   }
-  #welcomeView2 .slick-dots li button {
+  #welcomeView2 .gallerySlidess .slick-dots li button {
     width: 40px;
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
   }
-  #welcomeView2 .slick-slide {
-    margin-left: -9px;
+  #welcomeView2 .integrationSlides .slick-dots li button {
+    width: 50px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
+  }
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 32px;
+    width: 300px !important;
+  }
+  #welcomeView2 .integrationSlides .slick-slide {
+    margin-left: -30px !important;
+    margin-top: 0px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 13px;
   }
 }
 /* mobile screen */
