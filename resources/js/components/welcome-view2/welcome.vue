@@ -435,7 +435,7 @@
             <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title margin-n50">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0 mb-sm-0 mb-n11"
+                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n5 mb-sm-0 mb-n11"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text style="z-index:2;" class="mt-md-0 mt-sm-12 mt-12">
                 <slick
