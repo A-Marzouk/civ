@@ -1593,7 +1593,7 @@ export default {
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 15px;
+  left: 0;
   right: 0;
   top: 7.4%;
   @media screen and (max-width: 599px) {
@@ -1624,12 +1624,12 @@ export default {
 
 .tablet-layer3 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 32.8%;
+  top: 32.4%;
   @media screen and (max-width: 599px) {
     top: 39.1%;
   }
@@ -1652,12 +1652,15 @@ export default {
 
 .tablet-layer4 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 46.8%;
+  img {
+    width: 95%;
+  }
   @media screen and (max-width: 599px) {
     top: 49.5%;
   }
@@ -1677,7 +1680,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 57.3%;
+  top: 57%;
   @media screen and (max-width: 599px) {
     top: 63.8%;
     left: 39%;
@@ -1695,9 +1698,9 @@ export default {
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 13%;
+  left: 16%;
   right: 0;
-  top: 62%;
+  top: 61.6%;
   img {
     width: 95%;
   }
@@ -1724,7 +1727,7 @@ export default {
   margin-right: auto;
   left: 9%;
   right: 0;
-  top: 78.3%;
+  top: 78%;
   img {
     width: 80%;
   }
@@ -1798,7 +1801,7 @@ export default {
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
   }
-  #welcomeView2 .slick-slide{
+  #welcomeView2 .slick-slide {
     margin-left: -78px;
   }
 }
