@@ -68,6 +68,7 @@
                   v-model="username"
                   background-color="#ffffff"
                   @keyup="checkUser"
+                  :height="windowWidth <= 959 && windowWidth >599 ? '75': windowWidth<=599 ? '60':''"
                 >
                   <template slot="append">
                     <v-icon
@@ -122,18 +123,24 @@
               />
             </div>
             <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
-              <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
-              <v-card-subtitle align="center">
-                <v-btn
-                  class="social-icon mx-md-2 mx-sm-3 mx-2"
-                  color="#ffffff"
-                  v-for="icon in socialMediaIcons"
-                  :key="icon.title"
-                >
-                  <img :width="icon.width" :src="getSocialIcon(icon.title)" alt />
-                </v-btn>
-              </v-card-subtitle>
-              <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
+              <v-card color="transparent" flat tile class="card-login-child">
+                <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
+                <v-card-subtitle align="center">
+                  <v-btn
+                    class="social-icon mx-md-2 mx-sm-3 mx-2"
+                    color="#ffffff"
+                    v-for="icon in socialMediaIcons"
+                    :key="icon.title"
+                  >
+                    <img
+                      :width="windowWidth>599 && windowWidth<=959?icon.tablet_width:icon.width"
+                      :src="getSocialIcon(icon.title)"
+                      alt
+                    />
+                  </v-btn>
+                </v-card-subtitle>
+                <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
+              </v-card>
               <!-- Login Form -->
               <v-card-subtitle class="login-form">
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -428,7 +435,7 @@
             <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title margin-n30">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0"
+                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0 mb-sm-0 mb-n11"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text style="z-index:2;" class="mt-md-0 mt-sm-12 mt-12">
                 <slick
@@ -593,11 +600,11 @@ export default {
       agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
-        { id: 1, title: "instagram", width: 18 },
-        { id: 2, title: "linkedin", width: 16 },
-        { id: 3, title: "google", width: 14 },
-        { id: 4, title: "facebook", width: 18 },
-        { id: 5, title: "github", width: 22 }
+        { id: 1, title: "instagram", width: 18, tablet_width: 30 },
+        { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
+        { id: 3, title: "google", width: 14, tablet_width: 22 },
+        { id: 4, title: "facebook", width: 18, tablet_width: 28 },
+        { id: 5, title: "github", width: 22, tablet_width: 36 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -628,7 +635,7 @@ export default {
           {
             breakpoint: 959,
             settings: {
-              centerPadding: "100px",
+              centerPadding: "75px",
               slidesPerRow: 1,
               slidesToShow: 1,
               slidesToScroll: 1
@@ -637,6 +644,7 @@ export default {
           {
             breakpoint: 599,
             settings: {
+              centerPadding: "30px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -658,7 +666,7 @@ export default {
             breakpoint: 959,
             settings: {
               centerMode: true,
-              centerPadding: "100px",
+              centerPadding: "60px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -767,8 +775,11 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
+  @media screen and (max-width: 959px){
+    margin-top:9px;
+  }
   @media screen and (max-width: 599px) {
-    margin-top: -5px;
+    margin-top: 0px;
   }
 }
 //form
@@ -993,6 +1004,9 @@ export default {
     margin-top: 80px;
     padding-left: 0px !important;
     padding-right: 0px !important;
+    .card-login-child {
+      padding: 10px;
+    }
   }
   @media screen and (max-width: 599px) {
     margin-top: 0px;
@@ -1040,14 +1054,17 @@ export default {
   @media screen and (max-width: 959px) {
     width: 66px !important;
     height: 66px !important;
-    margin-top: 15px;
+    margin-top: 0px;
     margin-bottom: 20px;
   }
 
   @media screen and (max-width: 599px) {
     width: 42px !important;
     height: 42px !important;
+    margin-top: -10px;
+    margin-bottom: 0px;
   }
+
 }
 
 //upper right block
@@ -1287,12 +1304,12 @@ export default {
     height: 300px;
   }
   @media screen and (max-width: 959px) {
-    height: 300px;
+    height: 350px !important;
     height: auto;
   }
 
   @media screen and (max-width: 599px) {
-    height: 150px;
+    height: 150px !important;
   }
 }
 //integration section
@@ -1583,7 +1600,7 @@ export default {
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 15px;
+  left: 0;
   right: 0;
   top: 7.4%;
   @media screen and (max-width: 599px) {
@@ -1614,12 +1631,12 @@ export default {
 
 .tablet-layer3 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 32.8%;
+  top: 32.4%;
   @media screen and (max-width: 599px) {
     top: 39.1%;
   }
@@ -1642,12 +1659,15 @@ export default {
 
 .tablet-layer4 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 46.8%;
+  img {
+    width: 95%;
+  }
   @media screen and (max-width: 599px) {
     top: 49.5%;
   }
@@ -1667,7 +1687,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 57.3%;
+  top: 57%;
   @media screen and (max-width: 599px) {
     top: 63.8%;
     left: 39%;
@@ -1685,10 +1705,10 @@ export default {
   // width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 13%;
+  left: 16%;
   right: 0;
-  top: 62%;
-  z-index: 3;
+  z-index: 0;
+  top: 61.6%;
   img {
     width: 95%;
   }
@@ -1715,7 +1735,7 @@ export default {
   margin-right: auto;
   left: 9%;
   right: 0;
-  top: 78.3%;
+  top: 78%;
   img {
     width: 80%;
   }
@@ -1743,7 +1763,7 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 3.75rem !important;
+  min-height: 60px !important;
 }
 
 #welcomeView2 .slick-dots li button {
@@ -1771,23 +1791,26 @@ export default {
 
 @media screen and (max-width: 1440px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 2.812rem !important;
+    min-height: 45px !important;
   }
 }
 /* tablet screen */
-@media screen and (max-width: 959px) {
+/* @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 4.688rem !important;
   }
-}
+} */
 /* tablet screen */
 /* mobile screen */
 @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 3.75rem !important;
+    min-height: 60px !important;
   }
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
+  }
+  #welcomeView2 .slick-slide {
+    margin-left: -78px;
   }
 }
 @media screen and (max-width: 599px) {
@@ -1799,6 +1822,9 @@ export default {
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
+  }
+  #welcomeView2 .slick-slide {
+    margin-left: -9px;
   }
 }
 /* mobile screen */
