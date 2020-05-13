@@ -841,7 +841,6 @@ export default {
 .container-resume {
   margin-top: -80px;
   @media screen and (max-width: 599px){
-    margin: 0px !important;
     padding: 0px !important; 
   }
 }
@@ -1829,7 +1828,7 @@ export default {
     width: 300px !important;
   }
   #welcomeView2 .integrationSlides .slick-slide {
-    margin-left: -30px !important;
+    margin-left: -60px !important;
     margin-top: 0px !important;
   }
 }
