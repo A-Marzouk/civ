@@ -1,10 +1,14 @@
 <template>
 	<div id="wrapper_theme1000" class="tw-w-full tw-bg-white tw-font-roboto">
-		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @openSidebar="isSidebarOpen=true" />
+		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @openSidebar="isSidebarOpen=true" @openModal="openModal" />
 
-		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" />
+		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" @openModal="openModal" />
 
 		<TabsContent :currentTab="currentTab" />
+
+		<Modal :isOpen="isModalOpen" @onClose="isModalOpen=false">
+			<PaymentForm />
+		</Modal>
 	</div>
 </template>
 
@@ -12,11 +16,13 @@
 import Header from "./components/Header";
 import TabsContent from "./components/TabsContent";
 import Sidebar from "./components/Sidebar";
+import Modal from "./components/Modal";
+import PaymentForm from "./components/PaymentForm";
 
 export default {
 	name: "resume-theme-1000",
 
-	components: { Header, TabsContent, Sidebar },
+	components: { Header, TabsContent, Sidebar, Modal, PaymentForm },
 
 	data: () => {
 		return {
@@ -31,8 +37,17 @@ export default {
 				hourRate: 20,
 				weeklyAvailability: 250
 			},
-			isSidebarOpen: false
+			isSidebarOpen: false,
+			isModalOpen: false
 		};
+	},
+
+	methods: {
+		openModal() {
+			if (this.isSidebarOpen) this.isSidebarOpen = false;
+
+			this.isModalOpen = true;
+		}
 	}
 };
 </script>
