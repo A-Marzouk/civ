@@ -5,7 +5,6 @@
 				<AudioPreview v-if="item.type == 'audio'" :media="item" />
 				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
 			</div>
-
 		</div>
 
 		<AudioPlayer :track="track" />
