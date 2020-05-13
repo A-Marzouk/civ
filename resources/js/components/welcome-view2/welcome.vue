@@ -68,7 +68,7 @@
                   v-model="username"
                   background-color="#ffffff"
                   @keyup="checkUser"
-                  :height="windowWidth <= 959 ? '75': ''"
+                  :height="windowWidth <= 959 && windowWidth >599 ? '75': windowWidth<=599 ? '60':''"
                 >
                   <template slot="append">
                     <v-icon
@@ -435,7 +435,7 @@
             <v-card flat tile color="transparent" style="z-index:1;">
               <v-card-subtitle class="build-resume-title margin-n30">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0"
+                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0 mb-sm-0 mb-n11"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text style="z-index:2;" class="mt-md-0 mt-sm-12 mt-12">
                 <slick
@@ -644,6 +644,7 @@ export default {
           {
             breakpoint: 599,
             settings: {
+              centerPadding: "30px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -774,8 +775,11 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
+  @media screen and (max-width: 959px){
+    margin-top:9px;
+  }
   @media screen and (max-width: 599px) {
-    margin-top: -5px;
+    margin-top: 0px;
   }
 }
 //form
@@ -1057,7 +1061,10 @@ export default {
   @media screen and (max-width: 599px) {
     width: 42px !important;
     height: 42px !important;
+    margin-top: -10px;
+    margin-bottom: 0px;
   }
+
 }
 
 //upper right block
@@ -1700,6 +1707,7 @@ export default {
   margin-right: auto;
   left: 16%;
   right: 0;
+  z-index: 0;
   top: 61.6%;
   img {
     width: 95%;
@@ -1814,6 +1822,9 @@ export default {
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
+  }
+  #welcomeView2 .slick-slide {
+    margin-left: -9px;
   }
 }
 /* mobile screen */
