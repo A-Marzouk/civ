@@ -1,7 +1,7 @@
 <template>
-  <v-app style="width:100%; background-color: #ffffff;">
+  <v-app style="width:100%; background-color: #ffffff;" class="app-container">
     <!-- main container -->
-    <v-container class="main-container">
+    <v-container class="main-container" >
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
@@ -20,11 +20,11 @@
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
                 alt
               />
-              <img
+              <!-- <img
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer1.png"
                 alt
-              />
+              /> -->
             </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
@@ -43,10 +43,10 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
               />
-              <img
+              <!-- <img
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer2.png"
-              />
+              /> -->
             </div>
 
             <div class="top-layer-background hidden-sm-and-down">
@@ -233,10 +233,10 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
               />
-              <img
+              <!-- <img
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png"
-              />
+              /> -->
             </div>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
@@ -285,10 +285,10 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
               />
-              <img
+              <!-- <img
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png"
-              />
+              /> -->
             </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
@@ -348,20 +348,20 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
               />
-              <img
+              <!-- <img
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
-              />
+              /> -->
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
               <img
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
               />
-              <img
+              <!-- <img
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
-              />
+              /> -->
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
               <v-card-title class="build-resume-title margin-n30">
@@ -729,14 +729,17 @@ export default {
   width: 100%;
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
-    min-width: 110%;
-    margin-left: -24px;
+    margin:0 !important;
+    padding:0 !important;
   }
   @media screen and (max-width: 400px) {
-    min-width: 114%;
-    margin-left: -25px;
   }
 }
+.app-container{
+  @media screen and (max-width: 599px){
+  }
+}
+
 .margin-n50 {
   @media screen and (max-width: 599px) {
     margin-top: -50px !important;
@@ -837,6 +840,10 @@ export default {
 
 .container-resume {
   margin-top: -80px;
+  @media screen and (max-width: 599px){
+    margin: 0px !important;
+    padding: 0px !important; 
+  }
 }
 
 .card-resume {
@@ -886,7 +893,6 @@ export default {
     font-size: 0.875rem !important;
     line-height: 1.375rem;
   }
-
 }
 
 .btn-get-started {
@@ -912,7 +918,6 @@ export default {
     height: 48.76px !important;
     font-size: 0.75rem !important;
   }
-  
 }
 
 //reserve title
@@ -936,7 +941,6 @@ export default {
     margin-top: 0px;
     margin-bottom: 5px;
   }
-
 }
 
 //card download
@@ -964,7 +968,7 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
-  
+
   // @media screen and (max-width: 959px) {
   //   font-size: 1rem !important;
   // }
@@ -1007,8 +1011,9 @@ export default {
   @media screen and (max-width: 599px) {
     margin-top: 0px;
     height: 818px;
+    margin-left:0 !important;
+    margin-right:0 !important;
   }
-  
 }
 
 .login-title {
@@ -1124,7 +1129,6 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.125rem;
   }
-  
 }
 
 // build resume section
@@ -1134,7 +1138,8 @@ export default {
     margin-top: 80px;
   }
   @media screen and (max-width: 599px) {
-    margin-top: 0px;
+    margin:0 !important;
+    padding: 0 !important;
   }
 }
 
@@ -1175,6 +1180,8 @@ export default {
   }
   @media screen and (max-width: 599px) {
     margin-top: -20px;
+    padding:0 !important;
+    margin: 0 !important;
   }
 }
 
@@ -1263,6 +1270,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     margin-top: 30px;
+    padding: 0 !important;
   }
 }
 .integration-title {
@@ -1328,7 +1336,6 @@ export default {
     margin-bottom: -20px;
     margin-top: 20px;
   }
-  
 }
 .logo-footer {
   width: 201px;
@@ -1369,7 +1376,6 @@ export default {
       width: 12px;
     }
   }
-  
 }
 //footer
 
@@ -1566,50 +1572,50 @@ export default {
 // background tablet and mobile
 .tablet-layer1 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 1.5%;
-  @media screen and (max-width: 599px) {
-    top: 2%;
-    left: 22px;
-  }
-  @media screen and (max-width: 400px){
-    width:88%;
-    top: 2.4%;
-    left: -12px;
-  }
+  // @media screen and (max-width: 599px) {
+  //   top: 2%;
+  //   left: 22px;
+  // }
+  // @media screen and (max-width: 400px) {
+  //   width: 88%;
+  //   top: 2.4%;
+  //   left: -12px;
+  // }
 
-  @media screen and (max-width: 340px) {
-    top: 2.3%;
-    img {
-      width: 88%;
-    }
-  }
+  // @media screen and (max-width: 340px) {
+  //   top: 2.3%;
+  //   img {
+  //     width: 88%;
+  //   }
+  // }
 }
 
 .tablet-layer2 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 7.4%;
-  @media screen and (max-width: 599px) {
-    width: 100%;
-    left: 63px;
-    top: 7.7%;
-    img {
-      width: 82%;
-    }
-  }
+  // @media screen and (max-width: 599px) {
+  //   width: 100%;
+  //   left: 63px;
+  //   top: 7.7%;
+  //   img {
+  //     width: 82%;
+  //   }
+  // }
 
-  @media screen and (max-width: 340px) {
-    top: 7.5%;
-  }
+  // @media screen and (max-width: 340px) {
+  //   top: 7.5%;
+  // }
 }
 
 .make-resume-background {
@@ -1629,17 +1635,17 @@ export default {
   left: 0;
   right: 0;
   top: 33.4%;
-  @media screen and (max-width: 599px) {
-    top: 40.2%;
-  }
+  // @media screen and (max-width: 599px) {
+  //   top: 40.2%;
+  // }
 
-  @media screen and (max-width: 340px) {
-    top: 40.1%;
-    left: 20px;
-    img {
-      width: 89%;
-    }
-  }
+  // @media screen and (max-width: 340px) {
+  //   top: 40.1%;
+  //   left: 20px;
+  //   img {
+  //     width: 89%;
+  //   }
+  // }
 }
 
 .tablet-layer4 {
@@ -1653,9 +1659,9 @@ export default {
   img {
     width: 95%;
   }
-  @media screen and (max-width: 599px) {
-    top: 50.8%;
-  }
+  // @media screen and (max-width: 599px) {
+  //   top: 50.8%;
+  // }
 
   @media screen and (max-width: 340px) {
     top: 99rem;
@@ -1664,25 +1670,25 @@ export default {
 
 .tablet-layer5 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 3%;
   right: 0;
   top: 57.7%;
-  @media screen and (max-width: 599px) {
-    top: 64.9%;
-    left: 39%;
-  }
+  // @media screen and (max-width: 599px) {
+  //   top: 64.9%;
+  //   left: 39%;
+  // }
 
-  @media screen and (max-width: 340px) {
-    top: 127rem;
-  }
+  // @media screen and (max-width: 340px) {
+  //   top: 127rem;
+  // }
 }
 
 .tablet-layer6 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 16%;
@@ -1692,18 +1698,18 @@ export default {
   img {
     width: 95%;
   }
-  @media screen and (max-width: 599px) {
-    width: 100%;
-    top: 79.8%;
-    left: 32%;
-    img {
-      width: 66%;
-    }
-  }
+  // @media screen and (max-width: 599px) {
+  //   width: 100%;
+  //   top: 79.8%;
+  //   left: 32%;
+  //   img {
+  //     width: 66%;
+  //   }
+  // }
 
-  @media screen and (max-width: 340px) {
-    top: 157.3rem;
-  }
+  // @media screen and (max-width: 340px) {
+  //   top: 157.3rem;
+  // }
 }
 
 .tablet-layer7 {
@@ -1810,6 +1816,7 @@ export default {
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
+    margin-top: -20px;
   }
   #welcomeView2 .integrationSlides .slick-dots li button {
     width: 50px;
@@ -1818,7 +1825,7 @@ export default {
     margin-left: -10px;
   }
   #welcomeView2 .gallerySlidess .slick-slide {
-    margin-left: 32px;
+    margin-left: 34px;
     width: 300px !important;
   }
   #welcomeView2 .integrationSlides .slick-slide {
