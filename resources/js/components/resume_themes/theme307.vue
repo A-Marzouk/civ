@@ -2,13 +2,18 @@
     <v-app style="width: 100%">
         <v-container style="max-width: 1920px;" class="hold_theme307">
             <v-row no-gutters class="head-bar">
-                <v-col lg="6">
+                <v-col lg="2" md="6">
+                    <v-card flat class="user-profile">
+                        <img src="/images/resume_themes/theme307/profile.svg" alt="">
+                    </v-card>  
+                </v-col>
+                <v-col lg="4" md="6">
                     <v-card flat class="user-details">
                         <h3>Isabella Abigail</h3>
                         <span>UI/UX Designer</span>
                     </v-card>
                 </v-col>
-                <v-col lg="3" class="m-center">
+                <v-col lg="3" md="12" class="m-center">
                     <v-card flat class="hire-options">
                         <div class="item-hire">
                             <span class="value">15$</span>
@@ -21,7 +26,7 @@
                         </div>                        
                     </v-card>
                 </v-col>
-                <v-col lg="3">
+                <v-col lg="3" md="12">
                     <v-card flat class="interview-section">
                         <span>Your interviews:</span>
                         <v-btn icon>
@@ -34,12 +39,7 @@
                 </v-col>
             </v-row>
             <v-row no-gutters class="mid-bar">
-                <v-col lg="2">
-                    <v-card flat class="user-profile">
-                        <img src="/images/resume_themes/theme307/profile.svg" alt="">
-                    </v-card>                    
-                </v-col>
-                <v-col lg="4">
+                <v-col lg="6">
                     <v-card flat class="hold-section user-hireme">
                         <div class="col-section">
                             <span>Follow me:</span>
@@ -59,7 +59,7 @@
                             </div>
                             
                         </div>
-                        <div class="col-section">
+                        <div class="col-section pl-12">
                             <v-btn text class="btn-flat">
                                 Hire me
                             </v-btn>
@@ -100,7 +100,7 @@
                                     </v-col>
                                     <v-col lg="12">
                                         <v-card flat class="load-more" ma-auto>
-                                            <v-btn flat class="btn-wshadow size-lg" text-center>
+                                            <v-btn text class="btn-wshadow size-lg" text-center>
                                                 load more...
                                             </v-btn>
                                         </v-card>                                        
@@ -109,7 +109,7 @@
                             </v-container>
                         </v-tab-item>
                         <v-tab-item :transition="false" :reverse-transition="false">
-                            <v-list flat>
+                            <v-list text>
                                 <v-list-item v-for="(work,i) in 3" :key="i">
                                     <v-card flat>
                                         <div class="info-work">
@@ -125,7 +125,7 @@
                             </v-list>
                         </v-tab-item>
                         <v-tab-item :transition="false" :reverse-transition="false">
-                            <v-list flat>
+                            <v-list text>
                                 <v-list-item v-for="(education,i) in 3" :key="i">
                                     <v-card flat>
                                         <div class="info-work">
@@ -267,6 +267,30 @@ export default {
             mix-blend-mode: normal;
             box-shadow: -10px 2px 30px #FFFFFF, 
             16px 10px 48px rgba(136, 165, 191, 0.58);
+            max-height: 170px;
+        }
+
+        
+        .user-profile{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 270px;
+            max-height: 270px;
+            background: #E3EDF7;
+            box-shadow: -16px -2px 56px #FFFFFF, 
+            16px 10px 48px rgba(136, 165, 191, 0.58);
+            border-radius: 100%;
+
+            img{
+                width: 100%;
+
+            }
+
+            @include lt-md {
+                width: 150px;
+                height: 150px;
+            }
         }
 
         .user-details{
@@ -274,8 +298,9 @@ export default {
             flex-flow: column;
             align-items: flex-start;
             max-width: 310px;
-            margin: 0 auto;
+            margin: 0;
             background: none;
+            padding-top: 10px;
 
             h3{
                 font-style: normal;
@@ -303,7 +328,7 @@ export default {
             height: 100%;
             background: none;
             box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
-            min-height: 92px;
+            max-height: 92px;
             width: 400px;
             border-radius: 6px;
 
@@ -325,7 +350,7 @@ export default {
         .interview-section{
             display: flex;
             justify-content: flex-end;
-            height: 100%;
+            height: 90px;
             align-items: center;
             background: none;
             
@@ -348,23 +373,6 @@ export default {
         .mid-bar{
             padding: 0 70px;
 
-            .user-profile{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                max-width: 270px;
-                height: 270px;
-                background: #E3EDF7;
-                box-shadow: -16px -2px 56px #FFFFFF, 
-                16px 10px 48px rgba(136, 165, 191, 0.58);
-                border-radius: 100%;
-                margin-top: -135px;
-
-                img{
-                    width: 100%;
-
-                }
-            }
         }
 
         .hold-section{
@@ -375,9 +383,10 @@ export default {
             &.user-hireme{
                 max-width: 400px;
                 display: flex;
-                padding-top: 45px;
+                padding-top: 40px;
                 background: none;
                 align-items: center;
+                padding-left: 33%;
             }
 
             .col-section{
@@ -449,6 +458,7 @@ export default {
             display: flex;
             align-items: center;
             background: none;
+            padding-top: 40px;
 
             .skill-item{
                 font-family: 'PT Serif Caption', serif;
@@ -468,8 +478,7 @@ export default {
             }
         }
         .wrap-tabs{
-            padding: 0px 70px;
-            margin-top: 30px;
+            padding: 30px 70px;
 
             .v-tabs{
                 background: #E3EDF7;
