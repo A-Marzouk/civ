@@ -11,6 +11,9 @@ class Theme extends Model
     protected $fillable = [
         'title',
         'category',
+        'job_title',
+        'emotions',
+        'design_style',
         'color',
         'code',
         'image',
