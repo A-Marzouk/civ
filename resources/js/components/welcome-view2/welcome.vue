@@ -666,7 +666,7 @@ export default {
             breakpoint: 959,
             settings: {
               centerMode: true,
-              centerPadding: "60px",
+              centerPadding: "80px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -675,6 +675,7 @@ export default {
             breakpoint: 599,
             settings: {
               centerMode: true,
+              centerPadding:"50",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -1312,6 +1313,13 @@ export default {
     height: 150px !important;
   }
 }
+.integrationSlides{
+  @media screen and (max-width: 959px){
+    img{
+      width: 85%;
+    }
+  }
+}
 //integration section
 //footer
 .follow-us-text {
@@ -1636,7 +1644,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 32.4%;
+  top: 33.4%;
   @media screen and (max-width: 599px) {
     top: 39.1%;
   }
@@ -1664,7 +1672,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 46.8%;
+  top: 47.4%;
   img {
     width: 95%;
   }
@@ -1687,7 +1695,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 57%;
+  top: 57.7%;
   @media screen and (max-width: 599px) {
     top: 63.8%;
     left: 39%;
@@ -1708,7 +1716,7 @@ export default {
   left: 16%;
   right: 0;
   z-index: 0;
-  top: 61.6%;
+  top: 62.5%;
   img {
     width: 95%;
   }
@@ -1735,7 +1743,7 @@ export default {
   margin-right: auto;
   left: 9%;
   right: 0;
-  top: 78%;
+  top: 79%;
   img {
     width: 80%;
   }
@@ -1809,9 +1817,19 @@ export default {
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
   }
-  #welcomeView2 .slick-slide {
+  #welcomeView2 .gallerySlidess .slick-slide {
     margin-left: -78px;
   }
+  #welcomeView2 .integrationSlides .slick-slide{
+    margin-left: -35px !important;
+  }
+  #welcomeView2 .integrationSlides .slick-dots li button {
+  width: 130px;
+  height: 6px;
+  border-radius: 0px;
+  margin-left: -10px;
+  margin-top: -30px;
+}
 }
 @media screen and (max-width: 599px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
@@ -1823,8 +1841,12 @@ export default {
     border-radius: 0px;
     margin-left: -10px;
   }
-  #welcomeView2 .slick-slide {
-    margin-left: -9px;
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 32px;
+    width: 300px !important;
+  }
+  #welcomeView2 .integrationSlides .slick-slide{
+    margin-left: 0px !important;
   }
 }
 /* mobile screen */
