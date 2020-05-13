@@ -549,7 +549,7 @@
             </v-card>
           </v-col>
 
-          <v-col sm="8" cols="8" class="hidden-md-and-up mt-n10" align="right">
+          <v-col sm="8" cols="8" class="hidden-md-and-up mt-n12" align="right">
             <v-card flat tile color="transparent">
               <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
               <v-card-subtitle align="center">
@@ -732,7 +732,7 @@ export default {
     min-width: 110%;
     margin-left: -24px;
   }
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 400px) {
     min-width: 114%;
     margin-left: -25px;
   }
@@ -766,7 +766,7 @@ export default {
 }
 
 .margin-0 {
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 400px) {
     margin-top: 0px !important;
   }
 }
@@ -867,10 +867,6 @@ export default {
     line-height: 2.813rem;
     margin-bottom: 20px;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 2rem;
-    line-height: 2.1rem;
-  }
 }
 
 //resume subtitle
@@ -890,9 +886,7 @@ export default {
     font-size: 0.875rem !important;
     line-height: 1.375rem;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 11px !important;
-  }
+
 }
 
 .btn-get-started {
@@ -918,12 +912,7 @@ export default {
     height: 48.76px !important;
     font-size: 0.75rem !important;
   }
-  @media screen and (max-width: 380px) {
-    width: 8rem !important;
-    height: 3rem !important;
-    font-size: 0.65rem !important;
-    margin-top: -20px;
-  }
+  
 }
 
 //reserve title
@@ -947,10 +936,7 @@ export default {
     margin-top: 0px;
     margin-bottom: 5px;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 1rem !important;
-    margin-top: -20px;
-  }
+
 }
 
 //card download
@@ -978,9 +964,7 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 10px !important;
-  }
+  
   // @media screen and (max-width: 959px) {
   //   font-size: 1rem !important;
   // }
@@ -1024,9 +1008,7 @@ export default {
     margin-top: 0px;
     height: 818px;
   }
-  @media screen and (max-width: 380px) {
-    margin-top: -30px;
-  }
+  
 }
 
 .login-title {
@@ -1142,9 +1124,7 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.125rem;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 12px;
-  }
+  
 }
 
 // build resume section
@@ -1183,11 +1163,6 @@ export default {
     height: 3.048rem !important;
     font-size: 0.75rem !important;
   }
-  @media screen and (max-width: 380px) {
-    width: 8rem !important;
-    height: 3rem !important;
-    font-size: 0.65rem !important;
-  }
 }
 
 .gallery-container {
@@ -1220,10 +1195,6 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.5rem;
     line-height: 32px;
-  }
-  @media screen and (max-width: 380px) {
-    font-size: 1.2rem;
-    line-height: 24px;
   }
 }
 
@@ -1357,9 +1328,7 @@ export default {
     margin-bottom: -20px;
     margin-top: 20px;
   }
-  @media screen and (max-width: 380px) {
-    font-size: 10px;
-  }
+  
 }
 .logo-footer {
   width: 201px;
@@ -1400,13 +1369,7 @@ export default {
       width: 12px;
     }
   }
-  @media screen and (max-width: 380px) {
-    width: 20px;
-    height: 20px;
-    img {
-      width: 10px;
-    }
-  }
+  
 }
 //footer
 
@@ -1613,12 +1576,12 @@ export default {
     top: 2%;
     left: 22px;
   }
-  @media screen and (max-width: 380px) {
-    top: 2.3%;
-    img {
-      width: 88%;
-    }
+  @media screen and (max-width: 400px){
+    width:88%;
+    top: 2.4%;
+    left: -12px;
   }
+
   @media screen and (max-width: 340px) {
     top: 2.3%;
     img {
@@ -1642,9 +1605,6 @@ export default {
     img {
       width: 82%;
     }
-  }
-  @media screen and (max-width: 380px) {
-    top: 7.5%;
   }
 
   @media screen and (max-width: 340px) {
@@ -1672,13 +1632,6 @@ export default {
   @media screen and (max-width: 599px) {
     top: 40.2%;
   }
-  @media screen and (max-width: 380px) {
-    top: 40.1%;
-    left: 20px;
-    img {
-      width: 89%;
-    }
-  }
 
   @media screen and (max-width: 340px) {
     top: 40.1%;
@@ -1703,9 +1656,6 @@ export default {
   @media screen and (max-width: 599px) {
     top: 50.8%;
   }
-  @media screen and (max-width: 380px) {
-    top: 99rem;
-  }
 
   @media screen and (max-width: 340px) {
     top: 99rem;
@@ -1724,9 +1674,7 @@ export default {
     top: 64.9%;
     left: 39%;
   }
-  @media screen and (max-width: 380px) {
-    top: 127rem;
-  }
+
   @media screen and (max-width: 340px) {
     top: 127rem;
   }
@@ -1752,9 +1700,7 @@ export default {
       width: 66%;
     }
   }
-  @media screen and (max-width: 380px) {
-    top: 157.3rem;
-  }
+
   @media screen and (max-width: 340px) {
     top: 157.3rem;
   }
@@ -1878,6 +1824,11 @@ export default {
   #welcomeView2 .integrationSlides .slick-slide {
     margin-left: -30px !important;
     margin-top: 0px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 13px;
   }
 }
 /* mobile screen */
