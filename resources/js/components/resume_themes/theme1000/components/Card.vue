@@ -2,8 +2,8 @@
 	<div class="card">
 		<div class="card__body tw-flex tw-justify-between tw-items-center">
 			<div class="card__body--header">
-				<h4 class="card__body--title tw-font-bold tw-text-black tw-text-lg" v-text="details.title"></h4>
-				<div class="card__body--subtitle tw-text-black tw-font-medium tw-text-lg" v-text="details.subtitle"></div>
+				<h4 class="card__title tw-font-bold tw-text-black tw-text-lg" v-text="details.title"></h4>
+				<div class="card__subtitle tw-text-black tw-font-medium tw-text-lg" v-text="details.subtitle"></div>
 			</div>
 			<div class="card__body--icon tw-flex tw-items-center tw-justify-center" :class="`bg-${iconBgColor}`">
 				<slot></slot>
@@ -43,11 +43,11 @@ export default {
 	padding: 18px 25px 25px;
 }
 
-.card__body--title {
+.card__title {
 	line-height: 21px;
 }
 
-.card__body--subtitle {
+.card__subtitle {
 	line-height: 21px;
 	padding-top: 10px;
 }
@@ -71,12 +71,12 @@ export default {
 		padding: 40px 54px 44px;
 	}
 
-	.card__body--title {
+	.card__title {
 		font-size: 25px;
 		line-height: 29px;
 	}
 
-	.card__body--subtitle {
+	.card__subtitle {
 		font-size: 20px;
 		line-height: 23px;
 		padding-top: 15px;
@@ -102,12 +102,12 @@ export default {
 		padding: 15px;
 	}
 
-	.card__body--title {
+	.card__title {
 		font-size: 22px;
 		line-height: 26px;
 	}
 
-	.card__body--subtitle {
+	.card__subtitle {
 		font-size: 18px;
 		line-height: 21px;
 		padding-top: 10px;
@@ -133,12 +133,12 @@ export default {
 		padding: 40px 54px 44px;
 	}
 
-	.card__body--title {
+	.card__title {
 		font-size: 25px;
 		line-height: 29px;
 	}
 
-	.card__body--subtitle {
+	.card__subtitle {
 		font-size: 20px;
 		line-height: 23px;
 		padding-top: 15px;
