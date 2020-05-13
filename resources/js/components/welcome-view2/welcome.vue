@@ -68,6 +68,7 @@
                   v-model="username"
                   background-color="#ffffff"
                   @keyup="checkUser"
+                  :height="windowWidth <= 959 ? '75': ''"
                 >
                   <template slot="append">
                     <v-icon
@@ -122,18 +123,24 @@
               />
             </div>
             <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
-              <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
-              <v-card-subtitle align="center">
-                <v-btn
-                  class="social-icon mx-md-2 mx-sm-3 mx-2"
-                  color="#ffffff"
-                  v-for="icon in socialMediaIcons"
-                  :key="icon.title"
-                >
-                  <img :width="icon.width" :src="getSocialIcon(icon.title)" alt />
-                </v-btn>
-              </v-card-subtitle>
-              <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
+              <v-card color="transparent" flat tile class="card-login-child">
+                <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
+                <v-card-subtitle align="center">
+                  <v-btn
+                    class="social-icon mx-md-2 mx-sm-3 mx-2"
+                    color="#ffffff"
+                    v-for="icon in socialMediaIcons"
+                    :key="icon.title"
+                  >
+                    <img
+                      :width="windowWidth>599 && windowWidth<=959?icon.tablet_width:icon.width"
+                      :src="getSocialIcon(icon.title)"
+                      alt
+                    />
+                  </v-btn>
+                </v-card-subtitle>
+                <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
+              </v-card>
               <!-- Login Form -->
               <v-card-subtitle class="login-form">
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -593,11 +600,11 @@ export default {
       agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
-        { id: 1, title: "instagram", width: 18 },
-        { id: 2, title: "linkedin", width: 16 },
-        { id: 3, title: "google", width: 14 },
-        { id: 4, title: "facebook", width: 18 },
-        { id: 5, title: "github", width: 22 }
+        { id: 1, title: "instagram", width: 18, tablet_width: 30 },
+        { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
+        { id: 3, title: "google", width: 14, tablet_width: 22 },
+        { id: 4, title: "facebook", width: 18, tablet_width: 28 },
+        { id: 5, title: "github", width: 22, tablet_width: 36 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -628,7 +635,7 @@ export default {
           {
             breakpoint: 959,
             settings: {
-              centerPadding: "100px",
+              centerPadding: "75px",
               slidesPerRow: 1,
               slidesToShow: 1,
               slidesToScroll: 1
@@ -993,6 +1000,9 @@ export default {
     margin-top: 80px;
     padding-left: 0px !important;
     padding-right: 0px !important;
+    .card-login-child {
+      padding: 10px;
+    }
   }
   @media screen and (max-width: 599px) {
     margin-top: 0px;
@@ -1040,7 +1050,7 @@ export default {
   @media screen and (max-width: 959px) {
     width: 66px !important;
     height: 66px !important;
-    margin-top: 15px;
+    margin-top: 0px;
     margin-bottom: 20px;
   }
 
@@ -1688,7 +1698,6 @@ export default {
   left: 13%;
   right: 0;
   top: 62%;
-  z-index: 3;
   img {
     width: 95%;
   }
@@ -1743,7 +1752,7 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 3.75rem !important;
+  min-height: 60px !important;
 }
 
 #welcomeView2 .slick-dots li button {
@@ -1771,20 +1780,20 @@ export default {
 
 @media screen and (max-width: 1440px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 2.812rem !important;
+    min-height: 45px !important;
   }
 }
 /* tablet screen */
-@media screen and (max-width: 959px) {
+/* @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 4.688rem !important;
   }
-}
+} */
 /* tablet screen */
 /* mobile screen */
 @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 3.75rem !important;
+    min-height: 60px !important;
   }
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
