@@ -295,7 +295,7 @@
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
-              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7 margin-n50">
+              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7">
                 Build a resume that you
                 <br />can be proud of
               </v-card-subtitle>
@@ -364,11 +364,11 @@
               />
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
-              <v-card-title class="build-resume-title margin-20">
+              <v-card-title class="build-resume-title margin-n30">
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
-              <v-card-subtitle class="build-resume-subtitle mt-1">
+              <v-card-subtitle class="build-resume-subtitle mt-1 margin-n10">
                 <v-row>
                   <v-col md="6" cols="12">
                     <span
@@ -748,6 +748,17 @@ export default {
   }
 }
 
+.margin-n10 {
+  @media screen and (max-width: 599px) {
+    margin-top: -10px !important;
+  }
+}
+
+.margin-n15 {
+  @media screen and (max-width: 599px) {
+    margin-top: -20px !important;
+  }
+}
 .margin-20 {
   @media screen and (max-width: 599px) {
     margin-top: 20px !important;
@@ -903,8 +914,8 @@ export default {
 
   @media screen and (max-width: 599px) {
     margin-top: 0px;
-    width: 9.5rem !important;
-    height: 3.048rem !important;
+    width: 157px !important;
+    height: 48.76px !important;
     font-size: 0.75rem !important;
   }
   @media screen and (max-width: 380px) {
@@ -1658,7 +1669,7 @@ export default {
   right: 0;
   top: 33.4%;
   @media screen and (max-width: 599px) {
-    top: 39.1%;
+    top: 40.2%;
   }
   @media screen and (max-width: 380px) {
     top: 40.1%;
@@ -1689,7 +1700,7 @@ export default {
     width: 95%;
   }
   @media screen and (max-width: 599px) {
-    top: 49.5%;
+    top: 50.8%;
   }
   @media screen and (max-width: 380px) {
     top: 99rem;
@@ -1709,7 +1720,7 @@ export default {
   right: 0;
   top: 57.7%;
   @media screen and (max-width: 599px) {
-    top: 63.8%;
+    top: 64.9%;
     left: 39%;
   }
   @media screen and (max-width: 380px) {
@@ -1734,7 +1745,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     width: 100%;
-    top: 79.3%;
+    top: 79.7%;
     left: 32%;
     img {
       width: 66%;
