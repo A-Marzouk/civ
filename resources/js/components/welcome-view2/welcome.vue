@@ -665,7 +665,7 @@ export default {
             breakpoint: 959,
             settings: {
               centerMode: true,
-              centerPadding: "100px",
+              centerPadding: "60px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -1297,12 +1297,12 @@ export default {
     height: 300px;
   }
   @media screen and (max-width: 959px) {
-    height: 300px;
+    height: 350px !important;
     height: auto;
   }
 
   @media screen and (max-width: 599px) {
-    height: 150px;
+    height: 150px !important;
   }
 }
 //integration section
@@ -1797,6 +1797,9 @@ export default {
   }
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
+  }
+  #welcomeView2 .slick-slide{
+    margin-left: -78px;
   }
 }
 @media screen and (max-width: 599px) {
