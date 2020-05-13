@@ -1652,6 +1652,13 @@
 
     }
 
+    @media only screen and (max-width: 360px) {
+        .actionsSection{
+            margin-left: 2%;
+        }
+    }
+
+
     .only-mob{
         display: none;
     }
