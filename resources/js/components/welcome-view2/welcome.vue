@@ -235,10 +235,11 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
               />
-              <!-- <img
+              <img
+                :width="windowWidth"
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png"
-              /> -->
+              />
             </div>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
@@ -1290,7 +1291,7 @@ export default {
     font-size: 1.125rem;
   }
   @media screen and (max-width: 599px) {
-    font-size: 12px;
+    font-size: 10px;
     line-height: 15px;
   }
 }
@@ -1644,9 +1645,18 @@ export default {
   left: 0;
   right: 0;
   top: 33.4%;
-  // @media screen and (max-width: 599px) {
-  //   top: 40.2%;
-  // }
+  @media screen and (max-width: 599px) {
+    top: 40.2%;
+    img{
+      width:97%;
+    }
+  }
+  @media screen and (max-width: 360px){
+    top: 39%;
+    img{
+      width: 100%;
+    }
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 40.1%;
