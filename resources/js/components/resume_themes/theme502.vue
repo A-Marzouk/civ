@@ -12,7 +12,6 @@
               style="border-radius: 0px 1rem 2rem 0px ;"
             ></v-img>
           </v-col>
-
           <v-col cols="7" sm="9" md="7" lg="9" xl="9" class="pl-sm-6 pl-md-3 pl-lg-6 pl-3">
             <div class="head font-weight-bold">
               Carla Pipin Ranga
