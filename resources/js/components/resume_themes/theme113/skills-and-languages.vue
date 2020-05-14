@@ -50,15 +50,16 @@ export default {
 <style lang="scss" scoped>
     .skills-container {
         margin-top: 34px;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 100px;
+        padding: 0 100px !important;
 
         .skill {
             display: flex;
             flex-direction: column;
-            max-width: 310px;
-            margin: 35px 100px;
+            width: 45%;
+            margin: 35px 0;
 
             img {
                 width: 92px;
