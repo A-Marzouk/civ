@@ -44,10 +44,11 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
               />
-              <!-- <img
+              <img
+                :width="windowWidth"
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer2.png"
-              /> -->
+              />
             </div>
 
             <div class="top-layer-background hidden-sm-and-down">
@@ -1585,6 +1586,7 @@ export default {
   right: 0;
   top: 1.5%;
   @media screen and (max-width: 599px) {
+    top: 1.8%;
     width: 90%;
   }
 
@@ -1610,14 +1612,15 @@ export default {
   left: 0;
   right: 0;
   top: 7.4%;
-  // @media screen and (max-width: 599px) {
-  //   width: 100%;
-  //   left: 63px;
-  //   top: 7.7%;
-  //   img {
-  //     width: 82%;
-  //   }
-  // }
+  @media screen and (max-width:599px){
+    width: 80%;
+    top:7.3%;
+    left: 10%;
+  }
+  @media screen and (max-width: 360px){
+    width: 90%;
+    top: 7.1%;
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 7.5%;
