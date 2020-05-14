@@ -20,11 +20,12 @@
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
                 alt
               />
-              <!-- <img
+              <img
+                :width="windowWidth"
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer1.png"
                 alt
-              /> -->
+              />
             </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
@@ -874,6 +875,11 @@ export default {
     line-height: 2.813rem;
     margin-bottom: 20px;
   }
+  @media screen and (max-width: 360px) {
+    font-size: 2rem;
+    line-height: 2.1rem;
+  }
+  
 }
 
 //resume subtitle
@@ -1578,10 +1584,10 @@ export default {
   left: 0;
   right: 0;
   top: 1.5%;
-  // @media screen and (max-width: 599px) {
-  //   top: 2%;
-  //   left: 22px;
-  // }
+  @media screen and (max-width: 599px) {
+    width: 90%;
+  }
+
   // @media screen and (max-width: 400px) {
   //   width: 88%;
   //   top: 2.4%;
