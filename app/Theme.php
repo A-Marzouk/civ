@@ -16,6 +16,7 @@ class Theme extends Model
         'design_style',
         'color',
         'code',
+        'developer',
         'image',
     ];
 

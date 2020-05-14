@@ -47,9 +47,6 @@ require('./admin');
 // Default themes preview components registrations:
 require('./default-themes');
 
-// User themes components registrations:
-require('./user-themes');
-
 // Resume builder components register
 require('./resume-builder');
 

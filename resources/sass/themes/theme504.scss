@@ -1,10 +1,6 @@
-#resumeTheme502 {
-    #theme502 {
+#resumeTheme504 {
+    #theme503 {
         padding: 0 5.8rem;
-    }
-
-    .theme--light.v-application {
-        background: transparent;
     }
 
     .margleft {
@@ -15,8 +11,12 @@
         padding-left: 9rem !important;
     }
 
-    .avatar .v-responsive .v-image {
-        border-radius: 0px 1rem 2rem 0px;
+    .padding {
+        padding: 10px 15px 400px 180px;
+    }
+
+    .avatar .v-image__image {
+        border-radius: 0px 15px 50px 0px;
     }
 
     .v-image__image {
@@ -25,7 +25,7 @@
 
     .v-tabs-slider-wrapper {
         height: 3px !important;
-        padding: 0 3rem !important;
+        padding: 0 2rem !important;
         left: 0;
         color: #2943c7 !important;
         border-radius: 10px !important;
@@ -53,15 +53,15 @@
         color: #2943c7;
     }
 
-    #theme502 {
+    #theme503 {
         background: url("/images/resume_themes/theme502/backdeg.png");
         background-size: 100vw auto;
         background-repeat: no-repeat;
     }
 
     /* .theme--light.v-tabs .v-tab:hover {
-    color: #f8f8f8 !important;
-    } */
+  color: #f8f8f8 !important;
+} */
     .theme--light.v-tabs .v-tab:focus-within {
         color: #f8f8f8 !important;
     }
@@ -75,16 +75,6 @@
         color: #222d68 !important;
     }
 
-    .fade-up-enter-active,
-    .fade-up-leave-active {
-        transition: all 0.3s ease-in-out;
-    }
-
-    .fade-up-enter,
-    .fade-up-leave-to {
-        transform: translateX(30px);
-        opacity: 0;
-    }
 
     .hire {
         // background: #2943c7;
@@ -93,22 +83,12 @@
         width: 9rem;
     }
 
-    .v-avatar {
-        width: 10rem !important;
-        height: 10rem !important;
-    }
-
     .head {
         font-size: 1.5rem;
     }
 
     .tabtitle {
         font-size: 1.5rem;
-    }
-
-    .iconsize {
-        width: 64px !important;
-        height: 64px !important;
     }
 
     .skilltext {
@@ -151,6 +131,10 @@
     }
 
     @media (min-width: 1264px) {
+        .padding {
+            padding: 10px 15px 400px 160px;
+        }
+
         .head {
             font-size: 1.5rem;
         }
@@ -162,6 +146,20 @@
     }
 
     @media only screen and (max-width: 768px) {
+
+        .iconmarg {
+            margin-left: 185px;
+            margin-right: auto;
+        }
+
+        .margicon {
+            margin-left: 200px;
+        }
+
+        .padding {
+            padding: 15px 20px 400px 20px;
+        }
+
         .margleft {
             margin-left: 0rem !important;
         }
@@ -170,7 +168,7 @@
             padding-left: 0rem !important;
         }
 
-        #theme502 {
+        #theme503 {
             padding: 0 0;
         }
 
@@ -187,7 +185,7 @@
             font-size: 1rem;
         }
 
-        #theme502 {
+        #theme503 {
             background: url("/images/resume_themes/theme502/tabdesign.png");
 
             background-size: 100vw auto;
@@ -209,13 +207,21 @@
     }
 
     @media only screen and (max-width: 600px) {
-        .v-slide-group__wrapper {
-            cursor: auto;
-            margin-left: -25px !important;
+        #theme503 {
+            padding: 0 0;
         }
 
-        #theme502 {
-            padding: 0 0;
+        .margicon {
+            margin-left: 48px;
+        }
+
+        .padicon {
+            padding-left: 104px !important;
+        }
+
+        .iconmarg {
+            margin-left: 104px;
+            margin-right: auto;
         }
 
         .margleft {
@@ -243,15 +249,15 @@
         }
 
         .subhead {
-            font-size: 0.653rem !important;
+            font-size: 0.7rem !important;
             font-weight: 200 !important;
         }
 
         .head {
-            font-size: 1.125rem !important;
+            font-size: 1.5rem !important;
         }
 
-        #theme502 {
+        #theme503 {
             background: url("/images/resume_themes/theme502/mob.png");
             background-size: 100vw auto;
             background-repeat: no-repeat;
@@ -267,31 +273,18 @@
             margin-left: 0px !important;
         }
 
-        .v-avatar {
-            width: 7rem !important;
-            height: 7rem !important;
-        }
 
-        .profile {
-            margin: 0px 6px;
-        }
-
-        .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
+        .v-slide-group__prev {
+            align-items: center;
             display: none !important;
-            visibility: hidden;
+
+            justify-content: center;
+            min-width: 0px !important;
         }
 
-        .tab-button {
-            width: 10rem !important;
-        }
 
         .tabtitle {
             font-size: 1.2rem;
         }
-    }
-
-    .iconsize {
-        width: 32px !important;
-        height: 32px !important;
     }
 }
