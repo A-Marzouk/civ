@@ -1,5 +1,5 @@
 <template>
-    <v-row justify="start">
+    <v-row justify="end">
         <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
             <template v-slot:activator="{ on }">
                 <v-btn color="primary" dark v-on="on">Add a theme</v-btn>
@@ -174,7 +174,16 @@
                 this.errors = {};
                 axios.get('/api/user/available-themes')
                     .then( (response) => {
-                        this.availableCodes = response.data ;
+                        this.availableCodes = response.data.sort((a, b) => {
+                            // console.log('a ' + a + ' b ' + b);
+                            if (a === "K" || b === "N") {
+                                return -1;
+                            }
+                            if (a === "N" || b === "K") {
+                                return 1;
+                            }
+                            return +a - +b;
+                        });
                     })
                     .catch( (error) => {
                         this.errors = ['Something went wrong. Please try again.'];

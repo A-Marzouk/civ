@@ -38,7 +38,7 @@
     };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 
     @import url('//fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap');
