@@ -1219,7 +1219,7 @@ export default {
     font-size: 1.5rem;
     line-height: 32px;
   }
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 400px) {
     font-size: 1.3rem;
     line-height: 30px;
   }
@@ -1319,7 +1319,11 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    width: 150px;
+    width: 160px !important;
+    height: auto !important;
+  }
+  @media screen and (max-width: 380px) {
+    width: 130px !important;
     height: auto !important;
   }
 }
@@ -1355,6 +1359,9 @@ export default {
     font-size: 12px;
     margin-bottom: -20px;
     margin-top: 20px;
+  }
+  @media screen and (max-width: 380px) {
+    font-size: 10px;
   }
 }
 .logo-footer {
@@ -1394,6 +1401,30 @@ export default {
     height: 28px;
     img {
       width: 12px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 24px;
+    height: 24px;
+    img {
+      width: 10px;
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    width: 22px;
+    height: 22px;
+    img {
+      width: 10px;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    width: 20px;
+    height: 20px;
+    img {
+      width: 9px;
     }
   }
 }
@@ -1630,9 +1661,8 @@ export default {
     top: 7.3%;
     left: 10%;
   }
-  @media screen and (max-width: 360px) {
-    width: 90%;
-    top: 7.1%;
+  @media screen and (max-width: 380px) {
+    top: 7.9%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1663,10 +1693,13 @@ export default {
       width: 97%;
     }
   }
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 400px) {
     top: 40.6%;
   }
-  
+
+  @media screen and (max-width: 380px) {
+    top: 41.5%;
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 40.1%;
@@ -1692,10 +1725,13 @@ export default {
     top: 51.1%;
   }
 
-  @media screen and (max-width: 400){
-    top:50.7%;
+  @media screen and (max-width: 400) {
+    top: 50.6%;
   }
 
+  @media screen and (max-width: 380px) {
+    top: 52.3%;
+  }
 }
 
 .tablet-layer5 {
@@ -1708,13 +1744,14 @@ export default {
   top: 58.1%;
   @media screen and (max-width: 599px) {
     top: 65.9%;
-    left:38%;
+    left: 38%;
     img {
       width: 60%;
     }
   }
   @media screen and (max-width: 380px) {
-    left: 0;
+    left: 49%;
+    top: 67%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1742,7 +1779,9 @@ export default {
       width: 80%;
     }
   }
-
+  @media screen and (max-width: 380px){
+    top: 189%;
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 157.3rem;
@@ -1873,6 +1912,10 @@ export default {
 @media screen and (max-width: 400px) {
   #welcomeView2 .gallerySlidess .slick-slide {
     margin-left: 13px;
+  }
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: -2px;
+    width: 300px !important;
   }
 }
 /* mobile screen */
