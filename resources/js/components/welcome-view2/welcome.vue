@@ -352,11 +352,6 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
               />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
-              />
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
               <img
@@ -389,6 +384,13 @@
                     </span>
                   </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
+                      <div class="tablet-layer5 hidden-sm-and-up">
+                        <img
+                          :width="windowWidth"
+                          class="hidden-sm-and-up"
+                          src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
+                        />
+                      </div>
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
                   </v-col>
                 </v-row>
@@ -454,7 +456,7 @@
                   style="z-index:2;"
                 >
                   <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
-                    <v-card-subtitle class="integration-title"  v-html="item.title"></v-card-subtitle>
+                    <v-card-subtitle class="integration-title" v-html="item.title"></v-card-subtitle>
                     <v-card-text>
                       <img
                         width="auto"
@@ -618,7 +620,10 @@ export default {
       integrations: [
         { id: 1, title: "Connect your online profiles" },
         { id: 2, title: "Integrate your social account" },
-        { id: 3, title: "Allow potential employers to <br /> contact you easly" },
+        {
+          id: 3,
+          title: "Allow potential employers to <br /> contact you easly"
+        },
         { id: 4, title: "Import your data/Export to PDF" },
         { id: 5, title: "Easy acception line payments" }
       ],
@@ -1688,7 +1693,7 @@ export default {
   right: 0;
   top: 33.4%;
   @media screen and (max-width: 599px) {
-    top: 40.2%;
+    top: 41%;
     img {
       width: 97%;
     }
@@ -1726,7 +1731,7 @@ export default {
   }
 
   @media screen and (max-width: 400) {
-    top: 50.6%;
+    top: 51.7%;
   }
 
   @media screen and (max-width: 380px) {
@@ -1743,7 +1748,7 @@ export default {
   right: 0;
   top: 58.1%;
   @media screen and (max-width: 599px) {
-    top: 65.9%;
+    top: 39.6%;
     left: 38%;
     img {
       width: 60%;
@@ -1779,7 +1784,7 @@ export default {
       width: 80%;
     }
   }
-  @media screen and (max-width: 380px){
+  @media screen and (max-width: 380px) {
     top: 189%;
   }
 
@@ -1914,9 +1919,10 @@ export default {
     margin-left: 13px;
   }
   #welcomeView2 .gallerySlidess .slick-slide {
-    margin-left: -2px;
+    margin-left: -8px;
     width: 300px !important;
   }
 }
+
 /* mobile screen */
 </style>
