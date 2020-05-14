@@ -454,7 +454,7 @@
                   style="z-index:2;"
                 >
                   <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
-                    <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
+                    <v-card-subtitle class="integration-title"  v-html="item.title"></v-card-subtitle>
                     <v-card-text>
                       <img
                         width="auto"
@@ -618,7 +618,7 @@ export default {
       integrations: [
         { id: 1, title: "Connect your online profiles" },
         { id: 2, title: "Integrate your social account" },
-        { id: 3, title: "Allow potential employers to contact you easly" },
+        { id: 3, title: "Allow potential employers to <br /> contact you easly" },
         { id: 4, title: "Import your data/Export to PDF" },
         { id: 5, title: "Easy acception line payments" }
       ],
