@@ -1,7 +1,7 @@
 <template>
   <v-app style="width:100%; background-color: #ffffff;" class="app-container">
     <!-- main container -->
-    <v-container class="main-container" >
+    <v-container class="main-container">
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
@@ -288,10 +288,11 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
               />
-              <!-- <img
+              <img
+                :width="windowWidth"
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png"
-              /> -->
+              />
             </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
@@ -351,10 +352,11 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
               />
-              <!-- <img
+              <img
+                :width="windowWidth"
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
-              /> -->
+              />
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
               <img
@@ -362,12 +364,15 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
               />
-              <!-- <img
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
-              /> -->
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
+              <div class="tablet-layer6 hidden-sm-and-up">
+                <img
+                  :width="windowWidth"
+                  class="hidden-sm-and-up"
+                  src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
+                />
+              </div>
               <v-card-title class="build-resume-title margin-n30">
                 40+ Beautiful Themes
                 <br />to choose from
@@ -679,7 +684,7 @@ export default {
             breakpoint: 599,
             settings: {
               centerMode: true,
-              centerPadding: "50px",
+              centerPadding: "40px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -733,14 +738,14 @@ export default {
   width: 100%;
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
-    margin:0 !important;
-    padding:0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   @media screen and (max-width: 400px) {
   }
 }
-.app-container{
-  @media screen and (max-width: 599px){
+.app-container {
+  @media screen and (max-width: 599px) {
   }
 }
 
@@ -752,6 +757,9 @@ export default {
 .margin-n30 {
   @media screen and (max-width: 599px) {
     margin-top: -30px !important;
+  }
+  @media screen and (max-width: 360px) {
+    margin-top: 30px !important;
   }
 }
 
@@ -844,8 +852,8 @@ export default {
 
 .container-resume {
   margin-top: -80px;
-  @media screen and (max-width: 599px){
-    padding: 0px !important; 
+  @media screen and (max-width: 599px) {
+    padding: 0px !important;
   }
 }
 
@@ -881,7 +889,6 @@ export default {
     font-size: 2rem;
     line-height: 2.1rem;
   }
-  
 }
 
 //resume subtitle
@@ -1019,8 +1026,8 @@ export default {
   @media screen and (max-width: 599px) {
     margin-top: 0px;
     height: 818px;
-    margin-left:0 !important;
-    margin-right:0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
@@ -1146,7 +1153,7 @@ export default {
     margin-top: 80px;
   }
   @media screen and (max-width: 599px) {
-    margin:0 !important;
+    margin: 0 !important;
     padding: 0 !important;
   }
 }
@@ -1188,7 +1195,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     margin-top: -20px;
-    padding:0 !important;
+    padding: 0 !important;
     margin: 0 !important;
   }
 }
@@ -1613,12 +1620,12 @@ export default {
   left: 0;
   right: 0;
   top: 7.4%;
-  @media screen and (max-width:599px){
+  @media screen and (max-width: 599px) {
     width: 80%;
-    top:7.3%;
+    top: 7.3%;
     left: 10%;
   }
-  @media screen and (max-width: 360px){
+  @media screen and (max-width: 360px) {
     width: 90%;
     top: 7.1%;
   }
@@ -1647,13 +1654,13 @@ export default {
   top: 33.4%;
   @media screen and (max-width: 599px) {
     top: 40.2%;
-    img{
-      width:97%;
+    img {
+      width: 97%;
     }
   }
-  @media screen and (max-width: 360px){
+  @media screen and (max-width: 360px) {
     top: 39%;
-    img{
+    img {
       width: 100%;
     }
   }
@@ -1678,9 +1685,9 @@ export default {
   img {
     width: 95%;
   }
-  // @media screen and (max-width: 599px) {
-  //   top: 50.8%;
-  // }
+  @media screen and (max-width: 599px) {
+    top: 51%;
+  }
 
   @media screen and (max-width: 340px) {
     top: 99rem;
@@ -1695,10 +1702,16 @@ export default {
   left: 3%;
   right: 0;
   top: 58.1%;
-  // @media screen and (max-width: 599px) {
-  //   top: 64.9%;
-  //   left: 39%;
-  // }
+  @media screen and (max-width: 599px) {
+    top: 65.9%;
+    left: 47%;
+    img {
+      width: 50%;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    left: 0;
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 127rem;
@@ -1710,21 +1723,22 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 13%;
+  left: 12.6%;
   right: 0;
   z-index: 0;
   top: 63%;
   img {
     width: 80%;
   }
-  // @media screen and (max-width: 599px) {
-  //   width: 100%;
-  //   top: 79.8%;
-  //   left: 32%;
-  //   img {
-  //     width: 66%;
-  //   }
-  // }
+  @media screen and (max-width: 599px) {
+    width: 80%;
+    top: 190.8%;
+    left: 32%;
+    img {
+      width: 80%;
+    }
+  }
+
 
   // @media screen and (max-width: 340px) {
   //   top: 157.3rem;
@@ -1848,7 +1862,7 @@ export default {
     width: 300px !important;
   }
   #welcomeView2 .integrationSlides .slick-slide {
-    margin-left: -60px !important;
+    margin-left: -55px !important;
     margin-top: 0px !important;
   }
 }
