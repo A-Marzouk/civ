@@ -1,8 +1,8 @@
 <template>
-  <v-app style="width:100%; background-color: #ffffff;">
+  <v-app style="width:100%; background-color: #ffffff;" class="app-container">
     <!-- main container -->
-    <v-container class="main-container">
-      <v-app-bar color="transparent" flat tile height="100">
+    <v-container class="main-container" >
+      <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
         <v-btn text color="#0046FE" class="btn-appbar-login">
@@ -15,7 +15,17 @@
         <v-row justify="center" align="center" class="resume-row">
           <v-col xl="5" md="6" sm="12" cols="12">
             <div class="tablet-layer1 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png" alt />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
+                alt
+              />
+              <img
+                :width="windowWidth"
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer1.png"
+                alt
+              />
             </div>
             <v-card color="transparent" flat tile class="card-resume">
               <v-card-title class="resume-title">
@@ -30,8 +40,17 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer2 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
+              />
+              <img
+                :width="windowWidth"
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer2.png"
+              />
             </div>
+
             <div class="top-layer-background hidden-sm-and-down">
               <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
@@ -51,6 +70,7 @@
                   v-model="username"
                   background-color="#ffffff"
                   @keyup="checkUser"
+                  :height="windowWidth <= 959 && windowWidth >599 ? '75': windowWidth<=599 ? '60':''"
                 >
                   <template slot="append">
                     <v-icon
@@ -105,18 +125,24 @@
               />
             </div>
             <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
-              <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
-              <v-card-subtitle align="center">
-                <v-btn
-                  class="social-icon mx-md-2 mx-sm-3 mx-2"
-                  color="#ffffff"
-                  v-for="icon in socialMediaIcons"
-                  :key="icon.title"
-                >
-                  <img :width="icon.width" :src="getSocialIcon(icon.title)" alt />
-                </v-btn>
-              </v-card-subtitle>
-              <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
+              <v-card color="transparent" flat tile class="card-login-child">
+                <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
+                <v-card-subtitle align="center">
+                  <v-btn
+                    class="social-icon mx-md-2 mx-sm-3 mx-2"
+                    color="#ffffff"
+                    v-for="icon in socialMediaIcons"
+                    :key="icon.title"
+                  >
+                    <img
+                      :width="windowWidth>599 && windowWidth<=959?icon.tablet_width:icon.width"
+                      :src="getSocialIcon(icon.title)"
+                      alt
+                    />
+                  </v-btn>
+                </v-card-subtitle>
+                <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
+              </v-card>
               <!-- Login Form -->
               <v-card-subtitle class="login-form">
                 <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -205,7 +231,15 @@
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer3 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
+              />
+              <img
+                :width="windowWidth"
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png"
+              />
             </div>
           </v-col>
           <v-col md="1" class="hidden-sm-and-down"></v-col>
@@ -216,7 +250,7 @@
               <v-card-subtitle class="download-text">Download for ios and android:</v-card-subtitle>
               <v-card-subtitle>
                 <v-row>
-                  <v-col cols="6">
+                  <v-col sm="6" cols="6">
                     <a href="#">
                       <img
                         class="app-store-logo"
@@ -226,7 +260,7 @@
                     </a>
                   </v-col>
 
-                  <v-col cols="6">
+                  <v-col sm="6" cols="6">
                     <a href="#">
                       <img
                         class="app-store-logo"
@@ -250,19 +284,26 @@
           <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
             <div class="tablet-layer4 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
+              />
+              <!-- <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png"
+              /> -->
             </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
               </div>
 
-              <v-card-subtitle class="build-resume-title">
+              <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7">
                 Build a resume that you
                 <br />can be proud of
               </v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-10 mt-0"
+                class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-4 mt-n4"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
               <div class="middle-layer-background2 hidden-sm-and-down">
                 <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
@@ -306,23 +347,38 @@
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12">
             <div class="tablet-layer5 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png" />
+              <img
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
+              />
+              <!-- <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
+              /> -->
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
-              <img src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png" />
+              <img
+                :width="windowWidth"
+                class="hidden-xs-only"
+                src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
+              />
+              <!-- <img
+                class="hidden-sm-and-up"
+                src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
+              /> -->
             </div>
-            <v-card flat tile color="transparent" class="card-choose-theme">
-              <v-card-title class="build-resume-title">
+            <v-card flat tile color="transparent" class="card-choose-theme margin-0">
+              <v-card-title class="build-resume-title margin-n30">
                 40+ Beautiful Themes
                 <br />to choose from
               </v-card-title>
-              <v-card-subtitle class="build-resume-subtitle mt-1">
+              <v-card-subtitle class="build-resume-subtitle mt-1 margin-n10">
                 <v-row>
                   <v-col md="6" cols="12">
                     <span
-                      class="hidden-sm-and-down"
+                      class="hidden-sm-only"
                     >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
-                    <span class="hidden-md-and-up">
+                    <span class="d-none d-sm-flex d-md-none">
                       Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out
                       <br />and make a great first impression with any hiring manager.
                     </span>
@@ -381,9 +437,9 @@
             </div>
 
             <v-card flat tile color="transparent" style="z-index:1;">
-              <v-card-subtitle class="build-resume-title">Integrations</v-card-subtitle>
+              <v-card-subtitle class="build-resume-title margin-n50">Integrations</v-card-subtitle>
               <v-card-subtitle
-                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n0"
+                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n5 mb-sm-0 mb-n11"
               >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
               <v-card-text style="z-index:2;" class="mt-md-0 mt-sm-12 mt-12">
                 <slick
@@ -407,6 +463,7 @@
             </v-card>
             <div class="tablet-layer7 hidden-md-and-up">
               <img
+                class="hidden-xs-only"
                 :width="windowWidth"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer7.png"
               />
@@ -476,7 +533,7 @@
             </v-card>
           </v-col>
 
-          <v-col cols="4" class="hidden-md-and-up mt-n12">
+          <v-col sm="4" cols="4" class="hidden-md-and-up mt-n12">
             <v-card flat tile color="transparent" align="center">
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
@@ -486,7 +543,7 @@
                     alt="facebook"
                   />
                 </v-btn>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
@@ -496,7 +553,7 @@
             </v-card>
           </v-col>
 
-          <v-col cols="8" class="hidden-md-and-up mt-n10" align="right">
+          <v-col sm="8" cols="8" class="hidden-md-and-up mt-n12" align="right">
             <v-card flat tile color="transparent">
               <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
               <v-card-subtitle align="center">
@@ -547,11 +604,11 @@ export default {
       agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
-        { id: 1, title: "instagram", width: 18 },
-        { id: 2, title: "linkedin", width: 16 },
-        { id: 3, title: "google", width: 14 },
-        { id: 4, title: "facebook", width: 18 },
-        { id: 5, title: "github", width: 22 }
+        { id: 1, title: "instagram", width: 18, tablet_width: 30 },
+        { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
+        { id: 3, title: "google", width: 14, tablet_width: 22 },
+        { id: 4, title: "facebook", width: 18, tablet_width: 28 },
+        { id: 5, title: "github", width: 22, tablet_width: 36 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -567,7 +624,7 @@ export default {
         { id: 4, title: "whatsapp" },
         { id: 5, title: "slack" }
       ],
-      users: ["nishad", "ahmed", "anton"],
+      users: ["nishad", "ahmed", "anton", "gladwin"],
       slickOptionsGallery: {
         centerMode: true,
         infinite: true,
@@ -582,7 +639,7 @@ export default {
           {
             breakpoint: 959,
             settings: {
-              centerPadding: "100px",
+              centerPadding: "75px",
               slidesPerRow: 1,
               slidesToShow: 1,
               slidesToScroll: 1
@@ -591,6 +648,7 @@ export default {
           {
             breakpoint: 599,
             settings: {
+              centerPadding: "30px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -612,7 +670,7 @@ export default {
             breakpoint: 959,
             settings: {
               centerMode: true,
-              centerPadding: "100px",
+              centerPadding: "80px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -620,6 +678,8 @@ export default {
           {
             breakpoint: 599,
             settings: {
+              centerMode: true,
+              centerPadding: "50px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -673,6 +733,48 @@ export default {
   width: 100%;
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+  @media screen and (max-width: 400px) {
+  }
+}
+.app-container{
+  @media screen and (max-width: 599px){
+  }
+}
+
+.margin-n50 {
+  @media screen and (max-width: 599px) {
+    margin-top: -50px !important;
+  }
+}
+.margin-n30 {
+  @media screen and (max-width: 599px) {
+    margin-top: -30px !important;
+  }
+}
+
+.margin-n10 {
+  @media screen and (max-width: 599px) {
+    margin-top: -10px !important;
+  }
+}
+
+.margin-n15 {
+  @media screen and (max-width: 599px) {
+    margin-top: -20px !important;
+  }
+}
+.margin-20 {
+  @media screen and (max-width: 599px) {
+    margin-top: 20px !important;
+  }
+}
+
+.margin-0 {
+  @media screen and (max-width: 400px) {
+    margin-top: 0px !important;
   }
 }
 //logo
@@ -692,6 +794,12 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1440px) {
     margin-top: -6px;
   }
+  @media screen and (max-width: 959px) {
+    margin-top: 9px;
+  }
+  @media screen and (max-width: 599px) {
+    margin-top: 0px;
+  }
 }
 //form
 .login-form {
@@ -709,6 +817,11 @@ export default {
   @media screen and (max-width: 959px) {
     .input-div {
       margin-top: 0px;
+    }
+  }
+  @media screen and (max-width: 599px) {
+    label {
+      font-size: 12px;
     }
   }
 }
@@ -731,6 +844,9 @@ export default {
 
 .container-resume {
   margin-top: -80px;
+  @media screen and (max-width: 599px){
+    padding: 0px !important; 
+  }
 }
 
 .card-resume {
@@ -761,6 +877,11 @@ export default {
     line-height: 2.813rem;
     margin-bottom: 20px;
   }
+  @media screen and (max-width: 360px) {
+    font-size: 2rem;
+    line-height: 2.1rem;
+  }
+  
 }
 
 //resume subtitle
@@ -800,9 +921,9 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    margin-top:0px;
-    width: 9.5rem !important;
-    height: 3.048rem !important;
+    margin-top: 0px;
+    width: 157px !important;
+    height: 48.76px !important;
     font-size: 0.75rem !important;
   }
 }
@@ -840,6 +961,9 @@ export default {
   @media screen and (max-width: 959px) {
     margin-top: 36px;
   }
+  @media screen and (max-width: 599px) {
+    margin-top: 0px;
+  }
 }
 //Download text
 .download-text {
@@ -849,9 +973,10 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
+
   // @media screen and (max-width: 959px) {
   //   font-size: 1rem !important;
   // }
@@ -863,6 +988,10 @@ export default {
   max-width: 127% !important;
   @media screen and (min-width: 1600px) {
     margin-left: 0px;
+  }
+  @media screen and (max-width: 599px) {
+    max-width: 130% !important;
+    margin-top: -35px;
   }
 }
 // .... upper left block..............
@@ -883,10 +1012,15 @@ export default {
     margin-top: 80px;
     padding-left: 0px !important;
     padding-right: 0px !important;
+    .card-login-child {
+      padding: 10px;
+    }
   }
   @media screen and (max-width: 599px) {
     margin-top: 0px;
-    height: auto !important;
+    height: 818px;
+    margin-left:0 !important;
+    margin-right:0 !important;
   }
 }
 
@@ -903,7 +1037,7 @@ export default {
     font-size: 1.875rem;
     line-height: 2.313rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 1.125rem;
     line-height: 1.275rem;
   }
@@ -927,13 +1061,15 @@ export default {
   @media screen and (max-width: 959px) {
     width: 66px !important;
     height: 66px !important;
-    margin-top: 15px;
+    margin-top: 0px;
     margin-bottom: 20px;
   }
 
   @media screen and (max-width: 599px) {
     width: 42px !important;
     height: 42px !important;
+    margin-top: -10px;
+    margin-bottom: 0px;
   }
 }
 
@@ -945,7 +1081,7 @@ export default {
   line-height: 1.25rem;
   font-size: 1rem !important;
   font-weight: 500;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 12px !important;
     line-height: 15px;
   }
@@ -998,7 +1134,7 @@ export default {
     font-size: 1.375rem;
   }
 
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 1.125rem;
   }
 }
@@ -1008,6 +1144,10 @@ export default {
   margin-top: 130px;
   @media screen and (max-width: 1440px) {
     margin-top: 80px;
+  }
+  @media screen and (max-width: 599px) {
+    margin:0 !important;
+    padding: 0 !important;
   }
 }
 
@@ -1031,6 +1171,11 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  @media screen and (margin: 599px) {
+    width: 9.5rem !important;
+    height: 3.048rem !important;
+    font-size: 0.75rem !important;
+  }
 }
 
 .gallery-container {
@@ -1041,13 +1186,13 @@ export default {
   @media screen and (max-width: 1280px) {
     margin-top: 26px;
   }
-}
-.gallerySlidess {
-  @media screen and (max-width: 959px) {
-    img {
-    }
+  @media screen and (max-width: 599px) {
+    margin-top: -20px;
+    padding:0 !important;
+    margin: 0 !important;
   }
 }
+
 .build-resume-title {
   font-family: "Montserrat" !important;
   font-weight: bold;
@@ -1062,7 +1207,7 @@ export default {
     font-size: 3rem;
     line-height: 3.25rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 1.5rem;
     line-height: 32px;
   }
@@ -1087,7 +1232,7 @@ export default {
     font-size: 1.125rem !important;
     line-height: 1.5rem;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 14px !important;
     line-height: 24px;
   }
@@ -1102,6 +1247,13 @@ export default {
   img {
     width: 71px;
     height: auto;
+  }
+  @media screen and (max-width: 599px) {
+    width: 57.02px;
+    height: 56px;
+    img {
+      width: 30px;
+    }
   }
 }
 
@@ -1124,6 +1276,10 @@ export default {
   @media screen and (max-width: 959px) {
     margin-top: 80px !important;
   }
+  @media screen and (max-width: 599px) {
+    margin-top: 30px;
+    padding: 0 !important;
+  }
 }
 .integration-title {
   font-family: "Montserrat" !important;
@@ -1134,8 +1290,8 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
   }
-  @media screen and (max-width: 599px){
-    font-size: 12px;
+  @media screen and (max-width: 599px) {
+    font-size: 10px;
     line-height: 15px;
   }
 }
@@ -1146,12 +1302,20 @@ export default {
     height: 300px;
   }
   @media screen and (max-width: 959px) {
-    height: 300px;
+    height: 350px !important;
     height: auto;
   }
 
-  @media screen and (max-width: 599px){
-    height: 150px;
+  @media screen and (max-width: 599px) {
+    width: 150px;
+    height: auto !important;
+  }
+}
+.integrationSlides {
+  @media screen and (max-width: 959px) {
+    img {
+      width: 85%;
+    }
   }
 }
 //integration section
@@ -1175,6 +1339,11 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
   }
+  @media screen and (max-width: 599px) {
+    font-size: 12px;
+    margin-bottom: -20px;
+    margin-top: 20px;
+  }
 }
 .logo-footer {
   width: 201px;
@@ -1182,6 +1351,10 @@ export default {
 
   @media screen and (max-width: 959px) {
     width: 223px;
+  }
+  @media screen and (max-width: 599px) {
+    width: 123px;
+    margin-top: -18px;
   }
 }
 .footer-social-icon {
@@ -1205,10 +1378,10 @@ export default {
     }
   }
   @media screen and (max-width: 599px) {
-    width: 39px;
-    height: 39px;
+    width: 28px;
+    height: 28px;
     img {
-      width: 16px;
+      width: 12px;
     }
   }
 }
@@ -1407,22 +1580,52 @@ export default {
 // background tablet and mobile
 .tablet-layer1 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 1.5%;
+  @media screen and (max-width: 599px) {
+    top: 1.8%;
+    width: 90%;
+  }
+
+  // @media screen and (max-width: 400px) {
+  //   width: 88%;
+  //   top: 2.4%;
+  //   left: -12px;
+  // }
+
+  // @media screen and (max-width: 340px) {
+  //   top: 2.3%;
+  //   img {
+  //     width: 88%;
+  //   }
+  // }
 }
 
 .tablet-layer2 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
   top: 7.4%;
+  @media screen and (max-width:599px){
+    width: 80%;
+    top:7.3%;
+    left: 10%;
+  }
+  @media screen and (max-width: 360px){
+    width: 90%;
+    top: 7.1%;
+  }
+
+  // @media screen and (max-width: 340px) {
+  //   top: 7.5%;
+  // }
 }
 
 .make-resume-background {
@@ -1436,46 +1639,96 @@ export default {
 
 .tablet-layer3 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 32.8%;
+  top: 33.4%;
+  @media screen and (max-width: 599px) {
+    top: 40.2%;
+    img{
+      width:97%;
+    }
+  }
+  @media screen and (max-width: 360px){
+    top: 39%;
+    img{
+      width: 100%;
+    }
+  }
+
+  // @media screen and (max-width: 340px) {
+  //   top: 40.1%;
+  //   left: 20px;
+  //   img {
+  //     width: 89%;
+  //   }
+  // }
 }
 
 .tablet-layer4 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 47.3%;
+  top: 47.7%;
+  img {
+    width: 95%;
+  }
+  // @media screen and (max-width: 599px) {
+  //   top: 50.8%;
+  // }
+
+  @media screen and (max-width: 340px) {
+    top: 99rem;
+  }
 }
 
 .tablet-layer5 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 57.8%;
+  top: 58.1%;
+  // @media screen and (max-width: 599px) {
+  //   top: 64.9%;
+  //   left: 39%;
+  // }
+
+  // @media screen and (max-width: 340px) {
+  //   top: 127rem;
+  // }
 }
 
 .tablet-layer6 {
   position: absolute;
-  // width: 100%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   left: 13%;
   right: 0;
-  top: 62.5%;
-  z-index: 3;
+  z-index: 0;
+  top: 63%;
   img {
-    width: 95%;
+    width: 80%;
   }
+  // @media screen and (max-width: 599px) {
+  //   width: 100%;
+  //   top: 79.8%;
+  //   left: 32%;
+  //   img {
+  //     width: 66%;
+  //   }
+  // }
+
+  // @media screen and (max-width: 340px) {
+  //   top: 157.3rem;
+  // }
 }
 
 .tablet-layer7 {
@@ -1483,7 +1736,7 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 14%;
+  left: 9%;
   right: 0;
   top: 79%;
   img {
@@ -1513,7 +1766,7 @@ export default {
 }
 
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 3.75rem !important;
+  min-height: 60px !important;
 }
 
 #welcomeView2 .slick-dots li button {
@@ -1541,24 +1794,67 @@ export default {
 
 @media screen and (max-width: 1440px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 2.812rem !important;
+    min-height: 45px !important;
   }
 }
 /* tablet screen */
-@media screen and (max-width: 959px) {
+/* @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 4.688rem !important;
   }
-}
+} */
 /* tablet screen */
 /* mobile screen */
 @media screen and (max-width: 959px) {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 3.75rem !important;
+    min-height: 60px !important;
   }
-
-  #welcomeView2 .gallerySlides{
+  #welcomeView2 .gallerySlides {
     margin-top: -120px;
+  }
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: -78px;
+  }
+  #welcomeView2 .integrationSlides .slick-slide {
+    margin-left: -35px !important;
+  }
+  #welcomeView2 .integrationSlides .slick-dots li button {
+    width: 130px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
+    margin-top: -30px;
+  }
+}
+@media screen and (max-width: 599px) {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+    min-height: 50px !important;
+  }
+  #welcomeView2 .gallerySlidess .slick-dots li button {
+    width: 40px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
+    margin-top: -20px;
+  }
+  #welcomeView2 .integrationSlides .slick-dots li button {
+    width: 50px;
+    height: 6px;
+    border-radius: 0px;
+    margin-left: -10px;
+  }
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 34px;
+    width: 300px !important;
+  }
+  #welcomeView2 .integrationSlides .slick-slide {
+    margin-left: -60px !important;
+    margin-top: 0px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 13px;
   }
 }
 /* mobile screen */

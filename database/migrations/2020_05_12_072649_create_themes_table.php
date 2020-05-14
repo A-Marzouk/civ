@@ -16,11 +16,15 @@ class CreateThemesTable extends Migration
         Schema::create('themes', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('title');
-            $table->string('category');
-            $table->string('color');
-            $table->string('code')->unique();
-            $table->string('image');
+            $table->string('title')->nullable();
+            $table->string('category')->nullable();
+            $table->string('color')->nullable();
+            $table->string('job_title')->nullable();
+            $table->text('emotions')->nullable();
+            $table->text('design_style')->nullable();
+            $table->string('code')->unique()->nullable();
+            $table->string('image')->nullable();
+            $table->string('developer')->nullable();
 
             $table->timestamps();
         });
