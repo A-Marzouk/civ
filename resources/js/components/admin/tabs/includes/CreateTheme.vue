@@ -37,6 +37,12 @@
                                 </div>
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
+                                <v-text-field label="Developer of this theme*" :error="errors.developer" persistent-hint required v-model="new_theme_item.developer"></v-text-field>
+                                <div class="custom-error" v-if="errors.developer">
+                                    {{ Array.isArray(errors.developer) ? errors.developer[0] : errors.developer}}
+                                </div>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="6">
                                 <v-select
                                         :items="availableCodes"
                                         label="Theme Code*"
@@ -131,6 +137,7 @@
                     color:'',
                     code:'',
                     job_title:'',
+                    developer:'',
                     design_style:'',
                     emotions:'',
                     image:null

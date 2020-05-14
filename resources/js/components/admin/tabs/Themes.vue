@@ -17,6 +17,7 @@
                     <th class="text-left">Design style</th>
                     <th class="text-left">Emotions</th>
                     <th class="text-left">Job title</th>
+                    <th class="text-left">Developer</th>
                     <th class="text-left">Action</th>
                 </tr>
                 </thead>
@@ -29,6 +30,7 @@
                     <td>{{ item.design_style }}</td>
                     <td>{{ item.emotions }}</td>
                     <td>{{ item.job_title }}</td>
+                    <td>{{ item.developer }}</td>
                     <td>
                         <v-icon
                                 small

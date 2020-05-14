@@ -125,6 +125,7 @@ class ThemesController extends Controller
     {
         return Validator::make($data, [
             'title' => ['sometimes','string','max:255','min:3'],
+            'developer' => ['sometimes','string','max:255'],
             'category' => ['sometimes','string','max:255','min:3'],
             'job_title' => ['sometimes','string','max:255','min:3'],
             'emotions' => ['sometimes','max:255','min:1'],
