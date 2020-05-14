@@ -355,6 +355,7 @@
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
               <img
+                :width="windowWidth"
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
               />
@@ -1654,7 +1655,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 47.4%;
+  top: 47.7%;
   img {
     width: 95%;
   }
@@ -1674,7 +1675,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 57.7%;
+  top: 58.1%;
   // @media screen and (max-width: 599px) {
   //   top: 64.9%;
   //   left: 39%;
@@ -1690,12 +1691,12 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 16%;
+  left: 13%;
   right: 0;
   z-index: 0;
-  top: 62.5%;
+  top: 63%;
   img {
-    width: 95%;
+    width: 80%;
   }
   // @media screen and (max-width: 599px) {
   //   width: 100%;
