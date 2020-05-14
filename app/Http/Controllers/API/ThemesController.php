@@ -8,6 +8,7 @@ use App\Theme;
 use Exception;
 use App\Http\Resources\Theme as ThemeResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ThemesController extends Controller
@@ -132,5 +133,16 @@ class ThemesController extends Controller
             'code' =>['sometimes','string','max:255','min:1', 'unique:themes'],
             'image' =>['sometimes','image','max:255']
         ]);
+    }
+
+    protected function availableThemesCodes(){
+        $themesFiles = Storage::disk('themes')->files('');
+        $themeCodes = [] ;
+        foreach ($themesFiles as $file){
+            preg_match_all('!\d+!', $file, $matches);
+            $themeCodes[] = implode(' ', $matches[0]) ;
+        }
+
+        return $themeCodes ;
     }
 }

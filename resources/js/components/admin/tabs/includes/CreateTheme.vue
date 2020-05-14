@@ -37,7 +37,13 @@
                                 </div>
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
-                                <v-text-field type="number" label="Theme Code*" :error="errors.code" v-model="new_theme_item.code" required></v-text-field>
+                                <v-select
+                                        :items="availableCodes"
+                                        label="Theme Code*"
+                                        required
+                                        v-model="new_theme_item.code"
+                                        :error="errors.code"
+                                ></v-select>
                                 <div class="custom-error" v-if="errors.code">
                                     {{ Array.isArray(errors.code) ? errors.code[0] : errors.code}}
                                 </div>
@@ -130,7 +136,8 @@
                     image:null
                 },
                 errors:{},
-                loading:true
+                loading:true,
+                availableCodes:[]
             }
         },
         methods:{
@@ -162,7 +169,20 @@
                             iconSrc: '/images/resume_builder/error.png'
                         });
                     })
+            },
+            getAvailableThemes(){
+                this.errors = {};
+                axios.get('/api/user/available-themes')
+                    .then( (response) => {
+                        this.availableCodes = response.data ;
+                    })
+                    .catch( (error) => {
+                        this.errors = ['Something went wrong. Please try again.'];
+                    });
             }
+        },
+        mounted() {
+            this.getAvailableThemes();
         }
     }
 </script>

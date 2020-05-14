@@ -51,6 +51,7 @@ Route::group(['prefix' => 'user/'], function () {
 
 // Themes api routes:
     Route::get('/themes-list', 'API\ThemesController@themesList');
+    Route::get('/available-themes', 'API\ThemesController@availableThemesCodes');
     Route::get('/current-theme', 'API\ThemesController@show');
     Route::post('/themes', 'API\ThemesController@store');
     Route::put('/themes', 'API\ThemesController@store');

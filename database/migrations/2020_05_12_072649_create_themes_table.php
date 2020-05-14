@@ -24,6 +24,7 @@ class CreateThemesTable extends Migration
             $table->text('design_style')->nullable();
             $table->string('code')->unique()->nullable();
             $table->string('image')->nullable();
+            $table->string('developer')->nullable();
 
             $table->timestamps();
         });

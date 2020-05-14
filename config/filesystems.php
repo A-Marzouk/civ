@@ -64,6 +64,11 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'themes' => [
+            'driver' => 'local',
+            'root' => base_path('resources/views/defaultThemes'),
+        ],
+
     ],
 
 ];
