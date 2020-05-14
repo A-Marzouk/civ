@@ -758,7 +758,7 @@ export default {
   @media screen and (max-width: 599px) {
     margin-top: -30px !important;
   }
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 400px) {
     margin-top: 30px !important;
   }
 }
@@ -885,7 +885,7 @@ export default {
     line-height: 2.813rem;
     margin-bottom: 20px;
   }
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 400px) {
     font-size: 2rem;
     line-height: 2.1rem;
   }
@@ -1178,9 +1178,10 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  @media screen and (margin: 599px) {
-    width: 9.5rem !important;
-    height: 3.048rem !important;
+
+  @media screen and (max-width: 599px) {
+    width: 157px !important;
+    height: 48.76px !important;
     font-size: 0.75rem !important;
   }
 }
@@ -1217,6 +1218,10 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.5rem;
     line-height: 32px;
+  }
+  @media screen and (max-width: 400px){
+    font-size: 1.3rem;
+    line-height: 30px;
   }
 }
 
@@ -1658,12 +1663,10 @@ export default {
       width: 97%;
     }
   }
-  @media screen and (max-width: 360px) {
-    top: 39%;
-    img {
-      width: 100%;
-    }
+  @media screen and (max-width: 400px){
+    top: 40.6%;
   }
+  
 
   // @media screen and (max-width: 340px) {
   //   top: 40.1%;
@@ -1686,12 +1689,13 @@ export default {
     width: 95%;
   }
   @media screen and (max-width: 599px) {
-    top: 51%;
+    top: 51.1%;
   }
 
-  @media screen and (max-width: 340px) {
-    top: 99rem;
+  @media screen and (max-width: 400){
+    top:50.7%;
   }
+
 }
 
 .tablet-layer5 {
@@ -1704,9 +1708,9 @@ export default {
   top: 58.1%;
   @media screen and (max-width: 599px) {
     top: 65.9%;
-    left: 47%;
+    left:38%;
     img {
-      width: 50%;
+      width: 60%;
     }
   }
   @media screen and (max-width: 380px) {
