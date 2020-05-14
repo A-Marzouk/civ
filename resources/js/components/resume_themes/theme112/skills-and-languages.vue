@@ -18,7 +18,7 @@
                         strokeLinecap="square"
                     >
                     </radial-progress-bar>
-                    <img src="/images/resume_themes/theme12/adobexd-icon.png" alt="">
+                    <img :src="'/images/resume_themes/theme112/' + skill.icon" alt="">
                 </div>
                 <div class="skill-info">
                     <div class="skill-name">{{ skill.name }}</div>
@@ -42,32 +42,24 @@ export default {
         },
         skillsList: [
             {
-                name: 'UX/UI Design',
-                percentage: 75
+                name: 'Adobe XD',
+                percentage: 75,
+                icon: "adobeXD-icon.png"
             },
             {
-                name: 'Javascript',
-                percentage: 80
+                name: 'Adobe Indesign',
+                percentage: 80,
+                icon: "adobeIndesign-icon.png"
             },
             {
-                name: 'Python',
-                percentage: 67
+                name: 'Adobe Illustrator',
+                percentage: 67,
+                icon: "adobeIllustrator-icon.png"
             },
             {
-                name: 'C#',
-                percentage: 50
-            },
-            {
-                name: "Php",
-                percentage: 70
-            },
-            {
-                name: "Laravel",
-                percentage: 70
-            },
-            {
-                name: "Node.js",
-                percentage: 80
+                name: 'Adobe Photoshop',
+                percentage: 50,
+                icon: "adobePhotoshop-icon.png"
             }
         ]
     })
@@ -79,10 +71,11 @@ export default {
     margin-top: 34px;
     display: flex !important;
     justify-content: space-between;
-    max-width: 1500px;
+    max-width: 1500px !important;
 
     .left {
         max-width: 228px;
+        margin-right: 261px;
 
         .small {
             font-size: 24px;
@@ -101,11 +94,10 @@ export default {
     .skills-container {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        grid-gap: 30px;
+        grid-gap: 50px 90px;
 
         .skill {
             max-width: 310px;
-            margin: 35px 100px;
             grid-column: span 4;
 
             .chart {

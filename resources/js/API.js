@@ -10,6 +10,7 @@ Vue.use(VueRouter);
 import apiView from './components/API/Docs';
 // end points:
 import apiAuth from './components/API/end_points/Auth';
+import apiUserInfo from './components/API/end_points/UserInfo';
 import apiPersonalInfo from './components/API/end_points/PersonalInfo';
 import apiAchievements from './components/API/end_points/Achievements';
 import apiAvailabilityInfo from './components/API/end_points/AvailabilityInfo';
@@ -35,6 +36,7 @@ if ($("#apiView").length !== 0) {
     const routes = [
         {path: '/api/docs/', redirect:'/api/docs/auth'},
         {path: '/api/docs/auth', component: apiAuth, name:'Auth'},
+        {path: '/api/docs/user-info', component: apiUserInfo, name:'UserInfo'},
         {path: '/api/docs/personal-info', component: apiPersonalInfo, name:'PersonalInfo'},
         {path: '/api/docs/achievements', component: apiAchievements, name:'Achievements'},
         {path: '/api/docs/availability-info', component: apiAvailabilityInfo, name:'AvailabilityInfo'},

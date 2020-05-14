@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_code', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity'
+        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity'
     ];
 
     /**
@@ -51,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'availabilityInfo',
             'paymentInfo',
             'summary',
+            'theme',
             'subscription'
         ];
 
@@ -61,6 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'availabilityInfo',
         'paymentInfo',
         'summary',
+        'theme',
         'subscription'
     ];
     public static $defaultOneToManyRelations = [
@@ -205,6 +207,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Referee::class);
     }
+
+    public function theme(){
+        return $this->belongsTo(Theme::class);
+    }
+
 
 
     // user helper functions :

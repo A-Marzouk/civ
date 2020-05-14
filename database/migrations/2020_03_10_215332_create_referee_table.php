@@ -25,6 +25,7 @@ class CreateRefereeTable extends Migration
             $table->string('address')->nullable();
             $table->text('reference_text')->nullable();
             $table->text('notes')->nullable();
+            $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

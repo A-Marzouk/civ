@@ -1477,9 +1477,35 @@
             a{
                 margin: 0px 15px;
 
-                img{
-                    width: 20px;
-                    height: 20px;
+                &:nth-child(1){
+                    img{
+                        width: 25.6px;
+                        height: 16.6px;
+                    }
+                }
+                &:nth-child(2){
+                    img{
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+                &:nth-child(3){
+                    img{
+                        width: 18px;
+                        height: 23px;
+                    }
+                }
+                &:nth-child(4){
+                    img{
+                        width: 22px;
+                        height: 22px;
+                    }
+                }
+                &:nth-child(5){
+                    img{
+                        width: 20.5px;
+                        height: 20.5px;
+                    }
                 }
 
                 :last-child{
@@ -1493,12 +1519,13 @@
         .main-tabs_theme13{
             .v-tab{
                 font-size: 14px;
-                min-width: 70px;
+                min-width: auto;
                 align-items: flex-end;
+                padding: 0 3%;
 
                 &.v-tab--active{
                     font-size: 36px;
-                    align-items: center;
+                    line-height: 30px;
 
                     &::after{
                         height: 0;
