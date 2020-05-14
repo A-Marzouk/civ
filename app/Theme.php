@@ -8,10 +8,31 @@ class Theme extends Model
 {
 
     protected $table = 'themes';
-    protected $fillable = [] ;
+    protected $fillable = [
+        'title',
+        'category',
+        'job_title',
+        'emotions',
+        'design_style',
+        'color',
+        'code',
+        'developer',
+        'image',
+    ];
 
 
-    public function users(){
+    public function users()
+    {
         return $this->hasMany(User::class);
+    }
+
+    public function getSlugAttribute(): string
+    {
+        return str_slug($this->title);
+    }
+
+    public function getUrlAttribute(): string
+    {
+        return action('ResumeController@themePreview', [$this->id, $this->slug]);
     }
 }

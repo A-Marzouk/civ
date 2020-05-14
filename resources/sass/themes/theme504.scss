@@ -1,0 +1,290 @@
+#resumeTheme504 {
+    #theme503 {
+        padding: 0 5.8rem;
+    }
+
+    .margleft {
+        margin-left: 8rem !important;
+    }
+
+    .padleft {
+        padding-left: 9rem !important;
+    }
+
+    .padding {
+        padding: 10px 15px 400px 180px;
+    }
+
+    .avatar .v-image__image {
+        border-radius: 0px 15px 50px 0px;
+    }
+
+    .v-image__image {
+        border-radius: 20px;
+    }
+
+    .v-tabs-slider-wrapper {
+        height: 3px !important;
+        padding: 0 2rem !important;
+        left: 0;
+        color: #2943c7 !important;
+        border-radius: 10px !important;
+    }
+
+    .tablet:after {
+        content: "";
+        position: absolute;
+        height: 1px;
+        width: 100%;
+        background-color: #dfdfdf;
+        margin-top: 0px;
+        margin-left: 0.5rem;
+    }
+
+    .v-tabs-bar {
+        height: 60px !important;
+    }
+
+    .textcol {
+        color: #2943c7 !important;
+    }
+
+    .antext {
+        color: #2943c7;
+    }
+
+    #theme503 {
+        background: url("/images/resume_themes/theme502/backdeg.png");
+        background-size: 100vw auto;
+        background-repeat: no-repeat;
+    }
+
+    /* .theme--light.v-tabs .v-tab:hover {
+  color: #f8f8f8 !important;
+} */
+    .theme--light.v-tabs .v-tab:focus-within {
+        color: #f8f8f8 !important;
+    }
+
+    .v-tab:not(.v-tab-active) {
+        opacity: 0.3;
+    }
+
+    .v-tab--active {
+        opacity: 1 !important;
+        color: #222d68 !important;
+    }
+
+
+    .hire {
+        // background: #2943c7;
+        // border-radius: 10px;
+
+        width: 9rem;
+    }
+
+    .head {
+        font-size: 1.5rem;
+    }
+
+    .tabtitle {
+        font-size: 1.5rem;
+    }
+
+    .skilltext {
+        font-size: 1.2rem !important;
+        color: #1f1f1f;
+    }
+
+    .pro-back {
+        background: #d0d5ec;
+        border-radius: 10px;
+        max-width: 100%;
+        z-index: 10;
+    }
+
+    .progress {
+        height: 4px;
+        background: #2943c7;
+        border-radius: 10px;
+    }
+
+    .skilltab .v-tab--active:hover {
+        color: #2943c7 !important;
+    }
+
+    .skilltab:not(.v-tab-active) {
+        opacity: 1 !important;
+    }
+
+    .skilltab:hover {
+        color: #2943c7 !important;
+    }
+
+    .sfont {
+        font-size: 0.8rem;
+    }
+
+    .subhead {
+        font-size: 0.8rem !important;
+        font-weight: 300 !important;
+    }
+
+    @media (min-width: 1264px) {
+        .padding {
+            padding: 10px 15px 400px 160px;
+        }
+
+        .head {
+            font-size: 1.5rem;
+        }
+
+        .subhead {
+            font-size: 0.653rem !important;
+            font-weight: 200 !important;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        .iconmarg {
+            margin-left: 185px;
+            margin-right: auto;
+        }
+
+        .margicon {
+            margin-left: 200px;
+        }
+
+        .padding {
+            padding: 15px 20px 400px 20px;
+        }
+
+        .margleft {
+            margin-left: 0rem !important;
+        }
+
+        .padleft {
+            padding-left: 0rem !important;
+        }
+
+        #theme503 {
+            padding: 0 0;
+        }
+
+        .tablet:after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            width: 100%;
+            background-color: #dfdfdf;
+            margin-top: 0px;
+        }
+
+        .tabtitle {
+            font-size: 1rem;
+        }
+
+        #theme503 {
+            background: url("/images/resume_themes/theme502/tabdesign.png");
+
+            background-size: 100vw auto;
+            background-repeat: no-repeat;
+        }
+
+        .v-tabs-slider-wrapper {
+            height: 3px !important;
+            padding: 0 3rem !important;
+            left: 0;
+            color: #2943c7 !important;
+            border-radius: 10px !important;
+        }
+
+        .subhead {
+            font-size: 0.653rem !important;
+            font-weight: 200 !important;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        #theme503 {
+            padding: 0 0;
+        }
+
+        .margicon {
+            margin-left: 48px;
+        }
+
+        .padicon {
+            padding-left: 104px !important;
+        }
+
+        .iconmarg {
+            margin-left: 104px;
+            margin-right: auto;
+        }
+
+        .margleft {
+            margin-left: 0rem !important;
+        }
+
+        .padleft {
+            padding-left: 0rem !important;
+        }
+
+        .headline {
+            line-height: 22px !important;
+        }
+
+        .v-tabs-slider-wrapper {
+            height: 3px !important;
+            padding: 0 1rem !important;
+            left: 0;
+            color: #2943c7 !important;
+            border-radius: 10px !important;
+        }
+
+        .avatar .v-image__image {
+            border-radius: 0px 5px 20px 0px;
+        }
+
+        .subhead {
+            font-size: 0.7rem !important;
+            font-weight: 200 !important;
+        }
+
+        .head {
+            font-size: 1.5rem !important;
+        }
+
+        #theme503 {
+            background: url("/images/resume_themes/theme502/mob.png");
+            background-size: 100vw auto;
+            background-repeat: no-repeat;
+        }
+
+        .tablet:after {
+            content: "";
+            position: absolute;
+            height: 4px;
+            width: 100% !important;
+            background-color: rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+            margin-left: 0px !important;
+        }
+
+
+        .v-slide-group__prev {
+            align-items: center;
+            display: none !important;
+
+            justify-content: center;
+            min-width: 0px !important;
+        }
+
+
+        .tabtitle {
+            font-size: 1.2rem;
+        }
+    }
+}

@@ -51,6 +51,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'availabilityInfo',
             'paymentInfo',
             'summary',
+            'theme',
             'subscription'
         ];
 
@@ -61,6 +62,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'availabilityInfo',
         'paymentInfo',
         'summary',
+        'theme',
         'subscription'
     ];
     public static $defaultOneToManyRelations = [
@@ -207,7 +209,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function theme(){
-        return $this->hasOne(Theme::class);
+        return $this->belongsTo(Theme::class);
     }
 
 
