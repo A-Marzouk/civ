@@ -17,7 +17,7 @@
 
 				<div class="current-user__detail--contact">
 					<!-- Hire Me link -->
-					<a href="#" class="contact__link contact__link--hireme" @click.prevent="$emit('openModal')">
+					<a href="#" class="contact__link contact__link--hireme" @click.prevent="$emit('openPaymentModal')">
 						<svg class="tw-fill-current" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M19.9998 2.00012C19.9998 0.900122 19.0998 0.00012207 17.9998 0.00012207H1.99976C0.899756 0.00012207 -0.000244141 0.900122 -0.000244141 2.00012V14.0001C-0.000244141 15.1001 0.899756 16.0001 1.99976 16.0001H17.9998C19.0998 16.0001 19.9998 15.1001 19.9998 14.0001V2.00012ZM17.9998 2.00012L9.99976 7.00012L1.99976 2.00012H17.9998ZM17.9998 14.0001H1.99976V4.00012L9.99976 9.00012L17.9998 4.00012V14.0001Z" />
 						</svg>
@@ -219,7 +219,7 @@ export default {
 				width: auto;
 				color: #ffb400;
 				flex-grow: 1;
-				font-size: 20px;
+				font-size: 16px;
 				line-height: 30px;
 				min-width: 100px;
 				font-weight: 700;
@@ -358,6 +358,7 @@ export default {
 
 			&.contact__link--hireme {
 				max-width: 230px;
+				font-size: 20px;
 
 				svg {
 					width: 20px;

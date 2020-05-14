@@ -1,9 +1,9 @@
 <template>
-	<form @submit.prevent class="">
-		<h3 class="payment-form__title tw-font-poppins tw-text-center tw-font-extrabold tw-text-2xl tw-pt-3">Fill in your details</h3>
+	<form class="payment-form" @submit.prevent>
+		<h3>Fill in your details</h3>
 
-		<div class="payment-methods tw-flex tw-items-center tw-pt-12 md:tw-pt-24">
-			<div class="payment-method payment-method--paypal tw-cursor-pointer" :class="{'active': activeMethod === 'paypal'}" @click="activeMethod = 'paypal'">
+		<div class="payment-method">
+			<div class="payment-method--paypal" :class="{'active': method === 'paypal'}" @click="method = 'paypal'">
 				<!-- Paypal icon -->
 				<svg viewBox="0 0 170 48" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M30.4702 8.48521C29.9137 7.36894 29.0335 6.44828 27.9409 5.75693C26.801 5.05884 25.4554 4.56984 23.9176 4.27981C22.3528 3.99653 20.5452 3.86838 18.4509 3.84814L8.78219 3.85489C7.77721 3.86838 6.79247 4.65078 6.5564 5.62203L0.051011 33.9571C-0.185058 34.9148 0.445583 35.7175 1.45056 35.7175H6.08089C7.08587 35.7175 8.08073 34.9384 8.30331 33.9571L9.89171 27.0773C10.1042 26.1196 11.0957 25.3203 12.1108 25.3203H13.4361C19.0984 25.3136 23.4825 24.1568 26.6324 21.84C29.7991 19.5197 31.3605 16.4542 31.3605 12.6569C31.3571 10.9943 31.084 9.59811 30.4702 8.48521ZM20.4845 17.7425C19.0849 18.7677 17.139 19.2803 14.63 19.2803H13.4968C12.4885 19.2803 11.8713 18.4844 12.0905 17.5132L13.4833 11.4968C13.6789 10.5323 14.694 9.73301 15.6889 9.73975L17.2065 9.72963C18.977 9.72963 20.3293 10.0365 21.2331 10.6301C22.1268 11.2169 22.5754 12.151 22.5686 13.3887C22.5956 15.2705 21.8773 16.7173 20.4845 17.7425Z" fill="#003087" />
@@ -16,42 +16,31 @@
 					<path d="M84.2634 11.4125C83.1674 11.426 78.7124 11.4125 78.7124 11.4125C77.7142 11.4125 76.4327 12.2185 75.7987 13.1796C75.7987 13.1796 69.1685 24.5581 68.5244 25.7014L67.7555 25.6913L65.6915 13.2572C65.4622 12.2792 64.4404 11.4428 63.169 11.4428L59.0209 11.4496C58.0227 11.4496 57.4089 12.2454 57.6348 13.2167C57.6348 13.2167 60.7847 31.1411 61.4153 35.36C61.7087 37.6869 61.3782 38.1017 61.3782 38.1017L57.2774 45.2445C56.6703 46.2158 56.9975 47.0083 57.9923 47.0083L62.7879 47.0016C63.7861 47.0016 65.098 46.2158 65.6915 45.2411L84.1386 14.0396C84.1386 14.0429 85.9125 11.3754 84.2634 11.4125Z" fill="#003087" />
 				</svg>
 
-				<div class="tab-underlibe"></div>
+				<div class="method-underline"></div>
 			</div>
-			<div class="payment-method payment-method--stripe tw-cursor-pointer" :class="{'active': activeMethod === 'stripe'}" @click="activeMethod = 'stripe'">
+			<div class="payment-method--stripe" :class="{'active': method === 'stripe'}" @click="method = 'stripe'">
 				<!-- Stripe icon-->
 				<svg viewBox="0 0 120 50" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M8.43333 19.5057C8.43333 18.2098 9.5 17.7113 11.2667 17.7113C13.8 17.7113 17 18.4756 19.5333 19.838V12.0291C16.7667 10.9325 14.0333 10.5005 11.2667 10.5005C4.5 10.5005 0 14.0228 0 19.9045C0 29.0758 12.6667 27.6137 12.6667 31.568C12.6667 33.0966 11.3333 33.595 9.46667 33.595C6.7 33.595 3.16667 32.4652 0.366667 30.9367V38.8453C3.46667 40.1745 6.6 40.7394 9.46667 40.7394C16.4 40.7394 21.1667 37.3167 21.1667 31.3686C21.1333 21.4663 8.43333 23.2274 8.43333 19.5057ZM30.9667 3.85462L22.8333 5.58255L22.8 32.1994C22.8 37.1173 26.5 40.7394 31.4333 40.7394C34.1667 40.7394 36.1667 40.2409 37.2667 39.6428V32.8972C36.2 33.3292 30.9333 34.8577 30.9333 29.9398V18.1433H37.2667V11.0654H30.9333L30.9667 3.85462ZM47.6333 13.5244L47.1 11.0654H39.9V40.1412H48.2333V20.4361C50.2 17.8775 53.5333 18.3427 54.5667 18.7082V11.0654C53.5 10.6667 49.6 9.93562 47.6333 13.5244ZM56.6 11.0654H64.9667V40.1412H56.6V11.0654ZM56.6 8.53998L64.9667 6.74559V0L56.6 1.76116V8.53998ZM82.3667 10.5005C79.1 10.5005 77 12.0291 75.8333 13.0924L75.4 11.0322H68.0667V49.7778L76.4 48.0166L76.4333 38.6127C77.6333 39.4766 79.4 40.7061 82.3333 40.7061C88.3 40.7061 93.7333 35.9211 93.7333 25.3873C93.7 15.7508 88.2 10.5005 82.3667 10.5005ZM80.3667 33.3956C78.4 33.3956 77.2333 32.6978 76.4333 31.8339L76.4 19.5057C77.2667 18.5421 78.4667 17.8775 80.3667 17.8775C83.4 17.8775 85.5 21.2669 85.5 25.6199C85.5 30.0727 83.4333 33.3956 80.3667 33.3956ZM120 25.7196C120 17.2129 115.867 10.5005 107.967 10.5005C100.033 10.5005 95.2333 17.2129 95.2333 25.6532C95.2333 35.6552 100.9 40.7061 109.033 40.7061C113 40.7061 116 39.8089 118.267 38.5462V31.9003C116 33.0301 113.4 33.7279 110.1 33.7279C106.867 33.7279 104 32.5981 103.633 28.6771H119.933C119.933 28.2451 120 26.5171 120 25.7196ZM103.533 22.5628C103.533 18.8079 105.833 17.2461 107.933 17.2461C109.967 17.2461 112.133 18.8079 112.133 22.5628H103.533Z" fill="#6772E5" />
 				</svg>
 
-				<div class="tab-underlibe"></div>
+				<div class="method-underline"></div>
 			</div>
 		</div>
 
-		<div class="payment-inputs">
-			<div v-if="activeMethod === 'paypal'">
-				<div class="tw-pt-10 md:tw-pt-20">
-					<FormInput name="email" type="text" label="E-mail" placeholder="example@civie.com" v-model="form.email" />
-				</div>
-				<div class="tw-pt-8">
-					<FormInput name="password" type="password" label="Password" placeholder="password" v-model="form.password" />
-				</div>
-				<div class="tw-pt-16">
-					<button class="submit__button--paypal tw-font-poppins tw-font-bold">Send Pay</button>
-				</div>
+		<div class="form__inputs" v-if="method === 'paypal' || method === 'stripe'">
+			<div class="form__input form__input--first">
+				<FormInput name="email" type="text" label="E-mail" placeholder="example@civie.com" v-model="form.email" />
+			</div>
+			<div class="form__input">
+				<FormInput name="password" type="password" label="Password" placeholder="password" v-model="form.password" />
 			</div>
 
-			<div v-else-if="activeMethod === 'stripe'">
-				<div class="tw-pt-10 md:tw-pt-20">
-					<FormInput name="email" type="text" label="E-mail" placeholder="example@civie.com" v-model="form.email" />
-				</div>
-				<div class="tw-pt-8">
-					<FormInput name="password" type="password" label="Password" placeholder="password" v-model="form.password" />
-				</div>
-				<div class="tw-pt-16">
-					<button class="submit__button--paypal tw-font-poppins tw-font-bold">Send Pay</button>
-				</div>
-			</div>
+			<button class="form__submit-button" type="button" @click="$emit('openPaymentSuccessModal')">Send Pay</button>
+			<!-- <div class="form__input-group">
+			</div> -->
+			<!-- <div class="form__submit-button">
+			</div> -->
 		</div>
 	</form>
 </template>
@@ -70,7 +59,7 @@ export default {
 				email: "",
 				password: ""
 			},
-			activeMethod: "paypal"
+			method: "paypal"
 		};
 	}
 };
@@ -79,82 +68,140 @@ export default {
 <style lang="scss" scoped>
 @import "./../scss/variables";
 
-.payment-method {
-	width: 50%;
+.payment-form {
+	padding: 20px 15px 30px;
+	font-family: $poppins;
 
-	svg {
-		margin: 0 auto;
-	}
-
-	&.payment-method--paypal {
-		svg {
-			width: 88.54166px;
-			height: 25px;
-		}
-	}
-
-	&.payment-method--stripe {
-		svg {
-			width: 60px;
-			height: 25px;
-		}
-	}
-
-	.tab-underlibe {
-		border: 3px solid transparent;
-		margin-top: 7px;
-		border-radius: 100px;
-		transition: all 0.3s;
-	}
-
-	&.active {
-		.tab-underlibe {
-			border-color: #012269;
-		}
-	}
-}
-
-.payment-inputs,
-.submit__button--paypal {
-	max-width: 348px;
-	margin: 0 auto;
-}
-
-.submit__button--paypal {
-	display: block;
-	width: 100%;
-	padding: 15px;
-	color: #ffffff;
-	background: #0470dc;
-	font-size: 20px;
-	line-height: 30px;
-	border-radius: 5px;
-}
-
-@media (min-width: $md) {
-	.payment-form__title {
-		font-size: 40px;
-		line-height: 60px;
+	h3 {
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 36px;
+		font-family: inherit;
+		text-align: center;
 	}
 
 	.payment-method {
-		&.payment-method--paypal {
+		display: flex;
+		padding-top: 30px;
+
+		.payment-method--paypal,
+		.payment-method--stripe {
+			width: 50%;
+
 			svg {
-				width: 170px;
-				height: 48px;
+				height: 28px;
+				margin: 0 auto;
+			}
+
+			.method-underline {
+				height: 5px;
+				background: transparent;
+				margin-top: 5px;
+				border-radius: 100px;
+				transition: all 0.3s;
+			}
+
+			&.active .method-underline {
+				background: #012269;
+			}
+		}
+	}
+
+	.form__inputs {
+		.form__input {
+			padding-top: 15px;
+
+			&.form__input--first {
+				padding-top: 30px;
 			}
 		}
 
-		&.payment-method--stripe {
-			svg {
-				width: 115.1999px;
-				height: 48px;
+		.form__submit-button {
+			display: block;
+			width: 100%;
+			max-width: 280px;
+			margin: 0 auto;
+			padding: 15px;
+			color: #ffffff;
+			margin-top: 30px;
+			background: #0470dc;
+			font-size: 20px;
+			line-height: 30px;
+			border-radius: 5px;
+		}
+	}
+}
+
+@media (min-width: $md) {
+	.payment-form {
+		padding: 69px 0;
+		max-width: 532px;
+		margin: 0 auto;
+
+		h3 {
+			font-weight: 800;
+			font-size: 40px;
+			line-height: 60px;
+		}
+
+		.payment-method {
+			padding-top: 90px;
+			max-width: 532px;
+			margin: 0 auto;
+
+			.payment-method--paypal,
+			.payment-method--stripe {
+				svg {
+					height: 50px;
+				}
+
+				.method-underline {
+					height: 6px;
+					margin-top: 7px;
+				}
 			}
 		}
 
-		.tab-underlibe {
-			border-width: 5px;
-			margin-top: 15px;
+		.form__inputs {
+			.form__input {
+				padding-top: 30px;
+				max-width: 380px;
+				margin: 0 auto;
+
+				&.form__input--first {
+					padding-top: 70px;
+				}
+			}
+
+			.form__submit-button {
+				margin-top: 50px;
+			}
+		}
+	}
+}
+
+@media (min-width: $lg) {
+	.payment-form {
+		padding: unset;
+		padding-bottom: 60px;
+		max-width: 790px;
+
+		.form__inputs {
+			display: flex;
+			flex-wrap: wrap;
+
+			.form__input {
+				width: 50%;
+				padding-top: 72px;
+
+				&.form__input--first {
+					padding-top: 72px;
+				}
+			}
+		}
+
+		.form__submit-button {
+			margin-top: 60px;
 		}
 	}
 }

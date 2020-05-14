@@ -44,7 +44,7 @@
 
 				<!-- Hire me link -->
 				<div class="hire-me">
-					<a href="#" class="hire-me__link tw-font-poppins tw-flex tw-items-center tw-justify-center tw-w-full tw-h-10 tw-font-bold" @click.prevent="$emit('openModal')">
+					<a href="#" class="hire-me__link tw-font-poppins tw-flex tw-items-center tw-justify-center tw-w-full tw-h-10 tw-font-bold" @click.prevent="$emit('openPaymentModal')">
 						<svg width="20" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path fill="#012166" d="M20 2c0-1.1-.9-2-2-2H2C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V2zm-2 0l-8 5-8-5h16zm0 12H2V4l8 5 8-5v10z" />
 						</svg>
@@ -92,6 +92,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
+
 .sidebar-wrapper {
 	position: absolute;
 	top: 0;
@@ -111,14 +113,28 @@ export default {
 		right: 0;
 
 		.sidebar {
-			width: 360px;
+			width: 320px;
 		}
 	}
 }
 
 .sidebar__body {
-	width: 360px;
+	width: 320px;
 	padding: 30px 37px 0 20px;
+}
+
+@media (min-width: $sm) {
+	.sidebar-wrapper {
+		&.open {
+			.sidebar {
+				width: 360px;
+			}
+		}
+	}
+
+	.sidebar__body {
+		width: 360px;
+	}
 }
 
 .user__fullname {

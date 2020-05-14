@@ -1,13 +1,17 @@
 <template>
 	<div id="wrapper_theme1000" class="tw-w-full tw-bg-white tw-font-roboto">
-		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @openSidebar="isSidebarOpen=true" @openModal="openModal" />
+		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @openSidebar="isSidebarOpen=true" @openPaymentModal="openPaymentModal" />
 
-		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" @openModal="openModal" />
+		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" @openPaymentModal="openPaymentModal" />
 
 		<TabsContent :currentTab="currentTab" />
 
-		<Modal :isOpen="isModalOpen" @onClose="isModalOpen=false">
-			<PaymentForm />
+		<Modal :isOpen="isPaymentModalOpen" @onClose="isPaymentModalOpen=false">
+			<PaymentForm @openPaymentSuccessModal="openPaymentSuccessModal" />
+		</Modal>
+
+		<Modal :isOpen="isPaymentSuccessModalOpen" @onClose="isPaymentSuccessModalOpen=false">
+			<PaymentSuccessMessage />
 		</Modal>
 	</div>
 </template>
@@ -18,11 +22,19 @@ import TabsContent from "./components/TabsContent";
 import Sidebar from "./components/Sidebar";
 import Modal from "./components/Modal";
 import PaymentForm from "./components/PaymentForm";
+import PaymentSuccessMessage from "./components/PaymentSuccessMessage";
 
 export default {
 	name: "resume-theme-1000",
 
-	components: { Header, TabsContent, Sidebar, Modal, PaymentForm },
+	components: {
+		Header,
+		TabsContent,
+		Sidebar,
+		Modal,
+		PaymentForm,
+		PaymentSuccessMessage
+	},
 
 	data: () => {
 		return {
@@ -38,15 +50,20 @@ export default {
 				weeklyAvailability: 250
 			},
 			isSidebarOpen: false,
-			isModalOpen: false
+			isPaymentModalOpen: true,
+			isPaymentSuccessModalOpen: false
 		};
 	},
 
 	methods: {
-		openModal() {
+		openPaymentModal() {
 			if (this.isSidebarOpen) this.isSidebarOpen = false;
+			this.isPaymentModalOpen = true;
+		},
 
-			this.isModalOpen = true;
+		openPaymentSuccessModal() {
+			this.isPaymentModalOpen = false;
+			this.isPaymentSuccessModalOpen = true;
 		}
 	}
 };
