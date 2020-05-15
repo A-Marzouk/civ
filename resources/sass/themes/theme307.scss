@@ -1,0 +1,23 @@
+@import 'resources/sass/media-queries';
+#resumeTheme307{
+
+    .v-icon.v-icon{
+        @include lt-sm {
+            font-size: 40px;
+        }
+    }
+
+    .v-slide-group__next{
+        @include lt-sm {
+            padding: 0 3em 0 0;
+        }
+        
+    }
+    .v-slide-group__prev{
+        @include lt-sm {
+            padding: 0 0 0 3em;
+        }
+
+    }
+
+}

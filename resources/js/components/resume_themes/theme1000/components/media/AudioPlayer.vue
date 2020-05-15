@@ -80,8 +80,6 @@ export default {
 
 			let hours = Math.floor(durationSeconds / 3600);
 
-			console.log(hours, minutes, seconds);
-
 			return hours > 0
 				? `${hours}:${minutes}:${seconds}`
 				: `${minutes}:${seconds}`;

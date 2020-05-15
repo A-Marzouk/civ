@@ -1,9 +1,9 @@
 <template>
 	<div class="tw-flex tw-items-center">
-		<div class="tw-flex-1 tw-relative tw-h-10px tw-rounded-full screen425px:tw-h-15px" :class="`bg-${color}`">
-			<div class="bg-gray tw-absolute tw-top-0 tw-bottom-0 tw-left-0 tw-rounded-full" :style="{width:  progress+'%'}"></div>
+		<div class="progress__outline tw-flex-1 tw-relative" :class="`bg-${color}`">
+			<div class="progress__bar tw-absolute tw-top-0 tw-bottom-0 tw-left-0" :style="{width:  progress+'%'}"></div>
 		</div>
-		<div class="tw-leading-21px tw-text-black tw-text-lg tw-pl-3 screen425px:tw-text-2xl screen425px:tw-leading-27px">{{ progress }}%</div>
+		<div class="progress__label tw-text-black tw-text-lg tw-pl-3">{{ progress }}%</div>
 	</div>
 </template>
 
@@ -26,6 +26,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
+
+.progress__outline {
+	height: 10px;
+	border-radius: 9999px;
+}
+
+.progress__bar {
+	background: #acacac;
+	border-radius: 9999px;
+}
+
+.progress__label {
+	line-height: 21px;
+}
+
+@media (min-width: $md) {
+	.progress__outline {
+		height: 15px;
+	}
+
+	.progress__label {
+		font-size: 24px;
+		line-height: 27px;
+	}
+}
+
+/* Options for props Color */
 .bg-yellow {
 	background: #ffb400;
 }
@@ -34,8 +62,5 @@ export default {
 }
 .bg-turquoise {
 	background: #23ddbe;
-}
-.bg-gray {
-	background: #acacac;
 }
 </style>

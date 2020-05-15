@@ -1,17 +1,17 @@
 <template>
-	<div class="bg-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4 screen425px:tw-px-54px screen425px:tw-pb-44px screen425px:tw-pt-10 screen1024px:tw-px-10">
-		<div class="tw-flex tw-justify-between tw-items-center screen425px:tw-pr-32 screen1024px:tw-pr-0">
-			<div>
-				<h4 class="tw-font-bold tw-leading-21px tw-text-black tw-text-lg screen425px:tw-text-25px screen425px:tw-leading-civ-29" v-text="details.title"></h4>
-				<div class="tw-font-medium tw-leading-21px tw-text-black tw-text-lg tw-pt-10px screen425px:tw-text-20px screen425px:tw-leading-23px tw-pt-15px" v-text="details.subtitle"></div>
+	<div class="card">
+		<div class="card__body tw-flex tw-justify-between tw-items-center">
+			<div class="card__body--header">
+				<h4 class="card__title tw-font-bold tw-text-black tw-text-lg" v-text="details.title"></h4>
+				<div class="card__subtitle tw-text-black tw-font-medium tw-text-lg" v-text="details.subtitle"></div>
 			</div>
-			<div class="tw-flex tw-items-center tw-justify-center tw-rounded-9px tw-w-60px tw-h-60px" :class="`bg-${iconBgColor}`">
+			<div class="card__body--icon tw-flex tw-items-center tw-justify-center" :class="`bg-${iconBgColor}`">
 				<slot></slot>
 			</div>
 		</div>
-		<div>
-			<div class="tw-leading-tight tw-text-xs tw-text-black tw-pt-10px screen425px:tw-text-20px screen425px:tw-leading-23px screen425px:tw-pt-20px" v-html="details.description"></div>
-			<div class="tw-leading-tight tw-text-black tw-opacity-50 tw-pt-5" v-text="details.duration"></div>
+		<div class="card__footer">
+			<div class="card__footer--description tw-leading-tight tw-text-xs tw-text-black" v-html="details.description"></div>
+			<div class="card__footer--duration tw-leading-tight tw-text-black tw-opacity-50 tw-pt-5" v-text="details.duration"></div>
 		</div>
 	</div>
 </template>
@@ -35,17 +35,127 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bg-card {
+@import "./../scss/variables";
+
+.card {
 	background: #eeeff1;
+	border-radius: 10px;
+	padding: 18px 25px 25px;
 }
 
+.card__title {
+	line-height: 21px;
+}
+
+.card__subtitle {
+	line-height: 21px;
+	padding-top: 10px;
+}
+
+.card__body--icon {
+	border-radius: 9px;
+	width: 60px;
+	height: 60px;
+}
+
+.card__footer--description {
+	padding-top: 10px;
+}
+
+.card__footer {
+	padding-right: 92px;
+}
+
+@media (min-width: $md) {
+	.card {
+		padding: 40px 54px 44px;
+	}
+
+	.card__title {
+		font-size: 25px;
+		line-height: 29px;
+	}
+
+	.card__subtitle {
+		font-size: 20px;
+		line-height: 23px;
+		padding-top: 15px;
+	}
+
+	.card__footer {
+		padding-right: 128px;
+	}
+
+	.card__footer--description {
+		font-size: 20px;
+		line-height: 23px;
+		padding-top: 20px;
+	}
+
+	.card__footer--duration {
+		padding-top: 40px;
+	}
+}
+
+@media (min-width: $lg) {
+	.card {
+		padding: 15px;
+	}
+
+	.card__title {
+		font-size: 22px;
+		line-height: 26px;
+	}
+
+	.card__subtitle {
+		font-size: 18px;
+		line-height: 21px;
+		padding-top: 10px;
+	}
+
+	.card__footer {
+		padding-right: 0;
+	}
+
+	.card__footer--description {
+		font-size: 14px;
+		line-height: 18px;
+		padding-top: 15px;
+	}
+
+	.card__footer--duration {
+		padding-top: 15px;
+	}
+}
+
+@media (min-width: 1600px) {
+	.card {
+		padding: 40px 54px 44px;
+	}
+
+	.card__title {
+		font-size: 25px;
+		line-height: 29px;
+	}
+
+	.card__subtitle {
+		font-size: 20px;
+		line-height: 23px;
+		padding-top: 15px;
+	}
+
+	.card__footer--description {
+		font-size: 20px;
+		line-height: 23px;
+		padding-top: 20px;
+	}
+}
+
+/* Options for props iconBgColor*/
 .bg-yellow {
 	background: #ffb400;
 }
 .bg-lima {
 	background: #46e72b;
-}
-.tw-rounded-9px {
-	border-radius: 9px;
 }
 </style>
