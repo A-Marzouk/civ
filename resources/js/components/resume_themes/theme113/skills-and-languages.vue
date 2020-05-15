@@ -53,13 +53,13 @@ export default {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 100px;
-        padding: 0 100px !important;
+        max-width: 1400px !important;
 
         .skill {
             display: flex;
             flex-direction: column;
-            width: 45%;
-            margin: 35px 0;
+            grid-column: span 2;
+            align-self: end;
 
             img {
                 width: 92px;
