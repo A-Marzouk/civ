@@ -485,7 +485,7 @@
     </v-container>
     <!-- main container -->
     <!-- Footer -->
-    <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':''">
+    <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':'auto'">
       <v-container>
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
@@ -740,7 +740,9 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 .gallery-slides {
-  background-color: #e5e5e5;
+  @media screen and (max-width: 599px){
+    background-color: #e5e5e5;
+  }
 }
 .main-container {
   width: 100%;
@@ -1720,6 +1722,9 @@ export default {
   left: 0;
   right: 0;
   top: 7.4%;
+  @media screen and (max-width: 896px){
+    top:6.4%
+  }
   @media screen and (max-width: 599px) {
     width: 80%;
     top: 7.5%;
@@ -1754,6 +1759,9 @@ export default {
   left: 0;
   right: 0;
   top: 33.4%;
+  @media screen and (max-width: 896px){
+    top:31.7%;
+  }
   @media screen and (max-width: 599px) {
     top: 41.3%;
     img {
@@ -1795,6 +1803,9 @@ export default {
   img {
     width: 95%;
   }
+  @media screen and (max-width: 896px){
+    top: 46.5%;
+  }
   @media screen and (max-width: 599px) {
     top: 52.5%;
   }
@@ -1822,6 +1833,9 @@ export default {
   left: 3%;
   right: 0;
   top: 58.1%;
+  @media screen and (max-width: 896px){
+    top: 59.5%;
+  }
   @media screen and (max-width: 599px) {
     top: 39.6%;
     left: 38%;
@@ -1853,6 +1867,9 @@ export default {
   top: 63%;
   img {
     width: 80%;
+  }
+  @media screen and (max-width: 896px){
+    top: 65%;
   }
   @media screen and (max-width: 599px) {
     width: 80%;
@@ -1994,7 +2011,7 @@ export default {
 }
 @media screen and (max-width: 414px) {
   #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 26px;
+    margin-left: 27px;
     width: 300px !important;
   }
 }
