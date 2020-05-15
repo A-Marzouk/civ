@@ -399,7 +399,7 @@
 
             <v-card tile color="transparet" flat class="card-gallery hidden-md-and-up">
               <slick
-                class="gallerySlidess"
+                class="gallery-slides"
                 ref="slick"
                 :options="slickOptionsGallery"
                 style="z-index:2;"
@@ -739,6 +739,9 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+.gallery-slides{
+  background-color: #E5E5E5;
+}
 .main-container {
   width: 100%;
   @media screen and (max-width: 599px) {
@@ -751,6 +754,7 @@ export default {
 }
 .app-container {
   @media screen and (max-width: 599px) {
+    background-color: #E5E5E5 !important ;
   }
 }
 
@@ -1666,8 +1670,11 @@ export default {
     top: 7.5%;
     left: 10%;
   }
-  @media screen and (max-width: 380px) {
-    top: 7.9%;
+  @media screen and (max-width: 414px){
+    top: 7.8%;
+  }
+  @media screen and (max-width: 385px) {
+    top: 8%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1697,6 +1704,9 @@ export default {
     img {
       width: 97%;
     }
+  }
+  @media screen and (max-width: 414px){
+    top: 41.8%;
   }
   @media screen and (max-width: 400px) {
     top: 40.6%;
@@ -1734,7 +1744,7 @@ export default {
     top: 52.5%;
   }
   @media screen and (max-width: 414px) {
-    top: 51.7%;
+    top: 52.8%;
   }
 
   @media screen and (max-width: 400) {
@@ -1887,7 +1897,7 @@ export default {
   #welcomeView2 .gallerySlides {
     margin-top: -120px;
   }
-  #welcomeView2 .gallerySlidess .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: -78px;
   }
   #welcomeView2 .integrationSlides .slick-slide {
@@ -1905,7 +1915,7 @@ export default {
   #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 50px !important;
   }
-  #welcomeView2 .gallerySlidess .slick-dots li button {
+  #welcomeView2 .gallery-slides .slick-dots li button {
     width: 40px;
     height: 6px;
     border-radius: 0px;
@@ -1918,7 +1928,7 @@ export default {
     border-radius: 0px;
     margin-left: -10px;
   }
-  #welcomeView2 .gallerySlidess .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: 34px;
     width: 300px !important;
   }
@@ -1927,21 +1937,27 @@ export default {
     margin-top: 0px !important;
   }
 }
+@media screen and (max-width: 414px) {
+  #welcomeView2 .gallery-slides .slick-slide {
+    margin-left: 28px;
+    width: 300px !important;
+  }
+}
 
 @media screen and (max-width: 400px) {
-  #welcomeView2 .gallerySlidess .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: 10px;
     width: 300px !important;
   }
 }
 @media screen and (max-width: 375px) {
-  #welcomeView2 .gallerySlidess .slick-slide {
-    margin-left: 3px;
+  #welcomeView2 .gallery-slides .slick-slide {
+    margin-left: 2px;
   }
 }
 
 @media screen and (max-width: 360px) {
-  #welcomeView2 .gallerySlidess .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: -8px;
   }
 }
