@@ -5,10 +5,10 @@
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
-        <v-btn text color="#0046FE" class="btn-appbar-login">
+        <a text color="#0046FE" class="btn-appbar-login">
           Log
           <span>&nbsp;in</span>
-        </v-btn>
+        </a>
       </v-app-bar>
       <!-- 1st inner container -->
       <v-container style="width:100%" class="container-resume">
@@ -503,14 +503,14 @@
           <v-col md="6" cols="6" align="right" class="hidden-sm-and-down">
             <v-card flat tile color="transparent">
               <v-card-text class="follow-us-text">
-                Follow Us:
+                <label>Follow Us:</label>
                 <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/facebook.png"
                     alt="facebook"
                   />
                 </v-btn>
-                <span>14,044 Followers</span>
+                <span class="followers">14,044 Followers</span>
                 <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-1 ml-sm-0 ml-0">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
@@ -525,7 +525,7 @@
           <v-col md="4" cols="12" align="right" class="hidden-sm-and-down">
             <v-card color="transparent" flat tile>
               <v-card-text class="follow-us-text">
-                Contact Us:
+                <label>Contact Us:</label>
                 <v-btn
                   fab
                   x-small
@@ -739,8 +739,8 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-.gallery-slides{
-  background-color: #E5E5E5;
+.gallery-slides {
+  background-color: #e5e5e5;
 }
 .main-container {
   width: 100%;
@@ -754,7 +754,7 @@ export default {
 }
 .app-container {
   @media screen and (max-width: 599px) {
-    background-color: #E5E5E5 !important ;
+    background-color: #e5e5e5 !important ;
   }
 }
 
@@ -886,11 +886,10 @@ export default {
     line-height: 4rem;
   }
 
-  @media screen and (min-width: 960px) and (max-width: 1024px){
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
     font-size: 2.5rem;
     line-height: 3rem;
   }
-
 
   @media screen and (max-width: 959px) {
     font-size: 4rem;
@@ -916,7 +915,7 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 17px !important;
   }
-  @media screen and (min-width: 960px) and (max-width: 1024px){
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
     font-size: 14px !important;
     line-height: 1.8rem;
   }
@@ -1000,7 +999,7 @@ export default {
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
   }
-  @media screen and (min-width: 960px) and (max-width: 1024px){
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
     font-size: 0.7rem;
   }
   @media screen and (max-width: 599px) {
@@ -1375,8 +1374,14 @@ export default {
       font-size: 14px;
     }
   }
+
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1024px){
+    label{
+      display: none;
+    }
   }
   @media screen and (max-width: 599px) {
     font-size: 12px;
@@ -1386,6 +1391,7 @@ export default {
   @media screen and (max-width: 380px) {
     font-size: 10px;
   }
+
 }
 .logo-footer {
   width: 201px;
@@ -1475,7 +1481,7 @@ export default {
       width: 100%;
     }
   }
-  
+
   @media screen and (max-width: 1366px) {
     left: 0;
     width: 1366px;
@@ -1492,8 +1498,8 @@ export default {
       width: 100%;
     }
   }
-  @media screen and (max-width: 1024px){
-    img{
+  @media screen and (max-width: 1024px) {
+    img {
       width: 79%;
     }
   }
@@ -1523,8 +1529,8 @@ export default {
     left: 0;
     top: 32rem;
   }
-  @media screen and (max-width: 1024px){
-    img{
+  @media screen and (max-width: 1024px) {
+    img {
       width: 79%;
     }
   }
@@ -1552,10 +1558,10 @@ export default {
     left: -18%;
     top: -13rem;
   }
-  @media screen and (max-width: 1024px){
+  @media screen and (max-width: 1024px) {
     top: -9rem;
     left: -41%;
-    img{
+    img {
       width: 79%;
     }
   }
@@ -1594,11 +1600,10 @@ export default {
     width: 1280px;
     top: 210%;
     left: -44%;
-    img{
+    img {
       width: 70%;
     }
   }
-
 }
 
 .middle-layer-background3 {
@@ -1622,7 +1627,7 @@ export default {
     width: 1280px;
     left: -5%;
   }
-  @media screen and (max-width: 1024px){
+  @media screen and (max-width: 1024px) {
     left: -10%;
   }
 }
@@ -1651,7 +1656,7 @@ export default {
     width: 1280px;
     left: -0.8125rem;
   }
-  @media screen and (max-width: 1024px){
+  @media screen and (max-width: 1024px) {
     top: 72%;
   }
 }
@@ -1675,10 +1680,9 @@ export default {
     top: 93%;
     width: 1280px;
   }
-  @media screen and (max-width: 1024px){
+  @media screen and (max-width: 1024px) {
     top: 92%;
   }
-  
 }
 
 // backgrounds
@@ -1696,8 +1700,8 @@ export default {
     width: 90%;
   }
 
-  @media screen and (max-width: 414px){
-    top: 2.0%;
+  @media screen and (max-width: 414px) {
+    top: 2%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1721,7 +1725,7 @@ export default {
     top: 7.5%;
     left: 10%;
   }
-  @media screen and (max-width: 414px){
+  @media screen and (max-width: 414px) {
     top: 7.8%;
   }
   @media screen and (max-width: 385px) {
@@ -1756,7 +1760,7 @@ export default {
       width: 97%;
     }
   }
-  @media screen and (max-width: 414px){
+  @media screen and (max-width: 414px) {
     top: 41.8%;
   }
   @media screen and (max-width: 400px) {
@@ -1802,8 +1806,8 @@ export default {
     top: 51.7%;
   }
 
-  @media screen and (max-width: 380px) {
-    top: 53.3%;
+  @media screen and (max-width: 375px) {
+    top: 53.1%;
   }
   @media screen and (max-width: 360px) {
     top: 53.7%;
@@ -1827,7 +1831,7 @@ export default {
   }
   @media screen and (max-width: 380px) {
     left: 49%;
-    top: 67%;
+    top: 47%;
   }
   @media screen and (max-width: 370px) {
     top: 52%;
@@ -1990,7 +1994,7 @@ export default {
 }
 @media screen and (max-width: 414px) {
   #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 28px;
+    margin-left: 26px;
     width: 300px !important;
   }
 }
@@ -2001,9 +2005,15 @@ export default {
     width: 300px !important;
   }
 }
+@media screen and (max-width: 393px) {
+  #welcomeView2 .gallery-slides .slick-slide {
+    margin-left: 13px;
+    width: 300px !important;
+  }
+}
 @media screen and (max-width: 375px) {
   #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 2px;
+    margin-left: 1px;
   }
 }
 
