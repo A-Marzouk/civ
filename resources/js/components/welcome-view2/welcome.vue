@@ -1,7 +1,7 @@
 <template>
   <v-app style="width:100%; background-color: #ffffff;" class="app-container">
     <!-- main container -->
-    <v-container class="main-container" >
+    <v-container class="main-container">
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
@@ -288,10 +288,11 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
               />
-              <!-- <img
+              <img
+                :width="windowWidth"
                 class="hidden-sm-and-up"
                 src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png"
-              /> -->
+              />
             </div>
             <v-card flat tile color="transparent">
               <div class="middle-layer-background1 hidden-sm-and-down">
@@ -351,10 +352,6 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
               />
-              <!-- <img
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
-              /> -->
             </div>
             <div class="tablet-layer6 hidden-md-and-up">
               <img
@@ -362,12 +359,15 @@
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
               />
-              <!-- <img
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
-              /> -->
             </div>
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
+              <div class="tablet-layer6 hidden-sm-and-up">
+                <img
+                  :width="windowWidth"
+                  class="hidden-sm-and-up"
+                  src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
+                />
+              </div>
               <v-card-title class="build-resume-title margin-n30">
                 40+ Beautiful Themes
                 <br />to choose from
@@ -384,6 +384,13 @@
                     </span>
                   </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
+                      <div class="tablet-layer5 hidden-sm-and-up">
+                        <img
+                          :width="windowWidth"
+                          class="hidden-sm-and-up"
+                          src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
+                        />
+                      </div>
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
                   </v-col>
                 </v-row>
@@ -449,7 +456,7 @@
                   style="z-index:2;"
                 >
                   <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
-                    <v-card-subtitle class="integration-title">{{item.title}}</v-card-subtitle>
+                    <v-card-subtitle class="integration-title" v-html="item.title"></v-card-subtitle>
                     <v-card-text>
                       <img
                         width="auto"
@@ -478,7 +485,7 @@
     </v-container>
     <!-- main container -->
     <!-- Footer -->
-    <v-footer color="#0F4CEE">
+    <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':''">
       <v-container>
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
@@ -613,7 +620,10 @@ export default {
       integrations: [
         { id: 1, title: "Connect your online profiles" },
         { id: 2, title: "Integrate your social account" },
-        { id: 3, title: "Allow potential employers to contact you easly" },
+        {
+          id: 3,
+          title: "Allow potential employers to <br /> contact you easly"
+        },
         { id: 4, title: "Import your data/Export to PDF" },
         { id: 5, title: "Easy acception line payments" }
       ],
@@ -679,7 +689,7 @@ export default {
             breakpoint: 599,
             settings: {
               centerMode: true,
-              centerPadding: "50px",
+              centerPadding: "40px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -733,14 +743,14 @@ export default {
   width: 100%;
   @media screen and (max-width: 599px) {
     overflow-x: hidden !important;
-    margin:0 !important;
-    padding:0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
   @media screen and (max-width: 400px) {
   }
 }
-.app-container{
-  @media screen and (max-width: 599px){
+.app-container {
+  @media screen and (max-width: 599px) {
   }
 }
 
@@ -752,6 +762,9 @@ export default {
 .margin-n30 {
   @media screen and (max-width: 599px) {
     margin-top: -30px !important;
+  }
+  @media screen and (max-width: 400px) {
+    margin-top: 30px !important;
   }
 }
 
@@ -844,8 +857,8 @@ export default {
 
 .container-resume {
   margin-top: -80px;
-  @media screen and (max-width: 599px){
-    padding: 0px !important; 
+  @media screen and (max-width: 599px) {
+    padding: 0px !important;
   }
 }
 
@@ -877,11 +890,10 @@ export default {
     line-height: 2.813rem;
     margin-bottom: 20px;
   }
-  @media screen and (max-width: 360px) {
+  @media screen and (max-width: 400px) {
     font-size: 2rem;
     line-height: 2.1rem;
   }
-  
 }
 
 //resume subtitle
@@ -1019,8 +1031,8 @@ export default {
   @media screen and (max-width: 599px) {
     margin-top: 0px;
     height: 818px;
-    margin-left:0 !important;
-    margin-right:0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 }
 
@@ -1146,7 +1158,7 @@ export default {
     margin-top: 80px;
   }
   @media screen and (max-width: 599px) {
-    margin:0 !important;
+    margin: 0 !important;
     padding: 0 !important;
   }
 }
@@ -1171,9 +1183,10 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  @media screen and (margin: 599px) {
-    width: 9.5rem !important;
-    height: 3.048rem !important;
+
+  @media screen and (max-width: 599px) {
+    width: 157px !important;
+    height: 48.76px !important;
     font-size: 0.75rem !important;
   }
 }
@@ -1188,7 +1201,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     margin-top: -20px;
-    padding:0 !important;
+    padding: 0 !important;
     margin: 0 !important;
   }
 }
@@ -1210,6 +1223,10 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 1.5rem;
     line-height: 32px;
+  }
+  @media screen and (max-width: 400px) {
+    font-size: 1.3rem;
+    line-height: 30px;
   }
 }
 
@@ -1307,7 +1324,11 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    width: 150px;
+    width: 160px !important;
+    height: auto !important;
+  }
+  @media screen and (max-width: 380px) {
+    width: 130px !important;
     height: auto !important;
   }
 }
@@ -1341,8 +1362,11 @@ export default {
   }
   @media screen and (max-width: 599px) {
     font-size: 12px;
-    margin-bottom: -20px;
-    margin-top: 20px;
+    margin-bottom: -47px;
+    margin-top: 0px;
+  }
+  @media screen and (max-width: 380px) {
+    font-size: 10px;
   }
 }
 .logo-footer {
@@ -1380,8 +1404,34 @@ export default {
   @media screen and (max-width: 599px) {
     width: 28px;
     height: 28px;
+    margin-top: 9px !important;
+    margin-bottom: -28px;
     img {
       width: 12px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    width: 24px;
+    height: 24px;
+    img {
+      width: 10px;
+    }
+  }
+
+  @media screen and (max-width: 380px) {
+    width: 22px;
+    height: 22px;
+    img {
+      width: 10px;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    width: 20px;
+    height: 20px;
+    img {
+      width: 9px;
     }
   }
 }
@@ -1613,14 +1663,13 @@ export default {
   left: 0;
   right: 0;
   top: 7.4%;
-  @media screen and (max-width:599px){
+  @media screen and (max-width: 599px) {
     width: 80%;
-    top:7.3%;
+    top: 7.5%;
     left: 10%;
   }
-  @media screen and (max-width: 360px){
-    width: 90%;
-    top: 7.1%;
+  @media screen and (max-width: 380px) {
+    top: 7.9%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1646,16 +1695,17 @@ export default {
   right: 0;
   top: 33.4%;
   @media screen and (max-width: 599px) {
-    top: 40.2%;
-    img{
-      width:97%;
+    top: 41.6%;
+    img {
+      width: 97%;
     }
   }
-  @media screen and (max-width: 360px){
-    top: 39%;
-    img{
-      width: 100%;
-    }
+  @media screen and (max-width: 400px) {
+    top: 40.6%;
+  }
+
+  @media screen and (max-width: 380px) {
+    top: 41.5%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1678,12 +1728,22 @@ export default {
   img {
     width: 95%;
   }
-  // @media screen and (max-width: 599px) {
-  //   top: 50.8%;
-  // }
+  @media screen and (max-width: 599px) {
+    top: 52.5%;
+  }
+  @media screen and (max-width: 414px){
+    top:51.7%
+  }
 
-  @media screen and (max-width: 340px) {
-    top: 99rem;
+  @media screen and (max-width: 400) {
+    top: 51.7%;
+  }
+
+  @media screen and (max-width: 380px) {
+    top: 52.3%;
+  }
+  @media screen and (max-width: 360px){
+    top: 52.7%
   }
 }
 
@@ -1695,10 +1755,20 @@ export default {
   left: 3%;
   right: 0;
   top: 58.1%;
-  // @media screen and (max-width: 599px) {
-  //   top: 64.9%;
-  //   left: 39%;
-  // }
+  @media screen and (max-width: 599px) {
+    top: 39.6%;
+    left: 38%;
+    img {
+      width: 60%;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    left: 49%;
+    top: 67%;
+  }
+  @media screen and (max-width: 370px){
+    top:52%;
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 127rem;
@@ -1710,21 +1780,24 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 13%;
+  left: 12.6%;
   right: 0;
   z-index: 0;
   top: 63%;
   img {
     width: 80%;
   }
-  // @media screen and (max-width: 599px) {
-  //   width: 100%;
-  //   top: 79.8%;
-  //   left: 32%;
-  //   img {
-  //     width: 66%;
-  //   }
-  // }
+  @media screen and (max-width: 599px) {
+    width: 80%;
+    top: 190.8%;
+    left: 32%;
+    img {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: 380px) {
+    top: 189%;
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 157.3rem;
@@ -1848,14 +1921,40 @@ export default {
     width: 300px !important;
   }
   #welcomeView2 .integrationSlides .slick-slide {
-    margin-left: -60px !important;
+    margin-left: -55px !important;
     margin-top: 0px !important;
   }
 }
+
 @media screen and (max-width: 400px) {
   #welcomeView2 .gallerySlidess .slick-slide {
     margin-left: 13px;
   }
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 10px;
+    width: 300px !important;
+  }
 }
+
+@media screen and (max-width: 375px) {
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 0px;
+  }
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 10px;
+    width: 300px !important;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: 13px;
+  }
+  #welcomeView2 .gallerySlidess .slick-slide {
+    margin-left: -8px;
+    width: 300px !important;
+  }
+}
+
 /* mobile screen */
 </style>
