@@ -384,13 +384,13 @@
                     </span>
                   </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
-                      <div class="tablet-layer5 hidden-sm-and-up">
-                        <img
-                          :width="windowWidth"
-                          class="hidden-sm-and-up"
-                          src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
-                        />
-                      </div>
+                    <div class="tablet-layer5 hidden-sm-and-up">
+                      <img
+                        :width="windowWidth"
+                        class="hidden-sm-and-up"
+                        src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
+                      />
+                    </div>
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
                   </v-col>
                 </v-row>
@@ -1641,11 +1641,9 @@ export default {
     width: 90%;
   }
 
-  // @media screen and (max-width: 400px) {
-  //   width: 88%;
-  //   top: 2.4%;
-  //   left: -12px;
-  // }
+  @media screen and (max-width: 414px){
+    top: 2.0%;
+  }
 
   // @media screen and (max-width: 340px) {
   //   top: 2.3%;
@@ -1695,7 +1693,7 @@ export default {
   right: 0;
   top: 33.4%;
   @media screen and (max-width: 599px) {
-    top: 41.6%;
+    top: 41.3%;
     img {
       width: 97%;
     }
@@ -1706,6 +1704,10 @@ export default {
 
   @media screen and (max-width: 380px) {
     top: 41.5%;
+  }
+
+  @media screen and (max-width: 360px) {
+    top: 42.5%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1731,8 +1733,8 @@ export default {
   @media screen and (max-width: 599px) {
     top: 52.5%;
   }
-  @media screen and (max-width: 414px){
-    top:51.7%
+  @media screen and (max-width: 414px) {
+    top: 51.7%;
   }
 
   @media screen and (max-width: 400) {
@@ -1740,10 +1742,10 @@ export default {
   }
 
   @media screen and (max-width: 380px) {
-    top: 52.3%;
+    top: 53.3%;
   }
-  @media screen and (max-width: 360px){
-    top: 52.7%
+  @media screen and (max-width: 360px) {
+    top: 53.7%;
   }
 }
 
@@ -1766,8 +1768,8 @@ export default {
     left: 49%;
     top: 67%;
   }
-  @media screen and (max-width: 370px){
-    top:52%;
+  @media screen and (max-width: 370px) {
+    top: 52%;
   }
 
   // @media screen and (max-width: 340px) {
@@ -1928,33 +1930,20 @@ export default {
 
 @media screen and (max-width: 400px) {
   #welcomeView2 .gallerySlidess .slick-slide {
-    margin-left: 13px;
-  }
-  #welcomeView2 .gallerySlidess .slick-slide {
     margin-left: 10px;
     width: 300px !important;
   }
 }
-
 @media screen and (max-width: 375px) {
   #welcomeView2 .gallerySlidess .slick-slide {
-    margin-left: 0px;
-  }
-  #welcomeView2 .gallerySlidess .slick-slide {
-    margin-left: 10px;
-    width: 300px !important;
+    margin-left: 3px;
   }
 }
 
-@media screen and (max-width: 370px) {
-  #welcomeView2 .gallerySlidess .slick-slide {
-    margin-left: 13px;
-  }
+@media screen and (max-width: 360px) {
   #welcomeView2 .gallerySlidess .slick-slide {
     margin-left: -8px;
-    width: 300px !important;
   }
 }
-
 /* mobile screen */
 </style>
