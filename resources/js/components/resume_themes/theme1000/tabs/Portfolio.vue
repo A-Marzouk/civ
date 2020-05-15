@@ -1,13 +1,13 @@
 <template>
-	<div class="tw-flex tw-flex-wrap tw-w-full tw-p-37px screen1024px:tw-grid screen1024px:tw-grid-cols-6 screen1024px:tw-gap-4">
-		<div v-for="(portfolio, index) in portfolios" :key="portfolio.id" class="tw-w-1/3 tw-p-9px screen1024px:tw-p-0 screen1024px:tw-w-auto" :style="getItemStyle(index)">
+	<div class="portfolio-tab tw-w-full tw-flex tw-flex-wrap">
+		<div v-for="(portfolio, index) in portfolios" :key="portfolio.id" class="portfolio-tab__project tw-w-1/3" :style="getItemStyle(index)">
 			<div class="tw-relative" @click="showSelectedPortfolio(portfolio)">
-				<div class="tw-absolute tw-top-0 tw-right-0 tw-text-black tw-pt-10px tw-pr-10px screen425px:tw-pt-15px screen425px:tw-pr-15px">
-					<svg viewBox="0 0 9 10" class="tw-w-9px tw-h-10px tw-fill-current screen425px:tw-w-22px screen425px:tw-h-22px" xmlns="http://www.w3.org/2000/svg">
+				<div class="preview-icon tw-absolute tw-top-0 tw-right-0 tw-text-black">
+					<svg viewBox="0 0 9 10" class="tw-fill-current" xmlns="http://www.w3.org/2000/svg">
 						<path d="M5.8607 0.989014L6.8956 2.02392L5.59522 3.3153L6.23416 3.95425L7.52555 2.65386L8.56045 3.68877V0.989014H5.8607ZM0.461182 3.68877L1.49609 2.65386L2.78747 3.95425L3.42642 3.3153L2.12603 2.02392L3.16094 0.989014H0.461182V3.68877ZM3.16094 9.08829L2.12603 8.05338L3.42642 6.762L2.78747 6.12305L1.49609 7.42344L0.461182 6.38853V9.08829H3.16094ZM8.56045 6.38853L7.52555 7.42344L6.23416 6.12305L5.59522 6.762L6.8956 8.05338L5.8607 9.08829H8.56045V6.38853Z" />
 					</svg>
 				</div>
-				<img :src="portfolio.url" class="tw-w-full tw-rounded-10px">
+				<img :src="portfolio.url" class="project__thumbnail tw-w-full">
 			</div>
 		</div>
 
@@ -169,4 +169,58 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
+
+.portfolio-tab {
+	padding: 17px;
+}
+
+.portfolio-tab__project {
+	padding: 9px;
+}
+
+.project__thumbnail {
+	border-radius: 10px;
+}
+
+.preview-icon {
+	padding-top: 10px;
+	padding-right: 10px;
+
+	svg {
+		width: 9px;
+		height: 10px;
+	}
+}
+
+@media (min-width: $sm) {
+	.preview-icon {
+		padding-top: 15px;
+		padding-right: 15px;
+
+		svg {
+			width: 22px;
+			height: 22px;
+		}
+	}
+}
+
+@media (min-width: $md) {
+	.portfolio-tab {
+		padding: 27px;
+	}
+}
+
+@media (min-width: $lg) {
+	.portfolio-tab {
+		display: grid;
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		gap: 1rem;
+	}
+
+	.portfolio-tab__project {
+		padding: 0;
+		width: auto;
+	}
+}
 </style>

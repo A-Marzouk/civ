@@ -1,8 +1,8 @@
 <template>
-	<div class="bg-card tw-rounded-10px tw-px-25px tw-pb-25px tw-pt-4 screen425px:tw-px-54px screen425px:tw-pb-44px screen425px:tw-pt-10 screen1024px:tw-px-10">
+	<div class="progress-card">
 		<div class="tw-flex tw-justify-between tw-items-center">
-			<h4 class="tw-font-bold tw-leading-30px tw-text-black tw-text-2xl screen425px:tw-text-4xl screen1024px:tw-text-3xl screen1920px:tw-text-4xl" v-text="title"></h4>
-			<div class="tw-flex tw-items-center tw-justify-center tw-rounded-9px tw-w-60px tw-h-60px" :class="`bg-${iconBgColor}`">
+			<h4 class="progress-card__title tw-font-bold tw-text-black tw-text-2xl" v-text="title"></h4>
+			<div class="progress-card__icon tw-flex tw-items-center tw-justify-center" :class="`bg-${iconBgColor}`">
 				<slot></slot>
 			</div>
 		</div>
@@ -40,10 +40,50 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bg-card {
+@import "./../scss/variables";
+
+.progress-card {
 	background: #eeeff1;
+	border-radius: 10px;
+	padding: 17px 25px 25px;
 }
 
+.progress-card__title {
+	line-height: 30px;
+}
+
+.progress-card__icon {
+	border-radius: 9px;
+	height: 60px;
+	width: 60px;
+}
+
+@media (min-width: $md) {
+	.progress-card {
+		padding: 40px 54px 44px;
+	}
+	.progress-card__title {
+		font-size: 36px;
+	}
+}
+
+@media (min-width: $lg) {
+	.progress-card {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	.progress-card__title {
+		font-size: 30px;
+	}
+}
+
+@media (min-width: $xl) {
+	.progress-card__title {
+		font-size: 36px;
+	}
+}
+
+/* Options for props iconBgColor*/
 .bg-yellow {
 	background: #ffb400;
 }
@@ -52,8 +92,5 @@ export default {
 }
 .bg-turquoise {
 	background: #23ddbe;
-}
-.tw-rounded-9px {
-	border-radius: 9px;
 }
 </style>
