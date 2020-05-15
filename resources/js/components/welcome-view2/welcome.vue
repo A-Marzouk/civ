@@ -885,6 +885,13 @@ export default {
     font-size: 3.3rem;
     line-height: 4rem;
   }
+
+  @media screen and (min-width: 960px) and (max-width: 1024px){
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+
   @media screen and (max-width: 959px) {
     font-size: 4rem;
     line-height: 4.375rem;
@@ -908,6 +915,10 @@ export default {
   color: #828282 !important;
   @media screen and (max-width: 1440px) {
     font-size: 17px !important;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1024px){
+    font-size: 14px !important;
+    line-height: 1.8rem;
   }
   @media screen and (max-width: 959px) {
     font-size: 1.125rem !important;
@@ -988,6 +999,9 @@ export default {
   color: #313131;
   @media screen and (max-width: 1440px) {
     font-size: 1rem;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1024px){
+    font-size: 0.7rem;
   }
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
@@ -1461,6 +1475,7 @@ export default {
       width: 100%;
     }
   }
+  
   @media screen and (max-width: 1366px) {
     left: 0;
     width: 1366px;
@@ -1475,6 +1490,11 @@ export default {
     top: 5.7rem;
     img {
       width: 100%;
+    }
+  }
+  @media screen and (max-width: 1024px){
+    img{
+      width: 79%;
     }
   }
 }
@@ -1503,6 +1523,11 @@ export default {
     left: 0;
     top: 32rem;
   }
+  @media screen and (max-width: 1024px){
+    img{
+      width: 79%;
+    }
+  }
 }
 
 .middle-layer-background1 {
@@ -1526,6 +1551,13 @@ export default {
     width: 1280px;
     left: -18%;
     top: -13rem;
+  }
+  @media screen and (max-width: 1024px){
+    top: -9rem;
+    left: -41%;
+    img{
+      width: 79%;
+    }
   }
 }
 
@@ -1558,6 +1590,15 @@ export default {
     top: 249%;
     left: -22%;
   }
+  @media screen and (max-width: 1024px) {
+    width: 1280px;
+    top: 210%;
+    left: -44%;
+    img{
+      width: 70%;
+    }
+  }
+
 }
 
 .middle-layer-background3 {
@@ -1580,6 +1621,9 @@ export default {
   @media screen and (max-width: 1280px) {
     width: 1280px;
     left: -5%;
+  }
+  @media screen and (max-width: 1024px){
+    left: -10%;
   }
 }
 
@@ -1607,6 +1651,9 @@ export default {
     width: 1280px;
     left: -0.8125rem;
   }
+  @media screen and (max-width: 1024px){
+    top: 72%;
+  }
 }
 
 .middle-layer-background5 {
@@ -1628,6 +1675,10 @@ export default {
     top: 93%;
     width: 1280px;
   }
+  @media screen and (max-width: 1024px){
+    top: 92%;
+  }
+  
 }
 
 // backgrounds
