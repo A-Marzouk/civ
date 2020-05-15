@@ -105,7 +105,7 @@
             <!-- 3rd column -->
           </v-row>
           <v-row> 
-            <v-col cols="10" class="hidden-sm-and-up">
+            <v-col cols="12" class="hidden-sm-and-up">
               <v-card color="transparent" flat tile class="card-hire-me-mobile">
                 <v-card-subtitle>
                   <div class="d-flex flex-row justify-content-center align-items-center">
@@ -1166,10 +1166,10 @@ img.pofolio-lg-img {
   @media screen and (max-width: 959px) {
     height: 394px;
   }
-}
-img.portofolio-sm-img {
   @media screen and (max-width: 599px) {
   }
+}
+.portofolio-sm-img {
 }
 //Portfolio
 
