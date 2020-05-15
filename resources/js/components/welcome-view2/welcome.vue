@@ -741,7 +741,7 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 .gallery-slides {
   @media screen and (max-width: 599px){
-    background-color: #e5e5e5;
+
   }
 }
 .main-container {
@@ -756,7 +756,7 @@ export default {
 }
 .app-container {
   @media screen and (max-width: 599px) {
-    background-color: #e5e5e5 !important ;
+
   }
 }
 
