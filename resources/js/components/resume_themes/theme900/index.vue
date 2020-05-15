@@ -1,5 +1,5 @@
 <template>
-<v-app class="hold-theme900" >
+<v-app id="hold-theme900" >
     <v-container>
         <v-row class="header-section align-center " >
             <v-col lg="1" sm="2" cols="2" >
@@ -353,10 +353,10 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
-.v-tabs:not(.v-tabs--vertical):not(.v-tabs--right) > .v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
-     display:none !important;
-}
- .hold-theme900{
+ #hold-theme900{
+        .v-tabs:not(.v-tabs--vertical):not(.v-tabs--right) > .v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
+            display:none !important;
+        }
      .tm900-payment{
          background: #fff;
          height: 100%;
