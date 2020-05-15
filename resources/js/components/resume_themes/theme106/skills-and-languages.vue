@@ -1,37 +1,37 @@
 <template>
     <div class="container skills-container">
         <div class="skill">
-            <img src="/images/resume_themes/theme109/ux-icon.png" alt="">
+            <img src="/images/resume_themes/theme106/ux-icon.png" alt="">
             <div class="skill-info">
                 <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
             </div>
         </div>
         <div class="skill">
-            <img src="/images/resume_themes/theme109/usability-icon.png" alt="">
+            <img src="/images/resume_themes/theme106/usability-icon.png" alt="">
             <div class="skill-info">
                 <div class="skill-name">Usability</div> <div class="percentage">80%</div>
             </div>
         </div>
         <div class="skill">
-            <img src="/images/resume_themes/theme109/interaction-icon.png" alt="">
+            <img src="/images/resume_themes/theme106/interaction-icon.png" alt="">
             <div class="skill-info">
                 <div class="skill-name">Interaction</div> <div class="percentage">75%</div>
             </div>
         </div>
         <div class="skill">
-            <img src="/images/resume_themes/theme109/graphic-design-icon.png" alt="">
+            <img src="/images/resume_themes/theme106/graphic-design-icon.png" alt="">
             <div class="skill-info">
                 <div class="skill-name">Graphic Design</div> <div class="percentage">85%</div>
             </div>
         </div>
         <div class="skill">
-            <img src="/images/resume_themes/theme109/development-icon.png" alt="">
+            <img src="/images/resume_themes/theme106/development-icon.png" alt="">
             <div class="skill-info">
                 <div class="skill-name">Development</div> <div class="percentage">50%</div>
             </div>
         </div>
         <div class="skill">
-            <img src="/images/resume_themes/theme109/ux-icon.png" alt="">
+            <img src="/images/resume_themes/theme106/ux-icon.png" alt="">
             <div class="skill-info">
                 <div class="skill-name">Research</div> <div class="percentage">35%</div>
             </div>
@@ -79,7 +79,7 @@ export default {
                     margin-left: 10px;
                     font-size: 30px;
                     font-weight: 700;
-                    color: #56EDF0;
+                    color: #C0000E;
                 }
             }
         }

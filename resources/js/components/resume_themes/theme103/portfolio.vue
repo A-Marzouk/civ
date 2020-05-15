@@ -53,8 +53,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$purple: #492163;
-$mainColor: #686299;
+$mainColor: #2E77D1;
+$purple: #0556B6;
 
     .portfolio-grid {
         display: grid;

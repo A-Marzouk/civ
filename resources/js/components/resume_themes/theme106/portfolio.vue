@@ -1,14 +1,14 @@
 <template>
     <div class="container">
         <div class="portfolio-grid">
-            <div v-for="(project, index) in projects" class="portfolio-item" :class="{ isLarge: isLarge(project) }" :key="'project-' + index">
-                <img :src="project.img" alt="">
+            <div v-for="(project, index) in projects" class="portfolio-item" :class="{ isLarge: isLarge(project) }" :style="{ backgroundImage: `url(${project.img})` }" :key="'project-' + index" style>
                 <div class="content">
                     <h2 class="title">{{ project.title }}</h2>
-                    <div class="type">Web Design</div>
+                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme106/project-link.png" alt=""></a>
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
         projects: [
             {
                 title: 'Project title',
-                img: '/images/resume_themes/theme113/portfolio-img3.png'
+                img: '/images/resume_themes/theme113/portfolio-img1.png'
             },
             {
                 title: 'Project title',
@@ -53,19 +53,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-$purple: #492163;
-$mainColor: #686299;
-
     .portfolio-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 51px;
+        padding: 0 100px !important;
             
         .portfolio-item {
             grid-column: span 4;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            position: relative;
+            height: 455px;
+            overflow: hidden;
+
             &:last-child {
                 margin-bottom: 0;
             }
@@ -76,35 +75,37 @@ $mainColor: #686299;
             }
 
             .content {
+                position: absolute;
                 z-index: 1;
-                width: calc(100% - (13px + 38px));
-                margin-left: calc(13px + 38px);
-                margin-top: 25px;
-                position: relative;
+                width: 100%;
+                bottom: 0;
+                left: 0;
+                padding: 22px;
+
+                background: linear-gradient(to top, #000, rgba(0,0,0,0));
 
                 .title {
-                    font-size: 17px;
+                    font-size: 22px;
                     font-weight: 700;
                     max-width: 337px;
-                    margin-bottom: 7.3px;
-                    color: $purple;
+                    margin-bottom: 20px;
                 }
 
-                .type {
-                    font-size: 14px;
-                    color: $mainColor;
+                .seeMore {
+                    font-size: 19px;
+                    font-weight: 700;
+                    color: white;
+                    display: flex;
+                    align-items: center;
+
+                    img {
+                        height: 20px;
+                        width: 20px;
+                        margin-left: 8.6px;
+                    }
                 }
 
-                &::after {
-                    position: absolute;
-                    content: "";
-                    width: 38px;
-                    height: 1px;
-                    background: $mainColor;
 
-                    left: -51px;
-                    top: 13px;
-                }
             }
         }
     }
