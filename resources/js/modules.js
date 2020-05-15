@@ -48,3 +48,6 @@ import VueScrollTo from  'vue-scrollto'
 
 Vue.use(VueScrollTo)
 
+//vue masonry
+import {VueMasonryPlugin} from 'vue-masonry'
+Vue.use(VueMasonryPlugin)

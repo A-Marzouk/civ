@@ -1451,12 +1451,17 @@
 
         .actionsSection{
 
-            margin-left: 1%;
+            margin-left: 5%;
 
             a{
-                margin-right: 20px;
+                margin: 0px 10px;
+
+                &:last-child{
+                    margin: 0px 10px;
+                }
+
                 img{
-                    width: 27px;
+                    width: 18px;
                 }
             }
         }
@@ -1651,6 +1656,13 @@
 
 
     }
+
+    @media only screen and (max-width: 360px) {
+        .actionsSection{
+            margin-left: 2%;
+        }
+    }
+
 
     .only-mob{
         display: none;
