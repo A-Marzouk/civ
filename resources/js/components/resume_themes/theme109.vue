@@ -362,6 +362,7 @@ $purple: #24325D;
                         color: #5BFFFE !important;
                         font-weight: 700;
                         background: none;
+                        letter-spacing: 31/100 em;
 
                         span {
                             opacity: 1 !important;
@@ -410,7 +411,7 @@ $purple: #24325D;
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 200px;
+        top: 400px;
         right: -95px;
         background: transparent;
 
