@@ -5,7 +5,7 @@
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
-        <a text color="#0046FE" class="btn-appbar-login">
+        <a  class="btn-appbar-login">
           Log
           <span>&nbsp;in</span>
         </a>
@@ -853,9 +853,11 @@ export default {
   font-size: 1rem !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
+  color:#0046FE !important;
   span {
     text-transform: lowercase !important;
   }
+  
   @media screen and (min-width: 1600px) {
     margin-right: 100px;
   }
@@ -1146,6 +1148,10 @@ export default {
     color: #ffffff !important;
     letter-spacing: 0.2em !important;
     font-size: 0.875rem !important;
+  }
+  @media screen and (max-width: 599px) {
+    width: 157px !important;
+    height: 48.76px !important;
   }
 }
 
@@ -1721,10 +1727,10 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 7.4%;
-  @media screen and (max-width: 896px){
-    top:6.4%
-  }
+  top: 7.9%;
+  // @media screen and (max-width: 896px){
+  //   top:6.4%
+  // }
   @media screen and (max-width: 599px) {
     width: 80%;
     top: 7.5%;
@@ -1759,9 +1765,9 @@ export default {
   left: 0;
   right: 0;
   top: 33.4%;
-  @media screen and (max-width: 896px){
-    top:31.7%;
-  }
+  // @media screen and (max-width: 896px){
+  //   top:31.7%;
+  // }
   @media screen and (max-width: 599px) {
     top: 41.3%;
     img {
@@ -1803,9 +1809,9 @@ export default {
   img {
     width: 95%;
   }
-  @media screen and (max-width: 896px){
-    top: 46.5%;
-  }
+  // @media screen and (max-width: 896px){
+  //   top: 46.5%;
+  // }
   @media screen and (max-width: 599px) {
     top: 52.5%;
   }
@@ -1833,9 +1839,9 @@ export default {
   left: 3%;
   right: 0;
   top: 58.1%;
-  @media screen and (max-width: 896px){
-    top: 59.5%;
-  }
+  // @media screen and (max-width: 896px){
+  //   top: 59.5%;
+  // }
   @media screen and (max-width: 599px) {
     top: 39.6%;
     left: 38%;
@@ -1868,9 +1874,9 @@ export default {
   img {
     width: 80%;
   }
-  @media screen and (max-width: 896px){
-    top: 65%;
-  }
+  // @media screen and (max-width: 896px){
+  //   top: 65%;
+  // }
   @media screen and (max-width: 599px) {
     width: 80%;
     top: 190.8%;
