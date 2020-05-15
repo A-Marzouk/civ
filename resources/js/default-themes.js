@@ -470,3 +470,13 @@ if ($("#resumeTheme1000").length !== 0) {
         }
     });
 }
+
+import resumeTheme1001 from "./components/resume_themes/theme1001";
+if ($("#resumeTheme1001").length !== 0) {
+    new Vue({
+        el: "#resumeTheme1001",
+        components: {
+            "resume-theme-1001": resumeTheme1001
+        }
+    });
+}
