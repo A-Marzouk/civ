@@ -762,7 +762,7 @@
             <!-- 2nd inner footer column -->
             <v-col cols="6">
               <v-card color="transparent" flat tile>
-                <v-progress-linear color="#FEBC2C" background-color="" rounded  height="10" value="70"></v-progress-linear>
+                <v-progress-linear class="media-progressbar" color="#FEBC2C" background-color="#272B2F" rounded  height="10" value="70"></v-progress-linear>
               </v-card>
             </v-col>
             <v-col cols="2">
@@ -886,7 +886,11 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
-
+.media-progressbar{
+  border-radius: 15px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  border: 1px solid  #272B2F !important;
+}
 .hr-line {
   margin-top: 20px;
   width: 85%;
