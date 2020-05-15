@@ -485,7 +485,7 @@
     </v-container>
     <!-- main container -->
     <!-- Footer -->
-    <v-footer color="#0F4CEE">
+    <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':''">
       <v-container>
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
@@ -1362,8 +1362,8 @@ export default {
   }
   @media screen and (max-width: 599px) {
     font-size: 12px;
-    margin-bottom: -20px;
-    margin-top: 20px;
+    margin-bottom: -47px;
+    margin-top: 0px;
   }
   @media screen and (max-width: 380px) {
     font-size: 10px;
@@ -1404,6 +1404,8 @@ export default {
   @media screen and (max-width: 599px) {
     width: 28px;
     height: 28px;
+    margin-top: 9px !important;
+    margin-bottom: -28px;
     img {
       width: 12px;
     }
@@ -1663,7 +1665,7 @@ export default {
   top: 7.4%;
   @media screen and (max-width: 599px) {
     width: 80%;
-    top: 7.3%;
+    top: 7.5%;
     left: 10%;
   }
   @media screen and (max-width: 380px) {
@@ -1693,7 +1695,7 @@ export default {
   right: 0;
   top: 33.4%;
   @media screen and (max-width: 599px) {
-    top: 41%;
+    top: 41.6%;
     img {
       width: 97%;
     }
@@ -1727,7 +1729,7 @@ export default {
     width: 95%;
   }
   @media screen and (max-width: 599px) {
-    top: 51.1%;
+    top: 52.5%;
   }
   @media screen and (max-width: 414px){
     top:51.7%
