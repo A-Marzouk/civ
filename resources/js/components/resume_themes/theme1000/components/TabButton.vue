@@ -75,11 +75,6 @@ export default {
 		.tab-button__label {
 			display: block;
 		}
-
-		&:hover {
-			color: white;
-			background: #0470dc;
-		}
 	}
 }
 

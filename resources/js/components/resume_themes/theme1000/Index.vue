@@ -50,7 +50,7 @@ export default {
 				weeklyAvailability: 250
 			},
 			isSidebarOpen: false,
-			isPaymentModalOpen: true,
+			isPaymentModalOpen: false,
 			isPaymentSuccessModalOpen: false
 		};
 	},

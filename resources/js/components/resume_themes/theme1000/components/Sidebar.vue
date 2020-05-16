@@ -81,11 +81,23 @@ export default {
 		}
 	},
 
+	watch: {
+		isOpen(val) {
+			document.body.style.overflow = val ? "hidden" : "";
+		}
+	},
+
 	methods: {
 		onClose(e) {
 			if (this.$refs.sidebar === e.target) {
 				this.$emit("onClose");
 			}
+		}
+	},
+
+	mounted() {
+		if (this.isOpen) {
+			document.body.style.overflow = "hidden";
 		}
 	}
 };
