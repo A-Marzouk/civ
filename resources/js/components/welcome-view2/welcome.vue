@@ -248,7 +248,7 @@
           <v-col cols="7" class="hidden-md-and-up" align="center">
             <v-card color="transparent" flat tile class="card-download">
               <v-card-subtitle class="download-text">Download for ios and android:</v-card-subtitle>
-              <v-card-subtitle>
+              <v-card-subtitle class="hidden-xs-only">
                 <v-row>
                   <v-col sm="6" cols="6">
                     <a href="#">
@@ -271,6 +271,27 @@
                   </v-col>
                 </v-row>
               </v-card-subtitle>
+              <v-row class="hidden-sm-and-up mt-5" >
+                  <v-col sm="6" cols="6">
+                    <a href="#">
+                      <img
+                        class="app-store-logo"
+                        src="/images/welcome_landing_page/icons/app-store.png"
+                        alt
+                      />
+                    </a>
+                  </v-col>
+
+                  <v-col sm="6" cols="6">
+                    <a href="#">
+                      <img
+                        class="app-store-logo"
+                        src="/images/welcome_landing_page/icons/play-store.png"
+                        alt
+                      />
+                    </a>
+                  </v-col>
+                </v-row>
             </v-card>
           </v-col>
           <!-- for tab and mobile -->
@@ -541,7 +562,7 @@
           </v-col>
 
           <v-col sm="4" cols="4" class="hidden-md-and-up mt-n12">
-            <v-card flat tile color="transparent" align="center" class="ml-md-0 ml-sm-0 ml-n5">
+            <v-card flat tile color="transparent" align="center" class="">
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
