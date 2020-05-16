@@ -22,19 +22,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-:root {
-  --tm700-blue-1: #513ecd;
-  --tm700-blue-2: #ebebeb;
-  --tm700-gray-1: #2d2d2d;
-  --tm700-gray-2: #d9d9d9;
+#wrapper_theme700 {
+  --blue-1: #513ecd;
+  --gray-1: #2d2d2d;
+  --gray-2: #d9d9d9;
+  --gray-3: #ebebeb;
+  --gray-gradient-1: linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%);
 }
 @font-face {
   font-family: "Lato", sans-serif;
   src: "https://fonts.googleapis.com/css2?family=Lato&display=swap";
 }
 @font-face {
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
   src: "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
+}
+@font-face {
+  font-family: "Gotham Pro";
+  src: local("Gotham Pro"), url("/fonts/GothaProReg.woff") format("woff");
 }
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 #wrapper_theme700 .v-slide-group__next,

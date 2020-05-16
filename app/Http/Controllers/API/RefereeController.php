@@ -5,8 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Referee;
 use App\Http\Resources\Referee as RefereeResource;
+use App\User;
 use Illuminate\Http\Request;use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Exception;
+
 class RefereeController extends Controller
 {
     public function __construct()
@@ -22,16 +25,16 @@ class RefereeController extends Controller
     public function store(Request $request)
     {
 
-        $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
-            $referee = Referee::find($request->id);
-            $referee->update($request->toArray());
-        }else{
-            // add
-            $request['user_id'] = Auth::user()->id;
-            $referee = Referee::create($request->toArray());
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
         }
+
+
+        $this->validator($request->all())->validate();
+        $user = User::find($request->user_id);
+        $referee = $user->referee;
+        $referee->update($request->toArray());
 
         if ($referee->id){
             return new RefereeResource($referee);
@@ -41,7 +44,7 @@ class RefereeController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255','min:3'],
+            'name' => ['sometimes', 'string', 'max:255','min:3'],
             'title' => ['sometimes','required', 'string', 'max:255'],
             'phone' => ['sometimes','required','min:7' ,'numeric'],
             'email' => ['sometimes','required', 'email', 'max:255'],
@@ -51,5 +54,9 @@ class RefereeController extends Controller
             'reference_text' => ['sometimes','nullable','string', 'max:2500'],
             'notes' => ['sometimes','nullable','string', 'max:2500'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }

@@ -817,7 +817,7 @@ export default {
             }
 
             .rateSection{
-                padding: 0px 20px;
+                padding: 0px;
 
                 .hold-rates{
                     max-width: 100%;
@@ -1017,6 +1017,7 @@ export default {
         .rate-wrap{
 
             justify-content: flex-end;
+            min-height: 132px;
 
             .col-md-2,.col-md-4{
                 display: flex;
@@ -1029,12 +1030,12 @@ export default {
                 }
                 
 
-                .price{
+                .price,.hours{
                     font-size: 30px;
                     font-family: 'Roboto Medium';
                     color: #202124;
                 }
-                .text_price{
+                .text_price,.text_hours{
                     font-size: 16px;
                     font-family: 'Roboto';
                     color: #5F6368;

@@ -1,11 +1,10 @@
 <template>
 	<div class="tw-pb-140px">
-		<div class="tw-w-full" v-masonry transition-duration="0.3s" item-selector=".item" :origin-top="true">
+		<div class="tw-w-full" v-masonry :transition-duration="0" item-selector=".item" :origin-top="true">
 			<div v-masonry-tile class="media_outer item" v-for="item in media" :key="item.id">
 				<AudioPreview v-if="item.type == 'audio'" :media="item" />
 				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
 			</div>
-
 		</div>
 
 		<AudioPlayer :track="track" />

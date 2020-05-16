@@ -1,10 +1,18 @@
 <template>
 	<div id="wrapper_theme1000" class="tw-w-full tw-bg-white tw-font-roboto">
-		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @openSidebar="isSidebarOpen=true" />
+		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @openSidebar="isSidebarOpen=true" @openPaymentModal="openPaymentModal" />
 
-		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" />
+		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" @openPaymentModal="openPaymentModal" />
 
 		<TabsContent :currentTab="currentTab" />
+
+		<Modal :isOpen="isPaymentModalOpen" @onClose="isPaymentModalOpen=false">
+			<PaymentForm @openPaymentSuccessModal="openPaymentSuccessModal" />
+		</Modal>
+
+		<Modal :isOpen="isPaymentSuccessModalOpen" @onClose="isPaymentSuccessModalOpen=false">
+			<PaymentSuccessMessage />
+		</Modal>
 	</div>
 </template>
 
@@ -12,15 +20,25 @@
 import Header from "./components/Header";
 import TabsContent from "./components/TabsContent";
 import Sidebar from "./components/Sidebar";
+import Modal from "./components/Modal";
+import PaymentForm from "./components/PaymentForm";
+import PaymentSuccessMessage from "./components/PaymentSuccessMessage";
 
 export default {
 	name: "resume-theme-1000",
 
-	components: { Header, TabsContent, Sidebar },
+	components: {
+		Header,
+		TabsContent,
+		Sidebar,
+		Modal,
+		PaymentForm,
+		PaymentSuccessMessage
+	},
 
 	data: () => {
 		return {
-			currentTab: "media",
+			currentTab: "portfolio",
 			currentUser: {
 				avatar: "/images/resume_themes/theme1000/avatar.png",
 				fullname: "Hean Prinsloo",
@@ -31,8 +49,22 @@ export default {
 				hourRate: 20,
 				weeklyAvailability: 250
 			},
-			isSidebarOpen: false
+			isSidebarOpen: false,
+			isPaymentModalOpen: false,
+			isPaymentSuccessModalOpen: false
 		};
+	},
+
+	methods: {
+		openPaymentModal() {
+			if (this.isSidebarOpen) this.isSidebarOpen = false;
+			this.isPaymentModalOpen = true;
+		},
+
+		openPaymentSuccessModal() {
+			this.isPaymentModalOpen = false;
+			this.isPaymentSuccessModalOpen = true;
+		}
 	}
 };
 </script>

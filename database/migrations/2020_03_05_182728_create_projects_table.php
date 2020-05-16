@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->string('link')->nullable();
             $table->string('skills')->nullable();
             $table->string('software')->nullable();
+            $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

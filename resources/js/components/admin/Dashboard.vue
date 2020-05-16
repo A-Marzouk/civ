@@ -104,6 +104,7 @@
                     {title: 'General', icon: '/images/admin/general.svg', value:'general',url:'/'},
                     {title: 'Account Settings', icon: '/images/admin/settings.svg',value:'acc_settings',url:'account-settings'},
                     {title: 'Users', icon: '/images/admin/users.svg',value:'users',url:'users'},
+                    {title: 'Themes', icon: '/images/admin/themes.png',value:'themes',url:'themes'},
                 ],
                 color: 'primary',
                 right: false,

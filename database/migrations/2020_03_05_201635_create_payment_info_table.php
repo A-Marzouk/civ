@@ -20,6 +20,7 @@ class CreatePaymentInfoTable extends Migration
             $table->float('salary',16,2)->nullable();
             $table->string('salary_frequency')->nullable();
             $table->string('currency')->nullable();
+            $table->boolean('is_public')->default(true);
 
 
             $table->integer('user_id')->unsigned();

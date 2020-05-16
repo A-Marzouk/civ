@@ -1,0 +1,5 @@
+<template>
+    <svg width="15" height="18" viewBox="0 0 15 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 17.5H5V0H0V17.5ZM10 0V17.5H15V0H10Z" fill="#052137"/>
+    </svg>
+</template>

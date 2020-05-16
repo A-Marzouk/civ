@@ -9,7 +9,7 @@ class Summary extends Model
     protected $table = 'summary';
 
     protected $fillable = [
-        'objective','overview','user_id'
+        'is_overview_public','is_objective_public','objective','overview','user_id'
     ];
 
 

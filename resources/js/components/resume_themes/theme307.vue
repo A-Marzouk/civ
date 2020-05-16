@@ -2,14 +2,38 @@
     <v-app style="width: 100%">
         <v-container style="max-width: 1920px;" class="hold_theme307">
             <v-row no-gutters class="head-bar">
-                <v-col lg="6">
+                <v-col lg="2" md="6" sm="3">
+                    <v-card flat class="user-profile">
+                        <img src="/images/resume_themes/theme307/profile.svg" alt="">
+                    </v-card>  
+                    <v-card flat class="interview-section show_sm">
+                        <v-btn icon>
+                            <img src="/images/resume_themes/theme307/icons/icon-audio.svg" alt="">
+                        </v-btn>
+                        <v-btn icon>
+                            <img src="/images/resume_themes/theme307/icons/icon-video.svg" alt="">
+                        </v-btn>
+                    </v-card>
+                </v-col>
+                <v-col lg="4" md="6" sm="3">
                     <v-card flat class="user-details">
                         <h3>Isabella Abigail</h3>
                         <span>UI/UX Designer</span>
+                        <v-card flat class="hire-options show_sm">
+                            <div class="item-hire">
+                                <span class="value">15$</span>
+                                <span>Hourly rate</span>
+                            </div>
+                            <span class="vl"></span>
+                            <div class="item-hire">
+                                <span class="value">35Hrs</span>
+                                <span>Weekly Availability</span>
+                            </div>                        
+                        </v-card>
                     </v-card>
                 </v-col>
-                <v-col lg="3" class="m-center">
-                    <v-card flat class="hire-options">
+                <v-col lg="3" md="12" sm="6" class="m-center show_md">
+                    <v-card flat class="hire-options" >
                         <div class="item-hire">
                             <span class="value">15$</span>
                             <span>Hourly rate</span>
@@ -21,7 +45,7 @@
                         </div>                        
                     </v-card>
                 </v-col>
-                <v-col lg="3">
+                <v-col lg="3" md="12" class="show_md">
                     <v-card flat class="interview-section">
                         <span>Your interviews:</span>
                         <v-btn icon>
@@ -34,15 +58,10 @@
                 </v-col>
             </v-row>
             <v-row no-gutters class="mid-bar">
-                <v-col lg="2">
-                    <v-card flat class="user-profile">
-                        <img src="/images/resume_themes/theme307/profile.svg" alt="">
-                    </v-card>                    
-                </v-col>
-                <v-col lg="4">
+                <v-col lg="6" sm="12">
                     <v-card flat class="hold-section user-hireme">
                         <div class="col-section">
-                            <span>Follow me:</span>
+                            <span class="show_md">Follow me:</span>
                             <div class="social-hold">
                                 <a href="" class="icon">
                                     <img src="/images/resume_themes/theme307/social_icons/behance.webp" alt="">
@@ -59,7 +78,7 @@
                             </div>
                             
                         </div>
-                        <div class="col-section">
+                        <div class="col-section pl-12">
                             <v-btn text class="btn-flat">
                                 Hire me
                             </v-btn>
@@ -67,7 +86,7 @@
                         
                     </v-card>                
                 </v-col>
-                <v-col lg="6" class="m-end">
+                <v-col lg="6" sm="12" class="m-end">
                     <v-card flat class="user-skills">
                         <a href="" class="skill-item">ps</a>
                         <a href="" class="skill-item">ai</a>
@@ -85,6 +104,8 @@
                         hide-slider
                         background-color="transparent"
                         height="100%"
+                        show-arrows
+                        center-active
                     >
                         <v-tab :ripple="false">Porfolio</v-tab>
                         <v-tab :ripple="false">Work Experience</v-tab>
@@ -95,12 +116,14 @@
                         <v-tab-item :transition="false" :reverse-transition="false">
                             <v-container py-3 px-0>
                                 <v-row no-gutters>
-                                    <v-col lg="3" v-for="(item,i) in portfolioItems" :key="i" >
-                                        <img :src="`${basePath+item.src}`" alt="" class="mx-auto mt-8">                                 
-                                    </v-col>
-                                    <v-col lg="12">
+                                    <v-col lg="3" md="6" sm="6" class="pa-2" cols="6" v-for="(item,i) in portfolioItems" :key="i" >
+                                        <img :src="`${basePath+item.src}`" alt="" class="mx-auto">                                 
+                                    </v-col>                                    
+                                </v-row>
+                                <v-row no-gutters>
+                                    <v-col lg="12" md="12">
                                         <v-card flat class="load-more" ma-auto>
-                                            <v-btn flat class="btn-wshadow size-lg" text-center>
+                                            <v-btn text class="btn-wshadow size-lg" text-center>
                                                 load more...
                                             </v-btn>
                                         </v-card>                                        
@@ -109,7 +132,7 @@
                             </v-container>
                         </v-tab-item>
                         <v-tab-item :transition="false" :reverse-transition="false">
-                            <v-list flat>
+                            <v-list text>
                                 <v-list-item v-for="(work,i) in 3" :key="i">
                                     <v-card flat>
                                         <div class="info-work">
@@ -125,7 +148,7 @@
                             </v-list>
                         </v-tab-item>
                         <v-tab-item :transition="false" :reverse-transition="false">
-                            <v-list flat>
+                            <v-list text>
                                 <v-list-item v-for="(education,i) in 3" :key="i">
                                     <v-card flat>
                                         <div class="info-work">
@@ -206,7 +229,9 @@ export default {
     }
 }
 </script>
-
+<style lang="scss">
+    @import 'resources/sass/themes/theme307.scss';
+</style>
 <style lang="scss" scoped>
     @import url('https://fonts.googleapis.com/css2?family=PT+Serif+Caption:ital@0;1&family=PT+Serif:ital@0;1&display=swap');
     @import 'resources/sass/media-queries';
@@ -216,10 +241,28 @@ export default {
         padding: 0px;
         min-height: 100%;
 
+        .show_sm{
+            display: none !important;
+
+            @include lt-sm {
+                display: block !important;
+            }
+
+        }
+        .show_md{
+            display: none !important;
+
+            @include gt-xs {
+                display: block !important;
+            }
+        }
+
         
         h2,h3,h4,h5,p,span,em,a{
             font-family: 'PT Serif Caption', serif;
         }
+
+        
 
         .v-card{
             background: none;
@@ -229,11 +272,20 @@ export default {
             display: flex;
             justify-content: flex-end;
             width: 100%;
+
+            @include lt-md {
+                justify-content: center;
+            }
         }
         .m-center{
             display: flex;
             justify-content: center;
             width: 100%;
+
+            @include lt-md {
+                align-items: center;
+                padding: 0;
+            }
         }
 
         .btn-wshadow{
@@ -252,6 +304,22 @@ export default {
                 min-width: 500px;
                 min-height: 70px;
             }
+
+
+            @include lt-md {
+                font-size: 1.2em;
+            }
+            @include lt-sm {
+                font-size: 16px;
+                line-height: 21px;
+
+                &.size-lg{
+                    min-width: 320px;
+                    min-height: 50px;
+                    width: 100%;
+                }
+            }
+
         }
 
         .vl{
@@ -267,6 +335,48 @@ export default {
             mix-blend-mode: normal;
             box-shadow: -10px 2px 30px #FFFFFF, 
             16px 10px 48px rgba(136, 165, 191, 0.58);
+            max-height: 170px;
+
+
+            @include lt-md {
+                padding: 1em 20px;
+            }
+
+            @include lt-sm {
+                padding: 5%;
+                max-height: 100%;
+                flex-flow: row;
+            }
+
+        }
+
+        
+        .user-profile{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 270px;
+            max-height: 270px;
+            background: #E3EDF7;
+            box-shadow: -16px -2px 56px #FFFFFF, 
+            16px 10px 48px rgba(136, 165, 191, 0.58);
+            border-radius: 100%;
+
+            img{
+                width: 100%;
+
+            }
+
+            @include lt-md {
+                width: 10em;
+                height: 10em;
+            }
+
+            @include lt-sm {
+                width: 138.8px;
+                height: 138.8px;
+                box-shadow: none;
+            }
         }
 
         .user-details{
@@ -274,8 +384,9 @@ export default {
             flex-flow: column;
             align-items: flex-start;
             max-width: 310px;
-            margin: 0 auto;
+            margin: 0;
             background: none;
+            padding-top: 10px;
 
             h3{
                 font-style: normal;
@@ -294,6 +405,40 @@ export default {
                 justify-self: flex-start;
                 display: flex;
             }
+
+            @include lt-md {
+                height: 100%;
+                padding-top: 10%;
+
+                h3{
+                    font-size: 20px;
+                    line-height: 20px;
+                }
+                span{
+                    font-size: 14px;
+                    line-height: 16px;
+                }
+            }
+            @include lt-sm {
+
+                max-width: 195px;
+
+                h3{
+                    font-size: 24px;
+                    line-height: 32px;
+                }
+                span{
+                    font-size: 14px;
+                    line-height: 19px;
+                }
+                .vl{
+                    max-height: 1px;
+                    width: 90%;
+                    justify-content: center;
+                    margin: 0px auto;
+                }
+            }
+
         }
         .hire-options{
             display: flex;
@@ -303,7 +448,7 @@ export default {
             height: 100%;
             background: none;
             box-shadow: 4px 2px 16px rgba(136, 165, 191, 0.48), -4px -2px 16px #FFFFFF;
-            min-height: 92px;
+            max-height: 92px;
             width: 400px;
             border-radius: 6px;
 
@@ -321,13 +466,58 @@ export default {
                     }
                 }
             }
+
+            @include lt-md {
+
+                margin-top: 5%;
+
+                .item-hire{
+                    span{
+                        font-size: 16px;
+
+                        &.value{
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+            @include lt-sm {
+                max-width: 193px;
+                flex-flow: column;
+                margin-top: 20px;
+                max-height: 108px;
+
+                .item-hire{
+                    flex-flow: row;
+                    justify-content: center;
+                    align-items: center;
+                    width: 100%;
+                    min-height: 50px;
+
+                    span{
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 12px;
+                        margin: 0 0 0 5px;
+
+                        &.value{
+                            font-size: 18px;
+                            font-weight: bold;
+                            line-height: 24px;
+                            margin: 0px;
+                        }
+                    }
+                }
+            }
+
         }
         .interview-section{
             display: flex;
             justify-content: flex-end;
-            height: 100%;
+            height: 90px;
             align-items: center;
             background: none;
+            width: 100%;
             
             span{
                 font-size: 18px;
@@ -343,28 +533,31 @@ export default {
                 border-radius: 4px;
                 margin: 0 5px;
             }
+
+            @include lt-md {
+                span{
+                    font-size: 16px;
+                }
+            }
+
+            @include lt-sm {
+                justify-content: flex-start;
+                height: auto;
+                margin-top: 15px;
+                padding: 0px 5%;
+            }
+
+            
+
         }
 
         .mid-bar{
             padding: 0 70px;
 
-            .user-profile{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                max-width: 270px;
-                height: 270px;
-                background: #E3EDF7;
-                box-shadow: -16px -2px 56px #FFFFFF, 
-                16px 10px 48px rgba(136, 165, 191, 0.58);
-                border-radius: 100%;
-                margin-top: -135px;
-
-                img{
-                    width: 100%;
-
-                }
+            @include lt-md {
+                padding: 0;
             }
+
         }
 
         .hold-section{
@@ -375,9 +568,10 @@ export default {
             &.user-hireme{
                 max-width: 400px;
                 display: flex;
-                padding-top: 45px;
+                padding-top: 40px;
                 background: none;
                 align-items: center;
+                padding-left: 33%;
             }
 
             .col-section{
@@ -413,6 +607,38 @@ export default {
                     color: #31456A;
                 }
             }
+
+            @include lt-md {
+                &.user-hireme{
+                    padding: 20px;
+                }
+
+                .col-section{
+                    >span{
+                        font-size: 16px;
+                    }
+
+                    &.pl-12{
+                        padding-left: 20px !important;
+                    }
+                    
+                }
+            }
+
+            @include lt-sm {
+                &.user-hireme{
+                    padding: 1%;
+                    justify-content: center;
+                    margin: 25px auto;
+                }
+                .col-section{
+                    .btn-flat{
+                        max-width: 150px;
+                    }
+                }
+                
+            }
+
         }
         .social-hold{
             width: 180px;
@@ -442,6 +668,11 @@ export default {
                     }
                 }
             }
+
+            @include lt-sm {
+                max-width: 180px;
+            }
+
         }
         .user-skills{
             width: 535px;
@@ -449,6 +680,7 @@ export default {
             display: flex;
             align-items: center;
             background: none;
+            padding-top: 40px;
 
             .skill-item{
                 font-family: 'PT Serif Caption', serif;
@@ -465,11 +697,36 @@ export default {
                 display: inline-flex;
                 align-items: center;
                 justify-content: center;
+
+
             }
+
+            @include lt-md {
+                .skill-item{
+                    font-size: 20px;
+                    line-height: 20px;
+                    width: 70px;
+                    height: 70px;
+                }
+            }
+
+            @include lt-sm {
+                width: 600px;
+                display: inline-block;
+                white-space: nowrap;
+                overflow-x: auto;
+                padding: 10px;
+
+                .skill-item{
+                    width: 80px;
+                    height: 80px;
+                    margin: 0px 17px;
+                }
+            }
+
         }
         .wrap-tabs{
-            padding: 0px 70px;
-            margin-top: 30px;
+            padding: 30px 70px;
 
             .v-tabs{
                 background: #E3EDF7;
@@ -585,7 +842,125 @@ export default {
                         }
                     }
                 }
-            }            
+            } 
+            
+            @include lt-md {
+                padding: 40px 20px 0 20px;
+                .v-tabs{
+                    height: 80px;
+
+                    .v-tab{
+                        font-size: 1.2em;
+                        
+                    }
+                }
+
+                .v-tabs-items{
+                    padding-top: 1.5em;
+                }
+
+                .v-list{
+                    .v-list-item{
+
+                        .v-card{
+                            padding: 20px;
+                            align-items: flex-start;
+                        }
+
+                        .info-work{
+                            .title-work{
+                                font-size: 18px;
+                                line-height: 20px;
+                            }
+                            .company{
+                                margin: 4% 0;
+                                font-size: 16px;
+                            }
+                            .date{
+                                font-size: 14px;
+                            }
+                        }
+                        .description-work{
+                            p{
+                                padding: 0px 30px;
+                                font-size: 18px;
+                                line-height: 25px;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+
+            @include lt-sm {
+                padding: 25px 20px;
+                .v-tabs{
+                    height: 61px;
+
+                    .v-tab{
+                        min-width: 270px;
+                        padding: 0;
+                        font-size: 20px;
+                        line-height: 26px;
+
+                        &.v-tab--active{
+                            box-shadow: none;
+                        }                        
+                    }
+                }
+                .v-tabs-items{
+                    padding-top: 0;
+
+                    .row{
+                        .col-6{
+                            &.pa-2{
+                                padding: 5px !important;
+                            }
+
+                            img{
+                                border-radius: 10px;
+                            }
+                        }
+                        
+                    }
+                }
+                .v-list{
+                    .v-list-item{
+
+                        
+                        .v-card{
+                            flex-flow: column;
+                        }
+
+                        .info-work{
+                            min-width: 100%;
+                            margin-bottom: 20px;
+                            height: 167px;
+                            padding: 30px;
+                            justify-content: flex-start;
+
+                            .title-work{
+                                font-size: 24px;
+                            }
+                            .company{
+                                margin: 13px 0px 30px 0;
+                            }
+                            .title-work,.company,.date{
+                                max-width: 100%;
+                            }
+                        }
+
+                        .description-work{
+                            p{
+                                padding: 0;
+                                font-size: 20px;
+                                line-height: 32px;
+                            }
+                        }
+                    }
+                }
+
+            }
 
         }
 
@@ -598,6 +973,10 @@ export default {
             &.v-card{
                 background: none;
             }
+
+            @include lt-md {
+                margin: 20.5px auto;
+            }
         }
 
         .about-section{
@@ -609,6 +988,15 @@ export default {
                 line-height: 32px;
                 color: #7287AD;
             }
+
+            @include lt-md {
+                p{
+                    font-size: 18px;
+                    line-height: 25px;
+                }
+            }
+
+
         }
         
     }

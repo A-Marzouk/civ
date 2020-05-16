@@ -9,7 +9,7 @@ class PaymentInfo extends Model
     protected $table = 'payment_info';
 
     protected $fillable = [
-       'salary','salary_frequency','currency','user_id'
+        'is_public','salary','currency','user_id'
     ];
 
 

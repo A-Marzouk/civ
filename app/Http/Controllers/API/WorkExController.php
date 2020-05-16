@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use App\WorkEx;
 use App\Http\Resources\WorkEx as WorkExResource;
@@ -40,6 +41,10 @@ class WorkExController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
 
         $this->validator($request->all())->validate();
 
@@ -93,6 +98,10 @@ class WorkExController extends Controller
             'id' => $id,
         ])->first();
 
+        if(!$this->is_auth($workEx)){
+            throw new Exception('Not Authenticated!');
+        }
+
         if($workEx->delete()){
             return ['data' => ['id' => $workEx->id] ];
         }
@@ -102,12 +111,16 @@ class WorkExController extends Controller
     {
         return Validator::make($data, [
             'company_name' => ['sometimes','required','string','max:255'],
-            'job_title' => ['required','string','max:255'],
-            'description' => ['required','string','max:2500'],
+            'job_title' => ['sometimes','string','max:255'],
+            'description' => ['sometimes','string','max:2500'],
             'website' => ['sometimes','nullable','string','max:255'],
             'date_from' => ['sometimes','date','max:255'],
             'date_to' => ['sometimes','nullable','date','max:255'],
             'present' =>['boolean']
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }
