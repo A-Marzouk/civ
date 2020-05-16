@@ -541,7 +541,7 @@
           </v-col>
 
           <v-col sm="4" cols="4" class="hidden-md-and-up mt-n12">
-            <v-card flat tile color="transparent" align="center" class="">
+            <v-card flat tile color="transparent" align="center" class="ml-md-0 ml-sm-0 ml-n5">
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
@@ -561,7 +561,7 @@
           </v-col>
 
           <v-col sm="8" cols="8" class="hidden-md-and-up mt-n12" align="right">
-            <v-card flat tile color="transparent">
+            <v-card flat tile color="transparent" class="ml-md-0 ml-sm-0 ml-8">
               <v-card-subtitle class="follow-us-text" align="center">Contact Us</v-card-subtitle>
               <v-card-subtitle align="center">
                 <v-btn
@@ -1465,7 +1465,7 @@ export default {
     width: 20px;
     height: 20px;
     img {
-      width: 9px;
+      width: 8px;
     }
   }
 }
