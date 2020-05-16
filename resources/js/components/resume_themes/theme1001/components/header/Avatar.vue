@@ -1,5 +1,7 @@
 <template>
-	<a class="avatar" href="#" :style="`background-image: url(${src})`" @click.prevent></a>
+	<div class="avatar">
+		<a href="#" :style="`background-image: url(${src})`" @click.prevent></a>
+	</div>
 </template>
 
 <script>
@@ -18,7 +20,7 @@ export default {
 <style lang="scss" scoped>
 @import "./../../scss/variables";
 
-.avatar {
+.avatar a {
 	display: block;
 	width: 50px;
 	height: 50px;
@@ -28,22 +30,22 @@ export default {
 }
 
 @media (min-width: $sm) {
-	.avatar {
-		width: 75px;
-		height: 75px;
+	.avatar a {
+		width: 65px;
+		height: 65px;
 	}
 }
 
-@media (min-width: $md) {
-	.avatar {
+@media (min-width: $lg) {
+	.avatar a {
 		width: 124px;
 		height: 124px;
 		border: 4px solid #ffffff;
 	}
 }
 
-@media (min-width: $lg) {
-	.avatar {
+@media (min-width: $xl) {
+	.avatar a {
 		width: 232px;
 		height: 232px;
 	}

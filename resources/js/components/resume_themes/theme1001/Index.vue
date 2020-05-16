@@ -1,16 +1,19 @@
 <template>
 	<div id="wrapper_theme1001">
-		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" />
+		<Header :currentTab="currentTab" :currentUser="currentUser" />
+
+		<TabsNavigation :currentTab="currentTab" @tabChanged="currentTab=$event" />
 	</div>
 </template>
 
 <script>
 import Header from "./components/Header";
+import TabsNavigation from "./components/TabsNavigation";
 
 export default {
 	name: "resume-theme-1001",
 
-	components: { Header },
+	components: { Header, TabsNavigation },
 
 	data: () => {
 		return {

@@ -11,7 +11,7 @@
 			</svg>
 		</a>
 
-		<div v-show="isOpen" class="profile-actions__links v-fade" @click="stopProp">
+		<div class="profile-actions__links" :class="{'open': isOpen}" @click="stopProp">
 			<a class="action__button" href="#" @click.prevent>
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13">
 					<g transform="translate(0.347 0.201)">
@@ -92,7 +92,6 @@ export default {
 	display: block;
 	height: 20px;
 	width: 22px;
-	margin-top: 5px;
 	position: absolute;
 	top: 0;
 	right: 0;
@@ -100,13 +99,21 @@ export default {
 
 .profile-actions .profile-actions__links {
 	position: absolute;
-	top: 37px;
+	top: -100vh;
 	right: 0;
 	background: #ffffff;
 	width: 100%;
+	opacity: 0;
+	user-select: none;
 	border-radius: 25px;
 	padding: 45px 35px;
 	box-shadow: 0 30px 30px rgba(16, 44, 44, 0.1);
+	transition: opacity 0.5s;
+
+	&.open {
+		top: 37px;
+		opacity: 1;
+	}
 }
 
 .profile-actions__links .action__button {
@@ -125,18 +132,12 @@ export default {
 	span {
 		color: inherit;
 		font-family: $muli;
-		font-weight: 300;
 		font-size: 18px;
-		line-height: 24px;
 		margin-left: 10px;
 	}
 
 	&:nth-child(2) {
 		margin-top: 35px;
-	}
-
-	&:hover {
-		text-decoration: none;
 	}
 }
 
@@ -146,15 +147,57 @@ export default {
 	}
 }
 
-/* Animation */
-.v-fade {
-	display: inherit !important; /* override v-show display: none */
-	transition: opacity 0.5s;
+@media (min-width: $md) {
+	.profile-actions .actions-toggle-button {
+		display: none;
+	}
+
+	.profile-actions .profile-actions__links {
+		display: flex;
+		opacity: 1;
+		top: 0;
+		background: unset;
+		width: unset;
+		border-radius: unset;
+		padding: unset;
+		box-shadow: unset;
+	}
+
+	.profile-actions__links .action__button {
+		font-family: $muli;
+		display: flex;
+		font-size: 10px;
+		color: #ffffff;
+		background: #3d5ed4;
+		justify-content: center;
+		align-items: center;
+		border-radius: 9px;
+		width: 129px;
+		height: 40px;
+		transition: margin-top 0.1s;
+
+		span {
+			margin-left: 7px;
+			color: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+		}
+
+		svg {
+			height: 15px;
+		}
+
+		&:nth-child(2) {
+			margin-top: 0;
+			margin-left: 15px;
+		}
+
+		&:hover {
+			margin-top: 1px;
+		}
+	}
 }
 
-.v-fade[style*="display: none;"] {
-	opacity: 0;
-	pointer-events: none; /* disable user interaction */
-	user-select: none; /* disable user selection */
+@media (min-width: $lg) {
 }
 </style>

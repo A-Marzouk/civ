@@ -42,59 +42,61 @@ export default {
 
 .profile__hireme {
 	font-family: $muli;
-	padding-top: 18px;
-	display: flex;
-}
-
-.profile__hireme .hireme {
+	padding-top: 15px;
 	display: flex;
 	align-items: center;
-	flex: 1;
 }
 
-.profile__hireme .hireme-rate {
+.hireme {
+	display: flex;
+	align-items: center;
+}
+
+.hireme-rate {
 	display: flex;
 	flex-direction: column;
 	font-family: $muli;
-
-	&:nth-child(2) {
-		padding-left: 15px;
-	}
-
-	span {
-		font-family: inherit;
-		font-size: 8px;
-		font-weight: 300;
-		color: #ffffff;
-	}
-
-	strong {
-		font-family: inherit;
-		font-size: 15px;
-		font-weight: 700;
-	}
+	padding-right: 15px;
 }
 
-@media (min-width: 375px) {
-	.profile__hireme .hireme-rate:nth-child(2) {
-		padding-left: 25px;
-	}
+.hireme-rate span {
+	font-family: inherit;
+	font-size: 8px;
+	line-height: 10px;
+	white-space: nowrap;
+	color: #d3d6e4;
+}
+
+.hireme-rate strong {
+	font-family: inherit;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 700;
 }
 
 @media (min-width: $sm) {
 	.profile__hireme {
 		padding-top: 25px;
+	}
 
-		.hireme-rate {
-			line-height: 22.5px;
-			strong {
-				font-size: 18px;
-			}
+	.hireme-rate {
+		padding-right: 25px;
+	}
 
-			span {
-				font-size: 10px;
-			}
-		}
+	.hireme-rate strong {
+		font-size: 20px;
+		line-height: 25px;
+	}
+
+	.hireme-rate span {
+		font-size: 10px;
+		line-height: 13px;
+	}
+}
+
+@media (min-width: $md) {
+	.hireme {
+		margin-right: 25px;
 	}
 }
 </style>

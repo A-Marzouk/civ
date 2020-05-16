@@ -4,12 +4,8 @@
 			<ProfileActions />
 
 			<Avatar :src="currentUser.avatar" />
-			<div class="profile__detail">
-				<h3 class="fullname" v-text="currentUser.fullname"></h3>
-				<h4 class="job-title" v-text="currentUser.jobTitle"></h4>
 
-				<ProfileHireMe :hourly-rate="currentUser.hourRate" :weekly-availability="currentUser.weeklyAvailability" />
-			</div>
+			<ProfileDetail :currentUser="currentUser" />
 		</div>
 	</header>
 </template>
@@ -17,7 +13,7 @@
 <script>
 import Avatar from "./header/Avatar";
 import ProfileActions from "./header/ProfileActions";
-import ProfileHireMe from "./header/ProfileHireMe";
+import ProfileDetail from "./header/ProfileDetail";
 
 export default {
 	name: "Header",
@@ -33,7 +29,7 @@ export default {
 		}
 	},
 
-	components: { Avatar, ProfileActions, ProfileHireMe },
+	components: { Avatar, ProfileActions, ProfileDetail },
 
 	data: () => {
 		return {};
@@ -46,70 +42,36 @@ export default {
 
 #header {
 	font-family: $muli;
-	padding: 15px;
+	font-weight: 300;
+	padding: 20px;
 	padding-bottom: 25px;
 	color: #ffffff;
-	background: url("/images/resume_themes/theme1001/header-mobile-bg-pattern.png"),
+	background-image: url("/images/resume_themes/theme1001/bg-header.png"),
 		linear-gradient(#4870fc 100%, #4870fc 100%);
+	background-size: cover;
 }
 
 .header-profile {
 	position: relative;
-	font-family: inherit;
 	display: flex;
-	flex-wrap: wrap;
-}
-
-.header-profile .profile__detail {
-	flex: 1;
 	font-family: inherit;
-	padding-left: 12px;
 }
 
-.header-profile .profile__detail .fullname {
-	font-weight: 700;
-	font-family: inherit;
-	font-size: 12px;
-	line-height: 15px;
-	margin-top: 5px;
-}
-
-.header-profile .profile__detail .job-title {
-	font-family: inherit;
-	line-height: 13px;
-	font-size: 10px;
-	font-weight: 300;
-	margin-top: 5px;
-}
-
-@media (min-width: 375px) {
+@media (min-width: $sm) {
 	#header {
 		padding: 25px;
-		padding-bottom: 35px;
 	}
 }
 
 @media (min-width: $md) {
 	#header {
-		background: url("/images/resume_themes/theme1001/header-desktop-bg-pattern.png"),
+		background-image: url("/images/resume_themes/theme1001/bg-header.png"),
 			linear-gradient(#4870ff 100%, #4870ff 100%);
+		background-size: contain;
 	}
-}
 
-@media (min-width: $sm) {
-	.header-profile .profile__detail {
-		.fullname {
-			font-size: 18px;
-			line-height: 21px;
-		}
-
-		.job-title {
-			line-height: 18px;
-			font-size: 14px;
-		}
+	.header-profile {
+		align-items: center;
 	}
-}
-
-@media (min-width: $lg) {
 }
 </style>
