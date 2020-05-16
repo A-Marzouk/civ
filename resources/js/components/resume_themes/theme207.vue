@@ -297,7 +297,12 @@
                         </v-col>
                         <!-- Column 1 -->
                         <!-- column 2 -->
-                        <v-col md="4" sm="7" cols="6"  :class="[(n%2)==0 ? 'order-first':'ml-sm-0 ml-n3']">
+                        <v-col
+                          md="4"
+                          sm="7"
+                          cols="6"
+                          :class="[(n%2)==0 ? 'order-first':'ml-sm-0 ml-n3']"
+                        >
                           <v-row>
                             <v-col cols="6" v-for="n in 4" :key="n">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
@@ -400,88 +405,92 @@
 
                 <!-- Skills -->
                 <v-tab-item>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-card color="transparent" tile flat>
-                        <v-tabs
-                          v-model="skillTab"
-                          centered
-                          background-color="transparent"
-                          tile
-                          color="#fc413c"
-                        >
-                          <v-tab
-                            class="custom-skill-tab"
-                            v-for="skill in skills"
-                            :key="skill.id"
-                            @click="currentSkillTab = skill.id"
-                            :class="[currentSkillTab == skill.id ? 'skill-child-tab-active':'skill-child-tab' ]"
-                          >{{skill.title}}</v-tab>
-                        </v-tabs>
-                      </v-card>
-                      <!-- Child Tabs -->
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col cols="12">
-                      <!-- Child Tab Items -->
-                      <v-tabs-items v-model="skillTab" style="background:transparent;">
-                        <!-- All Programming Languges -->
-                        <v-tab-item v-for="n in 4" :key="n">
-                          <v-card flat color="transparent" tile>
-                            <v-card-text>
-                              <v-row>
-                                <v-col
-                                  md="4"
-                                  sm="12"
-                                  cols="12"
-                                  v-for="item in childSkills"
-                                  :key="item.id"
-                                >
-                                  <v-card class="pa-5 card-education" hover color="#272B2F">
-                                    <div class="d-flex flex-no-wrap mt-n3 mt-md-0 mt-sm-1">
-                                      <v-avatar
-                                        class="education-avatar"
-                                        tile
-                                        color="rgba(252, 65, 60, 0.1)"
-                                      >
-                                        <img src="/images/resume_themes/theme207/tabs/active/4.png" />
-                                      </v-avatar>
-                                      <div class="flex-fill">
-                                        <v-card-title
-                                          class="education-title mb-5"
-                                          style="margin-top:-22px;"
-                                        >PHP</v-card-title>
-                                        <div class="ml-3">
-                                          <v-progress-linear
-                                            tile
-                                            style="border:3px solid #272B2F; border-radius:12px;"
-                                            class="custom-progress-bar"
-                                            color="#eeeeee"
-                                            rounded
-                                            background-color="#FC413C"
-                                            height="15"
-                                            :value="item.value"
-                                          ></v-progress-linear>
+                  <v-container style="width:100%" fluid class="pa-md-0 pa-sm-5 pa-0">
+                    <v-row>
+                      <v-col cols="12">
+                        <v-card color="transparent" tile flat>
+                          <v-tabs
+                            v-model="skillTab"
+                            centered
+                            background-color="transparent"
+                            tile
+                            color="#fc413c"
+                          >
+                            <v-tab
+                              class="custom-skill-tab"
+                              v-for="skill in skills"
+                              :key="skill.id"
+                              @click="currentSkillTab = skill.id"
+                              :class="[currentSkillTab == skill.id ? 'skill-child-tab-active':'skill-child-tab' ]"
+                            >{{skill.title}}</v-tab>
+                          </v-tabs>
+                        </v-card>
+                        <!-- Child Tabs -->
+                      </v-col>
+                    </v-row>
+                    <v-row>
+                      <v-col cols="12">
+                        <!-- Child Tab Items -->
+                        <v-tabs-items v-model="skillTab" style="background:transparent;">
+                          <!-- All Programming Languges -->
+                          <v-tab-item v-for="n in 4" :key="n">
+                            <v-card flat color="transparent" tile>
+                              <v-card-text>
+                                <v-row>
+                                  <v-col
+                                    md="4"
+                                    sm="12"
+                                    cols="12"
+                                    v-for="item in childSkills"
+                                    :key="item.id"
+                                  >
+                                    <v-card class="pa-5 card-education" hover color="#272B2F">
+                                      <div class="d-flex flex-no-wrap mt-n3 mt-md-0 mt-sm-1">
+                                        <v-avatar
+                                          class="education-avatar"
+                                          tile
+                                          color="rgba(252, 65, 60, 0.1)"
+                                        >
+                                          <img
+                                            src="/images/resume_themes/theme207/tabs/active/4.png"
+                                          />
+                                        </v-avatar>
+                                        <div class="flex-fill">
+                                          <v-card-title
+                                            class="education-title mb-5"
+                                            style="margin-top:-22px;"
+                                          >PHP</v-card-title>
+                                          <div class="ml-3">
+                                            <v-progress-linear
+                                              tile
+                                              style="border:3px solid #272B2F; border-radius:12px;"
+                                              class="custom-progress-bar"
+                                              color="#eeeeee"
+                                              rounded
+                                              background-color="#FC413C"
+                                              height="15"
+                                              :value="item.value"
+                                            ></v-progress-linear>
+                                          </div>
                                         </div>
                                       </div>
-                                    </div>
-                                  </v-card>
-                                </v-col>
-                              </v-row>
-                            </v-card-text>
-                          </v-card>
-                        </v-tab-item>
-                      </v-tabs-items>
-                      <!-- All Programming Languages -->
-                      <!-- Child tab items -->
-                    </v-col>
-                  </v-row>
+                                    </v-card>
+                                  </v-col>
+                                </v-row>
+                              </v-card-text>
+                            </v-card>
+                          </v-tab-item>
+                        </v-tabs-items>
+                        <!-- All Programming Languages -->
+                        <!-- Child tab items -->
+                      </v-col>
+                    </v-row>
+                  </v-container>
                 </v-tab-item>
                 <!-- Skills -->
                 <!-- Media -->
                 <v-tab-item>
-                  <v-card flat color="transparent" tile>
+                  <v-container style="width:100%" fluid class="pa-md-0 pa-sm-5 pa-0">
                     <!-- Media Main Row -->
                     <v-row>
                       <!-- Media Main Column 1 -->
@@ -635,7 +644,7 @@
                       <!-- Media 4th Column -->
                     </v-row>
                     <!-- Media Main Row -->
-                  </v-card>
+                  </v-container>
                 </v-tab-item>
                 <!-- Media -->
                 <!-- About Me -->
@@ -1012,6 +1021,10 @@ export default {
     line-height: 27px;
     margin-top: 44px;
   }
+  @media screen and (max-width: 375px){
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 .custom-profile-subtitle {
@@ -1027,17 +1040,20 @@ export default {
     font-size: 12px !important;
     line-height: 16px;
   }
+  @media screen and (max-width: 375px){
+    font-size: 11px;
+  }
 }
 
 .custom-profile-text {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   color: #000000 !important;
   font-size: 0.9rem;
   line-height: 1.6888rem;
 }
 // Availibility
 .hour-rate {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   font-size: 2rem;
   color: #febc2c;
   img {
@@ -1061,7 +1077,7 @@ export default {
   }
 }
 .hour-rate-text {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   font-size: 0.875rem;
   color: #febc2c;
   @media screen and (min-width: 960px) and (max-width: 1209px) {
@@ -1123,7 +1139,7 @@ export default {
 }
 // Tabs
 .ct-tab {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   font-weight: 500;
   line-height: 30px;
   color: #ffffff !important;
@@ -1138,7 +1154,7 @@ export default {
   }
 }
 .custom-active-tab {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   font-weight: bold;
   color: #fc413c !important;
   @media screen and (max-width: 959px) {
@@ -1163,8 +1179,8 @@ export default {
 .card-portfolio {
   border-radius: 10px !important;
 }
-.card-small-img{
-  @media screen and (max-width: 599px){
+.card-small-img {
+  @media screen and (max-width: 599px) {
     margin-bottom: -10px;
   }
 }
@@ -1179,10 +1195,10 @@ img.pofolio-lg-img {
   }
 }
 .portofolio-sm-img {
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     height: 185px;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     height: 112px;
     min-width: 113%;
   }
@@ -1227,7 +1243,7 @@ img.pofolio-lg-img {
 }
 
 .education-title {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Roboto" !important;
   color: #ffffff !important;
   font-weight: bold !important;
   line-height: 30px !important;
@@ -1241,7 +1257,7 @@ img.pofolio-lg-img {
   }
 }
 .experience-title {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Roboto" !important;
   color: #ffffff !important;
   font-weight: bold !important;
   line-height: 30px !important;
@@ -1250,7 +1266,7 @@ img.pofolio-lg-img {
   }
 }
 .education-subtitle {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Roboto" !important;
   color: #ffffff !important;
   line-height: 23px;
   font-size: 0.875rem !important;
@@ -1264,7 +1280,7 @@ img.pofolio-lg-img {
   }
 }
 .education-session {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Roboto" !important;
   color: #ffffff !important;
   font-size: 0.75rem !important;
   @media screen and (max-width: 599px) {
@@ -1276,18 +1292,18 @@ img.pofolio-lg-img {
 //education
 // Skill tab
 .skill-child-tab {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   color: #ffffff !important;
 }
 
 .skill-child-tab-active {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   color: #fc413c;
   font-weight: 600;
 }
 
 .skill-title {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Roboto" !important;
   color: #ffffff !important;
   font-weight: bold;
   font-size: 1rem;
@@ -1302,7 +1318,7 @@ img.pofolio-lg-img {
 // Skill tab
 // media
 .media-title {
-  font-family: "Roboto", sans-serif !important;
+  font-family: "Roboto" !important;
   font-size: 0.9rem !important;
   color: #ffffff !important;
   font-weight: bold !important;
@@ -1310,20 +1326,20 @@ img.pofolio-lg-img {
 }
 
 .media-subtitle {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   font-size: 0.75rem !important;
   color: #ffffff !important;
   line-height: 18px;
 }
 
 .media-duration {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   font-size: 0.75rem !important;
   color: #febc2c !important;
   line-height: 18px;
 }
 // .media-duration-footer {
-//   font-family: "Poppins", sans-serif !important;
+//   font-family: "Poppins" !important;
 //   font-size: 0.75rem !important;
 //   color: #ffffff !important;
 //   line-height: 18px;
@@ -1410,7 +1426,7 @@ img.pofolio-lg-img {
 //media footer
 .media-title-tablet {
   @media screen and (max-width: 959px) {
-    font-family: "Poppins", sans-serif !important;
+    font-family: "Poppins" !important;
     font-size: 0.75rem;
     color: #ffffff;
   }
@@ -1424,7 +1440,7 @@ img.pofolio-lg-img {
 
 .media-duration-footer {
   @media screen and (max-width: 959px) {
-    font-family: "Poppins", sans-serif !important;
+    font-family: "Poppins" !important;
     font-size: 0.75rem !important;
     color: #febc2c !important;
   }
@@ -1483,7 +1499,7 @@ img.pofolio-lg-img {
 }
 .video-duration-text {
   margin-top: 11px;
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   font-size: 14px;
   color: #ffffff !important;
 }
@@ -1495,12 +1511,12 @@ img.pofolio-lg-img {
 // media
 // about me
 .about-me-title {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   color: #5843be !important;
   font-weight: bold !important;
 }
 .about-me-text {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Poppins" !important;
   color: #ffffff !important;
   font-size: 1.125rem !important;
   @media screen and (max-width: 599px) {
@@ -1568,6 +1584,9 @@ img.pofolio-lg-img {
   font-size: 16px;
   line-height: 24px;
   color: #ffffff;
+  @media screen and (max-width: 599px) {
+    margin-top: -80px;
+  }
 }
 .about-me-text-mobile {
   font-family: "Poppins" sans-serif !important;
