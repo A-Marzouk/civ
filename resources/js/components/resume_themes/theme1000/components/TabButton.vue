@@ -1,5 +1,5 @@
 <template>
-	<div @click="$emit('click')" class="tab-button" :class="{'active': isActive}">
+	<div class="tab-button tw-cursor-pointer" :class="{'active': isActive}" @click="$emit('click')">
 		<div class="tab-button__icon">
 			<slot></slot>
 		</div>
@@ -38,6 +38,7 @@ export default {
 	font-family: $poppins;
 	border-radius: 5px 5px 0px 0px;
 	justify-content: center;
+	transition: all 0.3s;
 
 	&.sm--hidden {
 		display: none;
@@ -58,6 +59,11 @@ export default {
 		font-size: 12px;
 		font-weight: 500;
 		padding-left: 10px;
+		font-family: inherit;
+	}
+
+	&:hover {
+		color: #42a5f5;
 	}
 
 	&.active {

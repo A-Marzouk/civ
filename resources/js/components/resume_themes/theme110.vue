@@ -401,7 +401,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             .container {
                 padding: 0 40px;
                 padding-bottom: 100px;
-                max-width: 1750px;
+                max-width: 1550px;
                 margin: 0 auto;
             }
         }
