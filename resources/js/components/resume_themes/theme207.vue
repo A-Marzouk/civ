@@ -1,6 +1,6 @@
 <template>
   <v-app style="width:100%; background:#212529;">
-    <v-container fluid ma-0 pa-0 style="width:100%; ">
+    <v-container fluid ma-0 pa-0 style="max-width:100% !important;">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" :height="windowWidth > 599 ? 260 : '170' " dark>
         <v-avatar class="custom-avatar hidden-xs-only" left tile>
@@ -10,7 +10,7 @@
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
             <v-col cols="2" class="hidden-sm-and-up">
-              <v-avatar class="custom-avatar-mobile hidden-sm-and-up mr-5" left size="80">
+              <v-avatar class="custom-avatar-mobile hidden-sm-and-up mr-7" left size="80">
                 <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
               </v-avatar>
             </v-col>
@@ -173,10 +173,107 @@
               <v-tabs-items v-model="mainDataTab" style="background: transparent;">
                 <!-- Portfolio -->
                 <v-tab-item>
-                  <v-card color="transparent" tile flat>
-                    <v-card-text>
-                      <!-- Will be hidden in tablets and mobile -->
-                      <v-row class="hidden-sm-and-down">
+                  <v-container style="width: 100%" fluid class="pa-md-5 pa-sm-5 pa-0">
+                    <!-- Will be hidden in tablets and mobile -->
+                    <v-row class="hidden-sm-and-down">
+                      <!-- column 1 -->
+                      <v-col md="3" sm="5" cols="6">
+                        <v-card color="transparent" tile class="card-portfolio" hover>
+                          <v-speed-dial top right absolute>
+                            <template v-slot:activator>
+                              <v-btn icon color="transparent" tile>
+                                <img
+                                  width="20"
+                                  src="/images/resume_themes/theme207/icons/zoom.png"
+                                  alt
+                                />
+                              </v-btn>
+                            </template>
+                          </v-speed-dial>
+                          <img
+                            class="pofolio-lg-img"
+                            src="/images/resume_themes/theme207/portfolio/1.png"
+                            alt="Portfolio Image"
+                          />
+                        </v-card>
+                      </v-col>
+                      <!-- Column 1 -->
+                      <!-- column 2 -->
+                      <v-col md="4" sm="7" cols="6">
+                        <v-row>
+                          <v-col cols="6" v-for="n in 4" :key="n">
+                            <v-card class="card-portfolio mt-n3 mb-3" hover>
+                              <v-speed-dial top right absolute>
+                                <template v-slot:activator>
+                                  <v-btn icon color="transparent" tile>
+                                    <img
+                                      width="20"
+                                      src="/images/resume_themes/theme207/icons/zoom.png"
+                                      alt
+                                    />
+                                  </v-btn>
+                                </template>
+                              </v-speed-dial>
+                              <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <!-- Column 2 -->
+
+                      <!-- column 3 -->
+                      <v-col md="3">
+                        <v-card color="transparent" tile class="card-portfolio" hover>
+                          <v-speed-dial top right absolute>
+                            <template v-slot:activator>
+                              <v-btn icon color="transparent" tile>
+                                <img
+                                  width="20"
+                                  src="/images/resume_themes/theme207/icons/zoom.png"
+                                  alt
+                                />
+                              </v-btn>
+                            </template>
+                          </v-speed-dial>
+                          <v-img
+                            src="/images/resume_themes/theme207/portfolio/1.png"
+                            alt="Portfolio Image"
+                          ></v-img>
+                        </v-card>
+                      </v-col>
+                      <!-- Column 3 -->
+                      <!-- column 4 -->
+                      <v-col md="2">
+                        <v-row>
+                          <v-col cols="12" v-for="n in 2" :key="n">
+                            <v-card class="card-portfolio mt-n3 mb-3" hover>
+                              <v-speed-dial top right absolute>
+                                <template v-slot:activator>
+                                  <v-btn icon color="transparent" tile>
+                                    <img
+                                      width="20"
+                                      src="/images/resume_themes/theme207/icons/zoom.png"
+                                      alt
+                                    />
+                                  </v-btn>
+                                </template>
+                              </v-speed-dial>
+                              <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                            </v-card>
+                          </v-col>
+                        </v-row>
+                      </v-col>
+                      <!-- Column 4 -->
+                    </v-row>
+                    <!-- Will be hidden in tablets and mobile devices -->
+
+                    <!-- Only For tablet and mobile version -->
+                    <template v-for="n in 2">
+                      <v-row
+                        class="hidden-md-and-up ml-sm-n2"
+                        :key="n"
+                        :class="[n>1 ?'mt-sm-n3 mt-n5':'']"
+                      >
                         <!-- column 1 -->
                         <v-col md="3" sm="5" cols="6">
                           <v-card color="transparent" tile class="card-portfolio" hover>
@@ -200,7 +297,7 @@
                         </v-col>
                         <!-- Column 1 -->
                         <!-- column 2 -->
-                        <v-col md="4" sm="7" cols="6">
+                        <v-col md="4" sm="7" cols="6"  :class="[(n%2)==0 ? 'order-first':'ml-sm-0 ml-n3']">
                           <v-row>
                             <v-col cols="6" v-for="n in 4" :key="n">
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
@@ -215,119 +312,22 @@
                                     </v-btn>
                                   </template>
                                 </v-speed-dial>
-                                <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-col>
-                        <!-- Column 2 -->
-
-                        <!-- column 3 -->
-                        <v-col md="3">
-                          <v-card color="transparent" tile class="card-portfolio" hover>
-                            <v-speed-dial top right absolute>
-                              <template v-slot:activator>
-                                <v-btn icon color="transparent" tile>
-                                  <img
-                                    width="20"
-                                    src="/images/resume_themes/theme207/icons/zoom.png"
-                                    alt
-                                  />
-                                </v-btn>
-                              </template>
-                            </v-speed-dial>
-                            <v-img
-                              src="/images/resume_themes/theme207/portfolio/1.png"
-                              alt="Portfolio Image"
-                            ></v-img>
-                          </v-card>
-                        </v-col>
-                        <!-- Column 3 -->
-                        <!-- column 4 -->
-                        <v-col md="2">
-                          <v-row>
-                            <v-col cols="12" v-for="n in 2" :key="n">
-                              <v-card class="card-portfolio mt-n3 mb-3" hover>
-                                <v-speed-dial top right absolute>
-                                  <template v-slot:activator>
-                                    <v-btn icon color="transparent" tile>
-                                      <img
-                                        width="20"
-                                        src="/images/resume_themes/theme207/icons/zoom.png"
-                                        alt
-                                      />
-                                    </v-btn>
-                                  </template>
-                                </v-speed-dial>
-                                <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-col>
-                        <!-- Column 4 -->
-                      </v-row>
-                      <!-- Will be hidden in tablets and mobile devices -->
-
-                      <!-- Only For tablet and mobile version -->
-                      <template v-for="n in 2">
-                        <v-row
-                          class="hidden-md-and-up ml-sm-n2"
-                          :key="n"
-                          :class="n>1 ?'mt-sm-n3 mt-0':''"
-                        >
-                          <!-- column 1 -->
-                          <v-col md="3" sm="5" cols="6">
-                            <v-card color="transparent" tile class="card-portfolio" hover>
-                              <v-speed-dial top right absolute>
-                                <template v-slot:activator>
-                                  <v-btn icon color="transparent" tile>
-                                    <img
-                                      width="20"
-                                      src="/images/resume_themes/theme207/icons/zoom.png"
-                                      alt
-                                    />
-                                  </v-btn>
-                                </template>
-                              </v-speed-dial>
-                              <img
-                                class="pofolio-lg-img"
-                                src="/images/resume_themes/theme207/portfolio/1.png"
-                                alt="Portfolio Image"
-                              />
-                            </v-card>
-                          </v-col>
-                          <!-- Column 1 -->
-                          <!-- column 2 -->
-                          <v-col md="4" sm="7" cols="6" :class="(n%2)==0 ? 'order-first':''">
-                            <v-row>
-                              <v-col cols="6" v-for="n in 4" :key="n">
-                                <v-card class="card-portfolio mt-n3 mb-3" hover>
-                                  <v-speed-dial top right absolute>
-                                    <template v-slot:activator>
-                                      <v-btn icon color="transparent" tile>
-                                        <img
-                                          width="20"
-                                          src="/images/resume_themes/theme207/icons/zoom.png"
-                                          alt
-                                        />
-                                      </v-btn>
-                                    </template>
-                                  </v-speed-dial>
+                                <v-card flat style="border-radius: 10px;" class="card-small-img">
                                   <v-img
                                     class="portofolio-sm-img"
                                     :src="getPortfolio(n+1)"
                                     alt="Portfolio Image"
                                   ></v-img>
                                 </v-card>
-                              </v-col>
-                            </v-row>
-                          </v-col>
-                          <!-- Column 2 -->
-                        </v-row>
-                      </template>
-                      <!-- Only for tablet and mobile version -->
-                    </v-card-text>
-                  </v-card>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                        <!-- Column 2 -->
+                      </v-row>
+                    </template>
+                    <!-- Only for tablet and mobile version -->
+                  </v-container>
                 </v-tab-item>
                 <!-- Portfolio -->
                 <!-- Education -->
@@ -366,7 +366,7 @@
 
                 <!-- Experience -->
                 <v-tab-item>
-                  <v-container style="width:100%" fluid class="md-pa-0 pa-5">
+                  <v-container style="width:100%" fluid class="pa-md-0 pa-sm-5 pa-0">
                     <v-row>
                       <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                         <v-card class="pa-5 card-education" hover color="#272B2F">
@@ -643,8 +643,8 @@
                   <v-card flat color="transparent" tile class="mt-5">
                     <v-container style="width:100%">
                       <v-row>
-                        <v-col md="3" sm="3" cols="12" :align = "windowWidth <=599 ? 'center':'left'">
-                          <v-card-title class="about-me-title-mobile">About Me</v-card-title>
+                        <v-col md="3" sm="3" cols="12" :align="windowWidth <=599 ? 'center':'left'">
+                          <v-card-title class="about-me-title-mobile hidden-sm-and-up">About Me</v-card-title>
                           <v-avatar size="250" class="about-me-photo" tile>
                             <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
                           </v-avatar>
@@ -747,7 +747,7 @@
         <v-col cols="12" align="center" class="mb-md-0 mb-sm-0 mb-n6">
           <!-- Audio Controlls -->
           <!-- Tablet mobile repeat button -->
-          <v-btn icon color="transparent" class="shuffle mx-5" depressed>
+          <v-btn icon color="transparent" class="shuffle mx-sm-5 mx-auto" depressed>
             <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
           </v-btn>
           <!-- tablet mobile repeat button -->
@@ -765,7 +765,7 @@
           </v-btn>
           <!-- play controlls for tablet and mobile -->
           <!-- Shuffle button -->
-          <v-btn icon depressed color="transparent" class="shuffle mx-5">
+          <v-btn icon depressed color="transparent" class="shuffle mx-sm-5 mx-auto">
             <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
           </v-btn>
           <!-- Shuffle button -->
@@ -955,7 +955,7 @@ export default {
 
 .card-profile {
   @media screen and (max-width: 599px) {
-    margin-left: 20px;
+    margin-left: 26px;
     margin-top: -30px;
   }
 }
@@ -1163,14 +1163,29 @@ export default {
 .card-portfolio {
   border-radius: 10px !important;
 }
+.card-small-img{
+  @media screen and (max-width: 599px){
+    margin-bottom: -10px;
+  }
+}
+
 img.pofolio-lg-img {
   @media screen and (max-width: 959px) {
     height: 394px;
   }
   @media screen and (max-width: 599px) {
+    height: 238px;
+    width: 100%;
   }
 }
 .portofolio-sm-img {
+  @media screen and (max-width: 959px){
+    height: 185px;
+  }
+  @media screen and (max-width: 599px){
+    height: 112px;
+    min-width: 113%;
+  }
 }
 //Portfolio
 
@@ -1255,7 +1270,7 @@ img.pofolio-lg-img {
   @media screen and (max-width: 599px) {
     font-size: 9px !important;
     color: rgba(255, 255, 255, 0.5) !important;
-    margin-top: -30px !important;
+    margin-top: -40px !important;
   }
 }
 //education
@@ -1387,6 +1402,9 @@ img.pofolio-lg-img {
       height: 14px;
     }
   }
+  @media screen and (max-width: 599px) {
+    margin-left: 1vw;
+  }
 }
 
 //media footer
@@ -1396,8 +1414,11 @@ img.pofolio-lg-img {
     font-size: 0.75rem;
     color: #ffffff;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 8px;
+    @media screen and (max-width: 414px) {
+      font-size: 6px;
+    }
   }
 }
 
@@ -1407,8 +1428,11 @@ img.pofolio-lg-img {
     font-size: 0.75rem !important;
     color: #febc2c !important;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 8px !important;
+  }
+  @media screen and (max-width: 414px) {
+    font-size: 6px;
   }
 }
 // media footer
@@ -1479,7 +1503,7 @@ img.pofolio-lg-img {
   font-family: "Poppins", sans-serif !important;
   color: #ffffff !important;
   font-size: 1.125rem !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 12px !important;
     line-height: 18px;
   }
