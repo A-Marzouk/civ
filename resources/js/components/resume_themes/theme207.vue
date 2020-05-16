@@ -2,21 +2,32 @@
   <v-app style="width:100%; background:#212529;">
     <v-container fluid ma-0 pa-0 style="width:100%; ">
       <!-- For Desktop and Tablet -->
-      <v-app-bar color="#272B2F" height="260" dark>
-        <v-avatar class="custom-avatar" left tile>
+      <v-app-bar color="#272B2F" :height="windowWidth > 599 ? 260 : '170' " dark>
+        <v-avatar class="custom-avatar hidden-xs-only" left tile>
           <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
         </v-avatar>
-        <div class="half-circle"></div>
+
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
-            <v-col md="4" sm="7">
-              <v-card class="pa-0" align="center" color="transparent" tile flat>
+            <v-col cols="2" class="hidden-sm-and-up">
+              <v-avatar class="custom-avatar-mobile hidden-sm-and-up mr-5" left size="80">
+                <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
+              </v-avatar>
+            </v-col>
+            <v-col md="4" sm="7" cols="6">
+              <v-card
+                class="pa-0 card-profile"
+                :align="windowWidth > 599 ?'center': 'left'"
+                color="transparent"
+                tile
+                flat
+              >
                 <div class="custom-profile-title">{{ personalData.name }}</div>
                 <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
-                <div class="hr-line"></div>
+                <div class="hr-line hidden-xs-only"></div>
               </v-card>
 
-              <v-card class="pa-0 mt-3" align="center" color="transparent" tile flat>
+              <v-card class="pa-0 mt-3 hidden-xs-only" align="center" color="transparent" tile flat>
                 <v-row justify="center" align="center">
                   <v-col cols="6" sm="5">
                     <div class="hour-rate">
@@ -39,7 +50,11 @@
                 </v-row>
               </v-card>
             </v-col>
-
+            <v-col cols="4" class="hidden-sm-and-up">
+              <v-card color="transparent" flat tile>
+                <v-btn color="#272B2F" class="btn-hire-me" x-large>Hire Me</v-btn>
+              </v-card>
+            </v-col>
             <!-- Social Buttons for tablet only -->
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
@@ -89,6 +104,20 @@
             </v-col>
             <!-- 3rd column -->
           </v-row>
+          <v-row> 
+            <v-col cols="12" class="hidden-sm-and-up">
+              <v-card color="transparent" flat tile class="card-hire-me-mobile">
+                <v-card-subtitle>
+                  <div class="d-flex flex-row justify-content-center align-items-center">
+                    <div class="hour-rate-mobile-text">Hour rate</div>
+                    <div class="hour-rate">$5</div>
+                    <div class="hour-rate-mobile-text">Weekly availibilty</div>
+                    <div class="hour-rate">300</div>
+                  </div>
+                </v-card-subtitle>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-container>
       </v-app-bar>
       <!-- For Desktop and Tablet Version -->
@@ -127,7 +156,7 @@
                     class="mr-md-4"
                   />
                 </v-avatar>
-                <span>{{ tab.title }}</span>
+                <span v-show="windowWidth>599">{{ tab.title }}</span>
               </v-tab>
             </v-tabs>
             <!-- Tab for desktop and tablet -->
@@ -284,7 +313,11 @@
                                       </v-btn>
                                     </template>
                                   </v-speed-dial>
-                                  <v-img :src="getPortfolio(n+1)" alt="Portfolio Image"></v-img>
+                                  <v-img
+                                    class="portofolio-sm-img"
+                                    :src="getPortfolio(n+1)"
+                                    alt="Portfolio Image"
+                                  ></v-img>
                                 </v-card>
                               </v-col>
                             </v-row>
@@ -762,7 +795,14 @@
             <!-- 2nd inner footer column -->
             <v-col cols="6">
               <v-card color="transparent" flat tile>
-                <v-progress-linear color="#FEBC2C" background-color="" rounded  height="10" value="70"></v-progress-linear>
+                <v-progress-linear
+                  class="media-progressbar"
+                  color="#FEBC2C"
+                  background-color="#272B2F"
+                  rounded
+                  height="10"
+                  value="70"
+                ></v-progress-linear>
               </v-card>
             </v-col>
             <v-col cols="2">
@@ -791,8 +831,8 @@ export default {
       currentTab: 1,
       currentSkillTab: 1,
       personalData: {
-        name: "Hean Prinsloo",
-        designation: "FrontEnd Developer",
+        name: "Liam McDevitt",
+        designation: "Graphic Designer",
         detail:
           "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices..."
       },
@@ -886,6 +926,38 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.media-progressbar {
+  border-radius: 15px !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  border: 1px solid #272b2f !important;
+}
+.card-hire-me-mobile {
+  margin-top: -16px;
+  .hour-rate-mobile-text {
+    font-family: "Open Sans" !important;
+    font-weight: 600 !important;
+    font-size: 12px !important;
+    line-height: 16px;
+    color: #ffffff;
+    opacity: 0.5;
+  }
+
+  .hour-rate {
+    font-size: 18px !important;
+    color: #febc2c !important;
+    opacity: 1;
+    margin-left: 10px;
+    margin-right: 20px;
+    margin-top: -4px;
+  }
+}
+
+.card-profile {
+  @media screen and (max-width: 599px) {
+    margin-left: 20px;
+    margin-top: -30px;
+  }
+}
 
 .hr-line {
   margin-top: 20px;
@@ -913,6 +985,15 @@ export default {
   }
 }
 
+.custom-avatar-mobile {
+  float: left;
+  position: relative;
+  background: #272b2f;
+  border: 10px solid #272b2f;
+  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2) !important;
+  margin-top: 24px;
+}
+
 .custom-profile-title {
   font-family: "Open Sans" !important;
   font-weight: bold;
@@ -925,16 +1006,25 @@ export default {
   @media screen and(max-width:959px) {
     font-size: 1.8rem;
   }
+  @media screen and (max-width: 599px) {
+    font-size: 20px;
+    line-height: 27px;
+    margin-top: 44px;
+  }
 }
 
 .custom-profile-subtitle {
-  font-family: "Poppins", sans-serif !important;
+  font-family: "Open Sans" !important;
   color: #fc413c !important;
   font-size: 1.25rem !important;
   font-weight: bold;
   line-height: 1.875rem;
   @media screen and(max-width:959px) {
     font-size: 1rem !important;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 12px !important;
+    line-height: 16px;
   }
 }
 
@@ -996,7 +1086,7 @@ export default {
   text-transform: capitalize !important;
   border-radius: 5px !important;
   width: 200px;
-  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1) !important;
   @media screen and (max-width: 1024px) {
     width: 120px;
   }
@@ -1004,14 +1094,21 @@ export default {
     width: 225px;
   }
   @media screen and (max-width: 599px) {
-    color: #5843be !important;
+    font-family: "Poppins" !important;
+    font-size: 12px !important;
+    font-weight: 600;
+    width: 105px !important;
+    height: 30px !important;
+    color: #fc413c !important ;
+    text-transform: capitalize !important;
+    margin-top: 15px;
   }
 }
 .custom-social-btn {
   max-width: 36px !important;
   height: 51px !important;
   border-radius: 5px !important;
-  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     min-width: 45px !important;
@@ -1053,6 +1150,12 @@ export default {
       height: 16px;
     }
   }
+  @media screen and (max-width: 599px) {
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 // Tabs
 // Portfolio
@@ -1063,6 +1166,10 @@ img.pofolio-lg-img {
   @media screen and (max-width: 959px) {
     height: 394px;
   }
+  @media screen and (max-width: 599px) {
+  }
+}
+.portofolio-sm-img {
 }
 //Portfolio
 
@@ -1199,7 +1306,7 @@ img.pofolio-lg-img {
   width: 80px !important;
   height: 60px !important;
   border-radius: 5px !important;
-  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
   img {
     width: 40px;
     height: auto;
@@ -1216,7 +1323,7 @@ img.pofolio-lg-img {
   width: 70px !important;
   height: 70px !important;
   border-radius: 5px !important;
-  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
   z-index: 2;
   img {
     width: 20px;
@@ -1244,7 +1351,7 @@ img.pofolio-lg-img {
     margin-top: 58px;
     img {
       width: 14px;
-      height:14px;
+      height: 14px;
     }
   }
 }
@@ -1431,5 +1538,9 @@ img.pofolio-lg-img {
 #resumetheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
-
+@media screen and (max-width: 599px) {
+  #resumeTheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
+    display: none !important;
+  }
+}
 </style>
