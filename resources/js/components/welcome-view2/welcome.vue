@@ -1682,11 +1682,11 @@ export default {
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
-    top: 76.8%;
+    top: 75.8%;
     left: -2px;
   }
   @media screen and (max-width: 1280px) {
-    top: 76.9%;
+    top: 75.9%;
     width: 1280px;
     left: -0.8125rem;
   }
