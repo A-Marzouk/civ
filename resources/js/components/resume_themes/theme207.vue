@@ -704,9 +704,9 @@
               <v-img class="img-spectrum" src="/images/resume_themes/theme207/spectrum.png"></v-img>
             </v-card>
             <div class="d-flex justify-content-between">
-              <div class="media-duration-footer">0:00</div>
+              <div class="media-duration-footer white--text">0:00</div>
               <v-spacer></v-spacer>
-              <div class="media-duration-footer">5:38</div>
+              <div class="media-duration-footer white--text">5:38</div>
             </div>
           </div>
           <!-- spectrum -->
@@ -789,8 +789,13 @@
         <v-col cols="12">
           <v-row dense align="center" justify="center">
             <!-- 1st inner footer column -->
-            <v-col cols="4">
-              <v-avatar tile size="30" class="mx-sm-4 mx-auto" color="rgba(252, 65, 60, 0.25)">
+            <v-col sm="4" cols="3">
+              <v-avatar
+                tile
+                size="30"
+                class="mx-sm-4 mx-auto hidden-xs-only"
+                color="rgba(252, 65, 60, 0.25)"
+              >
                 <v-btn icon depressed color="transparent">
                   <v-img
                     max-width="15"
@@ -803,7 +808,7 @@
             </v-col>
             <!-- 1st inner footer column -->
             <!-- 2nd inner footer column -->
-            <v-col cols="6">
+            <v-col sm="6" cols="6">
               <v-card color="transparent" flat tile>
                 <v-progress-linear
                   class="media-progressbar"
@@ -815,7 +820,7 @@
                 ></v-progress-linear>
               </v-card>
             </v-col>
-            <v-col cols="2">
+            <v-col sm="2" cols="3">
               <v-card class="transparent" flat tile>
                 <v-card-title class="media-duration-footer">1:05:00</v-card-title>
               </v-card>
@@ -981,7 +986,7 @@ export default {
 .custom-avatar {
   background: #272b2f;
   border: 10px solid #272b2f;
-  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   border-radius: 9px;
   width: 200px !important;
   height: 200px !important;
@@ -1000,7 +1005,7 @@ export default {
   position: relative;
   background: #272b2f;
   border: 10px solid #272b2f;
-  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   margin-top: 24px;
 }
 
@@ -1021,7 +1026,7 @@ export default {
     line-height: 27px;
     margin-top: 44px;
   }
-  @media screen and (max-width: 375px){
+  @media screen and (max-width: 375px) {
     font-size: 16px;
     line-height: 20px;
   }
@@ -1040,7 +1045,7 @@ export default {
     font-size: 12px !important;
     line-height: 16px;
   }
-  @media screen and (max-width: 375px){
+  @media screen and (max-width: 375px) {
     font-size: 11px;
   }
 }
@@ -1103,7 +1108,7 @@ export default {
   text-transform: capitalize !important;
   border-radius: 5px !important;
   width: 200px;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1) !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   @media screen and (max-width: 1024px) {
     width: 120px;
   }
@@ -1125,7 +1130,7 @@ export default {
   max-width: 36px !important;
   height: 51px !important;
   border-radius: 5px !important;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
 
   @media screen and (min-width: 960px) and (max-width: 1024px) {
     min-width: 45px !important;
@@ -1370,7 +1375,7 @@ img.pofolio-lg-img {
   width: 80px !important;
   height: 60px !important;
   border-radius: 5px !important;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   img {
     width: 40px;
     height: auto;
@@ -1387,7 +1392,7 @@ img.pofolio-lg-img {
   width: 70px !important;
   height: 70px !important;
   border-radius: 5px !important;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   z-index: 2;
   img {
     width: 20px;
@@ -1420,6 +1425,7 @@ img.pofolio-lg-img {
   }
   @media screen and (max-width: 599px) {
     margin-left: 1vw;
+    margin-top: 12px;
   }
 }
 
@@ -1431,9 +1437,9 @@ img.pofolio-lg-img {
     color: #ffffff;
   }
   @media screen and (max-width: 599px) {
-    font-size: 8px;
+    font-size: 10px;
     @media screen and (max-width: 414px) {
-      font-size: 6px;
+      font-size: 8px;
     }
   }
 }
@@ -1445,10 +1451,10 @@ img.pofolio-lg-img {
     color: #febc2c !important;
   }
   @media screen and (max-width: 599px) {
-    font-size: 8px !important;
+    font-size: 10px !important;
   }
   @media screen and (max-width: 414px) {
-    font-size: 6px;
+    font-size: 8px;
   }
 }
 // media footer
@@ -1563,7 +1569,7 @@ img.pofolio-lg-img {
 .about-me-photo {
   background: #272b2f;
   border: 15px solid #272b2f;
-  box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.2);
+  box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   border-radius: 9px;
   @media screen and (max-width: 959px) {
     height: 175px !important;
