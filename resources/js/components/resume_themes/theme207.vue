@@ -738,7 +738,7 @@
                 </v-btn>
               </div>
 
-              <div class="btn-fullscreen">
+              <div class="btn-fullscreen" align="right">
                 <v-btn icon depressed color="transparent">
                   <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
                 </v-btn>
@@ -752,84 +752,86 @@
     </v-footer>
     <!-- Only For tablet and mobile -->
     <v-footer class="hidden-md-and-up" color="#272B2F" v-show="currentTab==5">
-      <v-row align="center" justify="center" class="hidden-md-and-up">
-        <v-col cols="12" align="center" class="mb-md-0 mb-sm-0 mb-n6">
-          <!-- Audio Controlls -->
-          <!-- Tablet mobile repeat button -->
-          <v-btn icon color="transparent" class="shuffle mx-sm-5 mx-auto" depressed>
-            <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
-          </v-btn>
-          <!-- tablet mobile repeat button -->
+      <v-container style="width:100%" fluid>
+        <v-row align="center" justify="center" class="hidden-md-and-up">
+          <v-col cols="12" align="center" class="mb-md-0 mb-sm-0 mb-n6">
+            <!-- Audio Controlls -->
+            <!-- Tablet mobile repeat button -->
+            <v-btn icon color="transparent" class="shuffle mx-sm-5 mx-auto" depressed>
+              <img src="/images/resume_themes/theme207/audio/shuffle.png" alt />
+            </v-btn>
+            <!-- tablet mobile repeat button -->
 
-          <!-- Play controlls for tablet and mobile -->
+            <!-- Play controlls for tablet and mobile -->
 
-          <v-btn color="#272B2F" class="prev-btn">
-            <img src="/images/resume_themes/theme207/audio/prev.png" />
-          </v-btn>
-          <v-btn color="#272B2F" class="pause-btn mx-n2" elevation="12">
-            <img src="/images/resume_themes/theme207/audio/pause.png" />
-          </v-btn>
-          <v-btn color="#272B2F" class="prev-btn">
-            <img src="/images/resume_themes/theme207/audio/next.png" />
-          </v-btn>
-          <!-- play controlls for tablet and mobile -->
-          <!-- Shuffle button -->
-          <v-btn icon depressed color="transparent" class="shuffle mx-sm-5 mx-auto">
-            <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
-          </v-btn>
-          <!-- Shuffle button -->
-          <!-- full screen button -->
-          <v-btn class="btn-fullscreen" icon depressed color="transparent">
-            <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
-          </v-btn>
-          <!-- full screen button -->
-          <!-- Audio Controls -->
-        </v-col>
-        <!-- 2nd column -->
-        <v-col cols="12">
-          <v-row dense align="center" justify="center">
-            <!-- 1st inner footer column -->
-            <v-col sm="4" cols="3">
-              <v-avatar
-                tile
-                size="30"
-                class="mx-sm-4 mx-auto hidden-xs-only"
-                color="rgba(252, 65, 60, 0.25)"
-              >
-                <v-btn icon depressed color="transparent">
-                  <v-img
-                    max-width="15"
-                    max-height="15"
-                    src="/images/resume_themes/theme207/icons/play.png"
-                  ></v-img>
-                </v-btn>
-              </v-avatar>
-              <span class="media-title-tablet mx-sm-2 mx-auto">AUDIO_04/09/2020</span>
-            </v-col>
-            <!-- 1st inner footer column -->
-            <!-- 2nd inner footer column -->
-            <v-col sm="6" cols="6">
-              <v-card color="transparent" flat tile>
-                <v-progress-linear
-                  class="media-progressbar"
-                  color="#FEBC2C"
-                  background-color="#272B2F"
-                  rounded
-                  height="10"
-                  value="70"
-                ></v-progress-linear>
-              </v-card>
-            </v-col>
-            <v-col sm="2" cols="3">
-              <v-card class="transparent" flat tile>
-                <v-card-title class="media-duration-footer">1:05:00</v-card-title>
-              </v-card>
-            </v-col>
-            <!-- 2nd inner footer column -->
-          </v-row>
-        </v-col>
-        <!-- 2nd column -->
-      </v-row>
+            <v-btn color="#272B2F" class="prev-btn">
+              <img src="/images/resume_themes/theme207/audio/prev.png" />
+            </v-btn>
+            <v-btn color="#272B2F" class="pause-btn mx-n2" elevation="12">
+              <img src="/images/resume_themes/theme207/audio/pause.png" />
+            </v-btn>
+            <v-btn color="#272B2F" class="prev-btn">
+              <img src="/images/resume_themes/theme207/audio/next.png" />
+            </v-btn>
+            <!-- play controlls for tablet and mobile -->
+            <!-- Shuffle button -->
+            <v-btn icon depressed color="transparent" class="shuffle mx-sm-5 mx-auto">
+              <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
+            </v-btn>
+            <!-- Shuffle button -->
+            <!-- full screen button -->
+            <v-btn class="btn-fullscreen" icon depressed color="transparent">
+              <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
+            </v-btn>
+            <!-- full screen button -->
+            <!-- Audio Controls -->
+          </v-col>
+          <!-- 2nd column -->
+          <v-col sm="12" cols="12">
+            <v-row align="center" justify="center">
+              <!-- 1st inner footer column -->
+              <v-col sm="4" cols="3">
+                <v-avatar
+                  tile
+                  size="30"
+                  class="mx-sm-4 mx-auto hidden-xs-only"
+                  color="rgba(252, 65, 60, 0.25)"
+                >
+                  <v-btn icon depressed color="transparent">
+                    <v-img
+                      max-width="15"
+                      max-height="15"
+                      src="/images/resume_themes/theme207/icons/play.png"
+                    ></v-img>
+                  </v-btn>
+                </v-avatar>
+                <span class="media-title-tablet mx-sm-2 mx-auto">AUDIO_04/09/2020</span>
+              </v-col>
+              <!-- 1st inner footer column -->
+              <!-- 2nd inner footer column -->
+              <v-col sm="6" cols="6">
+                <v-card color="transparent" flat tile>
+                  <v-progress-linear
+                    class="media-progressbar"
+                    color="#FEBC2C"
+                    background-color="#272B2F"
+                    rounded
+                    height="10"
+                    value="70"
+                  ></v-progress-linear>
+                </v-card>
+              </v-col>
+              <v-col sm="2" cols="3">
+                <v-card class="transparent" flat tile alig="right">
+                  <v-card-title class="media-duration-footer">1:05:00</v-card-title>
+                </v-card>
+              </v-col>
+              <!-- 2nd inner footer column -->
+            </v-row>
+          </v-col>
+          <!-- 2nd column -->
+        </v-row>
+      </v-container>
     </v-footer>
     <!-- Only For tablet and mobile -->
   </v-app>
@@ -945,6 +947,12 @@ export default {
   border-radius: 15px !important;
   box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
   border: 1px solid #272b2f !important;
+  @media screen and (min-width: 600px) and (max-width: 800px) {
+    margin-left: -20px;
+  }
+  @media screen and (max-width: 599px){
+    width: 45vw;
+  }
 }
 .card-hire-me-mobile {
   margin-top: -16px;
@@ -1409,7 +1417,6 @@ img.pofolio-lg-img {
 }
 
 .btn-fullscreen {
-  margin-left: 200px;
   img {
     width: 18px;
     height: auto;
