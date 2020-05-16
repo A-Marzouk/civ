@@ -104,7 +104,7 @@
             </v-col>
             <!-- 3rd column -->
           </v-row>
-          <v-row> 
+          <v-row>
             <v-col cols="12" class="hidden-sm-and-up">
               <v-card color="transparent" flat tile class="card-hire-me-mobile">
                 <v-card-subtitle>
@@ -332,7 +332,7 @@
                 <!-- Portfolio -->
                 <!-- Education -->
                 <v-tab-item>
-                  <v-container style="width:100%" fluid class="md-pa-0 pa-5">
+                  <v-container style="width:100%" fluid class="pa-md-0 pa-sm-5 pa-0">
                     <v-row>
                       <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
                         <v-card class="pa-5 card-education" hover color="#272B2F">
@@ -439,7 +439,7 @@
                                   :key="item.id"
                                 >
                                   <v-card class="pa-5 card-education" hover color="#272B2F">
-                                    <div class="d-flex flex-no-wrap mt-0 mt-md-0 mt-sm-1">
+                                    <div class="d-flex flex-no-wrap mt-n3 mt-md-0 mt-sm-1">
                                       <v-avatar
                                         class="education-avatar"
                                         tile
@@ -643,7 +643,8 @@
                   <v-card flat color="transparent" tile class="mt-5">
                     <v-container style="width:100%">
                       <v-row>
-                        <v-col md="3" sm="3" cols="12">
+                        <v-col md="3" sm="3" cols="12" :align = "windowWidth <=599 ? 'center':'left'">
+                          <v-card-title class="about-me-title-mobile">About Me</v-card-title>
                           <v-avatar size="250" class="about-me-photo" tile>
                             <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
                           </v-avatar>
@@ -743,7 +744,7 @@
     <!-- Only For tablet and mobile -->
     <v-footer class="hidden-md-and-up" color="#272B2F" v-show="currentTab==5">
       <v-row align="center" justify="center" class="hidden-md-and-up">
-        <v-col cols="12" align="center">
+        <v-col cols="12" align="center" class="mb-md-0 mb-sm-0 mb-n6">
           <!-- Audio Controlls -->
           <!-- Tablet mobile repeat button -->
           <v-btn icon color="transparent" class="shuffle mx-5" depressed>
@@ -780,7 +781,7 @@
           <v-row dense align="center" justify="center">
             <!-- 1st inner footer column -->
             <v-col cols="4">
-              <v-avatar tile size="30" class="mx-sm-4 mx-2" color="rgba(252, 65, 60, 0.25)">
+              <v-avatar tile size="30" class="mx-sm-4 mx-auto" color="rgba(252, 65, 60, 0.25)">
                 <v-btn icon depressed color="transparent">
                   <v-img
                     max-width="15"
@@ -789,7 +790,7 @@
                   ></v-img>
                 </v-btn>
               </v-avatar>
-              <span class="media-title-tablet mx-2">AUDIO_04/09/2020</span>
+              <span class="media-title-tablet mx-sm-2 mx-auto">AUDIO_04/09/2020</span>
             </v-col>
             <!-- 1st inner footer column -->
             <!-- 2nd inner footer column -->
@@ -1184,6 +1185,10 @@ img.pofolio-lg-img {
       margin-top: -12px !important;
     }
   }
+
+  @media screen and (max-width: 599px) {
+    height: 95px;
+  }
 }
 
 .education-avatar {
@@ -1194,6 +1199,16 @@ img.pofolio-lg-img {
     width: 50px;
     height: 50px;
   }
+  @media screen and (max-width: 599px) {
+    min-width: 67px !important;
+    width: 67px !important;
+    height: 67px !important;
+    margin-top: 6px;
+    img {
+      width: 22px;
+      height: 18px;
+    }
+  }
 }
 
 .education-title {
@@ -1201,8 +1216,13 @@ img.pofolio-lg-img {
   color: #ffffff !important;
   font-weight: bold !important;
   line-height: 30px !important;
+  margin-bottom: 2px !important;
+  margin-top: -15px;
   img {
     width: 40px;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 14px !important;
   }
 }
 .experience-title {
@@ -1222,11 +1242,21 @@ img.pofolio-lg-img {
   @media screen and (max-width: 959px) {
     width: 60% !important;
   }
+  @media screen and (max-width: 599px) {
+    width: 100% !important;
+    font-size: 10px !important;
+    line-height: 12px;
+  }
 }
 .education-session {
   font-family: "Roboto", sans-serif !important;
   color: #ffffff !important;
   font-size: 0.75rem !important;
+  @media screen and (max-width: 599px) {
+    font-size: 9px !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    margin-top: -30px !important;
+  }
 }
 //education
 // Skill tab
@@ -1277,12 +1307,15 @@ img.pofolio-lg-img {
   color: #febc2c !important;
   line-height: 18px;
 }
-.media-duration-footer {
-  font-family: "Poppins", sans-serif !important;
-  font-size: 0.75rem !important;
-  color: #ffffff !important;
-  line-height: 18px;
-}
+// .media-duration-footer {
+//   font-family: "Poppins", sans-serif !important;
+//   font-size: 0.75rem !important;
+//   color: #ffffff !important;
+//   line-height: 18px;
+//   @media screen and (max-width: 599px){
+//     font-size: 8px !important;
+//   }
+// }
 .img-spectrum {
   width: 280px;
   height: auto;
@@ -1363,6 +1396,9 @@ img.pofolio-lg-img {
     font-size: 0.75rem;
     color: #ffffff;
   }
+  @media screen and (max-width: 599px){
+    font-size: 8px;
+  }
 }
 
 .media-duration-footer {
@@ -1370,6 +1406,9 @@ img.pofolio-lg-img {
     font-family: "Poppins", sans-serif !important;
     font-size: 0.75rem !important;
     color: #febc2c !important;
+  }
+  @media screen and (max-width: 599px){
+    font-size: 8px !important;
   }
 }
 // media footer
@@ -1440,6 +1479,10 @@ img.pofolio-lg-img {
   font-family: "Poppins", sans-serif !important;
   color: #ffffff !important;
   font-size: 1.125rem !important;
+  @media screen and (max-width: 599px){
+    font-size: 12px !important;
+    line-height: 18px;
+  }
 }
 // about me
 
@@ -1487,14 +1530,20 @@ img.pofolio-lg-img {
     width: 175px !important;
     min-width: 175px !important;
   }
+  @media screen and (max-width: 599px) {
+    height: 120px !important;
+    width: 120px !important;
+    min-width: 120px !important;
+    border: 10px solid #272b2f;
+  }
 }
 .about-me-title-mobile {
   font-family: "Poppins" sans-serif !important;
   font-style: normal;
   font-weight: bold;
-  font-size: 12px;
-  line-height: 18px;
-  color: #5843be;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
 }
 .about-me-text-mobile {
   font-family: "Poppins" sans-serif !important;
@@ -1502,7 +1551,7 @@ img.pofolio-lg-img {
   font-weight: normal;
   font-size: 12px;
   line-height: 18px;
-  color: #5843be !important;
+  color: #ffffff !important;
 }
 .active-mobile-tab {
   background: #eeeeee;
