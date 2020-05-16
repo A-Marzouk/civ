@@ -486,7 +486,7 @@
     <!-- main container -->
     <!-- Footer -->
     <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':'auto'">
-      <v-container>
+      <v-container class="footer-container">
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
             <v-card flat color="transparent" tile>
@@ -541,7 +541,7 @@
           </v-col>
 
           <v-col sm="4" cols="4" class="hidden-md-and-up mt-n12">
-            <v-card flat tile color="transparent" align="center">
+            <v-card flat tile color="transparent" align="center" class="">
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
@@ -739,9 +739,11 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-.gallery-slides {
+.footer-container{
   @media screen and (max-width: 599px){
-
+    width: 100%;
+    padding: 0px !important;
+    margin: 0px !important;
   }
 }
 .main-container {
@@ -1651,7 +1653,7 @@ export default {
   z-index: 0;
   @media screen and (max-width: 1440px) {
     width: 1440px;
-    top: 76.6%;
+    top: 75.2%;
     left: 3px;
   }
   @media screen and (max-width: 1366px) {
