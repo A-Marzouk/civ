@@ -5,7 +5,7 @@
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
-        <a  class="btn-appbar-login">
+        <a class="btn-appbar-login">
           Log
           <span>&nbsp;in</span>
         </a>
@@ -16,6 +16,7 @@
           <v-col xl="5" md="6" sm="12" cols="12">
             <div class="tablet-layer1 hidden-md-and-up">
               <img
+                :width="windowWidth"
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
                 alt
@@ -41,6 +42,7 @@
             </v-card>
             <div class="tablet-layer2 hidden-md-and-up">
               <img
+                :width="windowWidth"
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
               />
@@ -232,6 +234,7 @@
             </v-card>
             <div class="tablet-layer3 hidden-md-and-up">
               <img
+                :width="windowWidth"
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
               />
@@ -271,27 +274,27 @@
                   </v-col>
                 </v-row>
               </v-card-subtitle>
-              <v-row class="hidden-sm-and-up mt-5" >
-                  <v-col sm="6" cols="6">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/app-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
+              <v-row class="hidden-sm-and-up mt-5">
+                <v-col sm="6" cols="6">
+                  <a href="#">
+                    <img
+                      class="app-store-logo"
+                      src="/images/welcome_landing_page/icons/app-store.png"
+                      alt
+                    />
+                  </a>
+                </v-col>
 
-                  <v-col sm="6" cols="6">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/play-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-                </v-row>
+                <v-col sm="6" cols="6">
+                  <a href="#">
+                    <img
+                      class="app-store-logo"
+                      src="/images/welcome_landing_page/icons/play-store.png"
+                      alt
+                    />
+                  </a>
+                </v-col>
+              </v-row>
             </v-card>
           </v-col>
           <!-- for tab and mobile -->
@@ -306,6 +309,7 @@
             <!-- 1st card -->
             <div class="tablet-layer4 hidden-md-and-up">
               <img
+                :width="windowWidth"
                 class="hidden-xs-only"
                 src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
               />
@@ -356,6 +360,13 @@
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
               </v-img>
+              <div class="tablet-layer5 hidden-md-and-up">
+                <img
+                  :width="windowWidth"
+                  class="hidden-xs-only"
+                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
+                />
+              </div>
             </v-card>
 
             <!-- 2nd card -->
@@ -368,27 +379,7 @@
       <v-container style="width:100%" class="gallery-container">
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12">
-            <div class="tablet-layer5 hidden-md-and-up">
-              <img
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
-              />
-            </div>
-            <div class="tablet-layer6 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
-              />
-            </div>
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
-              <div class="tablet-layer6 hidden-sm-and-up">
-                <img
-                  :width="windowWidth"
-                  class="hidden-sm-and-up"
-                  src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
-                />
-              </div>
               <v-card-title class="build-resume-title margin-n30">
                 40+ Beautiful Themes
                 <br />to choose from
@@ -413,9 +404,23 @@
                       />
                     </div>
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
+                    <div class="tablet-layer6 hidden-sm-and-up">
+                      <img
+                        :width="windowWidth"
+                        class="hidden-sm-and-up"
+                        src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
+                      />
+                    </div>
                   </v-col>
                 </v-row>
               </v-card-subtitle>
+              <div class="tablet-layer6 hidden-md-and-up">
+                <img
+                  :width="windowWidth"
+                  class="hidden-xs-only"
+                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
+                />
+              </div>
             </v-card>
 
             <v-card tile color="transparet" flat class="card-gallery hidden-md-and-up">
@@ -465,6 +470,13 @@
             </div>
 
             <v-card flat tile color="transparent" style="z-index:1;">
+              <div class="tablet-layer7 hidden-md-and-up">
+                <img
+                  class="hidden-xs-only"
+                  :width="windowWidth"
+                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer7.png"
+                />
+              </div>
               <v-card-subtitle class="build-resume-title margin-n50">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n5 mb-sm-0 mb-n11"
@@ -489,13 +501,6 @@
                 </slick>
               </v-card-text>
             </v-card>
-            <div class="tablet-layer7 hidden-md-and-up">
-              <img
-                class="hidden-xs-only"
-                :width="windowWidth"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer7.png"
-              />
-            </div>
           </v-col>
         </v-row>
       </v-container>
@@ -562,7 +567,7 @@
           </v-col>
 
           <v-col sm="4" cols="4" class="hidden-md-and-up mt-n12">
-            <v-card flat tile color="transparent" align="center" class="">
+            <v-card flat tile color="transparent" align="center" class>
               <v-card-subtitle class="follow-us-text">Follow Us</v-card-subtitle>
               <v-card-subtitle>
                 <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-1 mt-n2">
@@ -760,8 +765,8 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-.footer-container{
-  @media screen and (max-width: 599px){
+.footer-container {
+  @media screen and (max-width: 599px) {
     width: 100%;
     padding: 0px !important;
     margin: 0px !important;
@@ -779,7 +784,6 @@ export default {
 }
 .app-container {
   @media screen and (max-width: 599px) {
-
   }
 }
 
@@ -876,11 +880,11 @@ export default {
   font-size: 1rem !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
-  color:#0046FE !important;
+  color: #0046fe !important;
   span {
     text-transform: lowercase !important;
   }
-  
+
   @media screen and (min-width: 1600px) {
     margin-right: 100px;
   }
@@ -1409,8 +1413,8 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
   }
-  @media screen and (min-width: 960px) and (max-width: 1024px){
-    label{
+  @media screen and (min-width: 960px) and (max-width: 1024px) {
+    label {
       display: none;
     }
   }
@@ -1422,7 +1426,6 @@ export default {
   @media screen and (max-width: 380px) {
     font-size: 10px;
   }
-
 }
 .logo-footer {
   width: 201px;
@@ -1777,7 +1780,7 @@ export default {
   margin-right: auto;
   left: 0;
   right: 0;
-  top: 19%;
+  top: 21%;
 }
 
 .tablet-layer3 {
@@ -1861,7 +1864,7 @@ export default {
   margin-right: auto;
   left: 3%;
   right: 0;
-  top: 58.1%;
+  top: 95.1%;
   // @media screen and (max-width: 896px){
   //   top: 59.5%;
   // }
@@ -1890,12 +1893,12 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 12.6%;
+  left: 20px;
   right: 0;
   z-index: 0;
-  top: 63%;
+  top: 11%;
   img {
-    width: 80%;
+    width: 89%;
   }
   // @media screen and (max-width: 896px){
   //   top: 65%;
@@ -1922,11 +1925,11 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  left: 9%;
+  left: 0;
   right: 0;
-  top: 79%;
+  top: -13%;
   img {
-    width: 80%;
+    width: 100%;
   }
 }
 //background tablet and mobile
