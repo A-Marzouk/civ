@@ -31,7 +31,7 @@ export default {
 	height: 28px;
 
 	&:hover {
-		background: #e89f05;
+		box-shadow: 0 3px 7px -4px rgba(0, 0, 0, 0.5);
 		text-decoration: none;
 	}
 }
@@ -54,7 +54,7 @@ export default {
 		font-size: 12px;
 
 		svg {
-			height: 15px;
+			height: 13px;
 		}
 
 		span {
@@ -64,6 +64,35 @@ export default {
 }
 
 @media (min-width: $md) {
+	.hireme-button {
+		border-radius: 9px;
+		width: 129px;
+	}
+
+	.hireme-button svg {
+		height: 13px;
+	}
+
+	.hireme-button span {
+		font-size: 12px;
+		line-height: 18px;
+	}
+}
+
+@media (min-width: 1600px) {
+	.hireme-button {
+		height: 55px;
+		width: 178px;
+	}
+
+	.hireme-button svg {
+		height: 18px;
+	}
+
+	.hireme-button span {
+		font-size: 16px;
+		line-height: 20px;
+	}
 }
 
 @media (min-width: $lg) {

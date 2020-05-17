@@ -101,6 +101,7 @@ export default {
 	position: absolute;
 	top: -100vh;
 	right: 0;
+	z-index: 9999;
 	background: #ffffff;
 	width: 100%;
 	opacity: 0;
@@ -167,6 +168,7 @@ export default {
 		font-family: $muli;
 		display: flex;
 		font-size: 10px;
+		font-weight: 300;
 		color: #ffffff;
 		background: #3d5ed4;
 		justify-content: center;
@@ -193,8 +195,21 @@ export default {
 		}
 
 		&:hover {
-			margin-top: 1px;
+			text-decoration: none;
+			box-shadow: 0 3px 7px -4px rgba(0, 0, 0, 0.5);
 		}
+	}
+}
+
+@media (min-width: 1600px) {
+	.profile-actions__links .action__button {
+		font-size: 14px;
+		width: 178px;
+		height: 55px;
+	}
+
+	.profile-actions__links .action__button svg {
+		height: 22px;
 	}
 }
 

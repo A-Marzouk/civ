@@ -60,6 +60,7 @@ export default {
 @media (min-width: $sm) {
 	#header {
 		padding: 25px;
+		padding-bottom: 30px;
 	}
 }
 
@@ -72,6 +73,33 @@ export default {
 
 	.header-profile {
 		align-items: center;
+	}
+}
+
+@media (min-width: $lg) {
+	#header {
+		padding: 30px 50px;
+	}
+
+	.header-profile {
+		max-width: $lg;
+		margin: 0 auto;
+	}
+}
+
+@media (min-width: 1600px) {
+	#header {
+		padding: 50px 100px;
+	}
+
+	.header-profile {
+		max-width: 1600px;
+	}
+}
+
+@media (min-width: $xl) {
+	.header-profile {
+		max-width: $xl;
 	}
 }
 </style>

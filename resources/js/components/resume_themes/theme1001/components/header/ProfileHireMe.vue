@@ -62,6 +62,7 @@ export default {
 .hireme-rate span {
 	font-family: inherit;
 	font-size: 8px;
+	font-weight: 300;
 	line-height: 10px;
 	white-space: nowrap;
 	color: #d3d6e4;
@@ -76,7 +77,6 @@ export default {
 
 @media (min-width: $sm) {
 	.profile__hireme {
-		padding-top: 25px;
 	}
 
 	.hireme-rate {
@@ -84,8 +84,8 @@ export default {
 	}
 
 	.hireme-rate strong {
-		font-size: 20px;
-		line-height: 25px;
+		font-size: 18px;
+		line-height: 21px;
 	}
 
 	.hireme-rate span {
@@ -95,8 +95,43 @@ export default {
 }
 
 @media (min-width: $md) {
-	.hireme {
-		margin-right: 25px;
+	.hireme-rate {
+		padding-right: 30px;
+	}
+
+	.hireme-rate span {
+	}
+}
+
+@media (min-width: $lg) {
+	.profile__hireme {
+		padding-top: 25px;
+	}
+
+	.hireme-rate strong {
+		font-size: 20px;
+		line-height: 26px;
+	}
+
+	.hireme-rate span {
+		font-size: 12px;
+		line-height: 14px;
+	}
+}
+
+@media (min-width: 1600px) {
+	.profile__hireme {
+		padding-top: 30px;
+	}
+
+	.hireme-rate strong {
+		font-size: 26px;
+		line-height: 36px;
+	}
+
+	.hireme-rate span {
+		font-size: 14px;
+		line-height: 18px;
 	}
 }
 </style>

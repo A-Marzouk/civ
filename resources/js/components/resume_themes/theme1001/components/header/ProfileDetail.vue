@@ -45,7 +45,6 @@ export default {
 	font-size: 10px;
 	line-height: 17px;
 	color: #ffffff;
-	margin-top: 7px;
 }
 
 @media (min-width: $sm) {
@@ -67,16 +66,26 @@ export default {
 
 	.title {
 		font-size: 20px;
+		line-height: 34px;
 	}
 
 	.sub-title {
+		color: #d3d6e4;
 		font-size: 16px;
+		line-height: 21px;
 	}
 }
 
-@media (min-width: $lg) {
+@media (min-width: 1600px) {
 	.title {
-		color: #d3d6e4;
+		font-size: 26px;
+		line-height: 42px;
+	}
+
+	.sub-title {
+		padding-top: 5px;
+		font-size: 20px;
+		line-height: 36px;
 	}
 }
 </style>

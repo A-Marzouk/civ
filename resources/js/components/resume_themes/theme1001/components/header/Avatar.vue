@@ -36,11 +36,23 @@ export default {
 	}
 }
 
+@media (min-width: $md) {
+	.avatar a {
+		width: 140px;
+		height: 140px;
+		border: 4px solid #ffffff;
+	}
+}
+
 @media (min-width: $lg) {
 	.avatar a {
-		width: 124px;
-		height: 124px;
-		border: 4px solid #ffffff;
+	}
+}
+
+@media (min-width: 1600px) {
+	.avatar a {
+		width: 198px;
+		height: 198px;
 	}
 }
 
