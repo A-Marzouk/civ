@@ -950,7 +950,8 @@ export default {
   @media screen and (min-width: 600px) and (max-width: 800px) {
     margin-left: -20px;
   }
-  @media screen and (max-width: 599px){
+
+  @media screen and (max-width: 599px) {
     width: 45vw;
   }
 }
@@ -1261,12 +1262,12 @@ img.pofolio-lg-img {
   font-weight: bold !important;
   line-height: 30px !important;
   margin-bottom: 2px !important;
-  margin-top: -15px;
   img {
     width: 40px;
   }
   @media screen and (max-width: 599px) {
     font-size: 14px !important;
+    margin-top: -15px;
   }
 }
 .experience-title {
@@ -1643,6 +1644,15 @@ img.pofolio-lg-img {
 #resumetheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
+
+@media screen and (max-width: 959px){
+  #resumeTheme207 .v-progress-linear__determinate {
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    margin-top: -1px !important;
+  }
+}
+
 @media screen and (max-width: 599px) {
   #resumeTheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
     display: none !important;
