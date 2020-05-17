@@ -460,16 +460,25 @@
                                             class="education-title mb-5"
                                             style="margin-top:-22px;"
                                           >PHP</v-card-title>
-                                          <div class="ml-3">
-                                            <v-progress-linear
-                                              tile
-                                              class="skill-progressbar"
-                                              color="#ffffff"
-                                              rounded
-                                              background-color="#FC413C"
-                                              height="15"
-                                              :value="item.value"
-                                            ></v-progress-linear>
+                                          <div class="ml-3 div-skillbar">
+                                            <v-row align="center" justify="center">
+                                              <v-col md="9" sm="10" cols="9">
+                                                <v-progress-linear
+                                                  tile
+                                                  class="skill-progressbar"
+                                                  color="#ffffff"
+                                                  rounded
+                                                  background-color="#FC413C"
+                                                  height="15"
+                                                  :value="item.value"
+                                                ></v-progress-linear>
+                                              </v-col>
+                                              <v-col md="3" sm="2" cols="3">
+                                                <span
+                                                  class="progress-value-text"
+                                                >{{item.value_text}}</span>
+                                              </v-col>
+                                            </v-row>
                                           </div>
                                         </div>
                                       </div>
@@ -1322,9 +1331,28 @@ img.pofolio-lg-img {
   font-size: 1rem;
   line-height: 1.438rem;
 }
+.div-skillbar{
+  @media screen and (max-width: 599px){
+    margin-top: -20px;
+  }
+}
 .skill-progressbar {
   border-radius: 50px !important;
   background: #fc413c !important;
+  @media screen and (max-width: 599px){
+    height: 7px !important;
+  }
+}
+.progress-value-text {
+  font-family: "Roboto" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px !important;
+  line-height: 28px;
+  color: #ffffff !important;
+  @media screen and (max-width: 599px){
+    font-size: 12px !important;
+  }
 }
 // Skill tab
 // media
