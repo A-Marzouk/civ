@@ -444,7 +444,7 @@
                                     v-for="item in childSkills"
                                     :key="item.id"
                                   >
-                                    <v-card class="pa-5 card-education" hover color="#272B2F">
+                                    <v-card class="pa-5 card-skill" hover color="#272B2F">
                                       <div class="d-flex flex-no-wrap mt-n3 mt-md-0 mt-sm-1">
                                         <v-avatar
                                           class="education-avatar"
@@ -745,7 +745,7 @@
                   <img src="/images/resume_themes/theme207/audio/repeat.png" alt />
                 </v-btn>
               </div>
-
+              <v-spacer></v-spacer>
               <div class="btn-fullscreen" align="right">
                 <v-btn icon depressed color="transparent">
                   <img src="/images/resume_themes/theme207/icons/fullscreen.png" />
@@ -1230,6 +1230,9 @@ img.pofolio-lg-img {
 //education
 .card-education {
   border-radius: 9px !important;
+  @media screen and (min-width: 1500px){
+    height: 200px !important; 
+  }
   @media screen and (max-width: 959px) {
     height: 170px;
   }
@@ -1507,6 +1510,9 @@ img.pofolio-lg-img {
   .v-responsive.v-image.preview-1 {
     min-height: 202px;
     min-width: 240px;
+    @media screen and (min-width: 1440px){
+      height: 200px;
+    }
     @media screen and (max-width: 959px) {
       height: 0px;
       margin: -1px;
