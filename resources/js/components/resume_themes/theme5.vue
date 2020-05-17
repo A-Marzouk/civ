@@ -1,2091 +1,849 @@
 <template>
-  <div class="theme-container">
-    <div class="main-info-bar">
-      <div class="left">
-        <div class="profile-picture">
-          <img src="/images/resume_themes/theme5/profile.png" alt />
-        </div>
-        <div class="main-info">
-          <div class="user-name">Emma Pearson</div>
-          <div class="job-title">UX Designer</div>
-          <div class="bio">
-            I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”
-            or double click me to add your own content and make changes.
-          </div>
-        </div>
-      </div>
-      <div class="right">
-        <div class="prof-info">
-          <div class="d-flex align-items-center">
-            <div class="hours">
-              <div>
-                <img src="/images/resume_themes/theme5/time.svg" alt />
-              </div>
-              <div class="text">8 hours</div>
-            </div>
-            <div class="horizontal-divider"></div>
-            <div class="rate">
-              <div>
-                <img src="/images/resume_themes/theme5/payment.svg" alt />
-              </div>
-              <div class="text">$20/hr</div>
-            </div>
-          </div>
-          <div class="hire-me-btn NoDecor">
-            <a href="javascript:void(0)">
-              <img src="/images/resume_themes/theme5/email.svg" alt />
-              <span>Hire me</span>
-            </a>
-          </div>
-        </div>
-        <div class="media">
-          <div class="d-flex">
-            <div class="call-btn">
-              <a href="javascript:void(0)">
-                <img src="/images/resume_themes/theme5/call.svg" alt />
-                <span class="hideMeOnTablet hideMeOnPhone">Voice call</span>
-              </a>
-            </div>
-            <div class="video-btn">
-              <a href="javascript:void(0)">
-                <img src="/images/resume_themes/theme5/video.svg" alt />
-              </a>
-            </div>
-          </div>
-          <div class="d-flex flex-column align-items-center">
-            <div class="follow-text">Follow me</div>
-            <div class="d-flex icons">
-              <img src="/images/resume_themes/theme5/dribble.svg" alt="social-icon" />
-              <img src="/images/resume_themes/theme5/behance.svg" alt="social-icon" />
-              <img src="/images/resume_themes/theme5/instagram.svg" alt="social-icon" />
-              <img src="/images/resume_themes/theme5/linkedin.svg" alt="social-icon" />
-              <img src="/images/resume_themes/theme5/google_plus.svg" alt="social-icon" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <v-app>
+    <v-container fluid ma-0 pa-0 style="background-color:#f1f1f1;">
+      <v-row class="borpad pt-md-4" no-gutters justify-sm="end">
+        <v-col md="6" sm="12" cols="12">
+          <v-container>
+            <v-row no-gutters justify="center">
+              <v-col
+                md="3"
+                sm="2"
+                cols="11"
+                class="pa-md-6 pa-sm-2 mt-0 mt-sm-n2 mt-md-n6"
+                align="center"
+              >
+                <img
+                  :aspect-ratio="1"
+                  src="/images/resume_themes/theme5/profile.png"
+                  alt
+                  class="imgradius"
+                />
+              </v-col>
+              <v-col md="8" sm="9" cols="11" class="text-md-left text-center text-sm-left">
+                <div class="user-name font-weight-bold">Emma Pearson</div>
+                <div class="job-title py-1 pb-sm-2">UX Designer</div>
+                <div class="bio padrgt">
+                  I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”
+                  or double click me to add your own content and make changes.
+                </div>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-col>
+        <v-col md="6" sm="10" cols="12" class="hidden-sm-only">
+          <v-container>
+            <v-row>
+              <v-col md="6">
+                <v-row no-gutters justify="center" class="hidden-xs-only">
+                  <v-col cols="5" md="3" align="center">
+                    <v-img class="info-img" src="/images/resume_themes/theme5/time.svg" alt></v-img>
+                    <div class="title mt-3">8 hours</div>
+                  </v-col>
+                  <v-col cols="2" md="1" align="center">
+                    <div style="width:2px; height:2.5rem; background-color:#CBCBCB;margin-top:50%"></div>
+                  </v-col>
+                  <v-col cols="5" md="3" align="center">
+                    <v-img class="info-img" src="/images/resume_themes/theme5/payment.svg" alt></v-img>
+                    <div class="title mt-3">$ 20/hr</div>
+                  </v-col>
+                  <v-col cols="8" align="center" class="mt-4">
+                    <v-btn
+                      dark
+                      style="height: 60px;width: 202px;border-radius: 6px;background: #fc5185;box-shadow: #fc7ea4 0px 10px 30px -8px;"
+                    >
+                      <img
+                        style="width:22.5px;height:18px;margin-right: 7.5px;"
+                        src="/images/resume_themes/theme5/email.svg"
+                        alt
+                      />
+                      <div class="text-capitalize">Hire Me</div>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters justify="center" class="hidden-sm-and-up">
+                  <v-col cols="5" align="center">
+                    <div class="subtitle-1">Hourly rate</div>
+                    <div class="headline mt-3 font-weight-bold txtcol">$ 25 USD</div>
+                  </v-col>
+                  <v-col cols="2" align="center">
+                    <div
+                      style="width:2px; height:2.2rem; background:rgba(31,93,228,0.4);margin-top:30%"
+                    ></div>
+                  </v-col>
+                  <v-col cols="5" align="center">
+                    <div class="subtitle-1">Available for</div>
+                    <div class="headline mt-3 font-weight-bold txtcol">8 Hours</div>
+                  </v-col>
+                  <v-col cols="8" align="center" class="mt-4">
+                    <v-btn
+                      dark
+                      style="height: 60px;width: 202px;border-radius: 6px;background: #fc5185;box-shadow: rgba(252,81,133,0.4) 0px 10px 30px -8px;"
+                    >
+                      <img
+                        style="width:22.5px;height:18px;margin-right: 7.5px;"
+                        src="/images/resume_themes/theme5/email.svg"
+                        alt
+                      />
+                      <div class="text-capitalize">Hire Me</div>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col md="6">
+                <v-row no-gutters justify="center">
+                  <v-col cols="12" class="text-center hidden-xs-only">
+                    <v-btn
+                      style="height: 50px;width: 150px;border-radius: 6px;background: #5f45ff;box-shadow: #9180ff 0px 10px 30px -8px;"
+                      dark
+                      class="mx-1"
+                    >
+                      <img
+                        src="/images/resume_themes/theme5/call.svg"
+                        alt="voice call"
+                        style="width: 18px;height: 18px;margin-right: 7.5px;"
+                      />
+                      <div class="text-capitalize" style="font-size:14px;">Voice call</div>
+                    </v-btn>
 
-    <div class="tabs-wrapper">
-      <slick class="tabs-bar" ref="slick" :options="slickOptions">
-        <div
-          class="tab-text"
-          :class="{active : activeTab === 'portfolio'}"
-          @click="setActiveTab('portfolio')"
-        >
-          <span v-if="activeTab === 'portfolio'" class="left">[</span>
-          Portfolio
-          <span v-if="activeTab === 'portfolio'" class="right">]</span>
-        </div>
-        <div
-          class="tab-text"
-          :class="{active : activeTab === 'workEx'}"
-          @click="setActiveTab('workEx')"
-        >
-          <span v-if="activeTab === 'workEx'" class="left">[</span>
-          Work Ex.
-          <span v-if="activeTab === 'workEx'" class="right">]</span>
-        </div>
-        <div class="tab-text" :class="{active : activeTab === 'edu'}" @click="setActiveTab('edu')">
-          <span v-if="activeTab === 'edu'" class="left">[</span>
-          Education
-          <span v-if="activeTab === 'edu'" class="right">]</span>
-        </div>
-        <div
-          class="tab-text"
-          :class="{active : activeTab === 'skills'}"
-          @click="setActiveTab('skills')"
-        >
-          <span v-if="activeTab === 'skills'" class="left">[</span>
-          Skills
-          <span v-if="activeTab === 'skills'" class="right">]</span>
-        </div>
-        <div
-          class="tab-text mr-0"
-          :class="{active : activeTab === 'about'}"
-          @click="setActiveTab('about')"
-        >
-          <span v-if="activeTab === 'about'" class="left">[</span>
-          About
-          <span v-if="activeTab === 'about'" class="right">]</span>
-        </div>
-      </slick>
+                    <v-btn
+                      class="mx-1"
+                      style="height: 50px;width: 90px;border-radius: 6px;background: #e7e5f6;box-shadow: #e7e5f6 0px 10px 30px -8px;"
+                    >
+                      <img
+                        src="/images/resume_themes/theme5/video.svg"
+                        alt="video call"
+                        style="width: 27px;height: 18px;margin-right: 7.5px;"
+                      />
+                    </v-btn>
+                  </v-col>
+                  <v-col cols="12" class="text-center hidden-sm-and-up">
+                    <div class="text-center my-2">Take an interview</div>
+                    <v-btn
+                      dark
+                      outlined
+                      color="#5F45FF"
+                      class="mx-1"
+                      style="height: 50px;width: 150px;border-radius: 6px;box-shadow: rgba(253,253,254,0.6) 0px 10px 30px -8px;"
+                    >
+                      <v-icon left>mdi-video</v-icon>
+                      <div class="text-capitalize" style="font-size:14px;">Video call</div>
+                    </v-btn>
 
-      <div class="tab-content-wrapper">
-        <div
-          class="portfolio"
-          v-show="activeTab === 'portfolio'"
-          :class="{active : activeTab === 'portfolio'}"
-        >
-          <div class="images">
-            <img src="/images/resume_themes/theme5/portfolio-1.png" alt="portfolio img" />
-            <img src="/images/resume_themes/theme5/portfolio-2.png" alt="portfolio img" />
-            <img src="/images/resume_themes/theme5/portfolio-3.png" alt="portfolio img" />
+                    <v-btn
+                      class="mx-1"
+                      dark
+                      style="height: 50px;width: 150px;border-radius: 6px;background: #5f45ff;box-shadow: rgba(253,253,254,0.6) 0px 10px 30px -8px;"
+                    >
+                      <img
+                        src="/images/resume_themes/theme5/call.svg"
+                        alt="voice call"
+                        style="width: 18px;height: 18px;margin-right: 7.5px;"
+                      />
+                      <div class="text-capitalize" style="font-size:14px;">Audio call</div>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters justify="center" class="mt-6">
+                  <v-col cols="12">
+                    <div class="text-center">Follow me</div>
+                    <div class="text-center mt-2">
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(234, 76, 137, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/dribble.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(5, 62, 255, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/behance.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/instagram.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(14, 118, 168, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/linkedin.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(221, 75, 57, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/google_plus.svg" alt="social-icon" />
+                      </v-btn>
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-col>
+        <v-col sm="10" class="d-none d-sm-flex d-md-none">
+          <v-container>
+            <v-row>
+              <v-col md="6">
+                <v-row no-gutters justify="center">
+                  <v-col sm="5" align="start" class="mt-4">
+                    <v-btn text>
+                      <v-img
+                        class="info-img d-inline-block"
+                        src="/images/resume_themes/theme5/time.svg"
+                        alt
+                      ></v-img>
+                      <div class="subtitle-1 text-capitalize ml-1">8 hours</div>
+                    </v-btn>
+                  </v-col>
+                  <v-col sm="2" align="center" class="ml-n4 mr-n4 mt-4">
+                    <div
+                      style="width:2px; height:1.5rem; background-color:#CBCBCB;margin-top:20%;margin-right:-30px;margin-left:-20px;"
+                    ></div>
+                  </v-col>
+                  <v-col sm="5" align="start" class="mt-4">
+                    <v-btn text>
+                      <v-img
+                        class="info-img d-inline-block"
+                        src="/images/resume_themes/theme5/payment.svg"
+                        alt
+                      ></v-img>
+                      <div class="subtitle-1 text-capitalize ml-1">$ 20/hr</div>
+                    </v-btn>
+                  </v-col>
+                  <v-col cols="11" align="center" class="mt-6 ml-2">
+                    <div class="text-center">Follow me</div>
+                    <div class="text-center mt-2">
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(234, 76, 137, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/dribble.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(5, 62, 255, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/behance.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(81, 91, 212, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/instagram.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(14, 118, 168, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/linkedin.svg" alt="social-icon" />
+                      </v-btn>
+                      <v-btn
+                        class="mx-1"
+                        style="width:40px;min-width:40px;height:40px;box-shadow: rgba(221, 75, 57, 0.4) 0px 10px 30px -8px;"
+                      >
+                        <img src="/images/resume_themes/theme5/google_plus.svg" alt="social-icon" />
+                      </v-btn>
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col md="6">
+                <v-row no-gutters justify="center">
+                  <v-col cols="12" class="text-center">
+                    <v-btn
+                      dark
+                      style="height: 60px;width: 202px;border-radius: 6px;background: #fc5185;box-shadow: #fc7ea4 0px 10px 30px -8px;"
+                    >
+                      <img
+                        style="width:22.5px;height:18px;margin-right: 7.5px;"
+                        src="/images/resume_themes/theme5/email.svg"
+                        alt
+                      />
+                      <div class="text-capitalize">Hire Me</div>
+                    </v-btn>
+                  </v-col>
+                </v-row>
+                <v-row no-gutters justify="center" class="mt-6">
+                  <v-col cols="12" class="text-center">
+                    <v-btn
+                      style="height: 60px;width: 93px;border-radius: 6px;background: #5f45ff;box-shadow: #9180ff 0px 10px 30px -8px;"
+                      dark
+                      class="mx-1"
+                    >
+                      <img
+                        src="/images/resume_themes/theme5/call.svg"
+                        alt="voice call"
+                        style="width: 18px;height: 18px;margin-right: 7.5px;"
+                      />
+                    </v-btn>
 
-            <img src="/images/resume_themes/theme5/portfolio-4.png" alt="portfolio img" />
-            <img src="/images/resume_themes/theme5/portfolio-5.png" alt="portfolio img" />
-            <img src="/images/resume_themes/theme5/portfolio-6.png" alt="portfolio img" />
-          </div>
-
-          <div class="loading d-none">
-            <img src="/images/resume_themes/theme5/loading.svg" alt="loading" />
-            <div>Loading more items</div>
-          </div>
-        </div>
-        <div
-          class="work-experience"
-          v-show="activeTab === 'workEx'"
-          :class="{active : activeTab === 'workEx'}"
-        >
-          <div class="work-item d-flex">
-            <div class="blue-circle">
-              <img src="/images/resume_themes/theme5/blue-circle.svg" alt="blue circle" />
-            </div>
-            <div class="d-flex flex-column work-info dotted-gradient">
-              <div class="work-title">Google</div>
-              <div class="work-position">User interface designer, Oct 2018 - Nov 2019</div>
-              <div class="work-details">
-                I'm a paragraph. Click here to add your own text and edit me. It’s
-                easy. Just click “Edit Text” or double click me to add your own content and make
-                changes.
-              </div>
-            </div>
-          </div>
-
-          <div class="work-item d-flex">
-            <div class="blue-circle">
-              <img src="/images/resume_themes/theme5/blue-circle.svg" alt="blue circle" />
-            </div>
-            <div class="d-flex flex-column work-info dotted-gradient">
-              <div class="work-title">123Workforce</div>
-              <div class="work-position">User interface designer, Oct 2018 - Nov 2019</div>
-              <div class="work-details">
-                I'm a paragraph. Click here to add your own text and edit me. It’s
-                easy. Just click “Edit Text” or double click me to add your own content and make
-                changes.
-              </div>
-            </div>
-          </div>
-
-          <div class="work-item d-flex">
-            <div class="blue-circle">
-              <img src="/images/resume_themes/theme5/blue-circle.svg" alt="blue circle" />
-            </div>
-            <div class="d-flex flex-column work-info dotted-gradient">
-              <div class="work-title">Wedevs</div>
-              <div class="work-position">User interface designer, Oct 2018 - Nov 2019</div>
-              <div class="work-details">
-                I'm a paragraph. Click here to add your own text and edit me. It’s
-                easy. Just click “Edit Text” or double click me to add your own content and make
-                changes.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="education" v-show="activeTab === 'edu'" :class="{active : activeTab === 'edu'}">
-          <div class="education-item">
-            <div class="education-type">University</div>
-            <div class="education-name">California Institute of Technology</div>
-            <div class="education-date">M.Sc in HCI, Dec 19 - present</div>
-            <div class="education-info">CGPA - 3.70 out of 4.0</div>
-          </div>
-          <div class="education-item">
-            <div class="education-type">College</div>
-            <div class="education-name">Lethbride College</div>
-            <div class="education-date">M.Sc in HCI, Dec 19 - present</div>
-            <div class="education-info">CGPA - 3.70 out of 4.0</div>
-          </div>
-          <div class="education-item">
-            <div class="education-type">University</div>
-            <div class="education-name">University of Toronto</div>
-            <div class="education-date">M.Sc in HCI, Dec 19 - present</div>
-            <div class="education-info">CGPA - 3.70 out of 4.0</div>
-          </div>
-          <div class="education-item">
-            <div class="education-type">University</div>
-            <div class="education-name">University of Toronto</div>
-            <div class="education-date">M.Sc in HCI, Dec 19 - present</div>
-            <div class="education-info">CGPA - 3.70 out of 4.0</div>
-          </div>
-        </div>
-        <div
-          class="skills-tab"
-          v-show="activeTab === 'skills'"
-          :class="{active : activeTab === 'skills'}"
-        >
-          <div class="skill-item skills d-flex align-items-end">
-            <div class="skill">
-              <div class="skill-title">Adobe Photoshop</div>
-              <!-- bar -->
-              <div class="skill-bar" :data-bar="90">
-                <span></span>
-              </div>
-            </div>
-
-            <div
-              style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
-              class="percentage"
-            >90%</div>
-          </div>
-          <div class="skill-item skills d-flex align-items-end">
-            <div class="skill">
-              <div class="skill-title">Adobe After Effect</div>
-              <!-- bar -->
-              <div class="skill-bar red" :data-bar="65">
-                <span class="red"></span>
-              </div>
-            </div>
-
-            <div
-              style="color:#FF26BE; font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
-              class="percentage"
-            >65%</div>
-          </div>
-          <div class="skill-item skills d-flex align-items-end">
-            <div class="skill">
-              <div class="skill-title">Adobe Premiere pro</div>
-              <!-- bar -->
-              <div class="skill-bar orange" :data-bar="70">
-                <span class="orange"></span>
-              </div>
-            </div>
-
-            <div
-              style="color:#FF7C00; font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
-              class="percentage"
-            >70%</div>
-          </div>
-          <div class="skill-item skills d-flex align-items-end">
-            <div class="skill">
-              <div class="skill-title">Adobe Illustrator</div>
-              <!-- bar -->
-              <div class="skill-bar" :data-bar="50">
-                <span></span>
-              </div>
-            </div>
-
-            <div
-              style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
-              class="percentage"
-            >50%</div>
-          </div>
-          <div class="skill-item skills d-flex align-items-end">
-            <div class="skill">
-              <div class="skill-title">Adobe XD</div>
-              <!-- bar -->
-              <div class="skill-bar" :data-bar="85">
-                <span></span>
-              </div>
-            </div>
-
-            <div
-              style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
-              class="percentage"
-            >85%</div>
-          </div>
-          <div class="skill-item skills d-flex align-items-end">
-            <div class="skill">
-              <div class="skill-title">Adobe XD</div>
-              <!-- bar -->
-              <div class="skill-bar" :data-bar="85">
-                <span></span>
-              </div>
-            </div>
-
-            <div
-              style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
-              class="percentage"
-            >85%</div>
-          </div>
-        </div>
-        <div class="about" v-show="activeTab === 'about'" :class="{active : activeTab === 'about'}">
-          <div class="about-me">
-            <div class="about-title">About me</div>
-            <div class="about-text">
-              I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit
-              Text” or double click me to add your own content and make changes to the font. Feel free to
-              drag and drop me anywhere you like on your page. I’m a great place for you to tell a story
-              and let your users know a little more about you. This is a great space to write long text
-              about your company and your services. You can use this space to go into a little more detail
-              about your company. Talk about your team and what services you provide. Tell your visitors
-              the story of how you came up with the idea for your business and what makes you different
-              from your competitors.
-            </div>
-          </div>
-          <div class="contact">
-            <div class="contact-title">Contact</div>
-            <div class="email">Email: contact@developer.com</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                    <v-btn
+                      class="mx-1"
+                      style="height: 60px;width: 93px;border-radius: 6px;background: #e7e5f6;box-shadow: #e7e5f6 0px 10px 30px -8px;"
+                    >
+                      <img
+                        src="/images/resume_themes/theme5/video.svg"
+                        alt="video call"
+                        style="width: 27px;height: 18px;margin-right: 7.5px;"
+                      />
+                    </v-btn>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container fluid ma-0 pa-0>
+      <v-row class="borpad" no-gutters style="height:100%;">
+        <v-col md="12" sm="12" cols="12">
+          <v-container fluid ma-0 pa-0 style="max-width:100%">
+            <v-row no-gutters justify="center">
+              <v-col
+                md="6"
+                cols="11"
+                sm="11"
+                style="background-color:#f1f1f1;margin:1rem;border-radius:5px;padding:1rem;"
+                class="text-center"
+              >
+                <v-tabs v-model="tab" background-color="transparent" hide-slider centered>
+                  <v-tab class="text-capitalize">
+                    <span v-if="tab ==0" class="left">[</span>
+                    Portfolio
+                    <span v-if="tab ==0" class="right">]</span>
+                  </v-tab>
+                  <v-tab class="text-capitalize">
+                    <span v-if="tab ==1" class="left">[</span>
+                    Work Experience
+                    <span v-if="tab ==1" class="right">]</span>
+                  </v-tab>
+                  <v-tab class="text-capitalize">
+                    <span v-if="tab ==2" class="left">[</span>
+                    Education
+                    <span v-if="tab ==2" class="right">]</span>
+                  </v-tab>
+                  <v-tab class="text-capitalize">
+                    <span v-if="tab ==3" class="left">[</span>
+                    Skills
+                    <span v-if="tab ==3" class="right">]</span>
+                  </v-tab>
+                  <v-tab class="text-capitalize">
+                    <span v-if="tab ==4" class="left">[</span>
+                    About
+                    <span v-if="tab ==4" class="right">]</span>
+                  </v-tab>
+                </v-tabs>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-col>
+        <v-col md="12" sm="12" cols="12" class="mt-4">
+          <v-container fluid ma-0 pa-0 style="max-width:100%">
+            <v-row no-gutters justify="center">
+              <v-col v-if="tab==0" md="11" sm="11" cols="11">
+                <v-row no-gutters justify="center">
+                  <v-col
+                    md="4"
+                    sm="12"
+                    cols="12"
+                    v-for="p in portfolio"
+                    :key="p.id"
+                    class="pa-4"
+                    align="center"
+                  >
+                    <v-img :src="p.src" alt="portfolio img" :aspect-ratio="1.2"></v-img>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col v-if="tab==1" md="6" sm="12" cols="12" class="pb-12">
+                <v-timeline dense align-top v-for="n in 3" :key="n" class="ml-n4 ml-sm-0">
+                  <v-timeline-item small fill-dot color="#1F5DE4">
+                    <div class="ml-n5 ml-sm-0">
+                      <div class="head mt-n1">Google</div>
+                      <div class="subtitle-2 pb-sm-4 pt-2">
+                        User interface designer,
+                        <span
+                          class="hidden-xs-only pl-sm-4 subtitle-2"
+                          style="color: rgba(0, 0, 0, 0.87);"
+                        >Oct 2018 - Nov 2019</span>
+                      </div>
+                      <div class="hidden-sm-and-up subtitle-2 pb-4">Oct 2018 - Nov 2019</div>
+                      <div class="subtitle-2 grey--text lighten-2">
+                        I'm a paragraph. Click here to add your own text and edit me. It’s
+                        easy. Just click “Edit Text” or double click me to add your own content and make
+                        changes.
+                      </div>
+                    </div>
+                  </v-timeline-item>
+                </v-timeline>
+              </v-col>
+              <v-col v-if="tab==2" md="11" sm="11" cols="11" class="pb-12">
+                <v-row no-gutters justify="center">
+                  <v-col
+                    v-for="n in 4"
+                    :key="n"
+                    md="5"
+                    sm="12"
+                    cols="12"
+                    class="ma-md-4 ma-sm-4 ma-4"
+                  >
+                    <v-card color="#F8F8F8" elevation="0" class="px-sm-10 py-sm-4 px-4 py-2">
+                      <div class="edu-type">University</div>
+                      <div class="edu-name font-weight-bold py-1">California Institute of Technology</div>
+                      <div
+                        class="subtitle-2 pb-1"
+                        style="color:#1F5DE4"
+                      >M.Sc in HCI, Dec 19 - present</div>
+                      <div class="subtitle-2 pb-2" style="color:#707070;">CGPA - 3.70 out of 4.0</div>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col v-if="tab==3" md="11" sm="11" cols="11">
+                <v-row no-gutters justify="center">
+                  <v-col
+                    v-for="(s,index) in skills"
+                    :key="index"
+                    md="5"
+                    sm="11"
+                    cols="12"
+                    class="ma-md-4 my-sm-3 my-2"
+                  >
+                    <v-card color="#F8F8F8" elevation="0">
+                      <v-row
+                        no-gutters
+                        justify="center"
+                        class="py-sm-8 pr-sm-6 pl-sm-2 py-3 pr-2 pl-2"
+                      >
+                        <v-col cols="11" sm="11">
+                          <div class="skillname mb-1 font-weight-bold">{{s.name}}</div>
+                        </v-col>
+                        <v-col
+                          cols="9"
+                          sm="9"
+                          class="text-center"
+                          justify="center"
+                          align-self="center"
+                        >
+                          <v-progress-linear
+                            :background-opacity="0.2"
+                            :color="s.color"
+                            :value="s.value"
+                            class="pro"
+                          ></v-progress-linear>
+                        </v-col>
+                        <v-col cols="2" sm="2">
+                          <v-btn text :color="s.color">
+                            <div
+                              class="skillname font-weight-bold mr-0 mr-md-n12 mr-sm-n12"
+                            >{{s.value}}%</div>
+                          </v-btn>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                  </v-col>
+                </v-row>
+              </v-col>
+              <v-col v-if="tab==4" md="6" sm="11" cols="11" class="pb-12">
+                <v-row no-gutters justify="center" class="shade py-12">
+                  <v-col md="10" sm="11" cols="11" class="pb-8">
+                    <div class="headline">About Me</div>
+                  </v-col>
+                  <v-col md="10" sm="11" cols="11" class="pb-8">
+                    <div class="subtitle-1 grey--text lighten-2">
+                      I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit
+                      Text” or double click me to add your own content and make changes to the font. Feel free to
+                      drag and drop me anywhere you like on your page. I’m a great place for you to tell a story
+                      and let your users know a little more about you.
+                    </div>
+                  </v-col>
+                  <v-col md="10" sm="11" cols="11" class="pb-12">
+                    <div class="subtitle-1 grey--text lighten-2">
+                      This is a great space to write long text
+                      about your company and your services. You can use this space to go into a little more detail
+                      about your company. Talk about your team and what services you provide. Tell your visitors
+                      the story of how you came up with the idea for your business and what makes you different
+                      from your competitors.
+                    </div>
+                  </v-col>
+                  <v-col md="10" sm="11" cols="11" class="pb-8">
+                    <div class="headline">Contact</div>
+                  </v-col>
+                  <v-col md="10" sm="11" cols="11">
+                    <div class="title">Gmail: Carolyn_meyer2@gmail.com</div>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
+<style lang="scss" scoped>
+#resumeTheme5 {
+  .theme--light.v-application {
+    background: #f1f1f1;
+    color: rgba(0, 0, 0, 0.87);
+  }
+  .borpad {
+    background-color: #ffffff;
+    margin: 1.5rem 1.5rem 0 2.5rem;
+    border-radius: 10px;
+  }
+  .imgradius {
+    width: 184px;
+    height: auto;
+    border-radius: 50%;
+  }
+  .v-progress-linear {
+    border-radius: 50px;
+  }
+  .pro .v-progress-linear__determinate {
+    border-radius: 50px !important;
+  }
+  .shade {
+    background: #f8f8f8;
+    border-radius: 5px;
+  }
+  .v-tab {
+    span.left {
+      padding-right: 4px;
+      font-size: 20px;
+      color: #1f5de4;
+      transition: all 0.5s ease;
+    }
+
+    span.right {
+      padding-left: 4px;
+      font-size: 20px;
+      color: #1f5de4;
+      transition: all 0.5s ease;
+    }
+  }
+
+  .v-tab:hover {
+    cursor: pointer;
+
+    span.left {
+      padding-right: 7px;
+      font-size: 20px;
+      color: #1f5de4;
+    }
+
+    span.right {
+      padding-left: 7px;
+      font-size: 20px;
+      color: #1f5de4;
+    }
+  }
+  .v-tab:before {
+    background-color: transparent;
+    bottom: 0;
+    content: "";
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+  //Desktop Screen
+  .user-name {
+    font-size: 1.5rem;
+  }
+  .bio {
+    font-size: 0.8rem;
+    line-height: 25px;
+  }
+  .padrgt {
+    padding-right: 8rem;
+  }
+  .head {
+    font-family: Noto Sans;
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  .info-img {
+    width: 40px;
+    height: 32px;
+  }
+  .v-tabs .v-tab {
+    align-items: center;
+    display: flex;
+    flex: 0 1 auto;
+    font-size: 0.875rem;
+    font-weight: 500;
+    justify-content: center;
+    letter-spacing: 0.0892857143em;
+    line-height: normal;
+    min-width: 8rem;
+    max-width: 12rem;
+    outline: none;
+    padding: 0 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .v-timeline:before {
+    bottom: 0;
+    content: "";
+    height: 100%;
+    position: absolute;
+    top: 25px;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      #548aff 40%,
+      rgba(255, 255, 255, 0) 20%
+    );
+    background-position: left;
+    background-size: 1.5px 18px;
+    background-repeat: repeat-y;
+  }
+  .v-tab-active {
+    position: relative;
+  }
+  .edu-type {
+    width: 80px;
+    height: 30px;
+    background: #e7ecf7;
+    border-radius: 5px;
+
+    font-size: 12px;
+    color: #1f5de4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 18px;
+  }
+  .skillname {
+    font-size: 1.5rem;
+    letter-spacing: normal;
+  }
+  .v-progress-linear {
+    height: 15px !important;
+  }
+  .edu-name {
+    font-size: 1.5rem;
+  }
+  .txtcol {
+    color: #5f45ff;
+  }
+
+  // Tablet Version
+  @media only screen and (max-width: 768px) {
+    .borpad {
+      background-color: #ffffff;
+      margin: 1rem 1rem 0 1rem;
+      border-radius: 10px;
+    }
+    .padrgt {
+      padding-right: 2rem;
+    }
+    .imgradius {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+    }
+    .bio {
+      font-size: 1rem;
+      line-height: 25px;
+    }
+    .v-tabs .v-tab {
+      align-items: center;
+      display: flex;
+      flex: 0 1 auto;
+      font-size: 0.875rem;
+      font-weight: 500;
+      justify-content: center;
+      letter-spacing: 0.0892857143em;
+      line-height: normal;
+      min-width: 6rem;
+      max-width: 12rem;
+      outline: none;
+      padding: 0 16px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .skillname {
+      font-size: 1.5rem;
+      letter-spacing: normal;
+    }
+    .v-progress-linear {
+      height: 15px;
+    }
+    .edu-name {
+      font-size: 1.5rem;
+    }
+  }
+
+  // Mobile Version
+  @media only screen and (max-width: 425px) {
+    .borpad {
+      background-color: #ffffff;
+      margin: 0.7rem 0.7rem 0 0.7rem;
+      border-radius: 10px;
+    }
+    .padrgt {
+      padding-right: 0rem;
+    }
+    .padleft {
+      padding-left: 6rem;
+    }
+    .imgradius {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+    }
+    .v-tabs .v-tab {
+      align-items: center;
+      display: flex;
+      flex: 0 1 auto;
+      font-size: 0.7rem;
+      font-weight: 500;
+      justify-content: center;
+      letter-spacing: 0.0892857143em;
+      line-height: normal;
+      min-width: 6rem;
+      max-width: 12rem !important;
+      outline: none;
+      padding: 0 4px !important;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .v-tabs .v-tab {
+      align-items: center;
+      display: flex;
+      flex: 0 1 auto;
+      font-size: 0.875rem;
+      font-weight: 500;
+      justify-content: center;
+      letter-spacing: 0.0892857143em;
+      line-height: normal;
+      min-width: 6rem;
+      max-width: 10rem;
+      outline: none;
+      padding: 0 16px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .skillname {
+      font-size: 0.8rem;
+
+      letter-spacing: normal;
+    }
+    .edu-name {
+      font-size: 1rem;
+    }
+    .v-progress-linear {
+      height: 8px !important;
+    }
+  }
+}
+</style>
 
 <script>
-import Slick from "vue-slick";
-
 export default {
-  name: "theme5",
-  components: {
-    Slick: Slick
-  },
+  name: "theme8",
+  props: ["user", "is_preview"],
   data() {
     return {
-      activeTab: "portfolio",
-      slickOptions: {
-        dots: false,
-        arrows: false,
-        slidesToShow: 5,
-        responsive: [
-          {
-            breakpoint: 991,
-            settings: {
-              dots: false,
-              arrows: false,
-              centerMode: true,
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              dots: false,
-              arrows: false,
-              centerMode: true,
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      }
+      tab: null,
+      portfolio: [
+        {
+          id: 0,
+          src: "/images/resume_themes/theme5/portfolio-1.png"
+        },
+        {
+          id: 1,
+          src: "/images/resume_themes/theme5/portfolio-2.png"
+        },
+        {
+          id: 2,
+          src: "/images/resume_themes/theme5/portfolio-3.png"
+        },
+        {
+          id: 3,
+          src: "/images/resume_themes/theme5/portfolio-4.png"
+        },
+        {
+          id: 4,
+          src: "/images/resume_themes/theme5/portfolio-5.png"
+        },
+        {
+          id: 5,
+          src: "/images/resume_themes/theme5/portfolio-6.png"
+        }
+      ],
+      skills: [
+        {
+          name: "Adobe Photoshop",
+          value: 90,
+          color: "#3C327B"
+        },
+        {
+          name: "Adobe After Effect",
+          value: 65,
+          color: "#FF26BE"
+        },
+        {
+          name: "Adobe Premiere pro",
+          value: 70,
+          color: "#D291FF"
+        },
+        {
+          name: "Adobe Illustrator",
+          value: 50,
+          color: "#FF7C00"
+        },
+        {
+          name: "Adobe XD",
+          value: 80,
+          color: "#0D47A1"
+        },
+        {
+          name: "Adobe Dreamwaver",
+          value: 75,
+          color: "#004D40"
+        }
+      ]
     };
-  },
-
-  methods: {
-    setActiveTab(tabName) {
-      this.activeTab = tabName;
-    },
-    skillsBar() {
-      $(".skills .skill .skill-bar span").each(function() {
-        $(this).animate(
-          {
-            width:
-              $(this)
-                .parent()
-                .attr("data-bar") + "%"
-          },
-          1000
-        );
-      });
-    }
-  },
-
-  mounted() {
-    this.skillsBar();
   }
 };
 </script>
-
-<style  lang="scss" scoped>
-.theme-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-
-  .main-info-bar {
-    display: flex;
-    justify-content: space-between;
-    background: #ffffff;
-    border-radius: 0px 0px 25px 25px;
-    width: 100%;
-    max-width: 1920px;
-    height: 285px;
-    padding: 46px 102px 55px 87px;
-
-    @media only screen and (max-width: 1600px) and (min-width: 1280px) {
-      padding: 46px 50px 55px 50px;
-    }
-
-    .left {
-      display: flex;
-      align-items: center;
-
-      .profile-picture {
-        img {
-          width: 184px;
-          height: 184px;
-          border-radius: 50%;
-        }
-      }
-
-      .main-info {
-        margin-left: 35px;
-
-        .user-name {
-          font-size: 38px;
-          font-weight: bold;
-          opacity: 1;
-          color: #3c3748 !important;
-          line-height: 52px;
-          padding-bottom: 6px;
-        }
-
-        .job-title {
-          font-size: 24px;
-          color: #3c3748;
-          line-height: 33px;
-          padding-bottom: 19px;
-        }
-
-        .bio {
-          font-size: 19px;
-          color: #6b6b6b;
-          width: 100%;
-          max-width: 500px;
-          min-width: 400px;
-          padding-right: 25px;
-        }
-      }
-    }
-
-    .right {
-      display: flex;
-      width: 100%;
-      justify-content: space-between;
-      max-width: 700px;
-
-      .prof-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        .hours {
-          padding-right: 42.5px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          img {
-            width: 40px;
-            height: 32px;
-          }
-
-          .text {
-            line-height: 36px;
-            font-size: 26px;
-            color: #635e70;
-            margin-top: 16px;
-            white-space: nowrap;
-          }
-        }
-
-        .horizontal-divider {
-          height: 45px;
-          width: 2px;
-          background: #cbcbcb;
-        }
-
-        .rate {
-          padding-left: 42.5px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          img {
-            width: 40px;
-            height: 32px;
-          }
-
-          .text {
-            line-height: 36px;
-            font-size: 26px;
-            color: #635e70;
-            margin-top: 16px;
-            white-space: nowrap;
-          }
-        }
-
-        .hire-me-btn {
-          margin-top: 36px;
-
-          a {
-            height: 60px;
-            width: 202px;
-            border-radius: 6px;
-            background: #fc5185;
-            box-shadow: #fc7ea4 0px 10px 30px -8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            span {
-              color: white;
-              font-size: 18px;
-            }
-
-            img {
-              width: 22.5px;
-              height: 18px;
-              margin-right: 7.5px;
-            }
-          }
-        }
-      }
-
-      .media {
-        display: flex;
-        flex-direction: column;
-
-        .follow-text {
-          font-size: 20px;
-          line-height: 27px;
-          color: #6f6b7a;
-          margin-top: 43px;
-          margin-bottom: 12.3px;
-        }
-
-        .icons {
-          img {
-            width: 40px;
-            height: 40px;
-            margin-right: 15px;
-          }
-
-          img:last-child {
-            margin-right: 0;
-          }
-        }
-
-        .call-btn {
-          a {
-            height: 60px;
-            width: 161px;
-            border-radius: 6px;
-            background: #5f45ff;
-            box-shadow: #9180ff 0px 10px 30px -8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            span {
-              color: white;
-              font-size: 18px;
-            }
-
-            img {
-              width: 18px;
-              height: 18px;
-              margin-right: 7.5px;
-            }
-          }
-        }
-
-        .video-btn {
-          margin-left: 16px;
-
-          a {
-            height: 60px;
-            width: 90px;
-            border-radius: 6px;
-            background: #e7e5f6;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            img {
-              width: 27px;
-              height: 18px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .tabs-wrapper {
-    margin-top: 20px;
-    background: #ffffff;
-    border-radius: 25px 25px 0px 0px;
-
-    width: 100%;
-    max-width: 1920px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 84px 55px 84px;
-
-    .tabs-bar {
-      margin-top: 24px;
-
-      width: 1052px;
-      height: 95px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      background: #f8f8f8;
-
-      .tab-text {
-        line-height: 27px;
-        font-size: 20px;
-        color: #918f97;
-        margin-right: 96px;
-        white-space: nowrap;
-
-        span.left {
-          transition: all 0.5s ease;
-        }
-
-        span.right {
-          transition: all 0.5s ease;
-        }
-      }
-
-      .tab-text:hover {
-        cursor: pointer;
-        color: #1f5de4;
-
-        span.left {
-          padding-right: 7px;
-          font-size: 20px;
-          color: #1f5de4;
-        }
-
-        span.right {
-          padding-left: 7px;
-          font-size: 20px;
-          color: #1f5de4;
-        }
-      }
-
-      .tabs-bar {
-        div:last-child {
-          margin-right: 0;
-        }
-      }
-
-      .tab-text.active {
-        color: #1f5de4;
-        font-weight: bold;
-
-        span.left {
-          font-size: 20px;
-          color: #1f5de4;
-        }
-
-        span.right {
-          font-size: 20px;
-          color: #1f5de4;
-        }
-      }
-    }
-
-    .tab-content-wrapper {
-      margin-top: 50px;
-
-      .portfolio.active,
-      .skills.active,
-      .about.active,
-      .work-experience.active,
-      .education.active {
-        opacity: 1;
-      }
-
-      .portfolio,
-      .about,
-      .work-experience,
-      .education {
-        opacity: 0;
-        transition: all 0.6s ease;
-      }
-
-      .portfolio {
-        width: 100%;
-
-        .images {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-
-          img {
-            width: 536px;
-            height: 404px;
-            margin-right: 10px;
-            margin-left: 10px;
-            margin-bottom: 27px;
-          }
-        }
-
-        .loading {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin-top: 50px;
-          color: #3c3748cf;
-          font-size: 16px;
-
-          img {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 8px;
-          }
-        }
-      }
-
-      .work-experience {
-        width: 100%;
-
-        .work-item {
-          .blue-circle {
-            img {
-              width: 33px;
-              height: 33px;
-            }
-          }
-
-          .work-info {
-            padding-left: 88.5px;
-            padding-bottom: 50px;
-            margin-left: -17.5px;
-
-            .work-title {
-              font-size: 24px;
-              line-height: 33px;
-              color: #3c3748;
-              font-weight: bold;
-            }
-
-            .work-position {
-              font-size: 18px;
-              line-height: 24px;
-              margin-top: 7px;
-              margin-bottom: 20px;
-              color: #3c3748;
-            }
-
-            .work-details {
-              font-size: 19px;
-              color: #787878;
-            }
-          }
-
-          .work-info.dotted-gradient {
-            background-image: linear-gradient(
-              to bottom,
-              #1f5de4 40%,
-              rgba(255, 255, 255, 0) 20%
-            );
-            background-position: left;
-            background-size: 1.5px 18px;
-            background-repeat: repeat-y;
-          }
-
-          .work-info.dotted-gradient-2 {
-            background-image: linear-gradient(
-              to bottom,
-              #548aff 40%,
-              rgba(255, 255, 255, 0) 20%
-            );
-            background-position: left;
-            background-size: 1.5px 18px;
-            background-repeat: repeat-y;
-          }
-        }
-      }
-
-      .education {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-
-        .education-item {
-          margin-right: 30px;
-          margin-bottom: 29px;
-          width: 45%;
-
-          height: 300px;
-          background: #f8f8f8;
-          padding: 39px 60px 39px 60px;
-          border-radius: 8px;
-
-          .education-type {
-            width: 115px;
-            height: 41px;
-            background: #e7ecf7;
-            border-radius: 7px;
-
-            font-size: 18px;
-            color: #1f5de4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            margin-bottom: 18px;
-          }
-
-          .education-name {
-            line-height: 43px;
-            color: #3c3748;
-            font-weight: bold;
-            font-size: 32px;
-            margin-bottom: 14px;
-          }
-
-          .education-date {
-            line-height: 30px;
-            color: #1f5de4;
-            font-size: 22px;
-            margin-bottom: 7px;
-          }
-
-          .education-info {
-            line-height: 28px;
-            color: #707070;
-            font-size: 20px;
-          }
-        }
-      }
-
-      .skills-tab {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 100%;
-        .skill-item {
-          width: 45%;
-          height: 176px;
-          background: #f8f8f8;
-          border-radius: 8px;
-          padding: 38px 58px 0px 58px;
-          margin-bottom: 25px;
-          margin-right: 30px;
-        }
-      }
-
-      .about {
-        width: 100%;
-        margin-top: 0;
-        padding: 38px 105px 68px 105px;
-        background: #f8f8f8;
-
-        .about-me {
-          .about-title {
-            line-height: 33px;
-            font-size: 24px;
-            color: #3c3748;
-            font-weight: 500;
-          }
-
-          .about-text {
-            margin-top: 30px;
-            font-size: 18px;
-            color: #8b8b8b;
-          }
-        }
-
-        .contact {
-          margin-top: 68px;
-
-          .contact-title {
-            line-height: 33px;
-            font-size: 24px;
-            color: #3c3748;
-            font-weight: 500;
-            margin-bottom: 33px;
-          }
-
-          .email {
-            line-height: 33px;
-            font-size: 20px;
-            color: #3c3748;
-            font-weight: 500;
-          }
-        }
-      }
-    }
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .theme-container .tabs-wrapper .tabs-bar .tab-text {
-    display: flex !important;
-    justify-content: center !important;
-    line-height: 27px;
-    font-size: 13px;
-    color: #918f97;
-    margin-right: 16px;
-    white-space: nowrap;
-  }
-}
-
-@media only screen and (max-width: 425px) {
-  .slick-initialized .slick-slider .slick-slide .slick-active {
-    width: 40px !important;
-  }
-}
-
-@media only screen and (max-width: 1280px) and (min-width: 425px) {
-  /* CSS that should be displayed if width is equal to or less than 1024px and larger
-         than 425px goes here */
-
-  .slick-slide {
-    width: 40px;
-  }
-  .theme-container {
-    align-items: center;
-    width: 100%;
-
-    .main-info-bar {
-      display: flex;
-      flex-direction: column;
-      background: #ffffff;
-      border-radius: 0px 0px 18px 18px;
-      width: 100%;
-      height: auto;
-      padding: 25px 65px 31px 65px;
-
-      .left {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 22px;
-
-        .profile-picture {
-          img {
-            width: 250px;
-            height: 100px;
-            border-radius: 50%;
-          }
-        }
-
-        .main-info {
-          margin-left: 29px;
-
-          .user-name {
-            font-size: 32px;
-            font-weight: bold;
-            opacity: 1;
-            color: #3c3748 !important;
-            line-height: 43px;
-            padding-bottom: 5px;
-          }
-
-          .job-title {
-            font-size: 21px;
-            color: #3c3748;
-            line-height: 28px;
-            padding-bottom: 19px;
-          }
-
-          .bio {
-            font-size: 19px;
-            color: #6b6b6b;
-            width: 100%;
-            max-width: 100%;
-            padding-right: 0;
-          }
-        }
-      }
-
-      .right {
-        display: flex;
-        flex-direction: column;
-        max-width: 100%;
-
-        .prof-info {
-          margin-bottom: 22px;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: flex-end;
-          margin-right: 0 !important;
-          margin-left: 0;
-
-          .hours {
-            padding-right: 17px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-
-            img {
-              width: 40px;
-              height: 32px;
-            }
-
-            .text {
-              line-height: 36px;
-              font-size: 26px;
-              color: #635e70;
-              margin-top: 0;
-              margin-left: 4px;
-            }
-          }
-
-          .horizontal-divider {
-            height: 45px;
-            width: 2px;
-            background: #cbcbcb;
-          }
-
-          .rate {
-            padding-left: 17px;
-            margin-right: 11px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-
-            img {
-              width: 40px;
-              height: 32px;
-            }
-
-            .text {
-              line-height: 36px;
-              font-size: 26px;
-              color: #635e70;
-              margin-top: 0;
-              margin-left: 4px;
-            }
-          }
-
-          .hire-me-btn {
-            margin-top: 0;
-
-            a {
-              height: 60px;
-              width: 180px;
-              border-radius: 6px;
-              background: #fc5185;
-              box-shadow: #fc7ea4 0px 10px 30px -8px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              color: white;
-              font-size: 18px;
-
-              img {
-                width: 22.5px;
-                height: 18px;
-                margin-right: 7.5px;
-              }
-            }
-          }
-        }
-
-        .media {
-          display: flex;
-          flex-direction: row-reverse !important;
-          align-items: flex-end;
-          justify-content: flex-start;
-
-          .follow-text {
-            font-size: 20px;
-            line-height: 27px;
-            color: #6f6b7a;
-            margin-top: 0px;
-            margin-bottom: 12.3px;
-          }
-
-          .icons {
-            img {
-              width: 40px;
-              height: 40px;
-              margin-right: 15px;
-            }
-
-            img:last-child {
-              margin-right: 0;
-            }
-          }
-
-          .call-btn {
-            a {
-              height: 60px;
-              width: 93px;
-              border-radius: 6px;
-              background: #5f45ff;
-              box-shadow: #9180ff 0px 10px 30px -8px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              color: white;
-              font-size: 18px;
-              margin-left: 26px;
-
-              img {
-                width: 18px;
-                height: 18px;
-                margin-right: 0;
-              }
-            }
-          }
-
-          .video-btn {
-            margin-left: 16px;
-
-            a {
-              height: 60px;
-              width: 93px;
-              border-radius: 6px;
-              background: #e7e5f6;
-
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              img {
-                width: 27px;
-                height: 18px;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .tabs-wrapper {
-      margin-top: 20px;
-      background: #ffffff;
-      border-radius: 18px 18px 0px 0px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 65px 55px 65px;
-
-      .tabs-bar {
-        margin-top: 24px;
-
-        width: 100%;
-        height: 71px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        background: #f8f8f8;
-
-        .tab-text {
-          line-height: 27px;
-          font-size: 20px;
-          color: #918f97;
-          margin-right: 27px;
-          white-space: nowrap;
-
-          display: flex !important;
-          justify-content: center !important;
-
-          span.left {
-            display: none;
-          }
-
-          span.right {
-            display: none;
-          }
-        }
-
-        .tab-text:hover {
-          cursor: pointer;
-          color: #1f5de4;
-
-          span.left {
-            padding-right: 0;
-          }
-
-          span.right {
-            padding-left: 0;
-          }
-        }
-
-        .tabs-bar {
-          div:last-child {
-            margin-right: 0;
-          }
-        }
-
-        .tab-text.active {
-          color: #1f5de4;
-          font-weight: bold;
-        }
-      }
-
-      .tab-content-wrapper {
-        margin-top: 50px;
-
-        .portfolio.active,
-        .skills.active,
-        .about.active,
-        .work-experience.active,
-        .education.active {
-          opacity: 1;
-        }
-
-        .portfolio,
-        .about,
-        .work-experience,
-        .education {
-          opacity: 0;
-          transition: all 0.6s ease;
-        }
-
-        .portfolio {
-          width: 100%;
-
-          .images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-
-            img {
-              width: 100%;
-              height: auto;
-              margin-right: 4px;
-              margin-left: 4px;
-              margin-bottom: 15px;
-            }
-
-            img:last-child {
-              margin-right: 0;
-            }
-          }
-
-          .loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            color: #3c3748cf;
-            font-size: 16px;
-
-            img {
-              width: 40px;
-              height: 40px;
-              margin-bottom: 8px;
-            }
-          }
-        }
-
-        .work-experience {
-          width: 100%;
-
-          .work-item {
-            .blue-circle {
-              img {
-                width: 33px;
-                height: 33px;
-              }
-            }
-
-            .work-info {
-              padding-left: 88.5px;
-              padding-bottom: 50px;
-              margin-left: -17.5px;
-
-              .work-title {
-                font-size: 24px;
-                line-height: 33px;
-                color: #3c3748;
-                font-weight: bold;
-              }
-
-              .work-position {
-                font-size: 18px;
-                line-height: 24px;
-                margin-top: 7px;
-                margin-bottom: 20px;
-                color: #3c3748;
-              }
-
-              .work-details {
-                font-size: 19px;
-                color: #787878;
-              }
-            }
-
-            .work-info.dotted-gradient {
-              background-image: linear-gradient(
-                to bottom,
-                #1f5de4 40%,
-                rgba(255, 255, 255, 0) 20%
-              );
-              background-position: 10px 0%;
-              background-size: 1.5px 18px;
-              background-repeat: repeat-y;
-            }
-
-            .work-info.dotted-gradient-2 {
-              background-image: linear-gradient(
-                to bottom,
-                #548aff 40%,
-                rgba(255, 255, 255, 0) 20%
-              );
-              background-position: left;
-              background-position: 10px 0%;
-              background-size: 1.5px 18px;
-              background-repeat: repeat-y;
-            }
-          }
-        }
-
-        .education {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: flex-start;
-
-          .education-item {
-            margin-right: 30px;
-            margin-left: 30px;
-            margin-bottom: 29px;
-            width: 100%;
-            height: 201px;
-            background: #f8f8f8;
-            padding: 21px 45px 21px 45px;
-            border-radius: 8px;
-
-            .education-type {
-              width: 115px;
-              height: 41px;
-              background: #e7ecf7;
-              border-radius: 7px;
-
-              font-size: 18px;
-              color: #1f5de4;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              margin-bottom: 18px;
-            }
-
-            .education-name {
-              line-height: 33px;
-              color: #3c3748;
-              font-weight: bold;
-              font-size: 24px;
-              margin-bottom: 14px;
-            }
-
-            .education-date {
-              line-height: 28px;
-              color: #1f5de4;
-              font-size: 21px;
-              margin-bottom: 7px;
-            }
-
-            .education-info {
-              line-height: 28px;
-              color: #707070;
-              font-size: 20px;
-            }
-          }
-        }
-
-        .skills-tab {
-          .skill-item {
-            width: 100%;
-            height: 145px;
-            background: #f8f8f8;
-            border-radius: 8px;
-            padding: 38px 58px 0px 58px;
-            margin-bottom: 25px;
-            margin-right: 30px;
-          }
-        }
-
-        .about {
-          width: 100%;
-
-          margin-top: 0;
-          padding: 20px 65px 68px 65px;
-          background: #f8f8f8;
-
-          .about-me {
-            .about-title {
-              line-height: 33px;
-              font-size: 24px;
-              color: #3c3748;
-              font-weight: 500;
-            }
-
-            .about-text {
-              margin-top: 12px;
-              font-size: 18px;
-              color: #8b8b8b;
-            }
-          }
-
-          .contact {
-            margin-top: 48px;
-
-            .contact-title {
-              line-height: 33px;
-              font-size: 24px;
-              color: #3c3748;
-              font-weight: 500;
-              margin-bottom: 12px;
-            }
-
-            .email {
-              line-height: 33px;
-              font-size: 20px;
-              color: #3c3748;
-              font-weight: 500;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .hideMeOnTablet {
-    display: none !important;
-  }
-}
-
-@media only screen and (max-width: 765px) {
-  /* CSS that should be displayed if width is equal to or less than 1024px and larger
-         than 425px goes here */
-
-  .theme-container {
-    align-items: center;
-    width: 100%;
-
-    .main-info-bar {
-      display: flex;
-      flex-direction: column;
-      background: #ffffff;
-      border-radius: 0px 0px 18px 18px;
-      width: 100%;
-      height: auto;
-      padding: 19px 10px 31px 10px;
-
-      .left {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 22px;
-
-        .profile-picture {
-          img {
-            width: 86px;
-            height: 86px;
-            border-radius: 50%;
-          }
-
-          margin-bottom: 14px;
-        }
-
-        .main-info {
-          margin-left: 0px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-
-          .user-name {
-            font-size: 32px;
-            font-weight: bold;
-            opacity: 1;
-            color: #3c3748 !important;
-            line-height: 43px;
-            padding-bottom: 5px;
-          }
-
-          .job-title {
-            font-size: 21px;
-            color: #3c3748;
-            line-height: 28px;
-            padding-bottom: 14px;
-          }
-
-          .bio {
-            font-size: 19px;
-            color: #6b6b6b;
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            padding-right: 0;
-          }
-        }
-      }
-
-      .right {
-        display: flex;
-        flex-direction: column;
-        max-width: 100%;
-
-        .prof-info {
-          margin-bottom: 22px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-between;
-          margin-right: 0 !important;
-          margin-left: 0px;
-
-          .hours {
-            padding-right: 17px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            img {
-              width: 30px;
-              height: 26px;
-            }
-
-            .text {
-              line-height: 28px;
-              font-size: 21px;
-              color: #635e70;
-              margin-top: 6px;
-              margin-left: 4px;
-            }
-          }
-
-          .horizontal-divider {
-            height: 45px;
-            width: 2px;
-            background: #cbcbcb;
-          }
-
-          .rate {
-            padding-left: 17px;
-            margin-right: 11px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            img {
-              width: 30px;
-              height: 26px;
-            }
-
-            .text {
-              line-height: 28px;
-              font-size: 21px;
-              color: #635e70;
-              margin-top: 6px;
-              margin-left: 4px;
-            }
-          }
-
-          .hire-me-btn {
-            margin-top: 16px;
-
-            a {
-              height: 60px;
-              width: 180px;
-              border-radius: 6px;
-              background: #fc5185;
-              box-shadow: #fc7ea4 0px 10px 30px -8px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              color: white;
-              font-size: 18px;
-
-              img {
-                width: 22.5px;
-                height: 18px;
-                margin-right: 7.5px;
-              }
-            }
-          }
-        }
-
-        .media {
-          display: flex;
-          flex-direction: column !important;
-          align-items: center;
-          justify-content: center;
-          margin-left: 0;
-
-          .follow-text {
-            font-size: 20px;
-            line-height: 27px;
-            color: #6f6b7a;
-            margin-top: 0px;
-            margin-bottom: 12.3px;
-            margin-top: 30px;
-          }
-
-          .icons {
-            img {
-              width: 40px;
-              height: 40px;
-              margin-right: 15px;
-            }
-
-            img:last-child {
-              margin-right: 0;
-            }
-          }
-
-          .call-btn {
-            a {
-              height: 60px;
-              width: 93px;
-              border-radius: 6px;
-              background: #5f45ff;
-              box-shadow: #9180ff 0px 10px 30px -8px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              color: white;
-              font-size: 18px;
-              margin-left: 0px;
-
-              img {
-                width: 18px;
-                height: 18px;
-                margin-right: 0;
-              }
-            }
-          }
-
-          .video-btn {
-            margin-left: 16px;
-
-            a {
-              height: 60px;
-              width: 93px;
-              border-radius: 6px;
-              background: #e7e5f6;
-
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              img {
-                width: 27px;
-                height: 18px;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .tabs-wrapper {
-      margin-top: 20px;
-      background: #ffffff;
-      border-radius: 18px 18px 0px 0px;
-
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 10px 55px 10px;
-
-      .tabs-bar {
-        margin-top: 24px;
-
-        width: 100%;
-        height: 71px;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        padding-right: 6px;
-        padding-left: 6px;
-        border-radius: 8px;
-        background: #f8f8f8;
-
-        .tab-text {
-          display: flex !important;
-          justify-content: center !important;
-
-          line-height: 27px;
-          font-size: 15px;
-          color: #918f97;
-          margin-right: 16px;
-          white-space: nowrap;
-
-          span.left {
-            display: none;
-          }
-
-          span.right {
-            display: none;
-          }
-        }
-
-        .tab-text:hover {
-          cursor: pointer;
-          color: #1f5de4;
-
-          span.left {
-            padding-right: 0;
-          }
-
-          span.right {
-            padding-left: 0;
-          }
-        }
-
-        .tabs-bar {
-          div:last-child {
-            padding-right: 15px;
-          }
-        }
-
-        .tab-text.active {
-          color: #1f5de4;
-          font-weight: bold;
-        }
-      }
-
-      .tab-content-wrapper {
-        margin-top: 16px;
-
-        .portfolio.active,
-        .skills.active,
-        .about.active,
-        .work-experience.active,
-        .education.active {
-          opacity: 1;
-        }
-
-        .portfolio,
-        .about,
-        .work-experience,
-        .education {
-          opacity: 0;
-          transition: all 0.6s ease;
-        }
-
-        .portfolio {
-          width: 100%;
-
-          .images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-
-            img {
-              width: 100%;
-
-              height: 100%;
-              margin-right: 4px;
-              margin-left: 4px;
-              margin-bottom: 12px;
-            }
-
-            img:last-child {
-              margin-right: 0;
-            }
-          }
-
-          .loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            color: #3c3748cf;
-            font-size: 16px;
-
-            img {
-              width: 40px;
-              height: 40px;
-              margin-bottom: 8px;
-            }
-          }
-        }
-
-        .work-experience {
-          width: 100%;
-
-          .work-item {
-            .blue-circle {
-              img {
-                width: 24px;
-                height: 24px;
-              }
-            }
-
-            .work-info {
-              padding-left: 26px;
-              padding-bottom: 25px;
-              margin-left: -12.5px;
-
-              .work-title {
-                font-size: 22px;
-                line-height: 30px;
-                color: #3c3748;
-                font-weight: bold;
-              }
-
-              .work-position {
-                font-size: 15px;
-                line-height: 20px;
-                margin-top: 8px;
-                margin-bottom: 8px;
-                color: #3c3748;
-              }
-
-              .work-details {
-                font-size: 14px;
-                color: #787878;
-              }
-            }
-
-            .work-info.dotted-gradient {
-              background-image: linear-gradient(
-                to bottom,
-                #1f5de4 40%,
-                rgba(255, 255, 255, 0) 20%
-              );
-              background-position: 8px 0%;
-              background-size: 1.5px 18px;
-              background-repeat: repeat-y;
-            }
-
-            .work-info.dotted-gradient-2 {
-              background-image: linear-gradient(
-                to bottom,
-                #548aff 40%,
-                rgba(255, 255, 255, 0) 20%
-              );
-              background-position: 8px 0%;
-              background-size: 1.5px 18px;
-              background-repeat: repeat-y;
-            }
-          }
-        }
-
-        .education {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: flex-start;
-
-          .education-item {
-            margin-right: 0;
-            margin-bottom: 29px;
-            width: 100%;
-            height: 163px;
-            background: #f8f8f8;
-            padding: 17px 12px 13px 12px;
-            border-radius: 8px;
-
-            .education-type {
-              width: 91px;
-              height: 35px;
-              background: #e7ecf7;
-              border-radius: 7px;
-
-              font-size: 14px;
-              color: #1f5de4;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-
-              margin-bottom: 14px;
-            }
-
-            .education-name {
-              line-height: 24px;
-              color: #3c3748;
-              font-weight: bold;
-              font-size: 18px;
-              margin-bottom: 8px;
-            }
-
-            .education-date {
-              line-height: 20px;
-              color: #1f5de4;
-              font-size: 15px;
-              margin-bottom: 8px;
-            }
-
-            .education-info {
-              line-height: 20px;
-              color: #707070;
-              font-size: 15px;
-            }
-          }
-        }
-
-        .skills-tab {
-          .skill-item {
-            width: 100%;
-            height: 112px;
-            background: #f8f8f8;
-            border-radius: 8px;
-            padding: 10px 22px 0px 22px;
-            margin-bottom: 25px;
-            margin-right: 30px;
-          }
-        }
-
-        .about {
-          width: 100%;
-
-          margin-top: 0;
-          padding: 12px 12px 25px 12px;
-          background: #f8f8f8;
-
-          .about-me {
-            .about-title {
-              line-height: 33px;
-              font-size: 22px;
-              color: #3c3748;
-              font-weight: 500;
-            }
-
-            .about-text {
-              margin-top: 12px;
-              font-size: 15px;
-              color: #8b8b8b;
-            }
-          }
-
-          .contact {
-            margin-top: 15px;
-
-            .contact-title {
-              line-height: 30px;
-              font-size: 22px;
-              color: #3c3748;
-              font-weight: 500;
-              margin-bottom: 8px;
-            }
-
-            .email {
-              line-height: 20px;
-              font-size: 15px;
-              color: #3c3748;
-              font-weight: 500;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .hideMeOnPhone {
-    display: none !important;
-  }
-
-  .percentage {
-    font-size: 16px !important;
-    margin-bottom: 24px !important;
-  }
-}
-
-//slick css
-
-// end of slick
-
-// skills bar css :
-.skills,
-.skills .skill,
-.skills .skill .skill-title,
-.skills .skill .skill-bar {
-  width: 100%;
-  float: left;
-}
-
-.skills {
-  padding: 0px 15px 10px 15px;
-}
-
-.skills .skill {
-  margin-bottom: 30px;
-}
-
-.skills .skill .skill-title {
-  color: #3c3748;
-  line-height: 43px;
-  font-weight: bold;
-  font-size: 32px;
-  margin-bottom: 26px;
-  @media only screen and (max-width: 1024px) and (min-width: 425px) {
-    color: #3c3748;
-    line-height: 33px;
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 18px;
-  }
-  @media only screen and (max-width: 765px) {
-    line-height: 20px;
-    font-size: 14px;
-  }
-}
-
-.skills .skill .skill-bar {
-  width: 100%;
-  height: 20px;
-  border-radius: 23px;
-  background: #c4c1d7;
-  transition: 1s cubic-bezier(1, 0, 0.5, 1);
-  -webkit-transition: 1s cubic-bezier(1, 0, 0.5, 1);
-  -ms-transition: 1s cubic-bezier(1, 0, 0.5, 1);
-
-  @media only screen and (max-width: 1024px) and (min-width: 425px) {
-    height: 16px;
-  }
-  @media only screen and (max-width: 765px) {
-    height: 10px;
-  }
-}
-
-.skills .skill .skill-bar.orange {
-  background: #ffd7b2;
-}
-
-.skills .skill .skill-bar span.orange {
-  background: #ff7c00;
-}
-
-.skills .skill .skill-bar.red {
-  background: #ffc1ec;
-}
-
-.skills .skill .skill-bar span.red {
-  background: #ff26be;
-}
-
-.skills.active .skill .skill-bar {
-  width: 100%;
-}
-
-.skills .skill .skill-bar span {
-  float: left;
-  width: 0;
-  background: #3c327b;
-  height: 20px;
-  border-radius: 23px;
-  position: relative;
-  transition: 1s cubic-bezier(1, 0, 0.5, 1);
-  -webkit-transition: 1s cubic-bezier(1, 0, 0.5, 1);
-  -ms-transition: 1s cubic-bezier(1, 0, 0.5, 1);
-
-  @media only screen and (max-width: 1024px) and (min-width: 425px) {
-    height: 16px;
-  }
-  @media only screen and (max-width: 765px) {
-    height: 10px;
-  }
-}
-
-.skills .skill .skill-bar span b {
-  float: left;
-  width: 100%;
-  position: relative;
-  text-align: right;
-  opacity: 1;
-  font-size: 14px;
-  color: #3c327b;
-  font-weight: 400;
-  top: -13px;
-}
-</style>

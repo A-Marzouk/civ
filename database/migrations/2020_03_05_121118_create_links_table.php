@@ -21,6 +21,7 @@ class CreateLinksTable extends Migration
             $table->string('link')->nullable();
             $table->string('link_title')->nullable();
             $table->integer('is_active')->default(1);
+            $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

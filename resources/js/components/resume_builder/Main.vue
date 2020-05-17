@@ -52,6 +52,9 @@
                 </div>
 
                 <edit-menu v-show='activeTab === "editCV"'></edit-menu>
+                <a class="btn-logout" href="javascript:;" @click="logout">
+                    <font-awesome-icon :icon="['fas','sign-out-alt']" size="2x" color="#001CE2"/>
+                </a>
             </div>
         </div>
 
@@ -374,7 +377,15 @@
             }
         }
 
-        .close-icon {
+        .btn-logout {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+            padding: 1rem 2rem;
+
+            path {
+                fill: $mainBlue;
+            }
 
         }
     }

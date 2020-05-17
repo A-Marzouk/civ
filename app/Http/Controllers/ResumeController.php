@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Theme;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,27 @@ class ResumeController extends Controller
 {
 
 
-    public function themePreview ($themeCode, Request $request) {
+    public function themePreview ( Request $request,$theme_id, $slug = '') {
+
+        $is_preview = $request->real === 'true' ? 'false' : 'true' ;
+
+        $theme = Theme::find($theme_id) ;
+
+        if ($slug !== $theme->slug) {
+            return redirect()->to($theme->url . '?real=' . $request->real);
+        }
+
+        if($is_preview === 'false' &&  Auth::user()){
+            $user = User::withAllRelations( Auth::user()->username);
+            if($user){
+                return view('defaultThemes.theme' . $theme->code,compact('user','is_preview'));
+            }
+        }
+
+        return view('defaultThemes.theme' . $theme->code,compact('is_preview'));
+    }
+
+    public function themePreviewByCode ($themeCode, Request $request) {
         $authUser = Auth::user();
         $is_preview = $request->real === 'true' ? 'false' : 'true' ;
         if($is_preview === 'false' && $authUser){
@@ -28,6 +49,7 @@ class ResumeController extends Controller
         }
         return view('defaultThemes.' . $themeCode,compact('is_preview'));
     }
+
 
     public function downloadPDFResume ($themeCode, $userName) {
         // search the userdata using userName
@@ -53,7 +75,7 @@ class ResumeController extends Controller
         $is_preview = 'false' ;
         if($user){
             // get theme code
-            $themeCode = $user->theme_code ;
+            $themeCode = $user->theme->code ;
             return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
             return abort(404);

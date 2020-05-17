@@ -9,13 +9,15 @@
                 <div class="preview-text hideOnMd">
                     <h2>Your Current Theme</h2>
 
-                    <div class="btn btn-filled">
+                    <a class="btn btn-filled" :href="'/' + user.username " target="_blank">
                         View Theme
                         <svg-vue class="icon" :icon="'eye-icon'"></svg-vue>
-                    </div>
+                    </a>
                 </div>
 
-                <img :src="`/images/resume_themes/theme${activeTheme}/preview.png`" alt="theme-preview" class="active-theme-img">
+                <img v-if="user.theme" :src="user.theme.image" alt="theme-preview" class="active-theme-img">
+                <img v-else src="/images/resume_themes/theme8/preview.png" alt="theme-preview" class="active-theme-img">
+
                 <a :href="'/' + user.username " target="_blank" class="preview-mobile-bar showOnMd justify-content-center">
                     Active Theme <svg-vue class='icon' :icon="'eye-icon'"></svg-vue>
                 </a>
@@ -56,10 +58,10 @@
         <div class="separator"></div>
         
         <div class="themes">
-            <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.code">
-                <img @click="openTheme(theme)" class="theme-image" :src="`/images/resume_themes/theme${theme.code}/preview.png`" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_code) === theme.code}">
+            <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.id">
+                <img @click="openTheme(theme)" class="theme-image" :src="theme.image" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_id) === theme.id}">
 
-                <div class="theme-action-btns" v-if="parseInt(user.theme_code) === theme.code">
+                <div class="theme-action-btns" v-if="parseInt(user.theme_id) === theme.id">
                     <a :href="'/' + user.username " target="_blank" class="active-btn">
                         Open
                         <img src="/images/resume_builder/viewCV/checkmark.png" alt="checkmark">
@@ -69,7 +71,7 @@
                 <div class="theme-action-btns-wrapper" v-else>
                     <div class="left">
                         <div class="activate-btn NoDecor">
-                            <a href="javascript:void(0)" @click="activateTheme(theme.code)">
+                            <a href="javascript:void(0)" @click="activateTheme(theme.id)">
                                 Activate
                                 <img src="/images/resume_builder/viewCV/checkmark.png" alt="checkmark">
                             </a>
@@ -77,13 +79,13 @@
                     </div>
                     <div class="right">
                         <div class="my-data-btn NoDecor">
-                            <a :href="'/preview/theme' + theme.code +'?real=true'" target="_blank">
+                            <a :href="'/preview/' + theme.id +'?real=true'" target="_blank">
                                 My data
                                 <img src="/images/resume_builder/viewCV/eye.png" alt="eye">
                             </a>
                         </div>
                         <div class="preview-btn NoDecor">
-                            <a href="javascript:;" @click='showPreviewModal(theme.code)'>
+                            <a href="javascript:void(0)" @click='showPreviewModal(theme.id)'>
                                 Preview
                                 <img src="/images/resume_builder/viewCV/eye-white.png" alt="eye-white">
                             </a>
@@ -97,7 +99,7 @@
         </div>
 
         <b-modal size="xl" centered id="previewModalContainer" ref="previewModal" title="Theme preview" hide-footer>
-            <iframe :src="`/preview/theme${previewCode}`"></iframe>
+            <iframe :src="`/preview/${previewThemeID}`"></iframe>
         </b-modal>
         
     </div>
@@ -108,29 +110,12 @@
         name: "ViewCV",
         data(){
             return{
-                availableThemes:[
-                    {
-                        code:201
-                    },
-                    {
-                        code:3
-                    },
-                    {
-                        code:200
-                    },
-                    {
-                        code:8
-                    },
-                    {
-                        code:300
-                    },
-                ],
-                activeTheme: 201,
+                availableThemes:[],
                 showProfessionOptions: false,
                 showSpecialityOptions: false,
                 selectedProfession: 0,
                 selectedSpeciality: 0,
-                previewCode: null,
+                previewThemeID: null,
                 professionOptions: [
                     {
                         name: "Select a profession"
@@ -185,8 +170,8 @@
             }
         },
         methods:{
-            showPreviewModal (code) {
-                this.previewCode = code;
+            showPreviewModal (theme_id) {
+                this.previewThemeID = theme_id;
                 this.$refs.previewModal.show();
             },
             openTheme(theme){
@@ -194,13 +179,14 @@
                 window.open(url, "_blank") || window.location.replace(url);
 
             },
-            activateTheme(theme_code){
-                if(this.user.theme_code === theme_code){
+            activateTheme(theme_id){
+                if(this.user.theme_id === theme_id){
                     return;
                 }
-                axios.put('/api/user/update-theme',{theme_code : theme_code})
+                axios.put('/api/user/update-theme',{theme_id : theme_id})
                     .then((response) => {
-                        this.user.theme_code  = theme_code ;
+                        this.user.theme_id  = theme_id ;
+                        this.setActiveTheme(theme_id);
                         this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
@@ -227,7 +213,26 @@
                 // axios request
                 this.selectedSpeciality = index;
                 this.showSpecialityOptions = false;
+            },
+            getThemesList(){
+                axios.get('/api/user/themes-list')
+                    .then( (response) => {
+                        this.availableThemes = response.data.data ;
+                    })
+                    .catch((error) =>{
+                        console.log(error)
+                    })
+            },
+            setActiveTheme(theme_id){
+                this.availableThemes.forEach((theme) => {
+                    if(theme.id === theme_id){
+                        this.user.theme = theme ;
+                    }
+                })
             }
+        },
+        mounted(){
+            this.getThemesList();
         }
     }
 </script>
@@ -648,7 +653,7 @@ $mainBlue: #001CE2;
         width: 80%;
 
         iframe { 
-            width: 90%;
+            width: 100%;
             height: 80vh;
         }
     }

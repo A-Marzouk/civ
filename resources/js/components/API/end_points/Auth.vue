@@ -3,7 +3,7 @@
 
         <div class="main-steps">
             <div class="title">
-                How CIV API actually works ?
+               Authenticating a user | How CIV API actually works ?
             </div>
             <div class="steps">
                 <div>
@@ -84,7 +84,7 @@ axios.post('/api/login',
             <v-list-item three-line>
                 <v-list-item-content>
                     <div class="overline mb-4">Register a User | <b>Example request</b> | Javascript</div>
-                    <v-list-item-title class="headline mb-1 mb-3"> POST: api/register </v-list-item-title>
+                    <v-list-item-title class="headline mb-1 mb-3"> POST: api/civ_register </v-list-item-title>
                     <v-list-item-subtitle class="d-flex flex-column">
 
                         Headers:
@@ -96,10 +96,11 @@ axios.post('/api/login',
                         Request data:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">
-axios.post('/api/register',
+axios.post('/api/civ_register',
     {
         name: 'AGENT - API',
-        email: 'agent2@civ.ie',
+        email: 'agent_new@civ.ie',
+        username: 'agent_new',
         password: '123456789',
         password_confirmation: '123456789',
         client_id: 0,
@@ -133,6 +134,52 @@ axios.post('/api/register',
                         </code>
 
                         </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-card>
+
+
+        <hr>
+
+        <v-card class="mx-auto mt-5" max-width="95%" outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="overline mb-4">Logout a User | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> POST: api/logout </v-list-item-title>
+                    <v-list-item-subtitle class="d-flex flex-column">
+
+                        Headers:
+
+                        <code class="mb-5 prettyprint lang-js p-4">
+{{headers_after_auth}}
+                        </code>
+
+                        Request data:
+
+                        <code class="prettyprint p-4 mb-5 lang-js code">
+axios.post('/api/logout');
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "success": "Logged out - user token revoked"
+}
+
+                        </code>
+
+
+                        <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
+
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "message": "Unauthenticated."
+}
+                        </code>
+
+                    </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
         </v-card>

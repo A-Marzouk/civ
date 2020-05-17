@@ -19,6 +19,7 @@ class CreateTestimonialsTable extends Migration
             $table->string('company')->nullable();
             $table->string('title')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

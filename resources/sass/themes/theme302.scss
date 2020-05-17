@@ -140,8 +140,8 @@
     /** Fixes on vertical mode **/
     
     .hold-slider .slick-slider.slick-vertical .slick-slide{
-        width: 94vw !important;
-        height: 96.5vh;
+        width: auto;
+        height: auto;
         margin-bottom: 18vh;
     }
     .hold-slider .slick-slider.slick-vertical .slick-slide .slide-item{
@@ -228,7 +228,7 @@
             overflow: hidden;
         }
         .hold-slider .slick-slide{
-            max-width: 720px ;
+            max-width: 720px;
             width: 100% !important;
             transition: none;
             margin: 0px auto;
@@ -264,15 +264,32 @@
         }
     }
     @media only screen and (max-width: 480px) {
+
+        .hold-slider{
+            min-height: auto;
+            height: auto;
+        }
+
         /** Mobile vertical slider **/
         .hold-slider .slick-list{
             padding: 0 !important;
         }
         
         .hold-slider .slick-slider.slick-vertical .slick-slide{
-            height: 42vh;
-            margin-bottom: 2vh;
+            height: 275px;
+            margin-bottom: 3em !important;
+            width: auto;            
         }
+
+        .hold-slider .slick-slider.slick-vertical .slick-slide .slide-item{
+            max-height: 280px;
+            border-radius: 20px;
+        }
+        .hold-slider .slick-slider.slick-vertical .slick-slide .slide-item img{
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
         .main-tabs_theme13 .v-tabs-bar.v-tabs-bar--is-mobile{
             height: 42px !important;
         }
@@ -301,9 +318,39 @@
         }
     
         .mc-subtabs_skills .hold-skills .slick-slide .item-skill .v-progress-circular .v-progress-circular__info{
-            font-size: 24px;
+            font-size: 13px;
+        }
+
+        .hold-slider .nav-slider .navDots ul{
+            padding-top: 0 !important;
+            bottom: 0px !important;
+            margin: 0px auto;
         }
     
+    }
+
+    @media only screen and (max-width: 380px) {
+        .hold-slider .slick-slider.slick-vertical .slick-slide{
+            height: auto;
+            margin-bottom: 2em !important;
+            width: auto;            
+        }
+        .imageCol .profile-img{
+            width: 60px;
+            height: 60px;
+        }
+        .profileCol{
+            margin-left: 2%;
+
+            .head-name{
+                font-size: 16px;
+                line-height: 16px;
+            }
+            .head-profile{
+                font-size: 14px;
+                line-height: 14px;
+            }
+        }
     }
     
 

@@ -8,6 +8,8 @@ use App\Http\Resources\AvailabilityInfo as AvailabilityInfoResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Exception;
+
 
 
 class AvailabilityInfoController extends Controller
@@ -37,6 +39,9 @@ class AvailabilityInfoController extends Controller
      */
     public function store(Request $request)
     {
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
         // here we will not save new we will directly update info.
         $this->validator($request->all())->validate();
 
@@ -55,8 +60,12 @@ class AvailabilityInfoController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'available_hours_frequency' => ['required', 'string','max:255','min:3'],
             'available_hours' => ['required', 'numeric','min:10','max:9999999']
         ]);
+    }
+
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }

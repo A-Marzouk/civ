@@ -196,7 +196,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .tm702-header {
   padding-top: 26px;
   padding-bottom: 42px;
@@ -213,10 +213,12 @@ export default {
       grid-template-columns: 236px auto;
       grid-column-gap: 34px;
     }
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1280px) {
       grid-template-columns: 210px 400px auto;
       grid-template-rows: auto auto;
       grid-column-gap: 15px;
+      margin-left: 30px;
+      margin-right: 30px;
     }
   }
   .tm702-logoo {
@@ -232,16 +234,24 @@ export default {
     flex-direction: row;
     //margin-bottom: 34px;
     align-items: center;
-
     .tm702-profile {
       h2 {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 30px;
+        color: var(--blue);
         @media screen and (min-width: 768px) {
           font-size: 40px;
+          line-height: 45px;
         }
       }
       span {
+        font-size: 12px;
+        line-height: 16px;
         @media screen and (min-width: 768px) {
           font-size: 21px;
+          line-height: 29px;
         }
       }
     }

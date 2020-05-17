@@ -1,8 +1,8 @@
 <template>
   <div class="tm700-education" v-if="currentTab === 3">
     <div class="tm700-education--inner">
-      <div v-for="({id}) in educations" v-bind:key="id" class="tm700-educations">
-        <span class="tm700-educations--span">{{id}}.</span>
+      <div v-for="{ id } in educations" v-bind:key="id" class="tm700-educations">
+        <span class="tm700-educations--span">{{ id }}.</span>
         <div class="tw-flex tw-flex-col tw-justify-between">
           <div class="tm700-educations--info">
             <h3 class="tm700-educations--title">California Institute of Technology</h3>
@@ -11,9 +11,11 @@
               <span class="tm700-educations--time">Dec 19 - Present</span>
             </div>
           </div>
-          <p
-            class="tm700-educations--desc"
-          >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
+          <p class="tm700-educations--desc">
+            I'm a paragraph. Click here to add your own text and
+            edit me. It’s easy. Just click “Edit Text” or double
+            click me to add your own content and make changes.
+          </p>
         </div>
       </div>
     </div>
@@ -36,12 +38,11 @@ export default {
   margin-top: 81px;
   .tm700-education--inner {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     margin: 0 auto;
     grid-row-gap: 99px;
     padding-left: 0;
     @media screen and (min-width: 600px) {
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
       grid-row-gap: 128px;
       padding-left: 3.25rem;
     }
@@ -51,12 +52,16 @@ export default {
       padding-left: 3.25rem;
     }
     @media screen and (min-width: 1200px) {
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-row-gap: 174px;
     }
   }
   .tm700-educations {
-    font-family: "Gotham Pro", "Montserrat";
+    h3,
+    span,
+    p {
+      font-family: "Gotham Pro", "Montserrat";
+    }
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -65,7 +70,7 @@ export default {
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      background-color: var(--tm700-blue-1);
+      background-color: var(--blue-1);
       color: #fff;
       border-radius: 9999px;
       padding: 0.5rem;
@@ -95,7 +100,7 @@ export default {
           font-weight: bold;
           font-size: 14px;
           line-height: 13px;
-          margin-bottom: 28px;
+          margin-bottom: 13px;
           @media screen and (min-width: 768px) {
             font-size: 24px;
             line-height: 23px;
@@ -110,7 +115,7 @@ export default {
             font-size: 14px;
           }
           span {
-            color: var(--tm700-blue-1);
+            color: var(--blue-1);
           }
         }
       }
@@ -119,7 +124,7 @@ export default {
         font-weight: 300;
         font-size: 8px;
         line-height: 23px;
-        color: var(--tm700-gray-1);
+        color: var(--gray-1);
         @media screen and (min-width: 768px) {
           font-size: 12px;
         }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Skill as SkillResource;
 use App\Skill;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -37,6 +38,10 @@ class SkillsController extends Controller
      */
     public function store(Request $request)
     {
+
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
 
         $this->validator($request->all())->validate();
 
@@ -90,6 +95,10 @@ class SkillsController extends Controller
             'id' => $id,
         ])->first();
 
+        if(!$this->is_auth($skill)){
+            throw new Exception('Not Authenticated!');
+        }
+
         if($skill->delete()){
             return ['data' => ['id' => $skill->id] ];
         }
@@ -98,8 +107,12 @@ class SkillsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => ['required', 'string', 'max:255','min:3'],
-            'percentage' => ['required', 'numeric','min:30', 'max:100'],
+            'title' => ['sometimes', 'string', 'max:255','min:3'],
+            'percentage' => ['sometimes', 'numeric','min:30', 'max:100'],
         ]);
+    }
+
+    protected function is_auth($request){
+        return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }
 }
