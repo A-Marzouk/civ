@@ -191,7 +191,7 @@
                             </template>
                           </v-speed-dial>
                           <img
-                            class="pofolio-lg-img"
+                            class="portfolio-lg-img"
                             src="/images/resume_themes/theme207/portfolio/1.png"
                             alt="Portfolio Image"
                           />
@@ -236,6 +236,7 @@
                             </template>
                           </v-speed-dial>
                           <v-img
+                            class="portfolio-lg-img"
                             src="/images/resume_themes/theme207/portfolio/1.png"
                             alt="Portfolio Image"
                           ></v-img>
@@ -289,7 +290,7 @@
                               </template>
                             </v-speed-dial>
                             <img
-                              class="pofolio-lg-img"
+                              class="portfolio-lg-img"
                               src="/images/resume_themes/theme207/portfolio/1.png"
                               alt="Portfolio Image"
                             />
@@ -447,7 +448,7 @@
                                     <v-card class="pa-5 card-skill" hover color="#272B2F">
                                       <div class="d-flex flex-no-wrap mt-n3 mt-md-0 mt-sm-1">
                                         <v-avatar
-                                          class="education-avatar"
+                                          class="education-avatar mt-md-0 mt-sm-0 mt-4"
                                           tile
                                           color="rgba(252, 65, 60, 0.1)"
                                         >
@@ -457,12 +458,12 @@
                                         </v-avatar>
                                         <div class="flex-fill">
                                           <v-card-title
-                                            class="education-title mb-5"
+                                            class="education-title mb-5 mt-md-n4 mt-sm-n4 mt-n1"
                                             style="margin-top:-22px;"
                                           >PHP</v-card-title>
                                           <div class="ml-3 div-skillbar">
                                             <v-row align="center" justify="center">
-                                              <v-col md="9" sm="10" cols="9">
+                                              <v-col md="9" sm="10" :cols="windowWidth>393?'10':'9'">
                                                 <v-progress-linear
                                                   tile
                                                   class="skill-progressbar"
@@ -473,7 +474,7 @@
                                                   :value="item.value"
                                                 ></v-progress-linear>
                                               </v-col>
-                                              <v-col md="3" sm="2" cols="3">
+                                              <v-col md="3" sm="2" :cols="windowWidth>393?'2':'3'">
                                                 <span
                                                   class="progress-value-text"
                                                 >{{item.value_text}}</span>
@@ -660,13 +661,13 @@
                   <v-card flat color="transparent" tile class="mt-5">
                     <v-container style="width:100%">
                       <v-row>
-                        <v-col md="3" sm="3" cols="12" :align="windowWidth <=599 ? 'center':'left'">
+                        <v-col lg="2" md="3" sm="3" cols="12" :align="windowWidth <=599 ? 'center':'left'">
                           <v-card-title class="about-me-title-mobile hidden-sm-and-up">About Me</v-card-title>
                           <v-avatar size="250" class="about-me-photo" tile>
                             <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
                           </v-avatar>
                         </v-col>
-                        <v-col md="9" sm="9" cols="12">
+                        <v-col lg="10" md="9" sm="9" cols="12">
                           <div
                             class="about-me-text"
                           >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</div>
@@ -1207,7 +1208,10 @@ export default {
   }
 }
 
-img.pofolio-lg-img {
+img.portfolio-lg-img {
+  @media screen and (min-width: 1441px){
+    height: 560px;
+  }
   @media screen and (max-width: 959px) {
     height: 394px;
   }
@@ -1355,6 +1359,9 @@ img.pofolio-lg-img {
   color: #ffffff !important;
   @media screen and (max-width: 599px){
     font-size: 12px !important;
+  }
+  @media screen and (max-width: 414px){
+    font-size: 10px !important;
   }
 }
 // Skill tab
