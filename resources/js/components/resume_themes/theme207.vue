@@ -463,9 +463,8 @@
                                           <div class="ml-3">
                                             <v-progress-linear
                                               tile
-                                              style="border:3px solid #272B2F; border-radius:12px;"
-                                              class="custom-progress-bar"
-                                              color="#eeeeee"
+                                              class="skill-progressbar"
+                                              color="#ffffff"
                                               rounded
                                               background-color="#FC413C"
                                               height="15"
@@ -906,9 +905,9 @@ export default {
         { id: 4, title: "Software" }
       ],
       childSkills: [
-        { id: 1, title: "Flutter", value: 85, value_text: "85%" },
-        { id: 2, title: "Angular", value: 85, value_text: "85%" },
-        { id: 3, title: "React", value: 85, value_text: "85%" }
+        { id: 1, title: "Flutter", value: 54, value_text: "54%" },
+        { id: 2, title: "Angular", value: 54, value_text: "54%" },
+        { id: 3, title: "React", value: 54, value_text: "54%" }
       ]
     };
   },
@@ -1323,11 +1322,9 @@ img.pofolio-lg-img {
   font-size: 1rem;
   line-height: 1.438rem;
 }
-.custom-progress-bar {
-  background: #eeeeee !important;
-  box-shadow: inset 1px 1px 2px rgba(174, 174, 192, 0.2),
-    inset -1px -1px 1px rgba(255, 255, 255, 0.7) !important;
-  border-radius: 12px !important;
+.skill-progressbar {
+  border-radius: 50px !important;
+  background: #fc413c !important;
 }
 // Skill tab
 // media
@@ -1644,9 +1641,11 @@ img.pofolio-lg-img {
 #resumetheme207 .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
-
-@media screen and (max-width: 959px){
-  #resumeTheme207 .v-progress-linear__determinate {
+#resumeTheme207 .skill-progressbar .v-progress-linear__determinate {
+  border-radius: 50px !important;
+}
+@media screen and (max-width: 959px) {
+  #resumeTheme207 .media-progressbar .v-progress-linear__determinate {
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
     margin-top: -1px !important;
