@@ -66,7 +66,13 @@
 
                 <v-col md="10" sm="12" cols="12">
                   <v-card flat color="transparent" tile>
-                    <agile :dots="false" :fade="true" :autoplay="true" :navButtons="false">
+                    <agile
+                      :dots="false"
+                      :fade="true"
+                      :autoplay="true"
+                      :navButtons="false"
+                      :pauseOnHover="true"
+                    >
                       <img
                         src="/images/welcome_landing_page/imgs/edit-cv.png"
                         alt
@@ -755,11 +761,7 @@ export default {
     font-size: 14px !important;
     line-height: 22px;
   }
-  @media screen and (max-width: 1903px) {
-    font-size: 14px !important;
-    line-height: 20px;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1263px){
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 12px !important;
     line-height: 18px;
   }
@@ -802,6 +804,7 @@ export default {
   @media screen and (max-width: 1903px) {
     font-size: 18px !important;
     margin-bottom: -10px;
+    margin-top: -25px;
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 14px !important;
@@ -914,7 +917,6 @@ export default {
     width: 157px !important;
     height: 48.76px !important;
   }
-
 }
 
 .account-exists {
@@ -1112,7 +1114,7 @@ export default {
     label {
       font-size: 12px;
     }
-    span{
+    span {
       font-size: 10px;
     }
   }
@@ -1208,10 +1210,10 @@ export default {
       width: 14px;
     }
   }
-  @media screen and (min-width: 960px) and (max-width:1263px){
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     width: 24px !important;
     height: 24px !important;
-    img{
+    img {
       width: 10px;
     }
   }
