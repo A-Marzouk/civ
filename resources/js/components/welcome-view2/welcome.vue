@@ -11,124 +11,161 @@
         </a>
       </v-app-bar>
       <!-- 1st inner container -->
-      <v-container style="width:100%" class="container-resume">
-        <v-row justify="center" align="center" class="resume-row">
-          <v-col xl="5" md="6" sm="12" cols="12">
-            <div class="tablet-layer1 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
-                alt
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer1.png"
-                alt
-              />
-            </div>
-            <v-card color="transparent" flat tile class="card-resume">
-              <v-card-title class="resume-title">
-                Make Your
-                <br />Online Resume
-              </v-card-title>
-              <v-card-subtitle
-                class="resume-subtitle"
-              >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
-              <v-card-subtitle>
-                <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
-              </v-card-subtitle>
-            </v-card>
-            <div class="tablet-layer2 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer2.png"
-              />
-            </div>
 
-            <div class="top-layer-background hidden-sm-and-down">
-              <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
-            </div>
-            <div class="top-make-resume hidden-sm-and-down">
-              <img
-                src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
-                alt
-              />
-            </div>
+      <!-- 1st inner container -->
+      <v-container style="width:100%;">
+        <v-row align="center" justify="center">
+          <v-col md="10" cols="12">
+            <v-card color="transparent" flat tile>
+              <v-row align="center" justify="center">
+                <v-col md="10">
+                  <v-card color="transparent" flat tile>
+                    <v-card-subtitle class="resume-title" align="center">Make Your Online Resume</v-card-subtitle>
+                  </v-card>
+                </v-col>
+                <v-col md="7">
+                  <v-card color="transparent" flat tile>
+                    <v-card-subtitle
+                      align="center"
+                      class="resume-subtitle"
+                    >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
+                  </v-card>
+                </v-col>
+                <v-col md="7">
+                  <v-card color="transparent" flat tile class="mt-n5">
+                    <v-card-subtitle
+                      class="reserve-title"
+                      align="center"
+                    >Reserve your own online webpage</v-card-subtitle>
+                    <v-card-subtitle class="mt-n5">
+                      <v-text-field
+                        class="input-avialibility"
+                        outlined
+                        placeholder="civ.ie/yourname"
+                        v-model="username"
+                        background-color="#ffffff"
+                        @keyup="checkUser"
+                        :height="windowWidth <= 959 && windowWidth >599 ? '75': windowWidth<=599 ? '60':''"
+                      >
+                        <template slot="append">
+                          <v-icon
+                            color="#1DBF73"
+                            class="custom-append-icon"
+                            v-show="userFound == true"
+                          >mdi-check-circle</v-icon>
+                          <v-icon
+                            color="#E91E63"
+                            class="custom-append-icon"
+                            v-show="userFound == false"
+                          >mdi-close-circle</v-icon>
+                        </template>
+                      </v-text-field>
+                    </v-card-subtitle>
+                  </v-card>
+                </v-col>
 
-            <v-card color="transparent" flat tile style="z-index:1;">
-              <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
-              <v-card-subtitle class="reserve-input">
-                <v-text-field
-                  outlined
-                  placeholder="civ.ie/yourname"
-                  v-model="username"
-                  background-color="#ffffff"
-                  @keyup="checkUser"
-                  :height="windowWidth <= 959 && windowWidth >599 ? '75': windowWidth<=599 ? '60':''"
-                >
-                  <template slot="append">
-                    <v-icon
-                      color="#1DBF73"
-                      class="custom-append-icon"
-                      v-show="userFound == true"
-                    >mdi-check-circle</v-icon>
-                    <v-icon
-                      color="#E91E63"
-                      class="custom-append-icon"
-                      v-show="userFound == false"
-                    >mdi-close-circle</v-icon>
-                  </template>
-                </v-text-field>
-              </v-card-subtitle>
+                <v-col md="10">
+                  <v-card>Hello</v-card>
+                </v-col>
+              </v-row>
             </v-card>
-
-            <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat class="card-download hidden-sm-and-down">
-              <v-card-text>
-                <v-row align="center">
-                  <v-col xl="6" cols="6">
-                    <div class="download-text">Download for ios and android:</div>
-                  </v-col>
-                  <v-col xl="3" cols="3">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/app-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-                  <v-col xl="3" cols="3">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/play-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-            </v-card>
-            <!-- play store ios buttons -->
           </v-col>
-          <v-col md="5" sm="12" cols="12">
-            <div class="make-resume-background hidden-md-and-up">
-              <img
-                src="/images/welcome_landing_page/imgs/background-images/tablet/make-resume-background.png"
-              />
-            </div>
-            <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
-              <v-card color="transparent" flat tile class="card-login-child">
-                <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
+        </v-row>
+      </v-container>
+      <!-- 1st inner container ends here -->
+
+      <!-- new 2nd layer -->
+      <v-container style="width:100%">
+        <v-row align="center" justify="center">
+          <v-col cols="6">
+            <v-card color="transparent" tile flat>
+              <v-card-subtitle align="center">Want to sign-up</v-card-subtitle>
+              <v-card class="pa-5">
+                <v-card-subtitle align="center">Create New Account</v-card-subtitle>
+                <v-card-subtitle>
+                  <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+                    <div class="input-div">
+                      <label for="name">Name</label>
+                      <v-text-field
+                        class="login-input-field"
+                        type="text"
+                        outlined
+                        background-color="#ffffff"
+                        :rules="nameRules"
+                        v-model="name"
+                      ></v-text-field>
+                    </div>
+                    <div class="input-div">
+                      <label for="email">Email Address</label>
+                      <v-text-field
+                        type="email"
+                        outlined
+                        background-color="#ffffff"
+                        :rules="emailRules"
+                        v-model="email"
+                      ></v-text-field>
+                    </div>
+                    <div class="input-div">
+                      <label for="password">Password</label>
+                      <v-text-field
+                        type="password"
+                        outlined
+                        background-color="#ffffff"
+                        v-model="password"
+                        :rules="passwordRules"
+                      ></v-text-field>
+                    </div>
+                    <div class="input-div">
+                      <label for="confirmPassword">Confirm Password</label>
+                      <v-text-field
+                        type="password"
+                        outlined
+                        background-color="#ffffff"
+                        v-model="confirmPassword"
+                        :rules="confirmPasswordRules"
+                      ></v-text-field>
+                    </div>
+
+                    <v-checkbox
+                      dense
+                      v-model="agreeCheck"
+                      :rules="agreeCheckRules"
+                      class="hidden-sm-only mt-n5"
+                    >
+                      <template slot="label">
+                        <div class="agree-text">
+                          I accept your
+                          <span>Terms of Use</span> &
+                          <span>Privacy Policy.</span>
+                        </div>
+                      </template>
+                    </v-checkbox>
+
+                    <v-checkbox
+                      v-model="agreeCheck"
+                      :rules="agreeCheckRules"
+                      class="d-none d-sm-flex d-md-none"
+                    >
+                      <template slot="label">
+                        <div class="agree-text">
+                          I accept your
+                          <span>Terms of Use</span> &
+                          <span>Privacy Policy.</span>
+                        </div>
+                      </template>
+                    </v-checkbox>
+
+                    <v-btn color="#0046FE" class="btn-signup" @click="validate">
+                      <span>Sign Up</span>
+                    </v-btn>
+                  </v-form>
+                </v-card-subtitle>
+                <v-card-subtitle class="already-registered">
+                  Already registered?
+                  <a>Sign In</a>
+                </v-card-subtitle>
+                <v-card-subtitle align="center" class="separator">Or</v-card-subtitle>
+                <!-- social icons -->
                 <v-card-subtitle align="center">
                   <v-btn
                     class="social-icon mx-md-2 mx-sm-3 mx-2"
@@ -143,187 +180,21 @@
                     />
                   </v-btn>
                 </v-card-subtitle>
-                <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
+                <!-- social icons -->
               </v-card>
-              <!-- Login Form -->
-              <v-card-subtitle class="login-form">
-                <v-form ref="form" v-model="valid" :lazy-validation="lazy">
-                  <div class="input-div">
-                    <label for="name">Name</label>
-                    <v-text-field
-                      class="login-input-field"
-                      type="text"
-                      outlined
-                      background-color="#ffffff"
-                      :rules="nameRules"
-                      v-model="name"
-                    ></v-text-field>
-                  </div>
-                  <div class="input-div">
-                    <label for="email">Email Address</label>
-                    <v-text-field
-                      type="email"
-                      outlined
-                      background-color="#ffffff"
-                      :rules="emailRules"
-                      v-model="email"
-                    ></v-text-field>
-                  </div>
-                  <div class="input-div">
-                    <label for="password">Password</label>
-                    <v-text-field
-                      type="password"
-                      outlined
-                      background-color="#ffffff"
-                      v-model="password"
-                      :rules="passwordRules"
-                    ></v-text-field>
-                  </div>
-                  <div class="input-div">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <v-text-field
-                      type="password"
-                      outlined
-                      background-color="#ffffff"
-                      v-model="confirmPassword"
-                      :rules="confirmPasswordRules"
-                    ></v-text-field>
-                  </div>
-
-                  <v-checkbox
-                    dense
-                    v-model="agreeCheck"
-                    :rules="agreeCheckRules"
-                    class="hidden-sm-only mt-n5"
-                  >
-                    <template slot="label">
-                      <div class="agree-text">
-                        I accept your
-                        <span>Terms of Use</span> &
-                        <span>Privacy Policy.</span>
-                      </div>
-                    </template>
-                  </v-checkbox>
-
-                  <v-checkbox
-                    v-model="agreeCheck"
-                    :rules="agreeCheckRules"
-                    class="d-none d-sm-flex d-md-none"
-                  >
-                    <template slot="label">
-                      <div class="agree-text">
-                        I accept your
-                        <span>Terms of Use</span> &
-                        <span>Privacy Policy.</span>
-                      </div>
-                    </template>
-                  </v-checkbox>
-
-                  <v-card-text align="center">
-                    <v-btn color="#0046FE" class="btn-signup" @click="validate">
-                      <span>Sign Up</span>
-                    </v-btn>
-                  </v-card-text>
-                </v-form>
-              </v-card-subtitle>
-              <!-- Login Form -->
-              <v-card-subtitle class="account-exists mt-md-n3 mt-sm-0 mt-0" align="center">
-                Already have account?
-                <a href="#">Login</a>
-              </v-card-subtitle>
-            </v-card>
-            <div class="tablet-layer3 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png"
-              />
-            </div>
-          </v-col>
-          <v-col md="1" class="hidden-sm-and-down"></v-col>
-
-          <!-- for tab and mobile -->
-          <v-col cols="7" class="hidden-md-and-up" align="center">
-            <v-card color="transparent" flat tile class="card-download">
-              <v-card-subtitle class="download-text">Download for ios and android:</v-card-subtitle>
-              <v-card-subtitle class="hidden-xs-only">
-                <v-row>
-                  <v-col sm="6" cols="6">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/app-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-
-                  <v-col sm="6" cols="6">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/play-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-                </v-row>
-              </v-card-subtitle>
-              <v-row class="hidden-sm-and-up mt-5">
-                <v-col sm="6" cols="6">
-                  <a href="#">
-                    <img
-                      class="app-store-logo"
-                      src="/images/welcome_landing_page/icons/app-store.png"
-                      alt
-                    />
-                  </a>
-                </v-col>
-
-                <v-col sm="6" cols="6">
-                  <a href="#">
-                    <img
-                      class="app-store-logo"
-                      src="/images/welcome_landing_page/icons/play-store.png"
-                      alt
-                    />
-                  </a>
-                </v-col>
-              </v-row>
             </v-card>
           </v-col>
-          <!-- for tab and mobile -->
         </v-row>
       </v-container>
-      <!-- 1st inner container ends here -->
+      <!-- new 2nd layer -->
 
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
           <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
-            <div class="tablet-layer4 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png"
-              />
-            </div>
-            <v-card flat tile color="transparent">
-              <div class="middle-layer-background1 hidden-sm-and-down">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
-              </div>
 
+            <v-card flat tile color="transparent">
               <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7">
                 Build a resume that you
                 <br />can be proud of
@@ -331,9 +202,6 @@
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-4 mt-n4"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
-              <div class="middle-layer-background2 hidden-sm-and-down">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
-              </div>
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
@@ -360,13 +228,6 @@
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
               </v-img>
-              <div class="tablet-layer5 hidden-md-and-up">
-                <img
-                  :width="windowWidth"
-                  class="hidden-xs-only"
-                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
-                />
-              </div>
             </v-card>
 
             <!-- 2nd card -->
@@ -396,31 +257,10 @@
                     </span>
                   </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
-                    <div class="tablet-layer5 hidden-sm-and-up">
-                      <img
-                        :width="windowWidth"
-                        class="hidden-sm-and-up"
-                        src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
-                      />
-                    </div>
                     <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
-                    <div class="tablet-layer6 hidden-sm-and-up">
-                      <img
-                        :width="windowWidth"
-                        class="hidden-sm-and-up"
-                        src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
-                      />
-                    </div>
                   </v-col>
                 </v-row>
               </v-card-subtitle>
-              <div class="tablet-layer6 hidden-md-and-up">
-                <img
-                  :width="windowWidth"
-                  class="hidden-xs-only"
-                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
-                />
-              </div>
             </v-card>
 
             <v-card tile color="transparet" flat class="card-gallery hidden-md-and-up">
@@ -453,9 +293,6 @@
                   </v-col>
                 </template>
               </v-row>
-              <div class="middle-layer-background3 hidden-sm-and-down">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer3.svg" />
-              </div>
             </v-card>
           </v-col>
         </v-row>
@@ -465,18 +302,7 @@
       <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
         <v-row align="center" justify="center">
           <v-col cols="12" :align="windowWidth <=959 ? 'left' : 'center'">
-            <div class="middle-layer-background4 hidden-sm-and-down">
-              <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
-            </div>
-
             <v-card flat tile color="transparent" style="z-index:1;">
-              <div class="tablet-layer7 hidden-md-and-up">
-                <img
-                  class="hidden-xs-only"
-                  :width="windowWidth"
-                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer7.png"
-                />
-              </div>
               <v-card-subtitle class="build-resume-title margin-n50">Integrations</v-card-subtitle>
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n5 mb-sm-0 mb-n11"
@@ -505,9 +331,6 @@
         </v-row>
       </v-container>
       <!-- 3rd inner container -->
-      <div class="middle-layer-background5 hidden-sm-and-down">
-        <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.svg" />
-      </div>
     </v-container>
     <!-- main container -->
     <!-- Footer -->
@@ -618,7 +441,7 @@ export default {
   data() {
     return {
       windowWidth: window.innerWidth,
-      username: "civ.ie/",
+      username: "civ.ie/yourname",
       userFound: null,
       valid: false,
       lazy: false,
@@ -640,8 +463,7 @@ export default {
         { id: 1, title: "instagram", width: 18, tablet_width: 30 },
         { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
         { id: 3, title: "google", width: 14, tablet_width: 22 },
-        { id: 4, title: "facebook", width: 18, tablet_width: 28 },
-        { id: 5, title: "github", width: 22, tablet_width: 36 }
+        { id: 4, title: "facebook", width: 18, tablet_width: 28 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -765,6 +587,31 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.separator::before,
+.separator::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid lightgray;
+}
+.separator::before {
+  margin-right: 0.25em;
+}
+.separator::after {
+  margin-left: 0.25em;
+}
+// separator
+//input
+.input-avialibility {
+  .v-text-field {
+    border-radius: 20px !important;
+  }
+}
+//input
 .footer-container {
   @media screen and (max-width: 599px) {
     width: 100%;
@@ -909,55 +756,17 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 4.2rem;
-  line-height: 5rem;
-  margin-bottom: 10px;
-  @media screen and (max-width: 1440px) {
-    font-size: 3.3rem;
-    line-height: 4rem;
-  }
-
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 2.5rem;
-    line-height: 3rem;
-  }
-
-  @media screen and (max-width: 959px) {
-    font-size: 4rem;
-    line-height: 4.375rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 2.625rem;
-    line-height: 2.813rem;
-    margin-bottom: 20px;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 2rem;
-    line-height: 2.1rem;
-  }
+  font-size: 64px;
+  line-height: 80px;
 }
 
 //resume subtitle
 .resume-subtitle {
   font-family: "Open Sans" !important;
-  font-size: 1.375rem !important;
-  line-height: 2.25rem;
+  font-size: 18px !important;
+  line-height: 24px;
   color: #828282 !important;
-  @media screen and (max-width: 1440px) {
-    font-size: 17px !important;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 14px !important;
-    line-height: 1.8rem;
-  }
-  @media screen and (max-width: 959px) {
-    font-size: 1.125rem !important;
-    line-height: 1.875rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 0.875rem !important;
-    line-height: 1.375rem;
-  }
+  margin-top: -42px;
 }
 
 .btn-get-started {
@@ -994,18 +803,6 @@ export default {
   line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
-  z-index: 1;
-  @media screen and (max-width: 1440px) {
-    font-size: 1rem !important;
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 80px;
-    font-weight: 600;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-    margin-bottom: 5px;
-  }
 }
 
 //card download
@@ -1057,32 +854,6 @@ export default {
 // .... upper left block..............
 
 //upper right block
-.card-login-form {
-  border-radius: 15px !important;
-  padding-left: 2.38rem !important;
-  padding-right: 2.38rem !important;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
-  z-index: 1;
-  @media screen and (max-width: 1440px) {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-  }
-  @media screen and (max-width: 959px) {
-    height: 960px;
-    margin-top: 80px;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    .card-login-child {
-      padding: 10px;
-    }
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-    height: 818px;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
 
 .login-title {
   font-family: "Montserrat" !important;
@@ -1103,7 +874,6 @@ export default {
   }
 }
 .social-icon {
-  border-radius: 10px !important;
   height: 39px !important;
   width: 39px !important;
   min-width: 39px !important;
@@ -1494,445 +1264,6 @@ export default {
   }
 }
 //footer
-
-// backgrounds
-.top-layer-background {
-  position: absolute;
-  width: 1920px;
-  top: 3.7rem;
-  left: 0;
-  right: 0;
-  margin-right: auto;
-  margin-left: auto;
-  img {
-    width: 95%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    left: 0;
-    top: 3.9rem;
-    img {
-      width: 100%;
-    }
-  }
-
-  @media screen and (max-width: 1366px) {
-    left: 0;
-    width: 1366px;
-    top: 4.8rem;
-    img {
-      width: 100%;
-    }
-  }
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: 0;
-    top: 5.7rem;
-    img {
-      width: 100%;
-    }
-  }
-  @media screen and (max-width: 1024px) {
-    img {
-      width: 79%;
-    }
-  }
-}
-
-.top-make-resume {
-  position: absolute;
-  width: 1920px;
-  top: 32.7rem;
-  left: -0.3rem;
-  img {
-    width: 100%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    top: 31rem;
-    left: 0;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    left: 0;
-    top: 31.5rem;
-  }
-
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: 0;
-    top: 32rem;
-  }
-  @media screen and (max-width: 1024px) {
-    img {
-      width: 79%;
-    }
-  }
-}
-
-.middle-layer-background1 {
-  position: absolute;
-  width: 1920px;
-  top: -17.8rem;
-  left: -26%;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 0;
-  img {
-    width: 90%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    left: -28%;
-    top: -13.3rem;
-  }
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: -18%;
-    top: -13rem;
-  }
-  @media screen and (max-width: 1024px) {
-    top: -9rem;
-    left: -41%;
-    img {
-      width: 79%;
-    }
-  }
-}
-
-.middle-layer-background2 {
-  position: absolute;
-  float: left;
-  width: 1920px;
-  top: 25.8rem;
-  left: -17.5%;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media screen and (min-width: 1920px) {
-    top: 215%;
-    left: -24.5%;
-  }
-
-  @media screen and (max-width: 1900px) {
-    width: 1440px;
-    top: 219%;
-    left: -26.5%;
-    img {
-      width: 94%;
-    }
-  }
-
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    top: 249%;
-    left: -22%;
-  }
-  @media screen and (max-width: 1024px) {
-    width: 1280px;
-    top: 210%;
-    left: -44%;
-    img {
-      width: 70%;
-    }
-  }
-}
-
-.middle-layer-background3 {
-  position: absolute;
-  width: 1920px;
-  top: 5%;
-  left: -10.5%;
-  z-index: 1;
-  img {
-    width: 100%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    left: -14.5%;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    left: -10%;
-  }
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: -5%;
-  }
-  @media screen and (max-width: 1024px) {
-    left: -10%;
-  }
-}
-
-.middle-layer-background4 {
-  position: absolute;
-  width: 1920px;
-  top: 77%;
-  left: -0.2rem;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 0;
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    top: 76.5%;
-    left: 3px;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    top: 76.7%;
-    left: -2px;
-  }
-  @media screen and (max-width: 1280px) {
-    top: 76.8%;
-    width: 1280px;
-    left: -0.8125rem;
-  }
-  @media screen and (max-width: 1024px) {
-    top: 72%;
-  }
-}
-
-.middle-layer-background5 {
-  position: absolute;
-  width: 1920px;
-  top: 93%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    top: 92.5%;
-  }
-  @media screen and (max-width: 1280px) {
-    top: 93%;
-    width: 1280px;
-  }
-  @media screen and (max-width: 1024px) {
-    top: 92%;
-  }
-}
-
-// backgrounds
-// background tablet and mobile
-.tablet-layer1 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 1.5%;
-  @media screen and (max-width: 599px) {
-    top: 1.8%;
-    width: 90%;
-  }
-
-  @media screen and (max-width: 414px) {
-    top: 2%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 2.3%;
-  //   img {
-  //     width: 88%;
-  //   }
-  // }
-}
-
-.tablet-layer2 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 7.9%;
-  // @media screen and (max-width: 896px){
-  //   top:6.4%
-  // }
-  @media screen and (max-width: 599px) {
-    width: 80%;
-    top: 7.5%;
-    left: 10%;
-  }
-  @media screen and (max-width: 414px) {
-    top: 7.8%;
-  }
-  @media screen and (max-width: 385px) {
-    top: 8%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 7.5%;
-  // }
-}
-
-.make-resume-background {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 21%;
-}
-
-.tablet-layer3 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 33.4%;
-  // @media screen and (max-width: 896px){
-  //   top:31.7%;
-  // }
-  @media screen and (max-width: 599px) {
-    top: 41.3%;
-    img {
-      width: 97%;
-    }
-  }
-  @media screen and (max-width: 414px) {
-    top: 41.8%;
-  }
-  @media screen and (max-width: 400px) {
-    top: 40.6%;
-  }
-
-  @media screen and (max-width: 380px) {
-    top: 41.5%;
-  }
-
-  @media screen and (max-width: 360px) {
-    top: 42.5%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 40.1%;
-  //   left: 20px;
-  //   img {
-  //     width: 89%;
-  //   }
-  // }
-}
-
-.tablet-layer4 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 47.7%;
-  img {
-    width: 95%;
-  }
-  // @media screen and (max-width: 896px){
-  //   top: 46.5%;
-  // }
-  @media screen and (max-width: 599px) {
-    top: 52.5%;
-  }
-  @media screen and (max-width: 414px) {
-    top: 52.8%;
-  }
-
-  @media screen and (max-width: 400) {
-    top: 51.7%;
-  }
-
-  @media screen and (max-width: 375px) {
-    top: 53.1%;
-  }
-  @media screen and (max-width: 360px) {
-    top: 53.7%;
-  }
-}
-
-.tablet-layer5 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 3%;
-  right: 0;
-  top: 95.1%;
-  // @media screen and (max-width: 896px){
-  //   top: 59.5%;
-  // }
-  @media screen and (max-width: 599px) {
-    top: 39.6%;
-    left: 38%;
-    img {
-      width: 60%;
-    }
-  }
-  @media screen and (max-width: 380px) {
-    left: 49%;
-    top: 47%;
-  }
-  @media screen and (max-width: 370px) {
-    top: 52%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 127rem;
-  // }
-}
-
-.tablet-layer6 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 20px;
-  right: 0;
-  z-index: 0;
-  top: 11%;
-  img {
-    width: 89%;
-  }
-  // @media screen and (max-width: 896px){
-  //   top: 65%;
-  // }
-  @media screen and (max-width: 599px) {
-    width: 80%;
-    top: 190.8%;
-    left: 32%;
-    img {
-      width: 80%;
-    }
-  }
-  @media screen and (max-width: 380px) {
-    top: 189%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 157.3rem;
-  // }
-}
-
-.tablet-layer7 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: -13%;
-  img {
-    width: 100%;
-  }
-}
-//background tablet and mobile
 </style>
 
 <style>
@@ -1951,125 +1282,13 @@ export default {
   > .v-input__slot
   fieldset {
   border: 2px solid #ffffff !important;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
-
-#welcomeView2 .v-text-field .v-input__control .v-input__slot {
+#welcomeView2
+  .v-text-field  
+  .v-input__control
+  .v-input__slot {
   min-height: 60px !important;
+  box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);
+  border-radius: 10px;
 }
-
-#welcomeView2 .slick-dots li button {
-  width: 110px;
-  height: 6px;
-  border-radius: 0px;
-  margin-left: -10px;
-}
-
-#welcomeView2 .slick-dots li.slick-active button {
-  background-color: #0f4cee;
-  outline: none;
-  transition: width 5s ease-out 0s;
-}
-
-#welcomeView2 .slick-dots li button:focus {
-  outline: none !important;
-}
-
-@media screen and (min-width: 1700px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    max-width: 700px !important;
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 45px !important;
-  }
-}
-/* tablet screen */
-/* @media screen and (max-width: 959px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 4.688rem !important;
-  }
-} */
-/* tablet screen */
-/* mobile screen */
-@media screen and (max-width: 959px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 60px !important;
-  }
-  #welcomeView2 .gallerySlides {
-    margin-top: -120px;
-  }
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: -78px;
-  }
-  #welcomeView2 .integrationSlides .slick-slide {
-    margin-left: -35px !important;
-  }
-  #welcomeView2 .integrationSlides .slick-dots li button {
-    width: 130px;
-    height: 6px;
-    border-radius: 0px;
-    margin-left: -10px;
-    margin-top: -30px;
-  }
-}
-@media screen and (max-width: 599px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 50px !important;
-  }
-  #welcomeView2 .gallery-slides .slick-dots li button {
-    width: 40px;
-    height: 6px;
-    border-radius: 0px;
-    margin-left: -10px;
-    margin-top: -20px;
-  }
-  #welcomeView2 .integrationSlides .slick-dots li button {
-    width: 50px;
-    height: 6px;
-    border-radius: 0px;
-    margin-left: -10px;
-  }
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 34px;
-    width: 300px !important;
-  }
-  #welcomeView2 .integrationSlides .slick-slide {
-    margin-left: -55px !important;
-    margin-top: 0px !important;
-  }
-}
-@media screen and (max-width: 414px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 27px;
-    width: 300px !important;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 10px;
-    width: 300px !important;
-  }
-}
-@media screen and (max-width: 393px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 13px;
-    width: 300px !important;
-  }
-}
-@media screen and (max-width: 375px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 1px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: -8px;
-  }
-}
-/* mobile screen */
 </style>

@@ -54,7 +54,7 @@
             </div>
 
             <div class="top-layer-background hidden-sm-and-down">
-              <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
+              <img :width="windowWidth" src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
             </div>
             <div class="top-make-resume hidden-sm-and-down">
               <img
