@@ -64,7 +64,7 @@
                   </v-card>
                 </v-col>
 
-                <v-col md="10" sm="12" cols="12">
+                <v-col md="11" sm="12" cols="12">
                   <v-card flat color="transparent" tile>
                     <agile
                       :dots="false"
@@ -210,7 +210,7 @@
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
-          <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
+          <v-col md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
 
             <v-card flat tile color="transparent">
