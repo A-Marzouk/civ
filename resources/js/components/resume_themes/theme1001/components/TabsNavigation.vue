@@ -16,8 +16,17 @@
 				</li>
 			</ul>
 
-			<SocialLinks />
+			<a href="#" class="toggle-social-links" @click="isOpen=!isOpen">
+				<svg class="toggle__icon--close" :class="{'toggle__icon--hide': !isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+					<path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+				</svg>
+				<svg class="toggle__icon--open" :class="{'toggle__icon--hide': isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+					<path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+				</svg>
+			</a>
 		</div>
+
+		<SocialLinks :isOpen="isOpen" />
 	</nav>
 </template>
 
@@ -34,7 +43,13 @@ export default {
 		}
 	},
 
-	components: { SocialLinks }
+	components: { SocialLinks },
+
+	data: () => {
+		return {
+			isOpen: false
+		};
+	}
 };
 </script>
 
@@ -50,11 +65,13 @@ export default {
 	display: flex;
 	height: 48px;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .navigation {
 	overflow-x: scroll;
 	display: flex;
+	flex: 1;
 	align-items: center;
 	height: 100%;
 	list-style: none;
@@ -95,9 +112,45 @@ export default {
 	font-weight: 700;
 }
 
+.toggle-social-links {
+	height: 48px;
+	width: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ffffff;
+}
+
+.toggle-social-links svg {
+	fill: currentColor;
+	opacity: 1;
+	transition: opacity 0.3s;
+
+	&.toggle__icon--open {
+		height: 20px;
+		width: 20px;
+	}
+
+	&.toggle__icon--close {
+		height: 18px;
+		width: 18px;
+	}
+
+	&.toggle__icon--hide {
+		opacity: 0;
+		height: 0;
+		width: 0;
+	}
+}
+
 @media (min-width: $sm) {
 	.navigation-wrapper {
 		height: 60px;
+	}
+
+	.toggle-social-links {
+		height: 60px;
+		width: 60px;
 	}
 }
 
@@ -127,10 +180,16 @@ export default {
 	.navigation__link.active a::after {
 		opacity: 1;
 	}
+
+	.toggle-social-links {
+		height: 62px;
+		width: 62px;
+	}
 }
 
 @media (min-width: $lg) {
 	.tabs-navigation {
+		display: flex;
 		padding: 0 50px;
 	}
 
@@ -149,6 +208,10 @@ export default {
 
 	.navigation__link a {
 		font-size: 12px;
+	}
+
+	.toggle-social-links {
+		display: none;
 	}
 }
 
