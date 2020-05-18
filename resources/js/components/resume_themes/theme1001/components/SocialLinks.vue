@@ -80,12 +80,11 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding-left: 10px;
+	padding: 0 10px;
 }
 
 .social-label {
-	font-size: 10px;
-	font-weight: 300;
+	font-size: 15px;
 	white-space: nowrap;
 	color: rgba(255, 255, 255, 0.67);
 }
@@ -122,7 +121,7 @@ export default {
 	height: 0;
 	overflow: hidden;
 	position: absolute;
-	top: 35px;
+	top: 48px;
 	right: 0;
 	left: 0;
 	transition: height 0.3s;
@@ -130,30 +129,40 @@ export default {
 
 .social-dropdown.social-dropdown--open {
 	border-top-width: 1px;
-	height: 45px;
+	height: 48px;
 }
 
 .social-links {
 	display: flex;
+	padding-left: 10px;
 }
 
 .social-links a {
 	display: block;
-	margin-left: 7px;
+	border-radius: 100px;
+	margin-left: 10px;
+	transition: background 0.3s;
 }
 
 .social-links a svg {
-	height: 24px;
-	width: 24px;
+	height: 30px;
+}
+
+.social-links a:hover {
+	background: white;
+
+	svg path {
+		fill: #3d5ed4;
+	}
+	svg ellipse {
+		fill: none;
+		stroke: none;
+	}
 }
 
 @media (min-width: $sm) {
-	.social-label {
-		font-size: 12px;
-	}
-
 	.social-dropdown {
-		top: 50px;
+		top: 60px;
 	}
 
 	.social-dropdown.social-dropdown--open {
@@ -162,11 +171,6 @@ export default {
 
 	.social-links a {
 		margin-left: 9px;
-	}
-
-	.social-links a svg {
-		height: 28px;
-		width: 28px;
 	}
 }
 
@@ -182,20 +186,20 @@ export default {
 	.social-dropdown.social-dropdown--open {
 		height: 60px;
 	}
-
-	.social-links a svg {
-		height: 32px;
-		width: 32px;
-	}
 }
 
 @media (min-width: $lg) {
 	.social-menu {
 		display: flex;
+		padding-right: initial;
 	}
 
 	.toggle-social-menu {
 		display: none;
+	}
+
+	.social-label {
+		font-size: 12px;
 	}
 
 	.social-dropdown {
@@ -208,12 +212,15 @@ export default {
 
 @media (min-width: 1600px) {
 	.social-label {
-		font-size: 16px;
+		font-size: 18px;
+	}
+
+	.social-links a {
+		margin-left: 20px;
 	}
 
 	.social-links a svg {
-		height: 35px;
-		width: 35px;
+		height: 42px;
 	}
 }
 </style>

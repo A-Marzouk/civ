@@ -35,15 +35,15 @@ export default {
 
 .title {
 	font-family: inherit;
-	font-size: 14px;
-	line-height: 18px;
+	font-size: 16px;
+	line-height: 21px;
 	font-weight: 700;
 }
 
 .sub-title {
 	font-family: inherit;
-	font-size: 10px;
-	line-height: 17px;
+	font-size: 13px;
+	line-height: 20px;
 	color: #ffffff;
 }
 

@@ -42,7 +42,7 @@ export default {
 
 .profile__hireme {
 	font-family: $muli;
-	padding-top: 15px;
+	padding-top: 18px;
 	display: flex;
 	align-items: center;
 }
@@ -50,6 +50,7 @@ export default {
 .hireme {
 	display: flex;
 	align-items: center;
+	flex: 1;
 }
 
 .hireme-rate {
@@ -59,20 +60,32 @@ export default {
 	padding-right: 15px;
 }
 
+.hireme-rate strong {
+	font-family: inherit;
+	font-size: 16px;
+	line-height: 21px;
+	font-weight: 700;
+}
+
 .hireme-rate span {
 	font-family: inherit;
-	font-size: 8px;
+	font-size: 9px;
 	font-weight: 300;
 	line-height: 10px;
 	white-space: nowrap;
 	color: #d3d6e4;
 }
 
-.hireme-rate strong {
-	font-family: inherit;
-	font-size: 14px;
-	line-height: 18px;
-	font-weight: 700;
+@media (min-width: 375px) {
+	.hireme-rate strong {
+		font-size: 20px;
+		line-height: 25px;
+	}
+
+	.hireme-rate span {
+		font-size: 11px;
+		line-height: 13px;
+	}
 }
 
 @media (min-width: $sm) {
@@ -95,6 +108,10 @@ export default {
 }
 
 @media (min-width: $md) {
+	.hireme {
+		flex: initial;
+	}
+
 	.hireme-rate {
 		padding-right: 30px;
 	}

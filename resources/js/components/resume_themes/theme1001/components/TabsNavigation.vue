@@ -5,11 +5,11 @@
 				<li class="navigation__link" :class="{'active': currentTab==='portfolio'}">
 					<a href="#" @click.prevent="$emit('tabChanged', 'portfolio')">Portfolio</a>
 				</li>
-				<li class="navigation__link" :class="{'active': ['work-experience', 'education'].includes(currentTab) }">
-					<a href="#" @click.prevent="$emit('tabChanged', 'education')">Work experience & Education</a>
+				<li class="navigation__link" :class="{'active': currentTab==='experience-education'}">
+					<a href="#" @click.prevent="$emit('tabChanged', 'experience-education')">Work experience & Education</a>
 				</li>
-				<li class="navigation__link" :class="{'active': ['skills', 'language'].includes(currentTab) }">
-					<a href="#" @click.prevent="$emit('tabChanged', 'skills')">Skills & Language</a>
+				<li class="navigation__link" :class="{'active': currentTab==='skills-language'}">
+					<a href="#" @click.prevent="$emit('tabChanged', 'skills-language')">Skills & Language</a>
 				</li>
 				<li class="navigation__link" :class="{'active': currentTab==='about-me'}">
 					<a href="#" @click.prevent="$emit('tabChanged', 'about-me')">About Me</a>
@@ -48,7 +48,7 @@ export default {
 .navigation-wrapper {
 	position: relative;
 	display: flex;
-	height: 35px;
+	height: 48px;
 	justify-content: space-between;
 }
 
@@ -58,12 +58,15 @@ export default {
 	align-items: center;
 	height: 100%;
 	list-style: none;
-	padding: 0;
+	padding: 0 25px;
 	margin: 0;
+}
 
-	&::-webkit-scrollbar {
-		height: 0;
-	}
+.navigation::-webkit-scrollbar {
+	display: none;
+	-webkit-appearance: none;
+	scrollbar-width: none;
+	height: 0;
 }
 
 .navigation__link {
@@ -75,8 +78,7 @@ export default {
 
 .navigation__link a {
 	display: flex;
-	font-size: 10px;
-	font-weight: 300;
+	font-size: 15px;
 	align-items: center;
 	height: 100%;
 	padding: 0 10px;
@@ -84,7 +86,6 @@ export default {
 
 	&:hover {
 		color: #ffffff;
-		font-weight: 700;
 		text-decoration: none;
 	}
 }
@@ -96,17 +97,12 @@ export default {
 
 @media (min-width: $sm) {
 	.navigation-wrapper {
-		height: 50px;
-	}
-
-	.navigation__link a {
-		font-size: 12px;
+		height: 60px;
 	}
 }
 
 @media (min-width: $md) {
 	.navigation-wrapper {
-		padding: 0 25px;
 		height: 62px;
 	}
 
@@ -134,6 +130,14 @@ export default {
 }
 
 @media (min-width: $lg) {
+	.tabs-navigation {
+		padding: 0 50px;
+	}
+
+	.navigation {
+		padding: 0;
+	}
+
 	.navigation-wrapper {
 		max-width: $lg;
 		margin: 0 auto;
@@ -142,23 +146,38 @@ export default {
 	.navigation__link {
 		padding: 0 25px;
 	}
+
+	.navigation__link a {
+		font-size: 12px;
+	}
 }
 
 @media (min-width: 1600px) {
+	.tabs-navigation {
+		padding: 0 100px;
+	}
+
 	.navigation-wrapper {
 		max-width: 1600px;
-		padding: 0 50px;
 		height: 75px;
 	}
 
+	.navigation__link {
+		padding: 0 35px;
+	}
+
 	.navigation__link a {
-		font-size: 17px;
+		font-size: 18px;
 	}
 }
 
 @media (min-width: $xl) {
 	.navigation-wrapper {
 		max-width: $xl;
+	}
+
+	.navigation__link {
+		padding: 0 45px;
 	}
 }
 </style>

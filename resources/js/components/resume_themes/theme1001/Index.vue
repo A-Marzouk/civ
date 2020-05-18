@@ -3,17 +3,20 @@
 		<Header :currentTab="currentTab" :currentUser="currentUser" />
 
 		<TabsNavigation :currentTab="currentTab" @tabChanged="currentTab=$event" />
+
+		<TabsContent :currentTab="currentTab" />
 	</div>
 </template>
 
 <script>
 import Header from "./components/Header";
 import TabsNavigation from "./components/TabsNavigation";
+import TabsContent from "./components/TabsContent";
 
 export default {
 	name: "resume-theme-1001",
 
-	components: { Header, TabsNavigation },
+	components: { Header, TabsNavigation, TabsContent },
 
 	data: () => {
 		return {
