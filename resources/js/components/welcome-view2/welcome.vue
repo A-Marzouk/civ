@@ -96,7 +96,7 @@
               <v-card class="pa-5">
                 <v-card-subtitle align="center" class="create-new-account-text">Create New Account</v-card-subtitle>
                 <v-card-subtitle>
-                  <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+                  <v-form ref="form" v-model="valid" :lazy-validation="lazy" class="login-form">
                     <div class="input-div">
                       <label for="name">Name</label>
                       <v-text-field
@@ -693,20 +693,6 @@ export default {
     font-weight: 500;
     color: #616161 !important;
   }
-  .input-div {
-    margin-top: -20px;
-  }
-
-  @media screen and (max-width: 959px) {
-    .input-div {
-      margin-top: 0px;
-    }
-  }
-  @media screen and (max-width: 599px) {
-    label {
-      font-size: 12px;
-    }
-  }
 }
 //form
 
@@ -744,10 +730,18 @@ export default {
 //resume
 .resume-title {
   font-family: "Montserrat" !important;
-  color: #0046fe !important;
   font-weight: bold;
   font-size: 64px;
   line-height: 80px;
+  color: #0046fe !important;
+  @media screen and (max-width: 1903px) {
+    font-size: 48px;
+    line-height: 60px;
+  }
+  @media screen and (max-width: 1263px) {
+    font-size: 36px;
+    line-height: 50px;
+  }
 }
 
 //resume subtitle
@@ -757,6 +751,14 @@ export default {
   line-height: 24px;
   color: #828282 !important;
   margin-top: -42px;
+  @media screen and (max-width: 1903px) {
+    font-size: 14px !important;
+    line-height: 22px;
+  }
+  @media screen and (max-width: 1903px) {
+    font-size: 14px !important;
+    line-height: 20px;
+  }
 }
 
 .btn-get-started {
@@ -793,57 +795,14 @@ export default {
   line-height: 2.25rem;
   color: #313131 !important;
   margin-bottom: 20px;
-}
-
-//card download
-
-.card-download {
-  margin-top: 32px;
-  @media screen and (max-width: 1440px) {
-    margin-top: -19px;
+  @media screen and (max-width: 1903px) {
+    font-size: 18px !important;
+    margin-bottom: -10px;
   }
-  @media screen and (max-width: 959px) {
-    margin-top: 36px;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 14px !important;
   }
 }
-//Download text
-.download-text {
-  font-family: "Open Sans" !important;
-  font-size: 1.25rem;
-  color: #313131;
-  @media screen and (max-width: 1440px) {
-    font-size: 1rem;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 0.7rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 12px !important;
-  }
-
-  // @media screen and (max-width: 959px) {
-  //   font-size: 1rem !important;
-  // }
-}
-.app-store-logo {
-  margin-left: -20px;
-  width: 170px;
-  height: auto;
-  max-width: 127% !important;
-  @media screen and (min-width: 1600px) {
-    margin-left: 0px;
-  }
-  @media screen and (max-width: 599px) {
-    max-width: 130% !important;
-    margin-top: -35px;
-  }
-}
-// .... upper left block..............
-
-//upper right block
 
 .login-title {
   font-family: "Montserrat" !important;
@@ -870,6 +829,14 @@ export default {
   font-weight: bold;
   font-size: 64px;
   line-height: 55px;
+  @media screen and (max-width: 1903px) {
+    font-size: 48px;
+    line-height: 36px;
+  }
+  @media screen and (max-width: 1263px) {
+    font-size: 36px;
+    line-height: 30px;
+  }
 }
 
 .create-new-account-text {
@@ -979,14 +946,24 @@ export default {
   font-weight: bold;
   font-size: 0.875rem !important;
   background: #0046fe;
-  box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
+  box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2) !important;
   border-radius: 10px;
   letter-spacing: 0.2em;
   line-height: 0;
   text-transform: uppercase;
   color: #ffffff !important;
-  @media screen and (max-width: 1440px) {
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    width: 180px !important;
+    height: 51.35px !important;
+    font-size: 12px !important;
   }
+
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    width: 160px !important;
+    height: 51.35px !important;
+    font-size: 10px !important;
+  }
+
   @media screen and (max-width: 959px) {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -1020,10 +997,11 @@ export default {
   font-size: 3rem;
   line-height: 3.438rem;
   color: #0a1e56 !important;
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1903px) {
     font-size: 34px;
     line-height: 2.438rem;
   }
+
   @media screen and (max-width: 959px) {
     font-size: 3rem;
     line-height: 3.25rem;
@@ -1049,9 +1027,13 @@ export default {
   font-size: 1.125rem !important;
   line-height: 2.25rem;
   color: #575757 !important;
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1903px) {
     font-size: 14px !important;
-    line-height: 1.5rem;
+    line-height: 20px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 12px !important;
+    line-height: 16px;
   }
   @media screen and (max-width: 959px) {
     font-size: 1.125rem !important;
@@ -1104,17 +1086,17 @@ export default {
     font-size: 18px;
   }
 
-  @media screen and (max-width: 1440px) {
-    font-size: 20px;
+  @media screen and (max-width: 1903px) {
+    font-size: 24px;
     span {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 
   @media screen and (max-width: 959px) {
     font-size: 1.125rem;
   }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     label {
       display: none;
     }
@@ -1137,6 +1119,16 @@ export default {
   font-size: 64px;
   line-height: 55px;
   color: #061f5a !important;
+  @media screen and (max-width: 1903px) {
+    font-size: 48px;
+    line-height: 36px;
+    margin-bottom: -15px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 32px;
+    line-height: 24px;
+    margin-bottom: -24px;
+  }
 }
 
 .explore-text {
@@ -1146,6 +1138,14 @@ export default {
   font-size: 18px;
   line-height: 55px;
   color: #061f5a !important;
+  @media screen and (max-width: 1903px) {
+    margin-bottom: -10px;
+    line-height: 40px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 14px;
+    line-height: 36px;
+  }
 }
 
 .explore-link {
@@ -1154,9 +1154,15 @@ export default {
   font-weight: bold;
   font-size: 18px;
   line-height: 55px;
-  color: #0F4CEE !important;
+  color: #0f4cee !important;
+  @media screen and (min-width: 960px) and (max-width: 1903px) {
+    line-height: 40px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    font-size: 14px;
+    line-height: 36px;
+  }
 }
-
 
 //explore
 .logo-footer {
@@ -1172,18 +1178,22 @@ export default {
   }
 }
 .footer-social-icon {
+  width: 42.81px !important;
+  height: 42.82px !important;
+
   img {
-    width: 14px;
+    width: 20px;
     height: auto;
   }
-  @media screen and (min-width: 1600px) {
-    width: 41px !important;
-    height: 41px !important;
+
+  @media screen and (max-width: 1903px) {
+    width: 28px !important;
+    height: 28px !important;
     img {
-      width: 18.25px;
-      height: auto;
+      width: 14px;
     }
   }
+
   @media screen and (max-width: 959px) {
     width: 69.07px;
     height: 69.07px;
@@ -1229,25 +1239,25 @@ export default {
 </style>
 
 <style>
-#welcomeView2 .v-text-field {
+/* #welcomeView2 .v-text-field {
   border-radius: 10px !important;
   border-color: #ffffff !important;
-}
+} */
 
 #welcomeView2 .v-text-field input {
   color: #aeaeae !important;
 }
 
-#welcomeView2
+/* #welcomeView2
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
   > .v-input__control
   > .v-input__slot
   fieldset {
   border: 2px solid #ffffff !important;
-}
+} */
 #welcomeView2 .v-text-field .v-input__control .v-input__slot {
   min-height: 60px !important;
-  box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);
+  /* box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); */
   border-radius: 10px;
 }
 </style>
