@@ -18,12 +18,12 @@
           <v-col md="10" cols="12">
             <v-card color="transparent" flat tile>
               <v-row align="center" justify="center">
-                <v-col md="10">
+                <v-col md="10" sm="12">
                   <v-card color="transparent" flat tile>
                     <v-card-subtitle class="resume-title" align="center">Make Your Online Resume</v-card-subtitle>
                   </v-card>
                 </v-col>
-                <v-col md="7">
+                <v-col md="7" sm="12">
                   <v-card color="transparent" flat tile>
                     <v-card-subtitle
                       align="center"
@@ -31,7 +31,7 @@
                     >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
                   </v-card>
                 </v-col>
-                <v-col md="7">
+                <v-col md="7" sm="12" cols="12">
                   <v-card color="transparent" flat tile class="mt-n5">
                     <v-card-subtitle
                       class="reserve-title"
@@ -64,8 +64,21 @@
                   </v-card>
                 </v-col>
 
-                <v-col md="10">
-                  <v-card>Hello</v-card>
+                <v-col md="10" sm="12" cols="12">
+                  <v-card flat color="transparent" tile>
+                    <agile :dots="false" :fade="true" :autoplay="true" :navButtons="false">
+                      <img
+                        src="/images/welcome_landing_page/imgs/edit-cv.png"
+                        alt
+                        style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
+                      />
+                      <img
+                        src="/images/welcome_landing_page/imgs/edit-cv.png"
+                        alt
+                        style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
+                      />
+                    </agile>
+                  </v-card>
                 </v-col>
               </v-row>
             </v-card>
@@ -79,9 +92,9 @@
         <v-row align="center" justify="center">
           <v-col cols="6">
             <v-card color="transparent" tile flat>
-              <v-card-subtitle align="center">Want to sign-up</v-card-subtitle>
+              <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
               <v-card class="pa-5">
-                <v-card-subtitle align="center">Create New Account</v-card-subtitle>
+                <v-card-subtitle align="center" class="create-new-account-text">Create New Account</v-card-subtitle>
                 <v-card-subtitle>
                   <v-form ref="form" v-model="valid" :lazy-validation="lazy">
                     <div class="input-div">
@@ -130,7 +143,7 @@
                       dense
                       v-model="agreeCheck"
                       :rules="agreeCheckRules"
-                      class="hidden-sm-only mt-n5"
+                      class="hidden-sm-only mt-n2"
                     >
                       <template slot="label">
                         <div class="agree-text">
@@ -160,11 +173,11 @@
                     </v-btn>
                   </v-form>
                 </v-card-subtitle>
-                <v-card-subtitle class="already-registered">
+                <v-card-subtitle class="account-exists">
                   Already registered?
                   <a>Sign In</a>
                 </v-card-subtitle>
-                <v-card-subtitle align="center" class="separator">Or</v-card-subtitle>
+                <v-card-subtitle align="center" class="separator text--black">Or</v-card-subtitle>
                 <!-- social icons -->
                 <v-card-subtitle align="center">
                   <v-btn
@@ -257,7 +270,7 @@
                     </span>
                   </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
-                    <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
+                    <v-btn color="#0046FE" class="btn-view-themes">View All Themes</v-btn>
                   </v-col>
                 </v-row>
               </v-card-subtitle>
@@ -284,53 +297,27 @@
             </v-card>
 
             <v-card tile flat color="transparent" class="hidden-sm-and-down">
-              <v-row>
-                <template v-for="n in 6">
+              <v-row align="center" justify="center">
+                <template v-for="n in 5">
                   <v-col md="4" :key="n">
                     <v-card flat tile color="transparent" class="card-gallery">
                       <img :src="getGalleryImages(n)" alt="gallery" />
                     </v-card>
                   </v-col>
                 </template>
+                <v-col cols="4">
+                  <v-card align="center" color="transparent" flat tile>
+                    <v-card-subtitle class="explore-number">+35</v-card-subtitle>
+                    <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
+                    <v-card-subtitle class="explore-link mt-n10">EXPLORE ALL THEMES ></v-card-subtitle>
+                  </v-card>
+                </v-col>
               </v-row>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
       <!-- 3rd inner container starts here -->
-      <!-- 3rd inner container -->
-      <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
-        <v-row align="center" justify="center">
-          <v-col cols="12" :align="windowWidth <=959 ? 'left' : 'center'">
-            <v-card flat tile color="transparent" style="z-index:1;">
-              <v-card-subtitle class="build-resume-title margin-n50">Integrations</v-card-subtitle>
-              <v-card-subtitle
-                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n5 mb-sm-0 mb-n11"
-              >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
-              <v-card-text style="z-index:2;" class="mt-md-0 mt-sm-12 mt-12">
-                <slick
-                  class="integrationSlides"
-                  ref="slick"
-                  :options="slickOptions"
-                  style="z-index:2;"
-                >
-                  <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
-                    <v-card-subtitle class="integration-title" v-html="item.title"></v-card-subtitle>
-                    <v-card-text>
-                      <img
-                        width="auto"
-                        :class="item.id== 4 ?'integrationImg':''"
-                        :src="getIntegrationImage(item.id)"
-                      />
-                    </v-card-text>
-                  </v-card>
-                </slick>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-      <!-- 3rd inner container -->
     </v-container>
     <!-- main container -->
     <!-- Footer -->
@@ -591,6 +578,9 @@ export default {
   display: flex;
   align-items: center;
   text-align: center;
+  font-family: "Montserrat" !important;
+  font-size: 14px;
+  line-height: 17px;
 }
 .separator::before,
 .separator::after {
@@ -599,10 +589,10 @@ export default {
   border-bottom: 1px solid lightgray;
 }
 .separator::before {
-  margin-right: 0.25em;
+  margin-right: 2em;
 }
 .separator::after {
-  margin-left: 0.25em;
+  margin-left: 2em;
 }
 // separator
 //input
@@ -873,34 +863,29 @@ export default {
     line-height: 1.275rem;
   }
 }
+
+.sign-up-text {
+  font-family: "Montserrat" !important;
+  color: #0046fe !important;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 55px;
+}
+
+.create-new-account-text {
+  font-family: "Montserrat" !important;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #0046fe !important;
+}
+
 .social-icon {
   height: 39px !important;
   width: 39px !important;
   min-width: 39px !important;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  @media screen and (max-width: 1440px) {
-    margin-top: -10px;
-    margin-bottom: -5px;
-  }
-
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    margin-left: 2px !important;
-  }
-  @media screen and (max-width: 959px) {
-    width: 66px !important;
-    height: 66px !important;
-    margin-top: 0px;
-    margin-bottom: 20px;
-  }
-
-  @media screen and (max-width: 599px) {
-    width: 42px !important;
-    height: 42px !important;
-    margin-top: -10px;
-    margin-bottom: 0px;
-  }
+  border: 1px solid #ebebeb !important;
+  border-radius: 10px !important;
 }
 
 //upper right block
@@ -920,8 +905,9 @@ export default {
 .agree-text {
   font-family: "Montserrat" !important;
   color: #838ca3 !important;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
+  line-height: 17px;
   span {
     color: #0046fe !important;
   }
@@ -956,7 +942,7 @@ export default {
   font-family: "Montserrat" !important;
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 18px;
   line-height: 22px;
   color: #000000;
   a {
@@ -975,7 +961,7 @@ export default {
 
 // build resume section
 .build-resume-container {
-  margin-top: 130px;
+  margin-top: 100px;
   @media screen and (max-width: 1440px) {
     margin-top: 80px;
   }
@@ -985,16 +971,16 @@ export default {
   }
 }
 
-.btn-get-started-middle {
+.btn-view-themes {
   margin-top: -90px;
   width: 200px !important;
   height: 57px !important;
   font-family: "Montserrat" !important;
   font-weight: bold;
   font-size: 0.875rem !important;
-  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
-    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
-  border-radius: 10px !important;
+  background: #0046fe;
+  box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
+  border-radius: 10px;
   letter-spacing: 0.2em;
   line-height: 0;
   text-transform: uppercase;
@@ -1033,7 +1019,7 @@ export default {
   font-weight: bold;
   font-size: 3rem;
   line-height: 3.438rem;
-  color: #0046fe !important;
+  color: #0a1e56 !important;
   @media screen and (max-width: 1440px) {
     font-size: 34px;
     line-height: 2.438rem;
@@ -1107,61 +1093,6 @@ export default {
 }
 // build resume section
 
-//integration section
-.container-integration {
-  @media screen and (max-width: 1440px) {
-    margin-top: 15px;
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 80px !important;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 30px;
-    padding: 0 !important;
-  }
-}
-.integration-title {
-  font-family: "Montserrat" !important;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 29px;
-  color: #575757 !important;
-  @media screen and (max-width: 959px) {
-    font-size: 1.125rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 10px;
-    line-height: 15px;
-  }
-}
-.integrationImg {
-  height: 226px;
-  width: auto;
-  @media screen and (min-width: 1600px) {
-    height: 300px;
-  }
-  @media screen and (max-width: 959px) {
-    height: 350px !important;
-    height: auto;
-  }
-
-  @media screen and (max-width: 599px) {
-    width: 160px !important;
-    height: auto !important;
-  }
-  @media screen and (max-width: 380px) {
-    width: 130px !important;
-    height: auto !important;
-  }
-}
-.integrationSlides {
-  @media screen and (max-width: 959px) {
-    img {
-      width: 85%;
-    }
-  }
-}
-//integration section
 //footer
 .follow-us-text {
   font-family: "Montserrat" !important;
@@ -1197,6 +1128,37 @@ export default {
     font-size: 10px;
   }
 }
+
+//explore
+.explore-number {
+  font-family: "Montserrat" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 55px;
+  color: #061f5a !important;
+}
+
+.explore-text {
+  font-family: "Montserrat" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 55px;
+  color: #061f5a !important;
+}
+
+.explore-link {
+  font-family: "Montserrat" !important;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 55px;
+  color: #0F4CEE !important;
+}
+
+
+//explore
 .logo-footer {
   width: 201px;
   height: auto;
@@ -1283,10 +1245,7 @@ export default {
   fieldset {
   border: 2px solid #ffffff !important;
 }
-#welcomeView2
-  .v-text-field  
-  .v-input__control
-  .v-input__slot {
+#welcomeView2 .v-text-field .v-input__control .v-input__slot {
   min-height: 60px !important;
   box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);
   border-radius: 10px;
