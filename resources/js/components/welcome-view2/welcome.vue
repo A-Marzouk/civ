@@ -1098,7 +1098,10 @@ export default {
   }
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     label {
-      display: none;
+      font-size: 12px;
+    }
+    span{
+      font-size: 10px;
     }
   }
   @media screen and (max-width: 599px) {
@@ -1191,6 +1194,13 @@ export default {
     height: 28px !important;
     img {
       width: 14px;
+    }
+  }
+  @media screen and (min-width: 960px) and (max-width:1263px){
+    width: 24px !important;
+    height: 24px !important;
+    img{
+      width: 10px;
     }
   }
 
