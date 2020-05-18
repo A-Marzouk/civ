@@ -135,6 +135,7 @@
                     color="#ffffff"
                     v-for="icon in socialMediaIcons"
                     :key="icon.title"
+                    :href="icon.link"
                   >
                     <img
                       :width="windowWidth>599 && windowWidth<=959?icon.tablet_width:icon.width"
@@ -655,11 +656,11 @@ export default {
       },
 
       socialMediaIcons: [
-        { id: 1, title: "instagram", width: 18, tablet_width: 30 },
-        { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
-        { id: 3, title: "google", width: 14, tablet_width: 22 },
-        { id: 4, title: "facebook", width: 18, tablet_width: 28 },
-        { id: 5, title: "github", width: 22, tablet_width: 36 }
+        { id: 1, title: "instagram", width: 18, tablet_width: 30,link:'/register/instagram'},
+        { id: 2, title: "linkedin", width: 16, tablet_width: 28,link:'/register/linkedin' },
+        { id: 3, title: "google", width: 14, tablet_width: 22 ,link:'/register/google'},
+        { id: 4, title: "facebook", width: 18, tablet_width: 28 ,link:'/register/facebook'},
+        { id: 5, title: "github", width: 22, tablet_width: 36 ,link:'/register/github'}
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
