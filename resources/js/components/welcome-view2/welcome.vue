@@ -39,13 +39,14 @@
                     >Reserve your own online webpage</v-card-subtitle>
                     <v-card-subtitle class="mt-n5">
                       <v-text-field
-                        class="input-avialibility"
+                        class="input-av"
+                        hide-details
                         outlined
                         placeholder="civ.ie/yourname"
                         v-model="username"
                         background-color="#ffffff"
                         @keyup="checkUser"
-                        :height="windowWidth <= 959 && windowWidth >599 ? '75': windowWidth<=599 ? '60':''"
+                        height="60"
                       >
                         <template slot="append">
                           <v-icon
@@ -96,7 +97,7 @@
       <!-- new 2nd layer -->
       <v-container style="width:100%">
         <v-row align="center" justify="center">
-          <v-col cols="6">
+          <v-col md="6" sm="12" cols="12" >
             <v-card color="transparent" tile flat>
               <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
               <v-card class="pa-5">
@@ -602,11 +603,7 @@ export default {
 }
 // separator
 //input
-.input-avialibility {
-  .v-text-field {
-    border-radius: 20px !important;
-  }
-}
+ 
 //input
 .footer-container {
   @media screen and (max-width: 599px) {
@@ -1249,14 +1246,18 @@ export default {
     }
   }
 }
+.v-text-field{
+  border-radius: 10px !important;
+}
+.input-av.v-text-field{
+  box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1) !important;
+  
+}
+
 //footer
 </style>
 
 <style>
-/* #welcomeView2 .v-text-field {
-  border-radius: 10px !important;
-  border-color: #ffffff !important;
-} */
 
 #welcomeView2 .v-text-field input {
   color: #aeaeae !important;
@@ -1269,9 +1270,5 @@ export default {
   fieldset {
   border: 2px solid #ffffff !important;
 } */
-#welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 60px !important;
-  /* box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1); */
-  border-radius: 10px;
-}
+
 </style>
