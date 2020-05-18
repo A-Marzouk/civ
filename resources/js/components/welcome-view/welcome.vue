@@ -1978,16 +1978,16 @@ export default {
 </style>
 
 <style>
-#welcomeView2 .v-text-field {
+#welcomeView .v-text-field {
   border-radius: 10px !important;
   border-color: #ffffff !important;
 }
 
-#welcomeView2 .v-text-field input {
+#welcomeView .v-text-field input {
   color: #aeaeae !important;
 }
 
-#welcomeView2
+#welcomeView
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
   > .v-input__control
   > .v-input__slot
@@ -1996,60 +1996,60 @@ export default {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
 
-#welcomeView2 .v-text-field .v-input__control .v-input__slot {
+#welcomeView .v-text-field .v-input__control .v-input__slot {
   min-height: 60px !important;
 }
 
-#welcomeView2 .slick-dots li button {
+#welcomeView .slick-dots li button {
   width: 110px;
   height: 6px;
   border-radius: 0px;
   margin-left: -10px;
 }
 
-#welcomeView2 .slick-dots li.slick-active button {
+#welcomeView .slick-dots li.slick-active button {
   background-color: #0f4cee;
   outline: none;
   transition: width 5s ease-out 0s;
 }
 
-#welcomeView2 .slick-dots li button:focus {
+#welcomeView .slick-dots li button:focus {
   outline: none !important;
 }
 
 @media screen and (min-width: 1700px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+  #welcomeView .v-text-field .v-input__control .v-input__slot {
     max-width: 700px !important;
   }
 }
 
 @media screen and (max-width: 1440px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+  #welcomeView .v-text-field .v-input__control .v-input__slot {
     min-height: 45px !important;
   }
 }
 /* tablet screen */
 /* @media screen and (max-width: 959px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+  #welcomeView .v-text-field .v-input__control .v-input__slot {
     min-height: 4.688rem !important;
   }
 } */
 /* tablet screen */
 /* mobile screen */
 @media screen and (max-width: 959px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+  #welcomeView .v-text-field .v-input__control .v-input__slot {
     min-height: 60px !important;
   }
-  #welcomeView2 .gallerySlides {
+  #welcomeView .gallerySlides {
     margin-top: -120px;
   }
-  #welcomeView2 .gallery-slides .slick-slide {
+  #welcomeView .gallery-slides .slick-slide {
     margin-left: -78px;
   }
-  #welcomeView2 .integrationSlides .slick-slide {
+  #welcomeView .integrationSlides .slick-slide {
     margin-left: -35px !important;
   }
-  #welcomeView2 .integrationSlides .slick-dots li button {
+  #welcomeView .integrationSlides .slick-dots li button {
     width: 130px;
     height: 6px;
     border-radius: 0px;
@@ -2058,58 +2058,58 @@ export default {
   }
 }
 @media screen and (max-width: 599px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
+  #welcomeView .v-text-field .v-input__control .v-input__slot {
     min-height: 50px !important;
   }
-  #welcomeView2 .gallery-slides .slick-dots li button {
+  #welcomeView .gallery-slides .slick-dots li button {
     width: 40px;
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
     margin-top: -20px;
   }
-  #welcomeView2 .integrationSlides .slick-dots li button {
+  #welcomeView .integrationSlides .slick-dots li button {
     width: 50px;
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
   }
-  #welcomeView2 .gallery-slides .slick-slide {
+  #welcomeView .gallery-slides .slick-slide {
     margin-left: 34px;
     width: 300px !important;
   }
-  #welcomeView2 .integrationSlides .slick-slide {
+  #welcomeView .integrationSlides .slick-slide {
     margin-left: -55px !important;
     margin-top: 0px !important;
   }
 }
 @media screen and (max-width: 414px) {
-  #welcomeView2 .gallery-slides .slick-slide {
+  #welcomeView .gallery-slides .slick-slide {
     margin-left: 27px;
     width: 300px !important;
   }
 }
 
 @media screen and (max-width: 400px) {
-  #welcomeView2 .gallery-slides .slick-slide {
+  #welcomeView .gallery-slides .slick-slide {
     margin-left: 10px;
     width: 300px !important;
   }
 }
 @media screen and (max-width: 393px) {
-  #welcomeView2 .gallery-slides .slick-slide {
+  #welcomeView .gallery-slides .slick-slide {
     margin-left: 13px;
     width: 300px !important;
   }
 }
 @media screen and (max-width: 375px) {
-  #welcomeView2 .gallery-slides .slick-slide {
+  #welcomeView .gallery-slides .slick-slide {
     margin-left: 1px;
   }
 }
 
 @media screen and (max-width: 360px) {
-  #welcomeView2 .gallery-slides .slick-slide {
+  #welcomeView .gallery-slides .slick-slide {
     margin-left: -8px;
   }
 }
