@@ -256,7 +256,7 @@
       <!-- 2nd inner container ends here -->
 
       <!-- 3rd inner container starts here -->
-      <v-container style="width:100%" class="gallery-container">
+      <v-container style="width:100%" class="gallery-container mb-md-12">
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12">
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
