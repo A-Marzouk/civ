@@ -2,17 +2,17 @@
 <v-app id="hold-theme900" >
     <v-container>
         <v-row class="header-section align-center " >
-            <v-col lg="1" sm="2" cols="2" >
+            <v-col lg="1" sm="2" cols="3" >
                     <img class="tm900-avatar" src="/images/resume_themes/theme900/Ellipse27.png" alt="">
             </v-col>
-            <v-col lg="7" sm="6"  class="profile" >
+            <v-col lg="7" sm="6" cols="5"  class="profile" >
                 <p class="name" > carol swift </p>
                 <p class="job" > graphic designer </p>
                 <p class="description" >Donec a augue gravida, vulputate ligula et, pellentesque arcu. </p>
             </v-col>
-            <v-col  class="contact-button" >
+            <v-col lg="4" sm="4" cols="4" class="contact-button" >
                 <v-row>
-                    <v-col class="ml-12" lg="12" >
+                    <v-col class="contact-button-items" lg="12" >
                         <v-btn color="#F9F9F9" class="tm900-sc mr-10" height="50" width="50">
                             <v-icon color="#69C8FD" > mdi-twitter </v-icon>
                         </v-btn>
@@ -512,21 +512,17 @@ export default {
         }
          .tm900-avatar{
              border-radius: 50%;
-             @media only screen and (max-width: 597px) {
-                 margin-top: -30px;
-            }
-             img{
                  width: 150px;
                  height: 150px;
                  @media only screen and (max-width: 992px) {
                      width: 100px;
                      height: 100px;
                 }
-                 @media only screen and (max-width: 597px) {
-                     width: 50px;
-                     height: 50px;
+                @media only screen and (max-width: 597px) {
+                 margin-top: -30px;
+                    width: 80px;
+                    height: 80px;
                 }
-            }
         }
          .profile{
              padding-left: 40px;
@@ -538,7 +534,7 @@ export default {
                  padding-top: 60px;
             }
              @media only screen and (max-width: 597px) {
-                 padding-left: 40px;
+                 padding-left: 0px;
                  padding-top: 0;
             }
              .name{
@@ -625,6 +621,12 @@ export default {
              font-size: 16px;
              line-height: 24px;
              float: right;
+             .contact-button-items{
+                 margin-left: 48px;
+                 @media only screen and (max-width: 597px) {
+                 margin-left: 0px;
+                 }
+             }
              @media only screen and (max-width: 992px) {
                  margin-top: -60px;
                  .tm900-sc{
@@ -636,6 +638,8 @@ export default {
             }
              @media only screen and (max-width: 597px) {
                  margin-top: -62px;
+                 margin-left: -24px;
+
             }
              .get-touch{
                  width: 180px;
