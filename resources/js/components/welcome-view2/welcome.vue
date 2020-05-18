@@ -679,17 +679,7 @@ export default {
   }
 }
 
-.custom-append-icon {
-  @media screen and (min-width: 960px) and (max-width: 1440px) {
-    margin-top: -6px;
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 9px;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-  }
-}
+
 //form
 .login-form {
   label {
