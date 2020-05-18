@@ -759,6 +759,10 @@ export default {
     font-size: 14px !important;
     line-height: 20px;
   }
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    font-size: 12px !important;
+    line-height: 18px;
+  }
 }
 
 .btn-get-started {
