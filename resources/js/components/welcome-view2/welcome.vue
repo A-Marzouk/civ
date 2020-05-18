@@ -5,7 +5,7 @@
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
-        <a class="btn-appbar-login" href="/login">
+        <a class="btn-appbar-login">
           Log
           <span>&nbsp;in</span>
         </a>
@@ -135,7 +135,6 @@
                     color="#ffffff"
                     v-for="icon in socialMediaIcons"
                     :key="icon.title"
-                    :href="icon.link"
                   >
                     <img
                       :width="windowWidth>599 && windowWidth<=959?icon.tablet_width:icon.width"
@@ -156,15 +155,9 @@
                       type="text"
                       outlined
                       background-color="#ffffff"
-                      v-model="formData.name"
+                      :rules="nameRules"
+                      v-model="name"
                     ></v-text-field>
-                    <div class="v-text-field__details custom-margin" v-if="errors.name">
-                      <div class="v-messages theme--light error--text" role="alert">
-                        <div class="v-messages__wrapper">
-                          <div class="v-messages__message">{{errors.name[0]}}</div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div class="input-div">
                     <label for="email">Email Address</label>
@@ -172,45 +165,35 @@
                       type="email"
                       outlined
                       background-color="#ffffff"
-                      v-model="formData.email"
+                      :rules="emailRules"
+                      v-model="email"
                     ></v-text-field>
-                    <div class="v-text-field__details custom-margin" v-if="errors.email">
-                      <div class="v-messages theme--light error--text" role="alert">
-                        <div class="v-messages__wrapper">
-                          <div class="v-messages__message">{{errors.email[0]}}</div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div class="input-div">
-                    <label>Password</label>
+                    <label for="password">Password</label>
                     <v-text-field
                       type="password"
                       outlined
                       background-color="#ffffff"
-                      v-model="formData.password"
+                      v-model="password"
+                      :rules="passwordRules"
                     ></v-text-field>
-                    <div class="v-text-field__details custom-margin" v-if="errors.password">
-                      <div class="v-messages theme--light error--text" role="alert">
-                        <div class="v-messages__wrapper">
-                          <div class="v-messages__message">{{errors.password[0]}}</div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   <div class="input-div">
-                    <label>Confirm Password</label>
+                    <label for="confirmPassword">Confirm Password</label>
                     <v-text-field
                       type="password"
                       outlined
                       background-color="#ffffff"
-                      v-model="formData.password_confirmation"
+                      v-model="confirmPassword"
+                      :rules="confirmPasswordRules"
                     ></v-text-field>
                   </div>
 
                   <v-checkbox
                     dense
                     v-model="agreeCheck"
+                    :rules="agreeCheckRules"
                     class="hidden-sm-only mt-n5"
                   >
                     <template slot="label">
@@ -224,6 +207,7 @@
 
                   <v-checkbox
                     v-model="agreeCheck"
+                    :rules="agreeCheckRules"
                     class="d-none d-sm-flex d-md-none"
                   >
                     <template slot="label">
@@ -235,17 +219,8 @@
                     </template>
                   </v-checkbox>
 
-
-                  <div class="v-text-field__details custom-margin" >
-                    <div class="v-messages theme--light error--text" role="alert">
-                      <div class="v-messages__wrapper">
-                        <div class="v-messages__message">{{errors.agreeCheck}}</div>
-                      </div>
-                    </div>
-                  </div>
-
                   <v-card-text align="center">
-                    <v-btn color="#0046FE" class="btn-signup" @click="register">
+                    <v-btn color="#0046FE" class="btn-signup" @click="validate">
                       <span>Sign Up</span>
                     </v-btn>
                   </v-card-text>
@@ -254,7 +229,7 @@
               <!-- Login Form -->
               <v-card-subtitle class="account-exists mt-md-n3 mt-sm-0 mt-0" align="center">
                 Already have account?
-                <a href="/login">Login</a>
+                <a href="#">Login</a>
               </v-card-subtitle>
             </v-card>
             <div class="tablet-layer3 hidden-md-and-up">
@@ -647,20 +622,26 @@ export default {
       userFound: null,
       valid: false,
       lazy: false,
+      name: "",
+      nameRules: [v => !!v || "", v => (v && v.length >= 3) || ""],
+      email: "",
+      emailRules: [v => !!v || "", v => /.+@.+\..+/.test(v) || ""],
+      password: "",
+      passwordRules: [v => !!v || "", v => (v && v.length >= 6) || ""],
+      confirmPassword: "",
+      confirmPasswordRules: [
+        v => !!v || "",
+        v => (v && v == this.password) || ""
+      ],
       agreeCheck: false,
-      formData: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
-      },
+      agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
-        { id: 1, title: "instagram", width: 18, tablet_width: 30,link:'/register/instagram'},
-        { id: 2, title: "linkedin", width: 16, tablet_width: 28,link:'/register/linkedin' },
-        { id: 3, title: "google", width: 14, tablet_width: 22 ,link:'/register/google'},
-        { id: 4, title: "facebook", width: 18, tablet_width: 28 ,link:'/register/facebook'},
-        { id: 5, title: "github", width: 22, tablet_width: 36 ,link:'/register/github'}
+        { id: 1, title: "instagram", width: 18, tablet_width: 30 },
+        { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
+        { id: 3, title: "google", width: 14, tablet_width: 22 },
+        { id: 4, title: "facebook", width: 18, tablet_width: 28 },
+        { id: 5, title: "github", width: 22, tablet_width: 36 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -710,7 +691,6 @@ export default {
           }
         ]
       },
-      errors:{},
       slickOptions: {
         centerMode: false,
         infinite: true,
@@ -751,30 +731,8 @@ export default {
     };
   },
   methods: {
-    register() {
-      this.errors = {};
-      if(!this.agreeCheck){
-        this.errors.agreeCheck = 'Required field*';
-        return;
-      }
-      axios.post('/simple-register', this.formData)
-              .then(response => {
-                // save the access token then redirect:
-                Vue.$cookies.set('access_token', response.data.access_token, "3y");
-                if(response.data.is_admin){
-                  window.location.href = '/workforce-admin';
-                }else{
-                  window.location.href = '/resume-builder';
-                }
-              })
-              .catch(error => {
-                this.canSubmit = true;
-                if (typeof error.response.data === 'object') {
-                  this.errors = error.response.data.errors;
-                } else {
-                  this.errors = ['Something went wrong. Please try again.'];
-                }
-              });
+    validate() {
+      this.$refs.form.validate();
     },
     checkUser() {
       if (this.username == "") {
@@ -804,7 +762,6 @@ export default {
   }
 };
 </script>
-
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
@@ -1712,7 +1669,7 @@ export default {
 .middle-layer-background4 {
   position: absolute;
   width: 1920px;
-  top: 77.1%;
+  top: 77%;
   left: -0.2rem;
   right: 0;
   margin-left: auto;
@@ -1725,11 +1682,11 @@ export default {
   }
   @media screen and (max-width: 1366px) {
     width: 1366px;
-    top: 76.8%;
+    top: 76.7%;
     left: -2px;
   }
   @media screen and (max-width: 1280px) {
-    top: 76.9%;
+    top: 76.8%;
     width: 1280px;
     left: -0.8125rem;
   }
@@ -1979,16 +1936,16 @@ export default {
 </style>
 
 <style>
-#welcomeView .v-text-field {
+#welcomeView2 .v-text-field {
   border-radius: 10px !important;
   border-color: #ffffff !important;
 }
 
-#welcomeView .v-text-field input {
+#welcomeView2 .v-text-field input {
   color: #aeaeae !important;
 }
 
-#welcomeView
+#welcomeView2
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
   > .v-input__control
   > .v-input__slot
@@ -1997,60 +1954,60 @@ export default {
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
 }
 
-#welcomeView .v-text-field .v-input__control .v-input__slot {
+#welcomeView2 .v-text-field .v-input__control .v-input__slot {
   min-height: 60px !important;
 }
 
-#welcomeView .slick-dots li button {
+#welcomeView2 .slick-dots li button {
   width: 110px;
   height: 6px;
   border-radius: 0px;
   margin-left: -10px;
 }
 
-#welcomeView .slick-dots li.slick-active button {
+#welcomeView2 .slick-dots li.slick-active button {
   background-color: #0f4cee;
   outline: none;
   transition: width 5s ease-out 0s;
 }
 
-#welcomeView .slick-dots li button:focus {
+#welcomeView2 .slick-dots li button:focus {
   outline: none !important;
 }
 
 @media screen and (min-width: 1700px) {
-  #welcomeView .v-text-field .v-input__control .v-input__slot {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     max-width: 700px !important;
   }
 }
 
 @media screen and (max-width: 1440px) {
-  #welcomeView .v-text-field .v-input__control .v-input__slot {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 45px !important;
   }
 }
 /* tablet screen */
 /* @media screen and (max-width: 959px) {
-  #welcomeView .v-text-field .v-input__control .v-input__slot {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 4.688rem !important;
   }
 } */
 /* tablet screen */
 /* mobile screen */
 @media screen and (max-width: 959px) {
-  #welcomeView .v-text-field .v-input__control .v-input__slot {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 60px !important;
   }
-  #welcomeView .gallerySlides {
+  #welcomeView2 .gallerySlides {
     margin-top: -120px;
   }
-  #welcomeView .gallery-slides .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: -78px;
   }
-  #welcomeView .integrationSlides .slick-slide {
+  #welcomeView2 .integrationSlides .slick-slide {
     margin-left: -35px !important;
   }
-  #welcomeView .integrationSlides .slick-dots li button {
+  #welcomeView2 .integrationSlides .slick-dots li button {
     width: 130px;
     height: 6px;
     border-radius: 0px;
@@ -2059,65 +2016,60 @@ export default {
   }
 }
 @media screen and (max-width: 599px) {
-  #welcomeView .v-text-field .v-input__control .v-input__slot {
+  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
     min-height: 50px !important;
   }
-  #welcomeView .gallery-slides .slick-dots li button {
+  #welcomeView2 .gallery-slides .slick-dots li button {
     width: 40px;
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
     margin-top: -20px;
   }
-  #welcomeView .integrationSlides .slick-dots li button {
+  #welcomeView2 .integrationSlides .slick-dots li button {
     width: 50px;
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
   }
-  #welcomeView .gallery-slides .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: 34px;
     width: 300px !important;
   }
-  #welcomeView .integrationSlides .slick-slide {
+  #welcomeView2 .integrationSlides .slick-slide {
     margin-left: -55px !important;
     margin-top: 0px !important;
   }
 }
 @media screen and (max-width: 414px) {
-  #welcomeView .gallery-slides .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: 27px;
     width: 300px !important;
   }
 }
 
 @media screen and (max-width: 400px) {
-  #welcomeView .gallery-slides .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: 10px;
     width: 300px !important;
   }
 }
 @media screen and (max-width: 393px) {
-  #welcomeView .gallery-slides .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: 13px;
     width: 300px !important;
   }
 }
 @media screen and (max-width: 375px) {
-  #welcomeView .gallery-slides .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: 1px;
   }
 }
 
 @media screen and (max-width: 360px) {
-  #welcomeView .gallery-slides .slick-slide {
+  #welcomeView2 .gallery-slides .slick-slide {
     margin-left: -8px;
   }
 }
 /* mobile screen */
-
-  .custom-margin{
-    margin-top: -20px;
-    margin-bottom: 25px;
-  }
 </style>
