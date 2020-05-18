@@ -878,17 +878,13 @@ export default {
   span {
     color: #0046fe !important;
   }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 10px;
-  }
-  @media screen and (max-width: 959px) {
+  @media screen and (max-width: 1263px) {
     font-size: 12px !important;
   }
 }
 
 .btn-signup {
-  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
-    4px 4px 20px rgba(25, 0, 180, 0.2) !important;
+  box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
   border-radius: 10px !important;
   width: 11.31rem !important;
   height: 3.625rem !important;
@@ -899,10 +895,22 @@ export default {
     letter-spacing: 0.2em !important;
     font-size: 0.875rem !important;
   }
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    width: 180px !important;
+    height: 51.35px !important;
+    font-size: 12px !important;
+  }
+
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    width: 160px !important;
+    height: 51.35px !important;
+    font-size: 10px !important;
+  }
   @media screen and (max-width: 599px) {
     width: 157px !important;
     height: 48.76px !important;
   }
+
 }
 
 .account-exists {
