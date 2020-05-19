@@ -339,7 +339,7 @@
     </v-container>
     <!-- main container -->
     <!-- Footer -->
-    <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':'auto'">
+    <v-footer color="#0F4CEE" class="custom-footer">
       <v-container class="footer-container">
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
@@ -1125,6 +1125,11 @@ export default {
   @media screen and (max-width: 959px) {
     padding: 0;
   }
+  @media screen and(max-width: 700px) {
+    img {
+      width: 80%;
+    }
+  }
 }
 // build resume section
 
@@ -1165,7 +1170,7 @@ export default {
   @media screen and (max-width: 380px) {
     font-size: 10px;
   }
-  @media screen and (max-width: 329px){
+  @media screen and (max-width: 329px) {
     font-size: 8px;
   }
 }
@@ -1324,6 +1329,13 @@ export default {
     }
   }
 }
+
+.custom-footer {
+  height: auto !important;
+  @media screen and (max-width: 599px) {
+    height: 125px;
+  }
+}
 .v-text-field {
   border-radius: 10px !important;
 }
@@ -1370,6 +1382,19 @@ export default {
 #welcomeView2 .slick-dots li button:focus {
   outline: none !important;
 }
+
+@media screen and (max-width: 959px) {
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -80px;
+  }
+}
+
+@media screen and (max-width: 700px){
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -75px;
+  }
+}
+
 @media screen and (max-width: 599px) {
   #welcomeView2
     .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
@@ -1377,6 +1402,15 @@ export default {
     > .v-input__slot {
     min-height: 33.34px !important;
     border-radius: 7px !important;
+  }
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -75px;
+  }
+}
+
+@media screen and (max-width: 598px){
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -30px;
   }
 }
 </style>
