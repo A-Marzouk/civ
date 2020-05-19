@@ -95,54 +95,65 @@
       <!-- 1st inner container ends here -->
 
       <!-- new 2nd layer -->
-      <v-container style="width:100%">
+      <v-container style="width:100%" class>
         <v-row align="center" justify="center">
-          <v-col md="6" sm="12" cols="12" >
-            <v-card color="transparent" tile flat>
+          <v-col lg="6" xl="5" md="6" sm="11" cols="12">
+            <v-card color="transparent" tile flat class="card-login">
               <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
-              <v-card class="pa-5">
+              <v-card class="pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5">
                 <v-card-subtitle align="center" class="create-new-account-text">Create New Account</v-card-subtitle>
                 <v-card-subtitle>
                   <v-form ref="form" v-model="valid" :lazy-validation="lazy" class="login-form">
                     <div class="input-div">
                       <label for="name">Name</label>
                       <v-text-field
-                        class="login-input-field"
+                        dark
+                        class="login-input"
                         type="text"
                         outlined
                         background-color="#ffffff"
                         :rules="nameRules"
                         v-model="name"
+                        height="60"
                       ></v-text-field>
                     </div>
                     <div class="input-div">
                       <label for="email">Email Address</label>
                       <v-text-field
+                        dark
+                        class="login-input"
                         type="email"
                         outlined
                         background-color="#ffffff"
                         :rules="emailRules"
                         v-model="email"
+                        height="60"
                       ></v-text-field>
                     </div>
                     <div class="input-div">
                       <label for="password">Password</label>
                       <v-text-field
+                        dark
+                        class="login-input"
                         type="password"
                         outlined
                         background-color="#ffffff"
                         v-model="password"
                         :rules="passwordRules"
+                        height="60"
                       ></v-text-field>
                     </div>
                     <div class="input-div">
                       <label for="confirmPassword">Confirm Password</label>
                       <v-text-field
+                        dark
+                        class="login-input"
                         type="password"
                         outlined
                         background-color="#ffffff"
                         v-model="confirmPassword"
                         :rules="confirmPasswordRules"
+                        height="60"
                       ></v-text-field>
                     </div>
 
@@ -581,6 +592,10 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+.card-login {
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 15px !important;
+}
 .separator {
   display: flex;
   align-items: center;
@@ -603,7 +618,7 @@ export default {
 }
 // separator
 //input
- 
+
 //input
 .footer-container {
   @media screen and (max-width: 599px) {
@@ -675,7 +690,6 @@ export default {
     height: 53px;
   }
 }
-
 
 //form
 .login-form {
@@ -1246,29 +1260,34 @@ export default {
     }
   }
 }
-.v-text-field{
+.v-text-field {
   border-radius: 10px !important;
 }
-.input-av.v-text-field{
+.input-av.v-text-field {
   box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1) !important;
-  
 }
 
 //footer
 </style>
 
 <style>
-
 #welcomeView2 .v-text-field input {
   color: #aeaeae !important;
 }
 
-/* #welcomeView2
+#welcomeView2
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
   > .v-input__control
   > .v-input__slot
   fieldset {
   border: 2px solid #ffffff !important;
-} */
+}
 
+#welcomeView2
+  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+  border: 2px solid #ebebeb !important;
+}
 </style>
