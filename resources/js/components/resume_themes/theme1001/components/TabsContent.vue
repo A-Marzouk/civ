@@ -32,14 +32,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
+
 .tabs-content {
-	padding: 25px 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+@media (min-width: 375px) {
+	.tabs-content {
+		padding-left: 25px;
+		padding-right: 25px;
+	}
+}
+
+@media (min-width: $lg) {
+	.tabs-content {
+		max-width: $lg;
+		padding-left: 50px;
+		padding-right: 50px;
+		margin: 0 auto;
+	}
 }
 
 @media (min-width: 1600px) {
 	.tabs-content {
 		max-width: 1600px;
-		margin: 0 auto;
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+}
+
+@media (min-width: $xl) {
+	.tabs-content {
+		max-width: $xl;
 	}
 }
 </style>

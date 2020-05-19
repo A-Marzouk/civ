@@ -139,10 +139,10 @@ export default {
 @media (min-width: $lg) {
 	.social-menu {
 		display: flex;
-		padding-right: initial;
-		border-top: initial;
-		height: initial;
-		overflow: initial;
+		padding-right: unset;
+		border-top: unset;
+		height: unset;
+		overflow: unset;
 	}
 
 	.toggle-social-menu {

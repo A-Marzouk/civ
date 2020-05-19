@@ -109,7 +109,7 @@ export default {
 
 @media (min-width: $md) {
 	.hireme {
-		flex: initial;
+		flex: unset;
 	}
 
 	.hireme-rate {
