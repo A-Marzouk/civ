@@ -572,6 +572,9 @@ export default {
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
+  @media screen and (max-width: 599px){
+    height: 700px;
+  }
 }
 
 .av-subtitle {
@@ -955,6 +958,10 @@ export default {
     height: 52px !important;
     font-size: 12px !important;
   }
+  @media screen and (max-width: 400px){
+    width: 154px !important;
+    font-size: 10px !important;
+  }
 }
 
 .account-exists {
@@ -1030,6 +1037,11 @@ export default {
     width: 173px !important;
     height: 52px !important;
     font-size: 12px !important;
+  }
+
+  @media screen and (max-width: 400px){
+    width: 154px !important;
+    font-size: 10px !important;
   }
 }
 
