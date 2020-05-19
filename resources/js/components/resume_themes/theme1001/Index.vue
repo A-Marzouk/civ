@@ -20,7 +20,7 @@ export default {
 
 	data: () => {
 		return {
-			currentTab: "portfolio",
+			currentTab: "experience-education",
 			currentUser: {
 				avatar: "/images/resume_themes/theme1001/profiles/girl.jpg",
 				fullname: "Amber Salma Heard",

@@ -72,12 +72,13 @@ export default {
 	justify-content: center;
 	overflow: hidden;
 	padding: 0 20px;
+	width: 100%;
 	height: 0;
-	border-top: 1px solid transparent;
+	border-top: 0px solid #d3d6e4;
 	transition: all 0.3s;
 
 	&.social-menu--open {
-		border-top-color: #d3d6e4;
+		border-top-width: 1px;
 		height: 48px;
 	}
 }
@@ -137,12 +138,9 @@ export default {
 }
 
 @media (min-width: $lg) {
-	.social-menu {
-		display: flex;
-		padding-right: unset;
-		border-top: unset;
-		height: unset;
-		overflow: unset;
+	.social-menu.social-menu--open {
+		height: 0;
+		border-top-width: 0;
 	}
 
 	.toggle-social-menu {
