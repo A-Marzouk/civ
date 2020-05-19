@@ -58,11 +58,13 @@
                 </v-card>
               </v-card>
             </v-col>
+            <!-- For mobile -->
             <v-col cols="4" class="hidden-sm-and-up">
               <v-card color="transparent" flat tile>
                 <v-btn color="#272B2F" class="btn-hire-me" x-large>Hire Me</v-btn>
               </v-card>
             </v-col>
+            <!-- For mobile -->
             <!-- Social Buttons for tablet only -->
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
@@ -1029,9 +1031,9 @@ export default {
   height: 200px !important;
   max-height: 200px;
   max-width: 200px;
-  @media screen and (min-width: 1025px){
-    margin-left:80px;
-  }
+  // @media screen and (min-width: 1025px){
+  //   margin-left:80px;
+  // }
   @media screen and (max-width: 959px) {
     width: 120px !important;
     height: 120px !important;
@@ -1041,22 +1043,22 @@ export default {
 
 }
 .card-main-profile{
-  margin-left: -100px;
-  @media screen and (max-width: 1800px){
-    margin-left: -80px;
-  }
-  @media screen and (max-width: 1600px){
-    margin-left: -70px;
-  }
-  @media screen and (max-width: 1440px){
-    margin-left: -60px;
-  }
-  @media screen and (max-width:1280px){
-    margin-left: -40px;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1023px){
-    margin-left: -30px;
-  }
+  // margin-left: -100px;
+  // @media screen and (max-width: 1800px){
+  //   margin-left: -80px;
+  // }
+  // @media screen and (max-width: 1600px){
+  //   margin-left: -70px;
+  // }
+  // @media screen and (max-width: 1440px){
+  //   margin-left: -60px;
+  // }
+  // @media screen and (max-width:1280px){
+  //   margin-left: -40px;
+  // }
+  // @media screen and (min-width: 960px) and (max-width: 1023px){
+  //   margin-left: -30px;
+  // }
 }
 
 .custom-avatar-mobile {

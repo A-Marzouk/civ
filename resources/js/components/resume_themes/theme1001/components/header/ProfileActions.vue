@@ -167,15 +167,15 @@ export default {
 	.profile-actions__links .action__button {
 		font-family: $muli;
 		display: flex;
-		font-size: 10px;
+		font-size: 11px;
 		font-weight: 300;
 		color: #ffffff;
 		background: #3d5ed4;
 		justify-content: center;
 		align-items: center;
 		border-radius: 9px;
-		width: 129px;
-		height: 40px;
+		width: 134px;
+		height: 42px;
 		transition: margin-top 0.1s;
 
 		span {
