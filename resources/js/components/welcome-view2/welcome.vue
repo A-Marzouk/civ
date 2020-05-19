@@ -18,12 +18,12 @@
           <v-col md="10" cols="12">
             <v-card color="transparent" flat tile>
               <v-row align="center" justify="center">
-                <v-col md="10" sm="12">
+                <v-col md="10" sm="10" cols="12">
                   <v-card color="transparent" flat tile>
                     <v-card-subtitle class="resume-title" align="center">Make Your Online Resume</v-card-subtitle>
                   </v-card>
                 </v-col>
-                <v-col md="7" sm="12">
+                <v-col md="7" sm="12" cols="12">
                   <v-card color="transparent" flat tile>
                     <v-card-subtitle
                       align="center"
@@ -31,13 +31,13 @@
                     >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
                   </v-card>
                 </v-col>
-                <v-col md="7" sm="12" cols="12">
+                <v-col xl="7" lg="8" md="8" sm="12" cols="12">
                   <v-card color="transparent" flat tile class="mt-n5">
                     <v-card-subtitle
                       class="reserve-title"
                       align="center"
                     >Reserve your own online webpage</v-card-subtitle>
-                    <v-card-subtitle class="mt-n5">
+                    <v-card-subtitle class="mt-n5 av-subtitle">
                       <v-text-field
                         class="input-av"
                         hide-details
@@ -98,9 +98,9 @@
       <v-container style="width:100%" class>
         <v-row align="center" justify="center">
           <v-col lg="6" xl="5" md="6" sm="11" cols="12">
-            <v-card color="transparent" tile flat class="card-login">
+            <v-card color="transparent" tile flat >
               <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
-              <v-card class="pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5">
+              <v-card class="pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 card-login">
                 <v-card-subtitle align="center" class="create-new-account-text">Create New Account</v-card-subtitle>
                 <v-card-subtitle>
                   <v-form ref="form" v-model="valid" :lazy-validation="lazy" class="login-form">
@@ -493,7 +493,7 @@ export default {
         infinite: true,
         dots: true,
         arrows: false,
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 5000,
@@ -518,37 +518,7 @@ export default {
           }
         ]
       },
-      slickOptions: {
-        centerMode: false,
-        infinite: true,
-        dots: true,
-        arrows: false,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        pauseOnDotsHover: true,
-        responsive: [
-          {
-            breakpoint: 959,
-            settings: {
-              centerMode: true,
-              centerPadding: "80px",
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 599,
-            settings: {
-              centerMode: true,
-              centerPadding: "40px",
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      }
+      
     };
   },
   //mounted
@@ -595,6 +565,11 @@ export default {
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
+}
+
+.av-subtitle{
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .separator {
   display: flex;
@@ -745,9 +720,17 @@ export default {
     font-size: 48px;
     line-height: 60px;
   }
-  @media screen and (max-width: 1263px) {
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 36px;
     line-height: 50px;
+  }
+  @media screen and (max-width:959px){
+    font-size: 64px;
+    line-height: 75px;
+  }
+  @media screen and (min-width:600px) and (max-width:714px){ 
+    font-size: 48px;
+    line-height: 60px;
   }
 }
 
@@ -765,6 +748,10 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 12px !important;
     line-height: 18px;
+  }
+  @media screen and (max-width: 959px){
+    font-size: 18px !important;
+    line-height: 24px;
   }
 }
 
@@ -810,6 +797,12 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 14px !important;
   }
+  @media screen and (max-width: 959px){
+    font-size: 24px !important;
+  }
+  @media screen and (min-width:600px) and (max-width:714px){ 
+    font-size: 18px;
+  }
 }
 
 .login-title {
@@ -844,6 +837,14 @@ export default {
   @media screen and (max-width: 1263px) {
     font-size: 36px;
     line-height: 30px;
+  }
+  @media screen and (max-width: 959px){
+    font-size: 48px;
+    line-height: 55px;
+  }
+  @media screen and (min-width:600px) and (max-width:714px){ 
+    font-size: 36px;
+    line-height: 48px;
   }
 }
 
@@ -982,6 +983,9 @@ export default {
   @media screen and (max-width: 959px) {
     margin-top: 20px;
     margin-bottom: 20px;
+    width: 213.79px !important;
+    height: 62px !important;
+    font-size: 14px !important;
   }
 
   @media screen and (max-width: 599px) {
@@ -1020,6 +1024,10 @@ export default {
   @media screen and (max-width: 959px) {
     font-size: 3rem;
     line-height: 3.25rem;
+  }
+  @media screen and (min-width:600px) and (max-width:714px){ 
+    font-size: 36px;
+    line-height: 40px;
   }
   @media screen and (max-width: 599px) {
     font-size: 1.5rem;
