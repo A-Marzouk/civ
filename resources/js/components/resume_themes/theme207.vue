@@ -15,39 +15,47 @@
               </v-avatar>
             </v-col>
             <v-col md="4" sm="7" cols="6">
-              <v-card
-                class="pa-0 card-profile"
-                :align="windowWidth > 599 ?'center': 'left'"
-                color="transparent"
-                tile
-                flat
-              >
-                <div class="custom-profile-title">{{ personalData.name }}</div>
-                <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
-                <div class="hr-line hidden-xs-only"></div>
-              </v-card>
+              <v-card class="card-main-profile" flat tile color="transparent">
+                <v-card
+                  class="pa-0 card-profile"
+                  :align="windowWidth > 599 ?'center': 'left'"
+                  color="transparent"
+                  tile
+                  flat
+                >
+                  <div class="custom-profile-title">{{ personalData.name }}</div>
+                  <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
+                  <div class="hr-line hidden-xs-only"></div>
+                </v-card>
 
-              <v-card class="pa-0 mt-3 hidden-xs-only" align="center" color="transparent" tile flat>
-                <v-row justify="center" align="center">
-                  <v-col cols="6" sm="5">
-                    <div class="hour-rate">
-                      <v-avatar left class="mt-n2 mr-n1">
-                        <img src="/images/resume_themes/theme207/icons/usd.png" />
-                      </v-avatar>
-                      <span>$20</span>
-                    </div>
-                    <div class="hour-rate-text">Hour Rate</div>
-                  </v-col>
-                  <v-col cols="6" sm="5">
-                    <div class="hour-rate">
-                      <v-avatar left class="mt-n2 mr-n1">
-                        <img src="/images/resume_themes/theme207/icons/time.png" />
-                      </v-avatar>
-                      <span>25</span>
-                    </div>
-                    <div class="hour-rate-text">Weekly Availibility</div>
-                  </v-col>
-                </v-row>
+                <v-card
+                  class="pa-0 mt-3 hidden-xs-only"
+                  align="center"
+                  color="transparent"
+                  tile
+                  flat
+                >
+                  <v-row justify="center" align="center">
+                    <v-col cols="6" sm="5">
+                      <div class="hour-rate">
+                        <v-avatar left class="mt-n2 mr-n1">
+                          <img src="/images/resume_themes/theme207/icons/usd.png" />
+                        </v-avatar>
+                        <span>$20</span>
+                      </div>
+                      <div class="hour-rate-text">Hour Rate</div>
+                    </v-col>
+                    <v-col cols="6" sm="5">
+                      <div class="hour-rate">
+                        <v-avatar left class="mt-n2 mr-n1">
+                          <img src="/images/resume_themes/theme207/icons/time.png" />
+                        </v-avatar>
+                        <span>25</span>
+                      </div>
+                      <div class="hour-rate-text">Weekly Availibility</div>
+                    </v-col>
+                  </v-row>
+                </v-card>
               </v-card>
             </v-col>
             <v-col cols="4" class="hidden-sm-and-up">
@@ -464,7 +472,11 @@
                                           >PHP</v-card-title>
                                           <div class="ml-3 div-skillbar">
                                             <v-row align="center" justify="center">
-                                              <v-col md="9" sm="10" :cols="windowWidth>393?'10':'9'">
+                                              <v-col
+                                                md="9"
+                                                sm="10"
+                                                :cols="windowWidth>393?'10':'9'"
+                                              >
                                                 <v-progress-linear
                                                   tile
                                                   class="skill-progressbar"
@@ -662,7 +674,13 @@
                   <v-card flat color="transparent" tile class="mt-5">
                     <v-container style="width:100%">
                       <v-row>
-                        <v-col lg="2" md="3" sm="3" cols="12" :align="windowWidth <=599 ? 'center':'left'">
+                        <v-col
+                          lg="2"
+                          md="3"
+                          sm="3"
+                          cols="12"
+                          :align="windowWidth <=599 ? 'center':'left'"
+                        >
                           <v-card-title class="about-me-title-mobile hidden-sm-and-up">About Me</v-card-title>
                           <v-avatar size="250" class="about-me-photo" tile>
                             <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
@@ -1011,11 +1029,33 @@ export default {
   height: 200px !important;
   max-height: 200px;
   max-width: 200px;
+  @media screen and (min-width: 1025px){
+    margin-left:80px;
+  }
   @media screen and (max-width: 959px) {
     width: 120px !important;
     height: 120px !important;
     max-height: 120px;
     max-width: 120px;
+  }
+
+}
+.card-main-profile{
+  margin-left: -100px;
+  @media screen and (max-width: 1800px){
+    margin-left: -80px;
+  }
+  @media screen and (max-width: 1600px){
+    margin-left: -70px;
+  }
+  @media screen and (max-width: 1440px){
+    margin-left: -60px;
+  }
+  @media screen and (max-width:1280px){
+    margin-left: -40px;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1023px){
+    margin-left: -30px;
   }
 }
 
@@ -1034,7 +1074,7 @@ export default {
   font-size: 2.5rem;
   line-height: 3.375rem;
   color: #ffffff !important;
-  @media screen and (min-width: 960px) and (max-width: 1054px) {
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
     font-size: 1.8rem;
   }
   @media screen and(max-width:959px) {
@@ -1210,7 +1250,7 @@ export default {
 }
 
 img.portfolio-lg-img {
-  @media screen and (min-width: 1441px){
+  @media screen and (min-width: 1441px) {
     height: 560px;
   }
   @media screen and (max-width: 959px) {
@@ -1235,8 +1275,8 @@ img.portfolio-lg-img {
 //education
 .card-education {
   border-radius: 9px !important;
-  @media screen and (min-width: 1500px){
-    height: 200px !important; 
+  @media screen and (min-width: 1500px) {
+    height: 200px !important;
   }
   @media screen and (max-width: 959px) {
     height: 170px;
@@ -1339,15 +1379,15 @@ img.portfolio-lg-img {
   font-size: 1rem;
   line-height: 1.438rem;
 }
-.div-skillbar{
-  @media screen and (max-width: 599px){
+.div-skillbar {
+  @media screen and (max-width: 599px) {
     margin-top: -20px;
   }
 }
 .skill-progressbar {
   border-radius: 50px !important;
   background: #fc413c !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     height: 7px !important;
   }
 }
@@ -1358,10 +1398,10 @@ img.portfolio-lg-img {
   font-size: 20px !important;
   line-height: 28px;
   color: #ffffff !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
-  @media screen and (max-width: 414px){
+  @media screen and (max-width: 414px) {
     font-size: 10px !important;
   }
 }
@@ -1518,7 +1558,7 @@ img.portfolio-lg-img {
   .v-responsive.v-image.preview-1 {
     min-height: 202px;
     min-width: 240px;
-    @media screen and (min-width: 1440px){
+    @media screen and (min-width: 1440px) {
       height: 200px;
     }
     @media screen and (max-width: 959px) {
