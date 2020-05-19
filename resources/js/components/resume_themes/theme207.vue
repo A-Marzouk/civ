@@ -1221,7 +1221,7 @@ export default {
     width: 20px;
     height: 20px;
   }
-  @media screen and (max-width: 959px) {
+  @media screen and (max-width: 1263px) {
     span {
       display: none;
     }
@@ -1568,8 +1568,8 @@ img.portfolio-lg-img {
   .v-responsive.v-image.preview-1 {
     min-height: 202px;
     min-width: 240px;
-    @media screen and (min-width: 1440px) {
-      height: 200px;
+    @media screen and (min-width: 960px) {
+      height: 10vh;
     }
     @media screen and (max-width: 959px) {
       height: 0px;
