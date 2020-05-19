@@ -340,7 +340,7 @@
                 <v-tab-item>
                   <v-container style="width:100%" fluid class="pa-md-0 pa-sm-5 pa-0">
                     <v-row>
-                      <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
+                      <v-col cols="12" sm="12" lg="4" md="6" v-for="n in 6" :key="n">
                         <v-card class="pa-5 card-education" hover color="#272B2F">
                           <div
                             class="d-flex flex-no-wrap justify-space-between education-inner-block"
@@ -374,7 +374,7 @@
                 <v-tab-item>
                   <v-container style="width:100%" fluid class="pa-md-0 pa-sm-5 pa-0">
                     <v-row>
-                      <v-col cols="12" sm="12" md="4" v-for="n in 6" :key="n">
+                      <v-col cols="12" sm="12" lg="4" md="6" v-for="n in 6" :key="n">
                         <v-card class="pa-5 card-education" hover color="#272B2F">
                           <div
                             class="d-flex flex-no-wrap justify-space-between education-inner-block"
@@ -439,7 +439,8 @@
                               <v-card-text>
                                 <v-row>
                                   <v-col
-                                    md="4"
+                                    lg="4"
+                                    md="6"
                                     sm="12"
                                     cols="12"
                                     v-for="item in childSkills"
@@ -503,7 +504,7 @@
                     <!-- Media Main Row -->
                     <v-row>
                       <!-- Media Main Column 1 -->
-                      <v-col md="3" sm="6">
+                      <v-col lg="3" md="6" sm="6">
                         <v-row class="flex-column">
                           <v-col cols="12" v-for="i in 3" :key="i">
                             <v-card class="pa-5 card-media" color="#272B2F" hover>
@@ -526,7 +527,7 @@
                       <!-- Media Main Column 1-->
 
                       <!-- Media Main Column 2 -->
-                      <v-col md="3" sm="6">
+                      <v-col lg="3" md="6" sm="6">
                         <v-row class="flex-column">
                           <v-col cols="12" class="col-video-1">
                             <v-card class="pa-5 card-video text-center" hover color="#272B2F">
@@ -586,7 +587,7 @@
                       <!-- Media Main Column 2 -->
 
                       <!-- Media Column 3 -->
-                      <v-col md="3" sm="6" class="hidden-sm-and-down">
+                      <v-col lg="3" md="6" sm="6" class="hidden-md-and-down">
                         <v-row class="flex-column">
                           <v-col cols="12" v-for="i in 3" :key="i">
                             <v-card class="pa-5 card-media" hover color="#272B2F">
@@ -608,7 +609,7 @@
                       </v-col>
                       <!-- Media Column 3 -->
                       <!-- Media 4th Column -->
-                      <v-col md="3" sm="12" class>
+                      <v-col lg="3" md="12" sm="12" class>
                         <v-row class="flex-column">
                           <v-col cols="12">
                             <v-card class="pa-5 card-video-big text-center" hover color="#272B2F">
