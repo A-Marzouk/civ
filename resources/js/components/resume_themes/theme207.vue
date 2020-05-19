@@ -2,22 +2,17 @@
   <v-app style="width:100%; background:#212529;">
     <v-container fluid ma-0 pa-0 style="max-width:100% !important;">
       <!-- For Desktop and Tablet -->
-      <v-app-bar color="#272B2F" :height="windowWidth > 599 ? 260 : '170' " dark>
+      <v-app-bar color="#272B2F" :height="windowWidth > 599 ? 260 : '150' " dark>
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center">
-            <v-col cols="2" class="hidden-sm-and-up">
-              <v-avatar class="custom-avatar-mobile hidden-sm-and-up mr-7" left size="80">
-                <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
-              </v-avatar>
-            </v-col>
-            <v-col xl="4" lg="5" md="6" sm="7" cols="6">
+            <v-col xl="4" lg="5" md="6" sm="7" cols="8">
               <v-row align="center" justify="center" dense>
-                <v-col lg="4" md="1" sm="2" cols="4">
-                  <v-avatar class="custom-avatar hidden-xs-only" left tile>
+                <v-col lg="4" md="1" sm="2" cols="2">
+                  <v-avatar class="custom-avatar" left tile>
                     <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
                   </v-avatar>
                 </v-col>
-                <v-col lg="8" md="11" sm="10" cols="8">
+                <v-col lg="8" md="11" sm="10" cols="10">
                   <v-card class="card-main-profile" flat tile color="transparent">
                     <v-card
                       class="pa-0 card-profile"
@@ -686,8 +681,9 @@
                     <v-container style="width:100%">
                       <v-row>
                         <v-col
-                          lg="2"
-                          md="3"
+                          xl="2"
+                          lg="3"
+                          md="4"
                           sm="3"
                           cols="12"
                           :align="windowWidth <=599 ? 'center':'left'"
@@ -697,7 +693,7 @@
                             <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
                           </v-avatar>
                         </v-col>
-                        <v-col lg="10" md="9" sm="9" cols="12">
+                        <v-col xl="10" lg="9" md="8" sm="9" cols="12">
                           <div
                             class="about-me-text"
                           >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</div>
@@ -995,7 +991,7 @@ export default {
   }
 }
 .card-hire-me-mobile {
-  margin-top: -16px;
+  margin-top: -26px;
   .hour-rate-mobile-text {
     font-family: "Open Sans" !important;
     font-weight: 600 !important;
@@ -1048,6 +1044,14 @@ export default {
     height: 120px !important;
     max-height: 120px;
     max-width: 120px;
+  }
+  @media screen and (max-width: 599px) {
+    width: 60px !important;
+    height: 60px !important;
+    max-height: 60px;
+    max-width: 60px;
+    border: 3px solid #272b2f;
+    margin-top: 28px;
   }
 }
 .card-main-profile {
