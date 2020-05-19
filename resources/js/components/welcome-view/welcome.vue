@@ -692,7 +692,7 @@ export default {
         pauseOnDotsHover: true,
         responsive: [
           {
-            breakpoint: 959,
+            breakpoint: 960,
             settings: {
               centerPadding: "75px",
               slidesPerRow: 1,
@@ -701,7 +701,7 @@ export default {
             }
           },
           {
-            breakpoint: 599,
+            breakpoint: 600,
             settings: {
               centerPadding: "30px",
               slidesToShow: 1,
