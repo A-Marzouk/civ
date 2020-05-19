@@ -465,10 +465,10 @@ export default {
       agreeCheckRules: [v => (v && v == false) || ""],
 
       socialMediaIcons: [
-        { id: 1, title: "instagram", width: 18, tablet_width: 30 },
-        { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
-        { id: 3, title: "google", width: 14, tablet_width: 22 },
-        { id: 4, title: "facebook", width: 18, tablet_width: 28 }
+        { id: 1, title: "instagram", width: 18, tablet_width: 18 },
+        { id: 2, title: "linkedin", width: 16, tablet_width: 16 },
+        { id: 3, title: "google", width: 14, tablet_width: 14 },
+        { id: 4, title: "facebook", width: 18, tablet_width: 18 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -1228,15 +1228,23 @@ export default {
   }
 
   @media screen and (max-width: 959px) {
-    width: 69.07px;
-    height: 69.07px;
+    width: 69.07px !important;
+    height: 69.07px !important;
     img {
-      width: 25px;
+      width: 27px;
+    }
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 753px){
+    width: 48px !important;
+    height: 48px !important;
+    img{
+      width: 20px;
     }
   }
   @media screen and (max-width: 599px) {
-    width: 28px;
-    height: 28px;
+    width: 28px !important;
+    height: 28px !important;
     margin-top: 9px !important;
     margin-bottom: -28px;
     img {
@@ -1297,5 +1305,21 @@ export default {
   > .v-input__slot
   fieldset {
   border: 2px solid #ebebeb !important;
+}
+#welcomeView2 .slick-dots li button {
+  width: 110px !important;
+  height: 6px;
+  border-radius: 0px;
+  margin-left: -10px;
+  background-color: #e5e5e5 !important;
+}
+
+#welcomeView2 .slick-dots li.slick-active button {
+  background-color: #0f4cee !important;
+  outline: none;
+  transition: width 5s ease-out 0s;
+}
+#welcomeView2 .slick-dots li button:focus {
+  outline: none !important;
 }
 </style>

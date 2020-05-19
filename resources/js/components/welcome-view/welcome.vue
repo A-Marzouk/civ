@@ -2116,8 +2116,8 @@ export default {
 }
 /* mobile screen */
 
-  .custom-margin{
+  /* .custom-margin{
     margin-top: -20px;
     margin-bottom: 25px;
-  }
+  } */
 </style>
