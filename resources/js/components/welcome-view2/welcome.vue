@@ -1416,6 +1416,10 @@ export default {
 }
 
 @media screen and (max-width: 599px) {
+  #welcomeView2 .slick-dots li button {
+  width: 40px !important;
+  height: 6px;
+}
   #welcomeView2
     .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
     > .v-input__control
