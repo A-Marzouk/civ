@@ -98,7 +98,7 @@
       <v-container style="width:100%" class>
         <v-row align="center" justify="center">
           <v-col lg="6" xl="5" md="6" sm="11" cols="12">
-            <v-card color="transparent" tile flat >
+            <v-card color="transparent" tile flat>
               <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
               <v-card class="pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 card-login">
                 <v-card-subtitle align="center" class="create-new-account-text">Create New Account</v-card-subtitle>
@@ -114,10 +114,10 @@
                         background-color="#ffffff"
                         :rules="nameRules"
                         v-model="name"
-                        height="60"
+                        :height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
                     </div>
-                    <div class="input-div">
+                    <div class="input-div mt-md-0 mt-sm-0 mt-n3">
                       <label for="email">Email Address</label>
                       <v-text-field
                         dark
@@ -127,10 +127,10 @@
                         background-color="#ffffff"
                         :rules="emailRules"
                         v-model="email"
-                        height="60"
+                        :height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
                     </div>
-                    <div class="input-div">
+                    <div class="input-div mt-md-0 mt-sm-0 mt-n3">
                       <label for="password">Password</label>
                       <v-text-field
                         dark
@@ -140,11 +140,11 @@
                         background-color="#ffffff"
                         v-model="password"
                         :rules="passwordRules"
-                        height="60"
+                        :height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
                     </div>
                     <div class="input-div">
-                      <label for="confirmPassword">Confirm Password</label>
+                      <label for="confirmPassword mt-md-0 mt-sm-0 mt-n3">Confirm Password</label>
                       <v-text-field
                         dark
                         class="login-input"
@@ -153,7 +153,7 @@
                         background-color="#ffffff"
                         v-model="confirmPassword"
                         :rules="confirmPasswordRules"
-                        height="60"
+                        :min-height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
                     </div>
 
@@ -339,7 +339,7 @@
     </v-container>
     <!-- main container -->
     <!-- Footer -->
-    <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':'auto'">
+    <v-footer color="#0F4CEE" class="custom-footer">
       <v-container class="footer-container">
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
@@ -511,14 +511,21 @@ export default {
           {
             breakpoint: 599,
             settings: {
-              centerPadding: "30px",
+              centerPadding: "75px",
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 400,
+            settings: {
+              centerPadding: "50px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
           }
         ]
-      },
-      
+      }
     };
   },
   //mounted
@@ -565,9 +572,12 @@ export default {
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
+  @media screen and (max-width: 599px){
+    height: 700px;
+  }
 }
 
-.av-subtitle{
+.av-subtitle {
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -675,6 +685,14 @@ export default {
     font-weight: 500;
     color: #616161 !important;
   }
+  @media screen and (max-width: 599px) {
+    .login-input {
+      margin-top: 5px;
+    }
+    label {
+      font-size: 12px;
+    }
+  }
 }
 //form
 
@@ -724,13 +742,17 @@ export default {
     font-size: 36px;
     line-height: 50px;
   }
-  @media screen and (max-width:959px){
+  @media screen and (max-width: 959px) {
     font-size: 64px;
     line-height: 75px;
   }
-  @media screen and (min-width:600px) and (max-width:714px){ 
+  @media screen and (min-width: 600px) and (max-width: 714px) {
     font-size: 48px;
     line-height: 60px;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 36px;
+    line-height: 45px;
   }
 }
 
@@ -749,9 +771,13 @@ export default {
     font-size: 12px !important;
     line-height: 18px;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     font-size: 18px !important;
     line-height: 24px;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 14px !important;
+    line-height: 22px;
   }
 }
 
@@ -797,11 +823,15 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 14px !important;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     font-size: 24px !important;
   }
-  @media screen and (min-width:600px) and (max-width:714px){ 
-    font-size: 18px;
+  @media screen and (min-width: 600px) and (max-width: 714px) {
+    font-size: 18px !important;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 16px !important;
+    line-height: 36px;
   }
 }
 
@@ -828,23 +858,27 @@ export default {
   font-family: "Montserrat" !important;
   color: #0046fe !important;
   font-weight: bold;
-  font-size: 64px;
+  font-size: 64px !important;
   line-height: 55px;
   @media screen and (max-width: 1903px) {
-    font-size: 48px;
+    font-size: 48px !important;
     line-height: 36px;
   }
   @media screen and (max-width: 1263px) {
-    font-size: 36px;
+    font-size: 36px !important;
     line-height: 30px;
   }
-  @media screen and (max-width: 959px){
-    font-size: 48px;
+  @media screen and (max-width: 959px) {
+    font-size: 48px !important;
     line-height: 55px;
   }
-  @media screen and (min-width:600px) and (max-width:714px){ 
-    font-size: 36px;
+  @media screen and (min-width: 600px) and (max-width: 714px) {
+    font-size: 36px !important;
     line-height: 48px;
+  }
+  @media screen and (max-width: 959px) {
+    font-size: 24px !important;
+    line-height: 55px;
   }
 }
 
@@ -854,6 +888,10 @@ export default {
   font-size: 24px;
   line-height: 29px;
   color: #0046fe !important;
+  @media screen and (max-width: 599px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
 
 .social-icon {
@@ -916,8 +954,13 @@ export default {
     font-size: 10px !important;
   }
   @media screen and (max-width: 599px) {
-    width: 157px !important;
-    height: 48.76px !important;
+    width: 173px !important;
+    height: 52px !important;
+    font-size: 12px !important;
+  }
+  @media screen and (max-width: 400px){
+    width: 154px !important;
+    font-size: 10px !important;
   }
 }
 
@@ -934,11 +977,13 @@ export default {
   }
 
   @media screen and (max-width: 959px) {
-    font-size: 1.375rem;
+    font-size: 18px;
+    line-height: 22px;
   }
 
   @media screen and (max-width: 599px) {
-    font-size: 1.125rem;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 
@@ -989,9 +1034,14 @@ export default {
   }
 
   @media screen and (max-width: 599px) {
-    width: 157px !important;
-    height: 48.76px !important;
-    font-size: 0.75rem !important;
+    width: 173px !important;
+    height: 52px !important;
+    font-size: 12px !important;
+  }
+
+  @media screen and (max-width: 400px){
+    width: 154px !important;
+    font-size: 10px !important;
   }
 }
 
@@ -1025,7 +1075,7 @@ export default {
     font-size: 3rem;
     line-height: 3.25rem;
   }
-  @media screen and (min-width:600px) and (max-width:714px){ 
+  @media screen and (min-width: 600px) and (max-width: 714px) {
     font-size: 36px;
     line-height: 40px;
   }
@@ -1095,6 +1145,11 @@ export default {
   @media screen and (max-width: 959px) {
     padding: 0;
   }
+  @media screen and(max-width: 700px) {
+    img {
+      width: 80%;
+    }
+  }
 }
 // build resume section
 
@@ -1134,6 +1189,9 @@ export default {
   }
   @media screen and (max-width: 380px) {
     font-size: 10px;
+  }
+  @media screen and (max-width: 329px) {
+    font-size: 8px;
   }
 }
 
@@ -1235,10 +1293,10 @@ export default {
     }
   }
 
-  @media screen and (min-width: 600px) and (max-width: 753px){
+  @media screen and (min-width: 600px) and (max-width: 753px) {
     width: 48px !important;
     height: 48px !important;
-    img{
+    img {
       width: 20px;
     }
   }
@@ -1252,28 +1310,50 @@ export default {
     }
   }
 
-  @media screen and (max-width: 400px) {
-    width: 24px;
-    height: 24px;
+  @media screen and (max-width: 409px) {
+    width: 24px !important;
+    height: 24px !important;
     img {
       width: 10px;
     }
   }
 
   @media screen and (max-width: 380px) {
-    width: 22px;
-    height: 22px;
+    width: 22px !important;
+    height: 22px !important;
     img {
       width: 10px;
     }
   }
 
-  @media screen and (max-width: 360px) {
-    width: 20px;
-    height: 20px;
+  @media screen and (max-width: 361px) {
+    width: 20px !important;
+    height: 20px !important;
     img {
       width: 8px;
     }
+  }
+
+  @media screen and (max-width: 350px) {
+    width: 18px !important;
+    height: 18px !important;
+    img {
+      width: 8px;
+    }
+  }
+  @media screen and (max-width: 335px) {
+    width: 16px !important;
+    height: 16px !important;
+    img {
+      width: 6px;
+    }
+  }
+}
+
+.custom-footer {
+  height: auto !important;
+  @media screen and (max-width: 599px) {
+    height: 125px;
   }
 }
 .v-text-field {
@@ -1321,5 +1401,44 @@ export default {
 }
 #welcomeView2 .slick-dots li button:focus {
   outline: none !important;
+}
+
+@media screen and (max-width: 959px) {
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -80px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -75px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  #welcomeView2 .slick-dots li button {
+  width: 40px !important;
+  height: 6px;
+}
+  #welcomeView2
+    .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+    > .v-input__control
+    > .v-input__slot {
+    min-height: 33.34px !important;
+    border-radius: 7px !important;
+  }
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -70px;
+  }
+  @media screen and (max-width: 410px) {
+    #welcomeView2 .slick-initialized .slick-slide {
+      margin-left: -69px;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  #welcomeView2 .slick-initialized .slick-slide {
+    margin-left: -40px;
+  }
 }
 </style>
