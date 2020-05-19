@@ -1,23 +1,23 @@
 <template>
 	<div>
 		<div class="tab-navigation">
-			<div class="tab-item">
+			<button class="tab-item">
 				<div class="tab-item__option" :class="{'active': activeTab==='experience'}" @click="activeTab='experience'">
 					<div>
 						<h3 class="option__title">Experience</h3>
 						<div class="option__hint">Where I've worked</div>
 					</div>
 				</div>
-			</div>
+			</button>
 
-			<div class="tab-item">
+			<button class="tab-item">
 				<div class="tab-item__option" :class="{'active': activeTab==='education'}" @click="activeTab='education'">
 					<div>
 						<h3 class="option__title">Education</h3>
 						<div class="option__hint">Where I've learned</div>
 					</div>
 				</div>
-			</div>
+			</button>
 		</div>
 
 		<Experience v-if="activeTab==='experience'" />
@@ -55,6 +55,11 @@ export default {
 	width: 50%;
 	padding: 15px 10px;
 	max-width: 125px;
+
+	&:focus {
+		outline: none;
+		background: transparent;
+	}
 }
 
 .tab-item__option {

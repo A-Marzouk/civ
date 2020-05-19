@@ -8,8 +8,8 @@
 import AboutMe from "./../views/AboutMe";
 import Media from "./../views/Media";
 import Portfolio from "./../views/Portfolio";
-import ExperienceEducation from "./tabs/ExperienceEducation";
-import SkillsLanguage from "./tabs/SkillsLanguage";
+import ExperienceEducation from "./ExperienceEducation/Index";
+import SkillsLanguage from "./SkillsLanguage/Index";
 
 export default {
 	name: "TabsContent",
