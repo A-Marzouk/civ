@@ -327,7 +327,7 @@
                   <v-card align="center" color="transparent" flat tile>
                     <v-card-subtitle class="explore-number">+35</v-card-subtitle>
                     <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
-                    <v-card-subtitle class="explore-link mt-n10">EXPLORE ALL THEMES ></v-card-subtitle>
+                    <v-card-subtitle class="explore-link mt-n10"><a href="#">EXPLORE ALL THEMES ></a></v-card-subtitle>
                   </v-card>
                 </v-col>
               </v-row>

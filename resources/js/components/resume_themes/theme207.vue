@@ -12,12 +12,12 @@
             </v-col>
             <v-col xl="4" lg="5" md="6" sm="7" cols="6">
               <v-row align="center" justify="center" dense>
-                <v-col cols="4">
+                <v-col lg="4" md="1" sm="2" cols="4">
                   <v-avatar class="custom-avatar hidden-xs-only" left tile>
                     <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
                   </v-avatar>
                 </v-col>
-                <v-col cols="8">
+                <v-col lg="8" md="11" sm="10" cols="8">
                   <v-card class="card-main-profile" flat tile color="transparent">
                     <v-card
                       class="pa-0 card-profile"
@@ -71,7 +71,7 @@
             </v-col>
             <!-- For mobile -->
             <!-- Social Buttons for tablet only -->
-            <v-col sm="5" class="d-none d-sm-flex d-md-none">
+            <v-col md="5" sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
                 <v-btn color="#272B2F" class="btn-hire-me my-8 mt-n8 ml-2" x-large>
                   <v-icon color="#FC413C" left>mdi-email-outline</v-icon>
@@ -96,7 +96,7 @@
             <!-- Social Button for tablet only -->
 
             <!-- 3rd column -->
-            <v-col xl="7" lg="6" md="5" class="hidden-sm-and-down" align="right">
+            <v-col xl="7" lg="6" md="5" sm="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
                 <!-- social buttons -->
                 <v-btn
@@ -1023,7 +1023,7 @@ export default {
   width: 85%;
   border: 1px solid #ffffff;
   opacity: 0.1;
-  @media screen and (max-width: 959px) {
+  @media screen and (max-width: 1264px) {
     width: 60%;
   }
 }
@@ -1039,7 +1039,7 @@ export default {
   // @media screen and (min-width: 1025px){
   //   margin-left:80px;
   // }
-  @media screen and (max-width: 959px) {
+  @media screen and (max-width: 1264px) {
     width: 120px !important;
     height: 120px !important;
     max-height: 120px;
