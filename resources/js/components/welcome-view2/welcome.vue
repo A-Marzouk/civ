@@ -511,7 +511,15 @@ export default {
           {
             breakpoint: 599,
             settings: {
-              centerPadding: "30px",
+              centerPadding: "75px",
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 400,
+            settings: {
+              centerPadding: "50px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
@@ -1389,7 +1397,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 700px){
+@media screen and (max-width: 700px) {
   #welcomeView2 .slick-initialized .slick-slide {
     margin-left: -75px;
   }
@@ -1404,13 +1412,17 @@ export default {
     border-radius: 7px !important;
   }
   #welcomeView2 .slick-initialized .slick-slide {
-    margin-left: -75px;
+    margin-left: -70px;
+  }
+  @media screen and (max-width: 410px) {
+    #welcomeView2 .slick-initialized .slick-slide {
+      margin-left: -69px;
+    }
   }
 }
-
-@media screen and (max-width: 598px){
+@media screen and (max-width: 400px) {
   #welcomeView2 .slick-initialized .slick-slide {
-    margin-left: -30px;
+    margin-left: -40px;
   }
 }
 </style>
