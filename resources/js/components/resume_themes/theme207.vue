@@ -715,7 +715,7 @@
       <!-- Tab items container -->
     </v-container>
     <!-- Main container -->
-    <v-footer class="hidden-sm-and-down" color="#272B2F" v-show="currentTab==5" height="100">
+    <v-footer class="hidden-md-and-down" color="#272B2F" v-show="currentTab==5" height="100">
       <v-col cols="12">
         <div class="d-flex">
           <div class>
@@ -790,9 +790,9 @@
       </v-col>
     </v-footer>
     <!-- Only For tablet and mobile -->
-    <v-footer class="hidden-md-and-up" color="#272B2F" v-show="currentTab==5">
-      <v-container style="width:100%" fluid>
-        <v-row align="center" justify="center" class="hidden-md-and-up">
+    <v-footer class="hidden-lg-and-up" color="#272B2F" v-show="currentTab==5">
+      <v-container style="width:100%" fluid class="mt-md-10 mt-sm-0 mt-0">
+        <v-row align="center" justify="center" class="hidden-lg-and-up">
           <v-col cols="12" align="center" class="mb-md-0 mb-sm-0 mb-n6">
             <!-- Audio Controlls -->
             <!-- Tablet mobile repeat button -->
