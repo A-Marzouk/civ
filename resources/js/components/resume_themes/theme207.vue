@@ -3,10 +3,6 @@
     <v-container fluid ma-0 pa-0 style="max-width:100% !important;">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" :height="windowWidth > 599 ? 260 : '170' " dark>
-        <v-avatar class="custom-avatar hidden-xs-only" left tile>
-          <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
-        </v-avatar>
-
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
             <v-col cols="2" class="hidden-sm-and-up">
@@ -14,49 +10,58 @@
                 <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
               </v-avatar>
             </v-col>
-            <v-col md="4" sm="7" cols="6">
-              <v-card class="card-main-profile" flat tile color="transparent">
-                <v-card
-                  class="pa-0 card-profile"
-                  :align="windowWidth > 599 ?'center': 'left'"
-                  color="transparent"
-                  tile
-                  flat
-                >
-                  <div class="custom-profile-title">{{ personalData.name }}</div>
-                  <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
-                  <div class="hr-line hidden-xs-only"></div>
-                </v-card>
+            <v-col xl="4" lg="5" md="6" sm="7" cols="6">
+              <v-row align="center" justify="center" dense>
+                <v-col cols="4">
+                  <v-avatar class="custom-avatar hidden-xs-only" left tile>
+                    <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
+                  </v-avatar>
+                </v-col>
+                <v-col cols="8">
+                  <v-card class="card-main-profile" flat tile color="transparent">
+                    <v-card
+                      class="pa-0 card-profile"
+                      :align="windowWidth > 599 ?'center': 'left'"
+                      color="transparent"
+                      tile
+                      flat
+                    >
+                      <div class="custom-profile-title">{{ personalData.name }}</div>
+                      <div class="custom-profile-subtitle">{{ personalData.designation }}</div>
+                      <div class="hr-line hidden-xs-only"></div>
+                    </v-card>
 
-                <v-card
-                  class="pa-0 mt-3 hidden-xs-only"
-                  align="center"
-                  color="transparent"
-                  tile
-                  flat
-                >
-                  <v-row justify="center" align="center">
-                    <v-col cols="6" sm="5">
-                      <div class="hour-rate">
-                        <v-avatar left class="mt-n2 mr-n1">
-                          <img src="/images/resume_themes/theme207/icons/usd.png" />
-                        </v-avatar>
-                        <span>$20</span>
-                      </div>
-                      <div class="hour-rate-text">Hour Rate</div>
-                    </v-col>
-                    <v-col cols="6" sm="5">
-                      <div class="hour-rate">
-                        <v-avatar left class="mt-n2 mr-n1">
-                          <img src="/images/resume_themes/theme207/icons/time.png" />
-                        </v-avatar>
-                        <span>25</span>
-                      </div>
-                      <div class="hour-rate-text">Weekly Availibility</div>
-                    </v-col>
-                  </v-row>
-                </v-card>
-              </v-card>
+                    <v-card
+                      class="pa-0 mt-3 hidden-xs-only"
+                      align="center"
+                      color="transparent"
+                      tile
+                      flat
+                    >
+                      <v-row justify="center" align="center">
+                        <v-col cols="6" sm="5">
+                          <div class="hour-rate">
+                            <v-avatar left class="mt-n2 mr-n1">
+                              <img src="/images/resume_themes/theme207/icons/usd.png" />
+                            </v-avatar>
+                            <span>$20</span>
+                          </div>
+                          <div class="hour-rate-text">Hour Rate</div>
+                        </v-col>
+                        <v-col cols="6" sm="5">
+                          <div class="hour-rate">
+                            <v-avatar left class="mt-n2 mr-n1">
+                              <img src="/images/resume_themes/theme207/icons/time.png" />
+                            </v-avatar>
+                            <span>25</span>
+                          </div>
+                          <div class="hour-rate-text">Weekly Availibility</div>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                  </v-card>
+                </v-col>
+              </v-row>
             </v-col>
             <!-- For mobile -->
             <v-col cols="4" class="hidden-sm-and-up">
@@ -91,7 +96,7 @@
             <!-- Social Button for tablet only -->
 
             <!-- 3rd column -->
-            <v-col md="7" class="hidden-sm-and-down" align="right">
+            <v-col xl="7" lg="6" md="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
                 <!-- social buttons -->
                 <v-btn
@@ -1040,9 +1045,8 @@ export default {
     max-height: 120px;
     max-width: 120px;
   }
-
 }
-.card-main-profile{
+.card-main-profile {
   // margin-left: -100px;
   // @media screen and (max-width: 1800px){
   //   margin-left: -80px;
