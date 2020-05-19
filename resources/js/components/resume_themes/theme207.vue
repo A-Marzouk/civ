@@ -4,7 +4,7 @@
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#272B2F" :height="windowWidth > 599 ? 260 : '170' " dark>
         <v-container fluid pa-0 ma-0 style="width:100%">
-          <v-row class align="center" justify="center" dense>
+          <v-row class align="center" justify="center">
             <v-col cols="2" class="hidden-sm-and-up">
               <v-avatar class="custom-avatar-mobile hidden-sm-and-up mr-7" left size="80">
                 <v-img src="/images/resume_themes/theme207/avatar.png"></v-img>
@@ -71,32 +71,36 @@
             </v-col>
             <!-- For mobile -->
             <!-- Social Buttons for tablet only -->
-            <v-col md="5" sm="5" class="d-none d-sm-flex d-md-none">
+            <v-col md="6" sm="5" class="d-none d-sm-flex d-md-none d-lg-none">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
-                <v-btn color="#272B2F" class="btn-hire-me my-8 mt-n8 ml-2" x-large>
-                  <v-icon color="#FC413C" left>mdi-email-outline</v-icon>
-                </v-btn>
+                <v-card-subtitle align="center">
+                  <v-btn color="#272B2F" class="btn-hire-me" x-large>
+                    <v-icon color="#FC413C" left>mdi-email-outline</v-icon>
+                  </v-btn>
+                </v-card-subtitle>
 
                 <!-- social buttons -->
-                <v-btn
-                  class="custom-social-btn mx-2"
-                  v-for="item in socialIcons"
-                  :key="item.title"
-                  color="#272B2F"
-                >
-                  <img
-                    :width="item.title == 'facebook'? '12' : '20' "
-                    x-large
-                    :src="getSocialIcon(item.title)"
-                  />
-                </v-btn>
+                <v-card-subtitle align="center">
+                  <v-btn
+                    class="custom-social-btn mx-2"
+                    v-for="item in socialIcons"
+                    :key="item.title"
+                    color="#272B2F"
+                  >
+                    <img
+                      :width="item.title == 'facebook'? '12' : '20' "
+                      x-large
+                      :src="getSocialIcon(item.title)"
+                    />
+                  </v-btn>
+                </v-card-subtitle>
                 <!-- social buttons -->
               </v-card>
             </v-col>
             <!-- Social Button for tablet only -->
 
             <!-- 3rd column -->
-            <v-col xl="7" lg="6" md="5" sm="5" class="hidden-sm-and-down" align="right">
+            <v-col xl="7" lg="6" md="6" sm="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" tile class="pa-0 hire-me-card">
                 <!-- social buttons -->
                 <v-btn
@@ -1023,7 +1027,7 @@ export default {
   width: 85%;
   border: 1px solid #ffffff;
   opacity: 0.1;
-  @media screen and (max-width: 1264px) {
+  @media screen and (max-width: 1263px) {
     width: 60%;
   }
 }
@@ -1039,7 +1043,7 @@ export default {
   // @media screen and (min-width: 1025px){
   //   margin-left:80px;
   // }
-  @media screen and (max-width: 1264px) {
+  @media screen and (max-width: 1263px) {
     width: 120px !important;
     height: 120px !important;
     max-height: 120px;
@@ -1164,7 +1168,7 @@ export default {
 }
 .hire-me-card {
   margin-top: -70px;
-  @media screen and (max-width: 959px) {
+  @media screen and (max-width: 1263px) {
     margin-top: 0px;
   }
 }
@@ -1174,10 +1178,10 @@ export default {
   border-radius: 5px !important;
   width: 200px;
   box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
-  @media screen and (max-width: 1024px) {
-    width: 120px;
-  }
-  @media screen and (max-width: 959px) {
+  // @media screen and (max-width: 1024px) {
+  //   width: 120px;
+  // }
+  @media screen and (max-width: 1263px) {
     width: 225px;
   }
   @media screen and (max-width: 599px) {
@@ -1197,9 +1201,9 @@ export default {
   border-radius: 5px !important;
   box-shadow: -5px -5px 9px rgba(113, 113, 113, 0.149) !important;
 
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    min-width: 45px !important;
-  }
+  // @media screen and (min-width: 960px) and (max-width: 1024px) {
+  //   min-width: 45px !important;
+  // }
 
   @media screen and (max-width: 599px) {
     height: 30px !important;
