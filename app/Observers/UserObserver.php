@@ -85,7 +85,7 @@ class UserObserver
 
         // username:
         $user->update([
-            'username' => $user->name . '_' . str_random(6)
+            'username' => $user->name . '_' . str_random(10)
         ]);
 
         // personal info
