@@ -196,7 +196,7 @@
                                 justify="center" >
                                 <v-col
                                     lg="1" sm="2" cols="12" >
-                                    <img :src="value.img" alt="">
+                                    <img class="programing-languages-image" :src="value.img" alt="">
                                 </v-col>
                                 <v-col class="programming-languages-linear" lg="6" sm="9" cols="12" >
                                     <v-progress-linear height="8" :value="value.level"></v-progress-linear>
@@ -477,6 +477,9 @@ export default {
                     letter-spacing: 0.2em;
                     text-transform: capitalize;
                     color: #2176E5;
+                    @media only screen and (max-width: 597px) {
+                    font-size: 20px;
+                    }
             }
             .rate-items-901{
                 background: transparent;
@@ -490,6 +493,9 @@ export default {
                 letter-spacing: 0.2em;
                 text-transform: uppercase;
                 color: #5B5D60;
+                @media only screen and (max-width: 597px) {
+                    font-size: 20px;
+                    }
             }
             .v-tab{
                 font-family: Lato;
@@ -501,7 +507,7 @@ export default {
                 text-transform: capitalize;
                 color: #5B5D60;
                 @media only screen and (max-width: 597px) {
-                    font-size: 18px;
+                    font-size: 15px;
                     }
             }
             .v-tab--active {
@@ -514,7 +520,7 @@ export default {
                 text-transform: capitalize;
                 color: #5B5D60;
                 @media only screen and (max-width: 597px) {
-                    font-size: 24px;
+                    font-size: 17px;
                     }
             }
             // .v-tabs--vertical > .v-tabs-bar .v-tab {
@@ -589,6 +595,9 @@ color: #2176E5;
         .tabs-skills-901{
             .tab-skills-901{
                 margin-right: 115px;
+                @media only screen and (max-width: 597px) {
+                margin-right: 71px;
+                }
             }
             .v-tab{
                 padding: 0 0;
@@ -600,6 +609,11 @@ color: #2176E5;
                 color: #104EFB;
                 opacity: 0.5;
                 text-transform: capitalize;
+                @media only screen and (max-width: 597px) {
+                font-size: 18px;
+                line-height: 17px;
+                font-weight: normal;
+                }
             }
             .v-tab--active {
                 opacity: 1;
@@ -647,6 +661,17 @@ color: #2176E5;
                     margin-top: 20px;
                 }
             .programming-languages{
+                .programing-languages-image{
+                    margin-left: auto;
+                    margin-right: auto;
+                    max-width: 64px;
+                    max-height: 64px;
+                    @media only screen and (max-width: 597px) {
+                    margin-left: 0;
+                    margin-right: 0;
+                    margin-bottom: 15px;
+                }
+                }
                 .programming-languages-linear{
                     margin-top: 28px;
                     @media only screen and (max-width: 597px) {
