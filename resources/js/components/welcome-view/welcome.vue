@@ -66,19 +66,15 @@
                 </v-col>
 
                 <v-col md="11" sm="12" cols="12">
-                  <v-card flat color="transparent" tile>
-                    <agile
-                      :dots="false"
-                      :fade="true"
-                      :autoplay="true"
-                      :navButtons="false"
-                      :pauseOnHover="true"
-                    >
-                      <img
-                        src="/images/welcome_landing_page/imgs/edit-cv.png"
-                        alt
-                        style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
-                      />
+                  <v-card flat color="transparent" tile style="z-index:3;">
+                    <agile :options="agileOptions">
+                      <div class="slide" v-for="i in 4" :key="i">
+                        <img
+                          src="/images/welcome_landing_page/imgs/edit-cv.png"
+                          alt
+                          style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
+                        />
+                      </div>
                     </agile>
                   </v-card>
                 </v-col>
@@ -519,6 +515,17 @@ export default {
         { id: 5, title: "slack" }
       ],
       users: ["nishad", "ahmed", "anton", "gladwin"],
+
+      //agile options
+      agileOptions: {
+        dots: false,
+        fade: true,
+        autoplay: true,
+        navButtons: false,
+        pauseOnHover: true
+      },
+      //agile options
+
       slickOptionsGallery: {
         centerMode: true,
         infinite: true,
@@ -627,12 +634,12 @@ export default {
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     margin-top: -15px;
   }
   @media screen and (max-width: 599px) {
     height: 770px;
-    margin-top: -38px; 
+    margin-top: -38px;
   }
 }
 
@@ -770,7 +777,7 @@ export default {
   @media screen and (min-width: 1600px) {
     margin-right: 100px;
   }
-  @media screen and (max-width: 1263px){
+  @media screen and (max-width: 1263px) {
     font-size: 16px !important;
   }
 }
@@ -942,7 +949,7 @@ export default {
     font-size: 36px !important;
     line-height: 55px;
   }
-  @media screen and (max-width: 364px){
+  @media screen and (max-width: 364px) {
     font-size: 24px !important;
   }
 }
