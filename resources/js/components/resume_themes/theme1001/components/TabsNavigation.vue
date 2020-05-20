@@ -5,19 +5,28 @@
 				<li class="navigation__link" :class="{'active': currentTab==='portfolio'}">
 					<a href="#" @click.prevent="$emit('tabChanged', 'portfolio')">Portfolio</a>
 				</li>
-				<li class="navigation__link" :class="{'active': ['work-experience', 'education'].includes(currentTab) }">
-					<a href="#" @click.prevent="$emit('tabChanged', 'education')">Work experience & Education</a>
+				<li class="navigation__link" :class="{'active': currentTab==='experience-education'}">
+					<a href="#" @click.prevent="$emit('tabChanged', 'experience-education')">Work experience & Education</a>
 				</li>
-				<li class="navigation__link" :class="{'active': ['skills', 'language'].includes(currentTab) }">
-					<a href="#" @click.prevent="$emit('tabChanged', 'skills')">Skills & Language</a>
+				<li class="navigation__link" :class="{'active': currentTab==='skills-language'}">
+					<a href="#" @click.prevent="$emit('tabChanged', 'skills-language')">Skills & Language</a>
 				</li>
 				<li class="navigation__link" :class="{'active': currentTab==='about-me'}">
 					<a href="#" @click.prevent="$emit('tabChanged', 'about-me')">About Me</a>
 				</li>
 			</ul>
 
-			<SocialLinks />
+			<a href="#" class="toggle-social-links" @click="isOpen=!isOpen">
+				<svg class="toggle__icon--close" :class="{'toggle__icon--hide': !isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+					<path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+				</svg>
+				<svg class="toggle__icon--open" :class="{'toggle__icon--hide': isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+					<path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+				</svg>
+			</a>
 		</div>
+
+		<SocialLinks :isOpen="isOpen" />
 	</nav>
 </template>
 
@@ -34,7 +43,13 @@ export default {
 		}
 	},
 
-	components: { SocialLinks }
+	components: { SocialLinks },
+
+	data: () => {
+		return {
+			isOpen: false
+		};
+	}
 };
 </script>
 
@@ -48,22 +63,27 @@ export default {
 .navigation-wrapper {
 	position: relative;
 	display: flex;
-	height: 35px;
+	height: 48px;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .navigation {
 	overflow-x: scroll;
 	display: flex;
+	flex: 1;
 	align-items: center;
 	height: 100%;
 	list-style: none;
-	padding: 0;
+	padding: 0 25px;
 	margin: 0;
+}
 
-	&::-webkit-scrollbar {
-		height: 0;
-	}
+.navigation::-webkit-scrollbar {
+	display: none;
+	-webkit-appearance: none;
+	scrollbar-width: none;
+	height: 0;
 }
 
 .navigation__link {
@@ -75,8 +95,7 @@ export default {
 
 .navigation__link a {
 	display: flex;
-	font-size: 10px;
-	font-weight: 300;
+	font-size: 15px;
 	align-items: center;
 	height: 100%;
 	padding: 0 10px;
@@ -84,7 +103,6 @@ export default {
 
 	&:hover {
 		color: #ffffff;
-		font-weight: 700;
 		text-decoration: none;
 	}
 }
@@ -94,19 +112,50 @@ export default {
 	font-weight: 700;
 }
 
-@media (min-width: $sm) {
-	.navigation-wrapper {
-		height: 50px;
+.toggle-social-links {
+	height: 48px;
+	width: 48px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #ffffff;
+}
+
+.toggle-social-links svg {
+	fill: currentColor;
+	opacity: 1;
+	transition: opacity 0.3s;
+
+	&.toggle__icon--open {
+		height: 20px;
+		width: 20px;
 	}
 
-	.navigation__link a {
-		font-size: 12px;
+	&.toggle__icon--close {
+		height: 18px;
+		width: 18px;
+	}
+
+	&.toggle__icon--hide {
+		opacity: 0;
+		height: 0;
+		width: 0;
+	}
+}
+
+@media (min-width: $sm) {
+	.navigation-wrapper {
+		height: 60px;
+	}
+
+	.toggle-social-links {
+		height: 60px;
+		width: 60px;
 	}
 }
 
 @media (min-width: $md) {
 	.navigation-wrapper {
-		padding: 0 25px;
 		height: 62px;
 	}
 
@@ -131,9 +180,23 @@ export default {
 	.navigation__link.active a::after {
 		opacity: 1;
 	}
+
+	.toggle-social-links {
+		height: 62px;
+		width: 62px;
+	}
 }
 
 @media (min-width: $lg) {
+	.tabs-navigation {
+		display: flex;
+		padding: 0 50px;
+	}
+
+	.navigation {
+		padding: 0;
+	}
+
 	.navigation-wrapper {
 		max-width: $lg;
 		margin: 0 auto;
@@ -142,23 +205,42 @@ export default {
 	.navigation__link {
 		padding: 0 25px;
 	}
+
+	.navigation__link a {
+		font-size: 12px;
+	}
+
+	.toggle-social-links {
+		display: none;
+	}
 }
 
 @media (min-width: 1600px) {
+	.tabs-navigation {
+		padding: 0 100px;
+	}
+
 	.navigation-wrapper {
 		max-width: 1600px;
-		padding: 0 50px;
 		height: 75px;
 	}
 
+	.navigation__link {
+		padding: 0 35px;
+	}
+
 	.navigation__link a {
-		font-size: 17px;
+		font-size: 18px;
 	}
 }
 
 @media (min-width: $xl) {
 	.navigation-wrapper {
 		max-width: $xl;
+	}
+
+	.navigation__link {
+		padding: 0 45px;
 	}
 }
 </style>
