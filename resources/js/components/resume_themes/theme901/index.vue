@@ -673,10 +673,8 @@ color: #2176E5;
                 }
                 }
                 .programming-languages-linear{
-                    margin-top: 28px;
-                    @media only screen and (max-width: 597px) {
-                    margin-top: -28px;
-                }
+                    margin-top: auto;
+                    margin-bottom: auto;
                 }
             }
         }
