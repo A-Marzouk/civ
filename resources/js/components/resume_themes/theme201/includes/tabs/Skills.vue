@@ -48,3 +48,10 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+  .skills-text{
+    color: rgba(92,92,92,1);
+  }
+
+</style>
+

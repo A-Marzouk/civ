@@ -11,7 +11,7 @@
                                 <p class="custom-p">
                                     Duration:
                                     <br class="hidden-xs-only">
-                                    <span style="color:black;">{{work.date_from}} - {{work.present ? "present" : work.date_to}}</span>
+                                    <span style="color:rgba(92,92,92,1);">{{work.date_from}} - {{work.present ? "present" : work.date_to}}</span>
                                 </p>
                             </v-card-text>
                         </v-card>

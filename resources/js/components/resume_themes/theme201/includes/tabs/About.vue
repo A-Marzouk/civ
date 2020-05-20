@@ -40,7 +40,7 @@
         font-weight: bold;
         font-size: 40px;
         line-height: 41px;
-        color: #1d1d1d;
+        color: rgba(92,92,92,1);
     }
 
     .about-p {
@@ -57,7 +57,7 @@
         /* or 107% */
 
         text-align: center;
-        color: #1d1d1d;
+        color: rgba(92,92,92,1);
     }
 
     @media screen and (max-width: 800px) {
