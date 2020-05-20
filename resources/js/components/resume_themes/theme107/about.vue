@@ -30,7 +30,9 @@ $purple: #2F5E5E;
 
     .about {
         display: flex;
-        max-width: 1400px;
+        max-width: 1400px !important;
+        justify-content: space-between;
+        margin: 0 auto;
         
         .about-title {
             font-size: 40px;
@@ -47,6 +49,23 @@ $purple: #2F5E5E;
             p {
                 font-size: 20px;
                 color: #616887;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            max-width: 1000px !important;
+
+            .about-title {
+                font-size: 22px;
+                max-width: 143px;
+            }
+
+            .content {
+                width: 70%;
+
+                p {
+                    font-size: 11px;
+                }
             }
         }
     }

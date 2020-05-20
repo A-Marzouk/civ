@@ -86,7 +86,7 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
-                        <div class="theme-aside">
+                        <div class="theme-aside hideOnTablet">
                             Follow me - 
                             <a href="javascript:;">
                                 Dribble
@@ -99,6 +99,22 @@
                             </a>
                             <a href="javascript:;">
                                 Behance
+                            </a>
+                        </div>
+                        <div class="theme-aside showOnTablet">
+                            Social links
+                            <span></span>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
                             </a>
                         </div>
                         <div class="scroll-top">
@@ -165,6 +181,7 @@ $purple: #335E5E;
     color: $mainColor;
     background: #DBDEC4;
     position: relative;
+    overflow-x: hidden;
 
     .theme-header {
         width: 100%;
@@ -205,6 +222,23 @@ $purple: #335E5E;
                     .icon {
                         margin-right: 10px;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 16px;
+
+                        .icon {
+                            height: 20px;
+                        }
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        padding: 13px 14px;
+                        font-size: 10px;
+
+                        .icon {
+                            height: 10px;
+                        }
+                    }
                 }
             }
 
@@ -227,6 +261,22 @@ $purple: #335E5E;
                         font-size: 15px;
                         font-weight: 400px;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 22px;
+
+                        small {
+                            font-size: 13px;
+                        }
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        font-size: 15px;
+
+                        small {
+                            font-size: 8px;
+                        }
+                    }
                 }
 
                 .hire-me-btn {
@@ -243,6 +293,28 @@ $purple: #335E5E;
                     .icon {
                         margin-right: 10px;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 16px;
+                        padding: 23px 42px;
+
+                        .icon {
+                            height: 20px;
+                        }
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        font-size: 11px;
+                        padding: 14px 40px;
+
+                        .icon {
+                            height: 12px;
+                        }
+                    }
+                }
+
+                @media (max-width: 1200px) {
+                    margin-top: 27px;
                 }
             }
         }
@@ -254,6 +326,14 @@ $purple: #335E5E;
             z-index: 1;
             position: relative;
 
+            @media (max-width: 1400px) {
+                padding: 56px;
+            }
+            
+            @media (max-width: 1200px) {
+                padding: 37px 40px;
+            }
+
             .user-img {
                 display: inline-block;
                 width: 232px;
@@ -263,6 +343,17 @@ $purple: #335E5E;
                 img {
                     width: 100%;
                     border-radius: 50%;
+                }
+
+                @media (max-width: 1400px) {
+                    width: 184px;
+                    height: 184px;
+                    margin-right: 33px;
+                }
+                
+                @media (max-width: 1400px) {
+                    width: 141px;
+                    height: 141px;
                 }
             }
 
@@ -282,6 +373,10 @@ $purple: #335E5E;
 
                 .profession {
                     margin-bottom: 30px;
+
+                    @media (max-width: 1200px) {
+                        margin-bottom: 20px;
+                    }
                 }
 
                 .speciallity {
@@ -310,6 +405,31 @@ $purple: #335E5E;
                             right: -20px;
                             top: calc(50% - 3.5px);
                         }
+
+                        @media (max-width: 1200px) {
+
+                            &::after {
+                                height: 5px;
+                                width: 5px;
+                            }
+                        }
+                    }
+                }
+
+                @media (max-width: 1400px) {
+                    font-size: 22px;
+
+                    .name {
+                        font-size: 28px;
+                    }
+                }
+                
+                @media (max-width: 1200px) {
+                    font-size: 15px;
+
+                    .name {
+                        font-size: 17px;
+                        margin-bottom: 13px;
                     }
                 }
             }
@@ -323,18 +443,33 @@ $purple: #335E5E;
         border-top: 16px solid $purple;
         z-index: 1;
         position: relative;
+        width: 100%;
+        overflow: hidden;
 
         .bg-decoImg {
             position: absolute;
+            
+            @media (max-width: 1200px) {
+                width: 349px;
+            }
 
             &.img1 {
                 right: -316.5px;
                 top: 160px;
+
+                @media (max-width: 1200px) {
+                    right: calc(-349px/2);
+                }
             }
 
             &.img2 {
                 left: -340px;
                 bottom: -300px;
+                
+                @media (max-width: 1200px) {
+                    left: calc(-349px/2);
+                    bottom: calc(-349px/2);
+                }
             }
         }
 
@@ -366,6 +501,16 @@ $purple: #335E5E;
                     &::before {
                         display: none !important;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 18px;
+                        padding: 12px 28px;
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        font-size: 11px;
+                        padding: 12px 22px;
+                    }
                 }
 
                 &-slider-wrapper {
@@ -378,12 +523,18 @@ $purple: #335E5E;
                         border: 2px solid #DBDFC3;
                     }
                 }
+
+                @media (max-width: 1200px) {
+                    margin-top: 29px;
+                    margin-bottom: 47px;
+                }
             }
 
             .container {
                 padding: 0 40px;
                 padding-bottom: 100px;
                 max-width: 1550px;
+                width: 90%;
                 margin: 0 auto;
             }
         }
@@ -398,7 +549,7 @@ $purple: #335E5E;
         align-items: center;
         position: absolute;
         top: 400px;
-        right: -95px;
+        right: -120px;
         background: transparent;
 
         a {
@@ -418,6 +569,40 @@ $purple: #335E5E;
             &:last-child {
                 &::after {
                     display: none;
+                }
+            }
+        }
+
+        @media (max-width: 1200px) {
+            right: -50px;
+            top: 238px;
+            transform: rotateZ(90deg);
+            
+            &, a {
+                font-size: 7px;
+            }
+
+            a {
+                &::after {
+                    display: none;
+                }
+            }
+
+            &.hideOnTablet {
+                display: none;
+            }
+
+            &.showOnTablet {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span {
+                    display: block;
+                    width: 62px;
+                    height: 1px;
+                    background: #BEC2D4;
+                    margin: 0 15px 0 27px;
                 }
             }
         }
@@ -441,6 +626,17 @@ $purple: #335E5E;
 
         .icon {
             margin-left: 17px;
+        }
+
+        @media (max-width: 1200px) {
+            a {
+                font-size: 9px;
+            }
+
+            .icon {
+                height: 7px;
+                margin-left: 9px;
+            }
         }
     }
 }

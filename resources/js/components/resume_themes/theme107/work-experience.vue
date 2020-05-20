@@ -134,6 +134,31 @@ export default {
                 margin-left: 13px;
                 margin-top: 4px;
             }
+
+            @media (max-width: 1200px) {
+                .work-icon {
+                    width: 28px;
+                    height: 28px;
+                    margin-right: 52px;
+
+                    &::after {
+                        width: 31px;
+                        right: calc(-13px - 31px);
+                    }
+
+                    img {
+                        width: 12px;
+                    }
+                }
+
+                .company-name {
+                    font-size: 12px;
+                }
+
+                .date {
+                    font-size: 9px;
+                }
+            }
         }
 
         .work-body {
@@ -150,6 +175,16 @@ export default {
             .work-description p {
                 color: #838BA4;
                 font-size: 17px;
+            }
+
+            @media (max-width: 1200px) {
+                padding-left: calc(58px + 28px);
+
+                .job-title,
+                .work-description p {
+                    font-size: 10px;
+
+                }
             }
         }
     }
