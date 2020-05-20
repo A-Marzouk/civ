@@ -1191,6 +1191,9 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 993px){
     width: 200px;
   }
+  @media screen and (min-width: 600px) and (max-width: 718px){
+    width: 188px;
+  }
   @media screen and (max-width: 599px) {
     font-family: "Poppins" !important;
     font-size: 12px !important;
@@ -1211,6 +1214,12 @@ export default {
   // @media screen and (min-width: 960px) and (max-width: 1024px) {
   //   min-width: 45px !important;
   // }
+
+  @media screen and (min-width: 600px) and (max-width: 718px){
+    min-width: 50px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
 
   @media screen and (max-width: 599px) {
     height: 30px !important;
