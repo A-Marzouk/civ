@@ -876,7 +876,7 @@ export default {
     font-size: 36px !important;
     line-height: 48px;
   }
-  @media screen and (max-width: 959px) {
+  @media screen and (max-width: 599px) {
     font-size: 24px !important;
     line-height: 55px;
   }
