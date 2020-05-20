@@ -195,7 +195,12 @@
                         <v-card color="transparent" tile class="card-portfolio" hover>
                           <v-speed-dial top right absolute>
                             <template v-slot:activator>
-                              <v-btn icon color="transparent" tile>
+                              <v-btn
+                                icon
+                                color="transparent"
+                                tile
+                                @click="zoomPortfolioItem('/images/resume_themes/theme207/portfolio/1.png')"
+                              >
                                 <img
                                   width="20"
                                   src="/images/resume_themes/theme207/icons/zoom.png"
@@ -219,7 +224,12 @@
                             <v-card class="card-portfolio mt-n3 mb-3" hover>
                               <v-speed-dial top right absolute>
                                 <template v-slot:activator>
-                                  <v-btn icon color="transparent" tile>
+                                  <v-btn
+                                    icon
+                                    color="transparent"
+                                    tile
+                                    @click="zoomPortfolioItem(getPortfolio(n+1))"
+                                  >
                                     <img
                                       width="20"
                                       src="/images/resume_themes/theme207/icons/zoom.png"
@@ -240,7 +250,12 @@
                         <v-card color="transparent" tile class="card-portfolio" hover>
                           <v-speed-dial top right absolute>
                             <template v-slot:activator>
-                              <v-btn icon color="transparent" tile>
+                              <v-btn
+                                icon
+                                color="transparent"
+                                tile
+                                @click="zoomPortfolioItem('/images/resume_themes/theme207/portfolio/1.png')"
+                              >
                                 <img
                                   width="20"
                                   src="/images/resume_themes/theme207/icons/zoom.png"
@@ -264,7 +279,12 @@
                             <v-card class="card-portfolio mt-n3 mb-3" hover>
                               <v-speed-dial top right absolute>
                                 <template v-slot:activator>
-                                  <v-btn icon color="transparent" tile>
+                                  <v-btn
+                                    icon
+                                    color="transparent"
+                                    tile
+                                    @click="zoomPortfolioItem(getPortfolio(n+1))"
+                                  >
                                     <img
                                       width="20"
                                       src="/images/resume_themes/theme207/icons/zoom.png"
@@ -294,7 +314,12 @@
                           <v-card color="transparent" tile class="card-portfolio" hover>
                             <v-speed-dial top right absolute>
                               <template v-slot:activator>
-                                <v-btn icon color="transparent" tile>
+                                <v-btn
+                                  icon
+                                  color="transparent"
+                                  tile
+                                  @click="zoomPortfolioItem('/images/resume_themes/theme207/portfolio/1.png')"
+                                >
                                   <img
                                     width="20"
                                     src="/images/resume_themes/theme207/icons/zoom.png"
@@ -323,7 +348,7 @@
                               <v-card class="card-portfolio mt-n3 mb-3" hover>
                                 <v-speed-dial top right absolute>
                                   <template v-slot:activator>
-                                    <v-btn icon color="transparent" tile>
+                                    <v-btn icon color="transparent" tile @click="zoomPortfolioItem(getPortfolio(n+1))">
                                       <img
                                         width="20"
                                         src="/images/resume_themes/theme207/icons/zoom.png"
@@ -869,6 +894,13 @@
       </v-container>
     </v-footer>
     <!-- Only For tablet and mobile -->
+    <!-- Zoom Modal -->
+    <v-dialog v-model="zoomModal" max-width="300">
+      <v-card flat color="transparent" tile>
+        <img :src="currentImg" />
+      </v-card>
+    </v-dialog>
+    <!-- Zoom Modal -->
   </v-app>
 </template>
 
@@ -876,7 +908,9 @@
 export default {
   data() {
     return {
+      currentImg: "",
       windowWidth: window.innerWidth,
+      zoomModal: false,
       drawer: false,
       mainDataTab: "",
       skillTab: "",
@@ -969,6 +1003,10 @@ export default {
     },
     getPortfolio(image) {
       return `/images/resume_themes/theme207/portfolio/${image}.png`;
+    },
+    zoomPortfolioItem(url) {
+      this.zoomModal = true;
+      this.currentImg = url;
     }
   }
 };
@@ -1039,6 +1077,12 @@ export default {
   // @media screen and (min-width: 1025px){
   //   margin-left:80px;
   // }
+  @media screen and (min-width: 1264px) and (max-width: 1300px) {
+    width: 180px !important;
+    height: 180px !important;
+    max-height: 180px;
+    max-width: 180px;
+  }
   @media screen and (max-width: 1263px) {
     width: 120px !important;
     height: 120px !important;
@@ -1188,10 +1232,10 @@ export default {
   @media screen and (max-width: 1263px) {
     width: 225px;
   }
-  @media screen and (min-width: 960px) and (max-width: 993px){
+  @media screen and (min-width: 960px) and (max-width: 993px) {
     width: 200px;
   }
-  @media screen and (min-width: 600px) and (max-width: 718px){
+  @media screen and (min-width: 600px) and (max-width: 718px) {
     width: 188px;
   }
   @media screen and (max-width: 599px) {
@@ -1215,7 +1259,7 @@ export default {
   //   min-width: 45px !important;
   // }
 
-  @media screen and (min-width: 600px) and (max-width: 718px){
+  @media screen and (min-width: 600px) and (max-width: 718px) {
     min-width: 50px !important;
     width: 50px !important;
     height: 50px !important;
