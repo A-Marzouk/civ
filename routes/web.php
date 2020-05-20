@@ -27,12 +27,8 @@ Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
-Route::get('/home2', 'HomeController@welcome2')->name('home2');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
-
-// routes need verification :
-Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
 
 
 // social sites register & login:
