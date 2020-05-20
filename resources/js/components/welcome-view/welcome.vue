@@ -93,7 +93,7 @@
       <v-container style="width:100%" class>
         <v-row align="center" justify="center">
           <v-col lg="6" xl="5" md="6" sm="11" cols="12">
-            <v-card color="transparent" tile flat>
+            <v-card color="transparent" tile flat class="mt-md-0 mt-sm-0 mt-n5">
               <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
               <v-card class="pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 card-login">
                 <v-card-subtitle align="center" class="create-new-account-text">Create New Account</v-card-subtitle>
@@ -627,8 +627,12 @@ export default {
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
+  @media screen and (max-width: 959px){
+    margin-top: -15px;
+  }
   @media screen and (max-width: 599px) {
-    height: 700px;
+    height: 770px;
+    margin-top: -38px; 
   }
 }
 
@@ -755,7 +759,7 @@ export default {
 //appbar login btn
 .btn-appbar-login {
   font-family: "Montserrat" !important;
-  font-size: 1rem !important;
+  font-size: 18px !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
   color: #0046fe !important;
@@ -765,6 +769,9 @@ export default {
 
   @media screen and (min-width: 1600px) {
     margin-right: 100px;
+  }
+  @media screen and (max-width: 1263px){
+    font-size: 16px !important;
   }
 }
 
@@ -924,16 +931,19 @@ export default {
     line-height: 30px;
   }
   @media screen and (max-width: 959px) {
-    font-size: 48px !important;
+    font-size: 64px !important;
     line-height: 55px;
   }
   @media screen and (min-width: 600px) and (max-width: 714px) {
-    font-size: 36px !important;
+    font-size: 48px !important;
     line-height: 48px;
   }
   @media screen and (max-width: 599px) {
-    font-size: 24px !important;
+    font-size: 36px !important;
     line-height: 55px;
+  }
+  @media screen and (max-width: 364px){
+    font-size: 24px !important;
   }
 }
 
@@ -946,6 +956,7 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 18px;
     line-height: 22px;
+    padding-top: 32px;
   }
 }
 
@@ -1483,7 +1494,7 @@ export default {
     .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
     > .v-input__control
     > .v-input__slot {
-    min-height: 33.34px !important;
+    min-height: 48px !important;
     border-radius: 7px !important;
   }
   #welcomeView .slick-initialized .slick-slide {
