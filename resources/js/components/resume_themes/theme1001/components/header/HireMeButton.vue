@@ -20,15 +20,15 @@ export default {
 .hireme-button {
 	font-family: $muli;
 	display: flex;
-	font-size: 8px;
+	font-size: 11px;
 	font-weight: 700;
 	color: #ffffff;
 	background: #f8ab08;
 	justify-content: center;
 	align-items: center;
 	border-radius: 5px;
-	width: 82px;
-	height: 28px;
+	width: 74px;
+	height: 32px;
 
 	&:hover {
 		box-shadow: 0 3px 7px -4px rgba(0, 0, 0, 0.5);
@@ -36,15 +36,22 @@ export default {
 	}
 }
 
-.hireme-button svg {
-	height: 13px;
-}
-
 .hireme-button span {
 	margin-left: 5px;
 	color: inherit;
 	font-size: inherit;
 	font-weight: inherit;
+}
+
+.hireme-button svg {
+	height: 13px;
+}
+
+@media (min-width: 375px) {
+	.hireme-button {
+		width: 100px;
+		height: 38px;
+	}
 }
 
 @media (min-width: $sm) {
