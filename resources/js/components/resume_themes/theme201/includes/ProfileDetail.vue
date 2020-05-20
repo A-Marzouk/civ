@@ -1,6 +1,6 @@
 <template>
   <v-card flat class="custom-tab">
-    <v-tabs v-model="tab" grow centered show-arrows color="#000">
+    <v-tabs v-model="tab" grow centered show-arrows color="rgba(92,92,92,1)">
       <v-tab class="tab-text">About</v-tab>
 
       <v-tab class="tab-text">Portfolio</v-tab>

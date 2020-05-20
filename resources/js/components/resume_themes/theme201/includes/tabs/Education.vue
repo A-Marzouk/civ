@@ -39,7 +39,7 @@ export default {
   line-height: 44px;
   /* identical to box height */
 
-  color: #1d1d1d;
+  color: rgba(92,92,92,1);
 }
 
 .subtitle-1 {
