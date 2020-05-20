@@ -65,14 +65,20 @@
                   </v-card>
                 </v-col>
 
-                <v-col md="11" sm="12" cols="12">
-                  <v-card flat color="transparent" tile style="z-index:3;">
-                    <agile :options="agileOptions">
-                      <div class="slide" v-for="i in 4" :key="i">
+                <v-col md="11" sm="12" cols="12" align="center">
+                  <v-card flat color="transparent" tile>
+                    <agile
+                      :dots="false"
+                      :fade="true"
+                      :autoplay="true"
+                      :navButtons="false"
+                      :pauseOnHover="true"
+                    >
+                      <div class="agile-custome-slide" v-for="i in 2" :key="i">
                         <img
                           src="/images/welcome_landing_page/imgs/edit-cv.png"
                           alt
-                          style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
+                          style=""
                         />
                       </div>
                     </agile>
@@ -89,84 +95,71 @@
       <v-container style="width:100%" class>
         <v-row align="center" justify="center">
           <v-col lg="6" xl="5" md="6" sm="11" cols="12">
-            <v-card color="transparent" tile flat class="mt-md-0 mt-sm-0 mt-n5">
+            <v-card color="transparent" tile flat>
               <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
               <v-card class="pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 card-login">
                 <v-card-subtitle align="center" class="create-new-account-text">Create New Account</v-card-subtitle>
                 <v-card-subtitle>
-                  <v-form ref="form" :lazy-validation="lazy" class="login-form">
+                  <v-form ref="form" v-model="valid" :lazy-validation="lazy" class="login-form">
                     <div class="input-div">
-                      <label>Name</label>
+                      <label for="name">Name</label>
                       <v-text-field
                         dark
-                        color="primary"
                         class="login-input"
                         type="text"
                         outlined
-                        :error="errors.name"
                         background-color="#ffffff"
-                        v-model="formData.name"
+                        :rules="nameRules"
+                        v-model="name"
                         :height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
-                      <div
-                        class="error--text error-custom-margin"
-                        v-if="errors.name"
-                      >{{errors.name[0]}}</div>
                     </div>
-
                     <div class="input-div mt-md-0 mt-sm-0 mt-n3">
-                      <label>Email Address</label>
+                      <label for="email">Email Address</label>
                       <v-text-field
                         dark
-                        color="primary"
                         class="login-input"
                         type="email"
                         outlined
-                        :error="errors.email"
                         background-color="#ffffff"
-                        v-model="formData.email"
+                        :rules="emailRules"
+                        v-model="email"
                         :height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
-                      <div
-                        class="error--text error-custom-margin"
-                        v-if="errors.email"
-                      >{{errors.email[0]}}</div>
                     </div>
-
                     <div class="input-div mt-md-0 mt-sm-0 mt-n3">
-                      <label>Password</label>
+                      <label for="password">Password</label>
                       <v-text-field
                         dark
-                        color="primary"
                         class="login-input"
                         type="password"
                         outlined
-                        :error="errors.password"
                         background-color="#ffffff"
-                        v-model="formData.password"
+                        v-model="password"
+                        :rules="passwordRules"
                         :height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
-                      <div
-                        class="error--text error-custom-margin"
-                        v-if="errors.password"
-                      >{{errors.password[0]}}</div>
                     </div>
-
                     <div class="input-div">
-                      <label>Confirm Password</label>
+                      <label for="confirmPassword mt-md-0 mt-sm-0 mt-n3">Confirm Password</label>
                       <v-text-field
                         dark
-                        color="primary"
                         class="login-input"
                         type="password"
                         outlined
                         background-color="#ffffff"
-                        v-model="formData.password_confirmation"
+                        v-model="confirmPassword"
+                        :rules="confirmPasswordRules"
                         :min-height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
                     </div>
 
-                    <v-checkbox dense v-model="agreeCheck" class="hidden-sm-only mt-n2">
+                    <v-checkbox
+                      dense
+                      v-model="agreeCheck"
+                      :rules="agreeCheckRules"
+                      class="hidden-sm-only mt-n2"
+                    >
                       <template slot="label">
                         <div class="agree-text">
                           I accept your
@@ -176,7 +169,11 @@
                       </template>
                     </v-checkbox>
 
-                    <v-checkbox v-model="agreeCheck" class="d-none d-sm-flex d-md-none">
+                    <v-checkbox
+                      v-model="agreeCheck"
+                      :rules="agreeCheckRules"
+                      class="d-none d-sm-flex d-md-none"
+                    >
                       <template slot="label">
                         <div class="agree-text">
                           I accept your
@@ -185,9 +182,8 @@
                         </div>
                       </template>
                     </v-checkbox>
-                    <div class="error--text error-custom-margin">{{errors.agreeCheck}}</div>
 
-                    <v-btn color="#0046FE" class="btn-signup" @click="register">
+                    <v-btn color="#0046FE" class="btn-signup" @click="validate">
                       <span>Sign Up</span>
                     </v-btn>
                   </v-form>
@@ -204,7 +200,6 @@
                     color="#ffffff"
                     v-for="icon in socialMediaIcons"
                     :key="icon.title"
-                    :href="icon.link"
                   >
                     <img
                       :width="windowWidth>599 && windowWidth<=959?icon.tablet_width:icon.width"
@@ -329,7 +324,9 @@
                   <v-card align="center" color="transparent" flat tile>
                     <v-card-subtitle class="explore-number">+35</v-card-subtitle>
                     <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
-                    <v-card-subtitle class="explore-link mt-n10">EXPLORE ALL THEMES ></v-card-subtitle>
+                    <v-card-subtitle class="explore-link mt-n10">
+                      <a href="#">EXPLORE ALL THEMES ></a>
+                    </v-card-subtitle>
                   </v-card>
                 </v-col>
               </v-row>
@@ -452,50 +449,25 @@ export default {
       userFound: null,
       valid: false,
       lazy: false,
+      name: "",
+      nameRules: [v => !!v || "", v => (v && v.length >= 3) || ""],
+      email: "",
+      emailRules: [v => !!v || "", v => /.+@.+\..+/.test(v) || ""],
+      password: "",
+      passwordRules: [v => !!v || "", v => (v && v.length >= 6) || ""],
+      confirmPassword: "",
+      confirmPasswordRules: [
+        v => !!v || "",
+        v => (v && v == this.password) || ""
+      ],
       agreeCheck: false,
-      errors: {},
-      formData: {
-        name: "",
-        email: "",
-        password: "",
-        password_confirmation: ""
-      },
+      agreeCheckRules: [v => (v && v == false) || ""],
+
       socialMediaIcons: [
-        {
-          id: 1,
-          title: "instagram",
-          width: 18,
-          tablet_width: 18,
-          link: "/register/instagram"
-        },
-        {
-          id: 2,
-          title: "linkedin",
-          width: 16,
-          tablet_width: 16,
-          link: "/register/linkedin"
-        },
-        {
-          id: 3,
-          title: "google",
-          width: 14,
-          tablet_width: 14,
-          link: "/register/google"
-        },
-        {
-          id: 4,
-          title: "facebook",
-          width: 18,
-          tablet_width: 18,
-          link: "/register/facebook"
-        },
-        {
-          id: 5,
-          title: "github",
-          width: 22,
-          tablet_width: 22,
-          link: "/register/github"
-        }
+        { id: 1, title: "instagram", width: 18, tablet_width: 18 },
+        { id: 2, title: "linkedin", width: 16, tablet_width: 16 },
+        { id: 3, title: "google", width: 14, tablet_width: 14 },
+        { id: 4, title: "facebook", width: 18, tablet_width: 18 }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -515,17 +487,6 @@ export default {
         { id: 5, title: "slack" }
       ],
       users: ["nishad", "ahmed", "anton", "gladwin"],
-
-      //agile options
-      agileOptions: {
-        dots: false,
-        fade: true,
-        autoplay: true,
-        navButtons: false,
-        pauseOnHover: true
-      },
-      //agile options
-
       slickOptionsGallery: {
         centerMode: true,
         infinite: true,
@@ -573,32 +534,8 @@ export default {
     };
   },
   methods: {
-    register() {
-      this.errors = {};
-      if (!this.agreeCheck) {
-        this.errors.agreeCheck =
-          "You have to accept our Terms of Use & Privacy Police*";
-        return;
-      }
-      axios
-        .post("/simple-register", this.formData)
-        .then(response => {
-          // save the access token then redirect:
-          Vue.$cookies.set("access_token", response.data.access_token, "3y");
-          if (response.data.is_admin) {
-            window.location.href = "/workforce-admin";
-          } else {
-            window.location.href = "/resume-builder";
-          }
-        })
-        .catch(error => {
-          this.canSubmit = true;
-          if (typeof error.response.data === "object") {
-            this.errors = error.response.data.errors;
-          } else {
-            this.errors = ["Something went wrong. Please try again."];
-          }
-        });
+    validate() {
+      this.$refs.form.validate();
     },
     checkUser() {
       if (this.username == "") {
@@ -634,12 +571,15 @@ export default {
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
-  @media screen and (max-width: 959px) {
-    margin-top: -15px;
-  }
   @media screen and (max-width: 599px) {
-    height: 770px;
-    margin-top: -38px;
+    height: 700px;
+  }
+}
+
+.agile-custome-slide {
+  img {
+    width: 1172px;
+    height: 997.45px;
   }
 }
 
@@ -766,7 +706,7 @@ export default {
 //appbar login btn
 .btn-appbar-login {
   font-family: "Montserrat" !important;
-  font-size: 18px !important;
+  font-size: 1rem !important;
   font-weight: bold !important;
   text-transform: capitalize !important;
   color: #0046fe !important;
@@ -776,9 +716,6 @@ export default {
 
   @media screen and (min-width: 1600px) {
     margin-right: 100px;
-  }
-  @media screen and (max-width: 1263px) {
-    font-size: 16px !important;
   }
 }
 
@@ -938,19 +875,16 @@ export default {
     line-height: 30px;
   }
   @media screen and (max-width: 959px) {
-    font-size: 64px !important;
+    font-size: 48px !important;
     line-height: 55px;
   }
   @media screen and (min-width: 600px) and (max-width: 714px) {
-    font-size: 48px !important;
+    font-size: 36px !important;
     line-height: 48px;
   }
   @media screen and (max-width: 599px) {
-    font-size: 36px !important;
-    line-height: 55px;
-  }
-  @media screen and (max-width: 364px) {
     font-size: 24px !important;
+    line-height: 55px;
   }
 }
 
@@ -963,7 +897,6 @@ export default {
   @media screen and (max-width: 599px) {
     font-size: 18px;
     line-height: 22px;
-    padding-top: 32px;
   }
 }
 
@@ -1435,19 +1368,16 @@ export default {
 .input-av.v-text-field {
   box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1) !important;
 }
-.error-custom-margin {
-  margin-top: -15px;
-  margin-bottom: 10px;
-}
+
 //footer
 </style>
 
 <style>
-#welcomeView .v-text-field input {
+#welcomeView2 .v-text-field input {
   color: #aeaeae !important;
 }
 
-#welcomeView
+#welcomeView2
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
   > .v-input__control
   > .v-input__slot
@@ -1455,15 +1385,14 @@ export default {
   border: 2px solid #ffffff !important;
 }
 
-#welcomeView
+#welcomeView2
   .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
   > .v-input__control
   > .v-input__slot
   fieldset {
   border: 2px solid #ebebeb !important;
 }
-
-#welcomeView .slick-dots li button {
+#welcomeView2 .slick-dots li button {
   width: 110px !important;
   height: 6px;
   border-radius: 0px;
@@ -1471,50 +1400,50 @@ export default {
   background-color: #e5e5e5 !important;
 }
 
-#welcomeView .slick-dots li.slick-active button {
+#welcomeView2 .slick-dots li.slick-active button {
   background-color: #0f4cee !important;
   outline: none;
   transition: width 5s ease-out 0s;
 }
-#welcomeView .slick-dots li button:focus {
+#welcomeView2 .slick-dots li button:focus {
   outline: none !important;
 }
 
 @media screen and (max-width: 959px) {
-  #welcomeView .slick-initialized .slick-slide {
+  #welcomeView2 .slick-initialized .slick-slide {
     margin-left: -80px;
   }
 }
 
 @media screen and (max-width: 700px) {
-  #welcomeView .slick-initialized .slick-slide {
+  #welcomeView2 .slick-initialized .slick-slide {
     margin-left: -75px;
   }
 }
 
 @media screen and (max-width: 599px) {
-  #welcomeView .slick-dots li button {
+  #welcomeView2 .slick-dots li button {
     width: 40px !important;
     height: 6px;
   }
-  #welcomeView
+  #welcomeView2
     .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
     > .v-input__control
     > .v-input__slot {
-    min-height: 48px !important;
+    min-height: 33.34px !important;
     border-radius: 7px !important;
   }
-  #welcomeView .slick-initialized .slick-slide {
+  #welcomeView2 .slick-initialized .slick-slide {
     margin-left: -70px;
   }
   @media screen and (max-width: 410px) {
-    #welcomeView .slick-initialized .slick-slide {
+    #welcomeView2 .slick-initialized .slick-slide {
       margin-left: -69px;
     }
   }
 }
 @media screen and (max-width: 400px) {
-  #welcomeView .slick-initialized .slick-slide {
+  #welcomeView2 .slick-initialized .slick-slide {
     margin-left: -40px;
   }
 }
