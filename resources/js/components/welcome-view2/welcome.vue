@@ -65,7 +65,7 @@
                   </v-card>
                 </v-col>
 
-                <v-col md="11" sm="12" cols="12">
+                <v-col md="11" sm="12" cols="12" align="center">
                   <v-card flat color="transparent" tile>
                     <agile
                       :dots="false"
@@ -74,16 +74,13 @@
                       :navButtons="false"
                       :pauseOnHover="true"
                     >
-                      <img
-                        src="/images/welcome_landing_page/imgs/edit-cv.png"
-                        alt
-                        style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
-                      />
-                      <img
-                        src="/images/welcome_landing_page/imgs/edit-cv.png"
-                        alt
-                        style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
-                      />
+                      <div class="agile-custome-slide" v-for="i in 2" :key="i">
+                        <img
+                          src="/images/welcome_landing_page/imgs/edit-cv.png"
+                          alt
+                          style=""
+                        />
+                      </div>
                     </agile>
                   </v-card>
                 </v-col>
@@ -327,7 +324,9 @@
                   <v-card align="center" color="transparent" flat tile>
                     <v-card-subtitle class="explore-number">+35</v-card-subtitle>
                     <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
-                    <v-card-subtitle class="explore-link mt-n10"><a href="#">EXPLORE ALL THEMES ></a></v-card-subtitle>
+                    <v-card-subtitle class="explore-link mt-n10">
+                      <a href="#">EXPLORE ALL THEMES ></a>
+                    </v-card-subtitle>
                   </v-card>
                 </v-col>
               </v-row>
@@ -572,8 +571,15 @@ export default {
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     height: 700px;
+  }
+}
+
+.agile-custome-slide {
+  img {
+    width: 1172px;
+    height: 997.45px;
   }
 }
 
@@ -958,7 +964,7 @@ export default {
     height: 52px !important;
     font-size: 12px !important;
   }
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 400px) {
     width: 154px !important;
     font-size: 10px !important;
   }
@@ -1039,7 +1045,7 @@ export default {
     font-size: 12px !important;
   }
 
-  @media screen and (max-width: 400px){
+  @media screen and (max-width: 400px) {
     width: 154px !important;
     font-size: 10px !important;
   }
@@ -1417,9 +1423,9 @@ export default {
 
 @media screen and (max-width: 599px) {
   #welcomeView2 .slick-dots li button {
-  width: 40px !important;
-  height: 6px;
-}
+    width: 40px !important;
+    height: 6px;
+  }
   #welcomeView2
     .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
     > .v-input__control
