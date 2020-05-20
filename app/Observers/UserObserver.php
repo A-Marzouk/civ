@@ -82,6 +82,12 @@ class UserObserver
     }
 
     protected function assignDefaultValuesForNewUser($user){
+
+        // username:
+        $user->update([
+            'username' => $user->name . '_' . str_random(6)
+        ]);
+
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
