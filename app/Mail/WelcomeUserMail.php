@@ -15,7 +15,7 @@ class WelcomeUserMail extends Mailable
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $details
      */
     public function __construct($details)
     {
