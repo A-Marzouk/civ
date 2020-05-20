@@ -292,8 +292,8 @@
 </template>
 <script>
     import VueSlickCarousel from 'vue-slick-carousel'
-    import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-    import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+    // import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+    // import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
     import Theaudio from './Theaudio'
     import Thevideo from './Thevideo'
 export default {
@@ -401,6 +401,10 @@ export default {
     }
 }
 </script>
+<style scoped>
+    @import url('~/vue-slick-carousel/dist/vue-slick-carousel.css');
+    @import url('~/vue-slick-carousel/dist/vue-slick-carousel-theme.css');
+</style>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 @import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");
