@@ -26,19 +26,9 @@ class HomeController extends Controller
         return view('welcome');
     }
 
-    public function welcome2(){
-        return view('welcome2');
-    }
-
-
     public function docs()
     {
         return view('api.docs');
-    }
-
-    public function verified()
-    {
-        return 'verified';
     }
 
 
