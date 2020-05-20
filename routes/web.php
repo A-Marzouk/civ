@@ -82,8 +82,5 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/developer/api', 'APIController@APIClients')->name('create.api.client');
 });
 
-// passport clients route:
-
-
 // public cv url
 Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
