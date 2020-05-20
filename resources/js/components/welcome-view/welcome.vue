@@ -469,35 +469,35 @@ export default {
           id: 1,
           title: "instagram",
           width: 18,
-          tablet_width: 30,
+          tablet_width: 18,
           link: "/register/instagram"
         },
         {
           id: 2,
           title: "linkedin",
           width: 16,
-          tablet_width: 28,
+          tablet_width: 16,
           link: "/register/linkedin"
         },
         {
           id: 3,
           title: "google",
           width: 14,
-          tablet_width: 22,
+          tablet_width: 14,
           link: "/register/google"
         },
         {
           id: 4,
           title: "facebook",
           width: 18,
-          tablet_width: 28,
+          tablet_width: 18,
           link: "/register/facebook"
         },
         {
           id: 5,
           title: "github",
           width: 22,
-          tablet_width: 36,
+          tablet_width: 22,
           link: "/register/github"
         }
       ],
