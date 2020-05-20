@@ -1188,6 +1188,9 @@ export default {
   @media screen and (max-width: 1263px) {
     width: 225px;
   }
+  @media screen and (min-width: 960px) and (max-width: 993px){
+    width: 200px;
+  }
   @media screen and (max-width: 599px) {
     font-family: "Poppins" !important;
     font-size: 12px !important;
