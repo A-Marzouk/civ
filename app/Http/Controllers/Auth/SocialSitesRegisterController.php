@@ -217,7 +217,7 @@ class SocialSitesRegisterController extends Controller
 
     public function validateUsername(Request $request){
         $request->validate([
-            'username' => 'min:3|max:191|unique:users|alpha_dash|regex:/^[A-Za-z][A-Za-z0-9]*$/',
+            'username' => 'min:3|max:191|unique:users|regex:/^[A-Za-z][A-Za-z0-9-_]*$/',
         ]);
 
         return 'success';
