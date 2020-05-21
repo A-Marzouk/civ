@@ -5,7 +5,7 @@
       <v-app-bar color="transparent" flat tile :height="windowWidth<=599?'80':'100'">
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
-        <a class="btn-appbar-login">
+        <a class="btn-appbar-login" href="/login">
           Log
           <span>&nbsp;in</span>
         </a>
@@ -301,7 +301,7 @@
                     </span>
                   </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
-                    <v-btn color="#0046FE" class="btn-view-themes">View All Themes</v-btn>
+                    <v-btn color="#0046FE" href="/register" class="btn-view-themes">View All Themes</v-btn>
                   </v-col>
                 </v-row>
               </v-card-subtitle>
@@ -340,7 +340,11 @@
                   <v-card align="center" color="transparent" flat tile>
                     <v-card-subtitle class="explore-number">+35</v-card-subtitle>
                     <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
-                    <v-card-subtitle class="explore-link mt-n10">EXPLORE ALL THEMES ></v-card-subtitle>
+                    <v-card-subtitle class="explore-link mt-n10 NoDecor">
+                      <a href="/register">
+                        EXPLORE ALL THEMES >
+                      </a>
+                    </v-card-subtitle>
                   </v-card>
                 </v-col>
               </v-row>
