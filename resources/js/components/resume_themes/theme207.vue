@@ -1468,11 +1468,17 @@ img.portfolio-lg-img {
   font-size: 20px !important;
   line-height: 28px;
   color: #ffffff !important;
+  @media screen and (min-width: 1264px) and (max-width: 1280px){
+    font-size: 16px !important;
+  }
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
   @media screen and (max-width: 414px) {
     font-size: 10px !important;
+  }
+  @media screen and (max-width: 323px){
+    font-size: 8px !important;
   }
 }
 // Skill tab

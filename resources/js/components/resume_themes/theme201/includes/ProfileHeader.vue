@@ -394,7 +394,7 @@ export default {
 <style scoped lang="scss">
 .custom-modal-title {
   font-size: 1rem;
-  color: #000000 !important;
+  color: rgba(92,92,92,1) !important;
   line-height: 30px;
 }
 .custom-modal-subtitle {
