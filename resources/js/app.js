@@ -25,7 +25,6 @@ if ($("#welcomeView").length !== 0) {
     });
 }
 
-
 //api components
 require('./API');
 
