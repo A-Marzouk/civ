@@ -53,7 +53,7 @@ class SocialSitesRegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'username' => 'min:3|max:191|unique:users|alpha_dash|regex:/^[A-Za-z][A-Za-z0-9]*$/'
+            'username' => 'min:3|max:191|unique:users|regex:/^[A-Za-z][A-Za-z0-9-_]*$/',
         ]);
     }
 
