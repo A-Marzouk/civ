@@ -43,6 +43,7 @@ Route::get('/register/google', 'Auth\SocialSitesRegisterController@redirectToGoo
 Route::get('/register/google/callback', 'Auth\SocialSitesRegisterController@handleGoogleProviderCallback')->name('client.google.callback');
 Route::get('/register/linkedin', 'Auth\SocialSitesRegisterController@redirectToLinkedinProvider')->name('client.linkedin.register');
 Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@handleLinkedinProviderCallback')->name('client.linkedin.callback');
+Route::post('/validate-username', 'Auth\SocialSitesRegisterController@validateUsername')->name('username.validate');
 
 
 // resume builder main routes.
@@ -81,9 +82,6 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/developer/api', 'APIController@APIClients')->name('create.api.client');
 });
-
-// passport clients route:
-
 
 // public cv url
 Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data

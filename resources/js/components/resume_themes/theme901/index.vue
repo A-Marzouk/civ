@@ -403,7 +403,7 @@ export default {
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");
+/*@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");*/  // this caused an error please check it!
 @import url("https://fonts.googleapis.com/css?family=Actor&display=swap");
 .hold-theme901{
     .header-901{

@@ -1,364 +1,41 @@
 <template>
-  <div class="tm701-education tw-pl-11rem tw-pr-11rem" v-if="currentTab === 3">
-    <div class="tm701-education--inner tw-grid tw-grid-cols-2 tw-col-gap-48">
-      <div>
-        <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="44"
-            height="44"
-            viewBox="0 0 44 44"
-          >
-            <g
-              id="Ellipse_177"
-              data-name="Ellipse 177"
-              fill="#fff"
-              stroke="#dbe0c2"
-              stroke-width="1"
-            >
-              <circle cx="22" cy="22" r="22" stroke="none" />
-              <circle cx="22" cy="22" r="21.5" fill="none" />
-            </g>
-            <g id="students-cap" transform="translate(8 -152.347)">
-              <path
-                id="Path_4843"
-                data-name="Path 4843"
-                d="M168,404.869l-8.3-2.553v4.264c0,1.971,3.715,3.57,8.3,3.57s8.3-1.6,8.3-3.57c0-.016-.005-.031-.005-.046v-4.218Z"
-                transform="translate(-154.092 -227.609)"
-                fill="#2f5e5e"
-              />
-              <path
-                id="Path_4844"
-                data-name="Path 4844"
-                d="M0,171.771l2.964,1.06.253-.541,1.089-.093.155.162-.934.222-.136.4s-2.11,4.411-1.8,6.57a2.722,2.722,0,0,0,2.634,0l.35-5.9v-.491l1.96-.442-.138.341-1.461.475.676.241,8.3,2.553,8.3-2.553,5.609-2.006-13.9-5.35Z"
-                transform="translate(0 0)"
-                fill="#2f5e5e"
-              />
-            </g>
-          </svg>
-
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="1"
-            viewBox="0 0 48 1"
-          >
-            <rect id="Rectangle_75" data-name="Rectangle 75" width="48" height="1" fill="#dbe0c2" />
-          </svg>
-          <span
-            class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1"
-          >University of Cambridge</span>
-          <span
-            class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
-          >2012 - 2015</span>
-        </div>
-        <div class="tw-pl-96px">
-          <div class="tw-pb-56px">
-            <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
-              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
-                <svg
-                  class="tw-mr-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="7"
-                  height="7"
-                  viewBox="0 0 7 7"
-                >
-                  <circle
-                    id="Ellipse_178"
-                    data-name="Ellipse 178"
-                    cx="3.5"
-                    cy="3.5"
-                    r="3.5"
-                    fill="#2f5e5e"
-                  />
-                </svg>
-                <h3
-                  class="tw-font-normal tw-text-lg tw-leading-24px tw-font-poppins tw-text-tm701-6"
-                >Senior Seconday</h3>
+  <v-container v-if="currentTab === 4" fluid>
+    <v-row justify="center" class="mt-12">
+      <v-col
+        v-for="edu in educations"
+        :key="edu.id"
+        lg="3"
+        md="4"
+        cols="11"
+        sm="11"
+        align="center"
+        class="mx-0 mx-sm-6 mx-md-6 mx-lg-6"
+      >
+        <div class="gradient"></div>
+        <v-card width="auto" class="text-left textcol shadow">
+          <v-row justify="center">
+            <v-col md="9">
+              <v-img :src="edu.img" class="imgcard"></v-img>
+              <div class="subtitle-2 py-1">26th October,2019</div>
+              <div class="headline font-weight-bold py-1">{{edu.title}}</div>
+              <div class="subtitle-1 font-weight-bold py-1">Data Science</div>
+              <div class="py-2">
+                <div class="subhead">
+                  <v-icon color="#6545F8" small left>mdi-map-marker</v-icon>Paderborn University
+                </div>
+                <div class="subhead pl-6">Paderborn, Germany</div>
               </div>
-              <span
-                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
-              >Full Time</span>
-            </div>
-
-            <p class="tw-font-normal tw-text-lg tw-leading-27px tw-font-muli tw-text-tm701-8">
-              Get, keoo and grow more customers with customer
-              engagement Automation by kissmetrics.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="44"
-            height="44"
-            viewBox="0 0 44 44"
-          >
-            <g
-              id="Ellipse_177"
-              data-name="Ellipse 177"
-              fill="#fff"
-              stroke="#dbe0c2"
-              stroke-width="1"
-            >
-              <circle cx="22" cy="22" r="22" stroke="none" />
-              <circle cx="22" cy="22" r="21.5" fill="none" />
-            </g>
-            <g id="students-cap" transform="translate(8 -152.347)">
-              <path
-                id="Path_4843"
-                data-name="Path 4843"
-                d="M168,404.869l-8.3-2.553v4.264c0,1.971,3.715,3.57,8.3,3.57s8.3-1.6,8.3-3.57c0-.016-.005-.031-.005-.046v-4.218Z"
-                transform="translate(-154.092 -227.609)"
-                fill="#2f5e5e"
-              />
-              <path
-                id="Path_4844"
-                data-name="Path 4844"
-                d="M0,171.771l2.964,1.06.253-.541,1.089-.093.155.162-.934.222-.136.4s-2.11,4.411-1.8,6.57a2.722,2.722,0,0,0,2.634,0l.35-5.9v-.491l1.96-.442-.138.341-1.461.475.676.241,8.3,2.553,8.3-2.553,5.609-2.006-13.9-5.35Z"
-                transform="translate(0 0)"
-                fill="#2f5e5e"
-              />
-            </g>
-          </svg>
-
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="1"
-            viewBox="0 0 48 1"
-          >
-            <rect id="Rectangle_75" data-name="Rectangle 75" width="48" height="1" fill="#dbe0c2" />
-          </svg>
-          <span
-            class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1"
-          >All Saints School</span>
-          <span
-            class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
-          >2012 - 2015</span>
-        </div>
-        <div class="tw-pl-96px">
-          <div class="tw-pb-56px">
-            <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
-              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
-                <svg
-                  class="tw-mr-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="7"
-                  height="7"
-                  viewBox="0 0 7 7"
-                >
-                  <circle
-                    id="Ellipse_178"
-                    data-name="Ellipse 178"
-                    cx="3.5"
-                    cy="3.5"
-                    r="3.5"
-                    fill="#2f5e5e"
-                  />
-                </svg>
-                <h3
-                  class="tw-font-normal tw-text-lg tw-leading-24px tw-font-poppins tw-text-tm701-6"
-                >Senior Seconday</h3>
-              </div>
-              <span
-                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
-              >Full Time</span>
-            </div>
-
-            <p class="tw-font-normal tw-text-lg tw-leading-27px tw-font-muli tw-text-tm701-8">
-              Get, keoo and grow more customers with customer
-              engagement Automation by kissmetrics.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="44"
-            height="44"
-            viewBox="0 0 44 44"
-          >
-            <g
-              id="Ellipse_177"
-              data-name="Ellipse 177"
-              fill="#fff"
-              stroke="#dbe0c2"
-              stroke-width="1"
-            >
-              <circle cx="22" cy="22" r="22" stroke="none" />
-              <circle cx="22" cy="22" r="21.5" fill="none" />
-            </g>
-            <g id="students-cap" transform="translate(8 -152.347)">
-              <path
-                id="Path_4843"
-                data-name="Path 4843"
-                d="M168,404.869l-8.3-2.553v4.264c0,1.971,3.715,3.57,8.3,3.57s8.3-1.6,8.3-3.57c0-.016-.005-.031-.005-.046v-4.218Z"
-                transform="translate(-154.092 -227.609)"
-                fill="#2f5e5e"
-              />
-              <path
-                id="Path_4844"
-                data-name="Path 4844"
-                d="M0,171.771l2.964,1.06.253-.541,1.089-.093.155.162-.934.222-.136.4s-2.11,4.411-1.8,6.57a2.722,2.722,0,0,0,2.634,0l.35-5.9v-.491l1.96-.442-.138.341-1.461.475.676.241,8.3,2.553,8.3-2.553,5.609-2.006-13.9-5.35Z"
-                transform="translate(0 0)"
-                fill="#2f5e5e"
-              />
-            </g>
-          </svg>
-
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="1"
-            viewBox="0 0 48 1"
-          >
-            <rect id="Rectangle_75" data-name="Rectangle 75" width="48" height="1" fill="#dbe0c2" />
-          </svg>
-          <span
-            class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1"
-          >All Saints School</span>
-          <span
-            class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
-          >2012 - 2015</span>
-        </div>
-        <div class="tw-pl-96px">
-          <div class="tw-pb-56px">
-            <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
-              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
-                <svg
-                  class="tw-mr-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="7"
-                  height="7"
-                  viewBox="0 0 7 7"
-                >
-                  <circle
-                    id="Ellipse_178"
-                    data-name="Ellipse 178"
-                    cx="3.5"
-                    cy="3.5"
-                    r="3.5"
-                    fill="#2f5e5e"
-                  />
-                </svg>
-                <h3
-                  class="tw-font-normal tw-text-lg tw-leading-24px tw-font-poppins tw-text-tm701-6"
-                >Senior Seconday</h3>
-              </div>
-              <span
-                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
-              >Full Time</span>
-            </div>
-
-            <p class="tw-font-normal tw-text-lg tw-leading-27px tw-font-muli tw-text-tm701-8">
-              Get, keoo and grow more customers with customer
-              engagement Automation by kissmetrics.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="tw-flex tw-flex-row tw-items-center tw-mb-18px">
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="44"
-            height="44"
-            viewBox="0 0 44 44"
-          >
-            <g
-              id="Ellipse_177"
-              data-name="Ellipse 177"
-              fill="#fff"
-              stroke="#dbe0c2"
-              stroke-width="1"
-            >
-              <circle cx="22" cy="22" r="22" stroke="none" />
-              <circle cx="22" cy="22" r="21.5" fill="none" />
-            </g>
-            <g id="students-cap" transform="translate(8 -152.347)">
-              <path
-                id="Path_4843"
-                data-name="Path 4843"
-                d="M168,404.869l-8.3-2.553v4.264c0,1.971,3.715,3.57,8.3,3.57s8.3-1.6,8.3-3.57c0-.016-.005-.031-.005-.046v-4.218Z"
-                transform="translate(-154.092 -227.609)"
-                fill="#2f5e5e"
-              />
-              <path
-                id="Path_4844"
-                data-name="Path 4844"
-                d="M0,171.771l2.964,1.06.253-.541,1.089-.093.155.162-.934.222-.136.4s-2.11,4.411-1.8,6.57a2.722,2.722,0,0,0,2.634,0l.35-5.9v-.491l1.96-.442-.138.341-1.461.475.676.241,8.3,2.553,8.3-2.553,5.609-2.006-13.9-5.35Z"
-                transform="translate(0 0)"
-                fill="#2f5e5e"
-              />
-            </g>
-          </svg>
-
-          <svg
-            class="tw-mr-18px"
-            xmlns="http://www.w3.org/2000/svg"
-            width="48"
-            height="1"
-            viewBox="0 0 48 1"
-          >
-            <rect id="Rectangle_75" data-name="Rectangle 75" width="48" height="1" fill="#dbe0c2" />
-          </svg>
-          <span
-            class="tw-mr-2 tw-font-bold tw-text-20px tw-leading-24 tw-text-tm701-1"
-          >All Saints School</span>
-          <span
-            class="tw-mr-2 tw-font-normal tw-text-base tw-leading-24 tw-text-tm701-8"
-          >2012 - 2015</span>
-        </div>
-        <div class="tw-pl-96px">
-          <div class="tw-pb-56px">
-            <div class="tw-flex tw-flex-row tw-justify-between tw-items-center tw-mb-4">
-              <div class="tw-flex tw-flex-row tw-justify-between tw-items-center">
-                <svg
-                  class="tw-mr-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="7"
-                  height="7"
-                  viewBox="0 0 7 7"
-                >
-                  <circle
-                    id="Ellipse_178"
-                    data-name="Ellipse 178"
-                    cx="3.5"
-                    cy="3.5"
-                    r="3.5"
-                    fill="#2f5e5e"
-                  />
-                </svg>
-                <h3
-                  class="tw-font-normal tw-text-lg tw-leading-24px tw-font-poppins tw-text-tm701-6"
-                >Senior Seconday</h3>
-              </div>
-              <span
-                class="tw-font-normal tw-text-xs tw-leading-14px tw-font-muli tw-text-tm701-6 tw-border tw-border-tm701-9 tw-rounded-lg tw-py-5px tw-px-10px"
-              >Full Time</span>
-            </div>
-
-            <p class="tw-font-normal tw-text-lg tw-leading-27px tw-font-muli tw-text-tm701-8">
-              Get, keoo and grow more customers with customer
-              engagement Automation by kissmetrics.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+              <div class="eduline my-2"></div>
+              <div
+                class="subhead my-3"
+              >Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet</div>
+              <div class="title font-weight-bold my-2 pb-8" style="color:#45F957;">{{edu.line}}</div>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -366,11 +43,88 @@ export default {
   props: ["currentTab"],
   data() {
     return {
-      educations: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+      educations: [
+        {
+          id: 1,
+          title: "PhD",
+          img: "/images/resume_themes/theme508/edu-1.svg",
+          line: "Successfully Completed"
+        },
+        {
+          id: 2,
+          title: "MSc",
+          img: "/images/resume_themes/theme508/edu-2.svg",
+          line: "CGPA 1.00 on German Grade"
+        }
+      ]
     };
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&display=swap");
+.textcol {
+  color: #6247fd;
+}
+.shadow {
+  box-shadow: 1px 7px 20px 0px rgba(0, 0, 0, 0.2);
+}
+.imgcard {
+  width: 300px;
+  height: 300px;
+}
+.gradient {
+  width: 100%;
+  height: 10px;
+  background: linear-gradient(to left, #7a39db, #6048ff);
+}
+.eduline {
+  width: 150px;
+  background-color: #6247fd;
+  height: 1px;
+}
+.head {
+  font-family: "Heebo", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+.subhead {
+  font-family: "Heebo", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 20px;
+}
+@media screen and (max-width: 425px) {
+  .imgcard {
+    width: 200px;
+    height: 200px;
+  }
+  .shadow {
+    padding: 0 15px;
+  }
+  .eduline {
+    width: 150px;
+    background-color: #6247fd;
+    height: 1px;
+  }
+  .head {
+    font-family: "Heebo", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+  .subhead {
+    font-family: "Heebo", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.67rem;
+    line-height: 20px;
+  }
+  .title {
+    font-size: 1rem !important;
+  }
+}
 </style>

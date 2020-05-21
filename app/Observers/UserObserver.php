@@ -10,6 +10,7 @@ use App\PersonalInfo;
 use App\Referee;
 use App\Reference;
 use App\Summary;
+use Illuminate\Support\Facades\Session;
 
 class UserObserver
 {
