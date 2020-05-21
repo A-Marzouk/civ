@@ -96,7 +96,6 @@ Route::group(['prefix' => 'user/'], function () {
 //  Account user data:
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
     Route::post('/account/validate', 'API\UsersController@validateSingleField')->name('account.validate');
-
 // update activity
     Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
 

@@ -1,15 +1,15 @@
 <template>
   <v-container fluid>
     <v-row>
-      <v-col md="5">
+      <v-col lg="5" md="5" sm="6" cols="12">
         <!-- left -->
         <Left />
       </v-col>
-      <v-col md="4">
+      <v-col lg="4" md="4" sm="4" cols="12">
         <!-- center -->
         <Center />
       </v-col>
-      <v-col md="3">
+      <v-col lg="3" md="3" sm="2" class="ml-auto mr-8 mr-sm-0 mr-md-0 hidden-xs-only">
         <!-- right -->
         <Right />
       </v-col>

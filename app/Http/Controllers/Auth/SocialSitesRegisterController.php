@@ -30,11 +30,11 @@ class SocialSitesRegisterController extends Controller
     public function simpleRegister(Request $request)
     {
         $this->validator($request->all())->validate();
-
          $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'username' => $request->username ?? str_random(10)
         ])->assignRole('agent');
 
          $token =  $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
@@ -53,6 +53,7 @@ class SocialSitesRegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'username' => 'min:3|max:191|unique:users|alpha_dash|regex:/^[A-Za-z][A-Za-z0-9]*$/'
         ]);
     }
 
@@ -213,5 +214,13 @@ class SocialSitesRegisterController extends Controller
 
 
 
+
+    public function validateUsername(Request $request){
+        $request->validate([
+            'username' => 'min:3|max:191|unique:users|alpha_dash|regex:/^[A-Za-z][A-Za-z0-9]*$/',
+        ]);
+
+        return 'success';
+    }
 
 }

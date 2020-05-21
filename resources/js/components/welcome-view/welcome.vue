@@ -42,23 +42,34 @@
                         class="input-av"
                         hide-details
                         outlined
-                        placeholder="civ.ie/yourname"
+                        placeholder="john-doe"
                         v-model="username"
                         background-color="#ffffff"
-                        @keyup="checkUser"
+                        @keyup="validateUsername"
                         height="60"
                       >
+                        <template slot="append">
+                          <a class="inner-link" href="javascript:void(0)" @click="scrollTo('createAccount')" v-show="is_username_valid">
+                            Sign up
+                          </a>
+                        </template>
+
                         <template slot="append">
                           <v-icon
                             color="#1DBF73"
                             class="custom-append-icon"
-                            v-show="userFound == true"
+                            v-show="is_username_valid"
                           >mdi-check-circle</v-icon>
                           <v-icon
                             color="#E91E63"
                             class="custom-append-icon"
-                            v-show="userFound == false"
+                            v-show="!is_username_valid && is_username_valid !== null"
                           >mdi-close-circle</v-icon>
+                        </template>
+                        <template slot="prepend-inner" >
+                          <span class="inner-text">
+                            civ.ie/
+                          </span>
                         </template>
                       </v-text-field>
                     </v-card-subtitle>
@@ -86,7 +97,7 @@
       <!-- 1st inner container ends here -->
 
       <!-- new 2nd layer -->
-      <v-container style="width:100%" class>
+      <v-container style="width:100%" id="createAccount">
         <v-row align="center" justify="center">
           <v-col lg="6" xl="5" md="6" sm="11" cols="12">
             <v-card color="transparent" tile flat class="mt-md-0 mt-sm-0 mt-n5">
@@ -448,8 +459,7 @@ export default {
   data() {
     return {
       windowWidth: window.innerWidth,
-      username: "civ.ie/yourname",
-      userFound: null,
+      username: "",
       valid: false,
       lazy: false,
       agreeCheck: false,
@@ -563,7 +573,8 @@ export default {
             }
           }
         ]
-      }
+      },
+      is_username_valid: null
     };
   },
   //mounted
@@ -580,8 +591,12 @@ export default {
           "You have to accept our Terms of Use & Privacy Police*";
         return;
       }
-      axios
-        .post("/simple-register", this.formData)
+
+      if(this.is_username_valid){
+        this.formData.username = this.username ;
+      }
+
+      axios.post("/simple-register", this.formData)
         .then(response => {
           // save the access token then redirect:
           Vue.$cookies.set("access_token", response.data.access_token, "3y");
@@ -600,17 +615,15 @@ export default {
           }
         });
     },
-    checkUser() {
-      if (this.username == "") {
-        this.userFound = null;
-      } else {
-        let index = this.username.search("/");
-        if (index >= 0) {
-          let splitStr = this.username.split("/");
-          var found = this.users.indexOf(splitStr[1]);
-          found > -1 ? (this.userFound = true) : (this.userFound = false);
-        }
-      }
+    validateUsername(){
+      axios.post('/validate-username',{username : this.username})
+              .then( (response) => {
+                console.log(response.data);
+                this.is_username_valid = true ;
+              })
+              .catch( (response) => {
+                this.is_username_valid = false ;
+              })
     },
     getSocialIcon(title) {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
@@ -621,9 +634,13 @@ export default {
     getIntegrationImage(id) {
       return `/images/welcome_landing_page/imgs/integration/${id}.png`;
     },
-
     getContactIcons(title) {
       return `/images/welcome_landing_page/icons/${title}.png`;
+    },
+    scrollTo(id){
+      $('html, body').animate({
+        scrollTop: $("#" + id).offset().top
+      }, 1500);
     }
   }
 };
@@ -631,6 +648,22 @@ export default {
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+
+
+.inner-text{
+  padding-top: 6px;
+  color: #aeaeae;
+}
+
+.inner-link{
+  padding-top: 4px;
+  padding-right: 10px;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+
 .card-login {
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
   border-radius: 15px !important;
@@ -1435,6 +1468,8 @@ export default {
 .input-av.v-text-field {
   box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1) !important;
 }
+
+
 .error-custom-margin {
   margin-top: -15px;
   margin-bottom: 10px;

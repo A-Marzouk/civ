@@ -50,7 +50,7 @@
         "vue-masonry": "^0.11.8",
         "vue-moment": "^4.1.0",
         "vue-particles": "^1.0.9",
-        "vue-radial-progress": "^0.3.0",
+        "vue-radial-progress": "^0.3.1",
         "vue-router": "^3.1.5",
         "vue-scrollto": "^2.18.1",
         "vue-slick": "^1.1.15",
