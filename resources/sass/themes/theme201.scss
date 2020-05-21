@@ -11,7 +11,7 @@
                 font-weight: 400;
                 letter-spacing: normal !important;
                 font-family: "Roboto", sans-serif !important;
-                color: #1D1D1D;
+                color: rgba(92, 92, 92, 1);
                 overflow: visible;
             }
             .subtitle-text {
@@ -20,7 +20,7 @@
                 font-weight: 300;
                 font-size: 14px !important;
                 line-height: 29px;
-                color: #1D1D1D;
+                color: rgba(92, 92, 92, 1);
             }
             // Custom Icons
             .custom-icon {
@@ -91,7 +91,7 @@
                 text-transform: capitalize !important;
             }
             .tab-text.v-tab.v-tab--active {
-                color: #1D1D1D !important;
+                color: rgba(92, 92, 92, 1) !important;
             }
             .tablet-align {
                 margin-left: 20px;

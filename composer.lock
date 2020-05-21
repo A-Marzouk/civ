@@ -3453,16 +3453,16 @@
         },
         {
             "name": "spatie/laravel-permission",
-            "version": "3.11.0",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-permission.git",
-                "reference": "e90ed6242a8fa29735529160b9c21cb77b233e7f"
+                "reference": "ee3d83e6c85f480e595ae4d96aab656063efe85a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/e90ed6242a8fa29735529160b9c21cb77b233e7f",
-                "reference": "e90ed6242a8fa29735529160b9c21cb77b233e7f",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/ee3d83e6c85f480e595ae4d96aab656063efe85a",
+                "reference": "ee3d83e6c85f480e595ae4d96aab656063efe85a",
                 "shasum": ""
             },
             "require": {
@@ -3517,7 +3517,7 @@
                 "security",
                 "spatie"
             ],
-            "time": "2020-03-03T21:31:02+00:00"
+            "time": "2020-05-14T16:42:35+00:00"
         },
         {
             "name": "spatie/pdf-to-text",
@@ -3568,16 +3568,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v7.32.1",
+            "version": "v7.33.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "dccb1358867985440dc8c370dc4ac81daa8a6a21"
+                "url": "git@github.com:stripe/stripe-php.git",
+                "reference": "5df49745eed2d010e28b64831925dbf6fdfc01a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/dccb1358867985440dc8c370dc4ac81daa8a6a21",
-                "reference": "dccb1358867985440dc8c370dc4ac81daa8a6a21",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/5df49745eed2d010e28b64831925dbf6fdfc01a4",
+                "reference": "5df49745eed2d010e28b64831925dbf6fdfc01a4",
                 "shasum": ""
             },
             "require": {
@@ -3621,7 +3621,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2020-05-13T17:31:30+00:00"
+            "time": "2020-05-15T18:30:45+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

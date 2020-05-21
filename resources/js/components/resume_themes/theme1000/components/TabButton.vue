@@ -57,6 +57,7 @@ export default {
 	.tab-button__label {
 		display: none;
 		font-size: 12px;
+		user-select: none;
 		font-weight: 500;
 		padding-left: 10px;
 		font-family: inherit;
