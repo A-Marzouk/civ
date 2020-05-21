@@ -506,7 +506,7 @@
                                               <v-col
                                                 md="9"
                                                 sm="10"
-                                                :cols="windowWidth>393?'10':'9'"
+                                                :cols="windowWidth>408?'10':'9'"
                                               >
                                                 <v-progress-linear
                                                   tile
@@ -518,7 +518,7 @@
                                                   :value="item.value"
                                                 ></v-progress-linear>
                                               </v-col>
-                                              <v-col md="3" sm="2" :cols="windowWidth>393?'2':'3'">
+                                              <v-col md="3" sm="2" :cols="windowWidth>408?'2':'3'">
                                                 <span
                                                   class="progress-value-text"
                                                 >{{item.value_text}}</span>
@@ -1474,10 +1474,10 @@ img.portfolio-lg-img {
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
   }
-  @media screen and (max-width: 414px) {
+  @media screen and (max-width: 430px) {
     font-size: 10px !important;
   }
-  @media screen and (max-width: 323px){
+  @media screen and (max-width: 32px){
     font-size: 8px !important;
   }
 }
