@@ -43,6 +43,7 @@ Route::get('/register/google', 'Auth\SocialSitesRegisterController@redirectToGoo
 Route::get('/register/google/callback', 'Auth\SocialSitesRegisterController@handleGoogleProviderCallback')->name('client.google.callback');
 Route::get('/register/linkedin', 'Auth\SocialSitesRegisterController@redirectToLinkedinProvider')->name('client.linkedin.register');
 Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@handleLinkedinProviderCallback')->name('client.linkedin.callback');
+Route::post('/validate-username', 'Auth\SocialSitesRegisterController@validateUsername')->name('username.validate');
 
 
 // resume builder main routes.

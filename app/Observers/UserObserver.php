@@ -10,6 +10,7 @@ use App\PersonalInfo;
 use App\Referee;
 use App\Reference;
 use App\Summary;
+use Illuminate\Support\Facades\Session;
 
 class UserObserver
 {
@@ -82,12 +83,6 @@ class UserObserver
     }
 
     protected function assignDefaultValuesForNewUser($user){
-
-        // username:
-        $user->update([
-            'username' => $user->name . '_' . str_random(10)
-        ]);
-
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
