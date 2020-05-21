@@ -206,17 +206,29 @@ export default {
                         .title,
                         .description p {
                             font-size: 10px !important;
-                            max-width: 154px;
+                            max-width: 45%;
                         }
 
                         .title {
                             line-height: 1.4;
                         }
                     }
+
+                    @media (max-width: 700px) {
+                        .title,
+                        .description p {
+                            font-size: 13px !important;
+                            max-width: 70%;
+                        }
+                    }
                 }
 
                 @media (max-width: 1200px) {
                     margin-bottom: 76px !important;
+                }
+                
+                @media (max-width: 700px) {
+                    margin-bottom: 42px !important;
                 }
             }
         }

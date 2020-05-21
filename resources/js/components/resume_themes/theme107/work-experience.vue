@@ -89,6 +89,10 @@ export default {
         max-width: 1300px !important;
         padding: 0 60px;
         margin: 0 auto;
+
+        @media (max-width: 830px) {
+            padding: 0;
+        }
     }
 
     .work-item {
@@ -159,6 +163,14 @@ export default {
                     font-size: 9px;
                 }
             }
+
+            @media (max-width: 700px) {
+                margin-bottom: 16px;
+
+                .company-name {
+                    font-size: 13px;
+                }
+            }
         }
 
         .work-body {
@@ -186,6 +198,20 @@ export default {
 
                 }
             }
+
+            @media (max-width: 700px) {
+                
+                .job-title,
+                .work-description p {
+                    font-size: 11px;
+
+                }
+            }
+        }
+
+        @media (max-width: 620px) {
+            width: 100%;
+            margin-bottom: 48px;
         }
     }
 </style>

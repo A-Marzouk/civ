@@ -84,6 +84,10 @@ export default {
         max-width: 1300px !important;
         padding: 0 60px;
         margin: 0 auto;
+
+        @media (max-width: 830px) {
+            padding: 0;
+        }
     }
 
     .education-item {
@@ -154,6 +158,14 @@ export default {
                     font-size: 9px;
                 }
             }
+
+            @media (max-width: 700px) {
+                margin-bottom: 16px;
+
+                .college-name {
+                    font-size: 13px;
+                }
+            }
         }
 
         .education-body {
@@ -181,6 +193,20 @@ export default {
 
                 }
             }
+
+            @media (max-width: 700px) {
+                
+                .grade-title,
+                .education-description p {
+                    font-size: 11px;
+
+                }
+            }
+        }
+
+        @media (max-width: 620px) {
+            width: 100%;
+            margin-bottom: 48px;
         }
     }
 </style>

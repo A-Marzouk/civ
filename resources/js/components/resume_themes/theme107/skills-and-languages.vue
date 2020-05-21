@@ -104,7 +104,7 @@ export default {
         }
 
         @media (max-width: 1200px) {
-            margin-right: 143px;
+            margin-right: 20px;
             
             .small {
                 font-size: 13px;
@@ -117,12 +117,17 @@ export default {
                 margin-bottom: 22px;
             }
         }
+
+        @media (max-width: 756px) {
+            display: none;
+        }
     }
 }
     .skills-container {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 50px 90px;
+        margin: 0 auto;
 
         .skill {
             max-width: 310px;
@@ -207,10 +212,18 @@ export default {
                     }
                 }
             }
+
+            @media (max-width: 756px) {
+                grid-column: span 6;
+            }
         }
 
         @media (max-width: 1200px) {
             grid-gap: 50px;
         } 
+        
+        @media (max-width: 756px) {
+            grid-gap: 35px;
+        }
     }
 </style>

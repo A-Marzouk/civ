@@ -101,7 +101,7 @@
                                 Behance
                             </a>
                         </div>
-                        <div class="theme-aside showOnTablet">
+                        <div class="theme-aside showOnTablet hideOnMobile">
                             Social links
                             <span></span>
                             <a href="javascript:;">
@@ -117,7 +117,7 @@
                                 <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
                             </a>
                         </div>
-                        <div class="scroll-top">
+                        <div class="scroll-top hideOnMobile">
                             <a href="javascript:;" v-scroll-to="'#theme107'">
                                 Scroll
                                 <font-awesome-icon class="icon" :icon="['fas', 'arrow-right']"></font-awesome-icon> 
@@ -198,6 +198,11 @@ $purple: #335E5E;
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
+            position: relative;
+
+            .more-icon {
+                
+            }
 
             .actions-wrapper {
                 display: flex;
@@ -240,6 +245,11 @@ $purple: #335E5E;
                         }
                     }
                 }
+
+                @media (max-width: 700px) {
+                    position: absolute;
+                    opacity: 0;
+                }
             }
 
             .payment-data {
@@ -277,6 +287,11 @@ $purple: #335E5E;
                             font-size: 8px;
                         }
                     }
+                    
+                    @media (max-width: 700px) {
+                        margin-right: 0;
+                        align-items: flex-start;
+                    }
                 }
 
                 .hire-me-btn {
@@ -297,6 +312,7 @@ $purple: #335E5E;
                     @media (max-width: 1400px) {
                         font-size: 16px;
                         padding: 23px 42px;
+                        min-width: 144px;
 
                         .icon {
                             height: 20px;
@@ -311,11 +327,32 @@ $purple: #335E5E;
                             height: 12px;
                         }
                     }
+                    
+                    @media (max-width: 700px) {
+                        font-size: 10px;
+                        padding: 14px 24px;
+                        min-width: 80px;
+
+                        .icon {
+                            height: 12px;
+                        }
+                    }
                 }
 
                 @media (max-width: 1200px) {
                     margin-top: 27px;
                 }
+
+                @media (max-width: 700px) {
+                    margin-top: 0;
+                    padding-left: 60px;
+                    justify-content: space-between;
+                    width: 100%;
+                }
+            }
+
+            @media (max-width: 700px) {
+                width: 100%;
             }
         }
 
@@ -332,6 +369,11 @@ $purple: #335E5E;
             
             @media (max-width: 1200px) {
                 padding: 37px 40px;
+            }
+            
+            @media (max-width: 700px) {
+                flex-wrap: wrap;
+                padding: 30px 17px;
             }
 
             .user-img {
@@ -351,9 +393,19 @@ $purple: #335E5E;
                     margin-right: 33px;
                 }
                 
-                @media (max-width: 1400px) {
+                @media (max-width: 1200px) {
                     width: 141px;
                     height: 141px;
+                }
+                
+                @media (max-width: 876px) {
+                    margin-right: 20px;
+                }
+
+                @media (max-width: 700px) {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 12px;
                 }
             }
 
@@ -369,6 +421,8 @@ $purple: #335E5E;
                     font-size: 35px;
                     margin-bottom: 20px;
                     color: #28404A;
+
+                    
                 }
 
                 .profession {
@@ -384,7 +438,7 @@ $purple: #335E5E;
                     padding: 0;
                     
                     .item {
-                        margin-right: 40px;
+                        margin-right: 25px;
                         position: relative;
 
                         &:last-child {
@@ -402,7 +456,7 @@ $purple: #335E5E;
                             height: 7px;
                             background: $mainColor;
                             border-radius: 50%;
-                            right: -20px;
+                            right: -12.5px;
                             top: calc(50% - 3.5px);
                         }
 
@@ -413,6 +467,10 @@ $purple: #335E5E;
                                 width: 5px;
                             }
                         }
+                    }
+
+                    @media (max-width: 876px) {
+                        flex-wrap: wrap;
                     }
                 }
 
@@ -430,6 +488,23 @@ $purple: #335E5E;
                     .name {
                         font-size: 17px;
                         margin-bottom: 13px;
+                    }
+                }
+
+                @media (max-width: 700px) {
+
+                    .name {
+                        font-size: 12px;
+                        margin-bottom: 5px;
+                    }
+
+                    .profession {
+                        font-size: 10px;
+                        margin-bottom: 18px;
+                    }
+
+                    .speciallity {
+                        display: none;
                     }
                 }
             }
@@ -451,6 +526,11 @@ $purple: #335E5E;
             
             @media (max-width: 1200px) {
                 width: 349px;
+                z-index: -1;
+            }
+            
+            @media (max-width: 700px) {
+                display: none;
             }
 
             &.img1 {
@@ -483,6 +563,9 @@ $purple: #335E5E;
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $mainColor;
+                overflow: 0 auto;
+                width: 95%;
+                margin: 0 auto;
                 margin-top: 61px;
                 margin-bottom: 61px;
                 
@@ -511,6 +594,16 @@ $purple: #335E5E;
                         font-size: 11px;
                         padding: 12px 22px;
                     }
+
+                    @media (max-width: 756px) {
+                        font-size: 15px;
+                        padding: 13px 17px;
+                        margin-right: 27px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
                 }
 
                 &-slider-wrapper {
@@ -528,6 +621,10 @@ $purple: #335E5E;
                     margin-top: 29px;
                     margin-bottom: 47px;
                 }
+                
+                @media (max-width: 700px) {
+                    margin: 29px auto;
+                }
             }
 
             .container {
@@ -536,7 +633,17 @@ $purple: #335E5E;
                 max-width: 1550px;
                 width: 90%;
                 margin: 0 auto;
+
+                @media (max-width: 700px) {
+                    padding-bottom: 30px;
+
+                }
             }
+        }
+
+        @media (max-width: 756px) {
+            border-radius: 38px 38px 0 0;
+            border-top: 10px solid $purple;
         }
     }
 
@@ -637,6 +744,12 @@ $purple: #335E5E;
                 height: 7px;
                 margin-left: 9px;
             }
+        }
+    }
+
+    .hideOnMobile {
+        @media (max-width: 876px) {
+            display: none !important;
         }
     }
 }
