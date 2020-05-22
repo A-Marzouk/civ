@@ -318,18 +318,19 @@ $purple: #958C89;
 
     .theme-body {
         height: auto;
-        background-color: $mainColor;
+        background-color: #f9f9f9;
         z-index: 1;
         position: relative;
 
         .bg-body {
             position: absolute;
             z-index: -1;
-            width: 100%;
-            height: 100%;
-            background-image: url("/images/resume_themes/theme102/bg-body.png");
-            background-repeat: repeat;
-            opacity: 0.02;
+            position: absolute;
+            width: 100vw;
+            height: 148px;
+            top: 0;
+            left: 0;
+            background: white;
         }
 
         .wrapper {
@@ -346,8 +347,9 @@ $purple: #958C89;
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $tabTextColor;
-                margin-top: 61px;
+                margin-top: 39px;
                 margin-bottom: 111px;
+                position: relative;
 
                 &-bar {
                     background: transparent !important;
@@ -362,6 +364,7 @@ $purple: #958C89;
                     position: relative;
                     align-items: flex-start;
                     margin-right: 70px;
+                    z-index: 1;
 
                     &:last-child {
                         margin-right: auto;
