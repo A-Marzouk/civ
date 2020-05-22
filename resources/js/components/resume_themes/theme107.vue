@@ -635,6 +635,10 @@ $purple: #335E5E;
                 margin: 0 auto;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -690,7 +694,11 @@ $purple: #335E5E;
                 }
                 
                 @media (max-width: 700px) {
-                    margin: 29px auto;
+                    margin: 29px 0;
+
+                    .v-item-group {
+                        padding: 0 13px;
+                    }
                 }
             }
 
@@ -702,6 +710,7 @@ $purple: #335E5E;
                 margin: 0 auto;
 
                 @media (max-width: 700px) {
+                    padding: 0;
                     padding-bottom: 30px;
 
                 }
