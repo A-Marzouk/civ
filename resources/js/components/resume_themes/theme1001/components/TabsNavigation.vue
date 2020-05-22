@@ -1,32 +1,34 @@
 <template>
 	<nav class="tabs-navigation">
-		<div class="navigation-wrapper">
-			<ul class="navigation">
-				<li class="navigation__link" :class="{'active': currentTab==='portfolio'}">
-					<a href="#" @click.prevent="$emit('tabChanged', 'portfolio')">Portfolio</a>
-				</li>
-				<li class="navigation__link" :class="{'active': currentTab==='experience-education'}">
-					<a href="#" @click.prevent="$emit('tabChanged', 'experience-education')">Work experience & Education</a>
-				</li>
-				<li class="navigation__link" :class="{'active': currentTab==='skills-language'}">
-					<a href="#" @click.prevent="$emit('tabChanged', 'skills-language')">Skills & Language</a>
-				</li>
-				<li class="navigation__link" :class="{'active': currentTab==='about-me'}">
-					<a href="#" @click.prevent="$emit('tabChanged', 'about-me')">About Me</a>
-				</li>
-			</ul>
+		<div class="tabs-navigation-inner">
+			<div class="navigation-wrapper">
+				<ul class="navigation">
+					<li class="navigation__link" :class="{'active': currentTab==='portfolio'}">
+						<a href="#" @click.prevent="$emit('tabChanged', 'portfolio')">Portfolio</a>
+					</li>
+					<li class="navigation__link" :class="{'active': currentTab==='experience-education'}">
+						<a href="#" @click.prevent="$emit('tabChanged', 'experience-education')">Work experience & Education</a>
+					</li>
+					<li class="navigation__link" :class="{'active': currentTab==='skills-languages'}">
+						<a href="#" @click.prevent="$emit('tabChanged', 'skills-languages')">Skills & Language</a>
+					</li>
+					<li class="navigation__link" :class="{'active': currentTab==='about-me'}">
+						<a href="#" @click.prevent="$emit('tabChanged', 'about-me')">About Me</a>
+					</li>
+				</ul>
 
-			<a href="#" class="toggle-social-links" @click="isOpen=!isOpen">
-				<svg class="toggle__icon--close" :class="{'toggle__icon--hide': !isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-					<path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
-				</svg>
-				<svg class="toggle__icon--open" :class="{'toggle__icon--hide': isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-					<path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
-				</svg>
-			</a>
+				<a href="#" class="toggle-social-links" @click="isOpen=!isOpen">
+					<svg class="toggle__icon--close" :class="{'toggle__icon--hide': !isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+						<path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+					</svg>
+					<svg class="toggle__icon--open" :class="{'toggle__icon--hide': isOpen}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+						<path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" />
+					</svg>
+				</a>
+			</div>
+
+			<SocialLinks :isOpen="isOpen" />
 		</div>
-
-		<SocialLinks :isOpen="isOpen" />
 	</nav>
 </template>
 
@@ -60,12 +62,21 @@ export default {
 	background: #3d5ed4;
 }
 
+.tabs-navigation-inner {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+}
+
 .navigation-wrapper {
 	position: relative;
+	flex: 1;
 	display: flex;
 	height: 48px;
 	justify-content: space-between;
 	align-items: center;
+	max-width: 100%;
 }
 
 .navigation {
@@ -190,20 +201,26 @@ export default {
 @media (min-width: $lg) {
 	.tabs-navigation {
 		display: flex;
-		padding: 0 50px;
+		padding-left: 50px;
+		padding-right: 50px;
 	}
 
 	.navigation {
 		padding: 0;
 	}
 
-	.navigation-wrapper {
+	.tabs-navigation-inner {
 		max-width: $lg;
 		margin: 0 auto;
 	}
 
 	.navigation__link {
-		padding: 0 25px;
+		padding-left: 20px;
+		padding-right: 20px;
+
+		&:last-child {
+			padding-right: unset;
+		}
 	}
 
 	.navigation__link a {
@@ -217,16 +234,20 @@ export default {
 
 @media (min-width: 1600px) {
 	.tabs-navigation {
-		padding: 0 100px;
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+
+	.tabs-navigation-inner {
+		max-width: 1600px;
 	}
 
 	.navigation-wrapper {
-		max-width: 1600px;
 		height: 75px;
 	}
 
 	.navigation__link {
-		padding: 0 35px;
+		padding: 0 30px;
 	}
 
 	.navigation__link a {
@@ -235,12 +256,8 @@ export default {
 }
 
 @media (min-width: $xl) {
-	.navigation-wrapper {
+	.tabs-navigation-inner {
 		max-width: $xl;
-	}
-
-	.navigation__link {
-		padding: 0 45px;
 	}
 }
 </style>

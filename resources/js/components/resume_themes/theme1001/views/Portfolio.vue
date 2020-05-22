@@ -238,26 +238,16 @@ export default {
 
 .portfolio-items {
 	padding-top: 25px;
+	padding-bottom: 50px;
 }
 
 .portfolio-item {
 	padding-top: 25px;
 }
 
-.item-wrapper {
+.item-wrapper > img {
 	border-radius: 9px;
-	border: 1px solid transparent;
-	transition: all 0.3s;
-
-	& > img {
-		border-radius: 9px;
-		width: 100%;
-	}
-
-	&:hover,
-	&:focus {
-		border: 1px solid #efe9e9;
-	}
+	width: 100%;
 }
 
 .item-detail {
@@ -270,7 +260,7 @@ export default {
 
 .item-detail__title {
 	font-family: $poppins;
-	font-weight: 700;
+	font-weight: 500;
 	text-transform: uppercase;
 	font-size: 11px;
 	line-height: 11px;
@@ -363,14 +353,30 @@ export default {
 		margin-right: 45px;
 	}
 
+	.item-detail {
+		position: relative;
+		padding-left: 82px;
+		padding-right: 150px;
+	}
+
 	.item-detail__title {
-		font-size: 18px;
-		line-height: 28px;
+		font-size: 15px;
+		line-height: 21px;
+
+		&::before {
+			content: "";
+			width: 42px;
+			height: 1px;
+			background: #172c7a;
+			position: absolute;
+			left: 0;
+			top: 38px;
+		}
 	}
 
 	.item-detail__excerpt {
-		font-size: 20px;
-		line-height: 36px;
+		font-size: 17px;
+		line-height: 27px;
 	}
 }
 
@@ -391,14 +397,7 @@ export default {
 		padding-right: 15px;
 	}
 
-	.item-detail__title {
-		font-size: 20px;
-		line-height: 32px;
-	}
-
 	.item-detail__excerpt {
-		font-size: 22px;
-		line-height: 38px;
 		padding-top: 15px;
 	}
 }
