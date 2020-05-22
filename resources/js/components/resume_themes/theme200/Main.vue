@@ -232,7 +232,12 @@
 
                           <!-- Only shows in desktop  -->
                           <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
-                            <v-card flat tile class="card-hire-me mt-md-3" color="rgba(37, 0, 0, 0.1)">
+                            <v-card
+                              flat
+                              tile
+                              class="card-hire-me mt-md-3"
+                              color="rgba(37, 0, 0, 0.1)"
+                            >
                               <v-card-text>
                                 <v-row no-gutters align="center">
                                   <!-- for desktop -->
@@ -518,29 +523,34 @@
               center-active
             >
               <v-tab v-for="item in tabs" :key="item.title">
-                <v-btn
-                  x-small
-                  fab
-                  :color="currentTab == item.id ? '#FF5231':'#FFA797'"
-                  @click="currentTab = item.id"
-                  :class="[currentTab == item.id ? 'tab-mobile-btn-active':'']"
-                  dark
-                  depressed
-                >
-                  <img width="15" :src="getImgUrlIcon(item.id)" />
-                </v-btn>
+                <div class="d-flex flex-column">
+                  <div>
+                    <v-btn
+                      x-small
+                      fab
+                      :color="currentTab == item.id ? '#FF5231':'#FFA797'"
+                      @click="currentTab = item.id"
+                      :class="[currentTab == item.id ? 'tab-mobile-btn-active':'']"
+                      dark
+                      depressed
+                    >
+                      <img width="15" :src="getImgUrlIcon(item.id)" />
+                    </v-btn>
+                  </div>
+                  <div :class="currentTab == item.id ? 'active-mobile-tab-text':'inactive-mobile-tab-text'">{{item.title}}</div>
+                </div>
               </v-tab>
             </v-tabs>
           </v-card>
         </v-col>
-        <v-col cols="12" align="center" class="hidden-sm-and-up">
+        <!-- <v-col cols="12" align="center" class="hidden-sm-and-up">
           <span
             class="mt-2"
             :class="[currentTab === dot.id?'tab-dot-active':'tab-dot']"
             v-for="dot in tabs"
             :key="dot.id"
           ></span>
-        </v-col>
+        </v-col>-->
 
         <!-- Mobile Tabs -->
 
@@ -1421,6 +1431,21 @@ export default {
 .mobile-hire-me-btn {
   margin-top: 6px;
 }
+
+//mobile -tab
+.active-mobile-tab-text{
+  color:#FF5231 !important;
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+.inactive-mobile-tab-text{
+  color:#FFA797 !important;
+  font-size: 12px !important;
+}
+
+
+//mobile tab
 </style>
 
 <style>
