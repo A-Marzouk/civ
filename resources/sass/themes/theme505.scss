@@ -266,6 +266,10 @@
     }
 
     @media only screen and (max-width: 600px) {
+        .tabmargn {
+            margin-left: -50px;
+        }
+
         .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
             display: none !important;
             visibility: hidden;
@@ -276,7 +280,7 @@
             -webkit-box-flex: 1;
             -ms-flex: 1 0 auto;
             flex: 1 0 auto;
-            max-width: 20% !important;
+            max-width: 24% !important;
 
             text-align: left !important;
         }
