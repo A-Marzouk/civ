@@ -98,6 +98,7 @@
 
       <!-- new 2nd layer -->
 <<<<<<< HEAD
+<<<<<<< HEAD
       <v-container style="width:100%" id="createAccount">
         <v-row align="center" justify="center">
           <v-col lg="6" xl="5" md="6" sm="11" cols="12">
@@ -235,6 +236,10 @@
       <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
       <register-form :username="validUserName"></register-form>
 >>>>>>> e83c2977f269b66c63bbac694a98a0a716f26b9e
+=======
+      <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
+      <register-form :username="validUserName"></register-form>
+>>>>>>> 29d44fb046c4d3c91959820645716080ee8324f8
       <!-- new 2nd layer -->
 
       <!-- 2nd inner container starts here -->
