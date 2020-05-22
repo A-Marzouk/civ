@@ -71,13 +71,13 @@ export default {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	padding: 0 20px;
+	width: 100%;
 	height: 0;
-	border-top: 1px solid transparent;
+	border-top: 0px solid #d3d6e4;
 	transition: all 0.3s;
 
 	&.social-menu--open {
-		border-top-color: #d3d6e4;
+		border-top-width: 1px;
 		height: 48px;
 	}
 }
@@ -127,22 +127,20 @@ export default {
 }
 
 @media (min-width: $md) {
-	.social-menu {
-		padding-right: 25px;
-
-		&.social-menu--open {
-			height: 60px;
-		}
+	.social-menu.social-menu--open {
+		height: 62px;
 	}
 }
 
 @media (min-width: $lg) {
 	.social-menu {
-		display: flex;
-		padding-right: unset;
-		border-top: unset;
-		height: unset;
-		overflow: unset;
+		width: auto;
+		height: auto;
+	}
+
+	.social-menu.social-menu--open {
+		height: auto;
+		border-top-width: 0;
 	}
 
 	.toggle-social-menu {

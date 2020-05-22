@@ -25,10 +25,15 @@
                             <li class="item">Laravel</li>
                         </ul>
                     </div>
+
+                    <div class="more-icon">
+                        <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme107/more-icon.png" alt="">
+                        <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
+                    </div>
                 </div>
 
                 <div class="right">
-                    <div class="actions-wrapper">
+                    <div class="actions-wrapper" :class="{hide: !showMore}">
                         <button class="action-btn">
                             <img class="icon" src="/images/resume_themes/theme105/chat-icon.png"> Start a chat
                         </button>
@@ -120,7 +125,7 @@
                         <div class="scroll-top hideOnMobile">
                             <a href="javascript:;" v-scroll-to="'#theme107'">
                                 Scroll
-                                <font-awesome-icon class="icon" :icon="['fas', 'arrow-right']"></font-awesome-icon> 
+                                <font-awesome-icon size="2x" class="icon" :icon="['fas', 'arrow-right']"></font-awesome-icon> 
                             </a>
                         </div>
                     </v-col>
@@ -153,7 +158,8 @@ export default {
             'education',
             'skills-and-language',
             'about-me-&-awards'
-        ]
+        ],
+        showMore: false
     }),
     methods: {
         formatTab(tab) {
@@ -190,7 +196,41 @@ $purple: #335E5E;
 
         .left {
             display: flex;
+            position: relative;
 
+            .more-icon {
+                display: none;
+                position: relative;
+                
+                @media (max-width: 700px) {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    top: 15px;
+                    right: 17px;
+                }
+
+                img,
+                svg {
+                    opacity: 1;
+                    transition: opacity .4s ease;
+                    position: absolute;
+
+                    &.hide {
+                        opacity: 0;
+                        transition: opacity .4s ease;
+                    }
+                }
+
+                img {
+                    max-width: 100px !important;
+                }
+            }
+            
+            @media (max-width: 700px) {
+                width: 100%;
+            }
         }
 
         .right {
@@ -198,11 +238,6 @@ $purple: #335E5E;
             flex-direction: column;
             align-items: flex-end;
             justify-content: center;
-            position: relative;
-
-            .more-icon {
-                
-            }
 
             .actions-wrapper {
                 display: flex;
@@ -248,7 +283,40 @@ $purple: #335E5E;
 
                 @media (max-width: 700px) {
                     position: absolute;
-                    opacity: 0;
+                    opacity: 1;
+                    transform: translateY(50px);
+                    transition: all .4s ease;
+                    flex-direction: column;
+                    padding: 44px 36px;
+                    background: white;
+                    width: 90%;
+                    border-radius: 25px;
+                    z-index: 100;
+                    box-shadow: 0 30px 30px rgba(16, 44, 44, 0.1);
+
+                    .action-btn {
+                        width: 100%;
+                        font-size: 18px;
+                        border-radius: 0;
+                        background: transparent;
+                        margin: 0 !important;
+                        justify-content: flex-start;
+                        padding: 0;
+
+                        &:first-child {
+                            margin-bottom: 35px !important;
+                        }
+
+                        .icon {
+                            height: 16px;
+                        }
+                    }
+
+                    &.hide {
+                        transition: all .4s ease;                        
+                        transform: translateY(-200px);
+                        opacity: 0;
+                    }
                 }
             }
 
@@ -516,7 +584,6 @@ $purple: #335E5E;
         background: white;
         border-radius: 100px 100px 0 0;
         border-top: 16px solid $purple;
-        z-index: 1;
         position: relative;
         width: 100%;
         overflow: hidden;
