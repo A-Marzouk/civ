@@ -205,8 +205,8 @@ export default {
 
                         .title,
                         .description p {
-                            font-size: 10px !important;
-                            max-width: 45%;
+                            font-size: 15px !important;
+                            max-width: 55%;
                         }
 
                         .title {
