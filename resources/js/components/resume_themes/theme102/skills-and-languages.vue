@@ -75,9 +75,6 @@ $mainColor: black;
     display: flex !important;
     justify-content: space-between;
     max-width: 1500px !important;
-    background-image: url('/images/resume_themes/theme110/skills-decoImg.png');
-    background-position: 0 114%;
-    background-repeat: no-repeat;
 
     .left {
         max-width: 228px;
