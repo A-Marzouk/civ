@@ -1,5 +1,5 @@
 <template>
-    <v-app style="width:100%; background-image: url(/images/welcome_landing_page/icons/new-background.png);" class="app-container">
+    <v-app style="width:100%;" class="app-container">
         <!-- main container -->
         <v-container class="main-container">
             <register-form></register-form>
