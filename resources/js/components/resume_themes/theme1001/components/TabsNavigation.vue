@@ -9,8 +9,8 @@
 					<li class="navigation__link" :class="{'active': currentTab==='experience-education'}">
 						<a href="#" @click.prevent="$emit('tabChanged', 'experience-education')">Work experience & Education</a>
 					</li>
-					<li class="navigation__link" :class="{'active': currentTab==='skills-language'}">
-						<a href="#" @click.prevent="$emit('tabChanged', 'skills-language')">Skills & Language</a>
+					<li class="navigation__link" :class="{'active': currentTab==='skills-languages'}">
+						<a href="#" @click.prevent="$emit('tabChanged', 'skills-languages')">Skills & Language</a>
 					</li>
 					<li class="navigation__link" :class="{'active': currentTab==='about-me'}">
 						<a href="#" @click.prevent="$emit('tabChanged', 'about-me')">About Me</a>

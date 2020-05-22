@@ -3,7 +3,7 @@
 		<div class="item-view__icon">
 			<slot />
 		</div>
-		<div class="item-view-content">
+		<div class="item-view__content">
 			<div class="content-header">
 				<div class="header__title" v-text="item.title"></div>
 				<div class="header__duration" v-if="duration" v-text="duration"></div>
@@ -74,7 +74,7 @@ export default {
 		}
 	}
 
-	.item-view-content {
+	.item-view__content {
 		.content-header {
 			display: flex;
 			align-items: center;
@@ -157,7 +157,7 @@ export default {
 	.item-view {
 		max-width: 375px;
 
-		.item-view-content {
+		.item-view__content {
 			.content-header {
 				.header__title {
 					font-size: 15px;
@@ -198,7 +198,7 @@ export default {
 		max-width: 277px;
 		margin-left: initial;
 
-		.item-view-content {
+		.item-view__content {
 			.content-header {
 				.header__title {
 					font-size: 13px;
@@ -251,7 +251,7 @@ export default {
 			}
 		}
 
-		.item-view-content {
+		.item-view__content {
 			.content-header {
 				.header__title {
 					font-size: 24px;

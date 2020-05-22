@@ -8,8 +8,8 @@
 import AboutMe from "./../views/AboutMe";
 import Media from "./../views/Media";
 import Portfolio from "./../views/Portfolio";
+import SkillsLanguages from "./../views/SkillsLanguages";
 import ExperienceEducation from "./ExperienceEducation/ExperienceEducation";
-import SkillsLanguage from "./SkillsLanguage/SkillsLanguage";
 
 export default {
 	name: "TabsContent",
@@ -19,7 +19,7 @@ export default {
 		Media,
 		Portfolio,
 		ExperienceEducation,
-		SkillsLanguage
+		SkillsLanguages
 	},
 
 	props: {

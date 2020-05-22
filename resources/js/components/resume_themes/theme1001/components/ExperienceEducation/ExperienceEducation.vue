@@ -122,6 +122,8 @@ export default {
 		color: #bec2d4;
 		font-size: 11px;
 		font-weight: 300;
+		font-style: italic;
+		text-transform: capitalize;
 		line-height: 13px;
 		padding-top: 10px;
 	}
@@ -217,7 +219,8 @@ export default {
 		}
 
 		.option__hint {
-			font-size: 24px;
+			padding-top: 18px;
+			font-size: 23px;
 			line-height: 40px;
 		}
 	}
