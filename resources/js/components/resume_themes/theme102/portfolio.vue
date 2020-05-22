@@ -1,10 +1,11 @@
 <template>
     <div class="container">
         <div class="portfolio-grid">
-            <div v-for="(project, index) in projects" class="portfolio-item" :class="{ isLarge: isLarge(project) }" :style="{ backgroundImage: `url(${project.img})` }" :key="'project-' + index" style>
+            <div v-for="(project, index) in projects" class="portfolio-item" :class="{ isLarge: isLarge(project) }" :key="'project-' + index">
+                <img :src="project.img" alt="">
                 <div class="content">
                     <h2 class="title">{{ project.title }}</h2>
-                    <a href="javascript:;" class="seeMore">See Project <img src="/images/resume_themes/theme112/project-link.png" alt=""></a>
+                    <p>Company Name</p>
                 </div>
             </div>
         </div>
@@ -18,23 +19,27 @@ export default {
         projects: [
             {
                 title: 'Project title',
-                img: '/images/resume_themes/theme113/portfolio-img1.png'
+                img: '/images/resume_themes/theme102/portfolio1.png'
             },
             {
                 title: 'Project title',
-                img: '/images/resume_themes/theme109/portfolio-img2.png'
+                img: '/images/resume_themes/theme102/portfolio2.png'
             },
             {
                 title: 'Project title',
-                img: '/images/resume_themes/theme109/portfolio-img1.png'
+                img: '/images/resume_themes/theme102/portfolio3.png'
             },
             {
                 title: 'Project title',
-                img: '/images/resume_themes/theme109/portfolio-img3.png'
+                img: '/images/resume_themes/theme102/portfolio4.png'
             },
             {
                 title: 'Project title',
-                img: '/images/resume_themes/theme109/portfolio-img4.png'
+                img: '/images/resume_themes/theme102/portfolio5.png'
+            },
+            {
+                title: 'Project title',
+                img: '/images/resume_themes/theme102/portfolio6.png'
             }
         ]
     }),
@@ -56,13 +61,12 @@ export default {
     .portfolio-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        grid-gap: 51px;
-        padding: 0 100px !important;
+        gap: 51px;
+        padding: 0;
             
         .portfolio-item {
             grid-column: span 4;
             position: relative;
-            height: 455px;
             overflow: hidden;
             background-size: cover;
             background-position: top center;
@@ -81,38 +85,24 @@ export default {
             }
 
             .content {
-                position: absolute;
-                z-index: 1;
                 width: 100%;
-                bottom: 0;
-                left: 0;
-                padding: 22px;
-
-                background: linear-gradient(to top, #000, rgba(0,0,0,0));
+                margin-top: 33px;
 
                 .title {
-                    font-size: 22px;
+                    font-size: 25px;
                     font-weight: 700;
-                    max-width: 337px;
+                    width: 100%;
                     margin-bottom: 20px;
-                    color: white;
+                    text-align: center;
+                    color: black;
                 }
 
-                .seeMore {
-                    font-size: 19px;
-                    font-weight: 700;
-                    color: white;
-                    display: flex;
-                    align-items: center;
-
-                    img {
-                        height: 20px;
-                        width: 20px;
-                        margin-left: 8.6px;
-                    }
+                p {
+                    text-align: center;
+                    color: #555456;
+                    font-size: 18px;
+                    margin-bottom: 0;
                 }
-
-
             }
         }
     }
