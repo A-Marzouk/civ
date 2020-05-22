@@ -521,6 +521,7 @@
               v-model="dataTabs"
               hide-slider
               center-active
+              dark
             >
               <v-tab v-for="item in tabs" :key="item.title">
                 <div class="d-flex flex-column">
@@ -1456,5 +1457,7 @@ export default {
 #resumeTheme200 .v-slide-group__next {
   display: none;
 }
+
+
 </style>
 
