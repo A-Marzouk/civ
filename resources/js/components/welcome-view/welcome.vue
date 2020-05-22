@@ -173,7 +173,7 @@
                         outlined
                         background-color="#ffffff"
                         v-model="formData.password_confirmation"
-                        :min-height="windowWidth<=599 ? '33.44' : '60'"
+                        :height="windowWidth<=599 ? '33.44' : '60'"
                       ></v-text-field>
                     </div>
 
