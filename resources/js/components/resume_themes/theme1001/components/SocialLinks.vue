@@ -71,7 +71,6 @@ export default {
 	align-items: center;
 	justify-content: center;
 	overflow: hidden;
-	padding: 0 20px;
 	width: 100%;
 	height: 0;
 	border-top: 0px solid #d3d6e4;
@@ -128,18 +127,19 @@ export default {
 }
 
 @media (min-width: $md) {
-	.social-menu {
-		padding-right: 25px;
-
-		&.social-menu--open {
-			height: 60px;
-		}
+	.social-menu.social-menu--open {
+		height: 62px;
 	}
 }
 
 @media (min-width: $lg) {
+	.social-menu {
+		width: auto;
+		height: auto;
+	}
+
 	.social-menu.social-menu--open {
-		height: 0;
+		height: auto;
 		border-top-width: 0;
 	}
 

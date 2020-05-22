@@ -201,7 +201,8 @@ export default {
 @media (min-width: $lg) {
 	.tabs-navigation {
 		display: flex;
-		padding: 0 50px;
+		padding-left: 50px;
+		padding-right: 50px;
 	}
 
 	.navigation {
@@ -214,7 +215,8 @@ export default {
 	}
 
 	.navigation__link {
-		padding: 0 20px;
+		padding-left: 20px;
+		padding-right: 20px;
 
 		&:last-child {
 			padding-right: unset;
@@ -232,7 +234,8 @@ export default {
 
 @media (min-width: 1600px) {
 	.tabs-navigation {
-		padding: 0 100px;
+		padding-left: 100px;
+		padding-right: 100px;
 	}
 
 	.tabs-navigation-inner {
@@ -255,10 +258,6 @@ export default {
 @media (min-width: $xl) {
 	.tabs-navigation-inner {
 		max-width: $xl;
-	}
-
-	.navigation__link {
-		padding: 0 45px;
 	}
 }
 </style>
