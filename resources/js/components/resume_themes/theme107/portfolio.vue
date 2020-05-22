@@ -2,7 +2,7 @@
     <div class="container portfolio-flex">
         <masonry
             :cols="{default: 3, 959: 2, 756: 1}"
-            :gutter="{default: '39px', 1200: '22px', 700: '0'}"
+            :gutter="{default: '39px', 1200: '22px', 570: '0'}"
             class="masonry"
         >
             <v-card
