@@ -7,31 +7,18 @@
         </div>
         <div class="right skills-container">
             <div v-for="(skill, index) in skillsList" :key="index + skill.name" class="skill">
-                <div class="chart hideOnTablet">
+                <div class="chart">
                     <radial-progress-bar :diameter="70.81"
                         :completed-steps="skill.percentage"
                         :total-steps="100"
-                        startColor="#28404A"
-                        stopColor="#28404A"
+                        startColor="black"
+                        stopColor="black"
                         :strokeWidth="3"
                         innerStrokeColor="#EEEEEE"
-                        strokeLinecap="square"
+                        strokeLinecap="round"
                     >
                     </radial-progress-bar>
-                    <img :src="'/images/resume_themes/theme105/' + skill.icon" alt="">
-                </div>
-                <div class="chart showOnTablet">
-                    <radial-progress-bar :diameter="38"
-                        :completed-steps="skill.percentage"
-                        :total-steps="100"
-                        startColor="#28404A"
-                        stopColor="#28404A"
-                        :strokeWidth="3"
-                        innerStrokeColor="#EEEEEE"
-                        strokeLinecap="square"
-                    >
-                    </radial-progress-bar>
-                    <img :src="'/images/resume_themes/theme105/' + skill.icon" alt="">
+                    <img :src="'/images/resume_themes/theme102/' + skill.icon" alt="">
                 </div>
                 <div class="skill-info">
                     <div class="skill-name">{{ skill.name }}</div>
@@ -80,21 +67,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$mainColor: black;
+
 .container {
     margin-top: 34px;
+    position: relative;
     display: flex !important;
     justify-content: space-between;
     max-width: 1500px !important;
-    position: relative;
-    z-index: 1;
-    padding: 5%;
+    background-image: url('/images/resume_themes/theme110/skills-decoImg.png');
+    background-position: 0 114%;
+    background-repeat: no-repeat;
 
     .left {
         max-width: 228px;
+        margin-right: 261px;
 
         .small {
             font-size: 24px;
-            color: #28404A;
+            color: #616887;
         }
 
         h1 {
@@ -102,26 +93,7 @@ export default {
             margin-bottom: 38px;
             line-height: 50px;
             font-size: 40px;
-            color: #28404A;
-        }
-
-        @media (max-width: 1200px) {
-            margin-right: 20px;
-            
-            .small {
-                font-size: 13px;
-            }
-
-            h1 {
-                font-size: 21px;
-                line-height: 25px;
-                margin-top: 12px;
-                margin-bottom: 22px;
-            }
-        }
-
-        @media (max-width: 756px) {
-            display: none;
+            color: $mainColor;
         }
     }
 }
@@ -129,7 +101,6 @@ export default {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 50px 90px;
-        margin: 0;
 
         .skill {
             max-width: 310px;
@@ -146,10 +117,6 @@ export default {
                     position: absolute;
                     width: 27.25px;
                 }
-
-                &.showOnTablet {
-                    display: none;
-                }
             }
 
 
@@ -161,77 +128,27 @@ export default {
                 .skill-name {
                     font-size: 30px;
                     font-weight: 700;
-                    color: #28404A;
+                    color: $mainColor;
                 }
 
                 .skill-percentage {
                     margin-left: 32.4px;
                     font-size: 20px;
                     font-weight: 700;
-                    color: #28404A;
+                    color: #616887;
                     position: relative;
 
                     &::after {
                         content: "";
                         top: 50%;
                         position: absolute;
-                        background: #28404A;
+                        background: #616887;
                         height: 2px;
                         width: 24px;
                         left: -32.4px;
                     }
                 }
             }
-
-            @media (max-width: 1200px) {
-                .chart {
-                    &.hideOnTablet {
-                        display: none;
-                    }
-
-                    &.showOnTablet {
-                        display: flex;
-
-                    }
-                    
-                    img {
-                        width: 14.76px;
-                    }
-                }
-                
-                .skill-info {
-                    margin-top: 13px;
-
-                    .skill-name {
-                        font-size: 16px;
-                    }
-
-                    .skill-percentage {
-                        font-size: 10px;
-
-                        &::after {
-                            width: 13px;
-                            height: 1px;
-                        }
-                    }
-                }
-            }
-
-            @media (max-width: 756px) {
-                grid-column: span 6;
-            }
-        }
-
-        @media (max-width: 1500px) {
-            grid-gap: 50px;
-        }
-
-        @media (max-width: 1350px) {
-            grid-gap: 30px;
-        }
-        
-        @media (max-width: 756px) {
-            grid-gap: 35px;
         }
     }
 </style>

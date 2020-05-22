@@ -262,7 +262,7 @@ export default {
 
 .item-detail {
 	padding-top: 25px;
-	padding-left: 45px;
+	padding-left: 1%;
 
 	padding: 25px;
 	padding-left: 50px;
