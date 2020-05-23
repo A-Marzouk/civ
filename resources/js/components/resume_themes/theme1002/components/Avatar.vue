@@ -105,4 +105,10 @@ export default {
 		}
 	}
 }
+
+@media (min-width: $lg) {
+	.avatar .start-chat {
+		display: none;
+	}
+}
 </style>
