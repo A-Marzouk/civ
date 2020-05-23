@@ -3,7 +3,7 @@
 		<div class="profile-details">
 			<Avatar :src="currentUser.avatar" />
 
-			<div class="tw-pl-3">
+			<div class="detail-inner">
 				<div class="personal-info">
 					<h3 class="title" v-text="currentUser.fullname"></h3>
 					<h4 class="sub-title" v-text="currentUser.jobTitle"></h4>
@@ -125,42 +125,52 @@ export default {
 		align-items: flex-end;
 		flex-wrap: wrap;
 
-		.personal-info {
-			.title {
-				font-size: 21px;
-				line-height: 25px;
-				font-weight: bold;
+		.detail-inner {
+			padding-left: 12px;
+			flex: 1;
+
+			.personal-info {
+				.title {
+					font-size: 21px;
+					line-height: 25px;
+					font-weight: bold;
+				}
+
+				.sub-title {
+					font-size: 14px;
+					line-height: 18px;
+					text-transform: uppercase;
+					padding-top: 7px;
+				}
 			}
 
-			.sub-title {
-				font-size: 14px;
-				line-height: 18px;
-				text-transform: uppercase;
-			}
-		}
-
-		.work-info {
-			display: flex;
-			justify-content: space-between;
-			padding-top: 15px;
-
-			.hourly-rate,
-			.availability-hours {
+			.work-info {
 				display: flex;
-				flex-direction: column;
-				align-items: center;
-			}
+				padding-top: 15px;
 
-			strong {
-				font-family: $nexa-bold;
-				font-size: 18px;
-				line-height: 20px;
-			}
+				.hourly-rate {
+					margin-right: 34px;
+				}
 
-			span {
-				font-family: $nexa-light;
-				font-size: 11px;
-				line-height: 14px;
+				.hourly-rate,
+				.availability-hours {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
+
+				strong {
+					font-family: $nexa-bold;
+					font-size: 18px;
+					line-height: 20px;
+				}
+
+				span {
+					font-family: $nexa-light;
+					font-size: 11px;
+					line-height: 14px;
+					padding-top: 4px;
+				}
 			}
 		}
 	}
@@ -239,44 +249,95 @@ export default {
 	}
 }
 
+@media (min-width: $sm) {
+	.header-profile {
+		padding: 38px 25px 45px;
+
+		.profile-actions {
+			display: flex;
+			align-items: center;
+		}
+	}
+}
+
 @media (min-width: $md) {
 	.header-profile {
+		max-width: 768px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 60px 40px 90px;
+
 		.profile-details {
-			.personal-info {
-				.title {
+			.detail-inner {
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-end;
+				padding-left: 22px;
+				padding-bottom: 65px;
+
+				.personal-info {
+					.title {
+					}
+
+					.sub-title {
+					}
 				}
 
-				.sub-title {
-				}
-			}
+				.work-info {
+					justify-content: space-between;
 
-			.work-info {
-				.hourly-rate,
-				.availability-hours {
-				}
+					.hourly-rate,
+					.availability-hours {
+					}
 
-				strong {
-				}
+					strong {
+						font-size: 27px;
+						line-height: 33px;
+					}
 
-				span {
+					span {
+						font-size: 15px;
+						line-height: 20px;
+						padding-top: 8px;
+					}
 				}
 			}
 		}
 
 		.profile-actions {
 			display: flex;
+			padding-left: 162px;
+			margin-top: -50px;
 
 			.social-media-links {
-				a {
+				padding-top: unset;
+				padding-bottom: unset;
+
+				a svg {
+					width: 48px;
+					height: 48px;
 				}
 			}
 
 			.hireme-btn {
+				margin-right: 15px;
+				margin-top: 10px;
 			}
 
 			.upload-media {
+				position: static;
+				display: flex;
+				margin-top: 10px;
+
 				a {
+					height: 45px;
+					width: 45px;
+					margin-bottom: unset;
+					margin-right: 20px;
+
 					svg {
+						height: 40px;
+						width: 40px;
 					}
 				}
 			}

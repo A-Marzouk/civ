@@ -82,4 +82,27 @@ export default {
 		}
 	}
 }
+
+@media (min-width: $md) {
+	.avatar {
+		a {
+			width: 147px;
+			height: 147px;
+			img {
+				width: 80px;
+				height: 80px;
+			}
+		}
+
+		.start-chat {
+			width: 52px;
+			height: 52px;
+
+			svg {
+				width: 31.43px;
+				height: 28.24px;
+			}
+		}
+	}
+}
 </style>
