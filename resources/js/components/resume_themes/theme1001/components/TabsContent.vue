@@ -6,7 +6,6 @@
 
 <script>
 import AboutMe from "./../views/AboutMe";
-import Media from "./../views/Media";
 import Portfolio from "./../views/Portfolio";
 import SkillsLanguages from "./../views/SkillsLanguages";
 import ExperienceEducation from "./ExperienceEducation/ExperienceEducation";
@@ -16,7 +15,6 @@ export default {
 
 	components: {
 		AboutMe,
-		Media,
 		Portfolio,
 		ExperienceEducation,
 		SkillsLanguages
