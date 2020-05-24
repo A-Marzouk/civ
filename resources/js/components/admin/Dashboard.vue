@@ -155,7 +155,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-left: 45px;
+            padding-left: 1%;
             padding-right: 45+17px;
 
             background: #FFFFFF;
