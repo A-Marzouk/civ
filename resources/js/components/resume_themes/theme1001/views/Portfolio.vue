@@ -252,19 +252,31 @@ export default {
 
 .item-detail {
 	padding-top: 25px;
-	padding-left: 45px;
+	padding-left: 1%;
 
 	padding: 25px;
 	padding-left: 50px;
 }
 
 .item-detail__title {
+	position: relative;
 	font-family: $poppins;
 	font-weight: 500;
 	text-transform: uppercase;
 	font-size: 11px;
 	line-height: 11px;
 	color: #172c7a;
+
+	&::before {
+		content: "";
+		width: 25px;
+		height: 1px;
+		background: #172c7a;
+		position: absolute;
+		left: -50px;
+		top: 50%;
+		transform: translateY(50%);
+	}
 }
 
 .item-detail__excerpt {
@@ -332,6 +344,7 @@ export default {
 	}
 
 	.item-detail__excerpt {
+		max-width: 198px;
 		font-size: 12px;
 		line-height: 22px;
 	}
@@ -354,9 +367,7 @@ export default {
 	}
 
 	.item-detail {
-		position: relative;
-		padding-left: 82px;
-		padding-right: 150px;
+		padding-left: 80px;
 	}
 
 	.item-detail__title {
@@ -364,17 +375,13 @@ export default {
 		line-height: 21px;
 
 		&::before {
-			content: "";
+			left: -80px;
 			width: 42px;
-			height: 1px;
-			background: #172c7a;
-			position: absolute;
-			left: 0;
-			top: 38px;
 		}
 	}
 
 	.item-detail__excerpt {
+		max-width: 282px;
 		font-size: 17px;
 		line-height: 27px;
 	}

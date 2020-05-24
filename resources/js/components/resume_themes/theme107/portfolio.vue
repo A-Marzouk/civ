@@ -1,8 +1,8 @@
 <template>
     <div class="container portfolio-flex">
         <masonry
-            :cols="{default: 3, 959: 1, 599: 1}"
-            :gutter="{default: '39px', 1200: '22px', 700: '15px'}"
+            :cols="{default: 3, 959: 2, 756: 1}"
+            :gutter="{default: '39px', 1200: '22px', 570: '0'}"
             class="masonry"
         >
             <v-card
@@ -205,8 +205,8 @@ export default {
 
                         .title,
                         .description p {
-                            font-size: 10px !important;
-                            max-width: 45%;
+                            font-size: 15px !important;
+                            max-width: 55%;
                         }
 
                         .title {

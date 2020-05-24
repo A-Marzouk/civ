@@ -1,14 +1,15 @@
 <template>
 	<div>
-
+		skills
 	</div>
 </template>
 
 <script>
 export default {
-	name: "media"
+	name: "skills"
 };
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
 </style>
