@@ -635,6 +635,10 @@ $purple: #335E5E;
                 margin: 0 auto;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -690,7 +694,11 @@ $purple: #335E5E;
                 }
                 
                 @media (max-width: 700px) {
-                    margin: 29px auto;
+                    margin: 29px 0;
+
+                    .v-item-group {
+                        padding: 0 13px;
+                    }
                 }
             }
 
@@ -700,8 +708,10 @@ $purple: #335E5E;
                 max-width: 1550px;
                 width: 90%;
                 margin: 0 auto;
+                background: #f6f6f6;
 
                 @media (max-width: 700px) {
+                    padding: 0;
                     padding-bottom: 30px;
 
                 }
@@ -784,7 +794,7 @@ $purple: #335E5E;
 
     .scroll-top {
         position: absolute;
-        left: 45px;
+        left: 1%;
         bottom: 250px;
         transform: rotateZ(-90deg);
 

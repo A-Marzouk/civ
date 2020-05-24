@@ -627,7 +627,7 @@ export default {
       padding-top: 25px;
       padding-bottom: 25px;
       padding-right: 45px;
-      padding-left: 45px;
+      padding-left: 1%;
       position: relative;
       background: #00a3ff;
     }
