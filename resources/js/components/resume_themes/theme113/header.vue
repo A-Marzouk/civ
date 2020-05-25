@@ -87,30 +87,50 @@ $purple: #686299;
                 .left-bg {
                     position: absolute;
                     left: -88px;
+                    
+                    @media (max-width: 700px) {
+                        width: 30%;
+                    }
                 }
 
                 .bg-top1 {
                     position: absolute;
                     top: -44px;
                     right: 40%;
+                    
+                    @media (max-width: 700px) {
+                        width: 30%;
+                    }
                 }
                 
                 .bg-top2 {
                     position: absolute;
                     top: -21.7px;
                     right: 39%;
+                    
+                    @media (max-width: 700px) {
+                        width: 30%;
+                    }
                 }
 
                 .bg-right {
                     position: absolute;
                     top: -63.5px;
                     right: -29.7px;
+                    
+                    @media (max-width: 700px) {
+                        width: 30%;
+                    }
                 }
 
                 .bg-bottom {
                     position: absolute;
                     bottom: -13px;
                     right: 46%;
+                    
+                    @media (max-width: 700px) {
+                        width: 30%;
+                    }
                 }
             }
 
