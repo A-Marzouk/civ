@@ -64,7 +64,7 @@
                                     >{{errors.password[0]}}</div>
                                 </div>
 
-                                <div class="input-div">
+                                <div class="input-div mt-md-0 mt-sm-0 mt-n3">
                                     <label>Confirm Password</label>
                                     <v-text-field
                                             dark

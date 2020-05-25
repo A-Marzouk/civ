@@ -12,6 +12,7 @@
             background-color="transparent"
             color="#FFFFFF"
             hide-slider
+            center-active
             :height="imageHeight"
             class="tabmargn"
           >
@@ -39,7 +40,7 @@
       <Education :currentTab="currentTab" />
       <About :currentTab="currentTab" />
     </div>
-    <v-container fluid>
+    <v-container fluid class="hidden-sm-and-up">
       <v-speed-dial
         v-model="fab"
         bottom
@@ -167,9 +168,13 @@ export default {
   height: 70px;
 }
 @media only screen and (max-width: 425px) {
-  .tabmargn {
-    margin-left: -60px;
+  .back {
+    background: #6048ff;
   }
+  .tabmargn {
+    margin-left: -52px;
+  }
+
   .v-tabs-bar {
     border-radius: inherit;
     height: 40px;

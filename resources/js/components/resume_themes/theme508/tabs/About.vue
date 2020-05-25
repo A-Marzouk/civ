@@ -1,13 +1,13 @@
 <template>
   <v-container fluid v-if="currentTab === 5" class="bgimg">
     <v-row class="fill-height" justify="end">
-      <v-col cols="12" md="7" lg="5" class="text-right white--text padding">
+      <v-col cols="12" md="7" lg="7" class="text-right white--text padding">
         <div class="headline">About Me</div>
         <div
-          class="ptext my-sm-12 my-1"
+          class="ptext my-sm-12 my-1 my-md-6"
         >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</div>
         <div
-          class="ptext my-sm-12 my-1"
+          class="ptext my-sm-12 my-1 my-md-6"
         >Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
       </v-col>
       <v-col md="12" align="end" class="hidden-xs-only">
@@ -63,12 +63,25 @@ export default {
 }
 .margin {
   margin-bottom: 20px;
-  margin-top: 250px;
+  margin-top: 200px;
   margin-right: 40px;
 }
 .ptext {
   font-size: 1.2rem;
   line-height: 40px;
+}
+@media screen and (max-width: 1600px) {
+  .bgimg {
+    background-image: url("/images/resume_themes/theme508/about.png");
+    background-size: 100vw 100vh;
+    background-position: center center;
+    height: 100vh;
+  }
+  .padding {
+    padding-right: 120px;
+    padding-left: 20px;
+    padding-top: 90px;
+  }
 }
 @media screen and (max-width: 1024px) {
   .bgimg {
@@ -77,7 +90,13 @@ export default {
     background-position: top center;
     height: 100vh;
   }
+  .padding {
+    padding-right: 40px;
+    padding-left: 175px;
+    padding-top: 40px;
+  }
 }
+
 @media screen and (max-width: 425px) {
   .bgimg {
     background-image: url("/images/resume_themes/theme508/aboutab.png");

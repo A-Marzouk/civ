@@ -1,16 +1,32 @@
 <template>
   <v-container v-if="currentTab === 1" fluid>
     <v-row justify="center">
-      <v-col md="11" sm="11" cols="11">
+      <v-col md="11" sm="11" cols="8">
         <v-tabs v-model="ptab" centered color="#6147FE" hide-slider class="marg">
           <v-tab v-for="c in catagory" :key="c.id">
             <div class="text-capitalize title font-regular slider">{{c.name}}</div>
           </v-tab>
         </v-tabs>
       </v-col>
+      <v-col cols="3" justify="center" align="center" class="text-right hidden-sm-and-up mt-3">
+        <v-btn
+          color="#6743F4"
+          outlined
+          fab
+          dark
+          class="arrow mx-1"
+          elevation="0"
+          @click="ptabMinus"
+        >
+          <v-icon x-small>mdi-chevron-left</v-icon>
+        </v-btn>
+        <v-btn color="#6743F4" fab dark class="arrow mx-1" elevation="0" @click="ptabPlus">
+          <v-icon x-small>mdi-chevron-right</v-icon>
+        </v-btn>
+      </v-col>
       <v-col md="11" sm="11" cols="12">
-        <v-row justify="center">
-          <v-col v-for="n in portfolios" :key="n.id" md="3" sm="4" cols="11">
+        <v-row justify="center" dense>
+          <v-col v-for="n in portfolios" :key="n.id" md="3" sm="3" cols="6">
             <v-img :src="n.url" :aspect-ratio="1" contain class="ma-4 ma-1"></v-img>
           </v-col>
         </v-row>
@@ -82,6 +98,14 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    ptabPlus() {
+      this.ptab = this.ptab + 1;
+    },
+    ptabMinus() {
+      this.ptab = this.ptab - 1;
+    }
   }
 };
 </script>
@@ -101,6 +125,10 @@ export default {
   background-color: #6247fc;
 }
 @media only screen and (max-width: 425px) {
+  .arrow {
+    width: 24px;
+    height: 24px;
+  }
   .title {
     font-size: 0.8rem !important;
   }

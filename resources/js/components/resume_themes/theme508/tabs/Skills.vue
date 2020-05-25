@@ -1,7 +1,7 @@
 <template>
   <v-container fluid v-if="currentTab === 3" class="pa-0">
     <v-row no-gutters>
-      <v-col cols="3" md="3" lg="2" class="shade" align="center">
+      <v-col cols="3" md="3" lg="2" sm="3" class="shade" align="center">
         <v-row no-gutters>
           <v-col
             cols="12"
@@ -11,55 +11,12 @@
             :class="[
               skilltab == s.id
                 ? 'active '
-                : 'ma-auto', 'ma-auto hidden-xs-only'
-            ]"
-          >
-            <div class="text-center my-8" v-if="skilltab !== s.id">
-              <radial-progress-bar
-                :diameter="120"
-                :strokeWidth="7"
-                :innerStrokeWidth="7"
-                :completed-steps="s.steps"
-                :total-steps="100"
-                :startColor="s.srt_color"
-                :stopColor="s.stp_color"
-                innerStrokeColor="#F7F7F7"
-                class="box ma-auto"
-              >
-                <div class="title font-weight-bold" style="color:#5D5D5D;">{{ s.steps }}%</div>
-              </radial-progress-bar>
-              <div class="subtitle-1 mt-2">{{s.name}}</div>
-            </div>
-            <div class="text-center my-8" v-if="skilltab == s.id">
-              <radial-progress-bar
-                :diameter="150"
-                :strokeWidth="10"
-                :innerStrokeWidth="10"
-                :completed-steps="s.steps"
-                :total-steps="100"
-                :startColor="s.srt_color"
-                :stopColor="s.stp_color"
-                innerStrokeColor="#F7F7F7"
-                class="box ma-auto"
-              >
-                <div class="headline font-weight-bold" style="color:#5D5D5D;">{{ s.steps }}%</div>
-              </radial-progress-bar>
-            </div>
-          </v-col>
-          <v-col
-            cols="12"
-            v-for="s in skills"
-            :key="s.id"
-            @click="skilltab = s.id"
-            :class="[
-              skilltab == s.id
-                ? 'active '
-                : 'ma-auto', 'ma-auto hidden-sm-and-up'
+                : 'ma-auto', 'ma-auto '
             ]"
           >
             <div class="text-center my-8">
               <radial-progress-bar
-                :diameter="60"
+                :diameter="radialDiameter"
                 :strokeWidth="5"
                 :innerStrokeWidth="5"
                 :completed-steps="s.steps"
@@ -75,7 +32,7 @@
                 :class="[
               skilltab == s.id
                 ? 'd-none '
-                : 'd-flex',  'subhead mt-2'
+                : 'd-block',  'subhead mt-2'
             ]"
               >{{s.name}}</div>
             </div>
@@ -84,20 +41,20 @@
       </v-col>
       <v-col cols="9" md="9">
         <v-row justify="center">
-          <v-col md="10" cols="12">
+          <v-col md="10" cols="12" class="mt-sm-6">
             <v-row justify="center">
               <v-col md="6" cols="5" class="pa-md-12">
-                <v-img src="/images/resume_themes/theme508/port-7.png"></v-img>
+                <v-img src="/images/resume_themes/theme508/port-7.png" contain></v-img>
               </v-col>
               <v-col md="6" cols="5" class="pa-md-12">
-                <v-img src="/images/resume_themes/theme508/port-8.png"></v-img>
+                <v-img src="/images/resume_themes/theme508/port-8.png" contain></v-img>
               </v-col>
-              <v-col md="11" cols="10">
+              <v-col md="11" cols="10" class="mt-sm-8">
                 <div
-                  class="ptext textcol text-center"
+                  class="ptext textcol text-center text-sm-right"
                 >Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.</div>
               </v-col>
-              <v-col md="11" cols="10" class="text-right">
+              <v-col md="11" cols="10" class="text-right mt-sm-6">
                 <div v-for="s in skills" :key="s.id">
                   <div v-if="skilltab==s.id" class="head">{{s.name}}</div>
                 </div>
@@ -154,6 +111,22 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    radialDiameter() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return 60;
+        case "sm":
+          return 70;
+        case "md":
+          return 90;
+        case "lg":
+          return 100;
+        case "xl":
+          return 120;
+      }
+    }
   }
 };
 </script>
@@ -209,14 +182,49 @@ export default {
     right: 0px;
     bottom: 0;
     width: 85%;
-    height: 220px;
+    height: 175px;
     background-color: #6545f9;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
     z-index: -1;
   }
 }
-
+@media only screen and (max-width: 1024px) {
+  .active:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 5px;
+    right: 0px;
+    bottom: 0;
+    width: 75%;
+    height: 150px;
+    background-color: #6545f9;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: -1;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .active:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    right: 0px;
+    bottom: 0;
+    width: 80%;
+    height: 125px;
+    background-color: #6545f9;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: -1;
+  }
+  .ptext {
+    font-size: 1.2rem;
+    line-height: 40px;
+  }
+}
 @media only screen and (max-width: 425px) {
   .subhead {
     font-size: 0.65rem;
@@ -241,6 +249,9 @@ export default {
   }
   .head {
     font-size: 1rem;
+  }
+  .title {
+    font-size: 0.8rem !important;
   }
 }
 </style>
