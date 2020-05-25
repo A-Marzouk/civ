@@ -265,6 +265,10 @@ $purple: #686299;
                 }
             }
         }
+
+        @media (max-width: 700px) {
+            display: none;
+        }
     }
 }
     
