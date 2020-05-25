@@ -116,7 +116,7 @@ class SocialSitesRegisterController extends Controller
     public function handleGitHubProviderCallback()
     {
         try {
-            $user = Socialite::driver('github')->user();
+            $user = Socialite::driver('github')->stateless()->user();
         } catch (Exception $e) {
             return Redirect::to('/register/github');
         }
@@ -136,9 +136,9 @@ class SocialSitesRegisterController extends Controller
     public function handleGoogleProviderCallback()
     {
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
         } catch (Exception $e) {
-            return Redirect::to('/register/google');
+            abort(404, 'Not found!');
         }
 
         $authUser = $this->findOrCreateUser($user,'google');
@@ -158,7 +158,7 @@ class SocialSitesRegisterController extends Controller
     public function handleLinkedinProviderCallback()
     {
         try {
-            $user = Socialite::driver('linkedin')->user();
+            $user = Socialite::driver('linkedin')->stateless()->user();
         } catch (Exception $e) {
             return Redirect::to('/register/linkedin');
         }

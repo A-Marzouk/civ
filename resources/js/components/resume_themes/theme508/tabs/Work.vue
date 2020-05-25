@@ -1,17 +1,17 @@
 <template>
   <v-container fluid v-if="currentTab === 2">
     <v-row justify="center">
-      <v-col md="12" lg="10" cols="12">
+      <v-col md="12" lg="10" cols="12" sm="12">
         <v-row justify="center">
-          <v-col cols="12" md="5" lg="5" v-for="w in works" :key="w.id" class="ma-6">
-            <v-card class="tab px-sm-8 py-sm-10 px-3 py-1" width="600">
-              <v-row class="textcol">
-                <v-col md="4" sm="3" cols="3" lg="3" align="center" align-sm="start">
+          <v-col cols="12" md="5" lg="5" sm="5" v-for="w in works" :key="w.id" class="ma-6">
+            <v-card class="tab px-sm-8 py-sm-10 px-3 py-3" width="600">
+              <v-row class="textcol" dense>
+                <v-col md="4" sm="4" cols="3" lg="3" align="center" align-sm="start">
                   <v-img :src="w.img" class="imgheight" contain></v-img>
                 </v-col>
-                <v-col md="8" sm="9" cols="9" lg="9" class="text-padd">
+                <v-col md="8" sm="8" cols="9" lg="9" class="text-padd">
                   <div
-                    class="subtitle-1 mt-sm-3 mt-md-2 mb-sm-1 mt-1 mb-1 mt-lg-2"
+                    class="subtitle-1 mt-sm-2 mt-md-2 mb-sm-1 mt-1 mb-1 mt-lg-2"
                   >26th October,2019</div>
                   <div class="head">{{w.name}}</div>
                 </v-col>
@@ -21,7 +21,7 @@
                 </v-col>
                 <v-col md="12" sm="12" cols="12">
                   <div
-                    class="subtitle-2 pr-8"
+                    class="subtitle-2 pr-8 pr-sm-0"
                   >Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet</div>
                 </v-col>
                 <v-col md="12" sm="12" cols="12">
@@ -97,13 +97,13 @@ export default {
   margin-top: 10px;
 }
 .imgheight {
-  height: 135;
-  width: 145;
+  height: 135px;
+  width: 145px;
 }
 @media only screen and (max-width: 1600px) {
   .imgheight {
-    height: 100;
-    width: 145;
+    height: 100px;
+    width: 145px;
   }
   .text-padd {
     padding-left: 100px;
@@ -111,23 +111,61 @@ export default {
 }
 @media only screen and (max-width: 1024px) {
   .imgheight {
-    height: 120;
-    width: 145;
+    height: 120px;
+    width: 145px;
   }
   .text-padd {
     padding-left: 50px;
   }
 }
-@media only screen and (max-width: 425px) {
-  .subtitle-2 {
-    font-size: 0.67rem !important;
-  }
+@media only screen and (max-width: 768px) {
   .imgheight {
-    height: 65;
-    width: 145;
+    height: 60px;
+    width: 145px;
+  }
+  .text-padd {
+    padding-left: 40px;
+  }
+  .subtitle-1 {
+    font-size: 0.75rem !important;
+  }
+  .head {
+    font-family: "Heebo", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1rem;
+  }
+  .subhead {
+    font-family: "Heebo", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  .line {
+    width: 150px;
+    background-color: #6247fd;
+    height: 2px;
+    margin-top: 10px;
   }
   .local {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
+  }
+  .subtitle-2 {
+    font-size: 0.6rem !important;
+    line-height: 1rem !important;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .subtitle-2 {
+    font-size: 0.6rem !important;
+    line-height: 1rem !important;
+  }
+  .imgheight {
+    height: 65px;
+    width: 145px;
+  }
+  .local {
+    font-size: 0.6rem;
   }
   .subhead {
     font-size: 1rem;
