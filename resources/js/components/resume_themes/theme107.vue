@@ -593,7 +593,6 @@ $purple: #335E5E;
             
             @media (max-width: 1200px) {
                 width: 349px;
-                z-index: -1;
             }
             
             @media (max-width: 700px) {
@@ -708,7 +707,7 @@ $purple: #335E5E;
                 max-width: 1550px;
                 width: 90%;
                 margin: 0 auto;
-                background: #f6f6f6;
+                z-index: 0;
 
                 @media (max-width: 700px) {
                     padding: 0;
