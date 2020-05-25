@@ -1,35 +1,35 @@
 <template>
   <v-container v-if="currentTab === 4" fluid>
-    <v-row justify="center" class="mt-12">
+    <v-row justify="center" class="mt-8 mt-sm-12 mt-md-10 mt-lg-12">
       <v-col
         v-for="edu in educations"
         :key="edu.id"
         lg="3"
         md="4"
-        cols="11"
-        sm="11"
+        cols="6"
+        sm="5"
         align="center"
-        class="mx-0 mx-sm-6 mx-md-6 mx-lg-6"
+        class="mx-0 mx-sm-2 mx-md-6 mx-lg-6"
       >
         <div class="gradient"></div>
         <v-card width="auto" class="text-left textcol shadow">
           <v-row justify="center">
-            <v-col md="9">
-              <v-img :src="edu.img" class="imgcard"></v-img>
-              <div class="subtitle-2 py-1">26th October,2019</div>
-              <div class="headline font-weight-bold py-1">{{edu.title}}</div>
-              <div class="subtitle-1 font-weight-bold py-1">Data Science</div>
-              <div class="py-2">
+            <v-col md="9" sm="11" lg="9" cols="11">
+              <v-img :src="edu.img" class="imgcard" contain></v-img>
+              <div class="subtitle-2 py-1 py-sm-0">26th October,2019</div>
+              <div class="headline font-weight-bold py-1 py-sm-0">{{edu.title}}</div>
+              <div class="subtitle-1 font-weight-bold py-1 py-sm-0">Data Science</div>
+              <div class="py-1 py-sm-1">
                 <div class="subhead">
-                  <v-icon color="#6545F8" small left>mdi-map-marker</v-icon>Paderborn University
+                  <v-icon color="#6545F8" small left>mdi-map-marker</v-icon>Paderborn University,Paderborn
                 </div>
-                <div class="subhead pl-6">Paderborn, Germany</div>
+                <!-- <div class="subhead pl-6"></div> -->
               </div>
-              <div class="eduline my-2"></div>
+              <div class="eduline my-1 my-sm-2"></div>
               <div
-                class="subhead my-3"
-              >Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet. sed diam eirmod tempor dolore.Lorem ipsum dolor sit amet,Stet clita kasd lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet</div>
-              <div class="title font-weight-bold my-2 pb-8" style="color:#45F957;">{{edu.line}}</div>
+                class="subhead my-2 my-sm-1"
+              >Lorem ipsum dolor sit amet,Stet clita kasd is the most lorem ipsum dolor sit amet.</div>
+              <div class="title font-weight-bold my-1 my-sm-1" style="color:#45F957;">{{edu.line}}</div>
             </v-col>
           </v-row>
         </v-card>
@@ -71,7 +71,6 @@ export default {
   box-shadow: 1px 7px 20px 0px rgba(0, 0, 0, 0.2);
 }
 .imgcard {
-  width: 300px;
   height: 300px;
 }
 .gradient {
@@ -97,16 +96,40 @@ export default {
   font-size: 1rem;
   line-height: 20px;
 }
-@media screen and (max-width: 425px) {
+
+@media screen and (max-width: 1024px) {
   .imgcard {
-    width: 200px;
     height: 200px;
   }
+  .title {
+    font-size: 1rem !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .imgcard {
+    height: 150px;
+  }
+  .subhead {
+    font-family: "Heebo", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 0.7rem;
+    line-height: 20px;
+  }
+  .title {
+    font-size: 1rem !important;
+  }
+}
+@media screen and (max-width: 425px) {
+  .imgcard {
+    height: 100px;
+  }
   .shadow {
-    padding: 0 15px;
+    padding: 0 0px;
   }
   .eduline {
-    width: 150px;
+    width: 100px;
     background-color: #6247fd;
     height: 1px;
   }
@@ -114,17 +137,28 @@ export default {
     font-family: "Heebo", sans-serif;
     font-style: normal;
     font-weight: 800;
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
   .subhead {
     font-family: "Heebo", sans-serif;
     font-style: normal;
     font-weight: 400;
-    font-size: 0.67rem;
-    line-height: 20px;
+    font-size: 0.5rem;
+    line-height: 10px;
   }
   .title {
+    font-size: 0.8rem !important;
+  }
+  .headline {
     font-size: 1rem !important;
+    line-height: 1rem !important;
+  }
+  .subtitle-1 {
+    font-size: 1rem !important;
+    font-weight: 400;
+    letter-spacing: 0.009375em !important;
+    line-height: 1rem !important;
+    font-family: Roboto, sans-serif !important;
   }
 }
 </style>
