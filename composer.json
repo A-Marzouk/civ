@@ -8,10 +8,10 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.3",
         "barryvdh/laravel-dompdf": "^0.8.6",
         "fideloper/proxy": "^4.0",
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "6.5.2",
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.2",
         "laravel/passport": "^8.4",
