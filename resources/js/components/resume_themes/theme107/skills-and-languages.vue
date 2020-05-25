@@ -85,10 +85,12 @@ export default {
     display: flex !important;
     justify-content: space-between;
     max-width: 1500px !important;
+    position: relative;
+    z-index: 1;
+    padding: 5%;
 
     .left {
         max-width: 228px;
-        margin-right: 261px;
 
         .small {
             font-size: 24px;
@@ -127,7 +129,7 @@ export default {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 50px 90px;
-        margin: 0 auto;
+        margin: 0;
 
         .skill {
             max-width: 310px;
@@ -143,6 +145,10 @@ export default {
                 img {
                     position: absolute;
                     width: 27.25px;
+                }
+
+                &.showOnTablet {
+                    display: none;
                 }
             }
 
@@ -179,19 +185,17 @@ export default {
 
             @media (max-width: 1200px) {
                 .chart {
-                    @media (max-width: 1200px) {
-                        &.hideOnTablet {
-                            display: none;
-                        }
+                    &.hideOnTablet {
+                        display: none;
+                    }
 
-                        &.showOnTablet {
-                            display: flex;
+                    &.showOnTablet {
+                        display: flex;
 
-                        }
-                        
-                        img {
-                            width: 14.76px;
-                        }
+                    }
+                    
+                    img {
+                        width: 14.76px;
                     }
                 }
                 
@@ -218,9 +222,13 @@ export default {
             }
         }
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1500px) {
             grid-gap: 50px;
-        } 
+        }
+
+        @media (max-width: 1350px) {
+            grid-gap: 30px;
+        }
         
         @media (max-width: 756px) {
             grid-gap: 35px;

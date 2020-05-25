@@ -258,7 +258,7 @@
                     class="hidden-sm-and-down"
                     vertical
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     center-active
                     v-model="tabRate"
                   >
@@ -270,7 +270,7 @@
                   <v-tabs
                     class="hidden-md-and-up"
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     centered
                     v-model="tabRate"
                   >
@@ -296,7 +296,7 @@
                     class="hidden-sm-and-down"
                     vertical
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     center-active
                     v-model="tabFrequency"
                   >
@@ -308,7 +308,7 @@
                   <v-tabs
                     class="hidden-md-and-up"
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     centered
                     v-model="tabFrequency"
                   >
@@ -336,7 +336,7 @@
                 <!-- 4th column -->
                 <v-col align="right" class="hidden-sm-and-down" sm="2" md="1">
                   <v-btn fab class icon @click="hireMeModal=false">
-                    <img width="30" src="/images/resume_themes/theme201/close.png" />
+                    <img width="30" src="/images/resume_themes/theme201/close.svg" />
                   </v-btn>
                 </v-col>
                 <!-- 4th column-->
@@ -394,7 +394,7 @@ export default {
 <style scoped lang="scss">
 .custom-modal-title {
   font-size: 1rem;
-  color: #000000 !important;
+  color: rgba(92,92,92,1) !important;
   line-height: 30px;
 }
 .custom-modal-subtitle {

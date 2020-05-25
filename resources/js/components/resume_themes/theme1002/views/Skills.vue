@@ -1,14 +1,15 @@
 <template>
 	<div>
-		Language
+		skills
 	</div>
 </template>
 
 <script>
 export default {
-	name: "language"
+	name: "skills"
 };
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
 </style>
