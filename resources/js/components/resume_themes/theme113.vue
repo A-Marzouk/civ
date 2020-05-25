@@ -108,13 +108,16 @@ $purple: #686299;
     color: $mainColor;
     background: #FFF7F3;
     position: relative;
+    overflow-x: hidden;
 
     .theme-body {
         height: auto;
         background: white;
-        border-radius: 80px 80px 0 0;
-        z-index: 0;
+        border-radius: 100px 100px 0 0;
+        border-top: 16px solid $purple;
         position: relative;
+        width: 100%;
+        overflow: hidden;
 
         .wrapper {
             display: flex;
@@ -126,8 +129,15 @@ $purple: #686299;
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $tabTextColor;
+                overflow: 0 auto;
+                width: 95%;
+                margin: 0 auto;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -151,12 +161,12 @@ $purple: #686299;
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        padding: 12px 22px;
+                        padding: 0 22px;
                     }
 
                     @media (max-width: 756px) {
                         font-size: 15px;
-                        padding: 13px 17px;
+                        padding: 0 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -178,13 +188,29 @@ $purple: #686299;
                 @media (max-width: 1200px) {
                     margin-top: 29px;
                     margin-bottom: 47px;
+
+                    &-bar {
+                        height: 28px;
+                    }
+
+                    .v-tabs-slider {
+                        border-radius: 14px;
+                    }
                 }
                 
                 @media (max-width: 700px) {
                     margin: 29px 0;
 
+                    &-bar {
+                        height: 36px;
+                    }
+
+                    .v-tabs-slider {
+                        border-radius: 22px;
+                    }
+
                     .v-item-group {
-                        padding: 0 13px;
+                        padding: 0 30px 0 50px;
                     }
                 }
             }
@@ -200,7 +226,7 @@ $purple: #686299;
                 @media (max-width: 700px) {
                     padding: 0;
                     padding-bottom: 30px;
-
+                    width: 85%;
                 }
             }
         }
@@ -210,7 +236,7 @@ $purple: #686299;
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 100vw;
         height: 63px;
         position: fixed;
         bottom: 0;
