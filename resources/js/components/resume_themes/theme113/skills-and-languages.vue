@@ -49,11 +49,13 @@ export default {
 
 <style lang="scss" scoped>
     .skills-container {
+        margin: 0 auto;
         margin-top: 34px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 100px;
         max-width: 1400px !important;
+        width: 85%;
 
         .skill {
             display: flex;
@@ -107,6 +109,7 @@ export default {
 
         @media (max-width: 700px) {
             grid-gap: 30px;
+            width: 100%;
 
             .skill {
                 grid-column: span 3;

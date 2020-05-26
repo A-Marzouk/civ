@@ -27,6 +27,9 @@ export default {
     .about {
         display: flex;
         max-width: 1400px;
+        width: 85%;
+        justify-content: space-between;
+        margin: 0 auto;
         
         .about-title {
             font-size: 40px;

@@ -284,9 +284,13 @@ $purple: #335E5E;
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 400px;
+        top: 365px;
         right: -120px;
         background: transparent;
+
+        &.showOnTablet {
+            display: none;
+        }
 
         a {
             height: 14px;
@@ -382,7 +386,7 @@ $purple: #335E5E;
 
         @media (max-width: 1200px) {
             a {
-                font-size: 9px;
+                font-size: 14px;
             }
 
             .icon {

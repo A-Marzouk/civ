@@ -242,7 +242,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 @media (max-width: 700px) {
                     padding: 0;
                     padding-bottom: 30px;
-
+                    width: 85%;
                 }
             }
         }
@@ -256,7 +256,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 200px;
+        top: 365px;
         right: -95px;
         background: transparent;
 
@@ -279,6 +279,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     display: none;
                 }
             }
+        }
+
+        &.showOnTablet {
+            display: none;
         }
 
         @media (max-width: 1200px) {
@@ -318,7 +322,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
     .scroll-top {
         position: absolute;
-        left: 1%;
+        left: -10px;
         bottom: 250px;
         transform: rotateZ(-90deg);
 
@@ -353,7 +357,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
         @media (max-width: 1200px) {
             a {
-                font-size: 9px;
+                font-size: 14px;
             }
 
             .icon {
