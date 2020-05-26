@@ -289,5 +289,8 @@ $line-height55: 55px;
       }
     }
   }
+  .price-card:hover{
+    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
+  }
 }
 </style>
