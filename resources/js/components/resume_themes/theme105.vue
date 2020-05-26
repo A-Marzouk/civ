@@ -113,7 +113,7 @@ $purple: #355E5E;
         height: auto;
         background: white;
         border-radius: 80px 80px 0 0;
-        z-index: 1;
+        overflow-x: hidden;
         position: relative;
 
         .wrapper {
@@ -126,6 +126,9 @@ $purple: #355E5E;
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $tabTextColor;
+                overflow: 0 auto;
+                width: 95%;
+                margin: 0 auto;
                 margin-top: 61px;
                 margin-bottom: 61px;
 

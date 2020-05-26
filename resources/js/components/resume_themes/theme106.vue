@@ -1,57 +1,7 @@
 <template>
 <!-- Developer: Jose Quintero -->
     <v-app id="theme106" style="width: 100%">
-        <div class="theme-header">
-
-            <!-- <div class="bg-header">
-                <img src="/images/resume_themes/theme106/bg-header-bottom-right.svg" alt="" class="bg-header-bottom-right" />
-            </div> -->
-
-            <div class="user-info">
-                <div class="left">
-                    <div class="user-img">
-                        <img src="/images/resume_builder/default-user.jpg" alt="">
-                    </div>
-
-                    <div class="user-data">
-                        <div class="name">José Daniel Quintero</div>
-                        <div class="profession">Fullstack Developer</div>
-                        <ul class="speciallity">
-                            <li class="item">Node js</li>
-                            <li class="item">React js</li>
-                            <li class="item">Laravel</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="right">
-                    <div class="actions-wrapper">
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme106/chat-icon.png"> Start a chat
-                        </button>
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme106/suitcase-icon.png">Upload interviews
-                        </button>
-                    </div>
-
-                    <div class="payment-data">
-                        <div class="hourly-rate">
-                            $15
-                            <small>Hourly rate</small>
-                        </div>
-                        <div class="hourly-availability">
-                            40Hrs
-                            <small>Weekly Availability</small>
-                        </div>
-
-                        <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme106/hireMe-icon.png" alt="hire me icon" class="icon">
-                            Hire Me
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ThemeHeader></ThemeHeader>
 
         <div class="theme-body">
             <div class="wrapper">
@@ -115,6 +65,7 @@ import WorkExperienceTab from './theme106/work-experience'
 import PortfolioTab from './theme106/portfolio'
 import AboutTab from './theme106/about'
 import SkillsTab from './theme106/skills-and-languages'
+import ThemeHeader from './theme106/header'
 
 export default {
     components: {
@@ -122,7 +73,8 @@ export default {
         EducationTab,
         PortfolioTab,
         WorkExperienceTab,
-        SkillsTab
+        SkillsTab,
+        ThemeHeader
     },
     data: () => ({
         tab: 0,
