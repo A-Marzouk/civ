@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Social;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
 
@@ -31,7 +32,9 @@ class SpotifyController extends Controller
     {
         try {
             $user = Socialite::driver('spotify')->stateless()->user();
-            dd($user);
+            $accessTokenResponseBody = $user->accessTokenResponseBody;
+            return Redirect::to('/resume-builder/edit/hobbies')->withCookie(cookie('spotify_access_token',$accessTokenResponseBody['access_token'],1577000,null, null, false, false )); // 3 years
+
         } catch (Exception $e) {
            abort(404, 'Partner not found');
         }
