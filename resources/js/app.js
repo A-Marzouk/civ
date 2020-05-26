@@ -25,19 +25,6 @@ if ($("#welcomeView").length !== 0) {
     });
 }
 
-import welcomeView2 from './components/welcome-view2/welcome';
-if ($("#welcomeView2").length !== 0) {
-    new Vue({
-        el: '#welcomeView2',
-        vuetify,
-        components: {
-            'welcome-view2': welcomeView2
-        }
-    });
-}
-
-
-
 //api components
 require('./API');
 

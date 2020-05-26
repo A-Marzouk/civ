@@ -4,7 +4,7 @@
     }
 
     .margleft {
-        margin-left: 8rem !important;
+        margin-left: 10rem !important;
     }
 
     .padleft {
@@ -130,11 +130,7 @@
         font-weight: 300 !important;
     }
 
-    @media (min-width: 1264px) {
-        .padding {
-            padding: 10px 15px 400px 160px;
-        }
-
+    @media (max-width: 1600px) {
         .head {
             font-size: 1.5rem;
         }
@@ -143,7 +139,35 @@
             font-size: 0.653rem !important;
             font-weight: 200 !important;
         }
+
+        .margleft {
+            margin-left: 8rem !important;
+        }
+
+        .padleft {
+            padding-left: 10rem !important;
+
+        }
+
+        .padding {
+            padding: 10px 15px 400px 180px;
+        }
     }
+
+    // @media (max-width: 1264px) {
+    //     .padding {
+    //         padding: 10px 15px 400px 180px;
+    //     }
+
+    //     .head {
+    //         font-size: 1.5rem;
+    //     }
+
+    //     .subhead {
+    //         font-size: 0.653rem !important;
+    //         font-weight: 200 !important;
+    //     }
+    // }
 
     @media only screen and (max-width: 768px) {
 
@@ -221,8 +245,10 @@
         }
 
         .margleft {
-            margin-left: 0rem !important;
+            margin-right: 0rem !important;
         }
+
+
 
         .padleft {
             padding-left: 0rem !important;
@@ -270,11 +296,16 @@
         }
 
 
-        .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev {
-            display: none !important;
-            visibility: hidden;
+
+        .v-tabs {
+            flex: 1 1 auto;
+            width: 75% !important;
         }
 
+        .helo {
+            margin-left: 70px;
+
+        }
 
         .tabtitle {
             font-size: 1.2rem;

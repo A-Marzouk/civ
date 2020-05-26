@@ -44,10 +44,14 @@ library.add(fas)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // vue scroll
-import VueScrollTo from  'vue-scrollto'
+import VueScrollTo from 'vue-scrollto'
 
 Vue.use(VueScrollTo)
 
 //vue masonry
-import {VueMasonryPlugin} from 'vue-masonry'
+import { VueMasonryPlugin } from 'vue-masonry'
 Vue.use(VueMasonryPlugin)
+
+//vue agile
+import VueAgile from 'vue-agile'
+Vue.use(VueAgile)

@@ -4,7 +4,7 @@
     }
 
     .margleft {
-        margin-left: 8rem !important;
+        margin-left: 10rem;
     }
 
     .padleft {
@@ -12,7 +12,7 @@
     }
 
     .padding {
-        padding: 10px 15px 400px 180px;
+        padding: 10px 15px 400px 200px;
     }
 
     .avatar .v-image__image {
@@ -130,11 +130,7 @@
         font-weight: 300 !important;
     }
 
-    @media (min-width: 1264px) {
-        .padding {
-            padding: 10px 15px 400px 160px;
-        }
-
+    @media (max-width: 1600px) {
         .head {
             font-size: 1.5rem;
         }
@@ -143,7 +139,35 @@
             font-size: 0.653rem !important;
             font-weight: 200 !important;
         }
+
+        .margleft {
+            margin-left: 8rem !important;
+        }
+
+        .padleft {
+            padding-left: 10rem !important;
+
+        }
+
+        .padding {
+            padding: 10px 15px 400px 180px;
+        }
     }
+
+    // @media (min-width: 1264px) {
+    //     .padding {
+    //         padding: 10px 15px 400px 160px;
+    //     }
+
+    //     .head {
+    //         font-size: 1.5rem;
+    //     }
+
+    //     .subhead {
+    //         font-size: 0.653rem !important;
+    //         font-weight: 200 !important;
+    //     }
+    // }
 
     @media only screen and (max-width: 768px) {
 
@@ -224,8 +248,14 @@
             margin-right: auto;
         }
 
-        .margleft {
-            margin-left: 0rem !important;
+        .v-tabs {
+            flex: 1 1 auto;
+            width: 75% !important;
+        }
+
+        .helo {
+            margin-left: 70px;
+
         }
 
         .padleft {

@@ -8,7 +8,7 @@
             <v-col cols="12" sm="3" md="3" class="skills-text" align="center">{{skill.title}}</v-col>
             <v-col cols="12" sm="7" md="7">
               <v-row align="center" class="mx-0">
-                <v-progress-linear color="black" height="11" :value="skill.percentage"></v-progress-linear>
+                <v-progress-linear color="rgba(92,92,92,1)" height="11" :value="skill.percentage"></v-progress-linear>
               </v-row>
             </v-col>
             <v-col cols="12" sm="2" md="2" class="skills-text">
@@ -27,7 +27,7 @@
             </v-col>
             <v-col cols="12">
               <v-row align="center" class="mx-0">
-                <v-progress-linear color="black" height="11" :value="skill.percentage"></v-progress-linear>
+                <v-progress-linear color="rgba(92,92,92,1)" height="11" :value="skill.percentage"></v-progress-linear>
               </v-row>
             </v-col>
           </v-row>
@@ -47,4 +47,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+  .skills-text{
+    color: rgba(92,92,92,1);
+  }
+
+</style>
 
