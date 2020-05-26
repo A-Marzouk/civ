@@ -24,7 +24,7 @@
               <v-col md="4" sm="12" cols="12" v-for="plan in plans" :key="plan.id">
                 <v-card
                   class="price-card mt-10 pa-5"
-                  :style="plan.title == 'Standard'?'box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.15) !important;':'box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.08);'"
+                  :class ="plan.title == 'Standard'?'box-shadow-standard': 'box-shadow-regular'"
                 >
                   <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
                   <v-card-subtitle
@@ -163,6 +163,14 @@ $line-height55: 55px;
     line-height: $line-height55;
     color: #0046fe !important;
   }
+
+  .box-shadow-regular{
+    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.08);
+  }
+  .box-shadow-standard{
+    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.15);
+  }
+
 
   .price-card {
     border-radius: 15px !important;
