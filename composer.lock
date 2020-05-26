@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8c7d392bcd2efdafd9aef5138f8c35e",
+    "content-hash": "12de5887a1d4f82798239dcedf0ab4e6",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -3452,6 +3452,44 @@
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
             "time": "2020-03-08T16:54:44+00:00"
+        },
+        {
+            "name": "socialiteproviders/spotify",
+            "version": "v3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SocialiteProviders/Spotify.git",
+                "reference": "02bde517b25107549bd99401b83cd4d4a9f9fcdc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SocialiteProviders/Spotify/zipball/02bde517b25107549bd99401b83cd4d4a9f9fcdc",
+                "reference": "02bde517b25107549bd99401b83cd4d4a9f9fcdc",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^5.6 || ^7.0",
+                "socialiteproviders/manager": "~2.0 || ~3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SocialiteProviders\\Spotify\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Faust",
+                    "email": "hello@brianfaust.de"
+                }
+            ],
+            "description": "Spotify OAuth2 Provider for Laravel Socialite",
+            "time": "2019-09-06T15:27:03+00:00"
         },
         {
             "name": "spatie/laravel-permission",
