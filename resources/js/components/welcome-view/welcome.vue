@@ -1376,13 +1376,18 @@ export default {
   }
 
   @media screen and (max-width: 700px) {
-     .slick-initialized .slick-slide {
+    .slick-initialized .slick-slide {
       margin-left: -75px;
     }
+    .slick-dots li button {
+      width: 30px !important;
+      height: 6px;
+    }
+
   }
 
   @media screen and (max-width: 599px) {
-     .slick-dots li button {
+    .slick-dots li button {
       width: 40px !important;
       height: 6px;
     }
