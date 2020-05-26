@@ -13,7 +13,6 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-
     }
 
     /**
@@ -26,6 +25,11 @@ class HomeController extends Controller
         return view('welcome');
     }
 
+    public function pricing()
+    {
+        return view('pricing');
+    }
+
     public function docs()
     {
         return view('api.docs');
@@ -35,7 +39,6 @@ class HomeController extends Controller
     public function privacy()
     {
         return view('contracts.privacy');
-
     }
 
     public function terms()

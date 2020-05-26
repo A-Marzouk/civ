@@ -687,3 +687,18 @@ if ($("#resumeTheme1101").length !== 0) {
         }
     });
 }
+
+
+import resumeTheme600 from './components/resume_themes/theme600';
+if ($("#resumeTheme600").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme600',
+        vuetify,
+        store,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-600': resumeTheme600
+        }
+    });
+}

@@ -1,11 +1,12 @@
 <template>
     <v-app class="hold-theme901" >
             <div class="header-901">
-            <v-container class="content-header-901" >
+            <div class="content-header-901" >
             <v-row class="align-center" >
-                <v-col class="the-avatar-901" lg="1" sm="2" cols="4" >
+                <v-col class="the-avatar-901" lg="1" md="2" sm="2" cols="4" >
+                    <div style="width: 124px;" >
                     <img src="/images/resume_themes/theme901/profile.png" class="avatar-901" alt="">
-                    <v-btn 
+                    <v-btn
                         color="#fff"
                         class="icon-avatar-901"
                         bottom
@@ -13,8 +14,9 @@
                         fab small >
                         <v-icon color="#5B5D60" size="25px" > mdi-message-text </v-icon>
                     </v-btn>
+                    </div>
                 </v-col>
-                <v-col lg="3" sm="9" cols="8" >
+                <v-col lg="3" md="9" sm="9" cols="8" >
                     <div class="pofile-901" >
                         <p class="name-901">paul porter</p>
                         <p class="job-901" >web designer</p>
@@ -73,9 +75,9 @@
                                     </v-col>
                                 </v-row>
                             </v-col>
-                            <v-col lg="5" sm="7" cols="12" >
+                            <v-col lg="5"  sm="7" cols="12" >
                                 <v-row class="rate-tabs-901" >
-                                    <v-col lg="4" sm="4" cols="5" style="padding:0px" >
+                                    <v-col lg="4"  sm="4" cols="5" style="padding:0px" >
                                         <v-tabs 
                                         background-color="transparent" 
                                         v-model="availability" 
@@ -92,7 +94,7 @@
                                             </v-tab>
                                         </v-tabs>
                                     </v-col>
-                                    <v-col lg="8" sm="8" cols="7" style="padding:0px" >
+                                    <v-col lg="8" md78 sm="8" cols="7" style="padding:0px" >
                                         <v-row>
                                             <v-col cols="12" >
                                                 <span class="info-title-901" >availability hours</span>
@@ -120,9 +122,9 @@
                         </v-row>
                 </v-col>
             </v-row>
-        </v-container>
         </div>
-        <v-container class="content-901">
+        </div>
+        <div class="content-901">
             <v-tabs
                 v-model="model"
                 centered
@@ -195,8 +197,8 @@
                                 :key="index"
                                 justify="center" >
                                 <v-col
-                                    lg="1" sm="2" cols="12" >
-                                    <img :src="value.img" alt="">
+                                    lg="1"  sm="2" cols="12" >
+                                    <img class="programing-languages-image" :src="value.img" alt="">
                                 </v-col>
                                 <v-col class="programming-languages-linear" lg="6" sm="9" cols="12" >
                                     <v-progress-linear height="8" :value="value.level"></v-progress-linear>
@@ -212,12 +214,13 @@
                                 v-for="(value,index) in boxs_work" 
                                 :key="index" >
                                 <v-row class="box-tm901" >
-                                    <v-col class="box-tm901-left" cols="2" >
-                                        <p> {{ value.title }} </p>
-                                        <p> {{ value.date }} </p>
+                                    <v-col cols="3" >
+                                        <p class="box-tm901-left"> {{ value.title }} </p>
+                                        <p class="box-tm901-left"> {{ value.date }} </p>
                                     </v-col>
-                                    <v-col class="box-tm901-right" >
+                                    <v-col cols="7" >
                                         <p 
+                                            class="box-tm901-right"
                                             v-for="(value,index) in value.text" 
                                             :key="index" >
                                             {{ value }}
@@ -243,12 +246,13 @@
                                 v-for="(value,index) in boxs_education" 
                                 :key="index" >
                                 <v-row class="box-tm901" >
-                                    <v-col class="box-tm901-left" cols="2" >
-                                        <p> {{ value.title }} </p>
-                                        <p> {{ value.date }} </p>
+                                    <v-col cols="2" >
+                                        <p class="box-tm901-left" > {{ value.title }} </p>
+                                        <p class="box-tm901-left"> {{ value.date }} </p>
                                     </v-col>
-                                    <v-col class="box-tm901-right" >
+                                    <v-col >
                                         <p 
+                                            class="box-tm901-right"
                                             v-for="(value,index) in value.text" 
                                             :key="index" >
                                             {{ value }}
@@ -287,7 +291,7 @@
                     </v-row>
                 </v-tab-item>
             </v-tabs-items>
-        </v-container>
+        </div>
     </v-app>
 </template>
 <script>
@@ -386,7 +390,7 @@ export default {
           case 'xs': return 'mr-5'
           case 'sm': return 'mr-10'
           case 'md': return 'mr-10'
-          case 'lg': return 'mr-10'
+          case 'lg': return 'mr-7'
           case 'xl': return 'mr-10'
         }
       }
@@ -401,17 +405,26 @@ export default {
     }
 }
 </script>
+<style scoped>
+    @import url('~/vue-slick-carousel/dist/vue-slick-carousel.css');
+    @import url('~/vue-slick-carousel/dist/vue-slick-carousel-theme.css');
+</style>
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
-/*@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");*/  // this caused an error please check it!
-@import url("https://fonts.googleapis.com/css?family=Actor&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
+
 .hold-theme901{
     .header-901{
         box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.03);
         
         .content-header-901{
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding: 40px 50px 40px;
+            
+            @media only screen and (max-width: 764px) 
+            {
+                padding: 20px 10px 0px;
+            }
         }
         .the-avatar-901{
             height: 141px;
@@ -420,8 +433,8 @@ export default {
             }
         }
         .icon-avatar-901{
-        top:-60px;
-        left:100px
+        top: -40px;
+        left: 70%;
         }
         .pofile-901{
             margin-top: 20px;
@@ -452,12 +465,6 @@ export default {
         .info-901{
             background: #F9F9F9;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
-            .first-one{
-                border-right: 1px solid rgba(16, 78, 251, 0.2);
-                @media only screen and (max-width: 597px) {
-                    border-bottom: 1px solid rgba(16, 78, 251, 0.2);
-                    }
-            }
             .rate-tabs-901{
                 .first-one{
                     border-bottom: 1px solid rgba(16, 78, 251, 0.2);
@@ -477,6 +484,12 @@ export default {
                     letter-spacing: 0.2em;
                     text-transform: capitalize;
                     color: #2176E5;
+                    @media only screen and (max-width: 1600px) {
+                    font-size: 19px;
+                    }
+                    @media only screen and (max-width: 597px) {
+                    font-size: 20px;
+                    }
             }
             .rate-items-901{
                 background: transparent;
@@ -490,6 +503,9 @@ export default {
                 letter-spacing: 0.2em;
                 text-transform: uppercase;
                 color: #5B5D60;
+                @media only screen and (max-width: 597px) {
+                    font-size: 20px;
+                    }
             }
             .v-tab{
                 font-family: Lato;
@@ -501,7 +517,7 @@ export default {
                 text-transform: capitalize;
                 color: #5B5D60;
                 @media only screen and (max-width: 597px) {
-                    font-size: 18px;
+                    font-size: 15px;
                     }
             }
             .v-tab--active {
@@ -514,7 +530,7 @@ export default {
                 text-transform: capitalize;
                 color: #5B5D60;
                 @media only screen and (max-width: 597px) {
-                    font-size: 24px;
+                    font-size: 17px;
                     }
             }
             // .v-tabs--vertical > .v-tabs-bar .v-tab {
@@ -533,14 +549,19 @@ export default {
             letter-spacing: 0.3em;
             text-transform: capitalize;
             color: #FFFFFF;
-            width: 216px;
+            width: 100%;
+            max-width: 216px;
             height: 68px;
             border-radius: 0px;
         }}
         }
     }
     .content-901{
-        margin-top: 70px;
+        padding: 70px 50px 40px;
+        @media only screen and (max-width: 764px) 
+            {
+                padding: 70px 10px 0px;
+            }
         .tabs-901{
             .tab-901{
                 margin-right: 80px;
@@ -589,10 +610,13 @@ color: #2176E5;
         .tabs-skills-901{
             .tab-skills-901{
                 margin-right: 115px;
+                @media only screen and (max-width: 597px) {
+                margin-right: 71px;
+                }
             }
             .v-tab{
                 padding: 0 0;
-                font-family: Gotham Pro;
+                font-family: Lato;
                 font-style: normal;
                 font-weight: 300;
                 font-size: 24px;
@@ -600,6 +624,11 @@ color: #2176E5;
                 color: #104EFB;
                 opacity: 0.5;
                 text-transform: capitalize;
+                @media only screen and (max-width: 597px) {
+                font-size: 18px;
+                line-height: 17px;
+                font-weight: normal;
+                }
             }
             .v-tab--active {
                 opacity: 1;
@@ -611,11 +640,11 @@ color: #2176E5;
                     margin-bottom: 25px;
                 }
             .box-tm901-left{
-                font-family: Gotham Pro;
+                font-family: Lato;
                 font-style: normal;
                 font-weight: normal;
                 font-size: 16px;
-                line-height: 15px;
+                line-height: 20px;
                 color: #5B5D60;
                 @media only screen and (max-width: 992px) {
                     color: #104EFB;
@@ -630,7 +659,7 @@ color: #2176E5;
                 font-style: normal;
                 font-weight: normal;
                 font-size: 20px;
-                line-height: 14px;
+                line-height: 20px;
                 color: #5B5D60;
                 @media only screen and (max-width: 992px) {
                     color: #104EFB;
@@ -647,11 +676,20 @@ color: #2176E5;
                     margin-top: 20px;
                 }
             .programming-languages{
-                .programming-languages-linear{
-                    margin-top: 28px;
+                .programing-languages-image{
+                    margin-left: auto;
+                    margin-right: auto;
+                    max-width: 64px;
+                    max-height: 64px;
                     @media only screen and (max-width: 597px) {
-                    margin-top: -28px;
+                    margin-left: 0;
+                    margin-right: 0;
+                    margin-bottom: -15px;
                 }
+                }
+                .programming-languages-linear{
+                    margin-top: auto;
+                    margin-bottom: auto;
                 }
             }
         }

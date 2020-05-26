@@ -27,6 +27,7 @@ Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
+Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
 
@@ -44,6 +45,10 @@ Route::get('/register/google/callback', 'Auth\SocialSitesRegisterController@hand
 Route::get('/register/linkedin', 'Auth\SocialSitesRegisterController@redirectToLinkedinProvider')->name('client.linkedin.register');
 Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@handleLinkedinProviderCallback')->name('client.linkedin.callback');
 Route::post('/validate-username', 'Auth\SocialSitesRegisterController@validateUsername')->name('username.validate');
+
+// spotify:
+Route::get('/redirect/spotify', 'Social\SpotifyController@redirectToSpotifyProvider')->name('client.github.register');
+Route::get('/spotify/callback', 'Social\SpotifyController@handleSpotifyProviderCallback')->name('client.github.callback');
 
 
 // resume builder main routes.

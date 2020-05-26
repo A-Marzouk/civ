@@ -2,10 +2,10 @@
 <v-app id="hold-theme900" >
     <v-container>
         <v-row class="header-section align-center " >
-            <v-col lg="1" sm="2" cols="3" >
-                    <img class="tm900-avatar" src="/images/resume_themes/theme900/Ellipse27.png" alt="">
+            <v-col class="tm900-avatar" lg="2" sm="2" cols="3" >
+                    <img class="tm900-avatar-image" src="/images/resume_themes/theme900/Ellipse27.png" alt="">
             </v-col>
-            <v-col lg="7" sm="6" cols="5"  class="profile" >
+            <v-col lg="6" sm="6" cols="5"  class="profile" >
                 <p class="name" > carol swift </p>
                 <p class="job" > graphic designer </p>
                 <p class="description" >Donec a augue gravida, vulputate ligula et, pellentesque arcu. </p>
@@ -511,21 +511,29 @@ export default {
              height: 150px;
         }
          .tm900-avatar{
+            max-width: 10.666667%;
+            @media only screen and (max-width: 992px) {
+                     max-width: 16.6666666667%;
+                     }
+             
+            @media only screen and (max-width: 597px) {
+                    max-width: 25%;
+            }
+             .tm900-avatar-image{
              border-radius: 50%;
                  width: 150px;
                  height: 150px;
                  @media only screen and (max-width: 992px) {
-                     width: 100px;
-                     height: 100px;
+                     width: 100%;
+                     height: 100%;
                 }
                 @media only screen and (max-width: 597px) {
                  margin-top: -30px;
-                    width: 80px;
-                    height: 80px;
                 }
+             }
         }
          .profile{
-             padding-left: 40px;
+            // padding-left: 40px;
              font-family: Open Sans;
              font-style: normal;
              font-weight: bold;
@@ -621,6 +629,7 @@ export default {
              font-size: 16px;
              line-height: 24px;
              float: right;
+            margin-left: 100px;
              .contact-button-items{
                  margin-left: 48px;
                  @media only screen and (max-width: 597px) {
@@ -629,6 +638,7 @@ export default {
              }
              @media only screen and (max-width: 992px) {
                  margin-top: -60px;
+                 margin-left: 0px;
                  .tm900-sc{
                      display: none;
                 }
