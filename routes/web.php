@@ -46,6 +46,10 @@ Route::get('/register/linkedin', 'Auth\SocialSitesRegisterController@redirectToL
 Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@handleLinkedinProviderCallback')->name('client.linkedin.callback');
 Route::post('/validate-username', 'Auth\SocialSitesRegisterController@validateUsername')->name('username.validate');
 
+// spotify:
+Route::get('/redirect/spotify', 'Social\SpotifyController@redirectToSpotifyProvider')->name('client.github.register');
+Route::get('/spotify/callback', 'Social\SpotifyController@handleSpotifyProviderCallback')->name('client.github.callback');
+
 
 // resume builder main routes.
 Route::get('/resume-builder/{any?}', 'ResumeBuilderController@index')->name('resume.builder.main');

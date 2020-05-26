@@ -64,6 +64,12 @@ return [
         'redirect' => env('FACEBOOK_CALLBACK_URL')
     ],
 
+    'spotify' => [
+        'client_id' => env('SPOTIFY_KEY'),
+        'client_secret' => env('SPOTIFY_SECRET'),
+        'redirect' => env('SPOTIFY_REDIRECT_URI')
+    ],
+
 //    payments
 
     'stripe' => [
