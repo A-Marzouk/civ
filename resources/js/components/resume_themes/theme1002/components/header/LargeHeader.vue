@@ -3,7 +3,7 @@
 		<div class="header-profile">
 			<Avatar :src="currentUser.avatar" />
 
-			<div class="tw-flex-1 tw-flex tw-items-center tw-justify-between">
+			<div class="profile-info tw-flex-1 tw-flex tw-items-center tw-justify-between ">
 				<div class="profile-details">
 					<div class="personal-info">
 						<h3 class="title" v-text="currentUser.fullname"></h3>
@@ -320,6 +320,188 @@ export default {
 				text-decoration: none;
 				color: #205de5;
 				background: rgba(232, 239, 247, 0.55);
+			}
+		}
+	}
+}
+
+@media (min-width: $xl) {
+	.header-profile {
+		max-width: $xl;
+		padding-left: 82px;
+		padding-right: 82px;
+
+		.profile-info {
+			border-bottom: 1px solid #205de5;
+			padding-bottom: 42px;
+		}
+
+		.profile-details {
+			padding-left: 25px;
+
+			.personal-info {
+				.title {
+					font-size: 36px;
+					line-height: 42px;
+				}
+
+				.sub-title {
+					font-size: 26px;
+					line-height: 32px;
+				}
+			}
+
+			.upload-media {
+				.um-title {
+					font-size: 28px;
+					line-height: 32px;
+				}
+
+				a {
+					width: 232px;
+					height: 56px;
+					font-size: 22px;
+
+					&:first-child {
+						margin-left: 35px;
+					}
+
+					svg {
+						height: 32px;
+						width: 32px;
+						margin-left: 15px;
+					}
+				}
+			}
+
+			.social-media-links {
+				max-width: 432px;
+
+				.icon-link {
+					svg {
+						height: 54px;
+						width: 54px;
+					}
+				}
+
+				.start-chat-btn {
+					height: 42px;
+					width: 130px;
+					font-size: 13px;
+					line-height: 16px;
+				}
+			}
+
+			.work-info {
+				.hourly-rate {
+					margin-right: 100px;
+				}
+
+				.hourly-rate,
+				.availability-hours {
+				}
+
+				strong {
+					font-size: 32px;
+					line-height: 43px;
+				}
+
+				span {
+					font-size: 26px;
+					line-height: 32px;
+					padding-top: unset;
+				}
+			}
+
+			.hireme-btn {
+				font-size: 22px;
+				width: 190px;
+				height: 58px;
+				margin-top: 15px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xxl) {
+	.header-profile {
+		max-width: $xxl;
+		padding-left: 115px;
+		padding-right: 115px;
+
+		.profile-info {
+			padding-bottom: 50px;
+		}
+
+		.profile-details {
+			.personal-info {
+				.title {
+					font-size: 41px;
+					line-height: 50px;
+				}
+
+				.sub-title {
+					font-size: 29px;
+					line-height: 35px;
+				}
+			}
+
+			.upload-media {
+				.um-title {
+					font-size: 32px;
+					line-height: 40px;
+				}
+
+				a {
+					width: 265px;
+					height: 62px;
+					font-size: 27px;
+					line-height: 33px;
+
+					svg {
+						height: 40px;
+						width: 40px;
+					}
+				}
+			}
+
+			.social-media-links {
+				max-width: 500px;
+
+				.icon-link {
+					svg {
+						height: 66px;
+						width: 66px;
+					}
+				}
+
+				.start-chat-btn {
+					height: 45px;
+					width: 137px;
+				}
+			}
+
+			.work-info {
+				.hourly-rate {
+					margin-right: 100px;
+				}
+
+				.hourly-rate,
+				.availability-hours {
+				}
+
+				strong {
+					font-size: 40px;
+					line-height: 53px;
+				}
+
+				span {
+					font-size: 33px;
+					line-height: 40px;
+				}
+			}
+
+			.hireme-btn {
 			}
 		}
 	}
