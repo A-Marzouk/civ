@@ -72,15 +72,22 @@
             <v-row class="hidden-lg-and-up" align="center" justify="center">
               <v-col md="12" sm="12" cols="12">
                 <v-card color="transparent" flat tile>
-                  <v-tabs centered hide-slider center-active grow v-model="price_tab">
+                  <v-tabs
+                    active-class="custom-active-class"
+                    centered
+                    hide-slider
+                    center-active
+                    grow
+                    v-model="price_tab"
+                    :height="windowWidth < 599 ? '39' : '64'"
+                  >
                     <v-tab
+                      active-class="custom-active-tab"
                       v-for="plan in plans"
                       :key="plan.id"
                       @click="currentTab=plan.id"
-                      class="mx-md-3 mx-sm-3 mx-1"
-                      :class="[
-                        currentTab == plan.id ? 'custom-active-tab' : '', 'ct-tab',
-                      ]"
+                      class="mx-md-3 mx-sm-3 mx-1 ct-tab"
+                      
                     >{{plan.title}}</v-tab>
                   </v-tabs>
                 </v-card>
@@ -139,6 +146,7 @@
 export default {
   data() {
     return {
+      windowWidth: window.innerWidth,
       price_tab: 1,
       currentTab: 2,
       plans: [
@@ -187,6 +195,12 @@ export default {
           ]
         }
       ]
+    };
+  },
+  //mounted
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
     };
   }
 };
@@ -385,7 +399,7 @@ $line-height55: 55px;
       @media screen and (min-width: 600px) and (max-width: 959px) {
         margin-left: 12vw;
       }
-      @media screen and (max-width: 599px){
+      @media screen and (max-width: 599px) {
         margin-left: 13vw;
       }
     }
@@ -397,7 +411,7 @@ $line-height55: 55px;
       height: 8px;
       margin-left: -1em;
       margin-right: 5px;
-      @media screen and (max-width: 599px){
+      @media screen and (max-width: 599px) {
         width: 4.13px;
         height: 4.13px;
       }
@@ -415,7 +429,7 @@ $line-height55: 55px;
       @media screen and (min-width: 600px) and (max-width: 1263px) {
         font-size: 18px;
       }
-      @media screen and (max-width: 599px){
+      @media screen and (max-width: 599px) {
         font-size: 14px;
       }
     }
@@ -448,6 +462,9 @@ $line-height55: 55px;
       width: 135px !important;
       font-size: 18px !important;
     }
+  }
+  .custom-active-class{
+    height: 79px !important;
   }
 }
 </style>
