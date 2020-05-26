@@ -3,7 +3,7 @@
     <!-- main container starts here -->
     <v-container class="main-container">
       <v-row align="center" justify="center">
-        <v-col xl="10" lg="11" md="12">
+        <v-col xl="11" lg="11" md="12">
           <v-app-bar color="transparent" flat tile height="100">
             <div class="div-back-btn">
               <v-btn fab color="#0046FE" depressed dark class="btn-back">
@@ -22,9 +22,9 @@
                 </v-card>
               </v-col>
               <v-col md="4" v-for="plan in plans" :key="plan.id">
-                <v-card class="price-card1 mt-10 pa-5">
+                <v-card class="price-card mt-10 pa-5">
                   <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
-                  <v-card-subtitle align="center">
+                  <v-card-subtitle align="center" :class="plan.title == 'Free' ? '': 'subtitle-pro' ">
                     <span class="usd">
                       <sup>$</sup>
                       <span class="amount">{{plan.price}}</span>
@@ -34,7 +34,8 @@
                   </v-card-subtitle>
 
                   <v-card-subtitle align="center">
-                    <v-btn outlined class="btn-free-sub">{{plan.btn_title}}</v-btn>
+                    <v-btn v-show="plan.title == 'Free'" outlined class="btn-free-sub">{{plan.btn_title}}</v-btn>
+                    <v-btn color="#0046FE" v-show="plan.title != 'Free'" class="btn-pro">{{plan.btn_title}}</v-btn>
                   </v-card-subtitle>
                   <v-card-text>
                     <ul class="features">
@@ -43,8 +44,6 @@
                   </v-card-text>
                 </v-card>
               </v-col>
-              <v-col md="4">1</v-col>
-              <v-col md="4">1</v-col>
             </v-row>
           </v-container>
         </v-col>
@@ -151,74 +150,96 @@ $line-height55: 55px;
     color: #0046fe !important;
   }
 
-  .price-card1 {
+  .price-card {
     box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.08) !important;
     border-radius: 15px !important;
+    width: 482px !important;
     height: 600px !important;
-  }
-  .price-title {
-    font-family: "Montserrat" !important;
-    font-size: 36px;
-    font-weight: bold;
-    line-height: $line-height55;
-    color: #0a1e56 !important;
-  }
 
-  .usd {
-    font-family: "Montserrat" !important;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: $line-height55;
-    color: #0a1e56 !important;
-    sup {
-      top: -1.5em !important;
+    .price-title {
+      font-family: "Montserrat" !important;
+      font-size: 36px;
+      font-weight: bold;
+      line-height: $line-height55;
+      color: #0a1e56 !important;
     }
-  }
-  .amount {
-    font-family: "Montserrat" !important;
-    font-weight: bold;
-    font-size: 36px;
-    line-height: $line-height55;
-    color: #0a1e56 !important;
-  }
+    .subtitle-pro{
+      span{
+        color:#0046fe !important;
+      }
+    }
 
-  .btn-free-sub {
-    width: 270px !important;
-    height: 59.65px !important;
-    border: 2px solid #0046fe;
-    box-sizing: border-box;
-    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
-    border-radius: 10px;
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 12px;
-    line-height: 0px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #0046fe;
-  }
+    .usd {
+      font-family: "Montserrat" !important;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: $line-height55;
+      color: #0a1e56 !important;
+      sup {
+        top: -1.5em !important;
+      }
+    }
+    .amount {
+      font-family: "Montserrat" !important;
+      font-weight: bold;
+      font-size: 36px;
+      line-height: $line-height55;
+      color: #0a1e56 !important;
+    }
 
-  ul {
-    list-style: none !important;
-    margin-left: 4vw;
-    margin-top: 10px;
-  }
-  ul li::before {
-    content: "\2022";
-    color: #0046fe;
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    margin-left: -1em;
-    margin-right: 5px;
-  }
-  .features {
-    font-family: "Open Sans" !important;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 36px;
-    color: #0a1e56 !important;
+    .btn-free-sub {
+      width: 270px !important;
+      height: 59.65px !important;
+      border: 2px solid #0046fe;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2) !important;
+      border-radius: 10px;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 0px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #0046fe;
+    }
+    .btn-pro{
+      width: 270px !important;
+      height: 59.65px !important;
+      box-sizing: border-box;
+      box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2) !important;
+      border-radius: 10px;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 0px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #ffffff !important;
+    }
+
+    ul {
+      list-style: none !important;
+      margin-left: 4vw;
+      margin-top: 10px;
+    }
+    ul li::before {
+      content: "\2022";
+      color: #0046fe;
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-left: -1em;
+      margin-right: 5px;
+    }
+    .features {
+      font-family: "Open Sans" !important;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 36px;
+      color: #0a1e56 !important;
+    }
   }
 }
 </style>
