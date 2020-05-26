@@ -21,10 +21,16 @@
                   <v-card-subtitle class="choose-plan-text">Choose Your Plan</v-card-subtitle>
                 </v-card>
               </v-col>
-              <v-col md="4" v-for="plan in plans" :key="plan.id">
-                <v-card class="price-card mt-10 pa-5">
+              <v-col md="4" sm="12" cols="12" v-for="plan in plans" :key="plan.id">
+                <v-card
+                  class="price-card mt-10 pa-5"
+                  :style="plan.title == 'Standard'?'box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.15) !important;':'box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.08);'"
+                >
                   <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
-                  <v-card-subtitle align="center" :class="plan.title == 'Free' ? 'mt-n5': 'subtitle-pro mt-n5' ">
+                  <v-card-subtitle
+                    align="center"
+                    :class="plan.title == 'Free' ? 'mt-n10': 'subtitle-pro mt-n10' "
+                  >
                     <span class="usd">
                       <sup>$</sup>
                       <span class="amount">{{plan.price}}</span>
@@ -34,8 +40,16 @@
                   </v-card-subtitle>
 
                   <v-card-subtitle align="center">
-                    <v-btn v-show="plan.title == 'Free'" outlined class="btn-free-sub">{{plan.btn_title}}</v-btn>
-                    <v-btn color="#0046FE" v-show="plan.title != 'Free'" class="btn-pro">{{plan.btn_title}}</v-btn>
+                    <v-btn
+                      v-show="plan.title == 'Free'"
+                      outlined
+                      class="btn-free-sub"
+                    >{{plan.btn_title}}</v-btn>
+                    <v-btn
+                      color="#0046FE"
+                      v-show="plan.title != 'Free'"
+                      class="btn-pro"
+                    >{{plan.btn_title}}</v-btn>
                   </v-card-subtitle>
                   <v-card-text>
                     <ul class="features mt-10">
@@ -151,10 +165,12 @@ $line-height55: 55px;
   }
 
   .price-card {
-    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.08) !important;
     border-radius: 15px !important;
     width: 482px !important;
     height: 600px !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      height: 540px !important;
+    }
 
     .price-title {
       font-family: "Montserrat" !important;
@@ -162,10 +178,13 @@ $line-height55: 55px;
       font-weight: bold;
       line-height: $line-height55;
       color: #0a1e56 !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 30px;
+      }
     }
-    .subtitle-pro{
-      span{
-        color:#0046fe !important;
+    .subtitle-pro {
+      span {
+        color: #0046fe !important;
       }
     }
 
@@ -178,6 +197,9 @@ $line-height55: 55px;
       sup {
         top: -1.5em !important;
       }
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 14px;
+      }
     }
     .amount {
       font-family: "Montserrat" !important;
@@ -185,6 +207,9 @@ $line-height55: 55px;
       font-size: 36px;
       line-height: $line-height55;
       color: #0a1e56 !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 30px;
+      }
     }
 
     .btn-free-sub {
@@ -202,8 +227,12 @@ $line-height55: 55px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #0046fe;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 250px !important;
+        font-size: 10px;
+      }
     }
-    .btn-pro{
+    .btn-pro {
       width: 270px !important;
       height: 59.65px !important;
       box-sizing: border-box;
@@ -217,12 +246,19 @@ $line-height55: 55px;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: #ffffff !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 250px !important;
+        font-size: 10px;
+      }
     }
 
     ul {
       list-style: none !important;
       margin-left: 4.5vw;
       margin-top: 10px;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        margin-left: 1.5vw;
+      }
     }
     ul li::before {
       content: "\2022";
@@ -239,6 +275,10 @@ $line-height55: 55px;
       font-size: 18px;
       line-height: 36px;
       color: #0a1e56 !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 16px;
+        line-height: 30px;
+      }
     }
   }
 }
