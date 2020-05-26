@@ -49,9 +49,12 @@
                         height="60"
                       >
                         <template slot="append">
-                          <a class="inner-link" href="javascript:void(0)" @click="scrollTo('createAccount')" v-show="is_username_valid">
-                            Sign up
-                          </a>
+                          <a
+                            class="inner-link"
+                            href="javascript:void(0)"
+                            @click="scrollTo('createAccount')"
+                            v-show="is_username_valid"
+                          >Sign up</a>
                         </template>
 
                         <template slot="append">
@@ -66,10 +69,8 @@
                             v-show="!is_username_valid && is_username_valid !== null"
                           >mdi-close-circle</v-icon>
                         </template>
-                        <template slot="prepend-inner" >
-                          <span class="inner-text">
-                            civ.ie/
-                          </span>
+                        <template slot="prepend-inner">
+                          <span class="inner-text">civ.ie/</span>
                         </template>
                       </v-text-field>
                     </v-card-subtitle>
@@ -99,7 +100,6 @@
       <!-- new 2nd layer -->
       <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
       <register-form :username="validUserName"></register-form>
-
 
       <!-- new 2nd layer -->
 
@@ -212,9 +212,7 @@
                     <v-card-subtitle class="explore-number">+35</v-card-subtitle>
                     <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
                     <v-card-subtitle class="explore-link mt-n10 NoDecor">
-                      <a href="/register">
-                        EXPLORE ALL THEMES >
-                      </a>
+                      <a href="/register">EXPLORE ALL THEMES ></a>
                     </v-card-subtitle>
                   </v-card>
                 </v-col>
@@ -324,7 +322,6 @@
     </v-footer>
     <!-- footer -->
   </v-app>
-
 </template>
 
 <script>
@@ -333,7 +330,7 @@ import RegisterForm from "../auth/partials/RegisterForm";
 export default {
   components: {
     Slick,
-    'register-form' : RegisterForm
+    "register-form": RegisterForm
   },
   data() {
     return {
@@ -453,7 +450,7 @@ export default {
           }
         ]
       },
-      validUserName: '',
+      validUserName: "",
       is_username_valid: null
     };
   },
@@ -464,16 +461,17 @@ export default {
     };
   },
   methods: {
-    validateUsername(){
-      axios.post('/validate-username',{username : this.username})
-              .then( (response) => {
-                this.validUserName = this.username ;
-                this.is_username_valid = true ;
-              })
-              .catch( (response) => {
-                this.validUserName = '' ;
-                this.is_username_valid = false ;
-              })
+    validateUsername() {
+      axios
+        .post("/validate-username", { username: this.username })
+        .then(response => {
+          this.validUserName = this.username;
+          this.is_username_valid = true;
+        })
+        .catch(response => {
+          this.validUserName = "";
+          this.is_username_valid = false;
+        });
     },
     getSocialIcon(title) {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
@@ -487,36 +485,39 @@ export default {
     getContactIcons(title) {
       return `/images/welcome_landing_page/icons/${title}.png`;
     },
-    scrollTo(id){
-      $('html, body').animate({
-        scrollTop: $("#" + id).offset().top
-      }, 1500);
+    scrollTo(id) {
+      $("html, body").animate(
+        {
+          scrollTop: $("#" + id).offset().top
+        },
+        1500
+      );
     }
   }
 };
 </script>
 
 <style lang="scss">
-  // Here I am using ID SCOPING #welcomeView ID wrapping all styles
+// Here I am using ID SCOPING #welcomeView ID wrapping all styles
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
 
-#welcomeView, #registerForm, #loginForm{
-
-  .inner-text{
+#welcomeView,
+#registerForm,
+#loginForm {
+  .inner-text {
     padding-top: 6px;
     color: #aeaeae;
   }
 
-  .inner-link{
+  .inner-link {
     padding-top: 4px;
     padding-right: 10px;
-    &:hover{
+    &:hover {
       text-decoration: none;
     }
   }
-
 
   .card-login {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
@@ -744,7 +745,7 @@ export default {
     font-weight: bold;
     line-height: 10px;
     box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
-    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
+      4px 4px 50px rgba(233, 30, 99, 0.2) !important;
     border-radius: 10px !important;
     width: 11.065rem;
     height: 3.55rem !important;
@@ -1323,36 +1324,30 @@ export default {
     box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1) !important;
   }
 
-
   .error-custom-margin {
     margin-top: -15px;
     margin-bottom: 10px;
   }
 
-
-
-
-   .v-text-field input {
+  .v-text-field input {
     color: #aeaeae !important;
   }
 
-
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
     border: 2px solid #ffffff !important;
   }
 
-
   .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
     border: 2px solid #ebebeb !important;
   }
 
-   .slick-dots li button {
+  .slick-dots li button {
     width: 110px !important;
     height: 6px;
     border-radius: 0px;
@@ -1360,54 +1355,56 @@ export default {
     background-color: #e5e5e5 !important;
   }
 
-   .slick-dots li.slick-active button {
+  .slick-dots li.slick-active button {
     background-color: #0f4cee !important;
     outline: none;
     transition: width 5s ease-out 0s;
   }
-   .slick-dots li button:focus {
+  .slick-dots li button:focus {
     outline: none !important;
   }
 
   @media screen and (max-width: 959px) {
-     .slick-initialized .slick-slide {
+    .slick-initialized .slick-slide {
       margin-left: -80px;
     }
   }
 
   @media screen and (max-width: 700px) {
-     .slick-initialized .slick-slide {
+    .slick-initialized .slick-slide {
       margin-left: -75px;
+    }
+    .slick-dots li button {
+      width: 80px !important;
+      height: 6px;
     }
   }
 
   @media screen and (max-width: 599px) {
-     .slick-dots li button {
+    .slick-dots li button {
       width: 40px !important;
       height: 6px;
     }
 
     .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-    > .v-input__control
-    > .v-input__slot {
+      > .v-input__control
+      > .v-input__slot {
       min-height: 48px !important;
       border-radius: 7px !important;
     }
-     .slick-initialized .slick-slide {
+    .slick-initialized .slick-slide {
       margin-left: -70px;
     }
     @media screen and (max-width: 410px) {
-       .slick-initialized .slick-slide {
+      .slick-initialized .slick-slide {
         margin-left: -69px;
       }
     }
   }
   @media screen and (max-width: 400px) {
-     .slick-initialized .slick-slide {
+    .slick-initialized .slick-slide {
       margin-left: -40px;
     }
   }
-
 }
-
 </style>
