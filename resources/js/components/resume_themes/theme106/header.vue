@@ -25,10 +25,12 @@
             <div class="right">
                 <div class="actions-wrapper" :class="{hide: !showMore}">
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme106/chat-icon.png"> Start a chat
+                        <img class="icon hideIconOnMobile" src="/images/resume_themes/theme106/chat-icon.png">
+                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/chat-icon-mob.png"> Start a chat
                     </button>
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme106/suitcase-icon.png">Upload interviews
+                        <img class="icon hideIconOnMobile" src="/images/resume_themes/theme106/suitcase-icon.png">
+                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/suitcase-icon-mob.png"> Upload interviews
                     </button>
                 </div>
 
@@ -142,6 +144,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     .icon {
                         margin-right: 10px;
+
+                        &.showIconOnMobile {
+                            display: none;
+                        }
                     }
 
                     @media (max-width: 1400px) {
@@ -179,10 +185,12 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         width: 100%;
                         font-size: 18px;
                         border-radius: 0;
+                        border: none;
                         background: transparent;
                         margin: 0 !important;
                         justify-content: flex-start;
                         padding: 0;
+                        color: black;
 
                         &:first-child {
                             margin-bottom: 35px !important;
@@ -190,6 +198,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                         .icon {
                             height: 16px;
+
+                            &.showIconOnMobile {
+                                display: block;
+                            }
+
+                            &.hideIconOnMobile {
+                                display: none;
+                            }
                         }
                     }
 

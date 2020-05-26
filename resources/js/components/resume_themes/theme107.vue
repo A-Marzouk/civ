@@ -310,12 +310,12 @@ $purple: #335E5E;
         }
 
         @media (max-width: 1200px) {
-            right: -50px;
-            top: 238px;
+            right: -100px;
+            top: 272px;
             transform: rotateZ(90deg);
             
             &, a {
-                font-size: 7px;
+                font-size: 14px;
             }
 
             a {
@@ -358,6 +358,22 @@ $purple: #335E5E;
             font-size: 20px;
             font-weight: 700;
 
+            .decorator {
+                width: 80px;
+                height: 3px;
+                left: -16.5px;
+                position: relative;
+                background: rgba(236, 237, 244, 0.15);
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    right: 0;
+                    height: 3px;
+                    width: 17px;
+                    background: white;
+                }
+            }
         }
 
         .icon {
