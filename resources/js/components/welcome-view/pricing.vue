@@ -24,7 +24,7 @@
               <v-col md="4" v-for="plan in plans" :key="plan.id">
                 <v-card class="price-card mt-10 pa-5">
                   <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
-                  <v-card-subtitle align="center" :class="plan.title == 'Free' ? '': 'subtitle-pro' ">
+                  <v-card-subtitle align="center" :class="plan.title == 'Free' ? 'mt-n5': 'subtitle-pro mt-n5' ">
                     <span class="usd">
                       <sup>$</sup>
                       <span class="amount">{{plan.price}}</span>
@@ -38,7 +38,7 @@
                     <v-btn color="#0046FE" v-show="plan.title != 'Free'" class="btn-pro">{{plan.btn_title}}</v-btn>
                   </v-card-subtitle>
                   <v-card-text>
-                    <ul class="features">
+                    <ul class="features mt-10">
                       <li v-for="(feature,index) in plan.features" :key="index">{{feature}}</li>
                     </ul>
                   </v-card-text>
@@ -221,7 +221,7 @@ $line-height55: 55px;
 
     ul {
       list-style: none !important;
-      margin-left: 4vw;
+      margin-left: 4.5vw;
       margin-top: 10px;
     }
     ul li::before {
