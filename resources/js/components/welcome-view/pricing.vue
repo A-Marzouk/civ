@@ -135,7 +135,7 @@ export default {
   data() {
     return {
       price_tab: 1,
-      currentTab: 1,
+      currentTab: 2,
       plans: [
         {
           id: 1,
