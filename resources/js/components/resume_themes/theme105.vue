@@ -1,60 +1,7 @@
 <template>
 <!-- Developer: Jose Quintero -->
     <v-app id="theme105" style="width: 100%">
-        <div class="theme-header">
-
-            <div class="bg-header">
-                <img class='left-bg' src="/images/resume_themes/theme105/bg-left.png" alt="">
-                <img src="/images/resume_themes/theme105/bg-top1.png" alt="" class="bg-top1">
-                <img src="/images/resume_themes/theme105/bg-top2.png" alt="" class="bg-top2">
-                <img src="/images/resume_themes/theme105/bg-right.png" alt="" class="bg-right">
-            </div>
-
-            <div class="user-info">
-                <div class="left">
-                    <div class="user-img">
-                        <img src="/images/resume_builder/default-user.jpg" alt="">
-                    </div>
-
-                    <div class="user-data">
-                        <div class="name">José Daniel Quintero</div>
-                        <div class="profession">Fullstack Developer</div>
-                        <ul class="speciallity">
-                            <li class="item">Node js</li>
-                            <li class="item">React js</li>
-                            <li class="item">Laravel</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="right">
-                    <div class="actions-wrapper">
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme105/chat-icon.png"> Start a chat
-                        </button>
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme105/suitcase-icon.png">Upload interviews
-                        </button>
-                    </div>
-
-                    <div class="payment-data">
-                        <div class="hourly-rate">
-                            $15
-                            <small>Hourly rate</small>
-                        </div>
-                        <div class="hourly-availability">
-                            40Hrs
-                            <small>Weekly Availability</small>
-                        </div>
-
-                        <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme105/hireMe-icon.png" alt="hire me icon" class="icon">
-                            Hire Me
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ThemeHeader></ThemeHeader>
 
         <div class="theme-body">
             <div class="wrapper">
@@ -114,6 +61,7 @@ import WorkExperienceTab from './theme105/work-experience'
 import PortfolioTab from './theme105/portfolio'
 import AboutTab from './theme105/about'
 import SkillsTab from './theme105/skills-and-languages'
+import ThemeHeader from './theme105/header'
 
 export default {
     components: {
@@ -121,7 +69,8 @@ export default {
         EducationTab,
         PortfolioTab,
         WorkExperienceTab,
-        SkillsTab
+        SkillsTab,
+        ThemeHeader
     },
     data: () => ({
         tab: 0,
@@ -160,191 +109,6 @@ $purple: #355E5E;
     background: #ECEDF4;
     position: relative;
 
-    .theme-header {
-        width: 100%;
-        background-image: url("/images/resume_themes/theme105/bg-header.png");
-        position: relative;
-
-        .bg-header {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            overflow: hidden;
-
-            .left-bg {
-                position: absolute;
-                left: -88px;
-            }
-
-            .bg-top1 {
-                position: absolute;
-                top: -44px;
-                right: 40%;
-            }
-            
-            .bg-top2 {
-                position: absolute;
-                top: -21.7px;
-                right: 39%;
-            }
-
-            .bg-right {
-                position: absolute;
-                top: -63.5px;
-                right: -29.7px;
-            }
-
-            .bg-bottom {
-                position: absolute;
-                bottom: -13px;
-                right: 46%;
-            }
-        }
-
-        .left {
-            display: flex;
-
-        }
-
-        .right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-
-            .actions-wrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .action-btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 22px 36px;
-                    font-size: 18px;
-                    font-weight: 400;
-                    background: #fff;
-                    outline: none;
-                    border-radius: 9px;
-
-                    &:first-child {
-                        margin-right: 26px;
-                    }
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-
-            .payment-data {
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-                margin-top: 46px;
-
-                .hourly-rate,
-                .hourly-availability {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    font-size: 26px;
-                    font-weight: 700;
-                    margin-right: 35px;
-
-                    small {
-                        font-size: 15px;
-                        font-weight: 400px;
-                    }
-                }
-
-                .hire-me-btn {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background: $purple;
-                    padding: 23px 62px;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: white;
-                    border-radius: 9px;
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-        }
-
-        .user-info {
-            display: flex;
-            justify-content: space-between;
-            padding: 56px 80px;
-            z-index: 1;
-            position: relative;
-
-            .user-img {
-                display: inline-block;
-                width: 232px;
-                height: 232px;
-                margin-right: 55px;
-
-                img {
-                    width: 100%;
-                    border-radius: 50%;
-                }
-            }
-
-            .user-data {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                font-size: 26px;
-                font-weight: 400;
-
-                .name {
-                    font-weight: 700;
-                    font-size: 30px;
-                    margin-bottom: 20px;
-                }
-
-                .profession {
-                    margin-bottom: 30px;
-                }
-
-                .speciallity {
-                    display: flex;
-                    padding: 0;
-                    
-                    .item {
-                        margin-right: 40px;
-                        position: relative;
-
-                        &:last-child {
-                            margin-right: 0;
-
-                            &::after {
-                                display: none;
-                            }
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            width: 7px;
-                            height: 7px;
-                            background: #28404A;
-                            border-radius: 50%;
-                            right: -20px;
-                            top: calc(50% - 3.5px);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     .theme-body {
         height: auto;
         background: white;
@@ -364,6 +128,10 @@ $purple: #355E5E;
                 color: $tabTextColor;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -379,6 +147,26 @@ $purple: #355E5E;
                     &::before {
                         display: none !important;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 18px;
+                        padding: 12px 28px;
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        font-size: 11px;
+                        padding: 0 22px;
+                    }
+
+                    @media (max-width: 756px) {
+                        font-size: 15px;
+                        padding: 0 17px;
+                        margin-right: 27px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
                 }
 
                 &-slider-wrapper {
@@ -390,10 +178,50 @@ $purple: #355E5E;
                         border-radius: 25px;
                     }
                 }
+
+                @media (max-width: 1200px) {
+                    margin-top: 29px;
+                    margin-bottom: 47px;
+
+                    &-bar {
+                        height: 28px;
+                    }
+
+                    .v-tabs-slider {
+                        border-radius: 14px;
+                    }
+                }
+                
+                @media (max-width: 700px) {
+                    margin: 29px 0;
+
+                    &-bar {
+                        height: 36px;
+                    }
+
+                    .v-tabs-slider {
+                        border-radius: 22px;
+                    }
+
+                    .v-item-group {
+                        padding: 0 30px 0 50px;
+                    }
+                }
             }
 
             .container {
+                padding: 0 40px;
                 padding-bottom: 100px;
+                max-width: 1550px;
+                width: 90%;
+                margin: 0 auto;
+                z-index: 0;
+
+                @media (max-width: 700px) {
+                    padding: 0;
+                    padding-bottom: 30px;
+                    width: 85%;
+                }
             }
         }
     }
@@ -430,6 +258,10 @@ $purple: #355E5E;
                     fill: #28404A;
                 }
             }
+        }
+
+        @media (max-width: 700px) {
+            display: none;
         }
     }
 }
