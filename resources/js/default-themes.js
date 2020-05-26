@@ -93,6 +93,19 @@ if ($("#resumeTheme10").length !== 0) {
 }
 
 // Jose's themes
+import resumeTheme102 from './components/resume_themes/theme102';
+if ($("#resumeTheme102").length !== 0) {
+    new Vue({
+        el: '#resumeTheme102',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components: {
+            'resume-theme-102': resumeTheme102,
+        }
+    });
+}
+
 import resumeTheme103 from './components/resume_themes/theme103';
 if ($("#resumeTheme103").length !== 0) {
     new Vue({
@@ -141,6 +154,19 @@ if ($("#resumeTheme106").length !== 0) {
         iconfont: 'fa4',
         components: {
             'resume-theme-106': resumeTheme106,
+        }
+    });
+}
+
+import resumeTheme107 from './components/resume_themes/theme107';
+if ($("#resumeTheme107").length !== 0) {
+    new Vue({
+        el: '#resumeTheme107',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components: {
+            'resume-theme-107': resumeTheme107,
         }
     });
 }
@@ -574,6 +600,26 @@ if ($("#resumeTheme1000").length !== 0) {
     });
 }
 
+import resumeTheme1001 from "./components/resume_themes/theme1001";
+if ($("#resumeTheme1001").length !== 0) {
+    new Vue({
+        el: "#resumeTheme1001",
+        components: {
+            "resume-theme-1001": resumeTheme1001
+        }
+    });
+}
+
+import resumeTheme1002 from "./components/resume_themes/theme1002";
+if ($("#resumeTheme1002").length !== 0) {
+    new Vue({
+        el: "#resumeTheme1002",
+        components: {
+            "resume-theme-1002": resumeTheme1002
+        }
+    });
+}
+
 import resumeTheme508 from './components/resume_themes/theme508/index';
 if ($("#resumeTheme508").length !== 0) {
     new Vue({
@@ -627,6 +673,7 @@ if ($("#resumeTheme1100").length !== 0) {
         }
     });
 }
+
 import resumeTheme1101 from './components/resume_themes/theme1101';
 if ($("#resumeTheme1101").length !== 0) {
 
@@ -637,7 +684,6 @@ if ($("#resumeTheme1101").length !== 0) {
         iconfont: 'mdi',
         components: {
             'resume-theme-1101': resumeTheme1101
-
         }
     });
 }

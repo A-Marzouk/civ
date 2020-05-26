@@ -30,11 +30,11 @@ class SocialSitesRegisterController extends Controller
     public function simpleRegister(Request $request)
     {
         $this->validator($request->all())->validate();
-
          $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'username' => $request->username ?? str_random(10)
         ])->assignRole('agent');
 
          $token =  $user->createToken($user->name. '| USER ID:' . $user->id)->accessToken;
@@ -53,6 +53,7 @@ class SocialSitesRegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'username' => 'min:3|max:191|unique:users|regex:/^[A-Za-z][A-Za-z0-9-_]*$/',
         ]);
     }
 
@@ -115,7 +116,7 @@ class SocialSitesRegisterController extends Controller
     public function handleGitHubProviderCallback()
     {
         try {
-            $user = Socialite::driver('github')->user();
+            $user = Socialite::driver('github')->stateless()->user();
         } catch (Exception $e) {
             return Redirect::to('/register/github');
         }
@@ -135,9 +136,9 @@ class SocialSitesRegisterController extends Controller
     public function handleGoogleProviderCallback()
     {
         try {
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
         } catch (Exception $e) {
-            return Redirect::to('/register/google');
+            abort(404, 'Not found!');
         }
 
         $authUser = $this->findOrCreateUser($user,'google');
@@ -157,7 +158,7 @@ class SocialSitesRegisterController extends Controller
     public function handleLinkedinProviderCallback()
     {
         try {
-            $user = Socialite::driver('linkedin')->user();
+            $user = Socialite::driver('linkedin')->stateless()->user();
         } catch (Exception $e) {
             return Redirect::to('/register/linkedin');
         }
@@ -213,5 +214,13 @@ class SocialSitesRegisterController extends Controller
 
 
 
+
+    public function validateUsername(Request $request){
+        $request->validate([
+            'username' => 'min:3|max:191|unique:users|regex:/^[A-Za-z][A-Za-z0-9-_]*$/',
+        ]);
+
+        return 'success';
+    }
 
 }

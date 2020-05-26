@@ -11,7 +11,7 @@
               class="headline title-text"
               style="overflow:visible !important;"
             >{{user.personal_info.full_name}}</v-list-item-title>
-            <v-list-item-subtitle style="color:black;">{{user.personal_info.designation}}</v-list-item-subtitle>
+            <v-list-item-subtitle style="color:rgba(92,92,92,1);">{{user.personal_info.designation}}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-card>
@@ -36,7 +36,7 @@
                         fab
                         dark
                         small
-                        color="black"
+                        color="rgba(92,92,92,1)"
                       >
                         <v-icon>mdi-map-marker</v-icon>
                       </v-btn>
@@ -45,7 +45,7 @@
                         fab
                         dark
                         small
-                        color="black"
+                        color="rgba(92,92,92,1)"
                         style="margin-top:-13px !important;"
                       >
                         <img
@@ -58,7 +58,7 @@
                         fab
                         dark
                         small
-                        color="black"
+                        color="rgba(92,92,92,1)"
                         style="margin-top:-13px !important;"
                       >
                         <img
@@ -78,7 +78,7 @@
                       class="ml-n1 mr-md-4 mr-sm-3 custom-btn hidden-sm-and-down"
                       fab
                       dark
-                      color="black"
+                      color="rgba(92,92,92,1)"
                     >
                       <v-icon>mdi-email</v-icon>
                     </v-btn>
@@ -88,7 +88,7 @@
                       class="mr-md-4 mr-sm-3 custom-btn hidden-md-and-up"
                       fab
                       dark
-                      color="black"
+                      color="rgba(92,92,92,1)"
                     >
                       <v-icon>mdi-email</v-icon>
                     </v-btn>
@@ -104,7 +104,7 @@
                     <v-btn
                       depressed
                       class="text-capitalize btn-hire-me hidden-xs-only"
-                      color="#1D1D1D"
+                      color="rgba(92,92,92,1)"
                       dark
                       @click="hireMeModal=true"
                     >Hire Me</v-btn>
@@ -127,7 +127,7 @@
               fab
               dark
               small
-              color="black"
+              color="rgba(92,92,92,1)"
               :href="item.link"
               v-for="item in socialLinks"
               :key="item.id + '_link'"
@@ -149,22 +149,22 @@
       <v-card flat>
         <v-card-text>
           <div class="tablet-align">
-            <v-btn class="mx-2" fab dark color="black">
+            <v-btn class="mx-2" fab dark color="rgba(92,92,92,1)">
               <v-icon>mdi-map-marker</v-icon>
             </v-btn>
-            <v-btn class="mx-2" fab dark color="black">
+            <v-btn class="mx-2" fab dark color="rgba(92,92,92,1)">
               <img width="20" src="/images/resume_themes/theme201/social_icons/google-plus.webp" />
             </v-btn>
 
-            <v-btn class="mx-2" fab dark color="black">
+            <v-btn class="mx-2" fab dark color="rgba(92,92,92,1)">
               <img width="20" src="/images/resume_themes/theme201/social_icons/linkedin.webp" />
             </v-btn>
 
-            <v-btn class="mx-2" fab dark color="black">
+            <v-btn class="mx-2" fab dark color="rgba(92,92,92,1)">
               <img width="20" src="/images/resume_themes/theme201/social_icons/whatsapp.webp" />
             </v-btn>
 
-            <v-btn class="mx-2" fab dark color="black">
+            <v-btn class="mx-2" fab dark color="rgba(92,92,92,1)">
               <img width="22" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
             </v-btn>
           </div>
@@ -178,27 +178,27 @@
       <v-card flat>
         <v-card-text>
           <div class="mobile-align">
-            <v-btn class="mx-1" fab small dark color="black">
+            <v-btn class="mx-1" fab small dark color="rgba(92,92,92,1)">
               <v-icon>mdi-map-marker</v-icon>
             </v-btn>
 
-            <v-btn class="mx-1" fab dark small color="black">
+            <v-btn class="mx-1" fab dark small color="rgba(92,92,92,1)">
               <img width="14" src="/images/resume_themes/theme201/social_icons/google-plus.webp" />
             </v-btn>
 
-            <v-btn class="mx-1" fab dark small color="black">
+            <v-btn class="mx-1" fab dark small color="rgba(92,92,92,1)">
               <img width="14" src="/images/resume_themes/theme201/social_icons/linkedin.webp" />
             </v-btn>
 
-            <v-btn class="mx-1" fab dark small color="black">
+            <v-btn class="mx-1" fab dark small color="rgba(92,92,92,1)">
               <img width="14" src="/images/resume_themes/theme201/social_icons/behance.webp" />
             </v-btn>
 
-            <v-btn class="mx-1" fab dark small color="black">
+            <v-btn class="mx-1" fab dark small color="rgba(92,92,92,1)">
               <img width="14" src="/images/resume_themes/theme201/social_icons/whatsapp.webp" />
             </v-btn>
 
-            <v-btn class="mx-1" fab small dark color="black">
+            <v-btn class="mx-1" fab small dark color="rgba(92,92,92,1)">
               <img width="14" src="/images/resume_themes/theme201/social_icons/dribbble.webp" />
             </v-btn>
           </div>
@@ -211,7 +211,7 @@
     <v-col sm="12" cols="12" class="tablet-mobile-social-icon hidden-sm-and-up">
       <v-card flat>
         <v-card-text>
-          <v-btn class="mx-2 custom-btn" fab dark color="black">
+          <v-btn class="mx-2 custom-btn" fab dark color="rgba(92,92,92,1)">
             <v-icon>mdi-email</v-icon>
           </v-btn>
 
@@ -223,7 +223,7 @@
           <v-btn
             depressed
             class="text-capitalize btn-hire-me hidden-sm-and-up mt-3"
-            color="#1D1D1D"
+            color="rgba(92,92,92,1)"
             dark
             @click="hireMeModal=true"
           >Hire Me</v-btn>
@@ -258,7 +258,7 @@
                     class="hidden-sm-and-down"
                     vertical
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     center-active
                     v-model="tabRate"
                   >
@@ -270,7 +270,7 @@
                   <v-tabs
                     class="hidden-md-and-up"
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     centered
                     v-model="tabRate"
                   >
@@ -296,7 +296,7 @@
                     class="hidden-sm-and-down"
                     vertical
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     center-active
                     v-model="tabFrequency"
                   >
@@ -308,7 +308,7 @@
                   <v-tabs
                     class="hidden-md-and-up"
                     hide-slider
-                    color="#1D1D1D"
+                    color="rgba(92,92,92,1)"
                     centered
                     v-model="tabFrequency"
                   >
@@ -330,13 +330,13 @@
                 </v-col>
                 <!-- 3rd column -->
                 <v-col cols="12" sm="12" md="2">
-                  <v-btn depressed class="text-capitalize btn-hire-me" color="#1D1D1D" dark>Hire Me</v-btn>
+                  <v-btn depressed class="text-capitalize btn-hire-me" color="rgba(92,92,92,1)" dark>Hire Me</v-btn>
                 </v-col>
                 <!-- 3rd column -->
                 <!-- 4th column -->
                 <v-col align="right" class="hidden-sm-and-down" sm="2" md="1">
                   <v-btn fab class icon @click="hireMeModal=false">
-                    <img width="30" src="/images/resume_themes/theme201/close.png" />
+                    <img width="30" src="/images/resume_themes/theme201/close.svg" />
                   </v-btn>
                 </v-col>
                 <!-- 4th column-->
@@ -394,7 +394,7 @@ export default {
 <style scoped lang="scss">
 .custom-modal-title {
   font-size: 1rem;
-  color: #000000 !important;
+  color: rgba(92,92,92,1) !important;
   line-height: 30px;
 }
 .custom-modal-subtitle {

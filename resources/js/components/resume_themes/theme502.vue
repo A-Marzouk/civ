@@ -148,7 +148,7 @@
       no-gutters
     >
       <v-col lg="8" sm="12" cols="12" xl="8" class="tablet mr-xl-12 mr-sm-0 mt-sm-12">
-        <v-tabs background-color="transparent" hide-arrows grow>
+        <v-tabs background-color="transparent" hide-arrows grow class="helo">
           <v-tab class="text-center" @click="tab = 'Portfolio'">
             <div class="tabtitle textcol font-weight-bold text-capitalize">Portfolio</div>
           </v-tab>
@@ -167,7 +167,16 @@
 
     <v-row no-gutters>
       <v-slide-x-reverse-transition>
-        <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tab=='Portfolio'" key="one">
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="tab=='Portfolio'"
+          key="one"
+          style="height:100vh;"
+        >
           <v-row justify="center" align="center" class="padleft mt-lg-12 mt-2 mt-sm-6" no-gutters>
             <v-col
               xl="3"
@@ -189,7 +198,16 @@
         </v-col>
       </v-slide-x-reverse-transition>
       <v-slide-x-reverse-transition>
-        <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tab=='Work'" key="two">
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="tab=='Work'"
+          key="two"
+          style="height:100vh;"
+        >
           <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
             <v-col md="6" sm="12" cols="12" lg="6" v-for="n in 4" :key="n" class="mt-4 padleft">
               <v-row class="mt-4" no-gutters>
@@ -216,7 +234,16 @@
         </v-col>
       </v-slide-x-reverse-transition>
       <v-slide-x-reverse-transition>
-        <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tab=='Education'" key="three">
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="tab=='Education'"
+          key="three"
+          style="height:100vh;"
+        >
           <v-row justify="start" no-gutters class="px-4 px-lg-0 px-sm-6 mt-6">
             <v-col md="6" sm="12" cols="12" lg="6" v-for="n in 4" :key="n" class="mt-4 padleft">
               <v-row justify="start" class no-gutters>
@@ -242,9 +269,18 @@
         </v-col>
       </v-slide-x-reverse-transition>
       <v-slide-x-reverse-transition>
-        <v-col md="12" cols="12" xl="12" lg="12" sm="12" v-if="tab=='Skills'" key="four">
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="tab=='Skills'"
+          key="four"
+          style="height:100vh;"
+        >
           <v-row no-gutters justify="start" class="padleft">
-            <v-col md="12" lg="12">
+            <v-col md="12" lg="12" class="mt-md-8 mt-sm-4">
               <v-tabs
                 v-model="tabskill"
                 background-color="transparent"

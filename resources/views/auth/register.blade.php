@@ -1,7 +1,9 @@
-@extends('layouts.my-app')
+@extends('layouts.theme-vuetify')
 
 @section('content')
-    <div class="form-wrap justify-content-center" id="registerForm">
-        <register-form></register-form>
+    <div>
+        <div id="registerForm">
+            <register-form></register-form>
+        </div>
     </div>
 @endsection
