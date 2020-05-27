@@ -59,10 +59,14 @@
                       class="btn-pro"
                     >{{plan.btn_title}}</v-btn>
                   </v-card-subtitle>
-                  <v-card-text>
-                    <ul class="features mt-10">
-                      <li v-for="(feature,index) in plan.features" :key="index">{{feature}}</li>
-                    </ul>
+                  <v-card-text class="mt-lg-n5">
+                    <v-row align="center" justify="center">
+                      <v-col xl="8" lg="10" offset-xl="1">
+                        <ul class="features mt-10">
+                          <li v-for="(feature,index) in plan.features" :key="index">{{feature}}</li>
+                        </ul>
+                      </v-col>
+                    </v-row>
                   </v-card-text>
                 </v-card>
               </v-col>
@@ -219,6 +223,14 @@ $line-height55: 55px;
       height: 54px !important;
       border: 5px solid #f8f8f8 !important;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+      @media screen and (max-width: 599px) {
+        width: 35px !important;
+        height: 35px !important;
+        img {
+          width: 14px !important;
+          height: 11px !important;
+        }
+      }
     }
 
     .link-back {
@@ -269,6 +281,9 @@ $line-height55: 55px;
 
     @media screen and (min-width: 600px) and (max-width: 1263px) {
       height: 608px !important;
+    }
+    @media screen and (max-width: 599px) {
+      width: auto !important;
     }
 
     .price-title {
@@ -386,20 +401,19 @@ $line-height55: 55px;
 
     ul {
       list-style: none !important;
-      margin-left: 4.5vw;
       margin-top: 10px;
-      @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        margin-left: 1.5vw;
-      }
-      @media screen and (min-width: 960px) and (max-width: 1263px) {
-        margin-left: 8vw;
-      }
-      @media screen and (min-width: 600px) and (max-width: 959px) {
-        margin-left: 12vw;
-      }
-      @media screen and (max-width: 599px) {
-        margin-left: 13vw;
-      }
+      // @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      //   margin-left: 1.5vw;
+      // }
+      // @media screen and (min-width: 960px) and (max-width: 1263px) {
+      //   margin-left: 8vw;
+      // }
+      // @media screen and (min-width: 600px) and (max-width: 959px) {
+      //   margin-left: 12vw;
+      // }
+      // @media screen and (max-width: 599px) {
+      //   margin-left: 13vw;
+      // }
     }
     ul li::before {
       content: "\2022";
@@ -421,7 +435,7 @@ $line-height55: 55px;
       line-height: 36px;
       color: #0a1e56 !important;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        font-size: 16px;
+        font-size: 14px;
         line-height: 30px;
       }
       @media screen and (min-width: 600px) and (max-width: 1263px) {
@@ -449,7 +463,7 @@ $line-height55: 55px;
     border-radius: 15px 15px 0px 0px;
     box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.15);
     margin-top: 20px;
-    @media screen and (min-width:600px) and (max-width: 750px){
+    @media screen and (min-width: 600px) and (max-width: 750px) {
       width: 150px;
       font-size: 18px !important;
     }
@@ -458,7 +472,11 @@ $line-height55: 55px;
       width: 110px;
       height: 39px;
       font-size: 12px !important;
-      margin-top:14px;
+      margin-top: 14px;
+    }
+    @media screen and (max-width: 422px) {
+      width: 80px;
+      font-size: 10px !important;
     }
   }
   .custom-active-tab {
@@ -468,7 +486,7 @@ $line-height55: 55px;
     background-color: #0046fe !important;
     color: #ffffff !important;
     border-radius: 15px 15px 0px 0px;
-    @media screen and(min-width: 600px) and (max-width: 750px){
+    @media screen and(min-width: 600px) and (max-width: 750px) {
       width: 150px;
       font-size: 18px !important;
     }
@@ -476,6 +494,10 @@ $line-height55: 55px;
       width: 135px !important;
       height: 48px !important;
       font-size: 18px !important;
+    }
+    @media screen and (max-width: 422px) {
+      width: 100px;
+      font-size: 14px !important;
     }
   }
   // .custom-active-class {
