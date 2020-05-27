@@ -3,37 +3,37 @@
         <div class="skill">
             <img src="/images/resume_themes/theme113/ux-icon.png" alt="">
             <div class="skill-info">
-                <div class="skill-name">User Experience</div> <div class="percentage">85%</div>
+                <div class="skill-name">User Experience <div class="percentage">85%</div></div>
             </div>
         </div>
         <div class="skill">
             <img src="/images/resume_themes/theme113/usability-icon.png" alt="">
             <div class="skill-info">
-                <div class="skill-name">Usability</div> <div class="percentage">80%</div>
+                <div class="skill-name">Usability <div class="percentage">80%</div></div>
             </div>
         </div>
         <div class="skill">
             <img src="/images/resume_themes/theme113/interaction-icon.png" alt="">
             <div class="skill-info">
-                <div class="skill-name">Interaction</div> <div class="percentage">75%</div>
+                <div class="skill-name">Interaction <div class="percentage">75%</div></div>
             </div>
         </div>
         <div class="skill">
             <img src="/images/resume_themes/theme113/graphic-design-icon.png" alt="">
             <div class="skill-info">
-                <div class="skill-name">Graphic Design</div> <div class="percentage">85%</div>
+                <div class="skill-name">Graphic Design <div class="percentage">85%</div></div>
             </div>
         </div>
         <div class="skill">
             <img src="/images/resume_themes/theme113/development-icon.png" alt="">
             <div class="skill-info">
-                <div class="skill-name">Development</div> <div class="percentage">50%</div>
+                <div class="skill-name">Development <div class="percentage">50%</div></div>
             </div>
         </div>
         <div class="skill">
             <img src="/images/resume_themes/theme113/ux-icon.png" alt="">
             <div class="skill-info">
-                <div class="skill-name">Research</div> <div class="percentage">35%</div>
+                <div class="skill-name">Research <div class="percentage">35%</div></div>
             </div>
         </div>
     </div>
@@ -49,11 +49,13 @@ export default {
 
 <style lang="scss" scoped>
     .skills-container {
+        margin: 0 auto;
         margin-top: 34px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 100px;
         max-width: 1400px !important;
+        width: 85%;
 
         .skill {
             display: flex;
@@ -81,6 +83,36 @@ export default {
                     font-weight: 700;
                     color: #E38682;
                 }
+            }
+        }
+
+        @media (max-width: 1200px) {
+            grid-gap: 60px;
+
+            .skill {
+                img {
+                    width: 55px;
+                    margin-bottom: 28px;
+                }
+
+                .skill-info {
+                    .skill-name {
+                        font-size: 19px;   
+                    }
+
+                    .percentage {
+                        font-size: 19px;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 700px) {
+            grid-gap: 30px;
+            width: 100%;
+
+            .skill {
+                grid-column: span 3;
             }
         }
     }
