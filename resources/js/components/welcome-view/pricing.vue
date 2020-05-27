@@ -124,10 +124,17 @@
                             class="btn-pro"
                           >{{plan.btn_title}}</v-btn>
                         </v-card-subtitle>
-                        <v-card-text>
-                          <ul class="features mt-10" align="left">
-                            <li v-for="(feature,index) in plan.features" :key="index">{{feature}}</li>
-                          </ul>
+                        <v-card-text class="mt-n5">
+                          <v-row align="center" justify="center">
+                            <v-col md="9" sm="9" cols="9" offset-md="2" offset-sm="2" offset="1">
+                              <ul class="features mt-10" align="left">
+                                <li
+                                  v-for="(feature,index) in plan.features"
+                                  :key="index"
+                                >{{feature}}</li>
+                              </ul>
+                            </v-col>
+                          </v-row>
                         </v-card-text>
                       </v-card>
                     </v-tab-item>
@@ -280,10 +287,11 @@ $line-height55: 55px;
     }
 
     @media screen and (min-width: 600px) and (max-width: 1263px) {
-      height: 608px !important;
+      height: 574px !important;
     }
     @media screen and (max-width: 599px) {
       width: auto !important;
+      height: 548px !important;
     }
 
     .price-title {
