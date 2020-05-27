@@ -190,11 +190,35 @@ export default {
                         font-family: 'Muli', sans-serif !important;
                         font-weight: 700;
                     }
+                    
                     .description p {
                         font-size: 19px !important;
                         line-height: 1.5;
                         color: #28404A;
                         font-family: 'Muli', sans-serif !important;
+                    }
+
+                    @media (max-width: 1200px) {
+
+                        margin-top: 19px;
+
+                        .title,
+                        .description p {
+                            font-size: 15px !important;
+                            max-width: 55%;
+                        }
+
+                        .title {
+                            line-height: 1.4;
+                        }
+                    }
+
+                    @media (max-width: 700px) {
+                        .title,
+                        .description p {
+                            font-size: 13px !important;
+                            max-width: 70%;
+                        }
                     }
                 }
             }
