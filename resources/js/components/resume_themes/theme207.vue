@@ -1099,22 +1099,9 @@ export default {
   }
 }
 .card-main-profile {
-  // margin-left: -100px;
-  // @media screen and (max-width: 1800px){
-  //   margin-left: -80px;
-  // }
-  // @media screen and (max-width: 1600px){
-  //   margin-left: -70px;
-  // }
-  // @media screen and (max-width: 1440px){
-  //   margin-left: -60px;
-  // }
-  // @media screen and (max-width:1280px){
-  //   margin-left: -40px;
-  // }
-  // @media screen and (min-width: 960px) and (max-width: 1023px){
-  //   margin-left: -30px;
-  // }
+  @media screen and (min-width: 600px) and (max-width: 747px){
+    margin-left: 40px;
+  }
 }
 
 .custom-avatar-mobile {
@@ -1138,6 +1125,9 @@ export default {
   @media screen and(max-width:959px) {
     font-size: 1.8rem;
   }
+  @media screen and (min-width:600px) and (max-width: 747px){
+    font-size: 20px;
+  }
   @media screen and (max-width: 599px) {
     font-size: 20px;
     line-height: 27px;
@@ -1157,6 +1147,9 @@ export default {
   line-height: 1.875rem;
   @media screen and(max-width:959px) {
     font-size: 1rem !important;
+  }
+  @media screen and (min-width: 600px) and (max-width:747px){
+    font-size: 12px !important;
   }
   @media screen and (max-width: 599px) {
     font-size: 12px !important;
@@ -1197,12 +1190,25 @@ export default {
       height: 26px;
     }
   }
+  @media screen and (min-width: 600px) and (max-width: 747px){
+    font-size: 18px;
+    img{
+      width: 20px;
+      height: 20px;
+    }
+  }
 }
 .hour-rate-text {
   font-family: "Poppins" !important;
   font-size: 0.875rem;
   color: #febc2c;
   @media screen and (min-width: 960px) and (max-width: 1209px) {
+    font-size: 0.7rem;
+  }
+  @media screen and (min-width: 600px) and (max-width: 747px){
+    font-size: 0.5rem;
+  }
+  @media screen and (max-width: 599px) {
     font-size: 0.7rem;
   }
 }
@@ -1235,8 +1241,11 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 993px) {
     width: 200px;
   }
-  @media screen and (min-width: 600px) and (max-width: 718px) {
+  @media screen and (min-width: 618px) and (max-width: 718px) {
     width: 188px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 617px){
+    width: 178px;
   }
   @media screen and (max-width: 599px) {
     font-family: "Poppins" !important;
@@ -1259,9 +1268,15 @@ export default {
   //   min-width: 45px !important;
   // }
 
-  @media screen and (min-width: 600px) and (max-width: 718px) {
+  @media screen and (min-width: 618px) and (max-width: 718px) {
     min-width: 50px !important;
     width: 50px !important;
+    height: 50px !important;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 617px){
+    min-width: 47px !important;
+    width: 47px !important;
     height: 50px !important;
   }
 
