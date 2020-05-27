@@ -79,7 +79,7 @@
                   center-active
                   grow
                   v-model="price_tab"
-                  :height="windowWidth < 599 ? '39' : '90'"
+                  :height="windowWidth < 599 ? '60' : '90'"
                 >
                   <v-tab
                     active-class="custom-active-tab"
@@ -449,26 +449,38 @@ $line-height55: 55px;
     border-radius: 15px 15px 0px 0px;
     box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.15);
     margin-top: 20px;
+    @media screen and (min-width:600px) and (max-width: 750px){
+      width: 150px;
+      font-size: 18px !important;
+    }
+
     @media screen and (max-width: 599px) {
       width: 110px;
+      height: 39px;
       font-size: 12px !important;
+      margin-top:14px;
     }
   }
   .custom-active-tab {
     font-size: 30px !important;
-    height: 79px;
+    height: 79px !important;
     margin-top: 5px;
     background-color: #0046fe !important;
     color: #ffffff !important;
     border-radius: 15px 15px 0px 0px;
+    @media screen and(min-width: 600px) and (max-width: 750px){
+      width: 150px;
+      font-size: 18px !important;
+    }
     @media screen and (max-width: 599px) {
       width: 135px !important;
+      height: 48px !important;
       font-size: 18px !important;
     }
   }
-  .custom-active-class {
-    height: 79px !important;
-  }
+  // .custom-active-class {
+  //   height: 79px !important;
+  // }
 }
 </style>
 
