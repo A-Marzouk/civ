@@ -71,31 +71,30 @@
             <!-- For tablet and mobile -->
             <v-row class="hidden-lg-and-up" align="center" justify="center">
               <v-col md="12" sm="12" cols="12">
-                <v-card color="transparent" flat tile>
-                  <v-tabs
-                    active-class="custom-active-class"
-                    centered
-                    hide-slider
-                    center-active
-                    grow
-                    v-model="price_tab"
-                    :height="windowWidth < 599 ? '39' : '64'"
-                  >
-                    <v-tab
-                      active-class="custom-active-tab"
-                      v-for="plan in plans"
-                      :key="plan.id"
-                      @click="currentTab=plan.id"
-                      class="mx-md-3 mx-sm-3 mx-1 ct-tab"
-                    >{{plan.title}}</v-tab>
-                  </v-tabs>
-                </v-card>
+                <v-tabs
+                  active-class="custom-active-class"
+                  background-color="transparent"
+                  centered
+                  hide-slider
+                  center-active
+                  grow
+                  v-model="price_tab"
+                  :height="windowWidth < 599 ? '39' : '90'"
+                >
+                  <v-tab
+                    active-class="custom-active-tab"
+                    v-for="plan in plans"
+                    :key="plan.id"
+                    @click="currentTab=plan.id"
+                    class="mx-md-3 mx-sm-3 mx-1 ct-tab"
+                  >{{plan.title}}</v-tab>
+                </v-tabs>
               </v-col>
               <v-col md="12" sm="12" cols="12">
                 <v-card color="transparent" flat tile>
                   <v-tabs-items v-model="price_tab">
                     <v-tab-item v-for="plan in plans" :key="plan.id" align="center">
-                      <v-card class="price-card mt-10 pa-5 box-shadow-standard">
+                      <v-card class="price-card mt-1 pa-5 box-shadow-standard">
                         <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
                         <v-card-subtitle
                           align="center"
@@ -439,14 +438,17 @@ $line-height55: 55px;
 
   .ct-tab {
     width: 180px;
+    height: 64px;
     font-family: "Montserrat" !important;
     font-weight: bold;
     font-size: 24px !important;
     line-height: $line-height55;
+    margin-top: 15px;
     color: rgba(10, 30, 86, 0.4) !important;
     text-transform: capitalize;
     border-radius: 15px 15px 0px 0px;
     box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.15);
+    margin-top: 20px;
     @media screen and (max-width: 599px) {
       width: 110px;
       font-size: 12px !important;
@@ -454,6 +456,8 @@ $line-height55: 55px;
   }
   .custom-active-tab {
     font-size: 30px !important;
+    height: 79px;
+    margin-top: 5px;
     background-color: #0046fe !important;
     color: #ffffff !important;
     border-radius: 15px 15px 0px 0px;
