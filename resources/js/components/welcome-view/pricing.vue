@@ -126,7 +126,7 @@
                         </v-card-subtitle>
                         <v-card-text class="mt-n5">
                           <v-row align="center" justify="center">
-                            <v-col md="9" sm="9" cols="9" offset-md="2" offset-sm="2" offset="1">
+                            <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1" >
                               <ul class="features mt-10" align="left">
                                 <li
                                   v-for="(feature,index) in plan.features"
@@ -376,6 +376,9 @@ $line-height55: 55px;
         height: 43px !important;
         font-size: 10px;
       }
+      @media screen and (max-width: 380px){
+        width: 220px;
+      }
     }
     .btn-pro {
       width: 270px !important;
@@ -405,6 +408,14 @@ $line-height55: 55px;
         height: 43px !important;
         font-size: 10px;
       }
+      @media screen and (max-width: 380px){
+        width: 240px !important;
+      }
+      @media screen and (max-width: 342px){
+        font-size: 8px;
+        width: 200px !important;
+      }
+
     }
 
     ul {
@@ -451,6 +462,9 @@ $line-height55: 55px;
       }
       @media screen and (max-width: 599px) {
         font-size: 14px;
+      }
+      @media screen and (max-width: 342px){
+        font-size: 12px;
       }
     }
   } //price card ends here
