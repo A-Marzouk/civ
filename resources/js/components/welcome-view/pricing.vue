@@ -87,7 +87,6 @@
                       :key="plan.id"
                       @click="currentTab=plan.id"
                       class="mx-md-3 mx-sm-3 mx-1 ct-tab"
-                      
                     >{{plan.title}}</v-tab>
                   </v-tabs>
                 </v-card>
@@ -463,8 +462,14 @@ $line-height55: 55px;
       font-size: 18px !important;
     }
   }
-  .custom-active-class{
+  .custom-active-class {
     height: 79px !important;
   }
+}
+</style>
+
+<style>
+#pricing .v-slide-group__prev.v-slide-group__prev--disabled {
+  display: none !important;
 }
 </style>
