@@ -1037,6 +1037,9 @@ export default {
     line-height: 16px;
     color: #ffffff;
     opacity: 0.5;
+    @media screen and (max-width: 345px){
+      font-size: 10px !important;
+    }
   }
 
   .hour-rate {
@@ -1053,6 +1056,13 @@ export default {
   @media screen and (max-width: 599px) {
     margin-left: 26px;
     margin-top: -30px;
+  }
+  @media screen and (max-width: 400px){
+    margin-left: 30px;
+  }
+
+  @media screen and (max-width: 345px){
+    margin-left: 35px;
   }
 }
 
@@ -1492,8 +1502,8 @@ img.portfolio-lg-img {
   @media screen and (max-width: 430px) {
     font-size: 10px !important;
   }
-  @media screen and (max-width: 32px){
-    font-size: 8px !important;
+  @media screen and (max-width: 345px){
+    font-size: 9px !important;
   }
 }
 // Skill tab
@@ -1630,6 +1640,9 @@ img.portfolio-lg-img {
   }
   @media screen and (max-width: 414px) {
     font-size: 8px;
+  }
+  @media screen and (max-width: 345px){
+    font-size: 4px;
   }
 }
 // media footer
