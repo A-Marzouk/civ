@@ -107,8 +107,6 @@ export default {
                         margin-left: 8.6px;
                     }
                 }
-
-
             }
 
             @media (max-width: 1200px) {
