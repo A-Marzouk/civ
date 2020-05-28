@@ -139,12 +139,13 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     overflow-x: hidden;
 
     .theme-body {
-        height: auto;
+        height: 100%;
         background: white;
         border-radius: 80px 80px 0 0;
         position: relative;
         width: 100%;
         overflow: hidden;
+        padding-bottom: 80px;
 
         .wrapper {
             display: flex;
@@ -152,6 +153,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
@@ -236,8 +238,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
 
                     .v-tabs-slider::after {
-                        height: 40px;
-                        width: 20px;
+                        left: 15px;
+                        height: 24px;
+                        width: 12px;
                     }
                 }
                 
@@ -249,6 +252,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
 
                     .v-tabs-slider::after {
+                        left: 10px;
                         height: 30px;
                         width: 15px;
                     }
@@ -266,6 +270,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin: 0 auto;
                 width: 90%;
                 z-index: 0;
+                height: 100%;
 
                 @media (max-width: 700px) {
                     padding: 0;

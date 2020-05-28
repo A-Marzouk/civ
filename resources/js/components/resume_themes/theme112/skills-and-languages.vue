@@ -163,10 +163,7 @@ export default {
                     width: 27.25px;
                 }
 
-                &.showOnTablet {
-                    display: none;
-                }
-
+                &.showOnTablet,
                 &.showOnMobile {
                     display: none;
                 }
