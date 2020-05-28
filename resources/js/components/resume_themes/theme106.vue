@@ -244,6 +244,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin: 0 auto;
                 z-index: 0;
                 height: 100%;
+                align-items: flex-start;
 
                 @media (max-width: 700px) {
                     padding: 0;

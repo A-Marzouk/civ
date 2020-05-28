@@ -246,6 +246,7 @@ $purple: #0556B6;
                 width: 90%;
                 height: 100%;
                 z-index: 0;
+                align-items: flex-start;
 
                 @media (max-width: 700px) {
                     padding: 0;
