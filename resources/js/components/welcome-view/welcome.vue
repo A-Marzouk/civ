@@ -526,7 +526,7 @@ export default {
       margin-top: -15px;
     }
     @media screen and (max-width: 599px) {
-      height: 765px;
+      height: 812px;
       margin-top: -38px;
     }
   }
