@@ -37,7 +37,7 @@
                   <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
                   <v-card-subtitle
                     align="center"
-                    :class="plan.title == 'Free' ? 'mt-n10': 'subtitle-pro mt-n10' "
+                    :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
                   >
                     <span class="usd">
                       <sup>$</sup>
@@ -102,7 +102,7 @@
                         <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
                         <v-card-subtitle
                           align="center"
-                          :class="plan.title == 'Free' ? 'mt-n10': 'subtitle-pro mt-n10' "
+                          :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
                         >
                           <span class="usd">
                             <sup>$</sup>
