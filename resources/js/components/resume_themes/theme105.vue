@@ -109,12 +109,17 @@ $purple: #355E5E;
     background: #ECEDF4;
     position: relative;
 
+    .v-application--wrap {
+        overflow-x: hidden;
+    }
+
     .theme-body {
         height: auto;
         background: white;
         border-radius: 80px 80px 0 0;
-        overflow-x: hidden;
+        height: 100%;
         position: relative;
+        padding-bottom: 100px;
 
         .wrapper {
             display: flex;
@@ -122,6 +127,7 @@ $purple: #355E5E;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
@@ -219,6 +225,7 @@ $purple: #355E5E;
                 width: 90%;
                 margin: 0 auto;
                 z-index: 0;
+                height: 100%;
 
                 @media (max-width: 700px) {
                     padding: 0;

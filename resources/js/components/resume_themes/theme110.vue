@@ -136,7 +136,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     background-position: center -70px;
     background-repeat: no-repeat;
     position: relative;
-    overflow-x: hidden;
+
+    .v-application--wrap {
+        overflow-x: hidden;
+    }
 
     .theme-body {
         height: 100%;
@@ -144,8 +147,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         border-radius: 80px 80px 0 0;
         position: relative;
         width: 100%;
-        overflow: hidden;
-        padding-bottom: 80px;
+        height: 100%;
+        padding-bottom: 100px;
 
         .wrapper {
             display: flex;

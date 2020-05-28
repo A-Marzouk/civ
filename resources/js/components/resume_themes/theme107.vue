@@ -130,7 +130,10 @@ $purple: #335E5E;
     color: $mainColor;
     background: #DBDEC4;
     position: relative;
-    overflow-x: hidden;
+    
+    .v-application--wrap {
+        overflow-x: hidden;
+    }
 
     .theme-body {
         height: auto;
@@ -139,7 +142,8 @@ $purple: #335E5E;
         border-top: 16px solid $purple;
         position: relative;
         width: 100%;
-        overflow: hidden;
+        height: 100%;
+        padding-bottom: 100px;
 
         .bg-decoImg {
             position: absolute;
@@ -178,6 +182,7 @@ $purple: #335E5E;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
@@ -261,11 +266,11 @@ $purple: #335E5E;
                 width: 90%;
                 margin: 0 auto;
                 z-index: 0;
+                height: 100%;
 
                 @media (max-width: 700px) {
                     padding: 0;
                     padding-bottom: 30px;
-
                 }
             }
         }

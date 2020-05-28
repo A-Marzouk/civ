@@ -160,6 +160,10 @@ $purple: #24325D;
     background-position: top center;
     position: relative;
 
+    .v-application--wrap {
+        overflow-x: hidden;
+    }
+
     .theme-header {
         width: 100%;
         position: relative;

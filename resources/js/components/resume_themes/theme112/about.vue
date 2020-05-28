@@ -80,6 +80,8 @@ export default {
             .content {
                 column-count: 1;
                 width: 100%;
+                flex-direction: column;
+                justify-content: flex-start;
 
                 p {
                     font-size: 12px;

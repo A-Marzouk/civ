@@ -163,7 +163,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     background-position: center -20px;
     background-repeat: no-repeat;
     position: relative;
-    overflow-x: hidden;
+
+    .v-application--wrap {
+        overflow-x: hidden;
+    }
 
     .theme-header {
         width: 100%;

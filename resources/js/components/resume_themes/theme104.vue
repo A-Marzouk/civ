@@ -160,6 +160,10 @@ $purple: #FB423A;
     background: white;
     position: relative;
 
+    .v-application--wrap {
+        overflow-x: hidden;
+    }
+
     .theme-header {
         width: 100%;
         position: relative;

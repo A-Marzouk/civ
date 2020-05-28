@@ -129,14 +129,18 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     color: $mainColor;
     background: #1B1F28;
     position: relative;
-    overflow-x: hidden;
+
+    .v-application--wrap {
+        overflow-x: hidden;
+    }
 
     .theme-body {
-        height: auto;
         background: transparent;
         border-radius: 80px 80px 0 0;
         position: relative;
-        overflow-x: hidden;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 100px;
 
         .wrapper {
             display: flex;
@@ -144,6 +148,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
@@ -226,7 +231,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             .container {
                 padding: 0 40px;
                 padding-bottom: 100px;
-                max-width: 1750px;
+                max-width: 1550px;
+                width: 90%;
                 margin: 0 auto;
                 z-index: 0;
 

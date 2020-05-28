@@ -71,6 +71,8 @@ $purple: #0556B6;
         @media (max-width: 700px) {
             flex-wrap: wrap;
             margin: 0 auto;
+            flex-direction: column;
+            justify-content: flex-start;
 
             .about-title {
                 width: 100%;
