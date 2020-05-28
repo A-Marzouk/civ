@@ -77,11 +77,6 @@ export default {
     $mainColor: #28404A;
     $lineColor: #DBE0C2;
 
-   .container {
-
-    }
-
-
     .work-flex {
         display: flex;
         flex-wrap: wrap;
@@ -89,6 +84,10 @@ export default {
         max-width: 1300px !important;
         padding: 0 60px;
         margin: 0 auto;
+
+        @media (max-width: 830px) {
+            padding: 0;
+        }
     }
 
     .work-item {
@@ -134,6 +133,39 @@ export default {
                 margin-left: 13px;
                 margin-top: 4px;
             }
+
+            @media (max-width: 1200px) {
+                .work-icon {
+                    width: 28px;
+                    height: 28px;
+                    margin-right: 52px;
+
+                    &::after {
+                        width: 31px;
+                        right: calc(-13px - 31px);
+                    }
+
+                    img {
+                        width: 12px;
+                    }
+                }
+
+                .company-name {
+                    font-size: 12px;
+                }
+
+                .date {
+                    font-size: 9px;
+                }
+            }
+
+            @media (max-width: 700px) {
+                margin-bottom: 16px;
+
+                .company-name {
+                    font-size: 13px;
+                }
+            }
         }
 
         .work-body {
@@ -151,6 +183,30 @@ export default {
                 color: #838BA4;
                 font-size: 17px;
             }
+
+            @media (max-width: 1200px) {
+                padding-left: calc(58px + 28px);
+
+                .job-title,
+                .work-description p {
+                    font-size: 10px;
+
+                }
+            }
+
+            @media (max-width: 700px) {
+                
+                .job-title,
+                .work-description p {
+                    font-size: 11px;
+
+                }
+            }
+        }
+
+        @media (max-width: 620px) {
+            width: 100%;
+            margin-bottom: 48px;
         }
     }
 </style>

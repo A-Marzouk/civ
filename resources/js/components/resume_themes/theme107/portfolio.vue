@@ -1,8 +1,8 @@
 <template>
     <div class="container portfolio-flex">
         <masonry
-            :cols="{default: 3, 959: 1, 599: 1}"
-            :gutter="{default: '39px', 700: '15px'}"
+            :cols="{default: 3, 959: 2, 756: 1}"
+            :gutter="{default: '39px', 1200: '22px', 570: '0'}"
             class="masonry"
         >
             <v-card
@@ -165,10 +165,11 @@ export default {
 
         .masonry {
             width: 100%;
+            margin: 0 auto !important;
             
             .v-card {
                 grid-column: span 4;
-                margin: 0 20px 129px !important;
+                margin-bottom: 129px !important;
 
                 &:last-child {
                     margin-bottom: 0;
@@ -197,10 +198,40 @@ export default {
                         color: #28404A;
                         font-family: 'Muli', sans-serif !important;
                     }
+
+                    @media (max-width: 1200px) {
+
+                        margin-top: 19px;
+
+                        .title,
+                        .description p {
+                            font-size: 15px !important;
+                            max-width: 55%;
+                        }
+
+                        .title {
+                            line-height: 1.4;
+                        }
+                    }
+
+                    @media (max-width: 700px) {
+                        .title,
+                        .description p {
+                            font-size: 13px !important;
+                            max-width: 70%;
+                        }
+                    }
+                }
+
+                @media (max-width: 1200px) {
+                    margin-bottom: 76px !important;
+                }
+                
+                @media (max-width: 700px) {
+                    margin-bottom: 42px !important;
                 }
             }
         }
-
     }
 }
 </style>

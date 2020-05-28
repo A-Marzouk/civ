@@ -26,17 +26,16 @@ if ($("#welcomeView").length !== 0) {
 }
 
 
-import welcomeView2 from './components/welcome-view2/welcome';
-if ($("#welcomeView2").length !== 0) {
+import pricing from './components/welcome-view/pricing';
+if ($("#pricing").length !== 0) {
     new Vue({
-        el: '#welcomeView2',
+        el: '#pricing',
         vuetify,
         components: {
-            'welcome-view2': welcomeView2
+            'pricing': pricing
         }
     });
 }
-
 
 //api components
 require('./API');

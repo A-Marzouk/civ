@@ -1,74 +1,22 @@
 <template>
-  <div class="tm701-aboutme tw-pl-20 tw-pr-24 tw-font-muli" v-if="currentTab === 5">
-    <div class="tw-grid tw-grid-cols-2 tw-col-gap-247px tw-grid-cols-tm701-skills--inner tw-mb-20">
-      <div class="tw-w-3/4">
-        <h2 class="tw-text-tm701-6 tw-text-40px tw-leading-50px tw-mb-10">
-          Welcome to
-          My profile!
-        </h2>
-      </div>
-      <div class="tw-grid tw-grid-cols-2 tw-gap-16 tw-text-tm701-11">
-        <div>
-          <p
-            class="tw-text-20px tw-font-light tw-leading-35px tw-mb-44px"
-          >Currently I'm a freelance designer and web developer, who works with a variety of clients and on many diverse projects.</p>
-          <p
-            class="tw-text-20px tw-font-light tw-leading-35px"
-          >I work to create innovative solutions that inspire, and foster memorable relationships between brands and their clients. With a focus on branding and UI / Web, I strive to create usable and polished products through passionate and deliberate design</p>
-        </div>
-        <div>
-          <p
-            class="tw-text-20px tw-font-light tw-leading-35px tw-mb-44px"
-          >Currently I'm a freelance designer and web developer, who works with a variety of clients and on many diverse projects.</p>
-          <p
-            class="tw-text-20px tw-font-light tw-leading-35px"
-          >I work to create innovative solutions that inspire, and foster memorable relationships between brands and their clients.</p>
-        </div>
-      </div>
-    </div>
-    <div class="tw-grid tw-grid-cols-4 tw-col-gap-112px">
-      <div>
-        <span class="tw-block tw-text-40px tw-leading-64px tw-font-semibold tw-text-tm701-6">23</span>
-        <span
-          class="tw-block tw-text-30px tw-leading-64px tw-font-regular tw-text-tm701-1"
-        >Projects Done</span>
-        <p class="tw-block tw-text-20px tw-leading-30px tw-font-regular tw-text-tm701-11">
-          I enthusiastically create
-          unique designs and brands.
-        </p>
-      </div>
-      <div>
-        <span class="tw-block tw-text-40px tw-leading-64px tw-font-semibold tw-text-tm701-6">400</span>
-        <span
-          class="tw-block tw-text-30px tw-leading-64px tw-font-regular tw-text-tm701-1"
-        >Projects Done</span>
-        <p class="tw-block tw-text-20px tw-leading-30px tw-font-regular tw-text-tm701-11">
-          I enthusiastically create
-          unique designs and brands.
-        </p>
-      </div>
-      <div>
-        <span class="tw-block tw-text-40px tw-leading-64px tw-font-semibold tw-text-tm701-6">23</span>
-        <span
-          class="tw-block tw-text-30px tw-leading-64px tw-font-regular tw-text-tm701-1"
-        >Projects Done</span>
-        <p class="tw-block tw-text-20px tw-leading-30px tw-font-regular tw-text-tm701-11">
-          I enthusiastically create
-          unique designs and brands.
-        </p>
-      </div>
-      <div>
-        <span class="tw-block tw-text-40px tw-leading-64px tw-font-semibold tw-text-tm701-6">23</span>
-        <span
-          class="tw-block tw-text-30px tw-leading-64px tw-font-regular tw-text-tm701-1"
-        >Projects Done</span>
-        <p class="tw-block tw-text-20px tw-leading-30px tw-font-regular tw-text-tm701-11">
-          I enthusiastically create
-          unique designs and brands.
-        </p>
-      </div>
-    </div>
-  </div>
+  <v-container fluid v-if="currentTab === 5" class="bgimg">
+    <v-row class="fill-height" justify="end">
+      <v-col cols="12" md="7" lg="7" class="text-right white--text padding">
+        <div class="headline">About Me</div>
+        <div
+          class="ptext my-sm-12 my-1 my-md-6"
+        >Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</div>
+        <div
+          class="ptext my-sm-12 my-1 my-md-6"
+        >Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+      </v-col>
+      <v-col md="12" align="end" class="hidden-xs-only">
+        <v-btn width="300" height="70" color="#6346FB" dark class="margin" elevation="0" tile>
+          <div class="text-capitalize display-1">Hire Me</div>
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -101,5 +49,72 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+.bgimg {
+  background-image: url("/images/resume_themes/theme508/about.png");
+  background-size: 100vw 100vh;
+  background-position: center center;
+  height: 100vh;
+}
+.padding {
+  padding-right: 120px;
+  padding-left: 20px;
+  padding-top: 90px;
+}
+.margin {
+  margin-bottom: 20px;
+  margin-top: 200px;
+  margin-right: 40px;
+}
+.ptext {
+  font-size: 1.2rem;
+  line-height: 40px;
+}
+@media screen and (max-width: 1600px) {
+  .bgimg {
+    background-image: url("/images/resume_themes/theme508/about.png");
+    background-size: 100vw 100vh;
+    background-position: center center;
+    height: 100vh;
+  }
+  .padding {
+    padding-right: 120px;
+    padding-left: 20px;
+    padding-top: 90px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .bgimg {
+    background-image: url("/images/resume_themes/theme508/aboutab.png");
+    background-size: 100% 80%;
+    background-position: top center;
+    height: 100vh;
+  }
+  .padding {
+    padding-right: 40px;
+    padding-left: 175px;
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .bgimg {
+    background-image: url("/images/resume_themes/theme508/aboutab.png");
+    background-size: contain;
+    background-position: top center;
+    height: 100vh;
+  }
+  .padding {
+    padding-right: 20px;
+    padding-left: 20px;
+    padding-top: 10px;
+  }
+  .headline {
+    font-size: 1rem !important;
+  }
+  .ptext {
+    font-size: 0.6rem;
+    line-height: 20px;
+  }
+}
 </style>

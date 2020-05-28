@@ -93,6 +93,19 @@ if ($("#resumeTheme10").length !== 0) {
 }
 
 // Jose's themes
+import resumeTheme102 from './components/resume_themes/theme102';
+if ($("#resumeTheme102").length !== 0) {
+    new Vue({
+        el: '#resumeTheme102',
+        vuetify,
+        store,
+        iconfont: 'fa4',
+        components: {
+            'resume-theme-102': resumeTheme102,
+        }
+    });
+}
+
 import resumeTheme103 from './components/resume_themes/theme103';
 if ($("#resumeTheme103").length !== 0) {
     new Vue({
@@ -597,6 +610,16 @@ if ($("#resumeTheme1001").length !== 0) {
     });
 }
 
+import resumeTheme1002 from "./components/resume_themes/theme1002";
+if ($("#resumeTheme1002").length !== 0) {
+    new Vue({
+        el: "#resumeTheme1002",
+        components: {
+            "resume-theme-1002": resumeTheme1002
+        }
+    });
+}
+
 import resumeTheme508 from './components/resume_themes/theme508/index';
 if ($("#resumeTheme508").length !== 0) {
     new Vue({
@@ -675,6 +698,20 @@ if ($("#resumeTheme308").length !== 0) {
         iconfont: 'mdi',
         components: {
             'resume-theme-308': resumeTheme308
+        }
+    });
+}
+
+import resumeTheme600 from './components/resume_themes/theme600';
+if ($("#resumeTheme600").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme600',
+        vuetify,
+        store,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-600': resumeTheme600
         }
     });
 }

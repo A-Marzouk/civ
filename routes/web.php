@@ -27,12 +27,9 @@ Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
-Route::get('/home2', 'HomeController@welcome2')->name('home2');
+Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
-
-// routes need verification :
-Route::get('/verified', 'HomeController@verified')->name('verified')->middleware('verified');
 
 
 // social sites register & login:
@@ -47,6 +44,11 @@ Route::get('/register/google', 'Auth\SocialSitesRegisterController@redirectToGoo
 Route::get('/register/google/callback', 'Auth\SocialSitesRegisterController@handleGoogleProviderCallback')->name('client.google.callback');
 Route::get('/register/linkedin', 'Auth\SocialSitesRegisterController@redirectToLinkedinProvider')->name('client.linkedin.register');
 Route::get('/register/linkedin/callback', 'Auth\SocialSitesRegisterController@handleLinkedinProviderCallback')->name('client.linkedin.callback');
+Route::post('/validate-username', 'Auth\SocialSitesRegisterController@validateUsername')->name('username.validate');
+
+// spotify:
+Route::get('/redirect/spotify', 'Social\SpotifyController@redirectToSpotifyProvider')->name('client.github.register');
+Route::get('/spotify/callback', 'Social\SpotifyController@handleSpotifyProviderCallback')->name('client.github.callback');
 
 
 // resume builder main routes.
@@ -85,9 +87,6 @@ Route::group(['prefix' => 'workforce-admin'], function () {
     Route::get('/{username}/resume-builder/edit/projects/new', 'AdminsController@userFullEdit')->name('admin.resume.builder.edit');
     Route::get('/developer/api', 'APIController@APIClients')->name('create.api.client');
 });
-
-// passport clients route:
-
 
 // public cv url
 Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data

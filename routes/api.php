@@ -73,6 +73,15 @@ Route::group(['prefix' => 'user/'], function () {
     Route::delete('education/{id}', 'API\EducationController@destroy');
 
 
+// Builder URL api routes:
+    Route::get('/builder-url', 'API\EducationController@index');
+    Route::get('/builder-url/{id}', 'API\EducationController@show');
+    Route::post('/builder-url', 'API\EducationController@store');
+    Route::put('/builder-url', 'API\EducationController@store');
+    Route::delete('builder-url/{id}', 'API\EducationController@destroy');
+
+
+
 // WorkEx api routes:
     //list workExperience
     Route::get('/work-experience', 'API\WorkExController@index');
@@ -96,7 +105,6 @@ Route::group(['prefix' => 'user/'], function () {
 //  Account user data:
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
     Route::post('/account/validate', 'API\UsersController@validateSingleField')->name('account.validate');
-
 // update activity
     Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
 
