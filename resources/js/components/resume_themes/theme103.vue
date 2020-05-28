@@ -238,7 +238,6 @@ $purple: #0556B6;
                 max-width: 1550px;
                 margin: 0 auto;
                 width: 90%;
-                margin: 0 auto;
                 z-index: 0;
 
                 @media (max-width: 700px) {

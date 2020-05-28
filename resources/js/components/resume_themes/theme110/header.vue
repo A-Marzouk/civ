@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="more-icon">
-                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme103/more-icon.png" alt="">
+                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme110/more-icon.png" alt="">
                     <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
                 </div>
             </div>
@@ -313,7 +313,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
 
+            @media (max-width: 1200px) {
+                margin-top: 27px;
+            }
+
             @media (max-width: 700px) {
+                margin-top: 0;
+                padding-left: 60px;
+                justify-content: space-between;
                 width: 100%;
             }
         }

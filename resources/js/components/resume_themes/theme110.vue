@@ -31,7 +31,7 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
-                        <div class="theme-aside">
+                        <div class="theme-aside hideOnTablet">
                             Follow me - 
                             <a href="javascript:;">
                                 Dribble
@@ -46,7 +46,25 @@
                                 Behance
                             </a>
                         </div>
-                        <div class="scroll-top">
+
+                        <div class="theme-aside showOnTablet hideOnMobile">
+                            Social links
+                            <span></span>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                            </a>
+                        </div>
+
+                        <div class="scroll-top hideOnMobile">
                             <a href="javascript:;" v-scroll-to="'#theme110'">
                                 <span class="decorator"></span>    
                                 Scroll to top
@@ -124,8 +142,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         height: auto;
         background: white;
         border-radius: 80px 80px 0 0;
-        z-index: 1;
         position: relative;
+        width: 100%;
+        overflow: hidden;
 
         .wrapper {
             display: flex;
@@ -143,6 +162,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 &-bar {
                     background: none;
                 }
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -158,6 +181,26 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     &::before {
                         display: none !important;
+                    }
+
+                    @media (max-width: 1400px) {
+                        font-size: 18px;
+                        padding: 12px 28px;
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        font-size: 11px;
+                        padding: 0 22px;
+                    }
+
+                    @media (max-width: 756px) {
+                        font-size: 15px;
+                        padding: 0 17px;
+                        margin-right: 27px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
                     }
                 }
 
@@ -183,6 +226,37 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         }
                     }
                 }
+
+                @media (max-width: 1200px) {
+                    margin-top: 29px;
+                    margin-bottom: 47px;
+
+                    &-bar {
+                        height: 28px;
+                    }
+
+                    .v-tabs-slider::after {
+                        height: 40px;
+                        width: 20px;
+                    }
+                }
+                
+                @media (max-width: 700px) {
+                    margin: 29px 0;
+
+                    &-bar {
+                        height: 36px;
+                    }
+
+                    .v-tabs-slider::after {
+                        height: 30px;
+                        width: 15px;
+                    }
+
+                    .v-item-group {
+                        padding: 0 30px 0 50px;
+                    }
+                }
             }
 
             .container {
@@ -190,6 +264,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 padding-bottom: 100px;
                 max-width: 1550px;
                 margin: 0 auto;
+                width: 90%;
+                z-index: 0;
+
+                @media (max-width: 700px) {
+                    padding: 0;
+                    padding-bottom: 30px;
+                    width: 85%;
+                }
             }
         }
     }
@@ -202,9 +284,13 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 400px;
+        top: 365px;
         right: -95px;
         background: transparent;
+
+        &.showOnTablet {
+            display: none;
+        }
 
         a {
             height: 14px;
@@ -223,6 +309,40 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             &:last-child {
                 &::after {
                     display: none;
+                }
+            }
+        }
+
+        @media (max-width: 1200px) {
+            right: -100px;
+            top: 272px;
+            transform: rotateZ(90deg);
+            
+            &, a {
+                font-size: 14px;
+            }
+
+            a {
+                &::after {
+                    display: none;
+                }
+            }
+
+            &.hideOnTablet {
+                display: none;
+            }
+
+            &.showOnTablet {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span {
+                    display: block;
+                    width: 62px;
+                    height: 1px;
+                    background: #BEC2D4;
+                    margin: 0 15px 0 27px;
                 }
             }
         }
@@ -257,6 +377,23 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
 
+        }
+
+        @media (max-width: 1200px) {
+            a {
+                font-size: 14px;
+            }
+
+            .icon {
+                height: 7px;
+                margin-left: 9px;
+            }
+        }
+    }
+
+    .hideOnMobile {
+        @media (max-width: 876px) {
+            display: none !important;
         }
     }
 }
