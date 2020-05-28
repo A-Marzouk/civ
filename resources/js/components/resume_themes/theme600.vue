@@ -10,7 +10,7 @@
                   <v-row class="content-hide">
                     <v-col lg="2" sm="2">
                       <v-avatar size="100" class="mr-2">
-                        <img src="/images/theme600/img/profile-pic.png" alt />
+                        <img src="/images/resume_themes/theme600/img/profile-pic.png" alt />
                       </v-avatar>
                     </v-col>
 
@@ -49,7 +49,7 @@
                   <div class="content-show">
                     <div class="d-flex justify-space-around">
                       <v-avatar size="100" class="mr-2">
-                        <img src="/images/theme600/img/profile-pic.png" alt />
+                        <img src="/images/resume_themes/theme600/img/profile-pic.png" alt />
                       </v-avatar>
 
                       <div>
@@ -83,16 +83,16 @@
             >
               <div class="social-wrap custom-margin content-hide pr-7">
                 <a href="#">
-                  <img src="/images/theme600/behance.svg" alt />
+                  <img src="/images/resume_themes/theme600/behance.svg" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/theme600/dribble.svg" alt />
+                  <img src="/images/resume_themes/theme600/dribble.svg" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/theme600/instagram.svg" alt />
+                  <img src="/images/resume_themes/theme600/instagram.svg" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/theme600/linked-in.svg" alt />
+                  <img src="/images/resume_themes/theme600/linked-in.svg" alt />
                 </a>
               </div>
 
@@ -107,25 +107,25 @@
                   <v-icon>mdi-google-plus</v-icon>
                 </a>
                 <a href="#">
-                  <img src="/images/theme600/behance.svg" alt />
+                  <img src="/images/resume_themes/theme600/behance.svg" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/theme600/dribble.svg" alt />
+                  <img src="/images/resume_themes/theme600/dribble.svg" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/theme600/instagram.svg" alt />
+                  <img src="/images/resume_themes/theme600/instagram.svg" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/theme600/linked-in.svg" alt />
+                  <img src="/images/resume_themes/theme600/linked-in.svg" alt />
                 </a>
               </div>
             </v-col>
 
             <div class="bg-eclipse1">
-              <img src="/images/theme600/bg-eclipse1.svg" alt />
+              <img src="/images/resume_themes/theme600/bg-eclipse1.svg" alt />
             </div>
             <div class="bg-eclipse2">
-              <img src="/images/theme600/bg-eclipse2.svg" alt />
+              <img src="/images/resume_themes/theme600/bg-eclipse2.svg" alt />
             </div>
 
             <v-col>
@@ -150,7 +150,7 @@
                      
                     </v-icon>-->
                     <div class="label-icon">
-                      <!-- <img :src="getImgUrl(item.icon)" alt /> -->
+                      <img :src="getImgUrl(item.icon)" alt />
                     </div>
                     {{ item.label }}
                   </v-tab>
@@ -186,22 +186,22 @@
                   <div class="content_margin">
                     <v-row>
                       <v-col class="case-image" sm="6" md="3" lg="3" xl="3" cols="12">
-                        <img src="/images/theme600/img/portfolio-1.png" alt="Portfolio Image" />
+                        <img src="/images/resume_themes/theme600/img/portfolio-1.png" alt="Portfolio Image" />
                       </v-col>
                       <v-col class="case-image" lg="3" md="3" sm="6" xl="3" cols="12">
-                        <img src="/images/theme600/img/portfolio-2.png" alt="Portfolio Image" />
+                        <img src="/images/resume_themes/theme600/img/portfolio-2.png" alt="Portfolio Image" />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/theme600/img/potfolio-3.png" alt="Portfolio Image" />
+                        <img src="/images/resume_themes/theme600/img/potfolio-3.png" alt="Portfolio Image" />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/theme600/img/portfolio-4.png" alt="Portfolio Image" />
+                        <img src="/images/resume_themes/theme600/img/portfolio-4.png" alt="Portfolio Image" />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/theme600/img/potfolio-3.png" alt="Portfolio Image" />
+                        <img src="/images/resume_themes/theme600/img/potfolio-3.png" alt="Portfolio Image" />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/theme600/img/portfolio-4.png" alt="Portfolio Image" />
+                        <img src="/images/resume_themes/theme600/img/portfolio-4.png" alt="Portfolio Image" />
                       </v-col>
                     </v-row>
                   </div>
@@ -220,7 +220,7 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
                               </div>
                             </v-col>
 
@@ -273,7 +273,7 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
                               </div>
                             </v-col>
 
@@ -337,7 +337,7 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
                               </div>
                             </v-col>
 
@@ -365,7 +365,7 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
                               </div>
                             </v-col>
 
@@ -584,12 +584,12 @@
 </template>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap|Material+Icons');
-@import url('https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap|Material+Icons");
+@import url("https://fonts.googleapis.com/css?family=Rubik:400,700&display=swap");
 
 // Base Css Here Start
 
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap|Material+Icons');
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap|Material+Icons");
 
 *,
 *::before,
@@ -597,7 +597,7 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-.progress-bg{
+.progress-bg {
   margin-left: -5px;
 }
 html,
@@ -754,7 +754,7 @@ img {
   img {
     width: 55%;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     left: -8rem;
   }
 }
@@ -892,7 +892,7 @@ img {
 
 .name-info {
   .freelancer-name {
-    font-family: 'Rubik';
+    font-family: "Rubik";
     font-style: normal;
     font-weight: 700;
     line-height: 47px;
@@ -935,7 +935,7 @@ img {
     opacity: 0.4;
     border-radius: 5px 5px 60px 5px;
     color: #222d68 !important;
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 600;
     &.isActive {
@@ -966,7 +966,7 @@ img {
   position: relative;
   &:before {
     position: absolute !important;
-    content: '' !important;
+    content: "" !important;
     bottom: 0%;
     left: 0;
     height: 2px;
@@ -1045,7 +1045,7 @@ img {
   position: relative;
   &:before {
     position: absolute !important;
-    content: '' !important;
+    content: "" !important;
     top: inherit;
     bottom: 0;
     left: 50% !important;
@@ -1191,7 +1191,7 @@ img {
     position: absolute;
     top: 53px;
     left: 49px;
-    @media screen and (max-width: 959px){
+    @media screen and (max-width: 959px) {
       top: 18px;
     }
 
@@ -1299,8 +1299,8 @@ img {
     top: 33px;
     left: 49px;
 
-    @media screen and (max-width: 959px){
-      top:18px;
+    @media screen and (max-width: 959px) {
+      top: 18px;
     }
 
     @media screen and (max-width: 600px) {
@@ -1395,9 +1395,9 @@ export default {
     setTabSkill(i) {
       this.typeSkill = i;
     },
-    // getImgUrl(pic) {
-    //   return require('/images/theme600/' + pic);
-    // }
+    getImgUrl(pic) {
+      return `/images/resume_themes/theme600/${pic}.png`;
+    }
   }
 };
 </script>
