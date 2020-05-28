@@ -664,3 +664,17 @@ if ($("#resumeTheme1101").length !== 0) {
         }
     });
 }
+
+import resumeTheme308 from './components/resume_themes/theme308';
+if ($("#resumeTheme308").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme308',
+        vuetify,
+        store,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-308': resumeTheme308
+        }
+    });
+}
