@@ -57,6 +57,7 @@
                       color="#0046FE"
                       v-show="plan.title != 'Free'"
                       class="btn-pro"
+                      @click="paymentModal=true"
                     >{{plan.btn_title}}</v-btn>
                   </v-card-subtitle>
                   <v-card-text class="mt-lg-n5">
@@ -122,11 +123,12 @@
                             color="#0046FE"
                             v-show="plan.title != 'Free'"
                             class="btn-pro"
+                            @click="paymentModal=true"
                           >{{plan.btn_title}}</v-btn>
                         </v-card-subtitle>
                         <v-card-text class="mt-n5">
                           <v-row align="center" justify="center">
-                            <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1" >
+                            <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1">
                               <ul class="features mt-10" align="left">
                                 <li
                                   v-for="(feature,index) in plan.features"
@@ -148,6 +150,32 @@
       </v-row>
     </v-container>
     <!-- main container ends here -->
+    <!-- Payment Dialog -->
+    <v-dialog v-model="paymentModal" max-width="999" class="payment-modal">
+      <v-card class="card-payment-modal" style="overflow-x:hidden !important;">
+        <v-app-bar flat color="transparent" tile height="100">
+          <v-spacer></v-spacer>
+          <v-btn fab color="#0046FE" dark depressed class="btn-close">
+            <img src="/images/pricing/icons/close.svg" />
+          </v-btn>
+        </v-app-bar>
+        <v-card color="transparent" tile flat align="center">
+          <v-row align="center" justify="center">
+            <v-col cols="4">
+              <a href="#">
+                <img src="/images/pricing/icons/stripe-logo.svg" alt="Stripe Logo" />
+              </a>
+            </v-col>
+            <v-col cols="4">
+              <a href="#">
+                <img src="/images/pricing/icons/paypal-logo.svg" alt="Stripe Logo" />
+              </a>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-card>
+    </v-dialog>
+    <!-- Payment Dialog -->
   </v-app>
 </template>
 
@@ -158,6 +186,7 @@ export default {
       windowWidth: window.innerWidth,
       price_tab: 1,
       currentTab: 2,
+      paymentModal: false,
       plans: [
         {
           id: 1,
@@ -211,6 +240,12 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
+  },
+  methods: {
+    triggerModal() {
+      alert("Hello");
+      this.paymentModal = true;
+    }
   }
 };
 </script>
@@ -377,7 +412,7 @@ $line-height55: 55px;
         height: 43px !important;
         font-size: 10px;
       }
-      @media screen and (max-width: 380px){
+      @media screen and (max-width: 380px) {
         width: 220px;
       }
     }
@@ -409,14 +444,13 @@ $line-height55: 55px;
         height: 43px !important;
         font-size: 10px;
       }
-      @media screen and (max-width: 380px){
+      @media screen and (max-width: 380px) {
         width: 240px !important;
       }
-      @media screen and (max-width: 342px){
+      @media screen and (max-width: 342px) {
         font-size: 8px;
         width: 200px !important;
       }
-
     }
 
     ul {
@@ -464,7 +498,7 @@ $line-height55: 55px;
       @media screen and (max-width: 599px) {
         font-size: 14px;
       }
-      @media screen and (max-width: 342px){
+      @media screen and (max-width: 342px) {
         font-size: 12px;
       }
     }
@@ -525,6 +559,22 @@ $line-height55: 55px;
   // .custom-active-class {
   //   height: 79px !important;
   // }
+}
+.payment-modal {
+  overflow-x: hidden !important;
+  border-radius: 20px !important;
+}
+.card-payment-modal {
+  height: 311px !important;
+  border-radius: 20px;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15) !important;
+}
+.btn-close {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: 100px !important;
+  border: 5px solid #f8f8f8 !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
 }
 </style>
 
