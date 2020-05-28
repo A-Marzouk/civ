@@ -439,7 +439,7 @@ $purple: #24325D;
 
     .scroll-top {
         position: absolute;
-        left: 1%;
+        left: -10px;
         bottom: 250px;
         transform: rotateZ(-90deg);
 
