@@ -1,57 +1,7 @@
 <template>
 <!-- Developer: Jose Quintero -->
     <v-app id="theme110" style="width: 100%">
-        <div class="theme-header">
-
-            <!-- <div class="bg-header">
-                <img src="/images/resume_themes/theme110/bg-header-bottom-right.svg" alt="" class="bg-header-bottom-right" />
-            </div> -->
-
-            <div class="user-info">
-                <div class="left">
-                    <div class="user-img">
-                        <img src="/images/resume_builder/default-user.jpg" alt="">
-                    </div>
-
-                    <div class="user-data">
-                        <div class="name">José Daniel Quintero</div>
-                        <div class="profession">Fullstack Developer</div>
-                        <ul class="speciallity">
-                            <li class="item">Node js</li>
-                            <li class="item">React js</li>
-                            <li class="item">Laravel</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="right">
-                    <div class="actions-wrapper">
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme110/chat-icon.png"> Start a chat
-                        </button>
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme110/suitcase-icon.png">Upload interviews
-                        </button>
-                    </div>
-
-                    <div class="payment-data">
-                        <div class="hourly-rate">
-                            $15
-                            <small>Hourly rate</small>
-                        </div>
-                        <div class="hourly-availability">
-                            40Hrs
-                            <small>Weekly Availability</small>
-                        </div>
-
-                        <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme110/hireMe-icon.png" alt="hire me icon" class="icon">
-                            Hire Me
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ThemeHeader></ThemeHeader>
 
         <div class="theme-body">
             <div class="wrapper">
@@ -115,6 +65,7 @@ import WorkExperienceTab from './theme110/work-experience'
 import PortfolioTab from './theme110/portfolio'
 import AboutTab from './theme110/about'
 import SkillsTab from './theme110/skills-and-languages'
+import ThemeHeader from './theme110/header'
 
 export default {
     components: {
@@ -122,7 +73,8 @@ export default {
         EducationTab,
         PortfolioTab,
         WorkExperienceTab,
-        SkillsTab
+        SkillsTab,
+        ThemeHeader
     },
     data: () => ({
         tab: 0,
@@ -162,176 +114,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     color: $mainColor;
     background-color: #ECEDF4;
     background-image: url('/images/resume_themes/theme110/bg-img.png');
-    background-size: 109% auto;
+    background-size: 111% auto;
     background-position: center -70px;
     background-repeat: no-repeat;
     position: relative;
     overflow-x: hidden;
-
-    .theme-header {
-        width: 100%;
-        position: relative;
-
-        .bg-header {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-
-            &-bottom-right {
-                position: absolute;
-                right: 0;
-                opacity: 1;
-                bottom: -100px;
-            }
-        }
-
-        .left {
-            display: flex;
-
-        }
-
-        .right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-
-            .actions-wrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .action-btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 22px 36px;
-                    font-size: 18px;
-                    font-weight: 400;
-                    background: #fff;
-                    outline: none;
-                    color: $mainColor;
-                    border-radius: 9px;
-
-                    &:first-child {
-                        margin-right: 26px;
-                    }
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-
-            .payment-data {
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-                margin-top: 46px;
-
-                .hourly-rate,
-                .hourly-availability {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    font-size: 26px;
-                    font-weight: 700;
-                    margin-right: 35px;
-
-                    small {
-                        font-size: 15px;
-                        font-weight: 400px;
-                        color: $mainColor;
-                    }
-                }
-
-                .hire-me-btn {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background: $mainColor;
-                    padding: 23px 62px;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: white;
-                    border-radius: 9px;
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-        }
-
-        .user-info {
-            display: flex;
-            justify-content: space-between;
-            padding: 56px 80px;
-            z-index: 1;
-            position: relative;
-
-            .user-img {
-                display: inline-block;
-                width: 232px;
-                height: 232px;
-                margin-right: 55px;
-
-                img {
-                    width: 100%;
-                    border-radius: 50%;
-                }
-            }
-
-            .user-data {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                font-size: 26px;
-                font-weight: 400;
-
-                .name {
-                    font-weight: 700;
-                    font-size: 30px;
-                    margin-bottom: 20px;
-                }
-
-                .profession {
-                    margin-bottom: 30px;
-                    color: $mainColor;
-                }
-
-                .speciallity {
-                    display: flex;
-                    padding: 0;
-                    color: $mainColor;
-                    
-                    .item {
-                        margin-right: 40px;
-                        position: relative;
-
-                        &:last-child {
-                            margin-right: 0;
-
-                            &::after {
-                                display: none;
-                            }
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            width: 7px;
-                            height: 7px;
-                            background: $mainColor;
-                            border-radius: 50%;
-                            right: -20px;
-                            top: calc(50% - 3.5px);
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     .theme-body {
         height: auto;

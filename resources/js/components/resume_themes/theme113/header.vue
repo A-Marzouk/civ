@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="more-icon">
-                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme107/more-icon.png" alt="">
+                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme113/more-icon.png" alt="">
                     <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
                 </div>
             </div>

@@ -135,7 +135,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         height: auto;
         background: transparent;
         border-radius: 80px 80px 0 0;
-        z-index: 1;
         position: relative;
         overflow-x: hidden;
 

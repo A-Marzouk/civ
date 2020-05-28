@@ -181,12 +181,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         width: 100%;
                         font-size: 18px;
                         border-radius: 0;
-                        border: none;
                         background: transparent;
                         margin: 0 !important;
                         justify-content: flex-start;
                         padding: 0;
-                        color: black;
 
                         &:first-child {
                             margin-bottom: 35px !important;
@@ -194,14 +192,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                         .icon {
                             height: 16px;
-
-                            &.showIconOnMobile {
-                                display: block;
-                            }
-
-                            &.hideIconOnMobile {
-                                display: none;
-                            }
                         }
                     }
 

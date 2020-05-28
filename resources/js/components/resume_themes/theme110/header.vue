@@ -1,10 +1,6 @@
 <template>
     <div class="theme-header">
 
-        <div class="bg-header">
-            <img src="/images/resume_themes/theme112/bg-header.png" alt="" class="bg-header-img" />
-        </div>
-
         <div class="user-info">
             <div class="left">
                 <div class="user-img">
@@ -22,7 +18,7 @@
                 </div>
 
                 <div class="more-icon">
-                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme106/more-icon.png" alt="">
+                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme103/more-icon.png" alt="">
                     <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
                 </div>
             </div>
@@ -30,12 +26,10 @@
             <div class="right">
                 <div class="actions-wrapper" :class="{hide: !showMore}">
                     <button class="action-btn">
-                        <img class="icon hideIconOnMobile" src="/images/resume_themes/theme112/chat-icon.png">
-                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/chat-icon-mob.png"> Start a chat
+                        <img class="icon" src="/images/resume_themes/theme110/chat-icon.png"> Start a chat
                     </button>
                     <button class="action-btn">
-                        <img class="icon hideIconOnMobile" src="/images/resume_themes/theme112/suitcase-icon.png">
-                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/suitcase-icon-mob.png"> Upload interviews
+                        <img class="icon" src="/images/resume_themes/theme110/suitcase-icon.png">Upload interviews
                     </button>
                 </div>
 
@@ -50,7 +44,7 @@
                     </div>
 
                     <button class="hire-me-btn">
-                        <img src="/images/resume_themes/theme112/hireMe-icon.png" alt="hire me icon" class="icon">
+                        <img src="/images/resume_themes/theme110/hireMe-icon.png" alt="hire me icon" class="icon">
                         Hire Me
                     </button>
                 </div>
@@ -68,13 +62,13 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #BE001A;
+$mainColor: #492163;
 $tabTextColor: #4D2F2D;
-$purple: #BE001A;
+$purple: #686299;
 
 $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
-#theme112 {
+#theme110 {
     .theme-header {
         width: 100%;
         position: relative;
@@ -83,17 +77,12 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             width: 100%;
             height: 100%;
             position: absolute;
-            overflow: hidden;
 
-            &-img {
+            &-bottom-right {
                 position: absolute;
-                left: -30px;
-                top: -100px;
-                width: 140%;
-
-                @media (max-width: 700px) {
-                    width: 50%;
-                }
+                right: 0;
+                opacity: 1;
+                bottom: -100px;
             }
         }
 
@@ -133,7 +122,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             
             @media (max-width: 700px) {
                 width: 100%;
-                }
+            }
         }
 
         .right {
@@ -154,11 +143,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
-                    background: #1B1F28;
+                    background: #fff;
                     outline: none;
-                    color: white;
+                    color: $mainColor;
                     border-radius: 9px;
-                    box-shadow: 7px 7px 12px rgba(0, 0, 0, .8);
 
                     &:first-child {
                         margin-right: 26px;
@@ -203,13 +191,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         width: 100%;
                         font-size: 18px;
                         border-radius: 0;
-                        border: none;
                         background: transparent;
                         margin: 0 !important;
                         justify-content: flex-start;
                         padding: 0;
-                        color: black;
-                        box-shadow: none;
 
                         &:first-child {
                             margin-bottom: 35px !important;
@@ -217,14 +202,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                         .icon {
                             height: 16px;
-
-                            &.showIconOnMobile {
-                                display: block;
-                            }
-
-                            &.hideIconOnMobile {
-                                display: none;
-                            }
                         }
                     }
 
@@ -254,7 +231,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     small {
                         font-size: 15px;
                         font-weight: 400px;
-                        color: #BEC2D4;
+                        color: $mainColor;
                     }
 
                     @media (max-width: 1400px) {
@@ -283,8 +260,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: $gradient;
-                    box-shadow: 7px 7px 12px rgba(0, 0, 0, .8);
+                    background: $mainColor;
                     padding: 23px 62px;
                     font-size: 18px;
                     font-weight: 700;
@@ -337,14 +313,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
 
-            @media (max-width: 1200px) {
-                margin-top: 27px;
-            }
-
             @media (max-width: 700px) {
-                margin-top: 0;
-                padding-left: 60px;
-                justify-content: space-between;
                 width: 100%;
             }
         }
@@ -417,7 +386,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                 .profession {
                     margin-bottom: 30px;
-                    color: #BEC2D4;
+                    color: $mainColor;
 
                     @media (max-width: 1200px) {
                         margin-bottom: 20px;
@@ -427,7 +396,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 .speciallity {
                     display: flex;
                     padding: 0;
-                    color: #BEC2D4;
+                    color: $mainColor;
                     
                     .item {
                         margin-right: 40px;
@@ -446,7 +415,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #FFFFFF;
+                            background: $mainColor;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);
