@@ -151,15 +151,18 @@
     </v-container>
     <!-- main container ends here -->
     <!-- Payment Dialog -->
-    <v-dialog v-model="paymentModal" max-width="999" class="payment-modal">
-      <v-card class="card-payment-modal" style="overflow-x:hidden !important;">
-        <v-app-bar flat color="transparent" tile height="100">
+    <v-dialog v-model="paymentModal" max-width="999" style="border-radius: 20px !important;">
+      <v-card
+        class="card-payment-modal"
+        style="overflow-x:hidden !important; border-radius:20px !important;"
+      >
+        <v-app-bar flat color="transparent" tile :height="windowWidth>600?'100':'66'">
           <v-spacer></v-spacer>
-          <v-btn fab color="#0046FE" dark depressed class="btn-close">
+          <v-btn fab color="#0046FE" dark depressed class="btn-close" @click="paymentModal=false">
             <img src="/images/pricing/icons/close.svg" />
           </v-btn>
         </v-app-bar>
-        <v-card color="transparent" tile flat align="center">
+        <v-card color="transparent" tile flat align="center" class="">
           <v-row align="center" justify="center">
             <v-col cols="4">
               <a href="#">
@@ -566,15 +569,25 @@ $line-height55: 55px;
 }
 .card-payment-modal {
   height: 311px !important;
-  border-radius: 20px;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15) !important;
+  @media screen and (max-width: 599px) {
+    height: 210px !important;
+  }
 }
 .btn-close {
-  width: 38px !important;
-  height: 38px !important;
+  min-width: 48px !important;
+  min-height: 48px !important;
+  width: 48px !important;
+  height: 48px !important;
   border-radius: 100px !important;
   border: 5px solid #f8f8f8 !important;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+  @media screen and (max-width: 599px) {
+    min-width: 38px !important;
+    min-height: 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+  }
 }
 </style>
 
