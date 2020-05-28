@@ -14,6 +14,7 @@
                         startColor="#492163"
                         stopColor="#492163"
                         :strokeWidth="3"
+:innerStrokeWidth="3"
                         innerStrokeColor="#EEEEEE"
                         strokeLinecap="round"
                     >

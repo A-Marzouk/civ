@@ -168,7 +168,7 @@ $purple: #335E5E;
                     @media (max-width: 700px) {
                         position: absolute;
                         opacity: 1;
-                        transform: translateY(50px);
+                        transform: translateY(0px);
                         transition: all .4s ease;
                         flex-direction: column;
                         padding: 44px 36px;
@@ -198,7 +198,7 @@ $purple: #335E5E;
 
                         &.hide {
                             transition: all .4s ease;                        
-                            transform: translateY(-200px);
+                            transform: translateY(-260px);
                             opacity: 0;
                         }
                     }

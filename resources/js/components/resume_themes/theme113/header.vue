@@ -224,7 +224,7 @@ $purple: #686299;
                     @media (max-width: 700px) {
                         position: absolute;
                         opacity: 1;
-                        transform: translateY(50px);
+                        transform: translateY(0px);
                         transition: all .4s ease;
                         flex-direction: column;
                         padding: 44px 36px;
@@ -254,7 +254,7 @@ $purple: #686299;
 
                         &.hide {
                             transition: all .4s ease;                        
-                            transform: translateY(-200px);
+                            transform: translateY(-260px);
                             opacity: 0;
                         }
                     }
@@ -359,7 +359,14 @@ $purple: #686299;
                     }
                 }
 
+                @media (max-width: 1200px) {
+                    margin-top: 27px;
+                }
+
                 @media (max-width: 700px) {
+                    margin-top: 0;
+                    padding-left: 60px;
+                    justify-content: space-between;
                     width: 100%;
                 }
             }
