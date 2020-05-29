@@ -441,7 +441,7 @@ $line-height55: 55px;
       box-sizing: border-box;
       box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2) !important;
       border-radius: 10px;
-      font-family: Montserrat;
+      font-family: "Montserrat" !important;
       font-style: normal;
       font-weight: bold;
       font-size: 12px;
