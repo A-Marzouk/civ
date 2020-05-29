@@ -85,72 +85,77 @@
             <!-- For tablet and mobile -->
             <v-row class="hidden-lg-and-up" align="center" justify="center">
               <v-col md="12" sm="12" cols="12">
-                <v-tabs
-                  active-class="custom-active-class"
-                  background-color="transparent"
-                  centered
-                  hide-slider
-                  center-active
-                  grow
-                  v-model="price_tab"
-                  :height="windowWidth < 599 ? '80' : '120'"
-                >
-                  <v-tab
-                    active-class="custom-active-tab"
-                    v-for="plan in plans"
-                    :key="plan.id"
-                    @click="currentTab=plan.id"
-                    class="mx-md-3 mx-sm-3 mx-1 ct-tab"
-                  >{{plan.title}}</v-tab>
-                </v-tabs>
+                <transition name="slide-fade-price1">
+                  <v-tabs
+                    active-class="custom-active-class"
+                    background-color="transparent"
+                    centered
+                    hide-slider
+                    center-active
+                    grow
+                    v-model="price_tab"
+                    :height="windowWidth < 599 ? '80' : '120'"
+                    v-if="show"
+                  >
+                    <v-tab
+                      active-class="custom-active-tab"
+                      v-for="plan in plans"
+                      :key="plan.id"
+                      @click="currentTab=plan.id"
+                      class="mx-md-3 mx-sm-3 mx-1 ct-tab"
+                    >{{plan.title}}</v-tab>
+                  </v-tabs>
+                </transition>
               </v-col>
               <v-col md="12" sm="12" cols="12">
-                <v-card color="transparent" flat tile>
-                  <v-tabs-items v-model="price_tab">
-                    <v-tab-item v-for="plan in plans" :key="plan.id" align="center">
-                      <v-card class="price-card mt-1 pa-5 box-shadow-standard">
-                        <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
-                        <v-card-subtitle
-                          align="center"
-                          :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
-                        >
-                          <span class="usd">
-                            <sup>$</sup>
-                            <span class="amount">{{plan.price}}</span>
-                          </span>
+                <transition name="slide-fade-price1">
+                  <v-card color="transparent" flat tile v-if="show">
+                    <v-tabs-items v-model="price_tab">
+                      <v-tab-item v-for="plan in plans" :key="plan.id" align="center">
+                        <v-card class="price-card mt-1 pa-5 box-shadow-standard">
+                          <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
+                          <v-card-subtitle
+                            align="center"
+                            :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
+                          >
+                            <span class="usd">
+                              <sup>$</sup>
+                              <span class="amount">{{plan.price}}</span>
+                            </span>
 
-                          <span class="usd ml-2">{{plan.frequency}}</span>
-                        </v-card-subtitle>
+                            <span class="usd ml-2">{{plan.frequency}}</span>
+                          </v-card-subtitle>
 
-                        <v-card-subtitle align="center">
-                          <v-btn
-                            v-show="plan.title == 'Free'"
-                            outlined
-                            class="btn-free-sub"
-                          >{{plan.btn_title}}</v-btn>
-                          <v-btn
-                            color="#0046FE"
-                            v-show="plan.title != 'Free'"
-                            class="btn-pro"
-                            @click="paymentModal=true"
-                          >{{plan.btn_title}}</v-btn>
-                        </v-card-subtitle>
-                        <v-card-text class="mt-n5">
-                          <v-row align="center" justify="center">
-                            <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1">
-                              <ul class="features mt-10" align="left">
-                                <li
-                                  v-for="(feature,index) in plan.features"
-                                  :key="index"
-                                >{{feature}}</li>
-                              </ul>
-                            </v-col>
-                          </v-row>
-                        </v-card-text>
-                      </v-card>
-                    </v-tab-item>
-                  </v-tabs-items>
-                </v-card>
+                          <v-card-subtitle align="center">
+                            <v-btn
+                              v-show="plan.title == 'Free'"
+                              outlined
+                              class="btn-free-sub"
+                            >{{plan.btn_title}}</v-btn>
+                            <v-btn
+                              color="#0046FE"
+                              v-show="plan.title != 'Free'"
+                              class="btn-pro"
+                              @click="paymentModal=true"
+                            >{{plan.btn_title}}</v-btn>
+                          </v-card-subtitle>
+                          <v-card-text class="mt-n5">
+                            <v-row align="center" justify="center">
+                              <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1">
+                                <ul class="features mt-10" align="left">
+                                  <li
+                                    v-for="(feature,index) in plan.features"
+                                    :key="index"
+                                  >{{feature}}</li>
+                                </ul>
+                              </v-col>
+                            </v-row>
+                          </v-card-text>
+                        </v-card>
+                      </v-tab-item>
+                    </v-tabs-items>
+                  </v-card>
+                </transition>
               </v-col>
             </v-row>
             <!-- for tablet and mobile -->
@@ -668,7 +673,6 @@ $line-height55: 55px;
 }
 
 //price card2
-
 
 //price card3
 .slide-fade-price2-enter-active {
