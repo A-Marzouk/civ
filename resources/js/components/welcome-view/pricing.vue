@@ -176,7 +176,7 @@
             <img src="/images/pricing/icons/close.svg" />
           </v-btn>
         </v-app-bar>
-        <v-card color="transparent" tile flat align="center" class>
+        <v-card color="transparent" tile flat align="center" class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-1">
           <v-row align="center" justify="center">
             <v-col cols="4">
               <a href="#">
