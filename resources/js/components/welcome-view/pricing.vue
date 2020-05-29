@@ -5,71 +5,80 @@
       <v-row align="center" justify="center">
         <v-col xl="11" lg="11" md="11" sm="11" cols="12">
           <v-app-bar color="transparent" flat tile height="100">
-            <div class="div-back-btn">
-              <v-btn fab color="#0046FE" depressed dark class="btn-back">
-                <img src="/images/pricing/icons/left-arrow.svg" />
-              </v-btn>
-              <a href="/" class="link-back">Back</a>
-            </div>
+            <transition name="back-btn-slide slide-fade">
+              <div class="div-back-btn" v-if="show">
+                <v-btn fab color="#0046FE" depressed dark class="btn-back">
+                  <img src="/images/pricing/icons/left-arrow.svg" />
+                </v-btn>
+                <a href="/" class="link-back">Back</a>
+              </div>
+            </transition>
             <v-spacer></v-spacer>
-            <a href="/" class="link-back2">Home</a>
+            <transition name="home-btn-slide slide-fade">
+              <a href="/" class="link-back2" v-if="show">Home</a>
+            </transition>
           </v-app-bar>
           <v-container style="width: 100%;">
             <!-- For Desktop -->
             <v-row align="center" justify="center">
               <v-col xl="12" lg="12">
-                <v-card flat tile color="transparent" align="center">
-                  <v-card-subtitle class="choose-plan-text">Choose Your Plan</v-card-subtitle>
-                </v-card>
+                <transition name="choose-plan slide-fade">
+                  <v-card flat tile color="transparent" align="center" v-if="show">
+                    <v-card-subtitle class="choose-plan-text">Choose Your Plan</v-card-subtitle>
+                  </v-card>
+                </transition>
               </v-col>
               <v-col
                 md="4"
                 sm="12"
                 cols="12"
-                v-for="plan in plans"
+                v-for="(plan,index) in plans"
                 :key="plan.id"
                 class="hidden-md-and-down"
               >
-                <v-card
-                  class="price-card mt-10 pa-5"
-                  :class="plan.title == 'Standard'?'box-shadow-standard': 'box-shadow-regular'"
-                >
-                  <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
-                  <v-card-subtitle
-                    align="center"
-                    :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
+                <transition :name="'slide-fade-price'+index">
+                  <v-card
+                    v-if="show"
+                    class="price-card mt-10 pa-5"
+                    :class="plan.title == 'Standard'?'box-shadow-standard': 'box-shadow-regular'"
                   >
-                    <span class="usd">
-                      <sup>$</sup>
-                      <span class="amount">{{plan.price}}</span>
-                    </span>
+                    <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
+                    <v-card-subtitle
+                      align="center"
+                      :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
+                    >
+                      <span class="usd">
+                        <sup>$</sup>
+                        <span class="amount">{{plan.price}}</span>
+                      </span>
 
-                    <span class="usd ml-2">{{plan.frequency}}</span>
-                  </v-card-subtitle>
+                      <span class="usd ml-2">{{plan.frequency}}</span>
+                    </v-card-subtitle>
 
-                  <v-card-subtitle align="center">
-                    <v-btn
-                      v-show="plan.title == 'Free'"
-                      outlined
-                      class="btn-free-sub"
-                    >{{plan.btn_title}}</v-btn>
-                    <v-btn
-                      color="#0046FE"
-                      v-show="plan.title != 'Free'"
-                      class="btn-pro"
-                      @click="paymentModal=true"
-                    >{{plan.btn_title}}</v-btn>
-                  </v-card-subtitle>
-                  <v-card-text class="mt-lg-n5">
-                    <v-row align="center" justify="center">
-                      <v-col xl="8" lg="10" offset-xl="1">
-                        <ul class="features mt-10">
-                          <li v-for="(feature,index) in plan.features" :key="index">{{feature}}</li>
-                        </ul>
-                      </v-col>
-                    </v-row>
-                  </v-card-text>
-                </v-card>
+                    <v-card-subtitle align="center">
+                      <v-btn
+                        v-show="plan.title == 'Free'"
+                        outlined
+                        class="btn-free-sub"
+                      >{{plan.btn_title}}</v-btn>
+                      <v-btn
+                        color="#0046FE"
+                        v-show="plan.title != 'Free'"
+                        class="btn-pro"
+                        @click="paymentModal=true"
+                      >{{plan.btn_title}}</v-btn>
+                    </v-card-subtitle>
+                    <v-card-text class="mt-lg-n5">
+                      <v-row align="center" justify="center">
+                        <v-col xl="8" lg="10" offset-xl="1">
+                          <ul class="features mt-10">
+                            <li v-for="(feature,index) in plan.features" :key="index">{{feature}}</li>
+                          </ul>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </transition>
               </v-col>
             </v-row>
             <!-- For Desktop -->
@@ -162,7 +171,7 @@
             <img src="/images/pricing/icons/close.svg" />
           </v-btn>
         </v-app-bar>
-        <v-card color="transparent" tile flat align="center" class="">
+        <v-card color="transparent" tile flat align="center" class>
           <v-row align="center" justify="center">
             <v-col cols="4">
               <a href="#">
@@ -186,6 +195,7 @@
 export default {
   data() {
     return {
+      show: false,
       windowWidth: window.innerWidth,
       price_tab: 1,
       currentTab: 2,
@@ -240,9 +250,10 @@ export default {
   },
   //mounted
   mounted() {
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth;
-    };
+    (this.show = true),
+      (window.onresize = () => {
+        this.windowWidth = window.innerWidth;
+      });
   },
   methods: {
     triggerModal() {
@@ -589,6 +600,90 @@ $line-height55: 55px;
     height: 38px !important;
   }
 }
+
+// animations
+// back btn
+.back-btn-slide.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.back-btn-slide.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.back-btn-slide.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+// back btn
+// home btn
+.home-btn-slide.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.home-btn-slide.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.home-btn-slide.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(-100px);
+  opacity: 0;
+}
+//home btn
+//choose plan
+.choose-plan.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.choose-plan.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.choose-plan.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(-200px);
+  opacity: 0;
+}
+// choose plan
+//price card 1
+.slide-fade-price0-enter-active {
+  transition: all 0.8s ease;
+}
+.slide-fade-price0-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-price0-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100px);
+  opacity: 0;
+}
+//price card 1
+// price card2
+.slide-fade-price1-enter-active {
+  transition: all 1.5s ease;
+}
+.slide-fade-price1-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-price1-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+//price card2
+
+
+//price card3
+.slide-fade-price2-enter-active {
+  transition: all 0.8s ease;
+}
+.slide-fade-price2-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-price2-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100px);
+  opacity: 0;
+}
+//price card3
+// animations
 </style>
 
 <style>
