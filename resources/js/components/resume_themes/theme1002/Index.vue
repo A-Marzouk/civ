@@ -3,17 +3,20 @@
 		<!-- header -->
 		<component :currentUser="currentUser" v-bind:is="currentHeader"></component>
 
+		<TabsNavigation :currentTab="currentTab" @tabChanged="currentTab=$event" />
+
 	</div>
 </template>
 
 <script>
 import SmallHeader from "./components/header/SmallHeader";
 import LargeHeader from "./components/header/LargeHeader";
+import TabsNavigation from "./components/TabsNavigation";
 
 export default {
 	name: "resume-theme-1002",
 
-	components: { SmallHeader, LargeHeader },
+	components: { SmallHeader, LargeHeader, TabsNavigation },
 
 	data: () => {
 		return {
