@@ -14,6 +14,7 @@
                         startColor="#28404A"
                         stopColor="#28404A"
                         :strokeWidth="3"
+                        :innerStrokeWidth="3"
                         innerStrokeColor="#EEEEEE"
                         strokeLinecap="square"
                     >
@@ -26,6 +27,7 @@
                         startColor="#28404A"
                         stopColor="#28404A"
                         :strokeWidth="3"
+                        :innerStrokeWidth="3"
                         innerStrokeColor="#EEEEEE"
                         strokeLinecap="square"
                     >
@@ -39,6 +41,7 @@
                         startColor="#28404A"
                         stopColor="#28404A"
                         :strokeWidth="1"
+                        :innerStrokeWidth="1"
                         innerStrokeColor="#EEEEEE"
                         strokeLinecap="square"
                     >

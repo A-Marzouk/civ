@@ -130,7 +130,11 @@ $purple: #335E5E;
     color: $mainColor;
     background: #DBDEC4;
     position: relative;
-    overflow-x: hidden;
+    
+    .v-application--wrap {
+        overflow: hidden;
+        height: 100%;
+    }
 
     .theme-body {
         height: auto;
@@ -139,7 +143,8 @@ $purple: #335E5E;
         border-top: 16px solid $purple;
         position: relative;
         width: 100%;
-        overflow: hidden;
+        height: 100%;
+        padding-bottom: 100px;
 
         .bg-decoImg {
             position: absolute;
@@ -178,6 +183,7 @@ $purple: #335E5E;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
@@ -261,11 +267,12 @@ $purple: #335E5E;
                 width: 90%;
                 margin: 0 auto;
                 z-index: 0;
+                height: 100%;
+                align-items: flex-start;
 
                 @media (max-width: 700px) {
                     padding: 0;
                     padding-bottom: 30px;
-
                 }
             }
         }
@@ -350,7 +357,7 @@ $purple: #335E5E;
 
     .scroll-top {
         position: absolute;
-        left: 1%;
+        left: -10px;
         bottom: 250px;
         transform: rotateZ(-90deg);
 
@@ -390,7 +397,6 @@ $purple: #335E5E;
             }
 
             .icon {
-                height: 7px;
                 margin-left: 9px;
             }
         }
