@@ -85,72 +85,77 @@
             <!-- For tablet and mobile -->
             <v-row class="hidden-lg-and-up" align="center" justify="center">
               <v-col md="12" sm="12" cols="12">
-                <v-tabs
-                  active-class="custom-active-class"
-                  background-color="transparent"
-                  centered
-                  hide-slider
-                  center-active
-                  grow
-                  v-model="price_tab"
-                  :height="windowWidth < 599 ? '80' : '120'"
-                >
-                  <v-tab
-                    active-class="custom-active-tab"
-                    v-for="plan in plans"
-                    :key="plan.id"
-                    @click="currentTab=plan.id"
-                    class="mx-md-3 mx-sm-3 mx-1 ct-tab"
-                  >{{plan.title}}</v-tab>
-                </v-tabs>
+                <transition name="slide-fade-price1">
+                  <v-tabs
+                    active-class="custom-active-class"
+                    background-color="transparent"
+                    centered
+                    hide-slider
+                    center-active
+                    grow
+                    v-model="price_tab"
+                    :height="windowWidth < 599 ? '80' : '120'"
+                    v-if="show"
+                  >
+                    <v-tab
+                      active-class="custom-active-tab"
+                      v-for="plan in plans"
+                      :key="plan.id"
+                      @click="currentTab=plan.id"
+                      class="mx-md-3 mx-sm-3 mx-1 ct-tab"
+                    >{{plan.title}}</v-tab>
+                  </v-tabs>
+                </transition>
               </v-col>
               <v-col md="12" sm="12" cols="12">
-                <v-card color="transparent" flat tile>
-                  <v-tabs-items v-model="price_tab">
-                    <v-tab-item v-for="plan in plans" :key="plan.id" align="center">
-                      <v-card class="price-card mt-1 pa-5 box-shadow-standard">
-                        <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
-                        <v-card-subtitle
-                          align="center"
-                          :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
-                        >
-                          <span class="usd">
-                            <sup>$</sup>
-                            <span class="amount">{{plan.price}}</span>
-                          </span>
+                <transition name="slide-fade-price1">
+                  <v-card color="transparent" flat tile v-if="show">
+                    <v-tabs-items v-model="price_tab">
+                      <v-tab-item v-for="plan in plans" :key="plan.id" align="center">
+                        <v-card class="price-card mt-1 pa-5 box-shadow-standard">
+                          <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
+                          <v-card-subtitle
+                            align="center"
+                            :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
+                          >
+                            <span class="usd">
+                              <sup>$</sup>
+                              <span class="amount">{{plan.price}}</span>
+                            </span>
 
-                          <span class="usd ml-2">{{plan.frequency}}</span>
-                        </v-card-subtitle>
+                            <span class="usd ml-2">{{plan.frequency}}</span>
+                          </v-card-subtitle>
 
-                        <v-card-subtitle align="center">
-                          <v-btn
-                            v-show="plan.title == 'Free'"
-                            outlined
-                            class="btn-free-sub"
-                          >{{plan.btn_title}}</v-btn>
-                          <v-btn
-                            color="#0046FE"
-                            v-show="plan.title != 'Free'"
-                            class="btn-pro"
-                            @click="paymentModal=true"
-                          >{{plan.btn_title}}</v-btn>
-                        </v-card-subtitle>
-                        <v-card-text class="mt-n5">
-                          <v-row align="center" justify="center">
-                            <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1">
-                              <ul class="features mt-10" align="left">
-                                <li
-                                  v-for="(feature,index) in plan.features"
-                                  :key="index"
-                                >{{feature}}</li>
-                              </ul>
-                            </v-col>
-                          </v-row>
-                        </v-card-text>
-                      </v-card>
-                    </v-tab-item>
-                  </v-tabs-items>
-                </v-card>
+                          <v-card-subtitle align="center">
+                            <v-btn
+                              v-show="plan.title == 'Free'"
+                              outlined
+                              class="btn-free-sub"
+                            >{{plan.btn_title}}</v-btn>
+                            <v-btn
+                              color="#0046FE"
+                              v-show="plan.title != 'Free'"
+                              class="btn-pro"
+                              @click="paymentModal=true"
+                            >{{plan.btn_title}}</v-btn>
+                          </v-card-subtitle>
+                          <v-card-text class="mt-n5">
+                            <v-row align="center" justify="center">
+                              <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1">
+                                <ul class="features mt-10" align="left">
+                                  <li
+                                    v-for="(feature,index) in plan.features"
+                                    :key="index"
+                                  >{{feature}}</li>
+                                </ul>
+                              </v-col>
+                            </v-row>
+                          </v-card-text>
+                        </v-card>
+                      </v-tab-item>
+                    </v-tabs-items>
+                  </v-card>
+                </transition>
               </v-col>
             </v-row>
             <!-- for tablet and mobile -->
@@ -160,18 +165,27 @@
     </v-container>
     <!-- main container ends here -->
     <!-- Payment Dialog -->
-    <v-dialog v-model="paymentModal" max-width="999" style="border-radius: 20px !important;">
-      <v-card
-        class="card-payment-modal"
-        style="overflow-x:hidden !important; border-radius:20px !important;"
-      >
+    <v-dialog
+      class="paymentModal"
+      v-model="paymentModal"
+      max-width="999"
+      style="overflow-x: hidden !important; border-radius:20px;"
+      persistent
+    >
+      <v-card class="card-payment-modal" style="overflow-x:hidden !important;">
         <v-app-bar flat color="transparent" tile :height="windowWidth>600?'100':'66'">
           <v-spacer></v-spacer>
           <v-btn fab color="#0046FE" dark depressed class="btn-close" @click="paymentModal=false">
             <img src="/images/pricing/icons/close.svg" />
           </v-btn>
         </v-app-bar>
-        <v-card color="transparent" tile flat align="center" class>
+        <v-card
+          color="transparent"
+          tile
+          flat
+          align="center"
+          class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-1"
+        >
           <v-row align="center" justify="center">
             <v-col cols="4">
               <a href="#">
@@ -255,12 +269,7 @@ export default {
         this.windowWidth = window.innerWidth;
       });
   },
-  methods: {
-    triggerModal() {
-      alert("Hello");
-      this.paymentModal = true;
-    }
-  }
+  methods: {}
 };
 </script>
 
@@ -436,7 +445,7 @@ $line-height55: 55px;
       box-sizing: border-box;
       box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2) !important;
       border-radius: 10px;
-      font-family: Montserrat;
+      font-family: "Montserrat" !important;
       font-style: normal;
       font-weight: bold;
       font-size: 12px;
@@ -648,7 +657,7 @@ $line-height55: 55px;
 .slide-fade-price0-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-price0-enter, .slide-fade-leave-to
+.slide-fade-price0-enter, .slide-fade-price0-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
@@ -661,14 +670,13 @@ $line-height55: 55px;
 .slide-fade-price1-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-price1-enter, .slide-fade-leave-to
+.slide-fade-price1-enter, .slide-fade-price1-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
 }
 
 //price card2
-
 
 //price card3
 .slide-fade-price2-enter-active {
@@ -677,7 +685,7 @@ $line-height55: 55px;
 .slide-fade-price2-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-price2-enter, .slide-fade-leave-to
+.slide-fade-price2-enter, .slide-fade-price2-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
@@ -689,5 +697,8 @@ $line-height55: 55px;
 <style>
 #pricing .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
+}
+#pricing .v-dialog{
+  border-radius: 20px !important;
 }
 </style>
