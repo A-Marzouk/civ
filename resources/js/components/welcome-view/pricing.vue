@@ -653,7 +653,7 @@ $line-height55: 55px;
 .slide-fade-price0-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-price0-enter, .slide-fade-leave-to
+.slide-fade-price0-enter, .slide-fade-price0-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
@@ -666,7 +666,7 @@ $line-height55: 55px;
 .slide-fade-price1-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-price1-enter, .slide-fade-leave-to
+.slide-fade-price1-enter, .slide-fade-price1-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
@@ -681,7 +681,7 @@ $line-height55: 55px;
 .slide-fade-price2-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.slide-fade-price2-enter, .slide-fade-leave-to
+.slide-fade-price2-enter, .slide-fade-price2-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(100px);
   opacity: 0;
