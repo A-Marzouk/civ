@@ -53,9 +53,12 @@ export default {
         margin-top: 34px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 240px;
+        grid-auto-rows: 240px;
         grid-gap: 100px;
         max-width: 1400px !important;
         width: 85%;
+        height: 100%;
 
         .skill {
             display: flex;

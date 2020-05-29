@@ -73,8 +73,8 @@ $mainColor: #28404A;
 $tabTextColor: #4D2F2D;
 $purple: #355E5E;
 
-    #theme105 {
-        .theme-header {
+#theme105 {
+    .theme-header {
         width: 100%;
         background-image: url("/images/resume_themes/theme105/bg-header.png");
         position: relative;
@@ -225,7 +225,7 @@ $purple: #355E5E;
                 @media (max-width: 700px) {
                     position: absolute;
                     opacity: 1;
-                    transform: translateY(50px);
+                    transform: translateY(0px);
                     transition: all .4s ease;
                     flex-direction: column;
                     padding: 44px 36px;
@@ -255,7 +255,7 @@ $purple: #355E5E;
 
                     &.hide {
                         transition: all .4s ease;                        
-                        transform: translateY(-200px);
+                        transform: translateY(-260px);
                         opacity: 0;
                     }
                 }
@@ -360,7 +360,13 @@ $purple: #355E5E;
                 }
             }
 
+            @media (max-width: 1200px) {
+                margin-top: 27px;
+            }
+
             @media (max-width: 700px) {
+                margin-top: 0;
+                justify-content: space-between;
                 width: 100%;
             }
         }
