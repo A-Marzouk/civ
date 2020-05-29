@@ -232,7 +232,6 @@ export default {
                 }
             }
         }
-
     }
 }
 </style>

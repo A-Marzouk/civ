@@ -80,6 +80,12 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         max-width: 1300px;
+        padding: 0 60px;
+        margin: 0 auto;
+
+        @media (max-width: 830px) {
+            padding: 0;
+        }
     }
 
     .education-item {
@@ -123,6 +129,40 @@ export default {
                 color: #838BA4;
                 font-size: 15px;
                 margin-left: 13px;
+                margin-top: 4px;
+            }
+
+            @media (max-width: 1200px) {
+                .education-icon {
+                    width: 28px;
+                    height: 28px;
+                    margin-right: 52px;
+
+                    &::after {
+                        width: 31px;
+                        right: calc(-13px - 31px);
+                    }
+
+                    img {
+                        width: 12px;
+                    }
+                }
+
+                .college-name {
+                    font-size: 12px;
+                }
+
+                .date {
+                    font-size: 9px;
+                }
+            }
+
+            @media (max-width: 700px) {
+                margin-bottom: 16px;
+
+                .college-name {
+                    font-size: 13px;
+                }
             }
         }
 
@@ -133,6 +173,7 @@ export default {
                 color: black;
                 font-size: 17px;
                 margin-bottom: 10px;
+                position: relative;
             }
 
             .education-description,
@@ -140,6 +181,30 @@ export default {
                 color: #838BA4;
                 font-size: 17px;
             }
+
+            @media (max-width: 1200px) {
+                padding-left: calc(58px + 28px);
+
+                .grade-title,
+                .education-description p {
+                    font-size: 10px;
+
+                }
+            }
+
+            @media (max-width: 700px) {
+                
+                .grade-title,
+                .education-description p {
+                    font-size: 11px;
+
+                }
+            }
+        }
+
+        @media (max-width: 620px) {
+            width: 100%;
+            margin-bottom: 48px;
         }
     }
 </style>
