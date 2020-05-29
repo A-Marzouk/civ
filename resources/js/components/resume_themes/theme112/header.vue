@@ -331,7 +331,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                 @media (max-width: 700px) {
                     margin-top: 0;
-                    padding-left: 60px;
                     justify-content: space-between;
                     width: 100%;
                 }

@@ -132,7 +132,8 @@ $purple: #335E5E;
     position: relative;
     
     .v-application--wrap {
-        overflow-x: hidden;
+        overflow: hidden;
+        height: 100%;
     }
 
     .theme-body {
@@ -396,7 +397,6 @@ $purple: #335E5E;
             }
 
             .icon {
-                height: 7px;
                 margin-left: 9px;
             }
         }

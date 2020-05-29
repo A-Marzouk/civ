@@ -309,7 +309,6 @@ $purple: #335E5E;
 
                 @media (max-width: 700px) {
                     margin-top: 0;
-                    padding-left: 60px;
                     justify-content: space-between;
                     width: 100%;
                 }

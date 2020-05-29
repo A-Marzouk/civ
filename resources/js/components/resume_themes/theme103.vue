@@ -132,11 +132,11 @@ $purple: #0556B6;
     position: relative;
 
     .v-application--wrap {
-        overflow-x: hidden;
+        overflow: hidden;
+        height: 100%;
     }
 
     .theme-body {
-        height: auto;
         background: white;
         border-radius: 80px 80px 0 0;
         position: relative;

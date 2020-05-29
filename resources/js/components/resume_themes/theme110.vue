@@ -138,7 +138,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     position: relative;
 
     .v-application--wrap {
-        overflow-x: hidden;
+        overflow: hidden;
+        height: 100%;
     }
 
     .theme-body {

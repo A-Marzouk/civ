@@ -73,8 +73,8 @@ $mainColor: #28404A;
 $tabTextColor: #4D2F2D;
 $purple: #355E5E;
 
-    #theme105 {
-        .theme-header {
+#theme105 {
+    .theme-header {
         width: 100%;
         background-image: url("/images/resume_themes/theme105/bg-header.png");
         position: relative;
@@ -366,7 +366,6 @@ $purple: #355E5E;
 
             @media (max-width: 700px) {
                 margin-top: 0;
-                padding-left: 60px;
                 justify-content: space-between;
                 width: 100%;
             }
