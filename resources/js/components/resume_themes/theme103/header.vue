@@ -1,13 +1,6 @@
 <template>
     <div class="theme-header">
 
-        <div class="bg-header">
-            <img class='left-bg' src="/images/resume_themes/theme105/bg-left.png" alt="">
-            <img src="/images/resume_themes/theme105/bg-top1.png" alt="" class="bg-top1">
-            <img src="/images/resume_themes/theme105/bg-top2.png" alt="" class="bg-top2">
-            <img src="/images/resume_themes/theme105/bg-right.png" alt="" class="bg-right">
-        </div>
-
         <div class="user-info">
             <div class="left">
                 <div class="user-img">
@@ -25,7 +18,7 @@
                 </div>
 
                 <div class="more-icon">
-                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme107/more-icon.png" alt="">
+                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme103/more-icon.png" alt="">
                     <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
                 </div>
             </div>
@@ -33,10 +26,10 @@
             <div class="right">
                 <div class="actions-wrapper" :class="{hide: !showMore}">
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/chat-icon.png"> Start a chat
+                        <img class="icon" src="/images/resume_themes/theme103/chat-icon.png"> Start a chat
                     </button>
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/suitcase-icon.png">Upload interviews
+                        <img class="icon" src="/images/resume_themes/theme103/suitcase-icon.png">Upload interviews
                     </button>
                 </div>
 
@@ -51,7 +44,7 @@
                     </div>
 
                     <button class="hire-me-btn">
-                        <img src="/images/resume_themes/theme105/hireMe-icon.png" alt="hire me icon" class="icon">
+                        <img src="/images/resume_themes/theme103/hireMe-icon.png" alt="hire me icon" class="icon">
                         Hire Me
                     </button>
                 </div>
@@ -69,71 +62,17 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #28404A;
+$mainColor: #BE001A;
 $tabTextColor: #4D2F2D;
-$purple: #355E5E;
+$purple: #BE001A;
 
-#theme105 {
+$gradient: linear-gradient(to right, #9434CD, #EE3DC6);
+
+#theme103 {
     .theme-header {
         width: 100%;
-        background-image: url("/images/resume_themes/theme105/bg-header.png");
         position: relative;
-
-        .bg-header {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            overflow: hidden;
-
-            .left-bg {
-                position: absolute;
-                left: -88px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-top1 {
-                position: absolute;
-                top: -44px;
-                right: 40%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-            
-            .bg-top2 {
-                position: absolute;
-                top: -21.7px;
-                right: 39%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-right {
-                position: absolute;
-                top: -63.5px;
-                right: -29.7px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-bottom {
-                position: absolute;
-                bottom: -13px;
-                right: 46%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-        }
+        background-image: url("/images/resume_themes/theme103/bg-header.png");
 
         .left {
             display: flex;
@@ -275,10 +214,12 @@ $purple: #355E5E;
                     font-size: 26px;
                     font-weight: 700;
                     margin-right: 35px;
+                    color: $purple;
 
                     small {
                         font-size: 15px;
-                        font-weight: 400px;
+                        font-weight: normal;
+                        color: $mainColor;
                     }
 
                     @media (max-width: 1400px) {
@@ -354,7 +295,6 @@ $purple: #355E5E;
 
                 @media (max-width: 700px) {
                     margin-top: 0;
-                    padding-left: 60px;
                     justify-content: space-between;
                     width: 100%;
                 }
@@ -366,6 +306,7 @@ $purple: #355E5E;
 
             @media (max-width: 700px) {
                 margin-top: 0;
+                padding-left: 60px;
                 justify-content: space-between;
                 width: 100%;
             }
@@ -435,6 +376,7 @@ $purple: #355E5E;
                     font-weight: 700;
                     font-size: 30px;
                     margin-bottom: 20px;
+                    color: $purple;
                 }
 
                 .profession {
@@ -466,7 +408,7 @@ $purple: #355E5E;
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #28404A;
+                            background: $mainColor;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);

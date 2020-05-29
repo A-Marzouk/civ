@@ -1,13 +1,6 @@
 <template>
     <div class="theme-header">
 
-        <div class="bg-header">
-            <img class='left-bg' src="/images/resume_themes/theme105/bg-left.png" alt="">
-            <img src="/images/resume_themes/theme105/bg-top1.png" alt="" class="bg-top1">
-            <img src="/images/resume_themes/theme105/bg-top2.png" alt="" class="bg-top2">
-            <img src="/images/resume_themes/theme105/bg-right.png" alt="" class="bg-right">
-        </div>
-
         <div class="user-info">
             <div class="left">
                 <div class="user-img">
@@ -25,7 +18,7 @@
                 </div>
 
                 <div class="more-icon">
-                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme107/more-icon.png" alt="">
+                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme110/more-icon.png" alt="">
                     <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
                 </div>
             </div>
@@ -33,10 +26,10 @@
             <div class="right">
                 <div class="actions-wrapper" :class="{hide: !showMore}">
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/chat-icon.png"> Start a chat
+                        <img class="icon" src="/images/resume_themes/theme110/chat-icon.png"> Start a chat
                     </button>
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/suitcase-icon.png">Upload interviews
+                        <img class="icon" src="/images/resume_themes/theme110/suitcase-icon.png">Upload interviews
                     </button>
                 </div>
 
@@ -51,7 +44,7 @@
                     </div>
 
                     <button class="hire-me-btn">
-                        <img src="/images/resume_themes/theme105/hireMe-icon.png" alt="hire me icon" class="icon">
+                        <img src="/images/resume_themes/theme110/hireMe-icon.png" alt="hire me icon" class="icon">
                         Hire Me
                     </button>
                 </div>
@@ -69,69 +62,27 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #28404A;
+$mainColor: #492163;
 $tabTextColor: #4D2F2D;
-$purple: #355E5E;
+$purple: #686299;
 
-#theme105 {
+$gradient: linear-gradient(to right, #9434CD, #EE3DC6);
+
+#theme110 {
     .theme-header {
         width: 100%;
-        background-image: url("/images/resume_themes/theme105/bg-header.png");
         position: relative;
 
         .bg-header {
             width: 100%;
             height: 100%;
             position: absolute;
-            overflow: hidden;
 
-            .left-bg {
+            &-bottom-right {
                 position: absolute;
-                left: -88px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-top1 {
-                position: absolute;
-                top: -44px;
-                right: 40%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-            
-            .bg-top2 {
-                position: absolute;
-                top: -21.7px;
-                right: 39%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-right {
-                position: absolute;
-                top: -63.5px;
-                right: -29.7px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-bottom {
-                position: absolute;
-                bottom: -13px;
-                right: 46%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
+                right: 0;
+                opacity: 1;
+                bottom: -100px;
             }
         }
 
@@ -194,6 +145,7 @@ $purple: #355E5E;
                     font-weight: 400;
                     background: #fff;
                     outline: none;
+                    color: $mainColor;
                     border-radius: 9px;
 
                     &:first-child {
@@ -279,6 +231,7 @@ $purple: #355E5E;
                     small {
                         font-size: 15px;
                         font-weight: 400px;
+                        color: $mainColor;
                     }
 
                     @media (max-width: 1400px) {
@@ -307,7 +260,7 @@ $purple: #355E5E;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: $purple;
+                    background: $mainColor;
                     padding: 23px 62px;
                     font-size: 18px;
                     font-weight: 700;
@@ -354,7 +307,6 @@ $purple: #355E5E;
 
                 @media (max-width: 700px) {
                     margin-top: 0;
-                    padding-left: 60px;
                     justify-content: space-between;
                     width: 100%;
                 }
@@ -366,6 +318,7 @@ $purple: #355E5E;
 
             @media (max-width: 700px) {
                 margin-top: 0;
+                padding-left: 60px;
                 justify-content: space-between;
                 width: 100%;
             }
@@ -439,6 +392,7 @@ $purple: #355E5E;
 
                 .profession {
                     margin-bottom: 30px;
+                    color: $mainColor;
 
                     @media (max-width: 1200px) {
                         margin-bottom: 20px;
@@ -448,6 +402,7 @@ $purple: #355E5E;
                 .speciallity {
                     display: flex;
                     padding: 0;
+                    color: $mainColor;
                     
                     .item {
                         margin-right: 40px;
@@ -466,7 +421,7 @@ $purple: #355E5E;
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #28404A;
+                            background: $mainColor;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);

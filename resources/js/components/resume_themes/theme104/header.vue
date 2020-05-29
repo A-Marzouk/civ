@@ -2,10 +2,6 @@
     <div class="theme-header">
 
         <div class="bg-header">
-            <img class='left-bg' src="/images/resume_themes/theme105/bg-left.png" alt="">
-            <img src="/images/resume_themes/theme105/bg-top1.png" alt="" class="bg-top1">
-            <img src="/images/resume_themes/theme105/bg-top2.png" alt="" class="bg-top2">
-            <img src="/images/resume_themes/theme105/bg-right.png" alt="" class="bg-right">
         </div>
 
         <div class="user-info">
@@ -25,21 +21,12 @@
                 </div>
 
                 <div class="more-icon">
-                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme107/more-icon.png" alt="">
+                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme104/more-icon.png" alt="">
                     <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
                 </div>
             </div>
 
             <div class="right">
-                <div class="actions-wrapper" :class="{hide: !showMore}">
-                    <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/chat-icon.png"> Start a chat
-                    </button>
-                    <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/suitcase-icon.png">Upload interviews
-                    </button>
-                </div>
-
                 <div class="payment-data">
                     <div class="hourly-rate">
                         $15
@@ -51,10 +38,19 @@
                     </div>
 
                     <button class="hire-me-btn">
-                        <img src="/images/resume_themes/theme105/hireMe-icon.png" alt="hire me icon" class="icon">
+                        <img src="/images/resume_themes/theme104/hireMe-icon.png" alt="hire me icon" class="icon">
                         Hire Me
                     </button>
                 </div>
+                <div class="actions-wrapper" :class="{hide: !showMore}">
+                    <button class="action-btn">
+                        <img class="icon" src="/images/resume_themes/theme104/chat-icon.png"> Start a chat
+                    </button>
+                    <button class="action-btn">
+                        <img class="icon" src="/images/resume_themes/theme104/suitcase-icon.png">Upload interviews
+                    </button>
+                </div>
+
             </div>
         </div>
     </div>
@@ -69,69 +65,28 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #28404A;
+$mainColor: #172C7A;
 $tabTextColor: #4D2F2D;
-$purple: #355E5E;
+$purple: #FB423A;
 
-#theme105 {
+#theme104 {
     .theme-header {
         width: 100%;
-        background-image: url("/images/resume_themes/theme105/bg-header.png");
         position: relative;
 
         .bg-header {
-            width: 100%;
-            height: 100%;
+            background: #FFF0F0;
+            background-image: url("/images/resume_themes/theme104/bg-header.png");
             position: absolute;
-            overflow: hidden;
+            width: 90%;
+            right: 0;
+            top: 0;
+            height: 100%;
+            border-radius: 0 0 0 100px;
 
-            .left-bg {
-                position: absolute;
-                left: -88px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-top1 {
-                position: absolute;
-                top: -44px;
-                right: 40%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-            
-            .bg-top2 {
-                position: absolute;
-                top: -21.7px;
-                right: 39%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-right {
-                position: absolute;
-                top: -63.5px;
-                right: -29.7px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-bottom {
-                position: absolute;
-                bottom: -13px;
-                right: 46%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
+            @media (max-width: 700px) {
+                border-radius: 0;
+                width: 100%;
             }
         }
 
@@ -184,6 +139,7 @@ $purple: #355E5E;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-top: 46px;
 
                 .action-btn {
                     display: flex;
@@ -265,7 +221,6 @@ $purple: #355E5E;
                 display: flex;
                 justify-content: center;
                 align-items: flex-end;
-                margin-top: 46px;
 
                 .hourly-rate,
                 .hourly-availability {
@@ -275,10 +230,12 @@ $purple: #355E5E;
                     font-size: 26px;
                     font-weight: 700;
                     margin-right: 35px;
+                    color: $purple;
 
                     small {
                         font-size: 15px;
-                        font-weight: 400px;
+                        font-weight: normal;
+                        color: $mainColor;
                     }
 
                     @media (max-width: 1400px) {
@@ -318,7 +275,7 @@ $purple: #355E5E;
                         margin-right: 10px;
                     }
 
-                    @media (max-width: 1400px) {
+                     @media (max-width: 1400px) {
                         font-size: 16px;
                         padding: 23px 42px;
                         min-width: 144px;
@@ -354,7 +311,6 @@ $purple: #355E5E;
 
                 @media (max-width: 700px) {
                     margin-top: 0;
-                    padding-left: 60px;
                     justify-content: space-between;
                     width: 100%;
                 }
@@ -366,6 +322,7 @@ $purple: #355E5E;
 
             @media (max-width: 700px) {
                 margin-top: 0;
+                padding-left: 60px;
                 justify-content: space-between;
                 width: 100%;
             }
@@ -395,17 +352,23 @@ $purple: #355E5E;
                 display: inline-block;
                 width: 232px;
                 height: 232px;
-                margin-right: 55px;
+                margin-right: 55px;                
 
                 img {
                     width: 100%;
                     border-radius: 50%;
+                    border-width: 13px;
+                    border-color: white;
                 }
 
                 @media (max-width: 1400px) {
                     width: 184px;
                     height: 184px;
                     margin-right: 33px;
+
+                    img {
+                        border: none;
+                    }
                 }
                 
                 @media (max-width: 1200px) {
@@ -433,8 +396,9 @@ $purple: #355E5E;
 
                 .name {
                     font-weight: 700;
-                    font-size: 30px;
+                    font-size: 35px;
                     margin-bottom: 20px;
+                    color: $purple;
                 }
 
                 .profession {
@@ -466,7 +430,7 @@ $purple: #355E5E;
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #28404A;
+                            background: $mainColor;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);

@@ -1,12 +1,9 @@
 <template>
     <div class="theme-header">
 
-        <div class="bg-header">
-            <img class='left-bg' src="/images/resume_themes/theme105/bg-left.png" alt="">
-            <img src="/images/resume_themes/theme105/bg-top1.png" alt="" class="bg-top1">
-            <img src="/images/resume_themes/theme105/bg-top2.png" alt="" class="bg-top2">
-            <img src="/images/resume_themes/theme105/bg-right.png" alt="" class="bg-right">
-        </div>
+        <!-- <div class="bg-header">
+            <img src="/images/resume_themes/theme111/bg-header-bottom-right.svg" alt="" class="bg-header-bottom-right" />
+        </div> -->
 
         <div class="user-info">
             <div class="left">
@@ -25,7 +22,7 @@
                 </div>
 
                 <div class="more-icon">
-                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme107/more-icon.png" alt="">
+                    <img @click="showMore = !showMore" :class="{hide: showMore}" src="/images/resume_themes/theme111/more-icon.png" alt="">
                     <font-awesome-icon @click="showMore = !showMore" :class="{hide: !showMore}" :icon="['fas', 'times']"></font-awesome-icon>
                 </div>
             </div>
@@ -33,10 +30,10 @@
             <div class="right">
                 <div class="actions-wrapper" :class="{hide: !showMore}">
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/chat-icon.png"> Start a chat
+                        <img class="icon" src="/images/resume_themes/theme111/chat-icon.png"> Start a chat
                     </button>
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme105/suitcase-icon.png">Upload interviews
+                        <img class="icon" src="/images/resume_themes/theme111/suitcase-icon.png">Upload interviews
                     </button>
                 </div>
 
@@ -51,7 +48,7 @@
                     </div>
 
                     <button class="hire-me-btn">
-                        <img src="/images/resume_themes/theme105/hireMe-icon.png" alt="hire me icon" class="icon">
+                        <img src="/images/resume_themes/theme111/hireMe-icon.png" alt="hire me icon" class="icon">
                         Hire Me
                     </button>
                 </div>
@@ -69,69 +66,28 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #28404A;
+$mainColor: #2BFAFE;
 $tabTextColor: #4D2F2D;
-$purple: #355E5E;
+$purple: #686299;
 
-#theme105 {
+$gradient: linear-gradient(to right, #9434CD, #EE3DC6);
+
+#theme111 {
     .theme-header {
         width: 100%;
-        background-image: url("/images/resume_themes/theme105/bg-header.png");
+        // background: linear-gradient(to bottom, #7566E5, #4327AB);
         position: relative;
 
         .bg-header {
             width: 100%;
             height: 100%;
             position: absolute;
-            overflow: hidden;
 
-            .left-bg {
+            &-bottom-right {
                 position: absolute;
-                left: -88px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-top1 {
-                position: absolute;
-                top: -44px;
-                right: 40%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-            
-            .bg-top2 {
-                position: absolute;
-                top: -21.7px;
-                right: 39%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-right {
-                position: absolute;
-                top: -63.5px;
-                right: -29.7px;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
-            }
-
-            .bg-bottom {
-                position: absolute;
-                bottom: -13px;
-                right: 46%;
-
-                @media (max-width: 700px) {
-                    width: 30%;
-                }
+                right: 0;
+                opacity: 1;
+                bottom: -100px;
             }
         }
 
@@ -192,8 +148,10 @@ $purple: #355E5E;
                     padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
-                    background: #fff;
+                    background: transparent;
+                    border: 4px solid #56EDF0;
                     outline: none;
+                    color: white;
                     border-radius: 9px;
 
                     &:first-child {
@@ -243,6 +201,7 @@ $purple: #355E5E;
                         margin: 0 !important;
                         justify-content: flex-start;
                         padding: 0;
+                        border: none;
 
                         &:first-child {
                             margin-bottom: 35px !important;
@@ -279,6 +238,7 @@ $purple: #355E5E;
                     small {
                         font-size: 15px;
                         font-weight: 400px;
+                        color: white;
                     }
 
                     @media (max-width: 1400px) {
@@ -307,11 +267,11 @@ $purple: #355E5E;
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    background: $purple;
+                    background: $mainColor;
                     padding: 23px 62px;
                     font-size: 18px;
                     font-weight: 700;
-                    color: white;
+                    color: #4030A1;
                     border-radius: 9px;
 
                     .icon {
@@ -400,6 +360,8 @@ $purple: #355E5E;
                 img {
                     width: 100%;
                     border-radius: 50%;
+                    border: 6px solid $mainColor;
+                    box-shadow: 0px 0px 40px rgba(86, 237, 240, 0.6);
                 }
 
                 @media (max-width: 1400px) {
@@ -411,6 +373,10 @@ $purple: #355E5E;
                 @media (max-width: 1200px) {
                     width: 141px;
                     height: 141px;
+
+                    img {
+                        border-width: 2px;
+                    }
                 }
                 
                 @media (max-width: 876px) {
@@ -439,6 +405,7 @@ $purple: #355E5E;
 
                 .profession {
                     margin-bottom: 30px;
+                    color: white;
 
                     @media (max-width: 1200px) {
                         margin-bottom: 20px;
@@ -448,6 +415,7 @@ $purple: #355E5E;
                 .speciallity {
                     display: flex;
                     padding: 0;
+                    color: white;
                     
                     .item {
                         margin-right: 40px;
@@ -466,7 +434,7 @@ $purple: #355E5E;
                             position: absolute;
                             width: 7px;
                             height: 7px;
-                            background: #28404A;
+                            background: #FFFFFF;
                             border-radius: 50%;
                             right: -20px;
                             top: calc(50% - 3.5px);

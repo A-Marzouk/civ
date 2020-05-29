@@ -66,6 +66,7 @@ $purple: #FB423A;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+
             &:last-child {
                 margin-bottom: 0;
             }
@@ -106,6 +107,31 @@ $purple: #FB423A;
                     top: 13px;
                 }
             }
+
+            @media (max-width: 976px) {
+                grid-column: span 6;
+            }
+            
+            @media (max-width: 590px) {
+                grid-column: span 12;
+                
+                .content {
+                    margin-top: 14px;
+
+                    .title {
+                        font-size: 15px !important;
+                        margin-bottom: 4px;
+                    }
+
+                    .type {
+                        font-size: 12px !important;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 590px) {
+            grid-gap: 40px 0;
         }
     }
 </style>
