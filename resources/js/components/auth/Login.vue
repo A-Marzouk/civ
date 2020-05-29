@@ -1,8 +1,8 @@
 <template>
-    <v-app style="width:100%;" class="app-container">
-        <!-- main container -->
+  <v-app style="width:100%;" class="app-container">
+    <!-- main container -->
 
-        <v-container>
+    <!-- <v-container>
             <div class="main-bar">
                 <a class="back-btn" href="/">
                     <img src="/images/back-btn.png" alt="back btn">
@@ -13,56 +13,100 @@
                     </a>
                 </div>
             </div>
-        </v-container>
+    </v-container>-->
+    <v-container class="main-bar">
+      <v-app-bar color="transparent" flat tile height="100">
+        <div class="div-back-btn">
+          <v-btn fab color="#0046FE" depressed dark class="btn-back">
+            <img src="/images/pricing/icons/left-arrow.svg" />
+          </v-btn>
+          <a href="/" class="link-back">Back</a>
+        </div>
+        <v-spacer></v-spacer>
+        <a href="/" class="link-back2">Home</a>
+      </v-app-bar>
+    </v-container>
 
-        
-        <v-container class="main-container" style="margin-top: 40px;">
-            <login-form></login-form>
-        </v-container>
-    </v-app>
+    <v-container class="main-container" style="margin-top: 40px;">
+      <login-form></login-form>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-    import LoginForm from './partials/LoginForm'
-    export default {
-        name: "Login",
-        components:{
-            'login-form' : LoginForm
-        },
-    }
+import LoginForm from "./partials/LoginForm";
+export default {
+  name: "Login",
+  components: {
+    "login-form": LoginForm
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-    .main-bar{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        align-items: center;
-        padding:  25px 25px 0 25px;
+.main-bar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 25px 0 25px;
 
-        .back-btn{
-            img{
-                width: 54px;
-                height: 54px;
-            }
-            &:hover{
-                cursor: pointer;
-            }
-        }
-
-        .home-text{
-            a{
-                font-family: Montserrat, sans-serif;
-                font-style: normal;
-                font-weight: bold;
-                font-size: 18px;
-                line-height: 22px;
-                color: #0046FE;
-
-                &:hover{
-                    text-decoration: none;
-                }
-            }
-        }
+  .back-btn {
+    img {
+      width: 54px;
+      height: 54px;
     }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .home-text {
+    a {
+      font-family: Montserrat, sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22px;
+      color: #0046fe;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  //
+  .div-back-btn {
+    .btn-back {
+      width: 54px !important;
+      height: 54px !important;
+      border: 5px solid #f8f8f8 !important;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+      @media screen and (max-width: 599px) {
+        width: 35px !important;
+        height: 35px !important;
+        img {
+          width: 14px !important;
+          height: 11px !important;
+        }
+      }
+    }
+
+    .link-back {
+      font-family: "Montserrat" !important;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      color: #0046fe !important;
+      margin-left: 8px;
+    }
+  }
+  .link-back2 {
+    font-family: "Montserrat" !important;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #0046fe !important;
+  }
+}
 </style>
