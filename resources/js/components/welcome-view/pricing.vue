@@ -9,7 +9,7 @@
               <v-btn fab color="#0046FE" depressed dark class="btn-back">
                 <img src="/images/pricing/icons/left-arrow.svg" />
               </v-btn>
-              <a href="#" class="link-back">Back</a>
+              <a href="/" class="link-back">Back</a>
             </div>
             <v-spacer></v-spacer>
             <a href="/" class="link-back2">Home</a>
