@@ -165,18 +165,27 @@
     </v-container>
     <!-- main container ends here -->
     <!-- Payment Dialog -->
-    <v-dialog v-model="paymentModal" max-width="999" style="border-radius: 20px !important;">
-      <v-card
-        class="card-payment-modal"
-        style="overflow-x:hidden !important; border-radius:20px !important;"
-      >
+    <v-dialog
+      class="paymentModal"
+      v-model="paymentModal"
+      max-width="999"
+      style="overflow-x: hidden !important; border-radius:20px;"
+      persistent
+    >
+      <v-card class="card-payment-modal" style="overflow-x:hidden !important;">
         <v-app-bar flat color="transparent" tile :height="windowWidth>600?'100':'66'">
           <v-spacer></v-spacer>
           <v-btn fab color="#0046FE" dark depressed class="btn-close" @click="paymentModal=false">
             <img src="/images/pricing/icons/close.svg" />
           </v-btn>
         </v-app-bar>
-        <v-card color="transparent" tile flat align="center" class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-1">
+        <v-card
+          color="transparent"
+          tile
+          flat
+          align="center"
+          class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-1"
+        >
           <v-row align="center" justify="center">
             <v-col cols="4">
               <a href="#">
@@ -260,9 +269,7 @@ export default {
         this.windowWidth = window.innerWidth;
       });
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 
@@ -690,5 +697,8 @@ $line-height55: 55px;
 <style>
 #pricing .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
+}
+#pricing .v-dialog{
+  border-radius: 20px !important;
 }
 </style>
