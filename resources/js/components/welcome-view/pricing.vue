@@ -261,10 +261,7 @@ export default {
       });
   },
   methods: {
-    triggerModal() {
-      alert("Hello");
-      this.paymentModal = true;
-    }
+
   }
 };
 </script>
