@@ -140,10 +140,10 @@ $purple: #24325D;
     }
 
     .theme-body {
-        height: auto;
         background-color: $mainColor;
         border-radius: 80px 80px 0 0;
         height: 100%;
+        width: 100%;
         padding-bottom: 100px;
         position: relative;
 
@@ -174,6 +174,8 @@ $purple: #24325D;
                 color: $tabTextColor;
                 margin-top: 61px;
                 margin-bottom: 111px;
+                overflow: 0 auto;
+                width: 95%;
 
                 &-bar {
                     background: transparent !important;

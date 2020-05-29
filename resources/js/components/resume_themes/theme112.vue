@@ -31,6 +31,7 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
+                        
                         <div class="theme-aside hideOnTablet">
                             Follow me - 
                             <a href="javascript:;">
