@@ -702,3 +702,25 @@ if ($("#resumeTheme600").length !== 0) {
         }
     });
 }
+import resumeTheme509 from './components/resume_themes/theme509/Index';
+if ($("#resumeTheme509").length !== 0) {
+    new Vue({
+        el: '#resumeTheme509',
+        vuetify,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-509': resumeTheme509
+        }
+    });
+}
+import resumeTheme510 from './components/resume_themes/theme510/Index';
+if ($("#resumeTheme510").length !== 0) {
+    new Vue({
+        el: '#resumeTheme510',
+        vuetify,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-510': resumeTheme510
+        }
+    });
+}
