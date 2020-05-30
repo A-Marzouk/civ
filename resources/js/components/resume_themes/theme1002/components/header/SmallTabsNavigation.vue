@@ -8,7 +8,7 @@
 import MenuSwitcher from "./MenuSwitcher";
 
 export default {
-	name: "tabs-navigation",
+	name: "small-tabs-navigation",
 
 	props: {
 		currentTab: {
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./../scss/variables";
+@import "./../../scss/variables";
 
 .tabs-navigation {
 }

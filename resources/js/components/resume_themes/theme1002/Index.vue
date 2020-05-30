@@ -1,27 +1,31 @@
 <template>
 	<div id="wrapper_theme1002">
 		<!-- header -->
-		<component :currentUser="currentUser" v-bind:is="currentHeader"></component>
+		<component :currentUser="currentUser" :currentTab="currentTab" @tabChanged="currentTab=$event" v-bind:is="currentHeader"></component>
 
-		<TabsNavigation :currentTab="currentTab" @tabChanged="currentTab=$event" />
-
+		<SmallTabsNavigation v-if="inSmallScreen" :currentTab="currentTab" @tabChanged="currentTab=$event" />
 	</div>
 </template>
 
 <script>
 import SmallHeader from "./components/header/SmallHeader";
 import LargeHeader from "./components/header/LargeHeader";
-import TabsNavigation from "./components/TabsNavigation";
+import SmallTabsNavigation from "./components/header/SmallTabsNavigation";
 
 export default {
 	name: "resume-theme-1002",
 
-	components: { SmallHeader, LargeHeader, TabsNavigation },
+	components: {
+		SmallHeader,
+		LargeHeader,
+		SmallTabsNavigation
+	},
 
 	data: () => {
 		return {
 			currentTab: "portfolio",
 			currentHeader: "small-header",
+			inSmallScreen: true,
 			currentUser: {
 				avatar: "/images/resume_themes/theme1002/profiles/person.png",
 				fullname: "Ahmed Elsayed",
@@ -36,6 +40,8 @@ export default {
 		onResize() {
 			this.currentHeader =
 				window.innerWidth < 1024 ? "small-header" : "large-header";
+
+			this.inSmallScreen = window.innerWidth < 1024;
 		}
 	},
 
