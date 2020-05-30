@@ -29,4 +29,4 @@
 </template>
 ```
 
-![input image](https://github.com/A-Marzouk/civ/tree/master/resources/js/components/resume_builder/components/utils/assets/input.png "Input Demo Image")
+![input image](https://github.com/A-Marzouk/civ/tree/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/input.png "Input Demo Image")
