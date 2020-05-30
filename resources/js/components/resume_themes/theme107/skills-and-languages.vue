@@ -14,19 +14,35 @@
                         startColor="#28404A"
                         stopColor="#28404A"
                         :strokeWidth="3"
+                        :innerStrokeWidth="3"
                         innerStrokeColor="#EEEEEE"
                         strokeLinecap="square"
                     >
                     </radial-progress-bar>
                     <img :src="'/images/resume_themes/theme105/' + skill.icon" alt="">
                 </div>
-                <div class="chart showOnTablet">
+                <div class="chart showOnTablet hideChartOnMobile">
                     <radial-progress-bar :diameter="38"
                         :completed-steps="skill.percentage"
                         :total-steps="100"
                         startColor="#28404A"
                         stopColor="#28404A"
                         :strokeWidth="3"
+                        :innerStrokeWidth="3"
+                        innerStrokeColor="#EEEEEE"
+                        strokeLinecap="square"
+                    >
+                    </radial-progress-bar>
+                    <img :src="'/images/resume_themes/theme105/' + skill.icon" alt="">
+                </div>
+                <div class="chart showOnMobile">
+                    <radial-progress-bar :diameter="39"
+                        :completed-steps="skill.percentage"
+                        :total-steps="100"
+                        startColor="#28404A"
+                        stopColor="#28404A"
+                        :strokeWidth="1"
+                        :innerStrokeWidth="1"
                         innerStrokeColor="#EEEEEE"
                         strokeLinecap="square"
                     >
@@ -150,6 +166,10 @@ export default {
                 &.showOnTablet {
                     display: none;
                 }
+
+                &.showOnMobile {
+                    display: none;
+                }
             }
 
 
@@ -195,7 +215,7 @@ export default {
                     }
                     
                     img {
-                        width: 14.76px;
+                        width: 14px;
                     }
                 }
                 
@@ -219,6 +239,32 @@ export default {
 
             @media (max-width: 756px) {
                 grid-column: span 6;
+                max-width: 100%;
+
+                .chart {
+                    &.hideChartOnMobile {
+                        display: none;
+                    }
+
+                    &.showOnMobile {
+                        display: flex;
+
+                    }
+                    
+                    img {
+                        width: 14px;
+                    }
+                }
+
+                .skill-info {
+                    .skill-percentage {
+                        margin-left: 20.4px;
+
+                        &::after {
+                            left: -20.4px;
+                        }
+                    }
+                }
             }
         }
 
@@ -231,7 +277,8 @@ export default {
         }
         
         @media (max-width: 756px) {
-            grid-gap: 35px;
+            grid-gap: 35px 20px;
+            width: 100%;
         }
     }
 </style>

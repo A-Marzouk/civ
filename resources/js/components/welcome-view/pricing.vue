@@ -5,27 +5,40 @@
       <v-row align="center" justify="center">
         <v-col xl="11" lg="11" md="11" sm="11" cols="12">
           <v-app-bar color="transparent" flat tile height="100">
-            <div class="div-back-btn">
-              <v-btn fab color="#0046FE" depressed dark class="btn-back">
-                <img src="/images/pricing/icons/left-arrow.svg" />
-              </v-btn>
-              <a href="#" class="link-back">Back</a>
-            </div>
+            <transition name="back-btn-slide slide-fade">
+              <div class="div-back-btn" v-if="show">
+                <v-btn fab color="#0046FE" depressed dark class="btn-back">
+                  <img src="/images/pricing/icons/left-arrow.svg" />
+                </v-btn>
+                <a href="/" class="link-back">Back</a>
+              </div>
+            </transition>
             <v-spacer></v-spacer>
-            <a href="/" class="link-back2">Home</a>
+            <transition name="home-btn-slide slide-fade">
+              <a href="/" class="link-back2" v-if="show">Home</a>
+            </transition>
           </v-app-bar>
           <v-container style="width: 100%;">
             <!-- For Desktop -->
             <v-row align="center" justify="center">
               <v-col xl="12" lg="12">
+<<<<<<< HEAD
                 <v-card flat tile color="transparent" align="center">
                   <v-card-subtitle class="choose-plan-text">Choose Your Plan</v-card-subtitle>
                 </v-card>
+=======
+                <transition name="choose-plan slide-fade">
+                  <v-card flat tile color="transparent" align="center" v-if="show">
+                    <v-card-subtitle class="choose-plan-text">Choose Your Plan</v-card-subtitle>
+                  </v-card>
+                </transition>
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
               </v-col>
               <v-col
                 md="4"
                 sm="12"
                 cols="12"
+<<<<<<< HEAD
                 v-for="plan in plans"
                 :key="plan.id"
                 class="hidden-md-and-down"
@@ -65,12 +78,62 @@
                     </ul>
                   </v-card-text>
                 </v-card>
+=======
+                v-for="(plan,index) in plans"
+                :key="plan.id"
+                class="hidden-md-and-down"
+              >
+                <transition :name="'slide-fade-price'+index">
+                  <v-card
+                    v-if="show"
+                    class="price-card mt-10 pa-5"
+                    :class="plan.title == 'Standard'?'box-shadow-standard': 'box-shadow-regular'"
+                  >
+                    <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
+                    <v-card-subtitle
+                      align="center"
+                      :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
+                    >
+                      <span class="usd">
+                        <sup>$</sup>
+                        <span class="amount">{{plan.price}}</span>
+                      </span>
+
+                      <span class="usd ml-2">{{plan.frequency}}</span>
+                    </v-card-subtitle>
+
+                    <v-card-subtitle align="center">
+                      <v-btn
+                        v-show="plan.title == 'Free'"
+                        outlined
+                        class="btn-free-sub"
+                      >{{plan.btn_title}}</v-btn>
+                      <v-btn
+                        color="#0046FE"
+                        v-show="plan.title != 'Free'"
+                        class="btn-pro"
+                        @click="paymentModal=true"
+                      >{{plan.btn_title}}</v-btn>
+                    </v-card-subtitle>
+                    <v-card-text class="mt-lg-n5">
+                      <v-row align="center" justify="center">
+                        <v-col xl="8" lg="10" offset-xl="1">
+                          <ul class="features mt-10">
+                            <li v-for="(feature,index) in plan.features" :key="index">{{feature}}</li>
+                          </ul>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
+                </transition>
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
               </v-col>
             </v-row>
             <!-- For Desktop -->
             <!-- For tablet and mobile -->
             <v-row class="hidden-lg-and-up" align="center" justify="center">
               <v-col md="12" sm="12" cols="12">
+<<<<<<< HEAD
                 <v-tabs
                   active-class="custom-active-class"
                   background-color="transparent"
@@ -129,6 +192,79 @@
                     </v-tab-item>
                   </v-tabs-items>
                 </v-card>
+=======
+                <transition name="slide-fade-price1">
+                  <v-tabs
+                    active-class="custom-active-class"
+                    background-color="transparent"
+                    centered
+                    hide-slider
+                    center-active
+                    grow
+                    v-model="price_tab"
+                    :height="windowWidth < 599 ? '80' : '120'"
+                    v-if="show"
+                  >
+                    <v-tab
+                      active-class="custom-active-tab"
+                      v-for="plan in plans"
+                      :key="plan.id"
+                      @click="currentTab=plan.id"
+                      class="mx-md-3 mx-sm-3 mx-1 ct-tab"
+                    >{{plan.title}}</v-tab>
+                  </v-tabs>
+                </transition>
+              </v-col>
+              <v-col md="12" sm="12" cols="12">
+                <transition name="slide-fade-price1">
+                  <v-card color="transparent" flat tile v-if="show">
+                    <v-tabs-items v-model="price_tab">
+                      <v-tab-item v-for="plan in plans" :key="plan.id" align="center">
+                        <v-card class="price-card mt-1 pa-5 box-shadow-standard">
+                          <v-card-subtitle class="price-title" align="center">{{plan.title}}</v-card-subtitle>
+                          <v-card-subtitle
+                            align="center"
+                            :class="plan.title == 'Free' ? 'mt-n6': 'subtitle-pro mt-n6' "
+                          >
+                            <span class="usd">
+                              <sup>$</sup>
+                              <span class="amount">{{plan.price}}</span>
+                            </span>
+
+                            <span class="usd ml-2">{{plan.frequency}}</span>
+                          </v-card-subtitle>
+
+                          <v-card-subtitle align="center">
+                            <v-btn
+                              v-show="plan.title == 'Free'"
+                              outlined
+                              class="btn-free-sub"
+                            >{{plan.btn_title}}</v-btn>
+                            <v-btn
+                              color="#0046FE"
+                              v-show="plan.title != 'Free'"
+                              class="btn-pro"
+                              @click="paymentModal=true"
+                            >{{plan.btn_title}}</v-btn>
+                          </v-card-subtitle>
+                          <v-card-text class="mt-n5">
+                            <v-row align="center" justify="center">
+                              <v-col md="9" sm="9" cols="11" offset-md="2" offset-sm="2" offset="1">
+                                <ul class="features mt-10" align="left">
+                                  <li
+                                    v-for="(feature,index) in plan.features"
+                                    :key="index"
+                                  >{{feature}}</li>
+                                </ul>
+                              </v-col>
+                            </v-row>
+                          </v-card-text>
+                        </v-card>
+                      </v-tab-item>
+                    </v-tabs-items>
+                  </v-card>
+                </transition>
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
               </v-col>
             </v-row>
             <!-- for tablet and mobile -->
@@ -137,6 +273,44 @@
       </v-row>
     </v-container>
     <!-- main container ends here -->
+    <!-- Payment Dialog -->
+    <v-dialog
+      class="paymentModal"
+      v-model="paymentModal"
+      max-width="999"
+      style="overflow-x: hidden !important; border-radius:20px;"
+      persistent
+    >
+      <v-card class="card-payment-modal" style="overflow-x:hidden !important;">
+        <v-app-bar flat color="transparent" tile :height="windowWidth>600?'100':'66'">
+          <v-spacer></v-spacer>
+          <v-btn fab color="#0046FE" dark depressed class="btn-close" @click="paymentModal=false">
+            <img src="/images/pricing/icons/close.svg" />
+          </v-btn>
+        </v-app-bar>
+        <v-card
+          color="transparent"
+          tile
+          flat
+          align="center"
+          class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-1"
+        >
+          <v-row align="center" justify="center">
+            <v-col cols="4">
+              <a href="#">
+                <img src="/images/pricing/icons/stripe-logo.svg" alt="Stripe Logo" />
+              </a>
+            </v-col>
+            <v-col cols="4">
+              <a href="#">
+                <img src="/images/pricing/icons/paypal-logo.svg" alt="Stripe Logo" />
+              </a>
+            </v-col>
+          </v-row>
+        </v-card>
+      </v-card>
+    </v-dialog>
+    <!-- Payment Dialog -->
   </v-app>
 </template>
 
@@ -144,9 +318,17 @@
 export default {
   data() {
     return {
+<<<<<<< HEAD
       windowWidth: window.innerWidth,
       price_tab: 1,
       currentTab: 2,
+=======
+      show: false,
+      windowWidth: window.innerWidth,
+      price_tab: 1,
+      currentTab: 2,
+      paymentModal: false,
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
       plans: [
         {
           id: 1,
@@ -197,10 +379,19 @@ export default {
   },
   //mounted
   mounted() {
+<<<<<<< HEAD
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
   }
+=======
+    (this.show = true),
+      (window.onresize = () => {
+        this.windowWidth = window.innerWidth;
+      });
+  },
+  methods: {}
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
 };
 </script>
 
@@ -219,6 +410,15 @@ $line-height55: 55px;
       height: 54px !important;
       border: 5px solid #f8f8f8 !important;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+      margin-top: -7px;
+      @media screen and (max-width: 599px) {
+        width: 35px !important;
+        height: 35px !important;
+        img {
+          width: 14px !important;
+          height: 11px !important;
+        }
+      }
     }
 
     .link-back {
@@ -268,7 +468,15 @@ $line-height55: 55px;
     }
 
     @media screen and (min-width: 600px) and (max-width: 1263px) {
+<<<<<<< HEAD
       height: 608px !important;
+=======
+      height: 574px !important;
+    }
+    @media screen and (max-width: 599px) {
+      width: auto !important;
+      height: 548px !important;
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     }
 
     .price-title {
@@ -353,6 +561,12 @@ $line-height55: 55px;
         height: 43px !important;
         font-size: 10px;
       }
+<<<<<<< HEAD
+=======
+      @media screen and (max-width: 380px) {
+        width: 220px;
+      }
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     }
     .btn-pro {
       width: 270px !important;
@@ -360,7 +574,7 @@ $line-height55: 55px;
       box-sizing: border-box;
       box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2) !important;
       border-radius: 10px;
-      font-family: Montserrat;
+      font-family: "Montserrat" !important;
       font-style: normal;
       font-weight: bold;
       font-size: 12px;
@@ -382,12 +596,22 @@ $line-height55: 55px;
         height: 43px !important;
         font-size: 10px;
       }
+<<<<<<< HEAD
+=======
+      @media screen and (max-width: 380px) {
+        width: 240px !important;
+      }
+      @media screen and (max-width: 342px) {
+        font-size: 8px;
+        width: 200px !important;
+      }
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     }
 
     ul {
       list-style: none !important;
-      margin-left: 4.5vw;
       margin-top: 10px;
+<<<<<<< HEAD
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
         margin-left: 1.5vw;
       }
@@ -400,6 +624,20 @@ $line-height55: 55px;
       @media screen and (max-width: 599px) {
         margin-left: 13vw;
       }
+=======
+      // @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      //   margin-left: 1.5vw;
+      // }
+      // @media screen and (min-width: 960px) and (max-width: 1263px) {
+      //   margin-left: 8vw;
+      // }
+      // @media screen and (min-width: 600px) and (max-width: 959px) {
+      //   margin-left: 12vw;
+      // }
+      // @media screen and (max-width: 599px) {
+      //   margin-left: 13vw;
+      // }
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     }
     ul li::before {
       content: "\2022";
@@ -421,7 +659,11 @@ $line-height55: 55px;
       line-height: 36px;
       color: #0a1e56 !important;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
+<<<<<<< HEAD
         font-size: 16px;
+=======
+        font-size: 14px;
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
         line-height: 30px;
       }
       @media screen and (min-width: 600px) and (max-width: 1263px) {
@@ -430,6 +672,12 @@ $line-height55: 55px;
       @media screen and (max-width: 599px) {
         font-size: 14px;
       }
+<<<<<<< HEAD
+=======
+      @media screen and (max-width: 342px) {
+        font-size: 12px;
+      }
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     }
   } //price card ends here
   .price-card:hover {
@@ -438,24 +686,50 @@ $line-height55: 55px;
 
   .ct-tab {
     width: 180px;
+<<<<<<< HEAD
     height: 60px;
+=======
+    height: 64px;
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     font-family: "Montserrat" !important;
     font-weight: bold;
     font-size: 24px !important;
     line-height: $line-height55;
+<<<<<<< HEAD
     margin-top: 15px;
+=======
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     color: rgba(10, 30, 86, 0.4) !important;
     text-transform: capitalize;
     border-radius: 15px 15px 0px 0px;
     box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.15);
+<<<<<<< HEAD
     //background:rgba(0, 70, 254, 0.15);
     @media screen and (max-width: 599px) {
       width: 110px;
       font-size: 12px !important;
+=======
+    margin-top: 30px;
+    @media screen and (min-width: 600px) and (max-width: 750px) {
+      width: 150px;
+      font-size: 18px !important;
+    }
+
+    @media screen and (max-width: 599px) {
+      width: 110px;
+      height: 39px;
+      font-size: 12px !important;
+      margin-top: 23px;
+    }
+    @media screen and (max-width: 422px) {
+      width: 80px;
+      font-size: 10px !important;
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
     }
   }
   .custom-active-tab {
     font-size: 30px !important;
+<<<<<<< HEAD
     background-color: #0046fe !important;
     color: #ffffff !important;
     border-radius: 15px 15px 0px 0px;
@@ -468,10 +742,150 @@ $line-height55: 55px;
     height: 79px !important;
   }
 }
+=======
+    height: 79px !important;
+    margin-top: 14px;
+    background-color: #0046fe !important;
+    color: #ffffff !important;
+    border-radius: 15px 15px 0px 0px;
+    @media screen and(min-width: 600px) and (max-width: 750px) {
+      width: 150px;
+      font-size: 18px !important;
+    }
+    @media screen and (max-width: 599px) {
+      width: 135px !important;
+      height: 48px !important;
+      font-size: 18px !important;
+    }
+    @media screen and (max-width: 422px) {
+      width: 100px;
+      font-size: 14px !important;
+    }
+  }
+  // .custom-active-class {
+  //   height: 79px !important;
+  // }
+}
+.payment-modal {
+  overflow-x: hidden !important;
+  border-radius: 20px !important;
+}
+.card-payment-modal {
+  height: 311px !important;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15) !important;
+  @media screen and (max-width: 599px) {
+    height: 210px !important;
+  }
+}
+.btn-close {
+  min-width: 48px !important;
+  min-height: 48px !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 100px !important;
+  border: 5px solid #f8f8f8 !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+  @media screen and (max-width: 599px) {
+    min-width: 38px !important;
+    min-height: 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+
+// animations
+// back btn
+.back-btn-slide.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.back-btn-slide.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.back-btn-slide.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+// back btn
+// home btn
+.home-btn-slide.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.home-btn-slide.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.home-btn-slide.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(-100px);
+  opacity: 0;
+}
+//home btn
+//choose plan
+.choose-plan.slide-fade-enter-active {
+  transition: all 0.8s ease;
+}
+.choose-plan.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.choose-plan.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(-200px);
+  opacity: 0;
+}
+// choose plan
+//price card 1
+.slide-fade-price0-enter-active {
+  transition: all 0.8s ease;
+}
+.slide-fade-price0-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-price0-enter, .slide-fade-price0-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100px);
+  opacity: 0;
+}
+//price card 1
+// price card2
+.slide-fade-price1-enter-active {
+  transition: all 1.5s ease;
+}
+.slide-fade-price1-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-price1-enter, .slide-fade-price1-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+//price card2
+
+//price card3
+.slide-fade-price2-enter-active {
+  transition: all 0.8s ease;
+}
+.slide-fade-price2-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-price2-enter, .slide-fade-price2-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(100px);
+  opacity: 0;
+}
+//price card3
+// animations
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
 </style>
 
 <style>
 #pricing .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
+<<<<<<< HEAD
+=======
+}
+#pricing .v-dialog{
+  border-radius: 20px !important;
+>>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
 }
 </style>
