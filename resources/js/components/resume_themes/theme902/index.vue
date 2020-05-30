@@ -20,7 +20,9 @@
                                 <span class="point-tm903" >.</span>&nbsp;
 								<span>Figma</span>
 							</div>
-							<div v-show="right_menu" >
+
+							<v-row v-show="right_menu" >
+                                <v-col>
 								<v-menu
                                     v-model="menu"
                                     :close-on-content-click="false"
@@ -64,22 +66,23 @@
 										</v-list>
 									</v-card>
 								</v-menu>
-							</div>
+                                </v-col>
+							</v-row>
 						</div>
 					</v-col>
 					<v-col lg="4" md="4" sm="5" cols="12">
 						<div class="header-right-902" >
 							<v-row v-show="top_btn_902" >
-								<v-col lg="6" md="6" sm="6" >
+								<v-col  lg="6" md="6" sm="6" >
 									<v-btn class="top-btn-902" >
-										<v-icon left>mdi-email-check</v-icon>
+										<v-icon class="icon-btn-902" left>mdi-email-check</v-icon>
                                     start a chat!
                                 
 									</v-btn>
 								</v-col>
 								<v-col lg="6" md="6" sm="6" >
 									<v-btn class="top-btn-902" >
-										<v-icon left>mdi-email-check</v-icon>
+										<v-icon class="icon-btn-902" left>mdi-email-check</v-icon>
                                     Upload Interviews
                                 
 									</v-btn>
@@ -87,7 +90,7 @@
 							</v-row>
 							<v-row>
 								<v-col>
-									<v-row>
+									<v-row class="bottom-info-902" >
 										<v-col class="about-902" >
 											<p class="title-902" >$45</p>
 											<p class="subtitle-902" >hourly rate</p>
@@ -98,10 +101,10 @@
 										</v-col>
 									</v-row>
 								</v-col>
-								<v-col>
+								<v-col cols="6" >
 									<v-btn class="bottom-btn-902" >
-										<v-icon left>mdi-account-box</v-icon>
-                                    hir me
+										<v-icon class="icon-btn-902" left>mdi-account-box</v-icon>
+                                    hire me
 									</v-btn>
 								</v-col>
 							</v-row>
@@ -111,12 +114,17 @@
 			</div>
             </div>
             <div class="tm903-scroll" >
-                <span @click="top" class="d-flex  scroll-to-tm902" >
-                    <div class="tm902-scroll-line1" ></div><div class="tm902-scroll-line2" ></div> &nbsp;&nbsp;&nbsp;Scroll to top
-                </span>
-                <span class="d-flex follow-us-tm902" >
-                    follow us&nbsp; <div class="tm902-follow-line" ></div>&nbsp; be / dribbble / in.
-                </span>
+                <div class="scroll-to-tm902" >
+                    <span @click="top" class="d-flex  " >
+                        <div class="tm902-scroll-line1" ></div><div class="tm902-scroll-line2" ></div> &nbsp;&nbsp;&nbsp;Scroll to top
+                    </span>
+                </div>
+                <br>
+                <div class="follow-us-tm902" >
+                    <span class="d-flex" >
+                        follow us&nbsp; <div class="tm902-follow-line" ></div>&nbsp; be / dribbble / in.
+                    </span>
+                </div>
             </div>
 		<div class="content-tm902" >
 			<v-tabs
@@ -167,9 +175,9 @@
                             sm="6"
                             cols="12"
                             >
-									<p class="boxes-date-902" >
-										 septembre 2017 - present
-									</p>
+									<span class="boxes-date-902 d-flex" >
+										<div class="boxes-line-902" ></div> &nbsp;septembre 2017 - present
+									</span>
 									<p class="boxes-title-902" > quantum computer services </p>
 									<p class="boxes-subtitle-902" > senior UX UI desiner </p>
 									<p class="boxes-text-902" > Get, keoo and grow more customers with customer engagement Automation by kissmetrics. Get, keoo and grow more customers with customer engagement Automation by kissmetrics. </p>
@@ -193,9 +201,9 @@
                             lg="4" 
                             sm="6"
                             cols="12" >
-									<p class="boxes-date-902" >
-										 septembre 2017 - present
-									</p>
+                                    <span class="boxes-date-902 d-flex" >
+										<div class="boxes-line-902" ></div> &nbsp; 2017 - 2015
+									</span>
 									<p class="boxes-title-902" > quantum computer services </p>
 									<p class="boxes-subtitle-902" > senior UX UI desiner </p>
 									<p class="boxes-text-902" > Get, keoo and grow more customers with customer engagement Automation by kissmetrics. Get, keoo and grow more customers with customer engagement Automation by kissmetrics. </p>
@@ -236,7 +244,7 @@
 								</v-col>
 							</v-row>
 						</v-tab-item>
-						<v-tab-item key="about me awards">
+						<v-tab-item key="about me & awards">
 							<v-row class="aboutme-902" >
 								<v-col lg="4" sm="4" cols="12">
 									<p class="aboutme-title-902" >welcome to my profile</p>
@@ -273,8 +281,8 @@ data(){
         item: 1,
         showit:null,
         items: [
-            { text: 'start a chat!', icon: 'mdi-email-check' },
-            { text: 'uploads interviews', icon: 'mdi-bag-checked' }
+            { text: 'Start a chat!', icon: 'mdi-email-check' },
+            { text: 'Uploads interviews', icon: 'mdi-briefcase' }
         ],
         fav: true,
         menu: false,
@@ -284,7 +292,7 @@ data(){
         tabs_model:null,
         tabs:
         [
-            'portfolio','work experience','education','skills and languages','about me awards'
+            'portfolio','work experience','education','skills and languages','about me & awards'
         ],
         profile:[
             {title:"Corporate",subtitle:"Agency, Corporate",img:"/images/resume_themes/theme902/profile1.png"},
@@ -353,6 +361,7 @@ computed: {
 @import url("https://fonts.googleapis.com/css2?family=Muli&display=swap");
 #hold-theme902{
     .tm903-scroll{
+        margin: 0 30px 0;
         @media only screen and (max-width: 1024px){
            padding: 0 20px 0; 
         }
@@ -362,17 +371,19 @@ computed: {
         display: inline-block;
         z-index: 999;
         .scroll-to-tm902{
+            float: right;
             cursor: pointer;
             text-transform: capitalize;
-            font-family: 'Muli', sans-serif;
+            font-family: "Muli", sans-serif;
             transform: rotate(270deg);
-            text-align: right;
             font-size: 20px;
             font-weight: bold;
             letter-spacing: 0px;
             color: #1D1C22;
-            opacity: 1;
-            position: fixed;
+            left: -30px;
+            top: 666px;
+            position: absolute;
+            z-index: 999;
             .tm902-scroll-line1{
                 border-top: 1px solid #000;
                 width: 60px;
@@ -389,26 +400,28 @@ computed: {
                 position: relative;
             }
             @media only screen and (max-width: 1024px){
-                left: -4%;
-                top: 50%;
+                left: -60px;
+                top: 425px;
                 font-size: 12px;
             }
-            @media only screen and (max-width: 764px){
+            @media only screen and (max-width: 425px){
                 display: none;
             }
         }
         .follow-us-tm902{
+            float: right;
             cursor: pointer;
             text-transform: capitalize;
-            font-family: 'Muli', sans-serif;
+            font-family: "Muli", sans-serif;
             transform: rotate(270deg);
-            text-align: right;
             font-size: 20px;
             font-weight: bold;
             letter-spacing: 0px;
             color: #1D1C22;
-            opacity: 1;
-            position: fixed;
+            right: -60px;
+            top: 700px;
+            position: absolute;
+            z-index: 999;
             .tm902-follow-line{
                 border-top: 3px solid #000;
                 width: 17px;
@@ -417,11 +430,11 @@ computed: {
                 position: relative;
             }
             @media only screen and (max-width: 1024px){
-                right: -4%;
-                top: 50%;
+                right: -60px;;
+                top: 430px;
                 font-size: 12px;
             }
-            @media only screen and (max-width: 764px){
+            @media only screen and (max-width: 425px){
                 display: none;
             }
         }
@@ -453,6 +466,8 @@ computed: {
            padding: 0 10px 0; 
         }
         .profile-image-tm902{
+            margin-top: auto;
+            margin-bottom: auto;
             max-width: 232px;
             max-height: 232px;
             border: 4px solid #FFFFFF;
@@ -477,6 +492,7 @@ computed: {
                 margin-top: 0px;
             }
             .name-tm902{
+                color:#fff;
                 font-weight: bold;
                 font-size: 30px;
                 @media only screen and (max-width: 1264px){
@@ -489,6 +505,7 @@ computed: {
                 }
             }
             .job-tm902{
+                color: #fff;
                 font-size: 26px;
                 opacity: 0.67;
                 margin-bottom: 0px;
@@ -529,23 +546,36 @@ computed: {
         .menu-btn-tm902{
             display: block;
             position: absolute;
-            top: 25px;
+            top: 15px;
             right: 10px;
             width: 22px;
             height: 20px;
+            @media only screen and (min-width: 425px){
+                right: 20px;
+            }
         }
         .header-right-902{
-            @media only screen and (max-width: 1024px)
-            {
-                margin-top: 30px;
-            }
+            margin-top: 26px;
+            float: right;
             @media only screen and (max-width:  600px){
                 margin-left: 30%;
                 margin-top: -17%;
+                float: initial;
+            }
+            .icon-btn-902{
+                font-size: 20px;
+                @media only screen and (max-width: 1600px){
+                font-size: 16px;
+            }
+            @media only screen and (max-width: 1264px){
+                font-size: 14px;
+            }
+            @media only screen and (max-width: 1024px){
+                font-size: 12px;
+            }
             }
         .top-btn-902{
-            width: 100%;
-            max-width: 219px;
+            width: 219px;
             height: 68px;
             background: #080808 0% 0% no-repeat padding-box;
             border-radius: 9px;
@@ -554,8 +584,13 @@ computed: {
             text-transform: capitalize;
             letter-spacing: 0px;
             color: #FFFFFF;
+            @media only screen and (max-width: 1600px){
+                width: 100%;
+                padding: 0px 40px 0;
+                font-size: 14px;
+            }
             @media only screen and (max-width: 1264px){
-                font-size: 13px;
+                font-size: 12px;
                 width: 100%;
                 height: 50px;
             }
@@ -563,6 +598,17 @@ computed: {
                 font-size: 10px;
                 width: 100%;
                 height: 39px;
+            }
+            @media only screen and (max-width: 600px){
+                height: 30px;
+            }
+            
+        }
+        .bottom-info-902{
+            position: relative;
+            left:-50px;
+            @media only screen and (max-width: 1264px){
+                left: 0;
             }
         }
         .bottom-btn-902{
@@ -577,15 +623,25 @@ computed: {
             letter-spacing: 0px;
             color: #FFFFFF;
             font-weight: bold;
+             @media only screen and (max-width: 1600px){
+                width: 100%;
+                padding: 0px 40px 0;
+                font-size: 15px;
+            }
+            @media only screen and (max-width: 1600px){
+                font-size: 14px;
+            }
             @media only screen and (max-width: 1264px){
-                    font-size: 13px;
-                    width: 100%;
-                    height: 50px;
-                }
+                font-size: 12px;
+                width: 100%;
+                height: 50px;
+            }
             @media only screen and (max-width: 1024px){
                 font-size: 10px;
-                width: 100%;
                 height: 39px;
+            }
+            @media only screen and (max-width: 600px){
+                height: 30px;
             }
         }
         .about-902{
@@ -593,12 +649,13 @@ computed: {
             text-transform: capitalize;
             padding: 0;
             .title-902{
+                color: #fff;
                 font-size: 26px;
                 font-weight: bold;
                 //margin-bottom: 0px;
                 @media only screen and (max-width: 1264px){
                     font-size: 20px;
-                    margin-bottom: 0px;
+                    margin-bottom: -3px;
                 }
                 @media only screen and (max-width: 764px){
                     font-size: 15px;
@@ -608,9 +665,11 @@ computed: {
             .subtitle-902{
                 font-size: 15px;
                 color: #BEC2D4;
+                @media only screen and (max-width: 1600px){
+                    font-size: 12px;
+                }
                 @media only screen and (max-width: 1264px){
                     font-size: 9px;
-                    
                 }
                 @media only screen and (max-width: 764px){
                     font-size: 8px;
@@ -737,6 +796,12 @@ computed: {
                     font-family: 'Muli', sans-serif;
                     text-transform: capitalize;
                     .boxes-date-902{
+                        .boxes-line-902{
+                        border-top: 2px #616887 solid;
+                        width: 33px;
+                        margin-top: auto;
+                        margin-bottom: auto;
+                        }
                         font-weight: bold;
                         font-size: 19px;
                         letter-spacing: -0.19px;
