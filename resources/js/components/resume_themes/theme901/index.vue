@@ -542,20 +542,15 @@ export default {
 };
 </script>
 <style scoped>
-<<<<<<< HEAD
-@import url("~/vue-slick-carousel/dist/vue-slick-carousel.css");
-@import url("~/vue-slick-carousel/dist/vue-slick-carousel-theme.css");
-=======
-    /* These imports are wrong - please fix! */
+/* These imports are wrong - please fix! */
 
-    /*@import url('~/vue-slick-carousel/dist/vue-slick-carousel.css');*/
-    /*@import url('~/vue-slick-carousel/dist/vue-slick-carousel-theme.css');*/
->>>>>>> 8ebf923e87b620461747f7b50f8dd50ea57beda5
+/*@import url('~/vue-slick-carousel/dist/vue-slick-carousel.css');*/
+/*@import url('~/vue-slick-carousel/dist/vue-slick-carousel-theme.css');*/
 </style>
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-    /* This import can not be found - please fix! */
-    /*@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");*/
+/* This import can not be found - please fix! */
+/*@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");*/
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 
 .hold-theme901 {
