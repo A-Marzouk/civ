@@ -111,44 +111,5 @@ $purple: #0556B6;
                 }
             }
         }
-
-        @media (max-width: 976px) {
-            padding: 0 50px !important;
-
-            .skill {
-                margin-bottom: 40px;
-
-                .skill-info {
-                    .skill-name,
-                    .skill-percentage {
-                        font-size: 14px;
-                    }
-                }
-
-                .skill-progress {
-                    margin-top: 15px;
-                }
-            }
-        }
-
-        @media (max-width: 600px) {
-            padding: 0 !important;
-
-            .skill {
-                width: 100%;
-                margin-bottom: 20px;
-
-                .skill-info {
-                    .skill-name,
-                    .skill-percentage {
-                        font-size: 10px;
-                    }
-                }
-
-                .skill-progress {
-                    margin-top: 9px;
-                }
-            }
-        }
     }
 </style>

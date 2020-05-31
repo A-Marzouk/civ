@@ -2,6 +2,9 @@
     <div class="container work-grid">
         <div class="work-item">
             <div class="work-header">
+                <div class="work-icon">
+                    <img src="/images/resume_themes/theme113/work-icon.png" />
+                </div>
                 <div class="date">2019 - 2020</div>
                 <h2 class="company-name">123Workforce</h2>
             </div>
@@ -15,6 +18,9 @@
         </div>
         <div class="work-item">
             <div class="work-header">
+                <div class="work-icon">
+                    <img src="/images/resume_themes/theme113/work-icon.png" />
+                </div>
                 <div class="date">2019 - 2020</div>
                 <h2 class="company-name">123Workforce</h2>
             </div>
@@ -28,6 +34,9 @@
         </div>
         <div class="work-item">
             <div class="work-header">
+                <div class="work-icon">
+                    <img src="/images/resume_themes/theme113/work-icon.png" />
+                </div>
                 <div class="date">2019 - 2020</div>
                 <h2 class="company-name">123Workforce</h2>
             </div>
@@ -41,6 +50,9 @@
         </div>
         <div class="work-item">
             <div class="work-header">
+                <div class="work-icon">
+                    <img src="/images/resume_themes/theme113/work-icon.png" />
+                </div>
                 <div class="date">2019 - 2020</div>
                 <h2 class="company-name">123Workforce</h2>
             </div>
@@ -72,27 +84,31 @@ export default {
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 82px;
         max-width: 1500px !important;
-        width: 85%;
-        padding: 0 30px;
-
-        @media (max-width: 1200px) {
-            grid-gap: 40px 60px;
-        }
-
-        @media (max-width: 700px) {
-            width: 100%;
-            grid-gap: 56px 0;
-        }
     }
 
     .work-item {
         max-width: 529px;
         grid-column: span 4;
+        margin:0 41px;
+        margin-bottom: 74px;
 
         .work-header {
             // display: flex;
             align-items: center;
             margin-bottom: 13px;
+
+            .work-icon {
+                // display: flex;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                margin-right: 81px;
+                border: 1px solid $lineColor;
+                border-radius: 50%;
+                width: 44px;
+                height: 44px;
+                position: relative;
+            }
 
             .company-name {
                 color: white;
@@ -118,21 +134,6 @@ export default {
                     top: 50%;
                 }
             }
-
-            @media (max-width: 1200px) {
-                .company-name {
-                    font-size: 23px;
-                }
-
-                .date {
-                    font-size: 14px;
-
-                    &::after {
-                        width: 36px;
-                        left: calculate(-17px - 36px);
-                    }
-                }
-            }
         }
 
         .work-body {
@@ -149,27 +150,6 @@ export default {
                 color: $lineColor;
                 font-size: 17px;
             }
-
-            @media  (max-width: 1200px) {
-
-                .job-title {
-                    font-size: 14px;
-                    margin-bottom: 28px;
-                }
-
-                .work-description,
-                .work-description p {
-                    font-size: 12px;
-                }
-            }
-        }
-
-        @media (max-width: 1200px) {
-            grid-column: span 6;
-        }
-
-        @media (max-width: 700px) {
-            grid-column: span 12;
         }
     }
 </style>

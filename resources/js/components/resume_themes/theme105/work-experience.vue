@@ -72,17 +72,6 @@ export default {
         grid-template-columns: repeat(6, 1fr);
         grid-gap: 83.5px;
         max-width: 1500px !important;
-        margin: 0 auto;
-        width: 85%;
-
-        @media (max-width: 1200px) {
-            grid-gap: 40px 60px;
-        }
-
-        @media (max-width: 700px) {
-            width: 100%;
-            grid-gap: 56px 0;
-        }
     }
 
     .work-item {
@@ -112,21 +101,10 @@ export default {
                 opacity: 0.05;
                 -webkit-text-stroke: 2px #28404A;
             }
-
-            @media (max-width: 900px) {
-                .college-name {
-                    font-size: 23px;
-                }
-
-                .num {
-                    font-size: 70px;
-                    line-height: 70px;
-                    left: -20px;
-                }
-            }
         }
 
-        .work-body {            
+        .work-body {
+            
 
             .job-title {
                 color: #28404A;
@@ -158,35 +136,6 @@ export default {
                 font-size: 17px;
                 line-height: 1.5;
             }
-
-            @media  (max-width: 1200px) {
-
-                .grade-title {
-                    font-size: 14px;
-                    margin-bottom: 28px;
-
-                    .date {
-                        font-size: 14px;
-
-                        &::after {
-                            height: 16px;
-                        }
-                    }
-                }
-
-                .job-description,
-                .job-description p {
-                    font-size: 12px;
-                }
-            }
-        }
-
-        @media (max-width: 1200px) {
-            grid-column: span 6;
-        }
-
-        @media (max-width: 700px) {
-            grid-column: span 12;
         }
     }
 </style>

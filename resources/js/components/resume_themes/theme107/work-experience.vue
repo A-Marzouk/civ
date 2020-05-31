@@ -77,6 +77,11 @@ export default {
     $mainColor: #28404A;
     $lineColor: #DBE0C2;
 
+   .container {
+
+    }
+
+
     .work-flex {
         display: flex;
         flex-wrap: wrap;

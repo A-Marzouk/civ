@@ -85,9 +85,9 @@ export default {
 
     .work-item {
         max-width: 529px;
-        width: 47%;
+        width: 48%;
+        margin:0 41px;
         margin-bottom: 74px;
-        padding: 0 20px;
 
         .work-header {
             display: flex;
@@ -120,40 +120,6 @@ export default {
                 font-size: 19px;
                 font-weight: 500;
             }
-
-            @media (max-width: 1200px) {
-                .work-icon {
-                    width: 28px;
-                    height: 28px;
-                    margin-right: 14px;
-
-                    &::after {
-                        width: 31px;
-                        right: calc(-13px - 31px);
-                    }
-
-                    img {
-                        width: 12px;
-                    }
-                }
-
-                .company-name {
-                    font-size: 24px;
-                }
-
-                .date {
-                    font-size: 14px;
-                    margin-top: 3px;
-                }
-            }
-
-            @media (max-width: 700px) {
-                margin-bottom: 10px;
-
-                .company-name {
-                    font-size: 21px;
-                }
-            }
         }
 
         .work-body {
@@ -170,37 +136,6 @@ export default {
                 color: #838BA4;
                 font-size: 17px;
             }
-
-            @media (max-width: 1200px) {
-                .job-title,
-                .work-description p {
-                    font-size: 13px;
-
-                }
-            }
-
-            @media (max-width: 700px) {
-
-                .job-title {
-                    margin-bottom: 16px;
-                }
-                
-                .job-title,
-                .work-description p {
-                    font-size: 11px;
-
-                }
-            }
-        }
-
-        @media (max-width: 620px) {
-            width: 100%;
-            margin-bottom: 48px;
-        }
-
-        @media (max-width: 620px) {
-            width: 100%;
-            margin-bottom: 48px;
         }
     }
 </style>

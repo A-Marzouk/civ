@@ -1,7 +1,10 @@
 <template>
-    <div class="container education-gird">
+    <div class="container education-flex">
         <div class="education-item">
             <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme113/education-icon.png" />
+                </div>
                 <div class="date">2014 - 2020</div>
                 <h2 class="college-name">Simon Bolívar University</h2>
             </div>
@@ -15,6 +18,9 @@
         </div>
         <div class="education-item">
             <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme113/education-icon.png" />
+                </div>
                 <div class="date">2014 - 2020</div>
                 <h2 class="college-name">Simon Bolívar University</h2>
             </div>
@@ -28,6 +34,9 @@
         </div>
         <div class="education-item">
             <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme113/education-icon.png" />
+                </div>
                 <div class="date">2014 - 2020</div>
                 <h2 class="college-name">Simon Bolívar University</h2>
             </div>
@@ -41,6 +50,9 @@
         </div>
         <div class="education-item">
             <div class="education-header">
+                <div class="education-icon">
+                    <img src="/images/resume_themes/theme113/education-icon.png" />
+                </div>
                 <div class="date">2014 - 2020</div>
                 <h2 class="college-name">Simon Bolívar University</h2>
             </div>
@@ -67,33 +79,35 @@ export default {
     $lineColor: white;
 
 
-    .education-gird {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        grid-gap: 82px;
-        max-width: 1500px !important;
-        width: 85%;
-        padding: 0 30px;
-
-        @media (max-width: 1200px) {
-            grid-gap: 40px 60px;
-        }
-
-        @media (max-width: 700px) {
-            width: 100%;
-            grid-gap: 56px 0;
-        }
+    .education-flex {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        max-width: 1300px;
     }
 
     .education-item {
         max-width: 529px;
-        grid-column: span 4;
+        width: 48%;
         margin-bottom: 74px;
 
         .education-header {
             // display: flex;
             align-items: center;
             margin-bottom: 13px;
+
+            .education-icon {
+                // display: flex;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                margin-right: 81px;
+                border: 1px solid $lineColor;
+                border-radius: 50%;
+                width: 44px;
+                height: 44px;
+                position: relative;
+            }
 
             .college-name {
                 color: white;
@@ -119,21 +133,6 @@ export default {
                     top: 50%;
                 }
             }
-
-            @media (max-width: 1200px) {
-                .college-name {
-                    font-size: 23px;
-                }
-
-                .date {
-                    font-size: 14px;
-
-                    &::after {
-                        width: 36px;
-                        left: calculate(-17px - 36px);
-                    }
-                }
-            }
         }
 
         .education-body {
@@ -150,27 +149,6 @@ export default {
                 color: #838BA4;
                 font-size: 17px;
             }
-
-            @media  (max-width: 1200px) {
-
-                .grade-title {
-                    font-size: 14px;
-                    margin-bottom: 28px;
-                }
-
-                .job-description,
-                .job-description p {
-                    font-size: 12px;
-                }
-            }
-        }
-
-        @media (max-width: 1200px) {
-            grid-column: span 6;
-        }
-
-        @media (max-width: 700px) {
-            grid-column: span 12;
         }
     }
 </style>

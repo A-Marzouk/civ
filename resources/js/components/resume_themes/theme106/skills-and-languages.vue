@@ -49,16 +49,11 @@ export default {
 
 <style lang="scss" scoped>
     .skills-container {
-        margin: 0 auto;
         margin-top: 34px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 240px;
-        grid-auto-rows: 240px;
         grid-gap: 100px;
         max-width: 1400px !important;
-        width: 85%;
-        height: 100%;
 
         .skill {
             display: flex;
@@ -86,36 +81,6 @@ export default {
                     font-weight: 700;
                     color: #C0000E;
                 }
-            }
-        }
-
-        @media (max-width: 1200px) {
-            grid-gap: 60px;
-
-            .skill {
-                img {
-                    width: 55px;
-                    margin-bottom: 28px;
-                }
-
-                .skill-info {
-                    .skill-name {
-                        font-size: 19px;   
-                    }
-
-                    .percentage {
-                        font-size: 19px;
-                    }
-                }
-            }
-        }
-
-        @media (max-width: 700px) {
-            grid-gap: 30px;
-            width: 100%;
-
-            .skill {
-                grid-column: span 3;
             }
         }
     }

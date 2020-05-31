@@ -64,8 +64,6 @@ export default {
             position: relative;
             height: 455px;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
 
             &:last-child {
                 margin-bottom: 0;
@@ -91,7 +89,6 @@ export default {
                     font-weight: 700;
                     max-width: 337px;
                     margin-bottom: 20px;
-                    font-family: 'Muli', sans-serif;
                 }
 
                 .seeMore {
@@ -110,43 +107,6 @@ export default {
 
 
             }
-
-            @media (max-width: 1200px) {
-                height: 340px;
-
-                .content {
-                    padding: 11px;
-
-                    .title {
-                        margin-bottom: 6px;
-                    }
-
-                    .title,
-                    .seeMore {
-                        font-size: 16px;
-                    }
-                }
-            }
-
-            @media (max-width: 970px) {
-                grid-column: span 6;
-
-                .content {
-                    .title,
-                    .seeMore {
-                        font-size: 14px;
-                    }
-                }
-            }
-            
-            @media (max-width: 670px) {
-                grid-column: span 12;
-            }
-        }
-
-        @media (max-width: 970px) {
-            padding: 0 30px !important;
-            grid-gap: 20px;            
         }
     }
 </style>

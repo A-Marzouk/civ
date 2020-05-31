@@ -66,7 +66,6 @@ $purple: #0556B6;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-
             &:last-child {
                 margin-bottom: 0;
             }
@@ -84,7 +83,7 @@ $purple: #0556B6;
                 position: relative;
 
                 .title {
-                    font-size: 17px !important;
+                    font-size: 17px;
                     font-weight: 700;
                     max-width: 337px;
                     margin-bottom: 7.3px;
@@ -92,7 +91,7 @@ $purple: #0556B6;
                 }
 
                 .type {
-                    font-size: 14px !important;
+                    font-size: 14px;
                     color: $mainColor;
                 }
 
@@ -107,31 +106,6 @@ $purple: #0556B6;
                     top: 13px;
                 }
             }
-
-            @media (max-width: 976px) {
-                grid-column: span 6;
-            }
-            
-            @media (max-width: 590px) {
-                grid-column: span 12;
-                
-                .content {
-                    margin-top: 14px;
-
-                    .title {
-                        font-size: 15px !important;
-                        margin-bottom: 4px;
-                    }
-
-                    .type {
-                        font-size: 12px !important;
-                    }
-                }
-            }
-        }
-
-        @media (max-width: 590px) {
-            grid-gap: 40px 0;
         }
     }
 </style>

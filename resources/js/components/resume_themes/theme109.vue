@@ -1,7 +1,52 @@
 <template>
 <!-- Developer: Jose Quintero -->
     <v-app id="theme109" style="width: 100%">
-        <ThemeHeader></ThemeHeader>
+        <div class="theme-header">
+            <div class="user-info">
+                <div class="left">
+                    <div class="user-img">
+                        <img src="/images/resume_builder/default-user.jpg" alt="">
+                    </div>
+
+                    <div class="user-data">
+                        <div class="name">José Daniel Quintero</div>
+                        <div class="profession">Fullstack Developer</div>
+                        <ul class="speciallity">
+                            <li class="item">Node js</li>
+                            <li class="item">React js</li>
+                            <li class="item">Laravel</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="actions-wrapper">
+                        <button class="action-btn">
+                            <img class="icon" src="/images/resume_themes/theme109/chat-icon.png"> Start a chat
+                        </button>
+                        <button class="action-btn">
+                            <img class="icon" src="/images/resume_themes/theme109/suitcase-icon.png">Upload interviews
+                        </button>
+                    </div>
+
+                    <div class="payment-data">
+                        <div class="hourly-rate">
+                            $15
+                            <small>Hourly rate</small>
+                        </div>
+                        <div class="hourly-availability">
+                            40Hrs
+                            <small>Weekly Availability</small>
+                        </div>
+
+                        <button class="hire-me-btn">
+                            <img src="/images/resume_themes/theme109/hireMe-icon.png" alt="hire me icon" class="icon">
+                            Hire Me
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="theme-body">
             <div class="bg-body"></div>
@@ -36,7 +81,7 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
-                        <div class="theme-aside hideOnTablet">
+                        <div class="theme-aside">
                             Follow me - 
                             <a href="javascript:;">
                                 Dribble
@@ -51,25 +96,7 @@
                                 Behance
                             </a>
                         </div>
-
-                        <div class="theme-aside showOnTablet hideOnMobile">
-                            Social links
-                            <span></span>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
-                            </a>
-                        </div>
-
-                        <div class="scroll-top hideOnMobile">
+                        <div class="scroll-top">
                             <a href="javascript:;" v-scroll-to="'#theme109'">Scroll to top</a>
                         </div>
                     </v-col>
@@ -84,7 +111,6 @@ import EducationTab from './theme109/education'
 import WorkExperienceTab from './theme109/work-experience'
 import PortfolioTab from './theme109/portfolio'
 import AboutTab from './theme109/about'
-import ThemeHeader from './theme109/header'
 import SkillsTab from './theme109/skills-and-languages'
 
 export default {
@@ -93,8 +119,7 @@ export default {
         EducationTab,
         PortfolioTab,
         WorkExperienceTab,
-        SkillsTab,
-        ThemeHeader
+        SkillsTab
     },
     data: () => ({
         tab: 0,
@@ -135,17 +160,161 @@ $purple: #24325D;
     background-position: top center;
     position: relative;
 
-    .v-application--wrap {
-        overflow: hidden;
-        height: 100%;
+    .theme-header {
+        width: 100%;
+        position: relative;
+
+        .left {
+            display: flex;
+
+        }
+
+        .right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+
+            .actions-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .action-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 22px 36px;
+                    font-size: 18px;
+                    font-weight: 400;
+                    background: transparent;
+                    border: 3px solid $mainColor;
+                    outline: none;
+                    border-radius: 9px;
+
+                    &:first-child {
+                        margin-right: 26px;
+                    }
+
+                    .icon {
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .payment-data {
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                margin-top: 46px;
+
+                .hourly-rate,
+                .hourly-availability {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    font-size: 26px;
+                    font-weight: 700;
+                    margin-right: 35px;
+
+                    small {
+                        font-size: 15px;
+                        font-weight: 400px;
+                    }
+                }
+
+                .hire-me-btn {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background: $purple;
+                    padding: 23px 62px;
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: white;
+                    border-radius: 9px;
+
+                    .icon {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 56px 80px;
+            z-index: 1;
+            position: relative;
+
+            .user-img {
+                display: inline-block;
+                width: 232px;
+                height: 232px;
+                margin-right: 55px;
+
+                img {
+                    border: 7px solid #24325D;
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+
+            .user-data {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                font-size: 26px;
+                font-weight: 400;
+
+                .name {
+                    font-weight: 700;
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                }
+
+                .profession {
+                    margin-bottom: 30px;
+                }
+
+                .speciallity {
+                    display: flex;
+                    padding: 0;
+                    
+                    .item {
+                        margin-right: 40px;
+                        position: relative;
+
+                        &:last-child {
+                            margin-right: 0;
+
+                            &::after {
+                                display: none;
+                            }
+                        }
+
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            width: 7px;
+                            height: 7px;
+                            background: #28404A;
+                            border-radius: 50%;
+                            right: -20px;
+                            top: calc(50% - 3.5px);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .theme-body {
+        height: auto;
         background-color: $mainColor;
         border-radius: 80px 80px 0 0;
-        height: 100%;
-        width: 100%;
-        padding-bottom: 100px;
+        z-index: 1;
         position: relative;
 
         .bg-body {
@@ -164,7 +333,6 @@ $purple: #24325D;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
-            height: 100%;
             
             .v-slide-group__wrapper {
                 height: 100px;
@@ -175,16 +343,10 @@ $purple: #24325D;
                 color: $tabTextColor;
                 margin-top: 61px;
                 margin-bottom: 111px;
-                overflow: 0 auto;
-                width: 95%;
 
                 &-bar {
                     background: transparent !important;
 
-                }
-
-                .v-slide-group__prev {
-                    display: none;
                 }
                 
                 .v-tab {
@@ -205,35 +367,11 @@ $purple: #24325D;
                         span {
                             opacity: 1 !important;
                             transition: all .5s ease;
-
-                            @media (max-width: 1100px) {
-                                display: none !important;
-                            }
                         }
                     }
 
                     &::before {
                         display: none !important;
-                    }
-
-                    @media (max-width: 1400px) {
-                        font-size: 18px;
-                        padding: 12px 28px;
-                    }
-                    
-                    @media (max-width: 1200px) {
-                        font-size: 16px;
-                        padding: 12px 22px;
-                    }
-
-                    @media (max-width: 756px) {
-                        font-size: 15px;
-                        padding: 13px 17px;
-                        margin-right: 27px;
-
-                        &:last-child {
-                            margin-right: 0;
-                        }
                     }
 
                     span {
@@ -257,35 +395,10 @@ $purple: #24325D;
                         border-radius: 25px;
                     }
                 }
-
-                @media (max-width: 1200px) {
-                    margin-top: 29px;
-                    margin-bottom: 47px;
-                }
-                
-                @media (max-width: 700px) {
-                    margin: 29px 0;
-
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
-                }
             }
 
             .container {
-                padding: 0 40px;
                 padding-bottom: 100px;
-                max-width: 1550px;
-                width: 90%;
-                margin: 0 auto;
-                z-index: 0;
-                align-items: flex-start;
-
-                @media (max-width: 700px) {
-                    padding: 0;
-                    padding-bottom: 30px;
-                    width: 85%;
-                }
             }
         }
     }
@@ -298,13 +411,9 @@ $purple: #24325D;
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 365px;
+        top: 400px;
         right: -95px;
         background: transparent;
-
-        &.showOnTablet {
-            display: none;
-        }
 
         a {
             height: 14px;
@@ -326,45 +435,11 @@ $purple: #24325D;
                 }
             }
         }
-
-        @media (max-width: 1200px) {
-            right: -100px;
-            top: 272px;
-            transform: rotateZ(90deg);
-            
-            &, a {
-                font-size: 14px;
-            }
-
-            a {
-                &::after {
-                    display: none;
-                }
-            }
-
-            &.hideOnTablet {
-                display: none;
-            }
-
-            &.showOnTablet {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                span {
-                    display: block;
-                    width: 62px;
-                    height: 1px;
-                    background: #BEC2D4;
-                    margin: 0 15px 0 27px;
-                }
-            }
-        }
     }
 
     .scroll-top {
         position: absolute;
-        left: -10px;
+        left: 1%;
         bottom: 250px;
         transform: rotateZ(-90deg);
 
@@ -382,23 +457,6 @@ $purple: #24325D;
                 width: 63px;
                 background: rgba(236, 237, 244, 0.15);
             }
-        }
-
-        @media (max-width: 1200px) {
-            a {
-                font-size: 14px;
-            }
-
-            .icon {
-                height: 7px;
-                margin-left: 9px;
-            }
-        }
-    }
-
-    .hideOnMobile {
-        @media (max-width: 876px) {
-            display: none !important;
         }
     }
 }
