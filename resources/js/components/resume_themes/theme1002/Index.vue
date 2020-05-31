@@ -4,6 +4,8 @@
 		<component :currentUser="currentUser" :currentTab="currentTab" @tabChanged="currentTab=$event" v-bind:is="currentHeader"></component>
 
 		<SmallTabsNavigation v-if="inSmallScreen" :currentTab="currentTab" @tabChanged="currentTab=$event" />
+
+		<TabsContent :currentTab="currentTab" />
 	</div>
 </template>
 
@@ -11,6 +13,7 @@
 import SmallHeader from "./components/header/SmallHeader";
 import LargeHeader from "./components/header/LargeHeader";
 import SmallTabsNavigation from "./components/header/SmallTabsNavigation";
+import TabsContent from "./components/TabsContent";
 
 export default {
 	name: "resume-theme-1002",
@@ -18,7 +21,8 @@ export default {
 	components: {
 		SmallHeader,
 		LargeHeader,
-		SmallTabsNavigation
+		SmallTabsNavigation,
+		TabsContent
 	},
 
 	data: () => {
