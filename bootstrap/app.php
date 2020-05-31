@@ -62,6 +62,6 @@ $app->singleton(
 | in your .env file,  if not set the default location will be used
 |
 */
-$app->useStoragePath(env('APP_STORAGE', base_path() . '/storage'));
+$app->useStoragePath(base_path() . '/storage');
 
 return $app;
