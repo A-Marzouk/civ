@@ -15,7 +15,7 @@ import ItemView from "./../components/portfolio/ItemView";
 import SimpleCarousel from "./../components/portfolio/SimpleCarousel";
 
 export default {
-	name: "portfolio",
+	name: "Portfolio",
 
 	components: { ItemView, SimpleCarousel },
 
@@ -98,6 +98,9 @@ export default {
 
 .portfolio {
 	padding: 17px 25px;
+	max-width: $sm;
+	margin-left: auto;
+	margin-right: auto;
 
 	.project-wrapper {
 		padding: 13px;
@@ -109,6 +112,7 @@ export default {
 		display: flex;
 		flex-wrap: wrap;
 		padding: 45px 28px;
+		max-width: unset;
 
 		.project-wrapper {
 			padding: 15px;

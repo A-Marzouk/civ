@@ -32,7 +32,7 @@
 
 <script>
 export default {
-	name: "menu-switcher",
+	name: "MenuSwitcher",
 
 	props: {
 		currentTab: {

@@ -8,7 +8,7 @@
 import MenuSwitcher from "./MenuSwitcher";
 
 export default {
-	name: "small-tabs-navigation",
+	name: "SmallTabsNavigation",
 
 	props: {
 		currentTab: {

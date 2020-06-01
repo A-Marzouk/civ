@@ -25,7 +25,7 @@ import Slick from "vue-slick";
 import ItemView from "./ItemView";
 
 export default {
-	name: "simple-carousel",
+	name: "SimpleCarousel",
 
 	props: {
 		items: {

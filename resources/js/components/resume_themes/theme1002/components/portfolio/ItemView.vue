@@ -9,7 +9,7 @@
 
 <script>
 export default {
-	name: "item-view",
+	name: "ItemView",
 
 	props: {
 		thumbnail: {
