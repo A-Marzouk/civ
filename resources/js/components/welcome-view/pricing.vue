@@ -188,12 +188,12 @@
         >
           <v-row align="center" justify="center">
             <v-col cols="4">
-              <a href="#">
+              <a href="#" class="payment-link">
                 <img src="/images/pricing/icons/stripe-logo.svg" alt="Stripe Logo" />
               </a>
             </v-col>
             <v-col cols="4">
-              <a href="#">
+              <a href="#" class="payment-link">
                 <img src="/images/pricing/icons/paypal-logo.svg" alt="Stripe Logo" />
               </a>
             </v-col>
@@ -592,6 +592,9 @@ $line-height55: 55px;
   box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.15) !important;
   @media screen and (max-width: 599px) {
     height: 210px !important;
+  }
+  .payment-link:hover{
+    cursor: pointer;
   }
 }
 .btn-close {
