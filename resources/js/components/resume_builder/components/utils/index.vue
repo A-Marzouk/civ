@@ -1,5 +1,5 @@
 <template>
-    <v-app>
+    <v-app style="margin-top: 60px">
         <ResumeBuilderInput
             :input-props="inputProps"
         ></ResumeBuilderInput>
@@ -18,7 +18,8 @@ export default {
             value:"John Doe",
             label:"First Input",
             color:"#001CE2",
-            outlined: true
+            outlined: true,
+            showToggleInputIcon: true
         }
     })
 }
