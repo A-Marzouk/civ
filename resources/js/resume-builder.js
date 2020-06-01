@@ -16,6 +16,8 @@ import resumeBuilder from './components/resume_builder/Main';
 import ResumeBuilderMyAccount from './components/resume_builder/tabs/MyAccount'
 import ResumeBuilderEditCV from './components/resume_builder/tabs/EditCV'
 import ResumeBuilderViewCV from './components/resume_builder/tabs/ViewCV'
+import ResumeBuilderJobsAlert from './components/resume_builder/tabs/Jobs'
+import ResumeBuilderCoverLetter from './components/resume_builder/tabs/CoverLetter'
 
 // edit inside components :
 import ResumeBuilderEditCVProfile from './components/resume_builder/tabs/edit_tabs/Profile'
@@ -108,7 +110,9 @@ if ($("#resumeBuilder").length !== 0) {
             ]
 
         },
-        {path: '/resume-builder/view', component: ResumeBuilderViewCV, name:'view',}
+        {path: '/resume-builder/view', component: ResumeBuilderViewCV, name:'view'},
+        {path: '/resume-builder/jobs', component: ResumeBuilderJobsAlert, name:'jobAlert'},
+        {path: '/resume-builder/cover-letter', component: ResumeBuilderCoverLetter, name:'coverLetter'}
     ];
 
     const router = new VueRouter({

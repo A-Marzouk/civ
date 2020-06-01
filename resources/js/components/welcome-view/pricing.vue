@@ -701,7 +701,7 @@ $line-height55: 55px;
 #pricing .v-slide-group__prev.v-slide-group__prev--disabled {
   display: none !important;
 }
-#pricing .v-dialog{
+#pricing .v-dialog {
   border-radius: 20px !important;
 }
 </style>

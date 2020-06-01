@@ -111,4 +111,32 @@ export default {
 		display: none;
 	}
 }
+
+@media (min-width: $xl) {
+	.avatar {
+		a {
+			width: 198px;
+			height: 198px;
+
+			img {
+				width: 98px;
+				height: 98px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xxl) {
+	.avatar {
+		a {
+			width: 215px;
+			height: 215px;
+
+			img {
+				width: 117px;
+				height: 117px;
+			}
+		}
+	}
+}
 </style>
