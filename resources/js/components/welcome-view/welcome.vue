@@ -861,6 +861,9 @@ export default {
     min-width: 39px !important;
     border: 1px solid #ebebeb !important;
     border-radius: 10px !important;
+    @media screen and (max-width: 330px){
+      margin-left: 5px !important;
+    }
   }
 
   //upper right block

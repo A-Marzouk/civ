@@ -82,6 +82,7 @@ export default {
       height: 54px !important;
       border: 5px solid #f8f8f8 !important;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
+      margin-top: -7px;
       @media screen and (max-width: 599px) {
         width: 35px !important;
         height: 35px !important;

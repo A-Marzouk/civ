@@ -1,9 +1,9 @@
 <template>
   <v-container fluid class="pa-0">
     <v-row no-gutters justify="center" justify-md="left" justify-lg="left" class="mt-lg-6 mt-sm-2">
-      <v-col sm="11" md="12" lg="11">
+      <v-col sm="11" md="12" lg="11" xl="9">
         <div
-          class="text-lg-left text-md-left ml-lg-12 ml-md-6 ml-sm-3 subtitle-1 white--text"
+          class="text-lg-left text-md-left ml-lg-12 ml-xl-6 ml-md-6 ml-sm-3 subtitle-1 white--text find"
         >Find Me on</div>
       </v-col>
       <v-col sm="11" md="12" class="ml-sm-2 ml-md-6 ml-lg-0" lg="11">
@@ -72,6 +72,12 @@ export default {
 
 .textcol {
   color: #6247fd;
+}
+
+@media (max-width: 2560px) and (min-width: 1601px) {
+  .find {
+    padding-left: 60px;
+  }
 }
 @media screen and (max-width: 1024px) {
   .social {
