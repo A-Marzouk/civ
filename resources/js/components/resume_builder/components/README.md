@@ -20,6 +20,8 @@
 
 **component:** [vuetify text field](https://vuetifyjs.com/en/components/text-fields/)
 
+Use the same props of an vuetify textfield. You can pass the properties using the `input-props` prop.
+
 ### Example:
 
 ```html
