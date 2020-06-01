@@ -11,22 +11,22 @@
             </a>
 
             <div class="nav-icons">
-                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" class="">
+                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" >
                     <div class="icon">
                         <img src="/images/new_resume_builder/icons/main/Edit-1.png" alt="profile-pic">
                     </div>
                 </router-link>
-                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="">
+                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" >
                     <div class="icon">
                         <img src="/images/new_resume_builder/icons/main/Theme-1.png" alt="profile-pic">
                     </div>
                 </router-link>
-                <router-link id='coverLetter' data-target="coverLetter" v-on:click.native="changeTab" to="/resume-builder/cover-letter" class="">
+                <router-link id='coverLetter' data-target="coverLetter" v-on:click.native="changeTab" to="/resume-builder/cover-letter" >
                     <div class="icon">
                         <img src="/images/new_resume_builder/icons/main/coverletter-1.png" alt="profile-pic">
                     </div>
                 </router-link>
-                <router-link id='jobAlert' data-target="jobAlert" v-on:click.native="changeTab" to="/resume-builder/jobs" class="">
+                <router-link id='jobAlert' data-target="jobAlert" v-on:click.native="changeTab" to="/resume-builder/jobs" >
                     <div class="icon">
                         <img src="/images/new_resume_builder/icons/main/job-1.png" alt="profile-pic">
                     </div>
