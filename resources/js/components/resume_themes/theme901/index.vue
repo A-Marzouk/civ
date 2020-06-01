@@ -296,7 +296,9 @@
 </template>
 <script>
     import VueSlickCarousel from 'vue-slick-carousel'
+
     import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+    
     import Theaudio from './Theaudio'
     import Thevideo from './Thevideo'
 export default {
@@ -406,7 +408,6 @@ export default {
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 .hold-theme901{
     .header-901{
