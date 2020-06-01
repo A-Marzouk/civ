@@ -1,29 +1,43 @@
 <template>
-    <div class="resume-container" >
+    <div class="resume-container">
 
-        <nav class="resume-builder-nav d-flex align-items-start justify-content-start">
+        <nav class="resume-builder-nav d-flex align-items-start justify-content-between">
             <a href="/resume-builder" class="brand-link">
-                <img class="brand-image" src="/images/resume_builder/123 icon.png" alt="123workforce icon"/>
+                <img class="brand-image" src="/images/logo_new.png" alt="123workforce icon"/>
             </a>
 
             <a href="javascript:;" class="menu-link" @click='openMenu = true'>
                 <img class="menu-icon" src="/icons/menu-icon.svg" alt="menu icon 123workforce"/>
             </a>
 
-            <!-- Replace this with vue-tabs -->
-            <div id="mainLinksWrapper" class="links-group d-flex align-items-center justify-content-between">
-                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" class="second has-inside-routes main-tab-link">
-                    Edit CV
+            <div class="nav-icons">
+                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" class="">
+                    <div class="icon">
+                        <img src="/images/new_resume_builder/icons/main/Edit-1.png" alt="profile-pic">
+                    </div>
                 </router-link>
-                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
-                    View CV
+                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="">
+                    <div class="icon">
+                        <img src="/images/new_resume_builder/icons/main/Theme-1.png" alt="profile-pic">
+                    </div>
                 </router-link>
-                <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="first main-tab-link">
-                    My account
+                <router-link id='coverLetter' data-target="coverLetter" v-on:click.native="changeTab" to="/resume-builder/cover-letter" class="">
+                    <div class="icon">
+                        <img src="/images/new_resume_builder/icons/main/coverletter-1.png" alt="profile-pic">
+                    </div>
                 </router-link>
-
-                <div class="decorator"></div>
+                <router-link id='jobAlert' data-target="jobAlert" v-on:click.native="changeTab" to="/resume-builder/jobs" class="">
+                    <div class="icon">
+                        <img src="/images/new_resume_builder/icons/main/job-1.png" alt="profile-pic">
+                    </div>
+                </router-link>
+                <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="">
+                    <div class="icon">
+                        <img :src="personalInfo.profile_pic" alt="profile-pic">
+                    </div>
+                </router-link>
             </div>
+
         </nav>
 
         <div class="side-menu" :class="{ opened: openMenu }">
@@ -429,8 +443,13 @@
 
         .brand-link {
             flex-grow:0.4;
+            margin-top: -12px;
             @include lt-lg {
                 display: none;
+            }
+            img{
+                width:143px;
+                height:52px;
             }
         }
 
@@ -575,6 +594,19 @@
                 }
             }
 
+        }
+
+        .nav-icons{
+            display: flex;
+            margin-top: -12px;
+            .icon{
+                margin-left:10px;
+                img{
+                    width:50px;
+                    height:50px;
+                    border-radius:50%;
+                }
+            }
         }
 
     }
