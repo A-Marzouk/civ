@@ -104,7 +104,7 @@
                 this.scrollHandler(e.target.parentNode);
 
                 $([document.documentElement, document.body]).animate({
-                    scrollTop: 100
+                    scrollTop: 0
                 }, 600);
 
             },

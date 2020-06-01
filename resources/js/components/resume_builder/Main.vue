@@ -84,31 +84,7 @@
             </div>
         </div>
 
-        <div class="content" 
-            :class="{ 'hideInfoWrapper': activeTab === 'viewCV' }"
-        >
-            <div class="info-wrapper justify-content-between" v-if="personalInfo">
-                <div class="d-flex align-items-center">
-                    <div class="avatar">
-                        <img :src="personalInfo.profile_pic" alt="profile-pic">
-                    </div>
-                    <div class="name-title-wrapper">
-                        <div class="user-name">
-                            {{user.name}}
-                        </div>
-                        <div class="job-title" v-if="personalInfo">
-                            {{personalInfo.designation}}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="auto-import-btn NoDecor" v-show="$route.name === 'my-account'">
-                    <button class="btn btn-filled" @click="logout">
-                        Log Out
-                    </button>
-                </div>
-            </div>
-        </div>
+        <div class="content" :class="{ 'hideInfoWrapper': activeTab === 'viewCV' }"></div>
 
 
         <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
