@@ -281,11 +281,10 @@
   </v-app>
 </template>
 <script>
-import VueSlickCarousel from "vue-slick-carousel";
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-import Theaudio from "./Theaudio";
-import Thevideo from "./Thevideo";
+    import VueSlickCarousel from 'vue-slick-carousel'
+    import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+    import Theaudio from './Theaudio'
+    import Thevideo from './Thevideo'
 export default {
   name: "hold-theme901",
   data() {
@@ -541,16 +540,8 @@ export default {
   }
 };
 </script>
-<style scoped>
-/* These imports are wrong - please fix! */
-
-/*@import url('~/vue-slick-carousel/dist/vue-slick-carousel.css');*/
-/*@import url('~/vue-slick-carousel/dist/vue-slick-carousel-theme.css');*/
-</style>
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-/* This import can not be found - please fix! */
-/*@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");*/
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 
 .hold-theme901 {
