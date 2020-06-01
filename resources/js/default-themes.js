@@ -659,6 +659,18 @@ if ($("#resumeTheme901").length !== 0) {
     });
 }
 
+import resumeTheme902 from './components/resume_themes/theme902/index';
+if ($("#resumeTheme902").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme902',
+        vuetify,
+        store,
+        components: {
+            'resume-theme-902': resumeTheme902
+        }
+    });
+}
 import resumeTheme1100 from './components/resume_themes/theme1100';
 if ($("#resumeTheme1100").length !== 0) {
 
@@ -689,6 +701,20 @@ if ($("#resumeTheme1101").length !== 0) {
 }
 
 
+import resumeTheme308 from './components/resume_themes/theme308';
+if ($("#resumeTheme308").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme308',
+        vuetify,
+        store,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-308': resumeTheme308
+        }
+    });
+}
+
 import resumeTheme600 from './components/resume_themes/theme600';
 if ($("#resumeTheme600").length !== 0) {
 
@@ -699,6 +725,55 @@ if ($("#resumeTheme600").length !== 0) {
         iconfont: 'mdi',
         components: {
             'resume-theme-600': resumeTheme600
+        }
+    });
+}
+import resumeTheme509 from './components/resume_themes/theme509/Index';
+if ($("#resumeTheme509").length !== 0) {
+    new Vue({
+        el: '#resumeTheme509',
+        vuetify,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-509': resumeTheme509
+        }
+    });
+}
+import resumeTheme510 from './components/resume_themes/theme510/Index';
+if ($("#resumeTheme510").length !== 0) {
+    new Vue({
+        el: '#resumeTheme510',
+        vuetify,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-510': resumeTheme510
+        }
+    });
+}
+import resumeTheme601 from './components/resume_themes/theme601';
+if ($("#resumeTheme601").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme601',
+        vuetify,
+        store,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-601': resumeTheme601
+        }
+    });
+}
+
+import resumeTheme602 from './components/resume_themes/theme602';
+if ($("#resumeTheme602").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme602',
+        vuetify,
+        store,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-602': resumeTheme602
         }
     });
 }
