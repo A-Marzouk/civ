@@ -323,7 +323,7 @@ $line-height55: 55px;
     line-height: $line-height55;
     color: #0046fe !important;
     @media screen and (min-width: 600px) and (max-width: 1263px) {
-      font-size: 36px;
+      font-size: 42px;
     }
     @media screen and (max-width: 599px) {
       font-size: 24px;
