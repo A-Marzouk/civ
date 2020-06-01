@@ -1,5 +1,5 @@
 <template>
-	<a :href="slug" class="item-view" :style="`background-image: url(${thumbnail}); height: ${height}px;`" @resize="onResize">
+	<a :href="slug" class="item-view" :style="style" @resize="onResize">
 		<div class="item-meta">
 			<h3 class="item-meta__title" v-text="title"></h3>
 			<p class="item-meta__subtitle" v-text="subTitle"></p>
@@ -45,6 +45,10 @@ export default {
 	},
 
 	computed: {
+		style() {
+			return `background-image: url(${this.thumbnail}); height: ${this.height}px;`;
+		},
+
 		height() {
 			const ratio = this.ratio.split(":").reduce((a, b) => {
 				return a / b;
@@ -56,6 +60,8 @@ export default {
 
 	methods: {
 		onResize() {
+			console.log("onResize");
+
 			this.width = this.$el.offsetWidth;
 		}
 	},
@@ -78,8 +84,7 @@ export default {
 	display: flex;
 	text-align: center;
 	font-family: $montserrat;
-	padding-top: 27%;
-	align-items: center;
+	align-items: flex-end;
 	border-radius: 5px;
 	justify-content: center;
 	background-size: 35px 35px;
@@ -91,8 +96,14 @@ export default {
 		text-decoration: none;
 	}
 
+	&:focus {
+		outline: none;
+		border: 1px solid #205de5;
+	}
+
 	.item-meta {
 		color: #205de5;
+		margin-bottom: 22%;
 
 		.item-meta__title {
 			font-size: 21px;
@@ -105,6 +116,48 @@ export default {
 			font-size: 15px;
 			font-weight: 500;
 			line-height: 20px;
+		}
+	}
+}
+
+@media (min-width: $md) {
+	.item-view {
+		background-size: 42px;
+
+		.item-meta {
+			margin-bottom: 22%;
+
+			.item-meta__title {
+				font-size: 24px;
+				line-height: 29px;
+			}
+
+			.item-meta__subtitle {
+				margin-top: 8px;
+				font-size: 18px;
+				line-height: 21px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xl) {
+	.item-view {
+		background-size: 100px;
+
+		.item-meta {
+			margin-bottom: 16%;
+
+			.item-meta__title {
+				font-size: 32px;
+				line-height: 58px;
+			}
+
+			.item-meta__subtitle {
+				margin-top: 40px;
+				font-size: 21px;
+				line-height: 27px;
+			}
 		}
 	}
 }

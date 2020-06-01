@@ -33,37 +33,26 @@ export default {
 @import "./../scss/variables";
 
 .tabs-content {
-	padding-left: 20px;
-	padding-right: 20px;
-}
-
-@media (min-width: 375px) {
-	.tabs-content {
-		padding-left: 25px;
-		padding-right: 25px;
-	}
-}
-
-@media (min-width: $lg) {
-	.tabs-content {
-		max-width: $lg;
-		padding-left: 50px;
-		padding-right: 50px;
-		margin: 0 auto;
-	}
-}
-
-@media (min-width: 1600px) {
-	.tabs-content {
-		max-width: 1600px;
-		padding-left: 100px;
-		padding-right: 100px;
-	}
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-right: 40px;
+	padding-left: 40px;
 }
 
 @media (min-width: $xl) {
 	.tabs-content {
 		max-width: $xl;
+		padding-left: 82px;
+		padding-right: 82px;
+	}
+}
+
+@media (min-width: $xxl) {
+	.tabs-content {
+		max-width: $xxl;
+		padding-left: 115px;
+		padding-right: 115px;
 	}
 }
 </style>
