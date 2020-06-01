@@ -691,29 +691,27 @@ export default {
     @media only screen and (max-width: 764px) {
       padding: 70px 10px 0px;
     }
-    .tabs-901 {
-      .tab-901 {
-        margin-right: 80px;
-        @media only screen and (max-width: 597px) {
-          margin-right: 60px;
-        }
-      }
-      .v-tabs-slider {
-        width: 75%;
-      }
-      .v-tab {
-        padding: 0 0;
-        font-family: Lato;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 28px;
-        line-height: 0px;
-        letter-spacing: 0.25em;
-        text-transform: capitalize;
-        @media only screen and (max-width: 597px) {
-          font-size: 20px;
-        }
-      }
+    .tabs-901{
+            .v-tabs-slider {
+    width: 50%;
+    }
+            .v-tab{
+            padding-top: 0;
+            padding-left: 0;
+            padding-bottom: 0;
+            padding-right: 80px;
+            font-family: Lato;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 28px;
+            line-height: 0px;
+            letter-spacing: 0.25em;
+            text-transform: capitalize;
+             @media only screen and (max-width: 597px) {
+                 padding-right: 60px;
+            font-size: 20px;
+             }
+            }
       .v-tab:not(.v-tab--active) {
         color: #dbdef6;
       }
