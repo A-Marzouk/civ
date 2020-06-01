@@ -4,7 +4,7 @@
         v-bind="textareaProps"
         :outlined="textareaProps.outlined || true"
         :color="textareaProps.color || '#001CE2'"
-        :rules="[textareaProps.rules]"
+        :rules="textareaProps.rules !== undefined || rules"
         :class="{'resume-builder__input--disabled': disabledTextarea}"
         :disabled="disabledTextarea"
     >
@@ -28,9 +28,9 @@ import 'vuetify/dist/vuetify.min.css'
 export default {
     name: "ResumeBuilderTextarea",
     data: () => ({
-        rules: {
-            required: value => !!value || 'Please fill this field.',
-        },
+        rules: [
+            value => !!value || 'Please fill this field.',
+        ],
         disabledTextarea: false
     }),
     props: ['textareaProps'],

@@ -4,7 +4,7 @@
         v-bind="inputProps"
         :outlined="inputProps.outlined || true"
         :color="inputProps.color || '#001CE2'"
-        :rules="[inputProps.rules]"
+        :rules="inputProps.rules !== undefined || rules"
         :class="{'resume-builder__input--disabled': disabledInput}"
         :disabled="disabledInput"
     >
@@ -28,9 +28,9 @@ import 'vuetify/dist/vuetify.min.css'
 export default {
     name: "ResumeBuilderInput",
     data: () => ({
-        rules: {
-            required: value => !!value || 'Please fill this field.',
-        },
+        rules: [
+            value => !!value || 'Please fill this field.',
+        ],
         disabledInput: false
     }),
     props: ['inputProps'],
