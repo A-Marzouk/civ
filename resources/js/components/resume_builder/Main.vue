@@ -31,11 +31,23 @@
                         <img src="/images/new_resume_builder/icons/main/job-1.png" alt="profile-pic">
                     </div>
                 </router-link>
-                <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="">
-                    <div class="icon">
+                <div class="my-account-icon" @click="profileMenu = !profileMenu">
+                    <div class="icon" v-if="personalInfo">
                         <img :src="personalInfo.profile_pic" alt="profile-pic">
                     </div>
-                </router-link>
+                    <div class="custom-drop-down" v-show="profileMenu">
+                        <div class="drop-down-item">
+                            <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder">
+                                Account Settings
+                            </router-link>
+                        </div>
+                        <div class="drop-down-item">
+                            <a href="javascript:void(0)"  @click="logout" class="sign-out">
+                                Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </nav>
@@ -189,7 +201,8 @@
         data() {
             return {
                 openMenu: false,
-                activeTab: 'myAccount'
+                activeTab: 'myAccount',
+                profileMenu:false
             }
         },
         computed: {
@@ -322,7 +335,7 @@
     .resume-container {
         padding: 160px 100px 30px;
         width: 100%;
-        overflow-x: hidden;
+        /*overflow-x: hidden;*/
 
         @include lt-md {
             padding: 80px 80px 50px;
@@ -414,7 +427,6 @@
         height: 129px;
         background: #fff;
         z-index: 500;
-        overflow: hidden;
 
         @include lt-lg {
             padding: 26px 80px;
@@ -424,7 +436,7 @@
         @include lt-sm {
             padding: 36px;
             height: auto;
-            overflow-x: hidden;
+            /*overflow-x: hidden;*/
             // box-shadow: none;
         }
 
@@ -599,6 +611,64 @@
         .nav-icons{
             display: flex;
             margin-top: -12px;
+
+            .my-account-icon{
+                position: relative;
+                .custom-drop-down{
+                    position: absolute;
+                    width: 230px;
+                    height: auto;
+                    padding: 30px;
+                    border-radius: 10px;
+                    background-color: white;
+                    top: 75px;
+                    right: -20px;
+                    box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+
+                    .drop-down-item{
+                        font-family: Noto Sans, "sans-serif";
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 18px;
+                        border-bottom: 1px solid #D4DBEC;
+                        padding-bottom: 15px;
+                        padding-top: 15px;
+                        color: #0046FE;
+                        &:last-child{
+                            padding-bottom: 0;
+                            border: 0;
+                        }
+                        &:first-child{
+                            padding-top: 0;
+                        }
+
+                        a{
+                            margin-left: 8px;
+                            &:hover{
+                                text-decoration:none;
+                            }
+                        }
+
+                        a.sign-out{
+                            color: #838CA3;
+                        }
+                    }
+                }
+
+
+                .custom-drop-down:before {
+                    content: " ";
+                    height: 0;
+                    position: absolute;
+                    width: 0;
+                    top: -40px;
+                    left: calc(100% - 62px);
+                    border: 20px solid transparent;
+                    border-bottom-color: white;
+                }
+            }
+
             .icon{
                 margin-left:10px;
                 img{
@@ -709,6 +779,8 @@
         left: 0;
         background:#1EC300;
     }
+
+
 
 // import modal styles:
 
