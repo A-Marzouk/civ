@@ -60,8 +60,6 @@ export default {
 
 	methods: {
 		onResize() {
-			console.log("onResize");
-
 			this.width = this.$el.offsetWidth;
 		}
 	},

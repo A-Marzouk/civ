@@ -8,14 +8,11 @@
 			<svg class="xs-icon" xmlns="http://www.w3.org/2000/svg" width="5.677" height="8.526" viewBox="0 0 5.677 8.526">
 				<path d="M0,0,3.556,3.556,0,7.112" transform="translate(4.97 7.819) rotate(180)" fill="none" stroke="#205de5" stroke-width="2" />
 			</svg>
-
 		</a>
 
 		<div class="switcher__items">
-			<div v-for="(item, i) in activeItems" class="switcher__item" :class="{'active': currentTab === item.data.tabName}" :key="`i-${i}`">
-				<a href="#" @click.prevent="currentTabChanged(item.data, item.index)">
-					<img class="switcher__item--icon" :src="item.data.icon">
-				</a>
+			<div v-for="(item, i) in activeItems" class="switcher__item" :key="`i-${i}`">
+				<TabItem :item="item" :isActive="currentTab === item.data.tabName" @tabChanged="currentTabChanged" />
 			</div>
 		</div>
 
@@ -31,6 +28,9 @@
 </template>
 
 <script>
+import TabItem from "./TabItem";
+import _ from "lodash";
+
 export default {
 	name: "MenuSwitcher",
 
@@ -45,6 +45,8 @@ export default {
 			required: true
 		}
 	},
+
+	components: { TabItem },
 
 	data() {
 		return {
@@ -75,6 +77,7 @@ export default {
 				{ index: e, data: this.items[e] }
 			];
 		},
+
 		currentItem() {
 			const currentIndex =
 				Math.abs(this.currentIndex) % this.items.length;
@@ -83,20 +86,20 @@ export default {
 	},
 
 	methods: {
-		currentTabChanged(item, index) {
+		currentTabChanged({ item, index }) {
 			this.$emit("changeCurrentTab", item.tabName);
 			this.currentIndex = index;
 		},
 
-		next() {
+		next: _.throttle(function() {
 			this.currentIndex++;
 			this.$emit("changeCurrentTab", this.currentItem.tabName);
-		},
+		}, 600),
 
-		prev() {
+		prev: _.throttle(function() {
 			this.currentIndex--;
 			this.$emit("changeCurrentTab", this.currentItem.tabName);
-		}
+		}, 600)
 	}
 };
 </script>
@@ -134,36 +137,6 @@ export default {
 		align-items: center;
 		justify-content: space-between;
 		height: 82px;
-
-		.switcher__item {
-			a {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				width: 52.81px;
-				height: 52.81px;
-				border-radius: 100px;
-				background: rgba(32, 93, 229, 0.25);
-
-				.switcher__item--icon {
-					width: 29px;
-					height: 26px;
-				}
-			}
-
-			&.active {
-				a {
-					width: 85px;
-					height: 85px;
-					background: #205de5;
-
-					.switcher__item--icon {
-						width: 44.47px;
-						height: 42.98px;
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -189,30 +162,6 @@ export default {
 			height: 126px;
 			padding-right: 25px;
 			padding-left: 25px;
-
-			.switcher__item {
-				a {
-					width: 75px;
-					height: 75px;
-
-					.switcher__item--icon {
-						width: 39.54px;
-						height: 38.22px;
-					}
-				}
-
-				&.active {
-					a {
-						width: 125px;
-						height: 125px;
-
-						.switcher__item--icon {
-							width: 78.11px;
-							height: 70.18px;
-						}
-					}
-				}
-			}
 		}
 	}
 }
