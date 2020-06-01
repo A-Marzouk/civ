@@ -1,5 +1,5 @@
 <template>
-	<img :src="src" :style="`height: ${height}px`" @resize="onResize">
+	<img :src="src" :style="`height: ${height}px;`" @resize="onResize">
 </template>
 
 <script>

@@ -108,16 +108,20 @@ $purple: #686299;
     color: $mainColor;
     background: #FFF7F3;
     position: relative;
-    overflow-x: hidden;
+
+    .v-application--wrap {
+        overflow: hidden;
+        height: 100%;
+    }
 
     .theme-body {
-        height: auto;
         background: white;
         border-radius: 100px 100px 0 0;
         border-top: 16px solid $purple;
         position: relative;
         width: 100%;
-        overflow: hidden;
+        height: 100%;
+        padding-bottom: 100px;
 
         .wrapper {
             display: flex;
@@ -125,6 +129,7 @@ $purple: #686299;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
@@ -222,6 +227,8 @@ $purple: #686299;
                 width: 90%;
                 margin: 0 auto;
                 z-index: 0;
+                height: 100%;
+                align-items: flex-start;
 
                 @media (max-width: 700px) {
                     padding: 0;
