@@ -11,24 +11,24 @@
             </a>
 
             <div class="nav-icons">
-                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" >
+                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab; setActiveTab('editCV')" to="/resume-builder/edit" >
                     <div class="icon">
-                        <img src="/images/new_resume_builder/icons/main/Edit-1.png" alt="profile-pic">
+                        <img :src=" activeTab === 'editCV' ? '/images/new_resume_builder/icons/main/Edit.png' : '/images/new_resume_builder/icons/main/Edit-1.png'" alt="edit icon">
                     </div>
                 </router-link>
-                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" >
+                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab; setActiveTab('viewCV')" to="/resume-builder/view" >
                     <div class="icon">
-                        <img src="/images/new_resume_builder/icons/main/Theme-1.png" alt="profile-pic">
+                        <img :src=" activeTab === 'viewCV' ? '/images/new_resume_builder/icons/main/Theme.png' : '/images/new_resume_builder/icons/main/Theme-1.png'" alt="theme icon">
                     </div>
                 </router-link>
-                <router-link id='coverLetter' data-target="coverLetter" v-on:click.native="changeTab" to="/resume-builder/cover-letter" >
+                <router-link id='coverLetter' data-target="coverLetter" v-on:click.native="changeTab; setActiveTab('coverLetter')" to="/resume-builder/cover-letter" >
                     <div class="icon">
-                        <img src="/images/new_resume_builder/icons/main/coverletter-1.png" alt="profile-pic">
+                        <img :src=" activeTab === 'coverLetter' ? '/images/new_resume_builder/icons/main/Coverletter.png' : '/images/new_resume_builder/icons/main/Coverletter-1.png'" alt="cover icon">
                     </div>
                 </router-link>
-                <router-link id='jobAlert' data-target="jobAlert" v-on:click.native="changeTab" to="/resume-builder/jobs" >
+                <router-link id='jobAlert' data-target="jobAlert" v-on:click.native="changeTab; setActiveTab('jobAlert')" to="/resume-builder/jobs" >
                     <div class="icon">
-                        <img src="/images/new_resume_builder/icons/main/job-1.png" alt="profile-pic">
+                        <img :src=" activeTab === 'jobAlert' ? '/images/new_resume_builder/icons/main/job.png' : '/images/new_resume_builder/icons/main/job-1.png'" alt="cover icon">
                     </div>
                 </router-link>
                 <div class="my-account-icon" @click="profileMenu = !profileMenu">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="custom-drop-down" v-show="profileMenu">
                         <div class="drop-down-item">
-                            <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder">
+                            <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab; setActiveTab('myAccount')" to="/resume-builder">
                                 Account Settings
                             </router-link>
                         </div>
@@ -68,9 +68,6 @@
                         <router-link id='viewCVMobile' data-target="viewCV" v-on:click.native="setActiveTab('viewCV')" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`view-icon`"></svg-vue>
                         </router-link>
-                        <!-- <router-link id='importMobile' data-target="import" v-on:click.native="setActiveTab('import')" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
-                            <svg-vue class="nav-icon" :icon="`import`"></svg-vue>
-                        </router-link> -->
                         <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
                             <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
                         </router-link>
@@ -194,13 +191,13 @@
                 this.activeTab = tab
             },
             changeTab (e) {
-                let _this = this
+                let _this = this;
 
                 let inputs = document.querySelectorAll('#myAccountTab input');
                 inputs.forEach(input => {
                     input.value = '';
                     input.placeholder = ''
-                })
+                });
 
                 moveTabsHelper(e, 'mainLinksWrapper', _this)
             },
@@ -224,25 +221,20 @@
             });
 
             switch (currentTab) {
-                // edit Tab
                 case 'edit':
-                    this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this);
+                    this.setActiveTab('editCV');
                     break;
-
-
-                // view CV Tab
                 case 'view':
-                    this.changeTab({ target: document.getElementById('viewCV')}, 'mainLinksWrapper', this);
+                    this.setActiveTab('viewCV');
                     break;
-
-                case 'import':
-                    this.changeTab({ target: document.getElementById('import')}, 'mainLinksWrapper', this);
-                    break
-
-
-                // my Account Tab
+                case 'jobs':
+                    this.setActiveTab('jobAlert');
+                    break;
+                case 'cover-letter':
+                    this.setActiveTab('coverLetter');
+                    break;
                 default:
-                    this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this);
+                    this.setActiveTab('myAccount');
                     break;
             }
 
@@ -394,7 +386,7 @@
     }
 
     .resume-builder-nav {
-        width: 100vw;
+        width: calc(100vw - 17px); // the 17 px is for the right scroll bar.
         position: fixed;
         left: 0;
         top: 0;
