@@ -2,7 +2,7 @@
     <div>
         <div @click="() => false" class="edit-links d-flex flex-column mr-5">
             <div @click="setActiveTab(section.name)" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
-                <svg-vue class="aside-icon" :icon="`${section.name}-icon`"></svg-vue>
+                <img :src="activeTab === section.name ? '/images/new_resume_builder/icons/tabs_icons/' + section.name + '.png' : '/images/new_resume_builder/icons/tabs_icons/' + section.name + '-1.png'" alt="">
                 <router-link :to="`/resume-builder/edit/${section.name}`">
                     {{formatSectionString(section.name)}}
                 </router-link>
@@ -22,7 +22,7 @@ export default {
                 icon: null
             },
             {
-                name: 'summary',
+                name: 'links',
                 icon: null
             },
             {
@@ -38,11 +38,11 @@ export default {
                 icon: null
             },
             {
-                name: 'projects',
+                name: 'portfolios',
                 icon: null
             },
             {
-                name: 'achievement',
+                name: 'achievements',
                 icon: null
             },
             {
@@ -54,15 +54,15 @@ export default {
                 icon: null
             },
             {
-                name: 'pay-availability',
-                icon: null
-            },
-            {
                 name: 'imports',
                 icon: null
             },
             {
                 name: 'references',
+                icon: null
+            },
+            {
+                name: 'pay-availability',
                 icon: null
             }
         ],
@@ -116,7 +116,7 @@ $disabledColor: #9f9e9e;
 }
 
 .aside-link {
-    font-size: 18px;
+    font-size: 22px;
     padding-right: 32px;
 
     @include lt-sm {
