@@ -202,3 +202,33 @@ export default {
 ```
 
 ![select image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/select.png "Select Demo Image")
+---
+
+## Checkboxes
+
+**class:** resume-builder__input civie-checkbox
+
+**component:** [vuetify checkbox](https://vuetifyjs.com/en/components/checkbox/)
+
+Use the same props of an vuetify checkbox.
+
+### Example:
+
+```html
+<template>
+    <v-checkbox
+        v-model="disabled"
+        class="resume-builder__input civie-checkbox"
+        label="Working on civie platform"
+        color="#001CE2"
+    ></v-checkbox>
+</template>
+
+<script>
+export default {
+    data: () => ({
+        disabled: false
+    })
+}
+</script>
+```

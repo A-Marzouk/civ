@@ -6,6 +6,7 @@
         color="#001CE2"
     ></v-checkbox>
 </template>
+
 <script>
 export default {
     data: () => ({
