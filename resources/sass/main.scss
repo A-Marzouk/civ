@@ -25,6 +25,9 @@
 @import "modals";
 @import "effects";
 
+// new resume builder styles
+@import "resume_builder/components/inputs";
+
 #resumeBuilder, body, html {
     height: 100%;
     width: 100vw;
