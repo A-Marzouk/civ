@@ -26,14 +26,17 @@ export default {
 
 	methods: {
 		tabChanged: _.throttle(function() {
-			this.$emit("tabChanged", { item: item.data, index: item.index });
+			this.$emit("tabChanged", {
+				item: this.item.data,
+				index: this.item.index
+			});
 		}, 600)
 	},
 
 	updated() {
-		if (this.isActive) {
-			this.$el.classList.remove("active");
+		this.$el.classList.remove("active");
 
+		if (this.isActive) {
 			setTimeout(() => {
 				this.$el.classList.add("active");
 			}, 0);
