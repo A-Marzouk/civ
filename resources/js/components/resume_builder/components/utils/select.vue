@@ -1,6 +1,9 @@
 <template>
     <v-select
         class="resume-builder__input civie-select"
+        outlined
+        placeholder="Select an option"
+        :items="items"
     >
         <button
             v-if="selectProps.showToggleSelectIcon"
@@ -25,7 +28,25 @@ export default {
         rules: [
             value => !!value || 'Please fill this field.',
         ],
-        disabledSelect: false
+        disabledSelect: false,
+        items: [
+            {
+                text: 'Fullstack Developer',
+                value: 'fullstack_dev'
+            },
+            {
+                text: 'Backend Developer',
+                value: 'backend_dev'
+            },
+            {
+                text: 'Frontend Developer',
+                value: 'frontend_dev'
+            },
+            {
+                text: 'Data Sciencist',
+                value: 'data_scientist'
+            }
+        ]
     }),
     props: ['selectProps'],
     methods: {
