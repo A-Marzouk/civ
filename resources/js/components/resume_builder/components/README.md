@@ -25,7 +25,7 @@ Use the same props of an vuetify textfield.
 ```html
 <template>
     <v-text-field
-        class="resume-builder__input"
+        class="resume-builder__input civie-input"
         v-bind="inputProps"
         :outlined="inputProps.outlined || true"
         :color="inputProps.color || '#001CE2'"
@@ -33,16 +33,15 @@ Use the same props of an vuetify textfield.
         :class="{'resume-builder__input--disabled': disabledInput}"
         :disabled="disabledInput"
     >
-        <!-- Use this when you need the eye icon on the inputs -->
         <button
             v-if="inputProps.showToggleInputIcon"
-            class="tick-icon trigger-icon icon"
+            class="eye-icon trigger-icon icon"
             :class="{'icon--disabled': disabledInput}"
             slot="append"
             @click="toggleInput"
         >
             <svg-vue
-                :icon="`tick-icon`"
+                :icon="`eye-icon`"
             ></svg-vue>
         </button>
     </v-text-field>
@@ -84,11 +83,27 @@ Use the same props of an vuetify textarea. You can pass the properties using the
 
 ```html
 <template>
-    <v-app style="margin-top: 60px">
-        <ResumeBuilderTextarea
-            :textarea-props="textareaProps"
-        ></ResumeBuilderTextarea>
-    </v-app>
+    <v-textarea
+        class="resume-builder__input civie-textarea"
+        v-bind="textareaProps"
+        :outlined="textareaProps.outlined || true"
+        :color="textareaProps.color || '#001CE2'"
+        :rules="textareaProps.rules !== undefined || rules"
+        :class="{'resume-builder__input--disabled': disabledTextarea}"
+        :disabled="disabledTextarea"
+    >
+        <button
+            v-if="textareaProps.showToggleTextareaIcon"
+            class="eye-icon trigger-icon"
+            :class="{'icon--disabled': disabledTextarea}"
+            slot="append"
+            @click="toggleTextarea"
+        >
+            <svg-vue
+                :icon="`eye-icon`"
+            ></svg-vue>
+        </button>
+    </v-textarea>
 </template>
 
 <script>
