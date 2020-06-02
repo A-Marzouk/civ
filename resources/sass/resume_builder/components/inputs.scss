@@ -33,6 +33,19 @@ $auxBgColor-gray: #F2F3FD;
         }
     }
 
+    &.civie-checkbox > .v-input__control > {
+        .v-input__slot {
+            .v-label {
+                left: -5px !important;
+                top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+
+            .mdi-checkbox-blank-outline::before {
+                color: $inputBorderColor--enabled;
+            }
+        }
+    }
 
     // General styles
     & > .v-input__control > .v-input__slot {
@@ -88,6 +101,7 @@ $auxBgColor-gray: #F2F3FD;
             .dropdown-icon {
                 width: 100%;
                 height: 100%;
+                margin-top: 4px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -112,10 +126,13 @@ $auxBgColor-gray: #F2F3FD;
             top: -29px !important;
             font-size: 16px;
             margin-bottom: 10px;
+            transform: none;
 
             &--active {
-                transform: none;
-                color: $mainColor;
+                label {
+                    transform: none;
+                    color: $mainColor;
+                }
             }
         }
         
@@ -136,12 +153,17 @@ $auxBgColor-gray: #F2F3FD;
         }
     }    
     
-    // Focused input -------------------------------------------------------------
+    // Focused input ------------------------------------------------------------
     &--is-focused > .v-input__control > .v-input__slot {
         fieldset {
             // Change fieldset border on focus input
 
             border: 2px solid $mainColor !important;
+        }
+
+        label {
+            transform: none;
+            color: $mainColor;
         }
     }
 
@@ -154,7 +176,7 @@ $auxBgColor-gray: #F2F3FD;
         }
     }
 
-    // Disabled input
+    // Disabled input -----------------------------------------------------------
     &.resume-builder__input--disabled {
 
         & > .v-input__control > .v-input__slot {
@@ -190,9 +212,7 @@ $auxBgColor-gray: #F2F3FD;
     }
 }
 
-
 // Dropdown menu items styles
-
 .v-menu__content {
     .v-list-item {
         &--active {
