@@ -1,10 +1,9 @@
 <template>
     <v-text-field
         class="resume-builder__input civie-input"
-        v-bind="inputProps"
-        :outlined="inputProps.outlined || true"
-        :color="inputProps.color || '#001CE2'"
-        :rules="inputProps.rules !== undefined || rules"
+        outlined
+        color="#001CE2"
+        :rules="rules"
         :class="{'resume-builder__input--disabled': disabledInput}"
         :disabled="disabledInput"
     >

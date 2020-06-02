@@ -1,10 +1,9 @@
 <template>
     <v-textarea
         class="resume-builder__input civie-textarea"
-        v-bind="textareaProps"
-        :outlined="textareaProps.outlined || true"
-        :color="textareaProps.color || '#001CE2'"
-        :rules="textareaProps.rules !== undefined || rules"
+        outlined
+        color="#001CE2"
+        :rules="rules"
         :class="{'resume-builder__input--disabled': disabledTextarea}"
         :disabled="disabledTextarea"
     >

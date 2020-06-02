@@ -26,10 +26,9 @@ Use the same props of an vuetify textfield.
 <template>
     <v-text-field
         class="resume-builder__input civie-input"
-        v-bind="inputProps"
-        :outlined="inputProps.outlined || true"
-        :color="inputProps.color || '#001CE2'"
-        :rules="inputProps.rules !== undefined || rules"
+        outlined
+        color="#001CE2"
+        :rules="rules"
         :class="{'resume-builder__input--disabled': disabledInput}"
         :disabled="disabledInput"
     >
@@ -85,10 +84,9 @@ Use the same props of an vuetify textarea. You can pass the properties using the
 <template>
     <v-textarea
         class="resume-builder__input civie-textarea"
-        v-bind="textareaProps"
-        :outlined="textareaProps.outlined || true"
-        :color="textareaProps.color || '#001CE2'"
-        :rules="textareaProps.rules !== undefined || rules"
+        outlined
+        color="#001CE2"
+        :rules="rules"
         :class="{'resume-builder__input--disabled': disabledTextarea}"
         :disabled="disabledTextarea"
     >
