@@ -6,6 +6,7 @@
         :rules="rules"
         :class="{'resume-builder__input--disabled': disabledInput}"
         :disabled="disabledInput"
+        label="Name"
     >
         <button
             v-if="inputProps.showToggleInputIcon"

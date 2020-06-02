@@ -6,6 +6,7 @@
         :rules="rules"
         :class="{'resume-builder__input--disabled': disabledTextarea}"
         :disabled="disabledTextarea"
+        label="Description"
     >
         <button
             v-if="textareaProps.showToggleTextareaIcon"
