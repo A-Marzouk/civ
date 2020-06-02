@@ -92,6 +92,13 @@ $inputBorderColor--disabled: #E6E8FC;
                 transform: none;
             }
         }
+        
+        .v-label.error--text{
+            color:#e3342f;
+        }
+        .v-messages.error--text{
+            color:#e3342f;
+        }
 
         input {
             color: $inputTextColor;

@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
@@ -73,10 +74,10 @@ class UsersController extends Controller
 
     public function editAccountData(Request $request){
         $request->validate([
-            'name' => 'nullable|max:191|min:3',
-            'email'     => 'nullable|max:191|email',
+            'name' => 'required|max:191|min:3',
+            'email'     => 'required|max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
-            'username' => 'nullable|min:3|max:191',
+            'username' => 'required|min:3|max:191',
         ]);
 
 
@@ -110,16 +111,6 @@ class UsersController extends Controller
         return $user;
     }
 
-    public function validateSingleField(Request $request){
-        $request->validate([
-            'name' => 'min:3|max:191',
-            'email'     => 'max:191|email',
-            'password' => 'nullable|min:6|max:191|confirmed',
-            'username' => 'min:3|max:191|unique:users',
-        ]);
-
-        return 'success';
-    }
 
     public function updateLastActivity(Request $request){
         if (Auth::user()->hasRole('admin')){
