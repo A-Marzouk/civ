@@ -4,6 +4,7 @@
         outlined
         placeholder="Select an option"
         :items="items"
+        label="Select a profession"
     >
         <button
             v-if="selectProps.showToggleSelectIcon"
