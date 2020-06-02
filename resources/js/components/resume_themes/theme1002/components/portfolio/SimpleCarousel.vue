@@ -80,11 +80,6 @@ export default {
 
 	.projects-slick {
 		width: calc(100% - 50px);
-
-		.item-wrapper {
-			padding-left: 25px;
-			padding-right: 25px;
-		}
 	}
 }
 
@@ -94,22 +89,6 @@ export default {
 			padding-top: 40px;
 			padding-bottom: 40px;
 			max-width: 100%;
-
-			.item-wrapper {
-				padding-left: 32px;
-				padding-right: 32px;
-			}
-		}
-	}
-}
-
-@media (min-width: $xxl) {
-	.projects-carousel {
-		.projects-slick {
-			.item-wrapper {
-				padding-left: 72.5px;
-				padding-right: 72.5px;
-			}
 		}
 	}
 }

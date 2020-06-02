@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ItemView from "./../components/work/ItemView";
+import ItemView from "./../components/SimpleItemView";
 
 export default {
 	name: "Work",

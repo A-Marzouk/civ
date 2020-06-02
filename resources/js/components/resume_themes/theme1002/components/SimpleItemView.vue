@@ -24,7 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./../../scss/variables";
+@import "./../scss/variables";
 
 .item-view {
 	width: 100%;

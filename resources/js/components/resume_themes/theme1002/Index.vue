@@ -27,7 +27,7 @@ export default {
 
 	data: () => {
 		return {
-			currentTab: "work",
+			currentTab: "portfolio",
 			currentHeader: "small-header",
 			inSmallScreen: true,
 			currentUser: {
