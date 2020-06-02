@@ -188,13 +188,25 @@
         >
           <v-row align="center" justify="center">
             <v-col cols="4">
-              <a href="#">
-                <img src="/images/pricing/icons/stripe-logo.svg" alt="Stripe Logo" />
+              <a href="#" class="payment-link">
+                <img
+                  :src="stripeHover==false?stripeInactive:stripeActive"
+                  @mouseover="stripeHover=true"
+                  @mouseleave="stripeHover=false"
+                  alt="Stripe Logo"
+                />
               </a>
             </v-col>
             <v-col cols="4">
-              <a href="#">
-                <img src="/images/pricing/icons/paypal-logo.svg" alt="Stripe Logo" />
+              <a href="#" class="payment-link">
+                <transition name="fade">
+                  <img
+                    :src="paypalHover == false? paypalInactive : paypalActive"
+                    @mouseover="paypalHover=true"
+                    @mouseleave="paypalHover=false"
+                    alt="Stripe Logo"
+                  />
+                </transition>
               </a>
             </v-col>
           </v-row>
@@ -214,6 +226,12 @@ export default {
       price_tab: 1,
       currentTab: 2,
       paymentModal: false,
+      stripeInactive: "/images/pricing/icons/stripe-logo-inactive.png",
+      stripeActive: "/images/pricing/icons/stripe-logo-active.svg",
+      paypalInactive: "/images/pricing/icons/paypal-logo-inactive.svg",
+      paypalActive: "/images/pricing/icons/paypal-logo-active.png",
+      paypalHover: false,
+      stripeHover: false,
       plans: [
         {
           id: 1,
@@ -593,6 +611,9 @@ $line-height55: 55px;
   @media screen and (max-width: 599px) {
     height: 210px !important;
   }
+  .payment-link:hover {
+    cursor: pointer;
+  }
 }
 .btn-close {
   min-width: 48px !important;
@@ -692,6 +713,15 @@ $line-height55: 55px;
 }
 //price card3
 // animations
+//modal animation
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+//modal animation
 </style>
 
 <style>
