@@ -1,6 +1,8 @@
 
 import {store} from './store/store';
 
+// Vuetify
+import vuetify from './vuetify';
 
 // VueRouter
 import VueRouter from 'vue-router';
@@ -127,6 +129,7 @@ if ($("#resumeBuilder").length !== 0) {
     new Vue({
         store,
         router,
+        vuetify,
         el: '#resumeBuilder',
         components:{
             'resume-builder':resumeBuilder
