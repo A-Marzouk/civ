@@ -117,6 +117,13 @@ $auxBgColor-gray: #F2F3FD;
                 transform: none;
             }
         }
+        
+        .v-label.error--text{
+            color:#e3342f;
+        }
+        .v-messages.error--text{
+            color:#e3342f;
+        }
 
         // Text styles
         input,

@@ -29,6 +29,7 @@ export default {
             label:"First Input",
             color:"#001CE2",
             outlined: true,
+            rules: true,
             showToggleInputIcon: true
         },
         textareaProps: {
@@ -36,6 +37,7 @@ export default {
             label:"First Textarea",
             color:"#001CE2",
             outlined: true,
+            rules: true,
             showToggleTextareaIcon: true
         },
         selectProps: {

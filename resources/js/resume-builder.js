@@ -1,6 +1,8 @@
 
 import {store} from './store/store';
 
+// Vuetify
+import vuetify from './vuetify';
 
 // VueRouter
 import VueRouter from 'vue-router';
