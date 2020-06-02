@@ -1,6 +1,6 @@
 <template>
     <v-textarea
-        class="resume-builder__input"
+        class="resume-builder__input civie-textarea"
         v-bind="textareaProps"
         :outlined="textareaProps.outlined || true"
         :color="textareaProps.color || '#001CE2'"
@@ -10,13 +10,13 @@
     >
         <button
             v-if="textareaProps.showToggleTextareaIcon"
-            class="tick-icon trigger-icon"
+            class="eye-icon trigger-icon"
             :class="{'icon--disabled': disabledTextarea}"
             slot="append"
             @click="toggleTextarea"
         >
             <svg-vue
-                :icon="`tick-icon`"
+                :icon="`eye-icon`"
             ></svg-vue>
         </button>
     </v-textarea>

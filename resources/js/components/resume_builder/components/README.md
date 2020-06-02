@@ -14,41 +14,57 @@
 
 ## Inputs
 
-**name:** ResumeBuilderInput
-
 **class:** resume-builder__input
 
 **component:** [vuetify text field](https://vuetifyjs.com/en/components/text-fields/)
 
-Use the same props of an vuetify textfield. You can pass the properties using the `input-props` prop.
+Use the same props of an vuetify textfield.
 
 ### Example:
 
 ```html
 <template>
-    <v-app style="margin-top: 60px">
-        <ResumeBuilderInput
-            :input-props="inputProps"
-        ></ResumeBuilderInput>
-    </v-app>
+    <v-text-field
+        class="resume-builder__input"
+        v-bind="inputProps"
+        :outlined="inputProps.outlined || true"
+        :color="inputProps.color || '#001CE2'"
+        :rules="inputProps.rules !== undefined || rules"
+        :class="{'resume-builder__input--disabled': disabledInput}"
+        :disabled="disabledInput"
+    >
+        <!-- Use this when you need the eye icon on the inputs -->
+        <button
+            v-if="inputProps.showToggleInputIcon"
+            class="tick-icon trigger-icon icon"
+            :class="{'icon--disabled': disabledInput}"
+            slot="append"
+            @click="toggleInput"
+        >
+            <svg-vue
+                :icon="`tick-icon`"
+            ></svg-vue>
+        </button>
+    </v-text-field>
 </template>
 
 <script>
-import ResumeBuilderInput from './input'
+import 'vuetify/dist/vuetify.min.css'
 
 export default {
-    components: {
-        ResumeBuilderInput
-    },
+    name: "ResumeBuilderInput",
     data: () => ({
-        inputProps: {
-            value:"John Doe",
-            label:"First Input",
-            color:"#001CE2",
-            outlined: true,
-            showToggleInputIcon: true // use it to show the disable or enable icon
+        rules: [
+            value => !!value || 'Please fill this field.',
+        ],
+        disabledInput: false
+    }),
+    props: ['inputProps'],
+    methods: {
+        toggleInput () {
+            this.disabledInput = !this.disabledInput
         }
-    })
+    }
 }
 </script>
 ```
@@ -56,9 +72,7 @@ export default {
 ![input image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/input.png "Input Demo Image")
 ---
 
-## Textaras
-
-**name:** ResumeBuilderTextarea
+## Textareas
 
 **class:** resume-builder__input
 

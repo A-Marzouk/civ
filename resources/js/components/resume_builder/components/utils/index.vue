@@ -6,17 +6,22 @@
         <ResumeBuilderTextarea
             :textarea-props="textareaProps"
         ></ResumeBuilderTextarea>
+        <ResumeBuilderSelect
+            :select-props="selectProps"
+        ></ResumeBuilderSelect>
     </v-app>
 </template>
 
 <script>
 import ResumeBuilderInput from './input'
 import ResumeBuilderTextarea from './textarea'
+import ResumeBuilderSelect from './select'
 
 export default {
     components: {
         ResumeBuilderInput,
-        ResumeBuilderTextarea
+        ResumeBuilderTextarea,
+        ResumeBuilderSelect
     },
     data: () => ({
         inputProps: {
@@ -32,6 +37,13 @@ export default {
             color:"#001CE2",
             outlined: true,
             showToggleTextareaIcon: true
+        },
+        selectProps: {
+            value:"I'm a fullstack Developer",
+            label:"First Select",
+            color:"#001CE2",
+            outlined: true,
+            showToggleSelectIcon: true
         }
     })
 }

@@ -1,6 +1,6 @@
 <template>
     <v-text-field
-        class="resume-builder__input"
+        class="resume-builder__input civie-input"
         v-bind="inputProps"
         :outlined="inputProps.outlined || true"
         :color="inputProps.color || '#001CE2'"
@@ -10,13 +10,13 @@
     >
         <button
             v-if="inputProps.showToggleInputIcon"
-            class="tick-icon trigger-icon"
+            class="eye-icon trigger-icon icon"
             :class="{'icon--disabled': disabledInput}"
             slot="append"
             @click="toggleInput"
         >
             <svg-vue
-                :icon="`tick-icon`"
+                :icon="`eye-icon`"
             ></svg-vue>
         </button>
     </v-text-field>
@@ -41,7 +41,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-
-</style>

@@ -5,13 +5,14 @@ $inputTextColor: #888DB1;
 $inputBorderColor--enabled: #C4C9F5;
 $inputBorderColor--disabled: #E6E8FC;
 
-.resume-builder__input.v-input.v-text-field--outlined.v-text-field {
+.resume-builder__input {
 
     // Default styles ------------------------------------------------------------
     pointer-events: auto !important;
     max-width: 430px;
 
-    &:not(.v-textarea) {
+    // Simple input
+    &.civie-input {
         .v-input__slot {
 
             // input height is different to textarea
@@ -20,7 +21,7 @@ $inputBorderColor--disabled: #E6E8FC;
     }
 
     // Textarea
-    &.v-textarea {
+    &.civie-textarea {
         .v-input__slot,
         textarea {
 
@@ -30,6 +31,8 @@ $inputBorderColor--disabled: #E6E8FC;
         }
     }
 
+
+    // Text fields and textarea
     & > .v-input__control > .v-input__slot {
 
         fieldset {
@@ -47,7 +50,6 @@ $inputBorderColor--disabled: #E6E8FC;
             }
         }
 
-        // append icon to enable or disable the input
         .v-input__append-inner {
             padding: 0;
             margin: 0;
@@ -58,7 +60,8 @@ $inputBorderColor--disabled: #E6E8FC;
             right: 15px;
             z-index: 20;
 
-            .tick-icon {
+            // append icon to enable or disable the input
+            .eye-icon {
                 width: 100%;
                 height: 100%;
                 display: flex;
@@ -67,7 +70,7 @@ $inputBorderColor--disabled: #E6E8FC;
                 border-radius: 50%;
                 box-shadow: 0 5px 10px rgba($color: #001083, $alpha: 0.15);
                 transition: all 0.3s ease;
-
+                
                 svg {
                     width: 12px;
 
@@ -77,14 +80,36 @@ $inputBorderColor--disabled: #E6E8FC;
                         fill: transparent;
                         transition: all 0.3s ease;
                     }
+                } 
+            }
+
+            // append icon to open select options
+            .dropdown-icon {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                svg {
+                    width: 12px;
+
+                    path {
+                        stroke: $inputTextColor;
+                        color: none;
+                        fill: transparent;
+                        transition: all 0.3s ease;
+                    }
                 }
             }
         }
 
+        // Label styles
+
         .v-label {
             color: $inputTextColor;
             left: -10px !important;     // refactoring inline styles
-            top: -29px;
+            top: -29px !important;
             font-size: 16px;
             margin-bottom: 10px;
 
@@ -93,7 +118,9 @@ $inputBorderColor--disabled: #E6E8FC;
             }
         }
 
-        input {
+        // Input text styles
+
+        input, textarea {
             color: $inputTextColor;
             font-size: 16px;
             padding: 16px 21px 16px 13px;
@@ -137,7 +164,7 @@ $inputBorderColor--disabled: #E6E8FC;
         // append icon to enable or disable the input
         .v-input__append-inner {
 
-            .tick-icon {
+            .eye-icon {
                 &.icon--disabled {
                     box-shadow: 0 0 5px rgba($color: #001083, $alpha: 0.10);
                     transition: all 0.3s ease;
