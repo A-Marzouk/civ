@@ -2,7 +2,7 @@
 
 * [Inputs](#Inputs)
 * [Textareas](#Textareas)
-* Selects
+* [Selects](#Selects)
 * Checkboxes
 * ScrollBars
 * Tabs
@@ -133,7 +133,7 @@ export default {
 
 **class:** resume-builder__input civie-select
 
-**component:** [vuetify select](https://vuetifyjs.com/en/components/text-areas/)
+**component:** [vuetify select](https://vuetifyjs.com/en/components/select/)
 
 Use the same props of an vuetify select.
 
