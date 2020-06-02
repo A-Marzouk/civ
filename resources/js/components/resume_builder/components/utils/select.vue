@@ -5,6 +5,7 @@
         placeholder="Select an option"
         :items="items"
         label="Select a profession"
+        color="#001CE2"
     >
         <button
             v-if="selectProps.showToggleSelectIcon"
