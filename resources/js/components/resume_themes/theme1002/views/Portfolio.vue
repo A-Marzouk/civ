@@ -2,7 +2,7 @@
 	<div class="portfolio">
 		<template v-if="inSmallScreen">
 			<div class="project-wrapper" v-for="project in projects" :key="project.id">
-				<ItemView :thumbnail="project.thumbnail" :slug="project.slug" :title="project.title" :subTitle="project.subTitle" />
+				<ItemView :thumbnail="project.thumbnail" :title="project.title" :subTitle="project.subTitle" />
 			</div>
 		</template>
 
@@ -26,49 +26,43 @@ export default {
 			projects: [
 				{
 					id: 1,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 2,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 3,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 4,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 5,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 6,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				}
@@ -103,7 +97,16 @@ export default {
 	margin-right: auto;
 
 	.project-wrapper {
-		padding: 13px;
+		display: flex;
+		justify-content: center;
+		padding-top: 13px;
+		padding-bottom: 13px;
+	}
+}
+
+@media (min-width: $sm) {
+	.portfolio {
+		max-width: $sm;
 	}
 }
 
@@ -111,13 +114,32 @@ export default {
 	.portfolio {
 		display: flex;
 		flex-wrap: wrap;
-		padding: 45px 28px;
-		max-width: unset;
+		padding: 45px 12px;
+		max-width: $md;
 
 		.project-wrapper {
-			padding: 15px;
 			width: 50%;
+			padding-top: 15px;
+			padding-bottom: 15px;
 		}
+	}
+}
+
+@media (min-width: $lg) {
+	.portfolio {
+		max-width: $lg;
+	}
+}
+
+@media (min-width: $xl) {
+	.portfolio {
+		max-width: $xl;
+	}
+}
+
+@media (min-width: $xxl) {
+	.portfolio {
+		max-width: $xxl;
 	}
 }
 </style>

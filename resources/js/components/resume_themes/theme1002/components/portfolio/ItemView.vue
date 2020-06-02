@@ -1,10 +1,10 @@
 <template>
-	<a :href="slug" class="item-view" :style="style" @resize="onResize">
+	<div class="item-view" :style="`background-image: url(${thumbnail})`">
 		<div class="item-meta">
 			<h3 class="item-meta__title" v-text="title"></h3>
 			<p class="item-meta__subtitle" v-text="subTitle"></p>
 		</div>
-	</a>
+	</div>
 </template>
 
 <script>
@@ -17,11 +17,6 @@ export default {
 			default: "default.png"
 		},
 
-		slug: {
-			type: String,
-			default: "#"
-		},
-
 		title: {
 			type: String,
 			required: true
@@ -30,47 +25,7 @@ export default {
 		subTitle: {
 			type: String,
 			default: ""
-		},
-
-		ratio: {
-			type: String,
-			default: "249:232"
 		}
-	},
-
-	data() {
-		return {
-			width: null
-		};
-	},
-
-	computed: {
-		style() {
-			return `background-image: url(${this.thumbnail}); height: ${this.height}px;`;
-		},
-
-		height() {
-			const ratio = this.ratio.split(":").reduce((a, b) => {
-				return a / b;
-			});
-
-			return this.width / ratio;
-		}
-	},
-
-	methods: {
-		onResize() {
-			this.width = this.$el.offsetWidth;
-		}
-	},
-
-	mounted() {
-		this.onResize();
-		window.addEventListener("resize", this.onResize);
-	},
-
-	beforeDestroy() {
-		window.removeEventListener("resize", this.onResize);
 	}
 };
 </script>
@@ -80,28 +35,31 @@ export default {
 
 .item-view {
 	display: flex;
-	text-align: center;
-	font-family: $montserrat;
 	align-items: flex-end;
+	width: 249px;
+	height: 232px;
+	margin-left: auto;
+	margin-right: auto;
 	border-radius: 5px;
-	justify-content: center;
-	background-size: 35px 35px;
+	background-size: cover;
 	background-color: #e6edfc;
 	background-repeat: no-repeat;
-	background-position: center 35%;
-
-	&:hover {
-		text-decoration: none;
-	}
+	background-position: center;
+	transition: width, height 0.3s;
 
 	&:focus {
-		outline: none;
 		border: 1px solid #205de5;
 	}
 
 	.item-meta {
 		color: #205de5;
-		margin-bottom: 22%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		font-family: $montserrat;
+		height: 152px;
 
 		.item-meta__title {
 			font-size: 21px;
@@ -118,12 +76,20 @@ export default {
 	}
 }
 
+@media (min-width: $sm) {
+	.item-view {
+		width: 296px;
+		height: 276px;
+	}
+}
+
 @media (min-width: $md) {
 	.item-view {
-		background-size: 42px;
+		width: 301px;
+		height: 310px;
 
 		.item-meta {
-			margin-bottom: 22%;
+			height: 212px;
 
 			.item-meta__title {
 				font-size: 24px;
@@ -139,12 +105,58 @@ export default {
 	}
 }
 
-@media (min-width: $xl) {
+@media (min-width: 992px) {
 	.item-view {
-		background-size: 100px;
+		width: 340px;
+		height: 317px;
+	}
+}
+
+@media (min-width: $lg) {
+	.item-view {
+		width: 385px;
+		height: 352px;
 
 		.item-meta {
-			margin-bottom: 16%;
+			.item-meta__title {
+				font-size: 20px;
+			}
+
+			.item-meta__subtitle {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xl) {
+	.item-view {
+		width: 615px;
+		height: 562px;
+
+		.item-meta {
+			height: 225px;
+
+			.item-meta__title {
+				font-size: 32px;
+				line-height: 58px;
+			}
+
+			.item-meta__subtitle {
+				font-size: 21px;
+				line-height: 27px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xxl) {
+	.item-view {
+		width: 735px;
+		height: 673px;
+
+		.item-meta {
+			height: 290px;
 
 			.item-meta__title {
 				font-size: 32px;

@@ -6,9 +6,9 @@
 			</svg>
 		</a>
 
-		<slick class="projects-slick" ref="slick" @init="resizeItemsView" @setPosition="resizeItemsView" :options="slickOptions">
+		<slick class="projects-slick" ref="slick" :options="slickOptions">
 			<div class="item-wrapper" v-for="item in items" :key="item.id">
-				<ItemView ref="ItemsView" :thumbnail="item.thumbnail" :slug="item.slug" :title="item.title" :subTitle="item.subTitle" />
+				<ItemView :thumbnail="item.thumbnail" :title="item.title" :subTitle="item.subTitle" />
 			</div>
 		</slick>
 
@@ -55,10 +55,6 @@ export default {
 
 		prev() {
 			this.$refs.slick.prev();
-		},
-
-		resizeItemsView() {
-			this.$refs.ItemsView.forEach(itemView => itemView.onResize());
 		}
 	}
 };
@@ -99,6 +95,17 @@ export default {
 			padding-bottom: 40px;
 			max-width: 100%;
 
+			.item-wrapper {
+				padding-left: 32px;
+				padding-right: 32px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xxl) {
+	.projects-carousel {
+		.projects-slick {
 			.item-wrapper {
 				padding-left: 72.5px;
 				padding-right: 72.5px;
