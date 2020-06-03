@@ -203,7 +203,7 @@
                     :src="paypalHover == false? paypalInactive : paypalActive"
                     @mouseover="paypalHover=true"
                     @mouseleave="paypalHover=false"
-                    alt="Stripe Logo"
+                    alt="Paypal Logo"
                   />
               </a>
             </v-col>
