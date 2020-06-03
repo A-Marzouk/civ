@@ -28,8 +28,7 @@ export default {
 
 	data() {
 		return {
-			// currentTab: "programing-languages"
-			currentTab: "software"
+			currentTab: "programing-languages"
 		};
 	}
 };

@@ -9,8 +9,12 @@
 			</svg>
 		</a>
 
-		<div class="switcher__tabs">
-			<a href="#" @click.prevent="$emit('skillChanged', tabs[activeIndex].name)" v-text="tabs[activeIndex].label"></a>
+		<div class="switcher__tabs--sm">
+			<a href="#" @click.prevent v-text="tabs[activeIndex].label"></a>
+		</div>
+
+		<div class="switcher__tabs--lg">
+			<a v-for="(tab, i) in tabs" href="#" :class="{'active': tab.name === tabs[activeIndex].name}" @click.prevent="tabChanged(tab.name)" :key="`tab-${i}`" v-text="tab.label"></a>
 		</div>
 
 		<a class="next" @click.prevent="next" href="#">
@@ -66,6 +70,11 @@ export default {
 		touchmove: debounce(function(e) {}, 500),
 		touchend: debounce(function(e) {}, 500),
 
+		tabChanged(skill) {
+			this.activeIndex = this.skillIndex(skill);
+			this.$emit("skillChanged", skill);
+		},
+
 		next: throttle(function() {
 			this.activeIndex++;
 			if (this.activeIndex >= this.tabs.length) this.activeIndex = 0;
@@ -76,18 +85,26 @@ export default {
 			this.activeIndex--;
 			if (this.activeIndex < 0) this.activeIndex = this.tabs.length - 1;
 			this.$emit("skillChanged", this.tabs[this.activeIndex].name);
-		}, 500)
+		}, 500),
+
+		skillIndex(skill) {
+			let index = 0;
+
+			for (let i = 0; i < this.tabs.length; i++) {
+				const tab = this.tabs[i];
+
+				if (tab.name === skill) {
+					index = i;
+					break;
+				}
+			}
+
+			return index;
+		}
 	},
 
 	mounted() {
-		for (let i = 0; i < this.tabs.length; i++) {
-			const tab = this.tabs[i];
-
-			if (tab.name === this.currentTab) {
-				this.activeIndex = i;
-				break;
-			}
-		}
+		this.activeIndex = this.skillIndex(this.currentTab);
 	}
 };
 </script>
@@ -96,6 +113,7 @@ export default {
 @import "./../../scss/variables";
 
 .menu-switcher {
+	width: 100%;
 	display: flex;
 	align-items: center;
 
@@ -113,24 +131,33 @@ export default {
 		}
 	}
 
-	.switcher__tabs {
+	.switcher__tabs--sm {
 		flex: 1;
 
 		a {
 			display: block;
 			font-family: $nexa-bold;
+			font-weight: 700;
 			color: #205de5;
 			text-align: center;
 			white-space: nowrap;
 			font-size: 20px;
 			line-height: 28px;
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
+	}
+
+	.switcher__tabs--lg {
+		display: none;
 	}
 }
 
 @media (min-width: $sm) {
 	.menu-switcher {
-		.switcher__tabs {
+		.switcher__tabs--sm {
 			a {
 				font-size: 22px;
 				line-height: 32px;
@@ -142,7 +169,6 @@ export default {
 @media (min-width: $md) {
 	.menu-switcher {
 		margin: 0 auto;
-		widows: 100%;
 		max-width: 470px;
 
 		.next,
@@ -156,10 +182,61 @@ export default {
 			}
 		}
 
-		.switcher__tabs {
+		.switcher__tabs--sm {
 			a {
 				font-size: 32px;
 				line-height: 48px;
+			}
+		}
+	}
+}
+
+@media (min-width: $lg) {
+	.menu-switcher {
+		max-width: none;
+
+		.next,
+		.prev {
+			display: none;
+		}
+
+		.switcher__tabs--sm {
+			display: none;
+		}
+
+		.switcher__tabs--lg {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+
+			a {
+				display: block;
+				font-family: $nexa-light;
+				color: #205de5;
+				text-align: center;
+				white-space: nowrap;
+				font-size: 24px;
+				line-height: 38px;
+
+				&:hover {
+					text-decoration: none;
+				}
+
+				&.active {
+					font-family: $nexa-bold;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: $xl) {
+	.menu-switcher {
+		.switcher__tabs--lg {
+			a {
+				font-size: 38px;
+				line-height: 67px;
 			}
 		}
 	}
