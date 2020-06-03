@@ -45,19 +45,19 @@ export default {
 		return {
 			tabs: [
 				{
-					name: "programing-languages",
+					name: "ProgramingLanguages",
 					label: "Programing Languages"
 				},
 				{
-					name: "frameworks-databases",
+					name: "FrameworksDatabases",
 					label: "Frameworks/Databases"
 				},
 				{
-					name: "design-skills",
+					name: "DesignSkills",
 					label: "Design Skills"
 				},
 				{
-					name: "software",
+					name: "Software",
 					label: "Software"
 				}
 			],
@@ -159,8 +159,8 @@ export default {
 	.menu-switcher {
 		.switcher__tabs--sm {
 			a {
-				font-size: 22px;
-				line-height: 32px;
+				font-size: 24px;
+				line-height: 36px;
 			}
 		}
 	}
