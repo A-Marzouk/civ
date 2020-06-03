@@ -31,7 +31,7 @@ export default {
 			currentHeader: "small-header",
 			inSmallScreen: true,
 			currentUser: {
-				avatar: "/images/resume_themes/theme1002/profiles/person.png",
+				avatar: "/images/resume_themes/theme1002/profiles/default.jpg",
 				fullname: "Ahmed Elsayed",
 				jobTitle: "ux/ui designer",
 				hourRate: 10,
