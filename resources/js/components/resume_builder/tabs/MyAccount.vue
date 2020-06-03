@@ -3,61 +3,28 @@
         <div id="myAccountTab" class="my-account-tab-wrapper">
             <div class="form-wrapper">
                 <div class="content-wrapper">
-                    <div class="form-title">
-                        My account
-                    </div>
                     <div class="mar-form">
-                        <div class="input-field" :class="{active:fields.name, 'error':errors.name}">
-                            <div class="d-flex align-items-center" style="position: relative;">
-                                <input type="text" v-model="accountData.name" id="name"
-                                       @focus="focusFiledStyles('name')" @blur="validateFiled('name')">
-                                <img src="/images/resume_builder/my_account/check-circle-regular.svg" alt="correct"
-                                     v-show="fields.name">
-                                <img src="/images/resume_builder/my_account/times-circle-regular.svg" alt="correct"
-                                     v-show="errors.name">
-                            </div>
-                            <label for="name">
-                                Name
-                            </label>
-                        </div>
-                        <div class="input-field" :class="{'active': fields.email , 'error': errors.email}">
-                            <input type="email" v-model="accountData.email" id="email" :disabled="canEditEmail()">
-                            <label for="email">
-                                Email
-                            </label>
-                        </div>
-                        <div class="input-field" :class="{'active': fields.password , 'error': errors.password}">
-                            <div class="d-flex align-items-center" style="position: relative;">
-                                <input type="password" v-model="accountData.password" placeholder="*********"
-                                       id="password" @focus="focusFiledStyles('password')"
-                                       @blur="validateFiled('password')">
-                                <img src="/images/resume_builder/my_account/check-circle-regular.svg" alt="correct"
-                                     v-show="fields.password">
-                                <img src="/images/resume_builder/my_account/times-circle-regular.svg" alt="correct"
-                                     v-show="errors.password">
-                            </div>
-                            <label for="password">
-                                Password
-                            </label>
-                        </div>
-                        <div class="input-field" :class="{'active': fields.password , 'error': errors.password}">
-                            <div class="d-flex align-items-center" style="position: relative;">
-                                <input type="password" v-model="accountData.password_confirmation"
-                                       placeholder="*********" @focus="focusFiledStyles('password_confirmation')"
-                                       id="password_confirmation" @blur="validateFiled('password')">
-                                <img src="/images/resume_builder/my_account/check-circle-regular.svg" alt="correct"
-                                     v-show="fields.password">
-                                <img src="/images/resume_builder/my_account/times-circle-regular.svg" alt="correct"
-                                     v-show="errors.password">
-                            </div>
+                        <v-text-field class="resume-builder__input input-margin" label="Full name" v-model="accountData.name" :outlined="true"
+                                       :class="{'resume-builder__input--disabled': false}" :error="!!errors.name" :disabled="false">
+                        </v-text-field>
 
-                            <label for="password_confirmation">
-                                Re-type password
-                            </label>
-                        </div>
+                        <v-text-field class="resume-builder__input input-margin" label="Email" v-model="accountData.email" :outlined="true"
+                                      :class="{'resume-builder__input--disabled': false}" :error="!!errors.email" :disabled="canEditEmail()">
+                        </v-text-field>
+
+
+                        <v-text-field class="resume-builder__input input-margin" label="Password"  type="password" v-model="accountData.password" placeholder="*********" :outlined="true"
+                                      :class="{'resume-builder__input--disabled': false}" :error="!!errors.password">
+                        </v-text-field>
+
+                        <v-text-field class="resume-builder__input" label="Re-Type Password"  type="password" v-model="accountData.password_confirmation" placeholder="*********" :outlined="true"
+                                      :class="{'resume-builder__input--disabled': false}" :error="!!errors.password">
+                        </v-text-field>
+
+
                         <div class="my-subscription">
                             <div class="form-title sub">
-                                My subscription
+                                My Subscription
                             </div>
                             <div class="toggle-panel smaller" v-if="accountData.subscription === null">
                                 <div class="aux-fill" :class="{left: subscription === 'on',right: subscription === 'off'}"></div>
@@ -74,33 +41,28 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="input-field" :class="{'active': fields.username , 'error': errors.username}">
-                            <div class="d-flex align-items-center" style="position: relative;">
-                                <input type="text" v-model="accountData.username" id="username"
-                                       @focus="focusFiledStyles('username')" @blur="validateFiled('username')">
-                                <img src="/images/resume_builder/my_account/check-circle-regular.svg" alt="correct"
-                                     v-show="fields.username">
-                                <img src="/images/resume_builder/my_account/times-circle-regular.svg" alt="correct"
-                                     v-show="errors.username">
-                            </div>
 
-                            <label for="username">{{baseUrl()}}</label>
+                        <div class="action-btns NoDecor">
+                            <a href="/subscription" class="purchase-btn" data-toggle="modal" data-target="#prices" v-if="subscription==='on'">
+                                Purchase Subscription
+                            </a>
                         </div>
-                    </div>
 
-                    <div class="actions-row d-flex">
-                        <img src="/images/resume_builder/my_account/edit-solid.svg" alt="edit">
-                        <img src="/images/resume_builder/my_account/copy.svg" alt="edit" @click="copyCivLink">
-                        <img src="/images/resume_builder/my_account/share-square-solid.svg" alt="edit" @click="openCivLink" >
+                        <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                            My URL
+                        </span>
+                        <v-text-field class="resume-builder__input top-input-margin"  v-model="accountData.username" :outlined="true"
+                                      :class="{'resume-builder__input--disabled': false}" :error="!!errors.username">
+                            <template slot="prepend-inner">
+                                <span class="inner-text">www.civ.ie/</span>
+                            </template>
+                        </v-text-field>
                     </div>
 
                     <div class="action-btns NoDecor">
-                        <a class="btn btn-filled" href="javascript:void(0)" @click="submitForm">
-                            <img class='icon' src="/images/resume_builder/my_account/check-solid.svg" alt="edit">
-                            Save changes
-                        </a>
-                        <a href="/subscription" class="btn btn-outline purchase-btn" data-toggle="modal" data-target="#prices" v-if="subscription==='on'">
-                            Purchase subscription
+                        <a class="save-btn" href="javascript:void(0)" @click="submitForm">
+                            Save Changes
                         </a>
                     </div>
                 </div>
@@ -164,7 +126,7 @@
             return {
                 selectedPlan: "monthly",
                 selectedBtn: "monthly",
-                subscription: "off",
+                subscription: "on",
                 errors: {},
                 successes: {},
                 currentUser: {},
@@ -176,7 +138,11 @@
                     email: '',
                     username: '',
                     password: '',
-                }
+                },
+                rules: {
+                    required: value => !!value || 'Required.',
+                    min: v => v.length >= 3 || 'Min 3 characters'
+                },
             }
         },
         computed: {
@@ -215,53 +181,7 @@
                     this.selectedPlan = plan ;
                 },700)
             },
-            validateFiled(field_name) {
-                let saveUsername = false ;
 
-                let data = {
-                    [field_name]: this.accountData[field_name]
-                };
-
-                if (field_name === 'username') {
-                    if (!this.isUsernameChanged()) {
-                        return;
-                    }
-                    saveUsername = true;
-                }
-
-                if (field_name === 'password') {
-                    data['password_confirmation'] = this.accountData.password_confirmation;
-                }
-
-                if (field_name === 'password' && this.accountData.password_confirmation !== this.accountData.password) {
-                    this.errors['password'] = 'error';
-                    this.fields['password'] = null;
-                    return;
-                }
-
-                axios.post('/api/user/account/validate', data)
-                    .then((response) => {
-                        if (response.data === 'success') {
-                            this.fields[field_name] = 'success';
-                            this.errors[field_name] = null;
-                            if(saveUsername){
-                                this.autoSave();
-                            }
-                        }
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            this.errors[field_name] = 'error';
-                            this.fields[field_name] = null;
-                        } else {
-                            this.errors = ['Something went wrong. Please try again.'];
-                        }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
-                    })
-            },
 
             focusFiledStyles(field_name) {
                 let label = $("[for=" + field_name + "]");
@@ -333,42 +253,9 @@
             isEmail(email) {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(email).toLowerCase());
-            },
-
-            // autosave submit
-            autoSave(){
-                axios.post('/api/user/account/submit', this.accountData)
-                    .then((response) => {
-                        // changes saved pop-up
-                        this.$store.dispatch('flyingNotification');
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            this.errors = error.response.data.errors;
-                            this.updateErrors(error.response.data.errors);
-                        } else {
-                            this.errors = ['Something went wrong. Please try again.'];
-                        }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
-                    })
-            },
-            setUpAutoSave(){
-                let inputs = $('#myAccountTab :input');
-
-                inputs.each((index,input) => {
-                   if(input.id && input.id !== 'username'){
-                       $('#' + input.id).focusout(this.autoSave);
-                   }
-                });
-
-            },
+            }
         },
         mounted() {
-            this.setUpAutoSave();
-
             let searchParams = new URLSearchParams(window.location.search);
 
             if (searchParams.has('redirect_from')) {
@@ -452,12 +339,12 @@
             margin-top: 73px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
 
             .content-wrapper {
                 
                 width: 100%;
-                max-width: 616px;
+                max-width: 430px;
 
                 .form-title {
                     margin-bottom: 44px;
@@ -472,8 +359,11 @@
                 }
 
                 .form-title.sub {
-                    font: 500 30px Noto Sans;
-                    margin-bottom: 27px;
+                    font-weight: 600;
+                    font-size: 20px;
+                    line-height: 18px;
+                    color: #888DB1;
+                    margin-bottom: 0;
 
                     @include lt-md {
                         font-size: 15px;
@@ -481,6 +371,17 @@
                 }
 
                 .mar-form {
+
+                    .input-margin{
+                        margin-bottom: 20px;
+                    }
+
+                    .top-input-margin{
+                        margin-top: 6px;
+                    }
+
+
+
                     .input-field {
                         display: flex;
                         flex-direction: column-reverse;
@@ -548,6 +449,8 @@
                     .my-subscription {
                         display: flex;
                         justify-content: space-between;
+                        align-items: center;
+                        margin-bottom:20px ;
 
                         .toggle-label {
                             position: relative;
@@ -676,6 +579,7 @@
                     display: flex;
                     justify-content: space-between;
                     width: 100%;
+                    margin-bottom: 20px;
 
                     @include lt-md {
                         .btn {
@@ -685,26 +589,21 @@
                     }
 
                     .save-btn {
-                        width: 240px;
-                        height: 66px;
+                        width: 200px;
+                        height: 50px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
 
-                        background: #001CE2 0% 0% no-repeat padding-box;
-                        border-radius: 8px;
+                        background: #001CE2;
+                        border-radius: 5px;
 
-                        text-align: left;
-                        font: 500 21px Noto Sans;
-                        letter-spacing: 0;
+                        font-family: Noto Sans, sans-serif;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 25px;
                         color: #FFFFFF;
-                        opacity: 1;
-
-                        img {
-                            width: 27px;
-                            height: 21px;
-                            margin-right: 20px;
-                        }
                     }
 
                     .purchase-btn {
@@ -712,12 +611,17 @@
                         justify-content: center;
                         align-items: center;
                         opacity: 1;
-                        height: 71px;
-
-                        font: bold 16px Noto Sans;
+                        height: 50px;
+                        width:250px;
                         letter-spacing: 0;
-                        color: #001CE2;
                         padding: 0 !important;
+                        border: 2px solid #001CE2;
+                        box-sizing: border-box;
+                        border-radius: 5px;
+                        font-weight: 600;
+                        font-size: 18px;
+                        line-height: 25px;
+                        color: #001CE2;
 
                     }
                 }
@@ -1070,5 +974,12 @@
             }
         }
     }
+
+    /* new input styles */
+    .inner-text {
+        padding-top: 4px;
+        color: #aeaeae;
+    }
+
 
 </style>

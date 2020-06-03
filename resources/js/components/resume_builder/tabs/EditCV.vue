@@ -2,9 +2,9 @@
    <div>
        <div class="d-flex mt-5">
            <div @click="() => false" class="aside-bar d-flex flex-column mr-5">
-               <div @click="setActive" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
-                <svg-vue class="aside-icon" :icon="`${section.name}-icon`"></svg-vue>
-                <router-link :to="`/resume-builder/edit/${section.name}`">
+               <div @click="setActive($event,section.name)" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
+                   <img :src="activeTab === section.name ? '/images/new_resume_builder/icons/tabs_icons/' + section.name + '.png' : '/images/new_resume_builder/icons/tabs_icons/' + section.name + '-1.png'" class="icon" alt="">
+                   <router-link :to="`/resume-builder/edit/${section.name}`">
                     {{formatSectionString(section.name)}}
                 </router-link>
                </div>
@@ -28,7 +28,7 @@
                     icon: null
                 },
                 {
-                    name: 'summary',
+                    name: 'links',
                     icon: null
                 },
                 {
@@ -44,11 +44,11 @@
                     icon: null
                 },
                 {
-                    name: 'projects',
+                    name: 'portfolios',
                     icon: null
                 },
                 {
-                    name: 'achievement',
+                    name: 'achievements',
                     icon: null
                 },
                 {
@@ -60,24 +60,20 @@
                     icon: null
                 },
                 {
-                    name: 'pay-availability',
-                    icon: null
-                },
-                {
                     name: 'imports',
                     icon: null
                 },
                 {
                     name: 'references',
                     icon: null
+                },
+                {
+                    name: 'pay-availability',
+                    icon: null
                 }
-            ]
+            ],
+            activeTab:'profile'
         }),
-        computed: {
-            activeTab () {
-                return window.location.pathname.split('/')[3]
-            }
-        },
         methods: {
             formatSectionString: (str) => {
                 /**
@@ -97,14 +93,16 @@
 
                 return formatedString;
             },
-            setActive (e) {
-                let activeNow = document.querySelector('.aside-link.active')
-                activeNow && activeNow.classList.toggle('active')
-                e.target.parentNode.classList.toggle('active')
+            setActive (e,section_name) {
+                console.log('here');
+                this.activeTab = section_name ;
+                let activeNow = document.querySelector('.aside-link.active');
+                activeNow && activeNow.classList.toggle('active');
+                e.target.parentNode.classList.toggle('active');
                 this.scrollHandler(e.target.parentNode);
 
                 $([document.documentElement, document.body]).animate({
-                    scrollTop: 100
+                    scrollTop: 0
                 }, 600);
 
             },
@@ -147,7 +145,9 @@
             let _this = this;
             setTimeout(() => {
                 _this.scrollHandler(document.querySelector('.aside-link.active'))
-            }, 100)
+            }, 100);
+
+            this.activeTab = window.location.pathname.split('/')[3] ;
         }
     }
 </script>
@@ -159,7 +159,7 @@ $disabledColor: #9f9e9e;
 @import '../../../../sass/media-queries';
 
 .aside-bar {
-    min-width: 260px;
+    min-width: 290px;
     position: relative;
     max-height: calc(61px * 12);
     // Check it
@@ -192,6 +192,12 @@ $disabledColor: #9f9e9e;
 .aside-link {
     font-size: 22px;
     padding-right: 32px;
+
+    .icon{
+        width:45px;
+        height:45px;
+        margin-right:20px;
+    }
 
     .aside-icon {
             path {
