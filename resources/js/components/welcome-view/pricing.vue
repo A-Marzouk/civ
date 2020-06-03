@@ -199,14 +199,12 @@
             </v-col>
             <v-col cols="4">
               <a href="#" class="payment-link">
-                <transition name="fade">
                   <img
                     :src="paypalHover == false? paypalInactive : paypalActive"
                     @mouseover="paypalHover=true"
                     @mouseleave="paypalHover=false"
-                    alt="Stripe Logo"
+                    alt="Paypal Logo"
                   />
-                </transition>
               </a>
             </v-col>
           </v-row>
@@ -714,13 +712,7 @@ $line-height55: 55px;
 //price card3
 // animations
 //modal animation
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 1s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
+
 //modal animation
 </style>
 

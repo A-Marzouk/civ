@@ -81,11 +81,8 @@
             </div>
         </div>
 
-        <div class="content" :class="{ 'hideInfoWrapper': activeTab === 'viewCV' }"></div>
-
-
-        <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
-            <router-view style="min-height: 100vh;"></router-view>
+        <transition :duration="590" class="content" name="fade" mode="out-in">
+            <router-view style="min-height: 100vh;" class="router-view-margin"></router-view>
         </transition>
 
 
@@ -120,7 +117,6 @@
         </div>
 
         <div class="progressBar" id="progressBar"></div>
-
 
         <div class="modal importModal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="prices" aria-hidden="true" style="overflow: hidden!important;">
             <div class="modal-dialog" role="document">
@@ -249,6 +245,10 @@
         overflow: visible !important;
     }
 
+    .router-view-margin{
+        margin-top: 70px;
+    }
+
     .content {
         width: 100%;
 
@@ -301,7 +301,7 @@
 
     $mainBlue: #001CE2;
     .resume-container {
-        padding: 160px 100px 30px;
+        padding: 100px 100px 30px;
         width: 100%;
         /*overflow-x: hidden;*/
 
@@ -391,8 +391,8 @@
         left: 0;
         top: 0;
         box-shadow: 0 6px 12px #6565653b;
-        padding: 50px 100px;
-        height: 129px;
+        padding: 30px 100px;
+        height: 90px;
         background: #fff;
         z-index: 500;
 
@@ -581,6 +581,9 @@
             margin-top: -12px;
 
             .my-account-icon{
+                &:hover{
+                    cursor: pointer;
+                }
                 position: relative;
                 .custom-drop-down{
                     position: absolute;
