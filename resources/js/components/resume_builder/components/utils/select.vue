@@ -10,7 +10,6 @@
         <button
             v-if="selectProps.showToggleSelectIcon"
             class="dropdown-icon icon"
-            :class="{'icon--disabled': disabledSelect}"
             slot="append"
             @click="toggleSelect"
         >
@@ -30,7 +29,6 @@ export default {
         rules: [
             value => !!value || 'Please fill this field.',
         ],
-        disabledSelect: false,
         items: [
             {
                 text: 'Fullstack Developer',

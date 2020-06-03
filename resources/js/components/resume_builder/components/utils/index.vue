@@ -10,6 +10,9 @@
             :select-props="selectProps"
         ></ResumeBuilderSelect>
         <ResumeBuilderCheckbox></ResumeBuilderCheckbox>
+        <div style="margin-top: 60px">
+            <ResumeBuilderDatePicker></ResumeBuilderDatePicker>
+        </div>
     </v-app>
 </template>
 
@@ -18,13 +21,15 @@ import ResumeBuilderInput from './input'
 import ResumeBuilderTextarea from './textarea'
 import ResumeBuilderSelect from './select'
 import ResumeBuilderCheckbox from './checkbox'
+import ResumeBuilderDatePicker from './datepicker'
 
 export default {
     components: {
         ResumeBuilderInput,
         ResumeBuilderSelect,
         ResumeBuilderTextarea,
-        ResumeBuilderCheckbox
+        ResumeBuilderCheckbox,
+        ResumeBuilderDatePicker
     },
     data: () => ({
         inputProps: {

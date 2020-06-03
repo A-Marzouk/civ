@@ -229,3 +229,21 @@ $auxBgColor-gray: #F2F3FD;
         }
     }
 }
+
+// Datepicker
+.v-picker--date {
+
+    // Current date
+    .v-date-picker-table__current {
+        border-color: $mainColor;
+    }
+
+    .v-btn--active {
+        background-color: $mainColor;
+    }
+
+    .v-btn--flat.primary--text {
+        color: $mainColor !important;
+    }
+}
+
