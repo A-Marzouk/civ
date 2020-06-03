@@ -526,7 +526,7 @@ export default {
       margin-top: -15px;
     }
     @media screen and (max-width: 599px) {
-      height: 765px;
+      height: 812px;
       margin-top: -38px;
     }
   }
@@ -861,6 +861,9 @@ export default {
     min-width: 39px !important;
     border: 1px solid #ebebeb !important;
     border-radius: 10px !important;
+    @media screen and (max-width: 330px){
+      margin-left: 5px !important;
+    }
   }
 
   //upper right block

@@ -26,6 +26,10 @@ export default {
     .about {
         display: flex;
         max-width: 1400px !important;
+        width: 85%;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 0 auto;
         position: relative;
         
         .about-title {
@@ -34,7 +38,6 @@ export default {
             font-weight: 700;
             max-width: 270px;
             width: 100%;
-            margin-right: 192px;
         }
 
         .content {
@@ -58,6 +61,56 @@ export default {
             left: 40px;
             height: auto;
             width: 247px;
+        }
+
+        @media (max-width: 1200px) {
+            max-width: 1000px !important;
+
+            .about-title {
+                font-size: 22px;
+                max-width: 143px;
+            }
+
+            .content {
+                width: 70%;
+
+                p {
+                    font-size: 11px;
+                }
+            }
+
+            .about-deco {
+                width: 180px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            flex-wrap: wrap;
+            margin: 0 auto;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            .about-title {
+                width: 100%;
+                margin-bottom: 28px;
+                max-width: 100%;
+                font-size: 18px;
+            }
+
+            .content {
+                column-count: 1;
+                width: 100%;
+
+                p {
+                    font-size: 12px;
+                }
+            }
+
+            .about-deco {
+                width: 120px;
+                bottom: 30px;
+                left: 10px
+            }
         }
     }
 </style>
