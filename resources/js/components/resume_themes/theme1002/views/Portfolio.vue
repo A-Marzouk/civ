@@ -2,7 +2,7 @@
 	<div class="portfolio">
 		<template v-if="inSmallScreen">
 			<div class="project-wrapper" v-for="project in projects" :key="project.id">
-				<ItemView :thumbnail="project.thumbnail" :slug="project.slug" :title="project.title" :subTitle="project.subTitle" />
+				<ItemView :thumbnail="project.thumbnail" :title="project.title" :subTitle="project.subTitle" />
 			</div>
 		</template>
 
@@ -15,7 +15,7 @@ import ItemView from "./../components/portfolio/ItemView";
 import SimpleCarousel from "./../components/portfolio/SimpleCarousel";
 
 export default {
-	name: "portfolio",
+	name: "Portfolio",
 
 	components: { ItemView, SimpleCarousel },
 
@@ -26,49 +26,43 @@ export default {
 			projects: [
 				{
 					id: 1,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 2,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 3,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 4,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 5,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				},
 				{
 					id: 6,
-					slug: "#",
 					thumbnail:
-						"/images/resume_themes/theme1002/thumbnails/default.png",
+						"/images/resume_themes/theme1002/thumbnails/default.jpg",
 					title: "Project name",
 					subTitle: "category"
 				}
@@ -98,9 +92,21 @@ export default {
 
 .portfolio {
 	padding: 17px 25px;
+	max-width: $sm;
+	margin-left: auto;
+	margin-right: auto;
 
 	.project-wrapper {
-		padding: 13px;
+		display: flex;
+		justify-content: center;
+		padding-top: 13px;
+		padding-bottom: 13px;
+	}
+}
+
+@media (min-width: $sm) {
+	.portfolio {
+		max-width: $sm;
 	}
 }
 
@@ -108,12 +114,32 @@ export default {
 	.portfolio {
 		display: flex;
 		flex-wrap: wrap;
-		padding: 45px 28px;
+		padding: 45px 12px;
+		max-width: $md;
 
 		.project-wrapper {
-			padding: 15px;
 			width: 50%;
+			padding-top: 15px;
+			padding-bottom: 15px;
 		}
+	}
+}
+
+@media (min-width: $lg) {
+	.portfolio {
+		max-width: $lg;
+	}
+}
+
+@media (min-width: $xl) {
+	.portfolio {
+		max-width: $xl;
+	}
+}
+
+@media (min-width: $xxl) {
+	.portfolio {
+		max-width: $xxl;
 	}
 }
 </style>

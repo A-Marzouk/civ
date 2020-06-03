@@ -14,7 +14,7 @@
 
 <script>
 export default {
-	name: "large-tabs-navigation",
+	name: "LargeTabsNavigation",
 
 	props: {
 		currentTab: {

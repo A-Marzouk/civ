@@ -183,7 +183,7 @@
     }
 </script>
 
-<style>
+<style scoped>
     .agree-text{
         margin-top: 8px;
     }
