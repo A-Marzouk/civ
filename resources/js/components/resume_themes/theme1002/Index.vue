@@ -1,9 +1,9 @@
 <template>
 	<div id="wrapper_theme1002">
 		<!-- header -->
-		<component :currentUser="currentUser" :currentTab="currentTab" @tabChanged="currentTab=$event" v-bind:is="currentHeader"></component>
+		<!-- <component :currentUser="currentUser" :currentTab="currentTab" @tabChanged="currentTab=$event" v-bind:is="currentHeader"></component> -->
 
-		<SmallTabsNavigation v-if="inSmallScreen" :currentTab="currentTab" @tabChanged="currentTab=$event" />
+		<!-- <SmallTabsNavigation v-if="inSmallScreen" :currentTab="currentTab" @tabChanged="currentTab=$event" /> -->
 
 		<TabsContent :currentTab="currentTab" />
 	</div>
@@ -27,7 +27,7 @@ export default {
 
 	data: () => {
 		return {
-			currentTab: "portfolio",
+			currentTab: "skills",
 			currentHeader: "small-header",
 			inSmallScreen: true,
 			currentUser: {
