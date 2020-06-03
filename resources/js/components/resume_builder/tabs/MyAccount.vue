@@ -121,7 +121,7 @@
         role="dialog"
         aria-labelledby="prices"
         aria-hidden="true"
-        style="overflow: hidden!important;"
+        style="overflow: hidden!important"
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -177,11 +177,11 @@
       max-width="550"
       persistent
       style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
-        border-radius: 10px;"
+        border-radius: 10px; z-index:1000; overflow:visible;"
     >
       <v-card>
-        <v-card-subtitle class="mb-5"></v-card-subtitle>
-        <v-card-text>
+        <v-card-subtitle></v-card-subtitle>
+        <v-card-text class="mt-5">
           <v-tabs centered v-model="priceTab" hide-slider>
             <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
             <v-tab class="custom-tab2" active-class="custom-active">Yearly</v-tab>
@@ -223,25 +223,27 @@
               <v-card-text align="center">
                 <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
               </v-card-text>
-              <v-card-text align="center">
+              <v-card-text align="center" class="mt-n5">
                 <v-row align="center" justify="center">
-                  <v-col cols="4">
+                  <v-col xl="2" cols="3">
                     <a href="#" class="payment-link">
                       <img
                         :src="stripeHover==false?stripeInactive:stripeActive"
                         @mouseover="stripeHover=true"
                         @mouseleave="stripeHover=false"
                         alt="Stripe Logo"
+                        class="payment-logo-stripe"
                       />
                     </a>
                   </v-col>
-                  <v-col cols="4">
+                  <v-col xl="2" cols="3">
                     <a href="#" class="payment-link">
                       <img
                         :src="paypalHover == false? paypalInactive : paypalActive"
                         @mouseover="paypalHover=true"
                         @mouseleave="paypalHover=false"
                         alt="Paypal Logo"
+                        class="payment-logo-paypal"
                       />
                     </a>
                   </v-col>
@@ -1363,5 +1365,15 @@ $placeholder-color: #9ba1ad;
   font-size: 18px !important;
   font-weight: 500;
   line-height: 18px;
+}
+.payment-link {
+  .payment-logo-stripe {
+  }
+
+  .payment-logo-paypal {
+  }
+}
+.payment-link:hover {
+  cursor: pointer;
 }
 </style>
