@@ -203,11 +203,11 @@
                     </div>
                   </v-col>
                   <v-col cols="12">
-                    <div class="save-text">(Save 40%)</div>
+                    <div class="save-text mt-n5">(Save 40%)</div>
                   </v-col>
                 </v-row>
 
-                <hr class="hr-line mt-10" />
+                <hr class="hr-line" />
               </v-card-text>
 
               <v-card-text>
