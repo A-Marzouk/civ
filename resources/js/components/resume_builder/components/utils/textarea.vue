@@ -1,22 +1,22 @@
 <template>
     <v-textarea
-        class="resume-builder__input"
-        v-bind="textareaProps"
-        :outlined="textareaProps.outlined || true"
-        :color="textareaProps.color || '#001CE2'"
-        :rules="[textareaProps.rules]"
+        class="resume-builder__input civie-textarea"
+        outlined
+        color="#001CE2"
+        :rules="rules"
         :class="{'resume-builder__input--disabled': disabledTextarea}"
         :disabled="disabledTextarea"
+        label="Description"
     >
         <button
             v-if="textareaProps.showToggleTextareaIcon"
-            class="tick-icon trigger-icon"
+            class="eye-icon trigger-icon"
             :class="{'icon--disabled': disabledTextarea}"
             slot="append"
             @click="toggleTextarea"
         >
             <svg-vue
-                :icon="`tick-icon`"
+                :icon="`eye-icon`"
             ></svg-vue>
         </button>
     </v-textarea>
@@ -28,9 +28,9 @@ import 'vuetify/dist/vuetify.min.css'
 export default {
     name: "ResumeBuilderTextarea",
     data: () => ({
-        rules: {
-            required: value => !!value || 'Please fill this field.',
-        },
+        rules: [
+            value => !!value || 'Please fill this field.',
+        ],
         disabledTextarea: false
     }),
     props: ['textareaProps'],
