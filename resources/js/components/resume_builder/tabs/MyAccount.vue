@@ -193,18 +193,20 @@
               <v-card-text align="center">
                 <v-row align="center" justify="center">
                   <v-col cols="12">
-                    <div class="now-only-text">Now Only</div>
+                    <div class="now-only-text mt-n5">Now Only</div>
                   </v-col>
-                  <v-col cols="12">
+                  <v-col cols="12" class="mt-n5">
                     <div class="rate-text">
                       <span class="old-price mr-5">$25</span>
                       <span class="new-price">$15</span>
                       <sub>/month</sub>
                     </div>
                   </v-col>
+                  <v-col cols="12">
+                    <div class="save-text">(Save 40%)</div>
+                  </v-col>
                 </v-row>
 
-                <div class="save-text">(Save 40%)</div>
                 <hr class="hr-line mt-10" />
               </v-card-text>
 
@@ -264,7 +266,7 @@ export default {
 
   data() {
     return {
-      priceModal: true,
+      priceModal: false,
       priceTab: 0,
       stripeInactive: "/images/pricing/icons/stripe-logo-inactive.png",
       stripeActive: "/images/pricing/icons/stripe-logo-active.svg",
@@ -1358,7 +1360,7 @@ $placeholder-color: #9ba1ad;
   border-radius: 5px !important;
   text-transform: capitalize !important;
   font-family: "Noto Sans" !important;
-  font-size: 18px;
+  font-size: 18px !important;
   font-weight: 500;
   line-height: 18px;
 }
