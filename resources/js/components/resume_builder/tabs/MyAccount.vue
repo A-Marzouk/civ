@@ -1,6 +1,31 @@
 <template>
     <div v-if="currentUser">
         <div id="myAccountTab" class="my-account-tab-wrapper">
+
+            <div class="profile-pic-row" v-if="personalInfo">
+                <div class="profile-pic"  @click="clickUploadInput">
+                    <img :src="personalInfo.profile_pic" alt="">
+                </div>
+                <div class="info">
+                    <div class="name">
+                        {{accountData.name}}
+                    </div>
+                    <div class="job-title">
+                        {{personalInfo.designation}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-pic-row-holder" v-else></div>
+
+            <div class="error" v-if="profile_pic_error">
+                {{profile_pic_error}}
+            </div>
+            <input type="file" ref="profile_picture" id="profile_picture"
+                   style="width: 1px; height: 1px; opacity: 0; right:145%;"
+                   @change=handleProfilePictureUpload>
+
+
             <div class="form-wrapper">
                 <div class="content-wrapper">
                     <div class="mar-form">
@@ -143,6 +168,8 @@
                     required: value => !!value || 'Required.',
                     min: v => v.length >= 3 || 'Min 3 characters'
                 },
+                tempPic:'',
+                profile_pic_error:'',
             }
         },
         computed: {
@@ -160,9 +187,80 @@
                     password_confirmation: '',
                     subscription:user.subscription
                 }
-            }
+            },
+            personalInfo() {
+                return this.$store.state.user.personal_info;
+            },
         },
         methods: {
+            clickUploadInput(){
+                $('#profile_picture').click();
+            },
+            handleProfilePictureUpload() {
+                // validate uploaded file :
+                let isValid = this.validateUploadedFile(this.$refs.profile_picture.files[0]);
+                if(isValid){
+                    this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
+                    this.tempPic =  URL.createObjectURL(this.$refs.profile_picture.files[0]) ;
+                    this.profile_pic_error = '';
+                    this.applyEdit('auto');
+                }else{
+                    console.log('error in pic');
+                    this.profile_pic_error = 'Incorrect file chosen!';
+                }
+            },
+            validateUploadedFile(file){
+                let isValid = true ;
+                if(file.type.search('image') === -1){
+                    isValid = false;
+                }
+                if(file.size > 25000000){
+                    isValid = false;
+                }
+                return isValid;
+            },
+            applyEdit(savingType) {
+                let formData = new FormData();
+                formData.append("_method", "put");
+                formData.append("user_id", this.currentUser.id);
+
+                $.each(this.personalInfo, (field) => {
+                    if(this.personalInfo[field] !== null){
+                        if(field !== 'email' && this.personalInfo[field].length){
+                            formData.append(field, this.personalInfo[field]);
+                        }
+                        if(field === 'profile_pic'){
+                            formData.append(field,this.personalInfo[field]);
+                        }
+                    }
+                });
+
+                this.errors={};
+
+                axios.post('/api/user/personal-info',formData,{headers:{'Content-Type': 'multipart/form-data'}})
+                    .then((response) => {
+                        console.log(response.data);
+                        if(savingType === 'manual'){
+                            this.$store.dispatch('fullScreenNotification');
+                        }else{
+                            this.$store.dispatch('flyingNotification');
+                        }
+                        this.personalInfo.profile_pic = response.data.data.profile_pic;
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+
             copyCivLink() {
                 let $temp = $("<input>");
                 $("body").append($temp);
@@ -303,6 +401,45 @@
     }
 
     .my-account-tab-wrapper {
+
+        .profile-pic-row-holder{
+            height: 110px;
+            width: 25%;
+            background:whitesmoke;
+        }
+        .profile-pic-row{
+            display: flex;
+            align-items:center;
+            .profile-pic{
+                img{
+                    width:110px;
+                    height:110px;
+                    border-radius: 50%;
+                }
+            }
+
+            .info{
+                margin-left:21px;
+                .name{
+                    font-family: Noto Sans, sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 24px;
+                    line-height: 36px;
+                    color: #888DB1;
+                }
+
+                .job-title{
+                    font-family: Noto Sans, sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 25px;
+                    color: #888DB1;
+                }
+            }
+        }
+
         .info-wrapper {
             display: flex;
             align-items: center;
@@ -979,6 +1116,14 @@
     .inner-text {
         padding-top: 4px;
         color: #aeaeae;
+    }
+
+
+    .error {
+        color: red;
+        font-weight: 600;
+        margin-left: 10px;
+        margin-top: 25px;
     }
 
 
