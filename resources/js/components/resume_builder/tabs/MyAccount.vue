@@ -172,33 +172,50 @@
     </div>
 
     <!-- dialog -->
-    <v-dialog v-model="priceModal" max-width="550" persistent>
+    <v-dialog
+      v-model="priceModal"
+      max-width="550"
+      persistent
+      style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
+        border-radius: 10px;"
+    >
       <v-card>
+        <v-card-subtitle class="mb-5"></v-card-subtitle>
         <v-card-text>
-          <v-tabs centered v-model="priceTab" hide-slider class="mt-10">
+          <v-tabs centered v-model="priceTab" hide-slider>
             <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
             <v-tab class="custom-tab2" active-class="custom-active">Yearly</v-tab>
           </v-tabs>
         </v-card-text>
         <v-card-text>
-          <v-tabs-items v-model="priceTab" >
+          <v-tabs-items v-model="priceTab">
             <v-tab-item v-for="i in 2" :key="i">
               <v-card-text align="center">
-                <span class="now-only-text">Now Only</span>
+                <v-row align="center" justify="center">
+                  <v-col cols="12">
+                    <div class="now-only-text">Now Only</div>
+                  </v-col>
+                  <v-col cols="12">
+                    <div class="rate-text">
+                      <span class="old-price mr-5">$25</span>
+                      <span class="new-price">$15</span>
+                      <sub>/month</sub>
+                    </div>
+                  </v-col>
+                </v-row>
+
+                <div class="save-text">(Save 40%)</div>
+                <hr class="hr-line mt-10" />
               </v-card-text>
-              <v-card-text align="center">
-                <span>$25</span>
-                $15
-                <sub>/month</sub>
-              </v-card-text>
-              <v-card-text align="center">(Save 40%)</v-card-text>
-              <hr class="hr-line" />
+
               <v-card-text>
                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
                   <v-col cols="1">
                     <img src="/images/new_resume_builder/icons/main/check.svg" />
                   </v-col>
-                  <v-col cols="6">{{item}}</v-col>
+                  <v-col cols="6">
+                    <span class="price-option">{{item}}</span>
+                  </v-col>
                 </v-row>
               </v-card-text>
               <v-card-text align="center">
@@ -1236,35 +1253,93 @@ $placeholder-color: #9ba1ad;
   margin-top: 25px;
 }
 
-.custom-tab1{
-    border-top: 2px solid #001CE2 !important;
-    border-bottom: 2px solid #001CE2 !important;
-    border-left: 2px solid #001CE2 !important;
-    font-family: "Noto Sans" !important;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 18px;
-    color: #001CE2 !important;
-    text-transform: capitalize !important;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+.custom-tab1 {
+  border-top: 2px solid #001ce2 !important;
+  border-bottom: 2px solid #001ce2 !important;
+  border-left: 2px solid #001ce2 !important;
+  font-family: "Noto Sans" !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #001ce2 !important;
+  text-transform: capitalize !important;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 
-.custom-tab2{
-    border-top: 2px solid #001CE2 !important;
-    border-bottom: 2px solid #001CE2 !important;
-    border-right: 2px solid #001CE2 !important;
-    font-family: "Noto Sans" !important;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 18px;
-    color: #001CE2 !important;
-    text-transform: capitalize !important;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+.custom-tab2 {
+  border-top: 2px solid #001ce2 !important;
+  border-bottom: 2px solid #001ce2 !important;
+  border-right: 2px solid #001ce2 !important;
+  font-family: "Noto Sans" !important;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  color: #001ce2 !important;
+  text-transform: capitalize !important;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
-.custom-active{
-    background: #001CE2 !important;
-    color: #ffffff !important;
+.custom-active {
+  background: #001ce2 !important;
+  color: #ffffff !important;
+}
+.now-only-text {
+  font-family: "Noto Sans" !important;
+  font-size: 20px !important;
+  line-height: 30px;
+  color: #888db1 !important;
+}
+.rate-text {
+  font-family: "Noto Sans" !important;
+  margin-top: 15px;
+  .old-price {
+    font-weight: bold;
+    font-size: 50px;
+    line-height: 60px;
+    color: #001ce2;
+    opacity: 0.3;
+    text-decoration: line-through;
+  }
+  .new-price {
+    font-weight: bold;
+    font-size: 70px;
+    line-height: 50px;
+    color: #001ce2 !important;
+  }
+  sub {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 50px;
+    color: #001ce2;
+    margin-left: -10px;
+  }
+}
+.hr-line {
+  width: 80%;
+  border: 2px solid #e6e8fc;
+}
+.save-text {
+  font-family: "Noto Sans" !important;
+  font-size: 20px !important;
+  line-height: 30px;
+  color: #888db1 !important;
+  margin-left: -8px;
+}
+.price-option {
+  font-family: "Noto Sans" !important;
+  font-size: 20px;
+  line-height: 32px;
+  color: #888db1 !important;
+}
+.btn-modal-subscribe {
+  width: 220px !important;
+  height: 60px !important;
+  border-radius: 5px !important;
+  text-transform: capitalize !important;
+  font-family: "Noto Sans" !important;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
 }
 </style>
