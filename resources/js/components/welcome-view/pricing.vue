@@ -199,14 +199,12 @@
             </v-col>
             <v-col cols="4">
               <a href="#" class="payment-link">
-                <transition name="fade">
                   <img
                     :src="paypalHover == false? paypalInactive : paypalActive"
                     @mouseover="paypalHover=true"
                     @mouseleave="paypalHover=false"
                     alt="Stripe Logo"
                   />
-                </transition>
               </a>
             </v-col>
           </v-row>
