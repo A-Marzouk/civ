@@ -175,13 +175,13 @@
     <v-dialog v-model="priceModal" max-width="550" persistent>
       <v-card>
         <v-card-text>
-          <v-tabs centered v-model="priceTab">
-            <v-tab>Monthly</v-tab>
-            <v-tab>Yearly</v-tab>
+          <v-tabs centered v-model="priceTab" hide-slider class="mt-10">
+            <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
+            <v-tab class="custom-tab2" active-class="custom-active">Yearly</v-tab>
           </v-tabs>
         </v-card-text>
         <v-card-text>
-          <v-tabs-items v-model="priceTab">
+          <v-tabs-items v-model="priceTab" >
             <v-tab-item v-for="i in 2" :key="i">
               <v-card-text align="center">
                 <span class="now-only-text">Now Only</span>
@@ -233,7 +233,7 @@ export default {
 
   data() {
     return {
-      priceModal: false,
+      priceModal: true,
       priceTab: 0,
       selectedPlan: "monthly",
       selectedBtn: "monthly",
@@ -1234,5 +1234,37 @@ $placeholder-color: #9ba1ad;
   font-weight: 600;
   margin-left: 10px;
   margin-top: 25px;
+}
+
+.custom-tab1{
+    border-top: 2px solid #001CE2 !important;
+    border-bottom: 2px solid #001CE2 !important;
+    border-left: 2px solid #001CE2 !important;
+    font-family: "Noto Sans" !important;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #001CE2 !important;
+    text-transform: capitalize !important;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.custom-tab2{
+    border-top: 2px solid #001CE2 !important;
+    border-bottom: 2px solid #001CE2 !important;
+    border-right: 2px solid #001CE2 !important;
+    font-family: "Noto Sans" !important;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    color: #001CE2 !important;
+    text-transform: capitalize !important;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.custom-active{
+    background: #001CE2 !important;
+    color: #ffffff !important;
 }
 </style>
