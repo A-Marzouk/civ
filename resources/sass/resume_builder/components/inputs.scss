@@ -10,7 +10,7 @@ $auxBgColor-gray: #F2F3FD;
 
     // Default styles ------------------------------------------------------------
     pointer-events: auto !important;
-    max-width: 430px;
+    max-width: 100%; // Set the real max-width on the parent container
 
     &.civie-input, // Simple input
     &.civie-select // Select

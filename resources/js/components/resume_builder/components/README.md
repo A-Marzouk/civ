@@ -10,6 +10,14 @@
 * Edit, Delete, Enable (help buttons on items)
 * Buttons (Toggle buttons, outline and filled)
 * Move handler icon
+
+## <span style="color: red">IMPORTANT!</span>
+Limit the inputs width on the parent container. 
+
+The responsive only modify the font size, the icons size, and the relative distance between input elements (ex: label). So you must handle the responsive behavior using the parent container.
+
+
+
 ---
 
 ## Inputs
