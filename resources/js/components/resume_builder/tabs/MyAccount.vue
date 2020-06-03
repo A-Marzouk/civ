@@ -212,7 +212,7 @@
 
               <v-card-text>
                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                  <v-col cols="1">
+                  <v-col cols="1" offset="1">
                     <img src="/images/new_resume_builder/icons/main/check.svg" />
                   </v-col>
                   <v-col cols="6">
