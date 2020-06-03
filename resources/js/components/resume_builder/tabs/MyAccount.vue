@@ -177,10 +177,12 @@
       max-width="550"
       persistent
       style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
-        border-radius: 10px; z-index:1000; overflow:visible;"
+        border-radius: 10px; z-index:1000; overflow:hidden;"
+
     >
       <v-card>
-        <v-card-subtitle></v-card-subtitle>
+        <v-card-subtitle>
+        </v-card-subtitle>
         <v-card-text class="mt-5">
           <v-tabs centered v-model="priceTab" hide-slider>
             <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
@@ -225,7 +227,7 @@
               </v-card-text>
               <v-card-text align="center" class="mt-n5">
                 <v-row align="center" justify="center">
-                  <v-col xl="2" cols="3">
+                  <v-col xl="3" cols="3">
                     <a href="#" class="payment-link">
                       <img
                         :src="stripeHover==false?stripeInactive:stripeActive"
@@ -236,7 +238,7 @@
                       />
                     </a>
                   </v-col>
-                  <v-col xl="2" cols="3">
+                  <v-col xl="3" cols="3">
                     <a href="#" class="payment-link">
                       <img
                         :src="paypalHover == false? paypalInactive : paypalActive"
@@ -1375,5 +1377,9 @@ $placeholder-color: #9ba1ad;
 }
 .payment-link:hover {
   cursor: pointer;
+}
+.modal-close{
+    position: absolute;
+    top: -20px;
 }
 </style>
