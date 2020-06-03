@@ -223,11 +223,25 @@
               </v-card-text>
               <v-card-text align="center">
                 <v-row align="center" justify="center">
-                  <v-col cols="6">
-                    <img src="/images/pricing/icons/stripe-logo-inactive.png" alt="stripe" />
+                  <v-col cols="4">
+                    <a href="#" class="payment-link">
+                      <img
+                        :src="stripeHover==false?stripeInactive:stripeActive"
+                        @mouseover="stripeHover=true"
+                        @mouseleave="stripeHover=false"
+                        alt="Stripe Logo"
+                      />
+                    </a>
                   </v-col>
-                  <v-col cols="6">
-                    <img src="/images/pricing/icons/stripe-logo-inactive.png" alt="stripe" />
+                  <v-col cols="4">
+                    <a href="#" class="payment-link">
+                      <img
+                        :src="paypalHover == false? paypalInactive : paypalActive"
+                        @mouseover="paypalHover=true"
+                        @mouseleave="paypalHover=false"
+                        alt="Paypal Logo"
+                      />
+                    </a>
                   </v-col>
                 </v-row>
               </v-card-text>
@@ -252,6 +266,12 @@ export default {
     return {
       priceModal: true,
       priceTab: 0,
+      stripeInactive: "/images/pricing/icons/stripe-logo-inactive.png",
+      stripeActive: "/images/pricing/icons/stripe-logo-active.svg",
+      paypalInactive: "/images/pricing/icons/paypal-logo-inactive.svg",
+      paypalActive: "/images/pricing/icons/paypal-logo-active.png",
+      paypalHover: false,
+      stripeHover: false,
       selectedPlan: "monthly",
       selectedBtn: "monthly",
       subscription: "on",
