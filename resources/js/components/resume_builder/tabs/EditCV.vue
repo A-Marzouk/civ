@@ -1,6 +1,6 @@
 <template>
    <div>
-       <div class="d-flex mt-5">
+       <div class="d-flex">
            <div @click="() => false" class="aside-bar d-flex flex-column mr-5">
                <div @click="setActive($event,section.name)" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
                    <img :src="activeTab === section.name ? '/images/new_resume_builder/icons/tabs_icons/' + section.name + '.png' : '/images/new_resume_builder/icons/tabs_icons/' + section.name + '-1.png'" class="icon" alt="">
@@ -10,7 +10,7 @@
                </div>
                <div id="scrollItem"></div>
            </div>
-           <transition class="mt-5"  name="fade" mode="out-in">
+           <transition  name="fade" mode="out-in">
                <router-view></router-view>
            </transition>
        </div>
