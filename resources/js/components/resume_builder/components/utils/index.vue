@@ -13,6 +13,7 @@
         <div style="margin-top: 60px">
             <ResumeBuilderDatePicker></ResumeBuilderDatePicker>
         </div>
+        <ResumeBuilderTab></ResumeBuilderTab>
     </v-app>
 </template>
 
@@ -22,6 +23,7 @@ import ResumeBuilderTextarea from './textarea'
 import ResumeBuilderSelect from './select'
 import ResumeBuilderCheckbox from './checkbox'
 import ResumeBuilderDatePicker from './datepicker'
+import ResumeBuilderTab from './tab'
 
 export default {
     components: {
@@ -29,7 +31,8 @@ export default {
         ResumeBuilderSelect,
         ResumeBuilderTextarea,
         ResumeBuilderCheckbox,
-        ResumeBuilderDatePicker
+        ResumeBuilderDatePicker,
+        ResumeBuilderTab
     },
     data: () => ({
         inputProps: {
