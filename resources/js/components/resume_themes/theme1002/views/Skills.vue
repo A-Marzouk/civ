@@ -1,8 +1,10 @@
 <template>
-	<div>
+	<div class="skills">
 		<MenuSwitcher :currentTab="currentTab" @skillChanged="currentTab=$event" />
 
-		<component v-bind:is="currentTab"></component>
+		<div class="skills-tab">
+			<component v-bind:is="currentTab"></component>
+		</div>
 	</div>
 </template>
 
@@ -26,7 +28,8 @@ export default {
 
 	data() {
 		return {
-			currentTab: "programing-languages"
+			// currentTab: "programing-languages"
+			currentTab: "software"
 		};
 	}
 };
@@ -34,4 +37,13 @@ export default {
 
 <style lang="scss" scoped>
 @import "./../scss/variables";
+
+.skills {
+	padding-top: 45px;
+	padding-bottom: 45px;
+
+	.skills-tab {
+		padding-top: 38px;
+	}
+}
 </style>
