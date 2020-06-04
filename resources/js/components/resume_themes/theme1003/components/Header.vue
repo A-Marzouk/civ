@@ -6,9 +6,9 @@
 					<img :src="currentUser.avatar" />
 				</a>
 			</div>
-			<div class="current-user__detail">
-				<div class="tw-w-full tw-flex tw-justify-between tw-items-center">
-					<div>
+			<div class="current-user__detail-wrapper">
+				<div class="current-user__detail">
+					<div class="tw-flex-1">
 						<h3 class="current-user__detail--fullname" v-text="currentUser.fullname"></h3>
 						<h4 class="current-user__detail--job-title" v-text="currentUser.jobTitle"></h4>
 						<div class="current-user__detail--motivation" v-html="getShortString(currentUser.motivationLetter)"></div>
@@ -118,45 +118,42 @@ export default {
 			height: 89px;
 
 			img {
+				height: 100%;
 				width: 100%;
 				object-fit: cover;
 			}
 		}
 
-		.current-user__detail {
+		.current-user__detail-wrapper {
 			flex: 1;
 			display: flex;
 			align-items: center;
 			padding-left: 10px;
 			padding-right: 10px;
 
-			@include xs {
-				padding-left: 15px;
-				padding-right: 15px;
-			}
+			.current-user__detail {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
 
-			.current-user__detail--fullname {
-				font-weight: 800;
-				font-size: 16px;
-				line-height: 24px;
-				color: #312050;
-			}
+				.current-user__detail--fullname {
+					font-weight: 800;
+					font-size: 16px;
+					line-height: 24px;
+					color: #312050;
+				}
 
-			.current-user__detail--job-title {
-				font-weight: bold;
-				font-size: 10px;
-				line-height: 15px;
-				color: #000000;
-			}
+				.current-user__detail--job-title {
+					font-weight: bold;
+					font-size: 10px;
+					line-height: 15px;
+					color: #000000;
+				}
 
-			.current-user__detail--motivation,
-			.current-user__detail--work-rate {
-				display: none;
-			}
-
-			@include sm {
-				padding-left: 20px;
-				padding-right: 20px;
+				.current-user__detail--motivation,
+				.current-user__detail--work-rate {
+					display: none;
+				}
 			}
 		}
 	}
@@ -205,8 +202,8 @@ export default {
 				width: 40px;
 				height: 40px;
 				background: #df136c;
-				font-size: 16px;
-				line-height: 30px;
+				font-size: 12px;
+				line-height: 18px;
 				font-weight: 700;
 				margin-left: 15px;
 				transition: all 0.15s;
@@ -221,16 +218,17 @@ export default {
 				}
 
 				svg {
-					width: calc(0.8 * 20px);
-					height: calc(0.8 * 16px);
+					width: 20px;
+					height: 16px;
 				}
 
 				span {
+					white-space: nowrap;
 					color: inherit;
 					font-weight: inherit;
 					font-size: inherit;
 					line-height: inherit;
-					padding-left: 7px;
+					margin-left: 7px;
 				}
 			}
 		}
@@ -241,6 +239,88 @@ export default {
 			.current-user__avatar > a {
 				width: 107px;
 				height: 100px;
+			}
+
+			.current-user__detail-wrapper {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+		}
+	}
+
+	@include sm {
+		.header__current-user--detail {
+			.current-user__detail-wrapper {
+				padding-left: 20px;
+				padding-right: 20px;
+			}
+		}
+	}
+
+	@include md {
+		.header__current-user--detail {
+			.current-user__avatar > a {
+				width: 215px;
+				height: 215px;
+			}
+
+			.current-user__detail-wrapper {
+				padding-left: 30px;
+				padding-right: 30px;
+
+				.current-user__detail {
+					.current-user__detail--fullname {
+						font-size: 24px;
+						line-height: 36px;
+					}
+
+					.current-user__detail--job-title {
+						font-size: 12px;
+						line-height: 18px;
+						padding-top: 14px;
+					}
+
+					.current-user__detail--motivation {
+						display: block;
+						font-size: 12px;
+						line-height: 18px;
+						padding-top: 10px;
+						max-width: 276px;
+					}
+
+					.current-user__detail--work-rate {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						font-size: 14px;
+						line-height: 21px;
+						max-width: 360px;
+						text-transform: uppercase;
+						padding-top: 20px;
+
+						strong {
+							font-size: 20px;
+							line-height: 30px;
+							margin-left: 15px;
+						}
+					}
+				}
+			}
+		}
+
+		.current-user__detail--contact {
+			display: flex;
+
+			.contact__link {
+				&.contact__link--hireme {
+					width: auto;
+					padding-left: 20px;
+					padding-right: 20px;
+
+					span {
+						display: inline;
+					}
+				}
 			}
 		}
 	}

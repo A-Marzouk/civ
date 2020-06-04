@@ -84,6 +84,13 @@ export default {
 		}
 	}
 
+	@include md {
+		&.active {
+			padding-left: 28px;
+			padding-right: 28px;
+		}
+	}
+
 	@include lg {
 		transition: background-color 0.3s;
 
