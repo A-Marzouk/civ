@@ -211,10 +211,10 @@
 
               <v-card-text>
                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                  <v-col cols="1" offset="1">
-                    <img src="/images/new_resume_builder/icons/main/check.svg" />
+                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1">
+                    <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img" />
                   </v-col>
-                  <v-col cols="6">
+                  <v-col xl="6" lg="6" md="6" sm="6" cols="6">
                     <span class="price-option">{{item}}</span>
                   </v-col>
                 </v-row>
@@ -224,7 +224,7 @@
               </v-card-text>
               <v-card-text align="center" class="mt-n5">
                 <v-row align="center" justify="center">
-                  <v-col xl="3" cols="3">
+                  <v-col xl="3" lg="3" md="3" sm="3" cols="3">
                     <a href="#" class="payment-link">
                       <img
                         :src="stripeHover==false?stripeInactive:stripeActive"
@@ -235,7 +235,7 @@
                       />
                     </a>
                   </v-col>
-                  <v-col xl="3" cols="3">
+                  <v-col xl="3" lg="3" md="3" sm="3" cols="3">
                     <a href="#" class="payment-link">
                       <img
                         :src="paypalHover == false? paypalInactive : paypalActive"
@@ -1315,6 +1315,9 @@ $placeholder-color: #9ba1ad;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 18px !important;
   }
+  @media screen and (max-width: 599px) {
+    font-size: 14px !important;
+  }
 }
 .rate-text {
   font-family: "Noto Sans" !important;
@@ -1328,6 +1331,9 @@ $placeholder-color: #9ba1ad;
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       font-size: 36px !important;
     }
+    @media screen and(max-width: 599px) {
+      font-size: 24px !important;
+    }
   }
   .new-price {
     font-weight: bold;
@@ -1336,6 +1342,9 @@ $placeholder-color: #9ba1ad;
     color: #001ce2 !important;
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       font-size: 50px !important;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 36px !important;
     }
   }
   sub {
@@ -1346,6 +1355,9 @@ $placeholder-color: #9ba1ad;
     margin-left: -5px;
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       font-size: 18px !important;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 14px !important;
     }
   }
 }
@@ -1359,16 +1371,23 @@ $placeholder-color: #9ba1ad;
   line-height: 30px;
   color: #888db1 !important;
   margin-left: -8px;
+  @media screen and (max-width: 599px){
+    font-size: 14px !important;
+  }
 }
 .price-option {
   font-family: "Noto Sans" !important;
   font-size: 20px !important;
   line-height: 32px;
   color: #888db1 !important;
-  @media screen and (min-width: 1264px) and (max-width: 1903px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     margin-top: -10px;
     font-size: 18px !important;
     line-height: 0px;
+  }
+  @media screen and (max-width: 599px){
+    font-size: 14px !important;
+    line-height: 0;
   }
 }
 .btn-modal-subscribe {
@@ -1380,6 +1399,11 @@ $placeholder-color: #9ba1ad;
   font-size: 18px !important;
   font-weight: 500;
   line-height: 18px;
+}
+.check-img{
+  @media screen and (max-width: 599px){
+    width: 16px;
+  }
 }
 .payment-link {
   .payment-logo-stripe {
@@ -1395,5 +1419,4 @@ $placeholder-color: #9ba1ad;
   position: absolute;
   top: -20px;
 }
-
 </style>
