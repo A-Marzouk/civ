@@ -4,7 +4,7 @@
 
 		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" @openPaymentModal="openPaymentModal" />
 
-		<TabsContent :currentTab="currentTab" />
+		<!-- <TabsContent :currentTab="currentTab" /> -->
 
 		<Modal :isOpen="isPaymentModalOpen" @onClose="isPaymentModalOpen=false">
 			<PaymentForm @openPaymentSuccessModal="openPaymentSuccessModal" />
@@ -41,11 +41,10 @@ export default {
 			currentTab: "portfolio",
 			currentUser: {
 				avatar: "/images/resume_themes/theme1003/avatar.png",
-				fullname: "Hean Prinsloo",
-				jobTitle: "Graphic Designer",
-				jobTitleDescription: "UXUI  Designer and Frontend",
+				fullname: "Lorem campbell",
+				jobTitle: "BackEnd Developer",
 				motivationLetter:
-					"Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor a augue gravida, vulputate ligula et, pellentesque arcu.",
+					"Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices.🚲",
 				hourRate: 20,
 				weeklyAvailability: 250
 			},

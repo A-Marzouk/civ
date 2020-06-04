@@ -1,10 +1,12 @@
 <template>
-	<div class="tab-button tw-cursor-pointer" :class="{'active': isActive}" @click="$emit('click')">
-		<div class="tab-button__icon">
-			<slot></slot>
-		</div>
-		<div class="tab-button__label">
-			{{ label }}
+	<div class="tw-flex-1 tw-text-center">
+		<div class="tab-button tw-cursor-pointer" :class="{'active': isActive}" @click="$emit('click')">
+			<div class="tab-button__icon">
+				<slot></slot>
+			</div>
+			<div class="tab-button__label">
+				{{ label }}
+			</div>
 		</div>
 	</div>
 </template>
@@ -28,17 +30,13 @@ export default {
 @import "./../scss/variables";
 
 .tab-button {
-	flex: 1;
-	color: #ffffff;
-	height: 45px;
-	display: flex;
-	min-width: 40px;
-	padding-top: 5px;
+	color: #b3b3b3;
+	display: inline-flex;
 	align-items: center;
 	font-family: $poppins;
-	border-radius: 5px 5px 0px 0px;
 	justify-content: center;
 	transition: all 0.3s;
+	padding: 12.5px 25px 12.5px;
 
 	&.sm--hidden {
 		display: none;
@@ -49,29 +47,26 @@ export default {
 
 		svg {
 			fill: currentColor;
-			width: 100%;
-			max-width: 22px;
+			width: 22px;
 		}
 	}
 
 	.tab-button__label {
 		display: none;
 		font-size: 12px;
-		user-select: none;
 		font-weight: 500;
+		user-select: none;
 		padding-left: 10px;
 		font-family: inherit;
 	}
 
 	&:hover {
-		color: #42a5f5;
+		color: #df136c;
 	}
 
 	&.active {
-		flex: none;
-		flex-grow: 1;
-		color: #0470dc;
-		background: #fafafa;
+		color: #ffffff;
+		background: #df136c;
 
 		.tab-button__label {
 			display: block;
@@ -87,16 +82,8 @@ export default {
 	}
 }
 
-@media (min-width: $md) {
-	.tab-button {
-		height: 60px;
-	}
-}
-
 @media (min-width: $lg) {
 	.tab-button {
-		max-width: 280px;
-
 		.tab-button__label {
 			display: block;
 			font-size: 16px;
@@ -105,8 +92,11 @@ export default {
 }
 
 @media (min-width: $xl) {
-	.tab-button__label {
-		font-size: 20px;
+	.tab-button {
+		.tab-button__label {
+			font-size: 20px;
+			line-height: 30px;
+		}
 	}
 }
 </style>

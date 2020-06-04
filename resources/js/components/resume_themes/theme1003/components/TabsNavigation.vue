@@ -80,4 +80,11 @@ export default {
 		max-width: 1600px;
 	}
 }
+
+@media (min-width: $xxl) {
+	.tabs-navigation {
+		max-width: $xxl;
+		padding: 40px 130px;
+	}
+}
 </style>
