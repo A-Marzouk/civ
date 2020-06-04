@@ -1,22 +1,22 @@
 <template>
     <v-text-field
-        class="resume-builder__input"
-        v-bind="inputProps"
-        :outlined="inputProps.outlined || true"
-        :color="inputProps.color || '#001CE2'"
-        :rules="[inputProps.rules]"
+        class="resume-builder__input civie-input"
+        outlined
+        color="#001CE2"
+        :rules="rules"
         :class="{'resume-builder__input--disabled': disabledInput}"
         :disabled="disabledInput"
+        label="Name"
     >
         <button
             v-if="inputProps.showToggleInputIcon"
-            class="tick-icon trigger-icon"
+            class="eye-icon trigger-icon icon"
             :class="{'icon--disabled': disabledInput}"
             slot="append"
             @click="toggleInput"
         >
             <svg-vue
-                :icon="`tick-icon`"
+                :icon="`eye-icon`"
             ></svg-vue>
         </button>
     </v-text-field>
@@ -28,9 +28,9 @@ import 'vuetify/dist/vuetify.min.css'
 export default {
     name: "ResumeBuilderInput",
     data: () => ({
-        rules: {
-            required: value => !!value || 'Please fill this field.',
-        },
+        rules: [
+            value => !!value || 'Please fill this field.',
+        ],
         disabledInput: false
     }),
     props: ['inputProps'],
@@ -41,7 +41,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss">
-
-</style>
