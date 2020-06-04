@@ -5,10 +5,10 @@
 * [Selects](#Selects)
 * [Checkboxes](#Checkboxes)
 * [Datepicker](#Datepicker)
-* ScrollBars
-* Tabs
+* [Tabs](#Tabs)
+* [ScrollBars](#Scrollbars)
+* [Buttons (Toggle buttons, outlined and filled)](#Buttons)
 * Edit, Delete, Enable (help buttons on items)
-* Buttons (Toggle buttons, outline and filled)
 * Move handler icon
 
 ## <span style="color: red">IMPORTANT!</span>
@@ -240,6 +240,7 @@ export default {
 }
 </script>
 ```
+![checkbox image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/checkbox.png "Checkbox Demo Image")
 ---
 
 ## Datepicker
@@ -326,3 +327,92 @@ export default {
 }
 </script>
 ```
+
+![datepicker image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/datepicker.png "Datepicker Demo Image")
+---
+
+## Tabs
+
+**class:** resume-builder__tab-bar
+
+**children class:** resume-builder__tab
+
+**component:** [vuetify tabs](https://vuetifyjs.com/en/components/tabs/)
+
+Use the same props of an vuetify tabs.
+
+### Example:
+
+```html
+<template>
+    <v-tabs
+        class="resume-builder__tab-bar"
+        hide-slider
+    >
+        <v-tab
+            class="resume-builder__tab"
+        >Item One</v-tab>
+        <v-tab
+            class="resume-builder__tab"
+        >Item Two</v-tab>
+        <v-tab
+            class="resume-builder__tab"
+        >Item Three</v-tab>
+    </v-tabs>
+</template>
+```
+![tabs image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/tabs.png "Tabs Demo Image")
+---
+
+## Scrollbars
+
+**class:** resume-builder__scroll
+
+**component:** None
+
+Use this class on scrollable containers to add scrollbars styled
+
+```html
+<div 
+    class="resume-builder__scroll"
+    style="height: 200px; margin-top: 60px; padding: 10px;">
+    <div style="border: 2px solid blue; height: 400px; width: 100%;">
+        Scroll div
+    </div>
+</div>
+```
+
+![scrollbar image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/scrollbar.png "Scrollbar Demo Image")
+---
+
+## Buttons
+
+**class:** resume-builder__btn civie-btn
+
+**component:** [vuetify btn](https://vuetifyjs.com/en/components/buttons/)
+
+Use the `filled` class to reset default styles of v-btn.
+For outlined btns, you can use simply the `outlined` prop of v-btn component
+
+```html
+<template>
+    <div>
+        <v-btn
+            class="resume-builder__btn civie-btn filled"
+            raised
+        >Hello, I'm a button</v-btn>
+
+        <v-btn
+            class="resume-builder__btn civie-btn"
+            outlined
+        >Hello, I'm a button outlined</v-btn>
+    </div>
+</template>
+
+<script>
+export default {
+    data: vm => ({})
+}
+</script>
+```
+![button image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/button.png "Button Demo Image")
