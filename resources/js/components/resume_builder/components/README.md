@@ -5,8 +5,8 @@
 * [Selects](#Selects)
 * [Checkboxes](#Checkboxes)
 * [Datepicker](#Datepicker)
+* [Tabs](#Tabs)
 * ScrollBars
-* Tabs
 * Edit, Delete, Enable (help buttons on items)
 * Buttons (Toggle buttons, outline and filled)
 * Move handler icon

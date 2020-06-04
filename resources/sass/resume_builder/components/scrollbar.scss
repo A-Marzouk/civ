@@ -1,0 +1,27 @@
+.resume-builder-scroll{
+    overflow: auto;
+
+    scrollbar-color: $mainColor $bgScrollBarColor;
+    scrollbar-width: 10px;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: $bgScrollBarColor;
+        border-radius: 10px 0 0 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $mainColor;
+        // border-radius: 10px 0 0 10px;
+    }
+    
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: rgb(21, 45, 228);
+    }
+}
