@@ -6,9 +6,9 @@
 * [Checkboxes](#Checkboxes)
 * [Datepicker](#Datepicker)
 * [Tabs](#Tabs)
-* ScrollBars
-* Edit, Delete, Enable (help buttons on items)
+* [ScrollBars](#Scrollbars)
 * Buttons (Toggle buttons, outline and filled)
+* Edit, Delete, Enable (help buttons on items)
 * Move handler icon
 
 ## <span style="color: red">IMPORTANT!</span>
@@ -325,4 +325,55 @@ export default {
     }
 }
 </script>
+```
+
+## Tabs
+
+**class:** resume-builder__tab-bar
+
+**children class:** resume-builder__tab
+
+**component:** [vuetify tabs](https://vuetifyjs.com/en/components/tabs/)
+
+Use the same props of an vuetify tabs.
+
+### Example:
+
+```html
+<template>
+    <v-tabs
+        class="resume-builder__tab-bar"
+        hide-slider
+    >
+        <v-tab
+            class="resume-builder__tab"
+        >Item One</v-tab>
+        <v-tab
+            class="resume-builder__tab"
+        >Item Two</v-tab>
+        <v-tab
+            class="resume-builder__tab"
+        >Item Three</v-tab>
+    </v-tabs>
+</template>
+```
+
+---
+
+## Scrollbars
+
+**component:** None
+
+**class:** resume-builder-scroll
+
+Use this class on scrollable containers to add scrollbars styled
+
+```html
+<div 
+    class="resume-builder-scroll"
+    style="height: 200px; margin-top: 60px; padding: 10px;">
+    <div style="border: 2px solid blue; height: 400px; width: 100%;">
+        Scroll div
+    </div>
+</div>
 ```
