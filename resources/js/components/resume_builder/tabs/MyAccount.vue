@@ -178,11 +178,9 @@
       persistent
       style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
         border-radius: 10px; z-index:1000; overflow:hidden;"
-
     >
       <v-card>
-        <v-card-subtitle>
-        </v-card-subtitle>
+        <v-card-subtitle></v-card-subtitle>
         <v-card-text class="mt-5">
           <v-tabs centered v-model="priceTab" hide-slider>
             <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
@@ -205,7 +203,7 @@
                     </div>
                   </v-col>
                   <v-col cols="12">
-                    <div class="save-text mt-n5">(Save 40%)</div>
+                    <div class="save-text mt-n7">(Save 40%)</div>
                   </v-col>
                 </v-row>
 
@@ -1315,10 +1313,12 @@ $placeholder-color: #9ba1ad;
   font-size: 20px !important;
   line-height: 30px;
   color: #888db1 !important;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    font-size: 18px !important;
+  }
 }
 .rate-text {
   font-family: "Noto Sans" !important;
-  margin-top: 15px;
   .old-price {
     font-weight: bold;
     font-size: 50px;
@@ -1326,19 +1326,28 @@ $placeholder-color: #9ba1ad;
     color: #001ce2;
     opacity: 0.3;
     text-decoration: line-through;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      font-size: 36px !important;
+    }
   }
   .new-price {
     font-weight: bold;
     font-size: 70px;
     line-height: 50px;
     color: #001ce2 !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      font-size: 50px !important;
+    }
   }
   sub {
     font-weight: bold;
     font-size: 20px;
     line-height: 50px;
     color: #001ce2;
-    margin-left: -10px;
+    margin-left: -5px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      font-size: 18px !important;
+    }
   }
 }
 .hr-line {
@@ -1354,9 +1363,14 @@ $placeholder-color: #9ba1ad;
 }
 .price-option {
   font-family: "Noto Sans" !important;
-  font-size: 20px;
+  font-size: 20px !important;
   line-height: 32px;
   color: #888db1 !important;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    margin-top: -10px;
+    font-size: 18px !important;
+    line-height: 0px;
+  }
 }
 .btn-modal-subscribe {
   width: 220px !important;
@@ -1378,8 +1392,9 @@ $placeholder-color: #9ba1ad;
 .payment-link:hover {
   cursor: pointer;
 }
-.modal-close{
-    position: absolute;
-    top: -20px;
+.modal-close {
+  position: absolute;
+  top: -20px;
 }
+
 </style>
