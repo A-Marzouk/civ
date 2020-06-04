@@ -2,25 +2,35 @@
   <v-app>
     <div style="width: 100%">
       <v-card color="transparent" flat tile>
-        <v-tabs hide-slider v-model="skillTab">
-          <v-tab
-            :active-class="index==0?'custom-active-class custom-active-left': index==4?'custom-active-class custom-active-right':'custom-active-class'"
-            :class="[index>0?'custom-tab custom-tab-border':'custom-tab', index==0?'custom-active-left':index==4?'custom-active-right':'']"
-            v-for="(i,index) in 5"
-            :key="index"
-          >Skill {{i}}</v-tab>
+        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="skillTab">
+          <v-tab class="resume-builder__tab">Item One</v-tab>
+          <v-tab class="resume-builder__tab">Item Two</v-tab>
+          <v-tab class="resume-builder__tab">Item Three</v-tab>
         </v-tabs>
       </v-card>
-      <v-card>
+      <v-card class="card-skill-items">
         <v-tabs-items v-model="skillTab">
-          <v-tab-item v-for="i in 5" :key="i">
-            <v-row>
-              <v-col
-                cols="3"
-                v-for="j in 3"
-                :key="j"
-              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam consequuntur ab odit aspernatur alias! Sunt itaque temporibus consectetur quae exercitationem officia! Voluptatibus voluptatem nostrum inventore excepturi beatae nihil! Eum, corporis!</v-col>
-            </v-row>
+          <v-tab-item v-for="i in 3" :key="i">
+            <v-container style="width:100%;">
+              <v-row>
+                <v-col cols="3" v-for="i in 3" :key="i">
+                  <v-card flat tile color="transparent" class="mt-5">
+                    <v-select
+                      class="resume-builder__input civie-select"
+                      outlined
+                      placeholder="Select an option"
+                      :items="typeItems"
+                      label="Select a profession"
+                      color="#001CE2"
+                    >
+                      <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                      </button>
+                    </v-select>
+                  </v-card>
+                </v-col>
+              </v-row>
+            </v-container>
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -34,6 +44,7 @@ export default {
   name: "Skills",
   data() {
     return {
+      typeItems: ["Programming Language"],
       skillTab: 0,
       activeTab: "programming_languages",
       tabs: ["programming_languages", "software", "design", "frameworks"],
@@ -58,6 +69,9 @@ export default {
     }
   },
   methods: {
+    toggleSelect() {
+      this.disabledSelect = !this.disabledSelect;
+    },
     moveProgressBar() {
       this.skills.forEach(skill => {
         this.progressBarSingleSkill(skill);
@@ -634,30 +648,7 @@ export default {
   font-weight: 600;
   margin-left: 5px;
 }
-.custom-tab {
-  font-family: "Noto Sans" !important;
-  font-size: 18px !important;
-  line-height: 25px;
-  color: #888db1 !important;
-  background: #f2f3fd !important;
-  text-transform: capitalize !important;
-}
-.custom-tab-border {
-  border-left: 1px solid #e6e8fc;
-}
-.custom-active-class {
-  font-family: "Noto Sans" !important;
-  font-size: 18px !important;
-  line-height: 25px;
-  color: #ffffff !important;
-  background: #001ce2 !important;
-  text-transform: capitalize !important;
-}
-
-.custom-active-left {
-  border-top-left-radius: 10px;
-}
-.custom-active-right {
-  border-top-right-radius: 10px;
+.card-skill-items {
+  width: 1412px !important;
 }
 </style>
