@@ -362,9 +362,9 @@ Use the same props of an vuetify tabs.
 
 ## Scrollbars
 
-**component:** None
-
 **class:** resume-builder__scroll
+
+**component:** None
 
 Use this class on scrollable containers to add scrollbars styled
 
@@ -376,4 +376,36 @@ Use this class on scrollable containers to add scrollbars styled
         Scroll div
     </div>
 </div>
+```
+---
+
+## Buttons
+
+**class:** resume-builder__btn civie-btn
+
+**component:** [vuetify btn](https://vuetifyjs.com/en/components/buttons/)
+
+Use the `filled` class to reset default styles of v-btn.
+For outlined btns, you can use simply the `outlined` prop of v-btn component
+
+```html
+<template>
+    <div>
+        <v-btn
+            class="resume-builder__btn civie-btn filled"
+            raised
+        >Hello, I'm a button</v-btn>
+
+        <v-btn
+            class="resume-builder__btn civie-btn"
+            outlined
+        >Hello, I'm a button outlined</v-btn>
+    </div>
+</template>
+
+<script>
+export default {
+    data: vm => ({})
+}
+</script>
 ```
