@@ -364,13 +364,13 @@ Use the same props of an vuetify tabs.
 
 **component:** None
 
-**class:** resume-builder-scroll
+**class:** resume-builder__scroll
 
 Use this class on scrollable containers to add scrollbars styled
 
 ```html
 <div 
-    class="resume-builder-scroll"
+    class="resume-builder__scroll"
     style="height: 200px; margin-top: 60px; padding: 10px;">
     <div style="border: 2px solid blue; height: 400px; width: 100%;">
         Scroll div
