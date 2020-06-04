@@ -2,14 +2,27 @@
   <v-app>
     <div style="width: 100%">
       <v-card color="transparent" flat tile>
-        <v-tabs background-color="#F2F3FD" hide-slider style="border-radius: 10px 10px 0px 0px;">
+        <v-tabs hide-slider v-model="skillTab">
           <v-tab
             :active-class="index==0?'custom-active-class custom-active-left': index==4?'custom-active-class custom-active-right':'custom-active-class'"
-            :class="index>0?'custom-tab custom-tab-border':'custom-tab'"
+            :class="[index>0?'custom-tab custom-tab-border':'custom-tab', index==0?'custom-active-left':index==4?'custom-active-right':'']"
             v-for="(i,index) in 5"
             :key="index"
           >Skill {{i}}</v-tab>
         </v-tabs>
+      </v-card>
+      <v-card>
+        <v-tabs-items v-model="skillTab">
+          <v-tab-item v-for="i in 5" :key="i">
+            <v-row>
+              <v-col
+                cols="3"
+                v-for="j in 3"
+                :key="j"
+              >Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam consequuntur ab odit aspernatur alias! Sunt itaque temporibus consectetur quae exercitationem officia! Voluptatibus voluptatem nostrum inventore excepturi beatae nihil! Eum, corporis!</v-col>
+            </v-row>
+          </v-tab-item>
+        </v-tabs-items>
       </v-card>
     </div>
   </v-app>
@@ -21,6 +34,7 @@ export default {
   name: "Skills",
   data() {
     return {
+      skillTab: 0,
       activeTab: "programming_languages",
       tabs: ["programming_languages", "software", "design", "frameworks"],
       skill: {
@@ -625,6 +639,7 @@ export default {
   font-size: 18px !important;
   line-height: 25px;
   color: #888db1 !important;
+  background: #f2f3fd !important;
   text-transform: capitalize !important;
 }
 .custom-tab-border {
