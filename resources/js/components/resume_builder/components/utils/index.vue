@@ -6,17 +6,41 @@
         <ResumeBuilderTextarea
             :textarea-props="textareaProps"
         ></ResumeBuilderTextarea>
+        <ResumeBuilderSelect
+            :select-props="selectProps"
+        ></ResumeBuilderSelect>
+        <ResumeBuilderCheckbox></ResumeBuilderCheckbox>
+        <div style="margin-top: 60px">
+            <ResumeBuilderDatePicker></ResumeBuilderDatePicker>
+        </div>
+        <ResumeBuilderTab></ResumeBuilderTab>
+
+        <div style="height: 200px; margin-top: 60px; padding: 10px;" class="resume-builder__scroll">
+            <div style="border: 2px solid blue; height: 400px; width: 100%; padding: 10px;">
+                <ResumeBuilderButton style="margin-top: 40px;"></ResumeBuilderButton>
+            </div>
+        </div>
     </v-app>
 </template>
 
 <script>
 import ResumeBuilderInput from './input'
 import ResumeBuilderTextarea from './textarea'
+import ResumeBuilderSelect from './select'
+import ResumeBuilderCheckbox from './checkbox'
+import ResumeBuilderDatePicker from './datepicker'
+import ResumeBuilderTab from './tab'
+import ResumeBuilderButton from './button'
 
 export default {
     components: {
         ResumeBuilderInput,
-        ResumeBuilderTextarea
+        ResumeBuilderSelect,
+        ResumeBuilderTextarea,
+        ResumeBuilderCheckbox,
+        ResumeBuilderDatePicker,
+        ResumeBuilderTab,
+        ResumeBuilderButton
     },
     data: () => ({
         inputProps: {
@@ -34,6 +58,13 @@ export default {
             outlined: true,
             rules: true,
             showToggleTextareaIcon: true
+        },
+        selectProps: {
+            value:"I'm a fullstack Developer",
+            label:"First Select",
+            color:"#001CE2",
+            outlined: true,
+            showToggleSelectIcon: true
         }
     })
 }

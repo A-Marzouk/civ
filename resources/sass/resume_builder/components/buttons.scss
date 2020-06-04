@@ -1,0 +1,24 @@
+.resume-builder__btn.civie-btn.v-btn {
+
+    // default btn
+    &.filled {
+        background-color: $mainColor !important;
+        color: $secondaryColor;
+    }
+
+    // Reset default size
+    &.v-size--default {
+        border-radius: 5px;
+        height: 50px;
+        padding: 13px 21px;
+        font-size: 18px;
+        text-transform: none;
+    }
+
+    // outlined btn
+    &--outlined {
+        background-color: transparent;
+        border: solid 2px $mainColor;
+        color: $mainColor;
+    }
+}

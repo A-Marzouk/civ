@@ -1,0 +1,24 @@
+.resume-builder__tab-bar {
+    border-radius: 10px 10px 0px 0px;
+
+    .v-tab {
+        background-color: $auxBgColor-gray;
+        color: $inputTextColor;
+        border-right: 1px solid $inputBorderColor--disabled;
+
+        &:first-child {
+            border-radius: 10px 0px 0px 0px;
+        }
+
+        &:last-child {
+            border-radius: 0px 10px 0px 0px;
+            border-right: 0;
+        }
+
+        &--active {
+            background-color: $mainColor;
+            color: $secondaryColor !important;
+            border-right: 0;
+        }
+    }
+}
