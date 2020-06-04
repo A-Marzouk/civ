@@ -16,7 +16,7 @@
         <ResumeBuilderTab></ResumeBuilderTab>
 
         <div style="height: 200px; margin-top: 60px; padding: 10px;" class="resume-builder__scroll">
-            <div style="border: 2px solid blue; height: 400px; width: 100%;">
+            <div style="border: 2px solid blue; height: 400px; width: 100%; padding: 10px;">
                 <ResumeBuilderButton style="margin-top: 40px;"></ResumeBuilderButton>
             </div>
         </div>

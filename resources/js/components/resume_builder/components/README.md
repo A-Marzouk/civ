@@ -240,6 +240,7 @@ export default {
 }
 </script>
 ```
+![checkbox image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/checkbox.png "Checkbox Demo Image")
 ---
 
 ## Datepicker
@@ -327,6 +328,9 @@ export default {
 </script>
 ```
 
+![datepicker image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/datepicker.png "Datepicker Demo Image")
+---
+
 ## Tabs
 
 **class:** resume-builder__tab-bar
@@ -357,7 +361,7 @@ Use the same props of an vuetify tabs.
     </v-tabs>
 </template>
 ```
-
+![tabs image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/tabs.png "Tabs Demo Image")
 ---
 
 ## Scrollbars
@@ -377,6 +381,8 @@ Use this class on scrollable containers to add scrollbars styled
     </div>
 </div>
 ```
+
+![scrollbar image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/scrollbar.png "Scrollbar Demo Image")
 ---
 
 ## Buttons
@@ -409,3 +415,4 @@ export default {
 }
 </script>
 ```
+![button image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/button.png "Button Demo Image")
