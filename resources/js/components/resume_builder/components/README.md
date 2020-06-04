@@ -7,7 +7,7 @@
 * [Datepicker](#Datepicker)
 * [Tabs](#Tabs)
 * [ScrollBars](#Scrollbars)
-* Buttons (Toggle buttons, outline and filled)
+* [Buttons (Toggle buttons, outlined and filled)](#Buttons)
 * Edit, Delete, Enable (help buttons on items)
 * Move handler icon
 
