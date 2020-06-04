@@ -7,7 +7,7 @@
 				</a>
 			</div>
 			<div class="current-user__detail">
-				<div class="tw-flex">
+				<div class="tw-w-full tw-flex tw-justify-between tw-items-center">
 					<div>
 						<h3 class="current-user__detail--fullname" v-text="currentUser.fullname"></h3>
 						<h4 class="current-user__detail--job-title" v-text="currentUser.jobTitle"></h4>
@@ -105,99 +105,66 @@ export default {
 @import "./../scss/variables";
 
 .header {
-	font-family: $poppins;
-	background: #f5f6f8;
 	color: #000000;
-}
+	font-family: $poppins;
 
-.header__current-user--detail {
-	display: flex;
+	.header__current-user--detail {
+		display: flex;
+		background: #f5f6f8;
 
-	.current-user__avatar {
-		& > a {
+		.current-user__avatar > a {
 			display: block;
-			width: 45px;
-			height: 45px;
+			width: 94px;
+			height: 89px;
 
 			img {
 				width: 100%;
 				object-fit: cover;
 			}
 		}
-	}
-
-	.current-user__detail {
-		flex: 1;
-		display: flex;
-		align-items: center;
-		padding-left: 25px;
-
-		.current-user__detail--fullname {
-			color: #312050;
-			font-weight: 800;
-		}
-
-		.current-user__detail--job-title {
-			color: #312050;
-		}
-
-		.current-user__detail--job-title,
-		.current-user__detail--motivation,
-		.current-user__detail--work-rate {
-			display: none;
-		}
-	}
-}
-
-.current-user__detail--contact {
-	display: none;
-}
-
-@media (min-width: $sm) {
-	.header__current-user--detail {
-		.current-user__avatar {
-			& > a {
-				width: 78px;
-				height: 78px;
-			}
-		}
 
 		.current-user__detail {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			padding-left: 10px;
+			padding-right: 10px;
+
+			@include xs {
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+
 			.current-user__detail--fullname {
-				font-size: 22px;
+				font-weight: 800;
+				font-size: 16px;
+				line-height: 24px;
+				color: #312050;
 			}
 
 			.current-user__detail--job-title {
-				display: block;
-				font-size: 11.5px;
-				padding-top: 10px;
+				font-weight: bold;
+				font-size: 10px;
+				line-height: 15px;
+				color: #000000;
 			}
 
-			.current-user__detail--motivation {
-				display: block;
-				font-size: 9px;
-				padding-top: 10px;
-			}
-
+			.current-user__detail--motivation,
 			.current-user__detail--work-rate {
-				display: flex;
-				font-size: 11px;
-				padding-top: 10px;
-				align-items: center;
-				text-transform: uppercase;
+				display: none;
+			}
 
-				strong {
-					font-size: 14px;
-					padding-left: 5px;
-				}
+			@include sm {
+				padding-left: 20px;
+				padding-right: 20px;
 			}
 		}
 	}
 
 	.current-user__detail--contact {
-		display: flex;
-
 		.contact__link {
+			width: 60px;
+			height: 60px;
 			position: relative;
 			width: 45px;
 			height: 45px;
@@ -206,6 +173,14 @@ export default {
 			justify-content: center;
 			color: #ffffff;
 			background: #312050;
+
+			&:hover {
+				text-decoration: none;
+
+				&::after {
+					width: 100%;
+				}
+			}
 
 			&::after {
 				content: "";
@@ -219,61 +194,22 @@ export default {
 				transition: width 0.3s;
 			}
 
-			&:hover {
-				text-decoration: none;
-
-				&::after {
-					width: 100%;
-				}
-			}
-
 			&.contact__link--twitter,
 			&.contact__link--facebook,
-			&.contact__link--instagram {
-				&:hover {
-					color: #312050;
-					background: #ffffff;
-				}
-			}
-
-			&.contact__link--twitter {
-				transition: all 0.15s;
-
-				svg {
-					width: calc(0.8 * 24px);
-					height: calc(0.8 * 20px);
-				}
-			}
-
-			&.contact__link--facebook {
-				margin-left: 15px;
-				transition: all 0.15s;
-
-				svg {
-					width: calc(0.8 * 13px);
-					height: calc(0.8 * 24px);
-				}
-			}
-
-			&.contact__link--instagram {
-				margin-left: 15px;
-				transition: all 0.15s;
-
-				svg {
-					width: calc(0.8 * 21px);
-					height: calc(0.8 * 22px);
-				}
+			&.contact__link--instagram,
+			&.contact__link--hireme span {
+				display: none;
 			}
 
 			&.contact__link--hireme {
-				width: auto;
+				width: 40px;
+				height: 40px;
 				background: #df136c;
 				font-size: 16px;
 				line-height: 30px;
-				min-width: 100px;
 				font-weight: 700;
-				transition: all 0.15s;
 				margin-left: 15px;
+				transition: all 0.15s;
 
 				&::after {
 					background: #df136c;
@@ -299,178 +235,12 @@ export default {
 			}
 		}
 	}
-}
 
-@media (min-width: $md) {
-	.header__current-user--detail {
-		.current-user__avatar {
-			& > a {
-				width: 125px;
-				height: 125px;
-			}
-		}
-
-		.current-user__detail {
-			.current-user__detail--fullname,
-			.current-user__detail--job-title,
-			.current-user__detail--motivation,
-			.current-user__detail--work-rate {
-				max-width: 372px;
-			}
-
-			.current-user__detail--fullname {
-				font-size: 36px;
-			}
-
-			.current-user__detail--job-title {
-				font-size: 16px;
-				padding-top: 15px;
-			}
-
-			.current-user__detail--motivation {
-				font-size: 12px;
-				padding-top: 20px;
-			}
-
-			.current-user__detail--work-rate {
-				font-size: 14px;
-
-				.work-rate__weekly-availability {
-					margin-left: 20px;
-				}
-
-				strong {
-					font-size: 20px;
-					padding-left: 15px;
-				}
-			}
-		}
-	}
-
-	.current-user__detail--contact {
-		.contact__link {
-			width: 60px;
-			height: 60px;
-
-			&.contact__link--hireme {
-				max-width: 230px;
-				font-size: 20px;
-
-				svg {
-					width: 20px;
-					height: 16px;
-				}
-
-				span {
-					padding-left: 15px;
-				}
-			}
-			&.contact__link--twitter {
-				svg {
-					width: 24px;
-					height: 20px;
-				}
-			}
-			&.contact__link--facebook {
-				svg {
-					width: 13px;
-					height: 24px;
-				}
-			}
-			&.contact__link--instagram {
-				svg {
-					width: 21px;
-					height: 22px;
-				}
-			}
-		}
-	}
-}
-
-@media (min-width: $lg) {
-	.header__current-user--detail {
-		.current-user__avatar {
-			& > a {
-				width: 225px;
-				height: 225px;
-			}
-		}
-
-		.current-user__detail {
-			padding-left: 30px;
-
-			.current-user__detail--fullname,
-			.current-user__detail--job-title,
-			.current-user__detail--motivation,
-			.current-user__detail--work-rate {
-				max-width: 710px;
-			}
-
-			.current-user__detail--fullname {
-				font-size: 46px;
-			}
-
-			.current-user__detail--job-title {
-				font-size: 20px;
-			}
-
-			.current-user__detail--motivation {
-				font-size: 18px;
-			}
-		}
-	}
-}
-
-@media (min-width: $xl) {
-	.header__current-user--detail {
-		.current-user__avatar {
-			& > a {
-				width: 480px;
-				height: 449px;
-			}
-		}
-
-		max-width: $xl;
-
-		.current-user__detail {
-			padding-left: 60px;
-
-			.current-user__detail--fullname {
-				font-size: 60px;
-				line-height: 90px;
-			}
-
-			.current-user__detail--job-title {
-				padding-top: 10px;
-				font-size: 30px;
-				line-height: 45px;
-				font-weight: 700;
-			}
-
-			.current-user__detail--motivation {
-				font-size: 20px;
-				line-height: 30px;
-			}
-		}
-	}
-}
-
-@media (min-width: $xxl) {
-	.header__current-user--detail {
-		max-width: $xxl;
-
-		.current-user__detail {
-			padding-left: 70px;
-		}
-	}
-	.current-user__detail--contact {
-		height: 90px;
-		align-items: center;
-
-		.contact__link {
-			&.contact__link--hireme {
-				padding-left: 38px;
-				padding-right: 38px;
+	@include xs {
+		.header__current-user--detail {
+			.current-user__avatar > a {
+				width: 107px;
+				height: 100px;
 			}
 		}
 	}

@@ -54,37 +54,19 @@ export default {
 @import "./../scss/variables";
 
 .tabs-navigation {
-	margin: 0 auto;
 	display: flex;
-	max-width: 95%;
 	align-items: center;
 	justify-content: center;
-}
+	padding: 25px 10px 0;
 
-@media (min-width: calc(375px)) {
-	.tabs-navigation {
-		padding-left: 25px;
-		padding-right: 25px;
-	}
-}
-
-@media (min-width: $sm) {
-	.tabs-navigation {
-		padding-top: 15px;
-	}
-}
-
-@media (min-width: $md) {
-	.tabs-navigation {
+	@include xs {
+		padding: 30px 15px 0;
 		padding-top: 30px;
-		max-width: 1600px;
 	}
-}
 
-@media (min-width: $xxl) {
-	.tabs-navigation {
-		max-width: $xxl;
-		padding: 40px 130px;
+	@include sm {
+		padding-left: 20px;
+		padding-right: 20px;
 	}
 }
 </style>

@@ -1,0 +1,258 @@
+
+@media (min-width: $md) {
+	.header__current-user--detail {
+		.current-user__avatar {
+			& > a {
+				width: 78px;
+				height: 78px;
+			}
+		}
+
+		.current-user__detail {
+			.current-user__detail--fullname {
+				font-size: 22px;
+			}
+
+			.current-user__detail--job-title {
+				display: block;
+				font-size: 11.5px;
+				padding-top: 10px;
+			}
+
+			.current-user__detail--motivation {
+				display: block;
+				font-size: 9px;
+				padding-top: 10px;
+			}
+
+			.current-user__detail--work-rate {
+				display: flex;
+				font-size: 11px;
+				padding-top: 10px;
+				align-items: center;
+				text-transform: uppercase;
+
+				strong {
+					font-size: 14px;
+					padding-left: 5px;
+				}
+			}
+		}
+	}
+
+	.current-user__detail--contact {
+		display: flex;
+
+		.contact__link {
+			&.contact__link--twitter,
+			&.contact__link--facebook,
+			&.contact__link--instagram {
+				&:hover {
+					color: #312050;
+					background: #ffffff;
+				}
+			}
+
+			&.contact__link--twitter {
+				transition: all 0.15s;
+
+				svg {
+					width: calc(0.8 * 24px);
+					height: calc(0.8 * 20px);
+				}
+			}
+
+			&.contact__link--facebook {
+				margin-left: 15px;
+				transition: all 0.15s;
+
+				svg {
+					width: calc(0.8 * 13px);
+					height: calc(0.8 * 24px);
+				}
+			}
+
+			&.contact__link--instagram {
+				margin-left: 15px;
+				transition: all 0.15s;
+
+				svg {
+					width: calc(0.8 * 21px);
+					height: calc(0.8 * 22px);
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: $md) {
+	.header__current-user--detail {
+		.current-user__avatar {
+			& > a {
+				width: 125px;
+				height: 125px;
+			}
+		}
+
+		.current-user__detail {
+			.current-user__detail--fullname,
+			.current-user__detail--job-title,
+			.current-user__detail--motivation,
+			.current-user__detail--work-rate {
+				max-width: 372px;
+			}
+
+			.current-user__detail--fullname {
+				font-size: 36px;
+			}
+
+			.current-user__detail--job-title {
+				font-size: 16px;
+				padding-top: 15px;
+			}
+
+			.current-user__detail--motivation {
+				font-size: 12px;
+				padding-top: 20px;
+			}
+
+			.current-user__detail--work-rate {
+				font-size: 14px;
+
+				.work-rate__weekly-availability {
+					margin-left: 20px;
+				}
+
+				strong {
+					font-size: 20px;
+					padding-left: 15px;
+				}
+			}
+		}
+	}
+
+	.current-user__detail--contact {
+		.contact__link {
+			&.contact__link--hireme {
+				max-width: 230px;
+				font-size: 20px;
+
+				svg {
+					width: 20px;
+					height: 16px;
+				}
+
+				span {
+					padding-left: 15px;
+				}
+			}
+			&.contact__link--twitter {
+				svg {
+					width: 24px;
+					height: 20px;
+				}
+			}
+			&.contact__link--facebook {
+				svg {
+					width: 13px;
+					height: 24px;
+				}
+			}
+			&.contact__link--instagram {
+				svg {
+					width: 21px;
+					height: 22px;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: $lg) {
+	.header__current-user--detail {
+		.current-user__avatar {
+			& > a {
+				width: 225px;
+				height: 225px;
+			}
+		}
+
+		.current-user__detail {
+			padding-left: 30px;
+
+			.current-user__detail--fullname,
+			.current-user__detail--job-title,
+			.current-user__detail--motivation,
+			.current-user__detail--work-rate {
+				max-width: 710px;
+			}
+
+			.current-user__detail--fullname {
+				font-size: 46px;
+			}
+
+			.current-user__detail--job-title {
+				font-size: 20px;
+			}
+
+			.current-user__detail--motivation {
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xl) {
+	.header__current-user--detail {
+		.current-user__avatar {
+			& > a {
+				width: 480px;
+				height: 449px;
+			}
+		}
+
+		max-width: $xl;
+
+		.current-user__detail {
+			padding-left: 60px;
+
+			.current-user__detail--fullname {
+				font-size: 60px;
+				line-height: 90px;
+			}
+
+			.current-user__detail--job-title {
+				padding-top: 10px;
+				font-size: 30px;
+				line-height: 45px;
+				font-weight: 700;
+			}
+
+			.current-user__detail--motivation {
+				font-size: 20px;
+				line-height: 30px;
+			}
+		}
+	}
+}
+
+@media (min-width: $xxl) {
+	.header__current-user--detail {
+		max-width: $xxl;
+
+		.current-user__detail {
+			padding-left: 70px;
+		}
+	}
+	.current-user__detail--contact {
+		height: 90px;
+		align-items: center;
+
+		.contact__link {
+			&.contact__link--hireme {
+				padding-left: 38px;
+				padding-right: 38px;
+			}
+		}
+	}
+}

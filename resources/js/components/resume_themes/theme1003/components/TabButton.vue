@@ -35,11 +35,23 @@ export default {
 	align-items: center;
 	font-family: $poppins;
 	justify-content: center;
-	transition: all 0.3s;
-	padding: 12.5px 25px 12.5px;
+	height: 34px;
+	width: 34px;
 
-	&.sm--hidden {
-		display: none;
+	&:hover {
+		color: #df136c;
+	}
+
+	&.active {
+		width: auto;
+		padding-left: 10px;
+		padding-right: 10px;
+		background: #df136c;
+		color: #ffffff;
+
+		.tab-button__label {
+			display: block;
+		}
 	}
 
 	.tab-button__icon {
@@ -47,52 +59,41 @@ export default {
 
 		svg {
 			fill: currentColor;
-			width: 22px;
+			width: 14px;
 		}
 	}
 
 	.tab-button__label {
 		display: none;
+		font-family: inherit;
 		font-size: 12px;
 		font-weight: 500;
-		user-select: none;
+		line-height: 18px;
 		padding-left: 10px;
-		font-family: inherit;
+		user-select: none;
+		white-space: nowrap;
 	}
 
-	&:hover {
-		color: #df136c;
-	}
+	@include sm {
+		height: 40px;
+		width: 40px;
 
-	&.active {
-		color: #ffffff;
-		background: #df136c;
-
-		.tab-button__label {
-			display: block;
+		&.active {
+			padding-left: 20px;
+			padding-right: 20px;
 		}
 	}
-}
 
-@media (min-width: $sm) {
-	.tab-button {
-		&.sm--hidden {
-			display: flex;
-		}
-	}
-}
+	@include lg {
+		transition: background-color 0.3s;
 
-@media (min-width: $lg) {
-	.tab-button {
 		.tab-button__label {
 			display: block;
 			font-size: 16px;
 		}
 	}
-}
 
-@media (min-width: $xl) {
-	.tab-button {
+	@include xl {
 		.tab-button__label {
 			font-size: 20px;
 			line-height: 30px;
