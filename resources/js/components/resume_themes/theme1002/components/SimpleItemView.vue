@@ -87,7 +87,7 @@ export default {
 
 @media (min-width: $lg) {
 	.item-view {
-		max-width: unset;
+		max-width: none;
 
 		.item-view__title {
 			padding-left: 34px;

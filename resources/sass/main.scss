@@ -28,6 +28,8 @@
 // new resume builder styles
 @import "resume_builder/components/inputs";
 @import "resume_builder/components/tabs";
+@import "resume_builder/components/scrollbar";
+@import "resume_builder/components/buttons";
 
 #resumeBuilder, body, html {
     height: 100%;

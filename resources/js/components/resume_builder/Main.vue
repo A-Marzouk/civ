@@ -12,27 +12,27 @@
 
             <div class="nav-icons">
                 <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab; setActiveTab('editCV')" to="/resume-builder/edit" >
-                    <div class="icon">
+                    <div class="icon" :class="{'active' : activeTab === 'editCV'}">
                         <img :src=" activeTab === 'editCV' ? '/images/new_resume_builder/icons/main/Edit.png' : '/images/new_resume_builder/icons/main/Edit-1.png'" alt="edit icon">
                     </div>
                 </router-link>
                 <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab; setActiveTab('viewCV')" to="/resume-builder/view" >
-                    <div class="icon">
+                    <div class="icon" :class="{'active' : activeTab === 'viewCV'}">
                         <img :src=" activeTab === 'viewCV' ? '/images/new_resume_builder/icons/main/Theme.png' : '/images/new_resume_builder/icons/main/Theme-1.png'" alt="theme icon">
                     </div>
                 </router-link>
                 <router-link id='coverLetter' data-target="coverLetter" v-on:click.native="changeTab; setActiveTab('coverLetter')" to="/resume-builder/cover-letter" >
-                    <div class="icon">
+                    <div class="icon" :class="{'active' : activeTab === 'coverLetter'}">
                         <img :src=" activeTab === 'coverLetter' ? '/images/new_resume_builder/icons/main/Coverletter.png' : '/images/new_resume_builder/icons/main/Coverletter-1.png'" alt="cover icon">
                     </div>
                 </router-link>
                 <router-link id='jobAlert' data-target="jobAlert" v-on:click.native="changeTab; setActiveTab('jobAlert')" to="/resume-builder/jobs" >
-                    <div class="icon">
+                    <div class="icon" :class="{'active' : activeTab === 'jobAlert'}">
                         <img :src=" activeTab === 'jobAlert' ? '/images/new_resume_builder/icons/main/job.png' : '/images/new_resume_builder/icons/main/job-1.png'" alt="cover icon">
                     </div>
                 </router-link>
                 <div class="my-account-icon" @click="profileMenu = !profileMenu">
-                    <div class="icon" v-if="personalInfo">
+                    <div class="icon" v-if="personalInfo" :class="{'active' : activeTab === 'myAccount'}">
                         <img :src="personalInfo.profile_pic" alt="profile-pic">
                     </div>
                     <div class="custom-drop-down" v-show="profileMenu">
@@ -647,6 +647,21 @@
                     height:50px;
                     border-radius:50%;
                 }
+            }
+
+            .icon.active:after {
+                box-sizing: inherit;
+                content: " ";
+                display: flex;
+                flex-direction: column;
+                border: 2px solid blue;
+                background: blue;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
+                width: 45px;
+                height: 5px;
+                margin-left: 3px;
+                margin-top: 17px;
             }
         }
 
