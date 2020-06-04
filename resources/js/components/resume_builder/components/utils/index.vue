@@ -15,7 +15,8 @@
         </div>
         <ResumeBuilderTab></ResumeBuilderTab>
 
-        <div style="height: 200px; margin-top: 60px; padding: 10px;" class="resume-builder__scroll">
+        <div style="height: 200px; margin-top: 60px; padding: 10px; position: relative;" class="resume-builder__scroll">
+            <ResumeBuilderActionIcons></ResumeBuilderActionIcons>
             <div style="border: 2px solid blue; height: 400px; width: 100%; padding: 10px;">
                 <ResumeBuilderButton style="margin-top: 40px;"></ResumeBuilderButton>
             </div>
@@ -31,6 +32,7 @@ import ResumeBuilderCheckbox from './checkbox'
 import ResumeBuilderDatePicker from './datepicker'
 import ResumeBuilderTab from './tab'
 import ResumeBuilderButton from './button'
+import ResumeBuilderActionIcons from './action-icons'
 
 export default {
     components: {
@@ -40,7 +42,8 @@ export default {
         ResumeBuilderCheckbox,
         ResumeBuilderDatePicker,
         ResumeBuilderTab,
-        ResumeBuilderButton
+        ResumeBuilderButton,
+        ResumeBuilderActionIcons
     },
     data: () => ({
         inputProps: {
