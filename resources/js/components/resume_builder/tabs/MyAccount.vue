@@ -175,7 +175,6 @@
     <v-dialog
       v-model="priceModal"
       max-width="550"
-      persistent
       style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
         border-radius: 10px; z-index:1000; overflow:hidden;"
     >
