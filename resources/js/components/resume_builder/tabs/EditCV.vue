@@ -94,7 +94,6 @@
                 return formatedString;
             },
             setActive (e,section_name) {
-                console.log('here');
                 this.activeTab = section_name ;
                 let activeNow = document.querySelector('.aside-link.active');
                 activeNow && activeNow.classList.toggle('active');

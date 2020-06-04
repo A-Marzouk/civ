@@ -7,9 +7,8 @@
 * [Datepicker](#Datepicker)
 * [Tabs](#Tabs)
 * [ScrollBars](#Scrollbars)
-* [Buttons (Toggle buttons, outlined and filled)](#Buttons)
+* [Buttons (Icon buttons, outlined and filled)](#Buttons)
 * Edit, Delete, Enable (help buttons on items)
-* Move handler icon
 
 ## <span style="color: red">IMPORTANT!</span>
 Limit the inputs width on the parent container. 
@@ -416,3 +415,85 @@ export default {
 </script>
 ```
 ![button image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/button.png "Button Demo Image")
+
+**Icon buttons**
+
+The icon buttons can be modified if you need. You can use the `border-radius` property on css class to change the icon style, change the size.
+
+```html
+<v-btn
+    class="btn-icon civie-btn"
+    depressed
+>
+    <svg-vue
+        icon="trash-delete-icon"
+        class="icon"
+    ></svg-vue>
+</v-btn>
+```
+
+![icon button image](https://github.com/A-Marzouk/civ/blob/resume-builder-components/resources/js/components/resume_builder/components/utils/assets/icon-btn.png "Icon Button Demo Image")
+
+---
+
+## Buttons
+
+**class:** resume-builder__btn civie-btn
+
+**component:** [vuetify btn](https://vuetifyjs.com/en/components/buttons/)
+
+Use the `filled` class to reset default styles of v-btn.
+For outlined btns, you can use simply the `outlined` prop of v-btn component
+
+### Example
+
+```html
+<template>
+    <div
+        class="resume-builder__action-buttons-container"
+    >
+        <v-btn
+            class="btn-icon civie-btn"
+            depressed
+        >
+            <svg-vue
+                icon="eye-icon"
+                class="icon"
+            ></svg-vue>
+        </v-btn>
+        <v-btn
+            class="btn-icon civie-btn"
+            depressed
+        >
+            <svg-vue
+                icon="edit-icon"
+                class="icon"
+            ></svg-vue>
+        </v-btn>
+        <v-btn
+            class="btn-icon civie-btn"
+            depressed
+        >
+            <svg-vue
+                icon="trash-delete-icon"
+                class="icon"
+            ></svg-vue>
+        </v-btn>
+        <v-btn
+            class="btn-icon mainBg civie-btn toogleDropdownBtn"
+            :class="{opened: openMenu}"
+            @click="openMenu = !openMenu"
+            depressed
+        ></v-btn>
+    </div>
+</template>
+
+<script>
+export default {
+    data: () => ({
+        // Handle the dropdown state when you need it
+        openMenu: false
+    })
+}
+</script>
+```

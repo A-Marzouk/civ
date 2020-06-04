@@ -6,7 +6,7 @@
           <div class="profile-pic" @click="clickUploadInput">
             <img :src="personalInfo.profile_pic" alt />
           </div>
-          <div class="info">
+          <div class="info-my-account">
             <div class="name">{{accountData.name}}</div>
             <div class="job-title">{{personalInfo.designation}}</div>
           </div>
@@ -94,7 +94,7 @@
                 My URL
               </span>
               <v-text-field
-                class="resume-builder__input top-input-margin"
+                class="resume-builder__input top-input-margin url"
                 v-model="accountData.username"
                 :outlined="true"
                 :class="{'resume-builder__input--disabled': false}"
@@ -563,7 +563,7 @@ $placeholder-color: #9ba1ad;
       }
     }
 
-    .info {
+    .info-my-account {
       margin-left: 21px;
       .name {
         font-family: Noto Sans, sans-serif;
