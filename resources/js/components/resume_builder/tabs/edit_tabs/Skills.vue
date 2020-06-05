@@ -47,7 +47,7 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
+                <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-n10 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-select
                       class="resume-builder__input civie-select"
@@ -64,16 +64,20 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="3" lg="3" md="6" sm="6" cols="3" class="mt-md-0 mt-sm-0 mt-n10">
+                <v-col xl="3" lg="3" md="6" sm="6" cols="3" class="mt-md-0 mt-sm-n10 mt-n10">
                   <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2">Add New</v-btn>
                 </v-col>
                 <v-col xl="6" lg="6" md="12" sm="12" cols="12">
                   <v-container fluid style="width:100%;" ma-0 pa-0>
                     <v-row align="center" dense>
                       <v-col cols="12" v-for="i in 3" :key="i">
-                        <v-card color="#E6E8FC" class="card-skill ml-xl-10" flat>
+                        <v-card
+                          color="#E6E8FC"
+                          class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5"
+                          flat
+                        >
                           <v-card-text>
-                            <v-row align="center" justify="center" class="mt-n3 hidden-xs-only">
+                            <v-row align="center" justify="center" class="mt-n3 row-skill-details">
                               <v-col xl="1" lg="2" md="1" sm="1" cols="2">
                                 <v-btn depressed class="btn-v_bar">
                                   <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
@@ -133,7 +137,11 @@
                               </v-col>
                             </v-row>
 
-                            <v-row align="center" justify="center" class="hidden-sm-and-up mt-n5">
+                            <v-row
+                              align="center"
+                              justify="center"
+                              class="row-skill-details-mobile mt-n5"
+                            >
                               <v-col cols="6">
                                 <v-btn depressed class="btn-v_bar">
                                   <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
@@ -831,6 +839,9 @@ export default {
     @media screen and (min-width: 1264px) and (max-width: 1903px) {
       min-width: 400px !important;
     }
+    @media screen and (min-width: 600px) and (max-width: 767px) {
+      height: 95px !important;
+    }
     @media screen and (max-width: 599px) {
       height: 88px !important;
     }
@@ -865,6 +876,25 @@ export default {
       min-height: 30px !important;
       width: 30px !important;
       height: 30px !important;
+    }
+
+    .row-skill-details {
+      @media screen and (min-width: 768px) {
+        display: flex;
+      }
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+    }
+
+    .row-skill-details-mobile {
+      @media screen and (min-width: 768px) {
+        display: none;
+      }
+      @media screen and (max-width: 767px) {
+        display: flex;
+        margin-top: -14px !important;
+      }
     }
   }
 }
