@@ -12,9 +12,9 @@
         <v-tabs-items v-model="skillTab">
           <v-tab-item v-for="i in 3" :key="i">
             <v-container style="width:100%;">
-              <v-row>
+              <v-row align="center">
                 <v-col cols="3" v-for="i in 3" :key="i">
-                  <v-card flat tile color="transparent" class="mt-5">
+                  <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-select
                       class="resume-builder__input civie-select"
                       outlined
@@ -28,6 +28,9 @@
                       </button>
                     </v-select>
                   </v-card>
+                </v-col>
+                <v-col cols="3">
+                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
                 </v-col>
               </v-row>
             </v-container>
@@ -650,5 +653,9 @@ export default {
 }
 .card-skill-items {
   width: 1412px !important;
+  .btn-add-new{
+    width: 120px !important;
+    height: 50px !important;
+  }
 }
 </style>
