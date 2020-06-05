@@ -4,7 +4,7 @@
 
 		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" @openPaymentModal="openPaymentModal" />
 
-		<!-- <TabsContent :currentTab="currentTab" /> -->
+		<TabsContent :currentTab="currentTab" />
 
 		<Modal :isOpen="isPaymentModalOpen" @onClose="isPaymentModalOpen=false">
 			<PaymentForm @openPaymentSuccessModal="openPaymentSuccessModal" />
