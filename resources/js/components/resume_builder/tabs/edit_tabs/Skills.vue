@@ -13,7 +13,7 @@
           <v-tab-item v-for="i in 3" :key="i">
             <v-container style="width:100%;">
               <v-row align="center">
-                <v-col xl="3" lg="3" md="6" sm="6" cols="12" v-for="i in 3" :key="i">
+                <v-col xl="3" lg="3" md="6" sm="6" cols="12">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-select
                       class="resume-builder__input civie-select"
@@ -29,7 +29,42 @@
                     </v-select>
                   </v-card>
                 </v-col>
-                <v-col xl="3" lg="3" md="6" sm="6" cols="3">
+
+                <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
+                  <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
+                    <v-select
+                      class="resume-builder__input civie-select"
+                      outlined
+                      placeholder="Select an option"
+                      :items="typeItems"
+                      label="Select a profession"
+                      color="#001CE2"
+                    >
+                      <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                      </button>
+                    </v-select>
+                  </v-card>
+                </v-col>
+
+                <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
+                  <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
+                    <v-select
+                      class="resume-builder__input civie-select"
+                      outlined
+                      placeholder="Select an option"
+                      :items="typeItems"
+                      label="Select a profession"
+                      color="#001CE2"
+                    >
+                      <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                      </button>
+                    </v-select>
+                  </v-card>
+                </v-col>
+
+                <v-col xl="3" lg="3" md="6" sm="6" cols="3" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2">Add New</v-btn>
                 </v-col>
                 <v-col xl="6" lg="6" md="12" sm="12" cols="12">
@@ -779,8 +814,16 @@ export default {
 
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   .btn-add-new {
+    font-family: "Noto Sans" !important;
     width: 120px !important;
     height: 50px !important;
+    font-size: 18px !important;
+    font-weight: 500;
+    @media screen and (max-width: 599px) {
+      width: 100px !important;
+      height: 40px !important;
+      font-size: 15px !important;
+    }
   }
   .card-skill {
     border-radius: 10px !important;
