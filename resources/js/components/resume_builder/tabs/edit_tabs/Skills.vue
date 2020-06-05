@@ -33,18 +33,18 @@
                   <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2">Add New</v-btn>
                 </v-col>
                 <v-col xl="6" lg="6" md="12" sm="12" cols="12">
-                  <v-container>
-                    <v-row align="center">
+                  <v-container fluid style="width:100%;" ma-0 pa-0>
+                    <v-row align="center" dense>
                       <v-col cols="12" v-for="i in 3" :key="i">
                         <v-card color="#E6E8FC" class="card-skill ml-xl-10" flat height="76">
                           <v-card-text>
                             <v-row align="center" justify="center" class="mt-n3">
-                              <v-col cols="1">
+                              <v-col xl="1" lg="2" md="1" sm="1" cols="2">
                                 <v-btn depressed class="btn-v_bar">
                                   <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-col>
-                              <v-col cols="6">
+                              <v-col xl="6" lg="4" md="7" sm="6" cols="6">
                                 <v-card color="transparent" flat tile>
                                   <div class="skill-title">Laravel</div>
                                   <div class="mt-3">
@@ -59,20 +59,32 @@
                                   </div>
                                 </v-card>
                               </v-col>
-                              <v-col cols="2" class="mt-5">
+                              <v-col xl="2" lg="2" md="1" sm="2" cols="2" class="mt-5">
                                 <span class="skill-title">90%</span>
                               </v-col>
-                              <v-col cols="3" align="right" class="mt-5">
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-1">
+                              <v-col xl="3" lg="4" md="3" sm="3" cols="3" align="right" class="mt-5">
+                                <v-btn
+                                  color="#F2F3FD"
+                                  depressed
+                                  class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto "
+                                >
                                   <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
                                 </v-btn>
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-1">
+                                <v-btn
+                                  color="#F2F3FD"
+                                  depressed
+                                  class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                >
                                   <img
                                     src="/images/new_resume_builder/icons/main/edit-skill.svg"
                                     alt
                                   />
                                 </v-btn>
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-1">
+                                <v-btn
+                                  color="#F2F3FD"
+                                  depressed
+                                  class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                >
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                                 </v-btn>
                               </v-col>
@@ -705,6 +717,16 @@ export default {
 }
 .card-skill-items {
   width: 1412px !important;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    width: auto !important;
+  }
+  @media screen and (min-width:960px) and (max-width: 1263px) {
+    width: auto !important;
+  }
+  @media screen and (max-width: 959px){
+    width: auto !important;
+  }
+
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   .btn-add-new {
     width: 120px !important;
@@ -712,6 +734,9 @@ export default {
   }
   .card-skill {
     border-radius: 10px !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px){
+      min-width: 400px !important;
+    }
     .btn-v_bar {
       min-width: 30px !important;
       min-height: 30px !important;
