@@ -36,9 +36,9 @@
                   <v-container fluid style="width:100%;" ma-0 pa-0>
                     <v-row align="center" dense>
                       <v-col cols="12" v-for="i in 3" :key="i">
-                        <v-card color="#E6E8FC" class="card-skill ml-xl-10" flat height="76">
+                        <v-card color="#E6E8FC" class="card-skill ml-xl-10" flat>
                           <v-card-text>
-                            <v-row align="center" justify="center" class="mt-n3">
+                            <v-row align="center" justify="center" class="mt-n3 hidden-xs-only">
                               <v-col xl="1" lg="2" md="1" sm="1" cols="2">
                                 <v-btn depressed class="btn-v_bar">
                                   <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
@@ -62,11 +62,19 @@
                               <v-col xl="2" lg="2" md="1" sm="2" cols="2" class="mt-5">
                                 <span class="skill-title">90%</span>
                               </v-col>
-                              <v-col xl="3" lg="4" md="3" sm="3" cols="3" align="right" class="mt-5">
+                              <v-col
+                                xl="3"
+                                lg="4"
+                                md="3"
+                                sm="3"
+                                cols="3"
+                                align="right"
+                                class="mt-5"
+                              >
                                 <v-btn
                                   color="#F2F3FD"
                                   depressed
-                                  class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto "
+                                  class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
                                   <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
                                 </v-btn>
@@ -87,6 +95,48 @@
                                 >
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                                 </v-btn>
+                              </v-col>
+                            </v-row>
+
+                            <v-row align="center" justify="center" class="hidden-sm-and-up mt-n5">
+                              <v-col cols="6">
+                                <v-btn depressed class="btn-v_bar">
+                                  <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="6" align="right">
+                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
+                                  <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
+                                </v-btn>
+                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
+                                  <img
+                                    src="/images/new_resume_builder/icons/main/edit-skill.svg"
+                                    alt
+                                  />
+                                </v-btn>
+                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
+                                  <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="12" class="mt-n7">
+                                <v-row align="center">
+                                  <v-col cols="12">
+                                    <div class="skill-title">Laravel</div>
+                                  </v-col>
+                                  <v-col cols="9" class="mt-n5">
+                                    <v-progress-linear
+                                      class="progress-skill"
+                                      height="8"
+                                      rounded
+                                      color="#001CE2"
+                                      background-color="#C4C9F5"
+                                      value="90"
+                                    ></v-progress-linear>
+                                  </v-col>
+                                  <v-col cols="3" class="mt-n5">
+                                    <div class="skill-title">90%</div>
+                                  </v-col>
+                                </v-row>
                               </v-col>
                             </v-row>
                           </v-card-text>
@@ -720,10 +770,10 @@ export default {
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto !important;
   }
-  @media screen and (min-width:960px) and (max-width: 1263px) {
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     width: auto !important;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     width: auto !important;
   }
 
@@ -734,8 +784,12 @@ export default {
   }
   .card-skill {
     border-radius: 10px !important;
-    @media screen and (min-width: 1264px) and (max-width: 1903px){
+    height: 76px !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
       min-width: 400px !important;
+    }
+    @media screen and (max-width: 599px) {
+      height: 88px !important;
     }
     .btn-v_bar {
       min-width: 30px !important;
@@ -744,6 +798,12 @@ export default {
       height: 30px !important;
       background: #f2f3fd;
       border-radius: 5px;
+      @media screen and (max-width: 599px) {
+        min-width: 25px !important;
+        min-height: 25px !important;
+        width: 25px !important;
+        height: 25px !important;
+      }
     }
     .skill-title {
       font-family: "Noto Sans" !important;
