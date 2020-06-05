@@ -14,7 +14,7 @@
 						<div class="current-user__detail--motivation" v-html="getShortString(currentUser.motivationLetter)"></div>
 						<div class="current-user__detail--work-rate">
 							<div class="work-rate__hour-rate">Hour rate <strong>${{ currentUser.hourRate }}</strong></div>
-							<div class="work-rate__weekly-availability">Weekly availability <strong>${{ currentUser.weeklyAvailability }}</strong></div>
+							<div class="work-rate__weekly-availability">Weekly availability <strong>{{ currentUser.weeklyAvailability }}</strong></div>
 						</div>
 					</div>
 
@@ -154,81 +154,72 @@ export default {
 				.current-user__detail--work-rate {
 					display: none;
 				}
-			}
-		}
-	}
 
-	.current-user__detail--contact {
-		.contact__link {
-			width: 60px;
-			height: 60px;
-			position: relative;
-			width: 45px;
-			height: 45px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: #ffffff;
-			background: #312050;
+				.current-user__detail--contact {
+					.contact__link {
+						position: relative;
+						display: none;
+						width: 40px;
+						height: 40px;
+						align-items: center;
+						justify-content: center;
+						color: #ffffff;
+						background: #312050;
 
-			&:hover {
-				text-decoration: none;
+						&:hover {
+							text-decoration: none;
 
-				&::after {
-					width: 100%;
-				}
-			}
+							&::after {
+								width: 100%;
+							}
+						}
 
-			&::after {
-				content: "";
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				display: block;
-				background: #312050;
-				height: 2px;
-				width: 0;
-				transition: width 0.3s;
-			}
+						&::after {
+							content: "";
+							position: absolute;
+							bottom: 0;
+							left: 0;
+							display: block;
+							background: #312050;
+							height: 2px;
+							width: 0;
+							transition: width 0.3s;
+						}
 
-			&.contact__link--twitter,
-			&.contact__link--facebook,
-			&.contact__link--instagram,
-			&.contact__link--hireme span {
-				display: none;
-			}
+						&.contact__link--hireme {
+							display: flex;
+							background: #df136c;
+							font-size: 12px;
+							line-height: 18px;
+							font-weight: 700;
+							margin-left: 15px;
+							transition: all 0.15s;
 
-			&.contact__link--hireme {
-				width: 40px;
-				height: 40px;
-				background: #df136c;
-				font-size: 12px;
-				line-height: 18px;
-				font-weight: 700;
-				margin-left: 15px;
-				transition: all 0.15s;
+							&::after {
+								background: #df136c;
+							}
 
-				&::after {
-					background: #df136c;
-				}
+							&:hover {
+								color: #df136c;
+								background: #ffffff;
+							}
 
-				&:hover {
-					color: #df136c;
-					background: #ffffff;
-				}
+							svg {
+								width: 20px;
+								height: 16px;
+							}
 
-				svg {
-					width: 20px;
-					height: 16px;
-				}
-
-				span {
-					white-space: nowrap;
-					color: inherit;
-					font-weight: inherit;
-					font-size: inherit;
-					line-height: inherit;
-					margin-left: 7px;
+							span {
+								display: none;
+								white-space: nowrap;
+								color: inherit;
+								font-weight: inherit;
+								font-size: inherit;
+								line-height: inherit;
+								margin-left: 7px;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -298,27 +289,202 @@ export default {
 						text-transform: uppercase;
 						padding-top: 20px;
 
+						.work-rate__hour-rate,
+						.work-rate__weekly-availability {
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+						}
+
 						strong {
 							font-size: 20px;
 							line-height: 30px;
 							margin-left: 15px;
 						}
 					}
+
+					.current-user__detail--contact {
+						display: flex;
+
+						.contact__link {
+							&.contact__link--hireme {
+								width: auto;
+								padding-left: 20px;
+								padding-right: 20px;
+
+								span {
+									display: inline;
+								}
+							}
+						}
+					}
 				}
 			}
 		}
+	}
 
-		.current-user__detail--contact {
-			display: flex;
+	@include lg {
+		.header__current-user--detail {
+			.current-user__detail-wrapper {
+				.current-user__detail {
+					.current-user__detail--fullname {
+						font-size: 32px;
+						line-height: 40px;
+					}
 
-			.contact__link {
-				&.contact__link--hireme {
-					width: auto;
-					padding-left: 20px;
-					padding-right: 20px;
+					.current-user__detail--job-title {
+						font-size: 16px;
+						line-height: 22px;
+					}
 
-					span {
-						display: inline;
+					.current-user__detail--motivation {
+						max-width: 418px;
+					}
+
+					.current-user__detail--work-rate {
+						padding-top: 15px;
+						max-width: 300px;
+						font-size: 13px;
+						line-height: 23px;
+
+						strong {
+							margin-left: 7px;
+							font-size: 16px;
+							line-height: 23px;
+						}
+					}
+
+					.current-user__detail--contact {
+						.contact__link {
+							display: flex;
+
+							&:hover {
+								color: #312050;
+								background: #ffffff;
+							}
+
+							&.contact__link--twitter {
+								transition: all 0.15s;
+
+								svg {
+									width: calc(0.8 * 24px);
+									height: calc(0.8 * 20px);
+								}
+							}
+
+							&.contact__link--facebook {
+								margin-left: 15px;
+								transition: all 0.15s;
+
+								svg {
+									width: calc(0.8 * 13px);
+									height: calc(0.8 * 24px);
+								}
+							}
+
+							&.contact__link--instagram {
+								margin-left: 15px;
+								transition: all 0.15s;
+
+								svg {
+									width: calc(0.8 * 21px);
+									height: calc(0.8 * 22px);
+								}
+							}
+
+							&.contact__link--hireme {
+								span {
+									margin-left: 15px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@include xl {
+		.header__current-user--detail {
+			.current-user__avatar > a {
+				width: 349px;
+				height: 326px;
+			}
+
+			.current-user__detail-wrapper {
+				.current-user__detail {
+					.current-user__detail--fullname {
+						font-size: 60px;
+						line-height: 90px;
+					}
+
+					.current-user__detail--job-title {
+						font-size: 30px;
+						line-height: 45px;
+					}
+
+					.current-user__detail--motivation {
+						max-width: 710px;
+						font-size: 20px;
+						line-height: 29px;
+					}
+
+					.current-user__detail--work-rate {
+						font-size: 18px;
+						line-height: 27px;
+						max-width: 455px;
+
+						strong {
+							margin-left: 10px;
+							font-size: 30px;
+							line-height: 45px;
+						}
+					}
+
+					.current-user__detail--contact {
+						height: 90px;
+						align-items: center;
+
+						.contact__link {
+							width: 60px;
+							height: 60px;
+
+							&.contact__link--hireme {
+								padding-left: 38px;
+								padding-right: 38px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@include xxl {
+		.header__current-user--detail {
+			.current-user__avatar > a {
+				width: 480px;
+				height: 449px;
+			}
+
+			.current-user__detail-wrapper {
+				align-items: normal;
+				padding: 70px;
+
+				.current-user__detail {
+					.current-user__detail--fullname {
+					}
+					.current-user__detail--job-title {
+						padding-top: 10px;
+					}
+					.current-user__detail--motivation {
+					}
+					.current-user__detail--work-rate {
+						padding-top: 24px;
+					}
+
+					.current-user__detail--contact {
+						align-items: normal;
 					}
 				}
 			}

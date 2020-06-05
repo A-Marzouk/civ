@@ -97,13 +97,26 @@ export default {
 		.tab-button__label {
 			display: block;
 			font-size: 16px;
+			padding-left: 15px;
 		}
 	}
 
 	@include xl {
+		height: 55px;
+		padding-left: 25px;
+		padding-right: 25px;
+
 		.tab-button__label {
 			font-size: 20px;
 			line-height: 30px;
+			padding-left: 20px;
+		}
+
+		.tab-button__icon {
+			svg {
+				width: auto;
+				height: 23px;
+			}
 		}
 	}
 }

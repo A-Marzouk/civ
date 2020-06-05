@@ -72,7 +72,14 @@ export default {
 		padding-right: 20px;
 	}
 
-	@include sm {
+	@include lg {
+		max-width: calc(#{$lg} + 40px);
+	}
+
+	@include xl {
+		padding-left: 45px;
+		padding-right: 45px;
+		max-width: calc(#{$xl} + 90px);
 	}
 }
 </style>
