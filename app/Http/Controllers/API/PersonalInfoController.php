@@ -66,22 +66,6 @@ class PersonalInfoController extends Controller
 
     }
 
-
-    public function storeLocation(Request $request){
-        if(!$this->is_auth($request)){
-            throw new Exception('Not Authenticated!');
-        }
-
-        $user = User::find($request->user_id);
-        $personalInfo = $user->personalInfo;
-        $this->locationValidator($request->all())->validate();
-        $personalInfo->update($request->toArray());
-
-        if (isset($personalInfo)){
-            return new PersonalInfoResource($personalInfo);
-        }
-    }
-
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -91,16 +75,12 @@ class PersonalInfoController extends Controller
             'designation' => ['sometimes','required', 'string','max:255','min:7'],
             'profile_pic' => ['sometimes','required'],
             'phone' => ['sometimes','required', 'numeric','min:7'],
-            'about' => ['sometimes','required','string','min:30','max:2500'],
+            'location' => ['sometimes', 'string', 'max:255','min:3'],
+            'about' => ['sometimes','required','string','min:10','max:2500'],
+            'quote' => ['sometimes','required','string','min:10','max:2500'],
         ]);
     }
 
-    protected function locationValidator(array $data)
-    {
-        return Validator::make($data, [
-            'location' => ['required', 'string', 'max:255','min:3'],
-        ]);
-    }
 
     protected function is_auth($request){
         return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
