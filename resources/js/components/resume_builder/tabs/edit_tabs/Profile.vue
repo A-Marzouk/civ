@@ -1,5 +1,5 @@
 <template>
-    <div class="hold-edit" v-if="personalInfo">
+    <div class="hold-edit" v-if="personalInfo"  data-app>
         <div class="profile-pic-row" v-if="personalInfo">
             <div class="profile-pic" @click="clickUploadInput">
                 <img :src="personalInfo.profile_pic" alt />
@@ -17,7 +17,7 @@
 
 
 
-        <form class="">
+        <div>
 
             <v-text-field
                     class="resume-builder__input"
@@ -53,16 +53,43 @@
                     @blur="applyEdit('auto')"
             ></v-text-field>
 
-            <v-text-field
-                    class="resume-builder__input"
-                    label="Date of Birth"
-                    v-model="personalInfo.date_of_birth"
-                    :outlined="true"
-                    :class="{'resume-builder__input--disabled': false}"
-                    :error="!!errors.date_of_birth"
-                    @blur="applyEdit('auto')"
-            ></v-text-field>
-
+            <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="290px"
+            >
+                <template v-slot:activator="{ on }">
+                    <v-text-field
+                            v-model="personalInfo.date_of_birth"
+                            class="resume-builder__input civie-datepicker"
+                            label="Date"
+                            color="#001CE2"
+                            readonly
+                            v-on="on"
+                            outlined
+                            placeholder="yyyy-mm-dd"
+                    >
+                        <button
+                                class="dropdown-icon icon"
+                                slot="append"
+                                @click="menu = true"
+                        >
+                            <svg-vue
+                                    :icon="`dropdown-caret`"
+                            ></svg-vue>
+                        </button>
+                    </v-text-field>
+                </template>
+                <v-date-picker v-model="personalInfo.date_of_birth" no-title scrollable color="#001CE2">
+                    <v-spacer></v-spacer>
+                    <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                    <v-btn text color="primary" @click="saveDate">OK</v-btn>
+                </v-date-picker>
+            </v-menu>
 
 
             <v-text-field
@@ -96,7 +123,7 @@
             <div class="actions">
                 <a href="javascript:void(0)" @click="manualSave" class="btn btn-filled"><img class='icon' src="/images/resume_builder/profile/icon-save.png">Save all information</a>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 
@@ -104,12 +131,15 @@
 
     export default {
         name:"Personal",
-        data(){
+        data(vm){
             return{
                 errors:{},
                 tempPic:'',
                 profile_pic_error:'',
-                savingType: 'manual'
+                savingType: 'manual',
+                date: null,
+                dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
+                menu: false
             }
         },
         computed: {
@@ -118,9 +148,29 @@
             },
             user(){
                 return this.$store.state.user;
-            }
+            },
+            computedDateFormatted () {
+                return this.formatDate(this.date)
+            },
+        },
+        watch: {
+            date (val) {
+                this.dateFormatted = this.formatDate(this.date)
+            },
         },
         methods:{
+            // date functions
+            formatDate (date) {
+                if (!date) return null
+
+                const [year, month, day] = date.split('-')
+                return `${month}/${day}/${year}`
+            },
+            saveDate(){
+                this.$refs.menu.save(this.personalInfo.date_of_birth);
+                this.applyEdit('auto');
+            },
+            // date functiosn edn
             manualSave(){
                 this.applyEdit('manual');
             },
