@@ -85,7 +85,7 @@ class PersonalInfoController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'full_name' => ['sometimes', 'string', 'max:255','min:3'],
+            'first_name' => ['sometimes', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
             'designation' => ['sometimes','required', 'string','max:255','min:7'],
             'profile_pic' => ['sometimes','required'],
