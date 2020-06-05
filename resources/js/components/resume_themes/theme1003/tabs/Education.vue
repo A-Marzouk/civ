@@ -1,48 +1,52 @@
 <template>
-	<div class="education-tab tw-px-4 tw-py-10">
-		<div class="education-tab__inner" :class="{'tw-mb-5': isLastEducation(education)}" v-for="education in educations" :key="education.id">
-			<Card :details="education">
-				<svg width="28" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path fill="#fff" d="M14 .75L.25 8.25l5 2.725v7.5L14 23.25l8.75-4.775v-7.5l2.5-1.362v8.637h2.5v-10L14 .75zm8.525 7.5L14 12.9 5.475 8.25 14 3.6l8.525 4.65zm-2.275 8.738L14 20.4l-6.25-3.412v-4.65L14 15.75l6.25-3.412v4.65z" />
-				</svg>
-			</Card>
+	<div class="education">
+		<div class="education-items">
+			<ItemViewCard v-for="item in education" :title="item.title" :subtitle="item.subtitle" :description="item.description" :duration="item.duration" :key="item.id" />
 		</div>
 	</div>
 </template>
 
 <script>
-import Card from "../components/Card";
+import ItemViewCard from "../components/ItemViewCard";
 
 export default {
 	name: "education",
 
-	components: { Card },
+	components: { ItemViewCard },
 
 	data: () => {
 		return {
-			educations: [
+			education: [
 				{
 					id: 1,
-					title: "UXUI Designer",
-					subtitle: "IBM LAB",
+					title: "Ryerson University",
+					subtitle: "London",
 					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat elit a lacus luctus, accumsan.",
+						"Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
 					duration: "2010-2013"
 				},
 				{
 					id: 2,
-					title: "UXUI Designer",
-					subtitle: "IBM LAB",
+					title: "Ryerson University",
+					subtitle: "London",
 					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat elit a lacus luctus, accumsan.",
+						"Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
 					duration: "2010-2013"
 				},
 				{
 					id: 3,
-					title: "UXUI Designer",
-					subtitle: "IBM LAB",
+					title: "Ryerson University",
+					subtitle: "London",
 					description:
-						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam volutpat elit a lacus luctus, accumsan.",
+						"Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
+					duration: "2010-2013"
+				},
+				{
+					id: 4,
+					title: "Ryerson University",
+					subtitle: "London",
+					description:
+						"Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
 					duration: "2010-2013"
 				}
 			]
@@ -69,25 +73,48 @@ export default {
 <style lang="scss" scoped>
 @import "./../scss/variables";
 
-@media (min-width: $md) {
-	.education-tab {
-		padding-left: 37px;
-		padding-right: 37px;
-	}
-}
+.education {
+	font-family: $roboto;
+	padding-left: 7px;
+	padding-right: 7px;
 
-@media (min-width: $lg) {
-	.education-tab {
-		display: flex;
-		flex-wrap: wrap;
-		padding-left: 0;
-		padding-right: 0;
+	.education-items {
+		display: grid;
+		grid-template-columns: 1fr;
+		row-gap: 25px;
 	}
 
-	.education-tab__inner {
-		width: 33.333333%;
-		padding-left: 15px;
-		padding-right: 15px;
+	@include xs {
+		padding-left: 16px;
+		padding-right: 16px;
+	}
+
+	@include md {
+		padding: 10px 15px;
+
+		.education-items {
+			max-width: 752px;
+			margin: 0 auto;
+			column-gap: 30px;
+			row-gap: 30px;
+		}
+	}
+
+	@include lg {
+		.education-items {
+			max-width: 1320px;
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+
+	@include xl {
+		padding-top: 25px;
+		padding-bottom: 25px;
+
+		.education-items {
+			max-width: 1770px;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+		}
 	}
 }
 </style>
