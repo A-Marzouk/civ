@@ -13,7 +13,7 @@
           <v-tab-item v-for="i in 3" :key="i">
             <v-container style="width:100%;">
               <v-row align="center">
-                <v-col xl="3" lg="3" sm="6" cols="12" v-for="i in 3" :key="i">
+                <v-col xl="3" lg="3" md="6" sm="6" cols="12" v-for="i in 3" :key="i">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-select
                       class="resume-builder__input civie-select"
@@ -29,11 +29,48 @@
                     </v-select>
                   </v-card>
                 </v-col>
-                <v-col xl="3" lg="3" sm="6" cols="3">
-                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
+                <v-col xl="3" lg="3" md="6" sm="6" cols="3">
+                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2">Add New</v-btn>
                 </v-col>
-                <v-col xl="8">
-                  <v-card></v-card>
+                <v-col xl="6" lg="6" md="12" sm="12" cols="12">
+                  <v-card color="#E6E8FC" class="card-skill ml-xl-10" flat height="76">
+                    <v-card-text>
+                      <v-row align="center" justify="center">
+                        <v-col cols="1">
+                          <v-btn depressed class="btn-v_bar">
+                            <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                          </v-btn>
+                        </v-col>
+                        <v-col cols="6">
+                          <div class="skill-title">Laravel</div>
+                          <div class="mt-3">
+                            <v-progress-linear
+                              class="progress-skill"
+                              height="8"
+                              rounded
+                              color="#001CE2"
+                              background-color="#C4C9F5"
+                              value="90"
+                            ></v-progress-linear>
+                          </div>
+                        </v-col>
+                        <v-col cols="2">
+                          <span class="skill-title">90%</span>
+                        </v-col>
+                        <v-col cols="3" align="right">
+                          <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-1">
+                            <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
+                          </v-btn>
+                          <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-1">
+                            <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
+                          </v-btn>
+                          <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-1">
+                            <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
+                          </v-btn>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-card>
                 </v-col>
               </v-row>
             </v-container>
@@ -74,6 +111,7 @@ export default {
       return this.$store.state.user.skills;
     }
   },
+  props: ["selectProps"],
   methods: {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
@@ -657,9 +695,45 @@ export default {
 .card-skill-items {
   width: 1412px !important;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-  .btn-add-new{
+  .btn-add-new {
     width: 120px !important;
     height: 50px !important;
   }
+  .card-skill {
+    border-radius: 10px !important;
+    .btn-v_bar {
+      min-width: 30px !important;
+      min-height: 30px !important;
+      width: 30px !important;
+      height: 30px !important;
+      background: #f2f3fd;
+      border-radius: 5px;
+    }
+    .skill-title {
+      font-family: "Noto Sans" !important;
+      font-weight: 500;
+      font-size: 16px !important;
+      line-height: 14px;
+      color: #888db1;
+    }
+    .progress-skill {
+      border-radius: 20px !important;
+      background-color: #c4c9f5 !important;
+    }
+    .btn-skill-action {
+      border-radius: 5px !important;
+      min-width: 30px !important;
+      min-height: 30px !important;
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+}
+</style>
+
+<style>
+#resumeBuilder .v-progress-linear__determinate {
+  border-top-right-radius: 5px !important;
+  border-bottom-right-radius: 5px !important;
 }
 </style>
