@@ -13,7 +13,7 @@
           <v-tab-item v-for="i in 3" :key="i">
             <v-container style="width:100%;">
               <v-row align="center">
-                <v-col cols="3" v-for="i in 3" :key="i">
+                <v-col xl="3" lg="3" sm="6" cols="12" v-for="i in 3" :key="i">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-select
                       class="resume-builder__input civie-select"
@@ -29,8 +29,11 @@
                     </v-select>
                   </v-card>
                 </v-col>
-                <v-col cols="3">
+                <v-col xl="3" lg="3" sm="6" cols="3">
                   <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
+                </v-col>
+                <v-col xl="8">
+                  <v-card></v-card>
                 </v-col>
               </v-row>
             </v-container>
@@ -653,6 +656,7 @@ export default {
 }
 .card-skill-items {
   width: 1412px !important;
+  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   .btn-add-new{
     width: 120px !important;
     height: 50px !important;
