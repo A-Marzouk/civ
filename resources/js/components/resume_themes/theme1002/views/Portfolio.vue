@@ -72,7 +72,8 @@ export default {
 
 	methods: {
 		onResize() {
-			this.inSmallScreen = window.innerWidth < 1024;
+			this.inSmallScreen = window.outerWidth < 1024;
+			this.$forceUpdate();
 		}
 	},
 
@@ -91,7 +92,8 @@ export default {
 @import "./../scss/variables";
 
 .portfolio {
-	padding: 17px 25px;
+	padding-top: 17px;
+	padding-bottom: 17px;
 	max-width: $sm;
 	margin-left: auto;
 	margin-right: auto;
