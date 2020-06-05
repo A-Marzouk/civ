@@ -57,7 +57,7 @@
                     ref="menu"
                     v-model="menu"
                     :close-on-content-click="false"
-                    :return-value.sync="date"
+                    :return-value.sync="personalInfo.date_of_birth"
                     transition="scale-transition"
                     offset-y
                     min-width="290px"
@@ -137,8 +137,6 @@
                 tempPic:'',
                 profile_pic_error:'',
                 savingType: 'manual',
-                date: null,
-                dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
                 menu: false
             }
         },
@@ -149,28 +147,15 @@
             user(){
                 return this.$store.state.user;
             },
-            computedDateFormatted () {
-                return this.formatDate(this.date)
-            },
-        },
-        watch: {
-            date (val) {
-                this.dateFormatted = this.formatDate(this.date)
-            },
+
         },
         methods:{
             // date functions
-            formatDate (date) {
-                if (!date) return null
-
-                const [year, month, day] = date.split('-')
-                return `${month}/${day}/${year}`
-            },
             saveDate(){
                 this.$refs.menu.save(this.personalInfo.date_of_birth);
                 this.applyEdit('auto');
             },
-            // date functiosn edn
+            // date functions end
             manualSave(){
                 this.applyEdit('manual');
             },
