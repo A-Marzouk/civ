@@ -5,7 +5,7 @@
             <v-row class="align-center" >
                 <v-col class="the-avatar-901" lg="1" md="2" sm="2" cols="4" >
                     <div style="width: 124px;" >
-                    <img src="/images/resume_themes/theme901/profile.png" class="avatar-901" alt="">
+                    <img src="/images/resume_themes//theme901/profile.png" class="avatar-901" alt="">
                     <v-btn
                         color="#fff"
                         class="icon-avatar-901"
@@ -146,16 +146,16 @@
                     <div class=" portfolio-901">
                         <VueSlickCarousel ref="carousel_portfolio" :slidesToShow="portfolioslide" :rows="portfoliorows" :arrows="false" :dots="false" :speed="500">
                             <div>
-                                <v-img  class="ma-4" src="/images/resume_themes/theme901/image1.png" alt=""/>
+                                <v-img  class="ma-4" src="/images/resume_themes//theme901/image1.png" alt=""/>
                             </div>
                             <div>
-                                <v-img class="ma-4" src="/images/resume_themes/theme901/image2.png" alt=""/>
+                                <v-img class="ma-4" src="/images/resume_themes//theme901/image2.png" alt=""/>
                             </div>
                             <div>
-                                <v-img class="ma-4" src="/images/resume_themes/theme901/image1.png" alt=""/>
+                                <v-img class="ma-4" src="/images/resume_themes//theme901/image1.png" alt=""/>
                             </div>
                             <div>
-                                <v-img class="ma-4" src="/images/resume_themes/theme901/image2.png" alt=""/>
+                                <v-img class="ma-4" src="/images/resume_themes//theme901/image2.png" alt=""/>
                             </div>
                         </VueSlickCarousel>
                     </div>
@@ -208,28 +208,28 @@
                     </v-tabs-items>
                 </v-tab-item>
                 <v-tab-item key="work" >
-                    <v-container >
+                    <div >
                         <VueSlickCarousel ref="work_carousel" :slidesToShow="boxsslide" :rows="boxsrows" :arrows="false" :dots="false" :speed="500">
                             <div 
                                 v-for="(value,index) in boxs_work" 
                                 :key="index" >
-                                <v-row class="box-tm901" >
-                                    <v-col cols="3" >
-                                        <p class="box-tm901-left"> {{ value.title }} </p>
-                                        <p class="box-tm901-left"> {{ value.date }} </p>
-                                    </v-col>
-                                    <v-col >
+                                <div class=" d-flex box-tm901" >
+                                    <div class="box-tm901-left" >
+                                        <span > {{ value.title }} </span> <br>
+                                        <span > {{ value.date }} </span>
+                                    </div>
+                                    <div class="" >
                                         <p 
                                             class="box-tm901-right"
                                             v-for="(value,index) in value.text" 
                                             :key="index" >
                                             {{ value }}
                                         </p>
-                                    </v-col>
-                                </v-row>
+                                    </div>
+                                </div>
                             </div>
                         </VueSlickCarousel>
-                    </v-container>
+                    </div>
                     <div class="text-center mt-10 ">
                         <v-btn @click="$refs.work_carousel.prev()" class="mr-7" fab dark color="white">
                         <v-icon size="50" color="#65676A" >mdi-chevron-left</v-icon>
@@ -240,28 +240,28 @@
                     </div>
                 </v-tab-item>
                 <v-tab-item key="education" >
-                    <v-container >
+                    <div >
                         <VueSlickCarousel ref="education_carousel" :slidesToShow="boxsslide" :rows="boxsrows" :arrows="false" :dots="false" :speed="500">
                             <div 
                                 v-for="(value,index) in boxs_education" 
                                 :key="index" >
-                                <v-row class="box-tm901" >
-                                    <v-col cols="3" >
-                                        <p class="box-tm901-left" > {{ value.title }} </p>
-                                        <p class="box-tm901-left"> {{ value.date }} </p>
-                                    </v-col>
-                                    <v-col >
+                                <div class=" d-flex box-tm901" >
+                                    <div class="box-tm901-left" >
+                                        <span > {{ value.title }} </span> <br>
+                                        <span > {{ value.date }} </span>
+                                    </div>
+                                    <div class="" >
                                         <p 
                                             class="box-tm901-right"
                                             v-for="(value,index) in value.text" 
                                             :key="index" >
                                             {{ value }}
                                         </p>
-                                    </v-col>
-                                </v-row>
+                                    </div>
+                                </div>
                             </div>
                         </VueSlickCarousel>
-                    </v-container>
+                    </div>
                     <div class="text-center mt-10 ">
                         <v-btn @click="$refs.education_carousel.prev()" class="mr-7" fab dark color="white">
                         <v-icon size="50" color="#65676A" >mdi-chevron-left</v-icon>
@@ -332,10 +332,10 @@ export default {
                 {title:"Graphic & web design",date:"2018 - 2019",text:['Company "React"','- Turning creative concepts into finished websites.','- Drawing up detailed website s pecifications.','- Drawing up detailed website s pecifications.','- Building websites that are easy to understand, navigate and use.','- Designing sample page layouts. ','- Ensuring that the website complies with the company’s brand guidelines.']}
             ],
             programming_languages:[
-                {img:'/images/resume_themes/theme901/php.png',level:'80'},
-                {img:'/images/resume_themes/theme901/css3.png',level:'50'},
-                {img:'/images/resume_themes/theme901/html5.png',level:'70'},
-                {img:'/images/resume_themes/theme901/javascript.png',level:'90'},
+                {img:'/images/resume_themes//theme901/php.png',level:'80'},
+                {img:'/images/resume_themes//theme901/css3.png',level:'50'},
+                {img:'/images/resume_themes//theme901/html5.png',level:'70'},
+                {img:'/images/resume_themes//theme901/javascript.png',level:'90'},
             ],
                 settings_boxs:{
                 "arrows": false,
@@ -409,6 +409,9 @@ export default {
 @import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 #hold-theme901{
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
     .header-901{
         box-shadow: 0px 8px 6px rgba(0, 0, 0, 0.03);
         
@@ -648,12 +651,13 @@ color: #2176E5;
                 font-size: 16px;
                 line-height: 20px;
                 color: #5B5D60;
+                max-width: 139px;
                 @media only screen and (max-width: 992px) {
                     color: #104EFB;
                 }
                 @media only screen and (max-width: 597px) {
                     font-size: 13px;
-                    color: #65676A;
+                    color: #104EFB;
                 }
             }
             .box-tm901-right{
@@ -663,12 +667,15 @@ color: #2176E5;
                 font-size: 20px;
                 line-height: 20px;
                 color: #5B5D60;
+                width: 85%;
+                padding-left: 20px;
                 @media only screen and (max-width: 992px) {
                     color: #104EFB;
+                    width: 100%;
                 }
                 @media only screen and (max-width: 597px) {
                     font-size: 13px;
-                    color: #65676A;
+                    color: #104EFB;
                 }
             }
         }
