@@ -86,6 +86,7 @@ class PersonalInfoController extends Controller
     {
         return Validator::make($data, [
             'first_name' => ['sometimes', 'string', 'max:255','min:3'],
+            'last_name' => ['sometimes', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
             'designation' => ['sometimes','required', 'string','max:255','min:7'],
             'profile_pic' => ['sometimes','required'],
