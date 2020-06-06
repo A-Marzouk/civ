@@ -2,239 +2,245 @@
     <div class="profile-tab-upper" v-if="personalInfo" data-app>
 
 
-        <div class="profile-pic-row" v-if="personalInfo">
-            <div class="profile-pic" @click="clickUploadInput">
-                <img :src="personalInfo.profile_pic" alt/>
+        <div class="d-flex">
+            <div class="profile-pic-row-wrapper">
+                <div class="label">
+                    Photo
+                </div>
+                <div class="profile-pic-row" v-if="personalInfo">
+                    <div class="profile-pic" @click="clickUploadInput">
+                        <img :src="personalInfo.profile_pic" alt/>
+                    </div>
+                </div>
+                <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
+                <input
+                        type="file"
+                        ref="profile_picture"
+                        id="profile_picture"
+                        style="width: 1px; height: 1px; opacity: 0; right:145%;"
+                        @change="handleProfilePictureUpload"
+                />
             </div>
-        </div>
-
-        <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
-        <input
-                type="file"
-                ref="profile_picture"
-                id="profile_picture"
-                style="width: 1px; height: 1px; opacity: 0; right:145%;"
-                @change="handleProfilePictureUpload"
-        />
-
-        <v-text-field
-                class="resume-builder__input"
-                label="First Name"
-                v-model="personalInfo.first_name"
-                :outlined="true"
-                :class="{'resume-builder__input--disabled': false}"
-                :error="!!errors.first_name"
-                @blur="applyEdit('auto')"
-        ></v-text-field>
-
-
-        <v-text-field
-                class="resume-builder__input"
-                label="Last Name"
-                v-model="personalInfo.last_name"
-                :outlined="true"
-                :class="{'resume-builder__input--disabled': false}"
-                :error="!!errors.last_name"
-                @blur="applyEdit('auto')"
-        ></v-text-field>
-
-
-        <v-text-field
-                class="resume-builder__input"
-                label="Current Location"
-                v-model="personalInfo.location"
-                :outlined="true"
-                :class="{'resume-builder__input--disabled': false}"
-                :error="!!errors.location"
-                @blur="applyEdit('auto')"
-        >
-            <button
-                    class="eye-icon trigger-icon icon"
-                    :class="{'icon--disabled': false}"
-                    slot="append"
-                    @click=""
-            >
-                <svg-vue
-                        :icon="`eye-icon`"
-                ></svg-vue>
-            </button>
-        </v-text-field>
-
-        <v-menu
-                ref="menu"
-                v-model="menu"
-                :close-on-content-click="false"
-                :return-value.sync="personalInfo.date_of_birth"
-                transition="scale-transition"
-                offset-y
-                min-width="290px"
-        >
-            <template v-slot:activator="{ on }">
+            <div class="d-flex flex-wrap w-100">
                 <v-text-field
-                        v-model="personalInfo.date_of_birth"
-                        class="resume-builder__input civie-datepicker"
-                        label="Date"
-                        color="#001CE2"
-                        readonly
-                        v-on="on"
+                        class="resume-builder__input profile-input"
+                        label="First Name"
+                        v-model="personalInfo.first_name"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.first_name"
+                        @blur="applyEdit('auto')"
+                ></v-text-field>
+
+                <v-text-field
+                        class="resume-builder__input profile-input"
+                        label="Last Name"
+                        v-model="personalInfo.last_name"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.last_name"
+                        @blur="applyEdit('auto')"
+                ></v-text-field>
+
+                <v-text-field
+                        class="resume-builder__input profile-input"
+                        label="Current Location"
+                        v-model="personalInfo.location"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.location"
+                        @blur="applyEdit('auto')"
+                >
+                    <button
+                            class="eye-icon trigger-icon icon"
+                            :class="{'icon--disabled': false}"
+                            slot="append"
+                            @click=""
+                    >
+                        <svg-vue
+                                :icon="`eye-icon`"
+                        ></svg-vue>
+                    </button>
+                </v-text-field>
+
+                <v-menu
+                        ref="menu"
+                        v-model="menu"
+                        :close-on-content-click="false"
+                        :return-value.sync="personalInfo.date_of_birth"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                >
+                    <template v-slot:activator="{ on }">
+                        <v-text-field
+                                v-model="personalInfo.date_of_birth"
+                                class="resume-builder__input civie-datepicker profile-input"
+                                label="Date"
+                                color="#001CE2"
+                                readonly
+                                v-on="on"
+                                outlined
+                                placeholder="yyyy-mm-dd"
+                        >
+                            <button
+                                    class="dropdown-icon icon"
+                                    slot="append"
+                                    @click="menu = true"
+                            >
+                                <svg-vue
+                                        :icon="`dropdown-caret`"
+                                ></svg-vue>
+                            </button>
+                        </v-text-field>
+                    </template>
+                    <v-date-picker v-model="personalInfo.date_of_birth" no-title scrollable color="#001CE2">
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="saveDate">OK</v-btn>
+                    </v-date-picker>
+                </v-menu>
+
+                <v-text-field
+                        class="resume-builder__input profile-input"
+                        label="Job Title"
+                        v-model="personalInfo.designation"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.designation"
+                        @blur="applyEdit('auto')"
+                ></v-text-field>
+
+                <v-select
+                        class="resume-builder__input  profile-input civie-select"
                         outlined
-                        placeholder="yyyy-mm-dd"
+                        placeholder="Select an option"
+                        :items="languageItems"
+                        label="Languages"
+                        color="#001CE2"
                 >
                     <button
                             class="dropdown-icon icon"
                             slot="append"
-                            @click="menu = true"
                     >
                         <svg-vue
                                 :icon="`dropdown-caret`"
                         ></svg-vue>
                     </button>
-                </v-text-field>
-            </template>
-            <v-date-picker v-model="personalInfo.date_of_birth" no-title scrollable color="#001CE2">
-                <v-spacer></v-spacer>
-                <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
-                <v-btn text color="primary" @click="saveDate">OK</v-btn>
-            </v-date-picker>
-        </v-menu>
+                </v-select>
+            </div>
+        </div>
 
+       <div class="d-flex">
+          <div class="d-flex flex-column">
+              <v-text-field
+                      class="resume-builder__input profile-input"
+                      label="Hometown"
+                      v-model="personalInfo.hometown"
+                      :outlined="true"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :error="!!errors.hometown"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                          @click=""
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-text-field>
 
-        <v-text-field
-                class="resume-builder__input"
-                label="Job Title"
-                v-model="personalInfo.designation"
-                :outlined="true"
-                :class="{'resume-builder__input--disabled': false}"
-                :error="!!errors.designation"
-                @blur="applyEdit('auto')"
-        ></v-text-field>
+              <v-text-field
+                      class="resume-builder__input profile-input"
+                      label="Nationality"
+                      v-model="personalInfo.nationality"
+                      :outlined="true"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :error="!!errors.nationality"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                          @click=""
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-text-field>
+          </div>
 
+          <div class="d-flex">
+              <v-textarea
+                      class="resume-builder__input profile-input civie-textarea"
+                      outlined
+                      color="#001CE2"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :disabled="false"
+                      v-model="personalInfo.about"
+                      label="About Me"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-textarea>
 
-        <v-select
-                class="resume-builder__input civie-select"
-                outlined
-                placeholder="Select an option"
-                :items="languageItems"
-                label="Languages"
-                color="#001CE2"
-        >
-            <button
-                    class="dropdown-icon icon"
-                    slot="append"
-            >
-                <svg-vue
-                        :icon="`dropdown-caret`"
-                ></svg-vue>
-            </button>
-        </v-select>
+              <v-textarea
+                      class="resume-builder__input profile-input civie-textarea"
+                      outlined
+                      color="#001CE2"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :disabled="false"
+                      v-model="summary.overview"
+                      label="Overview Summary"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-textarea>
 
-
-        <v-text-field
-                class="resume-builder__input"
-                label="Hometown"
-                v-model="personalInfo.hometown"
-                :outlined="true"
-                :class="{'resume-builder__input--disabled': false}"
-                :error="!!errors.hometown"
-                @blur="applyEdit('auto')"
-        >
-            <button
-                    class="eye-icon trigger-icon icon"
-                    :class="{'icon--disabled': false}"
-                    slot="append"
-                    @click=""
-            >
-                <svg-vue
-                        :icon="`eye-icon`"
-                ></svg-vue>
-            </button>
-        </v-text-field>
-
-
-        <v-text-field
-                class="resume-builder__input"
-                label="Nationality"
-                v-model="personalInfo.nationality"
-                :outlined="true"
-                :class="{'resume-builder__input--disabled': false}"
-                :error="!!errors.nationality"
-                @blur="applyEdit('auto')"
-        >
-            <button
-                    class="eye-icon trigger-icon icon"
-                    :class="{'icon--disabled': false}"
-                    slot="append"
-                    @click=""
-            >
-                <svg-vue
-                        :icon="`eye-icon`"
-                ></svg-vue>
-            </button>
-        </v-text-field>
-
-
-        <v-textarea
-                class="resume-builder__input civie-textarea"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': false}"
-                :disabled="false"
-                v-model="personalInfo.about"
-                label="About Me"
-                @blur="applyEdit('auto')"
-        >
-            <button
-                    class="eye-icon trigger-icon"
-                    :class="{'icon--disabled': false}"
-                    slot="append"
-            >
-                <svg-vue
-                        :icon="`eye-icon`"
-                ></svg-vue>
-            </button>
-        </v-textarea>
-
-        <v-textarea
-                class="resume-builder__input civie-textarea"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': false}"
-                :disabled="false"
-                v-model="summary.overview"
-                label="Overview Summary"
-                @blur="applyEdit('auto')"
-        >
-            <button
-                    class="eye-icon trigger-icon"
-                    :class="{'icon--disabled': false}"
-                    slot="append"
-            >
-                <svg-vue
-                        :icon="`eye-icon`"
-                ></svg-vue>
-            </button>
-        </v-textarea>
-
-        <v-textarea
-                class="resume-builder__input civie-textarea"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': false}"
-                :disabled="false"
-                label="Quote"
-                v-model="personalInfo.quote"
-                @blur="applyEdit('auto')"
-        >
-            <button
-                    class="eye-icon trigger-icon"
-                    :class="{'icon--disabled': false}"
-                    slot="append"
-            >
-                <svg-vue
-                        :icon="`eye-icon`"
-                ></svg-vue>
-            </button>
-        </v-textarea>
+              <v-textarea
+                      class="resume-builder__input profile-input civie-textarea"
+                      outlined
+                      color="#001CE2"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :disabled="false"
+                      label="Quote"
+                      v-model="personalInfo.quote"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-textarea>
+          </div>
+       </div>
 
     </div>
 </template>
@@ -363,12 +369,39 @@
 
 <style lang="scss" scoped>
 
-    .profile-tab-upper{
+    .profile-tab-upper {
+
+        background: #FFFFFF;
+        box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+        margin-bottom: 70px;
+        padding: 50px 0 35px 40px;
+
+        .profile-input{
+            max-width: 300px;
+            min-width: 300px;
+            margin-right:40px;
+            margin-top:20px;
+        }
+
         .profile-pic-row-holder {
             height: 110px;
             width: 25%;
             background: whitesmoke;
         }
+
+        .profile-pic-row-wrapper{
+            width:33%;
+            .label{
+                font-size: 16px;
+                line-height: 18px;
+                margin-bottom:12px;
+                margin-top: -8px;
+                color: #888DB1;
+            }
+        }
+
+
+
         .profile-pic-row {
             display: flex;
             align-items: center;
@@ -410,7 +443,7 @@
 
     }
 
-    .input-margins{
+    .input-margins {
         margin-left: 40px;
         margin-top: 20px;
     }
