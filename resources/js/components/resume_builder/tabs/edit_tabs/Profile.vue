@@ -8,10 +8,16 @@
                     Photo
                 </div>
                 <div class="profile-pic-row" v-if="personalInfo">
-                    <div class="profile-pic" @click="clickUploadInput">
+                    <div class="profile-pic">
                         <img :src="personalInfo.profile_pic" alt/>
+                        <div class="photo-cover" @click="clickUploadInput">
+                            <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
+                        </div>
                     </div>
                 </div>
+
+
+
                 <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
                 <input
                         type="file"
@@ -407,10 +413,35 @@
             align-items: center;
 
             .profile-pic {
+                position: relative;
+                overflow-y: hidden;
+                border-radius: 50%;
+
                 img {
                     width: 120px;
                     height: 120px;
                     border-radius: 50%;
+                }
+
+                .photo-cover{
+                    &:hover{
+                        cursor: pointer;
+                    }
+                    width: 120px;
+                    height: 50px;
+                    background: #001CE2;
+                    opacity: 0.5;
+                    position: absolute;
+                    bottom: 0px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        width:25px;
+                        height:25px;
+                        opacity: 1;
+                        border-radius: 0;
+                    }
                 }
             }
 
