@@ -3,9 +3,11 @@
     <div style="width: 100%">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="skillTab">
-          <v-tab class="resume-builder__tab">Item One</v-tab>
-          <v-tab class="resume-builder__tab">Item Two</v-tab>
-          <v-tab class="resume-builder__tab">Item Three</v-tab>
+          <v-tab
+            class="resume-builder__tab"
+            v-for="(tabName,i) in tabs"
+            :key="i"
+          >{{tabName.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
       <v-card class="card-skill-items">
@@ -20,7 +22,7 @@
                       outlined
                       placeholder="Select an option"
                       :items="typeItems"
-                      label="Select a profession"
+                      label="Type"
                       color="#001CE2"
                     >
                       <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
@@ -37,7 +39,7 @@
                       outlined
                       placeholder="Select an option"
                       :items="typeItems"
-                      label="Select a profession"
+                      label="Name"
                       color="#001CE2"
                     >
                       <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
@@ -54,7 +56,7 @@
                       outlined
                       placeholder="Select an option"
                       :items="typeItems"
-                      label="Select a profession"
+                      label="Skill Amount"
                       color="#001CE2"
                     >
                       <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
@@ -224,6 +226,7 @@ export default {
   },
   computed: {
     skills() {
+      console.log(this.$store.state.user.skills);
       return this.$store.state.user.skills;
     }
   },
