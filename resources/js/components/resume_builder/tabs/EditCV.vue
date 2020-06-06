@@ -10,17 +10,30 @@
                </div>
                <div id="scrollItem"></div>
            </div>
-           <transition  name="fade" mode="out-in">
-               <router-view></router-view>
-           </transition>
+           <div>
+               <transition  name="fade" mode="out-in" class="d-flex flex-column">
+                   <router-view></router-view>
+               </transition>
+
+               <div>
+                   <user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+               </div>
+           </div>
        </div>
+
+
    </div>
 </template>
 
 <script>
 
+    import UserTheme from  '../../resume_themes/theme8'
+
     export default {
         name: "EditCV",
+        components:{
+            'user-theme' : UserTheme
+        },
         data: () => ({
             asideSections: [
                 {
@@ -138,6 +151,11 @@
                     clearInterval(interval)
                 }, 301);
 
+            }
+        },
+        computed:{
+            user() {
+                return this.$store.state.user;
             }
         },
         mounted () {

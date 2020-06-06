@@ -269,7 +269,8 @@ import { moveTabsHelper } from '../../helpers/tab-animations';
                     id: skill.id,
                     category: skill.category,
                     title: skill.title,
-                    percentage: skill.percentage
+                    percentage: skill.percentage,
+                    user_id: this.$store.state.user.id,
                 };
                 this.closeOptionsBtn();
             },

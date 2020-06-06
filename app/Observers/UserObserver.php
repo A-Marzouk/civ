@@ -86,7 +86,7 @@ class UserObserver
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
-            'full_name' => $user->name,
+            'first_name' => $user->name,
             'email' => $user->email
         ]);
 

@@ -83,12 +83,6 @@ class SkillsController extends Controller
         return new SkillResource($skill);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return  array  $id
-     */
     public function destroy($id)
     {
         $skill = Skill::where([

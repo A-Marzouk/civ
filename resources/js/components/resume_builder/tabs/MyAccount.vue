@@ -3,8 +3,11 @@
     <div v-if="currentUser">
       <div id="myAccountTab" class="my-account-tab-wrapper">
         <div class="profile-pic-row" v-if="personalInfo">
-          <div class="profile-pic" @click="clickUploadInput">
+          <div class="profile-pic">
             <img :src="personalInfo.profile_pic" alt />
+            <div class="photo-cover" @click="clickUploadInput">
+              <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
+            </div>
           </div>
           <div class="info-my-account">
             <div class="name">{{accountData.name}}</div>
@@ -557,10 +560,36 @@ $placeholder-color: #9ba1ad;
     display: flex;
     align-items: center;
     .profile-pic {
+
+      position: relative;
+      overflow-y: hidden;
+      border-radius: 50%;
+
       img {
         width: 110px;
         height: 110px;
         border-radius: 50%;
+      }
+
+      .photo-cover{
+        &:hover{
+          cursor: pointer;
+        }
+        width: 110px;
+        height: 45px;
+        background: #001CE2;
+        opacity: 0.5;
+        position: absolute;
+        bottom: 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+          width:25px;
+          height:25px;
+          opacity: 1;
+          border-radius: 0;
+        }
       }
     }
 
