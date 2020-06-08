@@ -23,6 +23,7 @@ import ResumeBuilderCoverLetter from './components/resume_builder/tabs/CoverLett
 
 // edit inside components :
 import ResumeBuilderEditCVProfile from './components/resume_builder/tabs/edit_tabs/Profile'
+import ResumeBuilderEditCVLinks from './components/resume_builder/tabs/edit_tabs/Links'
 import ResumeBuilderEditCVSummary from './components/resume_builder/tabs/edit_tabs/Summary'
 import ResumeBuilderEditCVWorkExperience from './components/resume_builder/tabs/edit_tabs/WorkExperience'
 import ResumeBuilderEditCVEducation from './components/resume_builder/tabs/edit_tabs/Education'
@@ -54,6 +55,10 @@ if ($("#resumeBuilder").length !== 0) {
                 {
                     path: '/resume-builder/edit/profile',
                     component: ResumeBuilderEditCVProfile
+                },
+                {
+                    path: '/resume-builder/edit/links',
+                    component: ResumeBuilderEditCVLinks
                 },
                 {
                     path: '/resume-builder/edit/summary',
