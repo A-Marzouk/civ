@@ -98,7 +98,7 @@ export default {
 	}
 
 	@include lg {
-		transition: background-color 0.3s;
+		transition: background-color 0.15s;
 
 		.tab-button__label {
 			display: block;

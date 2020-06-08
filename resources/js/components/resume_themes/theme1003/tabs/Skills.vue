@@ -99,5 +99,9 @@ export default {
 
 .skills {
 	padding-top: 15px;
+
+	@include xl {
+		padding-top: 25px;
+	}
 }
 </style>

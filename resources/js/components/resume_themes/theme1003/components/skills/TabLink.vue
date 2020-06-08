@@ -45,6 +45,7 @@ export default {
 		bottom: 0;
 		left: 50%;
 		transform: translateX(-50%);
+		border-radius: 100px;
 	}
 
 	&.active {
@@ -66,12 +67,25 @@ export default {
 			left: 0;
 			transform: translateX(0);
 		}
+
+		&.active {
+			font-weight: 400;
+		}
 	}
 
 	@include lg {
 	}
 
 	@include xl {
+		font-size: 28px;
+		line-height: 43px;
+		margin-right: 74px;
+		padding-bottom: 10px;
+
+		&::after {
+			width: 45%;
+			height: 5px;
+		}
 	}
 }
 </style>

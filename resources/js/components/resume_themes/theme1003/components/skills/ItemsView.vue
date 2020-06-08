@@ -49,6 +49,8 @@ export default {
 	}
 
 	@include xl {
+		padding-top: 50px;
+		padding-bottom: 50px;
 		max-width: 1770px;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}

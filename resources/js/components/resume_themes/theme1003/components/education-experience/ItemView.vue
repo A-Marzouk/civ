@@ -87,5 +87,23 @@ export default {
 			padding: 20px 0 40px;
 		}
 	}
+
+	@include lg {
+		.view-card {
+			.card-title {
+				font-size: 20px;
+				line-height: 26px;
+			}
+		}
+	}
+
+	@include lg {
+		.view-card {
+			.card-title {
+				font-size: 24px;
+				line-height: 28px;
+			}
+		}
+	}
 }
 </style>
