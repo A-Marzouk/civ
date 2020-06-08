@@ -231,6 +231,7 @@
                 this.closeOptionsBtn();
             },
             applyEdit() {
+                this.editedEducation.user_id = this.educations[0].user_id ;
                 axios.put('/api/user/education', this.editedEducation)
                     .then((response) => {
                         this.EditedSuccessfully(response.data.data);
