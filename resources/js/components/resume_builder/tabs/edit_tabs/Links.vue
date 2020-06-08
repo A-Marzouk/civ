@@ -20,6 +20,7 @@
                         :items="getCurrentCategories()"
                         label="Site"
                         color="#001CE2"
+                        v-model="newLink.link_title"
                 >
                     <button class="dropdown-icon icon" slot="append">
                         <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -40,10 +41,12 @@
                         :class="{'resume-builder__input--disabled': false}"
                         :disabled="false"
                         label="URL"
+                        :error="errors.link"
+                        v-model="newLink.link"
                 >
                 </v-text-field>
 
-                <v-btn class="resume-builder__btn civie-btn filled" raised>Add New</v-btn>
+                <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">Add New</v-btn>
 
             </div>
 
@@ -113,14 +116,16 @@
                 'Whatsapp',
                 'Skype',
             ],
-
             socialLinks: [],
             professionalLinks: [],
             contactLinks: [],
-
             errors: {},
-
-            linkCategory: 'professional'
+            linkCategory: 'professional',
+            newLink: {
+                link_title: '',
+                link: '',
+                is_active: true
+            }
 
         }),
         methods: {
@@ -185,22 +190,19 @@
                     })
             },
 
-            saveLink(link, base = '') {
-                if (link.link.length) {
-                    link.link = base + link.link;
-                }
-                if (!this.validURL(link.link)) {
+            saveLink() {
+                this.errors = {} ;
+
+                if (!this.validURL(this.newLink.link)) {
                     this.errors = {link: 'Not a valid link!'};
                     return;
                 }
 
-                if (link.category === 'social_link' && link.link_title.length < 1) {
-                    this.errors = {link: 'Please choose social site!'};
-                    return;
-                }
 
-                link.user_id = this.$store.state.user.id
-                axios.post('/api/user/links', link)
+                this.newLink.user_id = this.$store.state.user.id ;
+                this.newLink.category = this.linkCategory ;
+
+                axios.post('/api/user/links', this.newLink)
                     .then((response) => {
                         let addedLink = response.data.data;
                         this.links.push(addedLink);
@@ -221,6 +223,16 @@
                     });
             },
 
+            clearLink() {
+                this.newLink = {
+                    link_title: '',
+                    category: this.linkCategory,
+                    link: '',
+                    is_active: true,
+                    user_id: this.$store.state.user.id
+                };
+            },
+
 
             validURL(str) {
                 var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
@@ -232,12 +244,12 @@
                 return !!pattern.test(str);
             },
 
-            getCurrentCategories(){
-                if(this.linkCategory === 'professional'){
+            getCurrentCategories() {
+                if (this.linkCategory === 'professional') {
                     return this.professionalLinksCategories;
-                }else if (this.linkCategory === 'social'){
+                } else if (this.linkCategory === 'social') {
                     return this.socialLinksCategories;
-                }else{
+                } else {
                     return this.contactLinksCategories;
                 }
             }
@@ -276,20 +288,23 @@
 
         .link-inputs-row {
             display: flex;
-            margin-top:12px;
+            margin-top: 12px;
 
             .civie-select {
                 max-width: 210px;
                 margin-right: 30px;
-                .v-input__slot{
+
+                .v-input__slot {
                     padding-left: 30px !important;
                 }
-                .input-prepended-icon{
+
+                .input-prepended-icon {
                     position: absolute;
                     top: 13px;
                     left: 5px;
-                    img{
-                        width:33px;
+
+                    img {
+                        width: 33px;
                     }
                 }
             }
