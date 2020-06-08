@@ -336,7 +336,7 @@
                     .link-text{
                         display: flex;
                         align-items: center;
-                        margin-left: 18px;
+                        margin-left: 10px;
                         font-size: 18px;
                         line-height: 25px;
                         color: #888DB1;
@@ -344,6 +344,13 @@
                             width:45px;
                             height:auto;
                         }
+                    }
+                }
+
+                .action-btns{
+                    margin-right:10px;
+                    .resume-builder__action-buttons-container{
+                        position: static;
                     }
                 }
             }
