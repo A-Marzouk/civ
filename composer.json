@@ -12,6 +12,7 @@
         "barryvdh/laravel-dompdf": "^0.8.6",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "6.5.2",
+        "lanin/laravel-api-debugger": "^3.5",
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.2",
         "laravel/passport": "^8.4",

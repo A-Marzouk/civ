@@ -7,7 +7,7 @@
           <img :src="currentUser.personal_info.profile_pic" alt />
         </div>
         <div class="main-info">
-          <div class="user-name">{{currentUser.personal_info.full_name}}</div>
+          <div class="user-name">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</div>
           <div class="job-title">{{currentUser.personal_info.designation}}</div>
           <div class="social">
             <div class="d-flex">

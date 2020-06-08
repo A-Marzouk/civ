@@ -1,8 +1,8 @@
 <template>
 	<div class="avatar">
-		<a href="#">
+		<div class="img-wrappe">
 			<img :src="src">
-		</a>
+		</div>
 
 		<a href="#" class="start-chat">
 			<svg xmlns="http://www.w3.org/2000/svg" width="31.433" height="28.241" viewBox="0 0 31.433 28.241">
@@ -24,7 +24,7 @@ export default {
 	props: {
 		src: {
 			type: String,
-			required: true
+			default: "/images/resume_themes/theme1002/profiles/default.jpg"
 		}
 	}
 };
@@ -36,7 +36,7 @@ export default {
 .avatar {
 	position: relative;
 
-	a {
+	.img-wrappe {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -48,8 +48,7 @@ export default {
 		border: 1px solid #186aa5;
 
 		img {
-			width: 61px;
-			height: 61px;
+			width: 100%;
 			object-fit: cover;
 		}
 	}
@@ -85,13 +84,9 @@ export default {
 
 @media (min-width: $md) {
 	.avatar {
-		a {
+		.img-wrappe {
 			width: 147px;
 			height: 147px;
-			img {
-				width: 80px;
-				height: 80px;
-			}
 		}
 
 		.start-chat {
@@ -109,6 +104,24 @@ export default {
 @media (min-width: $lg) {
 	.avatar .start-chat {
 		display: none;
+	}
+}
+
+@media (min-width: $xl) {
+	.avatar {
+		.img-wrappe {
+			width: 198px;
+			height: 198px;
+		}
+	}
+}
+
+@media (min-width: $xxl) {
+	.avatar {
+		.img-wrappe {
+			width: 215px;
+			height: 215px;
+		}
 	}
 }
 </style>

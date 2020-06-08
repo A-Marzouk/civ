@@ -620,6 +620,16 @@ if ($("#resumeTheme1002").length !== 0) {
     });
 }
 
+import resumeTheme1003 from "./components/resume_themes/theme1003";
+if ($("#resumeTheme1003").length !== 0) {
+    new Vue({
+        el: "#resumeTheme1003",
+        components: {
+            "resume-theme-1003": resumeTheme1003
+        }
+    });
+}
+
 import resumeTheme508 from './components/resume_themes/theme508/index';
 if ($("#resumeTheme508").length !== 0) {
     new Vue({
@@ -760,6 +770,32 @@ if ($("#resumeTheme601").length !== 0) {
         iconfont: 'mdi',
         components: {
             'resume-theme-601': resumeTheme601
+        }
+    });
+}
+
+import resumeTheme602 from './components/resume_themes/theme602';
+if ($("#resumeTheme602").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme602',
+        vuetify,
+        store,
+        iconfont: 'mdi',
+        components: {
+            'resume-theme-602': resumeTheme602
+        }
+    });
+}
+import resumeTheme903 from './components/resume_themes/theme903/index';
+if ($("#resumeTheme903").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme903',
+        vuetify,
+        store,
+        components: {
+            'resume-theme-903': resumeTheme903
         }
     });
 }
