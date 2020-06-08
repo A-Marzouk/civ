@@ -79,7 +79,12 @@ export default {
 	}
 
 	.projects-slick {
+		visibility: hidden;
 		width: calc(100% - 50px);
+
+		&.slick-initialized {
+			visibility: visible;
+		}
 	}
 }
 

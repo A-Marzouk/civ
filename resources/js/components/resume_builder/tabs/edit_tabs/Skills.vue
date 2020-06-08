@@ -278,6 +278,7 @@ export default {
             } else {
               this.errors.new = "Something went wrong. Please try again.";
             }
+<<<<<<< HEAD
             this.$store.dispatch("flyingNotification", {
               message: "Error",
               iconSrc: "/images/resume_builder/error.png"
@@ -352,6 +353,157 @@ export default {
           this.skills.forEach((skill, index) => {
             if (skill.id === response.data.data.id) {
               this.skills.splice(index, 1);
+=======
+        },
+        methods: {
+            moveProgressBar() {
+                this.skills.forEach((skill) => {
+                    this.progressBarSingleSkill(skill);
+                });
+            },
+            progressBarSingleSkill(skill) {
+                let skillIdSelector = $('#skill_' + skill.id);
+                let progressBarSelector = $('#progress-bar_' + skill.id);
+                let getPercent = skill.percentage / 100;
+                let getProgressWrapWidth = skillIdSelector.width();
+                let progressTotal = getPercent * getProgressWrapWidth;
+                let animationLength = 2000;
+                // on page load, animate percentage bar to data percentage length
+                // .stop() used to prevent animation queueing
+                progressBarSelector.stop().animate({
+                    left: progressTotal
+                }, animationLength);
+            },
+            addSkill() {
+                if (this.validateSkill()) {
+                    // set skill category & add new
+                    this.skill.category = this.activeTab;
+                    axios.post('/api/user/skills', this.skill)
+                        .then((response) => {
+                            let addedSkill = response.data.data;
+                            this.skills.push(addedSkill);
+                            this.clearSkill();
+                            setTimeout(() => { // give time to the skill to be loaded
+                                this.progressBarSingleSkill(addedSkill);
+                            }, 1500)
+                            this.$store.dispatch('fullScreenNotification');
+                        })
+                        .catch((error) => {
+                            if (typeof error.response.data === 'object') {
+                                this.errors.new = error.response.data.errors;
+                            } else {
+                                this.errors.new  = 'Something went wrong. Please try again.';
+                            }
+                            this.$store.dispatch('flyingNotification', {
+                                message: 'Error',
+                                iconSrc: '/images/resume_builder/error.png'
+                            });
+                        });
+                }
+            },
+            validateSkill() {
+                this.errors = {
+                    new:{},
+                    edit:{}
+                };
+
+                if (this.skill.title && this.skill.percentage) {
+                    return true;
+                }
+
+                if (!this.skill.title) {
+                    this.errors.new.title = 'Title required.';
+                }
+                if (!this.skill.percentage) {
+                    this.errors.new.percentage = 'Percentage required.';
+                }
+
+                return false;
+            },
+            clearSkill() {
+                this.skill = {
+                    category: '',
+                    title: '',
+                    percentage: ''
+                };
+            },
+
+            editSkill(skill) {
+                this.editedSkill = {
+                    id: skill.id,
+                    category: skill.category,
+                    title: skill.title,
+                    percentage: skill.percentage,
+                    user_id: this.$store.state.user.id,
+                };
+                this.closeOptionsBtn();
+            },
+            applyEdit() {
+                axios.put('/api/user/skills', this.editedSkill)
+                    .then((response) => {
+                        this.EditedSuccessfully(response.data.data);
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            deleteSkill(skill) {
+                if (!confirm('Do you want to delete this skill [' + skill.title + '] ?')) {
+                   return;
+                }
+                axios.delete('/api/user/skills/' + skill.id)
+                    .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
+                        this.skills.forEach( (skill,index) => {
+                            if(skill.id === response.data.data.id){
+                                this.skills.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+            EditedSuccessfully(editedSkill) {
+                this.clearEditedSkill();
+                this.$store.dispatch('fullScreenNotification');
+                // replace the edited skill with the new one:
+                this.skills.forEach((skill, index) => {
+                    if (skill.id === editedSkill.id) {
+                        this.skills[index] = editedSkill;
+                        this.progressBarSingleSkill(editedSkill);
+                    }
+                });
+            },
+            closeOptionsBtn() {
+                this.optionSkillId = 0;
+            },
+            clearEditedSkill() {
+                this.editedSkill = {};
+            },
+            cancelEdit() {
+                this.clearEditedSkill();
+                this.closeOptionsBtn();
+            },
+            setActiveTab (tab) {
+                this.activeTab = tab
+            },
+            changeTab (e) {
+
+                // Here will be the animations between transitions
+                
+                moveTabsHelper(e, 'skillLinksWrapper', this)
+>>>>>>> 1814a2f0d09d3d62195545aa306f9b5f3238c7f5
             }
           });
 
