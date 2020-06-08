@@ -20,7 +20,7 @@
                         :items="getCurrentCategories()"
                         label="Site"
                         color="#001CE2"
-                        v-model="newLink.link_title"
+                        v-model="editedLink.link_title"
                 >
                     <button class="dropdown-icon icon" slot="append">
                         <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -42,7 +42,7 @@
                         :disabled="false"
                         label="URL"
                         :error="errors.link"
-                        v-model="newLink.link"
+                        v-model="editedLink.link"
                 >
                 </v-text-field>
 
@@ -63,14 +63,14 @@
                     </div>
                     <div class="action-btns">
                         <div class="resume-builder__action-buttons-container">
-                            <v-btn class="btn-icon civie-btn" depressed>
-                                <svg-vue icon="eye-icon" class="icon"></svg-vue>
+                            <v-btn class="btn-icon civie-btn" depressed @click="toggleLink(link)">
+                                <svg-vue icon="eye-icon" class="icon" :class="{'visible' : link.is_active}"></svg-vue>
                             </v-btn>
                             <v-btn class="btn-icon civie-btn" depressed>
                                 <svg-vue icon="edit-icon" class="icon"></svg-vue>
                             </v-btn>
 
-                            <v-btn class="btn-icon civie-btn" depressed>
+                            <v-btn class="btn-icon civie-btn" depressed @click="deleteLink(link)">
                                 <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                             </v-btn>
                         </div>
@@ -121,7 +121,8 @@
             contactLinks: [],
             errors: {},
             linkCategory: 'professional',
-            newLink: {
+            editedLink: {
+                id:'',
                 link_title: '',
                 link: '',
                 is_active: true
@@ -151,25 +152,9 @@
                         });
                     });
             },
-
-            addPrefix(url) {
-                var prefix = 'http://';
-                if (url.substr(0, prefix.length) !== prefix) {
-                    url = prefix + url;
-                }
-                return url;
-            },
-
-            selectCategory(category) {
-                this.currentBaseUrl = category.baseUrl;
-                this.newSocialLink.link_title = category.title;
-                this.showCategoryOptions = false;
-            },
-
             setActiveTab(tab) {
                 this.activeTab = tab
             },
-
             deleteLink(link) {
                 if (!confirm('Do you want to delete this link [' + link.link + '] ?')) {
                     return;
@@ -189,20 +174,19 @@
                         console.log(error);
                     })
             },
-
             saveLink() {
                 this.errors = {} ;
 
-                if (!this.validURL(this.newLink.link)) {
+                if (!this.validURL(this.editedLink.link)) {
                     this.errors = {link: 'Not a valid link!'};
                     return;
                 }
 
 
-                this.newLink.user_id = this.$store.state.user.id ;
-                this.newLink.category = this.linkCategory ;
+                this.editedLink.user_id = this.$store.state.user.id ;
+                this.editedLink.category = this.linkCategory ;
 
-                axios.post('/api/user/links', this.newLink)
+                axios.post('/api/user/links', this.editedLink)
                     .then((response) => {
                         let addedLink = response.data.data;
                         this.links.push(addedLink);
@@ -222,9 +206,8 @@
                         });
                     });
             },
-
             clearLink() {
-                this.newLink = {
+                this.editedLink = {
                     link_title: '',
                     category: this.linkCategory,
                     link: '',
@@ -232,8 +215,6 @@
                     user_id: this.$store.state.user.id
                 };
             },
-
-
             validURL(str) {
                 var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
                     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -243,7 +224,6 @@
                     '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
                 return !!pattern.test(str);
             },
-
             getCurrentCategories() {
                 if (this.linkCategory === 'professional') {
                     return this.professionalLinksCategories;
@@ -253,7 +233,6 @@
                     return this.contactLinksCategories;
                 }
             }
-
         },
 
         computed: {
