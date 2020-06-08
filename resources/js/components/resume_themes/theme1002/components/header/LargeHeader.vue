@@ -86,16 +86,6 @@
 
 							<a href="#">
 								Upload audio
-								<svg xmlns="http://www.w3.org/2000/svg" width="22.246" height="22.246" viewBox="0 0 22.246 22.246">
-									<g transform="translate(-324.779 -28.328)">
-										<path d="M30.736,19.626,22.58,14.065a.371.371,0,0,0-.58.306V25.494a.371.371,0,0,0,.58.306l8.157-5.561a.37.37,0,0,0,0-.613Zm-7.995,5.166V15.073l7.128,4.86Z" transform="translate(310.936 19.519)" fill="#205de5" />
-										<path d="M11.123,0A11.123,11.123,0,1,0,22.246,11.123,11.135,11.135,0,0,0,11.123,0Zm0,21.5A10.381,10.381,0,1,1,21.5,11.123,10.393,10.393,0,0,1,11.123,21.5Z" transform="translate(324.779 28.328)" fill="#205de5" />
-									</g>
-								</svg>
-							</a>
-
-							<a href="#">
-								Upload video
 								<svg xmlns="http://www.w3.org/2000/svg" width="21.984" height="21.983" viewBox="0 0 21.984 21.983">
 									<g transform="translate(0 0)">
 										<path d="M14.656,0H10.585a.407.407,0,0,0-.254.089l-5.995,4.8H.407A.407.407,0,0,0,0,5.3V16.7a.407.407,0,0,0,.407.407H4.335l5.995,4.8a.407.407,0,0,0,.254.089h4.071a.407.407,0,0,0,.407-.407V.411A.407.407,0,0,0,14.656,0Zm-.407,21.169H10.728l-5.995-4.8a.407.407,0,0,0-.254-.089H.814V5.7H4.478a.407.407,0,0,0,.254-.089l5.995-4.8h3.521Z" transform="translate(0 -0.004)" fill="#205de5" />
@@ -104,9 +94,19 @@
 									</g>
 								</svg>
 							</a>
+
+							<a href="#">
+								Upload video
+								<svg xmlns="http://www.w3.org/2000/svg" width="22.246" height="22.246" viewBox="0 0 22.246 22.246">
+									<g transform="translate(-324.779 -28.328)">
+										<path d="M30.736,19.626,22.58,14.065a.371.371,0,0,0-.58.306V25.494a.371.371,0,0,0,.58.306l8.157-5.561a.37.37,0,0,0,0-.613Zm-7.995,5.166V15.073l7.128,4.86Z" transform="translate(310.936 19.519)" fill="#205de5" />
+										<path d="M11.123,0A11.123,11.123,0,1,0,22.246,11.123,11.135,11.135,0,0,0,11.123,0Zm0,21.5A10.381,10.381,0,1,1,21.5,11.123,10.393,10.393,0,0,1,11.123,21.5Z" transform="translate(324.779 28.328)" fill="#205de5" />
+									</g>
+								</svg>
+							</a>
 						</div>
 
-						<div class="tw-flex tw-items-center tw-pt-8">
+						<div class="tw-flex tw-items-center tw-pt-10">
 							<div class="work-info">
 								<div class="hourly-rate">
 									<strong>${{ currentUser.hourRate }}</strong>
@@ -260,10 +260,11 @@ export default {
 					display: flex;
 					align-items: center;
 					justify-content: center;
-					height: 37px;
+					height: 34px;
 					width: 98px;
 					margin-right: 7px;
 					font-size: 11px;
+					line-height: normal;
 					font-weight: 500;
 					white-space: nowrap;
 					text-transform: uppercase;
@@ -288,7 +289,6 @@ export default {
 
 			.work-info {
 				display: flex;
-				padding-top: 15px;
 
 				.hourly-rate {
 					margin-right: 34px;
@@ -326,7 +326,6 @@ export default {
 				width: 135px;
 				height: 45px;
 				margin-left: auto;
-				margin-right: 10px;
 				border-radius: 5px;
 				border: 1px solid #205de5;
 				transition: all 0.3s;
@@ -394,7 +393,8 @@ export default {
 				}
 
 				.social-media-links {
-					max-width: 432px;
+					padding-top: 25px;
+					max-width: 447px;
 
 					.icon-link {
 						svg {
@@ -404,10 +404,9 @@ export default {
 					}
 
 					.start-chat-btn {
-						height: 42px;
-						width: 130px;
+						height: 54px;
+						width: 145px;
 						font-size: 13px;
-						line-height: 16px;
 					}
 				}
 
@@ -434,9 +433,8 @@ export default {
 
 				.hireme-btn {
 					font-size: 22px;
-					width: 190px;
-					height: 58px;
-					margin-top: 15px;
+					width: 198px;
+					height: 64px;
 				}
 			}
 		}
@@ -487,7 +485,7 @@ export default {
 				}
 
 				.social-media-links {
-					max-width: 500px;
+					max-width: 572px;
 
 					.icon-link {
 						svg {
@@ -497,8 +495,10 @@ export default {
 					}
 
 					.start-chat-btn {
-						height: 45px;
-						width: 137px;
+						margin-right: 25px;
+						font-size: 18px;
+						height: 62px;
+						width: 191px;
 					}
 				}
 
@@ -523,6 +523,9 @@ export default {
 				}
 
 				.hireme-btn {
+					font-size: 26px;
+					width: 215px;
+					height: 70px;
 				}
 			}
 		}
