@@ -7,9 +7,6 @@
             class="resume-builder__tab"
             v-for="(tabName,i) in tabs"
             :key="i"
-            :index="i"
-            :item="tabName"
-            @click="changeTab"
           >{{tabName.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
@@ -385,24 +382,12 @@ export default {
       this.clearEditedSkill();
       this.closeOptionsBtn();
     },
-    setActiveTab(tab) {
-      this.activeTab = tab;
-    },
-    changeTab(e) {
-      // Here will be the animations between transitions
-
-      moveTabsHelper(e, "skillLinksWrapper", this);
-    }
   },
   mounted() {
     setTimeout(() => {
       // give time to skills to be loaded
       this.moveProgressBar();
     }, 2000);
-
-    this.changeTab({
-      target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)
-    });
   }
 };
 </script>
