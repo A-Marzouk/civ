@@ -282,6 +282,11 @@ export const store = new Vuex.Store({
         },
         updateLinks(state, links){
             state.user.links = links;
+            axios.post('/api/user/links/update-order', {links : links})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
         },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');

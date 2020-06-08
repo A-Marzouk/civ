@@ -78,6 +78,16 @@ class LinksController extends Controller
         }
     }
 
+    public function updateLinksOrder(Request $request){
+        $links = $request->links ;
+        foreach ($links as $key => $link){
+            $myLink = Link::find($link['id']);
+            $myLink->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
