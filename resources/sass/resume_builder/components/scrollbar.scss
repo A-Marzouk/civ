@@ -17,6 +17,9 @@
     /* Handle */
     &::-webkit-scrollbar-thumb {
         background: $mainColor;
+         // add border radius to the scroll.
+        border-top-left-radius: 15px !important;
+        border-bottom-left-radius: 15px !important;
     }
     
     /* Handle on hover */

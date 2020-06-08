@@ -39,7 +39,7 @@ class LinksController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != '' ){
             // update
             $link = Link::findOrFail($request->id);
             $link->update($request->toArray());
