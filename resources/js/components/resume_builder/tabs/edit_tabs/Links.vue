@@ -3,7 +3,7 @@
 
         <!-- Tabs -->
         <v-tabs class="resume-builder__tab-bar" hide-slider>
-            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab">
+            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setLinkCategory(tab)">
                 {{tab}}
             </v-tab>
         </v-tabs>
@@ -14,27 +14,29 @@
 
             <div class="link-inputs-row">
                 <v-select
-                        class="resume-builder__input civie-select"
+                        class="resume-builder__input civie-select icon-prepended"
                         outlined
-                        placeholder="Github"
-                        :items="professionalLinksCategories"
-                        label="Name"
+                        placeholder="Site"
+                        :items="getCurrentCategories()"
+                        label="Site"
                         color="#001CE2"
                 >
-                    <button
-                            class="dropdown-icon icon"
-                            slot="append"
-                    >
-                        <svg-vue
-                                :icon="`dropdown-caret`"
-                        ></svg-vue>
+                    <button class="dropdown-icon icon" slot="append">
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
                     </button>
+
+                    <button class="input-prepended-icon" slot="prepend">
+                        <img src="/images/resume_builder/professional_icons/github-1.svg" alt="link icon">
+                    </button>
+
+
                 </v-select>
 
                 <v-text-field
                         class="resume-builder__input civie-input"
                         outlined
                         color="#001CE2"
+                        placeholder="https://github.com/john-doe"
                         :class="{'resume-builder__input--disabled': false}"
                         :disabled="false"
                         label="URL"
@@ -80,7 +82,6 @@
 </template>
 
 <script>
-    import {moveTabsHelper} from '../../helpers/tab-animations';
 
     export default {
         data: () => ({
@@ -89,7 +90,7 @@
                 'social',
                 'contact'
             ],
-            professionalLinksCategories:[
+            professionalLinksCategories: [
                 'GitHub',
                 'LinkedIn',
                 'Behance',
@@ -97,8 +98,21 @@
                 'Website',
                 'PDF',
             ],
-            activeTab: '',
-            /** Add item list flow */
+            socialLinksCategories: [
+                'Facebook',
+                'Instagram',
+                'Pinterest',
+                'Twitter'
+            ],
+            contactLinksCategories: [
+                'Phone',
+                'Mail',
+                'Gmail',
+                'Messenger',
+                'Telegram',
+                'Whatsapp',
+                'Skype',
+            ],
 
             socialLinks: [],
             professionalLinks: [],
@@ -106,48 +120,14 @@
 
             errors: {},
 
-            // for link input select
-            categoryOptions: [
-                {
-                    title: 'Linkedin',
-                    value: 'Linkedin',
-                    baseUrl: 'https://www.linkedin.com/in/'
-                },
-                {
-                    title: 'Facebook',
-                    value: 'Facebook',
-                    baseUrl: 'https://www.facebook.com/'
-                },
-                {
-                    title: 'Instagram',
-                    value: 'Instagram',
-                    baseUrl: 'https://www.instagram.com/'
-                },
-                {
-                    title: 'Behance',
-                    value: 'Behance',
-                    baseUrl: 'https://www.behance.net/'
-                },
-                {
-                    title: 'Dribbble',
-                    value: 'Dribbble',
-                    baseUrl: 'https://dribbble.com/'
-                },
-                {
-                    title: 'GitHub',
-                    value: 'GitHub',
-                    baseUrl: 'https://github.com/'
-                },
-                {
-                    title: 'Twitter',
-                    value: 'Twitter',
-                    baseUrl: 'https://twitter.com/'
-                },
-            ],
+            linkCategory: 'professional'
 
         }),
         methods: {
-            toggleLink(link){
+            setLinkCategory(category) {
+                this.linkCategory = category;
+            },
+            toggleLink(link) {
                 link.is_active = !link.is_active;
                 axios.put('/api/user/links', link)
                     .then((response) => {
@@ -167,10 +147,9 @@
                     });
             },
 
-            addPrefix(url){
+            addPrefix(url) {
                 var prefix = 'http://';
-                if (url.substr(0, prefix.length) !== prefix)
-                {
+                if (url.substr(0, prefix.length) !== prefix) {
                     url = prefix + url;
                 }
                 return url;
@@ -178,7 +157,7 @@
 
             selectCategory(category) {
                 this.currentBaseUrl = category.baseUrl;
-                this.newSocialLink.link_title = category.title ;
+                this.newSocialLink.link_title = category.title;
                 this.showCategoryOptions = false;
             },
 
@@ -207,7 +186,7 @@
             },
 
             saveLink(link, base = '') {
-                if(link.link.length){
+                if (link.link.length) {
                     link.link = base + link.link;
                 }
                 if (!this.validURL(link.link)) {
@@ -215,7 +194,7 @@
                     return;
                 }
 
-                if(link.category === 'social_link' && link.link_title.length < 1){
+                if (link.category === 'social_link' && link.link_title.length < 1) {
                     this.errors = {link: 'Please choose social site!'};
                     return;
                 }
@@ -251,6 +230,16 @@
                     '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
                     '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
                 return !!pattern.test(str);
+            },
+
+            getCurrentCategories(){
+                if(this.linkCategory === 'professional'){
+                    return this.professionalLinksCategories;
+                }else if (this.linkCategory === 'social'){
+                    return this.socialLinksCategories;
+                }else{
+                    return this.contactLinksCategories;
+                }
             }
 
         },
@@ -272,39 +261,51 @@
     $mainBlue: #001CE2;
 
 
-    #linksSection{
-        .links-content{
-            min-height:323px;
+    #linksSection {
+        .links-content {
+            min-height: 323px;
             background: #fff;
             box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-            padding:50px;
-            margin-bottom:70px;
+            padding: 50px;
+            margin-bottom: 70px;
         }
 
-        .tabName{
+        .tabName {
             text-transform: capitalize;
         }
 
-        .link-inputs-row{
-            display:flex;
+        .link-inputs-row {
+            display: flex;
+            margin-top:12px;
 
-            .civie-select{
-                max-width:184px;
-                margin-right:30px;
+            .civie-select {
+                max-width: 210px;
+                margin-right: 30px;
+                .v-input__slot{
+                    padding-left: 30px !important;
+                }
+                .input-prepended-icon{
+                    position: absolute;
+                    top: 13px;
+                    left: 5px;
+                    img{
+                        width:33px;
+                    }
+                }
             }
 
-            .civie-input{
-                max-width:350px;
-                margin-right:30px;
+            .civie-input {
+                max-width: 350px;
+                margin-right: 30px;
             }
 
-            .civie-btn{
-                min-height:54px;
+            .civie-btn {
+                min-height: 54px;
             }
         }
 
-        .links-items{
-            .link-item{
+        .links-items {
+            .link-item {
                 width: 100%;
                 height: 50px;
                 display: flex;
@@ -314,42 +315,46 @@
                 background: white;
                 box-shadow: 0 5px 20px rgba(0, 16, 131, 0.15);
 
-                .link-data{
+                .link-data {
                     display: flex;
                     height: 50px;
-                    .mover{
-                        width:50px;
+
+                    .mover {
+                        width: 50px;
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        border-right:1px solid #E6E8FC;
-                        img{
+                        border-right: 1px solid #E6E8FC;
+
+                        img {
                             width: 12px;
                             height: 16px;
                         }
 
-                        &:hover{
+                        &:hover {
                             cursor: grab;
                         }
                     }
 
-                    .link-text{
+                    .link-text {
                         display: flex;
                         align-items: center;
                         margin-left: 10px;
                         font-size: 18px;
                         line-height: 25px;
                         color: #888DB1;
-                        img{
-                            width:45px;
-                            height:auto;
+
+                        img {
+                            width: 45px;
+                            height: auto;
                         }
                     }
                 }
 
-                .action-btns{
-                    margin-right:10px;
-                    .resume-builder__action-buttons-container{
+                .action-btns {
+                    margin-right: 10px;
+
+                    .resume-builder__action-buttons-container {
                         position: static;
                     }
                 }

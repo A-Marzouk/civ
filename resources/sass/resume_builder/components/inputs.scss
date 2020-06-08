@@ -14,6 +14,13 @@
         }
     }
 
+    &.civie-select.icon-prepended // Select with prepend icon
+    {
+        .v-input__slot {
+            padding-left: 25px !important;
+        }
+    }
+
     // Textarea
     &.civie-textarea {
         .v-input__slot,
@@ -142,6 +149,11 @@
             color: $inputTextColor;
             font-size: 16px;
             padding: 16px 21px 16px 13px;
+        }
+
+        input .icon-prepended,
+        .v-select__selection {
+            padding: 16px 21px 16px 26px;
         }
     }    
     
