@@ -10,7 +10,7 @@
 
         <!-- Content -->
 
-        <div class="links-content" v-if="links">
+        <div class="links-content resume-builder__scroll" v-if="links">
 
             <div class="link-inputs-row">
                 <v-select
@@ -263,7 +263,7 @@
 
     #linksSection {
         .links-content {
-            min-height: 323px;
+            height: 323px;
             background: #fff;
             box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
             padding: 50px;
