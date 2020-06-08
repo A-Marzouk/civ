@@ -207,7 +207,7 @@
                     .then((response) => {
                         if(!edit){
                             let addedLink = response.data.data;
-                            this.links.shift(addedLink);
+                            this.links.push(addedLink);
                         }else{
                             this.links.forEach( (link, index) => {
                                 if(link.id === response.data.data.id){
