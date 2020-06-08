@@ -7,12 +7,15 @@
             class="resume-builder__tab"
             v-for="(tabName,i) in tabs"
             :key="i"
+            :index="i"
+            :item="tabName"
+            @click="changeTab"
           >{{tabName.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
       <v-card class="card-skill-items">
         <v-tabs-items v-model="skillTab">
-          <v-tab-item v-for="i in 3" :key="i">
+          <v-tab-item v-for="(tabName,i) in tabs" :key="i">
             <v-container style="width:100%;">
               <v-row align="center">
                 <v-col xl="3" lg="3" md="6" sm="6" cols="12">
