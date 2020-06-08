@@ -1,11 +1,15 @@
 <template>
-  <div class="tm702-portfolio" v-if="currentTab === 2">
-    <div class="tm702-portfolio-container">
-      <a href="#" v-for="{ id, url, alt } in portfolios" :key="id">
-        <img :src="url" :alt="alt" />
-      </a>
-    </div>
-  </div>
+  <v-container v-if="currentTab === 2" fluid>
+    <v-row justify="center">
+      <v-col lg="10" cols="12" class="mt-12">
+        <v-row justify="center">
+          <v-col cols="11" sm="11" lg="4" v-for="p in portfolios" :key="p.id" class="pa-6">
+            <v-img :src="p.url"></v-img>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {
