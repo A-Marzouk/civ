@@ -27,7 +27,7 @@
                     </button>
 
                     <button class="input-prepended-icon" slot="prepend">
-                        <img src="/images/resume_builder/professional_icons/github-1.svg" alt="link icon">
+                        <img :src="`/images/resume_builder/${linkCategory}_icons/${editedLink.link_title.toLowerCase()}-1.svg`" alt="link icon">
                     </button>
 
 
@@ -41,7 +41,7 @@
                         :class="{'resume-builder__input--disabled': false}"
                         :disabled="false"
                         label="URL"
-                        :error="errors.link"
+                        :error="!!errors.link"
                         v-model="editedLink.link"
                 >
                 </v-text-field>
@@ -57,13 +57,13 @@
             </div>
 
             <div class="links-items">
-                <div class="link-item" v-for="link in links" :key="link.id" v-show="link.link">
+                <div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
                     <div class="link-data">
                         <div class="mover">
                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
                         </div>
                         <div class="link-text">
-                            <img src="/images/resume_builder/professional_icons/github-1.svg" alt="link icon">
+                            <img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase()}-1.svg`" alt="link icon">
                             {{link.link}}
                         </div>
                     </div>
@@ -114,9 +114,6 @@
                 'Twitter'
             ],
             contactLinksCategories: [
-                'Phone',
-                'Mail',
-                'Gmail',
                 'Messenger',
                 'Telegram',
                 'Whatsapp',
@@ -129,7 +126,7 @@
             linkCategory: 'professional',
             editedLink: {
                 id:'',
-                link_title: '',
+                link_title: 'website',
                 link: '',
                 is_active: true
             },
@@ -144,6 +141,7 @@
             },
             setLinkCategory(category) {
                 this.linkCategory = category;
+                this.clearLink();
             },
             toggleLink(link) {
                 link.is_active = !link.is_active;
@@ -234,7 +232,7 @@
             clearLink() {
                 this.editedLink = {
                     id: '',
-                    link_title: '',
+                    link_title: 'website',
                     category: this.linkCategory,
                     link: '',
                     is_active: true,
