@@ -46,7 +46,13 @@
                 >
                 </v-text-field>
 
-                <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">Add New</v-btn>
+                <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
+                    {{editedLink.id !== '' ? 'Update' : 'Add New'}}
+                </v-btn>
+
+                <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearLink" v-show="editedLink.id !== '' ">
+                    Cancel
+                </v-btn>
 
             </div>
 
@@ -66,8 +72,8 @@
                             <v-btn class="btn-icon civie-btn" depressed @click="toggleLink(link)">
                                 <svg-vue icon="eye-icon" class="icon" :class="{'visible' : link.is_active}"></svg-vue>
                             </v-btn>
-                            <v-btn class="btn-icon civie-btn" depressed>
-                                <svg-vue icon="edit-icon" class="icon"></svg-vue>
+                            <v-btn class="btn-icon civie-btn" depressed @click="editLink(link)">
+                                <svg-vue icon="edit-icon" class="icon"  :class="{'visible' : link.id === editedLink.id}"></svg-vue>
                             </v-btn>
 
                             <v-btn class="btn-icon civie-btn" depressed @click="deleteLink(link)">
@@ -126,10 +132,16 @@
                 link_title: '',
                 link: '',
                 is_active: true
-            }
+            },
+            linkHolder:{}
 
         }),
         methods: {
+            editLink(link){
+                this.editedLink.id = link.id ;
+                this.editedLink.link_title = link.link_title ;
+                this.editedLink.link = link.link ;
+            },
             setLinkCategory(category) {
                 this.linkCategory = category;
             },
@@ -182,16 +194,26 @@
                     return;
                 }
 
-
+                let edit = false ;
+                if(this.editedLink.id !== ''){
+                    edit = true;
+                }
                 this.editedLink.user_id = this.$store.state.user.id ;
                 this.editedLink.category = this.linkCategory ;
 
                 axios.post('/api/user/links', this.editedLink)
                     .then((response) => {
-                        let addedLink = response.data.data;
-                        this.links.push(addedLink);
+                        if(!edit){
+                            let addedLink = response.data.data;
+                            this.links.push(addedLink);
+                        }else{
+                            this.links.forEach( (link, index) => {
+                                if(link.id === response.data.data.id){
+                                    this.links[index] = response.data.data ;
+                                }
+                            });
+                        }
                         this.clearLink();
-                        // changes saved pop-up
                         this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
@@ -206,8 +228,12 @@
                         });
                     });
             },
+            cancelEdit(){
+
+            },
             clearLink() {
                 this.editedLink = {
+                    id: '',
                     link_title: '',
                     category: this.linkCategory,
                     link: '',
