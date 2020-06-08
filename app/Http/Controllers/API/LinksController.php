@@ -85,6 +85,7 @@ class LinksController extends Controller
             'category' => ['required', 'string', 'max:255'],
             'link' => ['required', 'string','max:255'],
             'is_active' => ['max:255'],
+            'order' => ['max:255'],
         ]);
     }
 

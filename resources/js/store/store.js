@@ -280,6 +280,9 @@ export const store = new Vuex.Store({
                 console.log('Error - last activity');
             });
         },
+        updateLinks(state, links){
+            state.user.links = links;
+        },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
 

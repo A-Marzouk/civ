@@ -56,7 +56,7 @@
 
             </div>
 
-            <div class="links-items">
+            <draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false">
                 <div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
                     <div class="link-data">
                         <div class="mover">
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </draggable>
 
 
         </div>
@@ -91,8 +91,12 @@
 </template>
 
 <script>
+    import draggable from 'vuedraggable'
 
     export default {
+        components: {
+            draggable
+        },
         data: () => ({
             tabs: [
                 'professional',
@@ -258,10 +262,14 @@
                 }
             }
         },
-
         computed: {
-            links() {
-                return this.$store.state.user.links;
+            links: {
+                get() {
+                    return this.$store.state.user.links;
+                },
+                set(links) {
+                    this.$store.commit('updateLinks', links)
+                }
             }
         },
         mounted() {
