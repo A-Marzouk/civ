@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-card class="card-ref pa-10">
-      <v-container>
+    <v-card class="card-ref pa-xl-10 pa-lg-5">
+      <v-container class="mt-xl-5 mt-lg-10 mt-12">
         <v-row align="center">
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-select
               class="resume-builder__input civie-select"
               outlined
@@ -18,7 +18,7 @@
               </button>
             </v-select>
           </v-col>
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-text-field
               class="resume-builder__input civie-input"
               outlined
@@ -30,7 +30,7 @@
               v-model="fullname"
             ></v-text-field>
           </v-col>
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-text-field
               class="resume-builder__input civie-input"
               outlined
@@ -43,7 +43,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-text-field
               class="resume-builder__input civie-input"
               outlined
@@ -56,7 +56,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-text-field
               type="email"
               class="resume-builder__input civie-input"
@@ -68,7 +68,7 @@
               label="Email"
             ></v-text-field>
           </v-col>
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-text-field
               class="resume-builder__input civie-input"
               outlined
@@ -81,7 +81,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6">
             <v-text-field
               class="resume-builder__input civie-input"
               outlined
@@ -93,7 +93,7 @@
               v-model="address"
             ></v-text-field>
           </v-col>
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-text-field
               class="resume-builder__input civie-input"
               outlined
@@ -106,7 +106,7 @@
             ></v-text-field>
           </v-col>
 
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-textarea
               class="resume-builder__input civie-textarea"
               outlined
@@ -119,7 +119,7 @@
             ></v-textarea>
           </v-col>
 
-          <v-col xl="3">
+          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
             <v-textarea
               class="resume-builder__input civie-textarea"
               outlined
@@ -131,8 +131,8 @@
               v-model="description"
             ></v-textarea>
           </v-col>
-          <v-col xl="8">
-            <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2">Add New</v-btn>
+          <v-col xl="8" lg="8" md="12" sm="12" cols="12">
+            <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n5">Add New</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -361,11 +361,6 @@ export default {
         });
     }
   },
-  mounted() {
-    this.changeTab({
-      target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)
-    });
-  }
 };
 </script>
 
@@ -374,6 +369,15 @@ export default {
 $mainBlue: #001ce2;
 .card-ref {
   width: 1412px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    width: auto;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    width: auto;
+  }
+  @media screen and (max-width: 768px) {
+    width: auto;
+  }
   .btn-add-new {
     font-family: "Noto Sans" !important;
     width: 120px !important;
