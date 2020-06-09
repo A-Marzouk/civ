@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-card class="card-ref pa-xl-10 pa-lg-5">
+    <v-card class="card-ref pa-xl-10 pa-lg-5" flat>
       <v-container class="mt-xl-5 mt-lg-10 mt-12">
         <v-row align="center">
           <v-col xl="3" lg="3" md="6" sm="6" cols="12">
@@ -369,6 +369,7 @@ export default {
 $mainBlue: #001ce2;
 .card-ref {
   width: 1412px;
+  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto;
   }
