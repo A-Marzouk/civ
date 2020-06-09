@@ -1397,7 +1397,7 @@ export default {
       this.typeSkill = i;
     },
     getImgUrl(pic) {
-      return `/images/resume_themes/theme600/${pic}.png`;
+      return `/images/resume_themes/theme600/${pic}`;
     }
   }
 };
