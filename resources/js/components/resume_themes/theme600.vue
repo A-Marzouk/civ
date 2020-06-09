@@ -1100,6 +1100,7 @@ img {
   .bg-transparent {
     background: transparent !important;
     min-height: 100%;
+    width: 97%;
   }
 }
 
