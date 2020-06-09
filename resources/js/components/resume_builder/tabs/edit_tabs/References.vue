@@ -11,6 +11,7 @@
               :items="references"
               label="Referecent Type"
               color="#001CE2"
+              v-model="referenceType"
             >
               <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -26,6 +27,7 @@
               :class="{'resume-builder__input--disabled': disabledInput}"
               :disabled="disabledInput"
               label="Full Name"
+              v-model="fullname"
             ></v-text-field>
           </v-col>
           <v-col xl="3">
@@ -37,6 +39,7 @@
               :class="{'resume-builder__input--disabled': disabledInput}"
               :disabled="disabledInput"
               label="Title/Position"
+              v-model="title"
             ></v-text-field>
           </v-col>
 
@@ -49,24 +52,14 @@
               :class="{'resume-builder__input--disabled': disabledInput}"
               :disabled="disabledInput"
               label="Phone"
+              v-model="phone"
             ></v-text-field>
           </v-col>
 
           <v-col xl="3">
             <v-text-field
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="Phone"
-            ></v-text-field>
-          </v-col>
-          <v-col xl="3">
-            <v-text-field
-              class="resume-builder__input civie-input"
               type="email"
+              class="resume-builder__input civie-input"
               outlined
               color="#001CE2"
               :rules="rules"
@@ -75,7 +68,6 @@
               label="Email"
             ></v-text-field>
           </v-col>
-
           <v-col xl="3">
             <v-text-field
               class="resume-builder__input civie-input"
@@ -85,6 +77,20 @@
               :class="{'resume-builder__input--disabled': disabledInput}"
               :disabled="disabledInput"
               label="Company"
+              v-model="company"
+            ></v-text-field>
+          </v-col>
+
+          <v-col xl="3">
+            <v-text-field
+              class="resume-builder__input civie-input"
+              outlined
+              color="#001CE2"
+              :rules="rules"
+              :class="{'resume-builder__input--disabled': disabledInput}"
+              :disabled="disabledInput"
+              label="Address"
+              v-model="address"
             ></v-text-field>
           </v-col>
           <v-col xl="3">
@@ -96,6 +102,7 @@
               :class="{'resume-builder__input--disabled': disabledInput}"
               :disabled="disabledInput"
               label="URL"
+              v-model="url"
             ></v-text-field>
           </v-col>
 
@@ -108,7 +115,24 @@
               :class="{'resume-builder__input--disabled': disabledTextarea}"
               :disabled="disabledTextarea"
               label="Description"
+              v-model="description"
             ></v-textarea>
+          </v-col>
+
+          <v-col xl="3">
+            <v-textarea
+              class="resume-builder__input civie-textarea"
+              outlined
+              color="#001CE2"
+              :rules="rules"
+              :class="{'resume-builder__input--disabled': disabledTextarea}"
+              :disabled="disabledTextarea"
+              label="Description"
+              v-model="description"
+            ></v-textarea>
+          </v-col>
+          <v-col xl="8">
+            <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2">Add New</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -137,7 +161,17 @@ export default {
       },
       rules: [value => !!value || "Please fill this field."],
       disabledInput: false,
-      addNewTestimonial: false
+      addNewTestimonial: false,
+      referenceType: "",
+      fullname: "",
+      title: "",
+      phone: "",
+      email: "",
+      company: "",
+      address: "",
+      url: "",
+      importImage: "",
+      description: ""
     };
   },
   computed: {
@@ -340,6 +374,18 @@ export default {
 $mainBlue: #001ce2;
 .card-ref {
   width: 1412px;
+  .btn-add-new {
+    font-family: "Noto Sans" !important;
+    width: 120px !important;
+    height: 50px !important;
+    font-size: 18px !important;
+    font-weight: 500;
+    @media screen and (max-width: 599px) {
+      width: 100px !important;
+      height: 40px !important;
+      font-size: 15px !important;
+    }
+  }
 }
 
 .references-wrap {
