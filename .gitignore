@@ -10,6 +10,8 @@
 /composer-setup.php
 .env
 .env.backup
+app.yaml
+cloud_sql_proxy.exe
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
