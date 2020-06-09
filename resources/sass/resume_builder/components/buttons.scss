@@ -50,6 +50,13 @@
             stroke: #888DB1;
             fill: none;
         }
+
+        &.visible{
+            path {
+                stroke:rgb(21, 45, 228);
+                fill: none;
+            }
+        }
     }
 
     .btn-icon {
