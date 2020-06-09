@@ -9,7 +9,7 @@ class Link extends Model
     protected $table = 'links';
 
     protected $fillable = [
-        'is_public', 'category', 'link', 'link_title', 'is_active', 'user_id'
+        'is_public', 'category', 'link', 'link_title', 'is_active', 'user_id', 'order'
     ];
 
     public $categories = [

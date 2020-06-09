@@ -15,6 +15,10 @@
                    <router-view></router-view>
                </transition>
 
+               <!-- link bar -->
+               <div class="linkBar" v-if="user.username">
+                   https://civ.ie/{{user.username}}
+               </div>
                <div>
                    <user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
                </div>
@@ -27,12 +31,11 @@
 
 <script>
 
-    import UserTheme from  '../../resume_themes/theme8'
 
     export default {
         name: "EditCV",
         components:{
-            'user-theme' : UserTheme
+            'user-theme' : () => import('../../resume_themes/theme8')
         },
         data: () => ({
             asideSections: [
@@ -174,6 +177,20 @@ $activeColor: #001CE2;
 $disabledColor: #9f9e9e;
 
 @import '../../../../sass/media-queries';
+
+
+.linkBar{
+    width:100%;
+    height:50px;
+    display:flex;
+    align-items: center;
+    padding-left:25px;
+    font-size: 20px;
+    line-height: 22px;
+    color: #888DB1;
+    border: 1px solid #E6E8FC;
+    border-radius: 5px;
+}
 
 .aside-bar {
     min-width: 290px;

@@ -20,14 +20,14 @@
                         :items="getCurrentCategories()"
                         label="Site"
                         color="#001CE2"
-                        v-model="newLink.link_title"
+                        v-model="editedLink.link_title"
                 >
                     <button class="dropdown-icon icon" slot="append">
                         <svg-vue :icon="`dropdown-caret`"></svg-vue>
                     </button>
 
                     <button class="input-prepended-icon" slot="prepend">
-                        <img src="/images/resume_builder/professional_icons/github-1.svg" alt="link icon">
+                        <img :src="`/images/resume_builder/${linkCategory}_icons/${editedLink.link_title.toLowerCase()}-1.svg`" alt="link icon">
                     </button>
 
 
@@ -41,42 +41,48 @@
                         :class="{'resume-builder__input--disabled': false}"
                         :disabled="false"
                         label="URL"
-                        :error="errors.link"
-                        v-model="newLink.link"
+                        :error="!!errors.link"
+                        v-model="editedLink.link"
                 >
                 </v-text-field>
 
-                <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">Add New</v-btn>
+                <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
+                    {{editedLink.id !== '' ? 'Update' : 'Add New'}}
+                </v-btn>
+
+                <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearLink" v-show="editedLink.id !== '' ">
+                    Cancel
+                </v-btn>
 
             </div>
 
-            <div class="links-items">
-                <div class="link-item" v-for="link in links" :key="link.id" v-show="link.link">
+            <draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false">
+                <div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
                     <div class="link-data">
                         <div class="mover">
                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
                         </div>
                         <div class="link-text">
-                            <img src="/images/resume_builder/professional_icons/github-1.svg" alt="link icon">
+                            <img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase()}-1.svg`" alt="link icon">
                             {{link.link}}
                         </div>
                     </div>
                     <div class="action-btns">
                         <div class="resume-builder__action-buttons-container">
-                            <v-btn class="btn-icon civie-btn" depressed>
-                                <svg-vue icon="eye-icon" class="icon"></svg-vue>
+                            <v-btn class="btn-icon civie-btn" depressed @click="toggleLink(link)">
+                                <svg-vue icon="eye-icon" class="icon" :class="{'visible' : link.is_active}"></svg-vue>
                             </v-btn>
-                            <v-btn class="btn-icon civie-btn" depressed>
-                                <svg-vue icon="edit-icon" class="icon"></svg-vue>
+                            <v-btn class="btn-icon civie-btn" depressed @click="editLink(link)">
+                                <svg-vue icon="edit-icon" class="icon"  :class="{'visible' : link.id === editedLink.id}"></svg-vue>
                             </v-btn>
 
-                            <v-btn class="btn-icon civie-btn" depressed>
+                            <v-btn class="btn-icon civie-btn" depressed @click="deleteLink(link)">
                                 <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                             </v-btn>
                         </div>
                     </div>
                 </div>
-            </div>
+            </draggable>
 
 
         </div>
@@ -85,8 +91,12 @@
 </template>
 
 <script>
+    import draggable from 'vuedraggable'
 
     export default {
+        components: {
+            draggable
+        },
         data: () => ({
             tabs: [
                 'professional',
@@ -108,9 +118,6 @@
                 'Twitter'
             ],
             contactLinksCategories: [
-                'Phone',
-                'Mail',
-                'Gmail',
                 'Messenger',
                 'Telegram',
                 'Whatsapp',
@@ -121,16 +128,24 @@
             contactLinks: [],
             errors: {},
             linkCategory: 'professional',
-            newLink: {
-                link_title: '',
+            editedLink: {
+                id:'',
+                link_title: 'website',
                 link: '',
                 is_active: true
-            }
+            },
+            linkHolder:{}
 
         }),
         methods: {
+            editLink(link){
+                this.editedLink.id = link.id ;
+                this.editedLink.link_title = link.link_title ;
+                this.editedLink.link = link.link ;
+            },
             setLinkCategory(category) {
                 this.linkCategory = category;
+                this.clearLink();
             },
             toggleLink(link) {
                 link.is_active = !link.is_active;
@@ -151,25 +166,9 @@
                         });
                     });
             },
-
-            addPrefix(url) {
-                var prefix = 'http://';
-                if (url.substr(0, prefix.length) !== prefix) {
-                    url = prefix + url;
-                }
-                return url;
-            },
-
-            selectCategory(category) {
-                this.currentBaseUrl = category.baseUrl;
-                this.newSocialLink.link_title = category.title;
-                this.showCategoryOptions = false;
-            },
-
             setActiveTab(tab) {
                 this.activeTab = tab
             },
-
             deleteLink(link) {
                 if (!confirm('Do you want to delete this link [' + link.link + '] ?')) {
                     return;
@@ -189,25 +188,34 @@
                         console.log(error);
                     })
             },
-
             saveLink() {
                 this.errors = {} ;
 
-                if (!this.validURL(this.newLink.link)) {
+                if (!this.validURL(this.editedLink.link)) {
                     this.errors = {link: 'Not a valid link!'};
                     return;
                 }
 
+                let edit = false ;
+                if(this.editedLink.id !== ''){
+                    edit = true;
+                }
+                this.editedLink.user_id = this.$store.state.user.id ;
+                this.editedLink.category = this.linkCategory ;
 
-                this.newLink.user_id = this.$store.state.user.id ;
-                this.newLink.category = this.linkCategory ;
-
-                axios.post('/api/user/links', this.newLink)
+                axios.post('/api/user/links', this.editedLink)
                     .then((response) => {
-                        let addedLink = response.data.data;
-                        this.links.push(addedLink);
+                        if(!edit){
+                            let addedLink = response.data.data;
+                            this.links.push(addedLink);
+                        }else{
+                            this.links.forEach( (link, index) => {
+                                if(link.id === response.data.data.id){
+                                    this.links[index] = response.data.data ;
+                                }
+                            });
+                        }
                         this.clearLink();
-                        // changes saved pop-up
                         this.$store.dispatch('fullScreenNotification');
                     })
                     .catch((error) => {
@@ -222,18 +230,19 @@
                         });
                     });
             },
+            cancelEdit(){
 
+            },
             clearLink() {
-                this.newLink = {
-                    link_title: '',
+                this.editedLink = {
+                    id: '',
+                    link_title: 'website',
                     category: this.linkCategory,
                     link: '',
                     is_active: true,
                     user_id: this.$store.state.user.id
                 };
             },
-
-
             validURL(str) {
                 var pattern = new RegExp('^(https?:\\/\\/)?' + // protocol
                     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
@@ -243,7 +252,6 @@
                     '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
                 return !!pattern.test(str);
             },
-
             getCurrentCategories() {
                 if (this.linkCategory === 'professional') {
                     return this.professionalLinksCategories;
@@ -253,12 +261,15 @@
                     return this.contactLinksCategories;
                 }
             }
-
         },
-
         computed: {
-            links() {
-                return this.$store.state.user.links;
+            links: {
+                get() {
+                    return this.$store.state.user.links;
+                },
+                set(links) {
+                    this.$store.commit('updateLinks', links)
+                }
             }
         },
         mounted() {
