@@ -10,7 +10,7 @@
           >{{tabName.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
-      <v-card class="card-skill-items">
+      <v-card class="card-skill-items pa-sm-5 pa-2">
         <v-tabs-items v-model="skillTab">
           <v-tab-item v-for="(tabName,i) in tabs" :key="i">
             <v-container style="width:100%;">

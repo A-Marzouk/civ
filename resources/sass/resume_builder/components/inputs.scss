@@ -18,6 +18,11 @@
     {
         .v-input__slot {
             padding-left: 25px !important;
+
+            .v-input__append-inner {
+                right: 8px;
+            }
+
         }
     }
 
@@ -32,6 +37,7 @@
         }
     }
 
+    // Checkbox
     &.civie-checkbox > .v-input__control > {
         .v-input__slot {
             .v-label {
@@ -42,6 +48,15 @@
 
             .mdi-checkbox-blank-outline::before {
                 color: $inputBorderColor--enabled;
+            }
+        }
+    }
+
+    // Datepicker
+    &.civie-datepicker {
+        & > .v-input__control > .v-input__slot {
+            input {
+                padding: 0;
             }
         }
     }

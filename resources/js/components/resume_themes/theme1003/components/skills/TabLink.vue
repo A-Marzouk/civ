@@ -1,6 +1,6 @@
 <template>
-	<div class="tab-link tw-font-poppins tw-text-sm tw-whitespace-no-wrap tw-mr-5 tw-border-b tw-cursor-pointer" :class="{'tw-border-black': isActive, ' tw-border-white': !isActive}" @click="$emit('click', label)">
-		{{ label }}
+	<div class="tab-link" :class="{'active': isActive}" @click="$emit('click', tab.name)">
+		{{ tab.label }}
 	</div>
 </template>
 
@@ -9,8 +9,8 @@ export default {
 	name: "tab-link",
 
 	props: {
-		label: {
-			type: String,
+		tab: {
+			type: Object,
 			required: true
 		},
 		isActive: {
@@ -25,23 +25,67 @@ export default {
 @import "./../../scss/variables";
 
 .tab-link {
-	color: #333333;
-	padding: 10px 1px 5px;
-	line-height: 21px;
-}
+	position: relative;
+	color: #000000;
+	cursor: pointer;
+	margin-right: 20px;
+	padding-bottom: 5px;
+	font-size: 10px;
+	font-family: $poppins;
+	line-height: 15px;
+	white-space: nowrap;
 
-@media (min-width: $lg) {
-	.tab-link {
-		font-size: 18px;
-		line-height: 26px;
+	&::after {
+		content: "";
+		display: block;
+		width: 58%;
+		height: 1px;
+		position: absolute;
+		background: transparent;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		border-radius: 100px;
 	}
-}
 
-@media (min-width: 1600px) {
-	.tab-link {
-		font-size: 26px;
-		line-height: 37px;
-		margin-right: 70px;
+	&.active {
+		font-weight: 700;
+
+		&::after {
+			background: #000000;
+		}
+	}
+
+	@include md {
+		font-size: 16px;
+		line-height: 24px;
+		margin-right: 30px;
+		padding-bottom: 3px;
+
+		&::after {
+			height: 2px;
+			left: 0;
+			transform: translateX(0);
+		}
+
+		&.active {
+			font-weight: 400;
+		}
+	}
+
+	@include lg {
+	}
+
+	@include xl {
+		font-size: 28px;
+		line-height: 43px;
+		margin-right: 74px;
+		padding-bottom: 10px;
+
+		&::after {
+			width: 45%;
+			height: 5px;
+		}
 	}
 }
 </style>
