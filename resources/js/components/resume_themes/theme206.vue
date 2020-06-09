@@ -633,7 +633,7 @@ export default {
     font-size: 0.45rem;
   }
   @media screen and (min-width: 960px) and (max-width: 1200px) {
-    font-size: 0.4rem;
+    font-size: 0.3rem;
   }
 }
 .rate {

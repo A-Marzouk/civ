@@ -66,7 +66,7 @@ class ResumeController extends Controller
             return $pdf->stream('resume-'.$themeCode.'.pdf');
         }
 
-        return view('defaultPDFThemes.theme' . $themeCode);
+        return view('defaultPDFThemes.' . $themeCode);
     }
 
     public function userResume ($username) {

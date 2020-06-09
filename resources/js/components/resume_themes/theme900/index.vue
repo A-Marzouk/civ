@@ -1,99 +1,181 @@
 <template>
 <v-app id="hold-theme900" >
-    <v-container>
+    <div class="content-theme900" >
         <v-row class="header-section align-center " >
-            <v-col lg="1" sm="2" cols="2" >
-                    <img class="tm900-avatar" src="/images/resume_themes/theme900/Ellipse27.png" alt="">
+            <v-col class="tm900-avatar" lg="2" md="2" sm="3" cols="3" >
+                    <img class="tm900-avatar-image" src="/images/resume_themes/theme900/Ellipse27.png" alt="">
             </v-col>
-            <v-col lg="7" sm="6"  class="profile" >
+            <v-col lg="5" md="4" sm="5" cols="5"  class="profile" >
                 <p class="name" > carol swift </p>
                 <p class="job" > graphic designer </p>
                 <p class="description" >Donec a augue gravida, vulputate ligula et, pellentesque arcu. </p>
             </v-col>
-            <v-col  class="contact-button" >
-                <v-row>
-                    <v-col class="ml-12" lg="12" >
-                        <v-btn color="#F9F9F9" class="tm900-sc mr-10" height="50" width="50">
-                            <v-icon color="#69C8FD" > mdi-twitter </v-icon>
-                        </v-btn>
-                        <v-btn color="#F9F9F9" class="tm900-sc mr-10" height="50" width="50">
-                            <v-icon color="#3C58E9" > mdi-facebook </v-icon>
-                        </v-btn>
-                        <v-btn  color="#F9F9F9" class="tm900-sc mr-10" height="50" width="50">
-                            <v-icon color="#FF6523" > mdi-instagram </v-icon>
-                        </v-btn>
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
-      <template v-slot:activator="{ on }">
-        <v-btn v-on="on" @click="sended=false" class="get-touch">
-            <v-icon> mdi-email </v-icon>&nbsp;her me
-        </v-btn>
-      </template>
-<div class="tm900-payment">
-    <v-row justify="center">
-        <v-col cols lg="5" class="tm900-dialog-left">
-            <span> choose your payment method </span>
-            <img src="/images/resume_themes/theme900/Frame 1.png" alt="">
-        </v-col>
-        <v-col lg="6" sm="9" class="tm900-dialog-right">
-            <v-btn class="button-close" icon color="#000" @click="dialog = false">
-                <v-icon>mdi-close</v-icon>
-            </v-btn>
-            <div v-if="!sended">
-                <v-tabs v-model="payment_tabs" background-color="#ffffff00" class="tm900-tabs-payment">
-                    <v-tabs-slider :color="color_payment"></v-tabs-slider>
-                    <v-tab class="tm900-tab-payment">
-                        <span>paypal</span>
-                    </v-tab>
-                    <v-tab class="tm900-tab-payment">
-                        <span>stripe</span>
-                    </v-tab>
-                </v-tabs>
-                <v-row class="form-payment" justify="center">
-                    <v-col lg="6" xs="4">
-                        <v-form ref="form" v-model="valid">
-                            <v-text-field v-model="email" :rules="emailRules" label="E-mail" single-line outlined required></v-text-field>
-                            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Normal with hint text" hint="At least 8 characters" counter single-line
-                                outlined @click:append="show1 = !show1"></v-text-field>
-                            <a class="forget-password" href="">Did you forget your password ?</a><br>
-                            <v-row justify='center'>
-                                <v-btn :disabled="!valid" :color="color_payment" class="payment-submit align-center" @click="validate" large flat>send pay</v-btn>
+            <v-col lg="5" md="6" sm="4" cols="4" >
+                <div class="contact-button">
+                    <v-row>
+                        <v-col class="contact-button-items" cols="12" >
+                            <v-btn color="#F9F9F9" class="tm900-sc mr-xl-10 mr-lg-4 mr-md-3" height="50">
+                                <v-icon color="#69C8FD" > mdi-twitter </v-icon>
+                            </v-btn>
+                            <v-btn color="#F9F9F9" class="tm900-sc mr-xl-10 mr-lg-4 mr-md-3" height="50">
+                                <v-icon color="#3C58E9" > mdi-facebook </v-icon>
+                            </v-btn>
+                            <v-btn  color="#F9F9F9" class="tm900-sc mr-xl-10 mr-lg-4 mr-md-3" height="50">
+                                <v-icon color="#FF6523" > mdi-instagram </v-icon>
+                            </v-btn>
+                            <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+                            <template v-slot:activator="{ on }">
+                                <v-btn v-on="on" @click="sended=false" class="get-touch">
+                                    <v-icon> mdi-email </v-icon>&nbsp;her me
+                                </v-btn>
+                            </template>
+                                <div class="tm900-payment">
+                                    <v-row justify="center">
+                                        <v-col cols lg="5" class="tm900-dialog-left">
+                                            <span> choose your payment method </span>
+                                            <img src="/images/resume_themes/theme900/Frame 1.png" alt="">
+                                        </v-col>
+                                        <v-col lg="6" sm="9" class="tm900-dialog-right">
+                                            <v-btn class="button-close" icon color="#000" @click="dialog = false">
+                                                <v-icon>mdi-close</v-icon>
+                                            </v-btn>
+                                            <div v-if="!sended">
+                                                <v-tabs v-model="payment_tabs" background-color="#ffffff00" class="tm900-tabs-payment">
+                                                    <v-tabs-slider :color="color_payment"></v-tabs-slider>
+                                                    <v-tab class="tm900-tab-payment">
+                                                        <span>paypal</span>
+                                                    </v-tab>
+                                                    <v-tab class="tm900-tab-payment">
+                                                        <span>stripe</span>
+                                                    </v-tab>
+                                                </v-tabs>
+                                                <v-row class="form-payment" justify="center">
+                                                    <v-col lg="6" xs="4">
+                                                        <v-form ref="form" v-model="valid">
+                                                            <v-text-field v-model="email" :rules="emailRules" label="E-mail" single-line outlined required></v-text-field>
+                                                            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Normal with hint text" hint="At least 8 characters" counter single-line
+                                                                outlined @click:append="show1 = !show1"></v-text-field>
+                                                            <a class="forget-password" href="">Did you forget your password ?</a><br>
+                                                            <v-row justify='center'>
+                                                                <v-btn :disabled="!valid" :color="color_payment" class="payment-submit align-center" @click="validate" large flat>send pay</v-btn>
+                                                            </v-row>
+                                                        </v-form>
+                                                    </v-col>
+                                                </v-row>
+                                            </div>
+                                            <v-row justify="center" v-else>
+                                                <p class="tm900-message">Thank you, your payment was successful </p>
+                                                <v-icon size="400" :color="color_payment">mdi-check-circle-outline</v-icon>
+                                            </v-row>
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                            </v-dialog>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col lg="12" md="12" sm="8" class="information">
+                            <v-row>
+                                <v-col>
+                                    <p class="info-title">hour rate </p>
+                                    <span class="info-subtitle">$5</span>
+                                </v-col>
+                                <v-col>
+                                    <p class="info-title"> weekly availability </p>
+                                    <span class="info-subtitle"> 500 </span>
+                                </v-col>
                             </v-row>
-                        </v-form>
-                    </v-col>
-                </v-row>
-            </div>
-            <v-row justify="center" v-else>
-                <p class="tm900-message">Thank you, your payment was successful </p>
-                <v-icon size="400" :color="color_payment">mdi-check-circle-outline</v-icon>
-            </v-row>
-        </v-col>
-    </v-row>
-</div>
-</v-dialog>
-</v-col>
-<v-col lg="7" sm="5" class="information">
-    <v-row>
-        <v-col>
-            <p class="info-title">hour rate </p>
-            <span class="info-subtitle">$5</span>
-        </v-col>
-        <v-col>
-            <p class="info-title"> weekly availability </p>
-            <span class="info-subtitle"> 500 </span>
-        </v-col>
-    </v-row>
-</v-col>
-</v-row>
-</v-col>
-</v-row>
-<v-row justify="center" class=" divider mt-12">
-    <v-col lg="9">
-        <v-divider hight></v-divider>
-    </v-col>
-</v-row>
+                        </v-col>
+                    </v-row>
+                    <!-- <v-row>
+                        <v-col class="contact-button-items" lg="12" >
+                            <v-btn color="#F9F9F9" class="tm900-sc mr-xl-10 mr-lg-4 mr-md-3" height="50">
+                                <v-icon color="#69C8FD" > mdi-twitter </v-icon>
+                            </v-btn>
+                            <v-btn color="#F9F9F9" class="tm900-sc mr-xl-10 mr-lg-4 mr-md-3" height="50">
+                                <v-icon color="#3C58E9" > mdi-facebook </v-icon>
+                            </v-btn>
+                            <v-btn  color="#F9F9F9" class="tm900-sc mr-xl-10 mr-lg-4 mr-md-3" height="50">
+                                <v-icon color="#FF6523" > mdi-instagram </v-icon>
+                            </v-btn>
+                            <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+                            <template v-slot:activator="{ on }">
+                                <v-btn v-on="on" @click="sended=false" class="get-touch">
+                                    <v-icon> mdi-email </v-icon>&nbsp;her me
+                                </v-btn>
+                            </template>
+                                <div class="tm900-payment">
+                                    <v-row justify="center">
+                                        <v-col cols lg="5" class="tm900-dialog-left">
+                                            <span> choose your payment method </span>
+                                            <img src="/images/resume_themes/theme900/Frame 1.png" alt="">
+                                        </v-col>
+                                        <v-col lg="6" sm="9" class="tm900-dialog-right">
+                                            <v-btn class="button-close" icon color="#000" @click="dialog = false">
+                                                <v-icon>mdi-close</v-icon>
+                                            </v-btn>
+                                            <div v-if="!sended">
+                                                <v-tabs v-model="payment_tabs" background-color="#ffffff00" class="tm900-tabs-payment">
+                                                    <v-tabs-slider :color="color_payment"></v-tabs-slider>
+                                                    <v-tab class="tm900-tab-payment">
+                                                        <span>paypal</span>
+                                                    </v-tab>
+                                                    <v-tab class="tm900-tab-payment">
+                                                        <span>stripe</span>
+                                                    </v-tab>
+                                                </v-tabs>
+                                                <v-row class="form-payment" justify="center">
+                                                    <v-col lg="6" xs="4">
+                                                        <v-form ref="form" v-model="valid">
+                                                            <v-text-field v-model="email" :rules="emailRules" label="E-mail" single-line outlined required></v-text-field>
+                                                            <v-text-field v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="[rules.required, rules.min]" :type="show1 ? 'text' : 'password'" name="input-10-1" label="Normal with hint text" hint="At least 8 characters" counter single-line
+                                                                outlined @click:append="show1 = !show1"></v-text-field>
+                                                            <a class="forget-password" href="">Did you forget your password ?</a><br>
+                                                            <v-row justify='center'>
+                                                                <v-btn :disabled="!valid" :color="color_payment" class="payment-submit align-center" @click="validate" large flat>send pay</v-btn>
+                                                            </v-row>
+                                                        </v-form>
+                                                    </v-col>
+                                                </v-row>
+                                            </div>
+                                            <v-row justify="center" v-else>
+                                                <p class="tm900-message">Thank you, your payment was successful </p>
+                                                <v-icon size="400" :color="color_payment">mdi-check-circle-outline</v-icon>
+                                            </v-row>
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                            </v-dialog>
+                        </v-col>
+                        <v-col lg="7" sm="5" class="information">
+                            <v-row>
+                                <v-col>
+                                    <p class="info-title">hour rate </p>
+                                    <span class="info-subtitle">$5</span>
+                                </v-col>
+                                <v-col>
+                                    <p class="info-title"> weekly availability </p>
+                                    <span class="info-subtitle"> 500 </span>
+                                </v-col>
+                            </v-row>
+                        </v-col>
+                    </v-row> -->
+                </div>
+            </v-col>
+        </v-row>
+        <v-row justify="center" class="divider-tm900 mt-12">
+            <v-col lg="9">
+                <v-divider hight></v-divider>
+            </v-col>
+        </v-row>
 <v-row justify="center" class="mt-5">
     <v-col cols lg="9" md="12" sm="12" xs="12">
-        <v-tabs v-model="tab" fixed-tabs background-color="#fff" class="tm900-tabs">
+        <v-tabs v-model="tab"
+        fixed-tabs
+        centered
+        hide-slider
+        :show-arrows="false" 
+        background-color="#fff" class="tm900-tabs">
             <v-tab v-for="item in items" :key="item.name" class="tm900-tab" :style="'background:'+item.color+';color:#fff'">
                 <v-icon :size="iconsize" :color="iconcolor" class="tm900-tab-icon"> {{ item.icon }} </v-icon>
                 <span class="tm900-tab-title mr-auto ml-auto">{{ item.name }}</span>
@@ -106,8 +188,15 @@
         <div>
             <p class="tm900-title"> portfolio </p>
             <v-row>
-                <v-col v-for="(value,index) in portfolio" :key="index" cols="6" lg="3" md="6" xs="6" class="tm900-tab-item mt-2">
-                    <img class="tm900-img" :src="value">
+                <v-col 
+                    v-for="(value,index) in portfolio" 
+                    :key="index" 
+                    cols="6" 
+                    lg="3" 
+                    md="6" 
+                    xs="6" 
+                    class="tm900-tab-item mt-2">
+                    <v-img class="tm900-img" :src="value"></v-img>
                 </v-col>
             </v-row>
         </div>
@@ -172,7 +261,7 @@
                     <v-row>
                         <v-col cols xl="8" lg="12" md="10" xs="12">
                             <v-row>
-                                <v-col v-for="(item,index) in frameworks" :key="index" cols md="6" xs="12">
+                                <v-col v-for="(item,index) in frameworks" :key="index" cols lg="6" md="6" xs="12">
                                     <v-sheet height="100px" color="#fff" class="tm900-framework" :class="`d-flex align-center `">
                                         <v-avatar class="ml-7" height="50" width="50" tile>
                                             <img :src="item.img" :alt="item.img">
@@ -224,7 +313,7 @@
         </div>
     </v-tab-item>
 </v-tabs-items>
-</v-container>
+</div>
 </v-app>
 </template>
 <script >
@@ -354,6 +443,22 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
  #hold-theme900{
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+.content-theme900{
+    padding: 0px 40px 0px;
+        @media only screen and (max-width: 1024px){
+           padding: 0 20px 0; 
+        }
+        @media only screen and (max-width: 424px){
+           padding: 0 10px 0; 
+        }
+}
+         .tm900-img{
+             box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+             border-radius: 9px;
+        }
         .v-tabs:not(.v-tabs--vertical):not(.v-tabs--right) > .v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes) .v-slide-group__prev{
             display:none !important;
         }
@@ -492,7 +597,7 @@ export default {
             }
         }
     }
-     .divider{
+     .divider-tm900{
          @media only screen and (max-width: 992px) {
              display: none;
         }
@@ -511,35 +616,44 @@ export default {
              height: 150px;
         }
          .tm900-avatar{
-             border-radius: 50%;
-             @media only screen and (max-width: 597px) {
-                 margin-top: -30px;
+        max-width: 10.666667%;
+        @media only screen and (max-width: 992px) {
+                 max-width: 16.6666666667%;
+                 }
+            
+        @media only screen and (max-width: 597px) {
+                max-width: 25%;
+        }
+         .tm900-avatar-image{
+         border-radius: 50%;
+            width: 100%;
+            height: 100%;
+            max-width: 150px;
+            max-height: 150px;
+             @media only screen and (max-width: 992px) {
+                 width: 100%;
+                 height: 100%;
             }
-             img{
-                 width: 150px;
-                 height: 150px;
-                 @media only screen and (max-width: 992px) {
-                     width: 100px;
-                     height: 100px;
-                }
-                 @media only screen and (max-width: 597px) {
-                     width: 50px;
-                     height: 50px;
-                }
+            @media only screen and (max-width: 597px) {
+             margin-top: -30px;
             }
+         }
         }
          .profile{
-             padding-left: 40px;
+            // padding-left: 40px;
              font-family: Open Sans;
              font-style: normal;
              font-weight: bold;
+             @media only screen and (max-width: 1600px) {
+                 padding-left: 60px;
+             }
              @media only screen and (max-width: 992px) {
                  padding-left: 0px;
-                 padding-top: 60px;
+                    padding-top: 60px;
             }
              @media only screen and (max-width: 597px) {
-                 padding-left: 40px;
-                 padding-top: 0;
+                padding-left: 0px;
+                 padding-top: 0px;
             }
              .name{
                  font-size: 40px;
@@ -571,12 +685,13 @@ export default {
             }
         }
          .information{
-             margin-left: 235px;
+             //margin-left: 235px;
              text-align: center;
+             float: right;
              @media only screen and (max-width: 992px) {
                  margin-left: 0px;
                  position: absolute;
-                 left: 130px;
+                 left: 194px;
                  top: 200px;
             }
              @media only screen and (max-width: 597px) {
@@ -625,8 +740,16 @@ export default {
              font-size: 16px;
              line-height: 24px;
              float: right;
+             .contact-button-items{
+                 //margin-left: 48px;
+                 @media only screen and (max-width: 597px) {
+                 margin-left: 0px;
+                 padding-top: 30px;
+                 }
+             }
              @media only screen and (max-width: 992px) {
                  margin-top: -60px;
+                 margin-left: 0px;
                  .tm900-sc{
                      display: none;
                 }
@@ -636,6 +759,8 @@ export default {
             }
              @media only screen and (max-width: 597px) {
                  margin-top: -62px;
+                 margin-left: -24px;
+
             }
              .get-touch{
                  width: 180px;
@@ -668,25 +793,40 @@ export default {
                  height: 46.5px;
             }
         }
-         .v-tabs-slider{
-             opacity: 0;
-        }
          .tm900-tab{
              border-radius: 9px;
-             margin: 0px 0px 0px 45px;
+            margin-right:auto;
+            max-width: 250px;
+            margin-left:auto;
              color: #fff;
-             @media only screen and (max-width: 992px) {
-                 margin: 0px 0px 0px 15px;
+
+             @media only screen and (max-width: 1800px) {
                  width: auto;
+                 margin-right: 45px;
+             }
+             @media only screen and (max-width: 1500px) {
+                 margin-right:15px;
+            margin-left:15px;
+             }
+             @media only screen and (max-width: 992px) {
+                margin-right:15px;
+                 width: auto;
+                 margin-left:0px;
             }
              @media only screen and (max-width: 597px) {
-                 margin: 0px 0px 0px 18.6px;
+                margin-right:18.6px;
             }
         }
          .tm900-tab-icon{
              .v-icon .v-icon{
                  font-size: 25px;
                  color:#fff;
+                 @media only screen and (max-width: 1800px) {
+                     font-size: 16px;
+                }
+                @media only screen and (max-width: 1500px) {
+                 font-size: 10px;
+             }
                  @media only screen and (max-width: 992px) {
                      font-size: 16px;
                      color: #000;
@@ -711,6 +851,12 @@ export default {
              font-size: 20px;
              line-height: 30px;
              color: #FFFFFF;
+             @media only screen and (max-width: 1800px) {
+                     font-size: 16px;
+                }
+                @media only screen and (max-width: 1500px) {
+                 font-size: 14px;
+             }
              @media only screen and (max-width: 992px) {
                  font-weight: normal;
                  font-size: 16px;
@@ -936,11 +1082,6 @@ export default {
                     }
                 }
             }
-        }
-         .tm900-img{
-             box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
-             border-radius: 9px;
-             padding-right: 50px;
         }
     }
 }

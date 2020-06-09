@@ -1,60 +1,7 @@
 <template>
 <!-- Developer: Jose Quintero -->
     <v-app id="theme107" style="width: 100%">
-        <div class="theme-header">
-
-            <div class="bg-header">
-                <img class='left-bg' src="/images/resume_themes/theme105/bg-left.png" alt="">
-                <img src="/images/resume_themes/theme105/bg-top1.png" alt="" class="bg-top1">
-                <img src="/images/resume_themes/theme105/bg-top2.png" alt="" class="bg-top2">
-                <img src="/images/resume_themes/theme105/bg-right.png" alt="" class="bg-right">
-            </div>
-
-            <div class="user-info">
-                <div class="left">
-                    <div class="user-img">
-                        <img src="/images/resume_builder/default-user.jpg" alt="">
-                    </div>
-
-                    <div class="user-data">
-                        <div class="name">José Daniel Quintero</div>
-                        <div class="profession">Fullstack Developer</div>
-                        <ul class="speciallity">
-                            <li class="item">Node js</li>
-                            <li class="item">React js</li>
-                            <li class="item">Laravel</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="right">
-                    <div class="actions-wrapper">
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme105/chat-icon.png"> Start a chat
-                        </button>
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme105/suitcase-icon.png">Upload interviews
-                        </button>
-                    </div>
-
-                    <div class="payment-data">
-                        <div class="hourly-rate">
-                            $15
-                            <small>Hourly rate</small>
-                        </div>
-                        <div class="hourly-availability">
-                            40Hrs
-                            <small>Weekly Availability</small>
-                        </div>
-
-                        <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme105/hireMe-icon.png" alt="hire me icon" class="icon">
-                            Hire Me
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ThemeHeader></ThemeHeader>
 
         <div class="theme-body">
             <img src="/images/resume_themes/theme107/bg-decoImg.png" class="bg-decoImg img1" />
@@ -86,7 +33,7 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
-                        <div class="theme-aside">
+                        <div class="theme-aside hideOnTablet">
                             Follow me - 
                             <a href="javascript:;">
                                 Dribble
@@ -101,10 +48,26 @@
                                 Behance
                             </a>
                         </div>
-                        <div class="scroll-top">
+                        <div class="theme-aside showOnTablet hideOnMobile">
+                            Social links
+                            <span></span>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                            </a>
+                        </div>
+                        <div class="scroll-top hideOnMobile">
                             <a href="javascript:;" v-scroll-to="'#theme107'">
                                 Scroll
-                                <font-awesome-icon class="icon" :icon="['fas', 'arrow-right']"></font-awesome-icon> 
+                                <font-awesome-icon size="2x" class="icon" :icon="['fas', 'arrow-right']"></font-awesome-icon> 
                             </a>
                         </div>
                     </v-col>
@@ -120,6 +83,7 @@ import WorkExperienceTab from './theme107/work-experience'
 import PortfolioTab from './theme107/portfolio'
 import AboutTab from './theme107/about'
 import SkillsTab from './theme107/skills-and-languages'
+import ThemeHeader from './theme107/header'
 
 export default {
     components: {
@@ -127,7 +91,8 @@ export default {
         EducationTab,
         PortfolioTab,
         WorkExperienceTab,
-        SkillsTab
+        SkillsTab,
+        ThemeHeader
     },
     data: () => ({
         tab: 0,
@@ -165,155 +130,10 @@ $purple: #335E5E;
     color: $mainColor;
     background: #DBDEC4;
     position: relative;
-
-    .theme-header {
-        width: 100%;
-        position: relative;
-        background-image: url("/images/resume_themes/theme107/bg-header.png");
-
-        .left {
-            display: flex;
-
-        }
-
-        .right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-
-            .actions-wrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .action-btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 22px 36px;
-                    font-size: 18px;
-                    font-weight: 400;
-                    background: #fff;
-                    outline: none;
-                    border-radius: 9px;
-
-                    &:first-child {
-                        margin-right: 26px;
-                    }
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-
-            .payment-data {
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-                margin-top: 46px;
-
-                .hourly-rate,
-                .hourly-availability {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    font-size: 26px;
-                    font-weight: 700;
-                    margin-right: 35px;
-
-                    small {
-                        font-size: 15px;
-                        font-weight: 400px;
-                    }
-                }
-
-                .hire-me-btn {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background: $purple;
-                    padding: 23px 62px;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: white;
-                    border-radius: 9px;
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-        }
-
-        .user-info {
-            display: flex;
-            justify-content: space-between;
-            padding: 56px 80px;
-            z-index: 1;
-            position: relative;
-
-            .user-img {
-                display: inline-block;
-                width: 232px;
-                height: 232px;
-                margin-right: 55px;                
-
-                img {
-                    width: 100%;
-                    border-radius: 50%;
-                }
-            }
-
-            .user-data {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                font-size: 26px;
-                font-weight: 400;
-
-                .name {
-                    font-weight: 700;
-                    font-size: 35px;
-                    margin-bottom: 20px;
-                    color: #28404A;
-                }
-
-                .profession {
-                    margin-bottom: 30px;
-                }
-
-                .speciallity {
-                    display: flex;
-                    padding: 0;
-                    
-                    .item {
-                        margin-right: 40px;
-                        position: relative;
-
-                        &:last-child {
-                            margin-right: 0;
-
-                            &::after {
-                                display: none;
-                            }
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            width: 7px;
-                            height: 7px;
-                            background: $mainColor;
-                            border-radius: 50%;
-                            right: -20px;
-                            top: calc(50% - 3.5px);
-                        }
-                    }
-                }
-            }
-        }
+    
+    .v-application--wrap {
+        overflow: hidden;
+        height: 100%;
     }
 
     .theme-body {
@@ -321,20 +141,39 @@ $purple: #335E5E;
         background: white;
         border-radius: 100px 100px 0 0;
         border-top: 16px solid $purple;
-        z-index: 1;
         position: relative;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 100px;
 
         .bg-decoImg {
             position: absolute;
+            
+            @media (max-width: 1200px) {
+                width: 349px;
+            }
+            
+            @media (max-width: 700px) {
+                display: none;
+            }
 
             &.img1 {
                 right: -316.5px;
                 top: 160px;
+
+                @media (max-width: 1200px) {
+                    right: calc(-349px/2);
+                }
             }
 
             &.img2 {
                 left: -340px;
                 bottom: -300px;
+                
+                @media (max-width: 1200px) {
+                    left: calc(-349px/2);
+                    bottom: calc(-349px/2);
+                }
             }
         }
 
@@ -344,12 +183,20 @@ $purple: #335E5E;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $mainColor;
+                overflow: 0 auto;
+                width: 95%;
+                margin: 0 auto;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -366,6 +213,26 @@ $purple: #335E5E;
                     &::before {
                         display: none !important;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 18px;
+                        padding: 12px 28px;
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        font-size: 11px;
+                        padding: 12px 22px;
+                    }
+
+                    @media (max-width: 756px) {
+                        font-size: 15px;
+                        padding: 13px 17px;
+                        margin-right: 27px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
                 }
 
                 &-slider-wrapper {
@@ -378,14 +245,41 @@ $purple: #335E5E;
                         border: 2px solid #DBDFC3;
                     }
                 }
+
+                @media (max-width: 1200px) {
+                    margin-top: 29px;
+                    margin-bottom: 47px;
+                }
+                
+                @media (max-width: 700px) {
+                    margin: 29px 0;
+
+                    .v-item-group {
+                        padding: 0 13px;
+                    }
+                }
             }
 
             .container {
                 padding: 0 40px;
                 padding-bottom: 100px;
                 max-width: 1550px;
+                width: 90%;
                 margin: 0 auto;
+                z-index: 0;
+                height: 100%;
+                align-items: flex-start;
+
+                @media (max-width: 700px) {
+                    padding: 0;
+                    padding-bottom: 30px;
+                }
             }
+        }
+
+        @media (max-width: 756px) {
+            border-radius: 38px 38px 0 0;
+            border-top: 10px solid $purple;
         }
     }
 
@@ -397,9 +291,13 @@ $purple: #335E5E;
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 400px;
-        right: -95px;
+        top: 365px;
+        right: -120px;
         background: transparent;
+
+        &.showOnTablet {
+            display: none;
+        }
 
         a {
             height: 14px;
@@ -421,11 +319,45 @@ $purple: #335E5E;
                 }
             }
         }
+
+        @media (max-width: 1200px) {
+            right: -100px;
+            top: 272px;
+            transform: rotateZ(90deg);
+            
+            &, a {
+                font-size: 14px;
+            }
+
+            a {
+                &::after {
+                    display: none;
+                }
+            }
+
+            &.hideOnTablet {
+                display: none;
+            }
+
+            &.showOnTablet {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span {
+                    display: block;
+                    width: 62px;
+                    height: 1px;
+                    background: #BEC2D4;
+                    margin: 0 15px 0 27px;
+                }
+            }
+        }
     }
 
     .scroll-top {
         position: absolute;
-        left: 45px;
+        left: -10px;
         bottom: 250px;
         transform: rotateZ(-90deg);
 
@@ -437,10 +369,42 @@ $purple: #335E5E;
             font-size: 20px;
             font-weight: 700;
 
+            .decorator {
+                width: 80px;
+                height: 3px;
+                left: -16.5px;
+                position: relative;
+                background: rgba(236, 237, 244, 0.15);
+
+                &::after {
+                    position: absolute;
+                    content: "";
+                    right: 0;
+                    height: 3px;
+                    width: 17px;
+                    background: white;
+                }
+            }
         }
 
         .icon {
             margin-left: 17px;
+        }
+
+        @media (max-width: 1200px) {
+            a {
+                font-size: 14px;
+            }
+
+            .icon {
+                margin-left: 9px;
+            }
+        }
+    }
+
+    .hideOnMobile {
+        @media (max-width: 876px) {
+            display: none !important;
         }
     }
 }

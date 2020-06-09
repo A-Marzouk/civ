@@ -10,6 +10,7 @@ use App\PersonalInfo;
 use App\Referee;
 use App\Reference;
 use App\Summary;
+use Illuminate\Support\Facades\Session;
 
 class UserObserver
 {
@@ -85,7 +86,7 @@ class UserObserver
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
-            'full_name' => $user->name,
+            'first_name' => $user->name,
             'email' => $user->email
         ]);
 
@@ -151,18 +152,6 @@ class UserObserver
         // Referee
         Referee::create([
             'user_id' => $user->id,
-        ]);
-
-        // Profile Link
-        Link::create([
-            'user_id' => $user->id,
-            'category' => 'profile_link',
-        ]);
-
-        // Payment Link
-        Link::create([
-            'user_id' => $user->id,
-            'category' => 'payment_link',
         ]);
     }
 }

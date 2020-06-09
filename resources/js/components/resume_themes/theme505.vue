@@ -43,9 +43,9 @@
         </v-col>
         <v-col xl="3" lg="3" md="3" sm="12" justify="center" align-self="center">
           <div
-            class="text-center text-md-subtitle-1 grey--text text--lighten-2 font-weight-medium hidden-xs-only"
+            class="text-center text-md-subtitle-1 grey--text text--lighten-2 font-weight-medium hidden-sm-and-down"
           >Links to my profiles:</div>
-          <div class="text-center mt-6">
+          <div class="text-center mt-6 mt-sm-0">
             <v-btn
               class="px-0 mx-1"
               text
@@ -58,8 +58,14 @@
             </v-btn>
           </div>
         </v-col>
-        <v-col lg="3" md="3" sm="12" cols="12" class="ml-lg-auto ml-xl-auto mt-md-10 mt-8 ml-0">
-          <v-row justify="center" align="center" class="text-center" dense>
+        <v-col
+          lg="3"
+          md="3"
+          sm="12"
+          cols="12"
+          class="ml-lg-auto ml-xl-auto mt-md-10 mt-lg-12 mt-8 ml-0"
+        >
+          <v-row justify="center" align="center" class="text-center mt-lg-4" dense>
             <v-col cols="4" sm="3" md="4" lg="4">
               <div class="text-center antext subtitle-2 font-light">Hourly rate</div>
               <div class="text-center grey--text text--lighten-2 title font-weight-bold">$25 USD</div>
@@ -91,6 +97,7 @@
             hide-slider
             hide-arrows
             center-active
+            class="tabmargn"
             grow
           >
             <v-tab

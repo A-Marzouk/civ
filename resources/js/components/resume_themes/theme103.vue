@@ -1,56 +1,7 @@
 <template>
 <!-- Developer: Jose Quintero -->
     <v-app id="theme103" style="width: 100%">
-        <div class="theme-header">
-
-            <div class="bg-header">
-            </div>
-
-            <div class="user-info">
-                <div class="left">
-                    <div class="user-img">
-                        <img src="/images/resume_builder/default-user.jpg" alt="">
-                    </div>
-
-                    <div class="user-data">
-                        <div class="name">José Daniel Quintero</div>
-                        <div class="profession">Fullstack Developer</div>
-                        <ul class="speciallity">
-                            <li class="item">Node js</li>
-                            <li class="item">React js</li>
-                            <li class="item">Laravel</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="right">
-                    <div class="actions-wrapper">
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme103/chat-icon.png"> Start a chat
-                        </button>
-                        <button class="action-btn">
-                            <img class="icon" src="/images/resume_themes/theme103/suitcase-icon.png">Upload interviews
-                        </button>
-                    </div>
-
-                    <div class="payment-data">
-                        <div class="hourly-rate">
-                            $15
-                            <small>Hourly rate</small>
-                        </div>
-                        <div class="hourly-availability">
-                            40Hrs
-                            <small>Weekly Availability</small>
-                        </div>
-
-                        <button class="hire-me-btn">
-                            <img src="/images/resume_themes/theme103/hireMe-icon.png" alt="hire me icon" class="icon">
-                            Hire Me
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ThemeHeader></ThemeHeader>
 
         <div class="theme-body">
             <div class="wrapper">
@@ -80,7 +31,7 @@
                             <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
                             <SkillsTab v-else />
                         </transition>
-                        <div class="theme-aside">
+                        <div class="theme-aside hideOnTablet">
                             Follow me - 
                             <a href="javascript:;">
                                 Dribble
@@ -95,8 +46,26 @@
                                 Behance
                             </a>
                         </div>
-                        <div class="scroll-top">
-                            <a href="javascript:;" v-scroll-to="'#theme110'">
+
+                        <div class="theme-aside showOnTablet hideOnMobile">
+                            Social links
+                            <span></span>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
+                            </a>
+                            <a href="javascript:;">
+                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                            </a>
+                        </div>
+
+                        <div class="scroll-top hideOnMobile">
+                            <a href="javascript:;" v-scroll-to="'#theme103'">
                                 <span class="decorator"></span>    
                                 Scroll to top
                             </a>
@@ -114,6 +83,7 @@ import WorkExperienceTab from './theme103/work-experience'
 import PortfolioTab from './theme103/portfolio'
 import AboutTab from './theme103/about'
 import SkillsTab from './theme103/skills-and-languages'
+import ThemeHeader from './theme103/header'
 
 export default {
     components: {
@@ -121,7 +91,8 @@ export default {
         EducationTab,
         PortfolioTab,
         WorkExperienceTab,
-        SkillsTab
+        SkillsTab,
+        ThemeHeader
     },
     data: () => ({
         tab: 0,
@@ -160,164 +131,18 @@ $purple: #0556B6;
     background: #FFF7F3;
     position: relative;
 
-    .theme-header {
-        width: 100%;
-        position: relative;
-        background-image: url("/images/resume_themes/theme103/bg-header.png");
-
-        .left {
-            display: flex;
-
-        }
-
-        .right {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-
-            .actions-wrapper {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                .action-btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 22px 36px;
-                    font-size: 18px;
-                    font-weight: 400;
-                    background: #fff;
-                    outline: none;
-                    border-radius: 9px;
-
-                    &:first-child {
-                        margin-right: 26px;
-                    }
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-
-            .payment-data {
-                display: flex;
-                justify-content: center;
-                align-items: flex-end;
-                margin-top: 46px;
-
-                .hourly-rate,
-                .hourly-availability {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    font-size: 26px;
-                    font-weight: 700;
-                    margin-right: 35px;
-                    color: $purple;
-
-                    small {
-                        font-size: 15px;
-                        font-weight: normal;
-                        color: $mainColor;
-                    }
-                }
-
-                .hire-me-btn {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    background: $purple;
-                    padding: 23px 62px;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: white;
-                    border-radius: 9px;
-
-                    .icon {
-                        margin-right: 10px;
-                    }
-                }
-            }
-        }
-
-        .user-info {
-            display: flex;
-            justify-content: space-between;
-            padding: 56px 80px;
-            z-index: 1;
-            position: relative;
-
-            .user-img {
-                display: inline-block;
-                width: 232px;
-                height: 232px;
-                margin-right: 55px;
-
-                img {
-                    width: 100%;
-                    border-radius: 50%;
-                }
-            }
-
-            .user-data {
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                font-size: 26px;
-                font-weight: 400;
-
-                .name {
-                    font-weight: 700;
-                    font-size: 30px;
-                    margin-bottom: 20px;
-                    color: $purple;
-                }
-
-                .profession {
-                    margin-bottom: 30px;
-                }
-
-                .speciallity {
-                    display: flex;
-                    padding: 0;
-                    
-                    .item {
-                        margin-right: 40px;
-                        position: relative;
-
-                        &:last-child {
-                            margin-right: 0;
-
-                            &::after {
-                                display: none;
-                            }
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            width: 7px;
-                            height: 7px;
-                            background: $mainColor;
-                            border-radius: 50%;
-                            right: -20px;
-                            top: calc(50% - 3.5px);
-                        }
-                    }
-                }
-            }
-        }
+    .v-application--wrap {
+        overflow: hidden;
+        height: 100%;
     }
 
     .theme-body {
-        height: auto;
         background: white;
         border-radius: 80px 80px 0 0;
-        z-index: 1;
         position: relative;
+        width: 100%;
+        height: 100%;
+        padding-bottom: 100px;
 
         .wrapper {
             display: flex;
@@ -325,12 +150,17 @@ $purple: #0556B6;
             justify-content: center;
             max-width: 1700px;
             margin: 0 auto;
+            height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $tabTextColor;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -346,6 +176,26 @@ $purple: #0556B6;
                     &::before {
                         display: none !important;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 18px;
+                        padding: 12px 28px;
+                    }
+                    
+                    @media (max-width: 1200px) {
+                        font-size: 11px;
+                        padding: 0 22px;
+                    }
+
+                    @media (max-width: 756px) {
+                        font-size: 15px;
+                        padding: 0 17px;
+                        margin-right: 27px;
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+                    }
                 }
 
                 &-slider-wrapper {
@@ -357,6 +207,35 @@ $purple: #0556B6;
                         border-radius: 25px;
                     }
                 }
+
+                @media (max-width: 1200px) {
+                    margin-top: 29px;
+                    margin-bottom: 47px;
+
+                    &-bar {
+                        height: 28px;
+                    }
+
+                    .v-tabs-slider {
+                        border-radius: 14px;
+                    }
+                }
+                
+                @media (max-width: 700px) {
+                    margin: 29px 0;
+
+                    &-bar {
+                        height: 36px;
+                    }
+
+                    .v-tabs-slider {
+                        border-radius: 22px;
+                    }
+
+                    .v-item-group {
+                        padding: 0 30px 0 50px;
+                    }
+                }
             }
 
             .container {
@@ -364,6 +243,16 @@ $purple: #0556B6;
                 padding-bottom: 100px;
                 max-width: 1550px;
                 margin: 0 auto;
+                width: 90%;
+                height: 100%;
+                z-index: 0;
+                align-items: flex-start;
+
+                @media (max-width: 700px) {
+                    padding: 0;
+                    padding-bottom: 30px;
+                    width: 85%;
+                }
             }
         }
     }
@@ -376,9 +265,13 @@ $purple: #0556B6;
         transform: rotateZ(-90deg);
         align-items: center;
         position: absolute;
-        top: 400px;
+        top: 365px;
         right: -95px;
         background: transparent;
+
+        &.showOnTablet {
+            display: none;
+        }
 
         a {
             height: 14px;
@@ -400,11 +293,45 @@ $purple: #0556B6;
                 }
             }
         }
+
+        @media (max-width: 1200px) {
+            right: -100px;
+            top: 272px;
+            transform: rotateZ(90deg);
+            
+            &, a {
+                font-size: 14px;
+            }
+
+            a {
+                &::after {
+                    display: none;
+                }
+            }
+
+            &.hideOnTablet {
+                display: none;
+            }
+
+            &.showOnTablet {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                span {
+                    display: block;
+                    width: 62px;
+                    height: 1px;
+                    background: #BEC2D4;
+                    margin: 0 15px 0 27px;
+                }
+            }
+        }
     }
 
     .scroll-top {
         position: absolute;
-        left: 45px;
+        left: -10px;
         bottom: 250px;
         transform: rotateZ(-90deg);
 
@@ -431,6 +358,23 @@ $purple: #0556B6;
                 }
             }
 
+        }
+
+        @media (max-width: 1200px) {
+            a {
+                font-size: 14px;
+            }
+
+            .icon {
+                height: 7px;
+                margin-left: 9px;
+            }
+        }
+    }
+
+    .hideOnMobile {
+        @media (max-width: 876px) {
+            display: none !important;
         }
     }
 }

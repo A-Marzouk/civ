@@ -1,654 +1,484 @@
 <template>
-    <div id="profileTab" class="profile-hold">
-        <div class="section-title">
-            <div class="title-light">Edit</div>
-            <h2>Profile</h2>
-        </div>
+    <div class="profile-tab-upper" v-if="personalInfo" data-app>
 
-        <div class="achievements-bar" id="profileLinksWrapper">
-            <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :data-target="tabName" @click="changeTab" :class="{ active : activeTab === tabName}">
-                {{tabName}}
+
+        <div class="d-flex">
+            <div class="profile-pic-row-wrapper">
+                <div class="label">
+                    Photo
+                </div>
+                <div class="profile-pic-row" v-if="personalInfo">
+                    <div class="profile-pic">
+                        <img :src="personalInfo.profile_pic" alt/>
+                        <div class="photo-cover" @click="clickUploadInput">
+                            <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
+                <input
+                        type="file"
+                        ref="profile_picture"
+                        id="profile_picture"
+                        style="width: 1px; height: 1px; opacity: 0; right:145%;"
+                        @change="handleProfilePictureUpload"
+                />
             </div>
+            <div class="d-flex flex-wrap w-100">
+                <v-text-field
+                        class="resume-builder__input profile-input"
+                        label="First Name"
+                        v-model="personalInfo.first_name"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.first_name"
+                        @blur="applyEdit('auto')"
+                ></v-text-field>
 
-            <div class="decorator"></div>
+                <v-text-field
+                        class="resume-builder__input profile-input"
+                        label="Last Name"
+                        v-model="personalInfo.last_name"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.last_name"
+                        @blur="applyEdit('auto')"
+                ></v-text-field>
+
+                <v-text-field
+                        class="resume-builder__input profile-input"
+                        label="Current Location"
+                        v-model="personalInfo.location"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.location"
+                        @blur="applyEdit('auto')"
+                >
+                    <button
+                            class="eye-icon trigger-icon icon"
+                            :class="{'icon--disabled': false}"
+                            slot="append"
+                            @click=""
+                    >
+                        <svg-vue
+                                :icon="`eye-icon`"
+                        ></svg-vue>
+                    </button>
+                </v-text-field>
+
+                <v-menu
+                        ref="menu"
+                        v-model="menu"
+                        :close-on-content-click="false"
+                        :return-value.sync="personalInfo.date_of_birth"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                >
+                    <template v-slot:activator="{ on }">
+                        <v-text-field
+                                v-model="personalInfo.date_of_birth"
+                                class="resume-builder__input civie-datepicker profile-input"
+                                label="Date"
+                                color="#001CE2"
+                                readonly
+                                v-on="on"
+                                outlined
+                                placeholder="yyyy-mm-dd"
+                        >
+                            <button
+                                    class="dropdown-icon icon"
+                                    slot="append"
+                                    @click="menu = true"
+                            >
+                                <svg-vue
+                                        :icon="`dropdown-caret`"
+                                ></svg-vue>
+                            </button>
+                        </v-text-field>
+                    </template>
+                    <v-date-picker v-model="personalInfo.date_of_birth" no-title scrollable color="#001CE2">
+                        <v-spacer></v-spacer>
+                        <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                        <v-btn text color="primary" @click="saveDate">OK</v-btn>
+                    </v-date-picker>
+                </v-menu>
+
+                <v-text-field
+                        class="resume-builder__input profile-input"
+                        label="Job Title"
+                        v-model="personalInfo.designation"
+                        :outlined="true"
+                        :class="{'resume-builder__input--disabled': false}"
+                        :error="!!errors.designation"
+                        @blur="applyEdit('auto')"
+                ></v-text-field>
+
+                <v-select
+                        class="resume-builder__input  profile-input civie-select"
+                        outlined
+                        placeholder="Select an option"
+                        :items="languageItems"
+                        label="Languages"
+                        color="#001CE2"
+                >
+                    <button
+                            class="dropdown-icon icon"
+                            slot="append"
+                    >
+                        <svg-vue
+                                :icon="`dropdown-caret`"
+                        ></svg-vue>
+                    </button>
+                </v-select>
+            </div>
         </div>
 
-        <transition :duration="590" class="mt-5 content" name="hide" mode="out-in">
-            <Manage v-if="activeTab === 'manage'"></Manage>
-            <Personal v-else-if="activeTab === 'personal' "></Personal>
-            <Links  v-else-if="activeTab === 'links' "></Links>
-            <Languages v-else-if="activeTab === 'languages' "></Languages>
-            <Location v-else></Location>
-        </transition>
+       <div class="d-flex">
+          <div class="d-flex flex-column">
+              <v-text-field
+                      class="resume-builder__input profile-input"
+                      label="Hometown"
+                      v-model="personalInfo.hometown"
+                      :outlined="true"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :error="!!errors.hometown"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                          @click=""
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-text-field>
+
+              <v-text-field
+                      class="resume-builder__input profile-input"
+                      label="Nationality"
+                      v-model="personalInfo.nationality"
+                      :outlined="true"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :error="!!errors.nationality"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                          @click=""
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-text-field>
+          </div>
+
+          <div class="d-flex">
+              <v-textarea
+                      class="resume-builder__input profile-input civie-textarea"
+                      outlined
+                      color="#001CE2"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :disabled="false"
+                      v-model="personalInfo.about"
+                      label="About Me"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-textarea>
+
+              <v-textarea
+                      class="resume-builder__input profile-input civie-textarea"
+                      outlined
+                      color="#001CE2"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :disabled="false"
+                      v-model="summary.overview"
+                      label="Overview Summary"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-textarea>
+
+              <v-textarea
+                      class="resume-builder__input profile-input civie-textarea"
+                      outlined
+                      color="#001CE2"
+                      :class="{'resume-builder__input--disabled': false}"
+                      :disabled="false"
+                      label="Quote"
+                      v-model="personalInfo.quote"
+                      @blur="applyEdit('auto')"
+              >
+                  <button
+                          class="eye-icon trigger-icon"
+                          :class="{'icon--disabled': false}"
+                          slot="append"
+                  >
+                      <svg-vue
+                              :icon="`eye-icon`"
+                      ></svg-vue>
+                  </button>
+              </v-textarea>
+          </div>
+       </div>
+
     </div>
 </template>
 
 <script>
-    import vTabNames from './includes/vtab_onincludes'
-    import Languages from './profile_views/languages'
-    import Links from './profile_views/links'
-    import Location from './profile_views/location'
-    import Manage from './profile_views/manage'
-    import Personal from './profile_views/personal'
-
-    // Tab animation helper
-    import { moveTabsHelper } from "../../helpers/tab-animations";
 
     export default {
-        name: "Profile",
-        components: {
-            vTabNames,
-            Languages,
-            Links,
-            Location,
-            Manage,
-            Personal
-        },
-        data() {
+        name: "Personal",
+        data(vm) {
             return {
-                activeTab:'personal',
-                cTabProfile: 'tab-0',
-                cTabLinks: null,
-                tabColor: '#001CE2',
-                tabs: [
-                    'personal',
-                    'links',
-                    'languages',
-                    'location'
-                ],
-                /** Add item list flow */
-                activeListItem: undefined,
-                movingUp: undefined,
-                movingDown: undefined,
-                socialLinks: [
+                errors: {},
+                tempPic: '',
+                profile_pic_error: '',
+                savingType: 'manual',
+                menu: false,
+                languageItems: [
                     {
-                        'name':'Facebook',
-                        'link': 'https://facebook.com/linksample'
-                    },
-                    {
-                        'name':'Instagram',
-                        'link': 'https://instagram.com/linksample'
-                    },
-                    {
-                        'name':'Dribbble',
-                        'link': 'https://www.Dribbble.com/in/hachibur-rahman-5913a5139/'
+                        text: 'English',
+                        value: 'english'
                     }
-                ],
-                porfolioLinks: [
-                    {
-                        'name':'Behance',
-                        'link': 'https://www.Behance.com/hachib_rahman_/'
-                    },
-                    {
-                        'name':'Dribbble',
-                        'link': 'https://www.Dribbble.com/in/hachibur-rahman-5913a5139/'
-                    }
-                ],
-                addItem: false,
-                wrapNewItem: true,
-                /** Fields add social link */
-                social_link: '',
-                namesocial: ''
+                ]
             }
         },
-        methods: {
-            changeTab (e) {
-               /** Logic click on tab espcific */
+        computed: {
+            personalInfo() {
+                return this.$store.state.user.personal_info;
+            },
+            summary() {
+                return this.$store.state.user.summary;
+            },
+            user() {
+                return this.$store.state.user;
+            },
 
-               moveTabsHelper(e, "profileLinksWrapper", this)
+        },
+        methods: {
+            // date functions
+            saveDate() {
+                this.$refs.menu.save(this.personalInfo.date_of_birth);
+                this.applyEdit('auto');
             },
-            setActiveTab (tab) {
-                this.activeTab = tab;
+            // date functions end
+            manualSave() {
+                this.applyEdit('manual');
             },
-            reorder(type,dir,from,to){            
-                this.activeListItem = from;     
-                
-                if(dir == 'mup'){
-                    this.movingUp = from;
-                    this.movingDown = undefined
+            applyEdit(savingType) {
+                let formData = new FormData();
+                formData.append("_method", "put");
+                formData.append("user_id", this.user.id);
+
+                $.each(this.personalInfo, (field) => {
+                    if (this.personalInfo[field] !== null) {
+                        if (field !== 'email' && this.personalInfo[field].length) {
+                            formData.append(field, this.personalInfo[field]);
+                        }
+                        if (field === 'profile_pic') {
+                            formData.append(field, this.personalInfo[field]);
+                        }
+                    }
+                });
+
+                this.errors = {};
+
+                axios.post('/api/user/personal-info', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+                    .then((response) => {
+                        console.log(response.data);
+                        if (savingType === 'manual') {
+                            this.$store.dispatch('fullScreenNotification');
+                        } else {
+                            this.$store.dispatch('flyingNotification');
+                        }
+                        this.personalInfo.profile_pic = response.data.data.profile_pic;
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            handleProfilePictureUpload() {
+                // validate uploaded file :
+                let isValid = this.validateUploadedFile(this.$refs.profile_picture.files[0]);
+                if (isValid) {
+                    this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
+                    this.tempPic = URL.createObjectURL(this.$refs.profile_picture.files[0]);
+                    this.profile_pic_error = '';
+                    this.applyEdit('auto');
+                } else {
+                    console.log('error in pic');
+                    this.profile_pic_error = 'Incorrect file chosen!';
                 }
-                if(dir == 'mdown'){
-                    this.movingDown = from;
-                    this.movingUp = undefined
+            },
+            validateUploadedFile(file) {
+                let isValid = true;
+                if (file.type.search('image') === -1) {
+                    isValid = false;
                 }
-                setTimeout(()=>{
-                    switch (type) {
-                        case 'social':
-                            this.socialLinks.moveItem(from,to);
-                        break;
-                        case 'portfolio':
-                            this.porfolioLinks.moveItem(from,to);
-                        break;
-                    }                   
-                
-                    this.activeListItem = undefined;
-                    this.movingDown = undefined
-                    this.movingUp = undefined
-                },500)
-            
+                if (file.size > 25000000) {
+                    isValid = false;
+                }
+                return isValid;
+            },
+            clickUploadInput() {
+                $('#profile_picture').click();
+            },
+            canEditEmail() {
+                return !(this.user.instagram_id !== null && !this.isEmail(this.personalInfo.email));
+            },
+            isEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
             },
         },
         mounted() {
-            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
         }
     }
 
-    Array.prototype.moveItem = function(from, to) {
-        this.splice(to, 0, this.splice(from, 1)[0]);
-        return this;
-    };
 </script>
 
-<style lang="scss">
-@import '../../../../../sass/media-queries';
-$mainBlue: #001CE2;
-    .achievements-bar.sub-bar {
-        margin-top: 50px;
-    }
+<style lang="scss" scoped>
 
-    .title-blue{
-        font-family: 'Nexa';
-        font-size: 60px;
-        line-height: 67px;
-        color: #001CE2;
-    }
+    .profile-tab-upper {
 
-    $colorPrimary: #001CE2;
-    $colorGray: #505050;
+        background: #FFFFFF;
+        box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+        margin-bottom: 70px;
+        padding: 50px 0 35px 40px;
 
-
-    .profile-hold{
-        justify-content: flex-start;
-        max-width: 1363px;
-        width: 100%;
-        flex-flow: column;
-    }
-
-    .hold-edit{
-        font-family: 'Noto Sans';
-        padding: 40px 20px;
-
-        @include lt-sm {
-            padding: 40px 0;
+        .profile-input{
+            max-width: 300px;
+            min-width: 300px;
+            margin-right:40px;
+            margin-top:20px;
         }
 
-        .user-cover{
-            width: 144px;
-            height: 144px;
-            border-radius: 100%;
-            border: 5px solid #fff;
-            box-shadow: -5px 16px 30px rgba(90, 90, 90, 0.12);
-            background: #ddd;
+        .profile-pic-row-holder {
+            height: 110px;
+            width: 25%;
+            background: whitesmoke;
         }
-        .upload-section{
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 22px;
 
-            h5{                
-                font-size: 22px;
-                font-weight: bold;
-                color: $colorPrimary;
-
-                @include lt-lg {
-                    font-size: 19px;
-                }
-
-                @include lt-sm {
-                    font-size: 16px;
-                }
-            }
-            p{
+        .profile-pic-row-wrapper{
+            width:33%;
+            .label{
                 font-size: 16px;
-                color: $colorGray;
+                line-height: 18px;
+                margin-bottom:12px;
+                margin-top: -8px;
+                color: #888DB1;
+            }
+        }
 
-                @include lt-sm {
-                    font-size: 10px;
+
+
+        .profile-pic-row {
+            display: flex;
+            align-items: center;
+
+            .profile-pic {
+                position: relative;
+                overflow-y: hidden;
+                border-radius: 50%;
+
+                img {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                }
+
+                .photo-cover{
+                    &:hover{
+                        cursor: pointer;
+                    }
+                    width: 120px;
+                    height: 50px;
+                    background: #001CE2;
+                    opacity: 0.5;
+                    position: absolute;
+                    bottom: 0px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img{
+                        width:25px;
+                        height:25px;
+                        opacity: 1;
+                        border-radius: 0;
+                    }
                 }
             }
 
-            @include lt-sm {
-                margin-top: 1rem;
-                width: 100%;
+            .info-my-account {
+                margin-left: 21px;
+
+                .name {
+                    font-family: Noto Sans, sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 24px;
+                    line-height: 36px;
+                    color: #888db1;
+                }
+
+                .job-title {
+                    font-family: Noto Sans, sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 25px;
+                    color: #888db1;
+                }
             }
         }
-    }
-    .input_photoFile{
-        position: relative;
-        text-decoration: none;
-        font-size: 15px;
-        max-width: 203px;
-        color: #fff;
-        min-height: 48px;
-        padding: 0 24.5px;
-        background: $colorPrimary;
-        display: inline-block;
-        border-radius: 8px;
 
-        &:hover{
-            opacity: .8;
-            color: #fff;
-            text-decoration: none;
-        }
-    }
-    .input_photoFile::-webkit-file-upload-button {
-        visibility: hidden;
-    }
-    .input_photoFile::before {
-        content: "Choose photo now";
-        outline: none;
-        white-space: nowrap;
-        -webkit-user-select: none;
-        cursor: pointer;
-        line-height: 47px;
-        position: absolute;
-        background: url('/images/resume_builder/profile/icon-file.png') center left no-repeat;
-        padding-left:22px;
-    }
 
-    .form-edit_profile{
-        display: flex;
-        justify-content: center;
-        flex-flow: column;
-        margin-top: 40px;
-
-        @include lt-sm {
-            margin-top: 20px;
-        }
-
-        .actions{
-            display: flex;
-            max-width: 490px;
-            margin-top: 12.5px;
-        }
-    }
-    
-
-    .btn btn-filled{
-        text-decoration: none;
-        font-size: 15px;
-        min-width: 203px;
-        max-width: 216px;
-        color: #fff;
-        min-height: 51px;
-        padding: 0 15.8px 0 21.4px;
-        background: $colorPrimary;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        font-family: 'Noto Sans';
-
-        img{
-            margin-right: 10.5px;
-        }
-
-        &:hover{
-            opacity: .8;
-            color: #fff;
-            text-decoration: none;
-        }
-
-        @include lt-sm {
-            font-size: 8px;
-        }
-
-    }
-
-    .hold-tab{
-        justify-content: flex-start;
-        align-items: center;
         display: flex;
         flex-wrap: wrap;
-        margin-top: 55px;
 
-        .input-field {
-            width: 718px;
-            margin-right: 2rem;
-
-            @include lt-sm {
-                width: 100% !important;
-                margin-right: 0 !important;
-            }
-        }
-
-        .btn btn-filled{
-            min-width: 294px;
-            min-height: 75px;
-            margin-left: 5%;
-            font-size: 23px;
-            font-weight: 500;
-            border: 1.5px solid #1F5DE4;
-        }
-        &.social{
-            flex-flow: column;
-            align-items: flex-start;
-        }
-        &.wrapp{
-            flex-wrap: wrap;
-            align-items: flex-start;
-            flex-direction: column;
-        }
     }
 
-    .quick-opts{
-        background: #F6F6F6;
-        padding: 18.5px 30px;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 29px;
-        border-radius: 8px;
-
-        a {
-            text-decoration: none;
-            margin-right: 37px;
-
-            &:last-child{
-                margin: 0;
-            }
-
-            .edit{
-                background: url('/images/resume_builder/profile/icon-edit.png') no-repeat;
-                background-size: contain;
-                width: 44px;
-                height: 39px;
-                display: block;
-
-                @include lt-md {
-                    height: 20px;
-                    width: 35px;
-                }
-                
-                @include lt-sm {
-                    height: 15px;
-                    width: 20px;
-                }
-            }
-            .copy{
-                background: url('/images/resume_builder/profile/icon-copy.png') no-repeat;
-                background-size: contain;
-                width: 33.7px;
-                height: 39px;
-                display: block;
-
-                @include lt-md {
-                    height: 20px;
-                    width: 35px;
-                }
-                
-                @include lt-sm {
-                    height: 15px;
-                    width: 20px;
-                }
-            }
-            .share{
-                background: url('/images/resume_builder/profile/icon-share.png') no-repeat;
-                background-size: contain;
-                width: 44px;
-                height: 39px;
-                display: block;
-
-                @include lt-md {
-                    height: 20px;
-                    width: 35px;
-                }
-                
-                @include lt-sm {
-                    height: 15px;
-                    width: 20px;
-                }
-            }
-        }
-
-        
-    }
-
-    .btn-close{
-        min-width: 62px;
-        min-height: 62px;
-        font-family: 'Noto Sans';
-        font-size: 21px;
-        font-weight: 500;
-        color: #001CE2;
-        display: inline-flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #1F5DE4;
-        border-radius: 8px;
-        text-decoration: none;
-        outline: none;
-        background: #fff;
-        text-transform: uppercase;
-
-        &:hover{
-            text-decoration: none;
-        }
-    }
-
-    /** Add new links flow */
-    .addItem-wrap{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        min-width: 60%;
-
-        .input-field{
-            min-width: 100%;
-        }
-    }
-
-    .list-links{
-
-        margin-top: 56.2px;
-
-        ul{
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-
-            li{
-                
-                display: flex;
-                margin-bottom: 57.9px;
-                min-height: 45px;
-                opacity: 1;
-                transition: all .5s ease-out;
-                transform: translateY(0px);
-
-                
-
-                span{
-                    font-size: 25px;
-                    font-weight: 500;
-                    font-family: 'Noto Sans';
-                    color: #505050;
-
-                    &.info-link{
-                        img{
-                            margin-right: 20px;
-                            min-width: 45px;
-                        }
-                    }
-
-                    a{
-                        &.disable{
-                            opacity: .5;
-                            pointer-events: none
-                        }
-                    }
-                }
-            }
-        }
-
-        
-    }
-
-    .input-select{
-
-        &.__md{
-            margin-left: 27.6px;
-            min-height: 39px;
-
-            .dropdown-toggle{
-                font-size: 19px;
-                padding: 0 15px;
-            }
-            .dropdown-menu{
-                .dropdown-item{
-                    font-size: 19px;
-                    padding: 5px 19px;
-
-                    .option-icon{
-                        height: 14px;
-                    }
-                }
-                &.show{
-                    transform: translate3d(0px, 40px, 0px) !important;
-                }
-
-            }
-        }
-        
-    }
-
-    /** Reorder items */
-    .move-item{
-        display: inline-flex;
-        margin-right: 19.3px;
-        flex-flow: column;
-        justify-content: space-between;
-
-
-        a{
-            width: 18px;
-            height: 12px;
-        }
-
-        .go_up{
-            vertical-align: top;
-            background: url('/images/resume_builder/profile/arrow-up.png');
-            background-repeat: no-repeat;
-        }
-        .go_down{
-            vertical-align: bottom;
-            background: url('/images/resume_builder/profile/arrow-down.png');
-            background-repeat: no-repeat;
-        }
-    }
-
-    .lang-items{
-        margin: 0;
-        padding: 0;
-        
-        @include lt-sm {
-            width: 100%;
-            max-width: 616px;
-            flex-wrap: wrap;
-        }
-
-        .lang-item {
-
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-
-            .lang {
-                display: flex;
-                
-                @include lt-md {
-                    flex-wrap: wrap;
-                }
-            }
-
-            .flagLang{
-                margin: 0px 25px;
-            }
-            .nameLang{
-                font-size: 39px;
-                font-weight: 700;
-                color: #001CE2;
-
-                @include lt-sm {
-                    font-size: 20px;
-                }
-            }
-        }
+    .input-margins {
+        margin-left: 40px;
+        margin-top: 20px;
     }
 
 
-    /** Moving animate */
-    .animated {
-        -webkit-animation-duration: .5s;
-        animation-duration: .5s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        
-    }
-        
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    .fadeIn {
-        -webkit-animation-name: fadeIn;
-        animation-name: fadeIn;
-
-        &.movingUp{
-            animation: transUp 1s ease-in;
-        }
-        &.movingDown{
-            animation: transDown 1s ease-in;
-        }
-    }
-
-    @keyframes transUp {
-        50% {
-            transform: translateY(-100px);
-        }
-    }
-    @keyframes transDown {
-        50% {
-            transform: translateY(100px);
-        }
-    }
-
-
-    .choose-photo-btn{
-        a {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background: #001CE2 0% 0% no-repeat padding-box;
-            border-radius: 8px;
-
-            font: 500 15px Noto Sans;
-            letter-spacing: 0;
-            color: #FFFFFF;
-            opacity: 1;
-
-            img {
-                width: 13px;
-                height: 16px;
-                margin-right: 7px;
-            }
-
-            @include lt-sm {
-                font-size: 8px;
-                width: 142px;
-                height: 30px;
-                padding: 0 !important;
-            }
-        }
-    }
 </style>
+

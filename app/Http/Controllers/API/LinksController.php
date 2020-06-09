@@ -39,7 +39,7 @@ class LinksController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != '' ){
             // update
             $link = Link::findOrFail($request->id);
             $link->update($request->toArray());
@@ -78,6 +78,16 @@ class LinksController extends Controller
         }
     }
 
+    public function updateLinksOrder(Request $request){
+        $links = $request->links ;
+        foreach ($links as $key => $link){
+            $myLink = Link::find($link['id']);
+            $myLink->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -85,6 +95,7 @@ class LinksController extends Controller
             'category' => ['required', 'string', 'max:255'],
             'link' => ['required', 'string','max:255'],
             'is_active' => ['max:255'],
+            'order' => ['max:255'],
         ]);
     }
 

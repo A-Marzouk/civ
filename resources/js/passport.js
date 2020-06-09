@@ -1,3 +1,6 @@
+// Vuetify
+import vuetify from './vuetify';
+
 import passportClients from './components/passport/Clients.vue';
 if ($("#passportClients").length !== 0) {
     new Vue({
@@ -35,6 +38,7 @@ import loginForm from './components/auth/Login';
 if ($("#loginForm").length !== 0) {
     new Vue({
         el: '#loginForm',
+        vuetify,
         components:{
             'login-form':loginForm
         }
@@ -46,6 +50,7 @@ import registerForm from './components/auth/Register';
 if ($("#registerForm").length !== 0) {
     new Vue({
         el: '#registerForm',
+        vuetify,
         components:{
             'register-form':registerForm
         }

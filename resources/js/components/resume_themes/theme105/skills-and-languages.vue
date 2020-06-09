@@ -7,13 +7,41 @@
         </div>
         <div class="right skills-container">
             <div v-for="(skill, index) in skillsList" :key="index + skill.name" class="skill">
-                <div class="chart">
+                <div class="chart hideOnTablet">
                     <radial-progress-bar :diameter="70.81"
                         :completed-steps="skill.percentage"
                         :total-steps="100"
                         startColor="#28404A"
                         stopColor="#28404A"
                         :strokeWidth="3"
+                        :innerStrokeWidth="3"
+                        innerStrokeColor="#EEEEEE"
+                        strokeLinecap="square"
+                    >
+                    </radial-progress-bar>
+                    <img :src="'/images/resume_themes/theme105/' + skill.icon" alt="">
+                </div><div class="chart showOnTablet hideChartOnMobile">
+                    <radial-progress-bar :diameter="38"
+                        :completed-steps="skill.percentage"
+                        :total-steps="100"
+                        startColor="#28404A"
+                        stopColor="#28404A"
+                        :strokeWidth="3"
+                        :innerStrokeWidth="3"
+                        innerStrokeColor="#EEEEEE"
+                        strokeLinecap="square"
+                    >
+                    </radial-progress-bar>
+                    <img :src="'/images/resume_themes/theme105/' + skill.icon" alt="">
+                </div>
+                <div class="chart showOnMobile">
+                    <radial-progress-bar :diameter="39"
+                        :completed-steps="skill.percentage"
+                        :total-steps="100"
+                        startColor="#28404A"
+                        stopColor="#28404A"
+                        :strokeWidth="1"
+                        :innerStrokeWidth="1"
                         innerStrokeColor="#EEEEEE"
                         strokeLinecap="square"
                     >
@@ -89,6 +117,25 @@ export default {
             font-size: 40px;
             color: #28404A;
         }
+
+        @media (max-width: 1200px) {
+            margin-right: 20px;
+            
+            .small {
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 21px;
+                line-height: 25px;
+                margin-top: 12px;
+                margin-bottom: 22px;
+            }
+        }
+
+        @media (max-width: 756px) {
+            display: none;
+        }
     }
 }
     .skills-container {
@@ -110,6 +157,14 @@ export default {
                 img {
                     position: absolute;
                     width: 27.25px;
+                }
+
+                &.showOnTablet {
+                    display: none;
+                }
+
+                &.showOnMobile {
+                    display: none;
                 }
             }
 
@@ -143,6 +198,83 @@ export default {
                     }
                 }
             }
+
+            @media (max-width: 1200px) {
+                .chart {
+                    &.hideOnTablet {
+                        display: none;
+                    }
+
+                    &.showOnTablet {
+                        display: flex;
+
+                    }
+                    
+                    img {
+                        width: 14px;
+                    }
+                }
+                
+                .skill-info {
+                    margin-top: 13px;
+
+                    .skill-name {
+                        font-size: 16px;
+                    }
+
+                    .skill-percentage {
+                        font-size: 10px;
+
+                        &::after {
+                            width: 13px;
+                            height: 1px;
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 756px) {
+                grid-column: span 6;
+                max-width: 100%;
+
+                .chart {
+                    &.hideChartOnMobile {
+                        display: none;
+                    }
+
+                    &.showOnMobile {
+                        display: flex;
+
+                    }
+                    
+                    img {
+                        width: 14px;
+                    }
+                }
+
+                .skill-info {
+                    .skill-percentage {
+                        margin-left: 20.4px;
+
+                        &::after {
+                            left: -20.4px;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 1500px) {
+            grid-gap: 50px;
+        }
+
+        @media (max-width: 1350px) {
+            grid-gap: 30px;
+        }
+        
+        @media (max-width: 756px) {
+            grid-gap: 35px 20px;
+            width: 100%;
         }
     }
 </style>

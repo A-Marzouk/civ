@@ -26,6 +26,17 @@ if ($("#welcomeView").length !== 0) {
 }
 
 
+import pricing from './components/welcome-view/pricing';
+if ($("#pricing").length !== 0) {
+    new Vue({
+        el: '#pricing',
+        vuetify,
+        components: {
+            'pricing': pricing
+        }
+    });
+}
+
 //api components
 require('./API');
 

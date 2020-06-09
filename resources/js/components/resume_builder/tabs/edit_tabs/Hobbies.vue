@@ -295,7 +295,10 @@
                 if(this.showCategoryOptions && !$(e.target).parents('.civ-input').length){
                     this.showCategoryOptions = false;
                 }
-            })
+            });
+
+            console.log(Vue.$cookies.get('spotify_access_token'));
+
         }
     }
 </script>

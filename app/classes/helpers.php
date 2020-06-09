@@ -3,6 +3,7 @@
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -263,4 +264,8 @@ function splitWhiteSpaces($value, $cleanString = true)
 function array_key_mirror($array)
 {
     return array_combine($array, $array);
+}
+
+function is_auth($request){
+    return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
 }

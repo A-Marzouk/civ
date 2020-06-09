@@ -11,343 +11,105 @@
         </a>
       </v-app-bar>
       <!-- 1st inner container -->
-      <v-container style="width:100%" class="container-resume">
-        <v-row justify="center" align="center" class="resume-row">
-          <v-col xl="5" md="6" sm="12" cols="12">
-            <div class="tablet-layer1 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer1.png"
-                alt
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer1.png"
-                alt
-              />
-            </div>
-            <v-card color="transparent" flat tile class="card-resume">
-              <v-card-title class="resume-title">
-                Make Your
-                <br />Online Resume
-              </v-card-title>
-              <v-card-subtitle
-                class="resume-subtitle"
-              >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
-              <v-card-subtitle>
-                <v-btn class="btn-get-started" x-large dark color="#E91E63">GET STARTED</v-btn>
-              </v-card-subtitle>
-            </v-card>
-            <div class="tablet-layer2 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer2.png"
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer2.png"
-              />
-            </div>
 
-            <div class="top-layer-background hidden-sm-and-down">
-              <img src="/images/welcome_landing_page/imgs/background-images/top-background-img.png" />
-            </div>
-            <div class="top-make-resume hidden-sm-and-down">
-              <img
-                src="/images/welcome_landing_page/imgs/background-images/make-your-resume-now.png"
-                alt
-              />
-            </div>
+      <!-- 1st inner container -->
+      <v-container style="width:100%;">
+        <v-row align="center" justify="center">
+          <v-col md="10" cols="12">
+            <v-card color="transparent" flat tile>
+              <v-row align="center" justify="center">
+                <v-col md="10" sm="10" cols="12">
+                  <v-card color="transparent" flat tile>
+                    <v-card-subtitle class="resume-title" align="center">Make Your Online Resume</v-card-subtitle>
+                  </v-card>
+                </v-col>
+                <v-col md="7" sm="12" cols="12">
+                  <v-card color="transparent" flat tile>
+                    <v-card-subtitle
+                      align="center"
+                      class="resume-subtitle"
+                    >We believe that resume’s can look beautiful, we help freelancers, contractors & jobseekers create stunning online resume’s.</v-card-subtitle>
+                  </v-card>
+                </v-col>
+                <v-col xl="7" lg="8" md="8" sm="12" cols="12">
+                  <v-card color="transparent" flat tile class="mt-n5">
+                    <v-card-subtitle
+                      class="reserve-title"
+                      align="center"
+                    >Reserve your own online webpage</v-card-subtitle>
+                    <v-card-subtitle class="mt-n5 av-subtitle">
+                      <v-text-field
+                        class="input-av"
+                        hide-details
+                        outlined
+                        placeholder="john-doe"
+                        v-model="username"
+                        background-color="#ffffff"
+                        @keyup="validateUsername"
+                        height="60"
+                      >
+                        <template slot="append">
+                          <a
+                            class="inner-link"
+                            href="javascript:void(0)"
+                            @click="scrollTo('createAccount')"
+                            v-show="is_username_valid"
+                          >Sign up</a>
+                        </template>
 
-            <v-card color="transparent" flat tile style="z-index:1;">
-              <v-card-title class="reserve-title">Reserve your own online webpage</v-card-title>
-              <v-card-subtitle class="reserve-input">
-                <v-text-field
-                  outlined
-                  placeholder="civ.ie/yourname"
-                  v-model="username"
-                  background-color="#ffffff"
-                  @keyup="checkUser"
-                  :height="windowWidth <= 959 && windowWidth >599 ? '75': windowWidth<=599 ? '60':''"
-                >
-                  <template slot="append">
-                    <v-icon
-                      color="#1DBF73"
-                      class="custom-append-icon"
-                      v-show="userFound == true"
-                    >mdi-check-circle</v-icon>
-                    <v-icon
-                      color="#E91E63"
-                      class="custom-append-icon"
-                      v-show="userFound == false"
-                    >mdi-close-circle</v-icon>
-                  </template>
-                </v-text-field>
-              </v-card-subtitle>
-            </v-card>
-
-            <!-- play store ios buttons -->
-            <v-card color="transparent" tile flat class="card-download hidden-sm-and-down">
-              <v-card-text>
-                <v-row align="center">
-                  <v-col xl="6" cols="6">
-                    <div class="download-text">Download for ios and android:</div>
-                  </v-col>
-                  <v-col xl="3" cols="3">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/app-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-                  <v-col xl="3" cols="3">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/play-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-            </v-card>
-            <!-- play store ios buttons -->
-          </v-col>
-          <v-col md="5" sm="12" cols="12">
-            <div class="make-resume-background hidden-md-and-up">
-              <img
-                src="/images/welcome_landing_page/imgs/background-images/tablet/make-resume-background.png"
-              />
-            </div>
-            <v-card color="#F8F8F8" elevation="8" class="card-login-form pa-xl-5 pa-md-0">
-              <v-card color="transparent" flat tile class="card-login-child">
-                <v-card-subtitle class="login-title" align="center">Create new account</v-card-subtitle>
-                <v-card-subtitle align="center">
-                  <v-btn
-                    class="social-icon mx-md-2 mx-sm-3 mx-2"
-                    color="#ffffff"
-                    v-for="icon in socialMediaIcons"
-                    :key="icon.title"
-                  >
-                    <img
-                      :width="windowWidth>599 && windowWidth<=959?icon.tablet_width:icon.width"
-                      :src="getSocialIcon(icon.title)"
-                      alt
-                    />
-                  </v-btn>
-                </v-card-subtitle>
-                <v-card-subtitle class="signin-email mt-n3" align="center">or Sign Up with Email</v-card-subtitle>
-              </v-card>
-              <!-- Login Form -->
-              <v-card-subtitle class="login-form">
-                <v-form ref="form" v-model="valid" :lazy-validation="lazy">
-                  <div class="input-div">
-                    <label for="name">Name</label>
-                    <v-text-field
-                      class="login-input-field"
-                      type="text"
-                      outlined
-                      background-color="#ffffff"
-                      v-model="formData.name"
-                    ></v-text-field>
-                    <div class="v-text-field__details custom-margin" v-if="errors.name">
-                      <div class="v-messages theme--light error--text" role="alert">
-                        <div class="v-messages__wrapper">
-                          <div class="v-messages__message">{{errors.name[0]}}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input-div">
-                    <label for="email">Email Address</label>
-                    <v-text-field
-                      type="email"
-                      outlined
-                      background-color="#ffffff"
-                      v-model="formData.email"
-                    ></v-text-field>
-                    <div class="v-text-field__details custom-margin" v-if="errors.email">
-                      <div class="v-messages theme--light error--text" role="alert">
-                        <div class="v-messages__wrapper">
-                          <div class="v-messages__message">{{errors.email[0]}}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input-div">
-                    <label>Password</label>
-                    <v-text-field
-                      type="password"
-                      outlined
-                      background-color="#ffffff"
-                      v-model="formData.password"
-                    ></v-text-field>
-                    <div class="v-text-field__details custom-margin" v-if="errors.password">
-                      <div class="v-messages theme--light error--text" role="alert">
-                        <div class="v-messages__wrapper">
-                          <div class="v-messages__message">{{errors.password[0]}}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="input-div">
-                    <label>Confirm Password</label>
-                    <v-text-field
-                      type="password"
-                      outlined
-                      background-color="#ffffff"
-                      v-model="formData.password_confirmation"
-                    ></v-text-field>
-                  </div>
-
-                  <v-checkbox
-                    dense
-                    v-model="agreeCheck"
-                    class="hidden-sm-only mt-n5"
-                  >
-                    <template slot="label">
-                      <div class="agree-text">
-                        I accept your
-                        <span>Terms of Use</span> &
-                        <span>Privacy Policy.</span>
-                      </div>
-                    </template>
-                  </v-checkbox>
-
-                  <v-checkbox
-                    v-model="agreeCheck"
-                    class="d-none d-sm-flex d-md-none"
-                  >
-                    <template slot="label">
-                      <div class="agree-text">
-                        I accept your
-                        <span>Terms of Use</span> &
-                        <span>Privacy Policy.</span>
-                      </div>
-                    </template>
-                  </v-checkbox>
-
-
-                  <div class="v-text-field__details custom-margin" >
-                    <div class="v-messages theme--light error--text" role="alert">
-                      <div class="v-messages__wrapper">
-                        <div class="v-messages__message">{{errors.agreeCheck}}</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <v-card-text align="center">
-                    <v-btn color="#0046FE" class="btn-signup" @click="register">
-                      <span>Sign Up</span>
-                    </v-btn>
-                  </v-card-text>
-                </v-form>
-              </v-card-subtitle>
-              <!-- Login Form -->
-              <v-card-subtitle class="account-exists mt-md-n3 mt-sm-0 mt-0" align="center">
-                Already have account?
-                <a href="/login">Login</a>
-              </v-card-subtitle>
-            </v-card>
-            <div class="tablet-layer3 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer3.png"
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer3.png"
-              />
-            </div>
-          </v-col>
-          <v-col md="1" class="hidden-sm-and-down"></v-col>
-
-          <!-- for tab and mobile -->
-          <v-col cols="7" class="hidden-md-and-up" align="center">
-            <v-card color="transparent" flat tile class="card-download">
-              <v-card-subtitle class="download-text">Download for ios and android:</v-card-subtitle>
-              <v-card-subtitle class="hidden-xs-only">
-                <v-row>
-                  <v-col sm="6" cols="6">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/app-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-
-                  <v-col sm="6" cols="6">
-                    <a href="#">
-                      <img
-                        class="app-store-logo"
-                        src="/images/welcome_landing_page/icons/play-store.png"
-                        alt
-                      />
-                    </a>
-                  </v-col>
-                </v-row>
-              </v-card-subtitle>
-              <v-row class="hidden-sm-and-up mt-5">
-                <v-col sm="6" cols="6">
-                  <a href="#">
-                    <img
-                      class="app-store-logo"
-                      src="/images/welcome_landing_page/icons/app-store.png"
-                      alt
-                    />
-                  </a>
+                        <template slot="append">
+                          <v-icon
+                            color="#1DBF73"
+                            class="custom-append-icon"
+                            v-show="is_username_valid"
+                          >mdi-check-circle</v-icon>
+                          <v-icon
+                            color="#E91E63"
+                            class="custom-append-icon"
+                            v-show="!is_username_valid && is_username_valid !== null"
+                          >mdi-close-circle</v-icon>
+                        </template>
+                        <template slot="prepend-inner">
+                          <span class="inner-text">civ.ie/</span>
+                        </template>
+                      </v-text-field>
+                    </v-card-subtitle>
+                  </v-card>
                 </v-col>
 
-                <v-col sm="6" cols="6">
-                  <a href="#">
-                    <img
-                      class="app-store-logo"
-                      src="/images/welcome_landing_page/icons/play-store.png"
-                      alt
-                    />
-                  </a>
+                <v-col md="11" sm="12" cols="12">
+                  <v-card flat color="transparent" tile style="z-index:3;">
+                    <agile :options="agileOptions">
+                      <div class="slide" v-for="i in 4" :key="i">
+                        <img
+                          src="/images/welcome_landing_page/imgs/edit-cv.png"
+                          alt
+                          style="box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1);"
+                        />
+                      </div>
+                    </agile>
+                  </v-card>
                 </v-col>
               </v-row>
             </v-card>
           </v-col>
-          <!-- for tab and mobile -->
         </v-row>
       </v-container>
       <!-- 1st inner container ends here -->
 
+      <!-- new 2nd layer -->
+      <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
+      <register-form :username="validUserName"></register-form>
+
+      <!-- new 2nd layer -->
+
       <!-- 2nd inner container starts here -->
       <v-container style="width:100%" class="build-resume-container">
         <v-row align="center" justify="center">
-          <v-col xl="9" md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
+          <v-col md="10" sm="12" cols="12" :align="windowWidth>959 ? 'center':'left'">
             <!-- 1st card -->
-            <div class="tablet-layer4 hidden-md-and-up">
-              <img
-                :width="windowWidth"
-                class="hidden-xs-only"
-                src="/images/welcome_landing_page/imgs/background-images/tablet/layer4.png"
-              />
-              <img
-                :width="windowWidth"
-                class="hidden-sm-and-up"
-                src="/images/welcome_landing_page/imgs/background-images/mobile/layer4.png"
-              />
-            </div>
-            <v-card flat tile color="transparent">
-              <div class="middle-layer-background1 hidden-sm-and-down">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer1.png" />
-              </div>
 
+            <v-card flat tile color="transparent">
               <v-card-subtitle class="build-resume-title mt-lg-0 mt-md-0 mt-sm-0 mt-7">
                 Build a resume that you
                 <br />can be proud of
@@ -355,9 +117,6 @@
               <v-card-subtitle
                 class="build-resume-subtitle mt-md-n5 mb-md-5 mb-sm-12 mb-4 mt-n4"
               >100+ Integrations. Ensure your clients can easily contract, hire and pay you.</v-card-subtitle>
-              <div class="middle-layer-background2 hidden-sm-and-down">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer2.png" />
-              </div>
             </v-card>
             <!-- 1st card -->
             <!-- 2nd card -->
@@ -384,13 +143,6 @@
                   <img src="/images/welcome_landing_page/icons/play.png" />
                 </v-btn>
               </v-img>
-              <div class="tablet-layer5 hidden-md-and-up">
-                <img
-                  :width="windowWidth"
-                  class="hidden-xs-only"
-                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer5.png"
-                />
-              </div>
             </v-card>
 
             <!-- 2nd card -->
@@ -400,7 +152,7 @@
       <!-- 2nd inner container ends here -->
 
       <!-- 3rd inner container starts here -->
-      <v-container style="width:100%" class="gallery-container">
+      <v-container style="width:100%" class="gallery-container mb-md-12">
         <v-row align="center" justify="center">
           <v-col xl="11" cols="12">
             <v-card flat tile color="transparent" class="card-choose-theme margin-0">
@@ -420,31 +172,10 @@
                     </span>
                   </v-col>
                   <v-col md="6" cols="12" :align="windowWidth > 959 ? 'right' :'left'">
-                    <div class="tablet-layer5 hidden-sm-and-up">
-                      <img
-                        :width="windowWidth"
-                        class="hidden-sm-and-up"
-                        src="/images/welcome_landing_page/imgs/background-images/mobile/layer5.png"
-                      />
-                    </div>
-                    <v-btn color="#E91E63" class="btn-get-started-middle">Get Started</v-btn>
-                    <div class="tablet-layer6 hidden-sm-and-up">
-                      <img
-                        :width="windowWidth"
-                        class="hidden-sm-and-up"
-                        src="/images/welcome_landing_page/imgs/background-images/mobile/layer6.png"
-                      />
-                    </div>
+                    <v-btn color="#0046FE" href="/register" class="btn-view-themes">View All Themes</v-btn>
                   </v-col>
                 </v-row>
               </v-card-subtitle>
-              <div class="tablet-layer6 hidden-md-and-up">
-                <img
-                  :width="windowWidth"
-                  class="hidden-xs-only"
-                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer6.png"
-                />
-              </div>
             </v-card>
 
             <v-card tile color="transparet" flat class="card-gallery hidden-md-and-up">
@@ -468,74 +199,33 @@
             </v-card>
 
             <v-card tile flat color="transparent" class="hidden-sm-and-down">
-              <v-row>
-                <template v-for="n in 6">
+              <v-row align="center" justify="center">
+                <template v-for="n in 5">
                   <v-col md="4" :key="n">
                     <v-card flat tile color="transparent" class="card-gallery">
                       <img :src="getGalleryImages(n)" alt="gallery" />
                     </v-card>
                   </v-col>
                 </template>
+                <v-col cols="4">
+                  <v-card align="center" color="transparent" flat tile>
+                    <v-card-subtitle class="explore-number">+35</v-card-subtitle>
+                    <v-card-subtitle class="explore-text">Themes you can explore</v-card-subtitle>
+                    <v-card-subtitle class="explore-link mt-n10 NoDecor">
+                      <a href="/register">EXPLORE ALL THEMES ></a>
+                    </v-card-subtitle>
+                  </v-card>
+                </v-col>
               </v-row>
-              <div class="middle-layer-background3 hidden-sm-and-down">
-                <img src="/images/welcome_landing_page/imgs/background-images/middle-layer3.svg" />
-              </div>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
       <!-- 3rd inner container starts here -->
-      <!-- 3rd inner container -->
-      <v-container style="width:100%;" class="mt-md-7 mt-sm-0 mt-0 container-integration">
-        <v-row align="center" justify="center">
-          <v-col cols="12" :align="windowWidth <=959 ? 'left' : 'center'">
-            <div class="middle-layer-background4 hidden-sm-and-down">
-              <img src="/images/welcome_landing_page/imgs/background-images/middle-layer4.svg" />
-            </div>
-
-            <v-card flat tile color="transparent" style="z-index:1;">
-              <div class="tablet-layer7 hidden-md-and-up">
-                <img
-                  class="hidden-xs-only"
-                  :width="windowWidth"
-                  src="/images/welcome_landing_page/imgs/background-images/tablet/layer7.png"
-                />
-              </div>
-              <v-card-subtitle class="build-resume-title margin-n50">Integrations</v-card-subtitle>
-              <v-card-subtitle
-                class="build-resume-subtitle mt-md-n8 mb-md-3 mt-sm-n0 mt-n5 mb-sm-0 mb-n11"
-              >Link social networks, online profiles, easly accepton line payments</v-card-subtitle>
-              <v-card-text style="z-index:2;" class="mt-md-0 mt-sm-12 mt-12">
-                <slick
-                  class="integrationSlides"
-                  ref="slick"
-                  :options="slickOptions"
-                  style="z-index:2;"
-                >
-                  <v-card color="transparent" flat tile v-for="item in integrations" :key="item.id">
-                    <v-card-subtitle class="integration-title" v-html="item.title"></v-card-subtitle>
-                    <v-card-text>
-                      <img
-                        width="auto"
-                        :class="item.id== 4 ?'integrationImg':''"
-                        :src="getIntegrationImage(item.id)"
-                      />
-                    </v-card-text>
-                  </v-card>
-                </slick>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-      <!-- 3rd inner container -->
-      <div class="middle-layer-background5 hidden-sm-and-down">
-        <img src="/images/welcome_landing_page/imgs/background-images/middle-layer5.svg" />
-      </div>
     </v-container>
     <!-- main container -->
     <!-- Footer -->
-    <v-footer color="#0F4CEE" :height="windowWidth <= 599 ? '125':'auto'">
+    <v-footer color="#0F4CEE" class="custom-footer">
       <v-container class="footer-container">
         <v-row justify="center" align="center" class="justify-space-around">
           <v-col md="2" cols="12" :align="windowWidth <=959 ?'center':'left' ">
@@ -633,33 +323,65 @@
     <!-- footer -->
   </v-app>
 </template>
+
 <script>
 import Slick from "vue-slick";
+import RegisterForm from "../auth/partials/RegisterForm";
 export default {
   components: {
-    Slick
+    Slick,
+    "register-form": RegisterForm
   },
   data() {
     return {
       windowWidth: window.innerWidth,
-      username: "civ.ie/",
-      userFound: null,
+      username: "",
       valid: false,
       lazy: false,
       agreeCheck: false,
+      errors: {},
       formData: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: '',
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: ""
       },
-
       socialMediaIcons: [
-        { id: 1, title: "instagram", width: 18, tablet_width: 30 },
-        { id: 2, title: "linkedin", width: 16, tablet_width: 28 },
-        { id: 3, title: "google", width: 14, tablet_width: 22 },
-        { id: 4, title: "facebook", width: 18, tablet_width: 28 },
-        { id: 5, title: "github", width: 22, tablet_width: 36 }
+        {
+          id: 1,
+          title: "instagram",
+          width: 18,
+          tablet_width: 18,
+          link: "/register/instagram"
+        },
+        {
+          id: 2,
+          title: "linkedin",
+          width: 16,
+          tablet_width: 16,
+          link: "/register/linkedin"
+        },
+        {
+          id: 3,
+          title: "google",
+          width: 14,
+          tablet_width: 14,
+          link: "/register/google"
+        },
+        {
+          id: 4,
+          title: "facebook",
+          width: 18,
+          tablet_width: 18,
+          link: "/register/facebook"
+        },
+        {
+          id: 5,
+          title: "github",
+          width: 22,
+          tablet_width: 22,
+          link: "/register/github"
+        }
       ],
       integrations: [
         { id: 1, title: "Connect your online profiles" },
@@ -679,12 +401,23 @@ export default {
         { id: 5, title: "slack" }
       ],
       users: ["nishad", "ahmed", "anton", "gladwin"],
+
+      //agile options
+      agileOptions: {
+        dots: false,
+        fade: true,
+        autoplay: true,
+        navButtons: false,
+        pauseOnHover: true
+      },
+      //agile options
+
       slickOptionsGallery: {
         centerMode: true,
         infinite: true,
         dots: true,
         arrows: false,
-        slidesToShow: 3,
+        slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 5000,
@@ -702,45 +435,23 @@ export default {
           {
             breakpoint: 599,
             settings: {
-              centerPadding: "30px",
+              centerPadding: "75px",
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 400,
+            settings: {
+              centerPadding: "50px",
               slidesToShow: 1,
               slidesToScroll: 1
             }
           }
         ]
       },
-      errors:{},
-      slickOptions: {
-        centerMode: false,
-        infinite: true,
-        dots: true,
-        arrows: false,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        pauseOnDotsHover: true,
-        responsive: [
-          {
-            breakpoint: 959,
-            settings: {
-              centerMode: true,
-              centerPadding: "80px",
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          },
-          {
-            breakpoint: 599,
-            settings: {
-              centerMode: true,
-              centerPadding: "40px",
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      }
+      validUserName: "",
+      is_username_valid: null
     };
   },
   //mounted
@@ -750,42 +461,17 @@ export default {
     };
   },
   methods: {
-    register() {
-      this.errors = {};
-      if(!this.agreeCheck){
-        this.errors.agreeCheck = 'Required field*';
-        return;
-      }
-      axios.post('/simple-register', this.formData)
-              .then(response => {
-                // save the access token then redirect:
-                Vue.$cookies.set('access_token', response.data.access_token, "3y");
-                if(response.data.is_admin){
-                  window.location.href = '/workforce-admin';
-                }else{
-                  window.location.href = '/resume-builder';
-                }
-              })
-              .catch(error => {
-                this.canSubmit = true;
-                if (typeof error.response.data === 'object') {
-                  this.errors = error.response.data.errors;
-                } else {
-                  this.errors = ['Something went wrong. Please try again.'];
-                }
-              });
-    },
-    checkUser() {
-      if (this.username == "") {
-        this.userFound = null;
-      } else {
-        let index = this.username.search("/");
-        if (index >= 0) {
-          let splitStr = this.username.split("/");
-          var found = this.users.indexOf(splitStr[1]);
-          found > -1 ? (this.userFound = true) : (this.userFound = false);
-        }
-      }
+    validateUsername() {
+      axios
+        .post("/validate-username", { username: this.username })
+        .then(response => {
+          this.validUserName = this.username;
+          this.is_username_valid = true;
+        })
+        .catch(response => {
+          this.validUserName = "";
+          this.is_username_valid = false;
+        });
     },
     getSocialIcon(title) {
       return `/images/welcome_landing_page/icons/social_icons/${title}.png`;
@@ -796,1327 +482,932 @@ export default {
     getIntegrationImage(id) {
       return `/images/welcome_landing_page/imgs/integration/${id}.png`;
     },
-
     getContactIcons(title) {
       return `/images/welcome_landing_page/icons/${title}.png`;
+    },
+    scrollTo(id) {
+      $("html, body").animate(
+        {
+          scrollTop: $("#" + id).offset().top
+        },
+        1500
+      );
     }
   }
 };
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
+// Here I am using ID SCOPING #welcomeView ID wrapping all styles
+
 @import url("https://fonts.googleapis.com/css?family=Montserrat");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans");
-.footer-container {
-  @media screen and (max-width: 599px) {
-    width: 100%;
-    padding: 0px !important;
-    margin: 0px !important;
-  }
-}
-.main-container {
-  width: 100%;
-  @media screen and (max-width: 599px) {
-    overflow-x: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  @media screen and (max-width: 400px) {
-  }
-}
-.app-container {
-  @media screen and (max-width: 599px) {
-  }
-}
 
-.margin-n50 {
-  @media screen and (max-width: 599px) {
-    margin-top: -50px !important;
+#welcomeView,
+#registerForm,
+#loginForm {
+  .inner-text {
+    padding-top: 6px;
+    color: #aeaeae;
   }
-}
-.margin-n30 {
-  @media screen and (max-width: 599px) {
-    margin-top: -30px !important;
-  }
-  @media screen and (max-width: 400px) {
-    margin-top: 30px !important;
-  }
-}
 
-.margin-n10 {
-  @media screen and (max-width: 599px) {
-    margin-top: -10px !important;
+  .inner-link {
+    padding-top: 4px;
+    padding-right: 10px;
+    &:hover {
+      text-decoration: none;
+    }
   }
-}
 
-.margin-n15 {
-  @media screen and (max-width: 599px) {
-    margin-top: -20px !important;
+  .card-login {
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 15px !important;
+    @media screen and (max-width: 959px) {
+      margin-top: -15px;
+    }
+    @media screen and (max-width: 599px) {
+      height: 812px;
+      margin-top: -38px;
+    }
   }
-}
-.margin-20 {
-  @media screen and (max-width: 599px) {
-    margin-top: 20px !important;
-  }
-}
 
-.margin-0 {
-  @media screen and (max-width: 400px) {
-    margin-top: 0px !important;
+  .av-subtitle {
+    padding-left: 10px;
+    padding-right: 10px;
   }
-}
-//logo
-.logo {
-  width: 163px;
-  height: 69px;
-  @media screen and (min-width: 1600px) {
-    margin-left: 78px;
-  }
-  @media screen and (max-width: 599px) {
-    width: 126px;
-    height: 53px;
-  }
-}
-
-.custom-append-icon {
-  @media screen and (min-width: 960px) and (max-width: 1440px) {
-    margin-top: -6px;
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 9px;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-  }
-}
-//form
-.login-form {
-  label {
+  .separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
     font-family: "Montserrat" !important;
     font-size: 14px;
-    text-align: left !important;
-    font-weight: 500;
-    color: #616161 !important;
+    line-height: 17px;
   }
-  .input-div {
-    margin-top: -20px;
+  .separator::before,
+  .separator::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid lightgray;
   }
+  .separator::before {
+    margin-right: 2em;
+  }
+  .separator::after {
+    margin-left: 2em;
+  }
+  // separator
+  //input
 
-  @media screen and (max-width: 959px) {
-    .input-div {
-      margin-top: 0px;
+  //input
+  .footer-container {
+    @media screen and (max-width: 599px) {
+      width: 100%;
+      padding: 0px !important;
+      margin: 0px !important;
     }
   }
-  @media screen and (max-width: 599px) {
+  .main-container {
+    width: 100%;
+    @media screen and (max-width: 599px) {
+      overflow-x: hidden !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    @media screen and (max-width: 400px) {
+    }
+  }
+  .app-container {
+    @media screen and (max-width: 599px) {
+    }
+  }
+
+  .margin-n50 {
+    @media screen and (max-width: 599px) {
+      margin-top: -50px !important;
+    }
+  }
+  .margin-n30 {
+    @media screen and (max-width: 599px) {
+      margin-top: -30px !important;
+    }
+    @media screen and (max-width: 400px) {
+      margin-top: 30px !important;
+    }
+  }
+
+  .margin-n10 {
+    @media screen and (max-width: 599px) {
+      margin-top: -10px !important;
+    }
+  }
+
+  .margin-n15 {
+    @media screen and (max-width: 599px) {
+      margin-top: -20px !important;
+    }
+  }
+  .margin-20 {
+    @media screen and (max-width: 599px) {
+      margin-top: 20px !important;
+    }
+  }
+
+  .margin-0 {
+    @media screen and (max-width: 400px) {
+      margin-top: 0px !important;
+    }
+  }
+  //logo
+  .logo {
+    width: 163px;
+    height: 69px;
+    @media screen and (min-width: 1600px) {
+      margin-left: 78px;
+    }
+    @media screen and (max-width: 599px) {
+      width: 126px;
+      height: 53px;
+    }
+  }
+
+  //form
+  .login-form {
     label {
-      font-size: 12px;
+      font-family: "Montserrat" !important;
+      font-size: 14px;
+      text-align: left !important;
+      font-weight: 500;
+      color: #616161 !important;
+    }
+    @media screen and (max-width: 599px) {
+      .login-input {
+        margin-top: 5px;
+      }
+      label {
+        font-size: 12px;
+      }
     }
   }
-}
-//form
+  //form
 
-//..................Upper Left Block.................
-//appbar login btn
-.btn-appbar-login {
-  font-family: "Montserrat" !important;
-  font-size: 1rem !important;
-  font-weight: bold !important;
-  text-transform: capitalize !important;
-  color: #0046fe !important;
-  span {
-    text-transform: lowercase !important;
-  }
-
-  @media screen and (min-width: 1600px) {
-    margin-right: 100px;
-  }
-}
-
-.container-resume {
-  margin-top: -80px;
-  @media screen and (max-width: 599px) {
-    padding: 0px !important;
-  }
-}
-
-.card-resume {
-  margin-top: 90px;
-  z-index: 1;
-  @media screen and (min-width: 1600px) {
-    margin-top: 121px;
-  }
-}
-//resume
-.resume-title {
-  font-family: "Montserrat" !important;
-  color: #0046fe !important;
-  font-weight: bold;
-  font-size: 4.2rem;
-  line-height: 5rem;
-  margin-bottom: 10px;
-  @media screen and (max-width: 1440px) {
-    font-size: 3.3rem;
-    line-height: 4rem;
-  }
-
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 2.5rem;
-    line-height: 3rem;
-  }
-
-  @media screen and (max-width: 959px) {
-    font-size: 4rem;
-    line-height: 4.375rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 2.625rem;
-    line-height: 2.813rem;
-    margin-bottom: 20px;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 2rem;
-    line-height: 2.1rem;
-  }
-}
-
-//resume subtitle
-.resume-subtitle {
-  font-family: "Open Sans" !important;
-  font-size: 1.375rem !important;
-  line-height: 2.25rem;
-  color: #828282 !important;
-  @media screen and (max-width: 1440px) {
-    font-size: 17px !important;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 14px !important;
-    line-height: 1.8rem;
-  }
-  @media screen and (max-width: 959px) {
-    font-size: 1.125rem !important;
-    line-height: 1.875rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 0.875rem !important;
-    line-height: 1.375rem;
-  }
-}
-
-.btn-get-started {
-  //margin-top: 2.35vh;
-  margin-top: 30px;
-  font-family: "Montserrat" !important;
-  font-weight: bold;
-  line-height: 10px;
-  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
-    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
-  border-radius: 10px !important;
-  width: 11.065rem;
-  height: 3.55rem !important;
-  font-size: 0.875rem !important;
-
-  @media screen and (max-width: 959px) {
-    margin-top: 0px;
-  }
-
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-    width: 157px !important;
-    height: 48.76px !important;
-    font-size: 0.75rem !important;
-  }
-}
-
-//reserve title
-.reserve-title {
-  margin-top: 30px;
-  font-family: "Open Sans" !important;
-  font-weight: bold;
-  font-size: 1.5rem !important;
-  line-height: 2.25rem;
-  color: #313131 !important;
-  margin-bottom: 20px;
-  z-index: 1;
-  @media screen and (max-width: 1440px) {
-    font-size: 1rem !important;
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 80px;
-    font-weight: 600;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-    margin-bottom: 5px;
-  }
-}
-
-//card download
-
-.card-download {
-  margin-top: 32px;
-  @media screen and (max-width: 1440px) {
-    margin-top: -19px;
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 36px;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-  }
-}
-//Download text
-.download-text {
-  font-family: "Open Sans" !important;
-  font-size: 1.25rem;
-  color: #313131;
-  @media screen and (max-width: 1440px) {
-    font-size: 1rem;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 0.7rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 12px !important;
-  }
-
-  // @media screen and (max-width: 959px) {
-  //   font-size: 1rem !important;
-  // }
-}
-.app-store-logo {
-  margin-left: -20px;
-  width: 170px;
-  height: auto;
-  max-width: 127% !important;
-  @media screen and (min-width: 1600px) {
-    margin-left: 0px;
-  }
-  @media screen and (max-width: 599px) {
-    max-width: 130% !important;
-    margin-top: -35px;
-  }
-}
-// .... upper left block..............
-
-//upper right block
-.card-login-form {
-  border-radius: 15px !important;
-  padding-left: 2.38rem !important;
-  padding-right: 2.38rem !important;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1) !important;
-  z-index: 1;
-  @media screen and (max-width: 1440px) {
-    padding-left: 1.5rem !important;
-    padding-right: 1.5rem !important;
-  }
-  @media screen and (max-width: 959px) {
-    height: 960px;
-    margin-top: 80px;
-    padding-left: 0px !important;
-    padding-right: 0px !important;
-    .card-login-child {
-      padding: 10px;
-    }
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 0px;
-    height: 818px;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-}
-
-.login-title {
-  font-family: "Montserrat" !important;
-  color: #0046fe !important;
-  font-size: 1.5rem;
-  font-weight: 500;
-  @media screen and (max-width: 1440px) {
-    font-size: 1.2rem;
-    margin-top: 10px;
-  }
-  @media screen and (max-width: 959px) {
-    font-size: 1.875rem;
-    line-height: 2.313rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 1.125rem;
-    line-height: 1.275rem;
-  }
-}
-.social-icon {
-  border-radius: 10px !important;
-  height: 39px !important;
-  width: 39px !important;
-  min-width: 39px !important;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.08) !important;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  @media screen and (max-width: 1440px) {
-    margin-top: -10px;
-    margin-bottom: -5px;
-  }
-
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    margin-left: 2px !important;
-  }
-  @media screen and (max-width: 959px) {
-    width: 66px !important;
-    height: 66px !important;
-    margin-top: 0px;
-    margin-bottom: 20px;
-  }
-
-  @media screen and (max-width: 599px) {
-    width: 42px !important;
-    height: 42px !important;
-    margin-top: -10px;
-    margin-bottom: 0px;
-  }
-}
-
-//upper right block
-
-.signin-email {
-  font-family: "Montserrat" !important;
-  color: #616161 !important;
-  line-height: 1.25rem;
-  font-size: 1rem !important;
-  font-weight: 500;
-  @media screen and (max-width: 599px) {
-    font-size: 12px !important;
-    line-height: 15px;
-  }
-}
-
-.agree-text {
-  font-family: "Montserrat" !important;
-  color: #838ca3 !important;
-  font-size: 12px;
-  font-weight: 500;
-  span {
+  //..................Upper Left Block.................
+  //appbar login btn
+  .btn-appbar-login {
+    font-family: "Montserrat" !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+    text-transform: capitalize !important;
     color: #0046fe !important;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    font-size: 10px;
-  }
-  @media screen and (max-width: 959px) {
-    font-size: 12px !important;
-  }
-}
+    span {
+      text-transform: lowercase !important;
+    }
 
-.btn-signup {
-  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
-    4px 4px 20px rgba(25, 0, 180, 0.2) !important;
-  border-radius: 10px !important;
-  width: 11.31rem !important;
-  height: 3.625rem !important;
-  span {
+    @media screen and (min-width: 1600px) {
+      margin-right: 100px;
+    }
+    @media screen and (max-width: 1263px) {
+      font-size: 16px !important;
+    }
+  }
+
+  .container-resume {
+    margin-top: -80px;
+    @media screen and (max-width: 599px) {
+      padding: 0px !important;
+    }
+  }
+
+  .card-resume {
+    margin-top: 90px;
+    z-index: 1;
+    @media screen and (min-width: 1600px) {
+      margin-top: 121px;
+    }
+  }
+  //resume
+  .resume-title {
     font-family: "Montserrat" !important;
     font-weight: bold;
-    color: #ffffff !important;
-    letter-spacing: 0.2em !important;
-    font-size: 0.875rem !important;
-  }
-  @media screen and (max-width: 599px) {
-    width: 157px !important;
-    height: 48.76px !important;
-  }
-}
-
-.account-exists {
-  font-family: "Montserrat" !important;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-  color: #000000;
-  a {
+    font-size: 64px;
+    line-height: 80px;
     color: #0046fe !important;
-    font-weight: 500;
-  }
-
-  @media screen and (max-width: 959px) {
-    font-size: 1.375rem;
-  }
-
-  @media screen and (max-width: 599px) {
-    font-size: 1.125rem;
-  }
-}
-
-// build resume section
-.build-resume-container {
-  margin-top: 130px;
-  @media screen and (max-width: 1440px) {
-    margin-top: 80px;
-  }
-  @media screen and (max-width: 599px) {
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-}
-
-.btn-get-started-middle {
-  margin-top: -90px;
-  width: 200px !important;
-  height: 57px !important;
-  font-family: "Montserrat" !important;
-  font-weight: bold;
-  font-size: 0.875rem !important;
-  box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
-    4px 4px 50px rgba(233, 30, 99, 0.2) !important;
-  border-radius: 10px !important;
-  letter-spacing: 0.2em;
-  line-height: 0;
-  text-transform: uppercase;
-  color: #ffffff !important;
-  @media screen and (max-width: 1440px) {
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
-  @media screen and (max-width: 599px) {
-    width: 157px !important;
-    height: 48.76px !important;
-    font-size: 0.75rem !important;
-  }
-}
-
-.gallery-container {
-  margin-top: 114px;
-  @media screen and (max-width: 1440px) {
-    margin-top: 52px;
-  }
-  @media screen and (max-width: 1280px) {
-    margin-top: 26px;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: -20px;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-}
-
-.build-resume-title {
-  font-family: "Montserrat" !important;
-  font-weight: bold;
-  font-size: 3rem;
-  line-height: 3.438rem;
-  color: #0046fe !important;
-  @media screen and (max-width: 1440px) {
-    font-size: 34px;
-    line-height: 2.438rem;
-  }
-  @media screen and (max-width: 959px) {
-    font-size: 3rem;
-    line-height: 3.25rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 1.5rem;
-    line-height: 32px;
-  }
-  @media screen and (max-width: 400px) {
-    font-size: 1.3rem;
-    line-height: 30px;
-  }
-}
-
-.card-choose-theme {
-  @media screen and (max-width: 959px) {
-    margin-top: 80px;
-  }
-}
-
-.build-resume-subtitle {
-  font-family: "Open Sans" !important;
-  font-size: 1.125rem !important;
-  line-height: 2.25rem;
-  color: #575757 !important;
-  @media screen and (max-width: 1440px) {
-    font-size: 14px !important;
-    line-height: 1.5rem;
-  }
-  @media screen and (max-width: 959px) {
-    font-size: 1.125rem !important;
-    line-height: 1.5rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 14px !important;
-    line-height: 24px;
-  }
-}
-.card-video {
-  border-radius: 20px !important;
-}
-.btn-play {
-  width: 128px;
-  height: 128px;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
-  img {
-    width: 71px;
-    height: auto;
-  }
-  @media screen and (max-width: 599px) {
-    width: 57.02px;
-    height: 56px;
-    img {
-      width: 30px;
+    @media screen and (max-width: 1903px) {
+      font-size: 48px;
+      line-height: 60px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      font-size: 36px;
+      line-height: 50px;
+    }
+    @media screen and (max-width: 959px) {
+      font-size: 64px;
+      line-height: 75px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 714px) {
+      font-size: 48px;
+      line-height: 60px;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 36px;
+      line-height: 45px;
     }
   }
-}
 
-.card-gallery {
-  z-index: 2;
-  img {
-    border-radius: 10px !important;
-  }
-  @media screen and (max-width: 959px) {
-    padding: 0;
-  }
-}
-// build resume section
-
-//integration section
-.container-integration {
-  @media screen and (max-width: 1440px) {
-    margin-top: 15px;
-  }
-  @media screen and (max-width: 959px) {
-    margin-top: 80px !important;
-  }
-  @media screen and (max-width: 599px) {
-    margin-top: 30px;
-    padding: 0 !important;
-  }
-}
-.integration-title {
-  font-family: "Montserrat" !important;
-  font-weight: bold;
-  font-size: 22px;
-  line-height: 29px;
-  color: #575757 !important;
-  @media screen and (max-width: 959px) {
-    font-size: 1.125rem;
-  }
-  @media screen and (max-width: 599px) {
-    font-size: 10px;
-    line-height: 15px;
-  }
-}
-.integrationImg {
-  height: 226px;
-  width: auto;
-  @media screen and (min-width: 1600px) {
-    height: 300px;
-  }
-  @media screen and (max-width: 959px) {
-    height: 350px !important;
-    height: auto;
-  }
-
-  @media screen and (max-width: 599px) {
-    width: 160px !important;
-    height: auto !important;
-  }
-  @media screen and (max-width: 380px) {
-    width: 130px !important;
-    height: auto !important;
-  }
-}
-.integrationSlides {
-  @media screen and (max-width: 959px) {
-    img {
-      width: 85%;
-    }
-  }
-}
-//integration section
-//footer
-.follow-us-text {
-  font-family: "Montserrat" !important;
-  font-weight: bold;
-  font-size: 32px;
-  color: #ffffff !important;
-  span {
+  //resume subtitle
+  .resume-subtitle {
     font-family: "Open Sans" !important;
-    font-size: 18px;
+    font-size: 18px !important;
+    line-height: 24px;
+    color: #828282 !important;
+    margin-top: -42px;
+    @media screen and (max-width: 1903px) {
+      font-size: 14px !important;
+      line-height: 22px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      font-size: 12px !important;
+      line-height: 18px;
+    }
+    @media screen and (max-width: 959px) {
+      font-size: 18px !important;
+      line-height: 24px;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 14px !important;
+      line-height: 22px;
+    }
   }
 
-  @media screen and (max-width: 1440px) {
-    font-size: 20px;
+  .btn-get-started {
+    //margin-top: 2.35vh;
+    margin-top: 30px;
+    font-family: "Montserrat" !important;
+    font-weight: bold;
+    line-height: 10px;
+    box-shadow: -6px -6px 16px #ffffff, 6px 6px 16px rgba(221, 219, 216, 0.4),
+      4px 4px 50px rgba(233, 30, 99, 0.2) !important;
+    border-radius: 10px !important;
+    width: 11.065rem;
+    height: 3.55rem !important;
+    font-size: 0.875rem !important;
+
+    @media screen and (max-width: 959px) {
+      margin-top: 0px;
+    }
+
+    @media screen and (max-width: 599px) {
+      margin-top: 0px;
+      width: 157px !important;
+      height: 48.76px !important;
+      font-size: 0.75rem !important;
+    }
+  }
+
+  //reserve title
+  .reserve-title {
+    margin-top: 30px;
+    font-family: "Open Sans" !important;
+    font-weight: bold;
+    font-size: 1.5rem !important;
+    line-height: 2.25rem;
+    color: #313131 !important;
+    margin-bottom: 20px;
+    @media screen and (max-width: 1903px) {
+      font-size: 18px !important;
+      margin-bottom: -10px;
+      margin-top: -25px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      font-size: 14px !important;
+    }
+    @media screen and (max-width: 959px) {
+      font-size: 24px !important;
+    }
+    @media screen and (min-width: 600px) and (max-width: 714px) {
+      font-size: 18px !important;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 16px !important;
+      line-height: 36px;
+    }
+  }
+
+  .login-title {
+    font-family: "Montserrat" !important;
+    color: #0046fe !important;
+    font-size: 1.5rem;
+    font-weight: 500;
+    @media screen and (max-width: 1440px) {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    @media screen and (max-width: 959px) {
+      font-size: 1.875rem;
+      line-height: 2.313rem;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 1.125rem;
+      line-height: 1.275rem;
+    }
+  }
+
+  .sign-up-text {
+    font-family: "Montserrat" !important;
+    color: #0046fe !important;
+    font-weight: bold;
+    font-size: 64px !important;
+    line-height: 55px;
+    @media screen and (max-width: 1903px) {
+      font-size: 48px !important;
+      line-height: 36px;
+    }
+    @media screen and (max-width: 1263px) {
+      font-size: 36px !important;
+      line-height: 30px;
+    }
+    @media screen and (max-width: 959px) {
+      font-size: 64px !important;
+      line-height: 55px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 714px) {
+      font-size: 48px !important;
+      line-height: 48px;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 36px !important;
+      line-height: 55px;
+    }
+    @media screen and (max-width: 364px) {
+      font-size: 24px !important;
+    }
+  }
+
+  .create-new-account-text {
+    font-family: "Montserrat" !important;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    color: #0046fe !important;
+    @media screen and (max-width: 599px) {
+      font-size: 18px;
+      line-height: 22px;
+      padding-top: 32px;
+    }
+  }
+
+  .social-icon {
+    height: 39px !important;
+    width: 39px !important;
+    min-width: 39px !important;
+    border: 1px solid #ebebeb !important;
+    border-radius: 10px !important;
+    @media screen and (max-width: 330px){
+      margin-left: 5px !important;
+    }
+  }
+
+  //upper right block
+
+  .signin-email {
+    font-family: "Montserrat" !important;
+    color: #616161 !important;
+    line-height: 1.25rem;
+    font-size: 1rem !important;
+    font-weight: 500;
+    @media screen and (max-width: 599px) {
+      font-size: 12px !important;
+      line-height: 15px;
+    }
+  }
+
+  .agree-text {
+    font-family: "Montserrat" !important;
+    color: #838ca3 !important;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
     span {
+      color: #0046fe !important;
+    }
+    @media screen and (max-width: 1263px) {
+      font-size: 12px !important;
+    }
+  }
+
+  .btn-signup {
+    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2);
+    border-radius: 10px !important;
+    width: 11.31rem !important;
+    height: 3.625rem !important;
+    span {
+      font-family: "Montserrat" !important;
+      font-weight: bold;
+      color: #ffffff !important;
+      letter-spacing: 0.2em !important;
+      font-size: 0.875rem !important;
+    }
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      width: 180px !important;
+      height: 51.35px !important;
+      font-size: 12px !important;
+    }
+
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      width: 160px !important;
+      height: 51.35px !important;
+      font-size: 10px !important;
+    }
+    @media screen and (max-width: 599px) {
+      width: 173px !important;
+      height: 52px !important;
+      font-size: 12px !important;
+    }
+    @media screen and (max-width: 400px) {
+      width: 154px !important;
+      font-size: 10px !important;
+    }
+  }
+
+  .account-exists {
+    font-family: "Montserrat" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    a {
+      color: #0046fe !important;
+      font-weight: 500;
+    }
+
+    @media screen and (max-width: 959px) {
+      font-size: 18px;
+      line-height: 22px;
+    }
+
+    @media screen and (max-width: 599px) {
       font-size: 14px;
+      line-height: 17px;
     }
   }
 
-  @media screen and (max-width: 959px) {
-    font-size: 1.125rem;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1024px) {
-    label {
-      display: none;
+  // build resume section
+  .build-resume-container {
+    margin-top: 100px;
+    @media screen and (max-width: 1440px) {
+      margin-top: 80px;
+    }
+    @media screen and (max-width: 599px) {
+      margin: 0 !important;
+      padding: 0 !important;
     }
   }
-  @media screen and (max-width: 599px) {
-    font-size: 12px;
-    margin-bottom: -47px;
-    margin-top: 0px;
-  }
-  @media screen and (max-width: 380px) {
-    font-size: 10px;
-  }
-}
-.logo-footer {
-  width: 201px;
-  height: auto;
 
-  @media screen and (max-width: 959px) {
-    width: 223px;
+  .btn-view-themes {
+    margin-top: -90px;
+    width: 200px !important;
+    height: 57px !important;
+    font-family: "Montserrat" !important;
+    font-weight: bold;
+    font-size: 0.875rem !important;
+    background: #0046fe;
+    box-shadow: 0px 4px 40px rgba(0, 70, 254, 0.2) !important;
+    border-radius: 10px;
+    letter-spacing: 0.2em;
+    line-height: 0;
+    text-transform: uppercase;
+    color: #ffffff !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      width: 180px !important;
+      height: 51.35px !important;
+      font-size: 12px !important;
+    }
+
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      width: 160px !important;
+      height: 51.35px !important;
+      font-size: 10px !important;
+    }
+
+    @media screen and (max-width: 959px) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 213.79px !important;
+      height: 62px !important;
+      font-size: 14px !important;
+    }
+
+    @media screen and (max-width: 599px) {
+      width: 173px !important;
+      height: 52px !important;
+      font-size: 12px !important;
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 154px !important;
+      font-size: 10px !important;
+    }
   }
-  @media screen and (max-width: 599px) {
-    width: 123px;
-    margin-top: -18px;
+
+  .gallery-container {
+    margin-top: 114px;
+    @media screen and (max-width: 1440px) {
+      margin-top: 52px;
+    }
+    @media screen and (max-width: 1280px) {
+      margin-top: 26px;
+    }
+    @media screen and (max-width: 599px) {
+      margin-top: -20px;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
   }
-}
-.footer-social-icon {
-  img {
-    width: 14px;
-    height: auto;
+
+  .build-resume-title {
+    font-family: "Montserrat" !important;
+    font-weight: bold;
+    font-size: 3rem;
+    line-height: 3.438rem;
+    color: #0a1e56 !important;
+    @media screen and (max-width: 1903px) {
+      font-size: 34px;
+      line-height: 2.438rem;
+    }
+
+    @media screen and (max-width: 959px) {
+      font-size: 3rem;
+      line-height: 3.25rem;
+    }
+    @media screen and (min-width: 600px) and (max-width: 714px) {
+      font-size: 36px;
+      line-height: 40px;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 1.5rem;
+      line-height: 32px;
+    }
+    @media screen and (max-width: 400px) {
+      font-size: 1.3rem;
+      line-height: 30px;
+    }
   }
-  @media screen and (min-width: 1600px) {
-    width: 41px !important;
-    height: 41px !important;
+
+  .card-choose-theme {
+    @media screen and (max-width: 959px) {
+      margin-top: 80px;
+    }
+  }
+
+  .build-resume-subtitle {
+    font-family: "Open Sans" !important;
+    font-size: 1.125rem !important;
+    line-height: 2.25rem;
+    color: #575757 !important;
+    @media screen and (max-width: 1903px) {
+      font-size: 14px !important;
+      line-height: 20px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      font-size: 12px !important;
+      line-height: 16px;
+    }
+    @media screen and (max-width: 959px) {
+      font-size: 1.125rem !important;
+      line-height: 1.5rem;
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 14px !important;
+      line-height: 24px;
+    }
+  }
+  .card-video {
+    border-radius: 20px !important;
+  }
+  .btn-play {
+    width: 128px;
+    height: 128px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15) !important;
     img {
-      width: 18.25px;
+      width: 71px;
       height: auto;
     }
-  }
-  @media screen and (max-width: 959px) {
-    width: 69.07px;
-    height: 69.07px;
-    img {
-      width: 25px;
-    }
-  }
-  @media screen and (max-width: 599px) {
-    width: 28px;
-    height: 28px;
-    margin-top: 9px !important;
-    margin-bottom: -28px;
-    img {
-      width: 12px;
+    @media screen and (max-width: 599px) {
+      width: 57.02px;
+      height: 56px;
+      img {
+        width: 30px;
+      }
     }
   }
 
-  @media screen and (max-width: 400px) {
-    width: 24px;
-    height: 24px;
+  .card-gallery {
+    z-index: 2;
     img {
-      width: 10px;
+      border-radius: 10px !important;
+    }
+    @media screen and (max-width: 959px) {
+      padding: 0;
+    }
+    @media screen and(max-width: 700px) {
+      img {
+        width: 80%;
+      }
+    }
+  }
+  // build resume section
+
+  //footer
+  .follow-us-text {
+    font-family: "Montserrat" !important;
+    font-weight: bold;
+    font-size: 32px;
+    color: #ffffff !important;
+    span {
+      font-family: "Open Sans" !important;
+      font-size: 18px;
+    }
+
+    @media screen and (max-width: 1903px) {
+      font-size: 24px;
+      span {
+        font-size: 12px;
+      }
+    }
+
+    @media screen and (max-width: 959px) {
+      font-size: 1.125rem;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      label {
+        font-size: 12px;
+      }
+      span {
+        font-size: 10px;
+      }
+    }
+    @media screen and (max-width: 599px) {
+      font-size: 12px;
+      margin-bottom: -47px;
+      margin-top: 0px;
+    }
+    @media screen and (max-width: 380px) {
+      font-size: 10px;
+    }
+    @media screen and (max-width: 329px) {
+      font-size: 8px;
     }
   }
 
-  @media screen and (max-width: 380px) {
-    width: 22px;
-    height: 22px;
-    img {
-      width: 10px;
+  //explore
+  .explore-number {
+    font-family: "Montserrat" !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 64px;
+    line-height: 55px;
+    color: #061f5a !important;
+    @media screen and (max-width: 1903px) {
+      font-size: 48px;
+      line-height: 36px;
+      margin-bottom: -15px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      font-size: 32px;
+      line-height: 24px;
+      margin-bottom: -24px;
     }
   }
 
-  @media screen and (max-width: 360px) {
-    width: 20px;
-    height: 20px;
-    img {
-      width: 8px;
+  .explore-text {
+    font-family: "Montserrat" !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 55px;
+    color: #061f5a !important;
+    @media screen and (max-width: 1903px) {
+      margin-bottom: -10px;
+      line-height: 40px;
     }
-  }
-}
-//footer
-
-// backgrounds
-.top-layer-background {
-  position: absolute;
-  width: 1920px;
-  top: 3.7rem;
-  left: 0;
-  right: 0;
-  margin-right: auto;
-  margin-left: auto;
-  img {
-    width: 95%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    left: 0;
-    top: 3.9rem;
-    img {
-      width: 100%;
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      font-size: 14px;
+      line-height: 36px;
     }
   }
 
-  @media screen and (max-width: 1366px) {
-    left: 0;
-    width: 1366px;
-    top: 4.8rem;
-    img {
-      width: 100%;
+  .explore-link {
+    font-family: "Montserrat" !important;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 55px;
+    color: #0f4cee !important;
+    @media screen and (min-width: 960px) and (max-width: 1903px) {
+      line-height: 40px;
     }
-  }
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: 0;
-    top: 5.7rem;
-    img {
-      width: 100%;
-    }
-  }
-  @media screen and (max-width: 1024px) {
-    img {
-      width: 79%;
-    }
-  }
-}
-
-.top-make-resume {
-  position: absolute;
-  width: 1920px;
-  top: 32.7rem;
-  left: -0.3rem;
-  img {
-    width: 100%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    top: 31rem;
-    left: 0;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    left: 0;
-    top: 31.5rem;
-  }
-
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: 0;
-    top: 32rem;
-  }
-  @media screen and (max-width: 1024px) {
-    img {
-      width: 79%;
-    }
-  }
-}
-
-.middle-layer-background1 {
-  position: absolute;
-  width: 1920px;
-  top: -17.8rem;
-  left: -26%;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 0;
-  img {
-    width: 90%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    left: -28%;
-    top: -13.3rem;
-  }
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: -18%;
-    top: -13rem;
-  }
-  @media screen and (max-width: 1024px) {
-    top: -9rem;
-    left: -41%;
-    img {
-      width: 79%;
-    }
-  }
-}
-
-.middle-layer-background2 {
-  position: absolute;
-  float: left;
-  width: 1920px;
-  top: 25.8rem;
-  left: -17.5%;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-
-  @media screen and (min-width: 1920px) {
-    top: 215%;
-    left: -24.5%;
-  }
-
-  @media screen and (max-width: 1900px) {
-    width: 1440px;
-    top: 219%;
-    left: -26.5%;
-    img {
-      width: 94%;
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      font-size: 14px;
+      line-height: 36px;
     }
   }
 
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    top: 249%;
-    left: -22%;
-  }
-  @media screen and (max-width: 1024px) {
-    width: 1280px;
-    top: 210%;
-    left: -44%;
-    img {
-      width: 70%;
+  //explore
+  .logo-footer {
+    width: 201px;
+    height: auto;
+
+    @media screen and (max-width: 959px) {
+      width: 223px;
+    }
+    @media screen and (max-width: 599px) {
+      width: 123px;
+      margin-top: -18px;
     }
   }
-}
+  .footer-social-icon {
+    width: 42.81px !important;
+    height: 42.82px !important;
 
-.middle-layer-background3 {
-  position: absolute;
-  width: 1920px;
-  top: 5%;
-  left: -10.5%;
-  z-index: 1;
-  img {
-    width: 100%;
-  }
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    left: -14.5%;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    left: -10%;
-  }
-  @media screen and (max-width: 1280px) {
-    width: 1280px;
-    left: -5%;
-  }
-  @media screen and (max-width: 1024px) {
-    left: -10%;
-  }
-}
-
-.middle-layer-background4 {
-  position: absolute;
-  width: 1920px;
-  top: 76.6%;
-  left: -0.2rem;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 0;
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-    top: 75.2%;
-    left: 3px;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    top: 76.8%;
-    left: -2px;
-  }
-  @media screen and (max-width: 1280px) {
-    top: 76.9%;
-    width: 1280px;
-    left: -0.8125rem;
-  }
-  @media screen and (max-width: 1024px) {
-    top: 72%;
-  }
-}
-
-.middle-layer-background5 {
-  position: absolute;
-  width: 1920px;
-  top: 93%;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  @media screen and (max-width: 1440px) {
-    width: 1440px;
-  }
-  @media screen and (max-width: 1366px) {
-    width: 1366px;
-    top: 92.5%;
-  }
-  @media screen and (max-width: 1280px) {
-    top: 93%;
-    width: 1280px;
-  }
-  @media screen and (max-width: 1024px) {
-    top: 92%;
-  }
-}
-
-// backgrounds
-// background tablet and mobile
-.tablet-layer1 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 1.5%;
-  @media screen and (max-width: 599px) {
-    top: 1.8%;
-    width: 90%;
-  }
-
-  @media screen and (max-width: 414px) {
-    top: 2%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 2.3%;
-  //   img {
-  //     width: 88%;
-  //   }
-  // }
-}
-
-.tablet-layer2 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 7.9%;
-  // @media screen and (max-width: 896px){
-  //   top:6.4%
-  // }
-  @media screen and (max-width: 599px) {
-    width: 80%;
-    top: 7.5%;
-    left: 10%;
-  }
-  @media screen and (max-width: 414px) {
-    top: 7.8%;
-  }
-  @media screen and (max-width: 385px) {
-    top: 8%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 7.5%;
-  // }
-}
-
-.make-resume-background {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 21%;
-}
-
-.tablet-layer3 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 33.4%;
-  // @media screen and (max-width: 896px){
-  //   top:31.7%;
-  // }
-  @media screen and (max-width: 599px) {
-    top: 41.3%;
     img {
-      width: 97%;
+      width: 20px;
+      height: auto;
+    }
+
+    @media screen and (max-width: 1903px) {
+      width: 28px !important;
+      height: 28px !important;
+      img {
+        width: 14px;
+      }
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      width: 24px !important;
+      height: 24px !important;
+      img {
+        width: 10px;
+      }
+    }
+
+    @media screen and (max-width: 959px) {
+      width: 69.07px !important;
+      height: 69.07px !important;
+      img {
+        width: 27px;
+      }
+    }
+
+    @media screen and (min-width: 600px) and (max-width: 753px) {
+      width: 48px !important;
+      height: 48px !important;
+      img {
+        width: 20px;
+      }
+    }
+    @media screen and (max-width: 599px) {
+      width: 28px !important;
+      height: 28px !important;
+      margin-top: 9px !important;
+      margin-bottom: -28px;
+      img {
+        width: 12px;
+      }
+    }
+
+    @media screen and (max-width: 409px) {
+      width: 24px !important;
+      height: 24px !important;
+      img {
+        width: 10px;
+      }
+    }
+
+    @media screen and (max-width: 380px) {
+      width: 22px !important;
+      height: 22px !important;
+      img {
+        width: 10px;
+      }
+    }
+
+    @media screen and (max-width: 361px) {
+      width: 20px !important;
+      height: 20px !important;
+      img {
+        width: 8px;
+      }
+    }
+
+    @media screen and (max-width: 350px) {
+      width: 18px !important;
+      height: 18px !important;
+      img {
+        width: 8px;
+      }
+    }
+    @media screen and (max-width: 335px) {
+      width: 16px !important;
+      height: 16px !important;
+      img {
+        width: 6px;
+      }
     }
   }
-  @media screen and (max-width: 414px) {
-    top: 41.8%;
-  }
-  @media screen and (max-width: 400px) {
-    top: 40.6%;
-  }
 
-  @media screen and (max-width: 380px) {
-    top: 41.5%;
-  }
-
-  @media screen and (max-width: 360px) {
-    top: 42.5%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 40.1%;
-  //   left: 20px;
-  //   img {
-  //     width: 89%;
-  //   }
-  // }
-}
-
-.tablet-layer4 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 47.7%;
-  img {
-    width: 95%;
-  }
-  // @media screen and (max-width: 896px){
-  //   top: 46.5%;
-  // }
-  @media screen and (max-width: 599px) {
-    top: 52.5%;
-  }
-  @media screen and (max-width: 414px) {
-    top: 52.8%;
-  }
-
-  @media screen and (max-width: 400) {
-    top: 51.7%;
-  }
-
-  @media screen and (max-width: 375px) {
-    top: 53.1%;
-  }
-  @media screen and (max-width: 360px) {
-    top: 53.7%;
-  }
-}
-
-.tablet-layer5 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 3%;
-  right: 0;
-  top: 95.1%;
-  // @media screen and (max-width: 896px){
-  //   top: 59.5%;
-  // }
-  @media screen and (max-width: 599px) {
-    top: 39.6%;
-    left: 38%;
-    img {
-      width: 60%;
+  .custom-footer {
+    height: auto !important;
+    @media screen and (max-width: 599px) {
+      height: 125px;
     }
   }
-  @media screen and (max-width: 380px) {
-    left: 49%;
-    top: 47%;
+  .v-text-field {
+    border-radius: 10px !important;
   }
-  @media screen and (max-width: 370px) {
-    top: 52%;
-  }
-
-  // @media screen and (max-width: 340px) {
-  //   top: 127rem;
-  // }
-}
-
-.tablet-layer6 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 20px;
-  right: 0;
-  z-index: 0;
-  top: 11%;
-  img {
-    width: 89%;
-  }
-  // @media screen and (max-width: 896px){
-  //   top: 65%;
-  // }
-  @media screen and (max-width: 599px) {
-    width: 80%;
-    top: 190.8%;
-    left: 32%;
-    img {
-      width: 80%;
-    }
-  }
-  @media screen and (max-width: 380px) {
-    top: 189%;
+  .input-av.v-text-field {
+    box-shadow: 0px 4px 40px rgba(0, 28, 226, 0.1) !important;
   }
 
-  // @media screen and (max-width: 340px) {
-  //   top: 157.3rem;
-  // }
-}
-
-.tablet-layer7 {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: -13%;
-  img {
-    width: 100%;
+  .error-custom-margin {
+    margin-top: -15px;
+    margin-bottom: 10px;
   }
-}
-//background tablet and mobile
-</style>
 
-<style>
-#welcomeView2 .v-text-field {
-  border-radius: 10px !important;
-  border-color: #ffffff !important;
-}
+  .v-text-field input {
+    color: #aeaeae !important;
+  }
 
-#welcomeView2 .v-text-field input {
-  color: #aeaeae !important;
-}
-
-#welcomeView2
   .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
-  border: 2px solid #ffffff !important;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.09) !important;
-}
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
+    border: 2px solid #ffffff !important;
+  }
 
-#welcomeView2 .v-text-field .v-input__control .v-input__slot {
-  min-height: 60px !important;
-}
+  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+    > .v-input__control
+    > .v-input__slot
+    fieldset {
+    border: 2px solid #ebebeb !important;
+  }
 
-#welcomeView2 .slick-dots li button {
-  width: 110px;
-  height: 6px;
-  border-radius: 0px;
-  margin-left: -10px;
-}
-
-#welcomeView2 .slick-dots li.slick-active button {
-  background-color: #0f4cee;
-  outline: none;
-  transition: width 5s ease-out 0s;
-}
-
-#welcomeView2 .slick-dots li button:focus {
-  outline: none !important;
-}
-
-@media screen and (min-width: 1700px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    max-width: 700px !important;
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 45px !important;
-  }
-}
-/* tablet screen */
-/* @media screen and (max-width: 959px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 4.688rem !important;
-  }
-} */
-/* tablet screen */
-/* mobile screen */
-@media screen and (max-width: 959px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 60px !important;
-  }
-  #welcomeView2 .gallerySlides {
-    margin-top: -120px;
-  }
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: -78px;
-  }
-  #welcomeView2 .integrationSlides .slick-slide {
-    margin-left: -35px !important;
-  }
-  #welcomeView2 .integrationSlides .slick-dots li button {
-    width: 130px;
+  .slick-dots li button {
+    width: 110px !important;
     height: 6px;
     border-radius: 0px;
     margin-left: -10px;
-    margin-top: -30px;
+    background-color: #e5e5e5 !important;
   }
-}
-@media screen and (max-width: 599px) {
-  #welcomeView2 .v-text-field .v-input__control .v-input__slot {
-    min-height: 50px !important;
-  }
-  #welcomeView2 .gallery-slides .slick-dots li button {
-    width: 40px;
-    height: 6px;
-    border-radius: 0px;
-    margin-left: -10px;
-    margin-top: -20px;
-  }
-  #welcomeView2 .integrationSlides .slick-dots li button {
-    width: 50px;
-    height: 6px;
-    border-radius: 0px;
-    margin-left: -10px;
-  }
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 34px;
-    width: 300px !important;
-  }
-  #welcomeView2 .integrationSlides .slick-slide {
-    margin-left: -55px !important;
-    margin-top: 0px !important;
-  }
-}
-@media screen and (max-width: 414px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 27px;
-    width: 300px !important;
-  }
-}
 
-@media screen and (max-width: 400px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 10px;
-    width: 300px !important;
+  .slick-dots li.slick-active button {
+    background-color: #0f4cee !important;
+    outline: none;
+    transition: width 5s ease-out 0s;
   }
-}
-@media screen and (max-width: 393px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 13px;
-    width: 300px !important;
+  .slick-dots li button:focus {
+    outline: none !important;
   }
-}
-@media screen and (max-width: 375px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: 1px;
-  }
-}
 
-@media screen and (max-width: 360px) {
-  #welcomeView2 .gallery-slides .slick-slide {
-    margin-left: -8px;
+  @media screen and (max-width: 959px) {
+    .slick-initialized .slick-slide {
+      margin-left: -80px;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .slick-initialized .slick-slide {
+      margin-left: -75px;
+    }
+    .slick-dots li button {
+      width: 80px !important;
+      height: 6px;
+    }
+  }
+
+  @media screen and (max-width: 599px) {
+    .slick-dots li button {
+      width: 40px !important;
+      height: 6px;
+    }
+
+    .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+      > .v-input__control
+      > .v-input__slot {
+      min-height: 48px !important;
+      border-radius: 7px !important;
+    }
+    .slick-initialized .slick-slide {
+      margin-left: -70px;
+    }
+    @media screen and (max-width: 410px) {
+      .slick-initialized .slick-slide {
+        margin-left: -69px;
+      }
+    }
+  }
+  @media screen and (max-width: 400px) {
+    .slick-initialized .slick-slide {
+      margin-left: -40px;
+    }
   }
 }
-/* mobile screen */
-
-  .custom-margin{
-    margin-top: -20px;
-    margin-bottom: 25px;
-  }
 </style>
