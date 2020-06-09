@@ -186,22 +186,40 @@
                   <div class="content_margin">
                     <v-row>
                       <v-col class="case-image" sm="6" md="3" lg="3" xl="3" cols="12">
-                        <img src="/images/resume_themes/theme600/img/portfolio-1.png" alt="Portfolio Image" />
+                        <img
+                          src="/images/resume_themes/theme600/img/portfolio-1.png"
+                          alt="Portfolio Image"
+                        />
                       </v-col>
                       <v-col class="case-image" lg="3" md="3" sm="6" xl="3" cols="12">
-                        <img src="/images/resume_themes/theme600/img/portfolio-2.png" alt="Portfolio Image" />
+                        <img
+                          src="/images/resume_themes/theme600/img/portfolio-2.png"
+                          alt="Portfolio Image"
+                        />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/resume_themes/theme600/img/potfolio-3.png" alt="Portfolio Image" />
+                        <img
+                          src="/images/resume_themes/theme600/img/potfolio-3.png"
+                          alt="Portfolio Image"
+                        />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/resume_themes/theme600/img/portfolio-4.png" alt="Portfolio Image" />
+                        <img
+                          src="/images/resume_themes/theme600/img/portfolio-4.png"
+                          alt="Portfolio Image"
+                        />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/resume_themes/theme600/img/potfolio-3.png" alt="Portfolio Image" />
+                        <img
+                          src="/images/resume_themes/theme600/img/potfolio-3.png"
+                          alt="Portfolio Image"
+                        />
                       </v-col>
                       <v-col class="case-image" cols="12" lg="3" md="3" sm="6" xl="3">
-                        <img src="/images/resume_themes/theme600/img/portfolio-4.png" alt="Portfolio Image" />
+                        <img
+                          src="/images/resume_themes/theme600/img/portfolio-4.png"
+                          alt="Portfolio Image"
+                        />
                       </v-col>
                     </v-row>
                   </div>
@@ -220,7 +238,10 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img
+                                  src="/images/resume_themes/theme600/img/works-icon.png"
+                                  alt="Works Icon"
+                                />
                               </div>
                             </v-col>
 
@@ -273,7 +294,10 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img
+                                  src="/images/resume_themes/theme600/img/works-icon.png"
+                                  alt="Works Icon"
+                                />
                               </div>
                             </v-col>
 
@@ -337,7 +361,10 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img
+                                  src="/images/resume_themes/theme600/img/works-icon.png"
+                                  alt="Works Icon"
+                                />
                               </div>
                             </v-col>
 
@@ -365,7 +392,10 @@
                           <v-row>
                             <v-col md="2" cols="2">
                               <div class="avatar">
-                                <img src="/images/resume_themes/theme600/img/works-icon.png" alt="Works Icon" />
+                                <img
+                                  src="/images/resume_themes/theme600/img/works-icon.png"
+                                  alt="Works Icon"
+                                />
                               </div>
                             </v-col>
 
@@ -423,7 +453,15 @@
                           value="skillTab-0"
                         >
                           <v-row class="skill-wrap">
-                            <v-col md="6" lg="6" class="box-skill" cols="12" sm="12">
+                            <v-col
+                              md="6"
+                              lg="6"
+                              class="box-skill"
+                              cols="12"
+                              sm="12"
+                              v-for="i in 4"
+                              :key="i"
+                            >
                               <div class="logo-skill icon_ps">Ps</div>
                               <div class="info-skill">
                                 <div class="head-skill">
@@ -436,57 +474,7 @@
                                   height="15px"
                                   value="95"
                                   background-color="rgba(228, 228, 228, 0.7)"
-                                  :rounded="true"
-                                ></v-progress-linear>
-                              </div>
-                            </v-col>
-                            <v-col md="6" lg="6" class="box-skill" cols="12" sm="12">
-                              <div class="logo-skill icon_ps">Ps</div>
-                              <div class="info-skill">
-                                <div class="head-skill">
-                                  <span class="nameSkill">Photoshop</span>
-                                  <span class="percentSkill">95%</span>
-                                </div>
-                                <v-progress-linear
-                                  class="progress-bg"
-                                  buffer-value="100"
-                                  height="15px"
-                                  value="95"
-                                  background-color="rgba(228, 228, 228, 0.7)"
-                                  :rounded="true"
-                                ></v-progress-linear>
-                              </div>
-                            </v-col>
-                            <v-col md="6" lg="6" class="box-skill" cols="12" sm="12">
-                              <div class="logo-skill icon_ps">Ps</div>
-                              <div class="info-skill">
-                                <div class="head-skill">
-                                  <span class="nameSkill">Photoshop</span>
-                                  <span class="percentSkill">75%</span>
-                                </div>
-                                <v-progress-linear
-                                  class="progress-bg"
-                                  buffer-value="100"
-                                  height="15px"
-                                  value="75"
-                                  background-color="rgba(228, 228, 228, 0.7)"
-                                  :rounded="true"
-                                ></v-progress-linear>
-                              </div>
-                            </v-col>
-                            <v-col md="6" lg="6" class="box-skill" cols="12" sm="12">
-                              <div class="logo-skill icon_ps">Ps</div>
-                              <div class="info-skill">
-                                <div class="head-skill">
-                                  <span class="nameSkill">Photoshop</span>
-                                  <span class="percentSkill">25%</span>
-                                </div>
-                                <v-progress-linear
-                                  class="progress-bg"
-                                  buffer-value="100"
-                                  height="15px"
-                                  value="25"
-                                  background-color="rgba(228, 228, 228, 0.7)"
+                                  color="blue"
                                   :rounded="true"
                                 ></v-progress-linear>
                               </div>
@@ -563,7 +551,6 @@
                                   buffer-value="100"
                                   height="15px"
                                   value="25"
-                                  background-color="rgba(228, 228, 228, 0.7)"
                                   :rounded="true"
                                 ></v-progress-linear>
                               </div>
@@ -1100,6 +1087,7 @@ img {
   .bg-transparent {
     background: transparent !important;
     min-height: 100%;
+    width: 97%;
   }
 }
 
@@ -1341,6 +1329,7 @@ img {
 }
 </style>
 
+
 <script lang='js' >
 
 export default {
@@ -1396,7 +1385,7 @@ export default {
       this.typeSkill = i;
     },
     getImgUrl(pic) {
-      return `/images/resume_themes/theme600/${pic}.png`;
+      return `/images/resume_themes/theme600/${pic}`;
     }
   }
 };
