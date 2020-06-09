@@ -46,7 +46,7 @@ export default {
 	},
 
 	beforeDestroy() {
-		window.removeEventListener("resize", this.onResize);
+		window.removeEventListener("resize");
 	}
 };
 </script>

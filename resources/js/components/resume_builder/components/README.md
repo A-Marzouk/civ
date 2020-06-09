@@ -253,7 +253,8 @@ Use the same props of an vuetify datepicker.
 ### Example:
 
 ```html
-<v-menu
+<template>
+    <v-menu
         ref="menu"
         v-model="menu"
         :close-on-content-click="false"
@@ -436,9 +437,9 @@ The icon buttons can be modified if you need. You can use the `border-radius` pr
 
 ---
 
-## Buttons
+## Ation Buttons
 
-**class:** resume-builder__btn civie-btn
+**class:** resume-builder__action-buttons-container
 
 **component:** [vuetify btn](https://vuetifyjs.com/en/components/buttons/)
 

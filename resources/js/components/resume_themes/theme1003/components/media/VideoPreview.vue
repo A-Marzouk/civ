@@ -1,12 +1,15 @@
 <template>
-	<div class="video-preview tw-relative tw-flex tw-items-center tw-justify-center" :style="`background: url(${media.thumbnail}) center/cover no-repeat ; height: ${getHeight}px;`">
-		<div class="video-preview__button--play bg-violet tw-flex tw-items-center tw-justify-center tw-w-16 tw-h-16 tw-rounded-full">
-			<svg width="17" height="19" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path fill="#fff" d="M16.5 8.634a1 1 0 010 1.732L2.25 18.593a1 1 0 01-1.5-.866V1.273a1 1 0 011.5-.866L16.5 8.634z" />
-			</svg>
+	<div class="video-preview">
+		<div class="video-thumbnail-wrapper">
+			<div class="video-thumbnail">
+				<img :src="media.thumbnail" :alt="media.title">
+			</div>
 		</div>
-		<div class="video-preview__duration tw-absolute tw-bottom-0 tw-left-0">
-			<div class="duration__value tw-bg-black tw-flex tw-items-center tw-justify-center tw-font-poppins tw-text-white tw-text-xs" v-text="media.duration"></div>
+
+		<div class="video-play">
+			<svg width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill="#ffffff" d="M16.5 8.63398C17.1667 9.01888 17.1667 9.98112 16.5 10.366L2.25 18.5933C1.58333 18.9782 0.75 18.497 0.75 17.7272V1.27276C0.75 0.502958 1.58333 0.0218327 2.25 0.406733L16.5 8.63398Z" />
+			</svg>
 		</div>
 	</div>
 </template>
@@ -19,36 +22,7 @@ export default {
 		media: {
 			type: Object,
 			required: true
-		},
-		aspectRatio: {
-			type: String,
-			default: "73:56"
 		}
-	},
-
-	data: () => {
-		return {
-			width: 0
-		};
-	},
-
-	computed: {
-		calculatedAspectRatio() {
-			return this.aspectRatio.split(":").reduce((a, b) => {
-				return a / b;
-			});
-		},
-
-		getHeight() {
-			return this.width / this.calculatedAspectRatio;
-		}
-	},
-
-	mounted() {
-		this.width = this.$el.offsetWidth;
-		window.onresize = () => {
-			this.width = this.$el.offsetWidth;
-		};
 	}
 };
 </script>
@@ -57,55 +31,40 @@ export default {
 @import "./../../scss/variables";
 
 .video-preview {
-	border-radius: 9px;
-	padding: 28px;
-}
+	position: relative;
+	width: 100%;
 
-.video-preview__duration {
-	padding-left: 30px;
-	padding-bottom: 20px;
+	.video-thumbnail-wrapper {
+		width: 100%;
 
-	.duration__value {
-		line-height: 18px;
-		height: 35px;
-		width: 75px;
-	}
-}
+		.video-thumbnail {
+			height: 0;
+			width: 100%;
+			position: relative;
+			padding-bottom: 79.214%;
 
-@media (min-width: $sm) {
-	.video-preview__button-play {
-		height: 45px;
-		width: 45px;
-
-		svg {
-			height: calc(19 * 0.7);
-			width: calc(17 * 0.7);
+			img {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
 		}
 	}
 
-	.video-preview__duration {
-		padding-bottom: 8.5px;
-		padding-left: 8.5px;
+	.video-play {
+		background: #312050;
+		height: 65px;
+		width: 65px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		right: 50%;
+		bottom: 50%;
+		transform: translate(50%, 50%);
 	}
-}
-
-@media (min-width: $md) {
-	.video-preview__duration {
-		padding-left: 30px;
-		padding-bottom: 20px;
-	}
-}
-
-@media (min-width: $lg) {
-	.video-preview__duration {
-		/* 	padding-bottom: 20px; */
-	}
-}
-
-.bg-violet {
-	background: #3f38dd;
-}
-.tw-w-75px {
-	width: 75px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="resume-builder__scroll">
-        <div class="float-container">
+        <div class="data-container">
             <v-tabs
                 class="resume-builder__tab-bar"
                 hide-slider
@@ -9,13 +9,14 @@
                     class="resume-builder__tab"
                     v-for="tab in tabs"
                     :key="tab"
+                    @click="activeTab = tab"
                 >{{ tab }}</v-tab>
             </v-tabs>
 
-            <SchoolView v-if="tab === 'School'"></SchoolView>
+            <SchoolView v-if="activeTab === 'School'"></SchoolView>
             <div v-else>No thing to show here</div>
         </div>
-    </div>
+    </div>  
 </template>
 
 <script>
@@ -26,7 +27,7 @@ import SchoolView from './education_tabs/school'
         components: {
             SchoolView
         },
-        data() {
+        data: (vm) => {
             return {
                 optionEducationId: 0,
                 editedEducation: {},
@@ -51,7 +52,8 @@ import SchoolView from './education_tabs/school'
                 ],
                 tabViews: [
 
-                ]
+                ],
+                activeTab: 'School'
             }
         },
         computed: {
@@ -787,5 +789,10 @@ $mainBlue: #001CE2;
     .error {
         color: red;
         margin-left: 5px;
+    }
+
+    .data-container {
+        padding: 0;
+        margin-bottom: 70px;
     }
 </style>
