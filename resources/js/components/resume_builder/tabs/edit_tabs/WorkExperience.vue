@@ -1,9 +1,103 @@
 <template>
-    <div class="work-container">
-        <div class="section-title">
-            <div class="title-light">Add</div>
-            <h2>Work Experience</h2>
+    <div class="work-container" id="worksSection">
+
+        <!-- Tabs -->
+        <v-tabs class="resume-builder__tab-bar" hide-slider>
+            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setLinkCategory(tab)">
+                {{tab}}
+            </v-tab>
+        </v-tabs>
+
+        <div class="links-content resume-builder__scroll" v-if="works">
+            <div class="link-inputs-row">
+                <div class="inputs">
+                    <div class="left">
+                        <v-text-field
+                                class="resume-builder__input civie-input"
+                                outlined
+                                color="#001CE2"
+                                placeholder="Company"
+                                :class="{'resume-builder__input--disabled': false}"
+                                :disabled="false"
+                                label="Company Name"
+                                :error="!!errors.company_name"
+                                v-model="newWork.company_name"
+                        >
+                        </v-text-field>
+
+                        <v-text-field
+                                class="resume-builder__input civie-input"
+                                outlined
+                                color="#001CE2"
+                                placeholder="Job title"
+                                :class="{'resume-builder__input--disabled': false}"
+                                :disabled="false"
+                                label="Job title"
+                                :error="!!errors.job_title"
+                                v-model="newWork.job_title"
+                        >
+                        </v-text-field>
+
+                        <v-text-field
+                                class="resume-builder__input civie-input"
+                                outlined
+                                color="#001CE2"
+                                placeholder="Website"
+                                :class="{'resume-builder__input--disabled': false}"
+                                :disabled="false"
+                                label="Website"
+                                :error="!!errors.website"
+                                v-model="newWork.website"
+                        >
+                        </v-text-field>
+
+                        <div class="date-group">
+                            <div class="date-input">
+                                <label for="dateFrom">Date</label>
+                                <input type="date"  v-model="newWork.date_from">
+                                <div class="error" v-if="errors.new.date_from">
+                                    {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                                </div>
+                            </div>
+                            <div class="date-text">
+                                -
+                            </div>
+                            <div class="date-input">
+                                <label for="dateTo" class="light d-flex align-items-center">
+                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
+                                </label>
+                                <input type="date"  v-model="newWork.date_to" :disabled="newWork.present">
+                                <div class="error" v-if="errors.new.date_to">
+                                    {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="right">
+                        <v-textarea
+                                class="resume-builder__input profile-input civie-textarea"
+                                outlined
+                                color="#001CE2"
+                                :class="{'resume-builder__input--disabled': false}"
+                                :disabled="false"
+                                :error="!!errors.description"
+                                v-model="newWork.description"
+                                label="Description"
+                        >
+                        </v-textarea>
+                    </div>
+                </div>
+
+                <div class="btns">
+                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="addWorkEx">
+                        Add New
+                    </v-btn>
+                </div>
+
+            </div>
         </div>
+
         <div class="section-body">
             <transition name='fadeCustom' mode="out-in">
                 <div class="work-ex-form" v-show="addNewWork">
@@ -60,6 +154,7 @@
                     </div>
                 </div>
             </transition>
+
             <div class="action-btns" :class='{"justify-content-between": addNewWork}'>
                 <a v-if="addNewWork" class="btn btn-filled" href="javascript:void(0)" @click="addWorkEx">
                     <img class='icon' src="/images/resume_builder/work-ex/mark.png" alt="">
@@ -79,6 +174,7 @@
                     <!--</a>-->
                 <!--</div>-->
             </div>
+
             <div class="work-ex-list">
                 <div class="work-ex-item mt-5 flex-column" v-for="(work,index) in works" :key="index + '_workEx'">
                     <div class="item-grid">
@@ -202,6 +298,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
 </template>
 
@@ -210,6 +308,11 @@
         name: "WorkExperience",
         data() {
             return {
+                tabs: [
+                    'paid',
+                    'voluntary',
+                    'internship'
+                ],
                 optionWorkId: 0,
                 editedWork: {},
                 newWork: {
@@ -342,6 +445,7 @@
 <style scoped lang="scss">
     @import '../../../../../sass/media-queries';
     $mainBlue: #001CE2;
+
 
     .work-container {
         width: 100%;
@@ -493,117 +597,6 @@
                         
                         input {
                             max-width: 100%;
-                        }
-                    }
-                }
-
-                .date-group {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: flex-end;
-                    min-width: 637px;
-                    width: 100%;
-
-                    @include lt-lg {
-                        width: 48%;
-                        min-width: 200px;
-                    }
-
-                    @include lt-md {
-                        width: 100%;
-                    }
-
-                    .date-text {
-                        font: 600 19px/26px Noto Sans;
-                        letter-spacing: 0;
-                        color: #001CE2;
-                        opacity: 1;
-                        margin: 0 33px 18px;
-
-                        @include lt-lg {
-                            margin: 0 15px 18px;
-                        }
-
-                        @include lt-md {
-                            font-size: 16px;
-                        }
-
-                        @include lt-sm {
-                            font-size: 12px;
-                            margin: 0 6px 10px;
-                        }
-                    }
-
-                    .date-input {
-                        display: flex;
-                        flex-direction: column;
-                        max-width: 275px;
-                        width: calc(50% - 44px);
-
-                        @include lt-sm {
-                            width: 50%;
-                        }
-
-                        label {
-                            text-align: left;
-                            font: 600 22px/30px Noto Sans;
-                            letter-spacing: 0;
-                            color: #505050;
-                            opacity: 1;
-
-                            @include lt-md {
-                                font-size: 18px;
-                                color: $mainBlue;
-                            }
-
-                            @include lt-sm {
-                                font-size: 15px;
-                            }
-                        }
-
-                        label.light {
-                            font: 500 18px/24px Noto Sans;
-                            letter-spacing: 0;
-                            opacity: 1;
-
-                            @include lt-lg {
-                                font-size: 15px;
-                            }
-
-                            @include lt-md {
-                                font-size: 11px;
-                                color: $mainBlue;
-                            }
-                        }
-
-                        input {
-                            width: 100%;
-                            height: 62px;
-                            border: 2px solid #505050;
-                            border-radius: 8px;
-                            opacity: 1;
-                            padding-left: 18px;
-
-                            @include lt-lg {
-                                height: 76px;
-                                border-width: 0;
-                                background: #F5F5F5;
-                            }
-
-                            @include lt-md {
-                                height: 47px;
-                            }
-                        }
-
-                        input:focus{
-                            outline: none;
-                        }
-
-                        input.checkbox {
-                            width: 21px;
-                            height: 21px;
-                            padding-left: 0;
-                            margin-right: 8px;
                         }
                     }
                 }
@@ -964,4 +957,242 @@
         color: red;
         margin-left: 5px;
     }
+
+    #worksSection {
+        .links-content {
+            height: 350px;
+            background: #fff;
+            box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+            padding: 50px;
+            margin-bottom: 70px;
+        }
+
+        .tabName {
+            text-transform: capitalize;
+        }
+
+        .link-inputs-row {
+            display: flex;
+            margin-top: 12px;
+            flex-wrap: wrap;
+            display: flex;
+            flex-direction: column;
+
+            .inputs{
+                display: flex;
+
+                .left{
+                    width: 60%;
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    .date-group {
+                        display: flex;
+                        justify-content: space-between;
+
+                        @include lt-lg {
+
+
+                        }
+
+                        @include lt-md {
+
+                        }
+
+                        .date-text {
+                            font: 500 26px/26px Noto Sans;
+                            letter-spacing: 0;
+                            color: #888DB1;
+                            opacity: 1;
+                            margin: 0 18px;
+
+                            @include lt-lg {
+
+                            }
+
+                            @include lt-md {
+                                font-size: 16px;
+                            }
+
+                            @include lt-sm {
+                                font-size: 12px;
+
+                            }
+                        }
+
+                        .date-input {
+                            display: flex;
+                            flex-direction: column;
+                            width: 155px;
+                            position: relative;
+
+                            @include lt-sm {
+
+                            }
+
+                            label {
+                                text-align: left;
+                                position: absolute;
+                                top: -29px;
+                                letter-spacing: 0;
+                                font-weight: 500;
+                                font-size: 18px;
+                                line-height: 25px;
+                                color: #888DB1;
+                                opacity: 1;
+
+                                @include lt-md {
+                                    font-size: 18px;
+                                    color: #888DB1;
+                                }
+
+                                @include lt-sm {
+                                    font-size: 15px;
+                                }
+                            }
+
+                            label.light {
+                                font-size: 12px;
+                                letter-spacing: 0;
+                                opacity: 1;
+
+                                @include lt-lg {
+                                    font-size: 15px;
+                                }
+
+                                @include lt-md {
+                                    font-size: 11px;
+                                    color: #888DB1;
+                                }
+                            }
+
+                            input {
+                                height: 56px;
+                                border: 2px solid #C4C9F5 !important;
+                                border-radius: 10px;
+                                opacity: 1;
+                                color: #c4c9f5;
+                                padding-left: 12px;
+
+                                @include lt-lg {
+
+                                }
+
+                                @include lt-md {
+
+                                }
+                            }
+
+                            input:focus{
+                                outline: none;
+                            }
+
+                            input.checkbox {
+                                width: 14px;
+                                height: 14px;
+                                padding-left: 0;
+                                margin-right: 8px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .civie-select {
+                max-width: 210px;
+                margin-right: 30px;
+
+                .v-input__slot {
+                    padding-left: 30px !important;
+                }
+
+                .input-prepended-icon {
+                    position: absolute;
+                    top: 13px;
+                    left: 5px;
+
+                    img {
+                        width: 33px;
+                    }
+                }
+            }
+
+            .civie-input {
+                max-width: 350px;
+                min-width: 300px;
+                margin-bottom: 20px;
+                margin-right: 30px;
+            }
+            .civie-textarea{
+                min-width: 300px;
+            }
+
+            .civie-btn {
+                min-height: 54px;
+            }
+        }
+
+        .links-items {
+            .link-item {
+                width: 100%;
+                height: 50px;
+                display: flex;
+                margin-bottom: 30px;
+                align-items: center;
+                justify-content: space-between;
+                background: white;
+                box-shadow: 0 5px 20px rgba(0, 16, 131, 0.15);
+
+                .link-data {
+                    display: flex;
+                    height: 50px;
+
+                    .mover {
+                        width: 50px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-right: 1px solid #E6E8FC;
+
+                        img {
+                            width: 12px;
+                            height: 16px;
+                        }
+
+                        &:hover {
+                            cursor: grab;
+                        }
+                    }
+
+                    .link-text {
+                        display: flex;
+                        align-items: center;
+                        margin-left: 10px;
+                        font-size: 18px;
+                        line-height: 25px;
+                        color: #888DB1;
+
+                        img {
+                            width: 45px;
+                            height: auto;
+                        }
+                    }
+                }
+
+                .action-btns {
+                    margin-right: 10px;
+
+                    .resume-builder__action-buttons-container {
+                        position: static;
+                    }
+                }
+            }
+
+        }
+
+        ::-webkit-calendar-picker-indicator {
+            color:red;
+        }
+    }
+
 </style>
