@@ -787,3 +787,15 @@ if ($("#resumeTheme602").length !== 0) {
         }
     });
 }
+import resumeTheme903 from './components/resume_themes/theme903/index';
+if ($("#resumeTheme903").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme903',
+        vuetify,
+        store,
+        components: {
+            'resume-theme-903': resumeTheme903
+        }
+    });
+}

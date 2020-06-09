@@ -153,17 +153,5 @@ class UserObserver
         Referee::create([
             'user_id' => $user->id,
         ]);
-
-        // Profile Link
-        Link::create([
-            'user_id' => $user->id,
-            'category' => 'profile_link',
-        ]);
-
-        // Payment Link
-        Link::create([
-            'user_id' => $user->id,
-            'category' => 'payment_link',
-        ]);
     }
 }

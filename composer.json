@@ -14,7 +14,6 @@
         "google/cloud-error-reporting": "^0.16.3",
         "google/cloud-logging": "^1.20",
         "guzzlehttp/guzzle": "6.5.2",
-        "lanin/laravel-api-debugger": "^3.5",
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.2",
         "laravel/passport": "^8.4",
