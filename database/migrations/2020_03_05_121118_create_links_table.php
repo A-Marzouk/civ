@@ -19,6 +19,7 @@ class CreateLinksTable extends Migration
 
             $table->string('category')->nullable();
             $table->string('link')->nullable();
+            $table->integer('order')->default(1);
             $table->string('link_title')->nullable();
             $table->integer('is_active')->default(1);
             $table->boolean('is_public')->default(true);

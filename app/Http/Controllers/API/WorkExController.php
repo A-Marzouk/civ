@@ -116,7 +116,8 @@ class WorkExController extends Controller
             'website' => ['sometimes','nullable','string','max:255'],
             'date_from' => ['sometimes','date','max:255'],
             'date_to' => ['sometimes','nullable','date','max:255'],
-            'present' =>['boolean']
+            'present' =>['boolean'],
+            'order' =>['max:255'],
         ]);
     }
 
