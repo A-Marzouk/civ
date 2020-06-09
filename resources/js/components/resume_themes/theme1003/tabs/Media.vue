@@ -1,13 +1,13 @@
 <template>
-	<div class="tw-pb-140px">
+	<div class="media">
 		<div class="tw-w-full" v-masonry :transition-duration="0" item-selector=".item" :origin-top="true">
 			<div v-masonry-tile class="media_outer item" v-for="item in media" :key="item.id">
-				<AudioPreview v-if="item.type == 'audio'" :media="item" />
+				<AudioPreview v-if="item.type == 'audio'" :media="item" :isPlaying="isPlaying(item.id)" @onPlay="onPlay" @onPause="onPause" />
 				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
 			</div>
 		</div>
 
-		<AudioPlayer :track="track" />
+		<AudioPlayer :track="activeMedia" />
 	</div>
 </template>
 
@@ -26,96 +26,131 @@ export default {
 			media: [
 				{
 					id: 1,
-					title: "AUDIO_04/08/2020",
+					category: "Podcast",
 					thumbnail: "/images/resume_themes/theme1003/media/1.png",
-					artist: "Hean Prinsloo",
-					duration: "1:05:00",
-					type: "audio"
-				},
-				{
-					id: 2,
-					thumbnail: "/images/resume_themes/theme1003/media/8.png",
-					duration: "15:00",
+					duration: 1 * 3600 + 5 * 60,
+					position: 15 * 60,
 					type: "video"
 				},
 				{
-					id: 3,
-					title: "AUDIO_04/08/2020",
-					thumbnail: "/images/resume_themes/theme1003/media/4.png",
+					id: 2,
+					category: "Podcast",
+					title: "Lorem Cambell -Feat Lorem Mena",
+					thumbnail: "/images/resume_themes/theme1003/media/2.png",
 					artist: "Hean Prinsloo",
-					duration: "1:05:00",
+					duration: 1 * 3600 + 5 * 60,
+					position: 1 * 3600 + 5 * 60,
+					type: "audio"
+				},
+
+				{
+					id: 3,
+					category: "Podcast",
+					title: "Lorem Cambell -Feat Lorem Mena",
+					thumbnail: "/images/resume_themes/theme1003/media/2.png",
+					artist: "Hean Prinsloo",
+					duration: 1 * 3600 + 5 * 60,
+					position: 3600,
 					type: "audio"
 				},
 				{
 					id: 4,
-					title: "AUDIO_04/08/2020",
-					thumbnail: "/images/resume_themes/theme1003/media/7.png",
+					category: "Podcast",
+					title: "Lorem Cambell -Feat Lorem Mena",
+					thumbnail: "/images/resume_themes/theme1003/media/2.png",
 					artist: "Hean Prinsloo",
-					duration: "1:05:00",
+					duration: 1 * 3600 + 5 * 60,
+					position: 3600,
 					type: "audio"
 				},
 				{
 					id: 5,
-					title: "AUDIO_04/08/2020",
-					thumbnail: "/images/resume_themes/theme1003/media/2.png",
+					category: "Podcast",
+					title: "Lorem Cambell -Feat Lorem Mena",
+					thumbnail: "/images/resume_themes/theme1003/media/1.png",
 					artist: "Hean Prinsloo",
-					duration: "1:05:00",
+					duration: 1 * 3600 + 5 * 60,
+					position: 3600,
 					type: "audio"
 				},
 				{
 					id: 6,
-					title: "AUDIO_04/09/2020",
-					thumbnail: "/images/resume_themes/theme1003/media/5.png",
+					category: "Podcast",
+					title: "Lorem Cambell -Feat Lorem Mena",
+					thumbnail: "/images/resume_themes/theme1003/media/1.png",
 					artist: "Hean Prinsloo",
-					duration: "1:05:00",
+					duration: 1 * 3600 + 5 * 60,
+					position: 3600,
 					type: "audio"
 				},
 				{
 					id: 7,
-					thumbnail: "/images/resume_themes/theme1003/media/9.png",
-					duration: "15:00",
+					category: "Podcast",
+					thumbnail: "/images/resume_themes/theme1003/media/2.png",
+					duration: 1 * 3600 + 5 * 60,
+					position: 3600,
 					type: "video"
 				},
 				{
 					id: 8,
-					title: "AUDIO_04/08/2020",
-					thumbnail: "/images/resume_themes/theme1003/media/3.png",
+					category: "Podcast",
+					title: "Lorem Cambell -Feat Lorem Mena",
+					thumbnail: "/images/resume_themes/theme1003/media/1.png",
 					artist: "Hean Prinsloo",
-					duration: "1:05:00",
-					type: "audio"
-				},
-				{
-					id: 9,
-					title: "AUDIO_04/08/2020",
-					thumbnail: "/images/resume_themes/theme1003/media/3.png",
-					artist: "Hean Prinsloo",
-					duration: "1:05:00",
-					type: "audio"
-				},
-				{
-					id: 10,
-					title: "AUDIO_04/08/2020",
-					thumbnail: "/images/resume_themes/theme1003/media/6.png",
-					artist: "Hean Prinsloo",
-					duration: "1:05:00",
+					duration: 1 * 3600 + 5 * 60,
+					position: 3600,
 					type: "audio"
 				}
 			],
-			track: {
-				id: 1,
-				title: "AUDIO_04/08/2020",
-				thumbnail: "/images/resume_themes/theme1003/media/1.png",
-				artist: "Hean Prinsloo",
-				duration: 1 * 3600 + 5 * 60,
-				type: "audio"
+			player: {
+				media_id: 2,
+				isPlaying: true
 			}
 		};
+	},
+
+	computed: {
+		activeMedia() {
+			return this.media.find(item => item.id === this.player.media_id);
+		}
+	},
+
+	methods: {
+		onPlay(id) {
+			let track = this.media.find(item => item.id === id);
+			this.player.media_id = track.id;
+			this.player.isPlaying = true;
+
+			console.log("onPlay", id);
+		},
+
+		onPause() {
+			this.player.isPlaying = false;
+
+			console.log("onPause");
+		},
+
+		isPlaying(id) {
+			return id === this.player.media_id && this.player.isPlaying;
+		}
 	}
 };
 </script>
 
 <style lang="scss" scoped>
 @import "./../scss/variables";
+
+.media {
+	display: block;
+	margin-top: -10px;
+	padding-bottom: 133px;
+
+	@include md {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 685px;
+	}
+}
 
 .media_outer {
 	width: 100%;

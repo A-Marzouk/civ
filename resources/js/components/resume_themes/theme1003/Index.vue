@@ -38,7 +38,7 @@ export default {
 
 	data: () => {
 		return {
-			currentTab: "skills",
+			currentTab: "portfolio",
 			currentUser: {
 				avatar: "/images/resume_themes/theme1003/avatar.png",
 				fullname: "Lorem campbell",
