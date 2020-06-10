@@ -1,26 +1,42 @@
 <template>
    <div>
-       <div class="d-flex mt-5">
+       <div class="d-flex">
            <div @click="() => false" class="aside-bar d-flex flex-column mr-5">
-               <div @click="setActive" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
-                <svg-vue class="aside-icon" :icon="`${section.name}-icon`"></svg-vue>
-                <router-link :to="`/resume-builder/edit/${section.name}`">
+               <div @click="setActive($event,section.name)" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
+                   <img :src="activeTab === section.name ? '/images/new_resume_builder/icons/tabs_icons/' + section.name + '.png' : '/images/new_resume_builder/icons/tabs_icons/' + section.name + '-1.png'" class="icon" alt="">
+                   <router-link :to="`/resume-builder/edit/${section.name}`">
                     {{formatSectionString(section.name)}}
                 </router-link>
                </div>
                <div id="scrollItem"></div>
            </div>
-           <transition class="mt-5"  name="fade" mode="out-in">
-               <router-view></router-view>
-           </transition>
+           <div>
+               <transition  name="fade" mode="out-in" class="d-flex flex-column">
+                   <router-view></router-view>
+               </transition>
+
+               <!-- link bar -->
+               <div class="linkBar" v-if="user.username">
+                   https://civ.ie/{{user.username}}
+               </div>
+               <div>
+                   <user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+               </div>
+           </div>
        </div>
+
+
    </div>
 </template>
 
 <script>
 
+
     export default {
         name: "EditCV",
+        components:{
+            'user-theme' : () => import('../../resume_themes/theme8')
+        },
         data: () => ({
             asideSections: [
                 {
@@ -28,7 +44,7 @@
                     icon: null
                 },
                 {
-                    name: 'summary',
+                    name: 'links',
                     icon: null
                 },
                 {
@@ -44,11 +60,11 @@
                     icon: null
                 },
                 {
-                    name: 'projects',
+                    name: 'portfolios',
                     icon: null
                 },
                 {
-                    name: 'achievement',
+                    name: 'achievements',
                     icon: null
                 },
                 {
@@ -60,24 +76,20 @@
                     icon: null
                 },
                 {
-                    name: 'pay-availability',
-                    icon: null
-                },
-                {
                     name: 'imports',
                     icon: null
                 },
                 {
                     name: 'references',
                     icon: null
+                },
+                {
+                    name: 'pay-availability',
+                    icon: null
                 }
-            ]
+            ],
+            activeTab:'profile'
         }),
-        computed: {
-            activeTab () {
-                return window.location.pathname.split('/')[3]
-            }
-        },
         methods: {
             formatSectionString: (str) => {
                 /**
@@ -97,14 +109,15 @@
 
                 return formatedString;
             },
-            setActive (e) {
-                let activeNow = document.querySelector('.aside-link.active')
-                activeNow && activeNow.classList.toggle('active')
-                e.target.parentNode.classList.toggle('active')
+            setActive (e,section_name) {
+                this.activeTab = section_name ;
+                let activeNow = document.querySelector('.aside-link.active');
+                activeNow && activeNow.classList.toggle('active');
+                e.target.parentNode.classList.toggle('active');
                 this.scrollHandler(e.target.parentNode);
 
                 $([document.documentElement, document.body]).animate({
-                    scrollTop: 100
+                    scrollTop: 0
                 }, 600);
 
             },
@@ -143,11 +156,18 @@
 
             }
         },
+        computed:{
+            user() {
+                return this.$store.state.user;
+            }
+        },
         mounted () {
             let _this = this;
             setTimeout(() => {
                 _this.scrollHandler(document.querySelector('.aside-link.active'))
-            }, 100)
+            }, 100);
+
+            this.activeTab = window.location.pathname.split('/')[3] ;
         }
     }
 </script>
@@ -158,8 +178,22 @@ $disabledColor: #9f9e9e;
 
 @import '../../../../sass/media-queries';
 
+
+.linkBar{
+    width:100%;
+    height:50px;
+    display:flex;
+    align-items: center;
+    padding-left:25px;
+    font-size: 20px;
+    line-height: 22px;
+    color: #888DB1;
+    border: 1px solid #E6E8FC;
+    border-radius: 5px;
+}
+
 .aside-bar {
-    min-width: 260px;
+    min-width: 290px;
     position: relative;
     max-height: calc(61px * 12);
     // Check it
@@ -192,6 +226,12 @@ $disabledColor: #9f9e9e;
 .aside-link {
     font-size: 22px;
     padding-right: 32px;
+
+    .icon{
+        width:45px;
+        height:45px;
+        margin-right:20px;
+    }
 
     .aside-icon {
             path {

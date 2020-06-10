@@ -1,0 +1,109 @@
+.resume-builder__btn.civie-btn.v-btn {
+
+    // default btn
+    &.filled {
+        background-color: $mainColor !important;
+        color: $secondaryColor;
+    }
+
+    // Reset default size
+    &.v-size--default {
+        border-radius: 5px;
+        height: 50px;
+        padding: 13px 21px;
+        font-size: 18px;
+        text-transform: none;
+    }
+
+    // outlined btn
+    &--outlined {
+        background-color: transparent;
+        border: solid 2px $mainColor;
+        color: $mainColor;
+    }
+}
+
+// btns with icons
+.civie-btn.btn-icon {
+    background-color: $auxBgColor-bluegray !important;
+    border-radius: 5px;
+    
+    &.v-size--default {
+        padding: 0 !important;
+    }
+}
+
+.resume-builder__action-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 38px;
+    top: 20px;
+
+    .icon {
+        height: 14px;
+        stroke: #888DB1;
+        fill: transparent;
+
+        path {
+            stroke: #888DB1;
+            fill: none;
+        }
+
+        &.visible{
+            path {
+                stroke:rgb(21, 45, 228);
+                fill: none;
+            }
+        }
+    }
+
+    .btn-icon {
+        height: 30px !important;
+        min-width: auto !important;
+        width: 30px;
+        margin: 0 5px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.mainBg {
+            background-color: $mainColor !important;
+        }
+
+        &.toogleDropdownBtn {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .v-btn__content {
+                display: block;
+                height: 1.5px;
+                width: 10px;
+                background-color: $secondaryColor;
+                flex: 0 0 auto;
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                height: 1.5px;
+                width: 10px;
+                background-color: $secondaryColor;
+                z-index: 1;
+                transform: rotateZ(90deg);
+                transition: all ease .5s;
+            }
+
+            &.opened {
+                &::after {
+                    transform: rotateZ(0deg);
+                    transition: all ease .5s;
+                }
+            }
+        }
+    }
+}

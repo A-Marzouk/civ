@@ -130,12 +130,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function workExperience()
     {
-        return $this->hasMany(WorkEx::class);
+        return $this->hasMany(WorkEx::class)->orderBy('order');
     }
 
     public function links()
     {
-        return $this->hasMany(Link::class);
+        return $this->hasMany(Link::class)->orderBy('order');
     }
 
     public function projects()

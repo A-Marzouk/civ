@@ -1,61 +1,191 @@
 <template>
-    <div class="tm700-left">
-        <div>
-            <img v-bind:src="logo" />
+  <v-container fluid pa-0>
+    <v-row no-gutters justify-sm="center" justify-lg="start">
+      <v-col cols="3" sm="2" lg="2" class="bgavatar">
+        <v-img :src="logo" class="avatar"></v-img>
+      </v-col>
+      <v-col cols="8" sm="9" lg="auto" class="pl-5 pl-sm-0 pl-lg-0" offset="1" align-self="center">
+        <div class="head textcol font-weight-bold d-sm-inline-block">
+          Carla Pipin Ranga
+          <div class="mt-lg-3 d-none d-lg-none d-sm-inline-block ml-6">
+            <v-btn
+              v-for="(m,i) in media"
+              :key="i"
+              elevation="0"
+              fab
+              :width="m.width"
+              :height="m.width"
+              class="mr-5"
+              color="#EBEBEB"
+            >
+              <v-img :src="m.src" contain :width="m.imgwd" :height="m.imgwd"></v-img>
+            </v-btn>
+          </div>
         </div>
-    </div>
+        <div class="caption">Web Ui/Ux Designer, Graphiс Designer</div>
+
+        <div class="mt-lg-3 d-lg-block d-md-none d-sm-none mt-3">
+          <v-btn
+            v-for="(m,i) in media"
+            :key="i"
+            elevation="0"
+            fab
+            :width="m.width"
+            :height="m.width"
+            class="mr-5"
+            color="#EBEBEB"
+          >
+            <v-img :src="m.src" contain :width="m.imgwd" :height="m.imgwd"></v-img>
+          </v-btn>
+        </div>
+      </v-col>
+      <v-col cols="12" sm="8" lg="auto" class="mt-lg-12 mt-sm-0 mt-6">
+        <div class="ml-lg-4 ml-sm-0 text-center">
+          <v-btn
+            v-for="(s,i) in social"
+            :key="i"
+            elevation="0"
+            fab
+            width="40"
+            height="40"
+            class="mx-3 mx-sm-5 mx-lg-3"
+            color="#EBEBEB"
+          >
+            <v-img :src="s.src" :width="16" :height="16" contain></v-img>
+          </v-btn>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            logo: "/images/resume_themes/theme700/header-icon.png"
-        };
-    }
+  data() {
+    return {
+      logo: "/images/resume_themes/theme700/header-icon.png",
+      media: [
+        {
+          src: "/images/resume_themes/theme700/email.svg",
+          width: 40,
+          imgwd: 14
+        },
+        {
+          src: "/images/resume_themes/theme700/video.svg",
+          width: 30,
+          imgwd: 12
+        },
+        {
+          src: "/images/resume_themes/theme700/headphones.svg",
+          width: 30,
+          imgwd: 14
+        }
+      ],
+      social: [
+        {
+          src: "/images/resume_themes/theme700/behance.svg"
+        },
+        {
+          src: "/images/resume_themes/theme700/dribbble.svg"
+        },
+        {
+          src: "/images/resume_themes/theme700/instagram.svg"
+        },
+        {
+          src: "/images/resume_themes/theme700/linkdin.svg"
+        },
+        {
+          src: "/images/resume_themes/theme700/google-plus.svg"
+        }
+      ]
+    };
+  }
 };
 </script>
-<style lang="scss">
-.tm700-left {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
-    > div {
-        --height: 169px;
-        --width: 66px;
-        position: relative;
-        background-color: var(--blue-1);
-        height: var(--height);
-        width: var(--width);
-        @media screen and (min-width: 768px) {
-            --height: 220px;
-            --width: 107px;
-        }
-        @media screen and (min-width: 1200px) {
-            --height: 225px;
-            --width: 178px;
-        }
-        img {
-            --left: 5px;
-            --top: 24px;
-            border-radius: 9999px;
-            position: absolute;
-            border-width: 14px;
-            border-color: #fff;
-            left: var(--left);
-            top: var(--top);
-            min-width: 124px;
-            --height: 124px;
-            @media screen and (min-width: 768px) {
-                --left: 23px;
-                --top: 33px;
-                min-width: 166px;
-                --height: 166px;
-            }
-            @media screen and (min-width: 1200px) {
-                --left: 96px;
-            }
-        }
-    }
+<style lang="scss" scoped>
+.textcol {
+  color: #513ecd;
+}
+.bgavatar {
+  background-color: #513ecd;
+  position: relative;
+  height: 180px;
+}
+.avatar {
+  position: absolute;
+  left: 8rem;
+  top: 1.5rem;
+  border-radius: 50%;
+  border: 15px solid #fff;
+  width: 132px;
+  height: 132px;
+}
+.head {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 25px;
+}
+.subhead {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.6rem;
+  line-height: 15px;
+}
+@media screen and (min-width: 1601px) and (max-width: 2500px) {
+  .avatar {
+    position: absolute;
+    left: 8rem;
+    top: 1.5rem;
+    border-radius: 50%;
+    border: 15px solid #fff;
+    width: 132px;
+    height: 132px;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1600px) {
+  .avatar {
+    position: absolute;
+    left: 6rem;
+    top: 1.5rem;
+    border-radius: 50%;
+    border: 15px solid #fff;
+    width: 132px;
+    height: 132px;
+  }
+}
+@media screen and (min-width: 426px) and (max-width: 1024px) {
+  .avatar {
+    position: absolute;
+    left: 4rem;
+    top: 1.5rem;
+    border-radius: 50%;
+    border: 15px solid #fff;
+    width: 132px;
+    height: 132px;
+  }
+  .bgavatar {
+    background-color: #513ecd;
+    position: relative;
+    height: 180px;
+  }
+}
+
+@media screen and (min-width: 320px) and (max-width: 425px) {
+  .avatar {
+    position: absolute;
+    left: 3.5rem;
+    top: 1rem;
+    border-radius: 50%;
+    border: 10px solid #fff;
+    width: 98px;
+    height: 98px;
+  }
+  .bgavatar {
+    background-color: #513ecd;
+    position: relative;
+    height: 140px;
+  }
 }
 </style>

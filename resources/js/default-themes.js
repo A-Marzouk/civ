@@ -3,7 +3,7 @@ import vuetify from './vuetify';
 import { store } from './store/store';
 
 
-import resumeTheme2 from './components/resume_themes/theme2';
+import resumeTheme2 from './components/resume_themes/theme2/index';
 if ($("#resumeTheme2").length !== 0) {
     new Vue({
         el: '#resumeTheme2',
@@ -616,6 +616,16 @@ if ($("#resumeTheme1002").length !== 0) {
         el: "#resumeTheme1002",
         components: {
             "resume-theme-1002": resumeTheme1002
+        }
+    });
+}
+
+import resumeTheme1003 from "./components/resume_themes/theme1003";
+if ($("#resumeTheme1003").length !== 0) {
+    new Vue({
+        el: "#resumeTheme1003",
+        components: {
+            "resume-theme-1003": resumeTheme1003
         }
     });
 }

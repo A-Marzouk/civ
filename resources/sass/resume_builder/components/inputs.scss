@@ -1,0 +1,275 @@
+.resume-builder__input {
+
+    // Default styles ------------------------------------------------------------
+    pointer-events: auto !important;
+    max-width: 100%; // Set the real max-width on the parent container
+
+    &.civie-input, // Simple input
+    &.civie-select // Select
+    {
+        .v-input__slot {
+
+            // input height is different to textarea
+            height: 50px;
+        }
+    }
+
+    &.civie-select.icon-prepended // Select with prepend icon
+    {
+        .v-input__slot {
+            padding-left: 25px !important;
+
+            .v-input__append-inner {
+                right: 8px;
+            }
+
+        }
+    }
+
+    // Textarea
+    &.civie-textarea {
+        .v-input__slot,
+        textarea {
+
+            // input height is different to textarea
+            height: 160px;
+            resize: none;
+        }
+    }
+
+    // Checkbox
+    &.civie-checkbox > .v-input__control > {
+        .v-input__slot {
+            .v-label {
+                left: -5px !important;
+                top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+
+            .mdi-checkbox-blank-outline::before {
+                color: $inputBorderColor--enabled;
+            }
+        }
+    }
+
+    // Datepicker
+    &.civie-datepicker {
+        & > .v-input__control > .v-input__slot {
+            input {
+                padding: 0;
+            }
+        }
+    }
+
+    // General styles
+    & > .v-input__control > .v-input__slot {
+
+        fieldset {
+
+            // Border fieldset
+            border: 2px solid $inputBorderColor--enabled; // Default state of inputs
+            border-radius: 10px;
+            transition: border .3s cubic-bezier(.25,.8,.5,1);
+
+            legend {
+                // Remove space of default transition animation of lable to fieldset border
+
+                width: 0 !important;
+                margin: 0 !important;
+            }
+        }
+
+        .v-input__append-inner {
+            padding: 0;
+            margin: 0;
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            bottom: 20px;
+            right: 15px;
+
+            // append icon to enable or disable the input
+            .eye-icon {
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                box-shadow: 0 5px 10px rgba($color: #001083, $alpha: 0.15);
+                transition: all 0.3s ease;
+                
+                svg {
+                    width: 12px;
+
+                    path {
+                        stroke: $mainColor;
+                        color: none;
+                        fill: transparent;
+                        transition: all 0.3s ease;
+                    }
+                } 
+            }
+
+            // append icon to open select options
+            .dropdown-icon {
+                width: 100%;
+                height: 100%;
+                margin-top: 4px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                svg {
+                    width: 12px;
+
+                    path {
+                        stroke: $inputTextColor;
+                        color: none;
+                        fill: transparent;
+                        transition: all 0.3s ease;
+                    }
+                }
+            }
+        }
+
+        // Label styles
+        .v-label {
+            color: $inputTextColor;
+            left: -10px !important;     // refactoring inline styles
+            top: -29px !important;
+            font-size: 16px;
+            margin-bottom: 10px;
+            transform: none;
+
+            &--active {
+                label {
+                    transform: none;
+                    color: $mainColor;
+                }
+            }
+        }
+        
+        .v-label.error--text{
+            color:#e3342f;
+        }
+        .v-messages.error--text{
+            color:#e3342f;
+        }
+
+        // Text styles
+        input,
+        textarea,
+        .v-select__selection {
+            color: $inputTextColor;
+            font-size: 16px;
+            padding: 16px 21px 16px 13px;
+        }
+
+        input .icon-prepended,
+        .v-select__selection {
+            padding: 16px 21px 16px 26px;
+        }
+    }    
+    
+    // Focused input ------------------------------------------------------------
+    &--is-focused > .v-input__control > .v-input__slot {
+        fieldset {
+            // Change fieldset border on focus input
+
+            border: 2px solid $mainColor !important;
+        }
+
+        label {
+            transform: none;
+            color: $mainColor;
+        }
+    }
+
+    // Error event --------------------------------------------------------------
+    &.error--text > .v-input__control > .v-input__slot {
+        fieldset {
+            // Change fieldset border on error input
+
+            border: 2px solid $errorColor !important;
+        }
+    }
+
+    // Disabled input -----------------------------------------------------------
+    &.resume-builder__input--disabled {
+
+        & > .v-input__control > .v-input__slot {
+            fieldset {
+                border: 2px solid $inputBorderColor--disabled; // change borders when input is disabled
+            }
+        }
+
+
+        input,
+        textarea {
+            pointer-events: none;
+        }
+
+        // append icon to enable or disable the input
+        .v-input__append-inner {
+
+            .eye-icon {
+                &.icon--disabled {
+                    box-shadow: 0 0 5px rgba($color: #001083, $alpha: 0.10);
+                    transition: all 0.3s ease;
+
+                    svg {
+                        path {
+                            stroke: $disabledColor;
+                            transition: all 0.3s ease;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+// Dropdown menu items styles
+.v-menu__content {
+    .v-list-item {
+        &--active {
+            color: $mainColor;
+            background-color: $auxBgColor-gray !important;
+
+            .v-list-item__title {
+                color: $mainColor;
+            }
+        }
+
+        &__title {
+            color: $inputTextColor;
+        }
+    }
+}
+
+// Datepicker
+.v-picker--date {
+
+    // Current date
+    .v-date-picker-table__current {
+        border-color: $mainColor;
+    }
+
+    .v-btn--active {
+        background-color: $mainColor;
+    }
+
+    .v-btn--flat.primary--text {
+        color: $mainColor !important;
+    }
+}
+
+.resume-builder__input.url {
+
+     input,
+    .v-select__selection {
+        padding-left:0 !important;
+    }
+}

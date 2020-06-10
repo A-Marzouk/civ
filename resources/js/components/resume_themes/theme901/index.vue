@@ -406,7 +406,8 @@ export default {
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");
+/* Once again :) this font is not found! just try it in the browser it returns 404 error! */
+/*@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");*/
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 #hold-theme901{
     max-width: 1920px;

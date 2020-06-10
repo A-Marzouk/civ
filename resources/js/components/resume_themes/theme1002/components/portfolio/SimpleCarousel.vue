@@ -6,9 +6,9 @@
 			</svg>
 		</a>
 
-		<slick class="projects-slick" ref="slick" @init="resizeItemsView" @setPosition="resizeItemsView" :options="slickOptions">
+		<slick class="projects-slick" ref="slick" :options="slickOptions">
 			<div class="item-wrapper" v-for="item in items" :key="item.id">
-				<ItemView ref="ItemsView" :thumbnail="item.thumbnail" :slug="item.slug" :title="item.title" :subTitle="item.subTitle" />
+				<ItemView :thumbnail="item.thumbnail" :title="item.title" :subTitle="item.subTitle" />
 			</div>
 		</slick>
 
@@ -25,7 +25,7 @@ import Slick from "vue-slick";
 import ItemView from "./ItemView";
 
 export default {
-	name: "simple-carousel",
+	name: "SimpleCarousel",
 
 	props: {
 		items: {
@@ -55,10 +55,6 @@ export default {
 
 		prev() {
 			this.$refs.slick.prev();
-		},
-
-		resizeItemsView() {
-			this.$refs.ItemsView.forEach(itemView => itemView.onResize());
 		}
 	}
 };
@@ -83,11 +79,11 @@ export default {
 	}
 
 	.projects-slick {
+		visibility: hidden;
 		width: calc(100% - 50px);
 
-		.item-wrapper {
-			padding-left: 25px;
-			padding-right: 25px;
+		&.slick-initialized {
+			visibility: visible;
 		}
 	}
 }
@@ -98,11 +94,6 @@ export default {
 			padding-top: 40px;
 			padding-bottom: 40px;
 			max-width: 100%;
-
-			.item-wrapper {
-				padding-left: 72.5px;
-				padding-right: 72.5px;
-			}
 		}
 	}
 }

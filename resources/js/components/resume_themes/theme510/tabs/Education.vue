@@ -1,64 +1,8 @@
 <template>
-  <v-row justify="center" class="mt-12" v-if="currentTab === 4">
+  <v-row justify="center" class="mt-12" v-if="currentTab === 3">
     <v-col md="10" sm="12">
       <v-row>
-        <v-col md="6" sm="12" cols="12">
-          <v-row justify="center">
-            <v-col md="2" sm="3" cols="5" class="pr-6">
-              <h1 class="textcol font mt-2">Master in Web Developer</h1>
-              <h1 class="textcol subfont mt-12">2015 - 2016</h1>
-            </v-col>
-            <v-col md="9" sm="7" cols="7" class="margleft">
-              <h1 class="textcol point pb-2">Envision Media, Inc., Santa Cruz, CA</h1>
-              <ul class="textcol subpoint">
-                <li>- Turning creative concepts into finished websites.</li>
-                <li>- Drawing up detailed website s pecifications.</li>
-                <li>- Building websites that are easy to understand, navigate and use.</li>
-                <li>- Designing sample page layouts.</li>
-                <li>- Ensuring that the website complies with the company’s brand guidelines.</li>
-              </ul>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col md="6" sm="12" cols="12">
-          <v-row justify="center">
-            <v-col md="2" sm="3" cols="5" class="pr-6">
-              <h1 class="textcol font mt-2">Master in Web Developer</h1>
-              <h1 class="textcol subfont mt-12">2015 - 2016</h1>
-            </v-col>
-            <v-col md="9" sm="7" cols="7" class="margleft">
-              <h1 class="textcol point pb-2">Envision Media, Inc., Santa Cruz, CA</h1>
-              <ul class="textcol subpoint">
-                <li>- Turning creative concepts into finished websites.</li>
-                <li>- Drawing up detailed website s pecifications.</li>
-                <li>- Building websites that are easy to understand, navigate and use.</li>
-                <li>- Designing sample page layouts.</li>
-                <li>- Ensuring that the website complies with the company’s brand guidelines.</li>
-              </ul>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-      <v-row class="mt-8">
-        <v-col md="6" sm="12" cols="12">
-          <v-row justify="center">
-            <v-col md="2" sm="3" cols="5" class="pr-6">
-              <h1 class="textcol font mt-2">Master in Web Developer</h1>
-              <h1 class="textcol subfont mt-12">2015 - 2016</h1>
-            </v-col>
-            <v-col md="9" sm="7" cols="7" class="margleft">
-              <h1 class="textcol point pb-2">Envision Media, Inc., Santa Cruz, CA</h1>
-              <ul class="textcol subpoint">
-                <li>- Turning creative concepts into finished websites.</li>
-                <li>- Drawing up detailed website s pecifications.</li>
-                <li>- Building websites that are easy to understand, navigate and use.</li>
-                <li>- Designing sample page layouts.</li>
-                <li>- Ensuring that the website complies with the company’s brand guidelines.</li>
-              </ul>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col md="6" sm="12" cols="12">
+        <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
           <v-row justify="center">
             <v-col md="2" sm="3" cols="5" class="pr-6">
               <h1 class="textcol font mt-2">Master in Web Developer</h1>

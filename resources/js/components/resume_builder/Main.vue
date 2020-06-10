@@ -1,29 +1,55 @@
 <template>
-    <div class="resume-container" >
+    <div class="resume-container">
 
-        <nav class="resume-builder-nav d-flex align-items-start justify-content-start">
+        <nav class="resume-builder-nav d-flex align-items-start justify-content-between">
             <a href="/resume-builder" class="brand-link">
-                <img class="brand-image" src="/images/resume_builder/123 icon.png" alt="123workforce icon"/>
+                <img class="brand-image" src="/images/logo_new.png" alt="123workforce icon"/>
             </a>
 
             <a href="javascript:;" class="menu-link" @click='openMenu = true'>
                 <img class="menu-icon" src="/icons/menu-icon.svg" alt="menu icon 123workforce"/>
             </a>
 
-            <!-- Replace this with vue-tabs -->
-            <div id="mainLinksWrapper" class="links-group d-flex align-items-center justify-content-between">
-                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab" to="/resume-builder/edit" class="second has-inside-routes main-tab-link">
-                    Edit CV
+            <div class="nav-icons">
+                <router-link id='editCV' data-target="editCV" v-on:click.native="changeTab; setActiveTab('editCV')" to="/resume-builder/edit" >
+                    <div class="icon" :class="{'active' : activeTab === 'editCV'}">
+                        <img :src=" activeTab === 'editCV' ? '/images/new_resume_builder/icons/main/Edit.png' : '/images/new_resume_builder/icons/main/Edit-1.png'" alt="edit icon">
+                    </div>
                 </router-link>
-                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
-                    View CV
+                <router-link id='viewCV' data-target="viewCV" v-on:click.native="changeTab; setActiveTab('viewCV')" to="/resume-builder/view" >
+                    <div class="icon" :class="{'active' : activeTab === 'viewCV'}">
+                        <img :src=" activeTab === 'viewCV' ? '/images/new_resume_builder/icons/main/Theme.png' : '/images/new_resume_builder/icons/main/Theme-1.png'" alt="theme icon">
+                    </div>
                 </router-link>
-                <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab" to="/resume-builder" class="first main-tab-link">
-                    My account
+                <router-link id='coverLetter' data-target="coverLetter" v-on:click.native="changeTab; setActiveTab('coverLetter')" to="/resume-builder/cover-letter" >
+                    <div class="icon" :class="{'active' : activeTab === 'coverLetter'}">
+                        <img :src=" activeTab === 'coverLetter' ? '/images/new_resume_builder/icons/main/Coverletter.png' : '/images/new_resume_builder/icons/main/Coverletter-1.png'" alt="cover icon">
+                    </div>
                 </router-link>
-
-                <div class="decorator"></div>
+                <router-link id='jobAlert' data-target="jobAlert" v-on:click.native="changeTab; setActiveTab('jobAlert')" to="/resume-builder/jobs" >
+                    <div class="icon" :class="{'active' : activeTab === 'jobAlert'}">
+                        <img :src=" activeTab === 'jobAlert' ? '/images/new_resume_builder/icons/main/job.png' : '/images/new_resume_builder/icons/main/job-1.png'" alt="cover icon">
+                    </div>
+                </router-link>
+                <div class="my-account-icon" @click="profileMenu = !profileMenu">
+                    <div class="icon" v-if="personalInfo" :class="{'active' : activeTab === 'myAccount'}">
+                        <img :src="personalInfo.profile_pic" alt="profile-pic">
+                    </div>
+                    <div class="custom-drop-down" v-show="profileMenu">
+                        <div class="drop-down-item">
+                            <router-link id='myAccount' data-target="myAccount" v-on:click.native="changeTab; setActiveTab('myAccount')" to="/resume-builder">
+                                Account Settings
+                            </router-link>
+                        </div>
+                        <div class="drop-down-item">
+                            <a href="javascript:void(0)"  @click="logout" class="sign-out">
+                                Sign Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </nav>
 
         <div class="side-menu" :class="{ opened: openMenu }">
@@ -42,9 +68,6 @@
                         <router-link id='viewCVMobile' data-target="viewCV" v-on:click.native="setActiveTab('viewCV')" to="/resume-builder/view" class="third has-inside-routes main-tab-link">
                             <svg-vue class="nav-icon" :icon="`view-icon`"></svg-vue>
                         </router-link>
-                        <!-- <router-link id='importMobile' data-target="import" v-on:click.native="setActiveTab('import')" to="/resume-builder/import" class="third has-inside-routes main-tab-link">
-                            <svg-vue class="nav-icon" :icon="`import`"></svg-vue>
-                        </router-link> -->
                         <router-link id='myAccountMobile' data-target="myAccount" v-on:click.native="setActiveTab('myAccount')" to="/resume-builder" class="first main-tab-link">
                             <svg-vue class="nav-icon" :icon="`account-icon`"></svg-vue>
                         </router-link>
@@ -58,35 +81,8 @@
             </div>
         </div>
 
-        <div class="content" 
-            :class="{ 'hideInfoWrapper': activeTab === 'viewCV' }"
-        >
-            <div class="info-wrapper justify-content-between" v-if="personalInfo">
-                <div class="d-flex align-items-center">
-                    <div class="avatar">
-                        <img :src="personalInfo.profile_pic" alt="profile-pic">
-                    </div>
-                    <div class="name-title-wrapper">
-                        <div class="user-name">
-                            {{user.name}}
-                        </div>
-                        <div class="job-title" v-if="personalInfo">
-                            {{personalInfo.designation}}
-                        </div>
-                    </div>
-                </div>
-
-                <div class="auto-import-btn NoDecor" v-show="$route.name === 'my-account'">
-                    <button class="btn btn-filled" @click="logout">
-                        Log Out
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
-        <transition :duration="590" class="mt-5 content" name="fade" mode="out-in">
-            <router-view style="min-height: 100vh;"></router-view>
+        <transition :duration="590" class="content" name="fade" mode="out-in">
+            <router-view style="min-height: 100vh;" class="router-view-margin"></router-view>
         </transition>
 
 
@@ -121,7 +117,6 @@
         </div>
 
         <div class="progressBar" id="progressBar"></div>
-
 
         <div class="modal importModal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="prices" aria-hidden="true" style="overflow: hidden!important;">
             <div class="modal-dialog" role="document">
@@ -175,7 +170,8 @@
         data() {
             return {
                 openMenu: false,
-                activeTab: 'myAccount'
+                activeTab: 'myAccount',
+                profileMenu:false
             }
         },
         computed: {
@@ -191,13 +187,13 @@
                 this.activeTab = tab
             },
             changeTab (e) {
-                let _this = this
+                let _this = this;
 
                 let inputs = document.querySelectorAll('#myAccountTab input');
                 inputs.forEach(input => {
                     input.value = '';
                     input.placeholder = ''
-                })
+                });
 
                 moveTabsHelper(e, 'mainLinksWrapper', _this)
             },
@@ -221,25 +217,20 @@
             });
 
             switch (currentTab) {
-                // edit Tab
                 case 'edit':
-                    this.changeTab({ target: document.getElementById('editCV')}, 'mainLinksWrapper', this);
+                    this.setActiveTab('editCV');
                     break;
-
-
-                // view CV Tab
                 case 'view':
-                    this.changeTab({ target: document.getElementById('viewCV')}, 'mainLinksWrapper', this);
+                    this.setActiveTab('viewCV');
                     break;
-
-                case 'import':
-                    this.changeTab({ target: document.getElementById('import')}, 'mainLinksWrapper', this);
-                    break
-
-
-                // my Account Tab
+                case 'jobs':
+                    this.setActiveTab('jobAlert');
+                    break;
+                case 'cover-letter':
+                    this.setActiveTab('coverLetter');
+                    break;
                 default:
-                    this.changeTab({ target: document.getElementById('myAccount')}, 'mainLinksWrapper', this);
+                    this.setActiveTab('myAccount');
                     break;
             }
 
@@ -252,6 +243,10 @@
 @import '../../../sass/media-queries';
     body.modal-open {
         overflow: visible !important;
+    }
+
+    .router-view-margin{
+        margin-top: 70px;
     }
 
     .content {
@@ -306,9 +301,9 @@
 
     $mainBlue: #001CE2;
     .resume-container {
-        padding: 160px 100px 30px;
+        padding: 100px 100px 30px;
         width: 100%;
-        overflow-x: hidden;
+        /*overflow-x: hidden;*/
 
         @include lt-md {
             padding: 80px 80px 50px;
@@ -391,16 +386,15 @@
     }
 
     .resume-builder-nav {
-        width: 100vw;
+        width: calc(100vw - 17px); // the 17 px is for the right scroll bar.
         position: fixed;
         left: 0;
         top: 0;
         box-shadow: 0 6px 12px #6565653b;
-        padding: 50px 100px;
-        height: 129px;
+        padding: 30px 100px;
+        height: 90px;
         background: #fff;
         z-index: 500;
-        overflow: hidden;
 
         @include lt-lg {
             padding: 26px 80px;
@@ -410,7 +404,7 @@
         @include lt-sm {
             padding: 36px;
             height: auto;
-            overflow-x: hidden;
+            /*overflow-x: hidden;*/
             // box-shadow: none;
         }
 
@@ -429,8 +423,13 @@
 
         .brand-link {
             flex-grow:0.4;
+            margin-top: -12px;
             @include lt-lg {
                 display: none;
+            }
+            img{
+                width:143px;
+                height:52px;
             }
         }
 
@@ -577,6 +576,95 @@
 
         }
 
+        .nav-icons{
+            display: flex;
+            margin-top: -12px;
+
+            .my-account-icon{
+                &:hover{
+                    cursor: pointer;
+                }
+                position: relative;
+                .custom-drop-down{
+                    position: absolute;
+                    width: 230px;
+                    height: auto;
+                    padding: 30px;
+                    border-radius: 10px;
+                    background-color: white;
+                    top: 75px;
+                    right: -20px;
+                    box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+
+                    .drop-down-item{
+                        font-family: Noto Sans, "sans-serif";
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 18px;
+                        border-bottom: 1px solid #D4DBEC;
+                        padding-bottom: 15px;
+                        padding-top: 15px;
+                        color: #0046FE;
+                        &:last-child{
+                            padding-bottom: 0;
+                            border: 0;
+                        }
+                        &:first-child{
+                            padding-top: 0;
+                        }
+
+                        a{
+                            margin-left: 8px;
+                            &:hover{
+                                text-decoration:none;
+                            }
+                        }
+
+                        a.sign-out{
+                            color: #838CA3;
+                        }
+                    }
+                }
+
+
+                .custom-drop-down:before {
+                    content: " ";
+                    height: 0;
+                    position: absolute;
+                    width: 0;
+                    top: -40px;
+                    left: calc(100% - 62px);
+                    border: 20px solid transparent;
+                    border-bottom-color: white;
+                }
+            }
+
+            .icon{
+                margin-left:10px;
+                img{
+                    width:50px;
+                    height:50px;
+                    border-radius:50%;
+                }
+            }
+
+            .icon.active:after {
+                box-sizing: inherit;
+                content: " ";
+                display: flex;
+                flex-direction: column;
+                border: 2px solid blue;
+                background: blue;
+                border-top-left-radius: 16px;
+                border-top-right-radius: 16px;
+                width: 45px;
+                height: 5px;
+                margin-left: 3px;
+                margin-top: 17px;
+            }
+        }
+
     }
 
 
@@ -677,6 +765,8 @@
         left: 0;
         background:#1EC300;
     }
+
+
 
 // import modal styles:
 
