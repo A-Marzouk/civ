@@ -15,7 +15,7 @@ const tailwindcss = require('tailwindcss');
 mix.webpackConfig({
     devServer: {
         proxy: {
-            '*': 'http://localhost:8000'
+            '*': 'http://civ.art'
         }
     }
 });
