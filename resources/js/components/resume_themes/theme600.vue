@@ -924,6 +924,7 @@ img {
 
   @media screen and (max-width: 600px) {
     max-width: 100%;
+    margin-top: -80px;
   }
 
   .box-skill {
