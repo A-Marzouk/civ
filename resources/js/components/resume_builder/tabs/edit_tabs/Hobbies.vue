@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container style="width:100%;">
+    <div class="education-wrapper resume-builder__scroll">
       <v-tabs class="resume-builder__tab-bar" hide-slider v-model="hobbiesTab">
         <v-tab
           class="resume-builder__tab"
@@ -51,7 +51,7 @@
               </v-row>
               <v-row align="center">
                 <v-col xl="5" lg="8" md="8" sm="10" cols="12">
-                  <v-card class="card-holder pa-2">
+                  <v-card class="card-holder pa-2 mb-3" v-for="i in 5" :key="i">
                     <v-row>
                       <v-col xl="2" lg="2" md="2" sm="2" cols="2" class="mt-n3">
                         <v-btn color="#ffffff" class="btn-v_bar" depressed>
@@ -64,7 +64,7 @@
                       <v-col xl="4" lg="4" md="4" sm="4" cols="4" class="mt-n2">
                         <div class="hobby-title">Play Fencing</div>
                       </v-col>
-                      <v-col xl="5" lg="5" md="5" sm="5" cols="5" align="right" class ="action-col">
+                      <v-col xl="5" lg="5" md="5" sm="5" cols="5" align="right" class="action-col">
                         <v-btn
                           color="#F2F3FD"
                           depressed
@@ -95,7 +95,7 @@
           </v-tab-item>
         </v-tabs-items>
       </v-card>
-    </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -339,7 +339,7 @@ $mainBlue: #001ce2;
       width: 30px !important;
       height: 30px !important;
     }
-    .action-col{
+    .action-col {
       margin-top: -10px;
     }
   }

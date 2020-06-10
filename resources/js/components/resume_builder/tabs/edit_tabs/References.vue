@@ -2,139 +2,141 @@
   <v-app>
     <v-card class="card-ref pa-xl-10 pa-lg-5" flat>
       <v-container class="mt-xl-5 mt-lg-10 mt-12">
-        <v-row align="center">
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-select
-              class="resume-builder__input civie-select"
-              outlined
-              placeholder="Select an option"
-              :items="references"
-              label="Referecent Type"
-              color="#001CE2"
-              v-model="referenceType"
-            >
-              <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
-                <svg-vue :icon="`dropdown-caret`"></svg-vue>
-              </button>
-            </v-select>
-          </v-col>
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-text-field
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="Full Name"
-              v-model="fullname"
-            ></v-text-field>
-          </v-col>
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-text-field
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="Title/Position"
-              v-model="title"
-            ></v-text-field>
-          </v-col>
+        <v-form>
+          <v-row align="center">
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-select
+                class="resume-builder__input civie-select"
+                outlined
+                placeholder="Select an option"
+                :items="references"
+                label="Referecent Type"
+                color="#001CE2"
+                v-model="referenceType"
+              >
+                <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                  <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                </button>
+              </v-select>
+            </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="Full Name"
+                v-model="fullname"
+              ></v-text-field>
+            </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="Title/Position"
+                v-model="title"
+              ></v-text-field>
+            </v-col>
 
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-text-field
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="Phone"
-              v-model="phone"
-            ></v-text-field>
-          </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="Phone"
+                v-model="phone"
+              ></v-text-field>
+            </v-col>
 
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-text-field
-              type="email"
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="Email"
-            ></v-text-field>
-          </v-col>
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-text-field
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="Company"
-              v-model="company"
-            ></v-text-field>
-          </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-text-field
+                type="email"
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="Email"
+              ></v-text-field>
+            </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="Company"
+                v-model="company"
+              ></v-text-field>
+            </v-col>
 
-          <v-col xl="3" lg="3" md="6" sm="6">
-            <v-text-field
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="Address"
-              v-model="address"
-            ></v-text-field>
-          </v-col>
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-text-field
-              class="resume-builder__input civie-input"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledInput}"
-              :disabled="disabledInput"
-              label="URL"
-              v-model="url"
-            ></v-text-field>
-          </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="Address"
+                v-model="address"
+              ></v-text-field>
+            </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="URL"
+                v-model="url"
+              ></v-text-field>
+            </v-col>
 
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-textarea
-              class="resume-builder__input civie-textarea"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledTextarea}"
-              :disabled="disabledTextarea"
-              label="Description"
-              v-model="description"
-            ></v-textarea>
-          </v-col>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-textarea
+                class="resume-builder__input civie-textarea"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledTextarea}"
+                :disabled="disabledTextarea"
+                label="Description"
+                v-model="description"
+              ></v-textarea>
+            </v-col>
 
-          <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-            <v-textarea
-              class="resume-builder__input civie-textarea"
-              outlined
-              color="#001CE2"
-              :rules="rules"
-              :class="{'resume-builder__input--disabled': disabledTextarea}"
-              :disabled="disabledTextarea"
-              label="Description"
-              v-model="description"
-            ></v-textarea>
-          </v-col>
-          <v-col xl="8" lg="8" md="12" sm="12" cols="12">
-            <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n5">Add New</v-btn>
-          </v-col>
-        </v-row>
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+              <v-textarea
+                class="resume-builder__input civie-textarea"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledTextarea}"
+                :disabled="disabledTextarea"
+                label="Description"
+                v-model="description"
+              ></v-textarea>
+            </v-col>
+            <v-col xl="8" lg="8" md="12" sm="12" cols="12">
+              <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n5">Add New</v-btn>
+            </v-col>
+          </v-row>
+        </v-form>
       </v-container>
     </v-card>
   </v-app>
@@ -361,7 +363,7 @@ export default {
           console.log(error);
         });
     }
-  },
+  }
 };
 </script>
 
