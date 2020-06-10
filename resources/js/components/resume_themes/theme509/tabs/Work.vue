@@ -1,35 +1,37 @@
 <template>
-  <v-row justify="center" class="mt-12" v-if="currentTab === 2">
-    <v-col lg="10" md="10" sm="12" cols="12">
-      <v-row justify="center">
-        <v-col lg="6" md="6" sm="11" cols="11" v-for="n in 4" :key="n">
-          <v-row justify="start" class="layer ma-md-4 pa-12 ma-2" no-gutters>
-            <v-col cols="12">
-              <v-row no-gutters class="py-4">
-                <v-col lg="4" md="2" sm="3" cols="12">
-                  <h1 class="textcol head font-weight-bold">{{ temp.title }}</h1>
-                </v-col>
-                <v-col lg="8" md="8" sm="7" cols="12" class="text-left">
-                  <h1 class="subhead grey--text text--lighten-2 mt-2">{{ temp.sub }}</h1>
-                </v-col>
+  <v-container v-if="currentTab === 2">
+    <v-row justify="center" class="mt-12">
+      <v-col lg="10" md="10" sm="12" cols="12">
+        <v-row justify="center">
+          <v-col lg="6" md="6" sm="11" cols="11" v-for="n in 4" :key="n">
+            <v-row justify="start" class="layer ma-md-4 pa-12 ma-2" no-gutters>
+              <v-col cols="12">
+                <v-row no-gutters class="py-4">
+                  <v-col lg="4" md="2" sm="3" cols="12">
+                    <h1 class="textcol head font-weight-bold">{{ temp.title }}</h1>
+                  </v-col>
+                  <v-col lg="8" md="8" sm="7" cols="12" class="text-left">
+                    <h1 class="subhead grey--text text--lighten-2 mt-2">{{ temp.sub }}</h1>
+                  </v-col>
 
-                <v-col lg="4" md="3" sm="3" cols="12" class="mt-sm-8 mt-2">
-                  <h1 class="d-block subtitle-2 grey--text text--lighten-2">Duration :</h1>
-                  <h1
-                    class="d-block subtitle-2 font-weight-bold textcol"
-                    style="color:#F97CB3;"
-                  >{{ temp.duration }}</h1>
-                </v-col>
-                <v-col lg="8" md="8" sm="9" cols="12" class="mt-sm-8 mt-2">
-                  <h1 class="grey--text text--lighten-1 sfont">{{ temp.para }}</h1>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+                  <v-col lg="4" md="3" sm="3" cols="12" class="mt-sm-8 mt-2">
+                    <h1 class="d-block subtitle-2 grey--text text--lighten-2">Duration :</h1>
+                    <h1
+                      class="d-block subtitle-2 font-weight-bold textcol"
+                      style="color:#F97CB3;"
+                    >{{ temp.duration }}</h1>
+                  </v-col>
+                  <v-col lg="8" md="8" sm="9" cols="12" class="mt-sm-8 mt-2">
+                    <h1 class="grey--text text--lighten-1 sfont">{{ temp.para }}</h1>
+                  </v-col>
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

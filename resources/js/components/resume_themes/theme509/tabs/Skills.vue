@@ -1,72 +1,74 @@
 <template>
-  <v-row no-gutters justify="center" class="mt-10" v-if="currentTab === 4">
-    <v-col md="8" lg="10" cols="11">
-      <v-tabs
-        v-model="tab"
-        background-color="transparent"
-        height="60"
-        color="#C10FA0"
-        center-active
-        hide-arrows
-        grow
-        class="tabmargn"
-      >
-        <v-tabs-slider style="height:0px;padding:0 0 !important;"></v-tabs-slider>
-        <v-tab
-          v-for="item in items"
-          :key="item.id"
-          exact
-          class="subtitle-1 text-capitalize textcol"
-          active-class="font-weight-bold"
-        >{{ item.name }}</v-tab>
-      </v-tabs>
+  <v-container v-if="currentTab === 4">
+    <v-row no-gutters justify="center" class="mt-10">
+      <v-col md="8" lg="10" cols="11">
+        <v-tabs
+          v-model="tab"
+          background-color="transparent"
+          height="60"
+          color="#C10FA0"
+          center-active
+          hide-arrows
+          grow
+          class="tabmargn"
+        >
+          <v-tabs-slider style="height:0px;padding:0 0 !important;"></v-tabs-slider>
+          <v-tab
+            v-for="item in items"
+            :key="item.id"
+            exact
+            class="subtitle-1 text-capitalize textcol"
+            active-class="font-weight-bold"
+          >{{ item.name }}</v-tab>
+        </v-tabs>
 
-      <v-row no-gutters class="mt-12" justify="center" align="center">
-        <v-col md="12" sm="12" cols="11">
-          <v-tabs-items v-model="tab" style="background-color:transparent;">
-            <v-tab-item v-for="item in items" :key="item.id">
-              <v-row class="justify-center py-2" align="center" no-gutters>
-                <v-col
-                  xl="6"
-                  lg="6"
-                  md="6"
-                  sm="12"
-                  cols="11"
-                  v-for="(s, index) in item.skills"
-                  :key="index"
-                  class="px-md-6 my-6 px-xs-2 mx-xs-2"
-                >
-                  <v-row
-                    no-gutters
-                    class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-xs-4"
-                    justify="center"
-                    align="center"
+        <v-row no-gutters class="mt-12" justify="center" align="center">
+          <v-col md="12" sm="12" cols="11">
+            <v-tabs-items v-model="tab" style="background-color:transparent;">
+              <v-tab-item v-for="item in items" :key="item.id">
+                <v-row class="justify-center py-2" align="center" no-gutters>
+                  <v-col
+                    xl="6"
+                    lg="6"
+                    md="6"
+                    sm="12"
+                    cols="11"
+                    v-for="(s, index) in item.skills"
+                    :key="index"
+                    class="px-md-6 my-6 px-xs-2 mx-xs-2"
                   >
-                    <v-col cols="6" sm="6" md="2" lg="2">
-                      <div
-                        class="skilltext text-left grey--text text--lighten-2 mb-sm-1 mb-xs-1 mr-6"
-                      >{{ s.name }}</div>
-                    </v-col>
-                    <v-col cols="6" sm="6" class="hidden-md-and-up">
-                      <div class="skilltext textcol text-right mb-sm-1 mb-xs-1">{{ s.val }}</div>
-                    </v-col>
-                    <v-col cols="12" sm="12" md="8" lg="8">
-                      <div class="pro-back ml-md-11">
-                        <div class="progress" style="width:70%;"></div>
-                      </div>
-                    </v-col>
-                    <v-col md="2" lg="2" class="hidden-sm-and-down">
-                      <div class="skilltext textcol font-weight-bold text-left ml-6">{{ s.val }}</div>
-                    </v-col>
-                  </v-row>
-                </v-col>
-              </v-row>
-            </v-tab-item>
-          </v-tabs-items>
-        </v-col>
-      </v-row>
-    </v-col>
-  </v-row>
+                    <v-row
+                      no-gutters
+                      class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-xs-4"
+                      justify="center"
+                      align="center"
+                    >
+                      <v-col cols="6" sm="6" md="2" lg="2">
+                        <div
+                          class="skilltext text-left grey--text text--lighten-2 mb-sm-1 mb-xs-1 mr-6"
+                        >{{ s.name }}</div>
+                      </v-col>
+                      <v-col cols="6" sm="6" class="hidden-md-and-up">
+                        <div class="skilltext textcol text-right mb-sm-1 mb-xs-1">{{ s.val }}</div>
+                      </v-col>
+                      <v-col cols="12" sm="12" md="8" lg="8">
+                        <div class="pro-back ml-md-11">
+                          <div class="progress" style="width:70%;"></div>
+                        </div>
+                      </v-col>
+                      <v-col md="2" lg="2" class="hidden-sm-and-down">
+                        <div class="skilltext textcol font-weight-bold text-left ml-6">{{ s.val }}</div>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-tab-item>
+            </v-tabs-items>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
