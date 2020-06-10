@@ -81,7 +81,7 @@
               md="4"
               class="d-flex justify-lg-end justify-md-end justify-sm-center justify-center"
             >
-              <div class="social-wrap custom-margin content-hide pr-7">
+              <div class="social-wrap-pink custom-margin content-hide pr-7">
                 <a href="#">
                   <img src="/images/resume_themes/theme600/behance.svg" alt />
                 </a>
@@ -355,7 +355,7 @@
                   value="tab-3"
                 >
                   <div class="content_margin">
-                    <v-row>
+                    <v-row align="center">
                       <v-col sm="12" md="6" lg="6" xl="6" cols="12" pb="3">
                         <v-card class="bg-card">
                           <v-row>
@@ -712,6 +712,33 @@ img {
   justify-content: flex-end;
 }
 
+.social-wrap-pink{
+  display: flex;
+  position: relative;
+  z-index: 5;
+  &.custom-margin {
+    margin-top: 42px;
+  }
+  a {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    display: none;
+    background: linear-gradient(99.62deg, #F9BFDA 1.07%, #FFCAD0 51.95%, #FDBEBA 89.88%);
+    margin: 5px;
+    img {
+      width: 16px;
+    }
+    &.email {
+      background: #fff !important;
+    }
+  }
+}
+
 .resume,
 .social-wrap {
   display: flex;
@@ -897,6 +924,7 @@ img {
 
   @media screen and (max-width: 600px) {
     max-width: 100%;
+    margin-top: -80px;
   }
 
   .box-skill {

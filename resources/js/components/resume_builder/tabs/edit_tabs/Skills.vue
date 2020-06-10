@@ -779,7 +779,7 @@ export default {
     height: 50px !important;
     font-size: 18px !important;
     font-weight: 500;
-    @media screen and (max-width: 599px) {
+    @media screen and (max-width: 767px) {
       width: 100px !important;
       height: 40px !important;
       font-size: 15px !important;
