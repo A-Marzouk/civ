@@ -1,5 +1,5 @@
 <template>
-	<div class="item-view-card">
+	<div class="item-view">
 		<hr class="card-hr" />
 
 		<div class="view-card">
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-	name: "ItemViewCard",
+	name: "ItemView",
 
 	props: {
 		title: {
@@ -37,9 +37,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./../scss/variables";
+@import "./../../scss/variables";
 
-.item-view-card {
+.item-view {
 	color: #000000;
 	background: #f5f6f8;
 	font-family: $roboto;
@@ -85,6 +85,24 @@ export default {
 
 		.view-card {
 			padding: 20px 0 40px;
+		}
+	}
+
+	@include lg {
+		.view-card {
+			.card-title {
+				font-size: 20px;
+				line-height: 26px;
+			}
+		}
+	}
+
+	@include lg {
+		.view-card {
+			.card-title {
+				font-size: 24px;
+				line-height: 28px;
+			}
 		}
 	}
 }

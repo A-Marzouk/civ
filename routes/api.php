@@ -113,6 +113,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/links', 'API\LinksController@index');
     Route::get('/links/{id}', 'API\LinksController@show');
     Route::post('/links', 'API\LinksController@store');
+    Route::post('/links/update-order', 'API\LinksController@updateLinksOrder');
     Route::put('/links', 'API\LinksController@store');
     Route::delete('/links/{id}', 'API\LinksController@destroy');
 

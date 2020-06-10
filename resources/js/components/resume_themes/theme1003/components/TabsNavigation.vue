@@ -72,6 +72,10 @@ export default {
 		padding-right: 20px;
 	}
 
+	@include md {
+		padding: 35px 0 0;
+	}
+
 	@include lg {
 		max-width: calc(#{$lg} + 40px);
 	}
