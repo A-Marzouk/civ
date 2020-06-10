@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div class="education-wrapper resume-builder__scroll">
+    <v-container style="width:100%;">
       <v-tabs class="resume-builder__tab-bar" hide-slider v-model="hobbiesTab">
         <v-tab
           class="resume-builder__tab"
@@ -8,47 +8,49 @@
           :key="i"
         >{{tabName.replace('_',' ')}}</v-tab>
       </v-tabs>
-      <v-card class="card-main-hobbies pa-10" flat>
+      <v-card class="card-main-hobbies pa-10 resume-builder__scroll hobbies-content" flat id="hobbiesContent">
         <v-tabs-items v-model="hobbiesTab">
           <v-tab-item v-for="i in 5" :key="i">
             <v-container style="width: 100%;">
-              <v-row align="center">
-                <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                  <v-select
-                    class="resume-builder__input civie-select"
-                    outlined
-                    placeholder="Select an option"
-                    :items="hobbyTypes"
-                    label="Select a profession"
-                    color="#001CE2"
-                    v-model="hobbyType"
-                  >
-                    <button class="dropdown-icon icon" slot="append">
-                      <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                    </button>
-                  </v-select>
-                </v-col>
+              <v-form>
+                <v-row align="center">
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                    <v-select
+                      class="resume-builder__input civie-select"
+                      outlined
+                      placeholder="Select an option"
+                      :items="hobbyTypes"
+                      label="Select a profession"
+                      color="#001CE2"
+                      v-model="hobbyType"
+                    >
+                      <button class="dropdown-icon icon" slot="append">
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                      </button>
+                    </v-select>
+                  </v-col>
 
-                <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                  <v-select
-                    class="resume-builder__input civie-select"
-                    outlined
-                    placeholder="Select an option"
-                    :items="hobbyNames"
-                    label="Name"
-                    color="#001CE2"
-                    v-model="hobbyName"
-                  >
-                    <button class="dropdown-icon icon" slot="append">
-                      <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                    </button>
-                  </v-select>
-                </v-col>
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                    <v-select
+                      class="resume-builder__input civie-select"
+                      outlined
+                      placeholder="Select an option"
+                      :items="hobbyNames"
+                      label="Name"
+                      color="#001CE2"
+                      v-model="hobbyName"
+                    >
+                      <button class="dropdown-icon icon" slot="append">
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                      </button>
+                    </v-select>
+                  </v-col>
 
-                <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n8">Add New</v-btn>
-                </v-col>
-              </v-row>
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                    <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n8">Add New</v-btn>
+                  </v-col>
+                </v-row>
+              </v-form>
               <v-row align="center">
                 <v-col xl="5" lg="8" md="8" sm="10" cols="12">
                   <v-card class="card-holder pa-2 mb-3" v-for="i in 5" :key="i">
@@ -95,7 +97,7 @@
           </v-tab-item>
         </v-tabs-items>
       </v-card>
-    </div>
+    </v-container>
   </v-app>
 </template>
 
@@ -212,6 +214,7 @@ export default {
         title: hobby.title
       };
       this.closeOptionsBtn();
+      document.getElementById('hobbiesContent').scrollTop = 0;
     },
     applyEdit() {
       axios
@@ -301,6 +304,14 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.hobbies-content {
+  height: 323px;
+  background: #fff;
+  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+  padding: 50px;
+  margin-bottom: 70px;
+  scroll-behavior: smooth;
+}
 .card-main-hobbies {
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
   width: 1412px;
