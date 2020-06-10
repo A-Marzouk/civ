@@ -2,83 +2,74 @@
   <v-app>
     <div style="width: 100%">
       <v-card color="transparent" flat tile>
-        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="skillTab">
+        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab
             class="resume-builder__tab"
             v-for="(tabName,i) in tabs"
             :key="i"
+            @click="clearSkill"
           >{{tabName.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
-      <v-card class="card-skill-items">
-        <v-tabs-items v-model="skillTab">
-          <v-tab-item v-for="(tabName,i) in tabs" :key="i">
+      <v-card class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll" id="skillsContent">
+        <v-tabs-items v-model="activeTab">
+          <v-tab-item v-for="(tabName,i) in tabs" :key="tabName + i">
             <v-container style="width:100%;">
               <v-row align="center">
-                <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-                  <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
-                    <v-select
-                      class="resume-builder__input civie-select"
-                      outlined
-                      placeholder="Select an option"
-                      :items="typeItems"
-                      label="Type"
-                      color="#001CE2"
-                    >
-                      <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
-                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                      </button>
-                    </v-select>
-                  </v-card>
-                </v-col>
-
                 <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
-                    <v-select
-                      class="resume-builder__input civie-select"
+                    <v-text-field
+                            class="resume-builder__input civie-input"
                       outlined
                       placeholder="Select an option"
-                      :items="typeItems"
-                      label="Name"
+                      v-model="editedSkill.title"
+                      label="Skill Title"
+                      :error="!!errors.title"
                       color="#001CE2"
                     >
-                      <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
-                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                      </button>
-                    </v-select>
+                    </v-text-field>
                   </v-card>
                 </v-col>
 
                 <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-n10 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
-                    <v-select
-                      class="resume-builder__input civie-select"
+                    <v-text-field
+                      class="resume-builder__input civie-input"
                       outlined
-                      placeholder="Select an option"
-                      :items="typeItems"
+                      type="number"
+                      min="0"
+                      max="99"
+                      step="1"
+                      placeholder="99%"
+                      v-model="editedSkill.percentage"
                       label="Skill Amount"
+                      :error="!!errors.percentage"
                       color="#001CE2"
                     >
-                      <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
-                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                      </button>
-                    </v-select>
+                    </v-text-field>
                   </v-card>
                 </v-col>
 
-                <v-col xl="3" lg="3" md="6" sm="6" cols="3" class="mt-md-0 mt-sm-n10 mt-n10">
-                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2">Add New</v-btn>
+                <v-col xl="3" lg="3" md="6" sm="6" cols="3" class="mt-md-0 mt-sm-n10 mt-n10 d-flex">
+                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2" @click="addSkill">
+                    {{editedSkill.id === undefined ? 'Add New' : 'Update'}}
+                  </v-btn>
+                  <v-btn class="resume-builder__btn civie-btn mt-2" @click="cancelEdit" v-show="editedSkill.id !== undefined ">
+                    Cancel
+                  </v-btn>
                 </v-col>
+
                 <v-col xl="6" lg="6" md="12" sm="12" cols="12">
                   <v-container fluid style="width:100%;" ma-0 pa-0>
                     <v-row align="center" dense>
-                      <v-col cols="12" v-for="i in 3" :key="i">
+                      <v-col cols="12">
                         <v-card
                           color="#E6E8FC"
                           class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5"
                           flat
                         >
-                          <v-card-text>
+                          <v-card-text v-for="skill in skills" :key="skill.id" v-show="skill.category === tabs[activeTab]">
+                            <!-- skill for desktop -->
                             <v-row align="center" justify="center" class="mt-n3 row-skill-details">
                               <v-col xl="1" lg="2" md="1" sm="1" cols="2">
                                 <v-btn depressed class="btn-v_bar">
@@ -87,7 +78,7 @@
                               </v-col>
                               <v-col xl="6" lg="4" md="7" sm="6" cols="6">
                                 <v-card color="transparent" flat tile>
-                                  <div class="skill-title">Laravel</div>
+                                  <div class="skill-title">{{skill.title}}</div>
                                   <div class="mt-3">
                                     <v-progress-linear
                                       class="progress-skill"
@@ -95,13 +86,13 @@
                                       rounded
                                       color="#001CE2"
                                       background-color="#C4C9F5"
-                                      value="90"
+                                      :value="skill.percentage"
                                     ></v-progress-linear>
                                   </div>
                                 </v-card>
                               </v-col>
                               <v-col xl="2" lg="2" md="1" sm="2" cols="2" class="mt-5">
-                                <span class="skill-title">90%</span>
+                                <span class="skill-title">{{skill.percentage}}%</span>
                               </v-col>
                               <v-col
                                 xl="3"
@@ -122,6 +113,7 @@
                                 <v-btn
                                   color="#F2F3FD"
                                   depressed
+                                  @click="editSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
                                   <img
@@ -132,6 +124,7 @@
                                 <v-btn
                                   color="#F2F3FD"
                                   depressed
+                                  @click="deleteSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
@@ -139,6 +132,7 @@
                               </v-col>
                             </v-row>
 
+                            <!-- skill for mobile -->
                             <v-row
                               align="center"
                               justify="center"
@@ -153,20 +147,20 @@
                                 <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
                                   <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
                                 </v-btn>
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
+                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto" @click="editSkill(skill)">
                                   <img
                                     src="/images/new_resume_builder/icons/main/edit-skill.svg"
                                     alt
                                   />
                                 </v-btn>
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
+                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto" @click="deleteSkill(skill)">
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                                 </v-btn>
                               </v-col>
                               <v-col cols="12" class="mt-n7">
                                 <v-row align="center">
                                   <v-col cols="12">
-                                    <div class="skill-title">Laravel</div>
+                                    <div class="skill-title">{{skill.title}}</div>
                                   </v-col>
                                   <v-col cols="9" class="mt-n5">
                                     <v-progress-linear
@@ -175,11 +169,11 @@
                                       rounded
                                       color="#001CE2"
                                       background-color="#C4C9F5"
-                                      value="90"
+                                      :value="skill.percentage"
                                     ></v-progress-linear>
                                   </v-col>
                                   <v-col cols="3" class="mt-n5">
-                                    <div class="skill-title">90%</div>
+                                    <div class="skill-title">{{skill.percentage}}%</div>
                                   </v-col>
                                 </v-row>
                               </v-col>
@@ -206,27 +200,22 @@ export default {
   data() {
     return {
       typeItems: ["Programming Language"],
-      skillTab: 0,
-      activeTab: "programming_languages",
+      activeTab: 0,
       tabs: ["programming_languages", "software", "design", "frameworks"],
-      skill: {
-        category: "",
-        title: "",
-        percentage: "",
-        user_id: this.$store.state.user.id
-      },
       addNewSkill: false,
       optionSkillId: 0,
-      editedSkill: {},
+      editedSkill: {
+        category: "",
+        title: "",
+        percentage: ""
+      },
       errors: {
-        new: {},
-        edit: {}
+
       }
     };
   },
   computed: {
     skills() {
-      console.log(this.$store.state.user.skills);
       return this.$store.state.user.skills;
     }
   },
@@ -235,41 +224,33 @@ export default {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
     },
-    moveProgressBar() {
-      this.skills.forEach(skill => {
-        this.progressBarSingleSkill(skill);
-      });
-    },
-    progressBarSingleSkill(skill) {
-      let skillIdSelector = $("#skill_" + skill.id);
-      let progressBarSelector = $("#progress-bar_" + skill.id);
-      let getPercent = skill.percentage / 100;
-      let getProgressWrapWidth = skillIdSelector.width();
-      let progressTotal = getPercent * getProgressWrapWidth;
-      let animationLength = 2000;
-      // on page load, animate percentage bar to data percentage length
-      // .stop() used to prevent animation queueing
-      progressBarSelector.stop().animate(
-        {
-          left: progressTotal
-        },
-        animationLength
-      );
-    },
     addSkill() {
       if (this.validateSkill()) {
         // set skill category & add new
-        this.skill.category = this.activeTab;
+
+        let edit = false ;
+        if(this.editedSkill.id !== undefined){
+          edit = true;
+        }
+
+        this.editedSkill.category = this.tabs[this.activeTab];
+        this.editedSkill.user_id = this.$store.state.user.id;
+
         axios
-          .post("/api/user/skills", this.skill)
+          .post("/api/user/skills", this.editedSkill)
           .then(response => {
-            let addedSkill = response.data.data;
-            this.skills.push(addedSkill);
+            if(!edit){
+              let addedSkill = response.data.data;
+              this.skills.push(addedSkill);
+            }else{
+              this.skills.forEach((skill, index) => {
+                if (skill.id === response.data.data.id) {
+                  this.skills[index] = response.data.data;
+                }
+              });
+            }
+
             this.clearSkill();
-            setTimeout(() => {
-              // give time to the skill to be loaded
-              this.progressBarSingleSkill(addedSkill);
-            }, 1500);
             this.$store.dispatch("fullScreenNotification");
           })
           .catch(error => {
@@ -291,53 +272,37 @@ export default {
         edit: {}
       };
 
-      if (this.skill.title && this.skill.percentage) {
+      if (this.editedSkill.title && this.editedSkill.percentage) {
         return true;
       }
 
-      if (!this.skill.title) {
-        this.errors.new.title = "Title required.";
+      if (!this.editedSkill.title) {
+        this.errors.title = "Title required.";
       }
-      if (!this.skill.percentage) {
-        this.errors.new.percentage = "Percentage required.";
+      if (!this.editedSkill.percentage) {
+        this.errors.percentage = "Percentage required.";
       }
 
       return false;
     },
     clearSkill() {
-      this.skill = {
+      this.editedSkill = {
         category: "",
         title: "",
         percentage: ""
       };
     },
-
     editSkill(skill) {
       this.editedSkill = {
         id: skill.id,
         category: skill.category,
         title: skill.title,
-        percentage: skill.percentage
+        percentage: skill.percentage,
+        user_id: skill.user_id
       };
-      this.closeOptionsBtn();
-    },
-    applyEdit() {
-      axios
-        .put("/api/user/skills", this.editedSkill)
-        .then(response => {
-          this.EditedSuccessfully(response.data.data);
-        })
-        .catch(error => {
-          if (typeof error.response.data === "object") {
-            this.errors.edit = error.response.data.errors;
-          } else {
-            this.errors = "Something went wrong. Please try again.";
-          }
-          this.$store.dispatch("flyingNotification", {
-            message: "Error",
-            iconSrc: "/images/resume_builder/error.png"
-          });
-        });
+
+      // scroll to the top of the element:
+      document.getElementById('skillsContent').scrollTop = 0;
     },
     deleteSkill(skill) {
       if (
@@ -355,39 +320,17 @@ export default {
             }
           });
 
-          this.closeOptionsBtn();
         })
         .catch(error => {
           console.log(error);
         });
     },
-    EditedSuccessfully(editedSkill) {
-      this.clearEditedSkill();
-      this.$store.dispatch("fullScreenNotification");
-      // replace the edited skill with the new one:
-      this.skills.forEach((skill, index) => {
-        if (skill.id === editedSkill.id) {
-          this.skills[index] = editedSkill;
-          this.progressBarSingleSkill(editedSkill);
-        }
-      });
-    },
-    closeOptionsBtn() {
-      this.optionSkillId = 0;
-    },
-    clearEditedSkill() {
-      this.editedSkill = {};
-    },
     cancelEdit() {
-      this.clearEditedSkill();
-      this.closeOptionsBtn();
+      this.clearSkill();
     },
   },
   mounted() {
-    setTimeout(() => {
-      // give time to skills to be loaded
-      this.moveProgressBar();
-    }, 2000);
+
   }
 };
 </script>
@@ -395,6 +338,24 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 
+
+.civie-select,civie-input{
+  min-width: 300px;
+}
+
+.skills-content {
+  height: 323px;
+  background: #fff;
+  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+  padding: 50px;
+  margin-bottom: 70px;
+  scroll-behavior: smooth;
+}
+
+
+.civie-btn{
+  margin-left:30px;
+}
 .section-body-wrapper {
   max-width: 1337px;
   width: 100%;
@@ -818,7 +779,7 @@ export default {
     height: 50px !important;
     font-size: 18px !important;
     font-weight: 500;
-    @media screen and (max-width: 599px) {
+    @media screen and (max-width: 767px) {
       width: 100px !important;
       height: 40px !important;
       font-size: 15px !important;

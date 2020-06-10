@@ -1,9 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40.571 38.542">
-  <g id="Group_913" data-name="Group 913">
-    <path id="Icon_material-work" data-name="Icon material-work" d="M39.514,11.114H31.4V7.057A4.043,4.043,0,0,0,27.342,3H19.228a4.043,4.043,0,0,0-4.057,4.057v4.057H7.057A4.026,4.026,0,0,0,3.02,15.171L3,37.485a4.043,4.043,0,0,0,4.057,4.057H39.514a4.043,4.043,0,0,0,4.057-4.057V15.171A4.043,4.043,0,0,0,39.514,11.114Zm-12.171,0H19.228V7.057h8.114Z" transform="translate(-3 -3)" fill="#001ce2"/>
-    <g id="Group_912" data-name="Group 912" transform="translate(5.361 16.768)">
-      <path id="Path_1323" data-name="Path 1323" d="M-3726.96,8197.369l15.972,4.605,13.641-4.605" transform="translate(3726.96 -8197.369)" fill="none" stroke="#fff" stroke-width="1.2"/>
-      <circle id="Ellipse_41" data-name="Ellipse 41" cx="3.203" cy="3.203" r="3.203" transform="translate(12.727 1.345)" fill="#001ce2" stroke="#fff" stroke-width="1.2"/>
-    </g>
-  </g>
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" stroke="#001CE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16 21V5C16 4.46957 15.7893 3.96086 15.4142 3.58579C15.0391 3.21071 14.5304 3 14 3H10C9.46957 3 8.96086 3.21071 8.58579 3.58579C8.21071 3.96086 8 4.46957 8 5V21" stroke="#001CE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

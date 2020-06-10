@@ -1,11 +1,10 @@
 <template>
-  <div
-    id="wrapper_theme700"
-    class="w-full font-montserrat my-0 xl:mx-auto md:mx-0 max-w-tm700-xl-1 bg-tm700-7"
-  >
-    <Header></Header>
-    <Main></Main>
-  </div>
+  <v-app class="margdesk">
+    <div id="wrapper_theme700">
+      <Header></Header>
+      <Main></Main>
+    </div>
+  </v-app>
 </template>
 <script>
 import Header from "./Header";
@@ -27,7 +26,6 @@ export default {
   --gray-1: #2d2d2d;
   --gray-2: #d9d9d9;
   --gray-3: #ebebeb;
-  --gray-gradient-1: linear-gradient(135.49deg, #ffffff 10.06%, #ffffff 75.33%);
 }
 @font-face {
   font-family: "Lato", sans-serif;
@@ -46,5 +44,23 @@ export default {
 #wrapper_theme700 .v-slide-group__prev {
   min-width: 0 !important;
   flex-basis: 8px;
+}
+.theme--light.v-application {
+  background: linear-gradient(
+    135.49deg,
+    #ffffff 10.06%,
+    #ffffff 75.33%
+  ) !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+@media screen and (min-width: 1025px) {
+  .margdesk {
+    padding: 0 5rem !important;
+  }
+}
+@media screen and (min-width: 320px) {
+  .margdesk {
+    padding: 0 0;
+  }
 }
 </style>

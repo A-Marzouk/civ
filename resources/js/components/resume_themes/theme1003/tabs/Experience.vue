@@ -1,18 +1,18 @@
 <template>
 	<div class="experience">
 		<div class="experience-items">
-			<ItemViewCard v-for="item in experiences" :title="item.title" :subtitle="item.subtitle" :description="item.description" :duration="item.duration" :key="item.id" />
+			<ItemView v-for="item in experiences" :title="item.title" :subtitle="item.subtitle" :description="item.description" :duration="item.duration" :key="item.id" />
 		</div>
 	</div>
 </template>
 
 <script>
-import ItemViewCard from "../components/ItemViewCard";
+import ItemView from "../components/education-experience/ItemView";
 
 export default {
 	name: "experience",
 
-	components: { ItemViewCard },
+	components: { ItemView },
 
 	data: () => {
 		return {

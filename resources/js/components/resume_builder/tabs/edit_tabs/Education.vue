@@ -1,199 +1,33 @@
 <template>
-    <div class="work-container">
-        <div class="section-title">
-            <div class="title-light">Add</div>
-            <h2>Education</h2>
-        </div>
-        <div class="section-body">
-            <transition name='fadeCustom' mode="out-in">
-                <div class="work-ex-form"  v-show="addNewEducation">
-                    <div class="work-ex-form-input input-field">
-                        <label for="institutionType">Institution type</label>
-                        <input type="text" id="institutionType" class="shorter" v-model="newEducation.institution_type">
-                        <div class="error" v-if="errors.new.institution_type">
-                            {{ Array.isArray(errors.new.institution_type) ? errors.new.institution_type[0] : errors.new.institution_type}}
-                        </div>
-                    </div>
-                    <div class="work-ex-form-input input-field">
-                        <label for="universityName">University name</label>
-                        <input type="text" id="universityName" v-model="newEducation.university_name">
-                        <div class="error" v-if="errors.new.university_name">
-                            {{ Array.isArray(errors.new.university_name) ? errors.new.university_name[0] : errors.new.university_name}}
-                        </div>
-                    </div>
-                    <div class="work-ex-form-input input-field">
-                        <label for="degreeTitle">Degree title</label>
-                        <input type="text" id="degreeTitle"  class="shorter" v-model="newEducation.degree_title">
-                        <div class="error" v-if="errors.new.degree_title">
-                            {{ Array.isArray(errors.new.degree_title) ? errors.new.degree_title[0] : errors.new.degree_title}}
-                        </div>
-                    </div>
-                    <div class="work-ex-form-group">
-                        <div class="date-group">
-                            <div class="date-input">
-                                <label for="dateFrom">Session</label>
-                                <input type="date" id="dateFrom" v-model="newEducation.date_from">
-                                <div class="error" v-if="errors.new.date_from">
-                                    {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
-                                </div>
-                            </div>
-                            <div class="date-text">
-                                to
-                            </div>
-                            <div class="date-input">
-                                <label for="dateTo" class="light d-flex align-items-center">
-                                    <input type="checkbox" class="checkbox" v-model="newEducation.present"> I currently study here.
-                                </label>
-                                <input type="date" id="dateTo" v-model="newEducation.date_to" :disabled="newEducation.present">
-                                <div class="error" v-if="errors.new.date_to">
-                                    {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </transition>
-            <div class="action-btns" :class='{"justify-content-between": addNewEducation}'>
-                <a v-if="addNewEducation" class="btn btn-filled" href="javascript:void(0)" @click="addEducation">
-                    <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
-                    Save
-                </a>
-                <a v-if="!addNewEducation" class="btn btn-outline" href="javascript:void(0)" @click="addNewEducation = true">
-                    <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="">
-                    Add new degree
-                </a>
-                <a v-if="addNewEducation" class="btn btn-outline cancel-btn" href="javascript:void(0)" @click="addNewEducation = false" >
-                    Cancel
-                </a>
-                <!--<div class="auto-import NoDecor">-->
-                    <!--<a href="javascript:void(0)">-->
-                        <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
-                        <!--Auto import-->
-                    <!--</a>-->
-                <!--</div>-->
-            </div>
-            <div class="work-ex-list">
-                <div class="work-ex-item mt-5 flex-column" v-for="(education,index) in educations" :key="index + '_education'">
-                    <div class="item-grid">
-                        <div class="work-icon">
-                            <img src="/images/resume_builder/work-ex/college-hat.png" alt="work-icon">
-                        </div>
-                        <div class="work-ex-info">
-                            <div class="work-ex-title">
-                                {{education.university_name}}
-                            </div>
-                            <div class="work-ex-sub-title">
-                                {{education.degree_title}}<br/>
-                                Duration: {{education.date_from}} - {{education.present ? "present" : education.date_to}}
-                            </div>
-                            <div class="work-ex-detials">
+    <v-app class="resume-builder__scroll">
+        <div class="data-container">
+            <v-tabs
+                class="resume-builder__tab-bar"
+                hide-slider
+            >
+                <v-tab
+                    class="resume-builder__tab"
+                    v-for="tab in tabs"
+                    :key="tab"
+                    @click="activeTab = tab"
+                >{{ tab }}</v-tab>
+            </v-tabs>
 
-                            </div>
-                            <div class="optionsBtns showOnMd">
-                                <a href="javascript:;" @click="editEducation(education)">
-                                    <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
-                                </a>
-
-                                <a href="javascript:;" @click="deleteEducation(education)">
-                                    <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="options hideOnMd">
-                        <div class="options-btn NoDecor"
-                             @click="optionEducationId === education.id ? optionEducationId=0 : optionEducationId=education.id">
-                            <a href="javascript:void(0)" :class="{'opened':optionEducationId === education.id}">
-                                Options
-                                <img src="/images/resume_builder/arrow-down.png" alt=""
-                                     :class="{'optionsOpened':optionEducationId === education.id}">
-                            </a>
-                        </div>
-                        <div class="extended-options" v-show="optionEducationId === education.id"
-                             :class="{'opened':optionEducationId === education.id}">
-                            <div class="edit-btn NoDecor" @click="editEducation(education)">
-                                <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
-                                Edit
-                            </div>
-                            <div class="delete-btn NoDecor" @click="deleteEducation(education)">
-                                <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
-                                Delete
-                            </div>
-                        </div>
-                    </div>
-                    <div v-show="education.id === editedEducation.id">
-                        <div class="work-ex-form">
-                            <div class="work-ex-form-input input-field">
-                                <label for="institutionType">Institution type</label>
-                                <input type="text" class="shorter" v-model="editedEducation.institution_type">
-                                <div class="error" v-if="errors.edit.institution_type">
-                                    {{ Array.isArray(errors.edit.institution_type) ? errors.edit.institution_type[0] : errors.edit.institution_type}}
-                                </div>
-                            </div>
-                            <div class="work-ex-form-input input-field">
-                                <label for="universityName">University name</label>
-                                <input type="text" v-model="editedEducation.university_name">
-                                <div class="error" v-if="errors.edit.university_name">
-                                    {{ Array.isArray(errors.edit.university_name) ? errors.edit.university_name[0] : errors.edit.university_name}}
-                                </div>
-                            </div>
-                            <div class="work-ex-form-input input-field">
-                                <label for="degreeTitle">Degree title</label>
-                                <input type="text"  class="shorter" v-model="editedEducation.degree_title">
-                                <div class="error" v-if="errors.edit.degree_title">
-                                    {{ Array.isArray(errors.edit.degree_title) ? errors.edit.degree_title[0] : errors.edit.degree_title}}
-                                </div>
-                            </div>
-                            <div class="work-ex-form-group">
-                                <div class="date-group">
-                                    <div class="date-input">
-                                        <label for="dateFrom">Session</label>
-                                        <input type="date" v-model="editedEducation.date_from">
-                                        <div class="error" v-if="errors.edit.date_from">
-                                            {{ Array.isArray(errors.edit.date_from) ? errors.edit.date_from[0] : errors.edit.date_from}}
-                                        </div>
-                                    </div>
-                                    <div class="date-text">
-                                        to
-                                    </div>
-                                    <div class="date-input">
-                                        <label for="dateTo" class="light d-flex align-items-center">
-                                            <input type="checkbox" class="checkbox" v-model="editedEducation.present" > I currently study here.
-                                        </label>
-                                        <input type="date" v-model="editedEducation.date_to"  :disabled="editedEducation.present">
-                                        <div class="error" v-if="errors.edit.date_to">
-                                            {{ Array.isArray(errors.edit.date_to) ? errors.edit.date_to[0] : errors.edit.date_to}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="action-btns">
-                            <a class="btn btn-filled" href="javascript:void(0)" @click="applyEdit">
-                                <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
-                                Save
-                            </a>
-                            <a class="btn btn-outline" href="javascript:void(0)" @click="clearEditedEducation">
-                                Cancel
-                            </a>
-                            <!--<div class="auto-import NoDecor">-->
-                            <!--<a href="javascript:void(0)">-->
-                            <!--<img src="/images/resume_builder/work-ex/add-box.png" alt="">-->
-                            <!--Auto import-->
-                            <!--</a>-->
-                            <!--</div>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <SchoolView v-if="activeTab === 'School'"></SchoolView>
+            <div v-else>No thing to show here</div>
         </div>
-    </div>
+    </v-app>  
 </template>
 
 <script>
+import SchoolView from './education_tabs/school'
+
     export default {
         name: "Education",
-        data() {
+        components: {
+            SchoolView
+        },
+        data: (vm) => {
             return {
                 optionEducationId: 0,
                 editedEducation: {},
@@ -209,7 +43,17 @@
                     new: {},
                     edit: {}
                 },
-                addNewEducation: false
+                addNewEducation: false,
+                tabs: [
+                    'School',
+                    'University / College',
+                    'Courses',
+                    'Seminars / Training'
+                ],
+                tabViews: [
+
+                ],
+                activeTab: 'School'
             }
         },
         computed: {
@@ -945,5 +789,10 @@ $mainBlue: #001CE2;
     .error {
         color: red;
         margin-left: 5px;
+    }
+
+    .data-container {
+        padding: 0;
+        margin-bottom: 70px;
     }
 </style>

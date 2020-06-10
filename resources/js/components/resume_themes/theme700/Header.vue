@@ -1,21 +1,29 @@
 <template>
   <div>
-    <header class="tm700-header">
-      <div class="tm700-header--inner">
-        <div class="tm700-top">
-          <!-- left -->
+    <v-container fluid class="pa-0">
+      <v-row no-gutters justify="center">
+        <!-- left -->
+        <v-col cols="12" sm="12" lg="8">
           <Left />
           <!-- center -->
+        </v-col>
+        <!-- <v-col cols="1">
           <Center />
-          <!-- Media -->
+        </v-col>-->
+        <!-- Media -->
+        <!-- <v-col>
           <Media />
-          <!-- social media -->
+        </v-col>-->
+        <!-- social media -->
+        <!-- <v-col>
           <SocialMedia />
-          <!-- right -->
+        </v-col>-->
+        <!-- right -->
+        <v-col cols="12" sm="8" lg="4" class="ml-lg-auto">
           <Right />
-        </div>
-      </div>
-    </header>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 <script>
@@ -39,29 +47,5 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.tm700-header {
-  .tm700-header--inner {
-    padding: 0;
-    @media screen and (min-width: 1800px) {
-      padding-left: 113px;
-      padding-right: 102px;
-    }
-  }
-  .tm700-top {
-    display: grid;
-    align-items: stretch;
-    grid-template-columns: 128px auto;
-    grid-template-rows: auto auto auto auto;
-    align-items: center;
-    @media screen and (min-width: 768px) {
-      grid-template-columns: 203px 383px auto;
-      grid-template-rows: auto auto auto;
-    }
-    @media screen and (min-width: 1200px) {
-      grid-template-columns: 268px 1fr 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-  }
-}
+<style lang="scss" scoped>
 </style>

@@ -3,7 +3,7 @@ import vuetify from './vuetify';
 import { store } from './store/store';
 
 
-import resumeTheme2 from './components/resume_themes/theme2';
+import resumeTheme2 from './components/resume_themes/theme2/index';
 if ($("#resumeTheme2").length !== 0) {
     new Vue({
         el: '#resumeTheme2',

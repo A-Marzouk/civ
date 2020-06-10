@@ -1,6 +1,6 @@
 <template>
-	<div class="tw-flex tw-overflow-y-hidden tab-links">
-		<TabLink v-for="(label, index) in tabsLabel" :label="label" :isActive="isLinkActive(label)" :key="index" @click="$emit('activeLabelChanged', $event)" />
+	<div class="tab-links">
+		<TabLink v-for="(tab, index) in tabs" :tab="tab" :isActive="currentTab === tab.name" @click="$emit('skillChanged', $event)" :key="index" />
 	</div>
 </template>
 
@@ -11,28 +11,58 @@ export default {
 	name: "tab-links",
 
 	props: {
-		tabsLabel: {
-			type: Array,
-			required: true
-		},
-		activeLabel: {
+		currentTab: {
 			type: String,
-			default: ""
+			required: true
 		}
 	},
 
 	components: { TabLink },
 
+	data() {
+		return {
+			tabs: [
+				{ name: "ProgramingLanguages", label: "Programing Languages" },
+				{ name: "Frameworks", label: "Frameworks" },
+				{ name: "DesignSkills", label: "Design Skills" },
+				{ name: "Softwares", label: "Softwares" }
+			]
+		};
+	},
+
 	methods: {
 		isLinkActive(label) {
-			return label.toLowerCase() == this.activeLabel.toLowerCase();
+			return label.toLowerCase() == this.currentTab.toLowerCase();
 		}
 	}
 };
 </script>
 
 <style lang="scss" scoped>
-.tab-links::-webkit-scrollbar {
-	height: 0;
+@import "./../../scss/variables";
+
+.tab-links {
+	display: flex;
+	overflow-y: hidden;
+	padding-left: 16px;
+	padding-right: 16px;
+
+	&::-webkit-scrollbar {
+		height: 0;
+	}
+
+	@include md {
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 752px;
+	}
+
+	@include lg {
+		max-width: 1320px;
+	}
+
+	@include xl {
+		max-width: 1770px;
+	}
 }
 </style>
