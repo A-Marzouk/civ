@@ -1,134 +1,113 @@
 <template>
-  <div class="tm700-work tw-mt-20" v-if="currentTab === 2">
-    <div class="tm700-work--inner">
-      <div v-for="{ id } in works" v-bind:key="id" class="tm700-works">
-        <span class="tm700-works--span">{{ id }}.</span>
-        <div class="flex flex-col justify-between">
-          <div class="tm700-works--info">
-            <h3 class="tm700-works--title">Google Inc. Introduction Google</h3>
-            <span class="tm700-works--slogan">User interface designer</span>
-          </div>
-          <span class="tm700-works--when">2012- Current</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <v-container v-if="currentTab === 2">
+    <v-row>
+      <v-col class="mb-lg-12" cols="12" sm="12" lg="6" v-for="(col,index) in 4" :key="index">
+        <v-row dense justify="start">
+          <v-col cols="1" lg="1">
+            <div class="serial white--text pt-2 pl-2 ml-2 ml-lg-0">{{work.id+index}}.</div>
+          </v-col>
+          <v-col cols="10">
+            <div class="head">{{work.title}}</div>
+            <div class="subtitle py-4">{{work.subtitle}}</div>
+            <div class="subtitle pt-4 pb-12">{{work.duration}}</div>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {
   props: ["currentTab"],
   data() {
     return {
-      works: [
-        {
-          id: 1
-        },
-        {
-          id: 2
-        },
-        {
-          id: 3
-        },
-        {
-          id: 4
-        }
-      ]
+      work: {
+        id: 1,
+        title: "Google Inc. Introduction Google",
+        subtitle: "User interface designer",
+        duration: "2012- Current"
+      }
     };
   }
 };
 </script>
-<style lang="scss">
-.tm700-work {
-  // parent grid
-  .tm700-work--inner {
-    --row-gap: 82px;
-    display: grid;
-    grid-row-gap: var(--row-gap);
-    grid-template-columns: 1fr;
-    justify-items: center;
-    @media screen and (min-width: 600px) {
-    }
-    @media screen and (min-width: 768px) {
-      --row-gap: 128px;
-    }
-    @media screen and (min-width: 1200px) {
-      grid-template-columns: 1fr 1fr;
-      --row-gap: 174px;
-      grid-column-gap: 100px;
-    }
-    @media screen and (min-width: 1800px) {
-      --row-gap: 174px;
-      grid-column-gap: 100px;
-    }
+<style lang="scss" scoped>
+@font-face {
+  font-family: "Gotham Pro";
+  src: local("Gotham Pro"), url("/fonts/GothaProReg.woff") format("woff");
+}
+.serial {
+  background: #513ecd;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 22px;
+}
+.head {
+  font-family: "Gotham Pro";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 23px;
+  color: #513ecd;
+}
+.subtitle {
+  font-family: "Gotham Pro";
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.67rem;
+  line-height: 11px;
+  text-transform: capitalize;
+
+  color: #000000;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .serial {
+    background: #513ecd;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 22px;
   }
-  .tm700-works {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    margin: auto;
-    width: 88%;
-    @media screen and (min-width: 768px) {
-      margin: 0;
-      padding-left: 41px;
-    }
-    h3,
-    span {
-      font-family: "Gotham Pro";
-    }
-    .tm700-works--span {
-      display: flex;
-      align-items: center;
-      border-radius: 9999px;
-      padding: 0.5rem;
-      color: #fff;
-      background-color: var(--blue-1);
-      margin-right: 13px;
-      width: 28px;
-      height: 28px;
-      font-weight: bold;
-      font-size: 12px;
-
-      @media screen and (min-width: 640px) {
-        width: 44px;
-        height: 44px;
-        font-size: 18px;
-      }
-    }
-    .tm700-works--info {
-      margin-bottom: 23px;
-
-      .tm700-works--title {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 13px;
-        color: var(--blue-1);
-        @media screen and (min-width: 640px) {
-          font-size: 24px;
-          line-height: 23px;
-        }
-      }
-      .tm700-works--slogan {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 9px;
-        line-height: 9px;
-        text-transform: capitalize;
-        color: #000000;
-        @media screen and (min-width: 640px) {
-          font-size: 12px;
-          line-height: 11px;
-        }
-      }
-    }
-    .tm700-works--when {
-      font-size: 9px;
-      line-height: 11px;
-      @media screen and (min-width: 640px) {
-        font-size: 12px;
-        line-height: 11px;
-      }
-    }
+}
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .serial {
+    background: #513ecd;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .head {
+    margin-left: 10px;
+    font-family: "Gotham Pro";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 23px;
+    color: #513ecd;
+  }
+  .subtitle {
+    margin-left: 10px;
+    font-family: "Gotham Pro";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.67rem;
+    line-height: 11px;
+    text-transform: capitalize;
+    color: #000000;
   }
 }
 </style>

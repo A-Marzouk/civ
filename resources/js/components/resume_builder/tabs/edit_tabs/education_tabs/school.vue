@@ -41,15 +41,13 @@
 
                     <div class="inputs-wrapper">
                         <v-menu
-                            ref="startDateMenu"
                             v-model="startDateMenu"
                             :close-on-content-click="false"
-                            :return-value.sync="form.startDate.value"
                             transition="scale-transition"
                             offset-y
                             min-width="290px"
                         >
-                            <template v-slot:activator="{ on }">
+                            <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
                                     v-model="form.startDate.dateFormatted"
                                     class="resume-builder__input civie-datepicker"
@@ -57,9 +55,10 @@
                                     color="#001CE2"
                                     readonly
                                     v-on="on"
+                                    v-bind="attrs"
                                     outlined
                                     placeholder="dd/mm/yyyy"
-                                    @blur="date = parseDate(form.startDate.dateFormatted)"
+                                    @blur="form.startDate.value = parseDate(form.startDate.dateFormatted)"
                                 >
                                     <button
                                         class="dropdown-icon icon"
@@ -71,32 +70,27 @@
                                     </button>
                                 </v-text-field>
                             </template>
-                            <v-date-picker v-model="form.startDate.value" no-title scrollable color="#001CE2">
-                                <v-spacer></v-spacer>
-                                <v-btn text color="primary" @click="startDateMenu = false">Cancel</v-btn>
-                                <v-btn text color="primary" @click="$refs.startDateMenu.save(form.startDate.value)">OK</v-btn>
-                            </v-date-picker>
+                            <v-date-picker v-model="form.startDate.value" @input="startDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
                         </v-menu>                    
                         <div class="input-checkbox-wrapper">
                             <v-menu
-                                ref="endDateMenu"
                                 v-model="endDateMenu"
                                 :close-on-content-click="false"
-                                :return-value.sync="form.endDate.value"
                                 transition="scale-transition"
                                 offset-y
                                 min-width="290px"
                             >
-                                <template v-slot:activator="{ on }">
+                                <template v-slot:activator="{ on, attrs }">
                                     <v-text-field
                                         v-model="form.endDate.dateFormatted"
                                         class="resume-builder__input civie-datepicker"
                                         color="#001CE2"
                                         readonly
                                         v-on="on"
+                                        v-bind="attrs"
                                         outlined
                                         placeholder="dd/mm/yyyy"
-                                        @blur="date = parseDate(form.endDate.dateFormatted)"
+                                        @blur="form.endDate.value = parseDate(form.endDate.dateFormatted)"
                                     >
                                         <button
                                             class="dropdown-icon icon"
@@ -108,11 +102,7 @@
                                         </button>
                                     </v-text-field>
                                 </template>
-                                <v-date-picker v-model="form.endDate.value" no-title scrollable color="#001CE2">
-                                    <v-spacer></v-spacer>
-                                    <v-btn text color="primary" @click="endDateMenu = false">Cancel</v-btn>
-                                    <v-btn text color="primary" @click="$refs.endDateMenu.save(form.endDate.value)">OK</v-btn>
-                                </v-date-picker>
+                                <v-date-picker v-model="form.endDate.value" @input="endDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
                             </v-menu>
                             <v-checkbox
                                 v-model="form.actuallyStudying"
@@ -154,13 +144,13 @@
                 </div>
                 <div class="input-group">
                     <v-textarea
-                        id="collegeName"
-                        v-model="form.collegeName.value"
+                        id="description"
+                        v-model="form.description.value"
                         class="resume-builder__input civie-textarea"
                         outlined
                         label="Institution Name"
                         color="#001CE2"
-                        :rules="form.collegeName.rules"
+                        :rules="form.description.rules"
                     ></v-textarea>
                 </div>
                 <div class="input-group">
@@ -244,7 +234,7 @@
 
 <script>
 export default {
-    data: () => ({
+    data: (vm) => ({
         form: {
             collegeName: {
                 value: '',
@@ -268,22 +258,24 @@ export default {
                 ]
             },
             startDate: {
-               value: '',
+                value: '',
                 disabled: false,
+                formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
                 rules: [
                     value => !!value || 'Please fill this field.',
                 ] 
             },
             endDate: {
-               value: '',
+                value: '',
                 disabled: false,
+                formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
                 rules: [
                     value => !!value || 'Please fill this field.',
                 ] 
             },
             actuallyStudying: false,
             location: {
-                value: ['Completed'],
+                value: '',
                 disabled: false,
                 rules: [
                     value => !!value || 'Please fill this field.',
@@ -374,7 +366,7 @@ export default {
             if (!date) return null
 
             const [year, month, day] = date.split('-')
-            return `${month}/${day}/${year}`
+            return `${day}/${month}/${year}`
         },
         parseDate (date) {
             if (!date) return null

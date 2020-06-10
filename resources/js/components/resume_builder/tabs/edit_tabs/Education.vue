@@ -1,5 +1,5 @@
 <template>
-    <div class="resume-builder__scroll">
+    <v-app class="resume-builder__scroll">
         <div class="data-container">
             <v-tabs
                 class="resume-builder__tab-bar"
@@ -16,7 +16,7 @@
             <SchoolView v-if="activeTab === 'School'"></SchoolView>
             <div v-else>No thing to show here</div>
         </div>
-    </div>  
+    </v-app>  
 </template>
 
 <script>

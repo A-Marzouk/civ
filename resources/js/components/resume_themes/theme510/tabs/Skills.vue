@@ -1,5 +1,5 @@
 <template>
-  <v-row no-gutters justify="center" class="mt-10" v-if="currentTab === 3">
+  <v-row no-gutters justify="center" class="mt-10" v-if="currentTab === 1">
     <v-col md="8">
       <v-tabs
         v-model="tab"
