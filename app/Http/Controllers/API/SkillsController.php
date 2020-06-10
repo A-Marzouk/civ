@@ -45,7 +45,7 @@ class SkillsController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != ''){
             // update
             $skill = Skill::findOrFail($request->id);
             $skill->update($request->toArray());
