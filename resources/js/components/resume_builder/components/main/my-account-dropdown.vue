@@ -2,7 +2,7 @@
 	<div class="my-account-dropdown">
 		<a href="#" class="account-avatar" @click.prevent="show = !show" :class="{'active' : isActive}" :style="`background-image: url(${avatar});`"></a>
 
-		<div class="custom-drop-down" v-show="show && openMenu">
+		<div class="custom-drop-down" v-if="show && openMenu">
 			<div class="drop-down-item">
 				<router-link id='myAccount' data-target="myAccount" @click.native="onItemClick('tabChanged')" to="/resume-builder">
 					Account Settings
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-	name: "account-avatar",
+	name: "my-account-dropdown",
 
 	props: {
 		avatar: {
@@ -50,8 +50,6 @@ export default {
 	methods: {
 		onItemClick(eventName) {
 			this.show = false;
-			console.log(eventName);
-
 			this.$emit(eventName);
 		}
 	}
@@ -109,7 +107,6 @@ export default {
 				color: #a0aec0;
 				font-size: 16px;
 				line-height: 24px;
-				line-height: normal;
 				padding: 15px 10px;
 
 				&:hover {

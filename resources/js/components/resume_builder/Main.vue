@@ -1,5 +1,5 @@
 <template>
-	<div class="resume-container">
+	<div class="resume-container" :class="{'collapsed': !openMenu}">
 		<nav class="resume-builder-nav" :class="{'collapsed': !openMenu}">
 			<div class="builder-nav-container">
 				<div class="builder-nav-logo-wrapper">
@@ -64,11 +64,11 @@
 			</div>
 		</nav>
 
-		<template v-if="false">
-			<transition :duration="590" class="content" name="fade" mode="out-in">
-				<router-view style="min-height: 100vh;" class="router-view-margin"></router-view>
-			</transition>
-		</template>
+		<main-sidebar :activeTab="activeTab" />
+
+		<transition v-if="false" :duration="590" class="content" name="fade" mode="out-in">
+			<router-view style="min-height: 100vh;" class="router-view-margin"></router-view>
+		</transition>
 
 		<!-- Notifications and progress bar | to be moved to component-->
 
@@ -142,14 +142,14 @@
 
 <script>
 import { moveTabsHelper } from "./helpers/tab-animations";
-import editMenu from "./components/aside-menu";
-import myAccountDropdown from "./components/my-account-dropdown";
+import myAccountDropdown from "./components/main/my-account-dropdown";
+import mainSidebar from "./components/main/main-sidebar";
 
 export default {
 	name: "Main",
 	components: {
-		"edit-menu": editMenu,
-		"my-account-dropdown": myAccountDropdown
+		"my-account-dropdown": myAccountDropdown,
+		"main-sidebar": mainSidebar
 	},
 	data() {
 		return {
@@ -223,7 +223,6 @@ export default {
 @import "../../../sass/media-queries";
 
 /* variables */
-$mainBlue: #001ce2;
 $resume-builder-nav-height: 99px;
 
 body.modal-open {
@@ -286,8 +285,12 @@ body.modal-open {
 
 .resume-container {
 	width: 100%;
-	padding-top: $resume-builder-nav-height;
+	transition: all 0.5s;
+	padding-top: calc(#{$resume-builder-nav-height} * 2);
 
+	&.collapsed {
+		padding-top: $resume-builder-nav-height;
+	}
 	/* Start Navbar */
 	.resume-builder-nav {
 		position: fixed;
@@ -383,76 +386,6 @@ body.modal-open {
 		}
 	}
 	/* End Navbar */
-}
-
-.side-menu {
-	display: none;
-	transform: translateX(-100%);
-	position: fixed;
-	display: flex;
-	flex-direction: column;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100vw;
-	z-index: 510;
-	background: rgba(255, 255, 255, 0.6);
-	transition: all ease 0.4s;
-
-	.decorator {
-		display: none;
-	}
-
-	.side-bg-panel {
-		background: rgba(255, 255, 255, 0.9);
-		width: 80%;
-		height: 100%;
-		max-width: 265px;
-		box-shadow: 0 12px 12px rgba(0, 0, 0, 0.1);
-		overflow: auto;
-	}
-
-	.bg-action {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-	}
-
-	.links-wrapper {
-		padding: 40px;
-		background: white;
-		box-shadow: 0 9px 10px rgba(0, 0, 0, 0.04);
-
-		.links-group {
-			margin-top: 38px;
-		}
-
-		.nav-icon {
-			width: 30px;
-			height: 30px;
-		}
-	}
-
-	@include lt-lg {
-		display: block;
-
-		&.opened {
-			transform: translateX(0);
-			transition: all ease 0.2s;
-		}
-	}
-
-	.btn-logout {
-		display: flex;
-		justify-content: flex-end;
-		width: 100%;
-		padding: 1rem 2rem;
-
-		path {
-			fill: $mainBlue;
-		}
-	}
 }
 
 .thank-you-pop {
