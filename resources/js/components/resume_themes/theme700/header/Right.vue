@@ -1,90 +1,53 @@
 <template>
-    <div class="tm700-right">
-        <div class="tw-flex tw-items-center tw-justify-between">
-            <div
-                class="hourly--rate tw-flex tw-flex-row tw-items-center md:tw-ml-5 lg:tw-ml-0"
-            >
-                <div class="tw-flex tw-flex-col">
-                    <span
-                        class="tw-text-tm700-5 tw-not-italic tw-text-xs sm:tw-text-civ-18 tw-leading-civ-22"
-                        >Hourly Rate</span
-                    >
-                    <span
-                        class="tw-text-tm700-1 tw-font-bold tw-text-18px sm:tw-text-2xl tw-leading-civ-29"
-                        >$25 USD</span
-                    >
-                </div>
-            </div>
-            <div
-                class="tm700-vertical md:tw-ml-18px md:tw-mr-15px lg:tw-m-0"
-            ></div>
-            <div class="available--for tw-flex tw-flex-col tw-items-center">
-                <span
-                    class="tw-text-tm700-5 tw-not-italic tw-text-xs sm:tw-text-civ-18 tw-leading-civ-22"
-                    >Available for</span
-                >
-                <span
-                    class="tw-text-tm700-1 tw-font-bold tw-text-18px sm:tw-text-2xl tw-leading-civ-29"
-                    >8 Hours</span
-                >
-            </div>
-            <button class="tm700-hireme">
-                Hire Me
-            </button>
-        </div>
-    </div>
+  <v-container fluid pa-0>
+    <v-row no-gutters justify="center" class="mt-lg-12 mt-sm-12 mt-10">
+      <v-col cols="3" class="text-center">
+        <div class="inform">Hourly rate</div>
+        <div class="amount">$ 25 USD</div>
+      </v-col>
+      <v-col cols="1" align="center" justify="center" class="mx-1 mx-sm-n6 mx-lg-n3">
+        <div style="background-color:#D7D7D7;width:1px;height:2rem;margin-top:10px;"></div>
+      </v-col>
+      <v-col cols="3" class="text-center">
+        <div class="inform">Available for</div>
+        <div class="amount">8 hours</div>
+      </v-col>
+      <v-col cols="4" class="text-center" align-self="center">
+        <v-btn color="#513ecd" dark rounded width="90%" height="40px">
+          <div class="text-capitalize hire">Hire Me</div>
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {};
 </script>
-<style lang="scss">
-.tm700-vertical {
-    content: "";
-    border: 1px solid #d7d7d7;
-    height: 41px;
-    width: 1px;
+<style lang="scss" scoped>
+.textcol {
+  color: #513ecd;
 }
-.tm700-right {
-    padding-top: 55px;
-    padding-left: 16px;
-    padding-right: 14px;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    @media only screen and (min-width: 768px) {
-        padding-left: 128px;
-        padding-right: 127px;
-        grid-column-end: 4;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    @media screen and (min-width: 1200px) {
-        grid-column-start: 4;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        padding: 0;
-    }
-    .tm700-hireme {
-        //tw-pt-5 tw-pr-66px tw-pb-18px tw-pl-60px
-        padding: 16px 46px 13px 47px;
-        background-color: var(--blue-1);
-        font-family: Montserrat;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 12px;
-        line-height: 15px;
-        border-radius: 50px;
-        color: #ffffff;
-        @media (min-width: 768px) {
-            padding: 21px 61px 18px 65px;
-            margin-left: 3.75rem;
-            font-size: 18px;
-            line-height: 22px;
-        }
-        @media screen and (min-width: 1200px) {
-            margin: 0;
-        }
-    }
+.inform {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.7rem;
+  line-height: 22px;
+  color: #484848;
+}
+.amount {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 29px;
+  color: #513ecd;
+}
+.hire {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 0.8rem;
+  line-height: 22px;
 }
 </style>

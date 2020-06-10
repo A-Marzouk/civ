@@ -1,21 +1,27 @@
 <template>
-  <div class="tm702-work" v-if="currentTab === 3">
-    <div class="tm702-work--inner">
-      <div v-for="{id, name} in works" class="tm702-work-data">
-        <div class="tm702-left">
-          <h1>{{name}}</h1>
-          <div>
-            <span>Duration:</span>
-            <span>Dec 19 - Present</span>
-          </div>
-        </div>
-        <div class="tm702-right">
-          <span>User interface designer</span>
-          <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <v-container v-if="currentTab === 3">
+    <v-row justify="center">
+      <v-col lg="12">
+        <v-row justify="center">
+          <v-col v-for=" col in 4" :key="col" cols="11" sm="11" lg="5" class="mx-lg-12">
+            <v-row justify="center">
+              <v-col sm="3" cols="4" lg="4">
+                <div class="head">Google</div>
+                <div class="time mt-10">Duration:</div>
+                <div class="duration">Dec 19 - Present</div>
+              </v-col>
+              <v-col sm="6" cols="8" lg="8">
+                <div class="subhead pt-3">User interface designer</div>
+                <div
+                  class="para mt-10"
+                >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {
@@ -64,104 +70,63 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.tm702-work {
-  .tm702-work--inner {
-    padding-left: 15px;
-    padding-right: 4px;
-    display: grid;
-    grid-template-columns: repeat(1, minmap(0, 1fr));
-    grid-row-gap: 122px;
-    margin-top: 61px;
-    @media screen and (min-width: 768px) {
-      padding-left: 34px;
-      padding-right: 21px;
-      margin-top: 102px;
-    }
-    @media screen and (min-width: 1200px) {
-      width: 80%;
-      margin: auto;
-      margin-top: 106px;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-column-gap: 217px;
-      grid-row-gap: 122px;
-    }
-  }
+<style lang="scss" scoped>
+.head {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 49px;
+  position: relative;
+  color: #005bd1;
+}
+.head:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 40px;
+  height: 3px;
+  background: #005bd1;
+}
+.subhead {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 30px;
+  /* identical to box height */
 
-  .tm702-work-data {
-    display: flex;
+  color: #6d6d6d;
+}
+.time {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 20px;
+  /* or 158% */
 
-    .tm702-left {
-      flex: 1;
-      h1 {
-        color: var(--blue);
-        font-size: 24px;
-        line-height: 33px;
-        font-style: normal;
-        font-weight: normal;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 42px;
-        @media screen and (min-width: 768px) {
-          font-size: 36px;
-          line-height: 49px;
-        }
-        &::after {
-          content: " ";
-          width: 35px;
-          height: 3px;
-          background-color: var(--blue);
-          margin-top: 4px;
-        }
-      }
-      > div {
-        display: flex;
-        flex-direction: column;
-        span {
-          font-style: normal;
-          font-weight: 300;
-          font-size: 14px;
-          line-height: 22px;
-          @media screen and (min-width: 768px) {
-            font-size: 19px;
-            line-height: 30px;
-          }
-          &:last-child {
-            color: var(--blue);
-          }
-        }
-      }
-    }
+  color: #575757;
+}
+.duration {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 20px;
+  /* or 158% */
 
-    .tm702-right {
-      flex: 2;
-      span {
-        margin-bottom: 52px;
-        display: block;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 18px;
-        line-height: 25px;
-        color: var(--gray-1);
-        padding-top: 6px;
-        @media screen and (min-width: 768px) {
-          font-size: 22px;
-          line-height: 30px;
-        }
-      }
+  color: #99c1eb;
+}
+.para {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.75rem;
+  line-height: 20px;
+  /* or 164% */
 
-      p {
-        font-style: normal;
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 23px;
-        color: var(--gray-p);
-        @media screen and (min-width: 768px) {
-          font-size: 14px;
-          line-height: 23px;
-        }
-      }
-    }
-  }
+  color: #4e4e4e;
 }
 </style>
