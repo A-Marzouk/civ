@@ -8,7 +8,7 @@
           :key="i"
         >{{tabName.replace('_',' ')}}</v-tab>
       </v-tabs>
-      <v-card class="card-main-hobbies pa-xl-10 pa-lg-10" flat>
+      <v-card class="card-main-hobbies pa-10" flat>
         <v-tabs-items v-model="hobbiesTab">
           <v-tab-item v-for="i in 5" :key="i">
             <v-container style="width: 100%;">
@@ -50,21 +50,21 @@
                 </v-col>
               </v-row>
               <v-row align="center">
-                <v-col xl="5" lg="8">
+                <v-col xl="5" lg="8" md="8" sm="10" cols="12">
                   <v-card class="card-holder pa-2">
                     <v-row>
-                      <v-col xl="2" lg="2" class="mt-n3">
+                      <v-col xl="2" lg="2" md="2" sm="2" cols="2" class="mt-n3">
                         <v-btn color="#ffffff" class="btn-v_bar" depressed>
                           <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                         </v-btn>
                       </v-col>
-                      <v-col xl="1" lg="1" class="mt-n5">
+                      <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-n5">
                         <div class="vertical-line"></div>
                       </v-col>
-                      <v-col xl="4" lg="4" class="mt-n2">
+                      <v-col xl="4" lg="4" md="4" sm="4" cols="4" class="mt-n2">
                         <div class="hobby-title">Play Fencing</div>
                       </v-col>
-                      <v-col xl="5" lg="5" align="right" class ="action-col">
+                      <v-col xl="5" lg="5" md="5" sm="5" cols="5" align="right" class ="action-col">
                         <v-btn
                           color="#F2F3FD"
                           depressed
