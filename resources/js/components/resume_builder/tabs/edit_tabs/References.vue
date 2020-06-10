@@ -161,6 +161,7 @@ export default {
       },
       rules: [value => !!value || "Please fill this field."],
       disabledInput: false,
+      disabledTextarea: false,
       addNewTestimonial: false,
       referenceType: "",
       fullname: "",
