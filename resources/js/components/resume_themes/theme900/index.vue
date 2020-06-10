@@ -1,7 +1,7 @@
 <template>
 <v-app id="hold-theme900" >
-    <div class="content-theme900" >
-        <v-row class="header-section align-center " >
+    <div>
+        <v-row class="header-section-tm900 align-center " >
             <v-col class="tm900-avatar" lg="2" md="2" sm="3" cols="3" >
                     <img class="tm900-avatar-image" src="/images/resume_themes/theme900/Ellipse27.png" alt="">
             </v-col>
@@ -76,7 +76,7 @@
                     <v-row>
                         <v-col lg="12" md="12" sm="8" class="information">
                             <v-row>
-                                <v-col>
+                                <v-col cols="5">
                                     <p class="info-title">hour rate </p>
                                     <span class="info-subtitle">$5</span>
                                 </v-col>
@@ -163,6 +163,8 @@
                 </div>
             </v-col>
         </v-row>
+    </div>
+    <div class="content-theme900" >
         <v-row justify="center" class="divider-tm900 mt-12">
             <v-col lg="9">
                 <v-divider hight></v-divider>
@@ -602,10 +604,17 @@ export default {
              display: none;
         }
     }
-     .header-section{
+     .header-section-tm900{
          text-transform: capitalize;
          color: #111111;
          margin-top: 27px;
+         padding: 0px 40px 0px;
+        @media only screen and (max-width: 1024px){
+           padding: 0 20px 0; 
+        }
+        @media only screen and (max-width: 424px){
+           padding: 0 10px 0; 
+        }
          @media only screen and (max-width: 992px) {
              background: #F9F9F9;
              height: 250px;
@@ -613,7 +622,7 @@ export default {
         }
          @media only screen and (max-width: 597px) {
              background: #F9F9F9;
-             height: 150px;
+            height: 150px;
         }
          .tm900-avatar{
         max-width: 10.666667%;
@@ -678,6 +687,7 @@ export default {
                  @media only screen and (max-width: 992px) {
                      font-weight: normal;
                      font-size: 18px;
+                     width: 175%;
                 }
                  @media only screen and (max-width: 597px) {
                      display: none;
@@ -691,12 +701,14 @@ export default {
              @media only screen and (max-width: 992px) {
                  margin-left: 0px;
                  position: absolute;
-                 left: 194px;
+                 left: 15.5%;
                  top: 200px;
+
             }
              @media only screen and (max-width: 597px) {
                  left: 0px;
                  top: 100px;
+                 max-width: 90%;
             }
              .info-title{
                  font-family: Open Sans;
@@ -709,9 +721,11 @@ export default {
                      display: flex;
                      float: left;
                      line-height: 0px;
+                     margin-right: 15px;
                 }
                  @media only screen and (max-width: 597px) {
                      font-size: 16px;
+                     margin-right: 16px;
                 }
             }
              .info-subtitle{
