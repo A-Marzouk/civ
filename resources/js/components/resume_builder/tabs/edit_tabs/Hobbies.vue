@@ -20,7 +20,7 @@
                       outlined
                       placeholder="Select an option"
                       :items="hobbyTypes"
-                      label="Select a profession"
+                      label="Type"
                       color="#001CE2"
                       v-model="hobbyType"
                     >
@@ -53,7 +53,7 @@
               </v-form>
               <v-row align="center">
                 <v-col xl="5" lg="8" md="8" sm="10" cols="12">
-                  <v-card class="card-holder pa-2 mb-3" v-for="i in 5" :key="i">
+                  <v-card class="card-holder pa-2 mb-3">
                     <v-row>
                       <v-col xl="2" lg="2" md="2" sm="2" cols="2" class="mt-n3">
                         <v-btn color="#ffffff" class="btn-v_bar" depressed>
