@@ -1,8 +1,8 @@
 <template>
-  <div id="wrapper_theme702" class="index-container">
+  <v-app id="wrapper_theme702">
     <Header />
     <Main />
-  </div>
+  </v-app>
 </template>
 <script>
 import Header from "./Header";
@@ -45,32 +45,6 @@ export default {
 }
 
 * {
-  font-family: "Open Sans", sans-serif;
-}
-
-h2 {
-  color: var(--blue);
-  font-size: 22px;
-  font-weight: bold;
-}
-
-span {
-  color: var(--gray);
-  font-weight: normal;
-  font-size: 12px;
-}
-
-p {
-  color: var(--gray-about);
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.index-container {
-  width: 100%;
-  /*max-width: 375px; */
-  box-sizing: border-box;
   font-family: "Open Sans", sans-serif;
 }
 </style>

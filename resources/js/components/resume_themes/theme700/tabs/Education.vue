@@ -1,25 +1,28 @@
 <template>
-  <div class="tm700-education" v-if="currentTab === 3">
-    <div class="tm700-education--inner">
-      <div v-for="{ id } in educations" v-bind:key="id" class="tm700-educations">
-        <span class="tm700-educations--span">{{ id }}.</span>
-        <div class="tw-flex tw-flex-col tw-justify-between">
-          <div class="tm700-educations--info">
-            <h3 class="tm700-educations--title">California Institute of Technology</h3>
-            <div class="tm700-educations--when">
-              <span class="tm700-educations--where">M.Sc in HCI,</span>
-              <span class="tm700-educations--time">Dec 19 - Present</span>
+  <v-container v-if="currentTab === 3">
+    <v-row>
+      <v-col class="mb-lg-12" cols="12" sm="12" lg="6" v-for="(col,index) in 4" :key="index">
+        <v-row dense justify="start">
+          <v-col cols="1">
+            <div class="serial white--text pt-2 pl-2 ml-2 ml-lg-0">{{edu.id+index}}.</div>
+          </v-col>
+          <v-col cols="10">
+            <div class="head">{{edu.title}}</div>
+            <div class="subtitle py-6">
+              {{edu.subtitle}}
+              <span class="pl-4 subtitle">{{edu.duration}}</span>
             </div>
-          </div>
-          <p class="tm700-educations--desc">
-            I'm a paragraph. Click here to add your own text and
-            edit me. It’s easy. Just click “Edit Text” or double
-            click me to add your own content and make changes.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+
+            <div class="para pb-12">
+              I'm a paragraph. Click here to add your own text and
+              edit me. It’s easy. Just click “Edit Text” or double
+              click me to add your own content and make changes.
+            </div>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -27,109 +30,110 @@ export default {
   props: ["currentTab"],
   data() {
     return {
-      educations: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+      edu: {
+        id: 1,
+        title: "California Institute of Technology",
+        subtitle: "M.Sc in HCI,",
+        duration: "Dec 19 - Present"
+      }
     };
   }
 };
 </script>
 
-<style lang="scss">
-.tm700-education {
-  margin-top: 81px;
-  .tm700-education--inner {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    margin: 0 auto;
-    grid-row-gap: 99px;
-    padding-left: 0;
-    @media screen and (min-width: 600px) {
-      grid-row-gap: 128px;
-      padding-left: 3.25rem;
-    }
-    @media screen and (min-width: 768px) {
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      grid-row-gap: 128px;
-      padding-left: 3.25rem;
-    }
-    @media screen and (min-width: 1200px) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-row-gap: 174px;
-    }
+<style lang="scss" scoped>
+.serial {
+  background: #513ecd;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 22px;
+}
+.head {
+  font-family: "Gotham Pro";
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  line-height: 23px;
+  color: #000;
+}
+.subtitle {
+  font-family: "Gotham Pro";
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 0.67rem;
+  line-height: 11px;
+  text-transform: capitalize;
+
+  color: #513ecd;
+}
+.para {
+  font-family: "Gotham Pro";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.67rem;
+  line-height: 23px;
+
+  color: #2d2d2d;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .serial {
+    background: #513ecd;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 22px;
   }
-  .tm700-educations {
-    h3,
-    span,
-    p {
-      font-family: "Gotham Pro", "Montserrat";
-    }
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    // span numbers in left - first
-    .tm700-educations--span {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      background-color: var(--blue-1);
-      color: #fff;
-      border-radius: 9999px;
-      padding: 0.5rem;
-      margin-right: 9px;
-      max-width: 21px;
-      height: 21px;
-      font-family: "Montserrat", "Open Sans";
-      font-style: normal;
-      font-weight: bold;
-      font-size: 12px;
-      line-height: 15px;
-      @media screen and (min-width: 768px) {
-        max-width: 44px;
-        height: 44px;
-        width: 44px;
-        font-size: 18px;
-        line-height: 22px;
-        margin-right: 19px;
-      }
-    }
-    > div {
-      width: 75%;
-      .tm700-educations--info {
-        margin-bottom: 15px;
-        .tm700-educations--title {
-          font-style: normal;
-          font-weight: bold;
-          font-size: 14px;
-          line-height: 13px;
-          margin-bottom: 13px;
-          @media screen and (min-width: 768px) {
-            font-size: 24px;
-            line-height: 23px;
-          }
-        }
-        .tm700-educations--when {
-          font-style: normal;
-          font-weight: bold;
-          font-size: 8px;
-          line-height: 23px;
-          @media screen and (min-width: 768px) {
-            font-size: 14px;
-          }
-          span {
-            color: var(--blue-1);
-          }
-        }
-      }
-      .tm700-educations--desc {
-        font-style: normal;
-        font-weight: 300;
-        font-size: 8px;
-        line-height: 23px;
-        color: var(--gray-1);
-        @media screen and (min-width: 768px) {
-          font-size: 12px;
-        }
-      }
-    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .serial {
+    background: #513ecd;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 22px;
+  }
+  .head {
+    margin-left: 10px;
+    font-family: "Gotham Pro";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 23px;
+    color: #513ecd;
+  }
+  .subtitle {
+    margin-left: 10px;
+    font-family: "Gotham Pro";
+    font-style: normal;
+    font-weight: bold;
+    font-size: 0.67rem;
+    line-height: 11px;
+    text-transform: capitalize;
+    color: #000000;
+  }
+  .para {
+    margin-left: 10px;
+    font-family: "Gotham Pro";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 0.67rem;
+    line-height: 23px;
+
+    color: #2d2d2d;
   }
 }
 </style>

@@ -1,17 +1,28 @@
 <template>
-  <div class="tm702-education" v-if="currentTab === 4">
-    <div class="tm702-education--inner">
-      <div v-for="{id} in educations" :key="id">
-        <span>University</span>
-        <h1>California Institute of Technology</h1>
-        <div>
-          <span>M.Sc in HCI,</span>
-          <span>Dec 19 - Present</span>
-        </div>
-        <p>I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
-      </div>
-    </div>
-  </div>
+  <v-container v-if="currentTab === 4">
+    <v-row justify="center">
+      <v-col lg="12">
+        <v-row justify="center">
+          <v-col v-for=" col in 4" :key="col" cols="11" sm="11" lg="5" class="mx-lg-12">
+            <v-row justify="center">
+              <v-col cols="12" lg="12" sm="9">
+                <div class="subhead">University</div>
+                <div class="mb-5 head">California Institute of Technology</div>
+                <div class="my-5 duration">
+                  M.Sc in HCI,
+                  <span class="pl-4">Dec 19 - Present</span>
+                </div>
+
+                <div
+                  class="my-5 para pr-lg-12"
+                >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {
@@ -40,97 +51,74 @@ export default {
   }
 };
 </script>
-<style lang="scss">
-.tm702-education {
-  * {
-    font-family: "Open Sans", sans-serif;
-  }
+<style lang="scss" scoped>
+.head {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 49px;
+  position: relative;
+  color: #005bd1;
+}
+.head:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 40px;
+  height: 3px;
+  background: #005bd1;
+}
+.subhead {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1rem;
+  line-height: 30px;
+  /* identical to box height */
 
-  .tm702-education--inner {
-    padding-left: 25px;
-    padding-right: 21px;
-    display: grid;
-    grid-template-columns: repeat(1, minmap(0, 1fr));
-    grid-row-gap: 35px;
-    grid-column-gap: 35px;
-    margin-top: 69px;
-    @media screen and (min-width: 768px) {
-      margin-top: 84px;
-    }
-    @media screen and (min-width: 1024px) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    @media screen and (min-width: 1200px) {
-      margin-top: 104px;
-    }
-    > div {
-      span {
-        font-style: normal;
-        font-weight: 300;
-        font-size: 14px;
-        line-height: 19px;
-        color: var(--gray-2);
-        padding-bottom: 10px;
-        display: block;
-        @media screen and (min-width: 768px) {
-          font-size: 24px;
-          line-height: 33px;
-        }
-      }
-      h1 {
-        color: var(--blue);
-        font-weight: normal;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 40px;
-        font-style: normal;
-        font-weight: 300;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 21px;
-        line-height: 29px;
-        color: var(--blue);
-        @media screen and (min-width: 768px) {
-          font-size: 32px;
-          line-height: 44px;
-        }
-        &::after {
-          content: " ";
-          width: 57px;
-          height: 4px;
-          background-color: var(--blue);
-        }
-      }
-      > div {
-        display: flex;
-        margin-bottom: 14px;
-        span {
-          font-weight: 300;
-          font-size: 18px;
-          font-style: normal;
-          line-height: 25px;
-          color: var(--blue);
-          @media screen and (min-width: 768px) {
-            font-size: 18px;
-            line-height: 25px;
-          }
-          &:first-child {
-            margin-right: 6px;
-          }
-        }
-      }
-      p {
-        color: var(--gray-p);
-        font-style: normal;
-        font-weight: 300;
-        font-size: 12px;
-        line-height: 23px;
-        width: 50%;
-        @media screen and (min-width: 768px) {
-          font-size: 14px;
-        }
-      }
-    }
+  color: #6d6d6d;
+}
+.time {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 20px;
+  /* or 158% */
+
+  color: #575757;
+}
+.duration {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.85rem;
+  line-height: 20px;
+  /* or 158% */
+
+  color: #99c1eb;
+}
+.para {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 0.75rem;
+  line-height: 20px;
+  /* or 164% */
+
+  color: #4e4e4e;
+}
+@media screen and (min-width: 320px) and (max-width: 475px) {
+  .head {
+    font-family: Open Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.3rem;
+    line-height: 49px;
+    position: relative;
+    color: #005bd1;
   }
 }
 </style>

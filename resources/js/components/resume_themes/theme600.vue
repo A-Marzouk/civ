@@ -81,7 +81,7 @@
               md="4"
               class="d-flex justify-lg-end justify-md-end justify-sm-center justify-center"
             >
-              <div class="social-wrap custom-margin content-hide pr-7">
+              <div class="social-wrap-pink custom-margin content-hide pr-7">
                 <a href="#">
                   <img src="/images/resume_themes/theme600/behance.svg" alt />
                 </a>
@@ -355,7 +355,7 @@
                   value="tab-3"
                 >
                   <div class="content_margin">
-                    <v-row>
+                    <v-row align="center">
                       <v-col sm="12" md="6" lg="6" xl="6" cols="12" pb="3">
                         <v-card class="bg-card">
                           <v-row>
@@ -450,7 +450,9 @@
                         <v-tab-item
                           transition="fade-transition"
                           reverse-transition="fade-transition"
-                          value="skillTab-0"
+                          v-for="(i,index) in 4"
+                          :key="index"
+                          :value="'skillTab-'+index"
                         >
                           <v-row class="skill-wrap">
                             <v-col
@@ -475,82 +477,6 @@
                                   value="95"
                                   background-color="rgba(228, 228, 228, 0.7)"
                                   color="blue"
-                                  :rounded="true"
-                                ></v-progress-linear>
-                              </div>
-                            </v-col>
-                          </v-row>
-                        </v-tab-item>
-
-                        <v-tab-item
-                          transition="fade-transition"
-                          reverse-transition="fade-transition"
-                          value="skillTab-1"
-                        >
-                          <v-row class="skill-wrap">
-                            <v-col md="6" lg="6" class="box-skill px-12" cols="12" sm="12">
-                              <div class="logo-skill icon_ps">Ps</div>
-                              <div class="info-skill">
-                                <div class="head-skill">
-                                  <span class="nameSkill">Photoshop</span>
-                                  <span class="percentSkill">100%</span>
-                                </div>
-                                <v-progress-linear
-                                  class="progress-bg"
-                                  buffer-value="100"
-                                  height="15px"
-                                  value="95"
-                                  background-color="rgba(228, 228, 228, 0.7)"
-                                  :rounded="true"
-                                ></v-progress-linear>
-                              </div>
-                            </v-col>
-                            <v-col md="6" lg="6" class="box-skill px-12" cols="12" sm="12">
-                              <div class="logo-skill icon_ps">Ps</div>
-                              <div class="info-skill">
-                                <div class="head-skill">
-                                  <span class="nameSkill">Photoshop</span>
-                                  <span class="percentSkill">95%</span>
-                                </div>
-                                <v-progress-linear
-                                  class="progress-bg"
-                                  buffer-value="100"
-                                  height="15px"
-                                  value="95"
-                                  background-color="rgba(228, 228, 228, 0.7)"
-                                  :rounded="true"
-                                ></v-progress-linear>
-                              </div>
-                            </v-col>
-                            <v-col md="6" lg="6" class="box-skill px-12" cols="12" sm="12">
-                              <div class="logo-skill icon_ps">Ps</div>
-                              <div class="info-skill">
-                                <div class="head-skill">
-                                  <span class="nameSkill">Photoshop</span>
-                                  <span class="percentSkill">75%</span>
-                                </div>
-                                <v-progress-linear
-                                  class="progress-bg"
-                                  buffer-value="100"
-                                  height="15px"
-                                  value="75"
-                                  background-color="rgba(228, 228, 228, 0.7)"
-                                  :rounded="true"
-                                ></v-progress-linear>
-                              </div>
-                            </v-col>
-                            <v-col md="6" lg="6" class="box-skill px-12" cols="12" sm="12">
-                              <div class="logo-skill icon_ps">Ps</div>
-                              <div class="info-skill">
-                                <div class="head-skill">
-                                  <span class="nameSkill">Photoshop</span>
-                                  <span class="percentSkill">25%</span>
-                                </div>
-                                <v-progress-linear
-                                  class="progress-bg"
-                                  buffer-value="100"
-                                  height="15px"
-                                  value="25"
                                   :rounded="true"
                                 ></v-progress-linear>
                               </div>
@@ -786,6 +712,33 @@ img {
   justify-content: flex-end;
 }
 
+.social-wrap-pink{
+  display: flex;
+  position: relative;
+  z-index: 5;
+  &.custom-margin {
+    margin-top: 42px;
+  }
+  a {
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 50%;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    display: none;
+    background: linear-gradient(99.62deg, #F9BFDA 1.07%, #FFCAD0 51.95%, #FDBEBA 89.88%);
+    margin: 5px;
+    img {
+      width: 16px;
+    }
+    &.email {
+      background: #fff !important;
+    }
+  }
+}
+
 .resume,
 .social-wrap {
   display: flex;
@@ -971,6 +924,7 @@ img {
 
   @media screen and (max-width: 600px) {
     max-width: 100%;
+    margin-top: -80px;
   }
 
   .box-skill {
@@ -1326,6 +1280,22 @@ img {
     h3 {
     }
   }
+}
+</style>
+<style>
+#resumeTheme600 .v-application .blue {
+  background: linear-gradient(
+    138.05deg,
+    #f9bfda 1.07%,
+    #ffcad0 51.95%,
+    #fdbeba 89.88%
+  ) !important;
+  border-color: linear-gradient(
+    138.05deg,
+    #f9bfda 1.07%,
+    #ffcad0 51.95%,
+    #fdbeba 89.88%
+  ) !important;
 }
 </style>
 
