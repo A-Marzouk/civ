@@ -106,9 +106,10 @@
                                 <v-btn
                                   color="#F2F3FD"
                                   depressed
+                                  @click="toggleVisibility(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
+                                  <img :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`" alt class="eye-icon"/>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -144,8 +145,8 @@
                                 </v-btn>
                               </v-col>
                               <v-col cols="6" align="right">
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
-                                  <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
+                                <v-btn color="#F2F3FD"  @click="toggleVisibility(skill)" depressed class="btn-skill-action mx-auto">
+                                  <img :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`" alt class="eye-icon"/>
                                 </v-btn>
                                 <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto" @click="editSkill(skill)">
                                   <img
@@ -223,6 +224,16 @@ export default {
   methods: {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
+    },
+    toggleVisibility(skill){
+      skill.is_public = !skill.is_public;
+      axios.post('/api/user/skills/toggle-visibility', skill)
+              .then((response) => {
+                    this.$store.dispatch("flyingNotification");
+              })
+              .catch(error => {
+                console.log(error);
+              });
     },
     addSkill() {
       if (this.validateSkill()) {
@@ -848,6 +859,11 @@ export default {
         margin-top: -14px !important;
       }
     }
+  }
+
+  .eye-icon{
+    width: 16px;
+    height: auto;
   }
 }
 </style>
