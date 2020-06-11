@@ -83,40 +83,40 @@
             >
               <div class="social-wrap-pink custom-margin content-hide pr-7">
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/behance.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/behance.webp" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/dribble.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/dribbble.webp" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/instagram.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/instagram.webp" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/linked-in.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/linkedin.webp" alt />
                 </a>
               </div>
 
               <div class="social-wrap content-show">
                 <a href="#">
-                  <v-icon>mdi-map-marker</v-icon>
+                  <img style="width: 14px !important;" src="/images/resume_themes/theme600/social_icons/map-marker.webp" alt="map-marker"/>
                 </a>
                 <a href="#">
-                  <v-icon>mdi-whatsapp</v-icon>
+                  <img src="/images/resume_themes/theme600/social_icons/whatsapp.webp" alt="whatsapp"/>
                 </a>
                 <a href="#">
-                  <v-icon>mdi-google-plus</v-icon>
+                  <img src="/images/resume_themes/theme600/social_icons/google-plus.webp" alt="google-plus"/>
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/behance.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/behance.webp" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/dribble.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/dribbble.webp" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/instagram.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/instagram.webp" alt />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/linked-in.svg" alt />
+                  <img src="/images/resume_themes/theme600/social_icons/linkedin.webp" alt />
                 </a>
               </div>
             </v-col>
@@ -136,6 +136,8 @@
                   class="main-tab"
                   hide-slider
                   active-class="isActive"
+                  centered
+                  center-active
                 >
                   <v-tab
                     class="tab-bg mr-8"

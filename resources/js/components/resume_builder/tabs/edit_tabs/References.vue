@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-card class="card-ref pa-xl-10 pa-lg-5" flat>
+    <v-card class="card-ref pa-xl-10 pa-lg-5 resume-builder__scroll reference-content" flat>
       <v-container class="mt-xl-5 mt-lg-10 mt-12">
         <v-form>
           <v-row align="center">
@@ -370,6 +370,14 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.reference-content{
+  background: #fff;
+  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+  height: 573px;
+  padding: 50px;
+  margin-bottom: 70px;
+  scroll-behavior: smooth;
+}
 .card-ref {
   width: 1412px;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
