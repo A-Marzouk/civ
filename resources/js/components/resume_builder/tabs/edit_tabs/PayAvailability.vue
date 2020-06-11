@@ -39,12 +39,8 @@
                       :class="{'resume-builder__input--disabled': disabledInput}"
                       :disabled="disabledInput"
                       label
-                      v-model="arte"
-                    >
-                    <template slot="append">
-                      <v-select class="mt-n4" filled :items="currencyList"></v-select>
-                    </template>
-                    </v-text-field>
+                      v-model="rate"
+                    ></v-text-field>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -77,7 +73,10 @@ export default {
       },
       payTypes: ["Hourly", "Weekly", "Monthly"],
       payType: "",
+      rate: "",
+      rules: [value => !!value || "Please fill this field."],
       currencyList: ["usd", "eur"],
+      disabledInput:false,
       showCurrencyOptions: false,
       slickOptions: {
         infinite: false,
