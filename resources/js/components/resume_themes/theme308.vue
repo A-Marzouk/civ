@@ -63,24 +63,15 @@
                                         </h3>
                                     </v-col>
                                     <v-col lg="12" md="12" class="box-items">
-                                        <v-btn text class="next-lnk">Next <v-img width="11.12" height="18" src="/images/resume_themes/theme308/icons/arrow-right.svg"></v-img></v-btn>
-                                        <v-row no-gutters>
-                                            <v-col lg="4" class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap1.png"></v-img>
+                                        <v-btn text class="next-lnk" @click="nextSlide('sl_i')">Next <v-img width="11.12" height="18" src="/images/resume_themes/theme308/icons/arrow-right.svg"></v-img></v-btn>
+                                        <slick ref="slick_i" :options="slickOptions">
+                                            <div v-for="i in [1,2,3,4,5,6]" :key="i" class="item">
+                                                <v-img :src="`/images/resume_themes/theme308/cap${i+1}.png`"></v-img>
                                                 <span class="category">Web design</span>
                                                 <span class="name-item">Happily.you Mobile Application</span>
-                                            </v-col>
-                                            <v-col lg="4" class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap2.png"></v-img>
-                                                <span class="category">Web design</span>
-                                                <span class="name-item">Happily.you Mobile Application</span>
-                                            </v-col>
-                                            <v-col lg="4" class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap3.png"></v-img>
-                                                <span class="category">Web design</span>
-                                                <span class="name-item">Happily.you Mobile Application</span>
-                                            </v-col>
-                                        </v-row>
+                                            </div>
+                                            
+                                        </slick>
                                     </v-col>                                    
                                    
                                     <v-col lg="12" md="12">
@@ -90,24 +81,39 @@
                                         </h3>
                                     </v-col>  
                                     <v-col lg="12" md="12" class="box-items">
-                                        <v-btn text class="next-lnk">Next <v-img width="11.12" height="18" src="/images/resume_themes/theme308/icons/arrow-right.svg"></v-img></v-btn>
-                                        <v-row no-gutters>
-                                            <v-col lg="4" class="item">
+                                        <v-btn text class="next-lnk" @click="nextSlide('sl_p')">Next <v-img width="11.12" height="18" src="/images/resume_themes/theme308/icons/arrow-right.svg"></v-img></v-btn>
+                                        <slick ref="slick_p" :options="slickOptions">
+                                            <div class="item">
                                                 <v-img src="/images/resume_themes/theme308/cap4.png"></v-img>
                                                 <span class="category">Web design</span>
                                                 <span class="name-item">Happily.you Mobile Application</span>
-                                            </v-col>
-                                            <v-col lg="4" class="item">
+                                            </div>
+                                            <div class="item">
                                                 <v-img src="/images/resume_themes/theme308/cap5.png"></v-img>
                                                 <span class="category">Web design</span>
                                                 <span class="name-item">Happily.you Mobile Application</span>
-                                            </v-col>
-                                            <v-col lg="4" class="item">
+                                            </div>
+                                            <div class="item">
                                                 <v-img src="/images/resume_themes/theme308/cap6.png"></v-img>
                                                 <span class="category">Web design</span>
                                                 <span class="name-item">Happily.you Mobile Application</span>
-                                            </v-col>
-                                        </v-row>
+                                            </div>
+                                            <div class="item">
+                                                <v-img src="/images/resume_themes/theme308/cap4.png"></v-img>
+                                                <span class="category">Web design</span>
+                                                <span class="name-item">Happily.you Mobile Application</span>
+                                            </div>
+                                            <div class="item">
+                                                <v-img src="/images/resume_themes/theme308/cap5.png"></v-img>
+                                                <span class="category">Web design</span>
+                                                <span class="name-item">Happily.you Mobile Application</span>
+                                            </div>
+                                            <div class="item">
+                                                <v-img src="/images/resume_themes/theme308/cap6.png"></v-img>
+                                                <span class="category">Web design</span>
+                                                <span class="name-item">Happily.you Mobile Application</span>
+                                            </div>
+                                        </slick>
                                     </v-col>                                
                                 </v-row>
                             </v-container>
@@ -355,7 +361,7 @@
                 </v-col>
                 
             </v-row>
-            <v-footer absolute height="63">
+            <v-footer fixed height="63">
                 <v-card flat class="social-icons">
                     <a href=""><v-img src="/images/resume_themes/theme308/social_icons/facebook.webp"></v-img></a>
                     <a href=""><v-img src="/images/resume_themes/theme308/social_icons/linkedin.webp"></v-img></a>
@@ -369,11 +375,48 @@
 </template>
 
 <script>
+import Slick from 'vue-slick';
 export default {
     name: "theme308",
+    components: {
+        Slick
+    },
     data(){
         return{
             currentTab: null,
+            slickOptions: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                variableWidth: true,
+                arrows: false,
+                dots: false,
+                swipe: true,
+                speed: 500,
+                // responsive: [
+                //     {
+                //         breakpoint: 786,
+                //         settings: {
+                //             slidesToShow: 2,
+                //             slidesToScroll: 1,
+                //             variableWidth: false,
+                //             vertical: true,
+                //             verticalSwiping: true,
+                //             infinite: true
+                //         }
+                //     },
+                //     {
+                //         breakpoint: 480,
+                //         settings: {
+                //             slidesToShow: 3,
+                //             slidesToScroll: 1,
+                //             variableWidth: false,
+                //             vertical: true,
+                //             verticalSwiping: true,
+                //             infinite: true
+                //         }
+                //     }
+                // ]
+            },
             skill_values: {
                 skill_a: 90,
                 skill_b: 45,
@@ -383,10 +426,22 @@ export default {
         }
     },
     methods: {
-        
+        nextSlide(sl) {
+            switch(sl){
+                case "sl_i":
+                    this.$refs.slick_i.next();
+                break;
+                case "sl_p":
+                    this.$refs.slick_p.next();
+                break;
+            }
+        }
     }
 }
 </script>
+<style lang="scss">
+    @import 'resources/sass/themes/theme308.scss';
+</style>
 <style lang="scss" scoped>
     @import url('https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Muli:wght@300;400;700&display=swap');
@@ -668,6 +723,10 @@ export default {
                     font-family: 'PT Serif';
                     font-weight: bold;
                     color: #F5A09F;
+
+                    @media (max-width: 1200px){
+                        font-size: 16px;
+                    }
                 }
 
                 .line-h{
@@ -686,6 +745,8 @@ export default {
                 margin-top: 46px;
                 margin-bottom: 95px;
 
+
+
                 .next-lnk{
                     position: absolute;
                     z-index: 2;
@@ -702,14 +763,23 @@ export default {
                     .v-image{
                         margin-left: 30px;
                     }
+
+                    @media (max-width: 1200px) {
+                        font-size: 16px;
+                        top:28%;
+
+                        .v-image{
+                            margin-left: 5px;
+                        }
+                    }
+
                 }
             }
 
             
 
             .item{
-                max-width: 28.55%;
-                margin-right: 2%;
+                display: flex !important;
                 flex-flow: column;
 
                 .category{
@@ -718,12 +788,20 @@ export default {
                     font-weight: bold;
                     color: #FD6562;
                     margin-top: 26px;
+
+                    @media (max-width: 1200px) {
+                        font-size: 7px;
+                    }
                 }
                 .name-item{
                     font-family: 'PT Serif';
                     font-size: 22px;
                     font-weight: bold;
                     color: #011B38;
+
+                    @media (max-width: 1200px) {
+                        font-size: 11px;
+                    }
                 }
             }
 
@@ -734,6 +812,10 @@ export default {
                     max-width: 500px;
                     border-radius: 9px;
                     object-fit: contain;
+
+                    @media (max-width: 1200px) {
+                        max-width: 268px;
+                    }
                 }
             }
         }
@@ -783,10 +865,6 @@ export default {
                         top: -35px;
                         left: 58px;
 
-
-                        .v-image{
-                           
-                        }
                     }
 
                     .company-work{
@@ -800,6 +878,11 @@ export default {
                             font-weight: bold;
                             color: #011B38;
                             min-width: 270px;
+
+                            @media (max-width: 1200px) {
+                                font-size: 10px;
+                                min-width: 160px;
+                            }
                         }
 
                         .date-work{
@@ -808,6 +891,10 @@ export default {
                             font-weight: normal;
                             color: #011B38;
                             padding: 0 0 0 3%;
+
+                            @media (max-width: 1200px) {
+                                font-size: 8px;
+                            }
                         }
                         .available-time{
                             background: #FFF2F2;
@@ -818,6 +905,12 @@ export default {
                             color: #FD6562;
                             text-transform: capitalize;
                             padding: 0 20px;
+
+                            @media (max-width: 1200px) {
+                                font-size: 6px;
+                                padding: 0 11px;
+                                line-height: 15px;
+                            }
                         }
                     }
 

@@ -1,0 +1,20 @@
+@import 'resources/sass/media-queries';
+#resumeTheme308{
+
+    .box-items{
+        
+        .slick-slider{
+            max-width: 93%;
+            overflow: hidden;
+
+            .slick-slide{
+                margin-right:45px;
+
+                @media (max-width: 1200px) {
+                    margin-right: 24px;
+                }
+            }
+        }
+    }
+
+}
