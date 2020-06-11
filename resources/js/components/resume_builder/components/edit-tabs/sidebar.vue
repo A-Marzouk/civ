@@ -1,0 +1,262 @@
+<template>
+	<div class="sidebar">
+		<div class="sidebar-container">
+			<div class="sidebar-link-activator">
+
+				<a href="#" @click.prevent="open=!open" class="activator-preview-link">
+					<div class="link-icon">
+						<sidebar-icon :icon="currentSidebarLink.icon" />
+					</div>
+					{{ currentSidebarLink.label }}
+				</a>
+
+				<a href="#" @click.prevent="open=!open" class="link-activator-caret" :class="{'open' :open}">
+					<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 1L7 7L13 1" stroke="#001CE2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+					</svg>
+				</a>
+			</div>
+
+			<div class="sidebar-links" :class="{'open' :open}">
+				<div v-for="sidebarLink in sidebarLinks" class="sidebar-link" :class="{'active': activeTab === sidebarLink.icon}" :key="sidebarLink.icon">
+					<router-link :to="sidebarLink.url" @click.native="setActive(sidebarLink)">
+						<div class="link-icon">
+							<sidebar-icon :icon="sidebarLink.icon" />
+						</div>
+						{{ sidebarLink.label }}
+					</router-link>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+import sidebarIcon from "./sidebar-icon";
+
+export default {
+	name: "sidebar",
+
+	props: {
+		activeTab: {
+			type: String,
+			required: true
+		}
+	},
+
+	components: { "sidebar-icon": sidebarIcon },
+
+	data() {
+		return {
+			open: false,
+
+			sidebarLinks: [
+				{
+					url: "/resume-builder/edit/profile",
+					icon: "profile",
+					label: "Profile"
+				},
+				{
+					url: "/resume-builder/edit/links",
+					icon: "links",
+					label: "Links"
+				},
+				{
+					url: "/resume-builder/edit/work-experience",
+					icon: "work-experience",
+					label: "Work experience"
+				},
+				{
+					url: "/resume-builder/edit/education",
+					icon: "education",
+					label: "Education"
+				},
+				{
+					url: "/resume-builder/edit/skills",
+					icon: "skills",
+					label: "Skills"
+				},
+				{
+					url: "/resume-builder/edit/portfolios",
+					icon: "portfolios",
+					label: "Portfolios"
+				},
+				{
+					url: "/resume-builder/edit/audio-video",
+					icon: "audio-video",
+					label: "Audio video"
+				},
+				{
+					url: "/resume-builder/edit/hobbies",
+					icon: "hobbies",
+					label: "Hobbies"
+				},
+				{
+					url: "/resume-builder/edit/achievement",
+					icon: "achievement",
+					label: "Achievement"
+				},
+				{
+					url: "/resume-builder/edit/imports",
+					icon: "imports",
+					label: "Imports"
+				},
+				{
+					url: "/resume-builder/edit/references",
+					icon: "references",
+					label: "References"
+				},
+				{
+					url: "/resume-builder/edit/pay-availability",
+					icon: "pay-availability",
+					label: "Pay availability"
+				}
+			],
+
+			currentSidebarLink: {
+				url: "/resume-builder/edit/profile",
+				icon: "profile",
+				label: "Profile"
+			}
+		};
+	},
+
+	methods: {
+		setActive(activeLink) {
+			this.open = false;
+			this.currentSidebarLink = activeLink;
+			this.$emit("activeTabChanged", activeLink.icon);
+		}
+	},
+
+	created() {
+		this.currentSidebarLink = this.sidebarLinks.find(
+			link => link.icon === this.activeTab
+		);
+	}
+};
+</script>
+
+<style lang="scss" scoped>
+@import "../../../../../sass/media-queries";
+
+.sidebar {
+	padding: 40px 32px;
+
+	.sidebar-container {
+		position: relative;
+		font-family: Noto Sans, "sans-serif";
+		max-width: 350px;
+
+		.sidebar-links,
+		.sidebar-link-activator {
+			a {
+				display: flex;
+				align-items: center;
+				font-size: 20px;
+				line-height: 20px;
+				color: #001ce2;
+
+				.link-icon {
+					background: #f2f3fd;
+					height: 35px;
+					width: 35px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border-radius: 5px;
+					margin-right: 10px;
+				}
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+
+			&.sidebar-link-activator {
+				height: 60px;
+				display: flex;
+				align-items: center;
+				border: 2px solid #e6e8fc;
+				border-radius: 10px;
+
+				.activator-preview-link {
+					flex: 1;
+					padding: 12px 15px;
+				}
+
+				.link-activator-caret {
+					height: 60px;
+					width: 60px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					svg {
+						transition: all 100ms;
+					}
+
+					&.open svg {
+						transform: rotateX(180deg);
+					}
+				}
+			}
+
+			&.sidebar-links {
+				max-height: 0;
+				overflow: hidden;
+				position: absolute;
+				top: 67px;
+				left: 0;
+				background: white;
+				width: 100%;
+				z-index: 30;
+				border-radius: 8px 0 0 8px;
+				border: 0 solid #e6e8fc;
+				transition: all 100ms;
+
+				&.open {
+					max-height: 250px;
+					overflow-y: scroll;
+					opacity: 1;
+					border-width: 2px 0 2px 2px;
+				}
+
+				.sidebar-link {
+					padding: 5px;
+
+					a {
+						padding: 7.5px 15px;
+						border-radius: 10px;
+						transition: all 100ms;
+						border: 1px solid #e5e5e5;
+
+						&:hover {
+							background-color: #f9f9f9;
+							text-decoration: none;
+						}
+					}
+
+					&.active a {
+						background-color: #f9f9f9;
+					}
+				}
+
+				&::-webkit-scrollbar {
+					width: 8px;
+					background: #e5e5e5;
+					border-radius: 8px 0 0 8px;
+				}
+
+				&::-webkit-scrollbar-thumb {
+					background: #001ce2;
+					border-radius: 8px 0 0 8px;
+				}
+			}
+		}
+	}
+
+	@include gt-xs {
+		margin-left: 30px;
+	}
+}
+</style>
