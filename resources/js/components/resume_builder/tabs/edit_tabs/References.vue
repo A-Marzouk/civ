@@ -108,16 +108,17 @@
             </v-col>
 
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">
-              <v-textarea
-                class="resume-builder__input civie-textarea"
-                outlined
-                color="#001CE2"
-                :rules="rules"
-                :class="{'resume-builder__input--disabled': disabledTextarea}"
-                :disabled="disabledTextarea"
-                label="Description"
-                v-model="description"
-              ></v-textarea>
+              <vue-dropzone
+                class="civie-dropzone"
+                ref="myVueDropzone"
+                id="dropzone"
+                :options="dropzoneOptions"
+                :useCustomSlot="true"
+              >
+                <div class="dropzone-custom-content">
+                  <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                </div>
+              </vue-dropzone>
             </v-col>
 
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">
@@ -151,6 +152,11 @@ export default {
       activeTab: "References",
       tabs: ["References", "Referee", "Testimonials"],
       references: ["Reference", "Reference2"],
+      dropzoneOptions: {
+        url: "https://httpbin.org/post",
+        thumbnailWidth: 150,
+        maxFilesize: 0.5
+      },
       newTestimonial: {
         title: "",
         description: ""
@@ -370,7 +376,7 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 $mainBlue: #001ce2;
-.reference-content{
+.reference-content {
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   height: 573px;
