@@ -40,7 +40,11 @@
                       :disabled="disabledInput"
                       label
                       v-model="arte"
-                    ></v-text-field>
+                    >
+                    <template slot="append">
+                      <v-select class="mt-n4" filled :items="currencyList"></v-select>
+                    </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
