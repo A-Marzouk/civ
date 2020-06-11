@@ -72,7 +72,7 @@
                           depressed
                           class="btn-skill-action mx-xl-1 mx-lg-1 mx-auto"
                         >
-                          <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
+                          <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
                         <v-btn
                           color="#F2F3FD"
