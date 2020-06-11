@@ -1,6 +1,6 @@
 <template>
     <div
-        class="education-wrapper resume-builder__scroll"
+        class="education-wrapper"
     >
         <div class="float-container">
             <v-form
@@ -391,9 +391,7 @@ $auxBgColor-bluegray: #E6E8FC;
 $auxBgColor-gray: #F2F3FD;
 
     .education-wrapper {
-        max-height: 678px;
         position: relative;
-        box-shadow: 0 5px 30px rgba($color: #001083, $alpha: 0.1);
         padding: 60px 50px;
         
         .float-container {
