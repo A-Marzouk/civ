@@ -40,7 +40,8 @@
                       :disabled="disabledInput"
                       label
                       v-model="rate"
-                    ></v-text-field>
+                    >
+                    </v-text-field>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -198,8 +199,8 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
-.hobbies-content {
-  height: 323px;
+.pay-content {
+  height: 185px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   padding: 50px;
