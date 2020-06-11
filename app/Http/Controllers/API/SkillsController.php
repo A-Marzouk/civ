@@ -45,7 +45,7 @@ class SkillsController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != ''){
             // update
             $skill = Skill::findOrFail($request->id);
             $skill->update($request->toArray());
@@ -83,12 +83,6 @@ class SkillsController extends Controller
         return new SkillResource($skill);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return  array  $id
-     */
     public function destroy($id)
     {
         $skill = Skill::where([

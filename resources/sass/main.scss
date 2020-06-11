@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;700&display=swap');
 @import url('https://db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular');
 
@@ -24,6 +24,12 @@
 @import "tabs";
 @import "modals";
 @import "effects";
+
+// new resume builder styles
+@import "resume_builder/components/inputs";
+@import "resume_builder/components/tabs";
+@import "resume_builder/components/scrollbar";
+@import "resume_builder/components/buttons";
 
 #resumeBuilder, body, html {
     height: 100%;

@@ -99,12 +99,10 @@ Route::group(['prefix' => 'user/'], function () {
 // Personal info api routes:
     Route::get('/personal-info', 'API\PersonalInfoController@index');
     Route::put('/personal-info', 'API\PersonalInfoController@store');
-    Route::put('/personal-info/location', 'API\PersonalInfoController@storeLocation');
     Route::put('/personal-info/single-field', 'API\PersonalInfoController@updateSingleField');
 
 //  Account user data:
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
-    Route::post('/account/validate', 'API\UsersController@validateSingleField')->name('account.validate');
 // update activity
     Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
 
@@ -115,6 +113,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/links', 'API\LinksController@index');
     Route::get('/links/{id}', 'API\LinksController@show');
     Route::post('/links', 'API\LinksController@store');
+    Route::post('/links/update-order', 'API\LinksController@updateLinksOrder');
     Route::put('/links', 'API\LinksController@store');
     Route::delete('/links/{id}', 'API\LinksController@destroy');
 

@@ -105,8 +105,10 @@ export default {
 }
 
 @media (min-width: $xl) {
-	.tab-button__label {
-		font-size: 20px;
+	.tab-button {
+		.tab-button__label {
+			font-size: 20px;
+		}
 	}
 }
 </style>

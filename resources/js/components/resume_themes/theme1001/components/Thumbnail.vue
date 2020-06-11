@@ -1,5 +1,5 @@
 <template>
-	<img :src="src" :style="`height: ${height}px`" @resize="onResize">
+	<img :src="src" :style="`height: ${height}px;`" @resize="onResize">
 </template>
 
 <script>
@@ -46,7 +46,7 @@ export default {
 	},
 
 	beforeDestroy() {
-		window.removeEventListener("resize", this.onResize);
+		window.removeEventListener("resize");
 	}
 };
 </script>

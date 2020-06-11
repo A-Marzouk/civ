@@ -16,15 +16,34 @@ class CreatePersonalInfoTable extends Migration
         Schema::create('personal_info', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->string('full_name')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('email')->nullable();
             $table->string('designation')->nullable();
             $table->string('profile_pic')->default('/images/resume_builder/profile/holder.png');
-            $table->string('phone')->nullable();
-            $table->string('location')->nullable();
-            $table->text('about')->nullable();
 
-            $table->integer('user_id')->unsigned();
+            $table->string('phone')->nullable();
+            $table->boolean('is_phone_active')->default(1);
+
+            $table->string('nationality')->nullable();
+            $table->boolean('is_nationality_active')->default(1);
+
+            $table->text('quote')->nullable();
+            $table->boolean('is_quote_active')->default(1);
+
+            $table->string('hometown')->nullable();
+            $table->boolean('is_hometown_active')->default(1);
+
+            $table->date('date_of_birth')->nullable();
+            $table->boolean('is_date_of_birth_active')->default(1);
+
+            $table->string('location')->nullable();
+            $table->boolean('is_location_active')->default(1);
+
+            $table->text('about')->nullable();
+            $table->boolean('is_about_active')->default(1);
+
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
     <v-row no-gutters class="hidden-xs-only">
       <v-col cols="12" sm="12" md="12" class="grey lighten-5">
         <v-container pa-0>
-          <v-row class="textcol py-6 py-lg-12" justify="center" dense>
+          <v-row class="textcol py-6 py-lg-12 py-xl-12" justify="center" dense>
             <v-col md="5" sm="5">
               <div class="display-1">
                 $50
