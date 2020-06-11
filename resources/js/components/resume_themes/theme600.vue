@@ -136,8 +136,6 @@
                   class="main-tab"
                   hide-slider
                   active-class="isActive"
-                  centered
-                  center-active
                 >
                   <v-tab
                     class="tab-bg mr-8"
