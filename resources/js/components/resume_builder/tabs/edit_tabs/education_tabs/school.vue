@@ -418,6 +418,16 @@ $auxBgColor-gray: #F2F3FD;
                     margin-right: none;
                 }
 
+                &.civie-input, // Simple input
+                &.civie-select, // Select
+                &.civie-currency {
+                    min-width: 265px;
+
+                    @include lt-md {
+                        min-width: auto;
+                    }
+                }
+
                 .resume-builder__input {
                     margin-bottom: 20px;
                 }

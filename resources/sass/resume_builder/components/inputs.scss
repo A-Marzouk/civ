@@ -8,12 +8,6 @@
     &.civie-select, // Select
     &.civie-currency // Currency
     {
-        min-width:  265px;
-
-        @include lt-md {
-            min-width: auto;
-        }
-
         .v-input__slot {
 
             // input height is different to textarea
