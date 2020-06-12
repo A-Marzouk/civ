@@ -36,10 +36,9 @@
 .resume-builder__action-buttons-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 38px;
-    top: 20px;
+    align-items: flex-start;
+    align-self: flex-start;
+    justify-self: flex-end;
 
     .icon {
         height: 14px;
@@ -98,7 +97,7 @@
                 transition: all ease .5s;
             }
 
-            &.opened {
+            &.closed {
                 &::after {
                     transform: rotateZ(0deg);
                     transition: all ease .5s;

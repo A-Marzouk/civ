@@ -148,7 +148,7 @@
                         v-model="form.description.value"
                         class="resume-builder__input civie-textarea"
                         outlined
-                        label="Institution Name"
+                        label="Description"
                         color="#001CE2"
                         :rules="form.description.rules"
                     ></v-textarea>
@@ -390,6 +390,8 @@ $bgScrollBarColor: #E6E8FC;
 $auxBgColor-bluegray: #E6E8FC;
 $auxBgColor-gray: #F2F3FD;
 
+@import '../../../../../../sass/media-queries';
+
     .education-wrapper {
         position: relative;
         padding: 60px 50px;
@@ -409,6 +411,7 @@ $auxBgColor-gray: #F2F3FD;
             
             .input-group {
                 width: 23.5%;
+                margin-right: 15px;
 
                 &:nth-child(4),
                 &:last-child {
@@ -429,11 +432,12 @@ $auxBgColor-gray: #F2F3FD;
                     width: 100%;
 
                     .civie-datepicker {
-                        max-width: 138px;                        
+                        max-width: 150px;
                     }
 
                     .input-checkbox-wrapper {
                         position: relative;
+                        margin-left : 15px;
 
                         .civie-checkbox {
                             position: absolute;
@@ -464,6 +468,51 @@ $auxBgColor-gray: #F2F3FD;
                     }
 
                 }
+
+                // Exception on breakpoint
+                @media (max-width: 1770px) {
+                    width: 45%;
+
+                    .resume-builder__input {
+                        width: 100%;
+                    }
+                }
+
+                @include lt-md {
+                    width: 100%;
+                    margin-right: 0;
+                    justify-content: space-between;
+
+                    & > *,
+                    .inputs-wrapper > * {
+                        width: 48%;
+                        max-width: 48%;
+                    }
+
+                    &:nth-child(4) > .resume-builder__input:last-child {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+
+                @include lt-sm {
+                    & > *,
+                    .inputs-wrapper > * {
+                        width: 100%;
+                        max-width: 100%;
+                        
+                    }
+
+                    .inputs-wrapper {
+                        & > * {
+                            max-width: 50% !important;
+                        }
+
+                        .input-checkbox-wrapper .civie-datepicker {
+                            max-width: 100%;
+                        }
+                    }
+                }
             }
         }
 
@@ -474,7 +523,8 @@ $auxBgColor-gray: #F2F3FD;
 
             .education-item {
                 height: 249px;
-                width: 842px;
+                max-width: 842px;
+                width: 100%;
                 padding: 20px 60px;
                 position: relative;
                 margin: 15px 0;
