@@ -22,7 +22,10 @@
             </div>
         </div>
 
-        <ResumeBuilderFileInput></ResumeBuilderFileInput>
+        <ResumeBuilderFileInput
+            style="margin-bottom: 120px"
+        ></ResumeBuilderFileInput>
+        <ResumeBuilderCurrencyInput></ResumeBuilderCurrencyInput>
     </v-app>
 </template>
 
@@ -36,6 +39,7 @@ import ResumeBuilderTab from './tab'
 import ResumeBuilderButton from './button'
 import ResumeBuilderActionIcons from './action-icons'
 import ResumeBuilderFileInput from './file-input'
+import ResumeBuilderCurrencyInput from './currency-input'
 
 export default {
     components: {
@@ -43,6 +47,7 @@ export default {
         ResumeBuilderSelect,
         ResumeBuilderTextarea,
         ResumeBuilderFileInput,
+        ResumeBuilderCurrencyInput,
         ResumeBuilderCheckbox,
         ResumeBuilderDatePicker,
         ResumeBuilderTab,

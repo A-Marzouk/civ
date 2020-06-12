@@ -5,7 +5,8 @@
     max-width: 100%; // Set the real max-width on the parent container
 
     &.civie-input, // Simple input
-    &.civie-select // Select
+    &.civie-select,
+    &.civie-currency // Select
     {
         .v-input__slot {
 
@@ -57,6 +58,45 @@
         & > .v-input__control > .v-input__slot {
             input {
                 padding: 0;
+            }
+        }
+    }
+
+    // Currency input
+    &.civie-currency {
+        
+         & > .v-input__control > .v-input__slot > .v-input__append-inner {
+            height: 30px;
+            width: 80px;
+            bottom: 13px;
+        }
+
+        .v-select {
+            height: 100%;
+            width: 100%;
+            background: $auxBgColor-gray;
+            font-size: 14px;
+
+            .v-input__control,
+            .v-input__slot,
+            .v-select__slot,
+            .v-select__selections {
+                height: 100%;
+                width: 100%;
+                min-height: auto;
+                padding: 0 !important;
+
+                .v-input__append-inner {
+                    bottom: 8px !important;
+                }
+            }
+
+            fieldset {
+                border: none !important;
+            }
+
+            & > .v-input__control > .v-input__slot .v-select__selection {
+                padding: 0 0 0 10px;
             }
         }
     }
