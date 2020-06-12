@@ -19,7 +19,6 @@
                 <SchoolView v-if="activeTab === 'School'"></SchoolView>
                 <div v-else>No thing to show here</div>
             </v-card>
-
         </div>
     </v-app>  
 </template>
