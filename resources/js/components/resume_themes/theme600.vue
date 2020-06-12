@@ -243,8 +243,8 @@
                   reverse-transition="fade-transition"
                   value="tab-2"
                 >
-                  <div class="content_margin">
-                    <v-row>
+                  <v-container style="width:100%;">
+                    <v-row align="center" class="">
                       <v-col sm="12" md="6" lg="6" xl="6" cols="12" pb="3">
                         <v-card class="bg-card">
                           <v-row>
@@ -357,7 +357,7 @@
                         </v-card>
                       </v-col>
                     </v-row>
-                  </div>
+                  </v-container>
                 </v-tab-item>
 
                 <v-tab-item
