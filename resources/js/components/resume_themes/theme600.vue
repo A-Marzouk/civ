@@ -1375,6 +1375,7 @@ export default {
     };
   },
   mounted(){
+    //determine window size 
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
