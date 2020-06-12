@@ -4,7 +4,7 @@
 			<div class="sidebar-link-activator">
 
 				<a href="#" @click.prevent="open=!open" class="activator-preview-link">
-					<div class="link-icon">
+					<div class="link-icon profile-ixklwxz-link-icon-active" :data-icon="currentSidebarLink.icon">
 						<sidebar-icon :icon="currentSidebarLink.icon" />
 					</div>
 					{{ currentSidebarLink.label }}
@@ -152,6 +152,7 @@ export default {
 
 	.sidebar-container {
 		position: relative;
+		background: #ffffff;
 		font-family: Noto Sans, "sans-serif";
 		max-width: 350px;
 
@@ -264,5 +265,12 @@ export default {
 
 	@include gt-xs {
 	}
+}
+</style>
+
+
+<style>
+.profile-ixklwxz-link-icon-active svg [stroke] {
+	stroke: #001ce2;
 }
 </style>
