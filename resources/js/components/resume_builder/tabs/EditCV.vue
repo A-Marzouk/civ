@@ -10,7 +10,7 @@
                </div>
                <div id="scrollItem"></div>
            </div>
-           <div>
+           <div style="width: 100%">
                <transition  name="fade" mode="out-in" class="d-flex flex-column">
                    <router-view></router-view>
                </transition>

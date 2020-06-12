@@ -6,7 +6,13 @@
 
     &.civie-input, // Simple input
     &.civie-select // Select
-    {
+    {   
+        min-width:  265px;
+
+        @include lt-md {
+            min-width: auto;
+        }
+
         .v-input__slot {
 
             // input height is different to textarea
@@ -86,7 +92,7 @@
             width: 20px;
             position: absolute;
             bottom: 20px;
-            right: 15px;
+            right: 6%;
 
             // append icon to enable or disable the input
             .eye-icon {
