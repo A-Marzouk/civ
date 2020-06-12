@@ -18,7 +18,7 @@
 				<router-view></router-view>
 			</transition>
 
-			<div class="cv-preview">
+			<div class="cv-preview" v-show="false">
 				<a v-if="user.username" class="cv-preview-link" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
 				<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
 			</div>

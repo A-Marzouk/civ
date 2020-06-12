@@ -161,6 +161,7 @@ body.modal-open {
 
 .main-router-view {
 	background: #fcfcfe;
+	min-height: calc(100vh - #{$resume-builder-nav-height});
 }
 
 .content {

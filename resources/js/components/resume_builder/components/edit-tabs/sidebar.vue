@@ -146,7 +146,9 @@ export default {
 @import "../../../../../sass/media-queries";
 
 .sidebar {
-	padding: 40px 32px;
+	margin-top: 40px;
+	padding-left: 30px;
+	padding-right: 30px;
 
 	.sidebar-container {
 		position: relative;
@@ -261,7 +263,6 @@ export default {
 	}
 
 	@include gt-xs {
-		margin-left: 30px;
 	}
 }
 </style>
