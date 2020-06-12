@@ -253,7 +253,8 @@ Use the same props of an vuetify datepicker.
 ### Example:
 
 ```html
-<v-menu
+<template>
+    <v-menu
         ref="menu"
         v-model="menu"
         :close-on-content-click="false"
@@ -436,9 +437,9 @@ The icon buttons can be modified if you need. You can use the `border-radius` pr
 
 ---
 
-## Buttons
+## Ation Buttons
 
-**class:** resume-builder__btn civie-btn
+**class:** resume-builder__action-buttons-container
 
 **component:** [vuetify btn](https://vuetifyjs.com/en/components/buttons/)
 
@@ -494,6 +495,45 @@ export default {
         // Handle the dropdown state when you need it
         openMenu: false
     })
+}
+</script>
+```
+---
+
+## File input
+
+**class:** civie-dropzone
+
+**component:** [vue dropzone](https://rowanwins.github.io/vue-dropzone/)
+
+### Example:
+
+```html
+<template>
+    <vue-dropzone class="civie-dropzone" ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" :useCustomSlot=true>
+      <div class="dropzone-custom-content">
+        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+      </div>
+    </vue-dropzone>
+</template>
+
+<script>
+import vue2Dropzone from 'vue2-dropzone'
+import 'vue2-dropzone/dist/vue2Dropzone.min.css'
+export default {
+  name: 'Dropzone',
+  components: {
+    vueDropzone: vue2Dropzone
+  },
+  data: function () {
+    return {
+      dropzoneOptions: {
+          url: 'https://httpbin.org/post',
+          thumbnailWidth: 150,
+          maxFilesize: 0.5,
+      }
+    }
+  }
 }
 </script>
 ```

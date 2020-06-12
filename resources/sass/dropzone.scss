@@ -1,16 +1,20 @@
-.dropzone.vue-dropzone {
-    border: solid $mainBlue 1px;
-    border-radius: 8px;
-    background: transparent;
-    font-family: Noto Sans, Arial, Helvetica, sans-serif;
-    color: $black;
-
-    .empty-text {
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-
-    &:hover {
-        background: transparent;
+.civie-dropzone {
+    border: 2px solid $inputBorderColor--enabled;
+    box-sizing: border-box;
+    border-radius: 10px;
+    position: relative;
+    background: none;
+  
+    .dropzone-custom-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    
+        .icon {
+            fill: transparent;
+            width: 30px;
+        }
     }
 }

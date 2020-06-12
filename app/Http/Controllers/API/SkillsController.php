@@ -45,7 +45,7 @@ class SkillsController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != ''){
             // update
             $skill = Skill::findOrFail($request->id);
             $skill->update($request->toArray());
@@ -104,6 +104,15 @@ class SkillsController extends Controller
             'title' => ['sometimes', 'string', 'max:255','min:3'],
             'percentage' => ['sometimes', 'numeric','min:30', 'max:100'],
         ]);
+    }
+
+    public function toggleVisibility(Request $request){
+        $skill   = Skill::find($request->id);
+        if($skill){
+            $skill->update([
+                'is_public' => !$skill->is_public
+            ]);
+        }
     }
 
     protected function is_auth($request){
