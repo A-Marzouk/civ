@@ -125,14 +125,19 @@ export default {
 		setActive(activeLink) {
 			this.open = false;
 			this.currentSidebarLink = activeLink;
-			this.$emit("activeTabChanged", activeLink.icon);
+			this.$emit("onChange", activeLink.icon);
 		}
 	},
 
 	created() {
-		this.currentSidebarLink = this.sidebarLinks.find(
+		// Set the correct activeTab on refresh, and on changing the view
+		const pathSplit = this.$route.path.split("/"),
+			activeTab = pathSplit[pathSplit.length - 1];
+
+		const activeLink = this.sidebarLinks.find(
 			link => link.icon === this.activeTab
 		);
+		this.setActive(activeLink);
 	}
 };
 </script>

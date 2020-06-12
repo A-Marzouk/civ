@@ -1,7 +1,7 @@
 <template>
 	<div class="edit-cv">
 		<!-- Old sidebar -->
-		<div v-if="false" @click="() => false" class="aside-bar d-flex flex-column mr-5">
+		<div v-show="false" @click="() => false" class="aside-bar d-flex flex-column mr-5">
 			<div @click="setActiveTab($event,section.name)" v-for="(section) in asideSections" :key="section.name" class="aside-link d-flex align-items-center" :class="{ active: activeTab === section.name }">
 				<img :src="activeTab === section.name ? '/images/new_resume_builder/icons/tabs_icons/' + section.name + '.png' : '/images/new_resume_builder/icons/tabs_icons/' + section.name + '-1.png'" class="icon" alt="">
 				<router-link :to="`/resume-builder/edit/${section.name}`">
@@ -11,7 +11,7 @@
 			<div id="scrollItem"></div>
 		</div>
 
-		<sidebar :activeTab="activeTab" @onChange="setActiveTab" />
+		<sidebar :activeTab="activeTab" @onChange="activeTab=$event" />
 
 		<main class="edit-cv-content">
 			<transition name="fade" mode="out-in" class="d-flex flex-column">

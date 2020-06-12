@@ -95,6 +95,7 @@ export default {
 
 	methods: {
 		setActiveTab(activeTab) {
+			this.$emit("onClose");
 			this.$emit("onChange", activeTab);
 		},
 
@@ -178,7 +179,6 @@ $resume-builder-nav-height: 99px;
 			align-items: center;
 			justify-content: space-evenly;
 			margin-bottom: -$resume-builder-nav-height;
-			max-width: 325px;
 			transition: all 0.5s;
 
 			&.collapsed {
@@ -238,6 +238,7 @@ $resume-builder-nav-height: 99px;
 				position: static;
 				margin-right: 30px;
 				margin-left: auto;
+				max-width: 325px;
 			}
 
 			.builder-nav-toggle {

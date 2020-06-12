@@ -1,5 +1,5 @@
 <template>
-	<div class="profile-tab-upper" v-if="personalInfo" data-app>
+	<div class="profile" v-if="personalInfo" data-app>
 		<div class="d-flex">
 			<div class="profile-pic-row-wrapper">
 				<div class="label">
@@ -120,6 +120,7 @@ export default {
 			return this.$store.state.user;
 		}
 	},
+
 	methods: {
 		// date functions
 		saveDate() {
@@ -215,8 +216,7 @@ export default {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
 		}
-	},
-	mounted() {}
+	}
 };
 </script>
 
