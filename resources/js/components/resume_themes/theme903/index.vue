@@ -16,7 +16,7 @@
                             </v-col>
                             <v-col  lg="5" sm="12" cols="6">
                                 <v-row>
-                                    <v-col lg="5" sm="6" cols="12">
+                                    <v-col  class="pr-3" lg="5" sm="5" cols="12">
                                         <v-row justify="center">
                                             <v-dialog v-model="payment_dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                                             <template v-slot:activator="{ on }">
@@ -104,20 +104,18 @@
                                             </v-dialog>
                                         </v-row>
                                     </v-col>
-                                    <v-col v-show="hiden_mobile" cols="2">
-                                        <v-btn fab height="60" width="60" color="#FFD43B">
-                                            <v-icon size="25" color="#0D001A" >mdi-instagram</v-icon>
-                                        </v-btn>
-                                    </v-col>
-                                    <v-col v-show="hiden_mobile" cols="2">
-                                        <v-btn fab height="60" width="60" color="#FFD43B">
-                                            <v-icon size="25" color="#0D001A" >mdi-twitter</v-icon>
-                                        </v-btn>
-                                    </v-col>
-                                    <v-col v-show="hiden_mobile" cols="2">
-                                        <v-btn fab height="60" width="60" color="#FFD43B">
-                                            <v-icon size="25" color="#0D001A" >mdi-facebook</v-icon>
-                                        </v-btn>
+                                    <v-col class="pl-5 pl-sm-8" v-show="hiden_mobile" cols="6">
+                                        <div class="d-flex" >
+                                            <v-btn class="mr-lg-5 mr-md-4 mr-sm-8" fab height="60" width="60" color="#FFD43B">
+                                                <v-icon size="25" color="#0D001A" >mdi-instagram</v-icon>
+                                            </v-btn>
+                                            <v-btn class="mr-lg-5 mr-md-4 mr-sm-8" fab height="60" width="60" color="#FFD43B">
+                                                <v-icon size="25" color="#0D001A" >mdi-twitter</v-icon>
+                                            </v-btn>
+                                            <v-btn fab height="60" width="60" color="#FFD43B">
+                                                <v-icon size="25" color="#0D001A" >mdi-facebook</v-icon>
+                                            </v-btn>
+                                        </div>
                                     </v-col>
                                 </v-row>
                             </v-col>
@@ -343,7 +341,7 @@
                 </v-tab-item>
                 <v-tab-item key="media">
                     <div class="content-media-tm903" >
-                    <v-row >
+                    <v-row style="padding-bottom: 300px;" >
                         <v-col xl="7" lg="8" md="12" >
                             <v-row>
                                 <v-col xl="6" lg="6" md="6" sm="6" >
@@ -371,7 +369,6 @@
                         </v-col>
                     </v-row>
                     <v-footer
-                    style="z-index:500"
                     fixed
                     color="#fff"
                     class="media-player-tm903"
@@ -522,7 +519,7 @@ export default {
                 {link:"/images/resume_themes/theme903/video.mp4",img:"/images/resume_themes/theme903/video3.png"},
             ],
             menu_tabs:[
-                {name:'portfolio',icon:'mdi-image-multiple-outline'},
+                {name:'portfolio',icon:'mdi-image-outline'},
                 {name:'education',icon:'mdi-school-outline'},
                 {name:'experience',icon:'mdi-briefcase-outline'},
                 {name:'skills',icon:'mdi-brush'},
@@ -796,7 +793,7 @@ export default {
                 }
             }
             .hireme-tm903{
-                text-transform: capitalize;
+            text-transform: capitalize;
             font-family: Poppins;
             font-style: normal;
             font-weight: bold;
@@ -1062,7 +1059,11 @@ export default {
         .content-media-tm903
         {
             .media-player-tm903{
+                z-index:500;
              padding: 0px 40px 0px;
+             @media only screen and (max-width: 1024px){
+             padding: 0px 20px 0px;
+                 }
              .linear-playing-audio-tm903{
                  @media only screen and (max-width: 1024px){
                      display:none;

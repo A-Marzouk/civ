@@ -164,6 +164,7 @@
                 <div 
                     v-for="education in educationList" 
                     class="education-item"
+                    :class="{closed: education.closed}"
                     :key="education.id"
                 >
                     <div class="drag-handler">
@@ -213,6 +214,8 @@
                             </v-btn>
                             <v-btn
                                 class="btn-icon mainBg civie-btn toogleDropdownBtn"
+                                :class="{closed: education.closed}"
+                                @click="education.closed = !education.closed"
                                 depressed
                             ></v-btn>
                         </div>
@@ -306,6 +309,7 @@ export default {
                 currentStatus: 'Completed',
                 actuallyStudying: false,
                 endDate: "2019",
+                closed: true,
                 description: "Id non culpa qui non cillum nulla est eiusmod est fugiat ex qui.Cillum culpa veniam ipsum incididunt cupidatat esse cupidatat."
             },
             {
@@ -317,6 +321,7 @@ export default {
                 currentStatus: 'Completed',
                 actuallyStudying: false,
                 endDate: "2019",
+                closed: true,
                 description: "Veniam qui sunt excepteur Lorem velit nulla fugiat magna ea consequat.Labore duis veniam exercitation consectetur voluptate eu eiusmod adipisicing aute do laboris."
             },
             {
@@ -328,6 +333,7 @@ export default {
                 currentStatus: 'Completed',
                 actuallyStudying: false,
                 endDate: "2019",
+                closed: true,
                 description: "Ad ad culpa mollit anim non cupidatat officia ipsum laboris sit.Tempor nisi nulla tempor laborum aliqua labore velit id occaecat nulla est."
             }
         ],
@@ -532,13 +538,20 @@ $auxBgColor-gray: #F2F3FD;
             margin-top: 25px;
 
             .education-item {
-                height: 249px;
+                height: auto;
                 max-width: 842px;
                 width: 100%;
-                padding: 20px 60px;
+                padding: 20px 38px 20px 60px;
                 position: relative;
                 margin: 15px 0;
                 box-shadow: 0 5px 20px rgba($color: #001083, $alpha: 0.1);
+
+                &.closed {
+                    .education-item__content {
+                        height: 0;
+                        transition: height .5s ease;
+                    }
+                }
 
                 .drag-handler {
                     position: absolute;
@@ -600,6 +613,9 @@ $auxBgColor-gray: #F2F3FD;
 
                 &__content {
                     margin-top: 25px;
+                    height: 120px;
+                    transition: height .5s ease;
+                    overflow: auto;
 
                     .date {
                         font-size: 14px;
@@ -612,6 +628,54 @@ $auxBgColor-gray: #F2F3FD;
                         color: $inputTextColor;
                         margin-top: 20px;
                         overflow: auto;
+                    }
+                }
+
+                @include lt-md {
+                    padding: 20px 30px 20px 50px;
+
+                    &__header {
+                        .description {
+                            .school-name {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+
+                @include lt-sm {
+                    padding: 17px 15px;
+
+                    &__header {
+                        flex-wrap: wrap;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        justify-content: flex-start;
+
+                        .description {
+                            width: 100%;
+                            order: 2;
+
+                            .school-name {
+                                font-size: 20px;
+
+                                .grade-title {
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+
+                        .resume-builder__action-buttons-container {
+                            align-self: flex-end;
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    &__content {
+
+                        article {
+                            font-size: 14px;
+                        }
                     }
                 }
             }
