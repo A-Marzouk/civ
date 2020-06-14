@@ -93,13 +93,13 @@
                 width: 10px;
                 background-color: $secondaryColor;
                 z-index: 1;
-                transform: rotateZ(90deg);
+                transform: rotateZ(0deg);
                 transition: all ease .5s;
             }
-
+            
             &.closed {
                 &::after {
-                    transform: rotateZ(0deg);
+                    transform: rotateZ(90deg);
                     transition: all ease .5s;
                 }
             }

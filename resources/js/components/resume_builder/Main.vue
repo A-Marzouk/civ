@@ -247,6 +247,10 @@
 
     .router-view-margin{
         margin-top: 70px;
+
+        @include lt-md {
+            margin-top: 30px;
+        }
     }
 
     .content {
@@ -306,7 +310,7 @@
         /*overflow-x: hidden;*/
 
         @include lt-md {
-            padding: 80px 80px 50px;
+            padding: 80px 30px 50px;
         }
 
         @include lt-sm {
