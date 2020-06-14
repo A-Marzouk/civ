@@ -1,3 +1,30 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@abdessamadelhamdany 
+A-Marzouk
+/
+civ
+5
+30
+ Code
+ Issues 0
+ Pull requests 1 Actions
+ Projects 0
+ Wiki
+ Security 0
+ Insights
+civ/resources/sass/resume_builder/components/inputs.scss
+@josedan10 josedan10 fixed inputs bug
+7e90afd 7 hours ago
+@josedan10@A-Marzouk
+315 lines (258 sloc)  7.53 KB
+  
 .resume-builder__input {
 
     // Default styles ------------------------------------------------------------
@@ -102,6 +129,10 @@
     }
 
     // General styles
+    & > .v-input__control {
+        padding-top: 29px;
+    }
+  
     & > .v-input__control > .v-input__slot {
 
         fieldset {
@@ -313,3 +344,15 @@
         padding-left:0 !important;
     }
 }
+© 2020 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
