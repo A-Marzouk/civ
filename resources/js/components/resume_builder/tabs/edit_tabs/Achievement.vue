@@ -88,12 +88,65 @@
                   </vue-dropzone>
                 </v-col>
                 <v-col cols="12" align="right">
-                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n5">Add New</v-btn>
+                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
                 </v-col>
               </v-row>
             </v-col>
           </v-row>
         </v-form>
+        <v-row align="center">
+          <v-col xl="6" lg="6" md="8" sm="12" cols="12">
+            <v-card class="card-holder">
+              <v-card-text>
+                <v-row>
+                  <v-col cols="6" align="left">
+                    <v-btn color="#ffffff" class="btn-v_bar ml-5" depressed>
+                      <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                    </v-btn>
+                  </v-col>
+                  <v-col cols="6" align="right">
+                    <v-card color="transparent" flat tile class="mr-3">
+                      <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
+                        <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
+                      </v-btn>
+                      <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
+                        <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
+                      </v-btn>
+                      <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
+                        <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
+                      </v-btn>
+                    </v-card>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-row justify="center">
+                      <v-col cols="4">
+                        <img
+                          src="/images/new_resume_builder/achievement-img.svg"
+                          alt="achievement-img"
+                          class="achievement-img"
+                        />
+                      </v-col>
+                      <v-col cols="8">
+                        <v-card color="transparent" flat tile>
+                          <v-card-subtitle class="achievement-title">
+                            National Award,
+                            <span>2015</span>
+                          </v-card-subtitle>
+                          <v-card-subtitle class="achievement-subtitle">
+                            <span>URL:</span> https://dribbble.com/humayrakabiranamika
+                          </v-card-subtitle>
+                          <v-card-text class="achievement-description">
+                            <span>Description:</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur.
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
     </v-card>
   </v-app>
@@ -234,7 +287,7 @@ $mainBlue: #001ce2;
 .reference-content {
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-  height: 573px;
+  height: 850px;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
@@ -266,6 +319,79 @@ $mainBlue: #001ce2;
   .civie-dropzone {
     border: 2px solid #c4c9f5 !important;
     height: 155px;
+  }
+  .btn-v_bar {
+    min-width: 30px !important;
+    min-height: 28px !important;
+    width: 30px !important;
+    height: 28px !important;
+    margin-left: 2px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      margin-left: 0px;
+    }
+    @media screen and (max-width: 1263px) {
+      margin-top: 4px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 767px) {
+      margin-left: -4px;
+    }
+    @media screen and (max-width: 599px) {
+      min-width: 24px !important;
+      min-height: 24px !important;
+      width: 24px !important;
+      height: 30x !important;
+      margin-top: 2px;
+      margin-left: 0px;
+    }
+  }
+  .btn-skill-action {
+    border-radius: 5px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    width: 30px !important;
+    height: 30px !important;
+    @media screen and (max-width: 369px) {
+      margin-left: -11px;
+    }
+  }
+  .card-holder {
+    box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+    .achievement-title {
+      font-family: "Noto Sans" !important;
+      font-weight: 500;
+      font-size: 24px !important;
+      line-height: 33px;
+      color: #001ce2 !important;
+      span {
+        color: #888db1 !important;
+      }
+    }
+    .achievement-subtitle {
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px !important;
+      line-height: 19px;
+      color: #888db1 !important;
+      span{
+          font-weight: bold;
+      }
+    }
+    .achievement-description {
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px !important;
+      line-height: 19px;
+      color: #888db1 !important;
+      span{
+          font-weight: bold;
+      }
+    }
+    .achievement-img{
+        width: 220px;
+        height: 165px;
+    }
   }
 }
 
