@@ -275,5 +275,11 @@ $resume-builder-nav-height: 99px;
 			max-width: #{$screen-lg-min};
 		}
 	}
+
+	@include gt-lg {
+		.builder-nav-container {
+			max-width: #{$screen-xl-min};
+		}
+	}
 }
 </style>

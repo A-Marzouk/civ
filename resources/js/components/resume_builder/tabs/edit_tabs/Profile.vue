@@ -243,14 +243,14 @@ export default {
 
 .profile {
 	.profile-fields-wrapper {
+		padding: 10px;
 		max-height: 450px;
 		overflow-y: scroll;
 
 		.profile-fields {
-			padding: 20px;
+			padding: 10px;
 			background: #ffffff;
 			box-shadow: 0 5px 10px rgba(0, 16, 131, 0.1);
-			margin-right: 5px;
 
 			.profile-picture {
 				padding-top: 13px;
@@ -334,12 +334,16 @@ export default {
 	@include gt-xs {
 		.profile-fields-wrapper {
 			.profile-fields {
+				padding: 20px;
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 20px;
 
 				.profile-picture {
-					grid-area: 1/1/2/2;
+					grid-row-start: 1;
+					grid-row-end: 2;
+					grid-column-start: 1;
+					grid-column-end: 2;
 					padding-top: 5px;
 					padding-bottom: 5px;
 				}
@@ -419,6 +423,111 @@ export default {
 
 			&::-webkit-scrollbar-thumb {
 				border-radius: 10px 0 0 10px;
+			}
+		}
+	}
+
+	@include gt-md {
+		.profile-fields-wrapper {
+			max-height: unset;
+			overflow-y: hidden;
+
+			.profile-fields {
+				padding: 30px;
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+				box-shadow: 0 0 7px -3px rgba(0, 0, 0, 0.24);
+
+				.profile-picture {
+					grid-row-end: 3;
+				}
+
+				.profile-input-field {
+					margin-bottom: unset;
+
+					&.input-field--group-1 {
+						&.input-field--firstname {
+							grid-row-start: 1;
+							grid-row-end: 2;
+							grid-column-start: 2;
+							grid-column-end: 3;
+						}
+						&.input-field--lastname {
+							grid-row-start: 1;
+							grid-row-end: 2;
+							grid-column-start: 3;
+							grid-column-end: 4;
+						}
+						&.input-field--current-location {
+							grid-row-start: 1;
+							grid-row-end: 2;
+							grid-column-start: 4;
+							grid-column-end: 5;
+						}
+						&.input-field--date-of-birth {
+							grid-row-start: 2;
+							grid-row-end: 3;
+							grid-column-start: 2;
+							grid-column-end: 3;
+						}
+						&.input-field--job-title {
+							grid-row-start: 2;
+							grid-row-end: 3;
+							grid-column-start: 3;
+							grid-column-end: 4;
+						}
+						&.input-field--nationality {
+							grid-row-start: 2;
+							grid-row-end: 3;
+							grid-column-start: 4;
+							grid-column-end: 5;
+						}
+					}
+
+					&.input-field--group-2 {
+						&.input-field--languages {
+							grid-row-start: 3;
+							grid-row-end: 4;
+							grid-column-start: 1;
+							grid-column-end: 2;
+						}
+
+						&.input-field--hometown {
+							grid-row-start: 4;
+							grid-row-end: 5;
+							grid-column-start: 1;
+							grid-column-end: 2;
+						}
+					}
+
+					&.input-field--group-3 {
+						&.input-field--about {
+							grid-row-start: 3;
+							grid-row-end: 5;
+							grid-column-start: 2;
+							grid-column-end: 3;
+						}
+						&.input-field--overview {
+							grid-row-start: 3;
+							grid-row-end: 5;
+							grid-column-start: 3;
+							grid-column-end: 4;
+						}
+						&.input-field--quote {
+							grid-row-start: 3;
+							grid-row-end: 5;
+							grid-column-start: 4;
+							grid-column-end: 5;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@include gt-lg {
+		.profile-fields-wrapper {
+			.profile-fields {
+				padding: 45px;
 			}
 		}
 	}
@@ -557,6 +666,12 @@ export default {
 				display: none;
 				width: 0;
 			}
+		}
+	}
+
+	@media screen and (min-width: 1280px) {
+		&.input-field--about .v-input__control {
+			height: auto;
 		}
 	}
 }
