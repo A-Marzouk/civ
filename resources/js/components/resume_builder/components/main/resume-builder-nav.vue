@@ -51,14 +51,14 @@
 					</svg>
 				</router-link>
 
-				<router-link id='jobAlert' class="nav-action" :class="{'active' : activeTab === 'jobAlert'}" data-target="jobAlert" v-on:click.native="setActiveTab('jobAlert')" @loggedOut="logout" to="/resume-builder/jobs">
+				<router-link id='jobAlert' class="nav-action" :class="{'active' : activeTab === 'jobAlert'}" data-target="jobAlert" v-on:click.native="setActiveTab('jobAlert')" to="/resume-builder/jobs">
 					<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M19 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z" stroke="#888DB1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 						<path d="M15 19V3C15 2.46957 14.7893 1.96086 14.4142 1.58579C14.0391 1.21071 13.5304 1 13 1H9C8.46957 1 7.96086 1.21071 7.58579 1.58579C7.21071 1.96086 7 2.46957 7 3V19" stroke="#888DB1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 					</svg>
 				</router-link>
 
-				<my-account-dropdown :avatar="personalInfo ? personalInfo.profile_pic : null" :isActive="activeTab === 'myAccount'" :openMenu="openMenu" @tabChanged="setActiveTab('myAccount')" />
+				<my-account-dropdown :avatar="personalInfo ? personalInfo.profile_pic : null" :isActive="activeTab === 'myAccount'" :openMenu="openMenu" @loggedOut="logout" @tabChanged="setActiveTab('myAccount')" />
 			</div>
 		</div>
 	</nav>
@@ -135,7 +135,7 @@ $resume-builder-nav-height: 99px;
 	box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05);
 	z-index: 10;
 	padding-bottom: $resume-builder-nav-height;
-	transition: all 0.5s;
+	transition: all 0.3s;
 
 	&.collapsed {
 		padding-bottom: 0;
@@ -179,10 +179,17 @@ $resume-builder-nav-height: 99px;
 			align-items: center;
 			justify-content: space-evenly;
 			margin-bottom: -$resume-builder-nav-height;
-			transition: all 0.5s;
+			transition: all 0.3s;
 
 			&.collapsed {
 				margin-bottom: 0;
+				.nav-action {
+					&.active {
+						&::after {
+							bottom: -20px;
+						}
+					}
+				}
 			}
 
 			.nav-action {
@@ -195,7 +202,20 @@ $resume-builder-nav-height: 99px;
 				border-radius: 100px;
 
 				&.active {
+					position: relative;
 					background: #001ce2;
+
+					&::after {
+						content: "";
+						display: block;
+						background: #001ce2;
+						position: absolute;
+						bottom: -24px;
+						left: 0;
+						width: 100%;
+						height: 5px;
+						border-radius: 10px 10px 0px 0px;
+					}
 
 					svg {
 						[fill] {
@@ -224,6 +244,9 @@ $resume-builder-nav-height: 99px;
 
 		.builder-nav-container {
 			display: flex;
+			max-width: 1024px;
+			margin-left: auto;
+			margin-right: auto;
 
 			.builder-nav-logo-wrapper {
 				position: static;
@@ -244,6 +267,12 @@ $resume-builder-nav-height: 99px;
 			.builder-nav-toggle {
 				display: none;
 			}
+		}
+	}
+
+	@include gt-md {
+		.builder-nav-container {
+			max-width: #{$screen-lg-min};
 		}
 	}
 }

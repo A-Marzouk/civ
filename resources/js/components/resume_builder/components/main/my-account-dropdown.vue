@@ -1,6 +1,6 @@
 <template>
-	<div class="my-account-dropdown">
-		<a href="#" class="account-avatar" @click.prevent="show = !show" :class="{'active' : isActive}" :style="`background-image: url(${avatar});`"></a>
+	<div class="my-account-dropdown" :class="{'active' : isActive}">
+		<a href="#" class="account-avatar" @click.prevent="show = !show" :style="`background-image: url(${avatar});`"></a>
 
 		<div class="custom-drop-down" :class="{'show' :show, 'openMenu': openMenu}">
 			<div class="drop-down-item">
@@ -62,6 +62,20 @@ export default {
 .my-account-dropdown {
 	position: relative;
 
+	&.active {
+		&::after {
+			content: "";
+			display: block;
+			background: #001ce2;
+			position: absolute;
+			bottom: -24px;
+			left: 0;
+			width: 100%;
+			height: 5px;
+			border-radius: 10px 10px 0px 0px;
+		}
+	}
+
 	.account-avatar {
 		background-color: #e6e8fc;
 		background-size: cover;
@@ -72,9 +86,6 @@ export default {
 		height: 50px;
 		overflow: hidden;
 		border-radius: 100px;
-
-		&.active {
-		}
 	}
 
 	.custom-drop-down {
