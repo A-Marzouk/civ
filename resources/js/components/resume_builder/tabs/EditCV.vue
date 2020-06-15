@@ -53,7 +53,7 @@ export default {
 				icon: null
 			},
 			{
-				name: "portfolios",
+				name: "portfolio",
 				icon: null
 			},
 			{

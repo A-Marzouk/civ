@@ -77,9 +77,9 @@ export default {
 					label: "Skills"
 				},
 				{
-					url: "/resume-builder/edit/portfolios",
-					icon: "portfolios",
-					label: "Portfolios"
+					url: "/resume-builder/edit/portfolio",
+					icon: "portfolio",
+					label: "Portfolio"
 				},
 				{
 					url: "/resume-builder/edit/audio-video",
