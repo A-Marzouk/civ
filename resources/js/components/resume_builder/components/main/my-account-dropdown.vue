@@ -1,8 +1,8 @@
 <template>
-	<div class="my-account-dropdown">
-		<a href="#" class="account-avatar" @click.prevent="show = !show" :class="{'active' : isActive}" :style="`background-image: url(${avatar});`"></a>
+	<div class="my-account-dropdown" :class="{'active' : isActive}">
+		<a href="#" class="account-avatar" @click.prevent="show = !show" :style="`background-image: url(${avatar});`"></a>
 
-		<div class="custom-drop-down" v-if="show && openMenu">
+		<div class="custom-drop-down" :class="{'show' :show, 'openMenu': openMenu}">
 			<div class="drop-down-item">
 				<router-link id='myAccount' data-target="myAccount" @click.native="onItemClick('tabChanged')" to="/resume-builder">
 					Account Settings
@@ -57,8 +57,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../../../../sass/media-queries";
+
 .my-account-dropdown {
 	position: relative;
+
+	&.active {
+		&::after {
+			content: "";
+			display: block;
+			background: #001ce2;
+			position: absolute;
+			bottom: -24px;
+			left: 0;
+			width: 100%;
+			height: 5px;
+			border-radius: 10px 10px 0px 0px;
+		}
+	}
 
 	.account-avatar {
 		background-color: #e6e8fc;
@@ -70,12 +86,10 @@ export default {
 		height: 50px;
 		overflow: hidden;
 		border-radius: 100px;
-
-		&.active {
-		}
 	}
 
 	.custom-drop-down {
+		display: none;
 		font-family: Noto Sans, "sans-serif";
 		background: white;
 		white-space: nowrap;
@@ -88,6 +102,10 @@ export default {
 		border: 1px solid #f4f7fa;
 		box-shadow: 0 1px 4px -4px rgba(0, 0, 0, 0.32),
 			0 -1px 4px -4px rgba(0, 0, 0, 0.32);
+
+		&.show.openMenu {
+			display: block;
+		}
 
 		&::before {
 			content: "";
@@ -117,6 +135,14 @@ export default {
 
 			hr {
 				background: #888db1;
+			}
+		}
+	}
+
+	@include gt-xs {
+		.custom-drop-down {
+			&.show {
+				display: block;
 			}
 		}
 	}
