@@ -109,7 +109,7 @@
 
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">
               <vue-dropzone
-                class="civie-dropzone mt-n7"
+                class="civie-dropzone"
                 ref="myVueDropzone"
                 id="dropzone"
                 :options="dropzoneOptions"

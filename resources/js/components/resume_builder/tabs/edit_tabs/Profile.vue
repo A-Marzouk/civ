@@ -242,19 +242,16 @@ export default {
 @import "../../../../../sass/media-queries";
 
 .profile {
-	margin-top: 40px;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-bottom: 40px;
-
 	.profile-fields-wrapper {
-		background: #ffffff;
 		max-height: 450px;
 		overflow-y: scroll;
-		padding: 20px;
-		box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
 
 		.profile-fields {
+			padding: 20px;
+			background: #ffffff;
+			box-shadow: 0 5px 10px rgba(0, 16, 131, 0.1);
+			margin-right: 5px;
+
 			.profile-picture {
 				padding-top: 13px;
 				padding-bottom: 15px;
@@ -540,6 +537,12 @@ export default {
 		&.v-text-field--single-line:not(.v-input--dense) textarea {
 			max-height: 100%;
 			margin-top: unset;
+
+			&::-webkit-scrollbar,
+			&::-webkit-scrollbar-thumb {
+				display: none;
+				width: 0;
+			}
 		}
 	}
 
@@ -548,6 +551,12 @@ export default {
 		&.v-text-field--single-line:not(.v-input--dense) textarea {
 			max-height: 100%;
 			margin-top: unset;
+
+			&::-webkit-scrollbar,
+			&::-webkit-scrollbar-thumb {
+				display: none;
+				width: 0;
+			}
 		}
 	}
 }
