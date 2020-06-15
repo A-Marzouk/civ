@@ -41,6 +41,9 @@
                       label
                       v-model="rate"
                     >
+                    <template v-slot:append>
+                      <v-select :items="currencyList" class="mt-n4"></v-select>
+                    </template>
                     </v-text-field>
                   </v-col>
 
