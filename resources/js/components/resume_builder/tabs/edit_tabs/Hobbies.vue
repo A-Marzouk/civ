@@ -84,14 +84,14 @@
                         <v-btn
                           color="#F2F3FD"
                           depressed
-                          class="btn-skill-action mx-xl-1 mx-lg-1 mx-auto"
+                          class="btn-skill-action mx-xl-1 mx-lg-1 mr-auto"
                         >
                           <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
                         </v-btn>
                         <v-btn
                           color="#F2F3FD"
                           depressed
-                          class="btn-skill-action mx-xl-1 mx-lg-1 mx-auto"
+                          class="btn-skill-action mx-xl-1 mx-lg-1 mr-auto"
                         >
                           <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                         </v-btn>
