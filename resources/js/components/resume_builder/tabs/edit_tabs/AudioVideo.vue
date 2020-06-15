@@ -15,35 +15,37 @@
               <v-form>
                 <v-row align="center">
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <v-select
-                      class="resume-builder__input civie-select"
-                      outlined
-                      placeholder="Select an option"
-                      :items="hobbyTypes"
-                      label="Type"
-                      color="#001CE2"
-                      v-model="hobbyType"
-                    >
-                      <button class="dropdown-icon icon" slot="append">
-                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                      </button>
-                    </v-select>
+                    <vue-dropzone  :options="dropzoneOptions" :useCustomSlot="true">
+                      <div class="dropzone-custom-content" align="left">
+                        <div class="d-flex flex-row">
+                          <img
+                            class="mt-n10 ml-1"
+                            src="/images/new_resume_builder/icons/main/upload.svg"
+                          />
+                          <span class="upload-text mt-n9 ml-3">Browse/Drag</span>
+                        </div>
+                      </div>
+                    </vue-dropzone>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <v-select
-                      class="resume-builder__input civie-select"
+                    <v-text-field
+                      class="resume-builder__input civie-input"
                       outlined
-                      placeholder="Select an option"
-                      :items="hobbyNames"
-                      label="Name"
                       color="#001CE2"
-                      v-model="hobbyName"
+                      :rules="rules"
+                      :class="{'resume-builder__input--disabled': disabledInput}"
+                      :disabled="disabledInput"
+                      label="or"
+
                     >
-                      <button class="dropdown-icon icon" slot="append">
-                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                      </button>
-                    </v-select>
+                      <template v-slot:prepend>
+                        <label class="label-or hidden-xs-only">or</label>
+                      </template>
+                      <template v-slot:prepend-inner>
+                        <img class="ml-3" src="/images/new_resume_builder/icons/main/link.svg" />
+                      </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -85,13 +87,15 @@
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
                           <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
-                              <img
-                                src="/images/new_resume_builder/icons/main/play.svg"
-                                alt="play_button"
-                                class="btn-play mt-n1"
-                                width="20"
-                                height="20"
-                              />
+                              <v-btn icon small>
+                                <img
+                                  src="/images/new_resume_builder/icons/main/play.svg"
+                                  alt="play_button"
+                                  class="btn-play mt-n1"
+                                  width="20"
+                                  height="20"
+                                />
+                              </v-btn>
                             </v-col>
                             <v-col cols="3" class="mt-1">
                               <v-card color="transparent" flat tile>
@@ -133,13 +137,15 @@
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
                           <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
-                              <img
-                                src="/images/new_resume_builder/icons/main/play.svg"
-                                alt="play_button"
-                                class="btn-play mt-n1"
-                                width="20"
-                                height="20"
-                              />
+                              <v-btn icon small>
+                                <img
+                                  src="/images/new_resume_builder/icons/main/play.svg"
+                                  alt="play_button"
+                                  class="btn-play mt-n1"
+                                  width="20"
+                                  height="20"
+                                />
+                              </v-btn>
                             </v-col>
                             <v-col cols="3" class="mt-1">
                               <v-card color="transparent" flat tile>
@@ -179,11 +185,21 @@
 </template>
 
 <script>
+import vue2Dropzone from "vue2-dropzone";
+import "vue2-dropzone/dist/vue2Dropzone.min.css";
 export default {
   name: "Hobbies",
+  components: {
+    vueDropzone: vue2Dropzone
+  },
   data() {
     return {
       windowWidth: window.innerWidth,
+      dropzoneOptions: {
+        url: "https://httpbin.org/post",
+        thumbnailWidth: 150,
+        maxFilesize: 0.5
+      },
       tabs: ["Audio", "Video"],
       hobbyType: "",
       hobbyTypes: ["Personal Hobby", "Personal Hobby2"],
@@ -516,6 +532,34 @@ $mainBlue: #001ce2;
   font-weight: 600;
   margin-left: 5px;
 }
+.label-or {
+  margin-top: 30px;
+  font-family: "Noto Sans" !important;
+  font-weight: 500;
+  font-size: 16px !important;
+  line-height: 22px;
+  color: #888db1 !important;
+  margin-left: -13px;
+  @media screen and (max-width: 599px) {
+    margin-left: 0px;
+  }
+}
+.dropzone-custom-content {
+}
+.dropzone.dz-clickable {
+  border: 2px solid #c4c9f5 !important;
+  min-height: 56px !important;
+  height: 56px !important;
+  border: 2px solid #c4c9f5;
+  border-radius: 10px;
+}
+.upload-text {
+  font-family: "Noto Sans" !important;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 25px;
+  color: #888db1 !important;
+}
 
 .fade-enter-active,
 .fade-leave-active {
@@ -524,4 +568,5 @@ $mainBlue: #001ce2;
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+
 </style>
