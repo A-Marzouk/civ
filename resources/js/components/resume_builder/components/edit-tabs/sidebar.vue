@@ -20,7 +20,7 @@
 			<div class="sidebar-links" :class="{'open' :open}">
 				<div v-for="sidebarLink in sidebarLinks" class="sidebar-link" :class="{'active': activeTab === sidebarLink.icon}" :key="sidebarLink.icon">
 					<router-link :to="sidebarLink.url" @click.native="setActive(sidebarLink)">
-						<div class="link-icon">
+						<div class="link-icon" :class="{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}">
 							<sidebar-icon :icon="sidebarLink.icon" />
 						</div>
 						{{ sidebarLink.label }}
@@ -343,7 +343,63 @@ export default {
 		}
 	}
 
-	@include gt-xs {
+	@include gt-md {
+		padding-left: unset;
+		padding-right: unset;
+		border-right: 1px solid rgba(0, 28, 226, 0.1);
+
+		.sidebar-container {
+			background: transparent;
+			width: 300px;
+
+			.sidebar-links,
+			.sidebar-link-activator {
+				&.sidebar-link-activator {
+					display: none;
+				}
+
+				&.sidebar-links {
+					max-height: unset;
+					position: static;
+
+					.sidebar-link {
+						padding-left: unset;
+						padding-right: unset;
+
+						a {
+							color: #888db1;
+							padding-left: 35px;
+							padding-right: 35px;
+							border-radius: unset;
+							border: unset;
+
+							&:hover {
+								background-color: #f9f9f9;
+								text-decoration: none;
+							}
+						}
+
+						&.active a {
+							position: relative;
+							background-color: transparent;
+							color: #001ce2;
+
+							&::after {
+								content: "";
+								display: block;
+								background: #001ce2;
+								position: absolute;
+								right: 0;
+								bottom: 0;
+								height: 100%;
+								width: 5px;
+								border-radius: 10px 0px 0px 10px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 </style>

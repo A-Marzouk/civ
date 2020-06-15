@@ -102,6 +102,17 @@ $disabledColor: #9f9e9e;
 
 @import "../../../../sass/media-queries";
 
+.edit-cv {
+	@include gt-md {
+		display: flex;
+
+		.edit-cv-content {
+			flex: 1;
+			overflow: hidden;
+		}
+	}
+}
+
 .cv-content-preview {
 	padding: 20px 30px 40px;
 
