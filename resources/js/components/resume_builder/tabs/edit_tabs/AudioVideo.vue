@@ -15,7 +15,7 @@
               <v-form>
                 <v-row align="center">
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <vue-dropzone  :options="dropzoneOptions" :useCustomSlot="true">
+                    <vue-dropzone :options="dropzoneOptions" :useCustomSlot="true">
                       <div class="dropzone-custom-content" align="left">
                         <div class="d-flex flex-row">
                           <img
@@ -36,8 +36,7 @@
                       :rules="rules"
                       :class="{'resume-builder__input--disabled': disabledInput}"
                       :disabled="disabledInput"
-                      label="or"
-
+                      :label="windowWidth<600?'or':''"
                     >
                       <template v-slot:prepend>
                         <label class="label-or hidden-xs-only">or</label>
@@ -568,5 +567,4 @@ $mainBlue: #001ce2;
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
-
 </style>
