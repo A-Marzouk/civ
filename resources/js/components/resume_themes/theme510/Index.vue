@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <section class="backdesign">
-      <v-row justify="center" align="center" class="mb-lg-12 pb-lg-12">
+      <v-row justify="center" align="center" class="mb-lg-12 pb-lg-12 mt-lg-10">
         <v-col md="6" lg="6" cols="12">
           <v-row justify="center" align="center" no-gutters>
             <v-col md="2" lg="2" cols="3" sm="3" class="d-flex flex-column align-center">
@@ -161,8 +161,8 @@
         <Skills :currentTab="currentTab" />
         <Education :currentTab="currentTab" />
       </div>
-      <v-row no-gutters justify="end" align="end" class="hidden-md-and-down">
-        <v-col md="2" sm="6" class="navblade py-3" style="text-align: center;">
+      <v-row no-gutters justify="end" align="end" class>
+        <v-col md="2" sm="6" cols="6" class="navblade py-3" style="text-align: center;">
           <v-btn
             dark
             fab
@@ -315,7 +315,7 @@ section {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 20px;
 }
 .job {
@@ -330,17 +330,22 @@ section {
 }
 
 @media only screen and (max-width: 600px) {
+  .tabtitle {
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.7rem;
+    line-height: 14px;
+  }
   .navblade {
-    position: fixed;
     background-color: #104efb;
     border-top-left-radius: 300px;
     border-bottom-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    bottom: 0;
   }
   .marg {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 0;
   }
   .butmob {
@@ -357,9 +362,6 @@ section {
     background-size: contain;
   }
 
-  .marg {
-    margin-top: 30px !important;
-  }
   .v-tabs-slider-wrapper {
     height: 3px !important;
     padding: 0 5px !important;
@@ -412,22 +414,32 @@ section {
   }
 }
 @media only screen and (max-width: 800px) and (min-width: 700px) {
+  .tabtitle {
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 14px;
+  }
   .navblade {
-    position: relative;
     background-color: #104efb;
     border-top-left-radius: 300px;
     border-bottom-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    bottom: 0;
   }
   .marg {
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 0;
   }
   .butmarg {
     padding: 0px 20px !important;
     margin: 0 10px !important;
+  }
+  .butmob {
+    width: 250px !important;
+    height: 80px !important;
+    font-size: 18px !important;
   }
   .butmedia {
     height: 24px !important;
@@ -469,11 +481,7 @@ section {
     padding-left: 110px;
     margin-right: 128px !important;
   }
-  .butmob {
-    width: 350px !important;
-    height: 100px !important;
-    font-size: 30px !important;
-  }
+
   .v-tabs-slider-wrapper {
     height: 3px !important;
     padding: 0 50px !important;
@@ -622,12 +630,10 @@ a {
 }
 
 .navblade {
-  position: fixed;
   background-color: #104efb;
   border-top-left-radius: 300px;
   border-bottom-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  bottom: 0;
 }
 </style>

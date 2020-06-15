@@ -33,13 +33,4 @@ export default {
   background: transparent;
   color: rgba(0, 0, 0, 0.87);
 }
-.navblade {
-  position: fixed;
-  background-color: #104efb;
-  border-top-left-radius: 300px;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  bottom: 28px;
-}
 </style>

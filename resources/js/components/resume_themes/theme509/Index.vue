@@ -149,7 +149,7 @@
         </v-col>
       </v-row>
       <v-row class="mt-md-6 mt-8 pt-6 mt-sm-6">
-        <v-col lg="12" sm="12" cols="12" class="tablet">
+        <v-col lg="8" sm="12" cols="12" class="tablet ml-lg-12 pl-lg-8">
           <v-tabs
             background-color="transparent"
             class="tabmargn"
@@ -175,7 +175,7 @@
           </v-tabs>
         </v-col>
       </v-row>
-      <div style="height:100vh">
+      <div>
         <Portfolio :currentTab="currentTab" />
         <Work :currentTab="currentTab" />
         <Skills :currentTab="currentTab" />

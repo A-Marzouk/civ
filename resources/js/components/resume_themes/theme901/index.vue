@@ -297,6 +297,7 @@
 <script>
     import VueSlickCarousel from 'vue-slick-carousel'
     import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+    // import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
     import Theaudio from './Theaudio'
     import Thevideo from './Thevideo'
 export default {
@@ -406,8 +407,8 @@ export default {
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-/* Once again :) this font is not found! just try it in the browser it returns 404 error! */
-/*@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");*/
+/* MISSING FONT FAMILY! I COMMENTED IT BECAUSE IT IS CAUSING AN ERROR IN THE CONSOLE AND IT IS EVEN NOT LOADING*/
+/* @import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 #hold-theme901{
     max-width: 1920px;
@@ -561,7 +562,11 @@ export default {
         padding: 70px 50px 40px;
         @media only screen and (max-width: 764px) 
             {
-                padding: 70px 10px 0px;
+                padding: 70px 40px 0px;
+            }
+            @media only screen and (max-width: 425px) 
+            {
+                padding: 70px 25px 0px;
             }
         .tabs-901{
             // .tab-901{
@@ -651,13 +656,14 @@ color: #2176E5;
                 font-weight: normal;
                 font-size: 16px;
                 line-height: 20px;
-                color: #5B5D60;
+                color: #2176e5;
                 max-width: 139px;
                 @media only screen and (max-width: 992px) {
+                    font-size: 14px;
                     color: #104EFB;
                 }
                 @media only screen and (max-width: 597px) {
-                    font-size: 13px;
+                    font-size: 12px;
                     color: #104EFB;
                 }
             }
@@ -667,15 +673,16 @@ color: #2176E5;
                 font-weight: normal;
                 font-size: 20px;
                 line-height: 20px;
-                color: #5B5D60;
+                color: #2176e5;
                 width: 85%;
                 padding-left: 20px;
                 @media only screen and (max-width: 992px) {
+                    font-size: 14px;
                     color: #104EFB;
                     width: 100%;
                 }
                 @media only screen and (max-width: 597px) {
-                    font-size: 13px;
+                    font-size: 12px;
                     color: #104EFB;
                 }
             }
