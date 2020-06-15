@@ -58,12 +58,27 @@
                 <v-col xl="5" lg="6" md="8" sm="12" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
                     <v-row justify="center">
-                      <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-xl-n2 mt-lg-n2 mt-n3" align="center">
+                      <v-col
+                        xl="1"
+                        lg="1"
+                        md="1"
+                        sm="1"
+                        cols="6"
+                        class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
+                        :align="windowWidth<767?'left':'center'"
+                      >
                         <v-btn color="#ffffff" class="btn-v_bar" depressed>
                           <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                         </v-btn>
                       </v-col>
-                      <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-n5">
+                      <v-col
+                        xl="1"
+                        lg="1"
+                        md="1"
+                        sm="1"
+                        cols="1"
+                        class="mt-xl-n5 mt-lg-n5 mt-md-n5 mt-sm-n5 mt-0 hidden-xs-only"
+                      >
                         <div class="vertical-line"></div>
                       </v-col>
                       <v-col xl="7" lg="7" md="7" sm="6" cols="7" class="mt-n2 hidden-xs-only">
@@ -103,7 +118,7 @@
                           </v-row>
                         </v-card>
                       </v-col>
-                      <v-col xl="3" lg="3" md="3" sm="4" cols="3" align="right" class="action-col">
+                      <v-col xl="3" lg="3" md="3" sm="4" cols="6" align="right" class="action-col">
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -113,6 +128,43 @@
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                         </v-btn>
+                      </v-col>
+                      <v-col cols="12" class="hidden-sm-and-up">
+                        <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
+                          <v-row justify="center" align="center" dense class="card-audio-row">
+                            <v-col cols="2" align="right" class="mt-1">
+                              <img
+                                src="/images/new_resume_builder/icons/main/play.svg"
+                                alt="play_button"
+                                class="btn-play mt-n1"
+                                width="20"
+                                height="20"
+                              />
+                            </v-col>
+                            <v-col cols="3" class="mt-1">
+                              <v-card color="transparent" flat tile>
+                                <span class="audio-duration">0.00/0.15</span>
+                              </v-card>
+                            </v-col>
+                            <v-col cols="4" class="mt-1">
+                              <v-progress-linear color background-color="#C4C9F5" class="seekbar"></v-progress-linear>
+                            </v-col>
+                            <v-col cols="3" class="mt-1">
+                              <v-card color="transparent" flat tile>
+                                <v-btn icon small>
+                                  <img
+                                    src="/images/new_resume_builder/icons/main/volume-1.svg"
+                                    alt="play_button"
+                                    class="btn-volume"
+                                  />
+                                </v-btn>
+                                <v-btn icon small>
+                                  <v-icon>mdi-dots-vertical</v-icon>
+                                </v-btn>
+                              </v-card>
+                            </v-col>
+                          </v-row>
+                        </v-card>
                       </v-col>
                     </v-row>
                   </v-card>
@@ -131,6 +183,7 @@ export default {
   name: "Hobbies",
   data() {
     return {
+      windowWidth: window.innerWidth,
       tabs: ["Audio", "Video"],
       hobbyType: "",
       hobbyTypes: ["Personal Hobby", "Personal Hobby2"],
@@ -173,6 +226,7 @@ export default {
       return this.$store.state.user.hobbies;
     }
   },
+
   props: ["selectProps"],
   methods: {
     toggleSelect() {
@@ -312,14 +366,17 @@ export default {
     }
   },
   mounted() {
-    $("#hobbiesSection").on("click", e => {
-      if (
-        this.showCategoryOptions &&
-        !$(e.target).parents(".civ-input").length
-      ) {
-        this.showCategoryOptions = false;
-      }
-    });
+    (window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    }),
+      $("#hobbiesSection").on("click", e => {
+        if (
+          this.showCategoryOptions &&
+          !$(e.target).parents(".civ-input").length
+        ) {
+          this.showCategoryOptions = false;
+        }
+      });
 
     console.log(Vue.$cookies.get("spotify_access_token"));
   }
@@ -361,6 +418,9 @@ $mainBlue: #001ce2;
   .card-holder {
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     height: 50px;
+    @media screen and (max-width: 599px) {
+      height: auto;
+    }
     .btn-v_bar {
       min-width: 30px !important;
       min-height: 28px !important;
@@ -373,7 +433,7 @@ $mainBlue: #001ce2;
       @media screen and (max-width: 1263px) {
         margin-top: 4px;
       }
-      @media screen and (min-width: 600px) and (max-width: 767px){
+      @media screen and (min-width: 600px) and (max-width: 767px) {
         margin-left: -4px;
       }
       @media screen and (max-width: 599px) {
@@ -382,13 +442,13 @@ $mainBlue: #001ce2;
         width: 24px !important;
         height: 30x !important;
         margin-top: 2px;
-        margin-left: -5px;
+        margin-left: 0px;
       }
     }
     .vertical-line {
       border-left: 1px solid #e6e8fc;
       height: 50px;
-      @media screen and (min-width: 600px) and (max-width: 767px){
+      @media screen and (min-width: 600px) and (max-width: 767px) {
         margin-left: -7px;
       }
     }
@@ -419,6 +479,9 @@ $mainBlue: #001ce2;
     }
     .action-col {
       margin-top: -10px;
+      @media screen and (max-width: 599px) {
+        margin-top: 0px;
+      }
     }
     .card-audio-controller {
       border-radius: 100px;
@@ -426,6 +489,9 @@ $mainBlue: #001ce2;
       margin-top: -7px;
       @media screen and (min-width: 600px) and (max-width: 767px) {
         margin-left: -37px;
+      }
+      @media screen and(max-width: 599px) {
+        margin-top: 0px;
       }
       .btn-play {
       }
