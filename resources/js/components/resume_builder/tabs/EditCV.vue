@@ -11,8 +11,10 @@
 				<div class="cv-preview-link">
 					<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
 				</div>
-				<div class="cv-preview-theme">
-					<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+				<div class="cv-preview-theme-wrapper">
+					<div class="cv-preview-theme">
+						<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+					</div>
 				</div>
 			</div>
 		</main>
@@ -102,8 +104,23 @@ $disabledColor: #9f9e9e;
 
 @import "../../../../sass/media-queries";
 
+.edit-cv {
+	.edit-cv-content {
+		padding: 40px 30px;
+	}
+
+	@include gt-md {
+		display: flex;
+
+		.edit-cv-content {
+			flex: 1;
+			overflow: hidden;
+		}
+	}
+}
+
 .cv-content-preview {
-	padding: 20px 30px 40px;
+	padding-top: 40px;
 
 	.cv-preview-link {
 		height: 50px;
@@ -111,6 +128,7 @@ $disabledColor: #9f9e9e;
 		align-items: center;
 		border-radius: 5px;
 		padding-left: 25px;
+		margin-right: 10px;
 		border: 1px solid #e6e8fc;
 
 		a {
@@ -125,9 +143,22 @@ $disabledColor: #9f9e9e;
 		}
 	}
 
-	.cv-preview-theme {
+	.cv-preview-theme-wrapper {
 		overflow-y: scroll;
+		padding-right: 5px;
 		max-height: 540px;
+
+		.cv-preview-theme {
+			overflow-x: scroll;
+
+			&::-webkit-scrollbar {
+				height: 0;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				height: 0;
+			}
+		}
 
 		&::-webkit-scrollbar {
 			width: 5px;
@@ -143,7 +174,14 @@ $disabledColor: #9f9e9e;
 	}
 
 	@include gt-xs {
-		.cv-preview-theme {
+		.cv-preview-link {
+			margin-right: 15px;
+		}
+
+		.cv-preview-theme-wrapper {
+			.cv-preview-theme {
+			}
+
 			&::-webkit-scrollbar {
 				width: 10px;
 				border-radius: 10px 0 0 10px;
