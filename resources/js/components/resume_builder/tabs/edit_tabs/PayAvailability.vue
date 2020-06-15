@@ -39,8 +39,12 @@
                       :class="{'resume-builder__input--disabled': disabledInput}"
                       :disabled="disabledInput"
                       label
-                      v-model="arte"
-                    ></v-text-field>
+                      v-model="rate"
+                    >
+                    <template v-slot:append>
+                      <v-select :items="currencyList" class="mt-n4"></v-select>
+                    </template>
+                    </v-text-field>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -73,7 +77,10 @@ export default {
       },
       payTypes: ["Hourly", "Weekly", "Monthly"],
       payType: "",
+      rate: "",
+      rules: [value => !!value || "Please fill this field."],
       currencyList: ["usd", "eur"],
+      disabledInput:false,
       showCurrencyOptions: false,
       slickOptions: {
         infinite: false,
@@ -195,8 +202,8 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
-.hobbies-content {
-  height: 323px;
+.pay-content {
+  height: 185px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   padding: 50px;

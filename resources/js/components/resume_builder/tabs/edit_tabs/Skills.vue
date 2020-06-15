@@ -15,7 +15,7 @@
         <v-tabs-items v-model="activeTab">
           <v-tab-item v-for="(tabName,i) in tabs" :key="tabName + i">
             <v-container style="width:100%;">
-              <v-row align="center">
+              <v-row align="baseline">
                 <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
@@ -106,9 +106,10 @@
                                 <v-btn
                                   color="#F2F3FD"
                                   depressed
+                                  @click="toggleVisibility(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
+                                  <img :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`" alt class="eye-icon"/>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -144,8 +145,8 @@
                                 </v-btn>
                               </v-col>
                               <v-col cols="6" align="right">
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto">
-                                  <img src="/images/new_resume_builder/icons/main/tick.svg" alt />
+                                <v-btn color="#F2F3FD"  @click="toggleVisibility(skill)" depressed class="btn-skill-action mx-auto">
+                                  <img :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`" alt class="eye-icon"/>
                                 </v-btn>
                                 <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto" @click="editSkill(skill)">
                                   <img
@@ -223,6 +224,16 @@ export default {
   methods: {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
+    },
+    toggleVisibility(skill){
+      skill.is_public = !skill.is_public;
+      axios.post('/api/user/skills/toggle-visibility', skill)
+              .then((response) => {
+                    this.$store.dispatch("flyingNotification");
+              })
+              .catch(error => {
+                console.log(error);
+              });
     },
     addSkill() {
       if (this.validateSkill()) {
@@ -350,6 +361,7 @@ export default {
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
+  overflow-y: scroll;
 }
 
 
@@ -761,7 +773,7 @@ export default {
   margin-left: 5px;
 }
 .card-skill-items {
-  width: 1412px !important;
+  width: 100%;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto !important;
   }
@@ -849,10 +861,16 @@ export default {
       }
     }
   }
+
+  .eye-icon{
+    width: 16px;
+    height: auto;
+  }
 }
 </style>
 
 <style>
+
 #resumeBuilder .v-progress-linear__determinate {
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;

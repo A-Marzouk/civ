@@ -14,7 +14,7 @@
 
 <script>
     export default {
-        name: 'Projects',
+        name: 'Portfolio',
         data() {
             return {}
         },
