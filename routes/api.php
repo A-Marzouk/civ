@@ -27,6 +27,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/skills/{id}', 'API\SkillsController@show');
     //create new skill
     Route::post('/skills', 'API\SkillsController@store');
+    // toggle visibility
+    Route::post('/skills/toggle-visibility', 'API\SkillsController@toggleVisibility');
     //create many skill
     Route::post('/skills-many', 'API\SkillsController@storeMany');
     //update a skill
