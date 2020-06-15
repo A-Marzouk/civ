@@ -8,7 +8,11 @@
           :key="i"
         >{{tabName.replace('_',' ')}}</v-tab>
       </v-tabs>
-      <v-card class="card-main-hobbies pa-10 resume-builder__scroll hobbies-content" flat id="hobbiesContent">
+      <v-card
+        class="card-main-hobbies pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll hobbies-content"
+        flat
+        id="hobbiesContent"
+      >
         <v-tabs-items v-model="hobbiesTab">
           <v-tab-item v-for="i in 5" :key="i">
             <v-container style="width: 100%;">
@@ -55,7 +59,7 @@
                 <v-col xl="5" lg="8" md="8" sm="10" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
                     <v-row>
-                      <v-col xl="2" lg="2" md="2" sm="2" cols="2" class="mt-n3">
+                      <v-col xl="2" lg="2" md="2" sm="2" cols="1" class="mt-n3">
                         <v-btn color="#ffffff" class="btn-v_bar" depressed>
                           <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                         </v-btn>
@@ -63,7 +67,7 @@
                       <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-n5">
                         <div class="vertical-line"></div>
                       </v-col>
-                      <v-col xl="4" lg="4" md="4" sm="4" cols="4" class="mt-n2">
+                      <v-col xl="4" lg="4" md="4" sm="4" cols="5" class="mt-n2">
                         <div class="hobby-title">Play Fencing</div>
                       </v-col>
                       <v-col xl="5" lg="5" md="5" sm="5" cols="5" align="right" class="action-col">
@@ -214,7 +218,7 @@ export default {
         title: hobby.title
       };
       this.closeOptionsBtn();
-      document.getElementById('hobbiesContent').scrollTop = 0;
+      document.getElementById("hobbiesContent").scrollTop = 0;
     },
     applyEdit() {
       axios
@@ -311,6 +315,9 @@ $mainBlue: #001ce2;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
+  @media screen and (max-width: 599px) {
+    height: 462px;
+  }
 }
 .card-main-hobbies {
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
@@ -333,6 +340,16 @@ $mainBlue: #001ce2;
   .card-holder {
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     height: 50px;
+    .btn-v_bar {
+      @media screen and (max-width: 599px) {
+        min-width: 24px !important;
+        min-height: 24px !important;
+        width: 24px !important;
+        height: 30x !important;
+        margin-top: 2px;
+        margin-left: -5px;
+      }
+    }
     .vertical-line {
       border-left: 1px solid #e6e8fc;
       height: 50px;
@@ -342,7 +359,7 @@ $mainBlue: #001ce2;
       font-size: 18px;
       line-height: 25px;
       color: #888db1 !important;
-      @media screen and (min-width: 600px) and (max-width: 767px){
+      @media screen and (min-width: 600px) and (max-width: 767px) {
         font-size: 14px;
       }
     }
