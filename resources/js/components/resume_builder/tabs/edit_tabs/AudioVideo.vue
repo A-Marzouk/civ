@@ -55,25 +55,25 @@
                 </v-row>
               </v-form>
               <v-row align="center" dense>
-                <v-col xl="5" lg="8" md="8" sm="10" cols="12">
+                <v-col xl="5" lg="6" md="8" sm="12" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
                     <v-row justify="center">
-                      <v-col cols="1" class="mt-xl-n2 mt-lg-n2 mt-n3" align="center">
+                      <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-xl-n2 mt-lg-n2 mt-n3" align="center">
                         <v-btn color="#ffffff" class="btn-v_bar" depressed>
                           <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                         </v-btn>
                       </v-col>
-                      <v-col cols="1" class="mt-n5">
+                      <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-n5">
                         <div class="vertical-line"></div>
                       </v-col>
-                      <v-col xl="7" cols="5" class="mt-n2 hidden-xs-only">
+                      <v-col xl="7" lg="7" md="7" sm="6" cols="7" class="mt-n2 hidden-xs-only">
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
-                          <v-row justify="center" align="center" dense>
+                          <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
                               <img
                                 src="/images/new_resume_builder/icons/main/play.svg"
                                 alt="play_button"
-                                class="btn-play"
+                                class="btn-play mt-n1"
                                 width="20"
                                 height="20"
                               />
@@ -83,7 +83,7 @@
                                 <span class="audio-duration">0.00/0.15</span>
                               </v-card>
                             </v-col>
-                            <v-col cols="4" class="mt-1"> 
+                            <v-col cols="4" class="mt-1">
                               <v-progress-linear color background-color="#C4C9F5" class="seekbar"></v-progress-linear>
                             </v-col>
                             <v-col cols="3" class="mt-1">
@@ -103,7 +103,7 @@
                           </v-row>
                         </v-card>
                       </v-col>
-                      <v-col xl="3" cols="5" align="right" class="action-col">
+                      <v-col xl="3" lg="3" md="3" sm="4" cols="3" align="right" class="action-col">
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -368,9 +368,14 @@ $mainBlue: #001ce2;
       height: 28px !important;
       margin-left: 2px;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        margin-left: 10px;
+        margin-left: 0px;
       }
-
+      @media screen and (max-width: 1263px) {
+        margin-top: 4px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 767px){
+        margin-left: -4px;
+      }
       @media screen and (max-width: 599px) {
         min-width: 24px !important;
         min-height: 24px !important;
@@ -383,6 +388,9 @@ $mainBlue: #001ce2;
     .vertical-line {
       border-left: 1px solid #e6e8fc;
       height: 50px;
+      @media screen and (min-width: 600px) and (max-width: 767px){
+        margin-left: -7px;
+      }
     }
     .hobby-title {
       font-family: "Noto Sans" !important;
@@ -390,7 +398,7 @@ $mainBlue: #001ce2;
       line-height: 25px;
       color: #888db1 !important;
       @media screen and (min-width: 600px) and (max-width: 767px) {
-        font-size: 14px;
+        font-size: 12px;
       }
       @media screen and (max-width: 374px) {
         font-size: 14px;
@@ -416,7 +424,15 @@ $mainBlue: #001ce2;
       border-radius: 100px;
       min-width: 257px !important;
       margin-top: -7px;
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        margin-left: -37px;
+      }
       .btn-play {
+      }
+      .card-audio-row {
+        @media screen and (min-width: 600px) and (max-width: 767px) {
+          margin-left: -11px;
+        }
       }
       .audio-duration {
         font-family: "Noto Sans" !important;
