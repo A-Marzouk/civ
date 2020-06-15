@@ -51,30 +51,33 @@
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n8">Add New</v-btn>
+                    <v-btn
+                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n2 mt-lg-n2 mt-n8"
+                      depressed
+                    >Add New</v-btn>
                   </v-col>
                 </v-row>
               </v-form>
               <v-row align="center">
                 <v-col xl="5" lg="8" md="8" sm="10" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
-                    <v-row>
-                      <v-col xl="2" lg="2" md="2" sm="2" cols="1" class="mt-n3">
+                    <v-row justify="center">
+                      <v-col cols="1" class="mt-xl-n2 mt-lg-n2 mt-n3" align="center">
                         <v-btn color="#ffffff" class="btn-v_bar" depressed>
                           <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                         </v-btn>
                       </v-col>
-                      <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-n5">
+                      <v-col cols="1" class="mt-n5">
                         <div class="vertical-line"></div>
                       </v-col>
-                      <v-col xl="4" lg="4" md="4" sm="4" cols="5" class="mt-n2">
+                      <v-col cols="5" class="mt-n2">
                         <div class="hobby-title">Play Fencing</div>
                       </v-col>
-                      <v-col xl="5" lg="5" md="5" sm="5" cols="5" align="right" class="action-col">
+                      <v-col cols="5" align="right" class="action-col">
                         <v-btn
                           color="#F2F3FD"
                           depressed
-                          class="btn-skill-action mx-xl-1 mx-lg-1 mx-auto"
+                          class="btn-skill-action mx-xl-1 mx-lg-1 mr-auto"
                         >
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -341,6 +344,15 @@ $mainBlue: #001ce2;
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     height: 50px;
     .btn-v_bar {
+      min-width: 30px !important;
+      min-height: 28px !important;
+      width: 30px !important;
+      height: 28px !important;
+      margin-left: 2px;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        margin-left: 10px;
+      }
+
       @media screen and (max-width: 599px) {
         min-width: 24px !important;
         min-height: 24px !important;
@@ -362,6 +374,9 @@ $mainBlue: #001ce2;
       @media screen and (min-width: 600px) and (max-width: 767px) {
         font-size: 14px;
       }
+      @media screen and (max-width: 374px){
+        font-size: 14px;
+      }
     }
     .btn-skill-action {
       border-radius: 5px !important;
@@ -369,6 +384,9 @@ $mainBlue: #001ce2;
       min-height: 30px !important;
       width: 30px !important;
       height: 30px !important;
+      @media screen and (max-width: 369px){
+        margin-left: -11px;
+      }
     }
     .action-col {
       margin-top: -10px;
