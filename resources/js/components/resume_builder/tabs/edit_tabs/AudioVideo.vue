@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-container style="width:100%;">
-      <v-tabs class="resume-builder__tab-bar" hide-slider v-model="hobbiesTab">
+      <v-tabs class="resume-builder__tab-bar" hide-slider v-model="audioTab">
         <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i">{{tabName}}</v-tab>
       </v-tabs>
       <v-card
@@ -9,13 +9,13 @@
         flat
         id="hobbiesContent"
       >
-        <v-tabs-items v-model="hobbiesTab">
+        <v-tabs-items v-model="audioTab">
           <v-tab-item v-for="i in 5" :key="i">
             <v-container style="width: 100%;">
               <v-form>
                 <v-row align="center">
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <vue-dropzone :options="dropzoneOptions" :useCustomSlot="true">
+                    <vue-dropzone :options="dropzoneOptions" :useCustomSlot="true" id="dropzone">
                       <div class="dropzone-custom-content" align="left">
                         <div class="d-flex flex-row">
                           <img
@@ -187,7 +187,7 @@
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 export default {
-  name: "Hobbies",
+  name: "AudioVideo",
   components: {
     vueDropzone: vue2Dropzone
   },
@@ -200,11 +200,13 @@ export default {
         maxFilesize: 0.5
       },
       tabs: ["Audio", "Video"],
+      disabledInput: false,
       hobbyType: "",
       hobbyTypes: ["Personal Hobby", "Personal Hobby2"],
       hobbyNames: ["Gardening"],
+      rules: [value => !!value || "Please fill this field."],
       hobbyName: "",
-      hobbiesTab: 0,
+      audioTab: 0,
       hobby: {
         category: "select",
         title: ""
@@ -242,10 +244,10 @@ export default {
     }
   },
 
-  props: ["selectProps"],
+  props: ["inputProps"],
   methods: {
-    toggleSelect() {
-      this.disabledSelect = !this.disabledSelect;
+    toggleInput() {
+      this.disabledInput = !this.disabledInput;
     },
     selectCategory(title) {
       this.hobby.category = title;
