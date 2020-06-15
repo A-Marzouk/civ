@@ -49,7 +49,7 @@
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <v-btn
-                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n2 mt-lg-n2 mt-n8"
+                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n1 mt-lg-n1 mt-n8"
                       depressed
                     >Add New</v-btn>
                   </v-col>
