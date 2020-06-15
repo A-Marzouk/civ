@@ -7,14 +7,14 @@
     </v-row>
     <v-footer style="z-index:500" fixed color="#fff" class="media-player-tm903">
       <v-row justify="center" class="align-center">
-        <v-col class="avatar-media-player-tm903" lg="2" cols="2" sm="3">
+        <v-col class="avatar-media-player-tm903" lg="3" cols="2" sm="3">
           <v-row justify="center" class="align-center">
             <v-col lg="3" md="4" cols="3" sm="6">
               <v-list-item-avatar height="65" width="65" color="transparent">
                 <v-img src="/images/resume_themes/theme511/audio.png"></v-img>
               </v-list-item-avatar>
             </v-col>
-            <v-col>
+            <v-col cols="auto">
               <div class="audio-info-903">
                 <span class="title-audio-tm903">AUDIO_04/09/2020</span>
                 <br />
@@ -23,7 +23,7 @@
             </v-col>
           </v-row>
         </v-col>
-        <v-col class="linear-playing-audio-tm903" cols="3">
+        <v-col class="linear-playing-audio-tm903" cols="3" lg="3">
           <div class="ml-n12">
             <v-progress-linear
               height="54"
