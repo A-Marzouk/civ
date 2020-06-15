@@ -150,6 +150,14 @@ $disabledColor: #9f9e9e;
 
 		.cv-preview-theme {
 			overflow-x: scroll;
+
+			&::-webkit-scrollbar {
+				height: 0;
+			}
+
+			&::-webkit-scrollbar-thumb {
+				height: 0;
+			}
 		}
 
 		&::-webkit-scrollbar {

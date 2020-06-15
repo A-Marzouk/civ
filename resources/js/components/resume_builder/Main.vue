@@ -168,6 +168,10 @@ body.modal-open {
 	@include gt-md {
 		max-width: #{$screen-lg-min};
 	}
+
+	@include gt-lg {
+		max-width: #{$screen-xl-min};
+	}
 }
 
 .content {
