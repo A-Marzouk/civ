@@ -119,25 +119,25 @@
                   </v-col>
                   <v-col cols="12">
                     <v-row justify="center">
-                      <v-col cols="4">
+                      <v-col>
                         <img
                           src="/images/new_resume_builder/achievement-img.svg"
                           alt="achievement-img"
                           class="achievement-img"
                         />
                       </v-col>
-                      <v-col cols="8">
-                        <v-card color="transparent" flat tile>
-                          <v-card-subtitle class="achievement-title">
+                      <v-col>
+                        <v-card color="transparent" flat tile class="pa-5">
+                          <div class="achievement-title">
                             National Award,
                             <span>2015</span>
-                          </v-card-subtitle>
-                          <v-card-subtitle class="achievement-subtitle">
+                          </div>
+                          <div class="achievement-subtitle">
                             <span>URL:</span> https://dribbble.com/humayrakabiranamika
-                          </v-card-subtitle>
-                          <v-card-text class="achievement-description">
+                          </div>
+                          <div class="achievement-description">
                             <span>Description:</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur.
-                          </v-card-text>
+                          </div>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -373,9 +373,6 @@ $mainBlue: #001ce2;
       font-size: 14px !important;
       line-height: 19px;
       color: #888db1 !important;
-      span{
-          font-weight: bold;
-      }
     }
     .achievement-description {
       font-family: "Noto Sans" !important;
@@ -384,9 +381,6 @@ $mainBlue: #001ce2;
       font-size: 14px !important;
       line-height: 19px;
       color: #888db1 !important;
-      span{
-          font-weight: bold;
-      }
     }
     .achievement-img{
         width: 220px;
