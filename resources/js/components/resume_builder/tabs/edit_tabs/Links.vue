@@ -275,6 +275,7 @@ $mainBlue: #001ce2;
 
 	.link-inputs-row {
 		display: flex;
+		align-items: center;
 		margin-top: 12px;
 
 		.civie-select {
@@ -287,7 +288,7 @@ $mainBlue: #001ce2;
 
 			.input-prepended-icon {
 				position: absolute;
-				top: 13px;
+				top: 41px;
 				left: 5px;
 
 				img {

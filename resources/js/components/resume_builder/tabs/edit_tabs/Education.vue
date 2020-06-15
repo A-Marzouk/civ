@@ -1,5 +1,5 @@
 <template>
-    <v-app class="resume-builder__scroll">
+    <div class="resume-builder__scroll">
         <div class="data-container">            
             <v-card color="transparent" flat tile>
                 <v-tabs
@@ -20,7 +20,7 @@
                 <div v-else>No thing to show here</div>
             </v-card>
         </div>
-    </v-app>  
+    </div>
 </template>
 
 <script>
@@ -175,8 +175,7 @@ import SchoolView from './education_tabs/school'
 $mainBlue: #001CE2;
     .data-container {
         padding: 0;
-        margin-bottom: 70px;
-        
+        margin-bottom:30px;
 
         .view-container {
             max-height: 678px;

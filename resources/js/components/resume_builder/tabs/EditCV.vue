@@ -320,3 +320,9 @@ $disabledColor: #9f9e9e;
 	opacity: 0;
 }
 </style>
+
+<style>
+	.v-application--wrap{
+		min-height: 450px !important;
+	}
+</style>
