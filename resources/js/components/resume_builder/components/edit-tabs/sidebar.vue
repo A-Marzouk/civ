@@ -5,7 +5,7 @@
 
 				<a href="#" @click.prevent="open=!open" class="activator-preview-link">
 					<div class="link-icon profile-ixklwxz-link-icon-active" :data-icon="currentSidebarLink.icon">
-						<sidebar-icon :icon="currentSidebarLink.icon" />
+						<svg-vue :icon="`edit-cv-sidebar/${currentSidebarLink.icon}`"></svg-vue>
 					</div>
 					{{ currentSidebarLink.label }}
 				</a>
@@ -21,7 +21,7 @@
 				<div v-for="sidebarLink in sidebarLinks" class="sidebar-link" :class="{'active': activeTab === sidebarLink.icon}" :key="sidebarLink.icon">
 					<router-link :to="sidebarLink.url" @click.native="setActive(sidebarLink)">
 						<div class="link-icon" :class="{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}">
-							<sidebar-icon :icon="sidebarLink.icon" />
+							<svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
 						</div>
 						{{ sidebarLink.label }}
 					</router-link>
@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import sidebarIcon from "./sidebar-icon";
-
 export default {
 	name: "sidebar",
 
@@ -43,8 +41,6 @@ export default {
 			required: true
 		}
 	},
-
-	components: { "sidebar-icon": sidebarIcon },
 
 	data() {
 		return {
@@ -254,6 +250,12 @@ export default {
 					justify-content: center;
 					border-radius: 5px;
 					margin-right: 10px;
+
+					svg {
+						fill: none;
+						height: 24px;
+						width: 24px;
+					}
 				}
 
 				&:hover {
