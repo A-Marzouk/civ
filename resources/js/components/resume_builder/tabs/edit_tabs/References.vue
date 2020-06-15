@@ -200,13 +200,16 @@ export default {
       return this.$store.state.user.testimonials;
     }
   },
-  props: ["selectProps", "inputProps"],
+  props: ["selectProps", "inputProps", "textareaProps"],
   methods: {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
     },
     toggleInput() {
       this.disabledInput = !this.disabledInput;
+    },
+    toggleTextarea() {
+      this.disabledTextarea = !this.disabledTextarea;
     },
     setActiveTab(tab) {
       this.activeTab = tab;
