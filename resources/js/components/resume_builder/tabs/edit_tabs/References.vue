@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-card class="card-ref pa-xl-10 pa-lg-5 resume-builder__scroll reference-content" flat>
-      <v-container class="mt-xl-5 mt-lg-10 mt-12">
+    <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
+      <v-container class="">
         <v-form>
           <v-row align="center">
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">
@@ -19,7 +19,7 @@
                 </button>
               </v-select>
             </v-col>
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-0 mt-n10">
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -31,7 +31,7 @@
                 v-model="fullname"
               ></v-text-field>
             </v-col>
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n10 mt-n10">
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -44,7 +44,7 @@
               ></v-text-field>
             </v-col>
 
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n10 mt-n10">
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -57,7 +57,14 @@
               ></v-text-field>
             </v-col>
 
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+            >
               <v-text-field
                 type="email"
                 class="resume-builder__input civie-input"
@@ -69,7 +76,14 @@
                 label="Email"
               ></v-text-field>
             </v-col>
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+            >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -82,7 +96,13 @@
               ></v-text-field>
             </v-col>
 
-            <v-col xl="3" lg="3" md="6" sm="6">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+            >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -94,7 +114,14 @@
                 v-model="address"
               ></v-text-field>
             </v-col>
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+            >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -107,7 +134,14 @@
               ></v-text-field>
             </v-col>
 
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-0"
+            >
               <vue-dropzone
                 class="civie-dropzone"
                 ref="myVueDropzone"
@@ -121,7 +155,14 @@
               </vue-dropzone>
             </v-col>
 
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-0"
+            >
               <v-textarea
                 class="resume-builder__input civie-textarea"
                 outlined
