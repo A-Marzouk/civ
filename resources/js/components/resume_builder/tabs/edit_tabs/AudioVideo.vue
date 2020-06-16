@@ -56,7 +56,7 @@
                 </v-row>
               </v-form>
               <v-row align="center" dense>
-                <v-col xl="5" lg="8" md="8" sm="12" cols="12">
+                <v-col xl="8" lg="8" md="8" sm="12" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
                     <v-row justify="center">
                       <v-col
@@ -435,8 +435,13 @@ $mainBlue: #001ce2;
   .card-holder {
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     height: 50px;
+    width: 473px;
+    @media screen and (max-width: 1903px){
+      width: auto;
+    }
     @media screen and (max-width: 599px) {
       height: auto;
+      width: auto;
     }
     .btn-v_bar {
       min-width: 30px !important;
