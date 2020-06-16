@@ -369,18 +369,24 @@ $mainBlue: #001ce2;
     .achievement-subtitle {
       font-family: "Noto Sans" !important;
       font-style: normal;
-      font-weight: bold;
+      font-weight: normal;
       font-size: 14px !important;
       line-height: 19px;
       color: #888db1 !important;
+      span{
+        font-weight: bold;
+      }
     }
     .achievement-description {
       font-family: "Noto Sans" !important;
       font-style: normal;
-      font-weight: bold;
+      font-weight: normal;
       font-size: 14px !important;
       line-height: 19px;
       color: #888db1 !important;
+      span{
+        font-weight: bold;
+      }
     }
     .achievement-img{
         width: 220px;
