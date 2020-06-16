@@ -1,11 +1,23 @@
 <template>
-  <div class="tm700-portfolio tw-mt-47px" v-if="currentTab === 1">
-    <div class="tm700-portfolio__inner">
-      <div v-for="(portfolio, id) in portfolios" v-bind:key="id">
-        <img class="tw-w-full tw-rounded-25px" v-bind:src="portfolio.url" />
-      </div>
-    </div>
-  </div>
+  <v-container v-if="currentTab === 1" fluid pa-0>
+    <v-row justify="center">
+      <v-col
+        cols="11"
+        sm="11"
+        lg="4"
+        v-for="(portfolio, id) in portfolios"
+        :key="id"
+        class="pr-lg-12 pb-lg-12 my-lg-0 my-sm-4 my-4"
+      >
+        <v-img
+          :src="portfolio.url"
+          contain
+          style="border-radius:20px;box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);"
+          elevation="4"
+        ></v-img>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -20,19 +32,19 @@ export default {
         },
         {
           id: 2,
-          url: "/images/resume_themes/theme700/portfolio1.png"
+          url: "/images/resume_themes/theme700/portfolio2.png"
         },
         {
           id: 3,
-          url: "/images/resume_themes/theme700/portfolio1.png"
+          url: "/images/resume_themes/theme700/portfolio3.png"
         },
         {
           id: 4,
-          url: "/images/resume_themes/theme700/portfolio1.png"
+          url: "/images/resume_themes/theme700/portfolio3.png"
         },
         {
           id: 5,
-          url: "/images/resume_themes/theme700/portfolio1.png"
+          url: "/images/resume_themes/theme700/portfolio2.png"
         },
         {
           id: 6,
@@ -45,27 +57,4 @@ export default {
 </script>
 
 <style lang="scss">
-.tm700-portfolio {
-  padding-left: 16px;
-  padding-right: 14px;
-  .tm700-portfolio__inner {
-    display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
-    grid-row-gap: 50px;
-    grid-column-gap: 25px;
-    @media (min-width: 1200px) {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-    > div {
-      width: 95%;
-      margin: auto;
-      img {
-        height: 282px;
-        @media screen and (min-width: 768px) {
-          min-height: 580px;
-        }
-      }
-    }
-  }
-}
 </style>

@@ -89,10 +89,16 @@ export default {
 			padding-left: 28px;
 			padding-right: 28px;
 		}
+
+		.tab-button__icon {
+			svg {
+				width: 24px;
+			}
+		}
 	}
 
 	@include lg {
-		transition: background-color 0.3s;
+		transition: background-color 0.15s;
 
 		.tab-button__label {
 			display: block;

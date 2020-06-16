@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;700&display=swap');
-@import url('https://db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular');
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Muli:wght@300;400;500;700&display=swap");
+@import url("https://db.onlinewebfonts.com/c/150037e11f159dca84bc4c04549094b6?family=Averta-Regular");
 
 @font-face {
     font-family: NexaLight;
@@ -13,6 +13,8 @@
     font-family: NexaBold;
     src: url("/fonts/nexa/Nexa Bold.otf");
 }
+
+@import "media-queries";
 
 @import "variables";
 @import "modifiers";
@@ -31,14 +33,16 @@
 @import "resume_builder/components/scrollbar";
 @import "resume_builder/components/buttons";
 
-#resumeBuilder, body, html {
+#resumeBuilder,
+body,
+html {
     height: 100%;
     width: 100vw;
     background: white;
 }
 
 .resume-container {
-    font-family: 'Noto Sans', Arial, Helvetica, sans-serif;
+    font-family: "Noto Sans", Arial, Helvetica, sans-serif;
 }
 
 .section-title {
@@ -47,11 +51,11 @@
     font-family: NexaLight, Arial, Helvetica, sans-serif;
 
     @include lt-lg {
-      font-size: 37px;
+        font-size: 37px;
     }
 
     @include lt-sm {
-      font-size: 28px;
+        font-size: 28px;
     }
 
     h2 {
@@ -59,11 +63,11 @@
         font-family: NexaBold, Arial, Helvetica, sans-serif;
 
         @include lt-lg {
-          font-size: 37px;
+            font-size: 37px;
         }
 
         @include lt-sm {
-          font-size: 28px;
+            font-size: 28px;
         }
     }
 }
@@ -79,79 +83,83 @@
 }
 
 .text-hint {
-    color: #8C8D8F;
+    color: #8c8d8f;
     font-size: 16px;
 }
 
-.policy,.terms{
-  white-space: pre;
+.policy,
+.terms {
+    white-space: pre;
 }
 
-.NoDecor a,button {
-  outline: none;
+.NoDecor a,
+button {
+    outline: none;
 }
 
-.NoDecor a:hover,button:hover {
-  text-decoration: none;
+.NoDecor a:hover,
+button:hover {
+    text-decoration: none;
 }
 
 .NoDecor {
-  a.focus, a:focus{
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
-  }
-  button.focus, button:focus{
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
-  }
+    a.focus,
+    a:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+    button.focus,
+    button:focus {
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
 }
 
 .hideOnMd {
-  @include lt-md {
-    display: none !important;
-  }
+    @include lt-md {
+        display: none !important;
+    }
 }
 
 .showOnMd {
-  display: none !important;
+    display: none !important;
 
-  @include lt-md {
-    display: block;
-  }
+    @include lt-md {
+        display: block;
+    }
 }
 
-.flying-notification{
-  position: fixed;
-  display: none;
-  bottom: 30px;
-  right: 50px;
-  width: 165px;
-  height: 65px;
-  background: whitesmoke;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px white;
+.flying-notification {
+    position: fixed;
+    display: none;
+    bottom: 30px;
+    right: 50px;
+    width: 165px;
+    height: 65px;
+    background: whitesmoke;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px white;
+    z-index: 9999;
 
-  img{
-    width: 40px;
-    margin-right: 15px;
-  }
-
-  .text{
-    font-weight: 600;
-    font-size:18px;
-  }
-
-  &.delete{
-    img{
-      width: 26px;
-      margin-right: 15px;
+    img {
+        width: 40px;
+        margin-right: 15px;
     }
 
-    .text{
-      color: #f92727;
+    .text {
+        font-weight: 600;
+        font-size: 18px;
     }
-  }
 
+    &.delete {
+        img {
+            width: 26px;
+            margin-right: 15px;
+        }
 
+        .text {
+            color: #f92727;
+        }
+    }
 }

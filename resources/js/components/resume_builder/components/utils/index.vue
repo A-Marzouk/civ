@@ -21,6 +21,11 @@
                 <ResumeBuilderButton style="margin-top: 40px;"></ResumeBuilderButton>
             </div>
         </div>
+
+        <ResumeBuilderFileInput
+            style="margin-bottom: 120px"
+        ></ResumeBuilderFileInput>
+        <ResumeBuilderCurrencyInput></ResumeBuilderCurrencyInput>
     </v-app>
 </template>
 
@@ -33,12 +38,16 @@ import ResumeBuilderDatePicker from './datepicker'
 import ResumeBuilderTab from './tab'
 import ResumeBuilderButton from './button'
 import ResumeBuilderActionIcons from './action-icons'
+import ResumeBuilderFileInput from './file-input'
+import ResumeBuilderCurrencyInput from './currency-input'
 
 export default {
     components: {
         ResumeBuilderInput,
         ResumeBuilderSelect,
         ResumeBuilderTextarea,
+        ResumeBuilderFileInput,
+        ResumeBuilderCurrencyInput,
         ResumeBuilderCheckbox,
         ResumeBuilderDatePicker,
         ResumeBuilderTab,

@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <section class="backdesign">
-      <v-row justify="center" align="center">
+      <v-row justify="center" align="center" class="mb-lg-12 pb-lg-12 mt-lg-10">
         <v-col md="6" lg="6" cols="12">
           <v-row justify="center" align="center" no-gutters>
             <v-col md="2" lg="2" cols="3" sm="3" class="d-flex flex-column align-center">
@@ -133,13 +133,24 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row justify="center" align="center" class="marg">
+      <v-row justify="start" align="start" class="marg">
         <v-col md="8" cols="12">
-          <v-tabs v-model="tabmob" center-active show-arrows color="#104efb" grow>
+          <v-tabs
+            v-model="currentTab"
+            center-active
+            show-arrows
+            color="#104efb"
+            background-color="transparent"
+          >
             <v-tabs-slider class="slider"></v-tabs-slider>
 
-            <v-tab v-for="tab in tabs" :key="tab.name" @click="currentTab = tab.id">
-              <div class="title text-capitalize">{{ tab.name }}</div>
+            <v-tab
+              v-for="tab in tabs"
+              :key="tab.name"
+              @click="currentTab = tab.id"
+              class="mr-lg-8 mr-sm-6 mr-4"
+            >
+              <div class="tabtitle text-capitalize">{{ tab.name }}</div>
             </v-tab>
           </v-tabs>
         </v-col>
@@ -150,12 +161,21 @@
         <Skills :currentTab="currentTab" />
         <Education :currentTab="currentTab" />
       </div>
-      <v-row v-if="currentTab === 1" no-gutters justify="end" align="end" class="hidden-xs-only">
-        <v-col md="2" sm="6" class="navblade py-3" style="text-align: center;">
-          <v-btn dark fab outlined color="#fff" disabled small class="ma-3">
+      <v-row no-gutters justify="end" align="end" class>
+        <v-col md="2" sm="6" cols="6" class="navblade py-3" style="text-align: center;">
+          <v-btn
+            dark
+            fab
+            outlined
+            color="#fff"
+            :disabled="currentTab==0"
+            @click="currentTab--"
+            small
+            class="ma-3"
+          >
             <v-icon small>mdi-arrow-left</v-icon>
           </v-btn>
-          <v-btn dark fab outlined color="#fff" small class="ma-3">
+          <v-btn dark fab outlined color="#fff" small class="ma-3" @click="currentTab++">
             <v-icon small>mdi-arrow-right</v-icon>
           </v-btn>
         </v-col>
@@ -176,7 +196,7 @@ export default {
   data() {
     return {
       tabmob: null,
-      currentTab: 1,
+      currentTab: 0,
       icons: [
         { name: "/images/resume_themes/theme510/behance.svg", size: 18 },
         { name: "/images/resume_themes/theme510/dribbble.svg", size: 16 },
@@ -224,6 +244,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.tabtitle {
+  font-family: Gotham Pro;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.5rem;
+  line-height: 14px;
+}
 .point {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
@@ -261,7 +288,7 @@ section {
   padding: 0;
   background: url("/images/resume_themes/theme510/curve.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
 /* .backdesign:after {
   content: "";
@@ -274,13 +301,21 @@ section {
   background-position: top;
 } */
 .marg {
-  margin-top: 20px;
+  margin-top: 2px;
+  margin-left: 150px;
+}
+.v-tabs-slider {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60% !important;
+  background-color: rgba(16, 78, 251, 0.5) !important;
+  box-shadow: 0px 7px 9px rgba(16, 78, 251, 0.03) !important;
 }
 .name {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 300;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 20px;
 }
 .job {
@@ -295,6 +330,24 @@ section {
 }
 
 @media only screen and (max-width: 600px) {
+  .tabtitle {
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.7rem;
+    line-height: 14px;
+  }
+  .navblade {
+    background-color: #104efb;
+    border-top-left-radius: 300px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .marg {
+    margin-top: 30px;
+    margin-left: 0;
+  }
   .butmob {
     width: 200px !important;
     height: 60px !important;
@@ -309,9 +362,6 @@ section {
     background-size: contain;
   }
 
-  .marg {
-    margin-top: 30px !important;
-  }
   .v-tabs-slider-wrapper {
     height: 3px !important;
     padding: 0 5px !important;
@@ -364,9 +414,32 @@ section {
   }
 }
 @media only screen and (max-width: 800px) and (min-width: 700px) {
+  .tabtitle {
+    font-family: Gotham Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 14px;
+  }
+  .navblade {
+    background-color: #104efb;
+    border-top-left-radius: 300px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .marg {
+    margin-top: 30px;
+    margin-left: 0;
+  }
   .butmarg {
     padding: 0px 20px !important;
     margin: 0 10px !important;
+  }
+  .butmob {
+    width: 250px !important;
+    height: 80px !important;
+    font-size: 18px !important;
   }
   .butmedia {
     height: 24px !important;
@@ -408,11 +481,7 @@ section {
     padding-left: 110px;
     margin-right: 128px !important;
   }
-  .butmob {
-    width: 350px !important;
-    height: 100px !important;
-    font-size: 30px !important;
-  }
+
   .v-tabs-slider-wrapper {
     height: 3px !important;
     padding: 0 50px !important;
@@ -561,7 +630,6 @@ a {
 }
 
 .navblade {
-  position: relative;
   background-color: #104efb;
   border-top-left-radius: 300px;
   border-bottom-left-radius: 0;

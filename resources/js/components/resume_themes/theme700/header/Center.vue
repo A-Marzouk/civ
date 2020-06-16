@@ -1,16 +1,9 @@
 <template>
-  <div class="tm700-center">
-    <div
-      class="tm700-center__inner md:tw-flex md:tw-flex-row lg:tw-flex-col md:tw-items-start md:tw-pb-0"
-    >
-      <div class="tw-flex tw-flex-col">
-        <h1 class="tw-font-bold tw-not-italic tw-text-tm700-1">Carla Pipin Ranga</h1>
-        <p
-          class="tw-font-bold tw-text-xs md:tw-text-sm tw-not-italic tw-text-tm700-4 tw-leading-10 tw-font-medium tw-leading-10px md:tw-leading-4"
-        >Web Ui/Ux Designer, Graphiс Designer</p>
-      </div>
-    </div>
-  </div>
+  <v-container>
+    <v-row>
+      <v-col></v-col>
+    </v-row>
+  </v-container>
 </template>
 <script>
 export default {};

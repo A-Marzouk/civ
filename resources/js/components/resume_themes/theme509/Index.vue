@@ -48,7 +48,7 @@
                   </div>
                 </div>
 
-                <div class="subtitle-2 grey--text text--lighten-2 pb-2 mb-4">User interface designer</div>
+                <div class="subtitle-2 grey--text text--lighten-2 pb-2 mb-2">User interface designer</div>
                 <v-btn
                   fab
                   color="#4ADAE3"
@@ -82,14 +82,19 @@
         </v-col>
 
         <v-col
-          lg="5"
+          lg="4"
           md="11"
           sm="11"
           cols="10"
           class="ml-md-auto mr-md-12 mt-8"
           align-self="center"
         >
-          <v-row justify-md="end" justify="center" align="center" class="my-4 hidden-md-and-down">
+          <v-row
+            justify-md="end"
+            justify="center"
+            align="center"
+            class="my-4 hidden-md-and-down mr-6"
+          >
             <div class="subtitle-2 grey--text text--lighten-2">Interview:</div>
             <v-btn
               fab
@@ -144,7 +149,7 @@
         </v-col>
       </v-row>
       <v-row class="mt-md-6 mt-8 pt-6 mt-sm-6">
-        <v-col lg="12" sm="12" cols="12" class="tablet">
+        <v-col lg="8" sm="12" cols="12" class="tablet ml-lg-12 pl-lg-8">
           <v-tabs
             background-color="transparent"
             class="tabmargn"
@@ -152,13 +157,12 @@
             hide-arrows
             center-active
             v-model="tablet"
-            grow
           >
             <v-tab
               v-for="tab in tabs"
               :key="tab.id"
               @click="currentTab = tab.id"
-              class="ml-md-5 mr-md-10 text-left"
+              class="ml-md-2 mr-md-2 text-left"
             >
               <v-btn fab text elevation="0" color="white">
                 <v-img :src="tab.icon" width="48" height="48" contain></v-img>
@@ -303,7 +307,8 @@ export default {
 }
 
 .theme--light.v-tabs .v-tab:hover {
-  color: #52edfa !important;
+  opacity: 1;
+  color: #51eaf6;
 }
 .theme--light.v-tabs .v-tab--active:before,
 .theme--light.v-tabs .v-tab--active:hover:before,
@@ -312,7 +317,9 @@ export default {
 }
 .v-tab--active {
   opacity: 1;
-  color: #222d68 !important;
+}
+.v-tab:not(.v-tab--active) {
+  opacity: 0.3;
 }
 
 .fade-up-enter-active,
@@ -347,9 +354,17 @@ export default {
   width: 64px !important;
   height: 64px !important;
 }
+
+@media only screen and (max-width: 1024px) {
+  .back {
+    background-image: url("/images/resume_themes/theme509/backpad.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
 @media only screen and (max-width: 600px) {
   .back {
-    background-image: url("/images/resume_themes/theme509/back.png");
+    background-image: url("/images/resume_themes/theme509/backmob.png");
     background-size: cover;
     background-repeat: no-repeat;
   }

@@ -11,12 +11,11 @@
             v-if="selectProps.showToggleSelectIcon"
             class="dropdown-icon icon"
             slot="append"
-            @click="toggleSelect"
         >
-        <svg-vue
-            :icon="`dropdown-caret`"
-        ></svg-vue>
-    </button>
+            <svg-vue
+                :icon="`dropdown-caret`"
+            ></svg-vue>
+        </button>
     </v-select>
 </template>
 

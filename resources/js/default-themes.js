@@ -3,7 +3,7 @@ import vuetify from './vuetify';
 import { store } from './store/store';
 
 
-import resumeTheme2 from './components/resume_themes/theme2';
+import resumeTheme2 from './components/resume_themes/theme2/index';
 if ($("#resumeTheme2").length !== 0) {
     new Vue({
         el: '#resumeTheme2',
@@ -787,7 +787,7 @@ if ($("#resumeTheme602").length !== 0) {
         }
     });
 }
-import resumeTheme903 from './components/resume_themes/theme903/index';
+import resumeTheme903 from './components/resume_themes/theme903/Index';
 if ($("#resumeTheme903").length !== 0) {
 
     new Vue({
@@ -796,6 +796,19 @@ if ($("#resumeTheme903").length !== 0) {
         store,
         components: {
             'resume-theme-903': resumeTheme903
+        }
+    });
+}
+import resumeTheme511 from './components/resume_themes/theme511/Index';
+if ($("#resumeTheme511").length !== 0) {
+
+    new Vue({
+        el: '#resumeTheme511',
+        vuetify,
+        store,
+        components: {
+            'resume-theme-511': resumeTheme511
+
         }
     });
 }

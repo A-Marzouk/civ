@@ -1,37 +1,41 @@
 <template>
-  <section class="tm702-main">
-    <div class="tm702-tabs--inner">
-      <v-tabs
-        v-model="tab"
-        background-color="#FFF"
-        class="tabs--top"
-        :centered="centered"
-        :grow="grow"
-        :vertical="vertical"
-        :right="right"
-        :icons-and-text="icons"
-      >
-        <v-tabs-slider></v-tabs-slider>
-        <v-tab
-          @click="currentTab = id"
-          :class="[
+  <v-container fluid class="mt-6">
+    <v-row justify-lg="center">
+      <v-col lg="11" style="border-bottom: 1px solid rgba(122, 169, 239, 0.45);">
+        <v-tabs
+          v-model="tab"
+          background-color="#FFF"
+          grow
+          hide-slider
+          height="80"
+          center-active
+          class="tabmarg"
+        >
+          <v-tabs-slider></v-tabs-slider>
+          <v-tab
+            @click="currentTab = id"
+            :class="[
               currentTab == id
                 ? 'tm702-active-tab'
                 : 'tm702-inactive-tab',
                 'tm702-default-tab',
             ]"
-          v-for="{ title, id } in tabs"
-          :key="id"
-          :href="`#tab-${id}`"
-        >{{ title }}</v-tab>
-      </v-tabs>
-    </div>
-    <About :currentTab="currentTab" />
-    <Portfolio :currentTab="currentTab" />
-    <Work :currentTab="currentTab" />
-    <Education :currentTab="currentTab" />
-    <Skills :currentTab="currentTab" />
-  </section>
+            v-for="{ title, id } in tabs"
+            :key="id"
+            :href="`#tab-${id}`"
+          >
+            <div class="tabtitle">{{ title }}</div>
+          </v-tab>
+        </v-tabs>
+      </v-col>
+
+      <About :currentTab="currentTab" />
+      <Portfolio :currentTab="currentTab" />
+      <Work :currentTab="currentTab" />
+      <Education :currentTab="currentTab" />
+      <Skills :currentTab="currentTab" />
+    </v-row>
+  </v-container>
 </template>
 <script>
 import Portfolio from "./tabs/Portfolio";
@@ -83,65 +87,65 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.tm702-main {
-  .tm702-tabs--inner {
-    background-color: var(--white);
-    margin-left: 30px;
-    margin-right: 30px;
-    @media screen and (min-width: 1280px) {
-      margin-left: 30px;
-      margin-right: 30px;
-    }
+.tabtitle {
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 54px;
+  text-transform: capitalize;
+  position: relative;
+}
+
+.tm702-inactive-tab {
+  color: rgba(0, 91, 209, 0.3) !important;
+}
+.tm702-active-tab {
+  color: #005bd1;
+  position: relative;
+}
+.tm702-active-tab .tabtitle:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 45px;
+  width: 40px;
+  height: 3px;
+  background: #005bd1;
+}
+.theme--light.v-tabs .v-tab--active:before,
+.theme--light.v-tabs .v-tab--active:hover:before,
+.theme--light.v-tabs .v-tab:focus:before {
+  opacity: 0;
+}
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .tm702-active-tab .tabtitle:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 45px;
+    width: 40px;
+    height: 3px;
+    background: #005bd1;
   }
-
-  .v-slide-group__next,
-  .v-slide-group__prev {
-    max-width: 16px;
-    min-width: 0;
-    @media screen and(min-width: 1200px) {
-      min-width: 52px;
-      max-width: auto;
-    }
+}
+@media screen and (min-width: 320px) and (max-width: 475px) {
+  .v-tabs-bar.v-slide-group--is-overflowing.v-tabs-bar--is-mobile:not(.v-tabs-bar--show-arrows):not(.v-slide-group--has-affixes)
+    .v-slide-group__prev {
+    display: none !important;
+    visibility: hidden;
   }
-
-  // Start Tabs
-
-  .tabs--top {
-    border-bottom: 1px solid rgba(122, 169, 239, 0.45);
-    padding-bottom: 26px;
+  .tm702-active-tab .tabtitle:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 45px;
+    width: 40px;
+    height: 3px;
+    background: #005bd1;
   }
-
-  .tm702-default-tab {
-    font-size: 24px;
-    line-height: 33px;
-    font-weight: bold;
-    background: none;
-    text-transform: capitalize;
-    padding: 0;
-    margin-right: 38px;
-    font-style: normal;
-    &:hover {
-      background: none;
-    }
-  }
-
-  .tm702-active-tab {
-    color: var(--blue) !important;
-  }
-
-  .tm702-inactive-tab {
-    color: var(--gray-tab) !important;
-  }
-
-  .v-tabs-slider-wrapper {
-    height: 4px !important;
-  }
-
-  .v-tabs-slider {
-    height: 4px;
-    left: 0px;
-    width: 35px;
-    color: var(--blue);
+  .tabmarg {
+    margin-left: -50px;
   }
 }
 </style>

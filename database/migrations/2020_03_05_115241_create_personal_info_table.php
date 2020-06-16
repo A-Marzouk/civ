@@ -43,6 +43,9 @@ class CreatePersonalInfoTable extends Migration
             $table->text('about')->nullable();
             $table->boolean('is_about_active')->default(1);
 
+            $table->text('overview')->nullable();
+            $table->boolean('is_overview_active')->default(1);
+
             $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });

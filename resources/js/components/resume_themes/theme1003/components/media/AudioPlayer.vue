@@ -1,53 +1,51 @@
 <template>
 	<div class="audio-player">
-		<div class="audio-player__controls tw-relative tw-flex tw-justify-center tw-items-center">
-			<a href="#" class="controls__button--expand" @click.prevent>
-				<svg class="tw-fill-current" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-					<path d="M2 9H0V14H5V12H2V9ZM0 5H2V2H5V0H0V5ZM12 12H9V14H14V9H12V12ZM9 0V2H12V5H14V0H9Z" />
+		<div class="player-title" v-text="track.title"></div>
+		<div class="player-control">
+			<div class="control-action control-shuffle-action">
+				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M6.59 5.17L1.41 0L0 1.41L5.17 6.58L6.59 5.17ZM10.5 0L12.54 2.04L0 14.59L1.41 16L13.96 3.46L16 5.5V0H10.5ZM10.83 9.41L9.42 10.82L12.55 13.95L10.5 16H16V10.5L13.96 12.54L10.83 9.41Z" fill="black" />
 				</svg>
-			</a>
-			<a href="#" class="controls__button controls__button--previous" @click.prevent>
-				<svg class="tw-fill-current" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
-					<path d="M9.26245 13.7375L3.53745 8L9.26245 2.2625L7.49995 0.5L-4.95911e-05 8L7.49995 15.5L9.26245 13.7375Z" />
-					<path d="M19.2625 13.7375L13.5375 8L19.2625 2.2625L17.5 0.5L9.99995 8L17.5 15.5L19.2625 13.7375Z" />
-				</svg>
-			</a>
-			<a href="#" class="controls__button controls__button--play" @click.prevent>
-				<svg class="tw-fill-current" viewBox="0 0 16 18" xmlns="http://www.w3.org/2000/svg">
-					<path d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
-				</svg>
-			</a>
-			<a href="#" class="controls__button controls__button--next" @click.prevent>
-				<svg class="tw-fill-current" viewBox="0 0 20 16" xmlns="http://www.w3.org/2000/svg">
-					<path d="M10.7375 13.7375L16.4625 8L10.7375 2.2625L12.5 0.5L20 8L12.5 15.5L10.7375 13.7375Z" />
-					<path d="M0.737549 13.7375L6.46255 8L0.737549 2.2625L2.50005 0.5L10 8L2.50005 15.5L0.737549 13.7375Z" />
-				</svg>
-			</a>
-		</div>
-		<div class="audio-player__progress">
-			<div class="progress__meta">
-				<span>{{ formatDuration(position) }}</span>
-				<span>{{ formatDuration(track.duration) }}</span>
 			</div>
-			<div class="progress__bar">
-				<div class="bar__outer">
-					<div class="bar__inner" :style="`width: ${(position/track.duration) * 100}%`"></div>
-				</div>
+			<div class="control-action control-prev-action">
+				<svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M8.36816 11.9182L3.46102 7.00035L8.36816 2.08249L6.85745 0.571777L0.428879 7.00035L6.85745 13.4289L8.36816 11.9182Z" fill="white" />
+					<path d="M16.9395 11.9182L12.0323 7.00035L16.9395 2.08249L15.4287 0.571777L9.00017 7.00035L15.4287 13.4289L16.9395 11.9182Z" fill="white" />
+				</svg>
+			</div>
+			<div class="control-action control-play-pause-action" @click="onPlayPause">
+				<svg v-if="isPlaying" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill="#ffffff" d="M0.5 17.75H5.5V0.25H0.5V17.75ZM10.5 0.25V17.75H15.5V0.25H10.5Z" />
+				</svg>
+				<svg v-else width="17" height="19" viewBox="0 0 17 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill="#ffffff" d="M16.5 8.63398C17.1667 9.01888 17.1667 9.98112 16.5 10.366L2.25 18.5933C1.58333 18.9782 0.75 18.497 0.75 17.7272V1.27276C0.75 0.502958 1.58333 0.0218327 2.25 0.406733L16.5 8.63398Z" />
+				</svg>
+			</div>
+			<div class="control-action control-next-action">
+				<svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M8.63184 11.9182L13.539 7.00035L8.63184 2.08249L10.1425 0.571777L16.5711 7.00035L10.1425 13.4289L8.63184 11.9182Z" fill="white" />
+					<path d="M0.0605469 11.9182L4.96769 7.00035L0.0605469 2.08249L1.57126 0.571777L7.99983 7.00035L1.57126 13.4289L0.0605469 11.9182Z" fill="white" />
+				</svg>
+			</div>
+			<div class="control-action control-repeat-action">
+				<svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill="black" d="M4 5H14V8L18 4L14 0V3H2V9H4V5ZM14 15H4V12L0 16L4 20V17H16V11H14V15Z" />
+				</svg>
 			</div>
 		</div>
-		<div class="audio-player__preview">
-			<div class="audio-preview__thumbnail">
-				<img :src="track.thumbnail">
+
+		<div class="player-footer">
+			<div class="player-progress">
+				<div class="player-progress-bar" :style="`width: ${calculatePercentage(track.position, track.duration)}%;`"></div>
 			</div>
-			<div class="audio-preview__detail tw-font-poppins">
-				<h4 class="detail__title" v-text="track.title"></h4>
-				<div class="detail__artist-name" v-text="track.artist"></div>
-			</div>
+			<div class="player-position" v-text="formatDuration(track.position)"></div>
 		</div>
 	</div>
 </template>
 
 <script>
+import utilsMixin from "./../../mixins/utilsMixin";
+
 export default {
 	name: "audio-player",
 
@@ -55,8 +53,15 @@ export default {
 		track: {
 			type: Object,
 			required: true
+		},
+
+		isPlaying: {
+			type: Boolean,
+			default: false
 		}
 	},
+
+	mixins: [utilsMixin],
 
 	data: () => {
 		return {
@@ -65,24 +70,13 @@ export default {
 	},
 
 	methods: {
-		formatDuration(durationSeconds) {
-			let seconds = Math.floor(durationSeconds % 60);
-
-			if (seconds < 10) {
-				seconds = "0" + seconds;
+		onPlayPause() {
+			if (this.isPlaying) {
+				this.$emit("onPause");
+				return;
 			}
 
-			let minutes = Math.floor(durationSeconds / 60) % 60;
-
-			if (minutes < 10) {
-				minutes = "0" + minutes;
-			}
-
-			let hours = Math.floor(durationSeconds / 3600);
-
-			return hours > 0
-				? `${hours}:${minutes}:${seconds}`
-				: `${minutes}:${seconds}`;
+			this.$emit("onPlay", this.media.id);
 		}
 	}
 };
@@ -92,181 +86,67 @@ export default {
 @import "./../../scss/variables";
 
 .audio-player {
-	left: 0;
-	right: 0;
-	height: 140px;
-	bottom: 0;
-	padding: 25px 25px 15px;
+	font-family: $poppins;
+	background: #f5f6f8;
+	padding: 10px 25px 25px;
 	position: fixed;
-	background: #eeeff1;
-}
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 148px;
 
-.audio-player__controls {
-	.controls__button--expand {
-		top: 0;
-		right: 0;
-		color: black;
-		width: 14px;
-		height: 14px;
-		position: absolute;
+	.player-title {
+		font-size: 12px;
+		line-height: 18px;
+		font-weight: 600;
 	}
 
-	.controls__button {
-		width: 60px;
-		height: 60px;
+	.player-control {
 		display: flex;
-		align-items: center;
-		border-radius: 5px;
 		justify-content: center;
+		align-items: center;
+		padding-top: 10px;
+		padding-bottom: 20px;
 
-		&.controls__button--previous {
-			color: #000000;
-			svg {
-				width: 20px;
-				height: 16px;
-			}
-		}
-		&.controls__button--play {
-			color: #ffffff;
-			background: #3f38dd;
-			margin-left: 15px;
-			margin-right: 15px;
+		.control-action {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: 5px;
+			margin-right: 5px;
+			width: 60px;
+			height: 60px;
 
-			svg {
-				width: 16px;
-				height: 18px;
+			&.control-repeat-action,
+			&.control-shuffle-action {
+				width: 40px;
+				background: #f5f6f8;
 			}
-		}
-		&.controls__button--next {
-			color: #000000;
-			svg {
-				width: 20px;
-				height: 16px;
+
+			&.control-next-action,
+			&.control-prev-action {
+				background: #df136c;
+			}
+
+			&.control-play-pause-action {
+				background: #312050;
 			}
 		}
 	}
-}
 
-.audio-player__progress {
-	padding-top: 11px;
-
-	.progress__meta {
-		width: 100%;
+	.player-footer {
 		display: flex;
-		font-size: 8px;
-		list-style: 12px;
-		justify-content: space-between;
-	}
 
-	.progress__bar {
-		padding-top: 8px;
-
-		.bar__outer {
-			height: 8px;
-			position: relative;
-			background: #f4f8fb;
-			border-radius: 20px;
-		}
-
-		.bar__inner {
-			top: 0;
-			left: 0;
-			bottom: 0;
-			position: absolute;
-			background: #3f38dd;
-			border-radius: 20px;
-		}
-	}
-}
-
-.audio-player__preview {
-	display: none;
-}
-
-@media (min-width: $sm) {
-	.audio-player__progress {
-		max-width: 415px;
-		margin: 0 auto;
-	}
-
-	.audio-player__preview {
-		top: 0;
-		left: 0;
-		padding: 25px;
-		display: flex;
-		position: absolute;
-		border-radius: 9px;
-
-		.audio-preview__thumbnail {
-			img {
-				width: 52px;
-				height: 52px;
-				border-radius: 9px;
-			}
-		}
-
-		.audio-preview__detail {
+		.player-progress {
 			flex: 1;
-			padding-left: 15px;
-
-			.detail__title {
-				font-size: 12px;
-				word-break: break-word;
-				line-height: 18px;
-				font-weight: 700;
-			}
-
-			.detail__artist-name {
-				color: rgba(0, 0, 0, 0.55);
-				font-size: 10px;
-				line-height: 15px;
-				padding-top: 5px;
-			}
-
-			.detail__track-duration {
-				font-size: 12px;
-				line-height: 18px;
+			.player-progress-bar {
+				background: #312050;
+				height: 8px;
 			}
 		}
-	}
-}
 
-@media (min-width: $md) {
-	.audio-player {
-		height: 100px;
-		padding-top: 20px;
-	}
-
-	.audio-player__preview {
-		padding-left: 60px;
-	}
-
-	.audio-player__progress {
-		left: 20%;
-		right: 0;
-		margin: unset;
-		bottom: 5px;
-		max-width: 20%;
-		position: absolute;
-	}
-}
-
-@media (min-width: 1600px) {
-	.audio-player {
-		padding-top: 20px;
-	}
-
-	.audio-player__controls {
-		.controls__button--expand {
-			top: 25px;
-			right: 25px;
+		.player-position {
 		}
-	}
-
-	.audio-player__progress {
-		left: 262px;
-		bottom: 20px;
-		max-width: 415px;
 	}
 }
 </style>
