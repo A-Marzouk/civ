@@ -63,7 +63,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
             >
               <v-text-field
                 type="email"
@@ -82,7 +82,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
