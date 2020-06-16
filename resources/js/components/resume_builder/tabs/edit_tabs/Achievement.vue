@@ -24,7 +24,7 @@
                     </button>
                   </v-select>
                 </v-col>
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n8">
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
@@ -97,8 +97,8 @@
             </v-col>
           </v-row>
         </v-form>
-        <v-row align="center" justify="center">
-          <v-col xl="6" lg="8" md="8" sm="12" cols="12">
+        <v-row align="center">
+          <v-col xl="8" lg="8" md="8" sm="12" cols="12">
             <v-card class="card-holder">
               <v-card-text>
                 <v-row>
@@ -397,6 +397,10 @@ $mainBlue: #001ce2;
   }
   .card-holder {
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+    width: 620px;
+    @media screen and (max-width: 1903px) {
+      width: auto;
+    }
     .achievement-title {
       font-family: "Noto Sans" !important;
       font-weight: 500;
