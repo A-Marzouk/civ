@@ -242,6 +242,10 @@ export default {
 @import "../../../../../sass/media-queries";
 
 .profile {
+	max-width: 350px;
+	margin-right: auto;
+	margin-left: auto;
+
 	.profile-fields-wrapper {
 		padding: 10px;
 		max-height: 450px;
@@ -250,7 +254,8 @@ export default {
 		.profile-fields {
 			padding: 10px;
 			background: #ffffff;
-			box-shadow: 0 5px 10px rgba(0, 16, 131, 0.1);
+			box-shadow: 5px -5px 14px -5px rgba(0, 16, 131, 0.1),
+				-5px 5px 14px -5px rgba(0, 16, 131, 0.1);
 
 			.profile-picture {
 				padding-top: 13px;
@@ -332,7 +337,13 @@ export default {
 	}
 
 	@include gt-xs {
+		max-width: unset;
+		margin-left: -10px;
+
 		.profile-fields-wrapper {
+			padding-right: 20px;
+			margin-top: 30px;
+
 			.profile-fields {
 				padding: 20px;
 				display: grid;
@@ -430,7 +441,7 @@ export default {
 	@include gt-md {
 		.profile-fields-wrapper {
 			max-height: unset;
-			overflow-y: hidden;
+			margin-top: unset;
 
 			.profile-fields {
 				padding: 30px;
