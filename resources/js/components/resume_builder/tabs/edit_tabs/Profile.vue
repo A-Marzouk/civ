@@ -243,7 +243,6 @@ export default {
 
 .profile {
 	max-width: 350px;
-	margin-top: 30px;
 	margin-right: auto;
 	margin-left: auto;
 
@@ -440,8 +439,6 @@ export default {
 	}
 
 	@include gt-md {
-		margin-top: unset;
-
 		.profile-fields-wrapper {
 			max-height: unset;
 			margin-top: unset;

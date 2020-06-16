@@ -223,6 +223,7 @@ export default {
 
 .sidebar {
 	margin-top: 40px;
+	margin-bottom: 30px;
 	padding-left: 10px;
 	padding-right: 10px;
 
@@ -233,8 +234,6 @@ export default {
 		max-width: 350px;
 		margin-left: auto;
 		margin-right: auto;
-		padding-left: 10px;
-		padding-right: 10px;
 
 		.sidebar-links,
 		.sidebar-link-activator {
@@ -349,6 +348,15 @@ export default {
 		}
 	}
 
+	@media screen and (min-width: 375px) {
+		& {
+			.sidebar-container {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+		}
+	}
+
 	@include gt-xs {
 		padding-right: unset;
 		padding-left: unset;
@@ -365,6 +373,7 @@ export default {
 	@include gt-md {
 		padding-left: unset;
 		padding-right: unset;
+		margin-bottom: unset;
 		border-right: 1px solid rgba(0, 28, 226, 0.1);
 
 		.sidebar-container {
