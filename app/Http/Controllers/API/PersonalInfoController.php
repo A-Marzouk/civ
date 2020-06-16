@@ -77,6 +77,7 @@ class PersonalInfoController extends Controller
             'phone' => ['sometimes', 'numeric','min:7'],
             'location' => ['sometimes', 'string', 'max:255','min:3'],
             'about' => ['sometimes','string','max:2500'],
+            'overview' => ['sometimes','string','max:2500'],
             'quote' => ['sometimes','string','max:2500'],
         ]);
     }

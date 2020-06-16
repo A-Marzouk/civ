@@ -92,7 +92,7 @@
 				</div>
 
 				<div class="profile-input-field input-field--overview input-field--group-3">
-					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="summary.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
+					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="personalInfo.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon" :class="{'icon--disabled': false}" slot="append">
 							<svg-vue :icon="`eye-icon`"></svg-vue>
 						</button>
