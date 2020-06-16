@@ -1,9 +1,11 @@
-.civie-dropzone {
-    border: 2px solid $inputBorderColor--enabled;
-    box-sizing: border-box;
+.civie-dropzone-input {
+    border: none !important;
+    box-sizing: border-box !important;
     border-radius: 10px;
     position: relative;
-    background: none;
+    background: none !important;
+    height: 100%;
+    width: 100%;
   
     .dropzone-custom-content {
         position: absolute;
