@@ -3,6 +3,14 @@
     pointer-events: auto !important;
     max-width: 100%; // Set the real max-width on the parent container
 
+
+    &.multiple-selection > .v-input__control > .v-input__slot > .v-select__slot > .v-select__selections {
+        min-height: 50px !important;
+        height: 50px;
+        overflow: auto;
+        padding: 8px 3px 8px 3px;
+    }
+
     &.civie-input, // Simple input
     &.civie-select, // Select
     &.civie-currency // Currency
@@ -206,18 +214,6 @@
         input .icon-prepended,
         .v-select__selection {
             padding: 16px 21px 16px 26px;
-        }
-
-        input .multiple-selection,
-        .v-select__selection {
-            padding: 16px 3px 16px 3px;
-        }
-
-        input .multiple-selection,
-        .v-select__selections {
-            min-height: 50px !important;
-            height: 50px;
-            overflow: auto;
         }
     }
 
