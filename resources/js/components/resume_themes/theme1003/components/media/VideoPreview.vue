@@ -74,5 +74,13 @@ export default {
 			}
 		}
 	}
+
+	@include xl {
+		.video-thumbnail-wrapper {
+			.video-thumbnail {
+				padding-bottom: 73.021%;
+			}
+		}
+	}
 }
 </style>

@@ -1,8 +1,13 @@
 <template>
 	<div class="audio-player">
 		<div class="player-meta">
-			<div class="player-category" v-text="track.category"></div>
-			<div class="player-title" v-text="track.title"></div>
+			<div class="player-thumbnail">
+				<img :src="track.thumbnail" :alt="track.title">
+			</div>
+			<div class="player-detail">
+				<div class="player-category" v-text="track.category"></div>
+				<div class="player-title" v-text="track.title"></div>
+			</div>
 		</div>
 
 		<div class="player-control">
@@ -109,14 +114,20 @@ export default {
 	height: 148px;
 
 	.player-meta {
-		.player-category {
+		.player-thumbnail {
 			display: none;
 		}
 
-		.player-title {
-			font-size: 12px;
-			line-height: 18px;
-			font-weight: 600;
+		.player-detail {
+			.player-category {
+				display: none;
+			}
+
+			.player-title {
+				font-size: 12px;
+				line-height: 18px;
+				font-weight: 600;
+			}
 		}
 	}
 
@@ -186,17 +197,19 @@ export default {
 		.player-meta {
 			max-width: 215px;
 
-			.player-category {
-				display: block;
-				color: #000000;
-				font-size: 12px;
-				line-height: 18px;
-			}
+			.player-detail {
+				.player-category {
+					display: block;
+					color: #000000;
+					font-size: 12px;
+					line-height: 18px;
+				}
 
-			.player-title {
-				padding-top: 10px;
-				font-weight: 500;
-				color: rgba(0, 0, 0, 0.55);
+				.player-title {
+					padding-top: 10px;
+					font-weight: 500;
+					color: rgba(0, 0, 0, 0.55);
+				}
 			}
 		}
 
@@ -229,6 +242,70 @@ export default {
 					display: block;
 				}
 			}
+		}
+	}
+
+	@include xl {
+		display: flex;
+		align-items: center;
+		height: 100px;
+		padding-top: 20px;
+		padding-bottom: 10px;
+
+		.player-meta {
+			order: 1;
+			display: flex;
+			max-width: 275px;
+			overflow: hidden;
+
+			.player-thumbnail {
+				display: block;
+				width: 65px;
+				height: 65px;
+				min-width: 65px;
+
+				img {
+					height: 100%;
+					width: 100%;
+				}
+			}
+
+			.player-detail {
+				padding-left: 10px;
+
+				.player-category {
+					font-size: 18px;
+					line-height: 27px;
+				}
+
+				.player-title {
+					white-space: nowrap;
+					padding-top: 5px;
+				}
+			}
+		}
+
+		.player-control {
+			order: 3;
+			margin-left: unset;
+			margin-right: auto;
+			margin-top: unset;
+			padding: 0;
+
+			.control-action {
+				&.control-fullscreen-action {
+					bottom: 50%;
+					transform: translateY(50%);
+				}
+			}
+		}
+
+		.player-footer {
+			order: 2;
+			position: static;
+			max-width: 387px;
+			margin-left: 50px;
+			margin-right: 50px;
 		}
 	}
 }

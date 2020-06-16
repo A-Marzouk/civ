@@ -141,40 +141,44 @@ export default {
 	margin-top: -10px;
 	padding-bottom: 133px;
 
+	.media_outer {
+		width: 100%;
+		padding: 10px;
+	}
+
+	@include sm {
+		.media_outer {
+			width: 50%;
+		}
+	}
+
 	@include md {
 		margin-left: auto;
 		margin-right: auto;
 		max-width: 665px;
+
+		.media_outer {
+			padding: 10px;
+		}
 	}
-}
 
-.media_outer {
-	width: 100%;
-	padding: 10px;
-}
+	@include lg {
+		max-width: $lg;
 
-@media (min-width: $sm) {
-	.media_outer {
-		width: 50%;
+		.media_outer {
+			width: 33.33333%;
+			padding: 10px;
+		}
 	}
-}
 
-@media (min-width: $md) {
-	.media_outer {
-		padding: 10px;
-	}
-}
+	@include xl {
+		max-width: $xl;
+		padding-bottom: 75px;
 
-@media (min-width: $lg) {
-	.media_outer {
-		width: 25%;
-		padding: 6px;
-	}
-}
-
-@media (min-width: 1600px) {
-	.media_outer {
-		padding: 10px;
+		.media_outer {
+			width: 25%;
+			padding: 10px;
+		}
 	}
 }
 </style>
