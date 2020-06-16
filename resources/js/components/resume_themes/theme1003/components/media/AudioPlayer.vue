@@ -1,6 +1,10 @@
 <template>
 	<div class="audio-player">
-		<div class="player-title" v-text="track.title"></div>
+		<div class="player-meta">
+			<div class="player-category" v-text="track.category"></div>
+			<div class="player-title" v-text="track.title"></div>
+		</div>
+
 		<div class="player-control">
 			<div class="control-action control-shuffle-action">
 				<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,13 +36,22 @@
 					<path fill="black" d="M4 5H14V8L18 4L14 0V3H2V9H4V5ZM14 15H4V12L0 16L4 20V17H16V11H14V15Z" />
 				</svg>
 			</div>
+
+			<div class="control-action control-fullscreen-action">
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M7 14H5V19H10V17H7V14ZM5 10H7V7H10V5H5V10ZM17 17H14V19H19V14H17V17ZM14 5V7H17V10H19V5H14Z" fill="black" />
+				</svg>
+			</div>
 		</div>
 
 		<div class="player-footer">
 			<div class="player-progress">
 				<div class="player-progress-bar" :style="`width: ${calculatePercentage(track.position, track.duration)}%;`"></div>
 			</div>
-			<div class="player-position" v-text="formatDuration(track.position)"></div>
+			<div class="player-progress-meta">
+				<div class="player-duration" v-text="formatDuration(track.duration)"></div>
+				<div class="player-position" v-text="formatDuration(track.position)"></div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -95,10 +108,16 @@ export default {
 	width: 100%;
 	height: 148px;
 
-	.player-title {
-		font-size: 12px;
-		line-height: 18px;
-		font-weight: 600;
+	.player-meta {
+		.player-category {
+			display: none;
+		}
+
+		.player-title {
+			font-size: 12px;
+			line-height: 18px;
+			font-weight: 600;
+		}
 	}
 
 	.player-control {
@@ -106,7 +125,7 @@ export default {
 		justify-content: center;
 		align-items: center;
 		padding-top: 10px;
-		padding-bottom: 20px;
+		padding-bottom: 15px;
 
 		.control-action {
 			display: flex;
@@ -131,11 +150,16 @@ export default {
 			&.control-play-pause-action {
 				background: #312050;
 			}
+
+			&.control-fullscreen-action {
+				display: none;
+			}
 		}
 	}
 
 	.player-footer {
 		display: flex;
+		align-items: center;
 
 		.player-progress {
 			flex: 1;
@@ -145,7 +169,66 @@ export default {
 			}
 		}
 
-		.player-position {
+		.player-progress-meta {
+			.player-position {
+				margin-left: 25px;
+			}
+
+			.player-duration {
+				display: none;
+			}
+		}
+	}
+
+	@include md {
+		padding-top: 25px;
+
+		.player-meta {
+			max-width: 215px;
+
+			.player-category {
+				display: block;
+				color: #000000;
+				font-size: 12px;
+				line-height: 18px;
+			}
+
+			.player-title {
+				padding-top: 10px;
+				font-weight: 500;
+				color: rgba(0, 0, 0, 0.55);
+			}
+		}
+
+		.player-control {
+			margin-left: 40px;
+			margin-top: -35px;
+
+			.control-action {
+				&.control-fullscreen-action {
+					display: flex;
+					position: absolute;
+					right: 0;
+				}
+			}
+		}
+
+		.player-footer {
+			display: block;
+			position: absolute;
+			top: 100px;
+			width: 100%;
+			max-width: 215px;
+
+			.player-progress-meta {
+				display: flex;
+				justify-content: space-between;
+				padding-top: 7px;
+
+				.player-duration {
+					display: block;
+				}
+			}
 		}
 	}
 }

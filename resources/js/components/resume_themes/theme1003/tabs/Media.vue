@@ -2,8 +2,8 @@
 	<div class="media">
 		<div class="tw-w-full" v-masonry :transition-duration="0" item-selector=".item" :origin-top="true">
 			<div v-masonry-tile class="media_outer item" v-for="item in media" :key="item.id">
-				<AudioPreview v-if="item.type == 'audio'" :media="item" :isPlaying="isPlaying(item.id)" @onPlay="onPlay" @onPause="onPause" />
-				<VideoPreview v-else-if="item.type == 'video'" :media="item" />
+				<AudioPreview v-if="item.type === 'audio'" :media="item" :isPlaying="isPlaying(item.id)" @onPlay="onPlay" @onPause="onPause" />
+				<VideoPreview v-else-if="item.type === 'video'" :media="item" />
 			</div>
 		</div>
 
@@ -120,14 +120,10 @@ export default {
 			let track = this.media.find(item => item.id === id);
 			this.player.media_id = track.id;
 			this.player.isPlaying = true;
-
-			console.log("onPlay", id);
 		},
 
 		onPause() {
 			this.player.isPlaying = false;
-
-			console.log("onPause");
 		},
 
 		isPlaying(id) {
@@ -148,7 +144,7 @@ export default {
 	@include md {
 		margin-left: auto;
 		margin-right: auto;
-		max-width: 685px;
+		max-width: 665px;
 	}
 }
 
@@ -160,7 +156,6 @@ export default {
 @media (min-width: $sm) {
 	.media_outer {
 		width: 50%;
-		padding: 6px;
 	}
 }
 
