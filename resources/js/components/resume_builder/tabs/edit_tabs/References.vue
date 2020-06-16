@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
-      <v-container class="mt-xl-5 mt-lg-10 mt-0">
+      <v-container class="">
         <v-form>
           <v-row align="center">
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">

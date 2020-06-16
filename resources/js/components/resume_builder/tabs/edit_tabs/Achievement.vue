@@ -4,7 +4,7 @@
       class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-2 resume-builder__scroll reference-content"
       flat
     >
-      <v-container class="mt-xl-5 mt-lg-10 mt-12">
+      <v-container class="">
         <v-form>
           <v-row>
             <v-col md="6" sm="12" cols="12">
@@ -328,10 +328,13 @@ $mainBlue: #001ce2;
 .reference-content {
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-  height: 850px;
+  height: 523px;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
+  @media screen and (max-width: 1263px){
+    height: 500px;
+  }
 }
 .card-ref {
   width: 1412px;
@@ -398,8 +401,12 @@ $mainBlue: #001ce2;
   .card-holder {
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     width: 620px;
+    margin-top: -54px;
     @media screen and (max-width: 1903px) {
       width: auto;
+    }
+    @media screen and (max-width: 1263px){
+      margin-top:0px;
     }
     .achievement-title {
       font-family: "Noto Sans" !important;
