@@ -5,7 +5,7 @@
         <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i">{{tabName}}</v-tab>
       </v-tabs>
       <v-card
-        class="card-main pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll main-content"
+        class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
         flat
         id="hobbiesContent"
       >
@@ -82,7 +82,7 @@
                       >
                         <div class="vertical-line"></div>
                       </v-col>
-                      <v-col xl="7" lg="7" md="7" sm="6" cols="7" class="mt-n2 hidden-xs-only">
+                      <v-col xl="7" lg="7" md="7" :sm="windowWidth<=767?'6':'7'" cols="7" class="mt-n2 hidden-xs-only">
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
                           <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
@@ -121,7 +121,7 @@
                           </v-row>
                         </v-card>
                       </v-col>
-                      <v-col xl="3" lg="3" md="3" sm="4" cols="8" align="right" class="action-col">
+                      <v-col xl="3" lg="3" md="3" :sm="windowWidth<=767?'4':'3'" cols="8" align="right" class="action-col">
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -146,7 +146,7 @@
                             </v-col>
                             <v-col cols="3" class="mt-1">
                               <v-card color="transparent" flat tile>
-                                <span class="audio-duration ml-n2">0.00/0.15</span>
+                                <span class="audio-duration ml-n1">0.00/0.15</span>
                               </v-card>
                             </v-col>
                             <v-col cols="4" class="mt-1">
@@ -400,6 +400,18 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.hidden-custom-mobile {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.hidden-custom-tablet-and-up {
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
 .main-content {
   height: 323px;
   background: #fff;
