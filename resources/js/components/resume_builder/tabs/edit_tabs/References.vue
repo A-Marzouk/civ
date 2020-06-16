@@ -1,7 +1,7 @@
 <template>
   <v-app>
-    <v-card class="card-ref pa-xl-10 pa-lg-5 resume-builder__scroll reference-content" flat>
-      <v-container class="mt-xl-5 mt-lg-10 mt-12">
+    <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
+      <v-container class="mt-xl-5 mt-lg-10 mt-0">
         <v-form>
           <v-row align="center">
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">
@@ -101,7 +101,7 @@
               lg="3"
               md="6"
               sm="6"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -120,7 +120,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -140,7 +140,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-0"
             >
               <vue-dropzone
                 class="civie-dropzone"
@@ -161,7 +161,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n12"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-0"
             >
               <v-textarea
                 class="resume-builder__input civie-textarea"
