@@ -68,7 +68,7 @@
 				</div>
 
 				<div class="profile-input-field input-field--languages input-field--group-2">
-					<v-select class="resume-builder__input  profile-input multiple-selection civie-select" multiple chips placeholder="Select an option" v-model="selectedLanguages" item-value="id" item-text="label" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
+					<v-select class="resume-builder__input  profile-input multiple-selection civie-select" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
 						<button class="dropdown-icon icon" slot="append">
 							<svg-vue :icon="`dropdown-caret`"></svg-vue>
 						</button>
@@ -129,7 +129,8 @@ export default {
 			return this.$store.state.user.personal_info;
 		},
 		languages() {
-			return this.$store.state.user.languages;
+			let userLanguages = this.$store.state.user.languages.map(a => a.id);
+			this.selectedLanguages = userLanguages;
 		},
 		user() {
 			return this.$store.state.user;
@@ -145,6 +146,19 @@ export default {
 		// date functions end
 		manualSave() {
 			this.applyEdit("manual");
+		},
+
+		syncLanguages(){
+			axios.post('/api/user/languages-sync', {IDs : this.selectedLanguages, user_id: this.user.id})
+					.then( () => {
+						this.$store.dispatch("flyingNotification");
+					})
+					.catch(e => {
+						this.$store.dispatch("flyingNotification", {
+							message: "Error",
+							iconSrc: "/images/resume_builder/error.png"
+						});
+					});
 		},
 		applyEdit(savingType) {
 			let formData = new FormData();
