@@ -40,7 +40,7 @@ class CreateUrlPermissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('url_permissions');
         Schema::dropIfExists('user_has_url_permissions');
+        Schema::dropIfExists('url_permissions');
     }
 }
