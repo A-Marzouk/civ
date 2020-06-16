@@ -1,6 +1,9 @@
 <template>
   <v-app>
-    <v-card class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-2 resume-builder__scroll reference-content" flat>
+    <v-card
+      class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-2 resume-builder__scroll reference-content"
+      flat
+    >
       <v-container class="mt-xl-5 mt-lg-10 mt-12">
         <v-form>
           <v-row>
@@ -94,7 +97,7 @@
             </v-col>
           </v-row>
         </v-form>
-        <v-row align="center">
+        <v-row align="center" justify="center">
           <v-col xl="6" lg="8" md="8" sm="12" cols="12">
             <v-card class="card-holder">
               <v-card-text>
@@ -136,7 +139,14 @@
                           </div>
                         </v-card>
                       </v-col>
-                      <v-col xl="4" lg="4" md="4" sm="4" cols="12">
+                      <v-col
+                        xl="4"
+                        lg="4"
+                        md="4"
+                        sm="4"
+                        cols="12"
+                        :align="windowWidth<=599?'center':'left'"
+                      >
                         <v-card class="card-achievement-img" flat color="transparent" tile>
                           <img
                             src="/images/new_resume_builder/achievement-img.svg"
@@ -144,7 +154,7 @@
                           />
                         </v-card>
                       </v-col>
-                      <v-col xl="8" lg="8" md="8" sm="8" cols="12" class="">
+                      <v-col xl="8" lg="8" md="8" sm="8" cols="12" class>
                         <v-card
                           color="transparent"
                           flat
@@ -190,6 +200,7 @@ export default {
   name: "Achievement",
   data() {
     return {
+      windowWidth: window.innerWidth,
       items: ["Certificate"],
       newAchievement: {},
       disabledInput: false,
@@ -303,7 +314,11 @@ export default {
       this.optionAchievementId = 0;
     }
   },
-  mounted() {}
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  }
 };
 </script>
 
@@ -391,7 +406,7 @@ $mainBlue: #001ce2;
       span {
         color: #888db1 !important;
       }
-      @media screen and (max-width: 599px){
+      @media screen and (max-width: 599px) {
         font-size: 20px !important;
       }
     }

@@ -64,7 +64,7 @@
                         lg="1"
                         md="1"
                         sm="1"
-                        cols="6"
+                        cols="4"
                         class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
                         :align="windowWidth<767?'left':'center'"
                       >
@@ -121,7 +121,7 @@
                           </v-row>
                         </v-card>
                       </v-col>
-                      <v-col xl="3" lg="3" md="3" sm="4" cols="6" align="right" class="action-col">
+                      <v-col xl="3" lg="3" md="3" sm="4" cols="8" align="right" class="action-col">
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -490,12 +490,6 @@ $mainBlue: #001ce2;
       min-height: 30px !important;
       width: 30px !important;
       height: 30px !important;
-      @media screen and (max-width: 378px){
-        margin-left: -10px;
-      }
-      @media screen and (max-width: 369px) {
-        margin-left: -11px;
-      }
     }
     .action-col {
       margin-top: -10px;
