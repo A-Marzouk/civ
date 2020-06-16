@@ -68,13 +68,12 @@
 				</div>
 
 				<div class="profile-input-field input-field--languages input-field--group-2">
-					<v-select class="resume-builder__input  profile-input civie-select" placeholder="Select an option" :items="languageItems" label="Languages" color="#001CE2" outlined hide-details="auto">
+					<v-select class="resume-builder__input  profile-input multiple-selection civie-select" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
 						<button class="dropdown-icon icon" slot="append">
 							<svg-vue :icon="`dropdown-caret`"></svg-vue>
 						</button>
 					</v-select>
 				</div>
-
 				<div class="profile-input-field input-field--hometown input-field--group-2">
 					<v-text-field class="resume-builder__input profile-input" label="Hometown" v-model="personalInfo.hometown" :class="{'resume-builder__input--disabled': false}" :error="!!errors.hometown" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon icon" :class="{'icon--disabled': false}" slot="append" @click="()=>false">
@@ -92,7 +91,7 @@
 				</div>
 
 				<div class="profile-input-field input-field--overview input-field--group-3">
-					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="summary.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
+					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="personalInfo.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon" :class="{'icon--disabled': false}" slot="append">
 							<svg-vue :icon="`eye-icon`"></svg-vue>
 						</button>
@@ -121,20 +120,17 @@ export default {
 			profile_pic_error: "",
 			savingType: "manual",
 			menu: false,
-			languageItems: [
-				{
-					text: "English",
-					value: "english"
-				}
-			]
+			defaultLanguages: [],
+			selectedLanguages: [],
 		};
 	},
 	computed: {
 		personalInfo() {
 			return this.$store.state.user.personal_info;
 		},
-		summary() {
-			return this.$store.state.user.summary;
+		languages() {
+			let userLanguages = this.$store.state.user.languages.map(a => a.id);
+			this.selectedLanguages = userLanguages;
 		},
 		user() {
 			return this.$store.state.user;
@@ -150,6 +146,19 @@ export default {
 		// date functions end
 		manualSave() {
 			this.applyEdit("manual");
+		},
+
+		syncLanguages(){
+			axios.post('/api/user/languages-sync', {IDs : this.selectedLanguages, user_id: this.user.id})
+					.then( () => {
+						this.$store.dispatch("flyingNotification");
+					})
+					.catch(e => {
+						this.$store.dispatch("flyingNotification", {
+							message: "Error",
+							iconSrc: "/images/resume_builder/error.png"
+						});
+					});
 		},
 		applyEdit(savingType) {
 			let formData = new FormData();
@@ -234,6 +243,16 @@ export default {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
 		}
+	},
+	mounted() {
+		axios.get('/api/user/languages-list')
+				.then( (response) => {
+					this.defaultLanguages = response.data.data ;
+					this.defaultLanguages.sort((a,b)=> (a.label>b.label)*2-1);
+				})
+				.catch( (error) => {
+					console.log(error)
+				});
 	}
 };
 </script>
@@ -242,6 +261,10 @@ export default {
 @import "../../../../../sass/media-queries";
 
 .profile {
+	max-width: 350px;
+	margin-right: auto;
+	margin-left: auto;
+
 	.profile-fields-wrapper {
 		padding: 10px;
 		max-height: 450px;
@@ -250,7 +273,8 @@ export default {
 		.profile-fields {
 			padding: 10px;
 			background: #ffffff;
-			box-shadow: 0 5px 10px rgba(0, 16, 131, 0.1);
+			box-shadow: 5px -5px 14px -5px rgba(0, 16, 131, 0.1),
+				-5px 5px 14px -5px rgba(0, 16, 131, 0.1);
 
 			.profile-picture {
 				padding-top: 13px;
@@ -332,7 +356,13 @@ export default {
 	}
 
 	@include gt-xs {
+		max-width: unset;
+		margin-left: -10px;
+
 		.profile-fields-wrapper {
+			padding-right: 20px;
+			margin-top: 30px;
+
 			.profile-fields {
 				padding: 20px;
 				display: grid;
@@ -430,7 +460,7 @@ export default {
 	@include gt-md {
 		.profile-fields-wrapper {
 			max-height: unset;
-			overflow-y: hidden;
+			margin-top: unset;
 
 			.profile-fields {
 				padding: 30px;

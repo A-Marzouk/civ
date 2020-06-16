@@ -223,14 +223,17 @@ export default {
 
 .sidebar {
 	margin-top: 40px;
-	padding-left: 30px;
-	padding-right: 30px;
+	margin-bottom: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
 
 	.sidebar-container {
 		position: relative;
 		background: #ffffff;
 		font-family: Noto Sans, "sans-serif";
 		max-width: 350px;
+		margin-left: auto;
+		margin-right: auto;
 
 		.sidebar-links,
 		.sidebar-link-activator {
@@ -345,9 +348,32 @@ export default {
 		}
 	}
 
+	@media screen and (min-width: 375px) {
+		& {
+			.sidebar-container {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+		}
+	}
+
+	@include gt-xs {
+		padding-right: unset;
+		padding-left: unset;
+		margin-top: unset;
+
+		.sidebar-container {
+			margin-left: unset;
+			margin-right: unset;
+			padding-left: unset;
+			padding-right: unset;
+		}
+	}
+
 	@include gt-md {
 		padding-left: unset;
 		padding-right: unset;
+		margin-bottom: unset;
 		border-right: 1px solid rgba(0, 28, 226, 0.1);
 
 		.sidebar-container {
@@ -370,7 +396,7 @@ export default {
 
 						a {
 							color: #888db1;
-							padding-left: 35px;
+							padding-left: unset;
 							padding-right: 35px;
 							border-radius: unset;
 							border: unset;

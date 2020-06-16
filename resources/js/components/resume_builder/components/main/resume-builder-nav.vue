@@ -175,9 +175,11 @@ $resume-builder-nav-height: 99px;
 			bottom: 0;
 			width: 100%;
 			height: 100%;
+			padding-left: 10px;
+			padding-right: 10px;
 			display: flex;
 			align-items: center;
-			justify-content: space-evenly;
+			justify-content: space-between;
 			margin-bottom: -$resume-builder-nav-height;
 			transition: all 0.3s;
 
@@ -261,7 +263,7 @@ $resume-builder-nav-height: 99px;
 				position: static;
 				margin-right: 30px;
 				margin-left: auto;
-				max-width: 325px;
+				max-width: 300px;
 			}
 
 			.builder-nav-toggle {

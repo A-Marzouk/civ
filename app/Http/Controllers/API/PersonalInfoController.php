@@ -72,11 +72,12 @@ class PersonalInfoController extends Controller
             'first_name' => ['sometimes', 'string', 'max:255','min:3'],
             'last_name' => ['sometimes', 'string', 'max:255','min:3'],
             'email' => ['email','max:255','unique:users'],
-            'designation' => ['sometimes', 'string','max:255','min:7'],
+            'designation' => ['sometimes', 'string','max:255','min:3'],
             'profile_pic' => ['sometimes'],
             'phone' => ['sometimes', 'numeric','min:7'],
             'location' => ['sometimes', 'string', 'max:255','min:3'],
             'about' => ['sometimes','string','max:2500'],
+            'overview' => ['sometimes','string','max:2500'],
             'quote' => ['sometimes','string','max:2500'],
         ]);
     }
