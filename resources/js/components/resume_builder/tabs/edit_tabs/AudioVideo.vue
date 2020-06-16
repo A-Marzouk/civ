@@ -435,7 +435,7 @@ $mainBlue: #001ce2;
   .card-holder {
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     height: 50px;
-    width: 473px;
+    width: 523px;
     @media screen and (max-width: 1903px){
       width: auto;
     }
