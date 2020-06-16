@@ -175,7 +175,7 @@
             color: $inputTextColor;
             left: -10px !important; // refactoring inline styles
             top: -29px !important;
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 10px;
             transform: none;
 
@@ -206,6 +206,18 @@
         input .icon-prepended,
         .v-select__selection {
             padding: 16px 21px 16px 26px;
+        }
+
+        input .multiple-selection,
+        .v-select__selection {
+            padding: 16px 3px 16px 3px;
+        }
+
+        input .multiple-selection,
+        .v-select__selections {
+            min-height: 50px !important;
+            height: 50px;
+            overflow: auto;
         }
     }
 

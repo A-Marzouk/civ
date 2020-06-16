@@ -179,7 +179,6 @@ $mainBlue: #001CE2;
 
         .view-container {
             max-height: 678px;
-            overflow: auto;
             box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
         }
     }

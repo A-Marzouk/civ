@@ -65,20 +65,7 @@ if ($("#adminResumeBuilder").length !== 0) {
                 },
                 {
                     path: '/resume-builder/edit/portfolio',
-                    component: ResumeBuilderEditCVPortfolio,
-                    props: true,
-                    children: [
-                        {
-                            path:'',
-                            component: require('./components/resume_builder/tabs/edit_tabs/portfolio_views/ProjectsList.vue').default,
-                            props: true
-                        },
-                        {
-                            path:'/resume-builder/edit/portfolio/new',
-                            component: require('./components/resume_builder/tabs/edit_tabs/portfolio_views/NewProject.vue').default,
-                            props: true
-                        },
-                    ]
+                    component: ResumeBuilderEditCVPortfolio
                 },
                 {
                     path: '/resume-builder/edit/achievement',

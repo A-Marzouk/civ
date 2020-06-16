@@ -56,7 +56,7 @@
                 </v-row>
               </v-form>
               <v-row align="center" dense>
-                <v-col xl="5" lg="6" md="8" sm="12" cols="12">
+                <v-col xl="5" lg="8" md="8" sm="12" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
                     <v-row justify="center">
                       <v-col
@@ -64,7 +64,7 @@
                         lg="1"
                         md="1"
                         sm="1"
-                        cols="6"
+                        cols="4"
                         class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
                         :align="windowWidth<767?'left':'center'"
                       >
@@ -113,7 +113,7 @@
                                     class="btn-volume"
                                   />
                                 </v-btn>
-                                <v-btn icon small>
+                                <v-btn icon small class>
                                   <v-icon>mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-card>
@@ -121,7 +121,7 @@
                           </v-row>
                         </v-card>
                       </v-col>
-                      <v-col xl="3" lg="3" md="3" sm="4" cols="6" align="right" class="action-col">
+                      <v-col xl="3" lg="3" md="3" sm="4" cols="8" align="right" class="action-col">
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -163,7 +163,7 @@
                                     class="btn-volume"
                                   />
                                 </v-btn>
-                                <v-btn icon small>
+                                <v-btn icon small class="btn-small-v_bar">
                                   <v-icon>mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-card>
@@ -490,9 +490,6 @@ $mainBlue: #001ce2;
       min-height: 30px !important;
       width: 30px !important;
       height: 30px !important;
-      @media screen and (max-width: 369px) {
-        margin-left: -11px;
-      }
     }
     .action-col {
       margin-top: -10px;
@@ -510,6 +507,9 @@ $mainBlue: #001ce2;
       @media screen and(max-width: 599px) {
         margin-top: 0px;
       }
+      @media screen and (max-width: 411px) {
+        min-width: auto !important;
+      }
       .btn-play {
       }
       .card-audio-row {
@@ -523,6 +523,21 @@ $mainBlue: #001ce2;
         font-size: 14px !important;
         line-height: 14px;
         color: #888db1 !important;
+        @media screen and (max-width: 411px) {
+          font-size: 12px !important;
+        }
+        @media screen and (max-width: 376px) {
+          font-size: 10px !important;
+        }
+      }
+      .btn-small-v_bar {
+        @media screen and(max-width: 411px) {
+          margin-left: -10px;
+        }
+        @media screen and(max-width: 370px) {
+          margin-left: -14px;
+        }
+
       }
     }
   }
