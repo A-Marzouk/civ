@@ -207,6 +207,18 @@
         .v-select__selection {
             padding: 16px 21px 16px 26px;
         }
+
+        input .multiple-selection,
+        .v-select__selection {
+            padding: 16px 3px 16px 3px;
+        }
+
+        input .multiple-selection,
+        .v-select__selections {
+            min-height: 50px !important;
+            height: 50px;
+            overflow: auto;
+        }
     }
 
     // Focused input ------------------------------------------------------------

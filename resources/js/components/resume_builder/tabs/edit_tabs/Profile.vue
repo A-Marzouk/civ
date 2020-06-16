@@ -68,13 +68,12 @@
 				</div>
 
 				<div class="profile-input-field input-field--languages input-field--group-2">
-					<v-select class="resume-builder__input  profile-input civie-select" placeholder="Select an option" :items="languageItems" label="Languages" color="#001CE2" outlined hide-details="auto">
+					<v-select class="resume-builder__input  profile-input multiple-selection civie-select" multiple chips placeholder="Select an option" v-model="selectedLanguages" item-value="id" item-text="label" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
 						<button class="dropdown-icon icon" slot="append">
 							<svg-vue :icon="`dropdown-caret`"></svg-vue>
 						</button>
 					</v-select>
 				</div>
-
 				<div class="profile-input-field input-field--hometown input-field--group-2">
 					<v-text-field class="resume-builder__input profile-input" label="Hometown" v-model="personalInfo.hometown" :class="{'resume-builder__input--disabled': false}" :error="!!errors.hometown" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon icon" :class="{'icon--disabled': false}" slot="append" @click="()=>false">
@@ -121,20 +120,16 @@ export default {
 			profile_pic_error: "",
 			savingType: "manual",
 			menu: false,
-			languageItems: [
-				{
-					text: "English",
-					value: "english"
-				}
-			]
+			defaultLanguages: [],
+			selectedLanguages: [],
 		};
 	},
 	computed: {
 		personalInfo() {
 			return this.$store.state.user.personal_info;
 		},
-		summary() {
-			return this.$store.state.user.summary;
+		languages() {
+			return this.$store.state.user.languages;
 		},
 		user() {
 			return this.$store.state.user;
@@ -234,6 +229,16 @@ export default {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
 		}
+	},
+	mounted() {
+		axios.get('/api/user/languages-list')
+				.then( (response) => {
+					this.defaultLanguages = response.data.data ;
+					this.defaultLanguages.sort((a,b)=> (a.label>b.label)*2-1);
+				})
+				.catch( (error) => {
+					console.log(error)
+				});
 	}
 };
 </script>
