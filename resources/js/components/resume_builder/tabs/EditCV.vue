@@ -7,13 +7,15 @@
 				<router-view></router-view>
 			</transition>
 
-			<div class="cv-content-preview">
-				<div class="cv-preview-link">
-					<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
-				</div>
-				<div class="cv-preview-theme-wrapper">
-					<div class="cv-preview-theme">
-						<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+			<div class="cv-content-preview-wrapper">
+				<div class="cv-content-preview">
+					<div class="cv-preview-link">
+						<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
+					</div>
+					<div class="cv-preview-theme-wrapper">
+						<div class="cv-preview-theme">
+							<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -106,7 +108,16 @@ $disabledColor: #9f9e9e;
 
 .edit-cv {
 	.edit-cv-content {
-		padding: 40px 30px;
+		padding: 40px 20px 20;
+	}
+
+	@include gt-xs {
+		padding: 40px 30px 30px;
+
+		.edit-cv-content {
+			padding-left: unset;
+			padding-right: unset;
+		}
 	}
 
 	@include gt-md {
@@ -115,128 +126,83 @@ $disabledColor: #9f9e9e;
 		.edit-cv-content {
 			flex: 1;
 			overflow: hidden;
+			padding-left: 30px;
 		}
 	}
 }
 
-.cv-content-preview {
-	padding-top: 40px;
+.cv-content-preview-wrapper {
+	margin-right: -10px;
+	margin-left: -10px;
+	overflow-y: scroll;
+	margin-top: 40px;
+	padding: 10px;
+	max-height: 600px;
+	max-width: 350px;
+	margin-left: auto;
+	margin-right: auto;
 
-	.cv-preview-link {
-		height: 50px;
-		display: flex;
-		align-items: center;
-		border-radius: 5px;
-		padding-left: 25px;
-		margin-right: 10px;
-		border: 1px solid #e6e8fc;
-
-		a {
-			color: #888db1;
-			font-family: "Roboto", "sans-serif";
-			font-size: 20px;
-			line-height: 22px;
-
-			&:hover {
-				color: inherit;
-			}
-		}
+	&::-webkit-scrollbar {
+		width: 5px;
+		height: 0;
+		background: #e5e5e5;
+		border-radius: 5px 0 0 5px;
 	}
 
-	.cv-preview-theme-wrapper {
-		overflow-y: scroll;
-		padding-right: 5px;
-		max-height: 540px;
-
-		.cv-preview-theme {
-			overflow-x: scroll;
-
-			&::-webkit-scrollbar {
-				height: 0;
-			}
-
-			&::-webkit-scrollbar-thumb {
-				height: 0;
-			}
-		}
-
-		&::-webkit-scrollbar {
-			width: 5px;
-			height: 0;
-			background: #e5e5e5;
-			border-radius: 5px 0 0 5px;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: #001ce2;
-			border-radius: 5px 0 0 5px;
-		}
+	&::-webkit-scrollbar-thumb {
+		background: #001ce2;
+		border-radius: 5px 0 0 5px;
 	}
 
-	@include gt-xs {
+	.cv-content-preview {
 		.cv-preview-link {
-			margin-right: 15px;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			border-radius: 5px;
+			padding-left: 25px;
+			border: 1px solid #e6e8fc;
+
+			a {
+				color: #888db1;
+				font-family: "Roboto", "sans-serif";
+				font-size: 20px;
+				line-height: 22px;
+
+				&:hover {
+					color: inherit;
+				}
+			}
 		}
 
 		.cv-preview-theme-wrapper {
 			.cv-preview-theme {
-			}
+				overflow-x: scroll;
 
-			&::-webkit-scrollbar {
-				width: 10px;
-				border-radius: 10px 0 0 10px;
-			}
+				&::-webkit-scrollbar {
+					height: 0;
+				}
 
-			&::-webkit-scrollbar-thumb {
-				border-radius: 10px 0 0 10px;
+				&::-webkit-scrollbar-thumb {
+					height: 0;
+				}
 			}
 		}
 	}
-}
 
-.unused {
-	.linkBar {
-		width: 100%;
-		height: 50px;
-		display: flex;
-		align-items: center;
-		padding-left: 25px;
-		font-size: 20px;
-		line-height: 22px;
-		color: #888db1;
-		border: 1px solid #e6e8fc;
-		border-radius: 5px;
-	}
+	@include gt-xs {
+		padding: 10px;
+		padding-right: 20px;
+		max-width: unset;
+		margin-left: -10px;
 
-	.aside-bar {
-		min-width: 290px;
-		position: relative;
-		max-height: calc(61px * 12);
-		// Check it
-		overflow-y: auto;
-
-		@include lt-lg {
-			display: none !important;
+		&::-webkit-scrollbar {
+			width: 10px;
+			border-radius: 10px 0 0 10px;
 		}
 
-		&::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			right: 0;
-			height: 100%;
-			width: 6px;
-			background-color: #e2e5fc;
-		}
-
-		#scrollItem {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 6px;
-			height: 61px;
-			z-index: 5;
-			background-color: $activeColor;
+		&::-webkit-scrollbar-thumb {
+			border-radius: 10px 0 0 10px;
 		}
 	}
 }
