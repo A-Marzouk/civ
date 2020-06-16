@@ -2,7 +2,7 @@
   <v-app>
     <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
       <v-container class>
-        <v-form>
+        <v-form v-if="reference">
           <v-row align="center">
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">
               <v-select
@@ -12,7 +12,7 @@
                 :items="references"
                 label="Referecent Type"
                 color="#001CE2"
-                v-model="referenceType"
+                v-model="reference.type"
               >
                 <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
                   <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -31,11 +31,11 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Full Name"
-                v-model="fullname"
+                v-model="reference.name"
               ></v-text-field>
             </v-col>
             <v-col
@@ -50,11 +50,11 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Title/Position"
-                v-model="title"
+                v-model="reference.title"
               ></v-text-field>
             </v-col>
 
@@ -70,11 +70,11 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Phone"
-                v-model="phone"
+                v-model="reference.phone"
               ></v-text-field>
             </v-col>
 
@@ -91,7 +91,8 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
+                v-model="reference.email"
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Email"
@@ -109,11 +110,11 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Company"
-                v-model="company"
+                v-model="reference.company"
               ></v-text-field>
             </v-col>
 
@@ -128,11 +129,11 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Address"
-                v-model="address"
+                v-model="reference.address"
               ></v-text-field>
             </v-col>
             <v-col
@@ -147,49 +148,14 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="URL"
-                v-model="url"
+                v-model="reference.url"
               ></v-text-field>
             </v-col>
 
-            <v-col
-              xl="3"
-              lg="3"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-n5 mt-lg-n5 mt-md-n5 mt-sm-0 mt-n6"
-            >
-              <div class="input-group files">
-                <!-- Using v-input classes -->
-                <div
-                  class="v-input v-text-field--outlined resume-builder__input theme--light v-text-field v-text-field--is-booted v-text-field--enclosed civie-dropzone"
-                >
-                  <div class="v-input__control">
-                    <div class="v-input__slot">
-                      <fieldset aria-hidden="true"></fieldset>
-                      <div class="v-text-field__slot">
-                        <label class="v-label" for>Upload Images</label>
-                        <vue-dropzone
-                          class="civie-dropzone-input"
-                          ref="myVueDropzone"
-                          id="dropzone"
-                          :options="dropzoneOptions"
-                          :useCustomSlot="true"
-                        >
-                          <div class="dropzone-custom-content">
-                            <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
-                          </div>
-                        </vue-dropzone>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </v-col>
 
             <v-col
               xl="3"
@@ -203,15 +169,15 @@
                 class="resume-builder__input civie-textarea"
                 outlined
                 color="#001CE2"
-                :rules="rules"
+               
                 :class="{'resume-builder__input--disabled': disabledTextarea}"
                 :disabled="disabledTextarea"
                 label="Description"
-                v-model="description"
+                v-model="reference.reference_text"
               ></v-textarea>
             </v-col>
-            <v-col xl="8" lg="8" md="12" sm="12" cols="12">
-              <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n5">Add New</v-btn>
+            <v-col xl="12" lg="12" md="12" sm="12" cols="12">
+              <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n5" @click="applyReferenceEdit">Save</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -254,16 +220,7 @@ export default {
       disabledInput: false,
       disabledTextarea: false,
       addNewTestimonial: false,
-      referenceType: "",
-      fullname: "",
-      title: "",
-      phone: "",
-      email: "",
-      company: "",
-      address: "",
-      url: "",
       importImage: "",
-      description: ""
     };
   },
   computed: {
@@ -282,20 +239,8 @@ export default {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
     },
-    toggleInput() {
-      this.disabledInput = !this.disabledInput;
-    },
-    toggleTextarea() {
-      this.disabledTextarea = !this.disabledTextarea;
-    },
-    setActiveTab(tab) {
-      this.activeTab = tab;
-    },
-    changeTab(e) {
-      this.errors = { new: {}, edit: {} };
-      moveTabsHelper(e, "referencesLinksWrapper", this);
-    },
-    applyReferenceEdit(savingType) {
+
+    applyReferenceEdit(savingType = '') {
       this.errors = { new: {}, edit: {} };
       let formData = {};
       $.each(this.reference, field => {
@@ -307,13 +252,13 @@ export default {
       });
 
       formData["id"] = this.reference.id;
+      formData["user_id"] = this.reference.user_id;
 
       if (savingType === "manual") {
         formData = this.reference;
       }
 
-      axios
-        .put("/api/user/reference", formData)
+      axios.put("/api/user/reference", formData)
         .then(response => {
           console.log(response.data);
           savingType === "manual"
@@ -332,129 +277,6 @@ export default {
           });
         });
     },
-    applyRefereeEdit(savingType) {
-      this.errors = {};
-
-      let formData = {};
-      $.each(this.referee, field => {
-        if (this.referee[field] !== null) {
-          if (this.referee[field].length) {
-            formData[field] = this.referee[field];
-          }
-        }
-      });
-
-      formData["id"] = this.referee.id;
-
-      if (savingType === "manual") {
-        formData = this.referee;
-      }
-
-      axios
-        .put("/api/user/referee", formData)
-        .then(response => {
-          savingType === "manual"
-            ? this.$store.dispatch("fullScreenNotification")
-            : this.$store.dispatch("flyingNotification");
-        })
-        .catch(error => {
-          if (typeof error.response.data === "object") {
-            this.errors = error.response.data.errors;
-          } else {
-            this.errors = "Something went wrong. Please try again.";
-          }
-          this.$store.dispatch("flyingNotification", {
-            message: "Error",
-            iconSrc: "/images/resume_builder/error.png"
-          });
-        });
-    },
-    addTestimonial() {
-      this.errors = { new: {}, edit: {} };
-      this.newTestimonial.user_id = this.$store.state.user.id;
-      axios
-        .post("/api/user/testimonials", this.newTestimonial)
-        .then(response => {
-          this.testimonials.unshift(response.data.data);
-          this.newTestimonial = { title: "", description: "" };
-          this.addNewTestimonial = false;
-          this.$store.dispatch("fullScreenNotification");
-        })
-        .catch(error => {
-          if (typeof error.response.data === "object") {
-            this.errors.new = error.response.data.errors;
-          } else {
-            this.errors.new = "Something went wrong. Please try again.";
-          }
-          this.$store.dispatch("flyingNotification", {
-            message: "Error",
-            iconSrc: "/images/resume_builder/error.png"
-          });
-        });
-    },
-    closeOptionsBtn() {
-      this.optionTestimonialId = 0;
-    },
-    editTestimonial(testimonial) {
-      this.editedTestimonial = {
-        id: testimonial.id,
-        title: testimonial.title,
-        description: testimonial.description
-      };
-      this.closeOptionsBtn();
-    },
-    applyEdit() {
-      this.errors = { new: {}, edit: {} };
-      axios
-        .put("/api/user/testimonials", this.editedTestimonial)
-        .then(response => {
-          this.EditedSuccessfully(response.data.data);
-        })
-        .catch(error => {
-          if (typeof error.response.data === "object") {
-            this.errors.edit = error.response.data.errors;
-          } else {
-            this.errors.edit = "Something went wrong. Please try again.";
-          }
-          this.$store.dispatch("flyingNotification", {
-            message: "Error",
-            iconSrc: "/images/resume_builder/error.png"
-          });
-        });
-    },
-    EditedSuccessfully(editedTestimonial) {
-      this.clearEditedTestimonial();
-      this.$store.dispatch("fullScreenNotification");
-      // replace the edited skill with the new one:
-      this.testimonials.forEach((testimonial, index) => {
-        if (testimonial.id === editedTestimonial.id) {
-          this.testimonials[index] = editedTestimonial;
-        }
-      });
-    },
-    clearEditedTestimonial() {
-      this.editedTestimonial = {};
-    },
-    deleteTestimonial(testimonial) {
-      if (!confirm("Do you want to delete this testimonial ?")) {
-        return;
-      }
-      axios
-        .delete("/api/user/testimonials/" + testimonial.id)
-        .then(response => {
-          this.$store.dispatch("flyingNotificationDelete");
-          this.testimonials.forEach((myTestimonial, index) => {
-            if (myTestimonial.id === response.data.data.id) {
-              this.testimonials.splice(index, 1);
-            }
-          });
-
-          this.closeOptionsBtn();
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
   }
 };
 </script>
