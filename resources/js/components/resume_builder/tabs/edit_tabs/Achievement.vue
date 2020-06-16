@@ -95,16 +95,20 @@
           </v-row>
         </v-form>
         <v-row align="center">
-          <v-col xl="6" lg="6" md="8" sm="12" cols="12">
+          <v-col xl="6" lg="8" md="8" sm="12" cols="12">
             <v-card class="card-holder">
               <v-card-text>
                 <v-row>
-                  <v-col cols="6" align="left">
-                    <v-btn color="#ffffff" class="btn-v_bar ml-5" depressed>
+                  <v-col md="6" sm="6" cols="4" align="left">
+                    <v-btn
+                      color="#F2F3FD"
+                      class="btn-v_bar ml-xl-5 ml-lg-5 ml-md-5 ml-sm-5 ml-2"
+                      depressed
+                    >
                       <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                     </v-btn>
                   </v-col>
-                  <v-col cols="6" align="right">
+                  <v-col md="6" sm="6" cols="8" align="right">
                     <v-card color="transparent" flat tile class="mr-3">
                       <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                         <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
@@ -118,22 +122,44 @@
                     </v-card>
                   </v-col>
                   <v-col cols="12">
-                    <v-row justify="center">
-                      <v-col>
-                        <img
-                          src="/images/new_resume_builder/achievement-img.svg"
-                          alt="achievement-img"
-                          class="achievement-img"
-                        />
-                      </v-col>
-                      <v-col>
-                        <v-card color="transparent" flat tile class="pa-5">
-                          <div class="achievement-title">
+                    <v-row dense>
+                      <v-col cols="12" class="hidden-sm-and-up">
+                        <v-card
+                          color="transparent"
+                          flat
+                          tile
+                          class="pa-xl-0 pa-lg-0 pa-md-1 pa-sm-1"
+                        >
+                          <div class="achievement-title mb-1">
                             National Award,
                             <span>2015</span>
                           </div>
-                          <div class="achievement-subtitle">
-                            <span>URL:</span> https://dribbble.com/humayrakabiranamika
+                        </v-card>
+                      </v-col>
+                      <v-col xl="4" lg="4" md="4" sm="4" cols="12">
+                        <v-card class="card-achievement-img" flat color="transparent" tile>
+                          <img
+                            src="/images/new_resume_builder/achievement-img.svg"
+                            alt="achievement-img"
+                          />
+                        </v-card>
+                      </v-col>
+                      <v-col xl="8" lg="8" md="8" sm="8" cols="12" class="">
+                        <v-card
+                          color="transparent"
+                          flat
+                          tile
+                          class="pa-xl-0 pa-lg-0 pa-md-1 pa-sm-1"
+                        >
+                          <div class="achievement-title mb-1 hidden-xs-only">
+                            National Award,
+                            <span>2015</span>
+                          </div>
+                          <div class="achievement-subtitle mb-1">
+                            <span>URL:</span>
+                            <a
+                              href="https://dribbble.com/humayrakabiranamika"
+                            >https://dribbble.com/humayrakabiranamika</a>
                           </div>
                           <div class="achievement-description">
                             <span>Description:</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur.
@@ -365,15 +391,29 @@ $mainBlue: #001ce2;
       span {
         color: #888db1 !important;
       }
+      @media screen and (max-width: 599px){
+        font-size: 20px !important;
+      }
     }
     .achievement-subtitle {
       font-family: "Noto Sans" !important;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px !important;
-      line-height: 19px;
       color: #888db1 !important;
-      span{
+      font-size: 14px;
+      a {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px !important;
+        line-height: 19px;
+        color: #888db1 !important;
+      }
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        font-size: 12px !important;
+        a {
+          font-size: 12px !important;
+        }
+      }
+
+      span {
         font-weight: bold;
       }
     }
@@ -384,13 +424,23 @@ $mainBlue: #001ce2;
       font-size: 14px !important;
       line-height: 19px;
       color: #888db1 !important;
-      span{
+      span {
         font-weight: bold;
       }
     }
-    .achievement-img{
-        width: 220px;
-        height: 165px;
+    .achievement-img {
+      img {
+        width: 220px !important;
+        height: 165px !important;
+      }
+    }
+    .card-achievement-img {
+      width: 220px !important;
+      height: 165px !important;
+      @media screen and (max-width: 599px) {
+        width: 280px !important;
+        height: 210px !important;
+      }
     }
   }
 }
