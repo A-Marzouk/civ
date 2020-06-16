@@ -160,7 +160,7 @@
                                     alt="play_button"
                                   />
                                 </v-btn>
-                                <v-btn icon small class="btn-small-v_bar ml-n1">
+                                <v-btn icon small class="btn-small-v_bar ml-n2">
                                   <v-icon>mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-card>
@@ -520,11 +520,7 @@ $mainBlue: #001ce2;
       }
       @media screen and(max-width: 599px) {
         margin-top: 0px;
-      }
-      @media screen and (max-width: 411px) {
         min-width: auto !important;
-      }
-      .btn-play {
       }
       .card-audio-row {
         @media screen and (min-width: 600px) and (max-width: 767px) {
@@ -537,7 +533,7 @@ $mainBlue: #001ce2;
         font-size: 14px !important;
         line-height: 14px;
         color: #888db1 !important;
-        @media screen and (max-width: 411px) {
+        @media screen and (max-width: 599px) {
           font-size: 12px !important;
         }
         @media screen and (max-width: 376px) {
