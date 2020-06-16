@@ -56,7 +56,7 @@
                 </v-row>
               </v-form>
               <v-row align="center" dense>
-                <v-col xl="8" lg="8" md="8" sm="12" cols="12">
+                <v-col xl="8" :lg="windowWidth<1440?'9':'8'" md="9" sm="12" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
                     <v-row justify="center">
                       <v-col
@@ -136,19 +136,17 @@
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
                           <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
-                              <v-btn icon small>
+                              <v-btn icon small class="btn-play">
                                 <img
                                   src="/images/new_resume_builder/icons/main/play.svg"
                                   alt="play_button"
                                   class="btn-play mt-n1"
-                                  width="20"
-                                  height="20"
                                 />
                               </v-btn>
                             </v-col>
                             <v-col cols="3" class="mt-1">
                               <v-card color="transparent" flat tile>
-                                <span class="audio-duration">0.00/0.15</span>
+                                <span class="audio-duration ml-n2">0.00/0.15</span>
                               </v-card>
                             </v-col>
                             <v-col cols="4" class="mt-1">
@@ -156,14 +154,13 @@
                             </v-col>
                             <v-col cols="3" class="mt-1">
                               <v-card color="transparent" flat tile>
-                                <v-btn icon small>
+                                <v-btn icon small class="btn-volume">
                                   <img
                                     src="/images/new_resume_builder/icons/main/volume-1.svg"
                                     alt="play_button"
-                                    class="btn-volume"
                                   />
                                 </v-btn>
-                                <v-btn icon small class="btn-small-v_bar">
+                                <v-btn icon small class="btn-small-v_bar ml-n1">
                                   <v-icon>mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-card>
@@ -436,7 +433,7 @@ $mainBlue: #001ce2;
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     height: 50px;
     width: 523px;
-    @media screen and (max-width: 1903px){
+    @media screen and (max-width: 1903px) {
       width: auto;
     }
     @media screen and (max-width: 599px) {
@@ -535,14 +532,26 @@ $mainBlue: #001ce2;
           font-size: 10px !important;
         }
       }
+      .btn-play {
+        width: 20px;
+        height: 20px;
+        @media screen and (max-width: 599px) {
+          width: 14px;
+          height: 14px;
+        }
+      }
+      .btn-volume {
+        @media screen and (max-width: 391px) {
+          margin-left: -6px;
+        }
+      }
       .btn-small-v_bar {
         @media screen and(max-width: 411px) {
-          margin-left: -10px;
+          margin-left: -12px !important;
         }
         @media screen and(max-width: 370px) {
-          margin-left: -14px;
+          margin-left: -14px !important;
         }
-
       }
     }
   }
