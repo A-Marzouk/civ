@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-card
-      class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-2 resume-builder__scroll reference-content"
+      class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-0 resume-builder__scroll reference-content"
       flat
     >
       <v-container class>
