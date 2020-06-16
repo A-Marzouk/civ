@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
-      <v-container class="">
+      <v-container class>
         <v-form>
           <v-row align="center">
             <v-col xl="3" lg="3" md="6" sm="6" cols="12">
@@ -19,7 +19,14 @@
                 </button>
               </v-select>
             </v-col>
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-0 mt-n10">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-0 mt-n6"
+            >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -31,7 +38,14 @@
                 v-model="fullname"
               ></v-text-field>
             </v-col>
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n10 mt-n10">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n6 mt-n6"
+            >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -44,7 +58,14 @@
               ></v-text-field>
             </v-col>
 
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n10 mt-n10">
+            <v-col
+              xl="3"
+              lg="3"
+              md="6"
+              sm="6"
+              cols="12"
+              class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n6 mt-n6"
+            >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -63,7 +84,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 type="email"
@@ -82,7 +103,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -101,7 +122,7 @@
               lg="3"
               md="6"
               sm="6"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -120,7 +141,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-n10"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -140,19 +161,34 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-0"
+              class="mt-xl-n5 mt-lg-n5 mt-md-n5 mt-sm-0 mt-n6"
             >
-              <vue-dropzone
-                class="civie-dropzone"
-                ref="myVueDropzone"
-                id="dropzone"
-                :options="dropzoneOptions"
-                :useCustomSlot="true"
-              >
-                <div class="dropzone-custom-content">
-                  <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+              <div class="input-group files">
+                <!-- Using v-input classes -->
+                <div
+                  class="v-input v-text-field--outlined resume-builder__input theme--light v-text-field v-text-field--is-booted v-text-field--enclosed civie-dropzone"
+                >
+                  <div class="v-input__control">
+                    <div class="v-input__slot">
+                      <fieldset aria-hidden="true"></fieldset>
+                      <div class="v-text-field__slot">
+                        <label class="v-label" for>Upload Images</label>
+                        <vue-dropzone
+                          class="civie-dropzone-input"
+                          ref="myVueDropzone"
+                          id="dropzone"
+                          :options="dropzoneOptions"
+                          :useCustomSlot="true"
+                        >
+                          <div class="dropzone-custom-content">
+                            <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                          </div>
+                        </vue-dropzone>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </vue-dropzone>
+              </div>
             </v-col>
 
             <v-col
@@ -161,7 +197,7 @@
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n10 mt-0"
+              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n8"
             >
               <v-textarea
                 class="resume-builder__input civie-textarea"
@@ -458,9 +494,33 @@ $mainBlue: #001ce2;
       font-size: 15px !important;
     }
   }
+}
+.input-group {
+  margin-right: 15px;
+
+  &:nth-child(4),
+  &:last-child {
+    margin-right: none;
+  }
+
+  .civie-textarea,
   .civie-dropzone {
-    border: 2px solid #c4c9f5 !important;
-    height: 155px;
+    margin-bottom: 35.5px;
+    height: auto;
+
+    .v-input__control,
+    .v-input__slot {
+      height: 100%;
+    }
+  }
+
+  &.files {
+    .v-label {
+      position: absolute;
+    }
+    .civie-dropzone {
+      width: 100%;
+    }
   }
 }
 
