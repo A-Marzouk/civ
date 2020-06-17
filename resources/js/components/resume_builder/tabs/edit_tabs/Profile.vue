@@ -121,7 +121,7 @@ export default {
 			savingType: "manual",
 			menu: false,
 			defaultLanguages: [],
-			selectedLanguages: this.$store.state.user.languages.map(a => a.id),
+			selectedLanguages: [],
 		};
 	},
 	computed: {
@@ -129,9 +129,7 @@ export default {
 			return this.$store.state.user.personal_info;
 		},
 		languages() {
-			let userLanguages = this.$store.state.user.languages.map(a => a.id);
-			this.selectedLanguages = userLanguages;
-			return userLanguages;
+			return this.$store.state.user.languages.map(a => a.id);
 		},
 		user() {
 			return this.$store.state.user;
@@ -143,10 +141,6 @@ export default {
 		saveDate() {
 			this.$refs.menu.save(this.personalInfo.date_of_birth);
 			this.applyEdit("auto");
-		},
-		// date functions end
-		manualSave() {
-			this.applyEdit("manual");
 		},
 
 		syncLanguages(){
@@ -240,6 +234,9 @@ export default {
 		isEmail(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
+		},
+		setUserPreSelectedLanguages(){
+			this.selectedLanguages = this.$store.state.user.languages.map(a => a.id) ;
 		}
 	},
 	mounted() {
@@ -247,9 +244,8 @@ export default {
 				.then( (response) => {
 					this.defaultLanguages = response.data.data ;
 					this.defaultLanguages.sort((a,b)=> (a.label>b.label)*2-1);
-				})
-				.catch( (error) => {
-
+				}).then( () => {
+					this.setUserPreSelectedLanguages()
 				});
 	}
 };
