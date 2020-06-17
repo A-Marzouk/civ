@@ -111,6 +111,17 @@ class WorkExController extends Controller
         ]);
     }
 
+    public function updateWorksOrder(Request $request){
+        $works = $request->works ;
+        foreach ($works as $key => $work){
+            $myWork = WorkEx::find($work['id']);
+            $myWork->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
+
     protected function is_auth($request){
         return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }

@@ -93,6 +93,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/work-experience', 'API\WorkExController@store');
     //create many workExperience
     Route::post('/work-experience-many', 'API\WorkExController@storeMany');
+    //update order:
+    Route::post('/work-experience/update-order', 'API\WorkExController@updateWorksOrder');
     //update a workExperience
     Route::put('/work-experience', 'API\WorkExController@store');
     //delete workExperience

@@ -100,7 +100,7 @@
                 </div>
             </div>
 
-            <div class="education-list">
+            <draggable class="education-list" v-model="works" @start="drag=true" @end="drag=false"  handle=".drag-handler">
                 <div
                         v-for="work in works"
                         class="education-item"
@@ -172,15 +172,20 @@
                         </article>
                     </div>
                 </div>
-            </div>
+            </draggable>
         </div>
 
     </div>
 </template>
 
 <script>
+    import draggable from "vuedraggable";
+
     export default {
         name: "WorkExperience",
+        components: {
+            draggable
+        },
         data() {
             return {
                 tabs: [
@@ -204,8 +209,14 @@
             }
         },
         computed: {
-            works() {
-                return this.$store.state.user.work_experience;
+
+            works: {
+                get() {
+                    return this.$store.state.user.work_experience;
+                },
+                set(works) {
+                    this.$store.commit("updateWorks", works);
+                }
             }
         },
         methods: {
@@ -1103,12 +1114,16 @@
             .drag-handler {
                 position: absolute;
                 display: flex;
+                justify-content: center;
                 flex-direction: column;
-                top: 28px;
-                left: 24px;
+                align-items: center;
+                top: 11px;
+                left: 0;
+                width: 50px;
+                height: 50px;
 
                 &:hover {
-                    cursor: pointer;
+                    cursor: grab;
                 }
 
                 .circle {
