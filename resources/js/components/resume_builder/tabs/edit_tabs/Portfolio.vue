@@ -83,7 +83,73 @@
                     >Add New</v-btn>
                 </v-form>
                 <div class="projects-list">
-
+                    <div class="project">
+                        <div class="project__header">
+                            <v-btn
+                                depressed
+                                class="drag-and-drop-handler"
+                            >
+                                <svg-vue 
+                                    :icon="'drag-and-drop-icon'"
+                                    class="icon"
+                                ></svg-vue>
+                            </v-btn>
+                            <div
+                                class="resume-builder__action-buttons-container"
+                            >
+                                <v-btn
+                                    class="btn-icon civie-btn"
+                                    depressed
+                                >
+                                    <svg-vue
+                                        icon="eye-icon"
+                                        class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                                <v-btn
+                                    class="btn-icon civie-btn"
+                                    depressed
+                                >
+                                    <svg-vue
+                                        icon="edit-icon"
+                                        class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                                <v-btn
+                                    class="btn-icon civie-btn"
+                                    depressed
+                                >
+                                    <svg-vue
+                                        icon="trash-delete-icon"
+                                        class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                            </div>
+                        </div>
+                        <div class="project__body">
+                            <picture class="project__img">
+                                <img 
+                                    src="/images/new_resume_builder/portfolio/portfolio-img.png"
+                                    alt="portfolio img">
+                            </picture>
+                            <div class="project__info">
+                                <div class="project__name">My Personal Website</div>
+                                <div class="project__url">
+                                    <b>URL:</b> <a href="https://josedan10.github.io">https://josedan10.github.io</a>
+                                </div>
+                                <div class="project__skills">
+                                    <b>Skills:</b> React.js
+                                </div>
+                                <div class="project__softwares">
+                                    <b>Software:</b> VSCode, Github Pages
+                                </div>
+                                <div class="project__description">
+                                    <b>Description: </b>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero qui distinctio temporibus ea voluptas impedit consequatur dolore ducimus earum illum velit ipsa perspiciatis maxime tenetur illo, tempora doloremque modi dolorem.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </v-card>
         </div>
@@ -165,7 +231,6 @@ import vue2Dropzone from 'vue2-dropzone'
             grid-auto-rows: 104px;
             grid-gap: 15px;
             padding: 50px 46px;
-            height: 300px;
 
             .resume-builder__input {
                 column-span: 1;
@@ -215,6 +280,84 @@ import vue2Dropzone from 'vue2-dropzone'
                 @include lt-sm {
                     align-self: stretch;
                     justify-self: stretch;
+                }
+            }
+        }
+
+        .projects-list {
+            width:  100%;
+
+            .project {
+                max-width: 620px;
+                width: 100%;
+                box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+                background: white;
+                min-height: 225px;
+                padding: 10px 15px;
+                margin-bottom: 20px;
+
+                &__header {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    .drag-and-drop-handler {
+                        background-color: $auxBgColor-gray;
+                        border-radius: 5px;
+                        height: 25px;
+                        width: 25px;
+
+                        // Reset default props of v-btn class
+                        min-width: auto !important;
+                        padding: 0 !important;
+
+                        .icon {
+                            height: 10px;
+                            width: 3px;
+                        }
+                    }
+
+                    .resume-builder__action-buttons-container {
+                        .btn-icon {
+                            width: 25px;
+                            height: 25px !important;
+                            
+                        }
+                    }
+                }
+
+                &__body {
+                    margin-top: 10px;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .project__img {
+                        img {
+                            min-width: 220px;
+                        }
+                    }
+
+                    .project__info {
+                        margin-left: 20px;
+                        margin-top: 14px;
+
+                        .project {
+                            &__name {
+                                font-size: 24px;
+                                font-weight: 700;
+                                color: $mainColor;
+                                margin-bottom: 10px;
+                            }
+
+                            &__url,
+                            &__skills,
+                            &__softwares,
+                            &__description {
+                                color: $inputTextColor;
+                            }
+                        }
+                    }
+
                 }
             }
         }
