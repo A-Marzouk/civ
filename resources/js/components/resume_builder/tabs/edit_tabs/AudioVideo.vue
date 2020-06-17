@@ -16,19 +16,19 @@
                 <v-row align="center">
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <vue-dropzone :options="dropzoneOptions" :useCustomSlot="true" id="dropzone">
-                      <div class="dropzone-custom-content" align="left">
+                      <div class="dropzone-custom-content mt-n9" align="left">
                         <div class="d-flex flex-row">
                           <img
-                            class="mt-n10 ml-1"
+                            class="ml-1"
                             src="/images/new_resume_builder/icons/main/upload.svg"
                           />
-                          <span class="upload-text mt-n9 ml-3">Browse/Drag</span>
+                          <span class="upload-text ml-3">Browse/Drag</span>
                         </div>
                       </div>
                     </vue-dropzone>
                   </v-col>
 
-                  <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-n2">
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
@@ -571,13 +571,13 @@ $mainBlue: #001ce2;
   margin-left: 5px;
 }
 .label-or {
-  margin-top: 30px;
+  margin-top: 25px;
   font-family: "Noto Sans" !important;
   font-weight: 500;
   font-size: 16px !important;
   line-height: 22px;
   color: #888db1 !important;
-  margin-left: -13px;
+  margin-left: -16px;
   @media screen and (max-width: 599px) {
     margin-left: 0px;
   }
@@ -586,8 +586,8 @@ $mainBlue: #001ce2;
 }
 .dropzone.dz-clickable {
   border: 2px solid #c4c9f5 !important;
-  min-height: 56px !important;
-  height: 56px !important;
+  min-height: 48px !important;
+  height: 48px !important;
   border: 2px solid #c4c9f5;
   border-radius: 10px;
 }
