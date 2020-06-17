@@ -37,7 +37,7 @@
 
 			</div>
 
-			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false">
+			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false"  handle=".mover">
 				<div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
 					<div class="link-data">
 						<div class="mover">
@@ -119,8 +119,7 @@ export default {
 		},
 		toggleLink(link) {
 			link.is_active = !link.is_active;
-			axios
-				.put("/api/user/links", link)
+			axios.put("/api/user/links", link)
 				.then(response => {
 					this.$store.dispatch("flyingNotification");
 					this.closeOptionsBtn();
@@ -275,6 +274,7 @@ $mainBlue: #001ce2;
 
 	.link-inputs-row {
 		display: flex;
+		align-items: center;
 		margin-top: 12px;
 
 		.civie-select {
@@ -287,7 +287,7 @@ $mainBlue: #001ce2;
 
 			.input-prepended-icon {
 				position: absolute;
-				top: 13px;
+				top: 41px;
 				left: 5px;
 
 				img {

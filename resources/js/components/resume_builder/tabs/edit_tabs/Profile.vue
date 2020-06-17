@@ -68,13 +68,12 @@
 				</div>
 
 				<div class="profile-input-field input-field--languages input-field--group-2">
-					<v-select class="resume-builder__input  profile-input civie-select" placeholder="Select an option" :items="languageItems" label="Languages" color="#001CE2" outlined hide-details="auto">
+					<v-select class="resume-builder__input  profile-input civie-select multiple-selection" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
 						<button class="dropdown-icon icon" slot="append">
 							<svg-vue :icon="`dropdown-caret`"></svg-vue>
 						</button>
 					</v-select>
 				</div>
-
 				<div class="profile-input-field input-field--hometown input-field--group-2">
 					<v-text-field class="resume-builder__input profile-input" label="Hometown" v-model="personalInfo.hometown" :class="{'resume-builder__input--disabled': false}" :error="!!errors.hometown" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon icon" :class="{'icon--disabled': false}" slot="append" @click="()=>false">
@@ -92,7 +91,7 @@
 				</div>
 
 				<div class="profile-input-field input-field--overview input-field--group-3">
-					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="summary.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
+					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="personalInfo.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon" :class="{'icon--disabled': false}" slot="append">
 							<svg-vue :icon="`eye-icon`"></svg-vue>
 						</button>
@@ -121,20 +120,16 @@ export default {
 			profile_pic_error: "",
 			savingType: "manual",
 			menu: false,
-			languageItems: [
-				{
-					text: "English",
-					value: "english"
-				}
-			]
+			defaultLanguages: [],
+			selectedLanguages: [],
 		};
 	},
 	computed: {
 		personalInfo() {
 			return this.$store.state.user.personal_info;
 		},
-		summary() {
-			return this.$store.state.user.summary;
+		languages() {
+			return this.$store.state.user.languages.map(a => a.id);
 		},
 		user() {
 			return this.$store.state.user;
@@ -147,9 +142,18 @@ export default {
 			this.$refs.menu.save(this.personalInfo.date_of_birth);
 			this.applyEdit("auto");
 		},
-		// date functions end
-		manualSave() {
-			this.applyEdit("manual");
+
+		syncLanguages(){
+			axios.post('/api/user/languages-sync', {IDs : this.selectedLanguages, user_id: this.user.id})
+					.then( () => {
+						this.$store.dispatch("flyingNotification");
+					})
+					.catch(e => {
+						this.$store.dispatch("flyingNotification", {
+							message: "Error",
+							iconSrc: "/images/resume_builder/error.png"
+						});
+					});
 		},
 		applyEdit(savingType) {
 			let formData = new FormData();
@@ -174,7 +178,6 @@ export default {
 					headers: { "Content-Type": "multipart/form-data" }
 				})
 				.then(response => {
-					console.log(response.data);
 					if (savingType === "manual") {
 						this.$store.dispatch("fullScreenNotification");
 					} else {
@@ -185,7 +188,6 @@ export default {
 				})
 				.catch(error => {
 					if (typeof error.response.data === "object") {
-						console.log(error.response.data.errors);
 						this.errors = error.response.data.errors;
 					} else {
 						this.errors = "Something went wrong. Please try again.";
@@ -209,7 +211,6 @@ export default {
 				this.profile_pic_error = "";
 				this.applyEdit("auto");
 			} else {
-				console.log("error in pic");
 				this.profile_pic_error = "Incorrect file chosen!";
 			}
 		},
@@ -233,7 +234,19 @@ export default {
 		isEmail(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
+		},
+		setUserPreSelectedLanguages(){
+			this.selectedLanguages = this.$store.state.user.languages.map(a => a.id) ;
 		}
+	},
+	mounted() {
+		axios.get('/api/user/languages-list')
+				.then( (response) => {
+					this.defaultLanguages = response.data.data ;
+					this.defaultLanguages.sort((a,b)=> (a.label>b.label)*2-1);
+				}).then( () => {
+					this.setUserPreSelectedLanguages()
+				});
 	}
 };
 </script>

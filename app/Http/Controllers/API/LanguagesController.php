@@ -65,6 +65,15 @@ class LanguagesController extends Controller
         return $user->languages;
     }
 
+    public function syncLanguages(Request $request)
+    {
+        // attach a language to user:
+        $user= User::find($request->user_id);
+        $languagesID = $request->IDs;
+        $user->languages()->sync($languagesID);
+        return $user->languages;
+    }
+
 
     public function destroy($id,$user_id)
     {

@@ -550,6 +550,7 @@ $placeholder-color: #9ba1ad;
 }
 
 .my-account-tab-wrapper {
+  padding:50px 100px;
   .profile-pic-row-holder {
     height: 110px;
     width: 25%;

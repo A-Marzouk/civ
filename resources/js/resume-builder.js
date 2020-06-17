@@ -28,7 +28,7 @@ import ResumeBuilderEditCVSummary from './components/resume_builder/tabs/edit_ta
 import ResumeBuilderEditCVWorkExperience from './components/resume_builder/tabs/edit_tabs/WorkExperience'
 import ResumeBuilderEditCVEducation from './components/resume_builder/tabs/edit_tabs/Education'
 import ResumeBuilderEditCVSkills from './components/resume_builder/tabs/edit_tabs/Skills'
-import ResumeBuilderEditCVProjects from './components/resume_builder/tabs/edit_tabs/Projects'
+import ResumeBuilderEditCVPortfolio from './components/resume_builder/tabs/edit_tabs/Portfolio'
 import ResumeBuilderEditCVAchievement from './components/resume_builder/tabs/edit_tabs/Achievement'
 import ResumeBuilderEditCVHobbies from './components/resume_builder/tabs/edit_tabs/Hobbies'
 import ResumeBuilderEditCVAudioVideo from './components/resume_builder/tabs/edit_tabs/AudioVideo'
@@ -77,21 +77,8 @@ if ($("#resumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVSkills
                 },
                 {
-                    path: '/resume-builder/edit/projects',
-                    component: ResumeBuilderEditCVProjects,
-                    props: true,
-                    children: [
-                        {
-                            path:'',
-                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/ProjectsList.vue').default,
-                            props: true
-                        },
-                        {
-                            path:'/resume-builder/edit/projects/new',
-                            component: require('./components/resume_builder/tabs/edit_tabs/projects_views/NewProject.vue').default,
-                            props: true
-                        },
-                    ]
+                    path: '/resume-builder/edit/portfolio',
+                    component: ResumeBuilderEditCVPortfolio
                 },
                 {
                     path: '/resume-builder/edit/achievement',

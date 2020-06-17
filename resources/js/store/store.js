@@ -288,6 +288,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateWorks(state, works){
+            state.user.work_experience = works;
+            axios.post('/api/user/work-experience/update-order', {works : works})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
 

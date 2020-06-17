@@ -37,7 +37,10 @@ class PersonalInfo extends Model
         'is_phone_active',
 
         'about',
-        'is_about_active'
+        'is_about_active',
+
+        'overview',
+        'is_overview_active'
     ];
 
 

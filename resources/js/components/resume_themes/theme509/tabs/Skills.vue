@@ -1,6 +1,6 @@
 <template>
   <v-container v-if="currentTab === 4">
-    <v-row no-gutters justify="center" class="mt-10">
+    <v-row no-gutters justify="center" class="mt-10 pb-12">
       <v-col md="8" lg="10" cols="11">
         <v-tabs
           v-model="tab"

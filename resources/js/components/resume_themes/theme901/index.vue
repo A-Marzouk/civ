@@ -407,7 +407,8 @@ export default {
 </script>
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
-@import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap");
+/* MISSING FONT FAMILY! I COMMENTED IT BECAUSE IT IS CAUSING AN ERROR IN THE CONSOLE AND IT IS EVEN NOT LOADING*/
+/* @import url("https://fonts.googleapis.com/css?family=gotham-pro&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Lora&display=swap");
 #hold-theme901{
     max-width: 1920px;
