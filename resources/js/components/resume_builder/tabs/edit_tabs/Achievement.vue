@@ -1,10 +1,10 @@
 <template>
   <v-app>
     <v-card
-      class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-0 resume-builder__scroll reference-content"
+      class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-2 resume-builder__scroll reference-content"
       flat
     >
-      <v-container class>
+      <v-container class style="width:100%;">
         <v-form>
           <v-row>
             <v-col xl="6" lg="6" md="12" sm="12" cols="12">
@@ -44,7 +44,7 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-md-n8 mt-sm-n8 mt-n8">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8">
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
@@ -56,7 +56,7 @@
                     v-model="url"
                   ></v-text-field>
                 </v-col>
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-md-n8 mt-sm-n8 mt-n8">
+                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8">
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
