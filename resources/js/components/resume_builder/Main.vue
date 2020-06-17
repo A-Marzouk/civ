@@ -166,7 +166,7 @@ body.modal-open {
 	margin-right: auto;
 
 	@include gt-md {
-		max-width: #{$screen-lg-min};
+		max-width: #{$screen-xl-min};
 	}
 
 	@include gt-lg {
