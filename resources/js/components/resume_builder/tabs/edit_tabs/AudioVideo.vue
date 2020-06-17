@@ -5,7 +5,7 @@
         <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i">{{tabName}}</v-tab>
       </v-tabs>
       <v-card
-        class="card-main pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll main-content"
+        class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
         flat
         id="hobbiesContent"
       >
@@ -56,7 +56,7 @@
                 </v-row>
               </v-form>
               <v-row align="center" dense>
-                <v-col xl="5" lg="8" md="8" sm="12" cols="12">
+                <v-col xl="8" :lg="windowWidth<1440?'9':'8'" md="9" sm="12" cols="12">
                   <v-card class="card-holder pa-2 mb-3">
                     <v-row justify="center">
                       <v-col
@@ -82,7 +82,7 @@
                       >
                         <div class="vertical-line"></div>
                       </v-col>
-                      <v-col xl="7" lg="7" md="7" sm="6" cols="7" class="mt-n2 hidden-xs-only">
+                      <v-col xl="7" lg="7" md="7" :sm="windowWidth<=767?'6':'7'" cols="7" class="mt-n2 hidden-xs-only">
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
                           <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
@@ -121,7 +121,7 @@
                           </v-row>
                         </v-card>
                       </v-col>
-                      <v-col xl="3" lg="3" md="3" sm="4" cols="8" align="right" class="action-col">
+                      <v-col xl="3" lg="3" md="3" :sm="windowWidth<=767?'4':'3'" cols="8" align="right" class="action-col">
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -136,19 +136,17 @@
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
                           <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
-                              <v-btn icon small>
+                              <v-btn icon small class="btn-play">
                                 <img
                                   src="/images/new_resume_builder/icons/main/play.svg"
                                   alt="play_button"
                                   class="btn-play mt-n1"
-                                  width="20"
-                                  height="20"
                                 />
                               </v-btn>
                             </v-col>
                             <v-col cols="3" class="mt-1">
                               <v-card color="transparent" flat tile>
-                                <span class="audio-duration">0.00/0.15</span>
+                                <span class="audio-duration ml-n1">0.00/0.15</span>
                               </v-card>
                             </v-col>
                             <v-col cols="4" class="mt-1">
@@ -156,14 +154,13 @@
                             </v-col>
                             <v-col cols="3" class="mt-1">
                               <v-card color="transparent" flat tile>
-                                <v-btn icon small>
+                                <v-btn icon small class="btn-volume">
                                   <img
                                     src="/images/new_resume_builder/icons/main/volume-1.svg"
                                     alt="play_button"
-                                    class="btn-volume"
                                   />
                                 </v-btn>
-                                <v-btn icon small class="btn-small-v_bar">
+                                <v-btn icon small class="btn-small-v_bar ml-n2">
                                   <v-icon>mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-card>
@@ -403,6 +400,18 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.hidden-custom-mobile {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.hidden-custom-tablet-and-up {
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
+
 .main-content {
   height: 323px;
   background: #fff;
@@ -435,8 +444,13 @@ $mainBlue: #001ce2;
   .card-holder {
     box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
     height: 50px;
+    width: 523px;
+    @media screen and (max-width: 1903px) {
+      width: auto;
+    }
     @media screen and (max-width: 599px) {
       height: auto;
+      width: auto;
     }
     .btn-v_bar {
       min-width: 30px !important;
@@ -506,11 +520,7 @@ $mainBlue: #001ce2;
       }
       @media screen and(max-width: 599px) {
         margin-top: 0px;
-      }
-      @media screen and (max-width: 411px) {
         min-width: auto !important;
-      }
-      .btn-play {
       }
       .card-audio-row {
         @media screen and (min-width: 600px) and (max-width: 767px) {
@@ -523,21 +533,33 @@ $mainBlue: #001ce2;
         font-size: 14px !important;
         line-height: 14px;
         color: #888db1 !important;
-        @media screen and (max-width: 411px) {
+        @media screen and (max-width: 599px) {
           font-size: 12px !important;
         }
         @media screen and (max-width: 376px) {
           font-size: 10px !important;
         }
       }
+      .btn-play {
+        width: 20px;
+        height: 20px;
+        @media screen and (max-width: 599px) {
+          width: 14px;
+          height: 14px;
+        }
+      }
+      .btn-volume {
+        @media screen and (max-width: 391px) {
+          margin-left: -6px;
+        }
+      }
       .btn-small-v_bar {
         @media screen and(max-width: 411px) {
-          margin-left: -10px;
+          margin-left: -12px !important;
         }
         @media screen and(max-width: 370px) {
-          margin-left: -14px;
+          margin-left: -14px !important;
         }
-
       }
     }
   }

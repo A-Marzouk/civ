@@ -68,7 +68,7 @@
 				</div>
 
 				<div class="profile-input-field input-field--languages input-field--group-2">
-					<v-select class="resume-builder__input  profile-input multiple-selection civie-select" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
+					<v-select class="resume-builder__input  profile-input civie-select multiple-selection" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
 						<button class="dropdown-icon icon" slot="append">
 							<svg-vue :icon="`dropdown-caret`"></svg-vue>
 						</button>
@@ -121,7 +121,7 @@ export default {
 			savingType: "manual",
 			menu: false,
 			defaultLanguages: [],
-			selectedLanguages: [],
+			selectedLanguages: this.$store.state.user.languages.map(a => a.id),
 		};
 	},
 	computed: {
@@ -131,6 +131,7 @@ export default {
 		languages() {
 			let userLanguages = this.$store.state.user.languages.map(a => a.id);
 			this.selectedLanguages = userLanguages;
+			return userLanguages;
 		},
 		user() {
 			return this.$store.state.user;
@@ -183,7 +184,6 @@ export default {
 					headers: { "Content-Type": "multipart/form-data" }
 				})
 				.then(response => {
-					console.log(response.data);
 					if (savingType === "manual") {
 						this.$store.dispatch("fullScreenNotification");
 					} else {
@@ -194,7 +194,6 @@ export default {
 				})
 				.catch(error => {
 					if (typeof error.response.data === "object") {
-						console.log(error.response.data.errors);
 						this.errors = error.response.data.errors;
 					} else {
 						this.errors = "Something went wrong. Please try again.";
@@ -218,7 +217,6 @@ export default {
 				this.profile_pic_error = "";
 				this.applyEdit("auto");
 			} else {
-				console.log("error in pic");
 				this.profile_pic_error = "Incorrect file chosen!";
 			}
 		},
@@ -251,7 +249,7 @@ export default {
 					this.defaultLanguages.sort((a,b)=> (a.label>b.label)*2-1);
 				})
 				.catch( (error) => {
-					console.log(error)
+
 				});
 	}
 };
