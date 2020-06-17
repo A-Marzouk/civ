@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "./../scss/variables";
+@import "./../../scss/variables";
 
 .modal-component__wrapper {
 	position: fixed;
@@ -82,12 +82,10 @@ export default {
 			}
 		}
 	}
-}
 
-@media (min-width: $md) {
-	.modal-component__wrapper {
+	@include md {
 		.modal-component {
-			width: 100%;
+			width: 95%;
 
 			.modal-component__header {
 				height: 60px;
@@ -99,12 +97,10 @@ export default {
 			}
 		}
 	}
-}
 
-@media (min-width: $lg) {
-	.modal-component__wrapper {
+	@include lg {
 		.modal-component {
-			max-width: 1024px;
+			max-width: $lg;
 
 			.modal-component__header {
 				height: 55px;

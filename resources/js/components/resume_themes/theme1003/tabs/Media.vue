@@ -172,7 +172,7 @@ export default {
 	}
 
 	@include xl {
-		max-width: $xl;
+		max-width: calc(#{$xl} - 30px);
 		padding-bottom: 75px;
 
 		.media_outer {

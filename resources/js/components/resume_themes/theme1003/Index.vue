@@ -1,17 +1,13 @@
 <template>
 	<div id="wrapper_theme1003" class="tw-w-full tw-bg-white tw-font-roboto">
-		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @openSidebar="isSidebarOpen=true" @openPaymentModal="openPaymentModal" />
-
-		<Sidebar :isOpen="isSidebarOpen" :currentUser="currentUser" @onClose="isSidebarOpen=false" @openPaymentModal="openPaymentModal" />
+		<Header :currentTab="currentTab" :currentUser="currentUser" @tabChanged="currentTab=$event" @showModal="showModal" />
 
 		<TabsContent :currentTab="currentTab" />
 
-		<Modal :isOpen="isPaymentModalOpen" @onClose="isPaymentModalOpen=false">
-			<PaymentForm @openPaymentSuccessModal="openPaymentSuccessModal" />
-		</Modal>
-
-		<Modal :isOpen="isPaymentSuccessModalOpen" @onClose="isPaymentSuccessModalOpen=false">
-			<PaymentSuccessMessage />
+		<Modal :isOpen="isModalOpen" @onClose="isModalOpen=false">
+			<keep-alive>
+				<component @showModal="showModal" :is="currentModal"></component>
+			</keep-alive>
 		</Modal>
 	</div>
 </template>
@@ -19,10 +15,11 @@
 <script>
 import Header from "./components/Header";
 import TabsContent from "./components/TabsContent";
-import Sidebar from "./components/Sidebar";
-import Modal from "./components/Modal";
-import PaymentForm from "./components/PaymentForm";
-import PaymentSuccessMessage from "./components/PaymentSuccessMessage";
+import Modal from "./components/modals/Modal";
+import PaymentMethods from "./components/modals/PaymentMethods";
+import PaymentSuccessMessage from "./components/modals/PaymentSuccessMessage";
+import PaypalPaymentForm from "./components/modals/PaypalPaymentForm";
+import StripePaymentForm from "./components/modals/StripePaymentForm";
 
 export default {
 	name: "resume-theme-1003",
@@ -30,16 +27,16 @@ export default {
 	components: {
 		Header,
 		TabsContent,
-		Sidebar,
 		Modal,
-		PaymentForm,
-		PaymentSuccessMessage
+		PaymentMethods,
+		PaymentSuccessMessage,
+		PaypalPaymentForm,
+		StripePaymentForm
 	},
 
 	data: () => {
 		return {
 			currentTab: "portfolio",
-			currentTab: "about-me",
 			currentUser: {
 				avatar: "/images/resume_themes/theme1003/avatar.png",
 				fullname: "Lorem campbell",
@@ -49,15 +46,23 @@ export default {
 				hourRate: 20,
 				weeklyAvailability: 250
 			},
-			isSidebarOpen: false,
 			isPaymentModalOpen: false,
-			isPaymentSuccessModalOpen: false
+			isPaymentSuccessModalOpen: false,
+
+			currentModal: "PaymentForm",
+			isModalOpen: false
 		};
 	},
 
 	methods: {
+		showModal(currentModal) {
+			console.log("showModal", currentModal);
+
+			this.isModalOpen = true;
+			this.currentModal = currentModal;
+		},
+
 		openPaymentModal() {
-			if (this.isSidebarOpen) this.isSidebarOpen = false;
 			this.isPaymentModalOpen = true;
 		},
 
