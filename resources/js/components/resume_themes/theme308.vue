@@ -2,12 +2,12 @@
     <v-app style="width: 100%">
         <v-container style="max-width: 1920px;" class="hold_theme308">
             <v-row no-gutters class="wrap-head">
-                <v-col lg="12" md="12" class="top-options">
+                <v-col lg="12" md="12" sm="12" class="top-options">
                     <span class="init-title">My portfolio</span>
                     <a href=""><v-img width="24" src="/images/resume_themes/theme308/icons/start-chat.svg"></v-img>Start a Chat!</a>
                     <a href=""><v-img width="18.5" height="15.8" src="/images/resume_themes/theme308/icons/suitcase.svg"></v-img>Upload Interviews</a>
                 </v-col>
-                <v-col lg="6" md="6">
+                <v-col lg="6" md="6" sm="6">
                     <v-card flat class="name-line">
                         I Am Rosalina Karen Product designer
                     </v-card>
@@ -27,10 +27,53 @@
                         </v-row>
                     </v-card>
                 </v-col>
-                <v-col lg="6" md="6" class="icon-avatar">
+                <v-col lg="6" md="6" sm="6" class="icon-avatar">
                     <v-avatar size="405">
                         <v-img src="/images/resume_themes/theme308/profile.png"></v-img>
                     </v-avatar>
+                </v-col>
+               
+
+            </v-row>
+            <v-row no-gutters class="wrap-head_mob">
+                <v-col sm="12">
+                    <div class="wrap-top_mob">
+                        <div class="info-user">
+                            <v-avatar size="50">
+                                <v-img src="/images/resume_themes/theme308/profile.png"></v-img>
+                            </v-avatar>
+                            <v-card flat>
+                                <span class="name_mob">
+                                    Rosalina Karen
+                                </span>
+                                <span class="profile_mob">
+                                    Product designer
+                                </span>
+                            </v-card>
+                        </div>
+                        <div class="more-options">
+                            <v-img class="open-over" @click.prevent="show_overmenu = !show_overmenu" src="/images/resume_themes/theme308/icons/more-options.svg"></v-img>
+                            <div class="over_menu" :class="{show: show_overmenu}">
+                                <a href="#"><v-img src="/images/resume_themes/theme308/icons/init-chat.svg"></v-img>Start A Chat!</a>
+                                <a href="#"><v-img src="/images/resume_themes/theme308/icons/suitcase-gray.svg"></v-img>Upload Interviews</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-bottom_mob">
+                        <v-row class="hire-info" no-gutters>
+                            <v-col class="item-hire">
+                                <span class="amount">$45</span>
+                                <span class="name-hire">Hourly Rate</span>
+                            </v-col>
+                            <v-col class="item-hire">
+                                <span class="amount">45 Hr</span>
+                                <span class="name-hire">Weekly Avaibility</span>
+                            </v-col>
+                            <v-col class="action-hireme">
+                                <v-btn text class="btn-hire"><v-img max-width="19" height="21" class="mr-2" src="/images/resume_themes/theme308/icons/avatar.svg"></v-img> Hire me</v-btn>
+                            </v-col>
+                        </v-row>
+                    </div>
                 </v-col>
             </v-row>
             <v-row no-gutters class="wrap-tabs">
@@ -54,7 +97,7 @@
                         <v-tab-item>
                             <v-container class="portfolio-section">
                                 <v-row no-gutters>
-                                    <v-col lg="12" md="12">
+                                    <v-col lg="12" md="12" sm="12" class="d-none d-sm-flex">
                                         <h3 class="title-section">
                                             <span class="title-subhead">
                                                 Illustration
@@ -62,11 +105,11 @@
                                             <span class="line-h"></span>
                                         </h3>
                                     </v-col>
-                                    <v-col lg="12" md="12" class="box-items">
+                                    <v-col lg="12" md="12" sm="12" cols="12" class="box-items">
                                         <v-btn text class="next-lnk" @click="nextSlide('sl_i')">Next <v-img width="11.12" height="18" src="/images/resume_themes/theme308/icons/arrow-right.svg"></v-img></v-btn>
                                         <slick ref="slick_i" :options="slickOptions">
                                             <div v-for="i in [1,2,3,4,5,6]" :key="i" class="item">
-                                                <v-img :src="`/images/resume_themes/theme308/cap${i+1}.png`"></v-img>
+                                                <v-img :src="`/images/resume_themes/theme308/cap${i}.png`"></v-img>
                                                 <span class="category">Web design</span>
                                                 <span class="name-item">Happily.you Mobile Application</span>
                                             </div>
@@ -74,42 +117,17 @@
                                         </slick>
                                     </v-col>                                    
                                    
-                                    <v-col lg="12" md="12">
+                                    <v-col lg="12" md="12" sm="12" class="d-none d-sm-flex">
                                         <h3 class="title-section">
                                             <span class="title-subhead">Product Design</span>
                                             <span class="line-h"></span>
                                         </h3>
                                     </v-col>  
-                                    <v-col lg="12" md="12" class="box-items">
+                                    <v-col lg="12" md="12" sm="12" cols="12" class="box-items">
                                         <v-btn text class="next-lnk" @click="nextSlide('sl_p')">Next <v-img width="11.12" height="18" src="/images/resume_themes/theme308/icons/arrow-right.svg"></v-img></v-btn>
                                         <slick ref="slick_p" :options="slickOptions">
-                                            <div class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap4.png"></v-img>
-                                                <span class="category">Web design</span>
-                                                <span class="name-item">Happily.you Mobile Application</span>
-                                            </div>
-                                            <div class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap5.png"></v-img>
-                                                <span class="category">Web design</span>
-                                                <span class="name-item">Happily.you Mobile Application</span>
-                                            </div>
-                                            <div class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap6.png"></v-img>
-                                                <span class="category">Web design</span>
-                                                <span class="name-item">Happily.you Mobile Application</span>
-                                            </div>
-                                            <div class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap4.png"></v-img>
-                                                <span class="category">Web design</span>
-                                                <span class="name-item">Happily.you Mobile Application</span>
-                                            </div>
-                                            <div class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap5.png"></v-img>
-                                                <span class="category">Web design</span>
-                                                <span class="name-item">Happily.you Mobile Application</span>
-                                            </div>
-                                            <div class="item">
-                                                <v-img src="/images/resume_themes/theme308/cap6.png"></v-img>
+                                            <div v-for="i in [1,2,3,4,5,6]" :key="i" class="item">
+                                                <v-img :src="`/images/resume_themes/theme308/cap${i}.png`"></v-img>
                                                 <span class="category">Web design</span>
                                                 <span class="name-item">Happily.you Mobile Application</span>
                                             </div>
@@ -121,7 +139,7 @@
                         <v-tab-item>
                            <v-container class="work-section">
                                 <v-row no-gutters class="content-text">
-                                    <v-col lg="4" md="4" class="item-text">
+                                    <v-col lg="4" md="4" sm="12" class="item-text">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/suitcase-red.svg"></v-img>
@@ -140,7 +158,7 @@
                                         </v-card>
                       
                                     </v-col>
-                                    <v-col lg="4" md="4" class="item-text centered">
+                                    <v-col lg="4" md="4" sm="12" class="item-text centered">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/suitcase-white.svg"></v-img>
@@ -159,7 +177,7 @@
                                         </v-card>
                       
                                     </v-col>
-                                    <v-col lg="4" md="4" class="item-text">
+                                    <v-col lg="4" md="4" sm="12" class="item-text">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/suitcase-red.svg"></v-img>
@@ -178,7 +196,7 @@
                                         </v-card>
                       
                                     </v-col>
-                                    <v-col lg="4" md="4" class="item-text">
+                                    <v-col lg="4" md="4" sm="12" class="item-text">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/suitcase-red.svg"></v-img>
@@ -197,7 +215,7 @@
                                         </v-card>
                       
                                     </v-col>
-                                    <v-col lg="4" md="4" class="item-text">
+                                    <v-col lg="4" md="4" sm="12" class="item-text">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/suitcase-red.svg"></v-img>
@@ -222,7 +240,7 @@
                         <v-tab-item>
                             <v-container class="education-section">
                                 <v-row no-gutters class="content-text">
-                                    <v-col lg="4" class="item-text">
+                                    <v-col lg="4" md="4" sm="12" class="item-text">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/cap-red.svg"></v-img>
@@ -239,7 +257,7 @@
                                             </p>
                                         </v-card>                      
                                     </v-col>
-                                    <v-col lg="4" class="item-text centered">
+                                    <v-col lg="4" md="4" sm="12" class="item-text centered">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/cap-white.svg"></v-img>
@@ -257,7 +275,7 @@
                                         </v-card>
                       
                                     </v-col>
-                                    <v-col lg="4" class="item-text">
+                                    <v-col lg="4" md="4" sm="12" class="item-text">
                                         <v-card flat>
                                             <div class="hold-category">
                                                 <v-img src="/images/resume_themes/theme308/icons/cap-red.svg"></v-img>
@@ -282,7 +300,7 @@
                         <v-tab-item>
                             <v-container class="skill-section">
                                 <v-row no-gutters>
-                                    <v-col xl="3" v-for="(item_skill,i) in skill_values" :key="i" class="skill-item">
+                                    <v-col xl="3" lg="4" md="4" sm="5" cols="12" v-for="(item_skill,i) in skill_values" :key="i" class="skill-item">
                                         <v-card flat class="skill-box">
                                             <div class="percent-skill">
                                                 <span class="value-percent" :style="{ 'height': item_skill+'%' }" ></span>
@@ -300,10 +318,10 @@
                         <v-tab-item>
                             <v-container class="about-section">
                                 <v-row no-gutters>
-                                    <v-col xl="5">
-                                        <v-img max-width="662" src="/images/resume_themes/theme308/caption-about.svg"></v-img>
+                                    <v-col xl="5" lg="4" md="4" sm="4" cols="12" >
+                                        <v-img max-width="662" class="caption_about" src="/images/resume_themes/theme308/caption-about.svg"></v-img>
                                     </v-col>
-                                    <v-col xl="4" class="about-content">
+                                    <v-col xl="4" lg="6" md="4" sm="5" cols="12"  class="about-content">
                                         <span class="subtitle">About me</span>
                                         <h2>Designing WithThe  Passion While.</h2>
                                         <span class="note">I work to create innovative solutions that inspire, and foster memorable relationships between brands and their clients. With </span>
@@ -311,7 +329,7 @@
                                         I work to create innovative solutions that inspire, and foster memorable relationships between brands and their clients. With a focus on branding and UI / Web, I strive to create usable and polished products through passionate and deliberate designI work t
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam repudiandae, nemo adipisci quo id repellendus vitae, illum beatae qui facilis necessitatibus nesciunt maiores reiciendis ea ipsa quisquam incidunt cum rem quaerat ullam? Illo, doloribus asperiores iusto ullam iste perferendis laborum facere corrupti quidem aspernatur minus amet eaque voluptatibus beatae alias!</p>
                                     </v-col>
-                                    <v-col xl="3" class="about-contact">
+                                    <v-col xl="3" lg="2" md="3" sm="3" cols="12" class="about-contact">
                                         <v-list two-line subheader flat tile>
                                             <v-list-item>
                                                 <v-list-item-avatar size="72" class="fullname">
@@ -392,37 +410,20 @@ export default {
                 dots: false,
                 swipe: true,
                 speed: 500,
-                // responsive: [
-                //     {
-                //         breakpoint: 786,
-                //         settings: {
-                //             slidesToShow: 2,
-                //             slidesToScroll: 1,
-                //             variableWidth: false,
-                //             vertical: true,
-                //             verticalSwiping: true,
-                //             infinite: true
-                //         }
-                //     },
-                //     {
-                //         breakpoint: 480,
-                //         settings: {
-                //             slidesToShow: 3,
-                //             slidesToScroll: 1,
-                //             variableWidth: false,
-                //             vertical: true,
-                //             verticalSwiping: true,
-                //             infinite: true
-                //         }
-                //     }
-                // ]
+                responsive: [
+                    {
+                        breakpoint: 480,
+                        settings: "unslick"
+                    }
+                ]
             },
             skill_values: {
                 skill_a: 90,
                 skill_b: 45,
                 skill_c: 70,
                 skill_d: 65
-            }
+            },
+            show_overmenu: false
         }
     },
     methods: {
@@ -460,6 +461,17 @@ export default {
 
         @include lt-lg {
             padding: 21px 0px;
+        }
+
+        @media (max-width: 800px){
+            background-size: 41%;
+        }
+
+        @media (max-width: 500px){
+            background: url('/images/resume_themes/theme308/bg-lines.svg') top center no-repeat;
+            background-color: #FD6562;
+            background-size: contain;
+            padding:0;
         }
 
         .m-end{
@@ -523,6 +535,150 @@ export default {
             @include lt-lg {
                 padding: 0px 51px;
             }
+
+            @media (max-width: 500px){
+                display: none;
+            }
+        }
+
+        .wrap-head_mob{
+
+            width: 100%;
+            display: block;
+            padding: 50px 6% 24px 5%;
+
+            .wrap-top_mob{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                .info-user{
+                    max-width: 220px;
+                    display: flex;
+
+                    .v-card{
+
+                        display: flex;
+                        flex-flow: column;
+                        margin-left: 12px;
+                        padding-top: 5px;
+
+                        .name_mob{
+                            font-family: "Muli";
+                            font-size: 12px;
+                            font-weight: bold;
+                            line-height: 16px;
+                            color: #fff;
+                            letter-spacing: 0;
+                        }
+
+                        .profile_mob{
+                            font-family: "Muli";
+                            font-size: 10px;
+                            font-weight: normal;
+                            line-height: 15px;
+                            color: #fff;
+                            letter-spacing: 0;
+                        }
+
+                    }
+
+                }
+
+                .more-options{
+                    position: relative;
+
+                    .open-over{
+                        width: 22px;
+                        height: 20px;
+                    }
+
+                    .over_menu{
+                        position: absolute;
+                        background: #fff;
+                        min-width: 90vw;
+                        max-width: 400px;
+                        min-height: 171px;
+                        padding: 0 40px;
+                        top: -250px;
+                        transition: all ease-in 0.3s;
+                        opacity: 0;
+                        right: 2%;
+                        z-index: 10;
+                        border: 0;
+                        border-radius: 25px;
+                        box-shadow: 0px 30px 30px rgba(16, 44, 44, 0.1);
+                        display: flex;
+                        flex-flow: column;
+                        align-items: flex-start;
+                        justify-content: space-evenly;
+
+                        &.show{
+                            opacity: 1;
+                            top: 35px;
+                        }
+
+                        a{
+                            font-family: "Muli";
+                            font-size: 18px;
+                            font-weight: normal;
+                            line-height: 23px;
+                            color: #28404A;
+                            display: inline-flex;
+
+                            .v-image{
+                                width: 24px;
+                                height: 24px;
+                                margin-right: 9px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .wrap-bottom_mob{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+
+                .hire-info{
+                    margin: 0;
+                    padding-left: 20%;
+
+                    .item-hire{
+                        max-width: 65px;
+
+                        .amount{
+                            font-family: 'Muli';
+                            font-weight: bold;
+                            font-size: 15px;
+                            color: #FFF2F2;
+                        }
+                        .name-hire{
+                            font-family: 'Muli';
+                            font-weight: normal;
+                            font-size: 8px;
+                            color: #FFF2F2;
+                        }
+                    }
+
+                    .action-hireme{
+                        justify-content: flex-end;
+                        max-width: 100%; 
+
+                        .btn-hire{
+                            width: 100px;
+                            height: 39px !important;
+                            font-size: 10px;
+                        }
+                    }
+                }
+            }
+
+
+            @media (min-width: 500px){
+                display: none;
+            }
         }
         .wrap-tabs{
             padding: 0 0px;
@@ -570,6 +726,39 @@ export default {
                         font-size: 10px;
                     }
                 }
+            }
+
+            @media (max-width: 1200px){
+                .v-tabs{
+                    padding: 0 26px;
+
+                    
+                }
+            }
+
+            @media (max-width: 500px){
+                background: #FFF2F2;
+                border-top-left-radius: 38px;
+                border-top-right-radius: 38px;
+                height: 100%;
+
+                .v-tabs{
+
+                    height: 36px;
+                    padding: 0px 15px;
+                    margin-top: 46px;
+                    margin-bottom: 35px;
+
+                    .v-tab{
+                        font-size: 13px;
+                        font-family: "Muli";
+                        min-width: 102px;
+                        margin: 0px;
+                        padding: 0 15px;
+                    }
+                }
+
+
             }
 
         }
@@ -673,6 +862,16 @@ export default {
             background-color: transparent;
             padding: 0px;
             margin: 70px auto 150px auto;
+
+            @media (max-width: 1200px){
+                margin: 40px auto;
+            }
+
+            @media (max-width: 500px){
+                margin: 10px auto;
+            }
+
+
         }
 
         .btn-hire{
@@ -682,7 +881,7 @@ export default {
             font-family: 'Muli';
             font-weight: bold;
             width: 219px;
-            height: 68px;
+            height: 68px !important;
             text-transform: capitalize;
             border-radius: 9px;
             letter-spacing: 0;
@@ -692,7 +891,7 @@ export default {
 
             @include lt-lg{
                 width: 117.6px;
-                height: 36.5px;
+                height: 36.5px !important;
                 font-size: 9px;
 
                 .v-image{
@@ -713,6 +912,10 @@ export default {
                 justify-content: space-between;
                 align-items: center;
                 display: flex;
+
+                @media (max-width: 500px){
+                    display: none;
+                }
 
                 .title-subhead{
                     width: auto;
@@ -746,6 +949,18 @@ export default {
                 margin-bottom: 95px;
 
 
+                @media (max-width: 1200px){
+                    margin-top: 24.7px;
+                    margin-bottom: 52.3px;
+                }
+
+                @media (max-width: 500px){
+                    justify-content: center;
+                    overflow: hidden;
+                }
+
+
+
 
                 .next-lnk{
                     position: absolute;
@@ -770,9 +985,30 @@ export default {
 
                         .v-image{
                             margin-left: 5px;
+                            height: 10px !important;
+                            width: 5px !important;
+                            max-width: 5px;
+                            margin-top: 2px;
                         }
                     }
 
+                    @media (max-width: 500px) {
+                        display: none;
+                    }
+
+                }
+
+                .item{
+
+                    @media (max-width: 500px){
+                        max-width: 100%;
+                        margin: 0px auto 34px auto;
+
+                        .v-image{
+                            max-width: 100%;
+                        }
+                    }
+                    
                 }
             }
 
@@ -791,6 +1027,7 @@ export default {
 
                     @media (max-width: 1200px) {
                         font-size: 7px;
+                        margin-top: 13.7px;
                     }
                 }
                 .name-item{
@@ -920,6 +1157,11 @@ export default {
                         line-height: 24px;
                         letter-spacing: 0px;
                         margin: 16.9px 0 19px 0;
+
+                        @media (max-width: 1200px) {
+                            font-size: 9px;
+                            line-height: 13px;
+                        }
                     }
 
                     .work-description{
@@ -928,11 +1170,29 @@ export default {
                         font-size: 17px;
                         line-height: 27px;
                         color: #5F7389;
+
+                        @media (max-width: 1200px) {
+                            font-size: 14px;
+                            line-height: 17px;
+                        }
                     }
 
                     
 
                     
+                }
+
+                @media (max-width: 1200px){
+                    margin: 0px 10px 40px 10px;
+                }
+
+                @media (max-width: 800px){
+                    margin: 0px 10px 40px 10px !important;
+                }
+
+                @media (max-width: 500px){
+                    max-width: 85% !important;
+                    margin: 0px auto 56px auto !important;
                 }
             }
 
@@ -965,14 +1225,33 @@ export default {
                     }
                 }
             }
+
+            @media (max-width: 800px){
+                padding: 0 5%;
+            }
+
+            @media (max-width: 500px){
+                padding: 0;
+            }
+
+
         }
 
         .skill-section{
             padding: 0 3%;
 
+            @media (max-width: 800px){
+                padding: 0 6%;
+            }
+
             .skill-item{
                 margin: 0 6% 0 0;
                 max-width: 230px;
+
+                @media (max-width: 1200px){
+                    margin: 0 0 50px 0;
+                }
+
             }
 
             .skill-box{
@@ -993,6 +1272,13 @@ export default {
                         position: absolute;
                         bottom: 0px;
                     }
+
+                    @media (max-width: 1200px){
+                        height: 129px;
+                        width: 5px;
+                    }
+
+
                 }
 
                 .info-skill{
@@ -1014,6 +1300,18 @@ export default {
                             vertical-align: baseline;
                             color: #FD6562;;
                         }
+
+                        @media (max-width: 1200px){
+                            font-size: 82px;
+                            line-height: 100px;
+                            margin-bottom: 0px;
+
+                            &::after{
+                                font-size: 16px;
+                                line-height: 22px;
+                            }
+
+                        }
                     }
                     .name-skill{
                         font-family: 'PT Serif';
@@ -1021,6 +1319,10 @@ export default {
                         line-height: 20px;
                         font-weight: bold;
                         color: #011B38;
+
+                        @media (max-width: 1200px){
+                            font-size: 12px;
+                        }
                     }
                     .name-company{
                         font-family: 'PT Serif';
@@ -1028,20 +1330,99 @@ export default {
                         line-height: 25px;
                         font-weight: normal;
                         color: #72869B;
+
+                        @media (max-width: 1200px){
+                            font-size: 12px;
+                            line-height: 13px;
+                        }
                     }
                 }
             }
+
+            @media (max-width: 500px){
+
+                max-width: 280px;
+
+
+                div{
+                    &.row{
+                        display: flex;
+                        justify-content: space-around;
+
+                        .skill-item{
+                            max-width: 40%;
+                            margin: 0 0 40px 0;
+                        }
+                    }
+                }
+
+                .skill-box{
+
+                    .percent-skill{
+                        width: 4px;
+                        height: 92px;
+                    }
+                    .info-skill{
+                        .value{
+                            font-size: 59px;
+                            line-height: 81px;
+
+                        }
+
+                        .name-skill{
+                            font-size: 8px;
+                            line-height: 10px;
+                        }
+                        .name-company{
+                            font-size: 8px;
+                            line-height: 10px;
+                        }
+                    }
+                }
+
+
+            }
+
+
+
         }
 
         .about-section{
             padding: 0;
 
+            .caption_about{
+
+
+                @media (max-width: 1200px){
+                    max-width: 309px !important;
+                    margin: 0 10%;
+                }
+            }
+
             .about-content{
+
+                @media (max-width: 1200px){
+                    margin-left: 5%;
+                }
+
+                @media (max-width: 800px){
+                    margin-left: 0px;
+                }
+
+                @media (max-width: 500px){
+                    margin: 0px auto;
+                    max-width: 300px;
+                }
+
                 .subtitle{
                     font-family: 'PT Serif';
                     font-size: 16px;
                     font-weight: normal;
                     color: #FD6562;
+
+                    @media (max-width: 1200px){
+                        font-size: 7px;
+                    }
                 }
                 h2{
                     font-family: 'PT Serif';
@@ -1049,6 +1430,12 @@ export default {
                     line-height: 67px;
                     font-weight: bold;
                     color: #011B38;
+
+                    @media (max-width: 1200px){
+                        font-size: 25px;
+                        line-height: 30px;
+                    }
+
                 }
                 .note{
                     background: url(/images/resume_themes/theme308/cite-bg.svg) no-repeat;
@@ -1063,6 +1450,15 @@ export default {
                     max-height: 49px;
                     display: inline-block;
                     background-size: 40px;
+
+                    @media (max-width: 1200px){
+                        font-size: 13px;
+                        line-height: 17px;
+                        max-height: 100%;
+                        background-size: 13px;
+                        margin: 20px auto;
+                        padding-left: 20px;
+                    }
                 }
                 p{
                     font-family: 'Muli';
@@ -1070,6 +1466,12 @@ export default {
                     line-height: 27px;
                     font-weight: normal;
                     color: #5F7389;
+
+                    @media (max-width: 1200px){
+                        font-size: 13px;
+                        line-height: 17px;
+                    }
+
                 }
             }
             .about-contact{
@@ -1077,30 +1479,113 @@ export default {
                 justify-content: flex-end;
                 padding-top: 75px;
 
+                @media (max-width: 800px){
+                    justify-content: center;
+                }
+
+                @media (max-width: 500px){
+                    display: flex;
+                    justify-content: center;
+                    padding: 3% 0px 2% 0px;
+                    height: auto;
+                    background: #FD6562;
+                    bottom: 0px;
+                    position: fixed;
+                }
+
+                
+
                 .v-list{
                     background-color: transparent;
                     max-width: 62%;
+
+                    @media (max-width: 1200px){
+                        max-width: 58%;
+                    }
+
+                    @media (max-width: 800px){
+                        max-width: 85%;
+                    }
+
+                    @media (max-width: 500px){
+                        max-width: 85%;
+                        display: flex;
+                        flex-flow: wrap;
+                        justify-content: space-between;
+                    }
 
                     .v-list-item{
                         padding: 0;
                         margin-bottom: 50px;
 
+                        @media (max-width: 1200px){
+                            margin-bottom: 20px;
+                        }
+                        @media (max-width: 800px){
+                            margin-bottom: 12px;
+                            min-height: 50px;
+                        }
+
+                        @media (max-width: 500px){
+                            margin-bottom: 8px;
+                            max-width: 50%;
+                        }
+
                         .v-avatar{
 
                             margin: 0 19px 0 0;
 
+                            @media (max-width: 1200px){
+                                width: 41px !important;
+                                height: 41px !important;
+                                min-width: 41px !important;
+                                margin: 0 10px 0 0;
+                            }
+
                             &.fullname{
-                                    background: #fff;
+                                background: #fff;
+
+                                .v-image{
+
+
+                                    @media (max-width: 1200px){
+                                        max-width: 13.5px !important;
+                                    }
+                                }
                             }
                             &.phone{
                                 background: #22D2C1;
+
+                                .v-image{
+
+
+                                    @media (max-width: 1200px){
+                                        max-width: 15.6px !important;
+                                    }
+                                }
                             }
                             &.website{
                                 background: #0524AD;
+
+                                .v-image{
+
+
+                                    @media (max-width: 1200px){
+                                        max-width: 13.8px !important;
+                                    }
+                                }
                             }
                             &.email{
                                 background: #FEAC29;
-                            }
+
+                                .v-image{
+
+
+                                    @media (max-width: 1200px){
+                                        max-width: 15.9px !important;
+                                    }
+                                }
+                            } 
                         }
 
                         .v-list-item__content{
@@ -1110,12 +1595,21 @@ export default {
                                 font-weight: bold;
                                 margin-bottom: 10px;
                                 color: #fff;
+
+                                @media (max-width: 1200px){
+                                    font-size: 14px;
+                                }
+
                             }
                             .v-list-item__subtitle{
                                 font-family: 'PT Serif';
                                 font-size: 16px;
                                 font-weight: normal;
                                 color: #fff;
+
+                                @media (max-width: 1200px){
+                                    font-size: 9px;
+                                }
                             }
                         }
                     }
@@ -1123,6 +1617,11 @@ export default {
                     
                 }
             }
+
+            @media (max-width: 1200px){
+                max-width: 100%;
+            }
+
         }
 
         
@@ -1146,6 +1645,12 @@ export default {
                         .v-image{
                             width: 9.8px;
                             height: 18.3px;
+                            
+                            @media (max-width: 1200px){
+                                width: 5.2px;
+                                height: 9.8px;
+                            }
+
                         }
                         
                     }
@@ -1154,6 +1659,11 @@ export default {
                         .v-image{
                             width: 16.0px;
                             height: 16.0px;
+
+                            @media (max-width: 1200px){
+                                width: 8.6px;
+                                height: 8.6px;
+                            }
                         }
                         
                     }
@@ -1162,6 +1672,11 @@ export default {
                         .v-image{
                             width: 20.59px;
                             height: 12.91px;
+
+                            @media (max-width: 1200px){
+                                width: 11px;
+                                height: 6.9px;
+                            }
                         }
                         
                     }
@@ -1170,6 +1685,11 @@ export default {
                         .v-image{
                             width: 18.3px;
                             height: 14.86px;
+
+                            @media (max-width: 1200px){
+                                width: 9.8px;
+                                height: 7.9px;
+                            }
                         }
                         
                     }
@@ -1178,11 +1698,31 @@ export default {
                         .v-image{
                             width: 17.73px;
                             height: 17.73px;
+
+                            @media (max-width: 1200px){
+                                width: 9.5px;
+                                height: 9.5px;
+                            }
                         }
                         
                     }
+
+                    @media (max-width: 1200px){
+                        margin: 0 10.3px;
+                    }
                 }
             }
+
+            @media (max-width: 1200px){
+                height: 34px !important;
+            }
+
+            @media (max-width: 500px){
+                max-width: 85%;
+                display: none;
+            }
+
+
         }
     }
 </style>
