@@ -898,13 +898,14 @@
                 display: flex;
 
                 .left{
-                    width: 60%;
+                    max-width: 775px;
                     display: flex;
                     flex-wrap: wrap;
 
                     .date-group {
                         display: flex;
                         justify-content: space-between;
+                        margin-top: 28px;
 
                         @include lt-lg {
 
@@ -983,7 +984,7 @@
                             }
 
                             input {
-                                height: 56px;
+                                height: 50px;
                                 border: 2px solid #C4C9F5 !important;
                                 border-radius: 10px;
                                 opacity: 1;
@@ -1036,7 +1037,6 @@
             .civie-input {
                 max-width: 350px;
                 min-width: 300px;
-                margin-bottom: 20px;
                 margin-right: 30px;
             }
             .civie-textarea{
