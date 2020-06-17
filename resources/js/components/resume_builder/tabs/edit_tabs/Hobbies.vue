@@ -374,7 +374,7 @@ $mainBlue: #001ce2;
       @media screen and (min-width: 600px) and (max-width: 767px) {
         font-size: 14px;
       }
-      @media screen and (max-width: 374px){
+      @media screen and (max-width: 374px) {
         font-size: 14px;
       }
     }
@@ -384,7 +384,7 @@ $mainBlue: #001ce2;
       min-height: 30px !important;
       width: 30px !important;
       height: 30px !important;
-      @media screen and (max-width: 369px){
+      @media screen and (max-width: 369px) {
         margin-left: -11px;
       }
     }
@@ -406,5 +406,12 @@ $mainBlue: #001ce2;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+</style>
+<style>
+@media screen and (max-width: 599px) {
+  #resumeBuilder .v-slide-group__prev.v-slide-group__prev--disabled {
+    display: none !important;
+  }
 }
 </style>
