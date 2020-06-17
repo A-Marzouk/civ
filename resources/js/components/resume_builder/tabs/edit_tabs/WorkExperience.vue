@@ -3,7 +3,7 @@
 
         <!-- Tabs -->
         <v-tabs class="resume-builder__tab-bar" hide-slider>
-            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setLinkCategory(tab)">
+            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setWorkCategory(tab)">
                 {{tab}}
             </v-tab>
         </v-tabs>
@@ -55,8 +55,8 @@
                             <div class="date-input">
                                 <label for="dateFrom">Date</label>
                                 <input type="date"  v-model="newWork.date_from">
-                                <div class="error" v-if="errors.new.date_from">
-                                    {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                                <div class="error" v-if="errors.date_from">
+                                    {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
                                 </div>
                             </div>
                             <div class="date-text">
@@ -67,8 +67,8 @@
                                     <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
                                 </label>
                                 <input type="date"  v-model="newWork.date_to" :disabled="newWork.present">
-                                <div class="error" v-if="errors.new.date_to">
-                                    {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                                <div class="error" v-if="errors.date_to">
+                                    {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
                                 </div>
                             </div>
                         </div>
@@ -88,131 +88,90 @@
                         </v-textarea>
                     </div>
                 </div>
-
                 <div class="btns">
                     <v-btn class="resume-builder__btn civie-btn filled" raised @click="addWorkEx">
-                        Add New
+                        {{newWork.id !== '' ? 'Update' : 'Add New'}}
                     </v-btn>
+
+                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearWorkEx" v-show="newWork.id !== '' ">
+                        Cancel
+                    </v-btn>
+
                 </div>
+            </div>
 
+            <div class="education-list">
+                <div
+                        v-for="work in works"
+                        class="education-item"
+                        :class="{'closed' : expandedWorkID !== work.id}"
+                        :key="work.id"
+                >
+                    <div class="drag-handler">
+                        <span class="circle"></span>
+                        <span class="circle"></span>
+                        <span class="circle"></span>
+                    </div>
 
-                <div class="work-ex-list">
-                    <div class="work-ex-item mt-5 flex-column" v-for="(work,index) in works" :key="index + '_workEx'">
-                        <div class="item-grid">
-                            <div class="work-icon">
-                                <img src="/images/resume_builder/work-ex/work-icon-bag.png" alt="work-icon">
-                            </div>
-                            <div class="work-ex-info">
-                                <div class="work-ex-title">
-                                    {{work.company_name}}
-                                </div>
-                                <div class="work-ex-sub-title">
-                                    {{work.job_title}},<br/>
-                                    Duration: {{work.date_from}} - {{work.present ? "present" : work.date_to}}
-                                </div>
-                                <div class="work-ex-detials">
-                                    {{work.description}}
-                                </div>
-                                <div class="optionsBtns showOnMd">
-                                    <a href="javascript:;" @click="editWork(work)">
-                                        <svg-vue class='icon' :icon="'edit-icon'"></svg-vue>
-                                    </a>
-
-                                    <a href="javascript:;" @click="deleteWork(work)">
-                                        <svg-vue class='icon' :icon="'trash-delete-icon'"></svg-vue>
-                                    </a>
-                                </div>
+                    <div class="education-item__header">
+                        <div class="description">
+                            <svg-vue :icon="'work-experience-icon'" class='icon'></svg-vue>
+                            <div class="school-name">
+                                {{work.company_name}},
+                                <span class="gray">{{work.website}}</span>
+                                <div class="grade-title">{{work.job_title}}</div>
                             </div>
                         </div>
-
-                        <div class="options hideOnMd">
-                            <div class="options-btn NoDecor"
-                                 @click="optionWorkId === work.id ? optionWorkId=0 : optionWorkId=work.id">
-                                <a href="javascript:void(0)" :class="{'opened':optionWorkId === work.id}">
-                                    Options
-                                    <img src="/images/resume_builder/arrow-down.png" alt=""
-                                         :class="{'optionsOpened':optionWorkId === work.id}">
-                                </a>
-                            </div>
-                            <div class="extended-options" v-show="optionWorkId === work.id"
-                                 :class="{'opened':optionWorkId === work.id}">
-                                <div class="edit-btn NoDecor" @click="editWork(work)">
-                                    <img src="/images/resume_builder/edit-icon.png" alt="edit icon">
-                                    Edit
-                                </div>
-                                <div class="delete-btn NoDecor" @click="deleteWork(work)">
-                                    <img src="/images/resume_builder/delete-icon.png" alt="delete icon">
-                                    Delete
-                                </div>
-                            </div>
-                        </div>
-                        <div class="work-ex-form flex-column" v-show="work.id === editedWork.id">
-                            <div class="d-flex flex-row flex-wrap justify-content-between">
-                                <div class="work-ex-form-input input-field">
-                                    <label for="companyName">Company name</label>
-                                    <input type="text" v-model="editedWork.company_name">
-                                    <div class="error" v-if="errors.edit.company_name">
-                                        {{ Array.isArray(errors.edit.company_name) ? errors.edit.company_name[0] : errors.edit.company_name}}
-                                    </div>
-                                </div>
-                                <div class="work-ex-form-input input-field">
-                                    <label for="jobTitle">Job title</label>
-                                    <input type="text" v-model="editedWork.job_title">
-                                    <div class="error" v-if="errors.edit.job_title">
-                                        {{ Array.isArray(errors.edit.job_title) ? errors.edit.job_title[0] : errors.edit.job_title}}
-                                    </div>
-                                </div>
-                                <div class="work-ex-form-input input-field">
-                                    <label for="description">Description</label>
-                                    <textarea type="text"  v-model="editedWork.description"></textarea>
-                                    <div class="error" v-if="errors.edit.description">
-                                        {{ Array.isArray(errors.edit.description) ? errors.edit.description[0] : errors.edit.description}}
-                                    </div>
-                                </div>
-                                <div class="work-ex-form-group">
-                                    <div class="work-ex-form-input input-field">
-                                        <label for="website">Website (optional)</label>
-                                        <input type="text"  v-model="editedWork.website">
-                                        <div class="error" v-if="errors.edit.website">
-                                            {{ Array.isArray(errors.edit.website) ? errors.edit.website[0] : errors.edit.website}}
-                                        </div>
-                                    </div>
-                                    <div class="date-group">
-                                        <div class="date-input">
-                                            <label for="dateFrom">Date</label>
-                                            <input type="date"  v-model="editedWork.date_from">
-                                            <div class="error" v-if="errors.edit.date_from">
-                                                {{ Array.isArray(errors.edit.date_from) ? errors.edit.date_from[0] : errors.edit.date_from}}
-                                            </div>
-                                        </div>
-                                        <div class="date-text">
-                                            to
-                                        </div>
-                                        <div class="date-input">
-                                            <label for="dateTo" class="light d-flex align-items-center">
-                                                <input type="checkbox" class="checkbox" v-model="editedWork.present"> I currently work here.
-                                            </label>
-                                            <input type="date"  v-model="editedWork.date_to" :disabled="editedWork.present">
-                                            <div class="error" v-if="errors.edit.date_to">
-                                                {{ Array.isArray(errors.edit.date_to) ? errors.edit.date_to[0] : errors.edit.date_to}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="action-btns">
-                                <a class="btn btn-filled" href="javascript:void(0)" @click="applyEdit">
-                                    <img class="icon" src="/images/resume_builder/work-ex/mark.png" alt="">
-                                    Save
-                                </a>
-                                <a class="btn btn-outline" href="javascript:void(0)" @click="clearEditedWork">
-                                    Cancel
-                                </a>
-                            </div>
+                        <div
+                                class="resume-builder__action-buttons-container"
+                        >
+                            <v-btn
+                                    class="btn-icon civie-btn"  @click="toggleWorkVisibility(work)"
+                                    depressed
+                            >
+                                <svg-vue
+                                        icon="eye-icon"
+                                        class="icon"
+                                        :class="{'visible' : work.is_public}"
+                                ></svg-vue>
+                            </v-btn>
+                            <v-btn
+                                    class="btn-icon civie-btn"  @click="editWork(work)"
+                                    depressed
+                            >
+                                <svg-vue
+                                        icon="edit-icon"
+                                        class="icon"
+                                        :class="{'visible' : newWork.id === work.id}"
+                                ></svg-vue>
+                            </v-btn>
+                            <v-btn
+                                    class="btn-icon civie-btn" @click="deleteWork(work)"
+                                    depressed
+                            >
+                                <svg-vue
+                                        icon="trash-delete-icon"
+                                        class="icon"
+                                ></svg-vue>
+                            </v-btn>
+                            <v-btn
+                                    class="btn-icon mainBg civie-btn toogleDropdownBtn"
+                                    :class="{'closed' : expandedWorkID !== work.id}"
+                                    @click="toggleWorkCard(work)"
+                                    depressed
+                            ></v-btn>
                         </div>
                     </div>
-                </div>
 
+                    <div class="education-item__content">
+                        <div class="date">
+                            {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
+                        </div>
+                        <article>
+                            {{work.description}}
+                        </article>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -229,9 +188,8 @@
                     'voluntary',
                     'internship'
                 ],
-                optionWorkId: 0,
-                editedWork: {},
                 newWork: {
+                    id:'',
                     company_name:'',
                     job_title:'',
                     description:'',
@@ -240,11 +198,9 @@
                     date_to:'',
                     present:false,
                 },
-                errors: {
-                    new: {},
-                    edit: {}
-                },
-                addNewWork:false
+                errors: {},
+                expandedWorkID: 0,
+                activeTab: 'paid',
             }
         },
         computed: {
@@ -253,8 +209,34 @@
             }
         },
         methods: {
+            setWorkCategory(category){
+                this.activeTab = category ;
+                this.clearWorkEx();
+            },
+            toggleWorkVisibility(work){
+                work.is_public = !work.is_public;
+                axios.put("/api/user/work-experience", work)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors.edit =
+                                "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
+            toggleWorkCard(work){
+                this.expandedWorkID === work.id ?  this.expandedWorkID = 0 :  this.expandedWorkID = work.id ;
+            },
             editWork(work) {
-                this.editedWork = {
+                this.newWork = {
                     id: work.id,
                     company_name:work.company_name,
                     job_title:work.job_title,
@@ -263,38 +245,7 @@
                     date_from:work.date_from,
                     date_to:work.date_to,
                     present:work.present,
-                };
-                this.closeOptionsBtn();
-            },
-            applyEdit() {
-                axios.put('/api/user/work-experience', this.editedWork)
-                    .then((response) => {
-                        this.EditedSuccessfully(response.data.data);
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            this.errors.edit = error.response.data.errors;
-                        } else {
-                            this.errors.edit = 'Something went wrong. Please try again.';
-                        }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
-                    });
-            },
-            EditedSuccessfully(editedWork) {
-                this.clearEditedWork();
-                this.$store.dispatch('fullScreenNotification');
-                // replace the edited skill with the new one:
-                this.works.forEach((work, index) => {
-                    if (work.id === editedWork.id) {
-                        this.works[index] = editedWork;
-                    }
-                });
-            },
-            clearEditedWork() {
-                this.editedWork = {};
+                }
             },
             deleteWork(work){
                 if (!confirm('Do you want to delete this work ?')) {
@@ -316,19 +267,36 @@
                     })
             },
             addWorkEx(){
-                this.errors = {  new: {}, edit: {}};
+                this.errors = {};
                 this.newWork.user_id = this.$store.state.user.id;
+                this.newWork.category = this.activeTab;
+
+                let edit = false;
+                if (this.newWork.id !== "") {
+                    edit = true;
+                }
+
                 axios.post('/api/user/work-experience', this.newWork)
                     .then((response) => {
-                        this.works.unshift(response.data.data);
+
+                        if(!edit){
+                            this.works.unshift(response.data.data);
+                        }else{
+                            this.works.forEach( (myWork,index) => {
+                                if(myWork.id === response.data.data.id){
+                                    this.works[index] = response.data.data;
+                                }
+                            });
+                        }
+
                         this.clearWorkEx();
-                        this.$store.dispatch('fullScreenNotification');
+                        this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            this.errors.new = error.response.data.errors;
+                            this.errors = error.response.data.errors;
                         } else {
-                            this.errors.new  = 'Something went wrong. Please try again.';
+                            this.errors  = 'Something went wrong. Please try again.';
                         }
                         this.$store.dispatch('flyingNotification', {
                             message: 'Error',
@@ -337,8 +305,8 @@
                     });
             },
             clearWorkEx(){
-                this.addNewWork = false;
                 this.newWork = {
+                    id:'',
                     company_name:'',
                     job_title:'',
                     description:'',
@@ -347,9 +315,6 @@
                     date_to:'',
                     present:'',
                 }
-            },
-            closeOptionsBtn() {
-                this.optionWorkId = 0;
             },
         },
         mounted() {
@@ -360,7 +325,10 @@
 
 <style scoped lang="scss">
     @import '../../../../../sass/media-queries';
+    @import '../../../../../sass/variables';
+
     $mainBlue: #001CE2;
+    $inputTextColor: #888DB1;
 
 
     .work-container {
@@ -876,7 +844,7 @@
 
     #worksSection {
         .links-content {
-            height: 350px;
+            height: 678px;
             background: #fff;
             box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
             padding: 50px;
@@ -898,13 +866,14 @@
                 display: flex;
 
                 .left{
-                    width: 60%;
+                    max-width: 775px;
                     display: flex;
                     flex-wrap: wrap;
 
                     .date-group {
                         display: flex;
                         justify-content: space-between;
+                        margin-top: 28px;
 
                         @include lt-lg {
 
@@ -983,7 +952,7 @@
                             }
 
                             input {
-                                height: 56px;
+                                height: 50px;
                                 border: 2px solid #C4C9F5 !important;
                                 border-radius: 10px;
                                 opacity: 1;
@@ -1036,7 +1005,6 @@
             .civie-input {
                 max-width: 350px;
                 min-width: 300px;
-                margin-bottom: 20px;
                 margin-right: 30px;
             }
             .civie-textarea{
@@ -1108,6 +1076,155 @@
 
         ::-webkit-calendar-picker-indicator {
             color:red;
+        }
+    }
+
+    .education-list {
+        display: flex;
+        flex-direction: column;
+        margin-top: 25px;
+
+        .education-item {
+            height: auto;
+            max-width: 842px;
+            width: 100%;
+            padding: 20px 38px 20px 60px;
+            position: relative;
+            margin: 15px 0;
+            box-shadow: 0 5px 20px rgba($color: #001083, $alpha: 0.1);
+
+            &.closed {
+                .education-item__content {
+                    height: 0;
+                    transition: height .5s ease;
+                }
+            }
+
+            .drag-handler {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                top: 28px;
+                left: 24px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                .circle {
+                    display: block;
+                    background: $inputTextColor;
+                    height: 2px;
+                    width: 2px;
+                    border: solid 0.5px $inputTextColor;
+                    margin-bottom: 3px;
+
+                    &:last-child {
+                        margin: 0;
+                    }
+                }
+            }
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+
+                .description {
+                    display: flex;
+
+                    .icon {
+                        width: 24px;
+                        height: 24px;
+                        fill: transparent;
+                        margin-top: 2px;
+                        margin-right: 20px;
+                    }
+
+                    .school-name {
+                        font-size: 20px;
+                        color: $mainColor;
+                        font-weight: bold;
+                        text-transform: uppercase;
+
+                        .gray {
+                            color: $inputTextColor;
+                        }
+
+                        .grade-title {
+                            font-size: 14px;
+                            color: $inputTextColor;
+                        }
+                    }
+                }
+            }
+
+            &__content {
+                margin-top: 25px;
+                height: 120px;
+                transition: height .5s ease;
+                overflow: auto;
+
+                .date {
+                    font-size: 14px;
+                    font-style: italic;
+                    color: $inputTextColor;
+                }
+
+                article {
+                    font-size: 16px;
+                    color: $inputTextColor;
+                    margin-top: 20px;
+                    overflow: auto;
+                }
+            }
+
+            @include lt-md {
+                padding: 20px 30px 20px 50px;
+
+                &__header {
+                    .description {
+                        .school-name {
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+
+            @include lt-sm {
+                padding: 17px 15px;
+
+                &__header {
+                    flex-wrap: wrap;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    justify-content: flex-start;
+
+                    .description {
+                        width: 100%;
+                        order: 2;
+
+                        .school-name {
+                            font-size: 20px;
+
+                            .grade-title {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+
+                    .resume-builder__action-buttons-container {
+                        align-self: flex-end;
+                        margin-bottom: 20px;
+                    }
+                }
+
+                &__content {
+
+                    article {
+                        font-size: 14px;
+                    }
+                }
+            }
         }
     }
 

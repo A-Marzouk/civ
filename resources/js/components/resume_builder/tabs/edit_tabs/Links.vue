@@ -119,8 +119,7 @@ export default {
 		},
 		toggleLink(link) {
 			link.is_active = !link.is_active;
-			axios
-				.put("/api/user/links", link)
+			axios.put("/api/user/links", link)
 				.then(response => {
 					this.$store.dispatch("flyingNotification");
 					this.closeOptionsBtn();
