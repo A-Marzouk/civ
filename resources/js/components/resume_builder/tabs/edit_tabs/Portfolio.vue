@@ -3,7 +3,7 @@
         <div class="data-container">
             <v-card class="view-container resume-builder__scroll">
                 <v-form
-                    class="gird-form"
+                    class="grid-form"
                     ref="form"
                 >
                     <v-text-field
@@ -38,7 +38,7 @@
                     ></v-textarea>
                     <!-- Using v-input classes -->
                     <v-input
-                        class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--is-booted v-text-field--enclosed theme--light"
+                        class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
                         outlined
                         label="Upload Images"
                         hint="(Maximum 5 files)"
@@ -159,7 +159,7 @@ import vue2Dropzone from 'vue2-dropzone'
         overflow: auto;
         box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
 
-        .gird-form {
+        .grid-form {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             grid-auto-rows: 104px;
