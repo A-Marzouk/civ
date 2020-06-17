@@ -1,0 +1,50 @@
+@import 'resources/sass/media-queries';
+#resumeTheme308{
+
+    .box-items{
+        
+        .slick-slider{
+            max-width: 93%;
+            overflow: hidden;
+
+            .slick-slide{
+                margin-right:45px;
+
+                @media (max-width: 1200px) {
+                    margin-right: 24px;
+                }
+
+                @media (max-width: 800px) {
+                    max-width: 300px;
+                }
+                
+                @media (max-width: 500px) {
+                    margin: 0px auto;
+                    width: 100% !important;
+                }
+
+            }
+
+            @media (max-width: 500px) {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+
+    .wrap-tabs{
+        .v-tabs{
+            .v-tabs-bar{
+                .v-slide-group__next, .v-slide-group__prev{
+
+                    /** Only mobile hide arrows on tab **/
+                    @media (max-width: 500px) {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+}

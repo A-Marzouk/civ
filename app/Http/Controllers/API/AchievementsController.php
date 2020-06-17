@@ -92,10 +92,11 @@ class AchievementsController extends Controller
     {
         return Validator::make($data, [
             'title' => ['required', 'string', 'max:255','min:3'],
-            'category' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:255'],
+            'year' => ['sometimes', 'string', 'max:255'],
             'description' => ['nullable','string','min:3', 'max:2500'],
             'file' => ['nullable','file'],
-            'url' => ['nullable','max:255'],
+            'url' => ['nullable','max:255']
         ]);
     }
 

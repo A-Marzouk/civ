@@ -36,7 +36,7 @@
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
+                    
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="Title"
@@ -49,7 +49,7 @@
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
+                    
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="URL"
@@ -61,7 +61,7 @@
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
+                    
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="Year"
@@ -84,7 +84,7 @@
                     class="resume-builder__input civie-textarea"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
+                    
                     :class="{'resume-builder__input--disabled': disabledTextarea}"
                     :disabled="disabledTextarea"
                     label="Description"
@@ -250,7 +250,6 @@ export default {
         edit: {}
       },
       addNewAchievement: false,
-      rules: [value => !!value || "Please fill this field."]
     };
   },
   computed: {
