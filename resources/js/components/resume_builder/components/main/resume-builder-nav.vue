@@ -296,7 +296,7 @@ $resume-builder-nav-height: 90px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: transparent;
+      background: white;
       z-index: 10;
 
       .brand-link {

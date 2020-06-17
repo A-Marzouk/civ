@@ -359,6 +359,15 @@
             box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
             padding: 50px;
             margin-bottom: 70px;
+
+            @include lt-md{
+                padding: 35px;
+            }
+
+            @include lt-sm{
+                padding: 12px;
+                margin: 0 12px;
+            }
         }
 
         .tabName {
@@ -374,11 +383,23 @@
 
             .inputs{
                 display: flex;
+                flex-wrap: wrap;
+
 
                 .left{
-                    max-width: 665px;
+                    max-width: 630px;
+                    margin-right: 30px;
                     display: flex;
+                    justify-content: space-between;
                     flex-wrap: wrap;
+
+                    @include lt-md{
+                        margin-right: 0;
+                    }
+
+                    @include lt-sm{
+                       justify-content: center;
+                    }
 
                     .date-group {
                         display: flex;
@@ -491,11 +512,33 @@
                         }
                     }
                 }
+
+                .right{
+                    .civie-textarea{
+                        min-width: 300px;
+                    }
+
+                    @include lt-md{
+                        width: 100%;
+                        .civie-textarea{
+                            width: 100%;
+                        }
+                    }
+
+                    @include lt-sm{
+                        display: flex;
+                        justify-content: center;
+                        .civie-textarea{
+                            margin-top: 30px;
+                            max-width: 300px;
+                            min-width: 290px;
+                        }
+                    }
+                }
             }
 
             .civie-select {
                 max-width: 210px;
-                margin-right: 30px;
 
                 .v-input__slot {
                     padding-left: 30px !important;
@@ -515,10 +558,10 @@
             .civie-input {
                 max-width: 300px;
                 min-width: 300px;
-                margin-right: 30px;
-            }
-            .civie-textarea{
-                min-width: 300px;
+
+                @include lt-sm{
+                    min-width: 290px;
+                }
             }
 
             .civie-btn {
@@ -742,4 +785,11 @@
         }
     }
 
+    .btns{
+
+        @include lt-sm{
+            padding-left: 24px;
+
+        }
+    }
 </style>
