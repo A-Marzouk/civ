@@ -1,6 +1,6 @@
 <template>
     <div
-        class="education-wrapper resume-builder__scroll"
+        class="education-wrapper"
     >
         <div class="float-container">
             <v-form
@@ -148,7 +148,7 @@
                         v-model="form.description.value"
                         class="resume-builder__input civie-textarea"
                         outlined
-                        label="Institution Name"
+                        label="Description"
                         color="#001CE2"
                         :rules="form.description.rules"
                     ></v-textarea>
@@ -164,6 +164,7 @@
                 <div 
                     v-for="education in educationList" 
                     class="education-item"
+                    :class="{closed: education.closed}"
                     :key="education.id"
                 >
                     <div class="drag-handler">
@@ -213,6 +214,8 @@
                             </v-btn>
                             <v-btn
                                 class="btn-icon mainBg civie-btn toogleDropdownBtn"
+                                :class="{closed: education.closed}"
+                                @click="education.closed = !education.closed"
                                 depressed
                             ></v-btn>
                         </div>
@@ -306,6 +309,7 @@ export default {
                 currentStatus: 'Completed',
                 actuallyStudying: false,
                 endDate: "2019",
+                closed: true,
                 description: "Id non culpa qui non cillum nulla est eiusmod est fugiat ex qui.Cillum culpa veniam ipsum incididunt cupidatat esse cupidatat."
             },
             {
@@ -317,6 +321,7 @@ export default {
                 currentStatus: 'Completed',
                 actuallyStudying: false,
                 endDate: "2019",
+                closed: true,
                 description: "Veniam qui sunt excepteur Lorem velit nulla fugiat magna ea consequat.Labore duis veniam exercitation consectetur voluptate eu eiusmod adipisicing aute do laboris."
             },
             {
@@ -328,6 +333,7 @@ export default {
                 currentStatus: 'Completed',
                 actuallyStudying: false,
                 endDate: "2019",
+                closed: true,
                 description: "Ad ad culpa mollit anim non cupidatat officia ipsum laboris sit.Tempor nisi nulla tempor laborum aliqua labore velit id occaecat nulla est."
             }
         ],
@@ -379,21 +385,11 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #001CE2;
-$secondaryColor: white;
-$disabledColor: #888DB1;
-$errorColor: #ff5252;
-$inputTextColor: #888DB1;
-$inputBorderColor--enabled: #C4C9F5;
-$inputBorderColor--disabled: #E6E8FC;
-$bgScrollBarColor: #E6E8FC;
-$auxBgColor-bluegray: #E6E8FC;
-$auxBgColor-gray: #F2F3FD;
+@import '../../../../../../sass/variables';
+@import '../../../../../../sass/media-queries';
 
     .education-wrapper {
-        max-height: 678px;
         position: relative;
-        box-shadow: 0 5px 30px rgba($color: #001083, $alpha: 0.1);
         padding: 60px 50px;
         
         .float-container {
@@ -411,10 +407,21 @@ $auxBgColor-gray: #F2F3FD;
             
             .input-group {
                 width: 23.5%;
+                margin-right: 15px;
 
                 &:nth-child(4),
                 &:last-child {
                     margin-right: none;
+                }
+
+                &.civie-input, // Simple input
+                &.civie-select, // Select
+                &.civie-currency {
+                    min-width: 265px;
+
+                    @include lt-md {
+                        min-width: auto;
+                    }
                 }
 
                 .resume-builder__input {
@@ -431,11 +438,12 @@ $auxBgColor-gray: #F2F3FD;
                     width: 100%;
 
                     .civie-datepicker {
-                        max-width: 138px;                        
+                        max-width: 150px;
                     }
 
                     .input-checkbox-wrapper {
                         position: relative;
+                        margin-left : 15px;
 
                         .civie-checkbox {
                             position: absolute;
@@ -466,6 +474,51 @@ $auxBgColor-gray: #F2F3FD;
                     }
 
                 }
+
+                // Exception on breakpoint
+                @media (max-width: 1770px) {
+                    width: 45%;
+
+                    .resume-builder__input {
+                        width: 100%;
+                    }
+                }
+
+                @include lt-md {
+                    width: 100%;
+                    margin-right: 0;
+                    justify-content: space-between;
+
+                    & > *,
+                    .inputs-wrapper > * {
+                        width: 48%;
+                        max-width: 48%;
+                    }
+
+                    &:nth-child(4) > .resume-builder__input:last-child {
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+
+                @include lt-sm {
+                    & > *,
+                    .inputs-wrapper > * {
+                        width: 100%;
+                        max-width: 100%;
+                        
+                    }
+
+                    .inputs-wrapper {
+                        & > * {
+                            max-width: 50% !important;
+                        }
+
+                        .input-checkbox-wrapper .civie-datepicker {
+                            max-width: 100%;
+                        }
+                    }
+                }
             }
         }
 
@@ -475,12 +528,20 @@ $auxBgColor-gray: #F2F3FD;
             margin-top: 25px;
 
             .education-item {
-                height: 249px;
-                width: 842px;
-                padding: 20px 60px;
+                height: auto;
+                max-width: 842px;
+                width: 100%;
+                padding: 20px 38px 20px 60px;
                 position: relative;
                 margin: 15px 0;
                 box-shadow: 0 5px 20px rgba($color: #001083, $alpha: 0.1);
+
+                &.closed {
+                    .education-item__content {
+                        height: 0;
+                        transition: height .5s ease;
+                    }
+                }
 
                 .drag-handler {
                     position: absolute;
@@ -542,6 +603,9 @@ $auxBgColor-gray: #F2F3FD;
 
                 &__content {
                     margin-top: 25px;
+                    height: 120px;
+                    transition: height .5s ease;
+                    overflow: auto;
 
                     .date {
                         font-size: 14px;
@@ -554,6 +618,54 @@ $auxBgColor-gray: #F2F3FD;
                         color: $inputTextColor;
                         margin-top: 20px;
                         overflow: auto;
+                    }
+                }
+
+                @include lt-md {
+                    padding: 20px 30px 20px 50px;
+
+                    &__header {
+                        .description {
+                            .school-name {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+
+                @include lt-sm {
+                    padding: 17px 15px;
+
+                    &__header {
+                        flex-wrap: wrap;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        justify-content: flex-start;
+
+                        .description {
+                            width: 100%;
+                            order: 2;
+
+                            .school-name {
+                                font-size: 20px;
+
+                                .grade-title {
+                                    font-size: 16px;
+                                }
+                            }
+                        }
+
+                        .resume-builder__action-buttons-container {
+                            align-self: flex-end;
+                            margin-bottom: 20px;
+                        }
+                    }
+
+                    &__content {
+
+                        article {
+                            font-size: 14px;
+                        }
                     }
                 }
             }

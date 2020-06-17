@@ -49,6 +49,7 @@ class ReferencesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'type' => ['sometimes', 'string', 'max:255','min:3'],
             'name' => ['sometimes', 'string', 'max:255','min:3'],
             'title' => ['sometimes','required', 'string', 'max:255'],
             'phone' => ['sometimes','required','min:7' ,'numeric'],
@@ -57,6 +58,7 @@ class ReferencesController extends Controller
             'address' => ['sometimes','required', 'string', 'max:255'],
             'reference_text' => ['sometimes','nullable','string', 'max:2500'],
             'notes' => ['sometimes','nullable','string', 'max:2500'],
+            'url' => ['sometimes','nullable','string', 'max:255'],
         ]);
     }
 

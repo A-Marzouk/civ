@@ -106,6 +106,15 @@ class SkillsController extends Controller
         ]);
     }
 
+    public function toggleVisibility(Request $request){
+        $skill   = Skill::find($request->id);
+        if($skill){
+            $skill->update([
+                'is_public' => !$skill->is_public
+            ]);
+        }
+    }
+
     protected function is_auth($request){
         return (Auth::user()->id == $request->user_id || Auth::user()->hasRole('admin'));
     }

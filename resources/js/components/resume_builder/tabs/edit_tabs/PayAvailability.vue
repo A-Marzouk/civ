@@ -32,19 +32,28 @@
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <v-text-field
-                      class="resume-builder__input civie-input"
+                      class="resume-builder__input civie-currency"
                       outlined
                       color="#001CE2"
+                      label="Currency Input"
                       :rules="rules"
-                      :class="{'resume-builder__input--disabled': disabledInput}"
-                      :disabled="disabledInput"
-                      label
-                      v-model="arte"
-                    ></v-text-field>
+                    >
+                      <v-select
+                        slot="append"
+                        :items="currencies"
+                        color="#001CE2"
+                        :value="currencies[0]"
+                        outlined
+                      >
+                        <button class="dropdown-icon icon" slot="append">
+                          <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                        </button>
+                      </v-select>
+                    </v-text-field>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n8">Add New</v-btn>
+                    <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
                   </v-col>
                 </v-row>
               </v-form>
@@ -68,12 +77,13 @@ export default {
       payTab: 0,
       errors: {},
       tabs: ["Pay", "Availibility"],
-      currency: {
-        title: "usd"
-      },
+      currencies: ["USD", "EUR", "GBP", "CAD", "COP", "INR"],
       payTypes: ["Hourly", "Weekly", "Monthly"],
       payType: "",
+      rate: "",
+      rules: [value => !!value || "Please fill this field."],
       currencyList: ["usd", "eur"],
+      disabledInput: false,
       showCurrencyOptions: false,
       slickOptions: {
         infinite: false,
@@ -195,8 +205,8 @@ export default {
 
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
-.hobbies-content {
-  height: 323px;
+.pay-content {
+  height: 185px;
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
   padding: 50px;
