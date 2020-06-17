@@ -19,11 +19,6 @@ class WorkExController extends Controller
         $this->middleware('auth:api');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Resources\Json\ResourceCollection
-     */
     public function index()
     {
 
@@ -33,12 +28,6 @@ class WorkExController extends Controller
         return WorkExResource::collection($workEx);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \App\Http\Resources\WorkEx
-     */
     public function store(Request $request)
     {
 
@@ -48,7 +37,7 @@ class WorkExController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != ''){
             // update
             $workEx = WorkEx::findOrFail($request->id);
             $workEx->update($request->toArray());
@@ -118,6 +107,7 @@ class WorkExController extends Controller
             'date_to' => ['sometimes','nullable','date','max:255'],
             'present' =>['boolean'],
             'order' =>['max:255'],
+            'category' =>['max:255'],
         ]);
     }
 

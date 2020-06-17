@@ -3,7 +3,7 @@
 
         <!-- Tabs -->
         <v-tabs class="resume-builder__tab-bar" hide-slider>
-            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setLinkCategory(tab)">
+            <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setWorkCategory(tab)">
                 {{tab}}
             </v-tab>
         </v-tabs>
@@ -55,8 +55,8 @@
                             <div class="date-input">
                                 <label for="dateFrom">Date</label>
                                 <input type="date"  v-model="newWork.date_from">
-                                <div class="error" v-if="errors.new.date_from">
-                                    {{ Array.isArray(errors.new.date_from) ? errors.new.date_from[0] : errors.new.date_from}}
+                                <div class="error" v-if="errors.date_from">
+                                    {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
                                 </div>
                             </div>
                             <div class="date-text">
@@ -67,8 +67,8 @@
                                     <input type="checkbox" class="checkbox" v-model="newWork.present"> I currently work here.
                                 </label>
                                 <input type="date"  v-model="newWork.date_to" :disabled="newWork.present">
-                                <div class="error" v-if="errors.new.date_to">
-                                    {{ Array.isArray(errors.new.date_to) ? errors.new.date_to[0] : errors.new.date_to}}
+                                <div class="error" v-if="errors.date_to">
+                                    {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
                                 </div>
                             </div>
                         </div>
@@ -90,8 +90,13 @@
                 </div>
                 <div class="btns">
                     <v-btn class="resume-builder__btn civie-btn filled" raised @click="addWorkEx">
-                        Add New
+                        {{newWork.id !== '' ? 'Update' : 'Add New'}}
                     </v-btn>
+
+                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearWorkEx" v-show="newWork.id !== '' ">
+                        Cancel
+                    </v-btn>
+
                 </div>
             </div>
 
@@ -121,25 +126,27 @@
                                 class="resume-builder__action-buttons-container"
                         >
                             <v-btn
-                                    class="btn-icon civie-btn"
+                                    class="btn-icon civie-btn"  @click="toggleWorkVisibility(work)"
                                     depressed
                             >
                                 <svg-vue
                                         icon="eye-icon"
                                         class="icon"
+                                        :class="{'visible' : work.is_public}"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                    class="btn-icon civie-btn"
+                                    class="btn-icon civie-btn"  @click="editWork(work)"
                                     depressed
                             >
                                 <svg-vue
                                         icon="edit-icon"
                                         class="icon"
+                                        :class="{'visible' : newWork.id === work.id}"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                    class="btn-icon civie-btn"
+                                    class="btn-icon civie-btn" @click="deleteWork(work)"
                                     depressed
                             >
                                 <svg-vue
@@ -158,7 +165,7 @@
 
                     <div class="education-item__content">
                         <div class="date">
-                            {{ `${work.date_from}${work.present ? '' : ' - ' + work.date_to}` }}
+                            {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
                         </div>
                         <article>
                             {{work.description}}
@@ -181,9 +188,8 @@
                     'voluntary',
                     'internship'
                 ],
-                optionWorkId: 0,
-                editedWork: {},
                 newWork: {
+                    id:'',
                     company_name:'',
                     job_title:'',
                     description:'',
@@ -192,12 +198,9 @@
                     date_to:'',
                     present:false,
                 },
-                errors: {
-                    new: {},
-                    edit: {}
-                },
-                addNewWork:false,
-                expandedWorkID:0,
+                errors: {},
+                expandedWorkID: 0,
+                activeTab: 'paid',
             }
         },
         computed: {
@@ -206,11 +209,34 @@
             }
         },
         methods: {
+            setWorkCategory(category){
+                this.activeTab = category ;
+                this.clearWorkEx();
+            },
+            toggleWorkVisibility(work){
+                work.is_public = !work.is_public;
+                axios.put("/api/user/work-experience", work)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors.edit =
+                                "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
             toggleWorkCard(work){
                 this.expandedWorkID === work.id ?  this.expandedWorkID = 0 :  this.expandedWorkID = work.id ;
             },
             editWork(work) {
-                this.editedWork = {
+                this.newWork = {
                     id: work.id,
                     company_name:work.company_name,
                     job_title:work.job_title,
@@ -219,38 +245,7 @@
                     date_from:work.date_from,
                     date_to:work.date_to,
                     present:work.present,
-                };
-                this.closeOptionsBtn();
-            },
-            applyEdit() {
-                axios.put('/api/user/work-experience', this.editedWork)
-                    .then((response) => {
-                        this.EditedSuccessfully(response.data.data);
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            this.errors.edit = error.response.data.errors;
-                        } else {
-                            this.errors.edit = 'Something went wrong. Please try again.';
-                        }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
-                    });
-            },
-            EditedSuccessfully(editedWork) {
-                this.clearEditedWork();
-                this.$store.dispatch('fullScreenNotification');
-                // replace the edited skill with the new one:
-                this.works.forEach((work, index) => {
-                    if (work.id === editedWork.id) {
-                        this.works[index] = editedWork;
-                    }
-                });
-            },
-            clearEditedWork() {
-                this.editedWork = {};
+                }
             },
             deleteWork(work){
                 if (!confirm('Do you want to delete this work ?')) {
@@ -272,19 +267,36 @@
                     })
             },
             addWorkEx(){
-                this.errors = {  new: {}, edit: {}};
+                this.errors = {};
                 this.newWork.user_id = this.$store.state.user.id;
+                this.newWork.category = this.activeTab;
+
+                let edit = false;
+                if (this.newWork.id !== "") {
+                    edit = true;
+                }
+
                 axios.post('/api/user/work-experience', this.newWork)
                     .then((response) => {
-                        this.works.unshift(response.data.data);
+
+                        if(!edit){
+                            this.works.unshift(response.data.data);
+                        }else{
+                            this.works.forEach( (myWork,index) => {
+                                if(myWork.id === response.data.data.id){
+                                    this.works[index] = response.data.data;
+                                }
+                            });
+                        }
+
                         this.clearWorkEx();
-                        this.$store.dispatch('fullScreenNotification');
+                        this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            this.errors.new = error.response.data.errors;
+                            this.errors = error.response.data.errors;
                         } else {
-                            this.errors.new  = 'Something went wrong. Please try again.';
+                            this.errors  = 'Something went wrong. Please try again.';
                         }
                         this.$store.dispatch('flyingNotification', {
                             message: 'Error',
@@ -293,8 +305,8 @@
                     });
             },
             clearWorkEx(){
-                this.addNewWork = false;
                 this.newWork = {
+                    id:'',
                     company_name:'',
                     job_title:'',
                     description:'',
@@ -303,9 +315,6 @@
                     date_to:'',
                     present:'',
                 }
-            },
-            closeOptionsBtn() {
-                this.optionWorkId = 0;
             },
         },
         mounted() {
