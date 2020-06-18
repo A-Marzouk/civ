@@ -68,13 +68,12 @@
 				</div>
 
 				<div class="profile-input-field input-field--languages input-field--group-2">
-					<v-select class="resume-builder__input  profile-input civie-select" placeholder="Select an option" :items="languageItems" label="Languages" color="#001CE2" outlined hide-details="auto">
+					<v-select class="resume-builder__input  profile-input civie-select multiple-selection" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
 						<button class="dropdown-icon icon" slot="append">
 							<svg-vue :icon="`dropdown-caret`"></svg-vue>
 						</button>
 					</v-select>
 				</div>
-
 				<div class="profile-input-field input-field--hometown input-field--group-2">
 					<v-text-field class="resume-builder__input profile-input" label="Hometown" v-model="personalInfo.hometown" :class="{'resume-builder__input--disabled': false}" :error="!!errors.hometown" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon icon" :class="{'icon--disabled': false}" slot="append" @click="()=>false">
@@ -92,7 +91,7 @@
 				</div>
 
 				<div class="profile-input-field input-field--overview input-field--group-3">
-					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="summary.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
+					<v-textarea class="resume-builder__input profile-input civie-textarea" color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" v-model="personalInfo.overview" label="Overview Summary" hide-details="auto" outlined @blur="applyEdit('auto')">
 						<button class="eye-icon trigger-icon" :class="{'icon--disabled': false}" slot="append">
 							<svg-vue :icon="`eye-icon`"></svg-vue>
 						</button>
@@ -121,20 +120,16 @@ export default {
 			profile_pic_error: "",
 			savingType: "manual",
 			menu: false,
-			languageItems: [
-				{
-					text: "English",
-					value: "english"
-				}
-			]
+			defaultLanguages: [],
+			selectedLanguages: [],
 		};
 	},
 	computed: {
 		personalInfo() {
 			return this.$store.state.user.personal_info;
 		},
-		summary() {
-			return this.$store.state.user.summary;
+		languages() {
+			return this.$store.state.user.languages.map(a => a.id);
 		},
 		user() {
 			return this.$store.state.user;
@@ -147,9 +142,18 @@ export default {
 			this.$refs.menu.save(this.personalInfo.date_of_birth);
 			this.applyEdit("auto");
 		},
-		// date functions end
-		manualSave() {
-			this.applyEdit("manual");
+
+		syncLanguages(){
+			axios.post('/api/user/languages-sync', {IDs : this.selectedLanguages, user_id: this.user.id})
+					.then( () => {
+						this.$store.dispatch("flyingNotification");
+					})
+					.catch(e => {
+						this.$store.dispatch("flyingNotification", {
+							message: "Error",
+							iconSrc: "/images/resume_builder/error.png"
+						});
+					});
 		},
 		applyEdit(savingType) {
 			let formData = new FormData();
@@ -174,7 +178,6 @@ export default {
 					headers: { "Content-Type": "multipart/form-data" }
 				})
 				.then(response => {
-					console.log(response.data);
 					if (savingType === "manual") {
 						this.$store.dispatch("fullScreenNotification");
 					} else {
@@ -185,7 +188,6 @@ export default {
 				})
 				.catch(error => {
 					if (typeof error.response.data === "object") {
-						console.log(error.response.data.errors);
 						this.errors = error.response.data.errors;
 					} else {
 						this.errors = "Something went wrong. Please try again.";
@@ -209,7 +211,6 @@ export default {
 				this.profile_pic_error = "";
 				this.applyEdit("auto");
 			} else {
-				console.log("error in pic");
 				this.profile_pic_error = "Incorrect file chosen!";
 			}
 		},
@@ -233,7 +234,19 @@ export default {
 		isEmail(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
+		},
+		setUserPreSelectedLanguages(){
+			this.selectedLanguages = this.$store.state.user.languages.map(a => a.id) ;
 		}
+	},
+	mounted() {
+		axios.get('/api/user/languages-list')
+				.then( (response) => {
+					this.defaultLanguages = response.data.data ;
+					this.defaultLanguages.sort((a,b)=> (a.label>b.label)*2-1);
+				}).then( () => {
+					this.setUserPreSelectedLanguages()
+				});
 	}
 };
 </script>
@@ -242,19 +255,21 @@ export default {
 @import "../../../../../sass/media-queries";
 
 .profile {
-	margin-top: 40px;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-bottom: 40px;
+	max-width: 350px;
+	margin-right: auto;
+	margin-left: auto;
 
 	.profile-fields-wrapper {
-		background: #ffffff;
+		padding: 10px;
 		max-height: 450px;
 		overflow-y: scroll;
-		padding: 20px;
-		box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
 
 		.profile-fields {
+			padding: 10px;
+			background: #ffffff;
+			box-shadow: 5px -5px 14px -5px rgba(0, 16, 131, 0.1),
+				-5px 5px 14px -5px rgba(0, 16, 131, 0.1);
+
 			.profile-picture {
 				padding-top: 13px;
 				padding-bottom: 15px;
@@ -335,14 +350,24 @@ export default {
 	}
 
 	@include gt-xs {
+		max-width: unset;
+		margin-left: -10px;
+
 		.profile-fields-wrapper {
+			padding-right: 20px;
+			margin-top: 30px;
+
 			.profile-fields {
+				padding: 20px;
 				display: grid;
 				grid-template-columns: 1fr 1fr;
 				gap: 20px;
 
 				.profile-picture {
-					grid-area: 1/1/2/2;
+					grid-row-start: 1;
+					grid-row-end: 2;
+					grid-column-start: 1;
+					grid-column-end: 2;
 					padding-top: 5px;
 					padding-bottom: 5px;
 				}
@@ -422,6 +447,111 @@ export default {
 
 			&::-webkit-scrollbar-thumb {
 				border-radius: 10px 0 0 10px;
+			}
+		}
+	}
+
+	@include gt-md {
+		.profile-fields-wrapper {
+			max-height: unset;
+			margin-top: unset;
+
+			.profile-fields {
+				padding: 30px;
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+				box-shadow: 0 0 7px -3px rgba(0, 0, 0, 0.24);
+
+				.profile-picture {
+					grid-row-end: 3;
+				}
+
+				.profile-input-field {
+					margin-bottom: unset;
+
+					&.input-field--group-1 {
+						&.input-field--firstname {
+							grid-row-start: 1;
+							grid-row-end: 2;
+							grid-column-start: 2;
+							grid-column-end: 3;
+						}
+						&.input-field--lastname {
+							grid-row-start: 1;
+							grid-row-end: 2;
+							grid-column-start: 3;
+							grid-column-end: 4;
+						}
+						&.input-field--current-location {
+							grid-row-start: 1;
+							grid-row-end: 2;
+							grid-column-start: 4;
+							grid-column-end: 5;
+						}
+						&.input-field--date-of-birth {
+							grid-row-start: 2;
+							grid-row-end: 3;
+							grid-column-start: 2;
+							grid-column-end: 3;
+						}
+						&.input-field--job-title {
+							grid-row-start: 2;
+							grid-row-end: 3;
+							grid-column-start: 3;
+							grid-column-end: 4;
+						}
+						&.input-field--nationality {
+							grid-row-start: 2;
+							grid-row-end: 3;
+							grid-column-start: 4;
+							grid-column-end: 5;
+						}
+					}
+
+					&.input-field--group-2 {
+						&.input-field--languages {
+							grid-row-start: 3;
+							grid-row-end: 4;
+							grid-column-start: 1;
+							grid-column-end: 2;
+						}
+
+						&.input-field--hometown {
+							grid-row-start: 4;
+							grid-row-end: 5;
+							grid-column-start: 1;
+							grid-column-end: 2;
+						}
+					}
+
+					&.input-field--group-3 {
+						&.input-field--about {
+							grid-row-start: 3;
+							grid-row-end: 5;
+							grid-column-start: 2;
+							grid-column-end: 3;
+						}
+						&.input-field--overview {
+							grid-row-start: 3;
+							grid-row-end: 5;
+							grid-column-start: 3;
+							grid-column-end: 4;
+						}
+						&.input-field--quote {
+							grid-row-start: 3;
+							grid-row-end: 5;
+							grid-column-start: 4;
+							grid-column-end: 5;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@include gt-lg {
+		.profile-fields-wrapper {
+			.profile-fields {
+				padding: 45px;
 			}
 		}
 	}
@@ -540,6 +670,12 @@ export default {
 		&.v-text-field--single-line:not(.v-input--dense) textarea {
 			max-height: 100%;
 			margin-top: unset;
+
+			&::-webkit-scrollbar,
+			&::-webkit-scrollbar-thumb {
+				display: none;
+				width: 0;
+			}
 		}
 	}
 
@@ -548,6 +684,18 @@ export default {
 		&.v-text-field--single-line:not(.v-input--dense) textarea {
 			max-height: 100%;
 			margin-top: unset;
+
+			&::-webkit-scrollbar,
+			&::-webkit-scrollbar-thumb {
+				display: none;
+				width: 0;
+			}
+		}
+	}
+
+	@media screen and (min-width: 1280px) {
+		&.input-field--about .v-input__control {
+			height: auto;
 		}
 	}
 }

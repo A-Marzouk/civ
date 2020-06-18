@@ -17,7 +17,8 @@ class CreateAchievementsTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('title')->nullable();
-            $table->string('category')->nullable();
+            $table->string('type')->nullable();
+            $table->string('year')->nullable();
             $table->text('description')->nullable();
             $table->string('image_src')->nullable();
             $table->string('url')->nullable();

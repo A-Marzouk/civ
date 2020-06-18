@@ -7,12 +7,16 @@
 				<router-view></router-view>
 			</transition>
 
-			<div class="cv-content-preview">
-				<div class="cv-preview-link">
-					<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
-				</div>
-				<div class="cv-preview-theme">
-					<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+			<div class="cv-content-preview-wrapper">
+				<div class="cv-content-preview">
+					<div class="cv-preview-link">
+						<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
+					</div>
+					<div class="cv-preview-theme-wrapper">
+						<div class="cv-preview-theme">
+							<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+						</div>
+					</div>
 				</div>
 			</div>
 		</main>
@@ -53,7 +57,7 @@ export default {
 				icon: null
 			},
 			{
-				name: "portfolios",
+				name: "portfolio",
 				icon: null
 			},
 			{
@@ -102,103 +106,103 @@ $disabledColor: #9f9e9e;
 
 @import "../../../../sass/media-queries";
 
-.cv-content-preview {
-	padding: 20px 30px 40px;
-
-	.cv-preview-link {
-		height: 50px;
-		display: flex;
-		align-items: center;
-		border-radius: 5px;
-		padding-left: 25px;
-		border: 1px solid #e6e8fc;
-
-		a {
-			color: #888db1;
-			font-family: "Roboto", "sans-serif";
-			font-size: 20px;
-			line-height: 22px;
-
-			&:hover {
-				color: inherit;
-			}
-		}
-	}
-
-	.cv-preview-theme {
-		overflow-y: scroll;
-		max-height: 540px;
-
-		&::-webkit-scrollbar {
-			width: 5px;
-			height: 0;
-			background: #e5e5e5;
-			border-radius: 5px 0 0 5px;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: #001ce2;
-			border-radius: 5px 0 0 5px;
-		}
+.edit-cv {
+	.edit-cv-content {
+		padding: 40px 20px 20;
 	}
 
 	@include gt-xs {
-		.cv-preview-theme {
-			&::-webkit-scrollbar {
-				width: 10px;
-				border-radius: 10px 0 0 10px;
-			}
+		padding: 40px 30px 30px;
 
-			&::-webkit-scrollbar-thumb {
-				border-radius: 10px 0 0 10px;
-			}
+		.edit-cv-content {
+			padding-left: unset;
+			padding-right: unset;
+		}
+	}
+
+	@include gt-md {
+		display: flex;
+
+		.edit-cv-content {
+			flex: 1;
+			overflow: hidden;
+			padding-left: 30px;
 		}
 	}
 }
 
-.unused {
-	.linkBar {
-		width: 100%;
-		height: 50px;
-		display: flex;
-		align-items: center;
-		padding-left: 25px;
-		font-size: 20px;
-		line-height: 22px;
-		color: #888db1;
-		border: 1px solid #e6e8fc;
-		border-radius: 5px;
+.cv-content-preview-wrapper {
+	margin-right: -10px;
+	margin-left: -10px;
+	overflow-y: scroll;
+	margin-top: 40px;
+	padding: 10px;
+	max-height: 600px;
+	max-width: 350px;
+	margin-left: auto;
+	margin-right: auto;
+
+	&::-webkit-scrollbar {
+		width: 5px;
+		height: 0;
+		background: #e5e5e5;
+		border-radius: 5px 0 0 5px;
 	}
 
-	.aside-bar {
-		min-width: 290px;
-		position: relative;
-		max-height: calc(61px * 12);
-		// Check it
-		overflow-y: auto;
+	&::-webkit-scrollbar-thumb {
+		background: #001ce2;
+		border-radius: 5px 0 0 5px;
+	}
 
-		@include lt-lg {
-			display: none !important;
+	.cv-content-preview {
+		.cv-preview-link {
+			height: 50px;
+			display: flex;
+			align-items: center;
+			border-radius: 5px;
+			padding-left: 25px;
+			border: 1px solid #e6e8fc;
+
+			a {
+				color: #888db1;
+				font-family: "Roboto", "sans-serif";
+				font-size: 20px;
+				line-height: 22px;
+
+				&:hover {
+					color: inherit;
+				}
+			}
 		}
 
-		&::after {
-			content: "";
-			position: absolute;
-			top: 0;
-			right: 0;
-			height: 100%;
-			width: 6px;
-			background-color: #e2e5fc;
+		.cv-preview-theme-wrapper {
+			.cv-preview-theme {
+				overflow-x: scroll;
+
+				&::-webkit-scrollbar {
+					height: 0;
+				}
+
+				&::-webkit-scrollbar-thumb {
+					height: 0;
+				}
+			}
+		}
+	}
+
+	@include gt-xs {
+		padding: 10px;
+		padding-right: 20px;
+		max-width: unset;
+		margin-left: -10px;
+
+		&::-webkit-scrollbar {
+			width: 10px;
+			border-radius: 10px 0 0 10px;
 		}
 
-		#scrollItem {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 6px;
-			height: 61px;
-			z-index: 5;
-			background-color: $activeColor;
+		&::-webkit-scrollbar-thumb {
+			border-radius: 10px 0 0 10px;
 		}
 	}
 }
@@ -281,4 +285,10 @@ $disabledColor: #9f9e9e;
  {
 	opacity: 0;
 }
+</style>
+
+<style>
+	.v-application--wrap{
+		min-height: 450px !important;
+	}
 </style>

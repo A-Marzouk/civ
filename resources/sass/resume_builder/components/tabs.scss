@@ -5,6 +5,7 @@
         background-color: $auxBgColor-gray;
         color: $inputTextColor;
         border-right: 1px solid $inputBorderColor--disabled;
+        font-size: 18px;
 
         &:first-child {
             border-radius: 10px 0px 0px 0px;
@@ -19,6 +20,12 @@
             background-color: $mainColor;
             color: $secondaryColor !important;
             border-right: 0;
+        }
+    }
+
+    @include lt-sm {
+        .v-tab {
+            font-size: 15px;
         }
     }
 }

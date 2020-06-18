@@ -385,17 +385,7 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #001CE2;
-$secondaryColor: white;
-$disabledColor: #888DB1;
-$errorColor: #ff5252;
-$inputTextColor: #888DB1;
-$inputBorderColor--enabled: #C4C9F5;
-$inputBorderColor--disabled: #E6E8FC;
-$bgScrollBarColor: #E6E8FC;
-$auxBgColor-bluegray: #E6E8FC;
-$auxBgColor-gray: #F2F3FD;
-
+@import '../../../../../../sass/variables';
 @import '../../../../../../sass/media-queries';
 
     .education-wrapper {

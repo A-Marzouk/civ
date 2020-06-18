@@ -5,7 +5,7 @@
 
 				<a href="#" @click.prevent="open=!open" class="activator-preview-link">
 					<div class="link-icon profile-ixklwxz-link-icon-active" :data-icon="currentSidebarLink.icon">
-						<sidebar-icon :icon="currentSidebarLink.icon" />
+						<svg-vue :icon="`edit-cv-sidebar/${currentSidebarLink.icon}`"></svg-vue>
 					</div>
 					{{ currentSidebarLink.label }}
 				</a>
@@ -20,8 +20,8 @@
 			<div class="sidebar-links" :class="{'open' :open}">
 				<div v-for="sidebarLink in sidebarLinks" class="sidebar-link" :class="{'active': activeTab === sidebarLink.icon}" :key="sidebarLink.icon">
 					<router-link :to="sidebarLink.url" @click.native="setActive(sidebarLink)">
-						<div class="link-icon">
-							<sidebar-icon :icon="sidebarLink.icon" />
+						<div class="link-icon" :class="{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}">
+							<svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
 						</div>
 						{{ sidebarLink.label }}
 					</router-link>
@@ -32,8 +32,6 @@
 </template>
 
 <script>
-import sidebarIcon from "./sidebar-icon";
-
 export default {
 	name: "sidebar",
 
@@ -43,8 +41,6 @@ export default {
 			required: true
 		}
 	},
-
-	components: { "sidebar-icon": sidebarIcon },
 
 	data() {
 		return {
@@ -77,9 +73,9 @@ export default {
 					label: "Skills"
 				},
 				{
-					url: "/resume-builder/edit/portfolios",
-					icon: "portfolios",
-					label: "Portfolios"
+					url: "/resume-builder/edit/portfolio",
+					icon: "portfolio",
+					label: "Portfolio"
 				},
 				{
 					url: "/resume-builder/edit/audio-video",
@@ -227,14 +223,17 @@ export default {
 
 .sidebar {
 	margin-top: 40px;
-	padding-left: 30px;
-	padding-right: 30px;
+	margin-bottom: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
 
 	.sidebar-container {
 		position: relative;
 		background: #ffffff;
 		font-family: Noto Sans, "sans-serif";
 		max-width: 350px;
+		margin-left: auto;
+		margin-right: auto;
 
 		.sidebar-links,
 		.sidebar-link-activator {
@@ -254,6 +253,12 @@ export default {
 					justify-content: center;
 					border-radius: 5px;
 					margin-right: 10px;
+
+					svg {
+						fill: none;
+						height: 24px;
+						width: 24px;
+					}
 				}
 
 				&:hover {
@@ -343,7 +348,86 @@ export default {
 		}
 	}
 
+	@media screen and (min-width: 375px) {
+		& {
+			.sidebar-container {
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+		}
+	}
+
 	@include gt-xs {
+		padding-right: unset;
+		padding-left: unset;
+		margin-top: unset;
+
+		.sidebar-container {
+			margin-left: unset;
+			margin-right: unset;
+			padding-left: unset;
+			padding-right: unset;
+		}
+	}
+
+	@include gt-md {
+		padding-left: unset;
+		padding-right: unset;
+		margin-bottom: unset;
+		border-right: 1px solid rgba(0, 28, 226, 0.1);
+
+		.sidebar-container {
+			background: transparent;
+			width: 300px;
+
+			.sidebar-links,
+			.sidebar-link-activator {
+				&.sidebar-link-activator {
+					display: none;
+				}
+
+				&.sidebar-links {
+					max-height: unset;
+					position: static;
+
+					.sidebar-link {
+						padding-left: unset;
+						padding-right: unset;
+
+						a {
+							color: #888db1;
+							padding-left: unset;
+							padding-right: 35px;
+							border-radius: unset;
+							border: unset;
+
+							&:hover {
+								background-color: #f9f9f9;
+								text-decoration: none;
+							}
+						}
+
+						&.active a {
+							position: relative;
+							background-color: transparent;
+							color: #001ce2;
+
+							&::after {
+								content: "";
+								display: block;
+								background: #001ce2;
+								position: absolute;
+								right: 0;
+								bottom: 0;
+								height: 100%;
+								width: 5px;
+								border-radius: 10px 0px 0px 10px;
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 </style>

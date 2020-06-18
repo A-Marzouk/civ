@@ -98,13 +98,23 @@
 
               <div class="social-wrap content-show">
                 <a href="#">
-                  <img style="width: 14px !important;" src="/images/resume_themes/theme600/social_icons/map-marker.webp" alt="map-marker"/>
+                  <img
+                    style="width: 14px !important;"
+                    src="/images/resume_themes/theme600/social_icons/map-marker.webp"
+                    alt="map-marker"
+                  />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/social_icons/whatsapp.webp" alt="whatsapp"/>
+                  <img
+                    src="/images/resume_themes/theme600/social_icons/whatsapp.webp"
+                    alt="whatsapp"
+                  />
                 </a>
                 <a href="#">
-                  <img src="/images/resume_themes/theme600/social_icons/google-plus.webp" alt="google-plus"/>
+                  <img
+                    src="/images/resume_themes/theme600/social_icons/google-plus.webp"
+                    alt="google-plus"
+                  />
                 </a>
                 <a href="#">
                   <img src="/images/resume_themes/theme600/social_icons/behance.webp" alt />
@@ -136,8 +146,8 @@
                   class="main-tab"
                   hide-slider
                   active-class="isActive"
-                  centered
-                  center-active
+                  :centered="windowWidth<960 ? true : false"
+                  :center-active="windowWidth<960 ? true : false"
                 >
                   <v-tab
                     class="tab-bg mr-8"
@@ -233,8 +243,8 @@
                   reverse-transition="fade-transition"
                   value="tab-2"
                 >
-                  <div class="content_margin">
-                    <v-row>
+                  <v-container style="width:100%;">
+                    <v-row align="center" class="">
                       <v-col sm="12" md="6" lg="6" xl="6" cols="12" pb="3">
                         <v-card class="bg-card">
                           <v-row>
@@ -347,7 +357,7 @@
                         </v-card>
                       </v-col>
                     </v-row>
-                  </div>
+                  </v-container>
                 </v-tab-item>
 
                 <v-tab-item
@@ -714,7 +724,7 @@ img {
   justify-content: flex-end;
 }
 
-.social-wrap-pink{
+.social-wrap-pink {
   display: flex;
   position: relative;
   z-index: 5;
@@ -730,7 +740,12 @@ img {
     justify-content: center;
     background: #fff;
     display: none;
-    background: linear-gradient(99.62deg, #F9BFDA 1.07%, #FFCAD0 51.95%, #FDBEBA 89.88%);
+    background: linear-gradient(
+      99.62deg,
+      #f9bfda 1.07%,
+      #ffcad0 51.95%,
+      #fdbeba 89.88%
+    );
     margin: 5px;
     img {
       width: 16px;
@@ -882,6 +897,12 @@ img {
     font-weight: 600;
     &.isActive {
       opacity: 1;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px){
+      width: 210px !important;
+    }
+    @media screen and (max-width: 599px){
+      width: 160px !important;
     }
   }
 }
@@ -1299,6 +1320,9 @@ img {
     #fdbeba 89.88%
   ) !important;
 }
+#resumeTheme600 div.v-slide-group__prev.v-slide-group__prev--disabled {
+  display: none !important;
+}
 </style>
 
 
@@ -1309,6 +1333,7 @@ export default {
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       activeTab: null,
       skillTab: null,
       typeSkill: '',
@@ -1347,6 +1372,12 @@ export default {
         'Design Skills',
         'Software'
       ]
+    };
+  },
+  mounted(){
+    //determine window size 
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
     };
   },
   methods: {
