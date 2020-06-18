@@ -36,7 +36,6 @@
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="Title"
@@ -44,24 +43,36 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8">
+                <v-col
+                  xl="6"
+                  lg="6"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8"
+                >
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="URL"
                     v-model="url"
                   ></v-text-field>
                 </v-col>
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8">
+                <v-col
+                  xl="6"
+                  lg="6"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8"
+                >
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="Year"
@@ -84,7 +95,6 @@
                     class="resume-builder__input civie-textarea"
                     outlined
                     color="#001CE2"
-                    
                     :class="{'resume-builder__input--disabled': disabledTextarea}"
                     :disabled="disabledTextarea"
                     label="Description"
@@ -92,32 +102,24 @@
                   ></v-textarea>
                 </v-col>
                 <v-col md="6" sm="6" cols="12" class="mt-n5">
-                  <div class="input-group files">
-                    <!-- Using v-input classes -->
-                    <div
-                      class="v-input v-text-field--outlined resume-builder__input theme--light v-text-field v-text-field--is-booted v-text-field--enclosed civie-dropzone"
+                  <v-input
+                    class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
+                    outlined
+                    label="Upload Images"
+                    hint="(Maximum 5 files)"
+                  >
+                    <vue-dropzone
+                      class="civie-dropzone-input"
+                      ref="myVueDropzone"
+                      id="dropzone"
+                      :options="dropzoneOptions"
+                      :useCustomSlot="true"
                     >
-                      <div class="v-input__control">
-                        <div class="v-input__slot">
-                          <fieldset aria-hidden="true"></fieldset>
-                          <div class="v-text-field__slot">
-                            <label class="v-label" for>Upload Images</label>
-                            <vue-dropzone
-                              class="civie-dropzone-input"
-                              ref="myVueDropzone"
-                              id="dropzone"
-                              :options="dropzoneOptions"
-                              :useCustomSlot="true"
-                            >
-                              <div class="dropzone-custom-content">
-                                <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
-                              </div>
-                            </vue-dropzone>
-                          </div>
-                        </div>
+                      <div class="dropzone-custom-content">
+                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
                       </div>
-                    </div>
-                  </div>
+                    </vue-dropzone>
+                  </v-input>
                 </v-col>
                 <v-col cols="12" align="right">
                   <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
@@ -249,7 +251,7 @@ export default {
         new: {},
         edit: {}
       },
-      addNewAchievement: false,
+      addNewAchievement: false
     };
   },
   computed: {
