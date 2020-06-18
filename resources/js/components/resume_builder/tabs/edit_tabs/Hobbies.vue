@@ -409,7 +409,7 @@ $mainBlue: #001ce2;
 }
 </style>
 <style>
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 959px) {
   #resumeBuilder .v-slide-group__prev.v-slide-group__prev--disabled {
     display: none !important;
   }
