@@ -4,7 +4,7 @@
       <v-container class>
         <v-form v-if="reference">
           <v-row align="center">
-            <v-col xl="3" lg="3" md="6" sm="6" cols="12">
+            <v-col xl="3" :lg="windowWidth<1300?'6':'3'" md="6" sm="6" cols="12">
               <v-select
                 class="resume-builder__input civie-select"
                 outlined
@@ -21,7 +21,7 @@
             </v-col>
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
               cols="12"
@@ -31,7 +31,6 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Full Name"
@@ -40,17 +39,17 @@
             </v-col>
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n6 mt-n6"
+              class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+              :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Title/Position"
@@ -60,17 +59,17 @@
 
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-n6 mt-n6"
+              class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+              :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Phone"
@@ -80,18 +79,17 @@
 
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
+              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 type="email"
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-               
                 v-model="reference.email"
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
@@ -100,17 +98,16 @@
             </v-col>
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
+              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Company"
@@ -120,16 +117,15 @@
 
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
+              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="Address"
@@ -138,17 +134,16 @@
             </v-col>
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n6"
+              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
             >
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-               
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label="URL"
@@ -156,20 +151,18 @@
               ></v-text-field>
             </v-col>
 
-
             <v-col
               xl="3"
-              lg="3"
+              :lg="windowWidth<1300?'6':'3'"
               md="6"
               sm="6"
               cols="12"
-              class="mt-xl-n10 mt-lg-n10 mt-md-n10 mt-sm-n6 mt-n8"
+              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
             >
               <v-textarea
                 class="resume-builder__input civie-textarea"
                 outlined
                 color="#001CE2"
-               
                 :class="{'resume-builder__input--disabled': disabledTextarea}"
                 :disabled="disabledTextarea"
                 label="Description"
@@ -177,7 +170,10 @@
               ></v-textarea>
             </v-col>
             <v-col xl="12" lg="12" md="12" sm="12" cols="12">
-              <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-n5" @click="applyReferenceEdit">Save</v-btn>
+              <v-btn
+                class="resume-builder__btn civie-btn filled btn-add-new mt-n5"
+                @click="applyReferenceEdit"
+              >Save</v-btn>
             </v-col>
           </v-row>
         </v-form>
@@ -198,6 +194,7 @@ export default {
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       activeTab: "References",
       tabs: ["References", "Referee", "Testimonials"],
       references: ["Reference", "Reference2"],
@@ -220,7 +217,7 @@ export default {
       disabledInput: false,
       disabledTextarea: false,
       addNewTestimonial: false,
-      importImage: "",
+      importImage: ""
     };
   },
   computed: {
@@ -235,12 +232,17 @@ export default {
     }
   },
   props: ["selectProps", "inputProps", "textareaProps"],
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  },
   methods: {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
     },
 
-    applyReferenceEdit(savingType = '') {
+    applyReferenceEdit(savingType = "") {
       this.errors = { new: {}, edit: {} };
       let formData = {};
       $.each(this.reference, field => {
@@ -258,7 +260,8 @@ export default {
         formData = this.reference;
       }
 
-      axios.put("/api/user/reference", formData)
+      axios
+        .put("/api/user/reference", formData)
         .then(response => {
           console.log(response.data);
           savingType === "manual"
@@ -276,7 +279,7 @@ export default {
             iconSrc: "/images/resume_builder/error.png"
           });
         });
-    },
+    }
   }
 };
 </script>
