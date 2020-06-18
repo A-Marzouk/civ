@@ -46,7 +46,7 @@ class EducationController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') ||  $request->id != ''){
             // update
             $education = Education::findOrFail($request->id);
             $education->update($request->toArray());
@@ -61,9 +61,9 @@ class EducationController extends Controller
 
 
     public function updateEducationOrder(Request $request){
-        $educations = $request->works ;
+        $educations = $request->educations ;
         foreach ($educations as $key => $education){
-            $myEducation = WorkEx::find($education['id']);
+            $myEducation = Education::find($education['id']);
             $myEducation->update([
                 'order' => $key + 1
             ]);

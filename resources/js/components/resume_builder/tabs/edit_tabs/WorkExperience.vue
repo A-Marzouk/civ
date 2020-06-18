@@ -60,7 +60,7 @@
                                 </div>
                             </div>
                             <div class="date-text">
-                                -
+
                             </div>
                             <div class="date-input">
                                 <label for="dateTo" class="light d-flex align-items-center">
