@@ -27,7 +27,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/variables";
+
 .tabs-content {
 	padding: 25px 10px;
+
+	@include lg {
+		padding: 40px 15px;
+	}
 }
 </style>
