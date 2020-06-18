@@ -5,7 +5,7 @@ axios.defaults.headers.Authorization = token;
 
 // Vuetify
 import vuetify from './vuetify';
-
+window.EventBus = new Vue();
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),

@@ -1,0 +1,99 @@
+.work {
+    margin: 0 100px;
+    padding: 60px 100px 100px 60px;
+    background-color: $color-white;
+    border-radius: 40px;
+    @media only screen and (max-width: 1200px) {
+
+        margin: 0 calc(100px - #{$tab-font-size1});
+        padding: calc(60px - #{$tab-font-size1}) calc(100px - #{$tab-font-size1}) calc(100px - #{$tab-font-size1}) calc(60px - #{$tab-font-size1});
+        border-radius: calc(40px - #{$tab-font-size1});
+    }
+    @media only screen and (max-width: 900px) {
+
+        margin: 0 calc(100px /2);
+        padding: calc(60px /2) calc(100px /2) calc(100px /2) calc(60px /2);
+        border-radius: calc(40px - #{$tab-font-size2});
+    }
+    @media only screen and (max-width: 550px) {
+
+        margin: unset;
+    }
+
+    &__details:not(:last-child) {
+        margin-bottom: 30px;
+        @media only screen and (max-width: 1200px) {
+            margin-bottom: calc(30px - #{$tab-font-size1});
+
+        }
+    }
+
+    &__details:last-child {
+        hr {
+            display: none;
+        }
+    }
+
+    &__header {
+        position: relative;
+        font-size: 30px;
+        color: $color-primary;
+        line-height: 2;
+        font-weight: 900;
+        display: block;
+        font-family: $font-primary;
+        @media only screen and (max-width: 1200px) {
+            font-size: calc(30px - #{$tab-font-size1});
+
+        }
+    }
+
+    &__para {
+        font-weight: 300;
+        font-family: $font-primary;
+        font-size: 15px;
+        display: block;
+        color: $color-primary;
+        margin-bottom: 30px;
+        @media only screen and (max-width: 1200px) {
+            font-size:calc(15px - 5px);
+            margin-bottom: calc(30px - #{$tab-font-size1});
+
+        }
+    }
+
+    hr {
+        border: 0.1px solid $color-primary;
+        width: 70%;
+    }
+
+}
+
+.box__first {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    background-color: rgba($color-primary, 0.2);
+    border-radius: 10px;
+    top: 5px;
+    left: -10px;
+    @media only screen and (max-width: 1200px) {
+        height: calc(60px - 20px);
+        width: calc(60px - 20px);
+    }
+
+}
+
+.box__second {
+    position: absolute;
+    height: 60px;
+    width: 60px;
+    background-color: rgba($color-primary, 0.1);
+    border-radius: 10px;
+    top: -5px;
+    @media only screen and (max-width: 1200px) {
+        height: calc(60px - 20px);
+        width: calc(60px - 20px);
+    }
+
+}

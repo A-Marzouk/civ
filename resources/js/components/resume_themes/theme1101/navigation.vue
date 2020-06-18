@@ -14,8 +14,8 @@
             </v-card>
             <button @click="payopen" style="width: 125px"
                     class="social_icon mb-6">
-                <v-icon class="mr-2" small>$message</v-icon>
-                <span style="color: white;font-weight: bold;font-size: 90%"> Hire Me</span>
+                <message style="display: inline-block;height: 16px;width: 16px" class="mr-2"></message>
+                <span style="color: white;font-weight: bold;font-size: 90%;display: inline-block"> Hire me</span>
             </button>
         </div>
         <h1 class="name mb-3">Samuel Raita</h1>
@@ -63,9 +63,11 @@
     import facebook from './icons/facebook.vue'
     import insta from './icons/insta.vue'
     import twitter from './icons/twitter.vue'
+    import message from './icons/message.vue'
+
 
     export default {
-        components: {facebook, insta, twitter},
+        components: {facebook, insta, twitter, message},
         data() {
             return {
                 dialog: false,
