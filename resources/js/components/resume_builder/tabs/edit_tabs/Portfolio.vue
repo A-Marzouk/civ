@@ -233,7 +233,7 @@ import vue2Dropzone from 'vue2-dropzone'
             padding: 50px 46px;
 
             .resume-builder__input {
-                column-span: 1;
+                grid-column: span 1;
 
                 &.civie-textarea,
                 &.civie-dropzone {
@@ -261,14 +261,33 @@ import vue2Dropzone from 'vue2-dropzone'
                 }
 
                 @include lt-md {
-                    width: 48%;
-                    margin-right: 0;
-                    justify-content: space-between;
+                    grid-column: span 2;
+
+                    &.civie-dropzone {
+                        width: 100%;
+                        grid-row: 3 / 5;
+                        grid-column: 3 / 5;
+                    }
+
+                    &.civie-textarea {
+                        grid-row: 3 / 5;
+                        grid-column: 1 / 3;
+                    }
                 }
 
                 @include lt-sm {
-                    width: 100%;
-                    max-width: 100%;
+                    grid-column: span 4;
+
+                    &.civie-textarea {
+                        grid-row: 5 / 7;
+                        grid-column: span 4;
+                    }
+
+                    &.civie-dropzone {
+                        width: 100%;
+                        grid-row: 7 / 9;
+                        grid-column: span 4;
+                    }
                 }
 
             }
@@ -277,10 +296,21 @@ import vue2Dropzone from 'vue2-dropzone'
                 align-self: start;
                 justify-self: start;
 
+                grid-column: 4 / 5;
+
+                @include lt-md {
+                    grid-column: 1 / 3;
+                }
+
                 @include lt-sm {
+                    grid-column: span 4;
                     align-self: stretch;
                     justify-self: stretch;
                 }
+            }
+
+            @include lt-sm {
+                grid-gap: 5px;
             }
         }
 
