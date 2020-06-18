@@ -4,10 +4,10 @@
       class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-2 resume-builder__scroll reference-content"
       flat
     >
-      <v-container class="">
+      <v-container class style="width:100%;">
         <v-form>
           <v-row>
-            <v-col md="6" sm="12" cols="12">
+            <v-col xl="6" lg="6" md="12" sm="12" cols="12">
               <v-row>
                 <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                   <v-select
@@ -24,12 +24,18 @@
                     </button>
                   </v-select>
                 </v-col>
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n8">
+                <v-col
+                  xl="6"
+                  lg="6"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n8"
+                >
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="Title"
@@ -37,24 +43,36 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-md-n8 mt-sm-n8 mt-n8">
+                <v-col
+                  xl="6"
+                  lg="6"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8"
+                >
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="URL"
                     v-model="url"
                   ></v-text-field>
                 </v-col>
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12" class="mt-md-n8 mt-sm-n8 mt-n8">
+                <v-col
+                  xl="6"
+                  lg="6"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8"
+                >
                   <v-text-field
                     class="resume-builder__input civie-input"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
                     :class="{'resume-builder__input--disabled': disabledInput}"
                     :disabled="disabledInput"
                     label="Year"
@@ -63,32 +81,45 @@
                 </v-col>
               </v-row>
             </v-col>
-            <v-col md="6" sm="12" cols="12" class="mt-md-0 mt-sm-n12 mt-n12">
+            <v-col
+              xl="6"
+              lg="6"
+              md="12"
+              sm="12"
+              cols="12"
+              class="mt-xl-0 mt-lg-0 mt-md-n12 mt-sm-n12 mt-n12"
+            >
               <v-row align="center" justify="center">
                 <v-col md="6" sm="6" cols="12">
                   <v-textarea
                     class="resume-builder__input civie-textarea"
                     outlined
                     color="#001CE2"
-                    :rules="rules"
                     :class="{'resume-builder__input--disabled': disabledTextarea}"
                     :disabled="disabledTextarea"
                     label="Description"
                     v-model="description"
                   ></v-textarea>
                 </v-col>
-                <v-col md="6" sm="6" cols="12">
-                  <vue-dropzone
-                    class="civie-dropzone"
-                    ref="myVueDropzone"
-                    id="dropzone"
-                    :options="dropzoneOptions"
-                    :useCustomSlot="true"
+                <v-col md="6" sm="6" cols="12" class="mt-n5">
+                  <v-input
+                    class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
+                    outlined
+                    label="Upload Images"
+                    hint="(Maximum 5 files)"
                   >
-                    <div class="dropzone-custom-content">
-                      <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
-                    </div>
-                  </vue-dropzone>
+                    <vue-dropzone
+                      class="civie-dropzone-input"
+                      ref="myVueDropzone"
+                      id="dropzone"
+                      :options="dropzoneOptions"
+                      :useCustomSlot="true"
+                    >
+                      <div class="dropzone-custom-content">
+                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                      </div>
+                    </vue-dropzone>
+                  </v-input>
                 </v-col>
                 <v-col cols="12" align="right">
                   <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
@@ -220,8 +251,7 @@ export default {
         new: {},
         edit: {}
       },
-      addNewAchievement: false,
-      rules: [value => !!value || "Please fill this field."]
+      addNewAchievement: false
     };
   },
   computed: {
@@ -332,7 +362,7 @@ $mainBlue: #001ce2;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
-  @media screen and (max-width: 1263px){
+  @media screen and (max-width: 1263px) {
     height: 500px;
   }
 }
@@ -360,10 +390,7 @@ $mainBlue: #001ce2;
       font-size: 15px !important;
     }
   }
-  .civie-dropzone {
-    border: 2px solid #c4c9f5 !important;
-    height: 155px;
-  }
+
   .btn-v_bar {
     min-width: 30px !important;
     min-height: 28px !important;
@@ -405,8 +432,8 @@ $mainBlue: #001ce2;
     @media screen and (max-width: 1903px) {
       width: auto;
     }
-    @media screen and (max-width: 1263px){
-      margin-top:0px;
+    @media screen and (max-width: 1263px) {
+      margin-top: 0px;
     }
     .achievement-title {
       font-family: "Noto Sans" !important;
@@ -467,6 +494,34 @@ $mainBlue: #001ce2;
         width: 280px !important;
         height: 210px !important;
       }
+    }
+  }
+}
+.input-group {
+  margin-right: 15px;
+
+  &:nth-child(4),
+  &:last-child {
+    margin-right: none;
+  }
+
+  .civie-textarea,
+  .civie-dropzone {
+    margin-bottom: 35.5px;
+    height: auto;
+
+    .v-input__control,
+    .v-input__slot {
+      height: 100%;
+    }
+  }
+
+  &.files {
+    .v-label {
+      position: absolute;
+    }
+    .civie-dropzone {
+      width: 100%;
     }
   }
 }

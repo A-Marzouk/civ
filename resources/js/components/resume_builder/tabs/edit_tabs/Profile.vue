@@ -68,7 +68,7 @@
 				</div>
 
 				<div class="profile-input-field input-field--languages input-field--group-2">
-					<v-select class="resume-builder__input  profile-input multiple-selection civie-select" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
+					<v-select class="resume-builder__input  profile-input civie-select multiple-selection" multiple chips placeholder="Select an option" @blur="syncLanguages" v-model="selectedLanguages" item-text="label" item-value="id" :items="defaultLanguages" label="Languages" color="#001CE2" outlined hide-details="auto">
 						<button class="dropdown-icon icon" slot="append">
 							<svg-vue :icon="`dropdown-caret`"></svg-vue>
 						</button>
@@ -129,8 +129,7 @@ export default {
 			return this.$store.state.user.personal_info;
 		},
 		languages() {
-			let userLanguages = this.$store.state.user.languages.map(a => a.id);
-			this.selectedLanguages = userLanguages;
+			return this.$store.state.user.languages.map(a => a.id);
 		},
 		user() {
 			return this.$store.state.user;
@@ -142,10 +141,6 @@ export default {
 		saveDate() {
 			this.$refs.menu.save(this.personalInfo.date_of_birth);
 			this.applyEdit("auto");
-		},
-		// date functions end
-		manualSave() {
-			this.applyEdit("manual");
 		},
 
 		syncLanguages(){
@@ -183,7 +178,6 @@ export default {
 					headers: { "Content-Type": "multipart/form-data" }
 				})
 				.then(response => {
-					console.log(response.data);
 					if (savingType === "manual") {
 						this.$store.dispatch("fullScreenNotification");
 					} else {
@@ -194,7 +188,6 @@ export default {
 				})
 				.catch(error => {
 					if (typeof error.response.data === "object") {
-						console.log(error.response.data.errors);
 						this.errors = error.response.data.errors;
 					} else {
 						this.errors = "Something went wrong. Please try again.";
@@ -218,7 +211,6 @@ export default {
 				this.profile_pic_error = "";
 				this.applyEdit("auto");
 			} else {
-				console.log("error in pic");
 				this.profile_pic_error = "Incorrect file chosen!";
 			}
 		},
@@ -242,6 +234,9 @@ export default {
 		isEmail(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(String(email).toLowerCase());
+		},
+		setUserPreSelectedLanguages(){
+			this.selectedLanguages = this.$store.state.user.languages.map(a => a.id) ;
 		}
 	},
 	mounted() {
@@ -249,9 +244,8 @@ export default {
 				.then( (response) => {
 					this.defaultLanguages = response.data.data ;
 					this.defaultLanguages.sort((a,b)=> (a.label>b.label)*2-1);
-				})
-				.catch( (error) => {
-					console.log(error)
+				}).then( () => {
+					this.setUserPreSelectedLanguages()
 				});
 	}
 };

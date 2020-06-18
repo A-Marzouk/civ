@@ -4,44 +4,91 @@
     >
         <div class="float-container">
             <v-form
-                class="flex-form"
+                class="grid-form"
                 ref="form"
                 :lazy-validation="lazy"
             >
-                <div class="input-group">
-                    <v-text-field
-                        id="collegeName"
-                        v-model="form.collegeName.value"
-                        class="resume-builder__input civie-input"
-                        outlined
-                        label="Institution Name"
-                        color="#001CE2"
-                        :rules="form.collegeName.rules"
-                    ></v-text-field>
-                    <v-text-field
-                        id="website"
-                        v-model="form.website.value"
-                        class="resume-builder__input civie-input"
-                        outlined
-                        label="Website"
-                        color="#001CE2"
-                        :rules="form.website.rules"
-                    ></v-text-field>
-                </div>
-                <div class="input-group">
-                    <v-text-field
-                        id="gradeTitle"
-                        v-model="form.gradeTitle.value"
-                        class="resume-builder__input civie-input"
-                        outlined
-                        label="Title"
-                        color="#001CE2"
-                        :rules="form.gradeTitle.rules"
-                    ></v-text-field>
-
-                    <div class="inputs-wrapper">
+                <v-text-field
+                    id="collegeName"
+                    v-model="form.collegeName.value"
+                    class="resume-builder__input civie-input"
+                    outlined
+                    label="Institution Name"
+                    color="#001CE2"
+                    :rules="form.collegeName.rules"
+                ></v-text-field>
+                <v-text-field
+                    id="gradeTitle"
+                    v-model="form.gradeTitle.value"
+                    class="resume-builder__input civie-input"
+                    outlined
+                    label="Title"
+                    color="#001CE2"
+                    :rules="form.gradeTitle.rules"
+                ></v-text-field>
+                <v-text-field
+                    id="location"
+                    v-model="form.location.value"
+                    class="resume-builder__input civie-input"
+                    outlined
+                    label="Location"
+                    color="#001CE2"
+                    :rules="form.location.rules"
+                ></v-text-field>
+                <v-textarea
+                    id="description"
+                    v-model="form.description.value"
+                    class="resume-builder__input civie-textarea"
+                    outlined
+                    label="Description"
+                    color="#001CE2"
+                    :rules="form.description.rules"
+                ></v-textarea>
+                <v-text-field
+                    id="website"
+                    v-model="form.website.value"
+                    class="resume-builder__input civie-input"
+                    outlined
+                    label="Website"
+                    color="#001CE2"
+                    :rules="form.website.rules"
+                ></v-text-field>
+                <div class="inputs-wrapper">
+                    <v-menu
+                        v-model="startDateMenu"
+                        :close-on-content-click="false"
+                        transition="scale-transition"
+                        offset-y
+                        min-width="290px"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                                v-model="form.startDate.dateFormatted"
+                                class="resume-builder__input civie-datepicker"
+                                label="Session"
+                                color="#001CE2"
+                                readonly
+                                v-on="on"
+                                v-bind="attrs"
+                                outlined
+                                placeholder="dd/mm/yyyy"
+                                @blur="form.startDate.value = parseDate(form.startDate.dateFormatted)"
+                            >
+                                <button
+                                    class="dropdown-icon icon"
+                                    slot="append"
+                                >
+                                    <svg-vue
+                                        :icon="`dropdown-caret`"
+                                    ></svg-vue>
+                                </button>
+                            </v-text-field>
+                        </template>
+                        <v-date-picker v-model="form.startDate.value" @input="startDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
+                    </v-menu>                    
+                    <div class="input-checkbox-wrapper">
                         <v-menu
-                            v-model="startDateMenu"
+                            v-model="endDateMenu"
                             :close-on-content-click="false"
                             transition="scale-transition"
                             offset-y
@@ -49,16 +96,15 @@
                         >
                             <template v-slot:activator="{ on, attrs }">
                                 <v-text-field
-                                    v-model="form.startDate.dateFormatted"
+                                    v-model="form.endDate.dateFormatted"
                                     class="resume-builder__input civie-datepicker"
-                                    label="Session"
                                     color="#001CE2"
                                     readonly
                                     v-on="on"
                                     v-bind="attrs"
                                     outlined
                                     placeholder="dd/mm/yyyy"
-                                    @blur="form.startDate.value = parseDate(form.startDate.dateFormatted)"
+                                    @blur="form.endDate.value = parseDate(form.endDate.dateFormatted)"
                                 >
                                     <button
                                         class="dropdown-icon icon"
@@ -70,95 +116,38 @@
                                     </button>
                                 </v-text-field>
                             </template>
-                            <v-date-picker v-model="form.startDate.value" @input="startDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
-                        </v-menu>                    
-                        <div class="input-checkbox-wrapper">
-                            <v-menu
-                                v-model="endDateMenu"
-                                :close-on-content-click="false"
-                                transition="scale-transition"
-                                offset-y
-                                min-width="290px"
-                            >
-                                <template v-slot:activator="{ on, attrs }">
-                                    <v-text-field
-                                        v-model="form.endDate.dateFormatted"
-                                        class="resume-builder__input civie-datepicker"
-                                        color="#001CE2"
-                                        readonly
-                                        v-on="on"
-                                        v-bind="attrs"
-                                        outlined
-                                        placeholder="dd/mm/yyyy"
-                                        @blur="form.endDate.value = parseDate(form.endDate.dateFormatted)"
-                                    >
-                                        <button
-                                            class="dropdown-icon icon"
-                                            slot="append"
-                                        >
-                                            <svg-vue
-                                                :icon="`dropdown-caret`"
-                                            ></svg-vue>
-                                        </button>
-                                    </v-text-field>
-                                </template>
-                                <v-date-picker v-model="form.endDate.value" @input="endDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
-                            </v-menu>
-                            <v-checkbox
-                                v-model="form.actuallyStudying"
-                                class="resume-builder__input civie-checkbox"
-                                label="Actually Studying"
-                                color="#001CE2"
-                            ></v-checkbox>
-                        </div>
-                    </div> 
+                            <v-date-picker v-model="form.endDate.value" @input="endDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
+                        </v-menu>
+                        <v-checkbox
+                            v-model="form.actuallyStudying"
+                            class="resume-builder__input civie-checkbox"
+                            label="Actually Studying"
+                            color="#001CE2"
+                        ></v-checkbox>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <v-text-field
-                        id="location"
-                        v-model="form.location.value"
-                        class="resume-builder__input civie-input"
-                        outlined
-                        label="Location"
-                        color="#001CE2"
-                        :rules="form.location.rules"
-                    ></v-text-field>
-                    <v-select
-                        id="currentStatus"
-                        class="resume-builder__input civie-select"
-                        v-model="form.currentStatus.value"
-                        outlined
-                        placeholder="Select an option"
-                        :items="currentStatusOptions"
-                        label="Current Status"
+                <v-select
+                    id="currentStatus"
+                    class="resume-builder__input civie-select"
+                    v-model="form.currentStatus.value"
+                    outlined
+                    placeholder="Select an option"
+                    :items="currentStatusOptions"
+                    label="Current Status"
+                >
+                    <button
+                        class="dropdown-icon icon"
+                        slot="append"
                     >
-                        <button
-                            class="dropdown-icon icon"
-                            slot="append"
-                        >
-                            <svg-vue
-                                :icon="`dropdown-caret`"
-                            ></svg-vue>
-                        </button>
-                    </v-select>
-                </div>
-                <div class="input-group">
-                    <v-textarea
-                        id="description"
-                        v-model="form.description.value"
-                        class="resume-builder__input civie-textarea"
-                        outlined
-                        label="Description"
-                        color="#001CE2"
-                        :rules="form.description.rules"
-                    ></v-textarea>
-                </div>
-                <div class="input-group">
-                    <v-btn
-                        class="resume-builder__btn civie-btn filled"
-                        depressed
-                    >Add New</v-btn>
-                </div>
+                        <svg-vue
+                            :icon="`dropdown-caret`"
+                        ></svg-vue>
+                    </button>
+                </v-select>
+                <v-btn
+                    class="resume-builder__btn civie-btn filled"
+                    depressed
+                >Add New</v-btn>
             </v-form>
             <div class="education-list">
                 <div 
@@ -400,124 +389,119 @@ export default {
             z-index: 1;
         }
 
-        .flex-form {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            
-            .input-group {
-                width: 23.5%;
-                margin-right: 15px;
+        .grid-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 90px;
+            gap: 20px 40px;
 
-                &:nth-child(4),
-                &:last-child {
-                    margin-right: none;
+            .resume-builder__input {
+                grid-column: span 1;
+                margin-bottom: 20px;
+            }
+
+            .civie-textarea {
+                height: 100%;
+                grid-column: 4 / 5;
+                grid-row: 1 / 3;
+            }
+
+            .civie-btn {
+                align-items: start;
+                justify-self: start;
+            }
+
+            .inputs-wrapper {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+
+                .civie-datepicker {
+                    max-width: 150px;
                 }
 
-                &.civie-input, // Simple input
-                &.civie-select, // Select
-                &.civie-currency {
-                    min-width: 265px;
+                .input-checkbox-wrapper {
+                    position: relative;
+                    margin-left : 15px;
 
-                    @include lt-md {
-                        min-width: auto;
+                    .civie-checkbox {
+                        position: absolute;
+                        left: 0;
+                        top: -48px;
+                        margin-top: 0;
+
+                        .v-input--selection-controls__input {
+                            margin-right: 7px;
+                        }
+
+                        .v-input--selection-controls__ripple {
+                            height: 22px;
+                            width: 22px;
+                            top: calc(50% - 12px);
+                            left: 1.19px;
+                            margin: 0;
+                        }
+                        
+                        .v-icon {
+                            font-size: 14px;
+                        }
+
+                        label {
+                            font-size: 12px;
+                        }
                     }
                 }
+            }
 
-                .resume-builder__input {
-                    margin-bottom: 20px;
-                }
-
-                .civie-textarea {
-                    height: 100%;
+            // Exceptions on breakpoint
+            @media (max-width: 1770px) {
+                gap: 20px;
+            }
+            
+            @media (max-width: 1680px) {
+                .resume-builder__input,
+                .inputs-wrapper {
+                    grid-column: span 2;
                 }
 
                 .inputs-wrapper {
-                    display: flex;
-                    justify-content: space-between;
-                    width: 100%;
-
-                    .civie-datepicker {
-                        max-width: 150px;
-                    }
-
+                    & > .civie-datepicker,
                     .input-checkbox-wrapper {
-                        position: relative;
-                        margin-left : 15px;
-
-                        .civie-checkbox {
-                            position: absolute;
-                            left: 0;
-                            top: -34px;
-                            margin-top: 0;
-
-                            .v-input--selection-controls__input {
-                                margin-right: 7px;
-                            }
-
-                            .v-input--selection-controls__ripple {
-                                height: 22px;
-                                width: 22px;
-                                top: calc(50% - 12px);
-                                left: 1.19px;
-                                margin: 0;
-                            }
-                            
-                            .v-icon {
-                                font-size: 14px;
-                            }
-    
-                            label {
-                                font-size: 12px;
-                            }
-                        }
-                    }
-
-                }
-
-                // Exception on breakpoint
-                @media (max-width: 1770px) {
-                    width: 45%;
-
-                    .resume-builder__input {
-                        width: 100%;
-                    }
-                }
-
-                @include lt-md {
-                    width: 100%;
-                    margin-right: 0;
-                    justify-content: space-between;
-
-                    & > *,
-                    .inputs-wrapper > * {
-                        width: 48%;
                         max-width: 48%;
-                    }
+                        width: 48%;
 
-                    &:nth-child(4) > .resume-builder__input:last-child {
-                        width: 100%;
-                        max-width: 100%;
-                    }
-                }
-
-                @include lt-sm {
-                    & > *,
-                    .inputs-wrapper > * {
-                        width: 100%;
-                        max-width: 100%;
-                        
-                    }
-
-                    .inputs-wrapper {
-                        & > * {
-                            max-width: 50% !important;
-                        }
-
-                        .input-checkbox-wrapper .civie-datepicker {
+                        .civie-datepicker {
+                            width: 100%;
                             max-width: 100%;
                         }
                     }
+                }
+
+                .civie-textarea {
+                    grid-row: 3 / 5;
+                }
+            }
+
+            @include lt-md {
+                .civie-textarea {
+                    grid-column: span 4;
+                    grid-row: 4 / 6;
+                }
+
+                .inputs-wrapper {
+                    grid-row: 2 / 3;
+                    grid-column: 3 / 5;
+                }
+            }
+
+            @media (max-width: 750px) {
+                .inputs-wrapper,
+                .resume-builder__input {
+                    grid-column: span 4;
+                }
+                
+                .civie-textarea {
+                    grid-row: 7 / 9
                 }
             }
         }

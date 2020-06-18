@@ -16,12 +16,14 @@ class CreateReferencesTable extends Migration
         Schema::create('references', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->string('type')->nullable();
             $table->string('name')->nullable();
             $table->string('title')->nullable();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('company')->nullable();
             $table->string('address')->nullable();
+            $table->string('url')->nullable();
             $table->text('reference_text')->nullable();
             $table->text('notes')->nullable();
             $table->boolean('is_public')->default(true);

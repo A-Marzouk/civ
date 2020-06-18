@@ -66,5 +66,21 @@ export default {
 		bottom: 50%;
 		transform: translate(50%, 50%);
 	}
+
+	@include md {
+		.video-thumbnail-wrapper {
+			.video-thumbnail {
+				padding-bottom: 97.28%;
+			}
+		}
+	}
+
+	@include xl {
+		.video-thumbnail-wrapper {
+			.video-thumbnail {
+				padding-bottom: 73.021%;
+			}
+		}
+	}
 }
 </style>

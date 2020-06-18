@@ -37,7 +37,7 @@
 
 			</div>
 
-			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false">
+			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false"  handle=".mover">
 				<div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
 					<div class="link-data">
 						<div class="mover">
@@ -119,8 +119,7 @@ export default {
 		},
 		toggleLink(link) {
 			link.is_active = !link.is_active;
-			axios
-				.put("/api/user/links", link)
+			axios.put("/api/user/links", link)
 				.then(response => {
 					this.$store.dispatch("flyingNotification");
 					this.closeOptionsBtn();

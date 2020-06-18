@@ -21,9 +21,6 @@ export default {
         },
 
         calculatePercentage(part, whole) {
-            console.log(part, whole);
-            console.log(part*100/whole);
-
             return part*100/whole;
         },
 

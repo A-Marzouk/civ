@@ -624,6 +624,7 @@ import resumeTheme1003 from "./components/resume_themes/theme1003";
 if ($("#resumeTheme1003").length !== 0) {
     new Vue({
         el: "#resumeTheme1003",
+        store,
         components: {
             "resume-theme-1003": resumeTheme1003
         }
