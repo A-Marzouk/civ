@@ -18,10 +18,7 @@
                     <vue-dropzone :options="dropzoneOptions" :useCustomSlot="true" id="dropzone">
                       <div class="dropzone-custom-content mt-n9" align="left">
                         <div class="d-flex flex-row">
-                          <img
-                            class="ml-1"
-                            src="/images/new_resume_builder/icons/main/upload.svg"
-                          />
+                          <img class="ml-1" src="/images/new_resume_builder/icons/main/upload.svg" />
                           <span class="upload-text ml-3">Browse/Drag</span>
                         </div>
                       </div>
@@ -42,14 +39,17 @@
                         <label class="label-or hidden-xs-only">or</label>
                       </template>
                       <template v-slot:prepend-inner>
-                        <img class="ml-3" src="/images/new_resume_builder/icons/main/link.svg" />
+                        <img
+                          class="ml-3 mt-n1"
+                          src="/images/new_resume_builder/icons/main/link.svg"
+                        />
                       </template>
                     </v-text-field>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <v-btn
-                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n1 mt-lg-n1 mt-n8"
+                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n1 mt-lg-n1 mt-md-n5 mt-sm-n8 mt-n8"
                       depressed
                     >Add New</v-btn>
                   </v-col>
@@ -57,7 +57,7 @@
               </v-form>
               <v-row align="center" dense>
                 <v-col xl="8" :lg="windowWidth<1440?'9':'8'" md="9" sm="12" cols="12">
-                  <v-card class="card-holder pa-2 mb-3">
+                  <v-card class="card-holder pa-2 mb-3 mt-3">
                     <v-row justify="center">
                       <v-col
                         xl="1"
@@ -82,7 +82,14 @@
                       >
                         <div class="vertical-line"></div>
                       </v-col>
-                      <v-col xl="7" lg="7" md="7" :sm="windowWidth<=767?'6':'7'" cols="7" class="mt-n2 hidden-xs-only">
+                      <v-col
+                        xl="7"
+                        lg="7"
+                        md="7"
+                        :sm="windowWidth<=767?'6':'7'"
+                        cols="7"
+                        class="mt-n2 hidden-xs-only"
+                      >
                         <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
                           <v-row justify="center" align="center" dense class="card-audio-row">
                             <v-col cols="2" align="right" class="mt-1">
@@ -121,7 +128,15 @@
                           </v-row>
                         </v-card>
                       </v-col>
-                      <v-col xl="3" lg="3" md="3" :sm="windowWidth<=767?'4':'3'" cols="8" align="right" class="action-col">
+                      <v-col
+                        xl="3"
+                        lg="3"
+                        md="3"
+                        :sm="windowWidth<=767?'4':'3'"
+                        cols="8"
+                        align="right"
+                        class="action-col"
+                      >
                         <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
                           <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
                         </v-btn>
@@ -607,3 +622,4 @@ $mainBlue: #001ce2;
   opacity: 0;
 }
 </style>
+
