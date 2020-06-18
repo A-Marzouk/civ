@@ -15,14 +15,25 @@
               <v-form>
                 <v-row align="center">
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <vue-dropzone :options="dropzoneOptions" :useCustomSlot="true" id="dropzone">
-                      <div class="dropzone-custom-content mt-n9" align="left">
-                        <div class="d-flex flex-row">
-                          <img class="ml-1" src="/images/new_resume_builder/icons/main/upload.svg" />
-                          <span class="upload-text ml-3">Browse/Drag</span>
+                    <v-input
+                      class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
+                      outlined
+                      label="Upload File"
+                      hint="(Maximum 5 files)"
+                      height="50"
+                    >
+                      <vue-dropzone
+                        class="civie-dropzone-input"
+                        ref="myVueDropzone"
+                        id="dropzone"
+                        :options="dropzoneOptions"
+                        :useCustomSlot="true"
+                      >
+                        <div class="dropzone-custom-content">
+                          <svg-vue class="icon" :icon="'upload-input-icon'" align="left"></svg-vue>
                         </div>
-                      </div>
-                    </vue-dropzone>
+                      </vue-dropzone>
+                    </v-input>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-n2">
@@ -598,6 +609,7 @@ $mainBlue: #001ce2;
   }
 }
 .dropzone-custom-content {
+
 }
 .dropzone.dz-clickable {
   border: 2px solid #c4c9f5 !important;
@@ -620,6 +632,34 @@ $mainBlue: #001ce2;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+.input-group {
+  margin-right: 15px;
+
+  &:nth-child(4),
+  &:last-child {
+    margin-right: none;
+  }
+
+  .civie-textarea,
+  .civie-dropzone {
+    margin-bottom: 35.5px;
+    height: auto;
+
+    .v-input__control,
+    .v-input__slot {
+      height: 165px;
+    }
+  }
+
+  &.files {
+    .v-label {
+      position: absolute;
+    }
+    .civie-dropzone {
+      width: 100%;
+    }
+  }
 }
 </style>
 
