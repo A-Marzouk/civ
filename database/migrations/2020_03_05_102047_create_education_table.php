@@ -25,6 +25,7 @@ class CreateEducationTable extends Migration
             $table->date('date_to')->nullable();
             $table->boolean('present')->nullable();
             $table->boolean('is_public')->default(true);
+            $table->integer('order')->default(1);
 
             $table->integer('user_id')->unsigned();
             $table->timestamps();

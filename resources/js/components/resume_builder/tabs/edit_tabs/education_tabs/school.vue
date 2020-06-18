@@ -361,6 +361,110 @@
             toggleEducationCard(education){
                 this.expandedEducationID === education.id ?  this.expandedEducationID = 0 :  this.expandedEducationID = education.id ;
             },
+            setEducationCategory(category){
+                this.activeTab = category ;
+                this.clearWorkEx();
+            },
+            toggleEducationVisibility(education){
+                work.is_public = !work.is_public;
+                axios.put("/api/user/education", education)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
+            editEducation(education) {
+                this.newEducation = {
+                    institution_type:education.institution_type,
+                    university_name:education.university_name,
+                    degree_title:education.degree_title,
+                    description:education.description,
+                    website:education.website,
+                    date_from:education.date_from,
+                    date_to:education.date_to,
+                    present:education.present,
+                }
+            },
+            deleteEducation(education){
+                if (!confirm('Do you want to delete this work ?')) {
+                    return;
+                }
+                axios.delete('/api/user/education/' + work.id)
+                    .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
+                        this.works.forEach( (myWork,index) => {
+                            if(myWork.id === response.data.data.id){
+                                this.works.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+            addEducationEx(){
+                this.errors = {};
+                this.newEducation.user_id = this.$store.state.user.id;
+                this.newEducation.category = this.activeTab;
+
+                let edit = false;
+                if (this.newEducation.id !== "") {
+                    edit = true;
+                }
+
+                axios.post('/api/user/education', this.newEducation)
+                    .then((response) => {
+
+                        if(!edit){
+                            this.works.unshift(response.data.data);
+                        }else{
+                            this.works.forEach( (myWork,index) => {
+                                if(myWork.id === response.data.data.id){
+                                    this.works[index] = response.data.data;
+                                }
+                            });
+                        }
+
+                        this.clearWorkEx();
+                        this.$store.dispatch('flyingNotification');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors  = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            clearEducation(){
+                this.newEducation = {
+                    id:'',
+                    institution_type:'',
+                    university_name:'',
+                    degree_title:'',
+                    description:'',
+                    website:'',
+                    date_from:'',
+                    date_to:'',
+                    present:false,
+                }
+            },
         }
     }
 </script>
