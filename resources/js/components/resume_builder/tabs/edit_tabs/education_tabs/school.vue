@@ -1,4 +1,4 @@
-<template>
+<template data-app>
     <div
             class="education-wrapper"
     >
@@ -10,135 +10,78 @@
             >
                 <v-text-field
                         id="collegeName"
-                        v-model="form.collegeName.value"
+                        v-model="newEducation.university_name"
                         class="resume-builder__input civie-input"
                         outlined
                         label="Institution Name"
                         color="#001CE2"
-                        :rules="form.collegeName.rules"
                 ></v-text-field>
                 <v-text-field
                         id="gradeTitle"
-                        v-model="form.gradeTitle.value"
+                        v-model="newEducation.degree_title"
                         class="resume-builder__input civie-input"
                         outlined
                         label="Title"
                         color="#001CE2"
-                        :rules="form.gradeTitle.rules"
                 ></v-text-field>
                 <v-text-field
                         id="location"
-                        v-model="form.location.value"
+                        v-model="newEducation.location"
                         class="resume-builder__input civie-input"
                         outlined
                         label="Location"
                         color="#001CE2"
-                        :rules="form.location.rules"
                 ></v-text-field>
                 <v-textarea
                         id="description"
-                        v-model="form.description.value"
+                        v-model="newEducation.description"
                         class="resume-builder__input civie-textarea"
                         outlined
                         label="Description"
                         color="#001CE2"
-                        :rules="form.description.rules"
                 ></v-textarea>
                 <v-text-field
                         id="website"
-                        v-model="form.website.value"
+                        v-model="newEducation.website"
                         class="resume-builder__input civie-input"
                         outlined
                         label="Website"
                         color="#001CE2"
-                        :rules="form.website.rules"
                 ></v-text-field>
                 <div class="inputs-wrapper">
-                    <v-menu
-                            v-model="startDateMenu"
-                            :close-on-content-click="false"
-                            transition="scale-transition"
-                            offset-y
-                            min-width="290px"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                                    v-model="form.startDate.dateFormatted"
-                                    class="resume-builder__input civie-datepicker"
-                                    label="Session"
-                                    color="#001CE2"
-                                    readonly
-                                    v-on="on"
-                                    v-bind="attrs"
-                                    outlined
-                                    placeholder="dd/mm/yyyy"
-                                    @blur="form.startDate.value = parseDate(form.startDate.dateFormatted)"
-                            >
-                                <button
-                                        class="dropdown-icon icon"
-                                        slot="append"
-                                >
-                                    <svg-vue
-                                            :icon="`dropdown-caret`"
-                                    ></svg-vue>
-                                </button>
-                            </v-text-field>
-                        </template>
-                        <v-date-picker v-model="form.startDate.value" @input="startDateMenu = false" no-title scrollable
-                                       color="#001CE2"></v-date-picker>
-                    </v-menu>
-                    <div class="input-checkbox-wrapper">
-                        <v-menu
-                                v-model="endDateMenu"
-                                :close-on-content-click="false"
-                                transition="scale-transition"
-                                offset-y
-                                min-width="290px"
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                        v-model="form.endDate.dateFormatted"
-                                        class="resume-builder__input civie-datepicker"
-                                        color="#001CE2"
-                                        readonly
-                                        v-on="on"
-                                        v-bind="attrs"
-                                        outlined
-                                        placeholder="dd/mm/yyyy"
-                                        @blur="form.endDate.value = parseDate(form.endDate.dateFormatted)"
-                                >
-                                    <button
-                                            class="dropdown-icon icon"
-                                            slot="append"
-                                    >
-                                        <svg-vue
-                                                :icon="`dropdown-caret`"
-                                        ></svg-vue>
-                                    </button>
-                                </v-text-field>
-                            </template>
-                            <v-date-picker v-model="form.endDate.value" @input="endDateMenu = false" no-title scrollable
-                                           color="#001CE2"></v-date-picker>
-                        </v-menu>
-                        <v-checkbox
-                                v-model="form.actuallyStudying"
-                                class="resume-builder__input civie-checkbox"
-                                label="Actually Studying"
-                                color="#001CE2"
-                        ></v-checkbox>
+                    <div class="date-group">
+                        <div class="date-input">
+                            <label for="">Date</label>
+                            <input type="date"  v-model="newEducation.date_from">
+                            <div class="error" v-if="errors.date_from">
+                                {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                            </div>
+                        </div>
+                        <div class="date-text">
+
+                        </div>
+                        <div class="date-input">
+                            <label for="" class="light d-flex align-items-center">
+                                <input type="checkbox" class="checkbox" v-model="newEducation.present"> Present
+                            </label>
+                            <input type="date"  v-model="newEducation.date_to" :disabled="newEducation.present">
+                            <div class="error" v-if="errors.date_to">
+                                {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <v-select
                         id="currentStatus"
                         class="resume-builder__input civie-select"
-                        v-model="form.currentStatus.value"
+                        v-model="newEducation.institution_type"
                         outlined
                         placeholder="Select an option"
-                        :items="currentStatusOptions"
-                        label="Current Status"
+                        :items="institutionTypes"
+                        label="Education Type"
                 >
                     <button
-                            class="dropdown-icon icon"
+                            class="dropdown-icon icon" @click.prevent
                             slot="append"
                     >
                         <svg-vue
@@ -146,13 +89,17 @@
                         ></svg-vue>
                     </button>
                 </v-select>
-                <v-btn
-                        class="resume-builder__btn civie-btn filled"
-                        depressed
-                >Add New
-                </v-btn>
+                <div>
+                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="addEducation">
+                        {{newEducation.id !== '' ? 'Update' : 'Add New'}}
+                    </v-btn>
+
+                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearEducation" v-show="newEducation.id !== '' ">
+                        Cancel
+                    </v-btn>
+                </div>
             </v-form>
-            <div class="education-list">
+            <draggable class="education-list" v-model="educations" @start="drag=true" @end="drag=false"  handle=".drag-handler">
                 <div
                         v-for="education in educations"
                         class="education-item"
@@ -178,25 +125,28 @@
                                 class="resume-builder__action-buttons-container"
                         >
                             <v-btn
-                                    class="btn-icon civie-btn"
+                                    class="btn-icon civie-btn"  @click="toggleEducationVisibility(education)"
                                     depressed
                             >
                                 <svg-vue
                                         icon="eye-icon"
                                         class="icon"
+                                        :class="{'visible' : education.is_public}"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
                                     class="btn-icon civie-btn"
                                     depressed
+                                    @click="editEducation(education)"
                             >
                                 <svg-vue
                                         icon="edit-icon"
                                         class="icon"
+                                        :class="{'visible' : newEducation.id === education.id}"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                    class="btn-icon civie-btn"
+                                    class="btn-icon civie-btn"  @click="deleteEducation(education)"
                                     depressed
                             >
                                 <svg-vue
@@ -222,79 +172,22 @@
                         </article>
                     </div>
                 </div>
-            </div>
+            </draggable>
         </div>
     </div>
 </template>
 
 <script>
+    import draggable from "vuedraggable";
+
     export default {
-        data: (vm) => ({
-            form: {
-                collegeName: {
-                    value: '',
-                    disabled: false,
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-                website: {
-                    value: '',
-                    disabled: false,
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-                gradeTitle: {
-                    value: '',
-                    disabled: false,
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-                startDate: {
-                    value: '',
-                    disabled: false,
-                    formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-                endDate: {
-                    value: '',
-                    disabled: false,
-                    formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-                actuallyStudying: false,
-                location: {
-                    value: '',
-                    disabled: false,
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-                currentStatus: {
-                    value: '',
-                    disabled: false,
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-                description: {
-                    value: '',
-                    disabled: false,
-                    rules: [
-                        value => !!value || 'Please fill this field.',
-                    ]
-                },
-            },
+        props:['activeTab'],
+        components: {
+            draggable
+        },
+        data: () => ({
             lazy: false,
-            startDateMenu: false,
-            endDateMenu: false,
-            currentStatusOptions: ['Completed', 'Starting', 'Studying'],
+            institutionTypes: ['School', 'University', 'College', 'Seminar', 'Course', 'Training'],
             newEducation: {
                 id:'',
                 institution_type:'',
@@ -308,7 +201,6 @@
             },
             errors: {},
             expandedEducationID: 0,
-            activeTab: 'paid',
         }),
         computed: {
             computedDateFormatted() {
@@ -318,18 +210,13 @@
                 get() {
                     return this.$store.state.user.education;
                 },
-                set(works) {
+                set(educations) {
                     this.$store.commit("updateEducation", educations);
                 }
             }
         },
         watch: {
-            "form.startDate.value": function (val) {
-                this.form.startDate.formatDate = this.formatDate(this.form.startDate.value)
-            },
-            "form.endDate.value": function (val) {
-                this.form.endDate.formatDate = this.formatDate(this.form.endDate.value)
-            },
+
         },
         methods: {
             toggleInput(inputData) {
@@ -361,12 +248,8 @@
             toggleEducationCard(education){
                 this.expandedEducationID === education.id ?  this.expandedEducationID = 0 :  this.expandedEducationID = education.id ;
             },
-            setEducationCategory(category){
-                this.activeTab = category ;
-                this.clearWorkEx();
-            },
             toggleEducationVisibility(education){
-                work.is_public = !work.is_public;
+                education.is_public = !education.is_public;
                 axios.put("/api/user/education", education)
                     .then(response => {
                         this.$store.dispatch("flyingNotification");
@@ -385,6 +268,7 @@
             },
             editEducation(education) {
                 this.newEducation = {
+                    id:education.id,
                     institution_type:education.institution_type,
                     university_name:education.university_name,
                     degree_title:education.degree_title,
@@ -396,15 +280,15 @@
                 }
             },
             deleteEducation(education){
-                if (!confirm('Do you want to delete this work ?')) {
+                if (!confirm('Do you want to delete this education ?')) {
                     return;
                 }
-                axios.delete('/api/user/education/' + work.id)
+                axios.delete('/api/user/education/' + education.id)
                     .then((response) => {
                         this.$store.dispatch('flyingNotificationDelete');
-                        this.works.forEach( (myWork,index) => {
-                            if(myWork.id === response.data.data.id){
-                                this.works.splice(index,1);
+                        this.educations.forEach( (myEducation,index) => {
+                            if(myEducation.id === response.data.data.id){
+                                this.educations.splice(index,1);
                             }
                         });
 
@@ -414,7 +298,7 @@
                         console.log(error);
                     })
             },
-            addEducationEx(){
+            addEducation(){
                 this.errors = {};
                 this.newEducation.user_id = this.$store.state.user.id;
                 this.newEducation.category = this.activeTab;
@@ -428,16 +312,16 @@
                     .then((response) => {
 
                         if(!edit){
-                            this.works.unshift(response.data.data);
+                            this.educations.unshift(response.data.data);
                         }else{
-                            this.works.forEach( (myWork,index) => {
-                                if(myWork.id === response.data.data.id){
-                                    this.works[index] = response.data.data;
+                            this.educations.forEach( (myEducation,index) => {
+                                if(myEducation.id === response.data.data.id){
+                                    this.educations[index] = response.data.data;
                                 }
                             });
                         }
 
-                        this.clearWorkEx();
+                        this.clearEducation();
                         this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
@@ -626,12 +510,16 @@
                 .drag-handler {
                     position: absolute;
                     display: flex;
+                    justify-content: center;
                     flex-direction: column;
-                    top: 28px;
-                    left: 24px;
+                    align-items: center;
+                    top: 11px;
+                    left: 0;
+                    width: 50px;
+                    height: 50px;
 
                     &:hover {
-                        cursor: pointer;
+                        cursor: grab;
                     }
 
                     .circle {
@@ -752,5 +640,115 @@
         }
     }
 
+    .date-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 28px;
+
+        @include lt-lg {
+
+
+        }
+
+        @include lt-md {
+
+        }
+
+        .date-text {
+            font: 500 26px/26px Noto Sans;
+            letter-spacing: 0;
+            color: #888DB1;
+            opacity: 1;
+            margin: 10px 9px;
+
+            @include lt-lg {
+
+            }
+
+            @include lt-md {
+                font-size: 16px;
+            }
+
+            @include lt-sm {
+                font-size: 12px;
+
+            }
+        }
+
+        .date-input {
+            display: flex;
+            flex-direction: column;
+            width: 137px;
+            position: relative;
+
+            @include lt-sm {
+
+            }
+
+            label {
+                text-align: left;
+                position: absolute;
+                top: -29px;
+                letter-spacing: 0;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 25px;
+                color: #888DB1;
+                opacity: 1;
+
+                @include lt-md {
+                    font-size: 18px;
+                    color: #888DB1;
+                }
+
+                @include lt-sm {
+                    font-size: 15px;
+                }
+            }
+
+            label.light {
+                font-size: 12px;
+                letter-spacing: 0;
+                opacity: 1;
+
+                @include lt-lg {
+                    font-size: 15px;
+                }
+
+                @include lt-md {
+                    font-size: 11px;
+                    color: #888DB1;
+                }
+            }
+
+            input {
+                height: 50px;
+                border: 2px solid #C4C9F5 !important;
+                border-radius: 10px;
+                opacity: 1;
+                color: #c4c9f5;
+                padding-left: 12px;
+
+                @include lt-lg {
+
+                }
+
+                @include lt-md {
+
+                }
+            }
+
+            input:focus{
+                outline: none;
+            }
+
+            input.checkbox {
+                width: 12px;
+                height: 12px;
+                padding-left: 0;
+                margin-right: 8px;
+            }
+        }
+    }
 
 </style>

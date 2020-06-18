@@ -298,7 +298,7 @@ export const store = new Vuex.Store({
         },
         updateEducation(state, educations){
             state.user.education = educations;
-            axios.post('/api/user/education/update-order', {works : educations})
+            axios.post('/api/user/education/update-order', {educations : educations})
                 .then( response => {
                     this.dispatch('flyingNotification');
                 })
