@@ -125,7 +125,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function education()
     {
-        return $this->hasMany(Education::class);
+        return $this->hasMany(Education::class)->orderBy('order');;
     }
 
     public function workExperience()

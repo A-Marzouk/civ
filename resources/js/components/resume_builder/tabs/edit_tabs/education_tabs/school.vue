@@ -1,160 +1,163 @@
 <template>
     <div
-        class="education-wrapper"
+            class="education-wrapper"
     >
         <div class="float-container">
             <v-form
-                class="grid-form"
-                ref="form"
-                :lazy-validation="lazy"
+                    class="grid-form"
+                    ref="form"
+                    :lazy-validation="lazy"
             >
                 <v-text-field
-                    id="collegeName"
-                    v-model="form.collegeName.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Institution Name"
-                    color="#001CE2"
-                    :rules="form.collegeName.rules"
+                        id="collegeName"
+                        v-model="form.collegeName.value"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Institution Name"
+                        color="#001CE2"
+                        :rules="form.collegeName.rules"
                 ></v-text-field>
                 <v-text-field
-                    id="gradeTitle"
-                    v-model="form.gradeTitle.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Title"
-                    color="#001CE2"
-                    :rules="form.gradeTitle.rules"
+                        id="gradeTitle"
+                        v-model="form.gradeTitle.value"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Title"
+                        color="#001CE2"
+                        :rules="form.gradeTitle.rules"
                 ></v-text-field>
                 <v-text-field
-                    id="location"
-                    v-model="form.location.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Location"
-                    color="#001CE2"
-                    :rules="form.location.rules"
+                        id="location"
+                        v-model="form.location.value"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Location"
+                        color="#001CE2"
+                        :rules="form.location.rules"
                 ></v-text-field>
                 <v-textarea
-                    id="description"
-                    v-model="form.description.value"
-                    class="resume-builder__input civie-textarea"
-                    outlined
-                    label="Description"
-                    color="#001CE2"
-                    :rules="form.description.rules"
+                        id="description"
+                        v-model="form.description.value"
+                        class="resume-builder__input civie-textarea"
+                        outlined
+                        label="Description"
+                        color="#001CE2"
+                        :rules="form.description.rules"
                 ></v-textarea>
                 <v-text-field
-                    id="website"
-                    v-model="form.website.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Website"
-                    color="#001CE2"
-                    :rules="form.website.rules"
+                        id="website"
+                        v-model="form.website.value"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Website"
+                        color="#001CE2"
+                        :rules="form.website.rules"
                 ></v-text-field>
                 <div class="inputs-wrapper">
                     <v-menu
-                        v-model="startDateMenu"
-                        :close-on-content-click="false"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="290px"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                                v-model="form.startDate.dateFormatted"
-                                class="resume-builder__input civie-datepicker"
-                                label="Session"
-                                color="#001CE2"
-                                readonly
-                                v-on="on"
-                                v-bind="attrs"
-                                outlined
-                                placeholder="dd/mm/yyyy"
-                                @blur="form.startDate.value = parseDate(form.startDate.dateFormatted)"
-                            >
-                                <button
-                                    class="dropdown-icon icon"
-                                    slot="append"
-                                >
-                                    <svg-vue
-                                        :icon="`dropdown-caret`"
-                                    ></svg-vue>
-                                </button>
-                            </v-text-field>
-                        </template>
-                        <v-date-picker v-model="form.startDate.value" @input="startDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
-                    </v-menu>                    
-                    <div class="input-checkbox-wrapper">
-                        <v-menu
-                            v-model="endDateMenu"
+                            v-model="startDateMenu"
                             :close-on-content-click="false"
                             transition="scale-transition"
                             offset-y
                             min-width="290px"
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                    v-model="form.endDate.dateFormatted"
+                    >
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                                    v-model="form.startDate.dateFormatted"
                                     class="resume-builder__input civie-datepicker"
+                                    label="Session"
                                     color="#001CE2"
                                     readonly
                                     v-on="on"
                                     v-bind="attrs"
                                     outlined
                                     placeholder="dd/mm/yyyy"
-                                    @blur="form.endDate.value = parseDate(form.endDate.dateFormatted)"
-                                >
-                                    <button
+                                    @blur="form.startDate.value = parseDate(form.startDate.dateFormatted)"
+                            >
+                                <button
                                         class="dropdown-icon icon"
                                         slot="append"
+                                >
+                                    <svg-vue
+                                            :icon="`dropdown-caret`"
+                                    ></svg-vue>
+                                </button>
+                            </v-text-field>
+                        </template>
+                        <v-date-picker v-model="form.startDate.value" @input="startDateMenu = false" no-title scrollable
+                                       color="#001CE2"></v-date-picker>
+                    </v-menu>
+                    <div class="input-checkbox-wrapper">
+                        <v-menu
+                                v-model="endDateMenu"
+                                :close-on-content-click="false"
+                                transition="scale-transition"
+                                offset-y
+                                min-width="290px"
+                        >
+                            <template v-slot:activator="{ on, attrs }">
+                                <v-text-field
+                                        v-model="form.endDate.dateFormatted"
+                                        class="resume-builder__input civie-datepicker"
+                                        color="#001CE2"
+                                        readonly
+                                        v-on="on"
+                                        v-bind="attrs"
+                                        outlined
+                                        placeholder="dd/mm/yyyy"
+                                        @blur="form.endDate.value = parseDate(form.endDate.dateFormatted)"
+                                >
+                                    <button
+                                            class="dropdown-icon icon"
+                                            slot="append"
                                     >
                                         <svg-vue
-                                            :icon="`dropdown-caret`"
+                                                :icon="`dropdown-caret`"
                                         ></svg-vue>
                                     </button>
                                 </v-text-field>
                             </template>
-                            <v-date-picker v-model="form.endDate.value" @input="endDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
+                            <v-date-picker v-model="form.endDate.value" @input="endDateMenu = false" no-title scrollable
+                                           color="#001CE2"></v-date-picker>
                         </v-menu>
                         <v-checkbox
-                            v-model="form.actuallyStudying"
-                            class="resume-builder__input civie-checkbox"
-                            label="Actually Studying"
-                            color="#001CE2"
+                                v-model="form.actuallyStudying"
+                                class="resume-builder__input civie-checkbox"
+                                label="Actually Studying"
+                                color="#001CE2"
                         ></v-checkbox>
                     </div>
                 </div>
                 <v-select
-                    id="currentStatus"
-                    class="resume-builder__input civie-select"
-                    v-model="form.currentStatus.value"
-                    outlined
-                    placeholder="Select an option"
-                    :items="currentStatusOptions"
-                    label="Current Status"
+                        id="currentStatus"
+                        class="resume-builder__input civie-select"
+                        v-model="form.currentStatus.value"
+                        outlined
+                        placeholder="Select an option"
+                        :items="currentStatusOptions"
+                        label="Current Status"
                 >
                     <button
-                        class="dropdown-icon icon"
-                        slot="append"
+                            class="dropdown-icon icon"
+                            slot="append"
                     >
                         <svg-vue
-                            :icon="`dropdown-caret`"
+                                :icon="`dropdown-caret`"
                         ></svg-vue>
                     </button>
                 </v-select>
                 <v-btn
-                    class="resume-builder__btn civie-btn filled"
-                    depressed
-                >Add New</v-btn>
+                        class="resume-builder__btn civie-btn filled"
+                        depressed
+                >Add New
+                </v-btn>
             </v-form>
             <div class="education-list">
-                <div 
-                    v-for="education in educationList" 
-                    class="education-item"
-                    :class="{closed: education.closed}"
-                    :key="education.id"
+                <div
+                        v-for="education in educations"
+                        class="education-item"
+                        :class="{'closed' : expandedEducationID !== education.id}"
+                        :key="education.id"
                 >
                     <div class="drag-handler">
                         <span class="circle"></span>
@@ -166,53 +169,53 @@
                         <div class="description">
                             <svg-vue :icon="'work-experience-icon'" class='icon'></svg-vue>
                             <div class="school-name">
-                                {{education.schoolName}}, 
-                                <span class="gray">{{education.location}}</span>
-                                <div class="grade-title">{{education.gradeTitle}}</div>
+                                {{education.university_name}},
+                                <span class="gray">{{education.website}}</span>
+                                <div class="grade-title">{{education.degree_title}}</div>
                             </div>
                         </div>
                         <div
-                            class="resume-builder__action-buttons-container"
+                                class="resume-builder__action-buttons-container"
                         >
                             <v-btn
-                                class="btn-icon civie-btn"
-                                depressed
+                                    class="btn-icon civie-btn"
+                                    depressed
                             >
                                 <svg-vue
-                                    icon="eye-icon"
-                                    class="icon"
+                                        icon="eye-icon"
+                                        class="icon"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                class="btn-icon civie-btn"
-                                depressed
+                                    class="btn-icon civie-btn"
+                                    depressed
                             >
                                 <svg-vue
-                                    icon="edit-icon"
-                                    class="icon"
+                                        icon="edit-icon"
+                                        class="icon"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                class="btn-icon civie-btn"
-                                depressed
+                                    class="btn-icon civie-btn"
+                                    depressed
                             >
                                 <svg-vue
-                                    icon="trash-delete-icon"
-                                    class="icon"
+                                        icon="trash-delete-icon"
+                                        class="icon"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                class="btn-icon mainBg civie-btn toogleDropdownBtn"
-                                :class="{closed: education.closed}"
-                                @click="education.closed = !education.closed"
-                                depressed
+                                    class="btn-icon mainBg civie-btn toogleDropdownBtn"
+                                    :class="{'closed' : expandedEducationID !== education.id}"
+                                    @click="toggleEducationCard(education)"
+                                    depressed
                             ></v-btn>
                         </div>
                     </div>
 
                     <div class="education-item__content">
                         <div class="date">
-                            {{ `${education.currentStatus}, ${education.startDate}${education.actuallyStudying ? '' : ' - ' + education.endDate}` }}
+                            {{ `${education.date_from}${education.present ? ' - Present' : ' - ' + education.date_to}` }}
                         </div>
                         <article>
                             {{education.description}}
@@ -225,162 +228,151 @@
 </template>
 
 <script>
-export default {
-    data: (vm) => ({
-        form: {
-            collegeName: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            website: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            gradeTitle: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            startDate: {
-                value: '',
-                disabled: false,
-                formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ] 
-            },
-            endDate: {
-                value: '',
-                disabled: false,
-                formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ] 
-            },
-            actuallyStudying: false,
-            location: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            currentStatus: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            description: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-        },
-        educationList: [
-            {
-                id: 0,                
-                schoolName: "Simon Bolívar University",
-                location: "Ccs, Venezuela",
-                gradeTitle: "Lic. Mathematics: Computing and Statistics",
-                startDate: "2014",
-                currentStatus: 'Completed',
+    export default {
+        data: (vm) => ({
+            form: {
+                collegeName: {
+                    value: '',
+                    disabled: false,
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
+                website: {
+                    value: '',
+                    disabled: false,
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
+                gradeTitle: {
+                    value: '',
+                    disabled: false,
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
+                startDate: {
+                    value: '',
+                    disabled: false,
+                    formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
+                endDate: {
+                    value: '',
+                    disabled: false,
+                    formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
                 actuallyStudying: false,
-                endDate: "2019",
-                closed: true,
-                description: "Id non culpa qui non cillum nulla est eiusmod est fugiat ex qui.Cillum culpa veniam ipsum incididunt cupidatat esse cupidatat."
+                location: {
+                    value: '',
+                    disabled: false,
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
+                currentStatus: {
+                    value: '',
+                    disabled: false,
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
+                description: {
+                    value: '',
+                    disabled: false,
+                    rules: [
+                        value => !!value || 'Please fill this field.',
+                    ]
+                },
             },
-            {
-                id: 1,                
-                schoolName: "Simon Bolívar University",
-                location: "Ccs, Venezuela",
-                gradeTitle: "Lic. Mathematics: Computing and Statistics",
-                startDate: "2014",
-                currentStatus: 'Completed',
-                actuallyStudying: false,
-                endDate: "2019",
-                closed: true,
-                description: "Veniam qui sunt excepteur Lorem velit nulla fugiat magna ea consequat.Labore duis veniam exercitation consectetur voluptate eu eiusmod adipisicing aute do laboris."
+            lazy: false,
+            startDateMenu: false,
+            endDateMenu: false,
+            currentStatusOptions: ['Completed', 'Starting', 'Studying'],
+            newEducation: {
+                id:'',
+                institution_type:'',
+                university_name:'',
+                degree_title:'',
+                description:'',
+                website:'',
+                date_from:'',
+                date_to:'',
+                present:false,
             },
-            {
-                id: 2, 
-                schoolName: "Simon Bolívar University",
-                location: "Ccs, Venezuela",
-                gradeTitle: "Lic. Mathematics: Computing and Statistics",
-                startDate: "2014",
-                currentStatus: 'Completed',
-                actuallyStudying: false,
-                endDate: "2019",
-                closed: true,
-                description: "Ad ad culpa mollit anim non cupidatat officia ipsum laboris sit.Tempor nisi nulla tempor laborum aliqua labore velit id occaecat nulla est."
+            errors: {},
+            expandedEducationID: 0,
+            activeTab: 'paid',
+        }),
+        computed: {
+            computedDateFormatted() {
+                return this.formatDate(this.date)
+            },
+            educations: {
+                get() {
+                    return this.$store.state.user.education;
+                },
+                set(works) {
+                    this.$store.commit("updateEducation", educations);
+                }
             }
-        ],
-        lazy: false,
-        startDateMenu: false,
-        endDateMenu: false,
-        currentStatusOptions: ['Completed', 'Starting', 'Studying']
-    }),
-    computed: {
-      computedDateFormatted () {
-        return this.formatDate(this.date)
-      },
-    },
-    watch: {
-      "form.startDate.value": function (val) {
-        this.form.startDate.formatDate = this.formatDate(this.form.startDate.value)
-      },
-      "form.endDate.value": function (val) {
-        this.form.endDate.formatDate = this.formatDate(this.form.endDate.value)
-      },
-    },
-    methods: {
-        toggleInput(inputData) {
-            inputData.disabled = !inputData.disabled
         },
-        validate () {
-            this.$refs.form.validate()
+        watch: {
+            "form.startDate.value": function (val) {
+                this.form.startDate.formatDate = this.formatDate(this.form.startDate.value)
+            },
+            "form.endDate.value": function (val) {
+                this.form.endDate.formatDate = this.formatDate(this.form.endDate.value)
+            },
         },
-        reset () {
-            this.$refs.form.reset()
-        },
-        resetValidation () {
-            this.$refs.form.resetValidation()
-        },
-        formatDate (date) {
-            if (!date) return null
+        methods: {
+            toggleInput(inputData) {
+                inputData.disabled = !inputData.disabled
+            },
+            validate() {
+                this.$refs.form.validate()
+            },
+            reset() {
+                this.$refs.form.reset()
+            },
+            resetValidation() {
+                this.$refs.form.resetValidation()
+            },
+            formatDate(date) {
+                if (!date) return null
 
-            const [year, month, day] = date.split('-')
-            return `${day}/${month}/${year}`
-        },
-        parseDate (date) {
-            if (!date) return null
+                const [year, month, day] = date.split('-')
+                return `${day}/${month}/${year}`
+            },
+            parseDate(date) {
+                if (!date) return null
 
-            const [month, day, year] = date.split('/')
-            return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-        },
+                const [month, day, year] = date.split('/')
+                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+            },
+
+        //    functions for backend
+            toggleEducationCard(education){
+                this.expandedEducationID === education.id ?  this.expandedEducationID = 0 :  this.expandedEducationID = education.id ;
+            },
+        }
     }
-}
 </script>
 
 <style lang="scss">
-@import '../../../../../../sass/variables';
-@import '../../../../../../sass/media-queries';
+    @import '../../../../../../sass/variables';
+    @import '../../../../../../sass/media-queries';
 
     .education-wrapper {
         position: relative;
         padding: 60px 50px;
-        
+
         .float-container {
             background-color: $secondaryColor;
             width: 100%;
@@ -422,7 +414,7 @@ export default {
 
                 .input-checkbox-wrapper {
                     position: relative;
-                    margin-left : 15px;
+                    margin-left: 15px;
 
                     .civie-checkbox {
                         position: absolute;
@@ -441,7 +433,7 @@ export default {
                             left: 1.19px;
                             margin: 0;
                         }
-                        
+
                         .v-icon {
                             font-size: 14px;
                         }
@@ -457,7 +449,7 @@ export default {
             @media (max-width: 1770px) {
                 gap: 20px;
             }
-            
+
             @media (max-width: 1680px) {
                 .resume-builder__input,
                 .inputs-wrapper {
@@ -499,7 +491,7 @@ export default {
                 .resume-builder__input {
                     grid-column: span 4;
                 }
-                
+
                 .civie-textarea {
                     grid-row: 7 / 9
                 }
@@ -537,7 +529,7 @@ export default {
                     &:hover {
                         cursor: pointer;
                     }
-                    
+
                     .circle {
                         display: block;
                         background: $inputTextColor;
@@ -576,7 +568,7 @@ export default {
                             .gray {
                                 color: $inputTextColor;
                             }
-                            
+
                             .grade-title {
                                 font-size: 14px;
                                 color: $inputTextColor;

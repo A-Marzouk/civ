@@ -59,6 +59,18 @@ class EducationController extends Controller
         }
     }
 
+
+    public function updateEducationOrder(Request $request){
+        $educations = $request->works ;
+        foreach ($educations as $key => $education){
+            $myEducation = WorkEx::find($education['id']);
+            $myEducation->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
+
     public function storeMany(Request $request)
     {
         foreach ($request->toArray() as $education){

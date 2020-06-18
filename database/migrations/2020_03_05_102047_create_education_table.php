@@ -18,6 +18,9 @@ class CreateEducationTable extends Migration
             $table->string('institution_type')->nullable();
             $table->string('university_name')->nullable();
             $table->string('degree_title')->nullable();
+            $table->string('website')->nullable();
+            $table->string('category')->nullable();
+            $table->text('description')->nullable();
             $table->date('date_from')->nullable();
             $table->date('date_to')->nullable();
             $table->boolean('present')->nullable();

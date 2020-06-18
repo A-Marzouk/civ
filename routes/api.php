@@ -69,6 +69,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/education', 'API\EducationController@store');
     //create many educations
     Route::post('/education-many', 'API\EducationController@storeMany');
+    //update order:
+    Route::post('/education/update-order', 'API\EducationController@updateEducationOrder');
     //update a education
     Route::put('/education', 'API\EducationController@store');
     //delete education
