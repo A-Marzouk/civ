@@ -221,6 +221,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                 .hourly-rate,
                 .hourly-availability {
+                    text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -248,6 +249,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         small {
                             font-size: 8px;
                         }
+                    }
+
+                    @media (max-width: 825px) {
+                        margin-right: 20px;
                     }
                     
                     @media (max-width: 700px) {

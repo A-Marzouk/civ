@@ -224,6 +224,7 @@ $purple: #FB423A;
 
                 .hourly-rate,
                 .hourly-availability {
+                    text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -252,6 +253,10 @@ $purple: #FB423A;
                         small {
                             font-size: 8px;
                         }
+                    }
+
+                    @media (max-width: 825px) {
+                        margin-right: 20px;
                     }
                     
                     @media (max-width: 700px) {

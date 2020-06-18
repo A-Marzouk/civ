@@ -212,6 +212,7 @@ $purple: #335E5E;
 
                     .hourly-rate,
                     .hourly-availability {
+                        text-align: center;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
@@ -238,6 +239,10 @@ $purple: #335E5E;
                             small {
                                 font-size: 8px;
                             }
+                        }
+
+                        @media (max-width: 825px) {
+                            margin-right: 20px;
                         }
                         
                         @media (max-width: 700px) {
