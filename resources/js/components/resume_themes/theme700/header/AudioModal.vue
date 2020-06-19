@@ -19,32 +19,36 @@
 					</v-card-actions>
 				</div>
 
-				<v-list class="audios-list">
-					<v-list-item v-for="(audio, index) in audios" :key="audio.src">
-						<v-list-item-content>
-							<div class="audio-player" :class="{'playing': isPlaying(index)}">
-								<div class="player-title">
-									<h3 v-text="audio.title"></h3>
-								</div>
-
-								<div class="player-body">
-									<a href="#" class="play-pause-action" title="Play/Pause" @click.prevent="playPause(index)">
-										<v-icon v-if="isPlaying(index)" color="white" large>mdi-pause</v-icon>
-										<v-icon v-else color="white" large>mdi-play</v-icon>
-									</a>
-									<dir class="player-status">
-										<div v-if="isPlaying(index)" class="player-timing">
-											<span v-text="formatDuration(current.time)"></span>
-											<span v-text="formatDuration(current.duration)"></span>
+				<v-carousel hide-delimiter-background light :show-arrows="false">
+					<v-carousel-item v-for="(pageAudios, i) in audiosPerPage" :key="i">
+						<v-list class="audios-list">
+							<v-list-item v-for="(audio, index) in pageAudios" :key="audio.src">
+								<v-list-item-content>
+									<div class="audio-player" :class="{'playing': isPlaying(index)}">
+										<div class="player-title">
+											<h3 v-text="audio.title"></h3>
 										</div>
-										<v-progress-linear v-if="isPlaying(index)" background-color="#EBEBEB" rounded height="15" color="#513ECD" :value="currentProgress"></v-progress-linear>
-										<v-progress-linear v-else background-color="#EBEBEB" rounded height="15" color="#513ECD" value="0"></v-progress-linear>
-									</dir>
-								</div>
-							</div>
-						</v-list-item-content>
-					</v-list-item>
-				</v-list>
+
+										<div class="player-body">
+											<a href="#" class="play-pause-action" title="Play/Pause" @click.prevent="playPause(index)">
+												<v-icon v-if="isPlaying(index)" color="white" large>mdi-pause</v-icon>
+												<v-icon v-else color="white" large>mdi-play</v-icon>
+											</a>
+											<dir class="player-status">
+												<div v-if="isPlaying(index)" class="player-timing">
+													<span v-text="formatDuration(current.time)"></span>
+													<span v-text="formatDuration(current.duration)"></span>
+												</div>
+												<v-progress-linear v-if="isPlaying(index)" background-color="#EBEBEB" rounded height="15" color="#513ECD" :value="currentProgress"></v-progress-linear>
+												<v-progress-linear v-else background-color="#EBEBEB" rounded height="15" color="#513ECD" value="0"></v-progress-linear>
+											</dir>
+										</div>
+									</div>
+								</v-list-item-content>
+							</v-list-item>
+						</v-list>
+					</v-carousel-item>
+				</v-carousel>
 			</v-card>
 		</v-dialog>
 	</div>
@@ -56,7 +60,7 @@ export default {
 
 	data() {
 		return {
-			dialog: true,
+			dialog: false,
 			current: {
 				index: 0,
 				isPlaying: false,
@@ -80,6 +84,16 @@ export default {
 					title: "Audio-3",
 					src:
 						"https://www.bensound.com/bensound-music/bensound-jazzyfrenchy.mp3"
+				},
+				{
+					title: "Audio-4",
+					src:
+						"https://www.bensound.com/bensound-music/bensound-memories.mp3"
+				},
+				{
+					title: "Audio-5",
+					src:
+						"https://www.bensound.com/bensound-music/bensound-littleidea.mp3"
 				}
 			],
 			player: new Audio()
@@ -89,6 +103,16 @@ export default {
 	computed: {
 		currentProgress() {
 			return (this.current.time / this.current.duration) * 100;
+		},
+		audiosPerPage() {
+			const perPage = 3,
+				audiosPerPage = [];
+
+			for (let i = 0; i < this.audios.length; i += perPage) {
+				audiosPerPage.push(this.audios.slice(i, i + perPage));
+			}
+
+			return audiosPerPage;
 		},
 		isPlaying() {
 			return index => {
@@ -289,6 +313,6 @@ export default {
 
 <style lang="scss">
 .v-dialog.theme700-v-dialog--audio-modal {
-	margin: 86px 10px auto;
+	margin: 86px 10px 86px;
 }
 </style>
