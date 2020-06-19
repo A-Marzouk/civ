@@ -29,8 +29,14 @@
                         :options="dropzoneOptions"
                         :useCustomSlot="true"
                       >
-                        <div class="dropzone-custom-content">
-                          <svg-vue class="icon" :icon="'upload-input-icon'" align="left"></svg-vue>
+                        <div
+                          class="dropzone-custom-content d-flex flex-row"
+                          style="float:left;"
+                        >
+                          <div class="mr-2">
+                            <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                          </div>
+                          <div class="upload-text">Browse Drag</div>
                         </div>
                       </vue-dropzone>
                     </v-input>
@@ -609,7 +615,6 @@ $mainBlue: #001ce2;
   }
 }
 .dropzone-custom-content {
-
 }
 .dropzone.dz-clickable {
   border: 2px solid #c4c9f5 !important;
@@ -624,6 +629,7 @@ $mainBlue: #001ce2;
   font-size: 18px;
   line-height: 25px;
   color: #888db1 !important;
+  margin-top: 3px;
 }
 
 .fade-enter-active,
@@ -663,3 +669,10 @@ $mainBlue: #001ce2;
 }
 </style>
 
+<style>
+@media screen and (max-width: 599px){
+  #resumeBuilder .v-input__prepend-outer{
+    display: none !important;
+  }
+}
+</style>
