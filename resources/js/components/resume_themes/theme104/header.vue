@@ -295,7 +295,8 @@ $purple: #FB423A;
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        padding: 14px 40px;
+                        width: 115px;
+                        height: 36px;
 
                         .icon {
                             height: 12px;

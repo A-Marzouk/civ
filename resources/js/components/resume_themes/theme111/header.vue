@@ -298,7 +298,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        padding: 14px 40px;
+                        width: 115px;
+height: 36px;
 
                         .icon {
                             height: 12px;
