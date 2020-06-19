@@ -72,7 +72,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     .theme-header {
         width: 100%;
         position: relative;
-        background-image: url("/images/resume_themes/theme103/bg-header.png");
 
         .left {
             display: flex;
