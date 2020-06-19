@@ -127,11 +127,80 @@
                             </div>
                         </div>
                         <div class="project__body">
-                            <picture class="project__img">
+                            <div class="project__img">
+                                <div class="project__name">My Personal Website</div>
                                 <img 
                                     src="/images/new_resume_builder/portfolio/portfolio-img.png"
                                     alt="portfolio img">
-                            </picture>
+                            </div>
+                            <div class="project__info">
+                                <div class="project__name">My Personal Website</div>
+                                <div class="project__url">
+                                    <b>URL:</b> <a href="https://josedan10.github.io">https://josedan10.github.io</a>
+                                </div>
+                                <div class="project__skills">
+                                    <b>Skills:</b> React.js
+                                </div>
+                                <div class="project__softwares">
+                                    <b>Software:</b> VSCode, Github Pages
+                                </div>
+                                <div class="project__description">
+                                    <b>Description: </b>
+                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero qui distinctio temporibus ea voluptas impedit consequatur dolore ducimus earum illum velit ipsa perspiciatis maxime tenetur illo, tempora doloremque modi dolorem.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <div class="project__header">
+                            <v-btn
+                                depressed
+                                class="drag-and-drop-handler"
+                            >
+                                <svg-vue 
+                                    :icon="'drag-and-drop-icon'"
+                                    class="icon"
+                                ></svg-vue>
+                            </v-btn>
+                            <div
+                                class="resume-builder__action-buttons-container"
+                            >
+                                <v-btn
+                                    class="btn-icon civie-btn"
+                                    depressed
+                                >
+                                    <svg-vue
+                                        icon="eye-icon"
+                                        class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                                <v-btn
+                                    class="btn-icon civie-btn"
+                                    depressed
+                                >
+                                    <svg-vue
+                                        icon="edit-icon"
+                                        class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                                <v-btn
+                                    class="btn-icon civie-btn"
+                                    depressed
+                                >
+                                    <svg-vue
+                                        icon="trash-delete-icon"
+                                        class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                            </div>
+                        </div>
+                        <div class="project__body">
+                            <div class="project__img">
+                                <div class="project__name">My Personal Website</div>
+                                <img 
+                                    src="/images/new_resume_builder/portfolio/portfolio-img.png"
+                                    alt="portfolio img">
+                            </div>
                             <div class="project__info">
                                 <div class="project__name">My Personal Website</div>
                                 <div class="project__url">
@@ -224,6 +293,7 @@ import vue2Dropzone from 'vue2-dropzone'
         max-height: 678px;
         overflow: auto;
         box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
+        margin: 0 auto;
 
         .grid-form {
             display: grid;
@@ -233,7 +303,7 @@ import vue2Dropzone from 'vue2-dropzone'
             padding: 50px 46px;
 
             .resume-builder__input {
-                column-span: 1;
+                grid-column: span 1;
 
                 &.civie-textarea,
                 &.civie-dropzone {
@@ -261,14 +331,33 @@ import vue2Dropzone from 'vue2-dropzone'
                 }
 
                 @include lt-md {
-                    width: 48%;
-                    margin-right: 0;
-                    justify-content: space-between;
+                    grid-column: span 2;
+
+                    &.civie-dropzone {
+                        width: 100%;
+                        grid-row: 3 / 5;
+                        grid-column: 3 / 5;
+                    }
+
+                    &.civie-textarea {
+                        grid-row: 3 / 5;
+                        grid-column: 1 / 3;
+                    }
                 }
 
                 @include lt-sm {
-                    width: 100%;
-                    max-width: 100%;
+                    grid-column: span 4;
+
+                    &.civie-textarea {
+                        grid-row: 5 / 7;
+                        grid-column: span 4;
+                    }
+
+                    &.civie-dropzone {
+                        width: 100%;
+                        grid-row: 7 / 9;
+                        grid-column: span 4;
+                    }
                 }
 
             }
@@ -277,15 +366,25 @@ import vue2Dropzone from 'vue2-dropzone'
                 align-self: start;
                 justify-self: start;
 
-                @include lt-sm {
-                    align-self: stretch;
-                    justify-self: stretch;
+                grid-column: 4 / 5;
+
+                @include lt-md {
+                    grid-column: 1 / 3;
                 }
+
+                @include lt-sm {
+                    grid-column: span 4;
+                }
+            }
+
+            @include lt-sm {
+                grid-gap: 5px;
             }
         }
 
         .projects-list {
             width:  100%;
+            padding: 20px;
 
             .project {
                 max-width: 620px;
@@ -335,6 +434,33 @@ import vue2Dropzone from 'vue2-dropzone'
                         img {
                             min-width: 220px;
                         }
+
+                        .project {
+                            &__name {
+                                display: none;
+                                
+                                @include lt-sm {
+                                    display: block;
+                                    font-size: 20px;
+                                    font-weight: normal;
+                                    color: $mainColor;
+                                    margin-bottom: 10px;
+                                }
+                            }
+                        }
+
+                        @include lt-sm {   
+                            width: 100%;                         
+                            
+                            img,
+                            .project__name {
+                                width: 100%;
+                            }
+
+                            img {
+                                margin-bottom: 15px;
+                            }
+                        }
                     }
 
                     .project__info {
@@ -347,6 +473,10 @@ import vue2Dropzone from 'vue2-dropzone'
                                 font-weight: 700;
                                 color: $mainColor;
                                 margin-bottom: 10px;
+
+                                @include lt-sm {
+                                    display: none;
+                                }
                             }
 
                             &__url,
@@ -356,10 +486,23 @@ import vue2Dropzone from 'vue2-dropzone'
                                 color: $inputTextColor;
                             }
                         }
+                        
+                        @include lt-sm {
+                            width: 100%;
+                            margin-left: 0;
+                        }
                     }
 
+                    @include lt-sm {
+                        flex-wrap: wrap;
+                    }
                 }
+
             }
+        }
+
+        @include lt-sm {
+            max-width: 300px;
         }
     }
 }

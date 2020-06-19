@@ -8,7 +8,7 @@ class Education extends Model
 {
     protected $table = 'education';
     protected $fillable = [
-        'is_public','institution_type','university_name','degree_title','date_from','date_to','present','user_id'
+        'is_public','institution_type','university_name','degree_title','date_from','date_to','present','user_id','website','description','category','order','location'
     ];
 
     // relation belongs to

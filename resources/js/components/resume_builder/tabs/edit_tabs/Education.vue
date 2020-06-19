@@ -1,5 +1,5 @@
 <template>
-    <div class="resume-builder__scroll">
+    <v-app class="resume-builder__scroll">
         <div class="data-container">            
             <v-card color="transparent" flat tile>
                 <v-tabs
@@ -16,11 +16,10 @@
             </v-card>
 
             <v-card class="view-container resume-builder__scroll">
-                <SchoolView v-if="activeTab === 'School'"></SchoolView>
-                <div v-else>No thing to show here</div>
+                <SchoolView :activeTab ="activeTab"></SchoolView>
             </v-card>
         </div>
-    </div>
+    </v-app>
 </template>
 
 <script>
@@ -49,10 +48,7 @@ import SchoolView from './education_tabs/school'
                 },
                 addNewEducation: false,
                 tabs: [
-                    'School',
-                    'University / College',
-                    'Courses',
-                    'Seminars / Training'
+                    'Education'
                 ],
                 tabViews: [
 
