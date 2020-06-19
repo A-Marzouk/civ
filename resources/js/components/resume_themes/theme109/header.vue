@@ -121,6 +121,8 @@ $purple: #24325D;
                 align-items: center;
 
                 .action-btn {
+                    width: 220px;
+                    height: 68px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -149,7 +151,8 @@ $purple: #24325D;
                     }
                     
                     @media (max-width: 1200px) {
-                        padding: 13px 14px;
+                        width: 120px;
+                        height: 35px;
                         font-size: 10px;
 
                         .icon {
