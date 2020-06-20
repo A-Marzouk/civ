@@ -500,10 +500,6 @@ import vue2Dropzone from 'vue2-dropzone'
 
             }
         }
-
-        @include lt-sm {
-            max-width: 300px;
-        }
     }
 }
 </style>
