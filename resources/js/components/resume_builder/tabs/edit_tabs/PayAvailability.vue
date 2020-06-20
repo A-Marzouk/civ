@@ -98,8 +98,8 @@
                                     </v-col>
 
                                     <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                                        <v-btn class="resume-builder__btn civie-btn filled btn-add-new" @click="updateAvailabilityInfo">Save</v-btn>
-                                    </v-col>
+                                        <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-md-0 mt-sm-0 mt-n5" @click="updateAvailabilityInfo">Save</v-btn>
+                                    </v-col> 
                                 </v-row>
                             </v-form>
                         </v-container>

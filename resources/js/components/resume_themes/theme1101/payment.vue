@@ -125,7 +125,7 @@
 </script>
 <style scoped>
     h1 {
-        font-size: unset;
+
         font-size: 32px;
 
     }
@@ -149,7 +149,7 @@
     }
 
     .background {
-        background-color: #F5F2ED;
+        background-color: #F5F2ED!important;
     }
 
     .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
@@ -162,7 +162,7 @@
         }
 
         .background {
-            background-color: #FDDB69;
+            background-color: #FDDB69!important;
         }
 
         .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
