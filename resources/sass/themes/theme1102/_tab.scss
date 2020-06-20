@@ -1,0 +1,299 @@
+
+.main-tabs {
+    margin-bottom: 50px;
+    @media only screen and (max-width: 1200px) {
+        margin-bottom: calc(50px - #{$tab-font-size});
+
+    }
+}
+
+.tab-item {
+    position: relative;
+    @media only screen and (max-width: 700px) {
+        display: none;
+        visibility: hidden;
+    }
+
+
+    &__text {
+        text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+}
+
+
+.round {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    display: none;
+    visibility: hidden;
+    @media only screen and (max-width: 1200px) {
+        left: calc(40px - #{$tab-font-size});
+
+    }
+
+
+    &__first {
+        height: 80px;
+        width: 80px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        position: relative;
+        @media only screen and (max-width: 1200px) {
+            height: calc(80px - #{$tab-font-size});
+            width: calc(80px - #{$tab-font-size});
+        }
+
+
+    }
+
+    &__second {
+        height: 70px;
+        width: 70px;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        position: absolute;
+        top: -10px;
+        left: 40px;
+        @media only screen and (max-width: 1200px) {
+            height: calc(70px - #{$tab-font-size});
+            width: calc(70px - #{$tab-font-size});
+            top: calc(-10px - #{$tab-font-size});
+            left: calc(40px - #{$tab-font-size});
+        }
+
+    }
+}
+
+.round1 {
+    position: absolute;
+    top: 0;
+    display: none;
+    visibility: hidden;
+
+
+    &__first {
+        height: 80px;
+        width: 80px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        position: relative;
+        @media only screen and (max-width: 1200px) {
+            height: calc(80px - #{$tab-font-size});
+            width: calc(80px - #{$tab-font-size});
+        }
+
+    }
+
+    &__second {
+        height: 70px;
+        width: 70px;
+        background-color: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        position: absolute;
+        top: -10px;
+        left: 40px;
+        @media only screen and (max-width: 1200px) {
+            height: calc(70px - #{$tab-font-size});
+            width: calc(70px - #{$tab-font-size});
+            top: calc(-10px - #{$tab-font-size});
+            left: calc(40px - #{$tab-font-size});
+        }
+
+    }
+}
+
+
+.v-tab[data-v-31818b80] {
+    background-color: rgba(255, 255, 255, 0) !important;
+
+}
+
+
+.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
+    color: $color-white !important;
+    font-family: $font-primary !important;
+    text-decoration: none !important;
+    background-color: transparent !important;
+    font-size: 40px !important;
+    font-weight: 300 !important;
+    text-transform: none !important;
+    @media only screen and (max-width: 1200px) {
+        font-size: calc(40px - #{$tab-font-size}) !important;
+    }
+}
+
+
+.v-tab[data-v-31818b80][data-v-31818b80] {
+    background-color: rgba(255, 255, 255, 0) !important;
+    color: $color-white !important;
+    font-family: $font-primary !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    font-size: 40px !important;
+    font-weight: 300 !important;
+    @media only screen and (max-width: 1200px) {
+        font-size: calc(40px - #{$tab-font-size}) !important;
+    }
+}
+
+.main-tab-items {
+    background-color: transparent!important;
+}
+
+.v-tab--active {
+    .round {
+        display: block;
+        visibility: visible;
+    }
+
+    .round1 {
+        display: block;
+        visibility: visible;
+    }
+
+
+}
+
+
+
+.v-tab--active {
+
+
+    .icon__box {
+        transform: scale(1.1);
+        display: none;
+        visibility: hidden;
+        background-color: $color-white;
+        padding: 20px 20px;
+        margin: 0 50px;
+        border-radius: 50%;
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.09);
+
+        @media only screen and (max-width: 700px) {
+            display: block;
+            visibility: visible;
+        }
+        @media only screen and (max-width: 550px) {
+            transform: scale(0.8);
+            margin: unset;
+        }
+        .common__icon {
+            opacity: 1;
+            fill: #9d440e;
+            stroke: #9d440e;
+        }
+
+    }
+
+    .icon__box.education {
+        display: none;
+        visibility: hidden;
+        background-color: $color-white;
+        padding: 30px 20px;
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+        @media only screen and (max-width: 700px) {
+            display: block;
+            visibility: visible;
+        }
+        @media only screen and (max-width: 550px) {
+            transform: scale(0.8);
+            margin: unset;
+        }
+    }
+
+}
+
+.v-tab--active ~ .v-tab {
+
+    .common__icon {
+        opacity: 0.1;
+    }
+}
+
+.icon__box {
+    transform: scale(0.8);
+    overflow: visible;
+    display: none;
+    visibility: hidden;
+    background-color: $color-white;
+    padding: 20px 20px;
+    margin: 0 50px;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    @media only screen and (max-width: 700px) {
+        display: block;
+        visibility: visible;
+    }
+    @media only screen and (max-width: 550px) {
+        transform: scale(0.5);
+        margin: unset;
+    }
+
+
+
+    }
+
+.icon__box.education {
+    transform: scale(0.8);
+    display: none;
+    visibility: hidden;
+    background-color: $color-white;
+    padding: 30px 20px;
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+
+    @media only screen and (max-width: 700px) {
+        display: block;
+        visibility: visible;
+    }
+    @media only screen and (max-width: 550px) {
+        transform: scale(0.5);
+        margin: unset;
+    }
+}
+
+.tab-item {
+    @media only screen and (max-width: 700px) {
+        background-color: $color-white;
+    }
+
+}
+
+//.nav-link:visited ~ .round {
+//    display: block;
+//}
+//.nav {
+//    margin-bottom: 50px;
+//}
+//
+//.nav-link {
+//    cursor: pointer;
+//    transition: transform .2s;
+//}
+//
+//.nav-link.active[data-v-31818b80] ~ .round {
+//    display: block;
+//    visibility: visible;
+//}
+//
+//.nav-link.active[data-v-31818b80] ~ .round1 {
+//    display: block;
+//    visibility: visible;
+//}
+//
+//.nav-link:hover {
+//    transform: scale(1.3);
+//    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+//
+//}
+//
+//
+//.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+//    color: #fff;
+//    background-color: transparent;
+//}
