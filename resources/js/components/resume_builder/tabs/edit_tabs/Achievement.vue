@@ -102,12 +102,13 @@
                     v-model="description"
                   ></v-textarea>
                 </v-col>
-                <v-col md="6" sm="6" cols="12" class="mt-n5">
+                <v-col md="6" sm="6" cols="12" class>
                   <v-input
                     class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
                     outlined
                     label="Upload Images"
                     hint="(Maximum 5 files)"
+                    height="160"
                   >
                     <vue-dropzone
                       class="civie-dropzone-input"
@@ -513,7 +514,7 @@ $mainBlue: #001ce2;
 
     .v-input__control,
     .v-input__slot {
-      height: 100%;
+      height: 165px;
     }
   }
 
