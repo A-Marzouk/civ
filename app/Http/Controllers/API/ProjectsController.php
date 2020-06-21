@@ -62,6 +62,17 @@ class ProjectsController extends Controller
         return new ProjectResource($project);
     }
 
+
+    public function updateProjectsOrder(Request $request){
+        $projects = $request->projects ;
+        foreach ($projects as $key => $project){
+            $myProject = Project::find($project['id']);
+            $myProject->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     public function destroy($id)
     {
         $project = Project::where([
