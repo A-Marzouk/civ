@@ -40,10 +40,16 @@ class ProjectsController extends Controller
         }
 
         $this->validator($request->all())->validate();
-        $project = Project::create($request->toArray());
-
-        if($request->hasfile('images')) {
-            $this->storeProjectImages(Upload::projectImages($request),$project);
+        if($request->isMethod('put') || $request->id != '' ){
+            // update
+            $project = Project::findOrFail($request->id);
+            $project->update($request->toArray());
+        }else{
+            // add
+            $project = Project::create($request->toArray());
+            if($request->hasfile('images')) {
+                $this->storeProjectImages(Upload::projectImages($request),$project);
+            }
         }
 
         $project['images'] = $project->images;

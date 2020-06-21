@@ -94,7 +94,7 @@ import SchoolView from './education_tabs/school'
             },
             EditedSuccessfully(editedEducation) {
                 this.clearEditedEducation();
-                this.$store.dispatch('fullScreenNotification');
+                this.$store.dispatch('flyingNotification');
                 // replace the edited skill with the new one:
                 this.educations.forEach((education, index) => {
                     if (education.id === editedEducation.id) {
@@ -131,7 +131,7 @@ import SchoolView from './education_tabs/school'
                     .then((response) => {
                         this.educations.unshift(response.data.data);
                         this.clearEducation();
-                        this.$store.dispatch('fullScreenNotification');
+                        this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {

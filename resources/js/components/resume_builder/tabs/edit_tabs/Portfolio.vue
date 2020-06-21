@@ -12,7 +12,8 @@
                             outlined
                             label="Project Name"
                             color="#001CE2"
-                            v-model="newProject.name"
+                            v-model="editedProject.name"
+                            :error = "!!errors.name"
                     >
                     </v-text-field>
                     <v-text-field
@@ -22,7 +23,8 @@
                             label="URL"
                             hint="(Active link of the project)"
                             color="#001CE2"
-                            v-model="newProject.link"
+                            v-model="editedProject.link"
+                            :error = "!!errors.link"
                     >
                     </v-text-field>
                     <v-textarea
@@ -31,7 +33,9 @@
                             outlined
                             label="Description"
                             color="#001CE2"
-                            v-model="newProject.description"
+                            v-model="editedProject.description"
+                            :error = "!!errors.description"
+
                     ></v-textarea>
                     <!-- Using v-input classes -->
                     <v-input
@@ -59,7 +63,8 @@
                             label="Skills"
                             hint="(Skills you use in the project)"
                             color="#001CE2"
-                            v-model="newProject.skills"
+                            v-model="editedProject.skills"
+                            :error = "!!errors.skills"
                     >
                     </v-text-field>
                     <v-text-field
@@ -69,14 +74,20 @@
                             label="Software"
                             hint="(Software used for this project)"
                             color="#001CE2"
-                            v-model="newProject.software"
+                            v-model="editedProject.software"
+                            :error = "!!errors.software"
                     >
                     </v-text-field>
-                    <v-btn
-                            class="resume-builder__btn civie-btn filled"
-                            depressed
-                    >Add New
-                    </v-btn>
+                    <div>
+                        <v-btn class="resume-builder__btn civie-btn filled" raised @click="addeditedProject">
+                            {{editedProject.id !== '' ? 'Update' : 'Add New'}}
+                        </v-btn>
+
+                        <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearProject" v-show="editedProject.id !== '' ">
+                            Cancel
+                        </v-btn>
+
+                    </div>
                 </v-form>
 
                 <div class="projects-list" v-if="projects">
@@ -96,24 +107,28 @@
                             >
                                 <v-btn
                                         class="btn-icon civie-btn"
-                                        depressed
+                                        depressed @click="toggleProject(project)"
                                 >
                                     <svg-vue
                                             icon="eye-icon"
+                                            :class="{'visible' : project.is_public}"
                                             class="icon"
                                     ></svg-vue>
                                 </v-btn>
                                 <v-btn
                                         class="btn-icon civie-btn"
+                                        @click="editProject(project)"
                                         depressed
                                 >
                                     <svg-vue
                                             icon="edit-icon"
                                             class="icon"
+                                            :class="{'visible' : project.id === editedProject.id}"
                                     ></svg-vue>
                                 </v-btn>
                                 <v-btn
                                         class="btn-icon civie-btn"
+                                        @click="deleteProject(project)"
                                         depressed
                                 >
                                     <svg-vue
@@ -163,13 +178,14 @@
             vueDropzone: vue2Dropzone
         },
         data: () => ({
-            newProject: {
-                images: [],
+            editedProject: {
+                id: '',
                 name: '',
                 description: '',
                 link: '',
                 skills: '',
                 software: '',
+                images: [],
             },
             dropzoneOptions: {
                 url: 'https://httpbin.org/post',
@@ -178,7 +194,8 @@
                 maxFiles: 5,
                 acceptedFiles: 'image/*',
                 addRemoveLinks: true,
-            }
+            },
+            errors: {}
         }),
         computed: {
             projects: {
@@ -218,65 +235,88 @@
                         console.log(error);
                     })
             },
+            editProject(project){
+                $.each( project, (field) => {
+                    this.editedProject[field] = project[field] ;
+                } );
 
+            },
+
+            toggleProject(project) {
+                project.is_public = !project.is_public;
+                axios.put("/api/user/projects", project)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors =
+                                "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
 
 
             // new project functions
             handlingEvent: function (file) {
-                if (this.newProject.images.length < 5) {
-                    this.newProject.images.push(file);
+                if (this.editedProject.images.length < 5) {
+                    this.editedProject.images.push(file);
                 }
             },
             removeFiles() {
-                this.newProject.images = [];
+                this.editedProject.images = [];
                 this.$refs.newImages.removeAllFiles();
             },
-            stepNext() {
-                if (this.activeStep < 3) {
-                    this.activeStep++;
-                }
-            },
-            stepBack() {
-                if (this.activeStep > 1) {
-                    this.activeStep--;
-                }
-            },
-            goToStep(step) {
-                this.activeStep = step;
-            },
 
-            addNewProject() {
-                if (!this.canSubmit()) {
-                    return;
-                }
-                this.errors = {new: {}, edit: {}};
+            addeditedProject() {
+                this.errors = {};
                 let formData = new FormData();
 
-                $.each(this.newProject, (field) => {
-                    if (this.newProject[field].length && field !== 'images') {
-                        formData.append(field, this.newProject[field]);
+                $.each(this.editedProject, (field) => {
+                    if (this.editedProject[field].length && field !== 'images') {
+                        formData.append(field, this.editedProject[field]);
                     }
                 });
 
-                this.newProject.images.forEach((image) => {
+                this.editedProject.images.forEach((image) => {
                     formData.append('images[]', image);
                 });
 
+                let edit = false;
+                if (this.editedProject.id !== "") {
+                    edit = true;
+                }
+
                 formData.append('user_id', this.$store.state.user.id);
+                formData.append('id', this.editedProject.id);
 
 
                 axios.post('/api/user/projects', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                     .then((response) => {
+                        if (!edit) {
+                            this.projects.push(response.data.data);
+                        } else {
+                            this.projects.forEach((project, index) => {
+                                if (project.id === response.data.data.id) {
+                                    this.projects[index] = response.data.data;
+                                }
+                            });
+                        }
+
+                        this.$store.dispatch('flyingNotification');
                         this.clearProject();
-                        this.$store.dispatch('fullScreenNotification');
-                        this.$store.state.user.projects.push(response.data.data);
-                        this.$router.replace('/resume-builder/edit/projects');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
-                            this.errors.new = error.response.data.errors;
+                            this.errors = error.response.data.errors;
                         } else {
-                            this.errors.new = 'Something went wrong. Please try again.';
+                            this.errors = 'Something went wrong. Please try again.';
                         }
 
                         this.$store.dispatch('flyingNotification', {
@@ -286,21 +326,22 @@
                     });
             },
             clearProject() {
-                this.newProject = {
-                    images: [],
+                this.editedProject = {
+                    id: '',
                     name: '',
                     description: '',
                     link: '',
                     skills: '',
-                    software: ''
+                    software: '',
+                    images: []
                 };
                 this.$refs.newImages.removeAllFiles();
             },
             canSubmit() {
                 let canSubmit = true;
 
-                $.each(this.newProject, (field) => {
-                    if (!this.newProject[field].length) {
+                $.each(this.editedProject, (field) => {
+                    if (!this.editedProject[field].length) {
                         canSubmit = false;
                     }
                 });
