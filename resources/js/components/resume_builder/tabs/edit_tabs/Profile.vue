@@ -179,7 +179,7 @@ export default {
 				})
 				.then(response => {
 					if (savingType === "manual") {
-						this.$store.dispatch("fullScreenNotification");
+						this.$store.dispatch('flyingNotification');
 					} else {
 						this.$store.dispatch("flyingNotification");
 					}

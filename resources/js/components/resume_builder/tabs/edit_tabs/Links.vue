@@ -193,7 +193,7 @@ export default {
 						});
 					}
 					this.clearLink();
-					this.$store.dispatch("fullScreenNotification");
+					this.$store.dispatch('flyingNotification');
 				})
 				.catch(error => {
 					if (typeof error.response.data === "object") {

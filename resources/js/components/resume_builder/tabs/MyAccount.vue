@@ -382,7 +382,7 @@ export default {
         .then(response => {
           console.log(response.data);
           if (savingType === "manual") {
-            this.$store.dispatch("fullScreenNotification");
+            this.$store.dispatch('flyingNotification');
           } else {
             this.$store.dispatch("flyingNotification");
           }
@@ -445,7 +445,7 @@ export default {
         .post("/api/user/account/submit", this.accountData)
         .then(response => {
           // changes saved pop-up
-          this.$store.dispatch("fullScreenNotification");
+          this.$store.dispatch('flyingNotification');
         })
         .catch(error => {
           if (typeof error.response.data === "object") {

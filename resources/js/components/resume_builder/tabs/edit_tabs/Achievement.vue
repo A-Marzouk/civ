@@ -309,7 +309,7 @@ export default {
     },
     EditedSuccessfully(editedAchievement) {
       this.clearEditedAchievement();
-      this.$store.dispatch("fullScreenNotification");
+      this.$store.dispatch('flyingNotification');
 
       // replace the edited skill with the new one:
       this.achievements.forEach((achievement, index) => {

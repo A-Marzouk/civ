@@ -290,7 +290,7 @@ export default {
             }
 
             this.clearSkill();
-            this.$store.dispatch("fullScreenNotification");
+            this.$store.dispatch('flyingNotification');
           })
           .catch(error => {
             if (typeof error.response.data === "object") {

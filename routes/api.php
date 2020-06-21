@@ -44,6 +44,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/hobbies/{id}', 'API\HobbiesController@show');
     //create new skill
     Route::post('/hobbies', 'API\HobbiesController@store');
+    //update order:
+    Route::post('/hobbies/update-order', 'API\HobbiesController@updateHobbiesOrder');
     //update a skill
     Route::put('/hobbies', 'API\HobbiesController@store');
     //delete skill

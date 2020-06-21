@@ -291,7 +291,7 @@ export default {
             let addedHobby = response.data.data;
             this.hobbies.push(addedHobby);
             this.clearHobby();
-            this.$store.dispatch("fullScreenNotification");
+            this.$store.dispatch('flyingNotification');
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
@@ -347,7 +347,7 @@ export default {
         .then(response => {
           this.EditedSuccessfully(response.data.data);
           this.clearErrors();
-          this.$store.dispatch("fullScreenNotification");
+          this.$store.dispatch('flyingNotification');
         })
         .catch(error => {
           if (typeof error.response.data === "object") {

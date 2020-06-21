@@ -271,7 +271,7 @@
             toggleProject(project) {
                 project.is_public = !project.is_public;
                 axios.put("/api/user/projects", project)
-                    .then(response => {
+                    .then( () => {
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch(error => {
