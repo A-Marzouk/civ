@@ -364,12 +364,12 @@ import vue2Dropzone from 'vue2-dropzone'
 
             .civie-btn {
                 align-self: start;
-                justify-self: start;
+                justify-self: end;
 
                 grid-column: 4 / 5;
 
                 @include lt-md {
-                    grid-column: 1 / 3;
+                    grid-column: 3 / 5;
                 }
 
                 @include lt-sm {
