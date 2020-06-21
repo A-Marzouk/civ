@@ -138,6 +138,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/projects/update-order', 'API\ProjectsController@updateProjectsOrder');
     Route::put('/projects', 'API\ProjectsController@store');
     Route::delete('/projects/{id}', 'API\ProjectsController@destroy');
+    Route::delete('/projects/images/{id}', 'API\ProjectsController@destroyProjectImage');
 
 // Achievements api routes:
     Route::get('/achievements', 'API\AchievementsController@index');

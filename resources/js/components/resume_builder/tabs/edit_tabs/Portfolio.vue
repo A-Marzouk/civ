@@ -45,11 +45,12 @@
                             hint="(Maximum 5 files)"
                     >
                         <vue-dropzone
-                                class="civie-dropzone-input"
+                                class="civie-dropzone-input sm-image"
                                 id="dropzone"
                                 :options="dropzoneOptions"
+                                v-model = "editedProject.images"
                                 :useCustomSlot="true"
-                                v-on:vdropzone-file-added="handlingEvent" ref="newImages"
+                                v-on:vdropzone-file-added="handlingEvent" v-on:vdropzone-drop="checkMaximumFiles" ref="newImages"
                         >
                             <div class="dropzone-custom-content">
                                 <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
@@ -78,15 +79,26 @@
                             :error = "!!errors.software"
                     >
                     </v-text-field>
-                    <div>
-                        <v-btn class="resume-builder__btn civie-btn filled" raised @click="addeditedProject">
-                            {{editedProject.id !== '' ? 'Update' : 'Add New'}}
-                        </v-btn>
 
-                        <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearProject" v-show="editedProject.id !== '' ">
-                            Cancel
-                        </v-btn>
+                    <div class="col-12 d-flex flex-column">
+                        <div class="uploadedImagesList" v-if="editedProject.images.length > 0 ">
+                            <div class="imageRow" v-for="image in editedProject.images" :key="image.id" v-if="image.src">
+                                <img  :src="image.src" alt="project image">
+                                <div class="remove-image" @click="deleteProjectImage(image)">
+                                    <img src="/images/del-icon.png" alt="delete">
+                                </div>
+                            </div>
+                        </div>
 
+                        <div>
+                            <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveProject">
+                                {{editedProject.id !== '' ? 'Update' : 'Add New'}}
+                            </v-btn>
+
+                            <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearProject" v-show="editedProject.id !== '' ">
+                                Cancel
+                            </v-btn>
+                        </div>
                     </div>
                 </v-form>
 
@@ -235,6 +247,20 @@
                         console.log(error);
                     })
             },
+            deleteProjectImage(image){
+                axios.delete('/api/user/projects/images/' + image.id)
+                    .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
+                        this.editedProject.images.forEach((myImage, index) => {
+                            if (myImage.id === response.data.data.id) {
+                                this.editedProject.images.splice(index, 1);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
             editProject(project){
                 $.each( project, (field) => {
                     this.editedProject[field] = project[field] ;
@@ -269,12 +295,17 @@
                     this.editedProject.images.push(file);
                 }
             },
+            checkMaximumFiles(){
+                if (this.editedProject.images.length >= 5) {
+                    console.log('Please, no more files...');
+                }
+            },
             removeFiles() {
                 this.editedProject.images = [];
                 this.$refs.newImages.removeAllFiles();
             },
 
-            addeditedProject() {
+            saveProject() {
                 this.errors = {};
                 let formData = new FormData();
 
@@ -504,7 +535,7 @@
 
                         .project__img {
                             img {
-                                min-width: 220px;
+                                min-width: 120px;
                             }
 
                             .project {
@@ -574,4 +605,50 @@
             }
         }
     }
+
+    .civie-dropzone-input{
+        overflow: auto;
+    }
+
+    .uploadedImagesList{
+        display: flex;
+        margin-bottom: 30px;
+
+        .imageRow{
+            margin-right:30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            &:hover{
+                cursor: pointer;
+                .remove-image{
+                    display: flex;
+                }
+            }
+
+            img{
+                width: 60px;
+                height: 60px;
+            }
+            .remove-image{
+                position: absolute;
+                width: 60px;
+                height: 60px;
+                background: rgba(0,0,0, 0.5);
+                border-radius:5px;
+
+
+                display: none;
+                justify-content: center;
+                align-items: center;
+
+                img{
+                    width:30px;
+                    height:30px;
+                }
+            }
+        }
+    }
+
 </style>
