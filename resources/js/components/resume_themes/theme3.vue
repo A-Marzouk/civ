@@ -470,7 +470,8 @@
 </script>
 
 <style lang="scss" scoped>
-    @import url(//db.onlinewebfonts.com/c/0be7748549934c0e481bdb7b8ba5270f?family=Gotham+Pro+Black);
+
+    /*@import url(//db.onlinewebfonts.com/c/0be7748549934c0e481bdb7b8ba5270f?family=Gotham+Pro+Black);*/ /* it is not a valid url for font */
     .hideOnPhone {
         @media only screen and (max-width: 765px) {
             display: none !important;

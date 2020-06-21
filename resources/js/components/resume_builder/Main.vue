@@ -161,15 +161,15 @@ body.modal-open {
 
 .main-router-view {
 	min-height: calc(100vh - #{$resume-builder-nav-height});
-	width: 95%;
-	max-width: 1850px;
-	margin: 0 auto;
-
-	@include gt-sm {
-		max-width: #{$screen-lg-min};
-	}
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
 
 	@include gt-md {
+		max-width: #{$screen-xl-min};
+	}
+
+	@include gt-lg {
 		max-width: #{$screen-xl-min};
 	}
 }

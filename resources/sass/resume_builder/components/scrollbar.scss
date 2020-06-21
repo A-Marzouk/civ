@@ -4,6 +4,9 @@
     overflow: auto !important;
     &::-webkit-scrollbar {
         width: 10px;
+        @include lt-sm{
+            width:5px;
+        }
     }
     /* Track */
     &::-webkit-scrollbar-track {

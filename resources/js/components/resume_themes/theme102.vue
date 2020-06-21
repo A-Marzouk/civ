@@ -213,6 +213,7 @@ $purple: #958C89;
 
                 .hourly-rate,
                 .hourly-availability {
+text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;

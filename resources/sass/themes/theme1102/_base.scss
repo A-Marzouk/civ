@@ -1,0 +1,28 @@
+// COLOR VARIABLES
+$color-primary: #9d440e;
+$color-white: #ffffff;
+$button-color: #fcdcc2;
+$header-font-size: 10px;
+$tab-font-size: 7px;
+$tab-font-size1: 5px;
+$tab-font-size2: 3px;
+$mobile-font-size:5px;
+
+
+// FONT VARIABLES
+$font-primary: 'Poppins', sans-serif;
+$font-display: 'Nexa', sans-serif;
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+

@@ -3,6 +3,14 @@
     pointer-events: auto !important;
     max-width: 100%; // Set the real max-width on the parent container
 
+
+    &.multiple-selection > .v-input__control > .v-input__slot > .v-select__slot > .v-select__selections {
+        min-height: 50px !important;
+        height: 50px;
+        overflow: auto;
+        padding: 8px 3px 8px 3px;
+    }
+
     &.civie-input, // Simple input
     &.civie-select, // Select
     &.civie-currency // Currency
@@ -96,12 +104,61 @@
         }
     }
 
+    // File input
+
+    &.civie-dropzone {
+
+        .v-input__slot {
+            border: 2px solid $inputBorderColor--enabled;
+            border-radius: 10px;
+            position: relative;
+            
+            .civie-dropzone-input {
+                border: none !important;
+                box-sizing: border-box !important;
+                position: absolute;
+                left: 0;
+                background: none !important;
+                height: 100%;
+                width: 100%;
+              
+                .dropzone-custom-content {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                
+                    .icon {
+                        fill: transparent;
+                        width: 30px;
+                    }
+                }
+            }
+
+            .civie-dropzone-input.sm-image{
+                .dz-image{
+                    width:45px !important;
+                    height:45px !important;
+                }
+            }
+        }
+    }
+
+    // Text errors
+    .v-text-field__details {
+        margin-bottom: 0 !important;
+    }
+
     // General styles
     & > .v-input__control {
         padding-top: 29px;
+        flex-wrap: nowrap !important;
     }
 
     & > .v-input__control > .v-input__slot {
+        min-height: 50px !important;
+
         fieldset {
             // Border fieldset
             border: 2px solid $inputBorderColor--enabled; // Default state of inputs
@@ -178,6 +235,7 @@
             font-size: 18px;
             margin-bottom: 10px;
             transform: none;
+            overflow: visible !important;
 
             &--active {
                 label {
@@ -206,18 +264,6 @@
         input .icon-prepended,
         .v-select__selection {
             padding: 16px 21px 16px 26px;
-        }
-
-        input .multiple-selection,
-        .v-select__selection {
-            padding: 16px 3px 16px 3px;
-        }
-
-        input .multiple-selection,
-        .v-select__selections {
-            min-height: 50px !important;
-            height: 50px;
-            overflow: auto;
         }
     }
 

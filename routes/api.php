@@ -69,6 +69,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/education', 'API\EducationController@store');
     //create many educations
     Route::post('/education-many', 'API\EducationController@storeMany');
+    //update order:
+    Route::post('/education/update-order', 'API\EducationController@updateEducationOrder');
     //update a education
     Route::put('/education', 'API\EducationController@store');
     //delete education
@@ -93,6 +95,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/work-experience', 'API\WorkExController@store');
     //create many workExperience
     Route::post('/work-experience-many', 'API\WorkExController@storeMany');
+    //update order:
+    Route::post('/work-experience/update-order', 'API\WorkExController@updateWorksOrder');
     //update a workExperience
     Route::put('/work-experience', 'API\WorkExController@store');
     //delete workExperience
@@ -131,8 +135,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/projects', 'API\ProjectsController@index');
     Route::get('/projects/{id}', 'API\ProjectsController@show');
     Route::post('/projects', 'API\ProjectsController@store');
+    Route::post('/projects/update-order', 'API\ProjectsController@updateProjectsOrder');
     Route::put('/projects', 'API\ProjectsController@store');
     Route::delete('/projects/{id}', 'API\ProjectsController@destroy');
+    Route::delete('/projects/images/{id}', 'API\ProjectsController@destroyProjectImage');
 
 // Achievements api routes:
     Route::get('/achievements', 'API\AchievementsController@index');

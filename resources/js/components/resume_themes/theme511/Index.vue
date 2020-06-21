@@ -73,12 +73,14 @@
                   <v-btn v-for="(s,i) in social" :key="i" class="social mx-3" fab elevation="0">
                     <v-img :src="s.src" contain max-width="24" height="24"></v-img>
                   </v-btn>
+
                   <v-btn
                     class="hire text-right ml-1 mr-lg-8"
                     height="60"
                     width="200"
                     min-width="60"
                     elevation="0"
+                    @click.stop="payment = !payment"
                   >
                     <div class="text-capitalize hire-text mr-lg-8">hire me</div>
                     <v-btn
@@ -88,6 +90,7 @@
                       min-width="50"
                       max-width="50"
                       elevation="0"
+                      @click.stop="payment = !payment"
                     >
                       <v-img
                         src="/images/resume_themes/theme511/email.svg"
@@ -99,8 +102,16 @@
                   </v-btn>
                 </div>
                 <div class="text-sm-center text-right mt-sm-4 hidden-lg-and-up">
-                  <v-btn class="hire" height="40" width="135" min-width="40" elevation="0">
+                  <v-btn
+                    class="hire"
+                    height="40"
+                    width="135"
+                    min-width="40"
+                    elevation="0"
+                    @click.stop="payment = !payment"
+                  >
                     <div class="text-capitalize hire-text mr-6">hire me</div>
+
                     <v-btn
                       color="#39e1aa"
                       class="email hidden-xs-only"
@@ -108,6 +119,7 @@
                       min-width="40"
                       max-width="40"
                       elevation="0"
+                      @click.stop="payment = !payment"
                     >
                       <v-img
                         src="/images/resume_themes/theme511/email.svg"
@@ -123,6 +135,7 @@
                       min-width="40"
                       max-width="40"
                       elevation="0"
+                      @click.stop="payment = !payment"
                     >
                       <v-img
                         src="/images/resume_themes/theme511/emailmob.svg"
@@ -137,6 +150,37 @@
             </v-row>
           </v-container>
         </v-col>
+        <!-- Payment-dialog-box   -->
+        <div>
+          <v-dialog v-model="payment" fullscreen hide-overlay transition="slide-y-transition">
+            <v-card class="pa-6">
+              <v-container fluid>
+                <v-row no-gutters justify="center">
+                  <v-col cols="12" sm="12" lg="5" class="pa-4">
+                    <div class="paymentBack pt-lg-12 pt-10" align="center">
+                      <v-img
+                        class="pt-lg-12 payment-avatar"
+                        src="/images/resume_themes/theme511/avatar.png"
+                        alt="avatar"
+                        contain
+                      ></v-img>
+                      <div class="pt-lg-12 pt-8 send_payment">Send payment to</div>
+                      <div class="pb-lg-12 pb-12 payment_head">Amy Williams</div>
+                      <div class="py-lg-12"></div>
+                      <div class="py-lg-12"></div>
+                      <div class="py-lg-6"></div>
+                    </div>
+                  </v-col>
+                  <v-col cols="12" sm="12" lg="7" class="pa-4">
+                    <div class="payment--form-back">
+                      <payment></payment>
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-dialog>
+        </div>
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4 mainheight">
           <v-container fluid>
             <v-row justify="center">
@@ -179,6 +223,7 @@ import Education from "./tabs/Education";
 import Skills from "./tabs/Skills";
 import Media from "./tabs/Media";
 import About from "./tabs/About";
+import payment from "./payments/payment";
 export default {
   components: {
     Portfolio,
@@ -186,11 +231,13 @@ export default {
     Education,
     Skills,
     Media,
-    About
+    About,
+    payment
   },
   data() {
     return {
       drawer: null,
+      payment: false,
       social: [
         { src: "/images/resume_themes/theme511/twitter.svg" },
         { src: "/images/resume_themes/theme511/facebook.svg" },
@@ -268,9 +315,43 @@ export default {
   border-radius: 50px;
 }
 .mainheight {
-  height: 570px;
+  min-height: 500px;
 }
-
+.paymentBack {
+  background: url("/images/resume_themes/theme511/payback.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  // background: #faf7f1;
+  // box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}
+.payment-avatar {
+  width: 300px;
+}
+.send_payment {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  /* identical to box height */
+  color: #000000;
+}
+.payment_head {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 60px;
+  line-height: 90px;
+  /* identical to box height */
+  color: #000000;
+}
+.payment--form-back {
+  background: #6764c8;
+  box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+}
 @media screen and (max-width: 1024px) and (min-width: 700px) {
   .layer {
     background: #faf7f1;
@@ -280,8 +361,14 @@ export default {
   .mainheight {
     height: 100%;
   }
+  .payment-avatar {
+    width: 150px;
+  }
 }
 @media screen and (max-width: 699px) and (min-width: 200px) {
+  .payment-avatar {
+    width: 150px;
+  }
   .layer {
     background: #faf7f1;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -289,6 +376,14 @@ export default {
   }
   .mainheight {
     height: 100%;
+  }
+  .payment_head {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 90px;
+    color: #000000;
   }
 }
 

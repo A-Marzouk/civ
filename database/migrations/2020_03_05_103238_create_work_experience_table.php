@@ -20,6 +20,7 @@ class CreateWorkExperienceTable extends Migration
             $table->string('job_title')->nullable();
             $table->text('description')->nullable();
             $table->string('website')->nullable();
+            $table->string('category')->nullable();
             $table->date('date_from')->nullable();
             $table->date('date_to')->nullable();
             $table->boolean('present')->nullable();

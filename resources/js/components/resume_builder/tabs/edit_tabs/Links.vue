@@ -37,7 +37,7 @@
 
 			</div>
 
-			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false">
+			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false"  handle=".mover">
 				<div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
 					<div class="link-data">
 						<div class="mover">
@@ -119,8 +119,7 @@ export default {
 		},
 		toggleLink(link) {
 			link.is_active = !link.is_active;
-			axios
-				.put("/api/user/links", link)
+			axios.put("/api/user/links", link)
 				.then(response => {
 					this.$store.dispatch("flyingNotification");
 					this.closeOptionsBtn();
@@ -267,6 +266,11 @@ $mainBlue: #001ce2;
 		box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
 		padding: 50px;
 		margin-bottom: 70px;
+
+
+		@include lt-sm {
+			height: 400px;
+		}
 	}
 
 	.tabName {
@@ -304,6 +308,31 @@ $mainBlue: #001ce2;
 
 		.civie-btn {
 			min-height: 54px;
+		}
+
+		@include lt-md {
+			flex-wrap: wrap;
+			justify-content: space-between;
+
+			.civie-input {
+				max-width: 59%;
+				width: 59%;
+				margin-right: 0;
+			}
+
+			.civie-select {
+				margin-right: 0;
+				width: 39%;
+				max-width: 39%;
+			}
+		}
+
+		@include lt-sm {
+			.civie-input,
+			.civie-select {
+				max-width: 100%;
+				width: 100%;
+			}
 		}
 	}
 
