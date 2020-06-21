@@ -1,6 +1,6 @@
 <template>
-    <v-app v-resize="onResize">
-        <v-content style="background-color: #F5F2ED;background-image: unset">
+    <v-app>
+        <v-content  style="background-color:rgb(245, 242, 237);background-image: unset;background-size: cover;min-height: 100vh" v-resize="onResize">
             <v-container fluid class="ma-0 pa-0">
 
                 <payment :data="dialog"></payment>
@@ -175,22 +175,40 @@
                     </div>
                     <div class="body_about">
                         <v-tabs-items style="background-color:#F5F2ED" v-model="tab">
-                            <v-tab-item class="tab_items">
+                            <v-tab-item
+                                transition="fade-transition"
+                                reverse-transition="fade-transition"
+                                class="tab_items">
                                 <portfolio></portfolio>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item
+                                transition="fade-transition"
+                                reverse-transition="fade-transition"
+                            >
                                 <education></education>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item
+                                transition="fade-transition"
+                                reverse-transition="fade-transition"
+                            >
                                 <experience></experience>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item
+                                transition="fade-transition"
+                                reverse-transition="fade-transition"
+                            >
                                 <skills></skills>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item
+                                transition="fade-transition"
+                                reverse-transition="fade-transition"
+                            >
                                 <media></media>
                             </v-tab-item>
-                            <v-tab-item>
+                            <v-tab-item
+                                transition="fade-transition"
+                                reverse-transition="fade-transition"
+                            >
                                 <about></about>
                             </v-tab-item>
                         </v-tabs-items>

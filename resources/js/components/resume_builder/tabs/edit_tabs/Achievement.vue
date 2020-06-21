@@ -7,7 +7,7 @@
       <v-container class style="width:100%;">
         <v-form>
           <v-row>
-            <v-col xl="6" lg="6" md="12" sm="12" cols="12">
+            <v-col xl="6" :lg="windowWidth<1300?'12':'6'" md="12" sm="12" cols="12">
               <v-row>
                 <v-col xl="6" lg="6" md="6" sm="6" cols="12">
                   <v-select
@@ -83,11 +83,12 @@
             </v-col>
             <v-col
               xl="6"
-              lg="6"
+              :lg="windowWidth<1300?'12':'6'"
               md="12"
               sm="12"
               cols="12"
-              class="mt-xl-0 mt-lg-0 mt-md-n12 mt-sm-n12 mt-n12"
+              class="mt-xl-0 mt-md-n12 mt-sm-n12 mt-n12"
+              :class="windowWidth<1300?'mt-lg-n12':'mt-lg-0'"
             >
               <v-row align="center" justify="center">
                 <v-col md="6" sm="6" cols="12">
@@ -101,12 +102,13 @@
                     v-model="description"
                   ></v-textarea>
                 </v-col>
-                <v-col md="6" sm="6" cols="12" class="mt-n5">
+                <v-col md="6" sm="6" cols="12" class>
                   <v-input
                     class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
                     outlined
                     label="Upload Images"
                     hint="(Maximum 5 files)"
+                    height="160"
                   >
                     <vue-dropzone
                       class="civie-dropzone-input"
@@ -512,7 +514,7 @@ $mainBlue: #001ce2;
 
     .v-input__control,
     .v-input__slot {
-      height: 100%;
+      height: 165px;
     }
   }
 

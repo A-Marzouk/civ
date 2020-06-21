@@ -103,13 +103,13 @@
     }
 
     .background {
-        background-color: #F5F2ED;
+        background-color: #F5F2ED!important;
     }
 
     @media only screen and (max-width: 960px) {
 
         .background {
-            background-color: #FDDB69;
+            background-color: #FDDB69!important;
         }
     }
 </style>

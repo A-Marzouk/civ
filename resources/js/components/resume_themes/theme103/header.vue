@@ -72,7 +72,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     .theme-header {
         width: 100%;
         position: relative;
-        background-image: url("/images/resume_themes/theme103/bg-header.png");
 
         .left {
             display: flex;
@@ -125,10 +124,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 align-items: center;
 
                 .action-btn {
+                    width: 220px;
+                    height: 68px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
                     background: #fff;
@@ -152,7 +152,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                     
                     @media (max-width: 1200px) {
-                        padding: 13px 14px;
+                        width: 120px;
+                        height: 35px;
                         font-size: 10px;
 
                         .icon {
@@ -208,6 +209,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                 .hourly-rate,
                 .hourly-availability {
+                    text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -236,6 +238,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         small {
                             font-size: 8px;
                         }
+                    }
+                    
+                    @media (max-width: 825px) {
+                        margin-right: 20px;
                     }
                     
                     @media (max-width: 700px) {
@@ -271,7 +277,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        padding: 14px 40px;
+                        width: 115px;
+                        height: 36px;
 
                         .icon {
                             height: 12px;

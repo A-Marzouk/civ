@@ -1,160 +1,110 @@
-<template>
+<template data-app>
     <div
-        class="education-wrapper"
+            class="education-wrapper"
     >
         <div class="float-container">
             <v-form
-                class="grid-form"
-                ref="form"
-                :lazy-validation="lazy"
+                    class="grid-form"
+                    ref="form"
+                    :lazy-validation="lazy"
             >
                 <v-text-field
-                    id="collegeName"
-                    v-model="form.collegeName.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Institution Name"
-                    color="#001CE2"
-                    :rules="form.collegeName.rules"
+                        id="collegeName"
+                        v-model="newEducation.university_name"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Institution Name"
+                        color="#001CE2"
                 ></v-text-field>
                 <v-text-field
-                    id="gradeTitle"
-                    v-model="form.gradeTitle.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Title"
-                    color="#001CE2"
-                    :rules="form.gradeTitle.rules"
+                        id="gradeTitle"
+                        v-model="newEducation.degree_title"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Title"
+                        color="#001CE2"
                 ></v-text-field>
                 <v-text-field
-                    id="location"
-                    v-model="form.location.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Location"
-                    color="#001CE2"
-                    :rules="form.location.rules"
+                        id="location"
+                        v-model="newEducation.location"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Location"
+                        color="#001CE2"
                 ></v-text-field>
                 <v-textarea
-                    id="description"
-                    v-model="form.description.value"
-                    class="resume-builder__input civie-textarea"
-                    outlined
-                    label="Description"
-                    color="#001CE2"
-                    :rules="form.description.rules"
+                        id="description"
+                        v-model="newEducation.description"
+                        class="resume-builder__input civie-textarea"
+                        outlined
+                        label="Description"
+                        color="#001CE2"
                 ></v-textarea>
                 <v-text-field
-                    id="website"
-                    v-model="form.website.value"
-                    class="resume-builder__input civie-input"
-                    outlined
-                    label="Website"
-                    color="#001CE2"
-                    :rules="form.website.rules"
+                        id="website"
+                        v-model="newEducation.website"
+                        class="resume-builder__input civie-input"
+                        outlined
+                        label="Website"
+                        color="#001CE2"
                 ></v-text-field>
                 <div class="inputs-wrapper">
-                    <v-menu
-                        v-model="startDateMenu"
-                        :close-on-content-click="false"
-                        transition="scale-transition"
-                        offset-y
-                        min-width="290px"
-                    >
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-text-field
-                                v-model="form.startDate.dateFormatted"
-                                class="resume-builder__input civie-datepicker"
-                                label="Session"
-                                color="#001CE2"
-                                readonly
-                                v-on="on"
-                                v-bind="attrs"
-                                outlined
-                                placeholder="dd/mm/yyyy"
-                                @blur="form.startDate.value = parseDate(form.startDate.dateFormatted)"
-                            >
-                                <button
-                                    class="dropdown-icon icon"
-                                    slot="append"
-                                >
-                                    <svg-vue
-                                        :icon="`dropdown-caret`"
-                                    ></svg-vue>
-                                </button>
-                            </v-text-field>
-                        </template>
-                        <v-date-picker v-model="form.startDate.value" @input="startDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
-                    </v-menu>                    
-                    <div class="input-checkbox-wrapper">
-                        <v-menu
-                            v-model="endDateMenu"
-                            :close-on-content-click="false"
-                            transition="scale-transition"
-                            offset-y
-                            min-width="290px"
-                        >
-                            <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                    v-model="form.endDate.dateFormatted"
-                                    class="resume-builder__input civie-datepicker"
-                                    color="#001CE2"
-                                    readonly
-                                    v-on="on"
-                                    v-bind="attrs"
-                                    outlined
-                                    placeholder="dd/mm/yyyy"
-                                    @blur="form.endDate.value = parseDate(form.endDate.dateFormatted)"
-                                >
-                                    <button
-                                        class="dropdown-icon icon"
-                                        slot="append"
-                                    >
-                                        <svg-vue
-                                            :icon="`dropdown-caret`"
-                                        ></svg-vue>
-                                    </button>
-                                </v-text-field>
-                            </template>
-                            <v-date-picker v-model="form.endDate.value" @input="endDateMenu = false" no-title scrollable color="#001CE2"></v-date-picker>
-                        </v-menu>
-                        <v-checkbox
-                            v-model="form.actuallyStudying"
-                            class="resume-builder__input civie-checkbox"
-                            label="Actually Studying"
-                            color="#001CE2"
-                        ></v-checkbox>
+                    <div class="date-group">
+                        <div class="date-input">
+                            <label for="">Date</label>
+                            <input type="date"  v-model="newEducation.date_from">
+                            <div class="error" v-if="errors.date_from">
+                                {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
+                            </div>
+                        </div>
+                        <div class="date-text">
+
+                        </div>
+                        <div class="date-input">
+                            <label for="" class="light d-flex align-items-center">
+                                <input type="checkbox" class="checkbox" v-model="newEducation.present"> Present
+                            </label>
+                            <input type="date"  v-model="newEducation.date_to" :disabled="newEducation.present">
+                            <div class="error" v-if="errors.date_to">
+                                {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <v-select
-                    id="currentStatus"
-                    class="resume-builder__input civie-select"
-                    v-model="form.currentStatus.value"
-                    outlined
-                    placeholder="Select an option"
-                    :items="currentStatusOptions"
-                    label="Current Status"
+                        id="currentStatus"
+                        class="resume-builder__input civie-select"
+                        v-model="newEducation.institution_type"
+                        outlined
+                        placeholder="Select an option"
+                        :items="institutionTypes"
+                        label="Education Type"
                 >
                     <button
-                        class="dropdown-icon icon"
-                        slot="append"
+                            class="dropdown-icon icon" @click.prevent
+                            slot="append"
                     >
                         <svg-vue
-                            :icon="`dropdown-caret`"
+                                :icon="`dropdown-caret`"
                         ></svg-vue>
                     </button>
                 </v-select>
-                <v-btn
-                    class="resume-builder__btn civie-btn filled"
-                    depressed
-                >Add New</v-btn>
+                <div>
+                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="addEducation">
+                        {{newEducation.id !== '' ? 'Update' : 'Add New'}}
+                    </v-btn>
+
+                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearEducation" v-show="newEducation.id !== '' ">
+                        Cancel
+                    </v-btn>
+                </div>
             </v-form>
-            <div class="education-list">
-                <div 
-                    v-for="education in educationList" 
-                    class="education-item"
-                    :class="{closed: education.closed}"
-                    :key="education.id"
+            <draggable class="education-list" v-model="educations" @start="drag=true" @end="drag=false"  handle=".drag-handler">
+                <div
+                        v-for="education in educations"
+                        class="education-item"
+                        :class="{'closed' : expandedEducationID !== education.id}"
+                        :key="education.id"
                 >
                     <div class="drag-handler">
                         <span class="circle"></span>
@@ -166,221 +116,251 @@
                         <div class="description">
                             <svg-vue :icon="'work-experience-icon'" class='icon'></svg-vue>
                             <div class="school-name">
-                                {{education.schoolName}}, 
-                                <span class="gray">{{education.location}}</span>
-                                <div class="grade-title">{{education.gradeTitle}}</div>
+                                {{education.university_name}},
+                                <span class="gray">{{education.website}}</span>
+                                <div class="grade-title">{{education.degree_title}}</div>
                             </div>
                         </div>
                         <div
-                            class="resume-builder__action-buttons-container"
+                                class="resume-builder__action-buttons-container"
                         >
                             <v-btn
-                                class="btn-icon civie-btn"
-                                depressed
+                                    class="btn-icon civie-btn"  @click="toggleEducationVisibility(education)"
+                                    depressed
                             >
                                 <svg-vue
-                                    icon="eye-icon"
-                                    class="icon"
+                                        icon="eye-icon"
+                                        class="icon"
+                                        :class="{'visible' : education.is_public}"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                class="btn-icon civie-btn"
-                                depressed
+                                    class="btn-icon civie-btn"
+                                    depressed
+                                    @click="editEducation(education)"
                             >
                                 <svg-vue
-                                    icon="edit-icon"
-                                    class="icon"
+                                        icon="edit-icon"
+                                        class="icon"
+                                        :class="{'visible' : newEducation.id === education.id}"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                class="btn-icon civie-btn"
-                                depressed
+                                    class="btn-icon civie-btn"  @click="deleteEducation(education)"
+                                    depressed
                             >
                                 <svg-vue
-                                    icon="trash-delete-icon"
-                                    class="icon"
+                                        icon="trash-delete-icon"
+                                        class="icon"
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                class="btn-icon mainBg civie-btn toogleDropdownBtn"
-                                :class="{closed: education.closed}"
-                                @click="education.closed = !education.closed"
-                                depressed
+                                    class="btn-icon mainBg civie-btn toogleDropdownBtn"
+                                    :class="{'closed' : expandedEducationID !== education.id}"
+                                    @click="toggleEducationCard(education)"
+                                    depressed
                             ></v-btn>
                         </div>
                     </div>
 
                     <div class="education-item__content">
                         <div class="date">
-                            {{ `${education.currentStatus}, ${education.startDate}${education.actuallyStudying ? '' : ' - ' + education.endDate}` }}
+                            {{ `${education.date_from}${education.present ? ' - Present' : ' - ' + education.date_to}` }}
                         </div>
                         <article>
                             {{education.description}}
                         </article>
                     </div>
                 </div>
-            </div>
+            </draggable>
         </div>
     </div>
 </template>
 
 <script>
-export default {
-    data: (vm) => ({
-        form: {
-            collegeName: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            website: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            gradeTitle: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            startDate: {
-                value: '',
-                disabled: false,
-                formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ] 
-            },
-            endDate: {
-                value: '',
-                disabled: false,
-                formatedDate: vm.formatDate(new Date().toISOString().substr(0, 10)),
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ] 
-            },
-            actuallyStudying: false,
-            location: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            currentStatus: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
-            description: {
-                value: '',
-                disabled: false,
-                rules: [
-                    value => !!value || 'Please fill this field.',
-                ]
-            },
+    import draggable from "vuedraggable";
+
+    export default {
+        props:['activeTab'],
+        components: {
+            draggable
         },
-        educationList: [
-            {
-                id: 0,                
-                schoolName: "Simon Bolívar University",
-                location: "Ccs, Venezuela",
-                gradeTitle: "Lic. Mathematics: Computing and Statistics",
-                startDate: "2014",
-                currentStatus: 'Completed',
-                actuallyStudying: false,
-                endDate: "2019",
-                closed: true,
-                description: "Id non culpa qui non cillum nulla est eiusmod est fugiat ex qui.Cillum culpa veniam ipsum incididunt cupidatat esse cupidatat."
+        data: () => ({
+            lazy: false,
+            institutionTypes: ['School', 'University', 'College', 'Seminar', 'Course', 'Training'],
+            newEducation: {
+                id:'',
+                institution_type:'',
+                university_name:'',
+                degree_title:'',
+                description:'',
+                website:'',
+                date_from:'',
+                date_to:'',
+                present:false,
             },
-            {
-                id: 1,                
-                schoolName: "Simon Bolívar University",
-                location: "Ccs, Venezuela",
-                gradeTitle: "Lic. Mathematics: Computing and Statistics",
-                startDate: "2014",
-                currentStatus: 'Completed',
-                actuallyStudying: false,
-                endDate: "2019",
-                closed: true,
-                description: "Veniam qui sunt excepteur Lorem velit nulla fugiat magna ea consequat.Labore duis veniam exercitation consectetur voluptate eu eiusmod adipisicing aute do laboris."
+            errors: {},
+            expandedEducationID: 0,
+        }),
+        computed: {
+            computedDateFormatted() {
+                return this.formatDate(this.date)
             },
-            {
-                id: 2, 
-                schoolName: "Simon Bolívar University",
-                location: "Ccs, Venezuela",
-                gradeTitle: "Lic. Mathematics: Computing and Statistics",
-                startDate: "2014",
-                currentStatus: 'Completed',
-                actuallyStudying: false,
-                endDate: "2019",
-                closed: true,
-                description: "Ad ad culpa mollit anim non cupidatat officia ipsum laboris sit.Tempor nisi nulla tempor laborum aliqua labore velit id occaecat nulla est."
+            educations: {
+                get() {
+                    return this.$store.state.user.education;
+                },
+                set(educations) {
+                    this.$store.commit("updateEducation", educations);
+                }
             }
-        ],
-        lazy: false,
-        startDateMenu: false,
-        endDateMenu: false,
-        currentStatusOptions: ['Completed', 'Starting', 'Studying']
-    }),
-    computed: {
-      computedDateFormatted () {
-        return this.formatDate(this.date)
-      },
-    },
-    watch: {
-      "form.startDate.value": function (val) {
-        this.form.startDate.formatDate = this.formatDate(this.form.startDate.value)
-      },
-      "form.endDate.value": function (val) {
-        this.form.endDate.formatDate = this.formatDate(this.form.endDate.value)
-      },
-    },
-    methods: {
-        toggleInput(inputData) {
-            inputData.disabled = !inputData.disabled
         },
-        validate () {
-            this.$refs.form.validate()
-        },
-        reset () {
-            this.$refs.form.reset()
-        },
-        resetValidation () {
-            this.$refs.form.resetValidation()
-        },
-        formatDate (date) {
-            if (!date) return null
+        watch: {
 
-            const [year, month, day] = date.split('-')
-            return `${day}/${month}/${year}`
         },
-        parseDate (date) {
-            if (!date) return null
+        methods: {
+            toggleInput(inputData) {
+                inputData.disabled = !inputData.disabled
+            },
+            validate() {
+                this.$refs.form.validate()
+            },
+            reset() {
+                this.$refs.form.reset()
+            },
+            resetValidation() {
+                this.$refs.form.resetValidation()
+            },
+            formatDate(date) {
+                if (!date) return null
 
-            const [month, day, year] = date.split('/')
-            return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-        },
+                const [year, month, day] = date.split('-')
+                return `${day}/${month}/${year}`
+            },
+            parseDate(date) {
+                if (!date) return null
+
+                const [month, day, year] = date.split('/')
+                return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+            },
+
+        //    functions for backend
+            toggleEducationCard(education){
+                this.expandedEducationID === education.id ?  this.expandedEducationID = 0 :  this.expandedEducationID = education.id ;
+            },
+            toggleEducationVisibility(education){
+                education.is_public = !education.is_public;
+                axios.put("/api/user/education", education)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
+            editEducation(education) {
+                this.newEducation = {
+                    id:education.id,
+                    institution_type:education.institution_type,
+                    university_name:education.university_name,
+                    degree_title:education.degree_title,
+                    description:education.description,
+                    website:education.website,
+                    date_from:education.date_from,
+                    date_to:education.date_to,
+                    present:education.present,
+                }
+            },
+            deleteEducation(education){
+                if (!confirm('Do you want to delete this education ?')) {
+                    return;
+                }
+                axios.delete('/api/user/education/' + education.id)
+                    .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
+                        this.educations.forEach( (myEducation,index) => {
+                            if(myEducation.id === response.data.data.id){
+                                this.educations.splice(index,1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
+            },
+            addEducation(){
+                this.errors = {};
+                this.newEducation.user_id = this.$store.state.user.id;
+                this.newEducation.category = this.activeTab;
+
+                let edit = false;
+                if (this.newEducation.id !== "") {
+                    edit = true;
+                }
+
+                axios.post('/api/user/education', this.newEducation)
+                    .then((response) => {
+
+                        if(!edit){
+                            this.educations.unshift(response.data.data);
+                        }else{
+                            this.educations.forEach( (myEducation,index) => {
+                                if(myEducation.id === response.data.data.id){
+                                    this.educations[index] = response.data.data;
+                                }
+                            });
+                        }
+
+                        this.clearEducation();
+                        this.$store.dispatch('flyingNotification');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors  = 'Something went wrong. Please try again.';
+                        }
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            clearEducation(){
+                this.newEducation = {
+                    id:'',
+                    institution_type:'',
+                    university_name:'',
+                    degree_title:'',
+                    description:'',
+                    website:'',
+                    date_from:'',
+                    date_to:'',
+                    present:false,
+                }
+            },
+        }
     }
-}
 </script>
 
 <style lang="scss">
-@import '../../../../../../sass/variables';
-@import '../../../../../../sass/media-queries';
+    @import '../../../../../../sass/variables';
+    @import '../../../../../../sass/media-queries';
 
     .education-wrapper {
         position: relative;
         padding: 60px 50px;
-        
+
         .float-container {
             background-color: $secondaryColor;
             width: 100%;
@@ -422,7 +402,7 @@ export default {
 
                 .input-checkbox-wrapper {
                     position: relative;
-                    margin-left : 15px;
+                    margin-left: 15px;
 
                     .civie-checkbox {
                         position: absolute;
@@ -441,7 +421,7 @@ export default {
                             left: 1.19px;
                             margin: 0;
                         }
-                        
+
                         .v-icon {
                             font-size: 14px;
                         }
@@ -457,7 +437,7 @@ export default {
             @media (max-width: 1770px) {
                 gap: 20px;
             }
-            
+
             @media (max-width: 1680px) {
                 .resume-builder__input,
                 .inputs-wrapper {
@@ -499,7 +479,7 @@ export default {
                 .resume-builder__input {
                     grid-column: span 4;
                 }
-                
+
                 .civie-textarea {
                     grid-row: 7 / 9
                 }
@@ -530,14 +510,18 @@ export default {
                 .drag-handler {
                     position: absolute;
                     display: flex;
+                    justify-content: center;
                     flex-direction: column;
-                    top: 28px;
-                    left: 24px;
+                    align-items: center;
+                    top: 11px;
+                    left: 0;
+                    width: 50px;
+                    height: 50px;
 
                     &:hover {
-                        cursor: pointer;
+                        cursor: grab;
                     }
-                    
+
                     .circle {
                         display: block;
                         background: $inputTextColor;
@@ -576,7 +560,7 @@ export default {
                             .gray {
                                 color: $inputTextColor;
                             }
-                            
+
                             .grade-title {
                                 font-size: 14px;
                                 color: $inputTextColor;
@@ -656,5 +640,115 @@ export default {
         }
     }
 
+    .date-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 28px;
+
+        @include lt-lg {
+
+
+        }
+
+        @include lt-md {
+
+        }
+
+        .date-text {
+            font: 500 26px/26px Noto Sans;
+            letter-spacing: 0;
+            color: #888DB1;
+            opacity: 1;
+            margin: 10px 9px;
+
+            @include lt-lg {
+
+            }
+
+            @include lt-md {
+                font-size: 16px;
+            }
+
+            @include lt-sm {
+                font-size: 12px;
+
+            }
+        }
+
+        .date-input {
+            display: flex;
+            flex-direction: column;
+            width: 137px;
+            position: relative;
+
+            @include lt-sm {
+
+            }
+
+            label {
+                text-align: left;
+                position: absolute;
+                top: -29px;
+                letter-spacing: 0;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 25px;
+                color: #888DB1;
+                opacity: 1;
+
+                @include lt-md {
+                    font-size: 18px;
+                    color: #888DB1;
+                }
+
+                @include lt-sm {
+                    font-size: 15px;
+                }
+            }
+
+            label.light {
+                font-size: 12px;
+                letter-spacing: 0;
+                opacity: 1;
+
+                @include lt-lg {
+                    font-size: 15px;
+                }
+
+                @include lt-md {
+                    font-size: 11px;
+                    color: #888DB1;
+                }
+            }
+
+            input {
+                height: 50px;
+                border: 2px solid #C4C9F5 !important;
+                border-radius: 10px;
+                opacity: 1;
+                color: #c4c9f5;
+                padding-left: 12px;
+
+                @include lt-lg {
+
+                }
+
+                @include lt-md {
+
+                }
+            }
+
+            input:focus{
+                outline: none;
+            }
+
+            input.checkbox {
+                width: 12px;
+                height: 12px;
+                padding-left: 0;
+                margin-right: 8px;
+            }
+        }
+    }
 
 </style>

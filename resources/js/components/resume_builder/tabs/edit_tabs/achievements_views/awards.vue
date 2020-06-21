@@ -85,7 +85,7 @@
                     .then((response) => {
                         let addedAchievement = response.data.data;
                         this.$emit('achievementAdded',addedAchievement);
-                        this.$store.dispatch('fullScreenNotification');
+                        this.$store.dispatch('flyingNotification');
                         this.clearAward();
                     })
                     .catch((error) => {

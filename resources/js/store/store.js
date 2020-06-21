@@ -296,6 +296,22 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateEducation(state, educations){
+            state.user.education = educations;
+            axios.post('/api/user/education/update-order', {educations : educations})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateProjects(state, projects){
+            state.user.projects = projects;
+            axios.post('/api/user/projects/update-order', {projects : projects})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
 

@@ -261,7 +261,7 @@ export default {
                 .then((response) => {
                     let addedAchievement = response.data.data;
                     this.$emit('achievementAdded',addedAchievement);
-                    this.$store.dispatch('fullScreenNotification');
+                    this.$store.dispatch('flyingNotification');
                     this.clearPublic();
                 })
                 .catch((error) =>{
