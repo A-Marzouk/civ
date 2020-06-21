@@ -304,6 +304,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateProjects(state, projects){
+            state.user.projects = projects;
+            axios.post('/api/user/projects/update-order', {projects : projects})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
 
