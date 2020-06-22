@@ -19,7 +19,7 @@
 					</v-card-actions>
 				</div>
 
-				<v-carousel class="v-carousel-audio-modal" height="auto" hide-delimiter-background :touch="{}" light :show-arrows="false" :continuous="false">
+				<v-carousel class="v-carousel-audio-modal" height="auto" hide-delimiter-background light :show-arrows="false" :continuous="false">
 					<v-carousel-item v-for="(pageAudios, i) in audiosPerPage" :key="i">
 						<v-list class="audios-list">
 							<v-list-item v-for="audio in pageAudios" :key="audio.src">
