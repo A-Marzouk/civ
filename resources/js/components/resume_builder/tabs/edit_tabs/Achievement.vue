@@ -7,13 +7,13 @@
                 ref="form"
         >
           <v-text-field
-                  id="projectName"
+                  id="achievementName"
                   class="resume-builder__input civie-input"
                   outlined
-                  label="Project Name"
+                  label="Achievement type"
                   color="#001CE2"
-                  v-model="editedAchievement.name"
-                  :error = "!!errors.name"
+                  v-model="editedAchievement.type"
+                  :error = "!!errors.type"
           >
           </v-text-field>
           <v-text-field
@@ -21,10 +21,10 @@
                   class="resume-builder__input civie-input"
                   outlined
                   label="URL"
-                  hint="(Active link of the project)"
+                  hint="(Active link of the Achievement)"
                   color="#001CE2"
-                  v-model="editedAchievement.link"
-                  :error = "!!errors.link"
+                  v-model="editedAchievement.url"
+                  :error = "!!errors.url"
           >
           </v-text-field>
           <v-textarea
@@ -61,41 +61,32 @@
                   id="skills"
                   class="resume-builder__input civie-input"
                   outlined
-                  label="Skills"
-                  hint="(Skills you use in the project)"
+                  label="Year"
+                  hint="(Year)"
                   color="#001CE2"
-                  v-model="editedAchievement.skills"
-                  :error = "!!errors.skills"
+                  v-model="editedAchievement.year"
+                  :error = "!!errors.year"
           >
           </v-text-field>
           <v-text-field
                   id="software"
                   class="resume-builder__input civie-input"
                   outlined
-                  label="Software"
-                  hint="(Software used for this project)"
+                  label="Title"
+                  hint="Type"
                   color="#001CE2"
-                  v-model="editedAchievement.software"
-                  :error = "!!errors.software"
+                  v-model="editedAchievement.title"
+                  :error = "!!errors.title"
           >
           </v-text-field>
 
           <div class="col-12 d-flex flex-column">
-            <div class="uploadedImagesList" v-if="editedAchievement.images.length > 0 ">
-              <div class="imageRow" v-for="image in editedAchievement.images" :key="image.id" v-if="image.src">
-                <img  :src="image.src" alt="project image">
-                <div class="remove-image" @click="deleteProjectImage(image)">
-                  <img src="/images/del-icon.png" alt="delete">
-                </div>
-              </div>
-            </div>
-
             <div>
               <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveAchievement">
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 
-              <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearProject" v-show="editedAchievement.id !== '' ">
+              <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
                 Cancel
               </v-btn>
             </div>
@@ -119,28 +110,28 @@
               >
                 <v-btn
                         class="btn-icon civie-btn"
-                        depressed @click="toggleProject(project)"
+                        depressed @click="toggleAchievement(achievement)"
                 >
                   <svg-vue
                           icon="eye-icon"
-                          :class="{'visible' : project.is_public}"
+                          :class="{'visible' : achievement.is_public}"
                           class="icon"
                   ></svg-vue>
                 </v-btn>
                 <v-btn
                         class="btn-icon civie-btn"
-                        @click="editProject(project)"
+                        @click="editAchievement(achievement)"
                         depressed
                 >
                   <svg-vue
                           icon="edit-icon"
                           class="icon"
-                          :class="{'visible' : project.id === editedAchievement.id}"
+                          :class="{'visible' : achievement.id === editedAchievement.id}"
                   ></svg-vue>
                 </v-btn>
                 <v-btn
                         class="btn-icon civie-btn"
-                        @click="deleteProject(project)"
+                        @click="deleteAchievement(achievement)"
                         depressed
                 >
                   <svg-vue
@@ -152,25 +143,22 @@
             </div>
             <div class="project__body">
               <div class="project__img">
-                <div class="project__name">{{project.name}}</div>
+                <div class="project__name">{{achievement.title}}</div>
                 <img
-                        :src="getMainImage(project)"
-                        alt="portfolio img">
+                        :src="achievement.image_src"
+                        alt="achievement img">
               </div>
               <div class="project__info">
-                <div class="project__name">{{project.name}}</div>
+                <div class="project__name">{{achievement.title}}</div>
                 <div class="project__url">
-                  <b>URL:</b> <a :href="project.link">{{project.link}}</a>
+                  <b>URL:</b> <a :href="achievement.url">{{achievement.url}}</a>
                 </div>
                 <div class="project__skills">
-                  <b>Skills:</b> {{project.skills}}
-                </div>
-                <div class="project__softwares">
-                  <b>Software:</b> {{project.software}}
+                  <b>Skills:</b> {{achievement.category}}
                 </div>
                 <div class="project__description">
                   <b>Description: </b>
-                  {{project.description}}
+                  { {{achievement.description}}
                 </div>
               </div>
             </div>
@@ -222,25 +210,17 @@
 
     },
     methods: {
-      // projects list functions:
-      getMainImage(project) {
-        let mainImageSrc = '';
-        project.images.forEach((image) => {
-          image.is_main ? mainImageSrc = image.src : '';
-        });
-
-        return mainImageSrc;
-      },
-      deleteProject(project) {
-        if (!confirm('Do you want to delete this project ?')) {
+      // achievements list functions:
+      deleteAchievement(achievement) {
+        if (!confirm('Do you want to delete this achievement ?')) {
           return;
         }
-        axios.delete('/api/user/projects/' + project.id)
+        axios.delete('/api/user/achievements/' + achievement.id)
                 .then((response) => {
                   this.$store.dispatch('flyingNotificationDelete');
-                  this.projects.forEach((myProject, index) => {
-                    if (myProject.id === response.data.data.id) {
-                      this.projects.splice(index, 1);
+                  this.achievements.forEach((myAchievement, index) => {
+                    if (myAchievement.id === response.data.data.id) {
+                      this.achievements.splice(index, 1);
                     }
                   });
                 })
@@ -248,30 +228,16 @@
                   console.log(error);
                 })
       },
-      deleteProjectImage(image){
-        axios.delete('/api/user/projects/images/' + image.id)
-                .then((response) => {
-                  this.$store.dispatch('flyingNotificationDelete');
-                  this.editedAchievement.images.forEach((myImage, index) => {
-                    if (myImage.id === response.data.data.id) {
-                      this.editedAchievement.images.splice(index, 1);
-                    }
-                  });
-                })
-                .catch(error => {
-                  console.log(error);
-                })
-      },
-      editProject(project){
-        $.each( project, (field) => {
-          this.editedAchievement[field] = project[field] ;
+      editAchievement(achievement){
+        $.each( achievement, (field) => {
+          this.editedAchievement[field] = achievement[field] ;
         } );
 
       },
 
-      toggleProject(project) {
-        project.is_public = !project.is_public;
-        axios.put("/api/user/projects", project)
+      toggleAchievement(achievement) {
+        achievement.is_public = !achievement.is_public;
+        axios.put("/api/user/achievements", achievement)
                 .then( () => {
                   this.$store.dispatch("flyingNotification");
                 })
@@ -290,10 +256,12 @@
       },
 
 
-      // new project functions
+      // new achievement functions
       handlingEvent: function (file) {
         if (this.editedAchievement.images.length < 1) {
           this.editedAchievement.images.push(file);
+        }else{
+
         }
       },
       checkMaximumFiles(){
@@ -317,7 +285,7 @@
         });
 
         this.editedAchievement.images.forEach((image) => {
-          formData.append('images[]', image);
+          formData.append('file', image);
         });
 
         let edit = false;
@@ -329,20 +297,20 @@
         formData.append('id', this.editedAchievement.id);
 
 
-        axios.post('/api/user/projects', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+        axios.post('/api/user/achievements', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
                   if (!edit) {
-                    this.projects.push(response.data.data);
+                    this.achievements.push(response.data.data);
                   } else {
-                    this.projects.forEach((project, index) => {
-                      if (project.id === response.data.data.id) {
-                        this.projects[index] = response.data.data;
+                    this.achievements.forEach((achievement, index) => {
+                      if (achievement.id === response.data.data.id) {
+                        this.achievements[index] = response.data.data;
                       }
                     });
                   }
 
                   this.$store.dispatch('flyingNotification');
-                  this.clearProject();
+                  this.clearAchievement();
                 })
                 .catch((error) => {
                   if (typeof error.response.data === 'object') {
@@ -357,15 +325,16 @@
                   });
                 });
       },
-      clearProject() {
+      clearAchievement() {
         this.editedAchievement = {
           id: '',
-          name: '',
+          title: '',
+          category: '',
+          type: '',
+          year: '',
+          url: '',
           description: '',
-          link: '',
-          skills: '',
-          software: '',
-          images: []
+          images: [],
         };
         this.$refs.newImages.removeAllFiles();
       },
@@ -537,6 +506,7 @@
             .project__img {
               img {
                 min-width: 120px;
+                max-width: 220px;
               }
 
               .project {
