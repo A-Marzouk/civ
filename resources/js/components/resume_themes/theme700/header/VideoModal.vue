@@ -1,7 +1,20 @@
 <template>
 	<div class="video-modal d-inline-flex tw-align-middle">
-		<div v-show="dialog && current.isPlaying" class="video-player-overlay">
-			<video ref="videoPlayer"></video>
+		<div v-show="dialog && showVideoPlayer" class="video-player-overlay" @click="hidePlayer">
+			<div class="c-video-player" @click.stop>
+				<div class="tw-relative">
+					<video preload="none" class="el-video-player" :src="current.video.src" :poster="current.video.thumbnail" ref="videoPlayer"></video>
+
+					<a class="play-pause-control" href="#" @click.prevent="playPause">
+						<v-icon color="white" v-if="current.isPlaying">mdi-pause</v-icon>
+						<v-icon color="white" v-else>mdi-play</v-icon>
+					</a>
+				</div>
+
+				<div class="video-player-footer">
+					<v-progress-linear height="8" background-color="#EBEBEB" color="#513ECD" :value="currentProgress"></v-progress-linear>
+				</div>
+			</div>
 		</div>
 
 		<v-btn elevation="0" fab :width="30" :height="30" class="mr-5" color="#EBEBEB" @click="open">
@@ -28,7 +41,7 @@
 						<v-list class="videos-list">
 							<v-list-item class="p-0 videos-list-item" v-for="(video, index) in pageVideos" :key="`${video.src}?index=${index}`">
 								<v-list-item-content>
-									<div class="video-player" :class="{'playing': isPlaying(video.src)}">
+									<div class="video-player">
 										<div class="player-title">
 											<h3 v-text="video.title"></h3>
 										</div>
@@ -36,7 +49,7 @@
 										<div class="player-body">
 											<div class="video-preview">
 												<img :src="video.thumbnail" alt="">
-												<a href="#" class="play-pause-action" title="Play/Pause" @click.prevent="playPause(video.src)">
+												<a href="#" class="play-pause-action" title="Play/Pause" @click.prevent="showPlayer(video.src)">
 													<svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<path d="M30.5 0C13.6825 0 0 13.6825 0 30.5C0 47.3175 13.6825 61 30.5 61C47.3175 61 61 47.3175 61 30.5C61 13.6825 47.3175 0 30.5 0ZM22.875 45.7497V15.2499L45.75 30.4997L22.875 45.7497Z" fill="#2410A4" />
 													</svg>
@@ -61,6 +74,7 @@ export default {
 	data() {
 		return {
 			dialog: false,
+			showVideoPlayer: false,
 			current: {
 				isPlaying: false,
 				video: {},
@@ -114,17 +128,53 @@ export default {
 			}
 
 			return videosPerPage;
-		},
-		isPlaying() {
-			return src => {
-				return src === this.current.video.src && this.current.isPlaying;
-			};
 		}
 	},
 
 	methods: {
+		showPlayer(src) {
+			console.log("showPlayer", src);
+
+			this.current.video = this.videos.find(video => video.src === src);
+			this.showVideoPlayer = true;
+		},
+
+		hidePlayer() {
+			this.showVideoPlayer = false;
+			this.player.pause();
+			this.current = {
+				isPlaying: false,
+				video: {},
+				duration: 0,
+				time: 0
+			};
+		},
+
 		playPause(src) {
-			console.log("playing: ", src);
+			if (this.current.isPlaying) {
+				this.player.pause();
+				this.current.isPlaying = false;
+				return;
+			}
+
+			let playPromise = this.player.play();
+
+			if (playPromise !== undefined) {
+				playPromise
+					.then(_ => {
+						// Automatic playback started!
+						console.log("Automatic playback started!");
+
+						// Show playing UI.
+					})
+					.catch(error => {
+						// Auto-play was prevented
+						console.log(" Auto-play was prevented");
+
+						// Show paused UI.
+					});
+			}
+			this.current.isPlaying = true;
 		},
 
 		open() {
@@ -155,11 +205,58 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.32);
 	z-index: 99999;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	padding: 10px;
+
+	.c-video-player {
+		width: 100%;
+		max-width: 800px;
+		position: relative;
+
+		.el-video-player {
+			width: 100%;
+		}
+
+		.play-pause-control {
+			background: rgba(36, 16, 164, 0.78);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: absolute;
+			right: 50%;
+			bottom: 50%;
+			transform: translate(50%, 50%);
+			border-radius: 100px;
+			height: 36px;
+			width: 36px;
+			opacity: 0;
+			transition: all 0.2s;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&:hover {
+			.play-pause-control {
+				opacity: 0.5;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+
+		.video-player-footer {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+		}
+	}
 }
 
 .video-modal {
