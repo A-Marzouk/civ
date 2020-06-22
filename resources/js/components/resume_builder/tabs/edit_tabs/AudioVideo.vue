@@ -41,7 +41,7 @@
                   <v-col cols="12" class="hidden-sm-and-up mt-n8">
                     <label class="label-or">or</label>
                   </v-col>
-                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n12">
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n11">
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
