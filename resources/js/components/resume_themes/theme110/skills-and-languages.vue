@@ -143,7 +143,7 @@ $mainColor: #492163;
             }
         }
 
-        @media (max-width: 756px) {
+        @media (max-width: 768px) {
             display: none;
         }
     }
@@ -244,7 +244,7 @@ $mainColor: #492163;
                 }
             }
 
-            @media (max-width: 756px) {
+            @media (max-width: 768px) {
                 grid-column: span 6;
                 max-width: 100%;
 

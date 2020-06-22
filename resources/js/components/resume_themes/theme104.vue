@@ -191,7 +191,7 @@ $purple: #FB423A;
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
                         padding: 13px 17px;
                         margin-right: 27px;

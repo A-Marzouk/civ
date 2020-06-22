@@ -228,9 +228,10 @@ $purple: #24325D;
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
-                        padding: 13px 17px;
+                        padding: 13px 0;
+                        justify-content: flex-start;
                         margin-right: 27px;
 
                         &:last-child {
@@ -304,7 +305,7 @@ $purple: #24325D;
         align-items: center;
         position: absolute;
         top: 365px;
-        right: -95px;
+        right: -115px;
         background: transparent;
 
         &.showOnTablet {

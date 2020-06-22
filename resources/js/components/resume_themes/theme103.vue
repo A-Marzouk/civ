@@ -190,12 +190,11 @@ $purple: #0556B6;
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        padding: 0 22px;
+                        padding: 0;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
-                        padding: 0 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -281,7 +280,7 @@ $purple: #0556B6;
         align-items: center;
         position: absolute;
         top: 365px;
-        right: -95px;
+        right: -115px;
         background: transparent;
 
         &.showOnTablet {
