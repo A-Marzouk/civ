@@ -47,9 +47,6 @@
                       class="resume-builder__input civie-input"
                       outlined
                       color="#001CE2"
-                      :rules="rules"
-                      :class="{'resume-builder__input--disabled': disabledInput}"
-                      :disabled="disabledInput"
                       :label="windowWidth<600?'or':''"
                     >
                       <template v-slot:prepend>
@@ -226,205 +223,102 @@ export default {
       dropzoneOptions: {
         url: "https://httpbin.org/post",
         thumbnailWidth: 150,
-        maxFilesize: 0.5
+        maxFilesize: 25,
+        maxFiles: 51,
+        addRemoveLinks: true,
+      },
+      newAudio: {
+        title: 'Audio',
+        type: 'audio',
+        url: '',
+        mediaFile: null
       },
       tabs: ["Audio", "Video"],
-      disabledInput: false,
-      hobbyType: "",
-      hobbyTypes: ["Personal Hobby", "Personal Hobby2"],
-      hobbyNames: ["Gardening"],
-      rules: [value => !!value || "Please fill this field."],
-      hobbyName: "",
       audioTab: 0,
-      hobby: {
-        category: "select",
-        title: ""
-      },
-      categoryOptions: [
-        {
-          title: "Sports",
-          value: "sports"
-        },
-        {
-          title: "Ice skating",
-          value: "ice_skating"
-        },
-        {
-          title: "Cycling",
-          value: "cycling"
-        },
-        {
-          title: "Parkour",
-          value: "parkour"
-        }
-      ],
-      showCategoryOptions: false,
-      optionHobbyId: 0,
-      editedHobby: {},
-      errors: {
-        new: {},
-        edit: {}
-      }
+      errors: {}
     };
   },
   computed: {
-    hobbies() {
-      return this.$store.state.user.hobbies;
+    media() {
+      return this.$store.state.user.media;
     }
   },
-
-  props: ["inputProps"],
-  methods: {
-    toggleInput() {
-      this.disabledInput = !this.disabledInput;
-    },
-    selectCategory(title) {
-      this.hobby.category = title;
-      this.showCategoryOptions = false;
-    },
-    addHobby() {
-      if (this.validateHobby()) {
-        this.hobby.user_id = this.$store.state.user.id;
-        axios
-          .post("/api/user/hobbies", this.hobby)
-          .then(response => {
-            let addedHobby = response.data.data;
-            this.hobbies.push(addedHobby);
-            this.clearHobby();
-            this.$store.dispatch('flyingNotification');
-          })
-          .catch(error => {
-            if (typeof error.response.data === "object") {
-              this.errors.new = error.response.data.errors;
-            } else {
-              this.errors.new = "Something went wrong. Please try again.";
-            }
-            this.$store.dispatch("flyingNotification", {
-              message: "Error",
-              iconSrc: "/images/resume_builder/error.png"
-            });
+  methods:{
+      handleAudioUpload() {
+          this.newAudio.mediaFile = this.$refs.audio.files[0];
+          this.uploadMedia();
+      },
+      uploadMedia() {
+          let formData = new FormData();
+          $.each(this.newAudio, (field) => {
+              if (this.newAudio[field] !== null) {
+                  formData.append(field, this.newAudio[field]);
+              }
           });
-      }
-    },
-    validateHobby() {
-      this.errors = {
-        new: {},
-        edit: {}
-      };
-
-      if (this.hobby.title && this.hobby.category) {
-        return true;
-      }
-
-      if (!this.hobby.title) {
-        this.errors.new.title = "Title required.";
-      }
-      if (!this.hobby.category) {
-        this.errors.new.category = "Category required.";
-      }
-
-      return false;
-    },
-    clearHobby() {
-      this.hobby = {
-        category: "",
-        title: ""
-      };
-    },
-
-    editHobby(hobby) {
-      this.editedHobby = {
-        id: hobby.id,
-        category: hobby.category,
-        title: hobby.title
-      };
-      this.closeOptionsBtn();
-      document.getElementById("hobbiesContent").scrollTop = 0;
-    },
-    applyEdit() {
-      axios
-        .put("/api/user/hobbies", this.editedHobby)
-        .then(response => {
-          this.EditedSuccessfully(response.data.data);
-          this.clearErrors();
-          this.$store.dispatch('flyingNotification');
-        })
-        .catch(error => {
-          if (typeof error.response.data === "object") {
-            this.errors.edit = error.response.data.errors;
-          } else {
-            this.errors = "Something went wrong. Please try again.";
+          formData.append('user_id', this.$store.state.user.id);
+          this.$bvModal.hide('main-upload-modal');
+          this.currentUploadMethod = null;
+          const config = {
+              onUploadProgress: progressEvent => {
+                  let progress = (progressEvent.loaded / progressEvent.total) * 100;
+                  $('#progressBar').css('width', progress + '%');
+              },
+              headers: {'Content-Type': 'multipart/form-data'}
+          };
+          axios.post('/api/user/media', formData, config)
+              .then((response) => {
+                  let addedMedia = response.data.data;
+                  this.audios.push(addedMedia);
+                  this.clearMedia();
+                  setTimeout(() => {
+                      $('#progressBar').css('width', 0);
+                  }, 2000);
+                  this.$store.dispatch('flyingNotification');
+              })
+              .catch((error) => {
+                  if (typeof error.response.data === 'object') {
+                      this.errors.new = error.response.data.errors;
+                  } else {
+                      this.errors.new = 'Something went wrong. Please try again.';
+                  }
+                  this.$store.dispatch('flyingNotification', {
+                      message: 'Error',
+                      iconSrc: '/images/resume_builder/error.png'
+                  });
+              });
+      },
+      clearMedia() {
+          this.newAudio = {
+              title: 'Audio',
+              type: 'audio',
+              mediaFile: null
+          };
+      },
+      deleteMedia(mdeia) {
+          if (!confirm('Do you want to delete this Media file ?')) {
+              return;
           }
-          this.$store.dispatch("flyingNotification", {
-            message: "Error",
-            iconSrc: "/images/resume_builder/error.png"
-          });
-        });
-    },
-    deleteHobby(hobby) {
-      if (
-        !confirm("Do you want to delete this hobby [" + hobby.title + "] ?")
-      ) {
-        return;
+          axios.delete('/api/user/media/' + mdeia.id)
+              .then((response) => {
+                  this.$store.dispatch('flyingNotificationDelete');
+                  this.audios.forEach((audio, index) => {
+                      if (audio.id === response.data.data.id) {
+                          this.audios.splice(index, 1);
+                      }
+                  });
+              })
+              .catch(error => {
+                  console.log(error);
+                  this.$store.dispatch('flyingNotification', {
+                      message: 'Error',
+                      iconSrc: '/images/resume_builder/error.png'
+                  });
+              })
       }
-      axios
-        .delete("/api/user/hobbies/" + hobby.id)
-        .then(response => {
-          this.$store.dispatch("flyingNotificationDelete");
-          this.hobbies.forEach((hobby, index) => {
-            if (hobby.id === response.data.data.id) {
-              this.hobbies.splice(index, 1);
-            }
-          });
-
-          this.closeOptionsBtn();
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-
-    EditedSuccessfully(editedHobby) {
-      this.clearEditedHobby();
-      // replace the edited hobby with the new one:
-      this.hobbies.forEach((hobby, index) => {
-        if (hobby.id === editedHobby.id) {
-          this.hobbies[index] = editedHobby;
-        }
-      });
-    },
-    closeOptionsBtn() {
-      this.optionHobbyId = 0;
-      this.clearErrors();
-    },
-    clearEditedHobby() {
-      this.editedHobby = {};
-    },
-    cancelEdit() {
-      this.clearEditedHobby();
-      this.closeOptionsBtn();
-    },
-    clearErrors() {
-      this.errors = {
-        new: {},
-        edit: {}
-      };
-    }
   },
   mounted() {
-    (window.onresize = () => {
-      this.windowWidth = window.innerWidth;
-    }),
-      $("#hobbiesSection").on("click", e => {
-        if (
-          this.showCategoryOptions &&
-          !$(e.target).parents(".civ-input").length
-        ) {
-          this.showCategoryOptions = false;
-        }
-      });
 
-    console.log(Vue.$cookies.get("spotify_access_token"));
+
   }
 };
 </script>
