@@ -153,7 +153,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
                     background: #1B1F28;
@@ -293,7 +292,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     align-items: center;
                     background: $gradient;
                     box-shadow: 7px 7px 12px rgba(0, 0, 0, .8);
-                    padding: 23px 62px;
+                    width: 220px;
+                    height: 68px;
                     font-size: 18px;
                     font-weight: 700;
                     color: white;
@@ -305,8 +305,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     @media (max-width: 1400px) {
                         font-size: 16px;
-                        padding: 23px 42px;
-                        min-width: 144px;
+                        
+                        
 
                         .icon {
                             height: 20px;
@@ -316,7 +316,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     @media (max-width: 1200px) {
                         font-size: 11px;
                         width: 115px;
-height: 36px;
+                        height: 36px;
 
                         .icon {
                             height: 12px;

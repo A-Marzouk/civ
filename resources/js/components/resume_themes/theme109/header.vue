@@ -126,7 +126,6 @@ $purple: #24325D;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
                     background: transparent;
@@ -253,7 +252,8 @@ $purple: #24325D;
                     justify-content: center;
                     align-items: center;
                     background: $purple;
-                    padding: 23px 62px;
+                    width: 220px;
+                    height: 68px;
                     font-size: 18px;
                     font-weight: 700;
                     color: white;
@@ -265,8 +265,8 @@ $purple: #24325D;
 
                     @media (max-width: 1400px) {
                         font-size: 16px;
-                        padding: 23px 42px;
-                        min-width: 144px;
+                        
+                        
 
                         .icon {
                             height: 20px;
@@ -276,7 +276,7 @@ $purple: #24325D;
                     @media (max-width: 1200px) {
                         font-size: 11px;
                         width: 115px;
-height: 36px;
+                        height: 36px;
 
                         .icon {
                             height: 12px;

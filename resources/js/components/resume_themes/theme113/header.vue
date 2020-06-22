@@ -327,8 +327,8 @@ $purple: #686299;
 
                         @media (max-width: 1400px) {
                             font-size: 16px;
-                            padding: 23px 42px;
-                            min-width: 144px;
+                            
+                            
 
                             .icon {
                                 height: 20px;
