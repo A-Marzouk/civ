@@ -29,10 +29,7 @@
                         :options="dropzoneOptions"
                         :useCustomSlot="true"
                       >
-                        <div
-                          class="dropzone-custom-content d-flex flex-row"
-                          style="float:left;"
-                        >
+                        <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
                           <div class="mr-2">
                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
                           </div>
@@ -41,8 +38,10 @@
                       </vue-dropzone>
                     </v-input>
                   </v-col>
-
-                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-n2">
+                  <v-col cols="12" class="hidden-sm-and-up mt-n8">
+                    <label class="label-or">or</label>
+                  </v-col>
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n11">
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
@@ -50,7 +49,6 @@
                       :rules="rules"
                       :class="{'resume-builder__input--disabled': disabledInput}"
                       :disabled="disabledInput"
-                      :label="windowWidth<600?'or':''"
                     >
                       <template v-slot:prepend>
                         <label class="label-or hidden-xs-only">or</label>
@@ -66,7 +64,7 @@
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <v-btn
-                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n1 mt-lg-n1 mt-md-n5 mt-sm-n8 mt-n8"
+                      class="resume-builder__btn civie-btn filled btn-add-new"
                       depressed
                     >Add New</v-btn>
                   </v-col>
@@ -291,7 +289,7 @@ export default {
             let addedHobby = response.data.data;
             this.hobbies.push(addedHobby);
             this.clearHobby();
-            this.$store.dispatch('flyingNotification');
+            this.$store.dispatch("flyingNotification");
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
@@ -347,7 +345,7 @@ export default {
         .then(response => {
           this.EditedSuccessfully(response.data.data);
           this.clearErrors();
-          this.$store.dispatch('flyingNotification');
+          this.$store.dispatch("flyingNotification");
         })
         .catch(error => {
           if (typeof error.response.data === "object") {
@@ -612,6 +610,8 @@ $mainBlue: #001ce2;
   margin-left: -16px;
   @media screen and (max-width: 599px) {
     margin-left: 0px;
+    margin-top: -200px;
+    margin-bottom: -200px;
   }
 }
 .dropzone-custom-content {
@@ -622,6 +622,7 @@ $mainBlue: #001ce2;
   height: 48px !important;
   border: 2px solid #c4c9f5;
   border-radius: 10px;
+  overflow: hidden !important;
 }
 .upload-text {
   font-family: "Noto Sans" !important;
@@ -670,8 +671,8 @@ $mainBlue: #001ce2;
 </style>
 
 <style>
-@media screen and (max-width: 599px){
-  #resumeBuilder .v-input__prepend-outer{
+@media screen and (max-width: 599px) {
+  #resumeBuilder .v-input__prepend-outer {
     display: none !important;
   }
 }
