@@ -168,6 +168,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 &-bar {
                     background: none;
                 }
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;

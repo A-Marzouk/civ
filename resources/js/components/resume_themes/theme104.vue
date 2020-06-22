@@ -157,6 +157,10 @@ $purple: #FB423A;
                 margin-bottom: 61px;
                 overflow: 0 auto;
                 width: 95%;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
