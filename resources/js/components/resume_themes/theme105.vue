@@ -237,10 +237,14 @@ $purple: #355E5E;
                 height: 100%;
                 align-items: flex-start;
 
+                @media (max-width: 876px) {
+                    width: 100%;
+                }
+
                 @media (max-width: 700px) {
-                    padding: 0;
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                    width: 100%;
                 }
             }
         }

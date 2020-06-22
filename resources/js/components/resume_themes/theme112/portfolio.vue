@@ -142,8 +142,12 @@ export default {
             }
         }
 
+        @media (max-width: 1200px) {
+            padding: 0 70px !important;
+        }
+
         @media (max-width: 970px) {
-            padding: 0 30px !important;
+            padding: 0 !important;
             grid-gap: 20px;            
         }
     }
