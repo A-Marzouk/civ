@@ -177,7 +177,8 @@ $purple: #24325D;
                 margin-top: 61px;
                 margin-bottom: 111px;
                 overflow: 0 auto;
-                width: 95%;
+                padding: 0 40px;
+                width: 100%;
 
                 &-bar {
                     background: transparent !important;
@@ -266,10 +267,9 @@ $purple: #24325D;
                 
                 @media (max-width: 700px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    
                 }
             }
 

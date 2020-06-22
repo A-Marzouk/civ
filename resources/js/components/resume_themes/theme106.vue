@@ -165,6 +165,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 overflow: 0 auto;
                 width: 95%;
                 margin: 0 auto;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
@@ -232,10 +234,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 
                 @media (max-width: 700px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    
                 }
             }
 

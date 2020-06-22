@@ -156,6 +156,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: white;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
                 overflow: 0 auto;
@@ -224,10 +226,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 
                 @media (max-width: 700px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    
                 }
             }
 

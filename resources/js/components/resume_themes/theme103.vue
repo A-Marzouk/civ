@@ -159,6 +159,8 @@ $purple: #0556B6;
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $tabTextColor;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
@@ -227,6 +229,7 @@ $purple: #0556B6;
                 
                 @media (max-width: 700px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
                     &-bar {
                         height: 36px;

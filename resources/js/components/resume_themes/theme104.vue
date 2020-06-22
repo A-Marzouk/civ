@@ -154,6 +154,8 @@ $purple: #FB423A;
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $mainColor;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
                 overflow: 0 auto;
@@ -217,10 +219,9 @@ $purple: #FB423A;
                 
                 @media (max-width: 700px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    
                 }
             }
 
