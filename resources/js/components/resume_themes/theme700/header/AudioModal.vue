@@ -3,7 +3,7 @@
 		<v-btn elevation="0" fab :width="30" :height="30" class="mr-5" color="#EBEBEB" @click="open">
 			<v-img src="/images/resume_themes/theme700/headphones.svg" contain :width="14" :height="14"></v-img>
 		</v-btn>
-		<v-dialog content-class="theme700-v-dialog--audio-modal" v-model="dialog" persistent max-width="850" overlay-opacity="0.5" overlay-color="#000000">
+		<v-dialog content-class="theme700-v-dialog--audio-modal" v-model="dialog" persistent overlay-opacity="0.5" overlay-color="#000000">
 			<v-card>
 				<div class="v-dialog-v-card-header">
 					<v-card-title class="pa-0 font-weight-bold">
@@ -19,28 +19,28 @@
 					</v-card-actions>
 				</div>
 
-				<v-carousel hide-delimiter-background light :show-arrows="false">
+				<v-carousel class="v-carousel-audio-modal" height="auto" hide-delimiter-background light :show-arrows="false" :continuous="false">
 					<v-carousel-item v-for="(pageAudios, i) in audiosPerPage" :key="i">
 						<v-list class="audios-list">
-							<v-list-item v-for="(audio, index) in pageAudios" :key="audio.src">
+							<v-list-item v-for="audio in pageAudios" :key="audio.src">
 								<v-list-item-content>
-									<div class="audio-player" :class="{'playing': isPlaying(index)}">
+									<div class="audio-player" :class="{'playing': isPlaying(audio.src)}">
 										<div class="player-title">
 											<h3 v-text="audio.title"></h3>
 										</div>
 
 										<div class="player-body">
-											<a href="#" class="play-pause-action" title="Play/Pause" @click.prevent="playPause(index)">
-												<v-icon v-if="isPlaying(index)" color="white" large>mdi-pause</v-icon>
+											<a href="#" class="play-pause-action" title="Play/Pause" @click.prevent="playPause(audio.src)">
+												<v-icon v-if="isPlaying(audio.src)" color="white" large>mdi-pause</v-icon>
 												<v-icon v-else color="white" large>mdi-play</v-icon>
 											</a>
 											<dir class="player-status">
-												<div v-if="isPlaying(index)" class="player-timing">
+												<div v-if="isPlaying(audio.src)" class="player-timing">
 													<span v-text="formatDuration(current.time)"></span>
 													<span v-text="formatDuration(current.duration)"></span>
 												</div>
-												<v-progress-linear v-if="isPlaying(index)" background-color="#EBEBEB" rounded height="15" color="#513ECD" :value="currentProgress"></v-progress-linear>
-												<v-progress-linear v-else background-color="#EBEBEB" rounded height="15" color="#513ECD" value="0"></v-progress-linear>
+												<v-progress-linear v-if="isPlaying(audio.src)" background-color="#EBEBEB" rounded height="14" color="#513ECD" :value="currentProgress"></v-progress-linear>
+												<v-progress-linear v-else background-color="#EBEBEB" rounded height="14" color="#513ECD" value="0"></v-progress-linear>
 											</dir>
 										</div>
 									</div>
@@ -62,7 +62,6 @@ export default {
 		return {
 			dialog: false,
 			current: {
-				index: 0,
 				isPlaying: false,
 				audio: {},
 				duration: 0,
@@ -115,27 +114,61 @@ export default {
 			return audiosPerPage;
 		},
 		isPlaying() {
-			return index => {
-				return index === this.current.index && this.current.isPlaying;
+			return src => {
+				return src === this.current.audio.src && this.current.isPlaying;
 			};
 		}
 	},
 
 	methods: {
-		playPause(index) {
-			if (this.current.isPlaying && index === this.current.index) {
+		playPause(src) {
+			if (this.current.isPlaying && src === this.current.audio.src) {
 				this.current.isPlaying = false;
 				this.player.pause();
 
 				return;
 			}
 
-			this.current.index = index;
-			this.current.audio = this.audios[index];
+			if (this.current.isPlaying && src !== this.current.audio.src) {
+				this.current.time = 0;
+			}
+
+			this.current.audio = this.audios.find(audio => audio.src === src);
 			this.current.isPlaying = true;
 
 			this.player.src = this.current.audio.src;
+			this.player.currentTime = this.current.time;
 			this.player.play();
+		},
+
+		load() {
+			if (this.player.readyState >= 2) {
+				this.current.duration = parseInt(this.player.duration);
+				return;
+			}
+
+			throw new Error("Failed to load sound file.");
+		},
+
+		update() {
+			this.current.time = parseInt(this.player.currentTime);
+
+			console.log("update: ", this.current.time);
+		},
+
+		open() {
+			this.dialog = true;
+		},
+
+		close() {
+			this.player.pause();
+			this.current = {
+				isPlaying: false,
+				audio: {},
+				duration: 0,
+				time: 0
+			};
+			this.dialog = false;
 		},
 
 		formatDuration(durationSeconds) {
@@ -156,33 +189,6 @@ export default {
 			return hours > 0
 				? `${hours}:${minutes}:${seconds}`
 				: `${minutes}:${seconds}`;
-		},
-
-		load() {
-			if (this.player.readyState >= 2) {
-				this.current.duration = parseInt(this.player.duration);
-				this.player.currentTime = this.current.time;
-
-				return;
-			}
-
-			throw new Error("Failed to load sound file.");
-		},
-
-		update() {
-			this.current.time = parseInt(this.player.currentTime);
-		},
-
-		open() {
-			this.dialog = true;
-		},
-
-		close() {
-			this.current.index = 0;
-			this.current.isPlaying = false;
-			this.player.pause();
-
-			this.dialog = false;
 		}
 	},
 
@@ -194,6 +200,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "./../scss/media-queries.scss";
+
 .audio-modal {
 	font-family: "Montserrat", sans-serif;
 }
@@ -208,9 +216,8 @@ export default {
 	.title-text {
 		background: #ffffff;
 		display: flex;
-		align-items: center;
 		padding-left: 15px;
-		margin-top: 5.5px;
+		padding-top: 15px;
 		position: absolute;
 		left: 60px;
 		height: 62px;
@@ -229,6 +236,23 @@ export default {
 		background: #513ecd;
 		height: 100%;
 		width: 90px;
+	}
+
+	@include md {
+		height: 183px;
+
+		.title-text {
+			left: 116px;
+			height: 120px;
+			font-size: 36px;
+			line-height: 44px;
+			padding-left: 28px;
+			padding-top: 29px;
+		}
+
+		&::after {
+			width: 172px;
+		}
 	}
 }
 
@@ -304,15 +328,118 @@ export default {
 			}
 		}
 	}
+
+	@include md {
+		.audio-player {
+			.player-title {
+				font-size: 30px;
+				line-height: 36px;
+			}
+
+			.player-body {
+				.player-status {
+					margin-left: 28px;
+				}
+			}
+
+			.play-pause-action {
+				height: 61px;
+				width: 61px;
+
+				.v-icon {
+					font-size: 52px !important;
+				}
+			}
+		}
+	}
+
+	@include lg {
+		.audio-player {
+			.player-title {
+				text-align: center;
+			}
+		}
+	}
 }
 
 .v-dialog__content {
 	align-items: flex-start;
 }
+
+.v-carousel-audio-modal {
+	padding-bottom: 50px;
+}
+
+@include md {
+	.v-carousel-audio-modal {
+		padding-bottom: 70px;
+	}
+
+	.v-btn--fab.close-action {
+		height: 67px;
+		width: 67px;
+	}
+}
+
+@include lg {
+	.v-btn--fab.close-action {
+		height: 44px;
+		width: 44px;
+	}
+}
 </style>
 
 <style lang="scss">
 .v-dialog.theme700-v-dialog--audio-modal {
-	margin: 86px 10px 86px;
+	margin: 86px 10px;
+
+	&.v-dialog:not(.v-dialog--fullscreen) {
+		max-height: 100%;
+	}
+
+	.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
+		color: #ebebeb;
+
+		&.v-btn--active {
+			color: #513ecd;
+
+			&:before {
+				content: none;
+			}
+		}
+
+		.v-btn__content .v-icon {
+			font-size: 20px;
+		}
+	}
+
+	@media (min-width: 768px) {
+		max-width: 768px;
+		margin: 40px 40px;
+
+		.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
+			.v-btn__content .v-icon {
+				height: 29px;
+				font-size: 50px;
+				width: 29px;
+			}
+		}
+
+		.v-carousel__controls {
+			height: 70px;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		max-width: 1024px;
+
+		.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
+			.v-btn__content .v-icon {
+				height: 19px;
+				font-size: 32px;
+				width: 19px;
+			}
+		}
+	}
 }
 </style>
