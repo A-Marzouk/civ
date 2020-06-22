@@ -134,7 +134,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     font-size: 18px;
                     font-weight: 400;
                     background: transparent;
-                    border: 4px solid #BE001A;
+                    border: 2px solid #BE001A;
                     outline: none;
                     color: white;
                     border-radius: 9px;
@@ -166,7 +166,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 10px;
 
                         .icon {
-                            height: 10px;
+                            height: 14px;
                         }
                     }
                 }

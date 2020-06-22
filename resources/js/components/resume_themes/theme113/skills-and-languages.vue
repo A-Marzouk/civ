@@ -53,8 +53,8 @@ export default {
         margin-top: 34px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 120px;
-        grid-auto-rows: 120px;
+        grid-template-rows: 140px;
+        grid-auto-rows: 140px;
         grid-gap: 70px 100px;
         max-width: 1400px !important;
         width: 85%;

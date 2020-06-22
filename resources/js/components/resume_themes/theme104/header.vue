@@ -176,7 +176,7 @@ $purple: #FB423A;
                         font-size: 10px;
 
                         .icon {
-                            height: 10px;
+                            height: 14px;
                         }
                     }
                 }

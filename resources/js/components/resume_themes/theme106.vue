@@ -129,12 +129,13 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 #theme106 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: white;
     background-color: #0E0C10;
     background-image: url("/images/resume_themes/theme106/bg-body.png");
     background-size: 119% auto;
     background-position: center -20px;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     position: relative;
     
     .v-application--wrap {
