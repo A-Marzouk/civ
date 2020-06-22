@@ -304,6 +304,30 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateProjects(state, projects){
+            state.user.projects = projects;
+            axios.post('/api/user/projects/update-order', {projects : projects})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateHobbies(state, hobbies){
+            state.user.hobbies = hobbies;
+            axios.post('/api/user/hobbies/update-order', {hobbies : hobbies})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateAchievements(state, achievements){
+            state.user.achievements = achievements;
+            axios.post('/api/user/achievements/update-order', {achievements : achievements})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         showFullScreenNotification: (state, data) => {
             let modal = $('#fullScreenNotificationModal');
 

@@ -26,7 +26,7 @@
                             <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
                             <template v-slot:activator="{ on }">
                                 <v-btn v-on="on" @click="sended=false" class="get-touch">
-                                    <v-icon> mdi-email </v-icon>&nbsp;her me
+                                    <v-icon> mdi-email </v-icon>&nbsp;hire me
                                 </v-btn>
                             </template>
                                 <div class="tm900-payment">

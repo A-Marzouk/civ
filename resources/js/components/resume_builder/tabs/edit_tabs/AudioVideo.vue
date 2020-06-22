@@ -15,14 +15,31 @@
               <v-form>
                 <v-row align="center">
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                    <vue-dropzone :options="dropzoneOptions" :useCustomSlot="true" id="dropzone">
-                      <div class="dropzone-custom-content mt-n9" align="left">
-                        <div class="d-flex flex-row">
-                          <img class="ml-1" src="/images/new_resume_builder/icons/main/upload.svg" />
-                          <span class="upload-text ml-3">Browse/Drag</span>
+                    <v-input
+                      class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
+                      outlined
+                      label="Upload File"
+                      hint="(Maximum 5 files)"
+                      height="50"
+                    >
+                      <vue-dropzone
+                        class="civie-dropzone-input"
+                        ref="myVueDropzone"
+                        id="dropzone"
+                        :options="dropzoneOptions"
+                        :useCustomSlot="true"
+                      >
+                        <div
+                          class="dropzone-custom-content d-flex flex-row"
+                          style="float:left;"
+                        >
+                          <div class="mr-2">
+                            <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                          </div>
+                          <div class="upload-text">Browse Drag</div>
                         </div>
-                      </div>
-                    </vue-dropzone>
+                      </vue-dropzone>
+                    </v-input>
                   </v-col>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-n2">
@@ -274,7 +291,7 @@ export default {
             let addedHobby = response.data.data;
             this.hobbies.push(addedHobby);
             this.clearHobby();
-            this.$store.dispatch("fullScreenNotification");
+            this.$store.dispatch('flyingNotification');
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
@@ -330,7 +347,7 @@ export default {
         .then(response => {
           this.EditedSuccessfully(response.data.data);
           this.clearErrors();
-          this.$store.dispatch("fullScreenNotification");
+          this.$store.dispatch('flyingNotification');
         })
         .catch(error => {
           if (typeof error.response.data === "object") {
@@ -612,6 +629,7 @@ $mainBlue: #001ce2;
   font-size: 18px;
   line-height: 25px;
   color: #888db1 !important;
+  margin-top: 3px;
 }
 
 .fade-enter-active,
@@ -621,5 +639,40 @@ $mainBlue: #001ce2;
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }
+.input-group {
+  margin-right: 15px;
+
+  &:nth-child(4),
+  &:last-child {
+    margin-right: none;
+  }
+
+  .civie-textarea,
+  .civie-dropzone {
+    margin-bottom: 35.5px;
+    height: auto;
+
+    .v-input__control,
+    .v-input__slot {
+      height: 165px;
+    }
+  }
+
+  &.files {
+    .v-label {
+      position: absolute;
+    }
+    .civie-dropzone {
+      width: 100%;
+    }
+  }
+}
 </style>
 
+<style>
+@media screen and (max-width: 599px){
+  #resumeBuilder .v-input__prepend-outer{
+    display: none !important;
+  }
+}
+</style>

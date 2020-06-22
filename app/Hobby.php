@@ -8,7 +8,7 @@ class Hobby extends Model
 {
     protected $table = 'hobbies';
     protected $fillable = [
-        'is_public','title','category','user_id'
+       'title','category','user_id','order','is_public'
     ];
 
     public function user(){

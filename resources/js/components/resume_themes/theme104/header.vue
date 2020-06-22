@@ -142,6 +142,8 @@ $purple: #FB423A;
                 margin-top: 46px;
 
                 .action-btn {
+                    width: 220px;
+                    height: 68px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -169,7 +171,8 @@ $purple: #FB423A;
                     }
                     
                     @media (max-width: 1200px) {
-                        padding: 13px 14px;
+                        width: 120px;
+                        height: 35px;
                         font-size: 10px;
 
                         .icon {
@@ -224,6 +227,7 @@ $purple: #FB423A;
 
                 .hourly-rate,
                 .hourly-availability {
+                    text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -252,6 +256,10 @@ $purple: #FB423A;
                         small {
                             font-size: 8px;
                         }
+                    }
+
+                    @media (max-width: 825px) {
+                        margin-right: 20px;
                     }
                     
                     @media (max-width: 700px) {
@@ -287,7 +295,8 @@ $purple: #FB423A;
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        padding: 14px 40px;
+                        width: 115px;
+                        height: 36px;
 
                         .icon {
                             height: 12px;

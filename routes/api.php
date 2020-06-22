@@ -44,6 +44,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/hobbies/{id}', 'API\HobbiesController@show');
     //create new skill
     Route::post('/hobbies', 'API\HobbiesController@store');
+    //update order:
+    Route::post('/hobbies/update-order', 'API\HobbiesController@updateHobbiesOrder');
     //update a skill
     Route::put('/hobbies', 'API\HobbiesController@store');
     //delete skill
@@ -135,8 +137,10 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/projects', 'API\ProjectsController@index');
     Route::get('/projects/{id}', 'API\ProjectsController@show');
     Route::post('/projects', 'API\ProjectsController@store');
+    Route::post('/projects/update-order', 'API\ProjectsController@updateProjectsOrder');
     Route::put('/projects', 'API\ProjectsController@store');
     Route::delete('/projects/{id}', 'API\ProjectsController@destroy');
+    Route::delete('/projects/images/{id}', 'API\ProjectsController@destroyProjectImage');
 
 // Achievements api routes:
     Route::get('/achievements', 'API\AchievementsController@index');

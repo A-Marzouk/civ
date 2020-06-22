@@ -11,7 +11,10 @@
           >{{tabName.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
-      <v-card class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll" id="skillsContent">
+      <v-card
+        class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll"
+        id="skillsContent"
+      >
         <v-tabs-items v-model="activeTab">
           <v-tab-item v-for="(tabName,i) in tabs" :key="tabName + i">
             <v-container style="width:100%;">
@@ -19,15 +22,14 @@
                 <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
-                            class="resume-builder__input civie-input"
+                      class="resume-builder__input civie-input"
                       outlined
                       placeholder="Select an option"
                       v-model="editedSkill.title"
                       label="Skill Title"
                       :error="!!errors.title"
                       color="#001CE2"
-                    >
-                    </v-text-field>
+                    ></v-text-field>
                   </v-card>
                 </v-col>
 
@@ -45,18 +47,20 @@
                       label="Skill Amount"
                       :error="!!errors.percentage"
                       color="#001CE2"
-                    >
-                    </v-text-field>
+                    ></v-text-field>
                   </v-card>
                 </v-col>
 
                 <v-col xl="3" lg="3" md="6" sm="6" cols="3" class="mt-md-0 mt-sm-n10 mt-n10 d-flex">
-                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-2" @click="addSkill">
-                    {{editedSkill.id === undefined ? 'Add New' : 'Update'}}
-                  </v-btn>
-                  <v-btn class="resume-builder__btn civie-btn mt-2" @click="cancelEdit" v-show="editedSkill.id !== undefined ">
-                    Cancel
-                  </v-btn>
+                  <v-btn
+                    class="resume-builder__btn civie-btn filled btn-add-new mt-2"
+                    @click="addSkill"
+                  >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
+                  <v-btn
+                    class="resume-builder__btn civie-btn mt-2"
+                    @click="cancelEdit"
+                    v-show="editedSkill.id !== undefined "
+                  >Cancel</v-btn>
                 </v-col>
 
                 <v-col xl="6" lg="6" md="12" sm="12" cols="12">
@@ -65,10 +69,12 @@
                       <v-col cols="12">
                         <v-card
                           color="#E6E8FC"
-                          class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5"
+                          class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
                           flat
+                          v-for="skill in skills"
+                          :key="skill.id"
                         >
-                          <v-card-text v-for="skill in skills" :key="skill.id" v-show="skill.category === tabs[activeTab]">
+                          <v-card-text v-show="skill.category === tabs[activeTab]">
                             <!-- skill for desktop -->
                             <v-row align="center" justify="center" class="mt-n3 row-skill-details">
                               <v-col xl="1" lg="2" md="1" sm="1" cols="2">
@@ -109,7 +115,11 @@
                                   @click="toggleVisibility(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`" alt class="eye-icon"/>
+                                  <img
+                                    :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`"
+                                    alt
+                                    class="eye-icon"
+                                  />
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -145,16 +155,35 @@
                                 </v-btn>
                               </v-col>
                               <v-col cols="6" align="right">
-                                <v-btn color="#F2F3FD"  @click="toggleVisibility(skill)" depressed class="btn-skill-action mx-auto">
-                                  <img :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`" alt class="eye-icon"/>
+                                <v-btn
+                                  color="#F2F3FD"
+                                  @click="toggleVisibility(skill)"
+                                  depressed
+                                  class="btn-skill-action mx-auto"
+                                >
+                                  <img
+                                    :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`"
+                                    alt
+                                    class="eye-icon"
+                                  />
                                 </v-btn>
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto" @click="editSkill(skill)">
+                                <v-btn
+                                  color="#F2F3FD"
+                                  depressed
+                                  class="btn-skill-action mx-auto"
+                                  @click="editSkill(skill)"
+                                >
                                   <img
                                     src="/images/new_resume_builder/icons/main/edit-skill.svg"
                                     alt
                                   />
                                 </v-btn>
-                                <v-btn color="#F2F3FD" depressed class="btn-skill-action mx-auto" @click="deleteSkill(skill)">
+                                <v-btn
+                                  color="#F2F3FD"
+                                  depressed
+                                  class="btn-skill-action mx-auto"
+                                  @click="deleteSkill(skill)"
+                                >
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                                 </v-btn>
                               </v-col>
@@ -210,9 +239,7 @@ export default {
         title: "",
         percentage: ""
       },
-      errors: {
-
-      }
+      errors: {}
     };
   },
   computed: {
@@ -225,22 +252,23 @@ export default {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
     },
-    toggleVisibility(skill){
+    toggleVisibility(skill) {
       skill.is_public = !skill.is_public;
-      axios.post('/api/user/skills/toggle-visibility', skill)
-              .then((response) => {
-                    this.$store.dispatch("flyingNotification");
-              })
-              .catch(error => {
-                console.log(error);
-              });
+      axios
+        .post("/api/user/skills/toggle-visibility", skill)
+        .then(response => {
+          this.$store.dispatch("flyingNotification");
+        })
+        .catch(error => {
+          console.log(error);
+        });
     },
     addSkill() {
       if (this.validateSkill()) {
         // set skill category & add new
 
-        let edit = false ;
-        if(this.editedSkill.id !== undefined){
+        let edit = false;
+        if (this.editedSkill.id !== undefined) {
           edit = true;
         }
 
@@ -250,10 +278,10 @@ export default {
         axios
           .post("/api/user/skills", this.editedSkill)
           .then(response => {
-            if(!edit){
+            if (!edit) {
               let addedSkill = response.data.data;
               this.skills.push(addedSkill);
-            }else{
+            } else {
               this.skills.forEach((skill, index) => {
                 if (skill.id === response.data.data.id) {
                   this.skills[index] = response.data.data;
@@ -262,7 +290,7 @@ export default {
             }
 
             this.clearSkill();
-            this.$store.dispatch("fullScreenNotification");
+            this.$store.dispatch('flyingNotification');
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
@@ -313,7 +341,7 @@ export default {
       };
 
       // scroll to the top of the element:
-      document.getElementById('skillsContent').scrollTop = 0;
+      document.getElementById("skillsContent").scrollTop = 0;
     },
     deleteSkill(skill) {
       if (
@@ -330,7 +358,6 @@ export default {
               this.skills.splice(index, 1);
             }
           });
-
         })
         .catch(error => {
           console.log(error);
@@ -338,19 +365,17 @@ export default {
     },
     cancelEdit() {
       this.clearSkill();
-    },
+    }
   },
-  mounted() {
-
-  }
+  mounted() {}
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 
-
-.civie-select,civie-input{
+.civie-select,
+civie-input {
   min-width: 300px;
 }
 
@@ -364,9 +389,8 @@ export default {
   overflow-y: scroll;
 }
 
-
-.civie-btn{
-  margin-left:30px;
+.civie-btn {
+  margin-left: 30px;
 }
 .section-body-wrapper {
   max-width: 1337px;
@@ -862,7 +886,7 @@ export default {
     }
   }
 
-  .eye-icon{
+  .eye-icon {
     width: 16px;
     height: auto;
   }
@@ -870,7 +894,6 @@ export default {
 </style>
 
 <style>
-
 #resumeBuilder .v-progress-linear__determinate {
   border-top-right-radius: 5px !important;
   border-bottom-right-radius: 5px !important;

@@ -1,535 +1,625 @@
 <template>
-  <v-app>
-    <v-card
-      class="card-ref pa-xl-10 pa-lg-5 pa-md-5 pa-sm-5 pa-2 resume-builder__scroll reference-content"
-      flat
-    >
-      <v-container class style="width:100%;">
-        <v-form>
-          <v-row>
-            <v-col xl="6" :lg="windowWidth<1300?'12':'6'" md="12" sm="12" cols="12">
-              <v-row>
-                <v-col xl="6" lg="6" md="6" sm="6" cols="12">
-                  <v-select
-                    class="resume-builder__input civie-select"
-                    outlined
-                    placeholder="Select an option"
-                    :items="items"
-                    label="Achievement Type"
-                    color="#001CE2"
-                    v-model="achievementType"
-                  >
-                    <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
-                      <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                    </button>
-                  </v-select>
-                </v-col>
-                <v-col
-                  xl="6"
-                  lg="6"
-                  md="6"
-                  sm="6"
-                  cols="12"
-                  class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n8"
-                >
-                  <v-text-field
-                    class="resume-builder__input civie-input"
-                    outlined
-                    color="#001CE2"
-                    :class="{'resume-builder__input--disabled': disabledInput}"
-                    :disabled="disabledInput"
-                    label="Title"
-                    v-model="title"
-                  ></v-text-field>
-                </v-col>
+  <div class="resume-builder__scroll" id="portfolio-tab">
+    <div class="data-container">
+      <v-card class="view-container resume-builder__scroll">
+        <v-form
+                class="grid-form"
+                ref="form"
+        >
+          <v-text-field
+                  id="achievementName"
+                  class="resume-builder__input civie-input"
+                  outlined
+                  label="Achievement type"
+                  color="#001CE2"
+                  v-model="editedAchievement.type"
+                  :error = "!!errors.type"
+          >
+          </v-text-field>
+          <v-text-field
+                  id="url"
+                  class="resume-builder__input civie-input"
+                  outlined
+                  label="URL"
+                  hint="(Active link of the Achievement)"
+                  color="#001CE2"
+                  v-model="editedAchievement.url"
+                  :error = "!!errors.url"
+          >
+          </v-text-field>
+          <v-textarea
+                  id="description"
+                  class="resume-builder__input civie-textarea"
+                  outlined
+                  label="Description"
+                  color="#001CE2"
+                  v-model="editedAchievement.description"
+                  :error = "!!errors.description"
 
-                <v-col
-                  xl="6"
-                  lg="6"
-                  md="6"
-                  sm="6"
-                  cols="12"
-                  class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8"
-                >
-                  <v-text-field
-                    class="resume-builder__input civie-input"
-                    outlined
-                    color="#001CE2"
-                    :class="{'resume-builder__input--disabled': disabledInput}"
-                    :disabled="disabledInput"
-                    label="URL"
-                    v-model="url"
-                  ></v-text-field>
-                </v-col>
-                <v-col
-                  xl="6"
-                  lg="6"
-                  md="6"
-                  sm="6"
-                  cols="12"
-                  class="mt-xl-n4 mt-lg-n4 mt-md-n8 mt-sm-n8 mt-n8"
-                >
-                  <v-text-field
-                    class="resume-builder__input civie-input"
-                    outlined
-                    color="#001CE2"
-                    :class="{'resume-builder__input--disabled': disabledInput}"
-                    :disabled="disabledInput"
-                    label="Year"
-                    v-model="year"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-            </v-col>
-            <v-col
-              xl="6"
-              :lg="windowWidth<1300?'12':'6'"
-              md="12"
-              sm="12"
-              cols="12"
-              class="mt-xl-0 mt-md-n12 mt-sm-n12 mt-n12"
-              :class="windowWidth<1300?'mt-lg-n12':'mt-lg-0'"
+          ></v-textarea>
+          <!-- Using v-input classes -->
+          <v-input
+                  class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
+                  outlined
+                  label="Upload Image"
+                  hint="(Maximum 1 file)"
+          >
+            <vue-dropzone
+                    class="civie-dropzone-input sm-image"
+                    id="dropzone"
+                    :options="dropzoneOptions"
+                    v-model = "editedAchievement.images"
+                    :useCustomSlot="true"
+                    v-on:vdropzone-file-added="handlingEvent" v-on:vdropzone-drop="checkMaximumFiles" ref="newImages"
             >
-              <v-row align="center" justify="center">
-                <v-col md="6" sm="6" cols="12">
-                  <v-textarea
-                    class="resume-builder__input civie-textarea"
-                    outlined
-                    color="#001CE2"
-                    :class="{'resume-builder__input--disabled': disabledTextarea}"
-                    :disabled="disabledTextarea"
-                    label="Description"
-                    v-model="description"
-                  ></v-textarea>
-                </v-col>
-                <v-col md="6" sm="6" cols="12" class="mt-n5">
-                  <v-input
-                    class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
-                    outlined
-                    label="Upload Images"
-                    hint="(Maximum 5 files)"
-                  >
-                    <vue-dropzone
-                      class="civie-dropzone-input"
-                      ref="myVueDropzone"
-                      id="dropzone"
-                      :options="dropzoneOptions"
-                      :useCustomSlot="true"
-                    >
-                      <div class="dropzone-custom-content">
-                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
-                      </div>
-                    </vue-dropzone>
-                  </v-input>
-                </v-col>
-                <v-col cols="12" align="right">
-                  <v-btn class="resume-builder__btn civie-btn filled btn-add-new">Add New</v-btn>
-                </v-col>
-              </v-row>
-            </v-col>
-          </v-row>
+              <div class="dropzone-custom-content">
+                <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+              </div>
+            </vue-dropzone>
+          </v-input>
+          <v-text-field
+                  id="skills"
+                  class="resume-builder__input civie-input"
+                  outlined
+                  label="Year"
+                  hint="(Year)"
+                  color="#001CE2"
+                  v-model="editedAchievement.year"
+                  :error = "!!errors.year"
+          >
+          </v-text-field>
+          <v-text-field
+                  id="software"
+                  class="resume-builder__input civie-input"
+                  outlined
+                  label="Title"
+                  hint="Type"
+                  color="#001CE2"
+                  v-model="editedAchievement.title"
+                  :error = "!!errors.title"
+          >
+          </v-text-field>
+
+          <div class="col-12 d-flex flex-column">
+            <div>
+              <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveAchievement">
+                {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
+              </v-btn>
+
+              <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
+                Cancel
+              </v-btn>
+            </div>
+          </div>
         </v-form>
-        <v-row align="center">
-          <v-col xl="8" lg="8" md="8" sm="12" cols="12">
-            <v-card class="card-holder">
-              <v-card-text>
-                <v-row>
-                  <v-col md="6" sm="6" cols="4" align="left">
-                    <v-btn
-                      color="#F2F3FD"
-                      class="btn-v_bar ml-xl-5 ml-lg-5 ml-md-5 ml-sm-5 ml-2"
+
+        <div class="projects-list" v-if="achievements">
+          <div class="project" v-for="achievement in achievements">
+            <div class="project__header">
+              <v-btn
                       depressed
-                    >
-                      <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                    </v-btn>
-                  </v-col>
-                  <v-col md="6" sm="6" cols="8" align="right">
-                    <v-card color="transparent" flat tile class="mr-3">
-                      <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                        <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
-                      </v-btn>
-                      <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                        <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
-                      </v-btn>
-                      <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                        <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
-                      </v-btn>
-                    </v-card>
-                  </v-col>
-                  <v-col cols="12">
-                    <v-row dense>
-                      <v-col cols="12" class="hidden-sm-and-up">
-                        <v-card
-                          color="transparent"
-                          flat
-                          tile
-                          class="pa-xl-0 pa-lg-0 pa-md-1 pa-sm-1"
-                        >
-                          <div class="achievement-title mb-1">
-                            National Award,
-                            <span>2015</span>
-                          </div>
-                        </v-card>
-                      </v-col>
-                      <v-col
-                        xl="4"
-                        lg="4"
-                        md="4"
-                        sm="4"
-                        cols="12"
-                        :align="windowWidth<=599?'center':'left'"
-                      >
-                        <v-card class="card-achievement-img" flat color="transparent" tile>
-                          <img
-                            src="/images/new_resume_builder/achievement-img.svg"
-                            alt="achievement-img"
-                          />
-                        </v-card>
-                      </v-col>
-                      <v-col xl="8" lg="8" md="8" sm="8" cols="12" class>
-                        <v-card
-                          color="transparent"
-                          flat
-                          tile
-                          class="pa-xl-0 pa-lg-0 pa-md-1 pa-sm-1"
-                        >
-                          <div class="achievement-title mb-1 hidden-xs-only">
-                            National Award,
-                            <span>2015</span>
-                          </div>
-                          <div class="achievement-subtitle mb-1">
-                            <span>URL:</span>
-                            <a
-                              href="https://dribbble.com/humayrakabiranamika"
-                            >https://dribbble.com/humayrakabiranamika</a>
-                          </div>
-                          <div class="achievement-description">
-                            <span>Description:</span> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo consequuntur.
-                          </div>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                  </v-col>
-                </v-row>
-              </v-card-text>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card>
-  </v-app>
+                      class="drag-and-drop-handler"
+              >
+                <svg-vue
+                        :icon="'drag-and-drop-icon'"
+                        class="icon"
+                ></svg-vue>
+              </v-btn>
+              <div
+                      class="resume-builder__action-buttons-container"
+              >
+                <v-btn
+                        class="btn-icon civie-btn"
+                        depressed @click="toggleAchievement(achievement)"
+                >
+                  <svg-vue
+                          icon="eye-icon"
+                          :class="{'visible' : achievement.is_public}"
+                          class="icon"
+                  ></svg-vue>
+                </v-btn>
+                <v-btn
+                        class="btn-icon civie-btn"
+                        @click="editAchievement(achievement)"
+                        depressed
+                >
+                  <svg-vue
+                          icon="edit-icon"
+                          class="icon"
+                          :class="{'visible' : achievement.id === editedAchievement.id}"
+                  ></svg-vue>
+                </v-btn>
+                <v-btn
+                        class="btn-icon civie-btn"
+                        @click="deleteAchievement(achievement)"
+                        depressed
+                >
+                  <svg-vue
+                          icon="trash-delete-icon"
+                          class="icon"
+                  ></svg-vue>
+                </v-btn>
+              </div>
+            </div>
+            <div class="project__body">
+              <div class="project__img">
+                <div class="project__name">{{achievement.title}}</div>
+                <img
+                        :src="achievement.image_src"
+                        alt="achievement img">
+              </div>
+              <div class="project__info">
+                <div class="project__name">{{achievement.title}}</div>
+                <div class="project__url">
+                  <b>URL:</b> <a :href="achievement.url">{{achievement.url}}</a>
+                </div>
+                <div class="project__skills">
+                  <b>Skills:</b> {{achievement.category}}
+                </div>
+                <div class="project__description">
+                  <b>Description: </b>
+                  { {{achievement.description}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </v-card>
+    </div>
+  </div>
 </template>
 
 <script>
-import { moveTabsHelper } from "../../helpers/tab-animations";
-import vue2Dropzone from "vue2-dropzone";
-import "vue2-dropzone/dist/vue2Dropzone.min.css";
+  import vue2Dropzone from 'vue2-dropzone'
 
-export default {
-  components: {
-    vueDropzone: vue2Dropzone
-  },
-  name: "Achievement",
-  data() {
-    return {
-      windowWidth: window.innerWidth,
-      items: ["Certificate"],
-      newAchievement: {},
-      disabledInput: false,
-      achievementType: "",
-      title: "",
-      url: "",
-      year: "",
-      description: "",
-      disabledTextarea: false,
+  export default {
+    name: 'Achievement',
+    components: {
+      vueDropzone: vue2Dropzone
+    },
+    data: () => ({
+      editedAchievement: {
+        id: '',
+        title: '',
+        category: '',
+        type: '',
+        year: '',
+        url: '',
+        description: '',
+        images: [],
+      },
       dropzoneOptions: {
-        url: "https://httpbin.org/post",
+        url: 'https://httpbin.org/post',
         thumbnailWidth: 150,
-        maxFilesize: 0.5
+        maxFilesize: 25,
+        maxFiles: 1,
+        acceptedFiles: 'image/*',
+        addRemoveLinks: true,
       },
-
-      errors: {
-        new: {},
-        edit: {}
-      },
-      addNewAchievement: false
-    };
-  },
-  computed: {
-    achievements() {
-      return this.$store.state.user.achievements;
-    }
-  },
-  props: ["inputProps", "selectProps", "textareaProps"],
-  methods: {
-    toggleInput() {
-      this.disabledInput = !this.disabledInput;
-    },
-    toggleSelect() {
-      this.disabledSelect = !this.disabledSelect;
-    },
-    toggleTextarea() {
-      this.disabledTextarea = !this.disabledTextarea;
-    },
-    setActiveTab(tab) {
-      this.activeTab = tab;
-    },
-    changeTab(e) {
-      let _this = this;
-      moveTabsHelper(e, "achievementTabs", _this);
-    },
-    addAchievement(achievement) {
-      this.achievements.push(achievement);
-    },
-    editAchievement(achievement) {
-      this.editedAchievement = {
-        id: achievement.id
-        // TODO: continue fields
-      };
-      this.closeOptionsBtn();
-    },
-    applyEdit() {
-      axios
-        .put("/api/user/achievements", this.editedAchievement)
-        .then(response => {
-          this.EditedSuccessfully(response.data.data);
-        })
-        .catch(error => {
-          if (typeof error.response.data === "object") {
-            this.errors.edit = error.response.data.errors;
-          } else {
-            this.errors.edit = "Something went wrong. Please try again.";
-          }
-          this.$store.dispatch("flyingNotification", {
-            message: "Error",
-            iconSrc: "/images/resume_builder/error.png"
-          });
-        });
-    },
-    EditedSuccessfully(editedAchievement) {
-      this.clearEditedAchievement();
-      this.$store.dispatch("fullScreenNotification");
-
-      // replace the edited skill with the new one:
-      this.achievements.forEach((achievement, index) => {
-        if (achievement.id === editedAchievement.id) {
-          this.achievements[index] = editedAchievement;
+      errors: {}
+    }),
+    computed: {
+      achievements: {
+        get() {
+          return this.$store.state.user.achievements;
+        },
+        set(achievements) {
+          this.$store.commit('updateAchievements', achievements);
         }
-      });
-    },
-    clearEditedAchievement() {
-      this.editedAchievement = {};
-    },
-    deleteAchievement(achievement) {
-      if (!confirm("Do you want to delete this achievement ?")) {
-        return;
-      }
-      axios
-        .delete("/api/user/achievements/" + achievement.id)
-        .then(response => {
-          this.$store.dispatch("flyingNotificationDelete");
-          this.achievements.forEach((myAchievement, index) => {
-            if (myAchievement.id === response.data.data.id) {
-              console.log("found deleted");
-              this.achievements.splice(index, 1);
-            }
-          });
+      },
 
-          this.closeOptionsBtn();
-        })
-        .catch(error => {
-          console.log(error);
-        });
     },
-    closeOptionsBtn() {
-      this.optionAchievementId = 0;
-    }
-  },
-  mounted() {
-    window.onresize = () => {
-      this.windowWidth = window.innerWidth;
-    };
+    methods: {
+      // achievements list functions:
+      deleteAchievement(achievement) {
+        if (!confirm('Do you want to delete this achievement ?')) {
+          return;
+        }
+        axios.delete('/api/user/achievements/' + achievement.id)
+                .then((response) => {
+                  this.$store.dispatch('flyingNotificationDelete');
+                  this.achievements.forEach((myAchievement, index) => {
+                    if (myAchievement.id === response.data.data.id) {
+                      this.achievements.splice(index, 1);
+                    }
+                  });
+                })
+                .catch(error => {
+                  console.log(error);
+                })
+      },
+      editAchievement(achievement){
+        $.each( achievement, (field) => {
+          this.editedAchievement[field] = achievement[field] ;
+        } );
+
+      },
+
+      toggleAchievement(achievement) {
+        achievement.is_public = !achievement.is_public;
+        axios.put("/api/user/achievements", achievement)
+                .then( () => {
+                  this.$store.dispatch("flyingNotification");
+                })
+                .catch(error => {
+                  if (typeof error.response.data === "object") {
+                    this.errors = error.response.data.errors;
+                  } else {
+                    this.errors =
+                            "Something went wrong. Please try again.";
+                  }
+                  this.$store.dispatch("flyingNotification", {
+                    message: "Error",
+                    iconSrc: "/images/resume_builder/error.png"
+                  });
+                });
+      },
+
+
+      // new achievement functions
+      handlingEvent: function (file) {
+        if (this.editedAchievement.images.length < 1) {
+          this.editedAchievement.images.push(file);
+        }else{
+
+        }
+      },
+      checkMaximumFiles(){
+        if (this.editedAchievement.images.length >= 1) {
+          console.log('Please, no more files...');
+        }
+      },
+      removeFiles() {
+        this.editedAchievement.images = [];
+        this.$refs.newImages.removeAllFiles();
+      },
+
+      saveAchievement() {
+        this.errors = {};
+        let formData = new FormData();
+
+        $.each(this.editedAchievement, (field) => {
+          if (this.editedAchievement[field].length && field !== 'images') {
+            formData.append(field, this.editedAchievement[field]);
+          }
+        });
+
+        this.editedAchievement.images.forEach((image) => {
+          formData.append('file', image);
+        });
+
+        let edit = false;
+        if (this.editedAchievement.id !== "") {
+          edit = true;
+        }
+
+        formData.append('user_id', this.$store.state.user.id);
+        formData.append('id', this.editedAchievement.id);
+
+
+        axios.post('/api/user/achievements', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+                .then((response) => {
+                  if (!edit) {
+                    this.achievements.push(response.data.data);
+                  } else {
+                    this.achievements.forEach((achievement, index) => {
+                      if (achievement.id === response.data.data.id) {
+                        this.achievements[index] = response.data.data;
+                      }
+                    });
+                  }
+
+                  this.$store.dispatch('flyingNotification');
+                  this.clearAchievement();
+                })
+                .catch((error) => {
+                  if (typeof error.response.data === 'object') {
+                    this.errors = error.response.data.errors;
+                  } else {
+                    this.errors = 'Something went wrong. Please try again.';
+                  }
+
+                  this.$store.dispatch('flyingNotification', {
+                    message: 'Error',
+                    iconSrc: '/images/resume_builder/error.png'
+                  });
+                });
+      },
+      clearAchievement() {
+        this.editedAchievement = {
+          id: '',
+          title: '',
+          category: '',
+          type: '',
+          year: '',
+          url: '',
+          description: '',
+          images: [],
+        };
+        this.$refs.newImages.removeAllFiles();
+      },
+      canSubmit() {
+        let canSubmit = true;
+
+        $.each(this.editedAchievement, (field) => {
+          if (!this.editedAchievement[field].length) {
+            canSubmit = false;
+          }
+        });
+
+        return canSubmit;
+      }
+
+    },
+    mounted() {
+
+    },
   }
-};
 </script>
 
 <style lang="scss">
-$mainBlue: #001ce2;
-@import "../../../../../sass/media-queries";
-.reference-content {
-  background: #fff;
-  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
-  height: 523px;
-  padding: 50px;
-  margin-bottom: 70px;
-  scroll-behavior: smooth;
-  @media screen and (max-width: 1263px) {
-    height: 500px;
-  }
-}
-.card-ref {
-  width: 1412px;
-  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
-  @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    width: auto;
-  }
-  @media screen and (min-width: 960px) and (max-width: 1263px) {
-    width: auto;
-  }
-  @media screen and (max-width: 768px) {
-    width: auto;
-  }
-  .btn-add-new {
-    font-family: "Noto Sans" !important;
-    width: 120px !important;
-    height: 50px !important;
-    font-size: 18px !important;
-    font-weight: 500;
-    @media screen and (max-width: 599px) {
-      width: 100px !important;
-      height: 40px !important;
-      font-size: 15px !important;
-    }
-  }
+  @import '../../../../../sass/variables';
+  @import '../../../../../sass/media-queries';
 
-  .btn-v_bar {
-    min-width: 30px !important;
-    min-height: 28px !important;
-    width: 30px !important;
-    height: 28px !important;
-    margin-left: 2px;
-    @media screen and (min-width: 1264px) and (max-width: 1903px) {
-      margin-left: 0px;
-    }
-    @media screen and (max-width: 1263px) {
-      margin-top: 4px;
-    }
-    @media screen and (min-width: 600px) and (max-width: 767px) {
-      margin-left: -4px;
-    }
-    @media screen and (max-width: 599px) {
-      min-width: 24px !important;
-      min-height: 24px !important;
-      width: 24px !important;
-      height: 30x !important;
-      margin-top: 2px;
-      margin-left: 0px;
-    }
-  }
-  .btn-skill-action {
-    border-radius: 5px !important;
-    min-width: 30px !important;
-    min-height: 30px !important;
-    width: 30px !important;
-    height: 30px !important;
-    @media screen and (max-width: 369px) {
-      margin-left: -11px;
-    }
-  }
-  .card-holder {
-    box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
-    width: 620px;
-    margin-top: -54px;
-    @media screen and (max-width: 1903px) {
-      width: auto;
-    }
-    @media screen and (max-width: 1263px) {
-      margin-top: 0px;
-    }
-    .achievement-title {
-      font-family: "Noto Sans" !important;
-      font-weight: 500;
-      font-size: 24px !important;
-      line-height: 33px;
-      color: #001ce2 !important;
-      span {
-        color: #888db1 !important;
-      }
-      @media screen and (max-width: 599px) {
-        font-size: 20px !important;
-      }
-    }
-    .achievement-subtitle {
-      font-family: "Noto Sans" !important;
-      color: #888db1 !important;
-      font-size: 14px;
-      a {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px !important;
-        line-height: 19px;
-        color: #888db1 !important;
-      }
-      @media screen and (min-width: 600px) and (max-width: 767px) {
-        font-size: 12px !important;
-        a {
-          font-size: 12px !important;
+  #portfolio-tab {
+    .view-container {
+      max-height: 678px;
+      overflow: auto;
+      box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
+      margin: 0 auto;
+
+      .grid-form {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-auto-rows: 104px;
+        grid-gap: 15px;
+        padding: 50px 46px;
+
+        .resume-builder__input {
+          grid-column: span 1;
+
+          &.civie-textarea,
+          &.civie-dropzone {
+            grid-row-start: 1;
+            grid-row-end: 3;
+            height: 100%;
+
+            .v-input__control,
+            .v-input__slot {
+              height: 100%;
+            }
+          }
+
+          &.civie-dropzone {
+            width: 100%;
+            grid-column-start: 4;
+          }
+
+          &.civie-textarea {
+            grid-column-start: 3;
+          }
+
+          .v-label {
+            position: absolute;
+          }
+
+          @include lt-md {
+            grid-column: span 2;
+
+            &.civie-dropzone {
+              width: 100%;
+              grid-row: 3 / 5;
+              grid-column: 3 / 5;
+            }
+
+            &.civie-textarea {
+              grid-row: 3 / 5;
+              grid-column: 1 / 3;
+            }
+          }
+
+          @include lt-sm {
+            grid-column: span 4;
+
+            &.civie-textarea {
+              grid-row: 5 / 7;
+              grid-column: span 4;
+            }
+
+            &.civie-dropzone {
+              width: 100%;
+              grid-row: 7 / 9;
+              grid-column: span 4;
+            }
+          }
+
+        }
+
+        .civie-btn {
+          align-self: start;
+          justify-self: end;
+
+          grid-column: 4 / 5;
+
+          @include lt-md {
+            grid-column: 3 / 5;
+          }
+
+          @include lt-sm {
+            grid-column: span 4;
+          }
+        }
+
+        @include lt-sm {
+          grid-gap: 5px;
         }
       }
 
-      span {
-        font-weight: bold;
-      }
-    }
-    .achievement-description {
-      font-family: "Noto Sans" !important;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 14px !important;
-      line-height: 19px;
-      color: #888db1 !important;
-      span {
-        font-weight: bold;
-      }
-    }
-    .achievement-img {
-      img {
-        width: 220px !important;
-        height: 165px !important;
-      }
-    }
-    .card-achievement-img {
-      width: 220px !important;
-      height: 165px !important;
-      @media screen and (max-width: 599px) {
-        width: 280px !important;
-        height: 210px !important;
+      .projects-list {
+        width: 100%;
+        padding: 20px;
+
+        .project {
+          max-width: 620px;
+          width: 100%;
+          box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+          background: white;
+          min-height: 225px;
+          padding: 10px 15px;
+          margin-bottom: 20px;
+
+          &__header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            .drag-and-drop-handler {
+              background-color: $auxBgColor-gray;
+              border-radius: 5px;
+              height: 25px;
+              width: 25px;
+
+              // Reset default props of v-btn class
+              min-width: auto !important;
+              padding: 0 !important;
+
+              .icon {
+                height: 10px;
+                width: 3px;
+              }
+            }
+
+            .resume-builder__action-buttons-container {
+              .btn-icon {
+                width: 25px;
+                height: 25px !important;
+
+              }
+            }
+          }
+
+          &__body {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            .project__img {
+              img {
+                min-width: 120px;
+                max-width: 220px;
+              }
+
+              .project {
+                &__name {
+                  display: none;
+
+                  @include lt-sm {
+                    display: block;
+                    font-size: 20px;
+                    font-weight: normal;
+                    color: $mainColor;
+                    margin-bottom: 10px;
+                  }
+                }
+              }
+
+              @include lt-sm {
+                width: 100%;
+
+                img,
+                .project__name {
+                  width: 100%;
+                }
+
+                img {
+                  margin-bottom: 15px;
+                }
+              }
+            }
+
+            .project__info {
+              margin-left: 20px;
+              margin-top: 14px;
+
+              .project {
+                &__name {
+                  font-size: 24px;
+                  font-weight: 700;
+                  color: $mainColor;
+                  margin-bottom: 10px;
+
+                  @include lt-sm {
+                    display: none;
+                  }
+                }
+
+                &__url,
+                &__skills,
+                &__softwares,
+                &__description {
+                  color: $inputTextColor;
+                }
+              }
+
+              @include lt-sm {
+                width: 100%;
+                margin-left: 0;
+              }
+            }
+
+            @include lt-sm {
+              flex-wrap: wrap;
+            }
+          }
+
+        }
       }
     }
   }
-}
-.input-group {
-  margin-right: 15px;
 
-  &:nth-child(4),
-  &:last-child {
-    margin-right: none;
+  .civie-dropzone-input{
+    overflow: auto;
   }
 
-  .civie-textarea,
-  .civie-dropzone {
-    margin-bottom: 35.5px;
-    height: auto;
+  .uploadedImagesList{
+    display: flex;
+    margin-bottom: 30px;
 
-    .v-input__control,
-    .v-input__slot {
-      height: 100%;
+    .imageRow{
+      margin-right:30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      &:hover{
+        cursor: pointer;
+        .remove-image{
+          display: flex;
+        }
+      }
+
+      img{
+        width: 60px;
+        height: 60px;
+      }
+      .remove-image{
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        background: rgba(0,0,0, 0.5);
+        border-radius:5px;
+
+
+        display: none;
+        justify-content: center;
+        align-items: center;
+
+        img{
+          width:30px;
+          height:30px;
+        }
+      }
     }
   }
 
-  &.files {
-    .v-label {
-      position: absolute;
-    }
-    .civie-dropzone {
-      width: 100%;
-    }
-  }
-}
-
-.error {
-  color: red;
-  padding-top: 5px;
-  padding-left: 3px;
-}
 </style>

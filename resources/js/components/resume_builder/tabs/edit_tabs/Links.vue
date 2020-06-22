@@ -45,7 +45,7 @@
 						</div>
 						<div class="link-text">
 							<img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase()}-1.svg`" alt="link icon">
-							{{link.link}}
+							<span>{{link.link}}</span>
 						</div>
 					</div>
 					<div class="action-btns">
@@ -193,7 +193,7 @@ export default {
 						});
 					}
 					this.clearLink();
-					this.$store.dispatch("fullScreenNotification");
+					this.$store.dispatch('flyingNotification');
 				})
 				.catch(error => {
 					if (typeof error.response.data === "object") {
@@ -266,6 +266,12 @@ $mainBlue: #001ce2;
 		box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
 		padding: 50px;
 		margin-bottom: 70px;
+
+
+		@include lt-sm {
+			height: 400px;
+			padding: 20px;
+		}
 	}
 
 	.tabName {
@@ -273,13 +279,15 @@ $mainBlue: #001ce2;
 	}
 
 	.link-inputs-row {
-		display: flex;
-		align-items: center;
+		display: grid;
+		grid-auto-rows: 78px;
+		grid-template-columns: minmax(0px, 210px) minmax(0, 350px) auto;
+		grid-gap: 30px;
 		margin-top: 12px;
+		margin-bottom: 30px;
 
 		.civie-select {
 			max-width: 210px;
-			margin-right: 30px;
 
 			.v-input__slot {
 				padding-left: 30px !important;
@@ -298,15 +306,48 @@ $mainBlue: #001ce2;
 
 		.civie-input {
 			max-width: 350px;
-			margin-right: 30px;
 		}
 
 		.civie-btn {
-			min-height: 54px;
+			min-height: 50px;
+			width: 120px;
+			align-self: end;
 		}
+
+		@include lt-md {
+			margin-bottom: 5px;
+
+			.civie-btn {
+				grid-row: 2 / 3;
+				align-self: start;
+			}
+		}
+
+		@include lt-sm {
+			.civie-select {
+				grid-column: span 3;
+				max-width: 100%;
+				width: 100%;
+			}
+	
+			.civie-input {
+				max-width: 100%;
+				width: 100%;
+				grid-column: span 3;
+				grid-row: 2 / 3;
+			} 
+			
+			.civie-btn {
+				grid-column: span 3;
+				grid-row: 3 / 4;
+			} 
+		}	
 	}
 
 	.links-items {
+		max-width: 714px;
+		width: 100%;
+
 		.link-item {
 			width: 100%;
 			height: 50px;
@@ -320,6 +361,7 @@ $mainBlue: #001ce2;
 			.link-data {
 				display: flex;
 				height: 50px;
+				max-width: calc(100% - 125px);
 
 				.mover {
 					width: 50px;
@@ -336,6 +378,10 @@ $mainBlue: #001ce2;
 					&:hover {
 						cursor: grab;
 					}
+
+					@include lt-sm {
+						width: 22px;
+					}
 				}
 
 				.link-text {
@@ -345,10 +391,27 @@ $mainBlue: #001ce2;
 					font-size: 18px;
 					line-height: 25px;
 					color: #888db1;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
 
 					img {
 						width: 45px;
 						height: auto;
+						// TODO: Don't leave spaces in the image
+					}		
+					
+					span {
+						padding-right: 10px;
+						display: block;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
+
+					@include lt-sm {
+						font-size: 13px;
+						margin-left: 0;	
 					}
 				}
 			}
@@ -360,6 +423,7 @@ $mainBlue: #001ce2;
 					position: static;
 				}
 			}
+
 		}
 	}
 }
