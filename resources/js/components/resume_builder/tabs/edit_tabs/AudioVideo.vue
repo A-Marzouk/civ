@@ -228,34 +228,8 @@ export default {
       },
       tabs: ["Audio", "Video"],
       disabledInput: false,
-      hobbyType: "",
-      hobbyTypes: ["Personal Hobby", "Personal Hobby2"],
-      hobbyNames: ["Gardening"],
       rules: [value => !!value || "Please fill this field."],
-      hobbyName: "",
       audioTab: 0,
-      hobby: {
-        category: "select",
-        title: ""
-      },
-      categoryOptions: [
-        {
-          title: "Sports",
-          value: "sports"
-        },
-        {
-          title: "Ice skating",
-          value: "ice_skating"
-        },
-        {
-          title: "Cycling",
-          value: "cycling"
-        },
-        {
-          title: "Parkour",
-          value: "parkour"
-        }
-      ],
       showCategoryOptions: false,
       optionHobbyId: 0,
       editedHobby: {},

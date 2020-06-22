@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div style="width: 100%">
+    <v-container style="width: 100%">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab
@@ -33,7 +33,14 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7">
+                <v-col
+                  xl="4"
+                  lg="4"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7"
+                >
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
                       class="resume-builder__input civie-input"
@@ -219,7 +226,7 @@
           </v-tab-item>
         </v-tabs-items>
       </v-card>
-    </div>
+    </v-container>
   </v-app>
 </template>
 
@@ -290,7 +297,7 @@ export default {
             }
 
             this.clearSkill();
-            this.$store.dispatch('flyingNotification');
+            this.$store.dispatch("flyingNotification");
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
@@ -392,7 +399,6 @@ civie-input {
 .civie-btn {
   margin-left: 30px;
 }
-
 
 .error {
   color: red;
