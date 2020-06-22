@@ -139,6 +139,10 @@ $purple: #355E5E;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
+                &-bar {
+                    background-color: transparent;
+                }
+
                 .v-slide-group__prev {
                     display: none;
                 }
