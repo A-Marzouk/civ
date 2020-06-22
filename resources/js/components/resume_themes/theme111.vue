@@ -127,6 +127,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 #theme111 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: white;
     background-color: #4327AB;
     background-image: url('/images/resume_themes/theme111/bg-img.png');

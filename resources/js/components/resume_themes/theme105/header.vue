@@ -370,9 +370,7 @@ $purple: #355E5E;
                 }
             }
 
-            @media (max-width: 1200px) {
-                margin-top: 27px;
-            }
+            
 
             @media (max-width: 700px) {
                 margin-top: 0;

@@ -127,6 +127,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 #theme112 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background: #1B1F28;
     position: relative;

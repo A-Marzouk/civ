@@ -127,6 +127,7 @@ $purple: #335E5E;
 #theme107 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     position: relative;
     background-color: #DBDEC4;

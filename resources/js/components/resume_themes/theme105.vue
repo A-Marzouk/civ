@@ -105,6 +105,7 @@ $purple: #355E5E;
 #theme105 {
     font-family: 'Muli', sans-serif !important;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background: #ECEDF4;
     position: relative;

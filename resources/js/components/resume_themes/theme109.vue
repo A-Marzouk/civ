@@ -129,6 +129,7 @@ $purple: #24325D;
 #theme109 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background-color: #F8CDCC;
     background-image: url('/images/resume_themes/theme109/bg-header.png');
