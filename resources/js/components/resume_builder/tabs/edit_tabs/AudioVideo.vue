@@ -224,7 +224,7 @@ export default {
         url: "https://httpbin.org/post",
         thumbnailWidth: 150,
         maxFilesize: 25,
-        maxFiles: 51,
+        maxFiles: 1,
         addRemoveLinks: true,
       },
       newAudio: {
