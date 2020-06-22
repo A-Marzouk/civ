@@ -55,7 +55,7 @@ export default {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: minmax(100px, 180px);
         grid-auto-rows: minmax(100px, 180px);
-        grid-gap: 70px 100px;
+        grid-gap: 100px;
         max-width: 1400px !important;
         width: 85%;
         padding-bottom: 50px;

@@ -128,8 +128,10 @@ $purple: #335E5E;
     font-family: 'Muli', sans-serif;
     width: 100%;
     color: $mainColor;
-    background: #DBDEC4;
     position: relative;
+    background-color: #DBDEC4;
+    background-image: url("/images/resume_themes/theme107/bg-header.png");
+    background-repeat: repeat-y;
     
     .v-application--wrap {
         overflow: hidden;
