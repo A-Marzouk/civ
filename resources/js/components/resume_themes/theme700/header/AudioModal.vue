@@ -19,7 +19,7 @@
 					</v-card-actions>
 				</div>
 
-				<v-carousel class="v-carousel-audio-modal" height="auto" hide-delimiter-background light :show-arrows="false" :continuous="false">
+				<v-carousel class="v-carousel-audio-modal" height="auto" hide-delimiter-background :touch="{}" light :show-arrows="false" :continuous="false">
 					<v-carousel-item v-for="(pageAudios, i) in audiosPerPage" :key="i">
 						<v-list class="audios-list">
 							<v-list-item v-for="audio in pageAudios" :key="audio.src">
@@ -282,6 +282,7 @@ export default {
 			font-weight: 500;
 			font-size: 24px;
 			line-height: 29px;
+			user-select: none;
 			color: #513ecd;
 		}
 
@@ -360,6 +361,13 @@ export default {
 			}
 		}
 	}
+
+	@include xl {
+		max-width: 1140px;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 40px;
+	}
 }
 
 .v-dialog__content {
@@ -383,6 +391,7 @@ export default {
 
 @include lg {
 	.v-btn--fab.close-action {
+		margin-right: 20px;
 		height: 44px;
 		width: 44px;
 	}
@@ -408,8 +417,18 @@ export default {
 			}
 		}
 
-		.v-btn__content .v-icon {
-			font-size: 20px;
+		&.close-action {
+			.v-btn__content .v-icon {
+				font-size: 20px;
+			}
+		}
+
+		&.v-carousel__controls__item {
+			.v-btn__content .v-icon {
+				height: 20px;
+				font-size: 22px !important;
+				width: 20px;
+			}
 		}
 	}
 
@@ -418,10 +437,23 @@ export default {
 		margin: 40px 40px;
 
 		.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
-			.v-btn__content .v-icon {
-				height: 29px;
-				font-size: 50px;
-				width: 29px;
+			&.close-action {
+				.v-btn__content .v-icon {
+					height: 29px;
+					font-size: 50px;
+					width: 29px;
+				}
+			}
+
+			&.v-carousel__controls__item {
+				margin-left: 15px;
+				margin-right: 15px;
+
+				.v-btn__content .v-icon {
+					height: 38px;
+					font-size: 42px !important;
+					width: 38px;
+				}
 			}
 		}
 
@@ -434,12 +466,30 @@ export default {
 		max-width: 1024px;
 
 		.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
-			.v-btn__content .v-icon {
-				height: 19px;
-				font-size: 32px;
-				width: 19px;
+			&.close-action {
+				.v-btn__content .v-icon {
+					height: 19px;
+					font-size: 32px;
+					width: 19px;
+				}
+			}
+
+			&.v-carousel__controls__item {
+				margin-left: 9px;
+				margin-right: 9px;
+
+				.v-btn__content .v-icon {
+					height: 21px;
+					font-size: 22px !important;
+					width: 21px;
+				}
 			}
 		}
+	}
+
+	@media (min-width: 1600px) {
+		max-width: 1700px;
+		margin: 140px 100px;
 	}
 }
 </style>
