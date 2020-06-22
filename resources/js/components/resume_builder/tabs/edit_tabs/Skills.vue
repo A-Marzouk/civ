@@ -434,7 +434,7 @@ civie-input {
       height: 95px !important;
     }
     @media screen and (max-width: 599px) {
-      height: 88px !important;
+      height: 95px !important;
     }
     .btn-v_bar {
       min-width: 30px !important;
