@@ -95,6 +95,7 @@ export default {
 					src: "/uploads/media/videos/dummy-user/video-1.mp4"
 				}
 			],
+
 			player: undefined
 		};
 	},
@@ -313,13 +314,12 @@ export default {
 		}
 	}
 
-	@include xl {
+	@include lg {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		max-width: 1140px;
 		margin-left: auto;
 		margin-right: auto;
-		padding-left: 40px;
 
 		.video-player {
 			.player-body {
@@ -332,11 +332,10 @@ export default {
 			}
 		}
 	}
-}
 
-.v-dialog__content {
-	align-items: flex-start;
-	overflow-y: scroll;
+	@include xl {
+		padding-left: 40px;
+	}
 }
 
 .v-carousel-video-modal {
@@ -365,10 +364,22 @@ export default {
 
 <style lang="scss">
 .v-dialog.theme700-v-dialog--video-modal {
-	margin: 82px 10px;
-
 	&.v-dialog:not(.v-dialog--fullscreen) {
-		max-height: 100%;
+		&::-webkit-scrollbar {
+			width: 5px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background: #ebebeb;
+			border-top-right-radius: 15px;
+			border-bottom-right-radius: 15px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background: #513ecd;
+			border-top-right-radius: 15px;
+			border-bottom-right-radius: 15px;
+		}
 	}
 
 	.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
@@ -399,7 +410,6 @@ export default {
 
 	@media (min-width: 768px) {
 		max-width: 768px;
-		margin: 147px 42px;
 
 		.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
 			&.close-action {
@@ -454,7 +464,6 @@ export default {
 
 	@media (min-width: 1600px) {
 		max-width: 1700px;
-		margin: 140px 100px;
 	}
 }
 </style>

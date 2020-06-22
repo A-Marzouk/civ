@@ -370,10 +370,6 @@ export default {
 	}
 }
 
-.v-dialog__content {
-	align-items: flex-start;
-}
-
 .v-carousel-audio-modal {
 	padding-bottom: 50px;
 }
@@ -400,10 +396,10 @@ export default {
 
 <style lang="scss">
 .v-dialog.theme700-v-dialog--audio-modal {
-	margin: 86px 10px;
+	margin-left: 10px;
+	margin-right: 10px;
 
 	&.v-dialog:not(.v-dialog--fullscreen) {
-		max-height: 100%;
 	}
 
 	.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
@@ -434,7 +430,8 @@ export default {
 
 	@media (min-width: 768px) {
 		max-width: 768px;
-		margin: 40px 40px;
+		margin-left: 40px;
+		margin-right: 40px;
 
 		.v-btn:not(.v-btn--text):not(.v-btn--outlined) {
 			&.close-action {
@@ -489,7 +486,8 @@ export default {
 
 	@media (min-width: 1600px) {
 		max-width: 1700px;
-		margin: 140px 100px;
+		margin-left: 100px;
+		margin-right: 100px;
 	}
 }
 </style>
