@@ -160,6 +160,7 @@ $purple: #335E5E;
                         @media (max-width: 1200px) {
                             width: 115px;
                             height: 35px;
+                            padding: 0;
                             font-size: 10px;
 
                             .icon {

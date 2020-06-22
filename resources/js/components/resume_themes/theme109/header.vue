@@ -151,8 +151,8 @@ $purple: #24325D;
                     }
                     
                     @media (max-width: 1200px) {
-                        width: 120px;
-                        height: 35px;
+                        width: 133px;
+                        height: 42px;
                         font-size: 10px;
 
                         .icon {

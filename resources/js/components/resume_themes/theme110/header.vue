@@ -167,8 +167,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                     
                     @media (max-width: 1200px) {
-                        width: 120px;
-                        height: 35px;
+                        width: 133px;
+                        height: 42px;
                         font-size: 10px;
 
                         .icon {

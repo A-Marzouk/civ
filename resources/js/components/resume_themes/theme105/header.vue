@@ -215,8 +215,9 @@ $purple: #355E5E;
                     }
                     
                     @media (max-width: 1200px) {
-                        width: 120px;
-                        height: 35px;
+                        width: 133px;
+                        height: 42px;
+                        padding: 0;
                         font-size: 10px;
 
                         .icon {
@@ -338,8 +339,7 @@ $purple: #355E5E;
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        width: 115px;
-height: 36px;
+                        padding: 14px 40px;
 
                         .icon {
                             height: 12px;
