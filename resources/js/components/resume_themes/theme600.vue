@@ -243,7 +243,7 @@
                   reverse-transition="fade-transition"
                   value="tab-2"
                 >
-                  <v-container style="width:100%;">
+                  <v-container style="width:100%;" class="">
                     <v-row align="center" class="">
                       <v-col sm="12" md="6" lg="6" xl="6" cols="12" pb="3">
                         <v-card class="bg-card">
@@ -1074,6 +1074,7 @@ img {
     box-shadow: 0px 0px 25px #e4eaf4 !important;
     border-radius: 20px 20px 260px 20px !important;
     padding-bottom: 3rem;
+    //width: 850px !important;
 
     @media screen and (max-width: 600px) {
       border-radius: 5px 5px 140px 5px !important;

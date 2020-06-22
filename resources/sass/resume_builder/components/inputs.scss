@@ -24,8 +24,6 @@
     &.civie-select.icon-prepended // Select with prepend icon
     {
         .v-input__slot {
-            padding-left: 25px !important;
-
             .v-input__append-inner {
                 right: 8px;
             }

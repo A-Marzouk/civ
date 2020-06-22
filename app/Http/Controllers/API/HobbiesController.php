@@ -47,7 +47,7 @@ class HobbiesController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != ''){
             // update
             $hobby = Hobby::findOrFail($request->id);
             $hobby->update($request->toArray());
@@ -74,6 +74,17 @@ class HobbiesController extends Controller
         ])->first();
 
         return new HobbyResource($hobby);
+    }
+
+
+    public function updateHobbiesOrder(Request $request){
+        $hobbies = $request->hobbies ;
+        foreach ($hobbies as $key => $hobby){
+            $myHobby = Hobby::find($hobby['id']);
+            $myHobby->update([
+                'order' => $key + 1
+            ]);
+        }
     }
 
     /**
