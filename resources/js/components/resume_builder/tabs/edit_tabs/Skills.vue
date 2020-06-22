@@ -33,7 +33,7 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-n10 mt-n10 ml-xl-n7">
+                <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
                       class="resume-builder__input civie-input"
@@ -51,7 +51,7 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-md-n2 mt-sm-n10 mt-n10 d-flex">
+                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-md-n2 mt-sm-n10 mt-n6 d-flex">
                   <v-btn
                     class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0"
                     @click="addSkill"
