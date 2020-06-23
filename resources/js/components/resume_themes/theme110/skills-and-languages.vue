@@ -282,5 +282,9 @@ $mainColor: #492163;
         @media (max-width: 1350px) {
             grid-gap: 30px;
         }
+
+        @media (max-width: 768px) {
+            width: 100%;
+        }
     }
 </style>
