@@ -149,6 +149,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     .icon {
                         margin-right: 10px;
+
+                        &.showIconOnMobile {
+                            display: none;
+                        }
                     }
 
                     @media (max-width: 1400px) {
