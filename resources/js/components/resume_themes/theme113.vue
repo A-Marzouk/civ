@@ -146,6 +146,10 @@ $purple: #686299;
                 .v-slide-group__prev {
                     display: none;
                 }
+
+                &-bar {
+                    background: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -164,15 +168,11 @@ $purple: #686299;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
-                    }
-                    
-                    @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 0;
+                        padding: 12px 34px;
                     }
 
                     @media (max-width: 768px) {
+                        padding: 0;
                         font-size: 15px;
                         margin-right: 27px;
 

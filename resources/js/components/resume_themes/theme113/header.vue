@@ -84,6 +84,8 @@ $purple: #686299;
                 position: absolute;
                 overflow: hidden;
 
+                //TODO: change bg on this theme
+
                 .left-bg {
                     position: absolute;
                     left: -88px;

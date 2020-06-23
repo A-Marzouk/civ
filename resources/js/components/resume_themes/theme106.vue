@@ -198,12 +198,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
-                    }
-                    
-                    @media (max-width: 1400px) {
-                        font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {

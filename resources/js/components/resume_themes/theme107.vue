@@ -221,7 +221,7 @@ $purple: #335E5E;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {

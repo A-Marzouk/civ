@@ -187,15 +187,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     &::before {
                         display: none !important;
                     }
-
-                    @media (max-width: 1400px) {
-                        font-size: 18px;
-                        padding: 12px 28px;
-                    }
                     
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {
@@ -206,7 +201,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     @media (max-width: 768px) {
                         font-size: 15px;
                         padding: 13px 0;
-justify-content: flex-start;
+                        justify-content: flex-start;
                         margin-right: 27px;
 
                         &:last-child {
