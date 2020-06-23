@@ -2,14 +2,14 @@
   <v-app>
     <v-container style="width:100%;">
       <v-tabs class="resume-builder__tab-bar" hide-slider v-model="audioTab">
-        <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i">{{tabName}}</v-tab>
+        <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i" @click="changeTab(tabName)">{{tabName}}</v-tab>
       </v-tabs>
       <v-card
         class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
         flat
       >
         <v-tabs-items v-model="audioTab">
-          <v-tab-item v-for="i in 5" :key="i">
+          <v-tab-item v-for="i in 2" :key="i">
             <v-container style="width: 100%;">
               <v-form>
                 <v-row align="center">
@@ -18,15 +18,17 @@
                       class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
                       outlined
                       label="Upload File"
-                      hint="(Maximum 5 files)"
+                      hint="(Maximum 1 files)"
                       height="50"
                     >
                       <vue-dropzone
                         class="civie-dropzone-input"
-                        ref="myVueDropzone"
+                        ref="filesDropZone"
                         id="dropzone"
                         :options="dropzoneOptions"
                         :useCustomSlot="true"
+                        v-on:vdropzone-file-added="handlingEvent"
+
                       >
                         <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
                           <div class="mr-2">
@@ -44,6 +46,7 @@
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
+                      v-model="newAudio.url"
                       color="#001CE2"
                     >
                       <template v-slot:prepend>
@@ -67,124 +70,143 @@
                   </v-col>
                 </v-row>
               </v-form>
-              <v-row align="center" dense>
-                <v-col
-                  xl="7"
-                  :lg="windowWidth<1440?'9':'7'"
-                  md="9"
-                  sm="12"
-                  cols="12"
-                  v-show="audioTab==0"
-                >
-                  <!-- audio card -->
-                  <v-card class="card-holder pa-2 mb-3 mt-3">
-                    <v-row justify="center">
-                      <v-col
-                        xl="1"
-                        lg="1"
-                        md="1"
-                        sm="1"
-                        cols="4"
-                        class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
-                        :align="windowWidth<767?'left':'center'"
-                      >
-                        <v-btn color="#ffffff" class="btn-v_bar" depressed>
-                          <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                        </v-btn>
-                      </v-col>
-                      <v-col
-                        xl="1"
-                        lg="1"
-                        md="1"
-                        sm="1"
-                        cols="1"
-                        class="mt-xl-n5 mt-lg-n5 mt-md-n5 mt-sm-n5 mt-0 hidden-xs-only"
-                      >
-                        <div class="vertical-line"></div>
-                      </v-col>
-                      <v-col
-                        xl="6"
-                        lg="7"
-                        md="7"
-                        :sm="windowWidth<=767?'6':'7'"
-                        cols="7"
-                        class="mt-n4 hidden-xs-only"
-                      >
-                        <audio controls class="audio-controller ml-xl-n4">
-                          <source src="https://www.computerhope.com/jargon/m/example.mp3" />
-                        </audio>
-                      </v-col>
-                      <v-col
-                        xl="4"
-                        lg="3"
-                        md="3"
-                        :sm="windowWidth<=767?'4':'3'"
-                        cols="8"
-                        align="right"
-                        class="action-col"
-                      >
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
-                        </v-btn>
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
-                        </v-btn>
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
-                        </v-btn>
-                      </v-col>
-                      <v-col cols="12" class="hidden-sm-and-up" align="center">
-                        <audio controls class="audio-controller" v-show="audioTab==0">
-                          <source src="https://www.computerhope.com/jargon/m/example.mp3" />
-                        </audio>
-                      </v-col>
-                    </v-row>
-                  </v-card>
-                  <!-- audio card -->
-                </v-col>
-                <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-show="audioTab==1">
-                  <!-- Video Card -->
-                  <v-card class="card-holder pa-2 mb-3 mt-3" v-show="audioTab==1" height="auto">
-                    <v-row justify="center">
-                      <v-col
-                        xl="5"
-                        lg="5"
-                        md="5"
-                        sm="5"
-                        cols="5"
-                        class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
-                        align="left"
-                      >
-                        <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
-                          <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                        </v-btn>
-                      </v-col>
 
-                      <v-col xl="7" lg="7" md="7" sm="7" cols="7" align="right" class="action-col">
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
-                        </v-btn>
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
-                        </v-btn>
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
-                        </v-btn>
-                      </v-col>
-                      <v-col cols="12" class align="center">
-                        <v-card flat color="transparent" tile class="pa-2">
-                          <video width="auto" height="auto" controls>
-                            <source
-                              src="https://www.videezy.com/download/17942?download_auth_hash=cdb7c1b1&pro=false"
-                              type="video/mp4"
-                            />
-                          </video>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                  </v-card>
-                  <!-- Video Card -->
+              <v-row align="center" dense v-for="media in medias" :key="media.id">
+
+                <v-col xl="7" :lg="windowWidth<1440 ? '9' : '7' " md="9" sm="12" cols="12" v-show="audioTab === 0 && media.type === 'audio'">
+                    <!-- audio card -->
+                    <v-card class="card-holder pa-2 mb-3 mt-3">
+                      <v-row justify="center">
+                        <v-col
+                          xl="1"
+                          lg="1"
+                          md="1"
+                          sm="1"
+                          cols="4"
+                          class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
+                          :align="windowWidth<767?'left':'center'"
+                        >
+                          <v-btn color="#ffffff" class="btn-v_bar" depressed>
+                            <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                          </v-btn>
+                        </v-col>
+                        <v-col
+                          xl="1"
+                          lg="1"
+                          md="1"
+                          sm="1"
+                          cols="1"
+                          class="mt-xl-n5 mt-lg-n5 mt-md-n5 mt-sm-n5 mt-0 hidden-xs-only"
+                        >
+                          <div class="vertical-line"></div>
+                        </v-col>
+                        <v-col
+                          xl="6"
+                          lg="7"
+                          md="7"
+                          :sm="windowWidth<=767?'6':'7'"
+                          cols="7"
+                          class="mt-n4 hidden-xs-only"
+                        >
+                          <audio controls class="audio-controller ml-xl-n4">
+                            <source :src="media.url" />
+                          </audio>
+                        </v-col>
+                        <v-col
+                          xl="4"
+                          lg="3"
+                          md="3"
+                          :sm="windowWidth<=767?'4':'3'"
+                          cols="8"
+                          align="right"
+                          class="action-col resume-builder__action-buttons-container"
+                        >
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  depressed @click="toggleMedia(media)"
+                          >
+                            <svg-vue
+                                    icon="eye-icon"
+                                    :class="{'visible' : media.is_public}"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  @click="deleteMedia(media)"
+                                  depressed
+                          >
+                            <svg-vue
+                                    icon="trash-delete-icon"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                        </v-col>
+                        <v-col cols="12" class="hidden-sm-and-up" align="center">
+                          <audio controls class="audio-controller">
+                            <source :src="media.url" />
+                          </audio>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                    <!-- audio card -->
                 </v-col>
+
+                <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-show="audioTab === 1 && media.type === 'video'">
+                    <!-- Video Card -->
+                    <v-card class="card-holder pa-2 mb-3 mt-3"  height="auto">
+                      <v-row justify="center">
+                        <v-col
+                          xl="5"
+                          lg="5"
+                          md="5"
+                          sm="5"
+                          cols="5"
+                          class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
+                          align="left"
+                        >
+                          <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
+                            <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                          </v-btn>
+                        </v-col>
+
+                        <v-col xl="7" lg="7" md="7" sm="7" cols="7" align="right" class="action-col resume-builder__action-buttons-container">
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  depressed @click="toggleMedia(media)"
+                          >
+                            <svg-vue
+                                    icon="eye-icon"
+                                    :class="{'visible' : media.is_public}"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  @click="deleteProject(project)"
+                                  depressed
+                          >
+                            <svg-vue
+                                    icon="trash-delete-icon"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                        </v-col>
+                        <v-col cols="12" class align="center">
+                          <v-card flat color="transparent" tile class="pa-2">
+                            <video width="auto" height="auto" controls>
+                              <source
+                                :src="media.url"
+                                type="video/mp4"
+                              />
+                            </video>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                    <!-- Video Card -->
+                </v-col>
+
               </v-row>
             </v-container>
           </v-tab-item>
@@ -224,20 +246,40 @@ export default {
     };
   },
   computed: {
-    media() {
+    medias() {
       return this.$store.state.user.media;
     }
   },
   methods: {
-    handleAudioUpload() {
-      this.newAudio.mediaFile = this.$refs.audio.files[0];
-      this.uploadMedia();
+    changeTab(tabName){
+      this.newAudio.type = tabName.toLowerCase();
+      this.newAudio.title = tabName;
+    },
+    toggleMedia(media){
+      media.is_public = !media.is_public;
+      axios.put("/api/user/media", media)
+              .then( () => {
+                this.$store.dispatch("flyingNotification");
+              })
+              .catch(error => {
+                if (typeof error.response.data === "object") {
+                  this.errors = error.response.data.errors;
+                } else {
+                  this.errors =
+                          "Something went wrong. Please try again.";
+                }
+                this.$store.dispatch("flyingNotification", {
+                  message: "Error",
+                  iconSrc: "/images/resume_builder/error.png"
+                });
+              });
     },
     handlingEvent: function(file) {
       this.newAudio.mediaFile = file;
     },
     uploadMedia() {
       let formData = new FormData();
+
       $.each(this.newAudio, field => {
         if (this.newAudio[field] !== null) {
           formData.append(field, this.newAudio[field]);
@@ -254,12 +296,9 @@ export default {
       axios
         .post("/api/user/media", formData, config)
         .then(response => {
-          let addedMedia = response.data.data;
-          this.media.push(addedMedia);
+          response.data.data.is_public = true;
+          this.medias.unshift(response.data.data);
           this.clearMedia();
-          setTimeout(() => {
-            $("#progressBar").css("width", 0);
-          }, 2000);
           this.$store.dispatch("flyingNotification");
         })
         .catch(error => {
@@ -278,8 +317,10 @@ export default {
       this.newAudio = {
         title: "Audio",
         type: "audio",
+        url: "",
         mediaFile: null
       };
+      this.$refs.filesDropZone.removeAllFiles();
     },
     deleteMedia(mdeia) {
       if (!confirm("Do you want to delete this Media file ?")) {
@@ -289,9 +330,9 @@ export default {
         .delete("/api/user/media/" + mdeia.id)
         .then(response => {
           this.$store.dispatch("flyingNotificationDelete");
-          this.audios.forEach((audio, index) => {
-            if (audio.id === response.data.data.id) {
-              this.audios.splice(index, 1);
+          this.medias.forEach((media, index) => {
+            if (media.id === response.data.data.id) {
+              this.medias.splice(index, 1);
             }
           });
         })
