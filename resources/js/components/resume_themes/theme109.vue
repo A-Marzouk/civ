@@ -139,6 +139,8 @@ $purple: #24325D;
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
     }
 
     .theme-body {
@@ -148,6 +150,7 @@ $purple: #24325D;
         width: 100%;
         padding-bottom: 100px;
         position: relative;
+        flex: 1;
 
         .bg-body {
             position: absolute;
