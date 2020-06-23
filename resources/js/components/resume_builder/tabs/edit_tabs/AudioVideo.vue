@@ -304,7 +304,11 @@ export default {
         });
     }
   },
-  mounted() {}
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    }
+  }
 };
 </script>
 

@@ -66,11 +66,11 @@
                   <v-btn
                     class="resume-builder__btn civie-btn mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
                     @click="cancelEdit"
-                    v-show="editedSkill.id !== undefined "
+                    v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>
                 </v-col>
 
-                <v-col xl="6" lg="7" md="12" sm="12" cols="12">
+                <v-col xl="6" :lg="windowWidth<1440?'8':'7'" md="12" sm="12" cols="12">
                   <v-container fluid style="width:100%;" ma-0 pa-0>
                     <v-row align="center" dense>
                       <v-col cols="12">
@@ -236,6 +236,7 @@ export default {
   name: "Skills",
   data() {
     return {
+      windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
       tabs: ["programming_languages", "software", "design", "frameworks"],
@@ -374,7 +375,11 @@ export default {
       this.clearSkill();
     }
   },
-  mounted() {}
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  }
 };
 </script>
 
