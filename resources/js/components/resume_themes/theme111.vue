@@ -144,7 +144,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     .theme-body {
         background: transparent;
         border-radius: 80px 80px 0 0;
-        z-index: 1;
         height: 100%;
         width: 100%;
         padding-bottom: 100px;

@@ -30,10 +30,12 @@
             <div class="right">
                 <div class="actions-wrapper" :class="{hide: !showMore}">
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme111/chat-icon.png"> Start a chat
+                        <img class="icon hideIconOnMobile" src="/images/resume_themes/theme111/chat-icon.png">
+                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/chat-icon-mob.png"> Start a chat
                     </button>
                     <button class="action-btn">
-                        <img class="icon" src="/images/resume_themes/theme111/suitcase-icon.png">Upload interviews
+                        <img class="icon hideIconOnMobile" src="/images/resume_themes/theme111/suitcase-icon.png">
+                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/suitcase-icon-mob.png"> Upload interviews
                     </button>
                 </div>
 
@@ -75,21 +77,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 #theme111 {
     .theme-header {
         width: 100%;
-        // background: linear-gradient(to bottom, #7566E5, #4327AB);
         position: relative;
-
-        .bg-header {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-
-            &-bottom-right {
-                position: absolute;
-                right: 0;
-                opacity: 1;
-                bottom: -100px;
-            }
-        }
 
         .left {
             display: flex;
@@ -203,6 +191,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         margin: 0 !important;
                         justify-content: flex-start;
                         padding: 0;
+                        color: black;
                         border: none;
 
                         &:first-child {
@@ -211,6 +200,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                         .icon {
                             height: 16px;
+                            
+                            &.showIconOnMobile {
+                                display: block;
+                            }
+
+                            &.hideIconOnMobile {
+                                display: none;
+                            }
                         }
                     }
 
