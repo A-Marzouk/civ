@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div style="width: 100%">
+    <v-container style="width: 100%">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab
@@ -33,7 +33,14 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7">
+                <v-col
+                  xl="4"
+                  lg="4"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7"
+                >
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
                       class="resume-builder__input civie-input"
@@ -59,11 +66,11 @@
                   <v-btn
                     class="resume-builder__btn civie-btn mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
                     @click="cancelEdit"
-                    v-show="editedSkill.id !== undefined "
+                    v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>
                 </v-col>
 
-                <v-col xl="6" lg="7" md="12" sm="12" cols="12">
+                <v-col xl="6" :lg="windowWidth<1440?'8':'7'" md="12" sm="12" cols="12">
                   <v-container fluid style="width:100%;" ma-0 pa-0>
                     <v-row align="center" dense>
                       <v-col cols="12">
@@ -219,7 +226,7 @@
           </v-tab-item>
         </v-tabs-items>
       </v-card>
-    </div>
+    </v-container>
   </v-app>
 </template>
 
@@ -229,6 +236,7 @@ export default {
   name: "Skills",
   data() {
     return {
+      windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
       tabs: ["programming_languages", "software", "design", "frameworks"],
@@ -290,7 +298,7 @@ export default {
             }
 
             this.clearSkill();
-            this.$store.dispatch('flyingNotification');
+            this.$store.dispatch("flyingNotification");
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
@@ -367,7 +375,11 @@ export default {
       this.clearSkill();
     }
   },
-  mounted() {}
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  }
 };
 </script>
 
@@ -392,7 +404,6 @@ civie-input {
 .civie-btn {
   margin-left: 30px;
 }
-
 
 .error {
   color: red;
