@@ -7,14 +7,13 @@
       <v-card
         class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
         flat
-        id="hobbiesContent"
       >
         <v-tabs-items v-model="audioTab">
           <v-tab-item v-for="i in 5" :key="i">
             <v-container style="width: 100%;">
               <v-form>
                 <v-row align="center">
-                  <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mb-md-0 mb-sm-0 mb-n2">
                     <v-input
                       class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
                       outlined
@@ -28,18 +27,17 @@
                         id="dropzone"
                         :options="dropzoneOptions"
                         :useCustomSlot="true"
-                        v-on:vdropzone-file-added="handlingEvent"
                       >
                         <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
                           <div class="mr-2">
                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
                           </div>
-                          <div class="upload-text">Browse Drag</div>
+                          <div class="upload-text">Browse/Drag</div>
                         </div>
                       </vue-dropzone>
                     </v-input>
                   </v-col>
-                  <v-col cols="12" class="hidden-sm-and-up mt-n12">
+                  <v-col cols="12" class="hidden-sm-and-up mt-n12 mb-n2">
                     <label class="label-or">or</label>
                   </v-col>
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n12">
@@ -62,7 +60,7 @@
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <v-btn
-                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n1 mt-lg-n1 mt-md-n5 mt-sm-n8 mt-n8"
+                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
                       depressed
                       @click="uploadMedia"
                     >Add New</v-btn>
@@ -507,6 +505,23 @@ $mainBlue: #001ce2;
   }
 }
 .dropzone-custom-content {
+  margin-left: -18%;
+  @media screen and (min-width: 1366px) and (max-width: 1903px){
+    margin-left: -15%;
+  }
+  @media screen and (min-width: 1264px) and (max-width: 1365px){
+    margin-left: -13%;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    margin-left: -22%;
+  }
+  @media screen and (min-width: 600px) and (max-width: 767px){
+    margin-left: -8%;
+  }
+  @media screen and (min-width: 394px) and (max-width: 599px){
+    margin-left: -21% !important;
+  }
+  
 }
 .dropzone.dz-clickable {
   border: 2px solid #c4c9f5 !important;
@@ -524,6 +539,7 @@ $mainBlue: #001ce2;
   color: #888db1 !important;
   margin-top: 3px;
 }
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s;
