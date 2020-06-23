@@ -1,22 +1,5 @@
 <template>
 	<div class="video-modal d-inline-flex tw-align-middle">
-		<div v-show="dialog && showVideoPlayer" class="video-player-overlay" @click="hidePlayer">
-			<div class="c-video-player" @click.stop>
-				<div class="tw-relative">
-					<video preload="none" class="el-video-player" :src="current.video.src" :poster="current.video.thumbnail" ref="videoPlayer"></video>
-
-					<a class="play-pause-control" href="#" @click.prevent="playPause">
-						<v-icon color="white" v-if="current.isPlaying">mdi-pause</v-icon>
-						<v-icon color="white" v-else>mdi-play</v-icon>
-					</a>
-				</div>
-
-				<div class="video-player-footer">
-					<v-progress-linear height="8" background-color="#EBEBEB" color="#513ECD" :value="currentProgress"></v-progress-linear>
-				</div>
-			</div>
-		</div>
-
 		<v-btn elevation="0" fab :width="30" :height="30" class="mr-5" color="#EBEBEB" @click="open">
 			<v-img src="/images/resume_themes/theme700/video.svg" contain :width="12" :height="12"></v-img>
 		</v-btn>
@@ -47,11 +30,11 @@
 										</div>
 
 										<div class="player-body">
-											<div class="video-preview">
+											<div class="video-preview" @click="showPlayer(video.src)">
 												<img :src="video.thumbnail" alt="">
 												<a href="#" class="play-pause-action" title="Play/Pause" @click.prevent="showPlayer(video.src)">
-													<svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg">
-														<path d="M30.5 0C13.6825 0 0 13.6825 0 30.5C0 47.3175 13.6825 61 30.5 61C47.3175 61 61 47.3175 61 30.5C61 13.6825 47.3175 0 30.5 0ZM22.875 45.7497V15.2499L45.75 30.4997L22.875 45.7497Z" fill="#2410A4" />
+													<svg viewBox="0 0 76 76" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M38 0C17.0471 0 0 17.0471 0 38C0 58.9529 17.0471 76 38 76C58.9529 76 76 58.9529 76 38C76 17.0471 58.9529 0 38 0ZM28.5 56.9996V18.9999L57 37.9996L28.5 56.9996Z" fill="#2410A4" />
 													</svg>
 												</a>
 											</div>
@@ -64,6 +47,23 @@
 				</v-carousel>
 			</v-card>
 		</v-dialog>
+
+		<div v-show="dialog && showVideoPlayer" class="video-player-overlay" @click="hidePlayer">
+			<div class="c-video-player" @click.stop>
+				<div class="tw-relative">
+					<video preload="auto" loop class="el-video-player" :src="current.video.src" :poster="current.video.thumbnail" @click="playPause" ref="videoPlayer"></video>
+
+					<a class="play-pause-control" href="#" @click.prevent="playPause">
+						<v-icon color="white" v-if="current.isPlaying">mdi-pause</v-icon>
+						<v-icon color="white" v-else>mdi-play</v-icon>
+					</a>
+				</div>
+
+				<div class="video-player-footer">
+					<v-progress-linear height="8" background-color="#EBEBEB" color="#513ECD" :value="currentProgress"></v-progress-linear>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -133,10 +133,13 @@ export default {
 
 	methods: {
 		showPlayer(src) {
-			console.log("showPlayer", src);
-
 			this.current.video = this.videos.find(video => video.src === src);
 			this.showVideoPlayer = true;
+
+			setTimeout(() => {
+				this.current.isPlaying = true;
+				this.player.play();
+			}, 500);
 		},
 
 		hidePlayer() {
@@ -150,32 +153,41 @@ export default {
 			};
 		},
 
-		playPause(src) {
+		playPause() {
 			if (this.current.isPlaying) {
 				this.player.pause();
 				this.current.isPlaying = false;
 				return;
 			}
 
-			let playPromise = this.player.play();
-
-			if (playPromise !== undefined) {
-				playPromise
-					.then(_ => {
-						// Automatic playback started!
-						console.log("Automatic playback started!");
-
-						// Show playing UI.
-					})
-					.catch(error => {
-						// Auto-play was prevented
-						console.log(" Auto-play was prevented");
-
-						// Show paused UI.
-					});
-			}
+			this.player.play();
 			this.current.isPlaying = true;
 		},
+
+		load() {
+			if (this.player.readyState >= 2) {
+				this.current.duration = parseInt(this.player.duration);
+				return;
+			}
+
+			throw new Error("Failed to load sound file.");
+		},
+
+		update() {
+			this.current.time = Math.floor(this.player.currentTime);
+		},
+
+		ended() {
+			this.playPause();
+		},
+
+		/* onVideoPlayerProgressChange(progress) {
+			this.current.time = Math.floor(
+				(progress * this.current.duration) / 100
+			);
+
+			this.player.currentTime = this.current.time;
+		}, */
 
 		open() {
 			this.dialog = true;
@@ -183,15 +195,14 @@ export default {
 
 		close() {
 			this.dialog = false;
-		},
-
-		pause() {
-			console.log("pause");
 		}
 	},
 
 	mounted() {
 		this.player = this.$refs.videoPlayer;
+		this.player.ontimeupdate = this.update;
+		this.player.onloadeddata = this.load;
+		this.player.addEventListener("ended", this.ended);
 	}
 };
 </script>
@@ -214,8 +225,10 @@ export default {
 
 	.c-video-player {
 		width: 100%;
-		max-width: 800px;
+		max-width: 770px;
 		position: relative;
+		border-radius: 10px;
+		overflow: hidden;
 
 		.el-video-player {
 			width: 100%;
@@ -241,12 +254,14 @@ export default {
 			}
 		}
 
-		&:hover {
-			.play-pause-control {
-				opacity: 0.5;
+		@media (hover: hover) and (pointer: fine) {
+			&:hover {
+				.play-pause-control {
+					opacity: 0.5;
 
-				&:hover {
-					opacity: 1;
+					&:hover {
+						opacity: 1;
+					}
 				}
 			}
 		}
