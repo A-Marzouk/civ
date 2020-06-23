@@ -340,18 +340,7 @@ $mainBlue: #001ce2;
         margin-left: -7px;
       }
     }
-    .hobby-title {
-      font-family: "Noto Sans" !important;
-      font-size: 18px;
-      line-height: 25px;
-      color: #888db1 !important;
-      @media screen and (min-width: 600px) and (max-width: 767px) {
-        font-size: 12px;
-      }
-      @media screen and (max-width: 374px) {
-        font-size: 14px;
-      }
-    }
+    
     .seekbar {
       border-radius: 10px !important;
     }
