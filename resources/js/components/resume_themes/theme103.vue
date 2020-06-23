@@ -152,7 +152,7 @@ $purple: #0556B6;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            max-width: 1700px;
+            max-width: 1768px;
             margin: 0 auto;
             height: 100%;
 
@@ -187,9 +187,14 @@ $purple: #0556B6;
                         font-size: 18px;
                         padding: 12px 34px;
                     }
+
+                    @media (max-width: 1400px) {
+                        font-size: 18px;
+                        padding: 12px 30px;
+                    }
                     
                     @media (max-width: 768px) {
-                        padding: 0;
+                        padding: 12px 20px;
                         font-size: 15px;
                         margin-right: 27px;
 
@@ -214,15 +219,15 @@ $purple: #0556B6;
                     margin-bottom: 47px;
 
                     &-bar {
-                        height: 28px;
+                        height: 35px;
                     }
 
                     .v-tabs-slider {
-                        border-radius: 14px;
+                        border-radius: 20px;
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
                     padding: 0 17px;
 
@@ -256,7 +261,7 @@ $purple: #0556B6;
                     width: 100%;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
