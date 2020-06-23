@@ -182,11 +182,11 @@ export default {
         }
 
         @media (max-width: 1200px) {
-            grid-column: span 6;
+            grid-column: span 3;
         }
 
         @media (max-width: 768px) {
-            grid-column: span 12;
+            grid-column: span 6;
         }
     }
 </style>
