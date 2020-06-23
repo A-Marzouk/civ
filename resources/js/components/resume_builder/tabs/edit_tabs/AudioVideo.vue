@@ -68,7 +68,15 @@
                 </v-row>
               </v-form>
               <v-row align="center" dense>
-                <v-col xl="8" :lg="windowWidth<1440?'9':'7'" md="9" sm="12" cols="12">
+                <v-col
+                  xl="7"
+                  :lg="windowWidth<1440?'9':'7'"
+                  md="9"
+                  sm="12"
+                  cols="12"
+                  v-show="audioTab==0"
+                >
+                  <!-- audio card -->
                   <v-card class="card-holder pa-2 mb-3 mt-3">
                     <v-row justify="center">
                       <v-col
@@ -102,7 +110,7 @@
                         cols="7"
                         class="mt-n4 hidden-xs-only"
                       >
-                        <audio controls class="audio-controller">
+                        <audio controls class="audio-controller ml-xl-n4">
                           <source src="https://www.computerhope.com/jargon/m/example.mp3" />
                         </audio>
                       </v-col>
@@ -126,12 +134,56 @@
                         </v-btn>
                       </v-col>
                       <v-col cols="12" class="hidden-sm-and-up" align="center">
-                        <audio controls class="audio-controller">
+                        <audio controls class="audio-controller" v-show="audioTab==0">
                           <source src="https://www.computerhope.com/jargon/m/example.mp3" />
                         </audio>
                       </v-col>
                     </v-row>
                   </v-card>
+                  <!-- audio card -->
+                </v-col>
+                <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-show="audioTab==1">
+                  <!-- Video Card -->
+                  <v-card class="card-holder pa-2 mb-3 mt-3" v-show="audioTab==1" height="auto">
+                    <v-row justify="center">
+                      <v-col
+                        xl="5"
+                        lg="5"
+                        md="5"
+                        sm="5"
+                        cols="5"
+                        class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
+                        align="left"
+                      >
+                        <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
+                          <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                        </v-btn>
+                      </v-col>
+
+                      <v-col xl="7" lg="7" md="7" sm="7" cols="7" align="right" class="action-col">
+                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
+                          <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
+                        </v-btn>
+                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
+                          <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
+                        </v-btn>
+                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
+                          <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
+                        </v-btn>
+                      </v-col>
+                      <v-col cols="12" class align="center">
+                        <v-card flat color="transparent" tile class="pa-2">
+                          <video width="auto" height="auto" controls>
+                            <source
+                              src="https://www.videezy.com/download/17942?download_auth_hash=cdb7c1b1&pro=false"
+                              type="video/mp4"
+                            />
+                          </video>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-card>
+                  <!-- Video Card -->
                 </v-col>
               </v-row>
             </v-container>
@@ -333,6 +385,42 @@ $mainBlue: #001ce2;
         margin-left: 0px;
       }
     }
+    .card-holder-video {
+      box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+      height: auto;
+      width: 523px;
+      @media screen and (max-width: 1903px) {
+        width: auto;
+      }
+      @media screen and (max-width: 599px) {
+        height: auto;
+        width: auto;
+      }
+      .btn-v_bar {
+        min-width: 30px !important;
+        min-height: 28px !important;
+        width: 30px !important;
+        height: 28px !important;
+        margin-left: 2px;
+        @media screen and (min-width: 1264px) and (max-width: 1903px) {
+          margin-left: 0px;
+        }
+        @media screen and (max-width: 1263px) {
+          margin-top: 4px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 767px) {
+          margin-left: -4px;
+        }
+        @media screen and (max-width: 599px) {
+          min-width: 24px !important;
+          min-height: 24px !important;
+          width: 24px !important;
+          height: 30x !important;
+          margin-top: 2px;
+          margin-left: 0px;
+        }
+      }
+    }
     .vertical-line {
       border-left: 1px solid #e6e8fc;
       height: 50px;
@@ -340,7 +428,7 @@ $mainBlue: #001ce2;
         margin-left: -7px;
       }
     }
-    
+
     .seekbar {
       border-radius: 10px !important;
     }
@@ -358,7 +446,7 @@ $mainBlue: #001ce2;
       }
     }
     .audio-controller {
-        height: 40px !important;
+      height: 40px !important;
     }
   }
 }
