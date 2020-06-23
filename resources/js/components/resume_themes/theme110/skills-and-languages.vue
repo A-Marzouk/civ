@@ -156,8 +156,6 @@ $mainColor: #492163;
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 50px 90px;
-        width: 100%;
-        padding: 0 20px;
 
         .skill {
             max-width: 310px;

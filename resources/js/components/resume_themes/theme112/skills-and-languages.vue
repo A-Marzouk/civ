@@ -145,8 +145,6 @@ export default {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 50px 90px;
-        width: 100%;
-        padding: 0 20px;
         margin: 0;
 
         .skill {

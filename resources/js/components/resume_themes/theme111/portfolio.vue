@@ -57,7 +57,7 @@ export default {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-gap: 51px;
-        padding: 0 100px !important;
+        padding: 0 50px !important;
             
         .portfolio-item {
             grid-column: span 4;
@@ -145,7 +145,7 @@ export default {
         }
 
         @media (max-width: 1200px) {
-            padding: 0 70px !important;
+            padding: 0 50px !important;
         }
 
         @media (max-width: 970px) {
