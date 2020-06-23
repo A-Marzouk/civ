@@ -156,6 +156,7 @@ $purple: #24325D;
             height: 100%;
             background-image: url("/images/resume_themes/theme109/bg-body.png");
             background-repeat: repeat;
+            background-size: auto 100%;
             opacity: 0.02;
         }
 

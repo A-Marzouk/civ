@@ -238,9 +238,7 @@ $purple: #0556B6;
                         border-radius: 22px;
                     }
 
-                    .v-item-group {
-                        padding: 0 30px 0 50px;
-                    }
+                    
                 }
             }
 

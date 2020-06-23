@@ -1,5 +1,6 @@
 <template>
 <div class="container">
+    <img class="decoImg" src="/images/resume_themes/theme110/education-decoImg.png" alt="decoImg">
     <div class="education-flex">
         <div class="education-item">
             <div class="education-header">
@@ -82,18 +83,21 @@ $lineColor: #D3D6E4;
 $mainColor: #492163;
 
 .container {
+    .decoImg {
+        position: absolute;
+        bottom: 0;
+        right: calc(-162px/2);
+        
+        @media (max-width: 1100px) {
+            width: 120px;
+            right: -60px;
+        }
 
-    background-image: url('/images/resume_themes/theme110/education-decoImg.png');
-    background-position: 106% 100%;
-    background-repeat: no-repeat;
-
-    @media (max-width: 1100px) {
-        background-size: 120px auto;
+        @media (max-width: 700px) {
+            display: none;
+        }
     }
 
-    @media (max-width: 700px) {
-        background-image: none;
-    }
 }
 
 

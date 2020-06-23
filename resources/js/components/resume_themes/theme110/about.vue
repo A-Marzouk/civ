@@ -108,7 +108,7 @@ export default {
 
             .about-deco {
                 width: 120px;
-                bottom: 30px;
+                bottom: 0;
                 left: 10px
             }
         }

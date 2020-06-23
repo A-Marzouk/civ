@@ -141,15 +141,19 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
     }
 
     .theme-body {
         height: 100%;
         background: white;
         border-radius: 80px 80px 0 0;
+        flex: 1;
         position: relative;
         width: 100%;
-        height: 100%;
         padding-bottom: 100px;
 
         .wrapper {
@@ -198,8 +202,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                     
                     @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 0;
+                        padding: 12px 22px;
                     }
 
                     @media (max-width: 768px) {
@@ -264,9 +267,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         width: 15px;
                     }
 
-                    .v-item-group {
-                        padding: 0 30px 0 50px;
-                    }
+                    
                 }
             }
 
