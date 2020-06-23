@@ -137,6 +137,9 @@ $purple: #335E5E;
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
+        flex-direction: column;
     }
 
     .theme-body {
@@ -145,6 +148,7 @@ $purple: #335E5E;
         border-radius: 100px 100px 0 0;
         border-top: 16px solid $purple;
         position: relative;
+        flex: 1;
         width: 100%;
         height: 100%;
         padding-bottom: 100px;
@@ -225,7 +229,7 @@ $purple: #335E5E;
                     }
                     
                     @media (max-width: 1200px) {
-                        font-size: 11px;
+                        font-size: 16px;
                         padding: 12px 22px;
                     }
 

@@ -128,12 +128,11 @@ $purple: #335E5E;
                     align-items: center;
 
                     .action-btn {
-                    width: 220px;
-                    height: 68px;
+                        width: 220px;
+                        height: 68px;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        padding: 22px 36px;
                         font-size: 18px;
                         font-weight: 400;
                         background: #fff;
@@ -157,13 +156,13 @@ $purple: #335E5E;
                         }
                         
                         @media (max-width: 1200px) {
-                            width: 115px;
-                            height: 35px;
+                            width: 133px;
+                            height: 42px;
                             padding: 0;
                             font-size: 10px;
 
                             .icon {
-                                height: 10px;
+                                height: 14px;
                             }
                         }
                     }
@@ -259,7 +258,8 @@ $purple: #335E5E;
                         justify-content: center;
                         align-items: center;
                         background: $purple;
-                        padding: 23px 62px;
+                        width: 220px;
+                        height: 68px;
                         font-size: 18px;
                         font-weight: 700;
                         color: white;
@@ -270,9 +270,7 @@ $purple: #335E5E;
                         }
 
                         @media (max-width: 1400px) {
-                            font-size: 16px;
-                            
-                            
+                            font-size: 16px;                            
 
                             .icon {
                                 height: 20px;
@@ -281,7 +279,8 @@ $purple: #335E5E;
                         
                         @media (max-width: 1200px) {
                             font-size: 11px;
-                            padding: 14px 40px;
+                            width: 133px;
+                            height: 42px;
 
                             .icon {
                                 height: 12px;
@@ -309,10 +308,6 @@ $purple: #335E5E;
                         justify-content: space-between;
                         width: 100%;
                     }
-                }
-
-                @media (max-width: 1200px) {
-                    margin-top: 27px;
                 }
 
                 @media (max-width: 768px) {

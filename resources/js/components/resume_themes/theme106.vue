@@ -209,7 +209,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     @media (max-width: 768px) {
                         font-size: 15px;
                         padding: 13px 0;
-justify-content: flex-start;
+                        justify-content: flex-start;
                         margin-right: 27px;
 
                         &:last-child {
