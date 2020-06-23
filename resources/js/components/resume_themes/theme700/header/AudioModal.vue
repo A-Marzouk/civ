@@ -152,8 +152,6 @@ export default {
 
 		update() {
 			this.current.time = parseInt(this.player.currentTime);
-
-			console.log("update: ", this.current.time);
 		},
 
 		open() {
