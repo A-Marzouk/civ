@@ -171,7 +171,7 @@ $purple: #355E5E;
                     }
                     
                     @media (max-width: 768px) {
-                        padding: 0;
+                        padding: 0 20px;
                         font-size: 15px;
                         margin-right: 27px;
 
@@ -196,15 +196,15 @@ $purple: #355E5E;
                     margin-bottom: 47px;
 
                     &-bar {
-                        height: 28px;
+                        height: 36px;
                     }
 
                     .v-tabs-slider {
-                        border-radius: 14px;
+                        border-radius: 25px;
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
                     padding: 0 17px;
 
@@ -234,7 +234,7 @@ $purple: #355E5E;
                     width: 100%;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
@@ -277,7 +277,7 @@ $purple: #355E5E;
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
             display: none;
         }
     }

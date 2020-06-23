@@ -90,7 +90,7 @@ $purple: #686299;
                     position: absolute;
                     left: -88px;
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         width: 30%;
                     }
                 }
@@ -100,7 +100,7 @@ $purple: #686299;
                     top: -44px;
                     right: 40%;
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         width: 30%;
                     }
                 }
@@ -110,7 +110,7 @@ $purple: #686299;
                     top: -21.7px;
                     right: 39%;
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         width: 30%;
                     }
                 }
@@ -120,7 +120,7 @@ $purple: #686299;
                     top: -63.5px;
                     right: -29.7px;
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         width: 30%;
                     }
                 }
@@ -130,7 +130,7 @@ $purple: #686299;
                     bottom: -13px;
                     right: 46%;
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         width: 30%;
                     }
                 }
@@ -144,7 +144,7 @@ $purple: #686299;
                     display: none;
                     position: relative;
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -170,7 +170,7 @@ $purple: #686299;
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     width: 100%;
                 }
             }
@@ -226,7 +226,7 @@ $purple: #686299;
                         }
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         position: absolute;
                         opacity: 1;
                         transform: translateY(0px);
@@ -306,7 +306,7 @@ $purple: #686299;
                             margin-right: 20px;
                         }
                         
-                        @media (max-width: 700px) {
+                        @media (max-width: 768px) {
                             margin-right: 0;
                             align-items: flex-start;
                         }
@@ -346,7 +346,7 @@ $purple: #686299;
                             }
                         }
                         
-                        @media (max-width: 700px) {
+                        @media (max-width: 768px) {
                             font-size: 10px;
                             padding: 14px 24px;
                             min-width: 80px;
@@ -361,7 +361,7 @@ $purple: #686299;
                         margin-top: 27px;
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         margin-top: 0;
                         justify-content: space-between;
                         width: 100%;
@@ -372,7 +372,7 @@ $purple: #686299;
                     margin-top: 27px;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin-top: 0;
                     padding-left: 60px;
                     justify-content: space-between;
@@ -395,7 +395,7 @@ $purple: #686299;
                     padding: 37px 40px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     flex-wrap: wrap;
                     padding: 30px 17px;
                 }
@@ -426,7 +426,7 @@ $purple: #686299;
                         margin-right: 20px;
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         width: 50px;
                         height: 50px;
                         margin-right: 12px;
@@ -512,7 +512,7 @@ $purple: #686299;
                         }
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
 
                         .name {
                             font-size: 12px;

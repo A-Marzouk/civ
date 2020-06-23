@@ -156,7 +156,7 @@ $purple: #335E5E;
                 width: 349px;
             }
             
-            @media (max-width: 700px) {
+            @media (max-width: 768px) {
                 display: none;
             }
 
@@ -256,7 +256,7 @@ $purple: #335E5E;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
                     padding: 0 17px;
 
@@ -274,7 +274,7 @@ $purple: #335E5E;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     padding: 0;
                     padding-bottom: 30px;
                 }

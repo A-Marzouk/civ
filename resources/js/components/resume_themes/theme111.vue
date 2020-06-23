@@ -229,7 +229,7 @@ justify-content: flex-start;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
                     padding: 0 17px;
 
@@ -250,7 +250,7 @@ justify-content: flex-start;
                     width: 100%;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
