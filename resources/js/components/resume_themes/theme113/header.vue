@@ -1,13 +1,5 @@
 <template>
     <div class="theme-header">
-
-        <div class="bg-header">
-            <img class='left-bg' src="/images/resume_themes/theme113/bg-left.png" alt="">
-            <img src="/images/resume_themes/theme113/bg-top1.png" alt="" class="bg-top1">
-            <img src="/images/resume_themes/theme113/bg-top2.png" alt="" class="bg-top2">
-            <img src="/images/resume_themes/theme113/bg-right.png" alt="" class="bg-right">
-        </div>
-
         <div class="user-info">
             <div class="left">
                 <div class="user-img">
@@ -78,64 +70,6 @@ $purple: #686299;
             width: 100%;
             position: relative;
 
-            .bg-header {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                overflow: hidden;
-
-                //TODO: change bg on this theme
-
-                .left-bg {
-                    position: absolute;
-                    left: -88px;
-                    
-                    @media (max-width: 768px) {
-                        width: 30%;
-                    }
-                }
-
-                .bg-top1 {
-                    position: absolute;
-                    top: -44px;
-                    right: 40%;
-                    
-                    @media (max-width: 768px) {
-                        width: 30%;
-                    }
-                }
-                
-                .bg-top2 {
-                    position: absolute;
-                    top: -21.7px;
-                    right: 39%;
-                    
-                    @media (max-width: 768px) {
-                        width: 30%;
-                    }
-                }
-
-                .bg-right {
-                    position: absolute;
-                    top: -63.5px;
-                    right: -29.7px;
-                    
-                    @media (max-width: 768px) {
-                        width: 30%;
-                    }
-                }
-
-                .bg-bottom {
-                    position: absolute;
-                    bottom: -13px;
-                    right: 46%;
-                    
-                    @media (max-width: 768px) {
-                        width: 30%;
-                    }
-                }
-            }
-
             .left {
                 display: flex;
                 position: relative;
@@ -192,7 +126,6 @@ $purple: #686299;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        padding: 22px 36px;
                         font-size: 18px;
                         font-weight: 400;
                         background: #fff;
@@ -216,8 +149,8 @@ $purple: #686299;
                         }
                         
                         @media (max-width: 1200px) {
-                            width: 115px;
-                            height: 35px;
+                            width: 133px;
+                            height: 42px;
                             font-size: 10px;
 
                             .icon {
@@ -317,7 +250,8 @@ $purple: #686299;
                         justify-content: center;
                         align-items: center;
                         background: $purple;
-                        padding: 23px 62px;
+                        width: 220px;
+                        height: 68px;
                         font-size: 18px;
                         font-weight: 700;
                         color: white;
@@ -339,7 +273,8 @@ $purple: #686299;
                         
                         @media (max-width: 1200px) {
                             font-size: 11px;
-                            padding: 14px 40px;
+                            width: 133px;
+                            height: 42px;
 
                             .icon {
                                 height: 12px;

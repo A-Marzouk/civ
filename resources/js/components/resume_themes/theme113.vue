@@ -107,8 +107,12 @@ $purple: #686299;
     width: 100%;
     min-height: 100vh;
     color: $mainColor;
-    background: #FFF7F3;
     position: relative;
+    background-color: #FFF7F3;
+    background-image: url('/images/resume_themes/theme113/mainBg.png');
+    background-size: auto 20%;
+    background-position-y: -70px;
+    background-repeat: no-repeat;
 
     .v-application--wrap {
         overflow: hidden;
@@ -197,11 +201,11 @@ $purple: #686299;
                     margin-bottom: 47px;
 
                     &-bar {
-                        height: 28px;
+                        height: 35px;
                     }
 
                     .v-tabs-slider {
-                        border-radius: 14px;
+                        border-radius: 25px;
                     }
                 }
                 
