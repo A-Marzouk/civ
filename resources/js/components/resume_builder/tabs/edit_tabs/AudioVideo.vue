@@ -68,7 +68,7 @@
                 </v-row>
               </v-form>
               <v-row align="center" dense>
-                <v-col xl="8" :lg="windowWidth<1440?'9':'8'" md="9" sm="12" cols="12">
+                <v-col xl="8" :lg="windowWidth<1440?'9':'7'" md="9" sm="12" cols="12">
                   <v-card class="card-holder pa-2 mb-3 mt-3">
                     <v-row justify="center">
                       <v-col
@@ -95,53 +95,19 @@
                         <div class="vertical-line"></div>
                       </v-col>
                       <v-col
-                        xl="7"
+                        xl="6"
                         lg="7"
                         md="7"
                         :sm="windowWidth<=767?'6':'7'"
                         cols="7"
-                        class="mt-n2 hidden-xs-only"
+                        class="mt-n4 hidden-xs-only"
                       >
-                        <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
-                          <v-row justify="center" align="center" dense class="card-audio-row">
-                            <v-col cols="2" align="right" class="mt-1">
-                              <v-btn icon small>
-                                <img
-                                  src="/images/new_resume_builder/icons/main/play.svg"
-                                  alt="play_button"
-                                  class="btn-play mt-n1"
-                                  width="20"
-                                  height="20"
-                                />
-                              </v-btn>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <span class="audio-duration">0.00/0.15</span>
-                              </v-card>
-                            </v-col>
-                            <v-col cols="4" class="mt-1">
-                              <v-progress-linear color background-color="#C4C9F5" class="seekbar"></v-progress-linear>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <v-btn icon small>
-                                  <img
-                                    src="/images/new_resume_builder/icons/main/volume-1.svg"
-                                    alt="play_button"
-                                    class="btn-volume"
-                                  />
-                                </v-btn>
-                                <v-btn icon small class>
-                                  <v-icon>mdi-dots-vertical</v-icon>
-                                </v-btn>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-card>
+                        <audio controls class="audio-controller">
+                          <source src="https://www.computerhope.com/jargon/m/example.mp3" />
+                        </audio>
                       </v-col>
                       <v-col
-                        xl="3"
+                        xl="4"
                         lg="3"
                         md="3"
                         :sm="windowWidth<=767?'4':'3'"
@@ -159,41 +125,10 @@
                           <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                         </v-btn>
                       </v-col>
-                      <v-col cols="12" class="hidden-sm-and-up">
-                        <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
-                          <v-row justify="center" align="center" dense class="card-audio-row">
-                            <v-col cols="2" align="right" class="mt-1">
-                              <v-btn icon small class="btn-play">
-                                <img
-                                  src="/images/new_resume_builder/icons/main/play.svg"
-                                  alt="play_button"
-                                  class="btn-play mt-n1"
-                                />
-                              </v-btn>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <span class="audio-duration ml-n1">0.00/0.15</span>
-                              </v-card>
-                            </v-col>
-                            <v-col cols="4" class="mt-1">
-                              <v-progress-linear color background-color="#C4C9F5" class="seekbar"></v-progress-linear>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <v-btn icon small class="btn-volume">
-                                  <img
-                                    src="/images/new_resume_builder/icons/main/volume-1.svg"
-                                    alt="play_button"
-                                  />
-                                </v-btn>
-                                <v-btn icon small class="btn-small-v_bar ml-n2">
-                                  <v-icon>mdi-dots-vertical</v-icon>
-                                </v-btn>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-card>
+                      <v-col cols="12" class="hidden-sm-and-up" align="center">
+                        <audio controls class="audio-controller">
+                          <source src="https://www.computerhope.com/jargon/m/example.mp3" />
+                        </audio>
                       </v-col>
                     </v-row>
                   </v-card>
@@ -433,56 +368,8 @@ $mainBlue: #001ce2;
         margin-top: 0px;
       }
     }
-    .card-audio-controller {
-      border-radius: 100px;
-      min-width: 257px !important;
-      margin-top: -7px;
-      @media screen and (min-width: 600px) and (max-width: 767px) {
-        margin-left: -37px;
-      }
-      @media screen and(max-width: 599px) {
-        margin-top: 0px;
-        min-width: auto !important;
-      }
-      .card-audio-row {
-        @media screen and (min-width: 600px) and (max-width: 767px) {
-          margin-left: -11px;
-        }
-      }
-      .audio-duration {
-        font-family: "Noto Sans" !important;
-        font-weight: 500;
-        font-size: 14px !important;
-        line-height: 14px;
-        color: #888db1 !important;
-        @media screen and (max-width: 599px) {
-          font-size: 12px !important;
-        }
-        @media screen and (max-width: 376px) {
-          font-size: 10px !important;
-        }
-      }
-      .btn-play {
-        width: 20px;
-        height: 20px;
-        @media screen and (max-width: 599px) {
-          width: 14px;
-          height: 14px;
-        }
-      }
-      .btn-volume {
-        @media screen and (max-width: 391px) {
-          margin-left: -6px;
-        }
-      }
-      .btn-small-v_bar {
-        @media screen and(max-width: 411px) {
-          margin-left: -12px !important;
-        }
-        @media screen and(max-width: 370px) {
-          margin-left: -14px !important;
-        }
-      }
+    .audio-controller {
+        height: 40px !important;
     }
   }
 }
@@ -506,22 +393,21 @@ $mainBlue: #001ce2;
 }
 .dropzone-custom-content {
   margin-left: -18%;
-  @media screen and (min-width: 1366px) and (max-width: 1903px){
+  @media screen and (min-width: 1366px) and (max-width: 1903px) {
     margin-left: -15%;
   }
-  @media screen and (min-width: 1264px) and (max-width: 1365px){
+  @media screen and (min-width: 1264px) and (max-width: 1365px) {
     margin-left: -13%;
   }
-  @media screen and (min-width: 960px) and (max-width: 1263px){
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     margin-left: -22%;
   }
-  @media screen and (min-width: 600px) and (max-width: 767px){
+  @media screen and (min-width: 600px) and (max-width: 767px) {
     margin-left: -8%;
   }
-  @media screen and (min-width: 394px) and (max-width: 599px){
+  @media screen and (min-width: 394px) and (max-width: 599px) {
     margin-left: -21% !important;
   }
-  
 }
 .dropzone.dz-clickable {
   border: 2px solid #c4c9f5 !important;
