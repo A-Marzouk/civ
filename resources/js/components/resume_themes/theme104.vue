@@ -187,8 +187,7 @@ $purple: #FB423A;
                     }
                     
                     @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 12px 22px;
+                        padding: 12px 30px;
                     }
 
                     @media (max-width: 768px) {
@@ -217,7 +216,7 @@ $purple: #FB423A;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
                     padding: 0 17px;
 
@@ -239,7 +238,7 @@ $purple: #FB423A;
                     width: 100%;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
