@@ -109,6 +109,7 @@ $purple: #355E5E;
     color: $mainColor;
     background: #ECEDF4;
     position: relative;
+    background-image: url("/images/resume_themes/theme105/bg-header.png");
 
     .v-application--wrap {
         overflow: hidden;
