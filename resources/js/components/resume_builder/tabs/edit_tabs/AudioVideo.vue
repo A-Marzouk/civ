@@ -106,7 +106,8 @@
                           md="7"
                           :sm="windowWidth<=767?'6':'7'"
                           cols="7"
-                          class="mt-n4 hidden-xs-only"
+                          class="hidden-xs-only"
+                          style="margin-top:-15px;"
                         >
                           <audio controls class="audio-controller ml-xl-n4">
                             <source :src="media.url" />

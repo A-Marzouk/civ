@@ -13,7 +13,7 @@
 		<div class="links-content resume-builder__scroll" v-if="links">
 
 			<div class="link-inputs-row">
-				<v-select class="resume-builder__input civie-select icon-prepended" outlined placeholder="Site" :items="getCurrentCategories()" label="Site" color="#001CE2" v-model="editedLink.link_title">
+				<v-select class="resume-builder__input civie-select icon-prepended" outlined hint="Select platform" persistent-hint :items="getCurrentCategories()" label="Site" color="#001CE2" v-model="editedLink.link_title">
 					<button class="dropdown-icon icon" slot="append">
 						<svg-vue :icon="`dropdown-caret`"></svg-vue>
 					</button>
@@ -27,13 +27,15 @@
 				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" placeholder="https://github.com/john-doe" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" v-model="editedLink.link">
 				</v-text-field>
 
-				<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
-					{{editedLink.id !== '' ? 'Update' : 'Add New'}}
-				</v-btn>
+				<div class="d-flex mt-2">
+					<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
+						{{editedLink.id !== '' ? 'Update' : 'Add New'}}
+					</v-btn>
 
-				<v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearLink" v-show="editedLink.id !== '' ">
-					Cancel
-				</v-btn>
+					<v-btn class="resume-builder__btn civie-btn ml-3" raised @click="clearLink" v-show="editedLink.id !== '' ">
+						Cancel
+					</v-btn>
+				</div>
 
 			</div>
 
@@ -260,6 +262,11 @@ export default {
 $mainBlue: #001ce2;
 
 #linksSection {
+
+	@include lt-sm{
+		margin: 3%;
+	}
+
 	.links-content {
 		height: 323px;
 		background: #fff;
@@ -280,6 +287,7 @@ $mainBlue: #001ce2;
 
 	.link-inputs-row {
 		display: grid;
+		align-items: center;
 		grid-auto-rows: 78px;
 		grid-template-columns: minmax(0px, 210px) minmax(0, 350px) auto;
 		grid-gap: 30px;
@@ -295,7 +303,7 @@ $mainBlue: #001ce2;
 
 			.input-prepended-icon {
 				position: absolute;
-				top: 41px;
+				top: 39px;
 				left: 5px;
 
 				img {
@@ -315,11 +323,19 @@ $mainBlue: #001ce2;
 		}
 
 		@include lt-md {
-			margin-bottom: 5px;
+			display: flex;
+			align-items:center;
+			flex-wrap: wrap;
+			margin-bottom: 25px;
+			.civie-select {
+				margin-right: 30px;
+			}
 
-			.civie-btn {
-				grid-row: 2 / 3;
-				align-self: start;
+			.civie-input {
+				margin-right: 30px;
+			}
+			.civie-btn{
+				margin-top: 5px;
 			}
 		}
 
@@ -335,6 +351,7 @@ $mainBlue: #001ce2;
 				width: 100%;
 				grid-column: span 3;
 				grid-row: 2 / 3;
+				margin-top: 15px;
 			} 
 			
 			.civie-btn {
