@@ -194,9 +194,9 @@
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                                 </v-btn>
                               </v-col>
-                              <v-col cols="12" class="mt-n7">
+                              <v-col cols="12" class="mt-n4">
                                 <v-row align="center">
-                                  <v-col cols="12">
+                                  <v-col cols="12" class="mb-1">
                                     <div class="skill-title">{{skill.title}}</div>
                                   </v-col>
                                   <v-col cols="9" class="mt-n5">
@@ -210,7 +210,7 @@
                                     ></v-progress-linear>
                                   </v-col>
                                   <v-col cols="3" class="mt-n5">
-                                    <div class="skill-title">{{skill.percentage}}%</div>
+                                    <div class="skill-title mt-n1">{{skill.percentage}}%</div>
                                   </v-col>
                                 </v-row>
                               </v-col>
@@ -442,10 +442,10 @@ civie-input {
       min-width: 400px !important;
     }
     @media screen and (min-width: 600px) and (max-width: 767px) {
-      height: 95px !important;
+      min-height: 95px !important;
     }
     @media screen and (max-width: 599px) {
-      height: 95px !important;
+      min-height: 110px !important;
     }
     .btn-v_bar {
       min-width: 30px !important;
