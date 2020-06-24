@@ -64,7 +64,7 @@
                     @click="addSkill"
                   >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
                   <v-btn
-                    class="resume-builder__btn civie-btn mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
+                    class="resume-builder__btn civie-btn btn-add-new ml-3 mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
                     @click="cancelEdit"
                     v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>
@@ -122,11 +122,11 @@
                                   @click="toggleVisibility(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img
-                                    :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`"
-                                    alt
-                                    class="eye-icon"
-                                  />
+                                  <svg-vue
+                                    icon="eye-icon"
+                                    :class="{'visible' : !skill.is_public}"
+                                    class="icon"
+                                  ></svg-vue>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -134,10 +134,7 @@
                                   @click="editSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img
-                                    src="/images/new_resume_builder/icons/main/edit-skill.svg"
-                                    alt
-                                  />
+                                  <svg-vue icon="edit-icon" class="icon"></svg-vue>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -145,7 +142,7 @@
                                   @click="deleteSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
+                                  <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                                 </v-btn>
                               </v-col>
                             </v-row>
@@ -194,9 +191,9 @@
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                                 </v-btn>
                               </v-col>
-                              <v-col cols="12" class="mt-n7">
+                              <v-col cols="12" class="mt-n4">
                                 <v-row align="center">
-                                  <v-col cols="12">
+                                  <v-col cols="12" class="mb-1">
                                     <div class="skill-title">{{skill.title}}</div>
                                   </v-col>
                                   <v-col cols="9" class="mt-n5">
@@ -210,7 +207,7 @@
                                     ></v-progress-linear>
                                   </v-col>
                                   <v-col cols="3" class="mt-n5">
-                                    <div class="skill-title">{{skill.percentage}}%</div>
+                                    <div class="skill-title mt-n1">{{skill.percentage}}%</div>
                                   </v-col>
                                 </v-row>
                               </v-col>
@@ -435,6 +432,7 @@ civie-input {
       font-size: 15px !important;
     }
   }
+
   .card-skill {
     border-radius: 10px !important;
     height: 76px !important;
@@ -442,10 +440,10 @@ civie-input {
       min-width: 400px !important;
     }
     @media screen and (min-width: 600px) and (max-width: 767px) {
-      height: 95px !important;
+      min-height: 95px !important;
     }
     @media screen and (max-width: 599px) {
-      height: 95px !important;
+      min-height: 110px !important;
     }
     .btn-v_bar {
       min-width: 30px !important;
