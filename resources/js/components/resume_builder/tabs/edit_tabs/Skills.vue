@@ -122,11 +122,11 @@
                                   @click="toggleVisibility(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img
-                                    :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`"
-                                    alt
-                                    class="eye-icon"
-                                  />
+                                  <svg-vue
+                                    icon="eye-icon"
+                                    :class="{'visible' : !skill.is_public}"
+                                    class="icon"
+                                  ></svg-vue>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -134,10 +134,7 @@
                                   @click="editSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img
-                                    src="/images/new_resume_builder/icons/main/edit-skill.svg"
-                                    alt
-                                  />
+                                  <svg-vue icon="edit-icon" class="icon"></svg-vue>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -145,7 +142,7 @@
                                   @click="deleteSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
+                                  <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                                 </v-btn>
                               </v-col>
                             </v-row>
@@ -435,7 +432,7 @@ civie-input {
       font-size: 15px !important;
     }
   }
-  
+
   .card-skill {
     border-radius: 10px !important;
     height: 76px !important;
