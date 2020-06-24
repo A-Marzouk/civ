@@ -105,9 +105,14 @@ $purple: #686299;
 #theme113 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
-    background: #FFF7F3;
     position: relative;
+    background-color: #FFF7F3;
+    background-image: url('/images/resume_themes/theme113/mainBg.png');
+    background-size: auto 20%;
+    background-position-y: -70px;
+    background-repeat: no-repeat;
 
     .v-application--wrap {
         overflow: hidden;
@@ -137,11 +142,17 @@ $purple: #686299;
                 overflow: 0 auto;
                 width: 95%;
                 margin: 0 auto;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
                 .v-slide-group__prev {
                     display: none;
+                }
+
+                &-bar {
+                    background: none;
                 }
                 
                 .v-tab {
@@ -161,17 +172,12 @@ $purple: #686299;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
-                    }
-                    
-                    @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 0 22px;
+                        padding: 12px 34px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
+                        padding: 0;
                         font-size: 15px;
-                        padding: 0 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -195,16 +201,17 @@ $purple: #686299;
                     margin-bottom: 47px;
 
                     &-bar {
-                        height: 28px;
+                        height: 35px;
                     }
 
                     .v-tabs-slider {
-                        border-radius: 14px;
+                        border-radius: 25px;
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
                     &-bar {
                         height: 36px;
@@ -214,9 +221,7 @@ $purple: #686299;
                         border-radius: 22px;
                     }
 
-                    .v-item-group {
-                        padding: 0 30px 0 50px;
-                    }
+                    
                 }
             }
 
@@ -230,10 +235,14 @@ $purple: #686299;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 876px) {
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                    width: 100%;
                 }
             }
         }
@@ -273,7 +282,7 @@ $purple: #686299;
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
             display: none;
         }
     }

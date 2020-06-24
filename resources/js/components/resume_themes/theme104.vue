@@ -125,6 +125,7 @@ $purple: #FB423A;
 #theme104 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background: white;
     position: relative;
@@ -153,10 +154,16 @@ $purple: #FB423A;
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $mainColor;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
                 overflow: 0 auto;
                 width: 95%;
+
+                .v-slide-group__prev {
+                    display: none;
+                }
                 
                 .v-tab {
                     padding: 12px 40px;
@@ -176,15 +183,14 @@ $purple: #FB423A;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 12px 22px;
+                        padding: 12px 30px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
                         padding: 13px 17px;
                         margin-right: 27px;
@@ -210,12 +216,11 @@ $purple: #FB423A;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    
                 }
             }
 
@@ -229,10 +234,14 @@ $purple: #FB423A;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 876px) {
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                    width: 100%;
                 }
             }
         }

@@ -53,8 +53,8 @@ export default {
         margin-top: 34px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 240px;
-        grid-auto-rows: 240px;
+        grid-template-rows: 140px;
+        grid-auto-rows: 140px;
         grid-gap: 100px;
         max-width: 1400px !important;
         width: 85%;
@@ -90,7 +90,7 @@ export default {
         }
 
         @media (max-width: 1200px) {
-            grid-gap: 60px;
+            grid-gap: 0 60px;
 
             .skill {
                 img {
@@ -110,8 +110,9 @@ export default {
             }
         }
 
-        @media (max-width: 700px) {
-            grid-gap: 30px;
+        @media (max-width: 768px) {
+            grid-gap: 0 30px;
+            margin-top: 60px;
             width: 100%;
 
             .skill {
