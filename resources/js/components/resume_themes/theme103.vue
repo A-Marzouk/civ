@@ -133,7 +133,7 @@ $purple: #0556B6;
     position: relative;
     background-image: url("/images/resume_themes/theme103/bg-header.png");
     background-repeat: repeat-y;
-    background-size: auto 100%;
+    background-size: 100% auto;
 
     .v-application--wrap {
         overflow: hidden;
