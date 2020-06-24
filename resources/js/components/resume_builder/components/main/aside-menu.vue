@@ -164,6 +164,7 @@ $disabledColor: #9f9e9e;
 
 	a {
 		padding: 13px 0;
+justify-content: flex-start;
 		color: $disabledColor;
 		transition: all 1s ease;
 		display: block;
