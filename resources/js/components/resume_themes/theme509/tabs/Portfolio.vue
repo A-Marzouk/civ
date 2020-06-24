@@ -50,7 +50,6 @@ export default {
 
 <style >
 .theme--light.v-application {
-  background: transparent;
   color: rgba(0, 0, 0, 0.87);
 }
 .navblade {

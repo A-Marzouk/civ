@@ -109,10 +109,7 @@ ul li {
   width: 0px;
 }
 
-.theme--light.v-application {
-  background: transparent;
-  color: rgba(0, 0, 0, 0.87);
-}
+
 .textcol {
   color: #104efb !important;
 }

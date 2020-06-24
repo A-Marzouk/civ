@@ -170,6 +170,10 @@ import SchoolView from './education_tabs/school'
 @import '../../../../../sass/media-queries';
 $mainBlue: #001CE2;
     .data-container {
+        @include lt-sm{
+            margin: 3%;
+        }
+
         padding: 0;
         margin-bottom:30px;
 

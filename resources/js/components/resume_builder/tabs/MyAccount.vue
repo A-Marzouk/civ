@@ -551,6 +551,11 @@ $placeholder-color: #9ba1ad;
 
 .my-account-tab-wrapper {
   padding:50px 100px;
+
+  @include lt-sm{
+    padding:50px 30px;
+  }
+
   .profile-pic-row-holder {
     height: 110px;
     width: 25%;
