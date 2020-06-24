@@ -47,6 +47,7 @@
                                                     color="#001CE2"
                                                     v-model="currentPayment.currency"
                                                     outlined
+                                                    class="mt-1"
                                             >
                                                 <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                     <svg-vue :icon="`dropdown-caret`"></svg-vue>
