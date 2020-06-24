@@ -1,6 +1,6 @@
 <template>
 	<div class="audio-media">
-		<a class="open-audio-media" href="#" @click.prevent="isOpen=true">
+		<a class="open-audio-media" href="#" @click.prevent="open">
 			<img src="/images/resume_themes/theme2/sound.svg" alt="sound icon">
 		</a>
 
@@ -9,7 +9,7 @@
 				<div class="audio-modal-header">
 					<h2 class="audio-modal-title">My Audio</h2>
 
-					<a class="close-audio-media" href="#" @click.prevent="isOpen=false">
+					<a class="close-audio-media" href="#" @click.prevent="close">
 						<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M18 0C8.07497 0 0 8.07497 0 18C0 27.925 8.07497 36 18 36C27.925 36 36 27.925 36 18C36 8.07497 27.925 0 18 0ZM18 34.5C8.90184 34.5 1.49998 27.0982 1.49998 18C1.49998 8.90184 8.90184 1.49998 18 1.49998C27.0982 1.49998 34.5 8.90184 34.5 18C34.5 27.0982 27.0982 34.5 18 34.5Z" fill="#4D75E8" />
 							<path d="M25.2803 10.7207C24.9873 10.4277 24.5127 10.4277 24.2197 10.7207L18 16.9405L11.7803 10.7208C11.4873 10.4278 11.0127 10.4278 10.7197 10.7208C10.4268 11.0138 10.4268 11.4884 10.7197 11.7813L16.9394 18.001L10.7197 24.2207C10.4268 24.5137 10.4268 24.9883 10.7197 25.2812C10.8662 25.4277 11.0582 25.501 11.25 25.501C11.4419 25.501 11.6338 25.4277 11.7803 25.2812L18 19.0615L24.2197 25.2812C24.3661 25.4277 24.5581 25.501 24.75 25.501C24.9419 25.501 25.1337 25.4277 25.2803 25.2812C25.5733 24.9882 25.5733 24.5136 25.2803 24.2207L19.0605 18.001L25.2802 11.7813C25.5732 11.4883 25.5732 11.0137 25.2803 10.7207Z" fill="#4D75E8" />
@@ -173,7 +173,7 @@ export default {
 		},
 
 		open() {
-			this.dialog = true;
+			this.isOpen = true;
 		},
 
 		close() {
@@ -184,7 +184,7 @@ export default {
 				duration: 0,
 				time: 0
 			};
-			this.dialog = false;
+			this.isOpen = false;
 		},
 
 		formatDuration(durationSeconds) {
