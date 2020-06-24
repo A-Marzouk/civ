@@ -352,6 +352,10 @@
     }
 
     #worksSection {
+        @include lt-sm{
+            margin: 2%;
+            width: 95%;
+        }
         .links-content {
             height: 678px;
             background: #fff;
@@ -365,7 +369,6 @@
 
             @include lt-sm{
                 padding: 12px;
-                margin: 0 12px;
             }
         }
 
@@ -515,6 +518,11 @@
                 .right{
                     .civie-textarea{
                         min-width: 300px;
+                    }
+
+                    @include lt-xl{
+                        width: 100%;
+                        max-width: 630px;
                     }
 
                     @include lt-md{
