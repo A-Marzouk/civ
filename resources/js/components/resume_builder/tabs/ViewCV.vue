@@ -3,13 +3,28 @@
     <v-container style="width:100%;" fluid>
       <v-row>
         <!-- side menu -->
-        <v-col xl="3">
+        <v-col xl="3" lg="3" md="3" sm="3" cols="3">
           <v-navigation-drawer permanent width="400">
             <v-card flat color="transparent" class="pa-5">
-              <v-text-field hide-details="true" outlined id="searchField">
-                <template slot="append">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :rules="rules"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label="Name"
+                height="55"
+                style="border-radius:5px !important;"
+              >
+                <button
+                  class="eye-icon trigger-icon icon"
+                  :class="{'icon--disabled': disabledInput}"
+                  slot="append"
+                  @click="toggleInput"
+                >
                   <svg-vue :icon="`eye-icon`"></svg-vue>
-                </template>
+                </button>
               </v-text-field>
             </v-card>
             <v-card color="transparent" flat tile class="ml-2">
@@ -39,9 +54,9 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9">
-          <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-5">
-            <v-card-title class="themes-wrapper-title">Choose the CV template you love</v-card-title>
+        <v-col xl="9" lg="9" md="9" sm="9" cols="9">
+          <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
+            <v-card-subtitle class="themes-wrapper-title">Choose the CV template you love</v-card-subtitle>
             <v-row align="center">
               <v-col md="4" sm="6" cols="12" v-for="i in 12" :key="i">
                 <v-card flat color="transparent" tile class="card-theme-wrapper">
@@ -50,6 +65,7 @@
               </v-col>
             </v-row>
           </v-card>
+          <v-card flat tile color="transparent"></v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -252,19 +268,19 @@ $mainBlue: #001ce2;
     justify-content: center;
     justify-items: center;
   }
-  .card-themes-wrapper {
-    .themes-wrapper-title {
-      font-family: "Noto Sans" !important;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 40px;
-      line-height: 54px;
-      color: #001ce2 !important;
-    }
-    .card-theme-wrapper {
-      width: 417px;
-      height: 302.56px;
-    }
+}
+.card-themes-wrapper {
+  .themes-wrapper-title {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 54px;
+    color: #001ce2 !important;
+  }
+  .card-theme-wrapper {
+    width: 417px;
+    height: 302.56px;
   }
 }
 
@@ -286,15 +302,5 @@ $mainBlue: #001ce2;
 #resumeBuilder .v-tabs-slider {
   background: #001ce2 !important;
   border-radius: 10px 0px 0px 10px !important;
-}
-#resumeBuilder
-  #searchField
-  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-  > .v-input__control
-  > .v-input__slot
-  fieldset {
-  border: 2px solid #e6e8fc !important;
-  border-radius: 5px !important;
-  height: 55px !important;
 }
 </style>
