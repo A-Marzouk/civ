@@ -59,9 +59,6 @@
                                     {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
                                 </div>
                             </div>
-                            <div class="date-text">
-
-                            </div>
                             <div class="date-input">
                                 <label for="dateTo" class="light d-flex align-items-center">
                                     <input type="checkbox" class="checkbox" v-model="newWork.present"> Present
@@ -96,7 +93,6 @@
                     <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearWorkEx" v-show="newWork.id !== '' ">
                         Cancel
                     </v-btn>
-
                 </div>
             </div>
 
@@ -357,6 +353,11 @@
             width: 95%;
         }
         .links-content {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
             height: 678px;
             background: #fff;
             box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
@@ -377,30 +378,25 @@
         }
 
         .link-inputs-row {
-            display: flex;
-            margin-top: 12px;
-            flex-wrap: wrap;
-            display: flex;
-            flex-direction: column;
-
             .inputs{
-                display: flex;
-                flex-wrap: wrap;
 
+                .civie-input, .civie-textarea, .date-group{
+                    max-width: 300px;
+                    min-width: 300px;
+
+                    @media screen and (min-width: 320px) and (max-width : 375px) {
+                        min-width: 280px;
+                    }
+                }
 
                 .left{
-                    max-width: 630px;
-                    margin-right: 30px;
-                    display: flex;
-                    justify-content: space-between;
-                    flex-wrap: wrap;
 
                     @include lt-md{
-                        margin-right: 0;
+
                     }
 
                     @include lt-sm{
-                       justify-content: center;
+                        margin-top:25px;
                     }
 
                     .date-group {
@@ -417,32 +413,16 @@
 
                         }
 
-                        .date-text {
-                            font: 500 26px/26px Noto Sans;
-                            letter-spacing: 0;
-                            color: #888DB1;
-                            opacity: 1;
-                            margin: 10px 9px;
-
-                            @include lt-lg {
-
-                            }
-
-                            @include lt-md {
-                                font-size: 16px;
-                            }
-
-                            @include lt-sm {
-                                font-size: 12px;
-
-                            }
-                        }
 
                         .date-input {
                             display: flex;
                             flex-direction: column;
                             width: 137px;
                             position: relative;
+
+                            &:first-child{
+                                margin-right: 5px;
+                            }
 
                             @include lt-sm {
 
@@ -516,63 +496,44 @@
                 }
 
                 .right{
-                    .civie-textarea{
-                        min-width: 300px;
-                    }
-
                     @include lt-xl{
-                        width: 100%;
-                        max-width: 630px;
+
                     }
 
                     @include lt-md{
-                        width: 100%;
-                        .civie-textarea{
-                            width: 100%;
-                        }
+
                     }
 
                     @include lt-sm{
-                        display: flex;
-                        justify-content: center;
-                        .civie-textarea{
-                            margin-top: 30px;
-                            max-width: 300px;
-                            min-width: 290px;
-                        }
+                        margin-top:25px;
                     }
                 }
             }
 
             .civie-select {
-                max-width: 210px;
-
                 .v-input__slot {
-                    padding-left: 30px !important;
+
                 }
 
                 .input-prepended-icon {
-                    position: absolute;
-                    top: 13px;
-                    left: 5px;
+
 
                     img {
-                        width: 33px;
+
                     }
                 }
             }
 
             .civie-input {
-                max-width: 300px;
-                min-width: 300px;
 
                 @include lt-sm{
-                    min-width: 290px;
+
                 }
             }
 
             .civie-btn {
-                min-height: 54px;
+
+
             }
         }
 
@@ -795,7 +756,6 @@
     .btns{
 
         @include lt-sm{
-            padding-left: 24px;
 
         }
     }
