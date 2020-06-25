@@ -768,8 +768,6 @@
     }
 
     .btns{
-        display: flex;
-        justify-content: center;
         @include lt-sm{
 
         }
