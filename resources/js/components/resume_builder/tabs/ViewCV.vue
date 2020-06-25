@@ -21,8 +21,15 @@
                       align="left"
                       :class="category.id==1?'ml-n8':''"
                     >{{category.title}}</v-col>
-                    <v-col cols="4">
-                      <v-card class="card-counter" flat height="35" width="35.9" color="#E6E8FC">
+                    <v-col cols="4" align="right">
+                      <v-card
+                        class="card-counter"
+                        flat
+                        height="35"
+                        width="35.9"
+                        color="#E6E8FC"
+                        align="center"
+                      >
                         <span class="counter">{{category.count}}</span>
                       </v-card>
                     </v-col>
@@ -233,6 +240,7 @@ $mainBlue: #001ce2;
 }
 .card-counter {
   border-radius: 5px;
+  padding-top: 2px;
   .counter {
     font-family: "Noto Sans" !important;
     font-style: normal;
