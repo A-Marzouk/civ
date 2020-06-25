@@ -365,7 +365,7 @@
             margin-bottom: 70px;
 
             @include lt-md{
-                padding: 35px;
+                padding: 35px 10px;
             }
 
             @include lt-sm{
@@ -378,18 +378,26 @@
         }
 
         .link-inputs-row {
+            width: 100%;
             .inputs{
+                display: flex;
+                flex-wrap: wrap;
 
                 .civie-input, .civie-textarea, .date-group{
                     max-width: 300px;
                     min-width: 300px;
 
-                    @media screen and (min-width: 320px) and (max-width : 375px) {
+                    @media screen and (min-width: 320px) and (max-width : 370px) {
                         min-width: 280px;
                     }
                 }
 
                 .left{
+
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: space-between;
+                    max-width: 640px;
 
                     @include lt-md{
 
@@ -397,6 +405,7 @@
 
                     @include lt-sm{
                         margin-top:25px;
+                        justify-content: center;
                     }
 
                     .date-group {
@@ -496,8 +505,9 @@
                 }
 
                 .right{
-                    @include lt-xl{
-
+                    margin-left: 0;
+                    @include xl{
+                        margin-left:40px;
                     }
 
                     @include lt-md{
@@ -506,6 +516,9 @@
 
                     @include lt-sm{
                         margin-top:25px;
+                        display: flex;
+                        width: 100%;
+                        justify-content: center;
                     }
                 }
             }
@@ -603,6 +616,7 @@
     .education-list {
         display: flex;
         flex-direction: column;
+        width: 100%;
         margin-top: 25px;
 
         .education-item {
@@ -754,7 +768,8 @@
     }
 
     .btns{
-
+        display: flex;
+        justify-content: center;
         @include lt-sm{
 
         }
