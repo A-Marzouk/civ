@@ -5,7 +5,7 @@
         <!-- side menu -->
         <v-col xl="3" lg="3" md="3" sm="3" cols="3">
           <v-navigation-drawer permanent width="400">
-            <v-card flat color="transparent" class="pa-5">
+            <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
                 class="resume-builder__input civie-input"
                 outlined
@@ -13,7 +13,7 @@
                 :rules="rules"
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
-                label="Name"
+                label
                 height="55"
                 style="border-radius:5px !important;"
               >
@@ -28,14 +28,15 @@
               </v-text-field>
             </v-card>
             <v-card color="transparent" flat tile class="ml-2">
-              <v-tabs vertical fixed-tabs active-class="custom-active-tab">
-                <v-tab v-for="category in themeCategories" :key="category.id" class="custom-tab">
+              <v-tabs vertical fixed-tabs active-class="custom-active-tab" slider-size="5">
+                <v-tab
+                  v-for="category in themeCategories"
+                  :key="category.id"
+                  class="custom-tab"
+                  :ripple="false"
+                >
                   <v-row>
-                    <v-col
-                      cols="8"
-                      align="left"
-                      :class="category.id==1?'ml-n8':''"
-                    >{{category.title}}</v-col>
+                    <v-col cols="8" align="left">{{category.title}}</v-col>
                     <v-col cols="4" align="right">
                       <v-card
                         class="card-counter"
@@ -234,6 +235,9 @@ $mainBlue: #001ce2;
   margin-bottom: 70px;
   scroll-behavior: smooth;
 }
+.custom-ripple-class {
+  background: transparent;
+}
 .custom-tab {
   font-family: "Noto Sans" !important;
   font-style: normal;
@@ -250,6 +254,9 @@ $mainBlue: #001ce2;
   font-size: 18px !important;
   line-height: 26px;
   color: #001ce2 !important;
+}
+.custom-active-tab::before{
+  opacity: 0 !important;
 }
 .v-tab {
   justify-content: left !important;
