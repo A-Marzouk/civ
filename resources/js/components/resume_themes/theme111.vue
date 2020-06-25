@@ -127,6 +127,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 #theme111 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: white;
     background-color: #4327AB;
     background-image: url('/images/resume_themes/theme111/bg-img.png');
@@ -143,7 +144,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     .theme-body {
         background: transparent;
         border-radius: 80px 80px 0 0;
-        z-index: 1;
         height: 100%;
         width: 100%;
         padding-bottom: 100px;
@@ -160,6 +160,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: white;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
                 overflow: 0 auto;
@@ -167,6 +169,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                 &-bar {
                     background: none;
+                }
+
+                .v-slide-group__prev {
+                    display: none;
                 }
                 
                 .v-tab {
@@ -188,7 +194,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {
@@ -196,9 +202,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
-                        padding: 13px 17px;
+                        justify-content: flex-start;
                         margin-right: 27px;
 
                         &:last-child {
@@ -222,12 +228,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    
                 }
             }
 
@@ -240,10 +245,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 z-index: 0;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 876px) {
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                    width: 100%;
                 }
             }
         }
@@ -258,7 +267,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         align-items: center;
         position: absolute;
         top: 365px;
-        right: -95px;
+        right: -115px;
         background: transparent;
 
         &.showOnTablet {

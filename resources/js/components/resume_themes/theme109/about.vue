@@ -66,7 +66,7 @@ export default {
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
             flex-wrap: wrap;
             margin: 0 auto;
             flex-direction: column;

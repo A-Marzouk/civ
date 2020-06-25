@@ -132,7 +132,7 @@ $purple: #0556B6;
         }
 
         @media (max-width: 600px) {
-            padding: 0 !important;
+            padding: 0 17px !important;
 
             .skill {
                 width: 100%;

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <div style="width: 100%">
+    <v-container style="width: 100%">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab
@@ -19,7 +19,7 @@
           <v-tab-item v-for="(tabName,i) in tabs" :key="tabName + i">
             <v-container style="width:100%;">
               <v-row align="baseline">
-                <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
+                <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
                       class="resume-builder__input civie-input"
@@ -33,7 +33,14 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="3" lg="3" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-n10 mt-n10">
+                <v-col
+                  xl="4"
+                  lg="4"
+                  md="6"
+                  sm="6"
+                  cols="12"
+                  class="mt-md-0 mt-sm-n10 mt-n12 ml-xl-n7"
+                >
                   <v-card flat tile color="transparent" class="mt-10 ml-xl-10">
                     <v-text-field
                       class="resume-builder__input civie-input"
@@ -51,19 +58,19 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="3" lg="3" md="6" sm="6" cols="3" class="mt-md-0 mt-sm-n10 mt-n10 d-flex">
+                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-md-n2 mt-sm-n10 mt-n6 d-flex">
                   <v-btn
-                    class="resume-builder__btn civie-btn filled btn-add-new mt-2"
+                    class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0"
                     @click="addSkill"
                   >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
                   <v-btn
-                    class="resume-builder__btn civie-btn mt-2"
+                    class="resume-builder__btn civie-btn btn-add-new ml-3 mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
                     @click="cancelEdit"
-                    v-show="editedSkill.id !== undefined "
+                    v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>
                 </v-col>
 
-                <v-col xl="6" lg="6" md="12" sm="12" cols="12">
+                <v-col xl="6" :lg="windowWidth<1440?'8':'7'" md="12" sm="12" cols="12">
                   <v-container fluid style="width:100%;" ma-0 pa-0>
                     <v-row align="center" dense>
                       <v-col cols="12">
@@ -82,7 +89,7 @@
                                   <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-col>
-                              <v-col xl="6" lg="4" md="7" sm="6" cols="6">
+                              <v-col xl="6" lg="5" md="7" sm="6" cols="6">
                                 <v-card color="transparent" flat tile>
                                   <div class="skill-title">{{skill.title}}</div>
                                   <div class="mt-3">
@@ -102,7 +109,7 @@
                               </v-col>
                               <v-col
                                 xl="3"
-                                lg="4"
+                                lg="3"
                                 md="3"
                                 sm="3"
                                 cols="3"
@@ -115,11 +122,11 @@
                                   @click="toggleVisibility(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img
-                                    :src="`/images/new_resume_builder/icons/main/eye${!skill.is_public  ? '-1' : ''}.svg`"
-                                    alt
-                                    class="eye-icon"
-                                  />
+                                  <svg-vue
+                                    icon="eye-icon"
+                                    :class="{'visible' : !skill.is_public}"
+                                    class="icon"
+                                  ></svg-vue>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -127,10 +134,7 @@
                                   @click="editSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img
-                                    src="/images/new_resume_builder/icons/main/edit-skill.svg"
-                                    alt
-                                  />
+                                  <svg-vue icon="edit-icon" class="icon"></svg-vue>
                                 </v-btn>
                                 <v-btn
                                   color="#F2F3FD"
@@ -138,7 +142,7 @@
                                   @click="deleteSkill(skill)"
                                   class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
                                 >
-                                  <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
+                                  <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                                 </v-btn>
                               </v-col>
                             </v-row>
@@ -187,9 +191,9 @@
                                   <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
                                 </v-btn>
                               </v-col>
-                              <v-col cols="12" class="mt-n7">
+                              <v-col cols="12" class="mt-n4">
                                 <v-row align="center">
-                                  <v-col cols="12">
+                                  <v-col cols="12" class="mb-1">
                                     <div class="skill-title">{{skill.title}}</div>
                                   </v-col>
                                   <v-col cols="9" class="mt-n5">
@@ -203,7 +207,7 @@
                                     ></v-progress-linear>
                                   </v-col>
                                   <v-col cols="3" class="mt-n5">
-                                    <div class="skill-title">{{skill.percentage}}%</div>
+                                    <div class="skill-title mt-n1">{{skill.percentage}}%</div>
                                   </v-col>
                                 </v-row>
                               </v-col>
@@ -219,7 +223,7 @@
           </v-tab-item>
         </v-tabs-items>
       </v-card>
-    </div>
+    </v-container>
   </v-app>
 </template>
 
@@ -229,6 +233,7 @@ export default {
   name: "Skills",
   data() {
     return {
+      windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
       tabs: ["programming_languages", "software", "design", "frameworks"],
@@ -290,7 +295,7 @@ export default {
             }
 
             this.clearSkill();
-            this.$store.dispatch('flyingNotification');
+            this.$store.dispatch("flyingNotification");
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
@@ -367,7 +372,11 @@ export default {
       this.clearSkill();
     }
   },
-  mounted() {}
+  mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  }
 };
 </script>
 
@@ -391,404 +400,6 @@ civie-input {
 
 .civie-btn {
   margin-left: 30px;
-}
-.section-body-wrapper {
-  max-width: 1337px;
-  width: 100%;
-
-  .action-btns {
-    margin-top: 15px;
-
-    .btn {
-      @include lt-sm {
-        width: 48%;
-        min-width: 90px;
-        max-width: 142px;
-      }
-    }
-
-    @include lt-md {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      margin-top: 40px;
-    }
-
-    @include gt-sm {
-      display: none;
-    }
-
-    .add-award-btn {
-      margin-right: 31px;
-
-      a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        background: #001ce2 0% 0% no-repeat padding-box;
-        border-radius: 8px;
-
-        font: 600 19px Noto Sans;
-        letter-spacing: 0;
-        color: #ffffff;
-        opacity: 1;
-
-        img {
-          width: 27px;
-          height: 27px;
-          margin-right: 10px;
-        }
-      }
-    }
-
-    .auto-import-btn {
-      margin-bottom: 7px;
-
-      a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 226px;
-        height: 62px;
-
-        border: 2px solid #001ce2;
-        border-radius: 8px;
-        opacity: 1;
-
-        font: 600 19px Noto Sans;
-        letter-spacing: 0;
-        color: #001ce2;
-
-        img {
-          width: 27px;
-          height: 27px;
-          margin-right: 10px;
-        }
-      }
-    }
-  }
-
-  .addSkillForm {
-    @include lt-md {
-      display: block !important;
-
-      .input-field {
-        max-width: 100%;
-        width: 100%;
-
-        input {
-          max-width: 100%;
-        }
-      }
-    }
-  }
-
-  .add-award-section {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 55px;
-
-    .award-input {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 23px;
-
-      input {
-        width: 572.82px;
-        height: 76px;
-        border: 2px solid #505050;
-        border-radius: 10px;
-        opacity: 1;
-        padding-left: 18px;
-      }
-
-      input:focus {
-        outline: none;
-      }
-
-      label {
-        text-align: left;
-        font: 600 16px Noto Sans;
-        letter-spacing: 0;
-        color: #505050;
-        opacity: 1;
-      }
-
-      @include lt-md {
-        width: 100%;
-
-        input {
-          width: 100%;
-          max-height: 60px;
-        }
-      }
-    }
-
-    .action-btns {
-      display: flex;
-      margin-top: 15px;
-
-      @include lt-md {
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .add-award-btn {
-        margin-right: 31px;
-
-        a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-
-          background: #001ce2 0% 0% no-repeat padding-box;
-          border-radius: 8px;
-
-          font: 600 19px Noto Sans;
-          letter-spacing: 0;
-          color: #ffffff;
-          opacity: 1;
-
-          img {
-            width: 27px;
-            height: 27px;
-            margin-right: 10px;
-          }
-        }
-      }
-
-      .auto-import-btn {
-        margin-bottom: 7px;
-
-        a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 226px;
-          height: 62px;
-
-          border: 2px solid #001ce2;
-          border-radius: 8px;
-          opacity: 1;
-
-          font: 600 19px Noto Sans;
-          letter-spacing: 0;
-          color: #001ce2;
-
-          img {
-            width: 27px;
-            height: 27px;
-            margin-right: 10px;
-          }
-        }
-      }
-    }
-  }
-
-  .skills-list {
-    margin-top: 60px;
-    max-width: 861px;
-    width: 100%;
-
-    .skills-item {
-      position: relative;
-      background: whitesmoke;
-      // margin-left: 43px;
-      margin-bottom: 30px;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      width: 100%;
-      min-height: 140px;
-      padding: 10px 43px 30px 43px;
-      border-radius: 8px;
-
-      @include lt-md {
-        padding: 1em 2em;
-      }
-
-      @include lt-sm {
-        padding: 1em;
-      }
-
-      .skill-title {
-        font-family: "Noto Sans", serif;
-        font-weight: bold;
-        font-size: 22px;
-        text-align: left;
-        color: #3c3748;
-      }
-
-      .percentage {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .percentage-bar {
-          width: 85%;
-
-          .progress {
-            width: 100%;
-            height: 15px;
-            border-radius: 23px;
-          }
-
-          .progress-wrap {
-            width: 100%;
-            background: #ff7c00;
-            margin: 12px 0;
-            overflow: hidden;
-            position: relative;
-
-            .progress-bar {
-              background: #ffd7b2;
-              left: 0;
-              position: absolute;
-              top: 0;
-              border-radius: 0;
-              border: 0;
-            }
-          }
-
-          .progress-wrap.color-blueviolet {
-            background: blueviolet;
-
-            .progress-bar {
-              background: #bf99e2;
-            }
-          }
-        }
-
-        .percentage-text {
-          font-family: "Noto Sans", serif;
-          font-weight: bold;
-          font-size: 22px;
-          text-align: right;
-          color: #ff7c00;
-        }
-
-        .percentage-text.color-blueviolet {
-          color: blueviolet;
-        }
-      }
-
-      .options {
-        position: absolute;
-        right: 14px;
-        top: 14px;
-
-        .options-btn {
-          a {
-            width: 88px;
-            height: 29px;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background: #ffffff 0 0 no-repeat padding-box;
-            border: 1px solid #505050;
-            border-radius: 5px;
-            opacity: 1;
-
-            font: 600 13px Noto Sans;
-            letter-spacing: 0;
-            color: #505050;
-
-            img {
-              width: 13.3px;
-              height: 6.8px;
-              margin-left: 8px;
-            }
-
-            img.optionsOpened {
-              -webkit-transform: scaleY(-1);
-              transform: scaleY(-1);
-            }
-          }
-
-          a.opened {
-            border: 1px solid #1f5de4;
-          }
-
-          a:focus {
-            outline: none !important;
-            box-shadow: none !important;
-          }
-        }
-
-        .extended-options {
-          background: #ffffff 0 0 no-repeat padding-box;
-          border: 1px solid #505050;
-          border-radius: 5px;
-          opacity: 1;
-          margin-top: 8px;
-          width: 88px;
-          height: 60px;
-          padding-top: 7px;
-          padding-left: 8px;
-
-          .edit-btn,
-          .delete-btn {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            font: 600 13px Noto Sans;
-            letter-spacing: 0;
-            color: #505050;
-
-            img {
-              width: 15.75px;
-              height: 14px;
-              margin-right: 6px;
-            }
-
-            &:hover {
-              cursor: pointer;
-            }
-          }
-
-          .delete-btn {
-            margin-top: 8px;
-
-            img {
-              width: 10.89px;
-              height: 14px;
-              margin-right: 9.5px;
-            }
-          }
-        }
-
-        .extended-options.opened {
-          border: 1px solid #1f5de4;
-          position: relative;
-          z-index: 2;
-        }
-      }
-
-      .editForm {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-
-        .add-award-section {
-          width: 580px;
-
-          @include lt-md {
-            width: 100%;
-          }
-        }
-
-        .action-btns {
-          justify-content: space-between;
-          width: 100%;
-        }
-      }
-    }
-  }
 }
 
 .error {
@@ -821,6 +432,7 @@ civie-input {
       font-size: 15px !important;
     }
   }
+
   .card-skill {
     border-radius: 10px !important;
     height: 76px !important;
@@ -828,10 +440,10 @@ civie-input {
       min-width: 400px !important;
     }
     @media screen and (min-width: 600px) and (max-width: 767px) {
-      height: 95px !important;
+      min-height: 95px !important;
     }
     @media screen and (max-width: 599px) {
-      height: 88px !important;
+      min-height: 110px !important;
     }
     .btn-v_bar {
       min-width: 30px !important;
