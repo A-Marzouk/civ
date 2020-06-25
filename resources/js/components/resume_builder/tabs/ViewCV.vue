@@ -17,14 +17,11 @@
                 height="55"
                 style="border-radius:5px !important;"
               >
-                <button
-                  class="eye-icon trigger-icon icon"
-                  :class="{'icon--disabled': disabledInput}"
-                  slot="append"
-                  @click="toggleInput"
-                >
-                  <svg-vue :icon="`eye-icon`"></svg-vue>
-                </button>
+                <template slot="append">
+                  <v-btn class="eye-btn mt-n1" depressed>
+                    <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
+                  </v-btn>
+                </template>
               </v-text-field>
             </v-card>
             <v-card color="transparent" flat tile class="ml-2">
@@ -36,7 +33,11 @@
                   :ripple="false"
                 >
                   <v-row>
-                    <v-col cols="8" align="left">{{category.title}}</v-col>
+                    <v-col
+                      cols="8"
+                      align="left"
+                      :class="category.id!=1?'':'ml-xl-n8'"
+                    >{{category.title}}</v-col>
                     <v-col cols="4" align="right">
                       <v-card
                         class="card-counter"
@@ -60,7 +61,12 @@
             <v-card-subtitle class="themes-wrapper-title">Choose the CV template you love</v-card-subtitle>
             <v-row align="center">
               <v-col md="4" sm="6" cols="12" v-for="i in 12" :key="i">
-                <v-card flat color="transparent" tile class="card-theme-wrapper">
+                <v-card
+                  flat
+                  color="transparent"
+                  tile
+                  class="card-theme-wrapper mb-xl-0 mb-lg-n12 mb-md-n12"
+                >
                   <img src="/images/new_resume_builder/themes-wrapper.svg" alt="themes" />
                 </v-card>
               </v-col>
@@ -78,6 +84,7 @@ export default {
   name: "ViewCV",
   data() {
     return {
+      windowWidth: window.innerWidth,
       disabledInput: false,
       availableThemes: [],
       showProfessionOptions: false,
@@ -220,6 +227,9 @@ export default {
   },
   mounted() {
     this.getThemesList();
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
   }
 };
 </script>
@@ -227,6 +237,13 @@ export default {
 <style scoped lang="scss">
 @import "../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.eye-btn {
+  min-width: 35.59px !important;
+  width: 35.59px !important;
+  min-height: 35px !important;
+  height: 35px !important;
+  max-height: 35px !important;
+}
 .main-content {
   height: 525px;
   background: #fff;
@@ -255,7 +272,7 @@ $mainBlue: #001ce2;
   line-height: 26px;
   color: #001ce2 !important;
 }
-.custom-active-tab::before{
+.custom-active-tab::before {
   opacity: 0 !important;
 }
 .v-tab {
