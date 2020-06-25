@@ -10,7 +10,6 @@
                 class="resume-builder__input civie-input"
                 outlined
                 color="#001CE2"
-                :rules="rules"
                 :class="{'resume-builder__input--disabled': disabledInput}"
                 :disabled="disabledInput"
                 label
@@ -18,7 +17,7 @@
                 style="border-radius:5px !important;"
               >
                 <template slot="append">
-                  <v-btn class="eye-btn mt-n1" depressed>
+                  <v-btn class="eye-btn mt-n1 ml-n2" depressed>
                     <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
                   </v-btn>
                 </template>
@@ -63,9 +62,10 @@
               <v-col md="4" sm="6" cols="12" v-for="i in 12" :key="i">
                 <v-card
                   flat
-                  color="transparent"
                   tile
                   class="card-theme-wrapper mb-xl-0 mb-lg-n12 mb-md-n12"
+                  @click="selectTheme(i)"
+                  :class="selectedTheme==i?'selected-theme':''"
                 >
                   <img src="/images/new_resume_builder/themes-wrapper.svg" alt="themes" />
                 </v-card>
@@ -84,6 +84,7 @@ export default {
   name: "ViewCV",
   data() {
     return {
+      selectedTheme: 1,
       windowWidth: window.innerWidth,
       disabledInput: false,
       availableThemes: [],
@@ -207,6 +208,9 @@ export default {
       this.selectedSpeciality = index;
       this.showSpecialityOptions = false;
     },
+    selectTheme(index) {
+      this.selectedTheme = index;
+    },
     getThemesList() {
       axios
         .get("/api/user/themes-list")
@@ -244,6 +248,7 @@ $mainBlue: #001ce2;
   height: 35px !important;
   max-height: 35px !important;
 }
+
 .main-content {
   height: 525px;
   background: #fff;
@@ -305,6 +310,10 @@ $mainBlue: #001ce2;
   .card-theme-wrapper {
     width: 417px;
     height: 302.56px;
+    border-radius: 10px !important;
+  }
+  .selected-theme {
+    border: 3px solid #001ce2;
   }
 }
 
