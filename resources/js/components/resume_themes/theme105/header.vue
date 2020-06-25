@@ -76,7 +76,6 @@ $purple: #355E5E;
 #theme105 {
     .theme-header {
         width: 100%;
-        background-image: url("/images/resume_themes/theme105/bg-header.png");
         position: relative;
 
         .bg-header {

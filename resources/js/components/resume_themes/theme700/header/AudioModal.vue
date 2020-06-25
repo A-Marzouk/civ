@@ -34,14 +34,14 @@
 												<v-icon v-if="isPlaying(audio.src)" color="white" large>mdi-pause</v-icon>
 												<v-icon v-else color="white" large>mdi-play</v-icon>
 											</a>
-											<dir class="player-status">
+											<div class="player-status">
 												<div v-if="isPlaying(audio.src)" class="player-timing">
 													<span v-text="formatDuration(current.time)"></span>
 													<span v-text="formatDuration(current.duration)"></span>
 												</div>
 												<v-progress-linear v-if="isPlaying(audio.src)" background-color="#EBEBEB" rounded height="14" color="#513ECD" :value="currentProgress"></v-progress-linear>
 												<v-progress-linear v-else background-color="#EBEBEB" rounded height="14" color="#513ECD" value="0"></v-progress-linear>
-											</dir>
+											</div>
 										</div>
 									</div>
 								</v-list-item-content>
