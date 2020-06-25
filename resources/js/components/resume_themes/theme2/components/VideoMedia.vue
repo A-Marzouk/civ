@@ -233,6 +233,8 @@ export default {
 		background: white;
 		width: calc(100% - 24px);
 		max-width: 706px;
+		max-height: 90%;
+		overflow-y: scroll;
 		border-radius: 30px;
 		box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 
@@ -296,9 +298,9 @@ export default {
 
 	@include md {
 		.video-modal-outer {
-			padding: 78px 38px 52px 48px;
-
 			.video-modal-header {
+				padding: 78px 37px 0 48px;
+
 				.close-video-media {
 					svg {
 						height: 30px;
@@ -315,7 +317,7 @@ export default {
 			.video-modal-body {
 				.video-list-slider {
 					.video-list-slider-controls {
-						padding-right: 10px;
+						padding: 28px 40px 45px;
 
 						& > a {
 							svg {
@@ -418,7 +420,6 @@ export default {
 			align-items: center;
 			justify-content: center;
 			width: 100%;
-			max-width: 380px;
 			margin-left: auto;
 			margin-right: auto;
 
@@ -436,7 +437,7 @@ export default {
 					object-fit: cover;
 					height: 100%;
 					width: 100%;
-					border-radius: 14px;
+					border-radius: 20px;
 				}
 			}
 
@@ -467,17 +468,16 @@ export default {
 
 	@include md {
 		.video-player {
+			padding: 47px 40px 20px 44px;
+
 			.player-title {
-				font-size: 30px;
-				line-height: 36px;
+				margin-bottom: 28px;
 			}
 
 			.player-body {
-				max-width: 600px;
-
 				.play-pause-action {
-					height: 76px;
-					width: 76px;
+					height: 60px;
+					width: 60px;
 				}
 			}
 		}
@@ -513,7 +513,7 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.32);
+	background: rgba(0, 0, 0, 0.5);
 	z-index: 99999;
 	display: flex;
 	align-items: center;
@@ -567,6 +567,11 @@ export default {
 			position: absolute;
 			bottom: 0;
 			width: 100%;
+		}
+
+		@include md {
+			width: calc(100% - 24px);
+			max-width: 706px;
 		}
 	}
 }
