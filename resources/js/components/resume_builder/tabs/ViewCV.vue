@@ -1,20 +1,49 @@
 <template>
   <v-app>
     <v-container style="width:100%;" fluid>
-      <v-row align="center">
-        <!-- sidemenu -->
+      <v-row>
+        <!-- side menu -->
         <v-col xl="3">
-          <v-card class="pa-5 card-sidebar" flat tile>
-            <v-tabs vertical background-color="indigo" dark>
-              <v-tab>Option</v-tab>
-              <v-tab>Another Selection</v-tab>
-              <v-tab>Items</v-tab>
-              <v-tab>Another Screen</v-tab>
-            </v-tabs>
+          <v-navigation-drawer permanent width="400">
+            <v-card flat color="transparent" class="pa-5">
+              <v-text-field hide-details="true" outlined id="searchField">
+                <template slot="append">
+                  <svg-vue :icon="`eye-icon`"></svg-vue>
+                </template>
+              </v-text-field>
+            </v-card>
+            <v-card color="transparent" flat tile class="ml-2">
+              <v-tabs vertical fixed-tabs active-class="custom-active-tab">
+                <v-tab v-for="category in themeCategories" :key="category.id" class="custom-tab">
+                  <v-row>
+                    <v-col
+                      cols="8"
+                      align="left"
+                      :class="category.id==1?'ml-n8':''"
+                    >{{category.title}}</v-col>
+                    <v-col cols="4">
+                      <v-card class="card-counter" flat height="35" width="35.9" color="#E6E8FC">
+                        <span class="counter">{{category.count}}</span>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-tab>
+              </v-tabs>
+            </v-card>
+          </v-navigation-drawer>
+        </v-col>
+        <v-col xl="9">
+          <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-5">
+            <v-card-title class="themes-wrapper-title">Choose the CV template you love</v-card-title>
+            <v-row align="center">
+              <v-col md="4" sm="6" cols="12" v-for="i in 12" :key="i">
+                <v-card flat color="transparent" tile class="card-theme-wrapper">
+                  <img src="/images/new_resume_builder/themes-wrapper.svg" alt="themes" />
+                </v-card>
+              </v-col>
+            </v-row>
           </v-card>
         </v-col>
-        <!-- side menu -->
-        <v-col xl="9">2</v-col>
       </v-row>
     </v-container>
   </v-app>
@@ -25,6 +54,7 @@ export default {
   name: "ViewCV",
   data() {
     return {
+      disabledInput: false,
       availableThemes: [],
       showProfessionOptions: false,
       showSpecialityOptions: false,
@@ -76,6 +106,17 @@ export default {
         {
           name: "Graphic Designer"
         }
+      ],
+      themeCategories: [
+        { id: 1, title: "UI/UX Designer", count: 46 },
+        { id: 2, title: "Graphic Designer", count: 35 },
+        { id: 3, title: "Mobile App Designer", count: 22 },
+        { id: 4, title: "Front-end Developer", count: 88 },
+        { id: 5, title: "Full Stack Developer", count: 115 },
+        { id: 6, title: "Graphic Designer", count: 46 },
+        { id: 7, title: "Motion Designer", count: 19 },
+        { id: 8, title: "Database Specialist", count: 16 },
+        { id: 9, title: "Big Data", count: 75 }
       ]
     };
   },
@@ -84,7 +125,13 @@ export default {
       return this.$store.state.user;
     }
   },
+  props: ["inputProps"],
   methods: {
+    methods: {
+      toggleInput() {
+        this.disabledInput = !this.disabledInput;
+      }
+    },
     showPreviewModal(theme_id) {
       this.previewThemeID = theme_id;
       this.$refs.previewModal.show();
@@ -156,9 +203,63 @@ export default {
 <style scoped lang="scss">
 @import "../../../../sass/media-queries";
 $mainBlue: #001ce2;
-.card-sidebar {
-  border-right: 1px solid rgba(0, 28, 226, 0.1) !important;
+.main-content {
+  height: 525px;
+  background: #fff;
+  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+  padding: 50px;
+  margin-bottom: 70px;
+  scroll-behavior: smooth;
 }
+.custom-tab {
+  font-family: "Noto Sans" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px !important;
+  line-height: 26px;
+  color: #888db1 !important;
+  text-transform: capitalize !important;
+}
+.custom-active-tab {
+  font-family: "Noto Sans" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px !important;
+  line-height: 26px;
+  color: #001ce2 !important;
+}
+.v-tab {
+  justify-content: left !important;
+}
+.card-counter {
+  border-radius: 5px;
+  .counter {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: #888db1 !important;
+    justify-content: center;
+    justify-items: center;
+  }
+  .card-themes-wrapper {
+    .themes-wrapper-title {
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 40px;
+      line-height: 54px;
+      color: #001ce2 !important;
+    }
+    .card-theme-wrapper {
+      width: 417px;
+      height: 302.56px;
+    }
+  }
+}
+
 #previewModalContainer {
   width: 80%;
 
@@ -166,5 +267,26 @@ $mainBlue: #001ce2;
     width: 100%;
     height: 80vh;
   }
+}
+</style>
+<style>
+#resumeBuilder .v-tabs-slider-wrapper {
+  left: auto !important;
+  right: 0 !important;
+  width: 5px !important;
+}
+#resumeBuilder .v-tabs-slider {
+  background: #001ce2 !important;
+  border-radius: 10px 0px 0px 10px !important;
+}
+#resumeBuilder
+  #searchField
+  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+  border: 2px solid #e6e8fc !important;
+  border-radius: 5px !important;
+  height: 55px !important;
 }
 </style>
