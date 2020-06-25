@@ -333,8 +333,8 @@ export default {
 							a {
 								margin-left: 10px;
 								margin-right: 10px;
-								height: 22px;
-								width: 22px;
+								height: 19px;
+								width: 19px;
 							}
 						}
 					}
@@ -345,17 +345,46 @@ export default {
 
 	@include lg {
 		.video-modal-outer {
-			max-width: $lg;
+			max-width: 986px;
+
+			.video-modal-header {
+				padding-top: 40px;
+			}
+
+			.video-modal-body {
+				.video-list-slider {
+					.video-list-slider-controls {
+						padding: 22px 40px 30px;
+
+						& > a {
+							svg {
+								height: 23px;
+								width: 32px;
+							}
+						}
+
+						.video-list-slider-delimiter {
+							a {
+								margin-left: 7px;
+								margin-right: 7px;
+								height: 16px;
+								width: 16px;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
 	@include xl {
 		.video-modal-outer {
-			padding: 40px 75px;
 			max-width: 1568px;
 			border-radius: 40px;
 
 			.video-modal-header {
+				padding: 40px 75px 0;
+
 				.close-video-media {
 					svg {
 						height: 40px;
@@ -403,81 +432,85 @@ export default {
 	font-family: "Actor", sans-serif;
 	width: 100%;
 
-	.video-player {
-		padding: 12px 20px 20px;
+	.videos-list-item {
+		.video-player {
+			padding: 12px 20px 20px;
 
-		.player-title {
-			margin-bottom: 8px;
-			font-weight: 500;
-			font-size: 18px;
-			line-height: 22px;
-			user-select: none;
-			color: #4d75e8;
-		}
-
-		.player-body {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			margin-left: auto;
-			margin-right: auto;
-
-			.video-preview {
-				position: relative;
-				padding-top: 59.5%;
-				box-shadow: 0px 1px 24px -4px rgba(0, 0, 0, 0.5);
-				border-radius: 20px;
-				width: 100%;
-
-				img {
-					position: absolute;
-					left: 0;
-					bottom: 0;
-					object-fit: cover;
-					height: 100%;
-					width: 100%;
-					border-radius: 20px;
-				}
+			.player-title {
+				margin-bottom: 8px;
+				font-weight: 500;
+				font-size: 18px;
+				line-height: 22px;
+				user-select: none;
+				color: #4d75e8;
 			}
 
-			.play-pause-action {
-				position: absolute;
-				bottom: 50%;
-				right: 50%;
-				transform: translate(50%, 50%);
+			.player-body {
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				background: rgba(255, 255, 255, 0.2);
-				border-radius: 100px;
-				height: 30px;
-				width: 30px;
+				width: 100%;
+				margin-left: auto;
+				margin-right: auto;
 
-				svg {
-					height: 100%;
+				.video-preview {
+					position: relative;
+					padding-top: 59.5%;
+					box-shadow: 0px 1px 24px -4px rgba(0, 0, 0, 0.5);
+					border-radius: 20px;
 					width: 100%;
+
+					img {
+						position: absolute;
+						left: 0;
+						bottom: 0;
+						object-fit: cover;
+						height: 100%;
+						width: 100%;
+						border-radius: 20px;
+					}
 				}
 
-				&:hover {
-					text-decoration: none;
+				.play-pause-action {
+					position: absolute;
+					bottom: 50%;
+					right: 50%;
+					transform: translate(50%, 50%);
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					background: rgba(255, 255, 255, 0.2);
+					border-radius: 100px;
+					height: 30px;
+					width: 30px;
+
+					svg {
+						height: 100%;
+						width: 100%;
+					}
+
+					&:hover {
+						text-decoration: none;
+					}
 				}
 			}
 		}
 	}
 
 	@include md {
-		.video-player {
-			padding: 47px 40px 20px 44px;
+		.videos-list-item {
+			.video-player {
+				padding: 47px 40px 20px 44px;
 
-			.player-title {
-				margin-bottom: 28px;
-			}
+				.player-title {
+					margin-bottom: 28px;
+				}
 
-			.player-body {
-				.play-pause-action {
-					height: 60px;
-					width: 60px;
+				.player-body {
+					.play-pause-action {
+						height: 60px;
+						width: 60px;
+					}
 				}
 			}
 		}
@@ -490,13 +523,31 @@ export default {
 		margin-left: auto;
 		margin-right: auto;
 
-		.video-player {
-			.player-body {
-				padding: 20px;
+		.videos-list-item {
+			&:first-child {
+				.video-player {
+					padding: 18px 20px 18px 67px;
+				}
+			}
 
-				.play-pause-action {
-					height: 61px;
-					width: 61px;
+			&:last-child {
+				.video-player {
+					padding: 18px 67px 18px 20px;
+				}
+			}
+
+			.video-player {
+				padding: 0;
+
+				.player-title {
+					margin-bottom: 22px;
+				}
+
+				.player-body {
+					.play-pause-action {
+						height: 61px;
+						width: 61px;
+					}
 				}
 			}
 		}
@@ -504,6 +555,16 @@ export default {
 
 	@include xl {
 		padding-left: 40px;
+		max-width: 1370px;
+
+		.videos-list-item {
+			&:last-child,
+			&:first-child {
+				.video-player {
+					padding: 18px 20px;
+				}
+			}
+		}
 	}
 }
 
