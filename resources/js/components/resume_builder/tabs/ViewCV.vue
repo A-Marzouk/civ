@@ -289,6 +289,9 @@ $mainBlue: #001ce2;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: 95% !important;
   }
+  @media screen and (max-width: 599px){
+    width: auto !important;
+  }
 }
 .custom-ripple-class {
   background: transparent;
@@ -357,6 +360,9 @@ $mainBlue: #001ce2;
     @media screen and (max-width: 430px) {
       font-size: 15px;
       line-height: 25px;
+    }
+    @media screen and (max-width: 382px) {
+      font-size: 13px;
     }
   }
   .theme-img {
