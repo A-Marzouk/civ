@@ -181,14 +181,6 @@ export default {
 			this.playPause();
 		},
 
-		/* onVideoPlayerProgressChange(progress) {
-			this.current.time = Math.floor(
-				(progress * this.current.duration) / 100
-			);
-
-			this.player.currentTime = this.current.time;
-		}, */
-
 		open() {
 			this.dialog = true;
 		},

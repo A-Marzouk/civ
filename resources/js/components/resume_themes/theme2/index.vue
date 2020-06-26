@@ -4,8 +4,12 @@
 			<div class="mainThemeBar">
 				<div class="left hideOnPhone">
 					<div class="d-flex flex-column icons">
-						<AudioMedia />
-						<VideoMedia />
+						<a class="open-audio-media" href="#" @click.prevent="isAudioMediaOpen=true">
+							<img src="/images/resume_themes/theme2/sound.svg" alt="sound icon">
+						</a>
+						<a class="open-video-media" href="#" @click.prevent="isVideoMediaOpen=true">
+							<img src="/images/resume_themes/theme2/video.svg" alt="video icon">
+						</a>
 						<img src="/images/resume_themes/theme2/chat.svg" alt="chat">
 					</div>
 					<div class="d-flex">
@@ -49,8 +53,12 @@
 							</div>
 						</div>
 						<div class="d-flex flex-column icons">
-							<AudioMedia />
-							<VideoMedia />
+							<a class="open-audio-media" href="#" @click.prevent="isAudioMediaOpen=true">
+								<img src="/images/resume_themes/theme2/sound.svg" alt="sound icon">
+							</a>
+							<a class="open-video-media" href="#" @click.prevent="isVideoMediaOpen=true">
+								<img src="/images/resume_themes/theme2/video.svg" alt="video icon">
+							</a>
 						</div>
 					</div>
 					<div class="left">
@@ -283,6 +291,9 @@
 				</div>
 			</div>
 		</div>
+
+		<AudioMedia v-if="isAudioMediaOpen" @close="isAudioMediaOpen=false" />
+		<VideoMedia v-if="isVideoMediaOpen" @close="isVideoMediaOpen=false" />
 	</div>
 </template>
 
@@ -295,6 +306,8 @@ export default {
 	components: { VideoMedia, AudioMedia },
 	data() {
 		return {
+			isAudioMediaOpen: false,
+			isVideoMediaOpen: true,
 			activeTab: {
 				id: 1,
 				title: "Portfolio"
@@ -355,6 +368,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.open-audio-media,
+.open-video-media {
+	margin-bottom: 14px;
+
+	img {
+		width: 48px;
+		height: 48px;
+	}
+}
+
 .hideOnPhone {
 	@media only screen and (max-width: 600px) {
 		display: none !important;

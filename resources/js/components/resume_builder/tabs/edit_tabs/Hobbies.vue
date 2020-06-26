@@ -58,18 +58,18 @@
                                 <v-col xl="6" lg="8" md="8" sm="10" cols="12">
                                     <v-card class="card-holder pa-2 mb-3">
                                         <v-row justify="center">
-                                            <v-col cols="1" class="mt-xl-n2 mt-lg-n2 mt-n3" align="center">
+                                            <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-xl-n2 mt-lg-n2 mt-n3" align="center">
                                                 <v-btn color="#ffffff" class="btn-v_bar drag-btn" depressed>
                                                     <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                                                 </v-btn>
                                             </v-col>
-                                            <v-col cols="1" class="mt-n5">
+                                            <v-col xl="1" lg="1" md="1" sm="1" cols="1" class="mt-n5">
                                                 <div class="vertical-line"></div>
                                             </v-col>
-                                            <v-col cols="5" class="mt-n2">
+                                            <v-col xl="5" lg="5" md="5" sm="5" cols="5" class="mt-n2">
                                                 <div class="hobby-title">{{hobby.title}}</div>
                                             </v-col>
-                                            <v-col cols="5" align="right" class="action-col resume-builder__action-buttons-container">
+                                            <v-col xl="5" lg="5" md="5" sm="5" cols="5" align="right" class="action-col resume-builder__action-buttons-container">
                                                 <v-btn
                                                         class="btn-icon civie-btn"
                                                         depressed @click="toggleHobby(hobby)"
