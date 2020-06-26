@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container style="width:100%;" fluid class="pa-md-0 pa-sm-5">
+    <v-container style="width:100%;" fluid class="pa-md-0 pa-sm-5 pa-6">
       <v-row>
         <!-- side menu -->
         <v-col xl="3" lg="3" md="5" sm="5" cols="12">
@@ -12,9 +12,10 @@
             item-text="title"
             item-value="id"
             color="#001CE2"
+            height="60"
           >
             <template slot="append">
-              <v-btn class="eye-btn ml-n7 mr-2" depressed>
+              <v-btn class="eye-btn ml-n7 mr-4 mt-n2" depressed>
                 <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
               </v-btn>
             </template>
@@ -76,7 +77,15 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class="col-theme-preview ml-xl-n12">
+        <v-col
+          xl="9"
+          lg="9"
+          md="12"
+          sm="12"
+          cols="12"
+          align="left"
+          class="col-theme-preview ml-xl-n12"
+        >
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title">Choose the CV template you love</div>
             <v-row align="center">
@@ -335,18 +344,26 @@ $mainBlue: #001ce2;
     font-size: 40px;
     line-height: 54px;
     color: #001ce2 !important;
-    @media screen and (max-width: 960px) {
+    @media screen and (max-width: 959px) {
       font-size: 22px;
       line-height: 28px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 25px;
     }
   }
   .theme-img {
     img {
       width: 417px !important;
       height: 302.56px !important;
-      @media screen and (max-width: 960px) {
-        width: 200px;
-        height: 145.11px;
+      @media screen and (max-width: 959px) {
+        width: 200px !important;
+        height: 145.11px !important;
+      }
+      @media screen and (max-width: 767px) {
+        width: 142px !important;
+        height: 103.03px !important;
       }
     }
     border-radius: 0px !important;
