@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-container style="width:100%;" fluid class="pa-md-0 pa-sm-5 pa-6">
+    <v-container fluid class="pa-lg-0 pa-md-8 pa-sm-5 pa-6">
       <v-row>
         <!-- side menu -->
-        <v-col xl="3" lg="3" md="5" sm="5" cols="12">
+        <v-col xl="3" lg="3" md="5" sm="5" cols="12" class="mr-xl-n12">
           <v-select
             class="resume-builder__input civie-select hidden-lg-and-up"
             outlined
@@ -87,7 +87,7 @@
           class="col-theme-preview ml-xl-n12"
         >
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
-            <div class="themes-wrapper-title">Choose the CV template you love</div>
+            <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
             <v-row align="center">
               <v-col md="4" sm="4" cols="6" v-for="i in 12" :key="i">
                 <img
@@ -287,6 +287,9 @@ $mainBlue: #001ce2;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    width: 95% !important;
+  }
 }
 .custom-ripple-class {
   background: transparent;
