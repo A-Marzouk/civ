@@ -55,7 +55,6 @@
                   v-for="category in themeCategories"
                   :key="category.id"
                   class="custom-tab mb-3"
-                  :ripple="false"
                 >
                   <v-row>
                     <v-col cols="6" align="left">{{category.title}}</v-col>
