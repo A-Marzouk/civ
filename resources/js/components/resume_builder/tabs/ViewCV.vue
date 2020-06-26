@@ -67,7 +67,7 @@
                   @click="selectTheme(i)"
                   :class="selectedTheme==i?'selected-theme':''"
                 >
-                  <img src="/images/new_resume_builder/themes-wrapper.svg" alt="themes" />
+                  <img width="417" height="302.56" src="/images/new_resume_builder/themes-wrapper.svg" alt="themes" />
                 </v-card>
               </v-col>
             </v-row>
@@ -314,6 +314,8 @@ $mainBlue: #001ce2;
   }
   .selected-theme {
     border: 3px solid #001ce2;
+    width: 417px;
+    height: 302.56px;
   }
 }
 
