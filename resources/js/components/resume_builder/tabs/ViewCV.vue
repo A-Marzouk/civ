@@ -76,7 +76,7 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left">
+        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class="col-theme-preview ml-xl-n12">
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title">Choose the CV template you love</div>
             <v-row align="center">
@@ -282,6 +282,7 @@ $mainBlue: #001ce2;
 .custom-ripple-class {
   background: transparent;
 }
+
 .custom-tab {
   font-family: "Noto Sans" !important;
   font-style: normal;
