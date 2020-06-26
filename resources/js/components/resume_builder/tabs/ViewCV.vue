@@ -3,7 +3,22 @@
     <v-container style="width:100%;" fluid>
       <v-row>
         <!-- side menu -->
-        <v-col xl="3" :lg="windowWidth<1365?'4':'3'" md="12" sm="12" cols="12">
+        <v-col xl="3" lg="3" md="5" sm="5" cols="5">
+          <v-select
+            class="resume-builder__input civie-select hidden-lg-and-up"
+            outlined
+            placeholder="Select an option"
+            :items="themeCategories"
+            item-text="title"
+            item-value="id"
+            color="#001CE2"
+          >
+            <template slot="append">
+              <v-btn class="eye-btn ml-n2" depressed>
+                <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
+              </v-btn>
+            </template>
+          </v-select>
           <v-navigation-drawer permanent width="400" class="hidden-md-and-down">
             <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
@@ -62,7 +77,7 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" :lg="windowWidth<1365?'8':'9'"  md="12" sm="12" cols="12">
+        <v-col xl="9" lg="9" md="12" sm="12" cols="12">
           <v-tabs-items v-model="themeTab">
             <v-tab-item v-for="category in themeCategories" :key="category.id">
               <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
@@ -167,11 +182,14 @@ export default {
       return this.$store.state.user;
     }
   },
-  props: ["inputProps"],
+  props: ["inputProps", "selectProps"],
   methods: {
     methods: {
       toggleInput() {
         this.disabledInput = !this.disabledInput;
+      },
+      toggleSelect() {
+        this.disabledSelect = !this.disabledSelect;
       }
     },
     showPreviewModal(theme_id) {
