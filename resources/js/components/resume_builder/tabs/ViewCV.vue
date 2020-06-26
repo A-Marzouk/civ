@@ -3,8 +3,8 @@
     <v-container style="width:100%;" fluid>
       <v-row>
         <!-- side menu -->
-        <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-          <v-navigation-drawer permanent width="400">
+        <v-col xl="3" :lg="windowWidth<1365?'4':'3'" md="12" sm="12" cols="12">
+          <v-navigation-drawer permanent width="400" class="hidden-md-and-down">
             <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -25,7 +25,13 @@
               </v-text-field>
             </v-card>
             <v-card color="transparent" flat tile class="ml-2">
-              <v-tabs vertical fixed-tabs active-class="custom-active-tab" slider-size="5">
+              <v-tabs
+                vertical
+                fixed-tabs
+                active-class="custom-active-tab"
+                slider-size="5"
+                v-model="themeTab"
+              >
                 <v-tab
                   v-for="category in themeCategories"
                   :key="category.id"
@@ -56,24 +62,26 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="9" sm="9" cols="9">
-          <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
-            <v-card-subtitle class="themes-wrapper-title">Choose the CV template you love</v-card-subtitle>
-            <v-row align="center">
-              <v-col md="4" sm="6" cols="12" v-for="i in 12" :key="i">
-                <img
-                  width="417"
-                  height="302.56"
-                  src="/images/new_resume_builder/themes-wrapper.svg"
-                  alt="themes"
-                  class="card-theme-wrapper"
-                  :class="selectedTheme == i ? 'selected-theme':''"
-                  @click="selectTheme(i)"
-                />
-              </v-col>
-            </v-row>
-          </v-card>
-          <v-card flat tile color="transparent"></v-card>
+        <v-col xl="9" :lg="windowWidth<1365?'8':'9'"  md="12" sm="12" cols="12">
+          <v-tabs-items v-model="themeTab">
+            <v-tab-item v-for="category in themeCategories" :key="category.id">
+              <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
+                <div class="themes-wrapper-title">Choose the CV template you love</div>
+                <v-row align="center">
+                  <v-col md="4" sm="4" cols="4" v-for="i in 12" :key="i">
+                    <img
+                      src="/images/new_resume_builder/themes-wrapper.svg"
+                      alt="themes"
+                      class="theme-img"
+                      :class="selectedTheme == i ? 'selected-theme':''"
+                      @click="selectTheme(i)"
+                    />
+                  </v-col>
+                </v-row>
+              </v-card>
+              <v-card flat tile color="transparent"></v-card>
+            </v-tab-item>
+          </v-tabs-items>
         </v-col>
       </v-row>
     </v-container>
@@ -85,6 +93,7 @@ export default {
   name: "ViewCV",
   data() {
     return {
+      themeTab: 0,
       selectedTheme: 1,
       windowWidth: window.innerWidth,
       disabledInput: false,
@@ -307,8 +316,20 @@ $mainBlue: #001ce2;
     font-size: 40px;
     line-height: 54px;
     color: #001ce2 !important;
+    @media screen and (max-width: 960px) {
+      font-size: 22px;
+      line-height: 28px;
+    }
   }
-  .card-theme-wrapper {
+  .theme-img {
+    img {
+      width: 417px !important;
+      height: 302.56px !important;
+      @media screen and (max-width: 960px) {
+        width: 200px;
+        height: 145.11px;
+      }
+    }
     border-radius: 0px !important;
   }
   .selected-theme {
