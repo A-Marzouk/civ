@@ -352,6 +352,10 @@ $mainBlue: #001ce2;
       font-size: 18px;
       line-height: 25px;
     }
+    @media screen and (max-width: 430px) {
+      font-size: 15px;
+      line-height: 25px;
+    }
   }
   .theme-img {
     img {
