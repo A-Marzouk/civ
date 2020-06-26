@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-container style="width:100%;" fluid>
+    <v-container style="width:100%;" fluid class="pa-md-0 pa-sm-5">
       <v-row>
         <!-- side menu -->
-        <v-col xl="3" lg="3" md="5" sm="5" cols="5">
+        <v-col xl="3" lg="3" md="5" sm="5" cols="12">
           <v-select
             class="resume-builder__input civie-select hidden-lg-and-up"
             outlined
@@ -22,7 +22,7 @@
               <svg-vue :icon="`dropdown-caret`"></svg-vue>
             </button>
           </v-select>
-          <v-navigation-drawer permanent width="400" class="hidden-md-and-down">
+          <v-navigation-drawer permanent width="310" class="hidden-md-and-down">
             <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -84,7 +84,7 @@
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title">Choose the CV template you love</div>
             <v-row align="center">
-              <v-col md="4" sm="4" cols="4" v-for="i in 12" :key="i">
+              <v-col md="4" sm="4" cols="6" v-for="i in 12" :key="i">
                 <img
                   src="/images/new_resume_builder/themes-wrapper.svg"
                   alt="themes"
@@ -183,14 +183,13 @@ export default {
   },
   props: ["inputProps", "selectProps"],
   methods: {
-    methods: {
-      toggleInput() {
-        this.disabledInput = !this.disabledInput;
-      },
-      toggleSelect() {
-        this.disabledSelect = !this.disabledSelect;
-      }
+    toggleInput() {
+      this.disabledInput = !this.disabledInput;
     },
+    toggleSelect() {
+      this.disabledSelect = !this.disabledSelect;
+    },
+
     showPreviewModal(theme_id) {
       this.previewThemeID = theme_id;
       this.$refs.previewModal.show();
