@@ -285,7 +285,7 @@ $resume-builder-nav-height: 90px;
     width: 100%;
     height: $resume-builder-nav-height;
     box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05) !important;
-    @media screen and (min-width:1280px){
+    @media screen and (min-width: 1280px) {
       max-width: 100% !important;
     }
 
@@ -326,6 +326,9 @@ $resume-builder-nav-height: 90px;
       margin-bottom: -$resume-builder-nav-height;
       transition: all 0.3s;
       margin-top: 2px;
+      @media screen and (max-width: 599px){
+        margin-bottom: -88px;
+      }
 
       &.collapsed {
         margin-bottom: 0;
