@@ -14,10 +14,13 @@
             color="#001CE2"
           >
             <template slot="append">
-              <v-btn class="eye-btn ml-n2" depressed>
+              <v-btn class="eye-btn ml-n7 mr-2" depressed>
                 <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
               </v-btn>
             </template>
+            <button class="dropdown-icon icon" slot="append">
+              <svg-vue :icon="`dropdown-caret`"></svg-vue>
+            </button>
           </v-select>
           <v-navigation-drawer permanent width="400" class="hidden-md-and-down">
             <v-card flat color="transparent" class="pa-5 mt-n12">
@@ -78,25 +81,21 @@
           </v-navigation-drawer>
         </v-col>
         <v-col xl="9" lg="9" md="12" sm="12" cols="12">
-          <v-tabs-items v-model="themeTab">
-            <v-tab-item v-for="category in themeCategories" :key="category.id">
-              <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
-                <div class="themes-wrapper-title">Choose the CV template you love</div>
-                <v-row align="center">
-                  <v-col md="4" sm="4" cols="4" v-for="i in 12" :key="i">
-                    <img
-                      src="/images/new_resume_builder/themes-wrapper.svg"
-                      alt="themes"
-                      class="theme-img"
-                      :class="selectedTheme == i ? 'selected-theme':''"
-                      @click="selectTheme(i)"
-                    />
-                  </v-col>
-                </v-row>
-              </v-card>
-              <v-card flat tile color="transparent"></v-card>
-            </v-tab-item>
-          </v-tabs-items>
+          <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
+            <div class="themes-wrapper-title">Choose the CV template you love</div>
+            <v-row align="center">
+              <v-col md="4" sm="4" cols="4" v-for="i in 12" :key="i">
+                <img
+                  src="/images/new_resume_builder/themes-wrapper.svg"
+                  alt="themes"
+                  class="theme-img"
+                  :class="selectedTheme == i ? 'selected-theme':''"
+                  @click="selectTheme(i)"
+                />
+              </v-col>
+            </v-row>
+          </v-card>
+          <v-card flat tile color="transparent"></v-card>
         </v-col>
       </v-row>
     </v-container>
