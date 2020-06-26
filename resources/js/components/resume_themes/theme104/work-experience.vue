@@ -159,7 +159,7 @@ export default {
                 }
             }
 
-            @media (max-width: 670px) {
+            @media (max-width: 600px) {
                 margin-bottom: 16px;
 
                 .company-name {
@@ -205,7 +205,7 @@ export default {
                 }
             }
 
-            @media (max-width: 670px) {
+            @media (max-width: 600px) {
                 
                 .job-title,
                 .work-description p {
@@ -215,7 +215,7 @@ export default {
             }
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             width: 100%;
             margin-bottom: 48px;
         }

@@ -227,7 +227,7 @@ $purple: #0556B6;
                     }
                 }
                 
-                @media (max-width: 670px) {
+                @media (max-width: 600px) {
                     margin: 29px 0;
                     padding: 0 17px;
 

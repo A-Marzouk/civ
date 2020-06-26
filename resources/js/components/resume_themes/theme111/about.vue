@@ -70,7 +70,7 @@ export default {
             }
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             flex-wrap: wrap;
             margin: 0 auto;
 

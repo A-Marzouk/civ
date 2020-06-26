@@ -175,7 +175,7 @@ $purple: #686299;
                         padding: 12px 34px;
                     }
 
-                    @media (max-width: 670px) {
+                    @media (max-width: 600px) {
                         padding: 10px 30px;
                         font-size: 15px;
                         margin-right: 27px;
@@ -209,7 +209,7 @@ $purple: #686299;
                     }
                 }
                 
-                @media (max-width: 670px) {
+                @media (max-width: 600px) {
                     margin: 29px 0;
                     padding: 0 17px;
 
@@ -239,7 +239,7 @@ $purple: #686299;
                     width: 100%;
                 }
 
-                @media (max-width: 670px) {
+                @media (max-width: 600px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
@@ -282,7 +282,7 @@ $purple: #686299;
             }
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }

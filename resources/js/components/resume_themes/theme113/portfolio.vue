@@ -211,7 +211,7 @@ export default {
                         }
                     }
 
-                    @media (max-width: 670px) {
+                    @media (max-width: 600px) {
                         .title,
                         .description p {
                             font-size: 13px !important;
@@ -224,7 +224,7 @@ export default {
                     margin-bottom: 76px !important;
                 }
                 
-                @media (max-width: 670px) {
+                @media (max-width: 600px) {
                     margin-bottom: 42px !important;
                 }
             }

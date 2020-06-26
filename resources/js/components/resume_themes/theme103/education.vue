@@ -147,7 +147,7 @@ export default {
                 }
             }
 
-            @media (max-width: 670px) {
+            @media (max-width: 600px) {
                 margin-bottom: 10px;
 
                 .college-name {
@@ -179,7 +179,7 @@ export default {
                 }
             }
 
-            @media (max-width: 670px) {
+            @media (max-width: 600px) {
 
                 .grade-title {
                     margin-bottom: 16px;
@@ -193,12 +193,12 @@ export default {
             }
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             width: 100%;
             margin-bottom: 48px;
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             width: 100%;
             margin-bottom: 48px;
         }

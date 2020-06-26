@@ -93,7 +93,7 @@ $mainColor: #492163;
             right: -60px;
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }
@@ -182,7 +182,7 @@ $mainColor: #492163;
                 }
             }
 
-            @media (max-width: 670px) {
+            @media (max-width: 600px) {
                 margin-bottom: 16px;
 
                 .college-name {
@@ -228,7 +228,7 @@ $mainColor: #492163;
                 }
             }
 
-            @media (max-width: 670px) {
+            @media (max-width: 600px) {
                 
                 .grade-title,
                 .education-description p {
@@ -238,7 +238,7 @@ $mainColor: #492163;
             }
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             width: 100%;
             margin-bottom: 48px;
         }

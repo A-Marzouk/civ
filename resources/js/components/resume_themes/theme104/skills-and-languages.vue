@@ -110,7 +110,7 @@ export default {
             }
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             grid-gap: 0 30px;
             margin-top: 60px !important;
             width: 100%;

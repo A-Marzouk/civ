@@ -126,7 +126,7 @@ export default {
             }
         }
 
-        @media (max-width: 670px) {
+        @media (max-width: 600px) {
             padding: 0 17px !important;
 
             .skill {

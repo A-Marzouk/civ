@@ -198,7 +198,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 670px) {
+                    @media (max-width: 600px) {
                         font-size: 15px;
                         justify-content: flex-start;
                         margin-right: 27px;
@@ -224,7 +224,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 670px) {
+                @media (max-width: 600px) {
                     margin: 29px 0;
                     padding: 0 17px;
                 }
@@ -243,7 +243,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     width: 100%;
                 }
 
-                @media (max-width: 670px) {
+                @media (max-width: 600px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
