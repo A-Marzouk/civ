@@ -175,7 +175,7 @@ $purple: #355E5E;
                         padding: 12px 34px;
                     }
                     
-                    @media (max-width: 600px) {
+                    @media (max-width: 768px) {
                         padding: 0 20px;
                         font-size: 15px;
                         margin-right: 27px;
@@ -239,7 +239,7 @@ $purple: #355E5E;
                     width: 100%;
                 }
 
-                @media (max-width: 600px) {
+                @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;

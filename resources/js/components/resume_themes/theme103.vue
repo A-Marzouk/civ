@@ -256,10 +256,6 @@ $purple: #0556B6;
                     width: 100%;
                 }
 
-                @media (max-width: 876px) {
-                    width: 100%;
-                }
-
                 @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;

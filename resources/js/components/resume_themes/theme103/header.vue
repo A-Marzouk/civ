@@ -274,8 +274,6 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     @media (max-width: 1400px) {
                         font-size: 16px;
-                        
-                        
 
                         .icon {
                             height: 20px;
