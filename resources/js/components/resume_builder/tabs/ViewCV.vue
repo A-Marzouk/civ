@@ -22,7 +22,7 @@
               <svg-vue :icon="`dropdown-caret`"></svg-vue>
             </button>
           </v-select>
-          <v-navigation-drawer permanent width="310" class="hidden-md-and-down">
+          <v-navigation-drawer permanent width="330" class="hidden-md-and-down">
             <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -42,7 +42,7 @@
                 </template>
               </v-text-field>
             </v-card>
-            <v-card color="transparent" flat tile class="ml-2">
+            <v-card color="transparent" flat tile class="ml-2 mt-n6">
               <v-tabs
                 vertical
                 fixed-tabs
@@ -53,16 +53,12 @@
                 <v-tab
                   v-for="category in themeCategories"
                   :key="category.id"
-                  class="custom-tab"
+                  class="custom-tab mb-3"
                   :ripple="false"
                 >
                   <v-row>
-                    <v-col
-                      cols="8"
-                      align="left"
-                      :class="category.id!=1?'':'ml-xl-n8'"
-                    >{{category.title}}</v-col>
-                    <v-col cols="4" align="right">
+                    <v-col cols="6" align="left">{{category.title}}</v-col>
+                    <v-col cols="5" align="right">
                       <v-card
                         class="card-counter"
                         flat
@@ -80,7 +76,7 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="12" sm="12" cols="12">
+        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left">
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title">Choose the CV template you love</div>
             <v-row align="center">
@@ -294,6 +290,9 @@ $mainBlue: #001ce2;
   line-height: 26px;
   color: #888db1 !important;
   text-transform: capitalize !important;
+  @media screen and (min-width: 1264px) and (max-width: 1366px) {
+    font-size: 16px !important;
+  }
 }
 .custom-active-tab {
   font-family: "Noto Sans" !important;
@@ -302,6 +301,9 @@ $mainBlue: #001ce2;
   font-size: 18px !important;
   line-height: 26px;
   color: #001ce2 !important;
+  @media screen and (min-width: 1264px) and (max-width: 1366px) {
+    font-size: 16px !important;
+  }
 }
 .custom-active-tab::before {
   opacity: 0 !important;
