@@ -188,8 +188,7 @@ $purple: #0556B6;
                         padding: 12px 34px;
                     }
 
-                    @media (max-width: 1400px) {
-                        font-size: 18px;
+                    @media (max-width: 1200px) {
                         padding: 12px 30px;
                     }
                     

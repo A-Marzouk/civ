@@ -123,9 +123,14 @@ $purple: #FB423A;
                     max-width: 100px !important;
                 }
             }
+
+            @media (max-width: 768px) {
+                margin-right: 15px;
+            }
             
             @media (max-width: 600px) {
                 width: 100%;
+                margin-right: 0;
             }
         }
 
@@ -350,10 +355,13 @@ $purple: #FB423A;
             @media (max-width: 1200px) {
                 padding: 37px 40px;
             }
+
+            @media (max-width: 768px) {
+                padding: 30px 17px;
+            }
             
             @media (max-width: 600px) {
                 flex-wrap: wrap;
-                padding: 30px 17px;
             }
 
             .user-img {

@@ -190,7 +190,7 @@ $purple: #FB423A;
                         padding: 12px 30px;
                     }
 
-                    @media (max-width: 600px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
                         padding: 13px 17px;
                         margin-right: 27px;
@@ -215,12 +215,13 @@ $purple: #FB423A;
                     margin-top: 29px;
                     margin-bottom: 47px;
                 }
+
+                @media (max-width: 768px) {
+                    padding: 0 17px;
+                }
                 
                 @media (max-width: 600px) {
-                    margin: 29px 0;
-                    padding: 0 17px;
-
-                    
+                    margin: 29px 0;                    
                 }
             }
 
@@ -238,7 +239,7 @@ $purple: #FB423A;
                     width: 100%;
                 }
 
-                @media (max-width: 600px) {
+                @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
