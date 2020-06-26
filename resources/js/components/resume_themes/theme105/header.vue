@@ -88,7 +88,7 @@ $purple: #355E5E;
                 position: absolute;
                 left: -88px;
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 30%;
                 }
             }
@@ -98,7 +98,7 @@ $purple: #355E5E;
                 top: -44px;
                 right: 40%;
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 30%;
                 }
             }
@@ -108,7 +108,7 @@ $purple: #355E5E;
                 top: -21.7px;
                 right: 39%;
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 30%;
                 }
             }
@@ -118,7 +118,7 @@ $purple: #355E5E;
                 top: -63.5px;
                 right: -29.7px;
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 30%;
                 }
             }
@@ -128,7 +128,7 @@ $purple: #355E5E;
                 bottom: -13px;
                 right: 46%;
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 30%;
                 }
             }
@@ -142,7 +142,7 @@ $purple: #355E5E;
                 display: none;
                 position: relative;
                 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -168,7 +168,7 @@ $purple: #355E5E;
                 }
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 width: 100%;
             }
         }
@@ -224,7 +224,7 @@ $purple: #355E5E;
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     position: absolute;
                     opacity: 1;
                     transform: translateY(0px);
@@ -304,7 +304,7 @@ $purple: #355E5E;
                         margin-right: 20px;
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 670px) {
                         margin-right: 0;
                         align-items: flex-start;
                     }
@@ -346,7 +346,7 @@ $purple: #355E5E;
                         }
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 670px) {
                         font-size: 10px;
                         padding: 14px 24px;
                         min-width: 80px;
@@ -361,7 +361,7 @@ $purple: #355E5E;
                     margin-top: 27px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     margin-top: 0;
                     padding-left: 60px;
                     justify-content: space-between;
@@ -371,7 +371,7 @@ $purple: #355E5E;
 
             
 
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 margin-top: 0;
                 justify-content: space-between;
                 width: 100%;
@@ -393,7 +393,7 @@ $purple: #355E5E;
                 padding: 37px 40px;
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 flex-wrap: wrap;
                 padding: 30px 17px;
             }
@@ -424,7 +424,7 @@ $purple: #355E5E;
                     margin-right: 20px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 50px;
                     height: 50px;
                     margin-right: 12px;
@@ -510,7 +510,7 @@ $purple: #355E5E;
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
 
                     .name {
                         font-size: 12px;

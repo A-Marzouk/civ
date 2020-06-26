@@ -84,7 +84,7 @@ $purple: #FB423A;
             height: 100%;
             border-radius: 0 0 0 100px;
 
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 border-radius: 0;
                 width: 100%;
             }
@@ -98,7 +98,7 @@ $purple: #FB423A;
                 display: none;
                 position: relative;
                 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -124,7 +124,7 @@ $purple: #FB423A;
                 }
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 width: 100%;
             }
         }
@@ -181,7 +181,7 @@ $purple: #FB423A;
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     position: absolute;
                     opacity: 1;
                     transform: translateY(0px);
@@ -262,7 +262,7 @@ $purple: #FB423A;
                         margin-right: 20px;
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 670px) {
                         margin-right: 0;
                         align-items: flex-start;
                     }
@@ -304,7 +304,7 @@ $purple: #FB423A;
                         }
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 670px) {
                         font-size: 10px;
                         padding: 14px 24px;
                         min-width: 80px;
@@ -319,7 +319,7 @@ $purple: #FB423A;
                     margin-top: 27px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     margin-top: 0;
                     justify-content: space-between;
                     width: 100%;
@@ -328,7 +328,7 @@ $purple: #FB423A;
 
             
 
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 margin-top: 0;
                 padding-left: 60px;
                 justify-content: space-between;
@@ -351,7 +351,7 @@ $purple: #FB423A;
                 padding: 37px 40px;
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 flex-wrap: wrap;
                 padding: 30px 17px;
             }
@@ -388,7 +388,7 @@ $purple: #FB423A;
                     margin-right: 20px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 50px;
                     height: 50px;
                     margin-right: 12px;
@@ -475,7 +475,7 @@ $purple: #FB423A;
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
 
                     .name {
                         font-size: 12px;

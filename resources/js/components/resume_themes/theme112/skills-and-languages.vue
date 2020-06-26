@@ -136,7 +136,7 @@ export default {
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 670px) {
             display: none;
         }
     }
@@ -234,7 +234,7 @@ export default {
                 }
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 grid-column: span 6;
                 max-width: 100%;
 
@@ -273,7 +273,7 @@ export default {
             grid-gap: 30px;
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 670px) {
             grid-gap: 35px 20px;
             width: 100%;
         }

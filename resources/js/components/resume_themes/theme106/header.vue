@@ -83,7 +83,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 display: none;
                 position: relative;
                 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -109,7 +109,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 width: 100%;
             }
         }
@@ -171,7 +171,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     position: absolute;
                     opacity: 1;
                     transform: translateY(0px);
@@ -262,7 +262,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         margin-right: 20px;
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 670px) {
                         margin-right: 0;
                         align-items: flex-start;
                     }
@@ -302,7 +302,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         }
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 670px) {
                         font-size: 10px;
                         padding: 14px 24px;
                         min-width: 80px;
@@ -317,7 +317,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     margin-top: 27px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     margin-top: 0;
                     padding-left: 60px;
                     justify-content: space-between;
@@ -325,7 +325,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 margin-top: 0;
                 justify-content: space-between;
                 width: 100%;
@@ -347,7 +347,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 padding: 37px 40px;
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 flex-wrap: wrap;
                 padding: 30px 17px;
             }
@@ -378,7 +378,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     margin-right: 20px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
                     width: 50px;
                     height: 50px;
                     margin-right: 12px;
@@ -466,7 +466,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 670px) {
 
                     .name {
                         font-size: 12px;

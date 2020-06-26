@@ -143,12 +143,12 @@ $mainColor: #492163;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 670px) {
             display: none;
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 670px) {
         background-image: none;
     }
 }
@@ -244,7 +244,7 @@ $mainColor: #492163;
                 }
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 670px) {
                 grid-column: span 6;
                 max-width: 100%;
 
@@ -283,7 +283,7 @@ $mainColor: #492163;
             grid-gap: 30px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 670px) {
             width: 100%;
         }
     }

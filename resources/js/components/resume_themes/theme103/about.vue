@@ -68,7 +68,7 @@ $purple: #0556B6;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 670px) {
             flex-wrap: wrap;
             margin: 0 auto;
             flex-direction: column;
