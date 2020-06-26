@@ -237,8 +237,6 @@ $purple: #0556B6;
                     .v-tabs-slider {
                         border-radius: 22px;
                     }
-
-                    
                 }
             }
 

@@ -109,8 +109,13 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
             
+            @media (max-width: 768px) {
+                margin-right: 15px;
+            }
+            
             @media (max-width: 600px) {
                 width: 100%;
+                margin-right: 0;
             }
         }
 
@@ -347,9 +352,12 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 padding: 37px 40px;
             }
             
+            @media (max-width: 768px) {
+                padding: 30px 17px;
+            }
+            
             @media (max-width: 600px) {
                 flex-wrap: wrap;
-                padding: 30px 17px;
             }
 
             .user-img {
