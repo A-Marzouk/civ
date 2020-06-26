@@ -1,6 +1,6 @@
 <template>
   <div class="resume-builder__scroll" id="portfolio-tab">
-    <div class="data-container">
+    <div class="data-container container">
       <v-card class="view-container resume-builder__scroll">
         <v-form
                 class="grid-form"
