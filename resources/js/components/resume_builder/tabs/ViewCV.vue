@@ -15,6 +15,7 @@
                 label
                 height="55"
                 style="border-radius:5px !important;"
+                placeholder="Current Theme"
               >
                 <template slot="append">
                   <v-btn class="eye-btn mt-n1 ml-n2" depressed>
@@ -60,15 +61,15 @@
             <v-card-subtitle class="themes-wrapper-title">Choose the CV template you love</v-card-subtitle>
             <v-row align="center">
               <v-col md="4" sm="6" cols="12" v-for="i in 12" :key="i">
-                <v-card
-                  flat
-                  tile
-                  class="card-theme-wrapper mb-xl-0 mb-lg-n12 mb-md-n12"
+                <img
+                  width="417"
+                  height="302.56"
+                  src="/images/new_resume_builder/themes-wrapper.svg"
+                  alt="themes"
+                  class="card-theme-wrapper"
+                  :class="selectedTheme == i ? 'selected-theme':''"
                   @click="selectTheme(i)"
-                  :class="selectedTheme==i?'selected-theme':''"
-                >
-                  <img width="417" height="302.56" src="/images/new_resume_builder/themes-wrapper.svg" alt="themes" />
-                </v-card>
+                />
               </v-col>
             </v-row>
           </v-card>
@@ -308,14 +309,10 @@ $mainBlue: #001ce2;
     color: #001ce2 !important;
   }
   .card-theme-wrapper {
-    width: 417px;
-    height: 302.56px;
-    border-radius: 10px !important;
+    border-radius: 0px !important;
   }
   .selected-theme {
     border: 3px solid #001ce2;
-    width: 417px;
-    height: 302.56px;
   }
 }
 
