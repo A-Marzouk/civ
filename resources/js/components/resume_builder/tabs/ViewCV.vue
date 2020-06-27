@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-container style="width:100%;" fluid class="pa-md-0 pa-sm-5">
+    <v-container fluid class="pa-lg-0 pa-md-8 pa-sm-5 pa-6">
       <v-row>
         <!-- side menu -->
-        <v-col xl="3" lg="3" md="5" sm="5" cols="12">
+        <v-col xl="3" lg="3" md="5" sm="5" cols="12" class="mr-xl-n12">
           <v-select
             class="resume-builder__input civie-select hidden-lg-and-up"
             outlined
@@ -12,9 +12,10 @@
             item-text="title"
             item-value="id"
             color="#001CE2"
+            height="60"
           >
             <template slot="append">
-              <v-btn class="eye-btn ml-n7 mr-2" depressed>
+              <v-btn class="eye-btn ml-n7 mr-4 mt-n2" depressed>
                 <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
               </v-btn>
             </template>
@@ -22,7 +23,7 @@
               <svg-vue :icon="`dropdown-caret`"></svg-vue>
             </button>
           </v-select>
-          <v-navigation-drawer permanent width="310" class="hidden-md-and-down">
+          <v-navigation-drawer permanent width="330" class="hidden-md-and-down">
             <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -42,7 +43,7 @@
                 </template>
               </v-text-field>
             </v-card>
-            <v-card color="transparent" flat tile class="ml-2">
+            <v-card color="transparent" flat tile class="ml-2 mt-n6">
               <v-tabs
                 vertical
                 fixed-tabs
@@ -53,16 +54,11 @@
                 <v-tab
                   v-for="category in themeCategories"
                   :key="category.id"
-                  class="custom-tab"
-                  :ripple="false"
+                  class="custom-tab mb-3"
                 >
                   <v-row>
-                    <v-col
-                      cols="8"
-                      align="left"
-                      :class="category.id!=1?'':'ml-xl-n8'"
-                    >{{category.title}}</v-col>
-                    <v-col cols="4" align="right">
+                    <v-col cols="6" align="left">{{category.title}}</v-col>
+                    <v-col cols="5" align="right">
                       <v-card
                         class="card-counter"
                         flat
@@ -80,9 +76,17 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="12" sm="12" cols="12">
+        <v-col
+          xl="9"
+          lg="9"
+          md="12"
+          sm="12"
+          cols="12"
+          align="left"
+          class="col-theme-preview ml-xl-n12"
+        >
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
-            <div class="themes-wrapper-title">Choose the CV template you love</div>
+            <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
             <v-row align="center">
               <v-col md="4" sm="4" cols="6" v-for="i in 12" :key="i">
                 <img
@@ -282,10 +286,17 @@ $mainBlue: #001ce2;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    width: 95% !important;
+  }
+  @media screen and (max-width: 599px){
+    width: auto !important;
+  }
 }
 .custom-ripple-class {
   background: transparent;
 }
+
 .custom-tab {
   font-family: "Noto Sans" !important;
   font-style: normal;
@@ -294,6 +305,9 @@ $mainBlue: #001ce2;
   line-height: 26px;
   color: #888db1 !important;
   text-transform: capitalize !important;
+  @media screen and (min-width: 1264px) and (max-width: 1366px) {
+    font-size: 16px !important;
+  }
 }
 .custom-active-tab {
   font-family: "Noto Sans" !important;
@@ -302,6 +316,9 @@ $mainBlue: #001ce2;
   font-size: 18px !important;
   line-height: 26px;
   color: #001ce2 !important;
+  @media screen and (min-width: 1264px) and (max-width: 1366px) {
+    font-size: 16px !important;
+  }
 }
 .custom-active-tab::before {
   opacity: 0 !important;
@@ -332,18 +349,33 @@ $mainBlue: #001ce2;
     font-size: 40px;
     line-height: 54px;
     color: #001ce2 !important;
-    @media screen and (max-width: 960px) {
+    @media screen and (max-width: 959px) {
       font-size: 22px;
       line-height: 28px;
+    }
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 25px;
+    }
+    @media screen and (max-width: 430px) {
+      font-size: 15px;
+      line-height: 25px;
+    }
+    @media screen and (max-width: 382px) {
+      font-size: 13px;
     }
   }
   .theme-img {
     img {
       width: 417px !important;
       height: 302.56px !important;
-      @media screen and (max-width: 960px) {
-        width: 200px;
-        height: 145.11px;
+      @media screen and (max-width: 959px) {
+        width: 200px !important;
+        height: 145.11px !important;
+      }
+      @media screen and (max-width: 767px) {
+        width: 142px !important;
+        height: 103.03px !important;
       }
     }
     border-radius: 0px !important;
