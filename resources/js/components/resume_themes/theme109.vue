@@ -232,7 +232,7 @@ $purple: #24325D;
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 600px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
                         padding: 13px 0;
                         justify-content: flex-start;
@@ -270,11 +270,9 @@ $purple: #24325D;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 600px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
-                    padding: 0 17px;
-
-                    
+                    padding: 0 17px;                    
                 }
             }
 
@@ -291,7 +289,7 @@ $purple: #24325D;
                     width: 100%;
                 }
 
-                @media (max-width: 600px) {
+                @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
                     width: 100%;
