@@ -166,6 +166,10 @@ export default {
         .masonry {
             width: 100%;
             margin: 0 auto !important;
+
+            & > div {
+                border-width: 0 !important;
+            }
             
             .v-card {
                 grid-column: span 4;

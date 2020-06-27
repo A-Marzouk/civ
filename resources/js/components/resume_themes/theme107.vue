@@ -233,9 +233,9 @@ $purple: #335E5E;
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 600px) {
+                    @media (max-width: 768px) {
+                        padding: 12px 20px;
                         font-size: 15px;
-                        padding: 13px 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -260,11 +260,9 @@ $purple: #335E5E;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 600px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
                     padding: 0 17px;
-
-                    
                 }
             }
 
@@ -278,9 +276,14 @@ $purple: #335E5E;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 600px) {
-                    padding: 0;
+                @media (max-width: 876px) {
+                    width: 100%;
+                }
+
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
+                    width: 100%;
                 }
             }
         }
