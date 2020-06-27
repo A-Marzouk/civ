@@ -84,7 +84,6 @@ export default {
     .work-item {
         max-width: 529px;
         grid-column: span 4;
-        margin:0 41px;
         margin-bottom: 74px;
 
         .work-header {
@@ -165,7 +164,6 @@ export default {
         @media (max-width: 1200px) {
             grid-column: span 6;
         }
-
         @media (max-width: 600px) {
             grid-column: span 12;
         }
