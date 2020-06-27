@@ -85,7 +85,6 @@ export default {
 		padding: 16px 16px 16px 30px;
 		font-size: 16px;
 		line-height: 24px;
-		border-radius: 10px;
 
 		&:focus {
 			outline: none;

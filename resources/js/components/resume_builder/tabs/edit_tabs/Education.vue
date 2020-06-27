@@ -1,5 +1,5 @@
 <template>
-    <div class="resume-builder__scroll">
+    <v-app class="resume-builder__scroll">
         <div class="data-container">            
             <v-card color="transparent" flat tile>
                 <v-tabs
@@ -16,11 +16,10 @@
             </v-card>
 
             <v-card class="view-container resume-builder__scroll">
-                <SchoolView v-if="activeTab === 'School'"></SchoolView>
-                <div v-else>No thing to show here</div>
+                <SchoolView :activeTab ="activeTab"></SchoolView>
             </v-card>
         </div>
-    </div>
+    </v-app>
 </template>
 
 <script>
@@ -49,10 +48,7 @@ import SchoolView from './education_tabs/school'
                 },
                 addNewEducation: false,
                 tabs: [
-                    'School',
-                    'University / College',
-                    'Courses',
-                    'Seminars / Training'
+                    'Education'
                 ],
                 tabViews: [
 
@@ -98,7 +94,7 @@ import SchoolView from './education_tabs/school'
             },
             EditedSuccessfully(editedEducation) {
                 this.clearEditedEducation();
-                this.$store.dispatch('fullScreenNotification');
+                this.$store.dispatch('flyingNotification');
                 // replace the edited skill with the new one:
                 this.educations.forEach((education, index) => {
                     if (education.id === editedEducation.id) {
@@ -135,7 +131,7 @@ import SchoolView from './education_tabs/school'
                     .then((response) => {
                         this.educations.unshift(response.data.data);
                         this.clearEducation();
-                        this.$store.dispatch('fullScreenNotification');
+                        this.$store.dispatch('flyingNotification');
                     })
                     .catch((error) => {
                         if (typeof error.response.data === 'object') {
@@ -174,6 +170,10 @@ import SchoolView from './education_tabs/school'
 @import '../../../../../sass/media-queries';
 $mainBlue: #001CE2;
     .data-container {
+        @include lt-sm{
+            margin: 3%;
+        }
+
         padding: 0;
         margin-bottom:30px;
 

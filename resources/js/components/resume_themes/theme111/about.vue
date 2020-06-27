@@ -24,6 +24,11 @@ export default {
     .about {
         display: flex;
         max-width: 1400px !important;
+        width: 85%;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 0 auto;
+        position: relative;
         
         .about-title {
             font-size: 40px;
@@ -31,7 +36,6 @@ export default {
             font-weight: 700;
             max-width: 270px;
             width: 100%;
-            margin-right: 192px;
         }
 
         .content {
@@ -39,7 +43,7 @@ export default {
             margin-top: 0;
             column-count: 2;
             column-gap: 58px;
-
+            
             p {
                 font-size: 20px;
                 color: #E2E7FF;
@@ -66,7 +70,7 @@ export default {
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
             flex-wrap: wrap;
             margin: 0 auto;
 

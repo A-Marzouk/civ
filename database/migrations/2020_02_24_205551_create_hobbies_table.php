@@ -19,6 +19,7 @@ class CreateHobbiesTable extends Migration
             $table->string('category')->nullable();
 
             $table->boolean('is_public')->default(true);
+            $table->integer('order')->default(1);
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

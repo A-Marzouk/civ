@@ -147,7 +147,7 @@
 <style scoped>
     h1
     {
-        font-size: unset;
+
         font-size: 32px;
 
     }
@@ -165,21 +165,21 @@
     }
 
     .background {
-        background-color: #F5F2ED;
+        background-color: #F5F2ED!important;
     }
 
     .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
-        background-color: #FDDB69;
+        background-color: #FDDB69!important;
     }
 
     @media only screen and (max-width: 960px) {
 
         .background {
-            background-color: #FDDB69;
+            background-color: #FDDB69!important;
         }
 
         .theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
-            background-color: #FFFFFF;
+            background-color: #FFFFFF!important;
         }
 
         .choose {

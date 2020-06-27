@@ -1,6 +1,6 @@
 <template>
     <v-app v-resize="onResize">
-        <v-content style="background-color: #001935;background-image: unset">
+        <v-content style="background-color: #001935;background-image: unset;min-height: 100vh">
             <v-container fluid>
                 <v-row align="center" v-if="windowSize<=650" dense no-gutters>
                     <v-col align-self="center" class="d-flex" cols="12">

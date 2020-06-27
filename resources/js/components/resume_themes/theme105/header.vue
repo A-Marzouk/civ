@@ -76,7 +76,6 @@ $purple: #355E5E;
 #theme105 {
     .theme-header {
         width: 100%;
-        background-image: url("/images/resume_themes/theme105/bg-header.png");
         position: relative;
 
         .bg-header {
@@ -89,7 +88,7 @@ $purple: #355E5E;
                 position: absolute;
                 left: -88px;
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     width: 30%;
                 }
             }
@@ -99,7 +98,7 @@ $purple: #355E5E;
                 top: -44px;
                 right: 40%;
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     width: 30%;
                 }
             }
@@ -109,7 +108,7 @@ $purple: #355E5E;
                 top: -21.7px;
                 right: 39%;
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     width: 30%;
                 }
             }
@@ -119,7 +118,7 @@ $purple: #355E5E;
                 top: -63.5px;
                 right: -29.7px;
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     width: 30%;
                 }
             }
@@ -129,7 +128,7 @@ $purple: #355E5E;
                 bottom: -13px;
                 right: 46%;
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     width: 30%;
                 }
             }
@@ -143,7 +142,7 @@ $purple: #355E5E;
                 display: none;
                 position: relative;
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -169,7 +168,7 @@ $purple: #355E5E;
                 }
             }
             
-            @media (max-width: 700px) {
+            @media (max-width: 768px) {
                 width: 100%;
             }
         }
@@ -186,10 +185,11 @@ $purple: #355E5E;
                 align-items: center;
 
                 .action-btn {
+                    width: 220px;
+                    height: 68px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
                     background: #fff;
@@ -213,16 +213,18 @@ $purple: #355E5E;
                     }
                     
                     @media (max-width: 1200px) {
-                        padding: 13px 14px;
+                        width: 133px;
+                        height: 42px;
+                        padding: 0;
                         font-size: 10px;
 
                         .icon {
-                            height: 10px;
+                            height: 14px;
                         }
                     }
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     position: absolute;
                     opacity: 1;
                     transform: translateY(0px);
@@ -269,6 +271,7 @@ $purple: #355E5E;
 
                 .hourly-rate,
                 .hourly-availability {
+                    text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -296,8 +299,12 @@ $purple: #355E5E;
                             font-size: 8px;
                         }
                     }
+
+                    @media (max-width: 825px) {
+                        margin-right: 20px;
+                    }
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         margin-right: 0;
                         align-items: flex-start;
                     }
@@ -308,7 +315,8 @@ $purple: #355E5E;
                     justify-content: center;
                     align-items: center;
                     background: $purple;
-                    padding: 23px 62px;
+                    width: 220px;
+                    height: 68px;
                     font-size: 18px;
                     font-weight: 700;
                     color: white;
@@ -320,8 +328,8 @@ $purple: #355E5E;
 
                     @media (max-width: 1400px) {
                         font-size: 16px;
-                        padding: 23px 42px;
-                        min-width: 144px;
+                        
+                        
 
                         .icon {
                             height: 20px;
@@ -330,14 +338,15 @@ $purple: #355E5E;
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        padding: 14px 40px;
+                        width: 133px;
+                        height: 42px;
 
                         .icon {
                             height: 12px;
                         }
                     }
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 768px) {
                         font-size: 10px;
                         padding: 14px 24px;
                         min-width: 80px;
@@ -352,7 +361,7 @@ $purple: #355E5E;
                     margin-top: 27px;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin-top: 0;
                     padding-left: 60px;
                     justify-content: space-between;
@@ -360,11 +369,9 @@ $purple: #355E5E;
                 }
             }
 
-            @media (max-width: 1200px) {
-                margin-top: 27px;
-            }
+            
 
-            @media (max-width: 700px) {
+            @media (max-width: 768px) {
                 margin-top: 0;
                 justify-content: space-between;
                 width: 100%;
@@ -386,7 +393,7 @@ $purple: #355E5E;
                 padding: 37px 40px;
             }
             
-            @media (max-width: 700px) {
+            @media (max-width: 768px) {
                 flex-wrap: wrap;
                 padding: 30px 17px;
             }
@@ -417,7 +424,7 @@ $purple: #355E5E;
                     margin-right: 20px;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     width: 50px;
                     height: 50px;
                     margin-right: 12px;
@@ -503,7 +510,7 @@ $purple: #355E5E;
                     }
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
 
                     .name {
                         font-size: 12px;

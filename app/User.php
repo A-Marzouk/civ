@@ -120,12 +120,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function hobbies()
     {
-        return $this->hasMany(Hobby::class);
+        return $this->hasMany(Hobby::class)->orderBy('order');
     }
 
     public function education()
     {
-        return $this->hasMany(Education::class);
+        return $this->hasMany(Education::class)->orderBy('order');
     }
 
     public function workExperience()

@@ -187,7 +187,6 @@ $purple: #958C89;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    padding: 22px 36px;
                     font-size: 18px;
                     font-weight: 400;
                     background: transparent;
@@ -213,6 +212,7 @@ $purple: #958C89;
 
                 .hourly-rate,
                 .hourly-availability {
+text-align: center;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
@@ -232,8 +232,9 @@ $purple: #958C89;
                     justify-content: center;
                     align-items: center;
                     background: $purple;
-                    padding: 23px 62px;
-                    font-size: 18px;
+                    width: 220px;
+                    height: 68px;
+font-size: 18px;
                     font-weight: 700;
                     color: white;
                     border-radius: 9px;

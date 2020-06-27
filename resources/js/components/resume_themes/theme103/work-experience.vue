@@ -147,7 +147,7 @@ export default {
                 }
             }
 
-            @media (max-width: 700px) {
+            @media (max-width: 768px) {
                 margin-bottom: 10px;
 
                 .company-name {
@@ -179,7 +179,7 @@ export default {
                 }
             }
 
-            @media (max-width: 700px) {
+            @media (max-width: 768px) {
 
                 .job-title {
                     margin-bottom: 16px;

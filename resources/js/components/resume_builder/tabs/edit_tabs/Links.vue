@@ -13,7 +13,7 @@
 		<div class="links-content resume-builder__scroll" v-if="links">
 
 			<div class="link-inputs-row">
-				<v-select class="resume-builder__input civie-select icon-prepended" outlined placeholder="Site" :items="getCurrentCategories()" label="Site" color="#001CE2" v-model="editedLink.link_title">
+				<v-select class="resume-builder__input civie-select icon-prepended" outlined hint="Select platform" persistent-hint :items="getCurrentCategories()" label="Site" color="#001CE2" v-model="editedLink.link_title">
 					<button class="dropdown-icon icon" slot="append">
 						<svg-vue :icon="`dropdown-caret`"></svg-vue>
 					</button>
@@ -27,13 +27,15 @@
 				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" placeholder="https://github.com/john-doe" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" v-model="editedLink.link">
 				</v-text-field>
 
-				<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
-					{{editedLink.id !== '' ? 'Update' : 'Add New'}}
-				</v-btn>
+				<div class="d-flex mt-2">
+					<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
+						{{editedLink.id !== '' ? 'Update' : 'Add New'}}
+					</v-btn>
 
-				<v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearLink" v-show="editedLink.id !== '' ">
-					Cancel
-				</v-btn>
+					<v-btn class="resume-builder__btn civie-btn ml-3" raised @click="clearLink" v-show="editedLink.id !== '' ">
+						Cancel
+					</v-btn>
+				</div>
 
 			</div>
 
@@ -45,7 +47,7 @@
 						</div>
 						<div class="link-text">
 							<img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase()}-1.svg`" alt="link icon">
-							{{link.link}}
+							<span>{{link.link}}</span>
 						</div>
 					</div>
 					<div class="action-btns">
@@ -193,7 +195,7 @@ export default {
 						});
 					}
 					this.clearLink();
-					this.$store.dispatch("fullScreenNotification");
+					this.$store.dispatch('flyingNotification');
 				})
 				.catch(error => {
 					if (typeof error.response.data === "object") {
@@ -260,12 +262,23 @@ export default {
 $mainBlue: #001ce2;
 
 #linksSection {
+
+	@include lt-sm{
+		margin: 3%;
+	}
+
 	.links-content {
 		height: 323px;
 		background: #fff;
 		box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
 		padding: 50px;
 		margin-bottom: 70px;
+
+
+		@include lt-sm {
+			height: 400px;
+			padding: 20px;
+		}
 	}
 
 	.tabName {
@@ -273,13 +286,16 @@ $mainBlue: #001ce2;
 	}
 
 	.link-inputs-row {
-		display: flex;
+		display: grid;
 		align-items: center;
+		grid-auto-rows: 78px;
+		grid-template-columns: minmax(0px, 210px) minmax(0, 350px) auto;
+		grid-gap: 30px;
 		margin-top: 12px;
+		margin-bottom: 30px;
 
 		.civie-select {
 			max-width: 210px;
-			margin-right: 30px;
 
 			.v-input__slot {
 				padding-left: 30px !important;
@@ -287,7 +303,7 @@ $mainBlue: #001ce2;
 
 			.input-prepended-icon {
 				position: absolute;
-				top: 41px;
+				top: 39px;
 				left: 5px;
 
 				img {
@@ -298,15 +314,57 @@ $mainBlue: #001ce2;
 
 		.civie-input {
 			max-width: 350px;
-			margin-right: 30px;
 		}
 
 		.civie-btn {
-			min-height: 54px;
+			min-height: 50px;
+			width: 120px;
+			align-self: end;
 		}
+
+		@include lt-md {
+			display: flex;
+			align-items:center;
+			flex-wrap: wrap;
+			margin-bottom: 25px;
+			.civie-select {
+				margin-right: 30px;
+			}
+
+			.civie-input {
+				margin-right: 30px;
+			}
+			.civie-btn{
+				margin-top: 5px;
+			}
+		}
+
+		@include lt-sm {
+			.civie-select {
+				grid-column: span 3;
+				max-width: 100%;
+				width: 100%;
+			}
+	
+			.civie-input {
+				max-width: 100%;
+				width: 100%;
+				grid-column: span 3;
+				grid-row: 2 / 3;
+				margin-top: 15px;
+			} 
+			
+			.civie-btn {
+				grid-column: span 3;
+				grid-row: 3 / 4;
+			} 
+		}	
 	}
 
 	.links-items {
+		max-width: 714px;
+		width: 100%;
+
 		.link-item {
 			width: 100%;
 			height: 50px;
@@ -320,6 +378,7 @@ $mainBlue: #001ce2;
 			.link-data {
 				display: flex;
 				height: 50px;
+				max-width: calc(100% - 125px);
 
 				.mover {
 					width: 50px;
@@ -336,6 +395,10 @@ $mainBlue: #001ce2;
 					&:hover {
 						cursor: grab;
 					}
+
+					@include lt-sm {
+						width: 22px;
+					}
 				}
 
 				.link-text {
@@ -345,10 +408,27 @@ $mainBlue: #001ce2;
 					font-size: 18px;
 					line-height: 25px;
 					color: #888db1;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
 
 					img {
 						width: 45px;
 						height: auto;
+						// TODO: Don't leave spaces in the image
+					}		
+					
+					span {
+						padding-right: 10px;
+						display: block;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
+
+					@include lt-sm {
+						font-size: 13px;
+						margin-left: 0;	
 					}
 				}
 			}
@@ -360,6 +440,7 @@ $mainBlue: #001ce2;
 					position: static;
 				}
 			}
+
 		}
 	}
 }
