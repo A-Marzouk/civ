@@ -137,6 +137,8 @@
 
     .admin-container {
         background: floralwhite;
+        min-height:100vh !important;
+
 
         .content{
             padding-left: 50px;
