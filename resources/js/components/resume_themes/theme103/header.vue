@@ -62,9 +62,9 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #BE001A;
+$mainColor: #0A4FBC;
 $tabTextColor: #4D2F2D;
-$purple: #BE001A;
+$purple: #0A4FBC;
 
 $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
