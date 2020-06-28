@@ -148,6 +148,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/achievements', 'API\AchievementsController@index');
     Route::get('/achievements/{id}', 'API\AchievementsController@show');
     Route::post('/achievements', 'API\AchievementsController@store');
+    Route::post('/achievements/update-order', 'API\AchievementsController@updateAchievementsOrder');
     Route::put('/achievements', 'API\AchievementsController@store');
     Route::delete('/achievements/{id}', 'API\AchievementsController@destroy');
 
