@@ -179,7 +179,7 @@
       v-model="priceModal"
       max-width="550"
       style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
-        border-radius: 10px; z-index:1000; overflow:hidden;"
+        border-radius: 10px; z-index:1000; overflow-y:hidden;"
     >
       <v-card>
         <v-card-subtitle></v-card-subtitle>
@@ -214,15 +214,15 @@
 
               <v-card-text>
                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1">
+                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1" class="mt-xl-0 mt-lg-n3">
                     <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img" />
                   </v-col>
-                  <v-col xl="6" lg="6" md="6" sm="6" cols="6">
+                  <v-col xl="6" lg="6" md="6" sm="6" cols="6" class="mt-xl-0 mt-lg-n3">
                     <span class="price-option">{{item}}</span>
                   </v-col>
                 </v-row>
               </v-card-text>
-              <v-card-text align="center">
+              <v-card-text align="center" class="mt-xl-0 mt-lg-n3">
                 <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
               </v-card-text>
               <v-card-text align="center" class="mt-n5">
@@ -1450,8 +1450,7 @@ $placeholder-color: #9ba1ad;
 .payment-link:hover {
   cursor: pointer;
 }
-.modal-close {
-  position: absolute;
-  top: -20px;
+.v-dialog:not(.v-dialog--fullscreen){
+  max-height: 100% !important;
 }
 </style>
