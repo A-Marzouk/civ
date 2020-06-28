@@ -88,6 +88,16 @@ class AchievementsController extends Controller
         }
     }
 
+    public function updateAchievementsOrder(Request $request){
+        $achievements = $request->achievements ;
+        foreach ($achievements as $key => $achievement){
+            $myAchievement = Achievement::find($achievement['id']);
+            $myAchievement->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

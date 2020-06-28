@@ -132,7 +132,7 @@ class ThemesController extends Controller
             'design_style' => ['sometimes','string','min:3','max:255'],
             'color' =>['sometimes','string','max:255','min:3'],
             'code' =>['sometimes','string','max:255','min:1', 'unique:themes'],
-            'image' =>['sometimes','image','max:255']
+            'image' =>['sometimes','image']
         ]);
     }
 
