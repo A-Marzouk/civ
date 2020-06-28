@@ -71,7 +71,8 @@
                 </v-row>
               </v-form>
 
-              <v-row align="center" dense v-for="media in medias" :key="media.id">
+              <draggable v-if="medias"  v-model="medias" @start="drag=true" @end="drag=false"  handle=".drag-handler">
+                <v-row align="center" dense v-for="media in medias" :key="media.id">
 
                 <v-col xl="7" :lg="windowWidth<1440 ? '9' : '7' " md="9" sm="12" cols="12" v-show="audioTab === 0 && media.type === 'audio'">
                     <!-- audio card -->
@@ -83,7 +84,7 @@
                           md="1"
                           sm="1"
                           cols="4"
-                          class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
+                          class=" drag-handler mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
                           :align="windowWidth<767?'left':'center'"
                         >
                           <v-btn color="#ffffff" class="btn-v_bar" depressed>
@@ -163,7 +164,7 @@
                           md="5"
                           sm="5"
                           cols="5"
-                          class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
+                          class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0 drag-handler"
                           align="left"
                         >
                           <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
@@ -209,6 +210,8 @@
                 </v-col>
 
               </v-row>
+              </draggable>
+
             </v-container>
           </v-tab-item>
         </v-tabs-items>
@@ -220,10 +223,13 @@
 <script>
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import draggable from "vuedraggable";
+
 export default {
   name: "AudioVideo",
   components: {
-    vueDropzone: vue2Dropzone
+    vueDropzone: vue2Dropzone,
+    draggable
   },
   data() {
     return {
@@ -247,9 +253,14 @@ export default {
     };
   },
   computed: {
-    medias() {
-      return this.$store.state.user.media;
-    }
+    medias: {
+      get() {
+        return this.$store.state.user.media;
+      },
+      set(medias) {
+        this.$store.commit('updateMedia', medias);
+      }
+    },
   },
   methods: {
     changeTab(tabName){

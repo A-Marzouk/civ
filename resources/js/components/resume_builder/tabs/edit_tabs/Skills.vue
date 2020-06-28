@@ -75,14 +75,14 @@
                     <v-row align="center" dense>
                       <v-col cols="12">
                         <draggable v-model="skills" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                          <v-card
+                          <v-card v-show="skill.category === tabs[activeTab]"
                                   color="#E6E8FC"
                                   class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
                                   flat
                                   v-for="skill in skills"
                                   :key="skill.id"
                           >
-                            <v-card-text v-show="skill.category === tabs[activeTab]">
+                            <v-card-text>
                               <!-- skill for desktop -->
                               <v-row align="center" justify="center" class="mt-n3 row-skill-details">
                                 <v-col xl="1" lg="2" md="1" sm="1" cols="2" class="drag-handler">
