@@ -95,6 +95,16 @@ class MediaController extends Controller
         }
     }
 
+    public function updateMediaOrder(Request $request){
+        $medias = $request->medias ;
+        foreach ($medias as $key => $media){
+            $myMedia = Media::find($media['id']);
+            $myMedia->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

@@ -1,660 +1,407 @@
 <template>
-    <div class="view-cv-wrapper">
-        <div class="actions-wrapper d-flex justify-content-between align-items-start">
-            <div class="change-theme-text">
-                <svg-vue class="icon" :icon="'grid'"></svg-vue>
-                <h2>Change Theme</h2>
-            </div>
-            <div class="preview-theme d-flex">
-                <div class="preview-text hideOnMd">
-                    <h2>Your Current Theme</h2>
-
-                    <a class="btn btn-filled" :href="'/' + user.username " target="_blank">
-                        View Theme
-                        <svg-vue class="icon" :icon="'eye-icon'"></svg-vue>
-                    </a>
-                </div>
-
-                <img v-if="user.theme" :src="user.theme.image" alt="theme-preview" class="active-theme-img">
-                <img v-else src="/images/resume_themes/theme8/preview.png" alt="theme-preview" class="active-theme-img">
-
-                <a :href="'/' + user.username " target="_blank" class="preview-mobile-bar showOnMd justify-content-center">
-                    Active Theme <svg-vue class='icon' :icon="'eye-icon'"></svg-vue>
-                </a>
-            </div>
-        </div>
-
-        <div class="filters-wrapper d-flex justify-content-between">
-            <div class="civ-input">
-                <div class="civ-custom-select">
-                    <div class="civ-select-input profession-input" @click="showProfessionOptions = !showProfessionOptions">
-                        <input type="text" id="category1" disabled v-model="professionOptions[selectedProfession].name" :class="{'with-border' : !showProfessionOptions}">
-                        <img src="/icons/carot.svg" alt="arrow" :class="{'toggled':showSpecialityOptions}">
-                    </div>
-                    <div class="civ-custom-options" v-show="showProfessionOptions">
-                        <div v-for="(profession,index) in professionOptions" :key="index + '_profession'" @click="selectProfession(index)">
-                            {{profession.name}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="civ-input">
-                <div class="civ-custom-select">
-                    <div class="civ-select-input speciality-input" @click="showSpecialityOptions = !showSpecialityOptions">
-                        <input type="text" id="category" disabled v-model="specialityOptions[selectedSpeciality].name" :class="{'with-border' : !showSpecialityOptions}">
-                        <img src="/icons/carot.svg" alt="arrow" :class="{'toggled':showSpecialityOptions}">
-                    </div>
-                    <div class="civ-custom-options" v-show="showSpecialityOptions">
-                        <div v-for="(speciality,index) in specialityOptions" :key="index + '_speciality'" @click="selectSpeciality(index)">
-                            {{speciality.name}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <svg-vue class="grid-icon" :icon="'open-grid-icon'"></svg-vue>
-        </div>
-
-        <div class="separator"></div>
-        
-        <div class="themes">
-            <div class="theme-item" v-for="(theme,index) in availableThemes" :key="theme.id">
-                <img @click="openTheme(theme)" class="theme-image" :src="theme.image" alt="theme-preview" :class="{ 'active' :  parseInt(user.theme_id) === theme.id}">
-
-                <div class="theme-action-btns" v-if="parseInt(user.theme_id) === theme.id">
-                    <a :href="'/' + user.username " target="_blank" class="active-btn">
-                        Open
-                        <img src="/images/resume_builder/viewCV/checkmark.png" alt="checkmark">
-                    </a>
-                </div>
-
-                <div class="theme-action-btns-wrapper" v-else>
-                    <div class="left">
-                        <div class="activate-btn NoDecor">
-                            <a href="javascript:void(0)" @click="activateTheme(theme.id)">
-                                Activate
-                                <img src="/images/resume_builder/viewCV/checkmark.png" alt="checkmark">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <div class="my-data-btn NoDecor">
-                            <a :href="'/preview/' + theme.id +'?real=true'" target="_blank">
-                                My data
-                                <img src="/images/resume_builder/viewCV/eye.png" alt="eye">
-                            </a>
-                        </div>
-                        <div class="preview-btn NoDecor">
-                            <a href="javascript:void(0)" @click='showPreviewModal(theme.id)'>
-                                Preview
-                                <img src="/images/resume_builder/viewCV/eye-white.png" alt="eye-white">
-                            </a>
-                        </div>
-
-
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <b-modal size="xl" centered id="previewModalContainer" ref="previewModal" title="Theme preview" hide-footer>
-            <iframe :src="`/preview/${previewThemeID}`"></iframe>
-        </b-modal>
-        
-    </div>
+  <v-app>
+    <v-container fluid class="pa-lg-0 pa-md-8 pa-sm-5 pa-6">
+      <v-row>
+        <!-- side menu -->
+        <v-col xl="3" lg="3" md="5" sm="5" cols="12" class="mr-xl-n12">
+          <v-select
+            class="resume-builder__input civie-select hidden-lg-and-up"
+            outlined
+            placeholder="Select an option"
+            :items="themeCategories"
+            item-text="title"
+            item-value="id"
+            color="#001CE2"
+            height="60"
+          >
+            <template slot="append">
+              <v-btn class="eye-btn ml-n7 mr-4 mt-n2" depressed>
+                <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
+              </v-btn>
+            </template>
+            <button class="dropdown-icon icon" slot="append">
+              <svg-vue :icon="`dropdown-caret`"></svg-vue>
+            </button>
+          </v-select>
+          <v-navigation-drawer permanent width="330" class="hidden-md-and-down">
+            <v-card flat color="transparent" class="pa-5 mt-n12">
+              <v-text-field
+                class="resume-builder__input civie-input"
+                outlined
+                color="#001CE2"
+                :class="{'resume-builder__input--disabled': disabledInput}"
+                :disabled="disabledInput"
+                label
+                height="55"
+                style="border-radius:5px !important;"
+                placeholder="Current Theme"
+              >
+                <template slot="append">
+                  <v-btn class="eye-btn mt-n1 ml-n2" depressed>
+                    <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
+                  </v-btn>
+                </template>
+              </v-text-field>
+            </v-card>
+            <v-card color="transparent" flat tile class="ml-2 mt-n6">
+              <v-tabs
+                vertical
+                fixed-tabs
+                active-class="custom-active-tab"
+                slider-size="5"
+                v-model="themeTab"
+              >
+                <v-tab
+                  v-for="category in themeCategories"
+                  :key="category.id"
+                  class="custom-tab mb-3"
+                >
+                  <v-row>
+                    <v-col cols="6" align="left">{{category.title}}</v-col>
+                    <v-col cols="5" align="right">
+                      <v-card
+                        class="card-counter"
+                        flat
+                        height="35"
+                        width="35.9"
+                        color="#E6E8FC"
+                        align="center"
+                      >
+                        <span class="counter">{{category.count}}</span>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-tab>
+              </v-tabs>
+            </v-card>
+          </v-navigation-drawer>
+        </v-col>
+        <v-col
+          xl="9"
+          lg="9"
+          md="12"
+          sm="12"
+          cols="12"
+          align="left"
+          class="col-theme-preview ml-xl-n12"
+        >
+          <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
+            <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
+            <v-row align="center">
+              <v-col md="4" sm="4" cols="6" v-for="i in 12" :key="i">
+                <img
+                  src="/images/new_resume_builder/themes-wrapper.svg"
+                  alt="themes"
+                  class="theme-img"
+                  :class="selectedTheme == i ? 'selected-theme':''"
+                  @click="selectTheme(i)"
+                />
+              </v-col>
+            </v-row>
+          </v-card>
+          <v-card flat tile color="transparent"></v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-app>
 </template>
 
 <script>
-    export default {
-        name: "ViewCV",
-        data(){
-            return{
-                availableThemes:[],
-                showProfessionOptions: false,
-                showSpecialityOptions: false,
-                selectedProfession: 0,
-                selectedSpeciality: 0,
-                previewThemeID: null,
-                professionOptions: [
-                    {
-                        name: "Select a profession"
-                    },
-                    {
-                        name: "Fullstack Developer",
-                    },
-                    {
-                        name: "Frontend Developer",
-                    },
-                    {
-                        name: "Database Specialist",
-                    },
-                    {
-                        name: "Big Data"
-                    },
-                    {
-                        name: "UX/UI Designer",
-                    },
-                    {
-                        name: "Graphic Designer"
-                    }
-                ],
-                specialityOptions: [
-                    {
-                        name: "Select a speciality"
-                    },
-                    {
-                        name: "Fullstack Developer",
-                    },
-                    {
-                        name: "Frontend Developer",
-                    },
-                    {
-                        name: "Database Specialist",
-                    },
-                    {
-                        name: "Big Data"
-                    },
-                    {
-                        name: "UX/UI Designer",
-                    },
-                    {
-                        name: "Graphic Designer"
-                    }
-                ]
-            }
+export default {
+  name: "ViewCV",
+  data() {
+    return {
+      themeTab: 0,
+      selectedTheme: 1,
+      windowWidth: window.innerWidth,
+      disabledInput: false,
+      availableThemes: [],
+      showProfessionOptions: false,
+      showSpecialityOptions: false,
+      selectedProfession: 0,
+      selectedSpeciality: 0,
+      previewThemeID: null,
+      professionOptions: [
+        {
+          name: "Select a profession"
         },
-        computed:{
-            user(){
-                return this.$store.state.user;
-            }
+        {
+          name: "Fullstack Developer"
         },
-        methods:{
-            showPreviewModal (theme_id) {
-                this.previewThemeID = theme_id;
-                this.$refs.previewModal.show();
-            },
-            openTheme(theme){
-                let url  = '/preview/theme'+theme.code ;
-                window.open(url, "_blank") || window.location.replace(url);
-
-            },
-            activateTheme(theme_id){
-                if(this.user.theme_id === theme_id){
-                    return;
-                }
-                axios.put('/api/user/update-theme',{theme_id : theme_id})
-                    .then((response) => {
-                        this.user.theme_id  = theme_id ;
-                        this.setActiveTheme(theme_id);
-                        this.$store.dispatch('flyingNotification');
-                    })
-                    .catch((error) => {
-                        if (typeof error.response.data === 'object') {
-                            console.log(error.response.data.errors);
-                            this.errors = error.response.data.errors;
-                        } else {
-                            this.errors = 'Something went wrong. Please try again.';
-                        }
-                        this.$store.dispatch('flyingNotification', {
-                            message: 'Error',
-                            iconSrc: '/images/resume_builder/error.png'
-                        });
-                    });
-            },
-            selectProfession (index) {
-                // Search profession on db using index
-                // axios request
-                this.selectedProfession = index;
-                this.showProfessionOptions = false;
-            },
-            selectSpeciality (index) {
-                // Search speciality on db using index
-                // axios request
-                this.selectedSpeciality = index;
-                this.showSpecialityOptions = false;
-            },
-            getThemesList(){
-                axios.get('/api/user/themes-list')
-                    .then( (response) => {
-                        this.availableThemes = response.data.data ;
-                    })
-                    .catch((error) =>{
-                        console.log(error)
-                    })
-            },
-            setActiveTheme(theme_id){
-                this.availableThemes.forEach((theme) => {
-                    if(theme.id === theme_id){
-                        this.user.theme = theme ;
-                    }
-                })
-            }
+        {
+          name: "Frontend Developer"
         },
-        mounted(){
-            this.getThemesList();
+        {
+          name: "Database Specialist"
+        },
+        {
+          name: "Big Data"
+        },
+        {
+          name: "UX/UI Designer"
+        },
+        {
+          name: "Graphic Designer"
         }
+      ],
+      specialityOptions: [
+        {
+          name: "Select a speciality"
+        },
+        {
+          name: "Fullstack Developer"
+        },
+        {
+          name: "Frontend Developer"
+        },
+        {
+          name: "Database Specialist"
+        },
+        {
+          name: "Big Data"
+        },
+        {
+          name: "UX/UI Designer"
+        },
+        {
+          name: "Graphic Designer"
+        }
+      ],
+      themeCategories: [
+        { id: 1, title: "UI/UX Designer", count: 46 },
+        { id: 2, title: "Graphic Designer", count: 35 },
+        { id: 3, title: "Mobile App Designer", count: 22 },
+        { id: 4, title: "Front-end Developer", count: 88 },
+        { id: 5, title: "Full Stack Developer", count: 115 },
+        { id: 6, title: "Graphic Designer", count: 46 },
+        { id: 7, title: "Motion Designer", count: 19 },
+        { id: 8, title: "Database Specialist", count: 16 },
+        { id: 9, title: "Big Data", count: 75 }
+      ]
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
     }
+  },
+  props: ["inputProps", "selectProps"],
+  methods: {
+    toggleInput() {
+      this.disabledInput = !this.disabledInput;
+    },
+    toggleSelect() {
+      this.disabledSelect = !this.disabledSelect;
+    },
+
+    showPreviewModal(theme_id) {
+      this.previewThemeID = theme_id;
+      this.$refs.previewModal.show();
+    },
+    openTheme(theme) {
+      let url = "/preview/theme" + theme.code;
+      window.open(url, "_blank") || window.location.replace(url);
+    },
+    activateTheme(theme_id) {
+      if (this.user.theme_id === theme_id) {
+        return;
+      }
+      axios
+        .put("/api/user/update-theme", { theme_id: theme_id })
+        .then(response => {
+          this.user.theme_id = theme_id;
+          this.setActiveTheme(theme_id);
+          this.$store.dispatch("flyingNotification");
+        })
+        .catch(error => {
+          if (typeof error.response.data === "object") {
+            console.log(error.response.data.errors);
+            this.errors = error.response.data.errors;
+          } else {
+            this.errors = "Something went wrong. Please try again.";
+          }
+          this.$store.dispatch("flyingNotification", {
+            message: "Error",
+            iconSrc: "/images/resume_builder/error.png"
+          });
+        });
+    },
+    selectProfession(index) {
+      // Search profession on db using index
+      // axios request
+      this.selectedProfession = index;
+      this.showProfessionOptions = false;
+    },
+    selectSpeciality(index) {
+      // Search speciality on db using index
+      // axios request
+      this.selectedSpeciality = index;
+      this.showSpecialityOptions = false;
+    },
+    selectTheme(index) {
+      this.selectedTheme = index;
+    },
+    getThemesList() {
+      axios
+        .get("/api/user/themes-list")
+        .then(response => {
+          this.availableThemes = response.data.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    setActiveTheme(theme_id) {
+      this.availableThemes.forEach(theme => {
+        if (theme.id === theme_id) {
+          this.user.theme = theme;
+        }
+      });
+    }
+  },
+  mounted() {
+    this.getThemesList();
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  }
+};
 </script>
 
 <style scoped lang="scss">
-@import '../../../../sass/media-queries';
-$mainBlue: #001CE2;
+@import "../../../../sass/media-queries";
+$mainBlue: #001ce2;
+.eye-btn {
+  min-width: 35.59px !important;
+  width: 35.59px !important;
+  min-height: 35px !important;
+  height: 35px !important;
+  max-height: 35px !important;
+}
 
-    .separator {
-        width: 100%;
-        background: #E2E5FC;
-        height: 1px;
-        margin-top: 29.5px;
-        margin-bottom: 50px;
+.main-content {
+  height: 525px;
+  background: #fff;
+  box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+  padding: 50px;
+  margin-bottom: 70px;
+  scroll-behavior: smooth;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    width: 95% !important;
+  }
+  @media screen and (max-width: 599px){
+    width: auto !important;
+  }
+}
+.custom-ripple-class {
+  background: transparent;
+}
+
+.custom-tab {
+  font-family: "Noto Sans" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px !important;
+  line-height: 26px;
+  color: #888db1 !important;
+  text-transform: capitalize !important;
+  @media screen and (min-width: 1264px) and (max-width: 1366px) {
+    font-size: 16px !important;
+  }
+}
+.custom-active-tab {
+  font-family: "Noto Sans" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px !important;
+  line-height: 26px;
+  color: #001ce2 !important;
+  @media screen and (min-width: 1264px) and (max-width: 1366px) {
+    font-size: 16px !important;
+  }
+}
+.custom-active-tab::before {
+  opacity: 0 !important;
+}
+.v-tab {
+  justify-content: left !important;
+}
+.card-counter {
+  border-radius: 5px;
+  padding-top: 2px;
+  .counter {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: #888db1 !important;
+    justify-content: center;
+    justify-items: center;
+  }
+}
+.card-themes-wrapper {
+  .themes-wrapper-title {
+    font-family: "Noto Sans" !important;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 54px;
+    color: #001ce2 !important;
+    @media screen and (max-width: 959px) {
+      font-size: 22px;
+      line-height: 28px;
     }
-
-    .filters-wrapper {
-
-        max-width: 740px;
-        align-items: center;
-        margin-top: -72px;
-
-        @media (max-width: 1380px) {
-            margin-top: 0;
-        }
-
-        @include lt-md {
-            margin-top: 2rem;
-
-        }
-
-        @include lt-sm {
-            flex-wrap: wrap;
-        }
-
-        .civ-input {
-            max-width: 300px;
-            width: 48%;
-            margin: 0;
-
-            .civ-select-input {
-                input {
-                    border: 1px solid $mainBlue;
-                    color: #747474;
-                    font-size: 16px;
-
-                    @include lt-sm {
-                        font-size: 14px;
-                        height: 50px;
-                        padding: 0 30px 0 15px;
-                    }
-                }
-
-                @include lt-sm {
-                    img {
-                        top: 22px;
-                        width: 13px;
-                    }
-                }
-            }
-
-            @include lt-sm {
-                margin-bottom: 1rem;
-                min-width: 120px;
-            }
-        }
-
-        .grid-icon {
-            height: 36px;
-
-            @include lt-md {
-                display: none;
-            }
-        }
+    @media screen and (max-width: 767px) {
+      font-size: 18px;
+      line-height: 25px;
     }
-
-    .view-cv-wrapper{
-
-        @include lt-md {
-            margin-top: 3rem;
-        }
-
-        .preview-theme {
-
-            position: relative;
-
-            @include lt-lg {
-                flex-wrap: wrap;
-            }
-
-            .preview-text {
-                font-size: 30px;
-                color: #747474;
-                margin-bottom: 1rem;
-                margin-top: 80px;
-
-                @include lt-lg {
-                    margin-top: 3rem;
-                }
-
-                h2 {
-                    font-weight: 700;
-                    margin-bottom: 20px;
-                    max-width: 197px;
-                }
-
-                .btn {
-                    width: 100% !important;
-                    min-width: 200px !important;
-                    font-size: 14px !important;
-                    font-weight: 700;
-
-                    .icon {
-                        margin-right: 0 !important;
-                        margin-left: 10px;
-                        height: 12px;
-                        width: auto;
-                    }
-                }
-            }
-
-            .active-theme-img {
-                width: 394px;
-                height: 335px;
-                margin-left: 50px;
-                border: solid 3px $mainBlue;
-                border-radius: 15px;
-
-                @include lt-lg {
-                    margin: 2rem 0;
-
-                }
-
-                @include lt-md {
-                    margin: 0;
-                    width: 280px;
-                    height: auto;
-                }
-
-                @include lt-sm {
-                    margin: 0;
-                    width: 220px;
-                }
-            }
-
-            .preview-mobile-bar {
-                background: $mainBlue;
-                color: white;
-                border-radius: 15px;
-
-                svg, path, circle {
-                    fill: white;
-                }
-
-                .icon {
-                    width: 15px;
-                    margin-left: 9.5px;
-                }
-
-                @include lt-md {
-                    position: absolute;
-                    display: flex !important;
-                    width: 100%;
-                    bottom: 0;
-                    left: 0;
-                    padding: 5px;
-                }
-            }
-        }
-        .change-theme-text{
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            font-family: "Noto Sans", sans-serif;
-            font-weight: 700;
-            font-size: 53px;
-            text-align: left;
-            color: #001ce2;
-            margin-top: 80px;
-
-            @include lt-lg {
-                margin-top: 0;
-            }
-
-            @include lt-md {
-                font-size: 30px;
-            }
-
-            .icon {
-                width:56px;
-                height:56px;
-                margin-right: 55px;
-
-                @include lt-lg {
-                    margin-right: 30px;
-                }
-
-                @include lt-md {
-                    width: 24px;
-                    height: auto;
-                    margin-right: 10px;
-                }
-            }
-        }
-        .themes{
-            display: grid;
-            grid-gap: 50px;
-            grid-template-columns: repeat(12, 1fr);
-            width: 100%;
-
-            @include lt-md {
-                grid-gap: 0;
-            }
-
-            .theme-item{
-                grid-column: span 4;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                max-width: 540px;
-
-                @include lt-lg {
-                    grid-column: span 6;
-                }
-
-                @include lt-md {
-                    grid-column: span 12;
-                    max-width: 100%;
-                }
-
-                img.theme-image{
-                    border: 1px solid black;
-                    border-radius:20px;
-                    transition: all 2s;
-                    width: 100%;
-                    height: 100%;
-                    -webkit-box-shadow: 0px 35px 70px -20px rgba(25, 69, 213, 0.3);
-                    -moz-box-shadow:  0px 35px 70px -20px rgba(25, 69, 213, 0.3);
-                    box-shadow:   0px 35px 70px -20px rgba(25, 69, 213, 0.3);
-
-                    &.active{
-                        -webkit-box-shadow: 0px 35px 70px -20px rgba(7, 211, 38, 0.3);
-                        -moz-box-shadow: 0px 35px 70px -20px rgba(7, 211, 38, 0.3);
-                        box-shadow:  0px 35px 70px -20px rgba(7, 211, 38, 0.3);
-                    }
-
-                    &:hover{
-                        cursor: pointer;
-                    }
-                }
-
-                .theme-action-btns{
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    a.active-btn{
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        margin-top: -23px;
-                        height: 47.19px;
-                        width: 113.67px;
-                        font-weight: 500;
-                        font-size: 21px;
-                        text-align: left;
-                        color: #fff;
-                        background-color: #07D326;
-
-                        img{
-                            width:17.06px;
-                            height:13.33px;
-                            margin-left: 15px;
-                        }
-                    }
-
-
-                    a{
-                        width: auto;
-                        padding-left: 15px;
-                        padding-right: 15px;
-                        height: 50px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border-radius: 10px;
-                        margin-right: 20px;
-                        background: blue;
-                        color: white;
-
-                        &:hover{
-                            text-decoration: none;
-                        }
-                    }
-                }
-
-                .theme-action-btns-wrapper{
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
-                    padding-left:32px;
-                    padding-right:23px;
-                    background: whitesmoke;
-                    border-radius: 18px;
-                    height: 70px;
-                    margin-top: -71px;
-                    width: calc(100% - 2px);
-                    background: linear-gradient(#f8f8f8 0%, #f4f4f4 100%);
-
-                    @include lt-md {
-                        padding: 5px 10px;
-                    }
-
-                    .left{
-                        .activate-btn{
-                           a{
-                               display: flex;
-                               align-items: center;
-                               justify-content: space-between;
-                               width:112px;
-                               height:34px;
-                               padding: 0 20px;
-                               font-size: 11px;
-                               text-transform: uppercase;
-                               border-radius: 8px;
-                               background: #1945D5;
-                               font-weight: 600;
-                               text-align: left;
-                               color: #fff;
-
-                               @include lt-md {
-                                   width: 100px;
-                                   font-size: 10px;
-                               }
-
-                               img{
-                                   width:11.15px;
-                                   height:8.71px;
-                               }
-                           }
-                        }
-                    }
-
-                    .right{
-                        display: flex;
-                        .my-data-btn{
-                            margin-right: 19px;
-                            
-                           a{
-                               display: flex;
-                               align-items: center;
-                               justify-content: space-between;
-                               width:112px;
-                               height:34px;
-                               padding: 0 20px;
-                               font-size: 11px;
-                               text-transform: uppercase;
-                               border-radius: 8px;
-                               font-weight: 600;
-                               letter-spacing: 0.01em;
-                               text-align: left;
-                               color: #1b4bd2;
-                               background: white;
-                               border: 1px solid #1945d5;
-
-                               @include lt-md {
-                                   width: 100px;
-                                   font-size: 10px;
-                                   margin-right: 0;
-                               }
-
-                               img{
-                                   width:13.67px;
-                                   height:8.71px;
-                               }
-                           }
-                        }
-
-                        .preview-btn{
-                          a{
-                                display: flex;
-                                align-items: center;
-                                justify-content: space-between;
-                                width:112px;
-                                height:34px;
-                                padding: 0 20px;
-                                font-size: 11px;
-                                border-radius: 8px;
-                                background: #1945D5;
-                                font-weight: 600;
-                                text-align: left;
-                                color: #fff;
-
-                                @include lt-md {
-                                   width: 100px;
-                                   font-size: 10px;
-                               }
-
-                              img{
-                                  width:13.67px;
-                                   height:8.71px; 
-                              }
-                          }
-                        }
-                    }
-
-
-                }
-
-            }
-
-            margin-bottom: 100px;
-        }
+    @media screen and (max-width: 430px) {
+      font-size: 15px;
+      line-height: 25px;
     }
-
-    #previewModalContainer {
-        width: 80%;
-
-        iframe { 
-            width: 100%;
-            height: 80vh;
-        }
+    @media screen and (max-width: 382px) {
+      font-size: 13px;
     }
+  }
+  .theme-img {
+    img {
+      width: 417px !important;
+      height: 302.56px !important;
+      @media screen and (max-width: 959px) {
+        width: 200px !important;
+        height: 145.11px !important;
+      }
+      @media screen and (max-width: 767px) {
+        width: 142px !important;
+        height: 103.03px !important;
+      }
+    }
+    border-radius: 0px !important;
+  }
+  .selected-theme {
+    border: 3px solid #001ce2;
+  }
+}
+
+#previewModalContainer {
+  width: 80%;
+
+  iframe {
+    width: 100%;
+    height: 80vh;
+  }
+}
+</style>
+<style>
+#resumeBuilder .v-tabs-slider-wrapper {
+  left: auto !important;
+  right: 0 !important;
+  width: 5px !important;
+}
+#resumeBuilder .v-tabs-slider {
+  background: #001ce2 !important;
+  border-radius: 10px 0px 0px 10px !important;
+}
 </style>

@@ -106,6 +106,17 @@ class SkillsController extends Controller
         ]);
     }
 
+    public function updateSkillsOrder(Request $request){
+        $skills = $request->skills ;
+        foreach ($skills as $key => $skill){
+            $mySkill = Skill::find($skill['id']);
+            $mySkill->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
+
     public function toggleVisibility(Request $request){
         $skill   = Skill::find($request->id);
         if($skill){
