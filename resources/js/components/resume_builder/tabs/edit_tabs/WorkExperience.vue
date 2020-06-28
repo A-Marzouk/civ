@@ -73,7 +73,7 @@
 
                     <div class="right">
                         <v-textarea
-                                class="resume-builder__input profile-input civie-textarea"
+                                class="ml-lg-custom3 resume-builder__input profile-input civie-textarea"
                                 outlined
                                 color="#001CE2"
                                 :class="{'resume-builder__input--disabled': false}"
@@ -335,7 +335,11 @@
 
     $mainBlue: #001CE2;
     $inputTextColor: #888DB1;
-
+    .ml-lg-custom3{
+        @media screen and (min-width: 1441px) and (max-width: 1903px){
+            margin-left: 50px !important;
+        }
+    }
 
     .work-container {
         width: 100%;
