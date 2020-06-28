@@ -29,6 +29,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/skills', 'API\SkillsController@store');
     // toggle visibility
     Route::post('/skills/toggle-visibility', 'API\SkillsController@toggleVisibility');
+    // Update order
+    Route::post('/skills/update-order', 'API\SkillsController@updateSkillsOrder');
     //create many skill
     Route::post('/skills-many', 'API\SkillsController@storeMany');
     //update a skill
@@ -154,6 +156,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/media', 'API\MediaController@index');
     Route::get('/media/{id}', 'API\MediaController@show');
     Route::post('/media', 'API\MediaController@store');
+    Route::post('/media/update-order', 'API\MediaController@updateMediaOrder');
     Route::put('/media', 'API\MediaController@store');
     Route::delete('/media/{id}', 'API\MediaController@destroy');
 

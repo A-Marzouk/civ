@@ -20,6 +20,7 @@ class CreateMediaTable extends Migration
             $table->string('type')->nullable();
             $table->text('transcript')->nullable();
             $table->string('url')->nullable();
+            $table->integer('order')->default(1);
             $table->boolean('is_public')->default(true);
             $table->integer('order')->default(1);
 
