@@ -484,7 +484,7 @@ export default {
 					value: 97
 				}
 			],
-			isAudioMediaOpen: true,
+			isAudioMediaOpen: false,
 			isVideoMediaOpen: false
 		};
 	},
