@@ -85,7 +85,7 @@
                             <!-- skill for desktop -->
                             <v-row align="center" justify="center" class="mt-n3 row-skill-details">
                               <v-col xl="1" lg="2" md="1" sm="1" cols="2">
-                                <v-btn depressed class="btn-v_bar">
+                                <v-btn depressed class="btn-v_bar" color="#F2F3FD">
                                   <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                                 </v-btn>
                               </v-col>
@@ -476,6 +476,7 @@ civie-input {
       min-height: 30px !important;
       width: 30px !important;
       height: 30px !important;
+      background: #F2F3FD;
     }
 
     .row-skill-details {
