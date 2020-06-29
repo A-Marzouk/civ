@@ -298,7 +298,6 @@ $mainBlue: #001ce2;
   scroll-behavior: smooth;
 }
 .card-ref {
-  width: 1412px;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto;
