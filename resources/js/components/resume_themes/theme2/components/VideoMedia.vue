@@ -229,6 +229,14 @@ export default {
 	overflow-y: scroll;
 	z-index: 300;
 
+	&,
+	.video-modal-outer {
+		&::-webkit-scrollbar,
+		&::-webkit-scrollbar-thumb {
+			width: 0;
+		}
+	}
+
 	.video-modal-outer {
 		background: white;
 		width: calc(100% - 24px);
@@ -517,13 +525,16 @@ export default {
 	}
 
 	@include lg {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+		display: flex;
+		justify-content: center;
 		max-width: 1140px;
 		margin-left: auto;
 		margin-right: auto;
 
 		.videos-list-item {
+			width: 50%;
+			max-width: 50%;
+
 			&:first-child {
 				.video-player {
 					padding: 18px 20px 18px 67px;

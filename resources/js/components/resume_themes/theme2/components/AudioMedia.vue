@@ -242,6 +242,14 @@ export default {
 		box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 		padding: 30px 20px 30px 25px;
 
+		&,
+		.video-modal-outer {
+			&::-webkit-scrollbar,
+			&::-webkit-scrollbar-thumb {
+				width: 0;
+			}
+		}
+
 		.audio-modal-header {
 			display: flex;
 			justify-content: space-between;
