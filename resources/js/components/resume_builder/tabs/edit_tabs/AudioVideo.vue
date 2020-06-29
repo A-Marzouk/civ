@@ -31,7 +31,7 @@
 
                       >
                         <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
-                          <div class="mr-2">
+                          <div class="mr-5">
                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
                           </div>
                           <div class="upload-text">Browse/Drag</div>
