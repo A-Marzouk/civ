@@ -31,7 +31,7 @@ export default {
 
 	components: {
 		sidebar: sidebar,
-		"user-theme": () => import("../../resume_themes/theme8")
+		"user-theme": () => import("../../resume_themes/theme5/index")
 	},
 
 	data: () => ({

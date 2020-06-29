@@ -93,12 +93,12 @@
           </div>
         </v-form>
 
-        <div class="projects-list" v-if="achievements">
+        <draggable class="projects-list" v-if="achievements" v-model="achievements" @start="drag=true" @end="drag=false"  handle=".drag-handler">
           <div class="project" v-for="achievement in achievements">
             <div class="project__header">
               <v-btn
                       depressed
-                      class="drag-and-drop-handler"
+                      class="drag-and-drop-handler drag-handler"
               >
                 <svg-vue
                         :icon="'drag-and-drop-icon'"
@@ -163,7 +163,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </draggable>
       </v-card>
     </div>
   </div>
@@ -171,11 +171,13 @@
 
 <script>
   import vue2Dropzone from 'vue2-dropzone'
+  import draggable from "vuedraggable";
 
   export default {
     name: 'Achievement',
     components: {
-      vueDropzone: vue2Dropzone
+      vueDropzone: vue2Dropzone,
+      draggable
     },
     data: () => ({
       editedAchievement: {
