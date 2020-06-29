@@ -826,7 +826,6 @@ if ($("#resumeTheme511").length !== 0) {
         }
     });
 }
-<<<<<<< HEAD
 import resumeTheme512 from './components/resume_themes/theme512/Index';
 if ($("#resumeTheme512").length !== 0) {
 
@@ -840,5 +839,3 @@ if ($("#resumeTheme512").length !== 0) {
         }
     });
 }
-=======
->>>>>>> 2c544b99661a70ffbf2e5f8a1bab0c0d70d822f3
