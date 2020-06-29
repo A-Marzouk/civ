@@ -97,7 +97,7 @@
                 My URL
               </span>
               <v-text-field
-                class="resume-builder__input top-input-margin url"
+                class="resume-builder__input top-input-margin url mt-n6"
                 v-model="accountData.username"
                 :outlined="true"
                 :class="{'resume-builder__input--disabled': false}"
