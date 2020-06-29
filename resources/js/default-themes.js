@@ -826,10 +826,6 @@ if ($("#resumeTheme511").length !== 0) {
         }
     });
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 5a60ae95233790c561f614c6fb8065a50fad7406
 import resumeTheme512 from './components/resume_themes/theme512/Index';
 if ($("#resumeTheme512").length !== 0) {
 
@@ -843,7 +839,3 @@ if ($("#resumeTheme512").length !== 0) {
         }
     });
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 5a60ae95233790c561f614c6fb8065a50fad7406
