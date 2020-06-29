@@ -1453,4 +1453,13 @@ $placeholder-color: #9ba1ad;
 .v-dialog:not(.v-dialog--fullscreen){
   max-height: 100% !important;
 }
+input#input-26{
+  margin-top:8px;
+}
+input#input-29{
+  margin-top:8px;
+}
+.inner-text{
+  margin-top: -4px;
+}
 </style>
