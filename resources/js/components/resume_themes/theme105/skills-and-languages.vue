@@ -72,7 +72,7 @@ export default {
             {
                 name: 'Adobe XD',
                 percentage: 75,
-                icon: "adobeXD-icon.png"
+                icon: "adobexd-icon.png"
             },
             {
                 name: 'Adobe Indesign',

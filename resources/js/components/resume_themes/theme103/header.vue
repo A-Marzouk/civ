@@ -152,7 +152,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 16px;
 
                         .icon {
-                            height: 20px;
+                            height: 16px;
                         }
                     }
                     
@@ -163,7 +163,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 10px;
 
                         .icon {
-                            height: 14px;
+                            height: 12px;
                         }
                     }
                 }
@@ -276,7 +276,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 16px;
 
                         .icon {
-                            height: 20px;
+                            height: 16px;
                         }
                     }
                     

@@ -31,11 +31,11 @@
                 <div class="actions-wrapper" :class="{hide: !showMore}">
                     <button class="action-btn">
                         <img class="icon hideIconOnMobile" src="/images/resume_themes/theme111/chat-icon.png">
-                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/chat-icon-mob.png"> Start a chat
+                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme111/chat-icon-mob.png"> Start a chat
                     </button>
                     <button class="action-btn">
                         <img class="icon hideIconOnMobile" src="/images/resume_themes/theme111/suitcase-icon.png">
-                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme106/suitcase-icon-mob.png"> Upload interviews
+                        <img class="icon showIconOnMobile" src="/images/resume_themes/theme111/suitcase-icon-mob.png"> Upload interviews
                     </button>
                 </div>
 
@@ -174,7 +174,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 10px;
 
                         .icon {
-                            height: 14px;
+                            height: 12px;
                         }
                     }
                 }
@@ -200,7 +200,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         margin: 0 !important;
                         justify-content: flex-start;
                         padding: 0;
-                        color: black;
+                        color: #4030A1;
                         border: none;
 
                         &:first-child {

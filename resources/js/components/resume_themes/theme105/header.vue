@@ -213,7 +213,7 @@ $purple: #355E5E;
                         font-size: 16px;
 
                         .icon {
-                            height: 20px;
+                            height: 16px;
                         }
                     }
                     
@@ -224,7 +224,7 @@ $purple: #355E5E;
                         font-size: 10px;
 
                         .icon {
-                            height: 14px;
+                            height: 12px;
                         }
                     }
                 }
@@ -335,7 +335,7 @@ $purple: #355E5E;
                         font-size: 16px;
 
                         .icon {
-                            height: 20px;
+                            height: 16px;
                         }
                     }
                     
