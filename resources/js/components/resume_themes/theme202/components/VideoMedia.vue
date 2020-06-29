@@ -14,9 +14,9 @@
 			<div class="video-modal-body">
 				<div class="video-list-slider">
 					<div class="video-list-slider-content">
-						<v-list class="videos-list p-0" :class="{'d-none': i!==pageIndex}" v-for="(pageVideos, i) in videosPerPage" :key="i">
-							<v-list-item class="p-0 videos-list-item" v-for="(video, index) in pageVideos" :key="`${video.src}?index=${index}`">
-								<v-list-item-content class="p-0">
+						<v-list class="videos-list" :class="{'d-none': i!==pageIndex}" v-for="(pageVideos, i) in videosPerPage" :key="i">
+							<v-list-item class="videos-list-item px-0" v-for="(video, index) in pageVideos" :key="`${video.src}?index=${index}`">
+								<v-list-item-content class="py-0">
 									<div class="video-player">
 										<div class="player-title">
 											<h3 v-text="video.title"></h3>
@@ -44,10 +44,6 @@
 								<path :fill-opacity="(pageIndex > 0) ? 1 : 0.2" d="M10.4388 0.326524C10.6521 0.115446 10.9377 -0.00176123 11.2344 2.00092e-05C11.5311 0.00180125 11.8154 0.12243 12.0262 0.336053C12.237 0.549677 12.3577 0.839297 12.3623 1.14285C12.3669 1.4464 12.2551 1.73972 12.0509 1.95996L3.87563 10.3244H30.8584C31.0075 10.3236 31.1554 10.3529 31.2934 10.4105C31.4315 10.4681 31.5571 10.553 31.6631 10.6603C31.7691 10.7676 31.8535 10.8953 31.9113 11.0359C31.9691 11.1766 31.9992 11.3275 32 11.48C31.9998 11.7912 31.8791 12.0895 31.6643 12.3098C31.4495 12.53 31.1582 12.6542 30.8541 12.6551H3.87563L12.0518 21.0046C12.2614 21.2255 12.3787 21.5213 12.3787 21.8292C12.3787 22.1372 12.2614 22.433 12.0518 22.6539C11.9466 22.7635 11.8212 22.8506 11.6828 22.91C11.5444 22.9694 11.3958 23 11.2457 23C11.0956 23 10.9471 22.9694 10.8087 22.91C10.6703 22.8506 10.5448 22.7635 10.4397 22.6539L0.327218 12.3012C0.117539 12.0835 0 11.7901 0 11.4845C0 11.1788 0.117539 10.8855 0.327218 10.6678L10.4388 0.326524Z" fill="#4D75E8" />
 							</svg>
 						</a>
-
-						<div class="video-list-slider-delimiter">
-							<a v-for="(pageVideos, i) in videosPerPage" :class="{'active': i===pageIndex}" href="#" @click.prevent="pageIndex=i" :key="i"></a>
-						</div>
 
 						<a href="#" @click.prevent="nextPage">
 							<svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -216,7 +212,7 @@ export default {
 @import "../scss/media-queries";
 
 .video-modal-overlay {
-	font-family: "Actor", sans-serif;
+	font-family: "Raleway", sans-serif;
 	background: rgba(0, 0, 0, 0.77);
 	position: fixed;
 	top: 0;
@@ -239,29 +235,29 @@ export default {
 
 	.video-modal-outer {
 		background: white;
-		width: calc(100% - 24px);
-		max-width: 706px;
+		width: calc(100% - 18px);
+		max-width: 719px;
 		max-height: 90%;
 		overflow-y: scroll;
-		border-radius: 30px;
+		border-radius: 25px;
 		box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
 
 		.video-modal-header {
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			padding: 30px 20px 0;
+			padding: 38px 24px 0;
 
 			.close-video-media {
 				svg {
-					height: 36px;
-					width: 36px;
+					height: 30px;
+					width: 30px;
 				}
 			}
 
 			.video-modal-title {
-				font-size: 24px;
-				line-height: 29px;
+				font-size: 30px;
+				line-height: 35px;
 				color: #4d75e8;
 			}
 		}
@@ -273,30 +269,15 @@ export default {
 				.video-list-slider-controls {
 					display: flex;
 					justify-content: center;
-					padding: 8px 20px 32px;
+					padding: 20px 24px 37px;
 
-					.video-list-slider-delimiter {
-						display: flex;
-						align-items: center;
-						padding-left: 30px;
-						padding-right: 30px;
+					& > a {
+						margin-left: 23px;
+						margin-right: 23px;
 
-						a {
-							margin-left: 7px;
-							margin-right: 7px;
-							display: inline-block;
-							height: 16px;
-							width: 16px;
-							border-radius: 100px;
-							background: rgba(77, 117, 232, 0.2);
-
-							&.active {
-								background: #4d75e8;
-							}
-
-							&:hover {
-								text-decoration: none;
-							}
+						svg {
+							height: 32px;
+							width: 50px;
 						}
 					}
 				}
@@ -307,42 +288,33 @@ export default {
 	@include md {
 		.video-modal-outer {
 			.video-modal-header {
-				padding: 78px 37px 0 48px;
+				padding: 69px 45px 0;
 
 				.close-video-media {
 					svg {
-						height: 30px;
-						width: 30px;
+						height: 55px;
+						width: 55px;
 					}
 				}
 
 				.video-modal-title {
-					font-size: 32px;
-					line-height: 38px;
+					font-size: 40px;
+					line-height: 47px;
 				}
 			}
 
 			.video-modal-body {
 				.video-list-slider {
 					.video-list-slider-controls {
-						padding: 28px 40px 45px;
+						padding-right: unset;
 
 						& > a {
+							margin-left: 24px;
+							margin-right: 24px;
+
 							svg {
-								height: 32px;
-								width: 44px;
-							}
-						}
-
-						.video-list-slider-delimiter {
-							padding-left: 46px;
-							padding-right: 46px;
-
-							a {
-								margin-left: 10px;
-								margin-right: 10px;
-								height: 19px;
-								width: 19px;
+								width: 49px;
+								height: 33px;
 							}
 						}
 					}
@@ -357,6 +329,18 @@ export default {
 
 			.video-modal-header {
 				padding-top: 40px;
+
+				.video-modal-title {
+					font-size: 30px;
+					line-height: 35px;
+				}
+
+				.close-video-media {
+					svg {
+						width: 26px;
+						height: 26px;
+					}
+				}
 			}
 
 			.video-modal-body {
@@ -370,15 +354,6 @@ export default {
 								width: 32px;
 							}
 						}
-
-						.video-list-slider-delimiter {
-							a {
-								margin-left: 7px;
-								margin-right: 7px;
-								height: 16px;
-								width: 16px;
-							}
-						}
 					}
 				}
 			}
@@ -388,15 +363,14 @@ export default {
 	@include xl {
 		.video-modal-outer {
 			max-width: 1568px;
-			border-radius: 40px;
 
 			.video-modal-header {
 				padding: 40px 75px 0;
 
 				.close-video-media {
 					svg {
-						height: 40px;
-						width: 40px;
+						height: 26px;
+						width: 26px;
 					}
 				}
 
@@ -417,18 +391,6 @@ export default {
 								width: 32px;
 							}
 						}
-
-						.video-list-slider-delimiter {
-							padding-left: 33px;
-							padding-right: 33px;
-
-							a {
-								margin-left: 7px;
-								margin-right: 7px;
-								height: 16px;
-								width: 16px;
-							}
-						}
 					}
 				}
 			}
@@ -437,18 +399,17 @@ export default {
 }
 
 .videos-list {
-	font-family: "Actor", sans-serif;
+	font-family: "Raleway", sans-serif;
 	width: 100%;
 
 	.videos-list-item {
 		.video-player {
-			padding: 12px 20px 20px;
+			padding: 20px 24px 30px;
 
 			.player-title {
-				margin-bottom: 8px;
-				font-weight: 500;
+				margin-bottom: 13px;
 				font-size: 18px;
-				line-height: 22px;
+				line-height: 21px;
 				user-select: none;
 				color: #4d75e8;
 			}
@@ -463,9 +424,8 @@ export default {
 
 				.video-preview {
 					position: relative;
-					padding-top: 59.5%;
-					box-shadow: 0px 1px 24px -4px rgba(0, 0, 0, 0.5);
-					border-radius: 20px;
+					padding-top: 63.334%;
+					box-shadow: 0px 0px 40px rgba(30, 134, 255, 0.15);
 					width: 100%;
 
 					img {
@@ -475,7 +435,6 @@ export default {
 						object-fit: cover;
 						height: 100%;
 						width: 100%;
-						border-radius: 20px;
 					}
 				}
 
@@ -508,10 +467,12 @@ export default {
 	@include md {
 		.videos-list-item {
 			.video-player {
-				padding: 47px 40px 20px 44px;
+				padding: 40px 44px;
 
 				.player-title {
-					margin-bottom: 28px;
+					margin-bottom: 38px;
+					font-size: 24px;
+					line-height: 28px;
 				}
 
 				.player-body {
@@ -551,6 +512,8 @@ export default {
 				padding: 0;
 
 				.player-title {
+					font-size: 18px;
+					line-height: 21px;
 					margin-bottom: 22px;
 				}
 
@@ -596,7 +559,6 @@ export default {
 		width: 100%;
 		max-width: 770px;
 		position: relative;
-		border-radius: 10px;
 		overflow: hidden;
 
 		.el-video-player {
@@ -643,7 +605,7 @@ export default {
 
 		@include md {
 			width: calc(100% - 24px);
-			max-width: 706px;
+			max-width: 719px;
 		}
 	}
 }

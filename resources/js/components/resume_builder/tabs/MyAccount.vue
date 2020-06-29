@@ -97,7 +97,7 @@
                 My URL
               </span>
               <v-text-field
-                class="resume-builder__input top-input-margin url"
+                class="resume-builder__input top-input-margin url mt-n6"
                 v-model="accountData.username"
                 :outlined="true"
                 :class="{'resume-builder__input--disabled': false}"
@@ -1452,5 +1452,14 @@ $placeholder-color: #9ba1ad;
 }
 .v-dialog:not(.v-dialog--fullscreen){
   max-height: 100% !important;
+}
+input#input-26{
+  margin-top:8px;
+}
+input#input-29{
+  margin-top:8px;
+}
+.inner-text{
+  margin-top: -4px;
 }
 </style>
