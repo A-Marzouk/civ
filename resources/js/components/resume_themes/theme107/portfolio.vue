@@ -165,7 +165,6 @@ export default {
 
         .masonry {
             width: 100%;
-            margin: 0 auto !important;
             
             .v-card {
                 grid-column: span 4;
@@ -214,7 +213,7 @@ export default {
                         }
                     }
 
-                    @media (max-width: 768px) {
+                    @media (max-width: 600px) {
                         .title,
                         .description p {
                             font-size: 13px !important;
@@ -227,7 +226,7 @@ export default {
                     margin-bottom: 76px !important;
                 }
                 
-                @media (max-width: 768px) {
+                @media (max-width: 600px) {
                     margin-bottom: 42px !important;
                 }
             }

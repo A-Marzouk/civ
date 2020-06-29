@@ -137,7 +137,7 @@ export default {
                 }
             }
             
-            @media (max-width: 670px) {
+            @media (max-width: 600px) {
                 grid-column: span 12;
             }
         }
