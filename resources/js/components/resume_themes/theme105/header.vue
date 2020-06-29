@@ -426,7 +426,7 @@ $purple: #355E5E;
                     height: 141px;
                 }
                 
-                @media (max-width: 876px) {
+                @media (max-width: 600px) {
                     margin-right: 20px;
                 }
 
@@ -494,7 +494,7 @@ $purple: #355E5E;
                         }
                     }
 
-                    @media (max-width: 876px) {
+                    @media (max-width: 600px) {
                         flex-wrap: wrap;
                     }
                 }

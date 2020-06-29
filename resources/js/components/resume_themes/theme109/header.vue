@@ -370,7 +370,7 @@ $purple: #24325D;
                     }
                 }
                 
-                @media (max-width: 876px) {
+                @media (max-width: 600px) {
                     margin-right: 20px;
                 }
 
@@ -438,7 +438,7 @@ $purple: #24325D;
                         }
                     }
 
-                    @media (max-width: 876px) {
+                    @media (max-width: 600px) {
                         flex-wrap: wrap;
                     }
                 }

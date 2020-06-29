@@ -130,6 +130,10 @@ $purple: #0556B6;
             }
         }
 
+        @media (max-width: 768px) {
+            grid-gap: 30px;
+        }
+
         @media (max-width: 590px) {
             grid-gap: 40px 0;
         }

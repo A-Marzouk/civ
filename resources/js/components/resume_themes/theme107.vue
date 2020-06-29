@@ -276,13 +276,12 @@ $purple: #335E5E;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 876px) {
-                    width: 100%;
-                }
-
                 @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
+                }
+
+                @media (max-width: 600px) {
                     width: 100%;
                 }
             }
@@ -364,6 +363,10 @@ $purple: #335E5E;
                 }
             }
         }
+        
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -414,7 +417,7 @@ $purple: #335E5E;
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

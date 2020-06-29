@@ -281,13 +281,12 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 876px) {
-                    width: 100%;
-                }
-
                 @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
+                }
+
+                @media (max-width: 600px) {
                     width: 100%;
                 }
             }
@@ -364,6 +363,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -410,7 +413,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

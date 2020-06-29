@@ -392,7 +392,7 @@ $purple: #FB423A;
                     height: 141px;
                 }
                 
-                @media (max-width: 876px) {
+                @media (max-width: 600px) {
                     margin-right: 20px;
                 }
 
@@ -461,7 +461,7 @@ $purple: #FB423A;
                         }
                     }
 
-                    @media (max-width: 876px) {
+                    @media (max-width: 600px) {
                         flex-wrap: wrap;
                     }
                 }
