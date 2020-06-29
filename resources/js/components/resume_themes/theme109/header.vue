@@ -438,7 +438,7 @@ $purple: #24325D;
                         }
                     }
 
-                    @media (max-width: 600px) {
+                    @media (max-width: 780px) {
                         flex-wrap: wrap;
                     }
                 }
