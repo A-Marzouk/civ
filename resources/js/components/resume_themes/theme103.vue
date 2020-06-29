@@ -188,8 +188,7 @@ $purple: #0556B6;
                         padding: 12px 34px;
                     }
 
-                    @media (max-width: 1400px) {
-                        font-size: 18px;
+                    @media (max-width: 1200px) {
                         padding: 12px 30px;
                     }
                     
@@ -238,8 +237,6 @@ $purple: #0556B6;
                     .v-tabs-slider {
                         border-radius: 22px;
                     }
-
-                    
                 }
             }
 
@@ -253,17 +250,12 @@ $purple: #0556B6;
                 z-index: 0;
                 align-items: flex-start;
 
-                @media (max-width: 876px) {
-                    width: 100%;
-                }
-
-                @media (max-width: 876px) {
-                    width: 100%;
-                }
-
                 @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
+                }
+
+                @media (max-width: 600px) {
                     width: 100%;
                 }
             }
@@ -340,6 +332,10 @@ $purple: #0556B6;
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -386,7 +382,7 @@ $purple: #0556B6;
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

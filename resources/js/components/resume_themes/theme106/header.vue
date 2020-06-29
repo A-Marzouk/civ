@@ -83,7 +83,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 display: none;
                 position: relative;
                 
-                @media (max-width: 768px) {
+                @media (max-width: 600px) {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -110,7 +110,12 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             }
             
             @media (max-width: 768px) {
+                margin-right: 15px;
+            }
+            
+            @media (max-width: 600px) {
                 width: 100%;
+                margin-right: 0;
             }
         }
 
@@ -166,12 +171,12 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 10px;
 
                         .icon {
-                            height: 14px;
+                            height: 12px;
                         }
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 600px) {
                     position: absolute;
                     opacity: 1;
                     transform: translateY(0px);
@@ -262,7 +267,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         margin-right: 20px;
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 600px) {
                         margin-right: 0;
                         align-items: flex-start;
                     }
@@ -288,7 +293,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 16px;
 
                         .icon {
-                            height: 20px;
+                            height: 16px;
                         }
                     }
                     
@@ -302,7 +307,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         }
                     }
                     
-                    @media (max-width: 768px) {
+                    @media (max-width: 600px) {
                         font-size: 10px;
                         padding: 14px 24px;
                         min-width: 80px;
@@ -317,7 +322,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     margin-top: 27px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 600px) {
                     margin-top: 0;
                     padding-left: 60px;
                     justify-content: space-between;
@@ -325,7 +330,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 600px) {
                 margin-top: 0;
                 justify-content: space-between;
                 width: 100%;
@@ -348,8 +353,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             }
             
             @media (max-width: 768px) {
-                flex-wrap: wrap;
                 padding: 30px 17px;
+            }
+            
+            @media (max-width: 600px) {
+                flex-wrap: wrap;
             }
 
             .user-img {
@@ -374,11 +382,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     height: 141px;
                 }
                 
-                @media (max-width: 876px) {
+                @media (max-width: 600px) {
                     margin-right: 20px;
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 600px) {
                     width: 50px;
                     height: 50px;
                     margin-right: 12px;
@@ -444,7 +452,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         }
                     }
 
-                    @media (max-width: 876px) {
+                    @media (max-width: 780px) {
                         flex-wrap: wrap;
                     }
                 }
@@ -466,7 +474,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                 }
 
-                @media (max-width: 768px) {
+                @media (max-width: 600px) {
 
                     .name {
                         font-size: 12px;
