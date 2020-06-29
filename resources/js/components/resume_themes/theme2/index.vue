@@ -307,7 +307,7 @@ export default {
 	data() {
 		return {
 			isAudioMediaOpen: false,
-			isVideoMediaOpen: true,
+			isVideoMediaOpen: false,
 			activeTab: {
 				id: 1,
 				title: "Portfolio"
