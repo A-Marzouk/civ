@@ -308,7 +308,6 @@
 
     .card-main-hobbies {
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
-        width: 1412px;
         @media screen and (max-width: 1903px) {
             width: auto;
         }
