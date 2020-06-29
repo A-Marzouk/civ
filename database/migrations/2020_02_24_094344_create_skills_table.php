@@ -18,6 +18,7 @@ class CreateSkillsTable extends Migration
             $table->string('title')->nullable();
             $table->string('category')->nullable();
             $table->integer('percentage')->nullable();
+            $table->integer('order')->default(1);
 
             $table->boolean('is_public')->default(true);
             $table->integer('user_id')->unsigned();

@@ -312,6 +312,22 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateMedia(state, medias){
+            state.user.media  = medias;
+            axios.post('/api/user/media/update-order', {medias : medias})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateSkills(state, skills){
+            state.user.skills = skills;
+            axios.post('/api/user/skills/update-order', {skills : skills})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateHobbies(state, hobbies){
             state.user.hobbies = hobbies;
             axios.post('/api/user/hobbies/update-order', {hobbies : hobbies})
