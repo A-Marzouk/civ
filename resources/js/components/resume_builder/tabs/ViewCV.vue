@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <v-container fluid class="pa-lg-0 pa-md-8 pa-sm-5 pa-6">
+    <v-container fluid class="pa-xl-0 pa-lg-0 pa-md-8 pa-sm-5 pa-6">
       <v-row>
         <!-- side menu -->
-        <v-col xl="3" lg="3" md="5" sm="5" cols="12" class="mr-xl-n12">
+        <v-col xl="3" lg="3" md="5" sm="5" cols="12">
           <v-select
             class="resume-builder__input civie-select hidden-lg-and-up"
             outlined
@@ -23,7 +23,7 @@
               <svg-vue :icon="`dropdown-caret`"></svg-vue>
             </button>
           </v-select>
-          <v-navigation-drawer permanent width="330" class="hidden-md-and-down">
+          <v-navigation-drawer permanent width="330" class="hidden-md-and-down ml-xl-12">
             <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
                 class="resume-builder__input civie-input"
@@ -76,15 +76,13 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col
-          xl="9"
-          lg="9"
-          md="12"
-          sm="12"
-          cols="12"
-          align="left"
-          class="col-theme-preview ml-xl-n12"
-        >
+        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class="col-theme-preview">
+          <!-- tab bar -->
+          <v-tabs class="resume-builder__tab-bar" hide-slider>
+            <v-tab class="resume-builder__tab">Choose Theme</v-tab>
+            <v-tab class="resume-builder__tab">View your theme</v-tab>
+          </v-tabs>
+          <!-- tab bar -->
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
             <v-row align="center">
@@ -271,6 +269,12 @@ export default {
 <style scoped lang="scss">
 @import "../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.resume-builder__tab{
+  font-family: "Noto Sans" !important;
+  font-size: 18px !important;
+  line-height: 25px;
+  text-transform: capitalize !important;
+}
 .eye-btn {
   min-width: 35.59px !important;
   width: 35.59px !important;
@@ -289,7 +293,7 @@ $mainBlue: #001ce2;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: 95% !important;
   }
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     width: auto !important;
   }
 }
