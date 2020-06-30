@@ -21,7 +21,7 @@
                     </div>
                     <code class="p-4">
 Object_contains = [
-    'category','link','link_title','is_active', 'user_id'
+    'is_public', 'category', 'link', 'link_title', 'is_active', 'user_id', 'order'
 ];
                     </code>
                 </div>
@@ -38,13 +38,13 @@ Object_contains = [
                         Headers:
 
                         <code class="mb-5 prettyprint lang-js p-4">
-                            {{headers_after_auth}}
+{{headers_after_auth}}
                         </code>
 
                         Request example:
 
                         <code class="prettyprint p-4 mb-5 lang-js code">
-                            axios.get('/api/user/{{current_endpoint_url}}');
+axios.get('/api/user/{{current_endpoint_url}}');
                         </code>
 
                         <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
@@ -53,50 +53,118 @@ Object_contains = [
 {
     "data": [
         {
-            "id": 3,
-            "category": "profile_link",
-            "link": "http://agent.net",
-            "link_title": null,
-            "is_active": 1,
-            "user_id": 2,
-            "created_at": "2020-04-29 13:46:35",
-            "updated_at": "2020-05-06 08:09:11"
+        "id": 1,
+        "category": "Neque aut id nesciunt sunt.",
+        "link": "http://www.price.com/",
+        "order": 1,
+        "link_title": "http://www.jacobi.com/nam-quo-quis-provident-error",
+        "is_active": 1,
+        "is_public": 1,
+        "user_id": 2,
+        "created_at": "2020-06-28T18:07:08.000000Z",
+        "updated_at": "2020-06-28T18:07:08.000000Z"
         },
-        {
-            "id": 4,
-            "category": "payment_link",
-            "link": null,
-            "link_title": null,
-            "is_active": 1,
-            "user_id": 2,
-            "created_at": "2020-04-29 13:46:35",
-            "updated_at": "2020-04-29 13:46:35"
-        },
-        {
-            "id": 5,
-            "category": "Dolore quo dicta enim autem.",
-            "link": "http://parker.com/voluptatem-cupiditate-dolores-cumque-corporis-officia.html",
-            "link_title": "https://goodwin.com/at-deleniti-aut-repudiandae-iusto-nihil.html",
-            "is_active": 1,
-            "user_id": 2,
-            "created_at": "2020-04-29 13:46:35",
-            "updated_at": "2020-04-29 13:46:35"
-        }
+      ....
     ],
     "links": {
-        "first": "http://localhost:8080/api/user/links?page=1",
-        "last": "http://localhost:8080/api/user/links?page=3",
+        "first": "http://local.civ.mine/api/user/links?page=1",
+        "last": "http://local.civ.mine/api/user/links?page=2",
         "prev": null,
-        "next": "http://localhost:8080/api/user/links?page=2"
+        "next": "http://local.civ.mine/api/user/links?page=2"
     },
     "meta": {
         "current_page": 1,
         "from": 1,
-        "last_page": 3,
-        "path": "http://localhost:8080/api/user/links",
+        "last_page": 2,
+        "path": "http://local.civ.mine/api/user/links",
         "per_page": 5,
         "to": 5,
-        "total": 13
+        "total": 10
+    }
+}
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
+
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "message": "Unauthenticated."
+}
+                        </code>
+
+
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-card>
+
+        <hr>
+
+
+        <v-card class="mx-auto mb-5" max-width="95%" outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="overline mb-4">Retrieve {{current_endpoint}} by Category| <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> GET: api/user/{{current_endpoint_url}}/:category </v-list-item-title>
+                    <v-list-item-subtitle class="d-flex flex-column">
+
+                        Headers:
+
+                        <code class="mb-5 prettyprint lang-js p-4">
+{{headers_after_auth}}
+                        </code>
+
+                        Request example:
+
+                        <code class="prettyprint p-4 mb-5 lang-js code">
+axios.get('/api/user/{{current_endpoint_url}}/social');
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "data": [
+        {
+        "id": 1,
+        "category": "social",
+        "link": "http://www.price.com/",
+        "order": 1,
+        "link_title": "http://www.jacobi.com/nam-quo-quis-provident-error",
+        "is_active": 1,
+        "is_public": 1,
+        "user_id": 2,
+        "created_at": "2020-06-28T18:07:08.000000Z",
+        "updated_at": "2020-06-28T18:07:08.000000Z"
+        },
+        {
+        "id": 2,
+        "category": "social",
+        "link": "https://fritsch.info/possimus-facilis-recusandae-sed-repellat.html",
+        "order": 1,
+        "link_title": "http://www.kozey.biz/possimus-perferendis-consectetur-qui-nulla-esse-qui",
+        "is_active": 1,
+        "is_public": 1,
+        "user_id": 2,
+        "created_at": "2020-06-28T18:07:08.000000Z",
+        "updated_at": "2020-06-28T18:07:08.000000Z"
+        }
+    ],
+    "links": {
+        "first": "http://local.civ.mine/api/user/links/social?page=1",
+        "last": "http://local.civ.mine/api/user/links/social?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://local.civ.mine/api/user/links/social",
+        "per_page": 5,
+        "to": 2,
+        "total": 2
     }
 }
                         </code>
@@ -136,11 +204,12 @@ Object_contains = [
                         <code class="prettyprint p-4 mb-5 lang-js code">
 axios.post('/api/user/{{current_endpoint_url}}',
     {
-        category:'social_link',
-        link:'facebook.com/developer',
-        link_title: 'Facebook',
-        is_active: 1,
-        user_id: 4
+        category:social_link,
+        link:facebook.com/ahmed,
+        link_title:facebook,
+        order:1,
+        is_public:1,
+        user_id:2
     }
 );
                         </code>
@@ -153,11 +222,12 @@ axios.post('/api/user/{{current_endpoint_url}}',
         "category": "social_link",
         "link": "facebook.com/ahmed",
         "link_title": "facebook",
-        "is_active": "1",
+        "order": "1",
+        "is_public": "1",
         "user_id": "2",
-        "updated_at": "2020-05-06 08:20:03",
-        "created_at": "2020-05-06 08:20:03",
-        "id": 24
+        "updated_at": "2020-06-30T09:15:09.000000Z",
+        "created_at": "2020-06-30T09:15:09.000000Z",
+        "id": 11
     },
     "version": "1.0.0",
     "author_url": "https://civ.ie"
@@ -185,6 +255,74 @@ axios.post('/api/user/{{current_endpoint_url}}',
         </v-card>
 
         <hr>
+
+
+        <v-card class="mx-auto mt-5" max-width="95%" outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="overline mb-4">Update {{current_endpoint}} record | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> PUT: api/user/{{current_endpoint_url}} </v-list-item-title>
+                    <v-list-item-subtitle class="d-flex flex-column">
+
+                        Headers:
+
+                        <code class="mb-5 prettyprint lang-js p-4">
+                            {{headers_after_auth}}
+                        </code>
+
+                        Request data:
+
+                        <code class="prettyprint p-4 mb-5 lang-js code">
+axios.put('/api/user/{{current_endpoint_url}}',
+    {
+        order:3,
+        id:6,
+        user_id:2
+    }
+);
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "data": {
+        "id": 6,
+        "category": "Eligendi quaerat in impedit.",
+        "link": "http://flatley.net/",
+        "order": "3",
+        "link_title": "http://www.kertzmann.com/facere-quae-et-repellendus-provident-temporibus",
+        "is_active": 1,
+        "is_public": 1,
+        "user_id": "2",
+        "created_at": "2020-06-28T18:07:08.000000Z",
+        "updated_at": "2020-06-30T09:17:37.000000Z"
+    },
+    "version": "1.0.0",
+    "author_url": "https://civ.ie"
+}
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
+
+
+                        <code class="prettyprint p-4 lang-js">
+    // Wrong Model ID sent.
+{
+    "message": "No query results for model [App\\Hobby] 88",
+    "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
+    ....
+}
+                        </code>
+
+
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-card>
+
+        <hr>
+
 
         <v-card class="mx-auto mt-5" max-width="95%" outlined>
             <v-list-item three-line>
