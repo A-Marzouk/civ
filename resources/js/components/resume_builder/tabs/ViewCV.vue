@@ -33,7 +33,6 @@
                 :disabled="disabledInput"
                 label
                 height="55"
-                style="border-radius:5px !important;"
                 placeholder="Current Theme"
               >
                 <template slot="append">
