@@ -18,7 +18,7 @@
                     </div>
                     <code class="p-4">
 Object_contains = [
-    'title','category','user_id'
+     'title','category','user_id','order','is_public'
 ];
                     </code>
                 </div>
@@ -50,25 +50,38 @@ axios.get('/api/user/{{current_endpoint_url}}');
 {
     "data": [
         {
-        "id": 1,
-        "title": "Et est ab nemo.",
-        "category": "Sports",
-        "user_id": 2,
-        "created_at": "2020-04-29 13:46:35",
-        "updated_at": "2020-04-29 13:46:35"
-        }
+            "id": 1,
+            "title": "Id a et in.",
+            "category": "Sports",
+            "is_public": 1,
+            "order": 1,
+            "user_id": 2,
+            "created_at": "2020-06-28T18:07:08.000000Z",
+            "updated_at": "2020-06-28T18:07:08.000000Z"
+        },
+        {
+            "id": 2,
+            "title": "Hic deleniti quis ea in.",
+            "category": "Sports",
+            "is_public": 1,
+            "order": 1,
+            "user_id": 2,
+            "created_at": "2020-06-28T18:07:08.000000Z",
+            "updated_at": "2020-06-28T18:07:08.000000Z"
+        },
+        ....
     ],
     "links": {
-        "first": "http://localhost:8080/api/user/hobbies?page=1",
-        "last": "http://localhost:8080/api/user/hobbies?page=2",
+        "first": "http://local.civ.mine/api/user/hobbies?page=1",
+        "last": "http://local.civ.mine/api/user/hobbies?page=2",
         "prev": null,
-        "next": "http://localhost:8080/api/user/hobbies?page=2"
+        "next": "http://local.civ.mine/api/user/hobbies?page=2"
     },
     "meta": {
         "current_page": 1,
         "from": 1,
         "last_page": 2,
-        "path": "http://localhost:8080/api/user/hobbies",
+        "path": "http://local.civ.mine/api/user/hobbies",
         "per_page": 5,
         "to": 5,
         "total": 10
@@ -113,6 +126,8 @@ axios.post('/api/user/{{current_endpoint_url}}',
     {
         title: "Football",
         category: "Sport",
+        order: 1,
+        is_public: 1,
         user_id: 4
     }
 );
@@ -126,8 +141,10 @@ axios.post('/api/user/{{current_endpoint_url}}',
         "user_id": "2",
         "title": "Football",
         "category": "Sport",
-        "updated_at": "2020-05-06 07:17:32",
-        "created_at": "2020-05-06 07:17:32",
+        "order": "1",
+        "is_public": "1",
+        "updated_at": "2020-06-30T09:01:58.000000Z",
+        "created_at": "2020-06-30T09:01:58.000000Z",
         "id": 11
     },
     "version": "1.0.0",
@@ -146,6 +163,71 @@ axios.post('/api/user/{{current_endpoint_url}}',
             "The title field is required."
         ]
     }
+}
+                        </code>
+
+
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-card>
+
+        <hr>
+
+
+        <v-card class="mx-auto mt-5" max-width="95%" outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="overline mb-4">Update {{current_endpoint}} record | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> PUT: api/user/{{current_endpoint_url}} </v-list-item-title>
+                    <v-list-item-subtitle class="d-flex flex-column">
+
+                        Headers:
+
+                        <code class="mb-5 prettyprint lang-js p-4">
+                            {{headers_after_auth}}
+                        </code>
+
+                        Request data:
+
+                        <code class="prettyprint p-4 mb-5 lang-js code">
+axios.put('/api/user/{{current_endpoint_url}}',
+    {
+        id:11,
+        user_id:2,
+        title:Football - UPDATED
+    }
+);
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "data": {
+        "id": 11,
+        "title": "Football - UPDATED",
+        "category": "Sport",
+        "is_public": 1,
+        "order": 1,
+        "user_id": "2",
+        "created_at": "2020-06-30T09:01:58.000000Z",
+        "updated_at": "2020-06-30T09:05:48.000000Z"
+    },
+    "version": "1.0.0",
+    "author_url": "https://civ.ie"
+}
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
+
+
+                        <code class="prettyprint p-4 lang-js">
+    // Wrong Model ID sent.
+{
+    "message": "No query results for model [App\\Hobby] 88",
+    "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
+    ....
 }
                         </code>
 

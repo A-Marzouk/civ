@@ -29,6 +29,15 @@ class LinksController extends Controller
         return LinkResource::collection($links);
     }
 
+    public function getLinksByCategory($category)
+    {
+        $links = Link::where([
+            ['user_id' , '=', Auth::user()->id],
+            ['category' , '=', $category],
+        ])->paginate(5);
+        return LinkResource::collection($links);
+    }
+
     public function store(Request $request)
     {
 
@@ -92,8 +101,8 @@ class LinksController extends Controller
     {
         return Validator::make($data, [
             'link_title' => ['nullable','string', 'max:255','min:3'],
-            'category' => ['required', 'string', 'max:255'],
-            'link' => ['required', 'string','max:255'],
+            'category' => ['sometimes', 'string', 'max:255'],
+            'link' => ['sometimes', 'string','max:255'],
             'is_active' => ['max:255'],
             'order' => ['max:255'],
         ]);

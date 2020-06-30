@@ -17,9 +17,10 @@
                         Fields that can be retrieved or updated in {{current_endpoint}} object : <small>(Examples included)</small>
                     </div>
                     <code class="p-4">
-personal_info_contains = [
-    'full_name','email','designation','profile_pic','location', 'phone','about'
-];
+    personal_info_contains = [
+        'first_name', 'last_name', 'email', 'designation', 'user_id', 'profile_pic', 'nationality', 'is_nationality_active', 'quote', 'is_quote_active', 'hometown', 'is_hometown_active', 'date_of_birth',
+        'is_date_of_birth_active', 'location', 'is_location_active', 'phone', 'is_phone_active', 'about', 'is_about_active', 'overview', 'is_overview_active'
+    ];
                     </code>
                 </div>
             </div>
@@ -49,17 +50,32 @@ axios.get('/api/user/{{current_endpoint_url}}');
                         <code class="prettyprint p-4 lang-js">
 {
     "data": {
-        "id": 4,
-        "full_name": "Agent -11",
-        "email": "agent11@civ.ie",
+        "id": 2,
+        "first_name": "Civ Agent",
+        "last_name": null,
+        "email": "agent@civ.ie",
         "designation": null,
         "profile_pic": "/images/resume_builder/profile/holder.png",
         "phone": null,
+        "is_phone_active": 1,
+        "nationality": null,
+        "is_nationality_active": 1,
+        "quote": null,
+        "is_quote_active": 1,
+        "hometown": null,
+        "is_hometown_active": 1,
+        "date_of_birth": null,
+        "is_date_of_birth_active": 1,
         "location": null,
+        "is_location_active": 1,
         "about": null,
-        "user_id": 4,
-        "created_at": "2020-05-03 12:38:43",
-        "updated_at": "2020-05-03 12:38:43"
+        "is_about_active": 1,
+        "overview": null,
+        "is_overview_active": 1,
+        "user_id": 2,
+        "created_at": "2020-06-28T18:07:08.000000Z",
+        "updated_at": "2020-06-28T18:07:08.000000Z",
+        "full_name": "Civ Agent "
     },
     "version": "1.0.0",
     "author_url": "https://civ.ie"
@@ -106,7 +122,8 @@ axios.get('/api/user/{{current_endpoint_url}}');
                         <code class="prettyprint p-4 mb-5 lang-js code">
 axios.put('/api/user/{{current_endpoint_url}}',
     {
-        'full_name':'Updated user name',
+        'first_name':'Updated AGENT API',
+        'last_name':'CIV',
         'user_id': 4
     }
 );
@@ -117,17 +134,32 @@ axios.put('/api/user/{{current_endpoint_url}}',
                         <code class="prettyprint p-4 lang-js">
 {
     "data": {
-        "id": 4,
-        "full_name": "Agent 4",
-        "email": "agent11@civ.ie",
-        "designation": null,
+        "id": 2,
+        "first_name": "Updated AGENT API",
+        "last_name": CIV,
+        "email": "agent@civ.ie",
+        "designation": "PHP developer",
         "profile_pic": "/images/resume_builder/profile/holder.png",
         "phone": null,
+        "is_phone_active": 1,
+        "nationality": null,
+        "is_nationality_active": 1,
+        "quote": null,
+        "is_quote_active": 1,
+        "hometown": null,
+        "is_hometown_active": 1,
+        "date_of_birth": null,
+        "is_date_of_birth_active": 1,
         "location": null,
+        "is_location_active": 1,
         "about": null,
-        "user_id": "4",
-        "created_at": "2020-05-03 12:38:43",
-        "updated_at": "2020-05-04 13:24:11"
+        "is_about_active": 1,
+        "overview": null,
+        "is_overview_active": 1,
+        "user_id": "2",
+        "created_at": "2020-06-28T18:07:08.000000Z",
+        "updated_at": "2020-06-30T06:59:46.000000Z",
+        "full_name": "Updated AGENT API CIV"
     },
     "version": "1.0.0",
     "author_url": "https://civ.ie"
