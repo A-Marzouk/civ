@@ -76,7 +76,7 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class="col-theme-preview">
+        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class="col-theme-preview ml-xl-n12">
           <!-- tab bar -->
           <v-tabs class="resume-builder__tab-bar" hide-slider>
             <v-tab class="resume-builder__tab">Choose Theme</v-tab>
