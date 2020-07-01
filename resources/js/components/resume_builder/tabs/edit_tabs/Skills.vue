@@ -435,6 +435,7 @@ civie-input {
     height: 50px !important;
     font-size: 18px !important;
     font-weight: 500;
+    box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
     @media screen and (max-width: 767px) {
       width: 100px !important;
       height: 40px !important;

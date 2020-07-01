@@ -856,4 +856,7 @@ export default {
     }
   }
 }
+#resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default{
+  margin-left: -7px;
+}
 </style>
