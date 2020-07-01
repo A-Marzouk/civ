@@ -73,11 +73,6 @@
                         <v-list-item-title>Projects</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item link to="/api/docs/referee">
-                    <v-list-item-content>
-                        <v-list-item-title>Referee</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
                 <v-list-item link to="/api/docs/references">
                     <v-list-item-content>
                         <v-list-item-title>References</v-list-item-title>
@@ -86,11 +81,6 @@
                 <v-list-item link to="/api/docs/skills">
                     <v-list-item-content>
                         <v-list-item-title>Skills</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-                <v-list-item link to="/api/docs/Summary">
-                    <v-list-item-content>
-                        <v-list-item-title>Summary</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item link to="/api/docs/testimonials">
