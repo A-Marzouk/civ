@@ -17,7 +17,7 @@
         <Skills></Skills>
       </v-col>
       <v-col cols="12" class="mt-1" style="background: rgba(3, 1, 252, 0.1);">
-        <Portfolio style="height:100vh;" :currentTab="currentTab" />
+        <Portfolio :currentTab="currentTab" />
         <Work :currentTab="currentTab" />
         <Education :currentTab="currentTab" />
       </v-col>
@@ -53,6 +53,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap");
 .tab-title {
   font-family: "Archivo", sans-serif;
   font-style: normal;
@@ -101,5 +102,16 @@ export default {
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active),
 .theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) > .v-icon {
   color: rgba(0, 0, 0, 0);
+}
+@media screen and (min-width: 200px) and (max-width: 599px) {
+  .tab-title {
+    font-family: "Archivo", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 0.8rem;
+    line-height: 26px;
+    text-transform: capitalize;
+    color: #5afee4;
+  }
 }
 </style>
