@@ -2,7 +2,7 @@
     <v-app class="resume-builder__scroll">
         <div class="data-container">            
             <v-card color="transparent" flat tile>
-                <v-tabs
+                <!-- <v-tabs
                     class="resume-builder__tab-bar"
                     hide-slider
                 >
@@ -12,7 +12,7 @@
                         :key="tab"
                         @click="activeTab = tab"
                     >{{ tab }}</v-tab>
-                </v-tabs>
+                </v-tabs> -->
             </v-card>
 
             <v-card class="view-container resume-builder__scroll">
