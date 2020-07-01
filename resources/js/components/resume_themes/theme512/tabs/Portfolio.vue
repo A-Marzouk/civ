@@ -2,31 +2,17 @@
   <v-container fluid v-if="currentTab === 0">
     <v-row no-gutters>
       <v-col cols="12">
-        <VueSlickCarousel
-          v-bind="settings"
-          ref="myVueperSlides"
-          :breakpoints="breakpoints"
-        >
-          <div v-for="(p, i) in portfolio" :key="i" class="pa-2">
-            <v-img :src="p.src" cover style="border-radius:10px;"></v-img>
+        <VueSlickCarousel v-bind="settings" ref="carousel" :arrows="false">
+          <div class="px-2 py-8 " v-for="(p, i) in portfolio" :key="i">
+            <img :src="p.src" class="bdradius" alt="portfolio img" />
           </div>
-
-          <template #customPaging="i">
-            <div class="custom-dot d-none">
-              <div class="d-none">{{ i }}</div>
-            </div>
-          </template>
         </VueSlickCarousel>
       </v-col>
       <v-col cols="12" class="text-center pt-2">
-        <v-btn @click="previous()" color="transparent" elevation="0">
+        <v-btn @click="showPrev" color="transparent" elevation="0">
           <v-img src="/images/resume_themes/theme512/leftarrow.png"></v-img>
         </v-btn>
-        <v-btn
-          @click="$refs.myVueperSlides.next()"
-          color="transparent"
-          elevation="0"
-        >
+        <v-btn @click="showNext" color="transparent" elevation="0">
           <v-img src="/images/resume_themes/theme512/rightarrow.png"></v-img>
         </v-btn>
       </v-col>
@@ -44,35 +30,50 @@ export default {
   },
   data: () => ({
     settings: {
-      dots: true,
+      centerMode: true,
+      centerPadding: "200px",
       focusOnSelect: true,
       infinite: true,
+      slidesToShow: 2,
       speed: 500,
-      slidesToShow: 3,
-      visibleSlides: 3,
-      slidesToScroll: 4,
-      touchThreshold: 5
-
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            centerMode: true,
+            centerPadding: "100px",
+            focusOnSelect: true,
+            infinite: true,
+            slidesToShow: 1,
+            speed: 500
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            centerMode: true,
+            centerPadding: "100px",
+            focusOnSelect: true,
+            infinite: true,
+            slidesToShow: 1,
+            speed: 500
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            centerMode: true,
+            centerPadding: "80px",
+            focusOnSelect: true,
+            infinite: true,
+            slidesToShow: 1,
+            speed: 500
+          }
+        }
+      ]
       // Any other options that can be got from plugin documentation
     },
-    breakpoints: {
-      1024: {
-        visibleSlides: 2,
-        slideMultiple: 2,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        touchThreshold: 3,
-        slideRatio: 1
-      },
-      600: {
-        visibleSlides: 2,
-        slideMultiple: 2,
-        slidesToShow: 2,
-        slidesToScroll: 2,
-        touchThreshold: 3,
-        slideRatio: 1
-      }
-    },
+
     portfolio: [
       {
         src: "/images/resume_themes/theme512/port-1.png"
@@ -101,8 +102,11 @@ export default {
     ]
   }),
   methods: {
-    previous() {
-      this.$refs.myVueperSlides.next();
+    showNext() {
+      this.$refs.carousel.next();
+    },
+    showPrev() {
+      this.$refs.carousel.prev();
     }
   }
 };
@@ -120,5 +124,9 @@ export default {
   border-radius: 50%;
   width: 15px;
   height: 15px;
+}
+
+.bdradius {
+  border-radius: 20px;
 }
 </style>

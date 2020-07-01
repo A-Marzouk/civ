@@ -62,6 +62,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
 .timeline-item--serial {
   font-family: "Archivo", sans-serif;
   font-style: normal;
