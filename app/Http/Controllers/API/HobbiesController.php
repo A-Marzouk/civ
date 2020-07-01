@@ -112,8 +112,8 @@ class HobbiesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => ['required', 'string', 'max:255','min:3'],
-            'category' => ['required', 'string','max:255','min:3'],
+            'title' => ['sometimes', 'string', 'max:255','min:3'],
+            'category' => ['sometimes', 'string','max:255','min:3'],
         ]);
     }
 

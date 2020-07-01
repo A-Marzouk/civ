@@ -160,7 +160,7 @@ $purple: #335E5E;
                 width: 349px;
             }
             
-            @media (max-width: 768px) {
+            @media (max-width: 600px) {
                 display: none;
             }
 
@@ -234,8 +234,8 @@ $purple: #335E5E;
                     }
 
                     @media (max-width: 768px) {
+                        padding: 12px 20px;
                         font-size: 15px;
-                        padding: 13px 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -263,8 +263,6 @@ $purple: #335E5E;
                 @media (max-width: 768px) {
                     margin: 29px 0;
                     padding: 0 17px;
-
-                    
                 }
             }
 
@@ -279,13 +277,17 @@ $purple: #335E5E;
                 align-items: flex-start;
 
                 @media (max-width: 768px) {
-                    padding: 0;
+                    padding: 0 17px;
                     padding-bottom: 30px;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             border-radius: 38px 38px 0 0;
             border-top: 10px solid $purple;
         }
@@ -361,6 +363,10 @@ $purple: #335E5E;
                 }
             }
         }
+        
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -411,7 +417,7 @@ $purple: #335E5E;
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

@@ -30,7 +30,7 @@
           <div class="content-wrapper">
             <div class="mar-form">
               <v-text-field
-                class="resume-builder__input input-margin"
+                class="resume-builder__input input-margin input-margin-3"
                 label="Full name"
                 v-model="accountData.name"
                 :outlined="true"
@@ -40,7 +40,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin"
+                class="resume-builder__input input-margin input-margin-3"
                 label="Email"
                 v-model="accountData.email"
                 :outlined="true"
@@ -50,7 +50,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin"
+                class="resume-builder__input input-margin centered-input"
                 label="Password"
                 type="password"
                 v-model="accountData.password"
@@ -61,7 +61,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input"
+                class="resume-builder__input centered-input"
                 label="Re-Type Password"
                 type="password"
                 v-model="accountData.password_confirmation"
@@ -97,14 +97,14 @@
                 My URL
               </span>
               <v-text-field
-                class="resume-builder__input top-input-margin url"
+                class="resume-builder__input top-input-margin url mt-n6"
                 v-model="accountData.username"
                 :outlined="true"
                 :class="{'resume-builder__input--disabled': false}"
                 :error="!!errors.username"
               >
                 <template slot="prepend-inner">
-                  <span class="inner-text">www.civ.ie/</span>
+                  <span class="inner-text" style="margin-top:-3px;">www.civ.ie/</span>
                 </template>
               </v-text-field>
             </div>
@@ -526,7 +526,12 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+  #input-29{
+    margin-top:3px !important;
+  }
 
+</style>
 <style lang="scss">
 @import "../../../../sass/media-queries";
 
@@ -1452,5 +1457,11 @@ $placeholder-color: #9ba1ad;
 }
 .v-dialog:not(.v-dialog--fullscreen){
   max-height: 100% !important;
+}
+.centered-input input{
+  margin-top: 6px !important;
+}
+.input-margin-3 input{
+  margin-top: 3px !important;
 }
 </style>
