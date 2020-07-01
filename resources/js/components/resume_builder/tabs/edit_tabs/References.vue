@@ -15,7 +15,12 @@
                   color="#001CE2"
                   v-model="reference.type"
                 >
-                  <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                  <button
+                    class="dropdown-icon icon ml-4"
+                    slot="append"
+                    @click="toggleSelect"
+                    style="margin-top:6px;"
+                  >
                     <svg-vue :icon="`dropdown-caret`"></svg-vue>
                   </button>
                 </v-select>
