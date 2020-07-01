@@ -25,7 +25,7 @@
                 cols="11"
                 class="text-md-left text-center text-sm-left"
               >
-                <div class="currentUser-name font-weight-bold">
+                <div class="user-name font-weight-bold">
                   {{ currentUser.personal_info.full_name }}
                 </div>
                 <div class="job-title py-1 pb-sm-2">
@@ -1066,7 +1066,8 @@ export default {
         {
           color: "#004D40"
         }
-      ]
+      ],
+      currentUser: this.user
     };
   },
   methods: {
