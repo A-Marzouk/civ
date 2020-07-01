@@ -26,7 +26,7 @@
           <v-navigation-drawer permanent width="330" class="hidden-md-and-down ml-xl-12">
             <v-card flat color="transparent" class="pa-5 mt-n12">
               <v-text-field
-                class="resume-builder__input civie-input"
+                class="resume-builder__input civie-input custom-border-radius"
                 outlined
                 color="#001CE2"
                 :class="{'resume-builder__input--disabled': disabledInput}"
@@ -407,4 +407,12 @@ $mainBlue: #001ce2;
   background: #001ce2 !important;
   border-radius: 10px 0px 0px 10px !important;
 }
+
+</style>
+<style lang="scss">
+  .civie-input.custom-border-radius {
+    .v-input__slot fieldset {
+      border-radius: 5px !important;
+    }
+  }
 </style>
