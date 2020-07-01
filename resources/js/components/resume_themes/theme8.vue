@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-container" v-if="currentUser">
+  <div class="theme-container">
     <vue-particles></vue-particles>
     <div class="main-info-bar">
       <div class="left">
@@ -7,25 +7,38 @@
           <img :src="currentUser.personal_info.profile_pic" alt />
         </div>
         <div class="main-info">
-          <div class="user-name">{{currentUser.personal_info.first_name}} {{currentUser.personal_info.last_name}}</div>
-          <div class="job-title">{{currentUser.personal_info.designation}}</div>
+          <div class="user-name">
+            {{ currentUser.personal_info.full_name }}
+          </div>
+          <div class="job-title">
+            {{ currentUser.personal_info.designation }}
+          </div>
           <div class="social">
             <div class="d-flex">
               <div class="message-btn d-flex">
                 <a href="javascript:void(0)">
-                  <img src="/images/resume_themes/theme8/Icon material-email.svg" alt="mail icon" />
+                  <img
+                    src="/images/resume_themes/theme8/Icon material-email.svg"
+                    alt="mail icon"
+                  />
                   <span>Message</span>
                 </a>
               </div>
               <div class="video-btn hideOnNotTablet hideMeOnPhone">
                 <a href="javascript:void(0)">
-                  <img src="/images/resume_themes/theme8/video-player.svg" alt="video icon" />
+                  <img
+                    src="/images/resume_themes/theme8/video-player.svg"
+                    alt="video icon"
+                  />
                   <span>Video</span>
                 </a>
               </div>
               <div class="audio-btn hideOnNotTablet hideMeOnPhone">
                 <a href="javascript:void(0)">
-                  <img src="/images/resume_themes/theme8/headphones.svg" alt="audio icon" />
+                  <img
+                    src="/images/resume_themes/theme8/headphones.svg"
+                    alt="audio icon"
+                  />
                   <span>Audio</span>
                 </a>
               </div>
@@ -33,14 +46,18 @@
 
             <div class="icons NoDecor">
               <a
-                :href="item.link"
-                v-for="item in socialLinks"
+                v-for="item in currentUser.links"
                 :key="item.id + '_link'"
+                :href="item.link"
                 target="_blank"
                 v-show="item.is_active"
               >
                 <img
-                  :src="`/images/resume_themes/theme8/social_icons/${stringToLowerCase(item.link_title)}.webp`"
+                  :src="
+                    `/images/resume_themes/theme8/social_icons/${stringToLowerCase(
+                      item.link_title
+                    )}.webp`
+                  "
                   alt="social icon"
                 />
               </a>
@@ -53,13 +70,19 @@
           <div class="text hideMeOnPhone">Interview:</div>
           <div class="video-btn">
             <a href="javascript:void(0)">
-              <img src="/images/resume_themes/theme8/video-player.svg" alt="video icon" />
+              <img
+                src="/images/resume_themes/theme8/video-player.svg"
+                alt="video icon"
+              />
               <span>Video</span>
             </a>
           </div>
           <div class="audio-btn">
             <a href="javascript:void(0)">
-              <img src="/images/resume_themes/theme8/headphones.svg" alt="audio icon" />
+              <img
+                src="/images/resume_themes/theme8/headphones.svg"
+                alt="audio icon"
+              />
               <span>Audio</span>
             </a>
           </div>
@@ -67,19 +90,64 @@
         <div class="prof-info">
           <div class="prof-left">
             <div class="hours">
-              <div
-                class="text"
-                style="text-transform: capitalize;"
-              >{{currentUser.payment_info.salary_frequency}} rate</div>
-              <div class="number">$ {{currentUser.payment_info.salary}} USD</div>
+              <div class="text" style="text-transform: capitalize;">
+                <v-icon @click="paymentInfoPrev()">navigate_before</v-icon>
+                <div
+                  v-for="(payment_Info, index) in currentUser.payment_info"
+                  :key="index"
+                  v-show="payment_Info.is_public"
+                  class="d-inline-block"
+                >
+                  <span class="title" v-if="paymentInfo == index">
+                    {{ payment_Info.salary_frequency }} rate
+                  </span>
+                </div>
+                <v-icon @click="paymentInfoNext()">navigate_next</v-icon>
+              </div>
+              <div class="number">
+                <div
+                  v-for="(payment_Info, index) in currentUser.payment_info"
+                  :key="index"
+                  v-show="payment_Info.is_public"
+                >
+                  <span class="title" v-if="paymentInfo == index">
+                    $ {{ payment_Info.salary }}
+                    {{ payment_Info.currency.toUpperCase() }}
+                  </span>
+                </div>
+              </div>
             </div>
             <div class="horizontal-divider"></div>
             <div class="rate">
-              <div class="text">Available ({{currentUser.payment_info.available_hours_frequency}})</div>
-              <div
-                class="number"
-                style="text-transform: capitalize;"
-              >{{currentUser.payment_info.available_hours}} Hours</div>
+              <div class="text">
+                Available (<v-icon @click="availablePrev()"
+                  >navigate_before</v-icon
+                >
+                <div
+                  v-for="(availability_info,
+                  index) in currentUser.availability_info"
+                  :key="index"
+                  v-show="availability_info.is_public"
+                  class="d-inline-block"
+                >
+                  <span class="title" v-if="available == index">
+                    {{ availability_info.available_hours_frequency }}
+                  </span>
+                </div>
+                <v-icon @click="availableNext()">navigate_next</v-icon>)
+              </div>
+              <div class="number" style="text-transform: capitalize;">
+                <div
+                  v-for="(availability_info,
+                  index) in currentUser.availability_info"
+                  :key="index"
+                  v-show="availability_info.is_public"
+                >
+                  <span class="title" v-if="available == index">
+                    {{ availability_info.available_hours }} Hours
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
           <div class="prof-right">
@@ -94,29 +162,39 @@
     <div class="tabs-bar">
       <div
         class="tab-text"
-        :class="{active : activeTab === 'portfolio'}"
+        :class="{ active: activeTab === 'portfolio' }"
         @click="setActiveTab('portfolio')"
-      >Portfolio</div>
+      >
+        Portfolio
+      </div>
       <div
         class="tab-text"
-        :class="{active : activeTab === 'workEx'}"
+        :class="{ active: activeTab === 'workEx' }"
         @click="setActiveTab('workEx')"
-      >Work</div>
+      >
+        Work
+      </div>
       <div
         class="tab-text"
-        :class="{active : activeTab === 'edu'}"
+        :class="{ active: activeTab === 'edu' }"
         @click="setActiveTab('edu')"
-      >Education</div>
+      >
+        Education
+      </div>
       <div
         class="tab-text"
-        :class="{active : activeTab === 'skills'}"
+        :class="{ active: activeTab === 'skills' }"
         @click="setActiveTab('skills')"
-      >Skills</div>
+      >
+        Skills
+      </div>
       <div
         class="tab-text mr-0"
-        :class="{active : activeTab === 'about'}"
+        :class="{ active: activeTab === 'about' }"
         @click="setActiveTab('about')"
-      >About</div>
+      >
+        About
+      </div>
     </div>
 
     <div class="tabs-wrapper">
@@ -124,10 +202,13 @@
         <div
           class="portfolio"
           v-show="activeTab === 'portfolio'"
-          :class="{active : activeTab === 'portfolio'}"
+          :class="{ active: activeTab === 'portfolio' }"
         >
           <div class="images">
-            <div v-for="project in currentUser.projects" :key="project.id + '_project'">
+            <div
+              v-for="project in currentUser.projects"
+              :key="project.id + '_project'"
+            >
               <img :src="getProjectMainImage(project)" alt="portfolio img" />
             </div>
           </div>
@@ -140,39 +221,45 @@
         <div
           class="work-experience"
           v-show="activeTab === 'workEx'"
-          :class="{active : activeTab === 'workEx'}"
+          :class="{ active: activeTab === 'workEx' }"
         >
           <div
             class="work-item"
             v-for="work in currentUser.work_experience"
             :key="work.id + '_work'"
           >
-            <div class="company">{{work.company_name}}</div>
-            <div class="title">{{work.job_title}}</div>
-            <div
-              class="duration"
-            >Duration: {{work.date_from}} - {{work.present ? "present" : work.date_to}}</div>
-            <div class="work-info">{{work.description}}</div>
+            <div class="company">{{ work.company_name }}</div>
+            <div class="title">{{ work.job_title }}</div>
+            <div class="duration">
+              Duration: {{ work.date_from }} -
+              {{ work.present ? "present" : work.date_to }}
+            </div>
+            <div class="work-info">{{ work.description }}</div>
           </div>
         </div>
-        <div class="education" v-show="activeTab === 'edu'" :class="{active : activeTab === 'edu'}">
+        <div
+          class="education"
+          v-show="activeTab === 'edu'"
+          :class="{ active: activeTab === 'edu' }"
+        >
           <div
             class="education-item"
             v-for="education in currentUser.education"
             :key="education.id + '_education'"
           >
-            <div class="education-name">{{education.university_name}}</div>
-            <div
-              class="education-date"
-            >{{education.date_from}} - {{education.present ? "present" : education.date_to}}</div>
-            <div class="education-info">{{education.degree_title}}</div>
-            <div class="education-type">{{education.institution_type}}</div>
+            <div class="education-name">{{ education.university_name }}</div>
+            <div class="education-date">
+              {{ education.date_from }} -
+              {{ education.present ? "present" : education.date_to }}
+            </div>
+            <div class="education-info">{{ education.degree_title }}</div>
+            <div class="education-type">{{ education.institution_type }}</div>
           </div>
         </div>
         <div
           class="skills-tab"
           v-show="activeTab === 'skills'"
-          :class="{active : activeTab === 'skills'}"
+          :class="{ active: activeTab === 'skills' }"
         >
           <div
             class="skill-item skills d-flex align-items-end"
@@ -180,7 +267,7 @@
             :key="skill.id + '_skill'"
           >
             <div class="skill">
-              <div class="skill-title">{{skill.title}}</div>
+              <div class="skill-title">{{ skill.title }}</div>
               <!-- bar -->
               <div class="skill-bar" :data-bar="skill.percentage">
                 <span :style="getRandomColor()"></span>
@@ -190,17 +277,25 @@
             <div
               style="font-size:32px; font-weight: bold; margin-left:75px; margin-bottom: 19px;"
               class="percentage"
-            >{{skill.percentage}}%</div>
+            >
+              {{ skill.percentage }}%
+            </div>
           </div>
         </div>
-        <div class="about" v-show="activeTab === 'about'" :class="{active : activeTab === 'about'}">
+        <div
+          class="about"
+          v-show="activeTab === 'about'"
+          :class="{ active: activeTab === 'about' }"
+        >
           <div class="about-me">
             <div class="about-title">About me</div>
-            <div class="about-text">{{currentUser.personal_info.about}}</div>
+            <div class="about-text">{{ currentUser.personal_info.about }}</div>
           </div>
           <div class="contact">
             <div class="contact-title">Contact</div>
-            <div class="email">Email: {{currentUser.personal_info.email}}</div>
+            <div class="email">
+              Email: {{ currentUser.personal_info.email }}
+            </div>
           </div>
         </div>
       </div>
@@ -220,6 +315,8 @@ export default {
   data() {
     return {
       activeTab: "portfolio",
+      available: 0,
+      paymentInfo: 0,
       slickOptions: {
         dots: false,
         arrows: false,
@@ -241,6 +338,26 @@ export default {
     };
   },
   methods: {
+    availableNext() {
+      if (this.available == 2) {
+        this.available = 0;
+      } else this.available++;
+    },
+    availablePrev() {
+      if (this.available == 0) {
+        this.available = 0;
+      } else this.available--;
+    },
+    paymentInfoNext() {
+      if (this.paymentInfo == 2) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo++;
+    },
+    paymentInfoPrev() {
+      if (this.paymentInfo == 0) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo--;
+    },
     stringToLowerCase(string) {
       if (string) {
         return string.toLowerCase();
@@ -285,7 +402,7 @@ export default {
 
   computed: {
     socialLinks() {
-      return this.currentUser.links.filter(link => {
+      return this.user.links.filter(link => {
         return link.category === "social_link" ? link : false;
       });
     }
@@ -297,6 +414,9 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>
@@ -486,7 +606,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-        width: 725px;
+        width: 800px;
         height: 135px;
         background: #333232;
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);

@@ -94,7 +94,8 @@
                         >navigate_before</v-icon
                       >
                       <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                         class="d-inline-block"
@@ -107,7 +108,8 @@
                     </div>
                     <div>
                       <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                       >
@@ -140,7 +142,8 @@
                         >navigate_before</v-icon
                       >
                       <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                         class="d-inline-block"
@@ -153,7 +156,8 @@
                     </div>
                     <div class="headline mt-3 font-weight-bold txtcol">
                       <div
-                        v-for="(payment_Info, index) in currentUser.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                       >
@@ -367,7 +371,8 @@
                           >navigate_before</v-icon
                         >
                         <div
-                          v-for="(payment_Info, index) in currentUser.payment_info"
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                           class="d-inline-block"
@@ -382,7 +387,8 @@
                       </div>
                       <div>
                         <div
-                          v-for="(payment_Info, index) in currentUser.payment_info"
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                         >
@@ -522,13 +528,13 @@
                     sm="12"
                     cols="12"
                     v-for="project in currentUser.projects"
-                    :key="project.id"
+                    :key="project.id + '_project'"
                     class="pa-4"
                     align="center"
                     v-show="project.is_public"
                   >
                     <v-img
-                      :src="project.images[0].src"
+                      :src="getProjectMainImage(project)"
                       alt="portfolio img"
                       :aspect-ratio="1.2"
                       cover
@@ -656,7 +662,7 @@
                   </v-col>
                   <v-col md="10" sm="11" cols="11" class="pb-8">
                     <div class="subtitle-1 grey--text lighten-2">
-                      {{ currentUser.personal_info.overview }}
+                      {{ currentUser.personal_info.about }}
                     </div>
                   </v-col>
 
@@ -747,7 +753,7 @@
     transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   }
   //Desktop Screen
-  .user-name {
+  .currentUser-name {
     font-size: 1.5rem;
   }
   .bio {
@@ -978,6 +984,7 @@ export default {
       tab: null,
       available: 0,
       paymentInfo: 0,
+      currentUser: this.user,
       portfolio: [
         {
           id: 0,
@@ -1084,15 +1091,30 @@ export default {
         this.paymentInfo = 0;
       } else this.paymentInfo--;
     },
+    getProjectMainImage(project) {
+      let mainImage = "";
+
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+
+      return mainImage.src;
+    },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     }
   },
-  mounted(){
+  mounted() {
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>
