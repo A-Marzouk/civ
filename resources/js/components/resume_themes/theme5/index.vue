@@ -14,7 +14,7 @@
               >
                 <img
                   :aspect-ratio="1"
-                  :src="user.personal_info.profile_pic"
+                  :src="currentUser.personal_info.profile_pic"
                   alt="profile pic"
                   class="imgradius"
                 />
@@ -25,14 +25,14 @@
                 cols="11"
                 class="text-md-left text-center text-sm-left"
               >
-                <div class="user-name font-weight-bold">
-                  {{ user.personal_info.full_name }}
+                <div class="currentUser-name font-weight-bold">
+                  {{ currentUser.personal_info.full_name }}
                 </div>
                 <div class="job-title py-1 pb-sm-2">
-                  {{ user.personal_info.designation }}
+                  {{ currentUser.personal_info.designation }}
                 </div>
                 <div class="bio padrgt">
-                  {{ user.personal_info.about }}
+                  {{ currentUser.personal_info.about }}
                 </div>
               </v-col>
             </v-row>
@@ -53,7 +53,7 @@
                       <v-icon @click="availablePrev()">navigate_before</v-icon>
                       <div
                         v-for="(availability_info,
-                        index) in user.availability_info"
+                        index) in currentUser.availability_info"
                         :key="index"
                         v-show="availability_info.is_public"
                         class="d-inline-block"
@@ -67,7 +67,7 @@
                     <div>
                       <div
                         v-for="(availability_info,
-                        index) in user.availability_info"
+                        index) in currentUser.availability_info"
                         :key="index"
                         v-show="availability_info.is_public"
                       >
@@ -94,7 +94,8 @@
                         >navigate_before</v-icon
                       >
                       <div
-                        v-for="(payment_Info, index) in user.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                         class="d-inline-block"
@@ -107,7 +108,8 @@
                     </div>
                     <div>
                       <div
-                        v-for="(payment_Info, index) in user.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                       >
@@ -140,7 +142,8 @@
                         >navigate_before</v-icon
                       >
                       <div
-                        v-for="(payment_Info, index) in user.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                         class="d-inline-block"
@@ -153,7 +156,8 @@
                     </div>
                     <div class="headline mt-3 font-weight-bold txtcol">
                       <div
-                        v-for="(payment_Info, index) in user.payment_info"
+                        v-for="(payment_Info,
+                        index) in currentUser.payment_info"
                         :key="index"
                         v-show="payment_Info.is_public"
                       >
@@ -178,7 +182,7 @@
                         >
                         <div
                           v-for="(availability_info,
-                          index) in user.availability_info"
+                          index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                           class="d-inline-block"
@@ -192,7 +196,7 @@
                       <div>
                         <div
                           v-for="(availability_info,
-                          index) in user.availability_info"
+                          index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                         >
@@ -284,7 +288,7 @@
                     <div class="text-center mt-2">
                       <v-btn
                         :href="Userlink.link"
-                        v-for="Userlink in user.links"
+                        v-for="Userlink in currentUser.links"
                         :key="Userlink.id + '_link'"
                         target="_blank"
                         class="mx-1"
@@ -323,7 +327,7 @@
                         >
                         <div
                           v-for="(availability_info,
-                          index) in user.availability_info"
+                          index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                           class="d-inline-block"
@@ -339,7 +343,7 @@
                       <div>
                         <div
                           v-for="(availability_info,
-                          index) in user.availability_info"
+                          index) in currentUser.availability_info"
                           :key="index"
                           v-show="availability_info.is_public"
                         >
@@ -367,7 +371,8 @@
                           >navigate_before</v-icon
                         >
                         <div
-                          v-for="(payment_Info, index) in user.payment_info"
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                           class="d-inline-block"
@@ -382,7 +387,8 @@
                       </div>
                       <div>
                         <div
-                          v-for="(payment_Info, index) in user.payment_info"
+                          v-for="(payment_Info,
+                          index) in currentUser.payment_info"
                           :key="index"
                           v-show="payment_Info.is_public"
                         >
@@ -398,7 +404,7 @@
                     <div class="text-center mt-2">
                       <v-btn
                         :href="Userlink.link"
-                        v-for="Userlink in user.links"
+                        v-for="Userlink in currentUser.links"
                         :key="Userlink.id + '_link'"
                         target="_blank"
                         class="mx-1"
@@ -521,14 +527,14 @@
                     md="4"
                     sm="12"
                     cols="12"
-                    v-for="project in user.projects"
-                    :key="project.id"
+                    v-for="project in currentUser.projects"
+                    :key="project.id + '_project'"
                     class="pa-4"
                     align="center"
                     v-show="project.is_public"
                   >
                     <v-img
-                      :src="project.images[0].src"
+                      :src="getProjectMainImage(project)"
                       alt="portfolio img"
                       :aspect-ratio="1.2"
                       cover
@@ -540,7 +546,7 @@
                 <v-timeline
                   dense
                   align-top
-                  v-for="work in user.work_experience"
+                  v-for="work in currentUser.work_experience"
                   :key="work.id"
                   v-show="work.is_public"
                   class="ml-n4 ml-sm-0"
@@ -570,7 +576,7 @@
               <v-col v-if="tab == 2" md="11" sm="11" cols="11" class="pb-12">
                 <v-row no-gutters justify="center">
                   <v-col
-                    v-for="education in user.education"
+                    v-for="education in currentUser.education"
                     :key="education.id"
                     v-show="education.is_public"
                     md="5"
@@ -603,7 +609,7 @@
               <v-col v-if="tab == 3" md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
                   <v-col
-                    v-for="(s, index) in user.skills"
+                    v-for="(s, index) in currentUser.skills"
                     :key="index"
                     md="5"
                     sm="11"
@@ -656,7 +662,7 @@
                   </v-col>
                   <v-col md="10" sm="11" cols="11" class="pb-8">
                     <div class="subtitle-1 grey--text lighten-2">
-                      {{ user.personal_info.overview }}
+                      {{ currentUser.personal_info.about }}
                     </div>
                   </v-col>
 
@@ -665,7 +671,7 @@
                   </v-col>
                   <v-col md="10" sm="11" cols="11">
                     <div class="title">
-                      Gmail: {{ user.personal_info.email }}
+                      Gmail: {{ currentUser.personal_info.email }}
                     </div>
                   </v-col>
                 </v-row>
@@ -747,7 +753,7 @@
     transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   }
   //Desktop Screen
-  .user-name {
+  .currentUser-name {
     font-size: 1.5rem;
   }
   .bio {
@@ -978,6 +984,7 @@ export default {
       tab: null,
       available: 0,
       paymentInfo: 0,
+      currentUser: this.user,
       portfolio: [
         {
           id: 0,
@@ -1082,7 +1089,31 @@ export default {
       if (this.paymentInfo == 0) {
         this.paymentInfo = 0;
       } else this.paymentInfo--;
+    },
+    getProjectMainImage(project) {
+      let mainImage = "";
+
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+
+      return mainImage.src;
+    },
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
     }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>
