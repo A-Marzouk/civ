@@ -87,7 +87,7 @@ export default {
             background-size: 120px auto;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             background-image: none;
         }
     }
@@ -174,7 +174,7 @@ export default {
                 }
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 600px) {
                 margin-bottom: 16px;
 
                 .company-name {
@@ -220,7 +220,7 @@ export default {
                 }
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 600px) {
                 
                 .job-title,
                 .work-description p {
@@ -230,7 +230,7 @@ export default {
             }
         }
 
-        @media (max-width: 620px) {
+        @media (max-width: 600px) {
             width: 100%;
             margin-bottom: 48px;
         }

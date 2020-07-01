@@ -110,7 +110,7 @@ $purple: #686299;
     position: relative;
     background-color: #FFF7F3;
     background-image: url('/images/resume_themes/theme113/mainBg.png');
-    background-size: auto 20%;
+    background-size: auto 20vh;
     background-position-y: -70px;
     background-repeat: no-repeat;
 
@@ -235,13 +235,12 @@ $purple: #686299;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 876px) {
-                    width: 100%;
-                }
-
                 @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
+                }
+
+                @media (max-width: 600px) {
                     width: 100%;
                 }
             }
@@ -282,7 +281,7 @@ $purple: #686299;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }

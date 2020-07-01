@@ -114,6 +114,9 @@ $purple: #355E5E;
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
+        flex-direction: column;
     }    
 
     .theme-body {
@@ -123,6 +126,7 @@ $purple: #355E5E;
         height: 100%;
         position: relative;
         padding-bottom: 100px;
+        flex: 1;
 
         .wrapper {
             display: flex;
@@ -205,7 +209,7 @@ $purple: #355E5E;
                     }
                 }
                 
-                @media (max-width: 768px) {
+                @media (max-width: 600px) {
                     margin: 29px 0;
                     padding: 0 17px;
 
@@ -231,13 +235,12 @@ $purple: #355E5E;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 876px) {
-                    width: 100%;
-                }
-
                 @media (max-width: 768px) {
                     padding: 0 17px;
                     padding-bottom: 30px;
+                }
+
+                @media (max-width: 600px) {
                     width: 100%;
                 }
             }
@@ -278,7 +281,7 @@ $purple: #355E5E;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }

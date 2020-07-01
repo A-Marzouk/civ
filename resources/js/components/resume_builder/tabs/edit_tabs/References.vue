@@ -151,6 +151,34 @@
                   v-model="reference.url"
                 ></v-text-field>
               </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
+              >
+                <v-input
+                  class="resume-builder__input civie-dropzone"
+                  outlined
+                  label="Upload Images"
+                  hint="(Maximum 5 files)"
+                  height="155"
+                >
+                  <vue-dropzone
+                    class="civie-dropzone-input"
+                    ref="myVueDropzone"
+                    id="dropzone"
+                    :options="dropzoneOptions"
+                    :useCustomSlot="true"
+                  >
+                    <div class="dropzone-custom-content">
+                      <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                    </div>
+                  </vue-dropzone>
+                </v-input>
+              </v-col>
 
               <v-col
                 xl="3"
@@ -298,7 +326,6 @@ $mainBlue: #001ce2;
   scroll-behavior: smooth;
 }
 .card-ref {
-  width: 1412px;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto;
