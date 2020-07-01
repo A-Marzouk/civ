@@ -682,6 +682,7 @@
 <style lang="scss" scoped>
 @import "https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css";
 @import "https://fonts.googleapis.com/css?family=Material+Icons";
+/* Please check this import */
 @import "resources/sass/themes/theme500.scss";
 </style>
    
@@ -698,8 +699,23 @@ export default {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         "asdasdasdasd"
-      ]
+      ],
+      currentUser : this.user
     };
+  },
+  methods:{
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+    }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>

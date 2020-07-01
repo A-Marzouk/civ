@@ -55,6 +55,13 @@ class ThemesTableSeeder extends Seeder
                 'code' => 5,
                 'image' => '/images/resume_themes/theme300/preview.png'
             ],
+            [
+                'title' => 'Theme 500 - mixed',
+                'category' => 'developer',
+                'color'=> 'white and red',
+                'code' => 500,
+                'image' => '/images/resume_themes/theme300/preview.png'
+            ],
         ]);
     }
 }
