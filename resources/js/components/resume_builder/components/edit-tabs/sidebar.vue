@@ -107,7 +107,7 @@ export default {
         {
           url: "/resume-builder/edit/audio-video",
           icon: "audio-video",
-          label: "Audio video"
+          label: "Audio/Video"
         },
         {
           url: "/resume-builder/edit/hobbies",
