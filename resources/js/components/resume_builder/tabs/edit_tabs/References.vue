@@ -159,10 +159,10 @@
                 cols="12"
                 class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
               >
+                <label class="mb-n12 custom-label">Import/Drag Image</label>
                 <v-input
-                  class="resume-builder__input civie-dropzone"
+                  class="resume-builder__input civie-dropzone mt-n4"
                   outlined
-                  label="Upload Images"
                   hint="(Maximum 5 files)"
                   height="155"
                 >
@@ -382,5 +382,13 @@ $mainBlue: #001ce2;
   color: red;
   padding-top: 5px;
   padding-left: 3px;
+}
+.custom-label {
+  font-family: "Noto Sans" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px !important;
+  line-height: 25px;
+  color: #888db1;
 }
 </style>
