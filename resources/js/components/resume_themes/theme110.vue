@@ -410,6 +410,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin-left: 9px;
             }
         }
+
+        @media (max-width: 768px) {
+            left: -50px;
+        }
     }
 
     .hideOnMobile {
