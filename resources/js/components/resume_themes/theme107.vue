@@ -127,13 +127,19 @@ $purple: #335E5E;
 #theme107 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
-    background: #DBDEC4;
     position: relative;
+    background-color: #DBDEC4;
+    background-image: url("/images/resume_themes/theme107/bg-header.png");
+    background-repeat: repeat-y;
     
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
+        flex-direction: column;
     }
 
     .theme-body {
@@ -142,6 +148,7 @@ $purple: #335E5E;
         border-radius: 100px 100px 0 0;
         border-top: 16px solid $purple;
         position: relative;
+        flex: 1;
         width: 100%;
         height: 100%;
         padding-bottom: 100px;
@@ -153,7 +160,7 @@ $purple: #335E5E;
                 width: 349px;
             }
             
-            @media (max-width: 700px) {
+            @media (max-width: 600px) {
                 display: none;
             }
 
@@ -191,6 +198,8 @@ $purple: #335E5E;
                 overflow: 0 auto;
                 width: 95%;
                 margin: 0 auto;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
@@ -216,17 +225,17 @@ $purple: #335E5E;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {
-                        font-size: 11px;
+                        font-size: 16px;
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
+                        padding: 12px 20px;
                         font-size: 15px;
-                        padding: 13px 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -251,12 +260,9 @@ $purple: #335E5E;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
-
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    padding: 0 17px;
                 }
             }
 
@@ -270,14 +276,18 @@ $purple: #335E5E;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
         }
 
-        @media (max-width: 756px) {
+        @media (max-width: 600px) {
             border-radius: 38px 38px 0 0;
             border-top: 10px solid $purple;
         }
@@ -353,6 +363,10 @@ $purple: #335E5E;
                 }
             }
         }
+        
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -403,7 +417,7 @@ $purple: #335E5E;
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

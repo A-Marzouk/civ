@@ -73,7 +73,7 @@ export default {
             {
                 name: 'Adobe XD',
                 percentage: 75,
-                icon: "adobeXD-icon.png"
+                icon: "adobe-xd-icon.png"
             },
             {
                 name: 'Adobe Indesign',
@@ -143,12 +143,12 @@ $mainColor: #492163;
             }
         }
 
-        @media (max-width: 756px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
         background-image: none;
     }
 }
@@ -244,7 +244,7 @@ $mainColor: #492163;
                 }
             }
 
-            @media (max-width: 756px) {
+            @media (max-width: 600px) {
                 grid-column: span 6;
                 max-width: 100%;
 
@@ -281,6 +281,10 @@ $mainColor: #492163;
 
         @media (max-width: 1350px) {
             grid-gap: 30px;
+        }
+
+        @media (max-width: 600px) {
+            width: 100%;
         }
     }
 </style>

@@ -129,6 +129,7 @@ $purple: #24325D;
 #theme109 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background-color: #F8CDCC;
     background-image: url('/images/resume_themes/theme109/bg-header.png');
@@ -138,6 +139,8 @@ $purple: #24325D;
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
     }
 
     .theme-body {
@@ -147,6 +150,7 @@ $purple: #24325D;
         width: 100%;
         padding-bottom: 100px;
         position: relative;
+        flex: 1;
 
         .bg-body {
             position: absolute;
@@ -155,6 +159,7 @@ $purple: #24325D;
             height: 100%;
             background-image: url("/images/resume_themes/theme109/bg-body.png");
             background-repeat: repeat;
+            background-size: auto 100%;
             opacity: 0.02;
         }
 
@@ -176,7 +181,8 @@ $purple: #24325D;
                 margin-top: 61px;
                 margin-bottom: 111px;
                 overflow: 0 auto;
-                width: 95%;
+                padding: 0 40px;
+                width: 100%;
 
                 &-bar {
                     background: transparent !important;
@@ -218,7 +224,7 @@ $purple: #24325D;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {
@@ -226,9 +232,10 @@ $purple: #24325D;
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
                         font-size: 15px;
-                        padding: 13px 17px;
+                        padding: 13px 0;
+                        justify-content: flex-start;
                         margin-right: 27px;
 
                         &:last-child {
@@ -263,12 +270,9 @@ $purple: #24325D;
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
-
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    padding: 0 17px;                    
                 }
             }
 
@@ -281,10 +285,13 @@ $purple: #24325D;
                 z-index: 0;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
         }
@@ -299,7 +306,7 @@ $purple: #24325D;
         align-items: center;
         position: absolute;
         top: 365px;
-        right: -95px;
+        right: -115px;
         background: transparent;
 
         &.showOnTablet {
@@ -360,6 +367,10 @@ $purple: #24325D;
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -397,7 +408,7 @@ $purple: #24325D;
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

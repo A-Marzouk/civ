@@ -47,7 +47,7 @@ class HobbiesController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != ''){
             // update
             $hobby = Hobby::findOrFail($request->id);
             $hobby->update($request->toArray());
@@ -76,6 +76,17 @@ class HobbiesController extends Controller
         return new HobbyResource($hobby);
     }
 
+
+    public function updateHobbiesOrder(Request $request){
+        $hobbies = $request->hobbies ;
+        foreach ($hobbies as $key => $hobby){
+            $myHobby = Hobby::find($hobby['id']);
+            $myHobby->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -101,8 +112,8 @@ class HobbiesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => ['required', 'string', 'max:255','min:3'],
-            'category' => ['required', 'string','max:255','min:3'],
+            'title' => ['sometimes', 'string', 'max:255','min:3'],
+            'category' => ['sometimes', 'string','max:255','min:3'],
         ]);
     }
 

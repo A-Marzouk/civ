@@ -1,184 +1,214 @@
 <template>
   <v-app>
-    <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
-      <v-container class>
-        <v-form v-if="reference">
-          <v-row align="center">
-            <v-col xl="3" :lg="windowWidth<1300?'6':'3'" md="6" sm="6" cols="12">
-              <v-select
-                class="resume-builder__input civie-select"
-                outlined
-                placeholder="Select an option"
-                :items="references"
-                label="Referecent Type"
-                color="#001CE2"
-                v-model="reference.type"
+    <v-container>
+      <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
+        <v-container class>
+          <v-form v-if="reference">
+            <v-row align="center">
+              <v-col xl="3" :lg="windowWidth<1300?'6':'3'" md="6" sm="6" cols="12">
+                <v-select
+                  class="resume-builder__input civie-select"
+                  outlined
+                  placeholder="Select an option"
+                  :items="references"
+                  label="Referecent Type"
+                  color="#001CE2"
+                  v-model="reference.type"
+                >
+                  <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                    <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                  </button>
+                </v-select>
+              </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-0 mt-n6"
               >
-                <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
-                  <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                </button>
-              </v-select>
-            </v-col>
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-0 mt-n6"
-            >
-              <v-text-field
-                class="resume-builder__input civie-input"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': disabledInput}"
-                :disabled="disabledInput"
-                label="Full Name"
-                v-model="reference.name"
-              ></v-text-field>
-            </v-col>
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
-              :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
-            >
-              <v-text-field
-                class="resume-builder__input civie-input"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': disabledInput}"
-                :disabled="disabledInput"
-                label="Title/Position"
-                v-model="reference.title"
-              ></v-text-field>
-            </v-col>
+                <v-text-field
+                  class="resume-builder__input civie-input"
+                  outlined
+                  color="#001CE2"
+                  :class="{'resume-builder__input--disabled': disabledInput}"
+                  :disabled="disabledInput"
+                  label="Full Name"
+                  v-model="reference.name"
+                ></v-text-field>
+              </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+                :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
+              >
+                <v-text-field
+                  class="resume-builder__input civie-input"
+                  outlined
+                  color="#001CE2"
+                  :class="{'resume-builder__input--disabled': disabledInput}"
+                  :disabled="disabledInput"
+                  label="Title/Position"
+                  v-model="reference.title"
+                ></v-text-field>
+              </v-col>
 
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
-              :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
-            >
-              <v-text-field
-                class="resume-builder__input civie-input"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': disabledInput}"
-                :disabled="disabledInput"
-                label="Phone"
-                v-model="reference.phone"
-              ></v-text-field>
-            </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+                :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
+              >
+                <v-text-field
+                  class="resume-builder__input civie-input"
+                  outlined
+                  color="#001CE2"
+                  :class="{'resume-builder__input--disabled': disabledInput}"
+                  :disabled="disabledInput"
+                  label="Phone"
+                  v-model="reference.phone"
+                ></v-text-field>
+              </v-col>
 
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
-            >
-              <v-text-field
-                type="email"
-                class="resume-builder__input civie-input"
-                outlined
-                color="#001CE2"
-                v-model="reference.email"
-                :class="{'resume-builder__input--disabled': disabledInput}"
-                :disabled="disabledInput"
-                label="Email"
-              ></v-text-field>
-            </v-col>
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
-            >
-              <v-text-field
-                class="resume-builder__input civie-input"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': disabledInput}"
-                :disabled="disabledInput"
-                label="Company"
-                v-model="reference.company"
-              ></v-text-field>
-            </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+              >
+                <v-text-field
+                  type="email"
+                  class="resume-builder__input civie-input"
+                  outlined
+                  color="#001CE2"
+                  v-model="reference.email"
+                  :class="{'resume-builder__input--disabled': disabledInput}"
+                  :disabled="disabledInput"
+                  label="Email"
+                ></v-text-field>
+              </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+              >
+                <v-text-field
+                  class="resume-builder__input civie-input"
+                  outlined
+                  color="#001CE2"
+                  :class="{'resume-builder__input--disabled': disabledInput}"
+                  :disabled="disabledInput"
+                  label="Company"
+                  v-model="reference.company"
+                ></v-text-field>
+              </v-col>
 
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
-            >
-              <v-text-field
-                class="resume-builder__input civie-input"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': disabledInput}"
-                :disabled="disabledInput"
-                label="Address"
-                v-model="reference.address"
-              ></v-text-field>
-            </v-col>
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
-            >
-              <v-text-field
-                class="resume-builder__input civie-input"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': disabledInput}"
-                :disabled="disabledInput"
-                label="URL"
-                v-model="reference.url"
-              ></v-text-field>
-            </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+              >
+                <v-text-field
+                  class="resume-builder__input civie-input"
+                  outlined
+                  color="#001CE2"
+                  :class="{'resume-builder__input--disabled': disabledInput}"
+                  :disabled="disabledInput"
+                  label="Address"
+                  v-model="reference.address"
+                ></v-text-field>
+              </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+              >
+                <v-text-field
+                  class="resume-builder__input civie-input"
+                  outlined
+                  color="#001CE2"
+                  :class="{'resume-builder__input--disabled': disabledInput}"
+                  :disabled="disabledInput"
+                  label="URL"
+                  v-model="reference.url"
+                ></v-text-field>
+              </v-col>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
+              >
+                <label class="mb-n12 custom-label">Import/Drag Image</label>
+                <v-input
+                  class="resume-builder__input civie-dropzone mt-n4"
+                  outlined
+                  hint="(Maximum 5 files)"
+                  height="155"
+                >
+                  <vue-dropzone
+                    class="civie-dropzone-input"
+                    ref="myVueDropzone"
+                    id="dropzone"
+                    :options="dropzoneOptions"
+                    :useCustomSlot="true"
+                  >
+                    <div class="dropzone-custom-content">
+                      <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                    </div>
+                  </vue-dropzone>
+                </v-input>
+              </v-col>
 
-            <v-col
-              xl="3"
-              :lg="windowWidth<1300?'6':'3'"
-              md="6"
-              sm="6"
-              cols="12"
-              class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
-            >
-              <v-textarea
-                class="resume-builder__input civie-textarea"
-                outlined
-                color="#001CE2"
-                :class="{'resume-builder__input--disabled': disabledTextarea}"
-                :disabled="disabledTextarea"
-                label="Description"
-                v-model="reference.reference_text"
-              ></v-textarea>
-            </v-col>
-            <v-col xl="12" lg="12" md="12" sm="12" cols="12">
-              <v-btn
-                class="resume-builder__btn civie-btn filled btn-add-new mt-n5"
-                @click="applyReferenceEdit"
-              >Save</v-btn>
-            </v-col>
-          </v-row>
-        </v-form>
-      </v-container>
-    </v-card>
+              <v-col
+                xl="3"
+                :lg="windowWidth<1300?'6':'3'"
+                md="6"
+                sm="6"
+                cols="12"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
+              >
+                <v-textarea
+                  class="resume-builder__input civie-textarea"
+                  outlined
+                  color="#001CE2"
+                  :class="{'resume-builder__input--disabled': disabledTextarea}"
+                  :disabled="disabledTextarea"
+                  label="Description"
+                  v-model="reference.reference_text"
+                ></v-textarea>
+              </v-col>
+              <v-col xl="12" lg="12" md="12" sm="12" cols="12">
+                <v-btn
+                  class="resume-builder__btn civie-btn filled btn-add-new mt-n5"
+                  @click="applyReferenceEdit"
+                >Save</v-btn>
+              </v-col>
+            </v-row>
+          </v-form>
+        </v-container>
+      </v-card>
+    </v-container>
   </v-app>
 </template>
 
@@ -296,7 +326,6 @@ $mainBlue: #001ce2;
   scroll-behavior: smooth;
 }
 .card-ref {
-  width: 1412px;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: auto;
@@ -353,5 +382,13 @@ $mainBlue: #001ce2;
   color: red;
   padding-top: 5px;
   padding-left: 3px;
+}
+.custom-label {
+  font-family: "Noto Sans" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px !important;
+  line-height: 25px;
+  color: #888db1;
 }
 </style>

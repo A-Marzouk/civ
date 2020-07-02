@@ -41,7 +41,7 @@ class MediaController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != ''){
             // update
             $media = Media::findOrFail($request->id);
             $media->update($request->toArray());
@@ -95,6 +95,16 @@ class MediaController extends Controller
         }
     }
 
+    public function updateMediaOrder(Request $request){
+        $medias = $request->medias ;
+        foreach ($medias as $key => $media){
+            $myMedia = Media::find($media['id']);
+            $myMedia->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -102,7 +112,7 @@ class MediaController extends Controller
             'type' => ['required', 'string', 'max:255'],
             'url' => ['sometimes', 'max:255'],
             'mediaFile' => ['sometimes', 'file'],
-            'transcript' => ['string','max:2500'],
+            'transcript' => ['max:2500'],
         ]);
     }
 

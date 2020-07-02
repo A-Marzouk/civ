@@ -115,17 +115,17 @@ class User extends Authenticatable implements MustVerifyEmail
     // relations has Many
     public function skills()
     {
-        return $this->hasMany(Skill::class);
+        return $this->hasMany(Skill::class)->orderBy('order');
     }
 
     public function hobbies()
     {
-        return $this->hasMany(Hobby::class);
+        return $this->hasMany(Hobby::class)->orderBy('order');
     }
 
     public function education()
     {
-        return $this->hasMany(Education::class)->orderBy('order');;
+        return $this->hasMany(Education::class)->orderBy('order');
     }
 
     public function workExperience()
@@ -140,17 +140,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function projects()
     {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Project::class)->orderBy('order');
     }
 
     public function achievements()
     {
-        return $this->hasMany(Achievement::class);
+        return $this->hasMany(Achievement::class)->orderBy('order');;
     }
 
     public function media()
     {
-        return $this->hasMany(Media::class);
+        return $this->hasMany(Media::class)->orderBy('order');;
     }
 
     public function imports()

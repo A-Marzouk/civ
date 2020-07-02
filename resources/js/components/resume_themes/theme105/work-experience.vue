@@ -79,7 +79,7 @@ export default {
             grid-gap: 40px 60px;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
             width: 100%;
             grid-gap: 56px 0;
         }
@@ -182,11 +182,11 @@ export default {
         }
 
         @media (max-width: 1200px) {
-            grid-column: span 6;
+            grid-column: span 3;
         }
 
-        @media (max-width: 700px) {
-            grid-column: span 12;
+        @media (max-width: 600px) {
+            grid-column: span 6;
         }
     }
 </style>

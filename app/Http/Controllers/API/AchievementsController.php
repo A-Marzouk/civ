@@ -34,7 +34,7 @@ class AchievementsController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != '' ){
             // update
             $achievement = Achievement::findOrFail($request->id);
             $achievement->update($request->toArray());
@@ -88,12 +88,22 @@ class AchievementsController extends Controller
         }
     }
 
+    public function updateAchievementsOrder(Request $request){
+        $achievements = $request->achievements ;
+        foreach ($achievements as $key => $achievement){
+            $myAchievement = Achievement::find($achievement['id']);
+            $myAchievement->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => ['required', 'string', 'max:255','min:3'],
-            'type' => ['required', 'string', 'max:255'],
-            'year' => ['sometimes', 'string', 'max:255'],
+            'title' => ['sometimes', 'string', 'max:255','min:3'],
+            'type' => ['nullable', 'string', 'max:255'],
+            'year' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable','string','min:3', 'max:2500'],
             'file' => ['nullable','file'],
             'url' => ['nullable','max:255']

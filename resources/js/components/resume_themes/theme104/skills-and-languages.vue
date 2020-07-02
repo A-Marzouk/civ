@@ -53,8 +53,8 @@ export default {
         margin-top: 34px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 240px;
-        grid-auto-rows: 240px;
+        grid-template-rows: minmax(100px, 180px);
+        grid-auto-rows: minmax(100px, 180px);
         grid-gap: 100px;
         max-width: 1400px !important;
         width: 85%;
@@ -65,7 +65,6 @@ export default {
             display: flex;
             flex-direction: column;
             grid-column: span 2;
-            margin: 35px 0;
 
             img {
                 width: 92px;
@@ -91,7 +90,7 @@ export default {
         }
 
         @media (max-width: 1200px) {
-            grid-gap: 60px;
+            grid-gap: 0 60px;
 
             .skill {
                 img {
@@ -111,8 +110,9 @@ export default {
             }
         }
 
-        @media (max-width: 700px) {
-            grid-gap: 30px;
+        @media (max-width: 600px) {
+            grid-gap: 0 30px;
+            margin-top: 60px !important;
             width: 100%;
 
             .skill {

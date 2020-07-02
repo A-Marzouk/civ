@@ -1,13 +1,5 @@
 <template>
     <div class="theme-header">
-
-        <div class="bg-header">
-            <img class='left-bg' src="/images/resume_themes/theme113/bg-left.png" alt="">
-            <img src="/images/resume_themes/theme113/bg-top1.png" alt="" class="bg-top1">
-            <img src="/images/resume_themes/theme113/bg-top2.png" alt="" class="bg-top2">
-            <img src="/images/resume_themes/theme113/bg-right.png" alt="" class="bg-right">
-        </div>
-
         <div class="user-info">
             <div class="left">
                 <div class="user-img">
@@ -78,62 +70,6 @@ $purple: #686299;
             width: 100%;
             position: relative;
 
-            .bg-header {
-                width: 100%;
-                height: 100%;
-                position: absolute;
-                overflow: hidden;
-
-                .left-bg {
-                    position: absolute;
-                    left: -88px;
-                    
-                    @media (max-width: 700px) {
-                        width: 30%;
-                    }
-                }
-
-                .bg-top1 {
-                    position: absolute;
-                    top: -44px;
-                    right: 40%;
-                    
-                    @media (max-width: 700px) {
-                        width: 30%;
-                    }
-                }
-                
-                .bg-top2 {
-                    position: absolute;
-                    top: -21.7px;
-                    right: 39%;
-                    
-                    @media (max-width: 700px) {
-                        width: 30%;
-                    }
-                }
-
-                .bg-right {
-                    position: absolute;
-                    top: -63.5px;
-                    right: -29.7px;
-                    
-                    @media (max-width: 700px) {
-                        width: 30%;
-                    }
-                }
-
-                .bg-bottom {
-                    position: absolute;
-                    bottom: -13px;
-                    right: 46%;
-                    
-                    @media (max-width: 700px) {
-                        width: 30%;
-                    }
-                }
-            }
-
             .left {
                 display: flex;
                 position: relative;
@@ -142,7 +78,7 @@ $purple: #686299;
                     display: none;
                     position: relative;
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
                         display: flex;
                         justify-content: center;
                         align-items: center;
@@ -168,8 +104,13 @@ $purple: #686299;
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
+                    margin-right: 15px;
+                }
+                
+                @media (max-width: 600px) {
                     width: 100%;
+                    margin-right: 0;
                 }
             }
 
@@ -190,7 +131,6 @@ $purple: #686299;
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        padding: 22px 36px;
                         font-size: 18px;
                         font-weight: 400;
                         background: #fff;
@@ -214,8 +154,8 @@ $purple: #686299;
                         }
                         
                         @media (max-width: 1200px) {
-                            width: 115px;
-                            height: 35px;
+                            width: 133px;
+                            height: 42px;
                             font-size: 10px;
 
                             .icon {
@@ -224,7 +164,7 @@ $purple: #686299;
                         }
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
                         position: absolute;
                         opacity: 1;
                         transform: translateY(0px);
@@ -304,7 +244,7 @@ $purple: #686299;
                             margin-right: 20px;
                         }
                         
-                        @media (max-width: 700px) {
+                        @media (max-width: 600px) {
                             margin-right: 0;
                             align-items: flex-start;
                         }
@@ -315,7 +255,8 @@ $purple: #686299;
                         justify-content: center;
                         align-items: center;
                         background: $purple;
-                        padding: 23px 62px;
+                        width: 220px;
+                        height: 68px;
                         font-size: 18px;
                         font-weight: 700;
                         color: white;
@@ -327,8 +268,8 @@ $purple: #686299;
 
                         @media (max-width: 1400px) {
                             font-size: 16px;
-                            padding: 23px 42px;
-                            min-width: 144px;
+                            
+                            
 
                             .icon {
                                 height: 20px;
@@ -337,14 +278,15 @@ $purple: #686299;
                         
                         @media (max-width: 1200px) {
                             font-size: 11px;
-                            padding: 14px 40px;
+                            width: 133px;
+                            height: 42px;
 
                             .icon {
                                 height: 12px;
                             }
                         }
                         
-                        @media (max-width: 700px) {
+                        @media (max-width: 600px) {
                             font-size: 10px;
                             padding: 14px 24px;
                             min-width: 80px;
@@ -359,7 +301,7 @@ $purple: #686299;
                         margin-top: 27px;
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
                         margin-top: 0;
                         justify-content: space-between;
                         width: 100%;
@@ -370,7 +312,7 @@ $purple: #686299;
                     margin-top: 27px;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
                     margin-top: 0;
                     padding-left: 60px;
                     justify-content: space-between;
@@ -393,9 +335,12 @@ $purple: #686299;
                     padding: 37px 40px;
                 }
                 
-                @media (max-width: 700px) {
-                    flex-wrap: wrap;
+                @media (max-width: 768px) {
                     padding: 30px 17px;
+                }
+                
+                @media (max-width: 600px) {
+                    flex-wrap: wrap;
                 }
 
                 .user-img {
@@ -420,11 +365,11 @@ $purple: #686299;
                         height: 141px;
                     }
                     
-                    @media (max-width: 876px) {
+                    @media (max-width: 600px) {
                         margin-right: 20px;
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
                         width: 50px;
                         height: 50px;
                         margin-right: 12px;
@@ -488,7 +433,7 @@ $purple: #686299;
                             }
                         }
 
-                        @media (max-width: 876px) {
+                        @media (max-width: 780px) {
                             flex-wrap: wrap;
                         }
                     }
@@ -510,7 +455,7 @@ $purple: #686299;
                         }
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
 
                         .name {
                             font-size: 12px;

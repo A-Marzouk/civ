@@ -129,12 +129,13 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 #theme106 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: white;
     background-color: #0E0C10;
     background-image: url("/images/resume_themes/theme106/bg-body.png");
     background-size: 119% auto;
     background-position: center -20px;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     position: relative;
     
     .v-application--wrap {
@@ -164,6 +165,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 overflow: 0 auto;
                 width: 95%;
                 margin: 0 auto;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
@@ -195,7 +198,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {
@@ -203,9 +206,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         padding: 12px 22px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
+                        padding: 12px 20px;
                         font-size: 15px;
-                        padding: 13px 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -229,12 +232,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     margin-bottom: 47px;
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
                     margin: 29px 0;
-
-                    .v-item-group {
-                        padding: 0 13px;
-                    }
+                    padding: 0 17px;
                 }
             }
 
@@ -245,12 +245,16 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin: 0 auto;
                 z-index: 0;
                 height: 100%;
+                width: 90%;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
         }
@@ -265,7 +269,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         align-items: center;
         position: absolute;
         top: 365px;
-        right: -95px;
+        right: -115px;
         background: transparent;
 
         a {
@@ -326,6 +330,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -373,10 +381,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin-left: 9px;
             }
         }
+
+        @media (max-width: 768px) {
+            left: -50px;
+        }
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

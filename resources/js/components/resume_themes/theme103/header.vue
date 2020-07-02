@@ -62,9 +62,9 @@ export default {
 </script>
 
 <style lang="scss">
-$mainColor: #BE001A;
+$mainColor: #0A4FBC;
 $tabTextColor: #4D2F2D;
-$purple: #BE001A;
+$purple: #0A4FBC;
 
 $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
@@ -81,7 +81,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 display: none;
                 position: relative;
                 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
                     display: flex;
                     justify-content: center;
                     align-items: center;
@@ -106,9 +106,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     max-width: 100px !important;
                 }
             }
+
+            @media (max-width: 768px) {
+                margin-right: 15px;
+            }
             
-            @media (max-width: 700px) {
+            @media (max-width: 600px) {
                 width: 100%;
+                margin-right: 0;
             }
         }
 
@@ -147,22 +152,23 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         font-size: 16px;
 
                         .icon {
-                            height: 20px;
+                            height: 16px;
                         }
                     }
                     
                     @media (max-width: 1200px) {
-                        width: 120px;
-                        height: 35px;
+                        width: 133px;
+                        height: 42px;
+                        padding: 0;
                         font-size: 10px;
 
                         .icon {
-                            height: 10px;
+                            height: 12px;
                         }
                     }
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
                     position: absolute;
                     opacity: 1;
                     transform: translateY(0px);
@@ -244,7 +250,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         margin-right: 20px;
                     }
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
                         margin-right: 0;
                         align-items: flex-start;
                     }
@@ -255,7 +261,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     justify-content: center;
                     align-items: center;
                     background: $purple;
-                    padding: 23px 62px;
+                    width: 220px;
+                    height: 68px;
                     font-size: 18px;
                     font-weight: 700;
                     color: white;
@@ -267,25 +274,24 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     @media (max-width: 1400px) {
                         font-size: 16px;
-                        padding: 23px 42px;
-                        min-width: 144px;
 
                         .icon {
-                            height: 20px;
+                            height: 16px;
                         }
                     }
                     
                     @media (max-width: 1200px) {
                         font-size: 11px;
-                        width: 115px;
-                        height: 36px;
+                        width: 133px;
+                        height: 42px;
+                        padding: 0;
 
                         .icon {
                             height: 12px;
                         }
                     }
                     
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
                         font-size: 10px;
                         padding: 14px 24px;
                         min-width: 80px;
@@ -300,18 +306,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     margin-top: 27px;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
                     margin-top: 0;
                     justify-content: space-between;
                     width: 100%;
                 }
             }
 
-            @media (max-width: 1200px) {
-                margin-top: 27px;
-            }
-
-            @media (max-width: 700px) {
+            @media (max-width: 600px) {
                 margin-top: 0;
                 padding-left: 60px;
                 justify-content: space-between;
@@ -333,10 +335,13 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             @media (max-width: 1200px) {
                 padding: 37px 40px;
             }
-            
-            @media (max-width: 700px) {
-                flex-wrap: wrap;
+
+            @media (max-width: 768px) {
                 padding: 30px 17px;
+            }
+            
+            @media (max-width: 600px) {
+                flex-wrap: wrap;
             }
 
             .user-img {
@@ -361,11 +366,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     height: 141px;
                 }
                 
-                @media (max-width: 876px) {
+                @media (max-width: 600px) {
                     margin-right: 20px;
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
                     width: 50px;
                     height: 50px;
                     margin-right: 12px;
@@ -430,7 +435,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         }
                     }
 
-                    @media (max-width: 876px) {
+                    @media (max-width: 780px) {
                         flex-wrap: wrap;
                     }
                 }
@@ -452,7 +457,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                 }
 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
 
                     .name {
                         font-size: 12px;

@@ -129,6 +129,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 #theme110 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background-color: #ECEDF4;
     background-image: url('/images/resume_themes/theme110/bg-img.png');
@@ -140,15 +141,19 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
     }
 
     .theme-body {
         height: 100%;
         background: white;
         border-radius: 80px 80px 0 0;
+        flex: 1;
         position: relative;
         width: 100%;
-        height: 100%;
         padding-bottom: 100px;
 
         .wrapper {
@@ -162,6 +167,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: white;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
@@ -191,17 +198,15 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
                     @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 0 22px;
+                        padding: 12px 22px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 600px) {
                         font-size: 15px;
-                        padding: 0 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -248,8 +253,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
                     &-bar {
                         height: 36px;
@@ -261,9 +267,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         width: 15px;
                     }
 
-                    .v-item-group {
-                        padding: 0 30px 0 50px;
-                    }
+                    
                 }
             }
 
@@ -277,10 +281,13 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
         }
@@ -295,7 +302,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         align-items: center;
         position: absolute;
         top: 365px;
-        right: -95px;
+        right: -115px;
         background: transparent;
 
         &.showOnTablet {
@@ -356,6 +363,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -399,10 +410,14 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin-left: 9px;
             }
         }
+
+        @media (max-width: 768px) {
+            left: -50px;
+        }
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

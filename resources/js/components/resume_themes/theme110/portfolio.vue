@@ -66,6 +66,7 @@ $mainColor: #686299;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+
             &:last-child {
                 margin-bottom: 0;
             }
@@ -127,6 +128,10 @@ $mainColor: #686299;
                     }
                 }
             }
+        }
+
+        @media (max-width: 768px) {
+            grid-gap: 30px;
         }
 
         @media (max-width: 590px) {

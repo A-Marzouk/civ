@@ -27,36 +27,43 @@ export const store = new Vuex.Store({
                 {
                     salary: '10',
                     salary_frequency: 'hourly',
-                    currency: 'usd'
+                    currency: 'usd',
+                    is_public: 1
                 },
                 {
                     salary: '100',
                     salary_frequency: 'weekly',
-                    currency: 'usd'
+                    currency: 'usd',
+                    is_public: 1
                 },
                 {
                     salary: '1000',
                     salary_frequency: 'monthly',
-                    currency: 'usd'
+                    currency: 'usd',
+                    is_public: 1
                 },
                 {
                     salary: '10000',
                     salary_frequency: 'yearly',
-                    currency: 'usd'
+                    currency: 'usd',
+                    is_public: 1
                 },
             ],
             availability_info:[
                 {
                     available_hours: '40',
-                    available_hours_frequency: 'weekly'
+                    available_hours_frequency: 'weekly',
+                    is_public: 1
                 },
                 {
                     available_hours: '400',
-                    available_hours_frequency: 'monthly'
+                    available_hours_frequency: 'monthly',
+                    is_public: 1
                 },
                 {
                     available_hours: '4000',
-                    available_hours_frequency: 'yearly'
+                    available_hours_frequency: 'yearly',
+                    is_public: 1
                 }
             ],
             skills: [
@@ -65,18 +72,21 @@ export const store = new Vuex.Store({
                     title: 'photoshop',
                     category: 'design',
                     percentage: '90',
+                    is_public: 1
                 },
                 {
                     id: Math.random(),
                     title: 'phpstorm',
                     category: 'software',
                     percentage: '90',
+                    is_public: 1
                 },
                 {
                     id: Math.random(),
                     title: 'photoshop',
                     category: 'programming_languages',
                     percentage: '90',
+                    is_public: 1
                 },
             ],
             achievements: [
@@ -86,6 +96,7 @@ export const store = new Vuex.Store({
                     description: 'The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot\'s design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.',
                     image_src: '/images/resume_themes/theme200/images/about-me/certification.png',
                     url: '',
+                    is_public: 1
                 },
                 {
                     title: 'Hubspot Design Certification',
@@ -93,35 +104,39 @@ export const store = new Vuex.Store({
                     description: 'The bearer of this certificate is hereby deemed proficient in crafting responsive, styled templates using HubSpot\'s design tools. The bearer has demonstrated that he/she can effectively apply template and style knowledge to HubSpot blog, page, landing page and email templates and is approved to sell these assets in the HubSpot Marketplace. Certification is active for 13 months after month issued.',
                     image_src: '/images/resume_themes/theme200/images/about-me/certification.png',
                     url: '',
+                    is_public: 1
                 }
             ],
             education: [
                 {
                     id: Math.random(),
-                    institution_type: 'I\'m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.',
+                    institution_type: 'Paragraph',
                     university_name: 'California Institute Of Technology',
                     degree_title: 'M.Sc',
                     date_from: '12/2019',
                     date_to: '12/2020',
-                    present: true
+                    present: true,
+                    is_public: 1
                 },
                 {
                     id: Math.random(),
-                    institution_type: 'I\'m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.',
+                    institution_type: 'Paragraph',
                     university_name: 'California Institute Of Technology',
                     degree_title: 'M.Sc',
                     date_from: '12/2019',
                     date_to: '12/2020',
-                    present: true
+                    present: true,
+                    is_public: 1
                 },
                 {
                     id: Math.random(),
-                    institution_type: 'I\'m a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.',
+                    institution_type: 'Paragraph',
                     university_name: 'California Institute Of Technology',
                     degree_title: 'M.Sc',
                     date_from: '12/2019',
                     date_to: '12/2020',
-                    present: true
+                    present: true,
+                    is_public: 1
                 }
             ],
             work_experience: [
@@ -132,7 +147,8 @@ export const store = new Vuex.Store({
                     website: 'Google.com',
                     date_from: '2018',
                     date_to: '22',
-                    present: true
+                    present: true,
+                    is_public: 1
                 },
                 {
                     id: Math.random(), company_name: 'Google',
@@ -141,7 +157,8 @@ export const store = new Vuex.Store({
                     website: 'Google.com',
                     date_from: '2018',
                     date_to: '2022',
-                    present: false
+                    present: false,
+                    is_public: 1
                 },
                 {
                     id: Math.random(), company_name: 'Google',
@@ -150,7 +167,8 @@ export const store = new Vuex.Store({
                     website: 'Google.com',
                     date_from: '2018',
                     date_to: '2022',
-                    present: false
+                    present: false,
+                    is_public: 1
                 }
             ],
             projects: [
@@ -166,7 +184,8 @@ export const store = new Vuex.Store({
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
                             is_main: true
                         },
-                    ]
+                    ],
+                    is_public: 1
                 },
                 {
 
@@ -180,7 +199,8 @@ export const store = new Vuex.Store({
                             src: '/images/resume_themes/theme201/dribbble_fitness_2x_2x 1.png',
                             is_main: true
                         },
-                    ]
+                    ],
+                    is_public: 1
                 },
                 {
 
@@ -194,7 +214,8 @@ export const store = new Vuex.Store({
                             src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
                             is_main: true
                         },
-                    ]
+                    ],
+                    is_public: 1
                 },
                 {
 
@@ -208,7 +229,8 @@ export const store = new Vuex.Store({
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
                             is_main: true
                         },
-                    ]
+                    ],
+                    is_public: 1
                 },
                 {
 
@@ -222,7 +244,8 @@ export const store = new Vuex.Store({
                             src: '/images/resume_themes/theme201/fitness2_2x_2x 1.png',
                             is_main: true
                         },
-                    ]
+                    ],
+                    is_public: 1
                 },
                 {
 
@@ -236,7 +259,8 @@ export const store = new Vuex.Store({
                             src: '/images/resume_themes/theme201/fitness_club-statics_schedule_2x 1.png',
                             is_main: true
                         },
-                    ]
+                    ],
+                    is_public: 1
                 },
             ],
             links: [
@@ -245,21 +269,25 @@ export const store = new Vuex.Store({
                     category: 'social_link',
                     link: 'https://instagram.com',
                     link_title: 'Instagram',
-                    is_active: true
+                    is_active: true,
+                    is_public: 1
+
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
                     link: 'https://instagram.com',
                     link_title: 'Behance',
-                    is_active: false
+                    is_active: false,
+                    is_public: 1
                 },
                 {
                     id: Math.random(),
                     category: 'social_link',
                     link: 'https://instagram.com',
                     link_title: 'Linkedin',
-                    is_active: true
+                    is_active: true,
+                    is_public: 1
                 }
             ]
         },
@@ -307,6 +335,38 @@ export const store = new Vuex.Store({
         updateProjects(state, projects){
             state.user.projects = projects;
             axios.post('/api/user/projects/update-order', {projects : projects})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateMedia(state, medias){
+            state.user.media  = medias;
+            axios.post('/api/user/media/update-order', {medias : medias})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateSkills(state, skills){
+            state.user.skills = skills;
+            axios.post('/api/user/skills/update-order', {skills : skills})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateHobbies(state, hobbies){
+            state.user.hobbies = hobbies;
+            axios.post('/api/user/hobbies/update-order', {hobbies : hobbies})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateAchievements(state, achievements){
+            state.user.achievements = achievements;
+            axios.post('/api/user/achievements/update-order', {achievements : achievements})
                 .then( response => {
                     this.dispatch('flyingNotification');
                 })

@@ -213,7 +213,7 @@ export default {
                         }
                     }
 
-                    @media (max-width: 700px) {
+                    @media (max-width: 600px) {
                         .title,
                         .description p {
                             font-size: 13px !important;

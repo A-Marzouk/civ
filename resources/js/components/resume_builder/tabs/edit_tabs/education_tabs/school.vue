@@ -361,6 +361,10 @@
         position: relative;
         padding: 60px 50px;
 
+        @include lt-sm{
+            padding: 30px 15px;
+        }
+
         .float-container {
             background-color: $secondaryColor;
             width: 100%;

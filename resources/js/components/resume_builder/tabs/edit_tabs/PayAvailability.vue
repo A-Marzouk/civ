@@ -23,8 +23,8 @@
                                                 :items="payFrequency"
                                                 label="Frequency"
                                                 color="#001CE2"
-                                                @change="selectCurrentPayment(currentPayment.salary_frequency)"
-                                                v-model="currentPayment.salary_frequency"
+                                                @change="selectCurrentPayment(salary_frequency)"
+                                                v-model="salary_frequency"
                                         >
                                             <button class="dropdown-icon icon" slot="append">
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -47,6 +47,7 @@
                                                     color="#001CE2"
                                                     v-model="currentPayment.currency"
                                                     outlined
+                                                    class="mt-1"
                                             >
                                                 <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                     <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -74,10 +75,10 @@
                                                 outlined
                                                 placeholder="Select an option"
                                                 :items="hoursFrequency"
-                                                @change="selectCurrentAvailability(currentAvailability.available_hours_frequency)"
+                                                @change="selectCurrentAvailability(availability_frequency)"
                                                 label="Frequency"
                                                 color="#001CE2"
-                                                v-model="currentAvailability.available_hours_frequency"
+                                                v-model="availability_frequency"
                                         >
                                             <button class="dropdown-icon icon" slot="append">
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -121,6 +122,8 @@
         data() {
             return {
                 payTab: 0,
+                salary_frequency: 'hourly',
+                availability_frequency: 'weekly',
                 errors: {},
                 tabs: ["Payment", "Availability"],
                 currencies: [
@@ -292,6 +295,10 @@
         },
 
         mounted() {
+            if(this.paymentInfo){
+                this.selectCurrentPayment('hourly');
+                this.selectCurrentAvailability('weekly');
+            }
         }
     };
 </script>
@@ -310,7 +317,6 @@
 
     .card-main {
         box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
-        width: 1412px;
         @media screen and (max-width: 1903px) {
             width: auto;
         }

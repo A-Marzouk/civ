@@ -2,7 +2,7 @@
     <v-app class="resume-builder__scroll">
         <div class="data-container">            
             <v-card color="transparent" flat tile>
-                <v-tabs
+                <!-- <v-tabs
                     class="resume-builder__tab-bar"
                     hide-slider
                 >
@@ -12,7 +12,7 @@
                         :key="tab"
                         @click="activeTab = tab"
                     >{{ tab }}</v-tab>
-                </v-tabs>
+                </v-tabs> -->
             </v-card>
 
             <v-card class="view-container resume-builder__scroll">
@@ -170,6 +170,10 @@ import SchoolView from './education_tabs/school'
 @import '../../../../../sass/media-queries';
 $mainBlue: #001CE2;
     .data-container {
+        @include lt-sm{
+            margin: 3%;
+        }
+
         padding: 0;
         margin-bottom:30px;
 

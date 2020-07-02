@@ -20,6 +20,7 @@ class CreateAchievementsTable extends Migration
             $table->string('type')->nullable();
             $table->string('year')->nullable();
             $table->string('category')->nullable();
+            $table->integer('order')->default(1);
             $table->text('description')->nullable();
             $table->string('image_src')->nullable();
             $table->string('url')->nullable();

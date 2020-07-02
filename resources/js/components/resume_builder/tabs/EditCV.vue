@@ -31,7 +31,7 @@ export default {
 
 	components: {
 		sidebar: sidebar,
-		"user-theme": () => import("../../resume_themes/theme8")
+		"user-theme": () => import(/* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index")
 	},
 
 	data: () => ({
@@ -254,6 +254,7 @@ $disabledColor: #9f9e9e;
 
 	a {
 		padding: 13px 0;
+justify-content: flex-start;
 		color: $disabledColor;
 		transition: all 1s ease;
 		display: block;

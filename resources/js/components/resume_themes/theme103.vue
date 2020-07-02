@@ -127,12 +127,13 @@ $purple: #0556B6;
 #theme103 {
     font-family: 'Muli', sans-serif;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background: #FFF7F3;
     position: relative;
     background-image: url("/images/resume_themes/theme103/bg-header.png");
     background-repeat: repeat-y;
-    background-size: auto 100%;
+    background-size: 100% auto;
 
     .v-application--wrap {
         overflow: hidden;
@@ -151,13 +152,15 @@ $purple: #0556B6;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            max-width: 1700px;
+            max-width: 1768px;
             margin: 0 auto;
             height: 100%;
 
             .v-tabs {
                 font-family: 'Muli', sans-serif;
                 color: $tabTextColor;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
 
@@ -182,17 +185,16 @@ $purple: #0556B6;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
-                    }
-                    
-                    @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 0 22px;
+                        padding: 12px 34px;
                     }
 
-                    @media (max-width: 756px) {
+                    @media (max-width: 1200px) {
+                        padding: 12px 30px;
+                    }
+                    
+                    @media (max-width: 768px) {
+                        padding: 12px 20px;
                         font-size: 15px;
-                        padding: 0 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -216,16 +218,17 @@ $purple: #0556B6;
                     margin-bottom: 47px;
 
                     &-bar {
-                        height: 28px;
+                        height: 35px;
                     }
 
                     .v-tabs-slider {
-                        border-radius: 14px;
+                        border-radius: 20px;
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 768px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
                     &-bar {
                         height: 36px;
@@ -233,10 +236,6 @@ $purple: #0556B6;
 
                     .v-tabs-slider {
                         border-radius: 22px;
-                    }
-
-                    .v-item-group {
-                        padding: 0 30px 0 50px;
                     }
                 }
             }
@@ -251,10 +250,13 @@ $purple: #0556B6;
                 z-index: 0;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
         }
@@ -269,7 +271,7 @@ $purple: #0556B6;
         align-items: center;
         position: absolute;
         top: 365px;
-        right: -95px;
+        right: -115px;
         background: transparent;
 
         &.showOnTablet {
@@ -330,6 +332,10 @@ $purple: #0556B6;
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            right: -115px;
+        }
     }
 
     .scroll-top {
@@ -373,10 +379,14 @@ $purple: #0556B6;
                 margin-left: 9px;
             }
         }
+
+        @media (max-width: 768px) {
+            left: -50px;
+        }
     }
 
     .hideOnMobile {
-        @media (max-width: 876px) {
+        @media (max-width: 600px) {
             display: none !important;
         }
     }

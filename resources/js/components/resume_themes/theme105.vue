@@ -105,13 +105,18 @@ $purple: #355E5E;
 #theme105 {
     font-family: 'Muli', sans-serif !important;
     width: 100%;
+    min-height: 100vh;
     color: $mainColor;
     background: #ECEDF4;
     position: relative;
+    background-image: url("/images/resume_themes/theme105/bg-header.png");
 
     .v-application--wrap {
         overflow: hidden;
         height: 100%;
+        min-height: 100vh !important;
+        display: flex;
+        flex-direction: column;
     }    
 
     .theme-body {
@@ -121,6 +126,7 @@ $purple: #355E5E;
         height: 100%;
         position: relative;
         padding-bottom: 100px;
+        flex: 1;
 
         .wrapper {
             display: flex;
@@ -136,8 +142,14 @@ $purple: #355E5E;
                 overflow: 0 auto;
                 width: 95%;
                 margin: 0 auto;
+                padding: 0 40px;
+                width: 100%;
                 margin-top: 61px;
                 margin-bottom: 61px;
+
+                &-bar {
+                    background-color: transparent;
+                }
 
                 .v-slide-group__prev {
                     display: none;
@@ -160,17 +172,12 @@ $purple: #355E5E;
 
                     @media (max-width: 1400px) {
                         font-size: 18px;
-                        padding: 12px 28px;
+                        padding: 12px 34px;
                     }
                     
-                    @media (max-width: 1200px) {
-                        font-size: 11px;
-                        padding: 0 22px;
-                    }
-
-                    @media (max-width: 756px) {
+                    @media (max-width: 768px) {
+                        padding: 0 20px;
                         font-size: 15px;
-                        padding: 0 17px;
                         margin-right: 27px;
 
                         &:last-child {
@@ -194,16 +201,17 @@ $purple: #355E5E;
                     margin-bottom: 47px;
 
                     &-bar {
-                        height: 28px;
+                        height: 36px;
                     }
 
                     .v-tabs-slider {
-                        border-radius: 14px;
+                        border-radius: 25px;
                     }
                 }
                 
-                @media (max-width: 700px) {
+                @media (max-width: 600px) {
                     margin: 29px 0;
+                    padding: 0 17px;
 
                     &-bar {
                         height: 36px;
@@ -213,9 +221,7 @@ $purple: #355E5E;
                         border-radius: 22px;
                     }
 
-                    .v-item-group {
-                        padding: 0 30px 0 50px;
-                    }
+                    
                 }
             }
 
@@ -229,10 +235,13 @@ $purple: #355E5E;
                 height: 100%;
                 align-items: flex-start;
 
-                @media (max-width: 700px) {
-                    padding: 0;
+                @media (max-width: 768px) {
+                    padding: 0 17px;
                     padding-bottom: 30px;
-                    width: 85%;
+                }
+
+                @media (max-width: 600px) {
+                    width: 100%;
                 }
             }
         }
@@ -272,7 +281,7 @@ $purple: #355E5E;
             }
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
             display: none;
         }
     }

@@ -30,7 +30,7 @@
           <div class="content-wrapper">
             <div class="mar-form">
               <v-text-field
-                class="resume-builder__input input-margin"
+                class="resume-builder__input input-margin input-margin-3"
                 label="Full name"
                 v-model="accountData.name"
                 :outlined="true"
@@ -40,7 +40,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin"
+                class="resume-builder__input input-margin input-margin-3"
                 label="Email"
                 v-model="accountData.email"
                 :outlined="true"
@@ -50,7 +50,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin"
+                class="resume-builder__input input-margin centered-input"
                 label="Password"
                 type="password"
                 v-model="accountData.password"
@@ -61,7 +61,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input"
+                class="resume-builder__input centered-input"
                 label="Re-Type Password"
                 type="password"
                 v-model="accountData.password_confirmation"
@@ -97,14 +97,14 @@
                 My URL
               </span>
               <v-text-field
-                class="resume-builder__input top-input-margin url"
+                class="resume-builder__input top-input-margin url mt-n6"
                 v-model="accountData.username"
                 :outlined="true"
                 :class="{'resume-builder__input--disabled': false}"
                 :error="!!errors.username"
               >
                 <template slot="prepend-inner">
-                  <span class="inner-text">www.civ.ie/</span>
+                  <span class="inner-text" style="margin-top:-3px;">www.civ.ie/</span>
                 </template>
               </v-text-field>
             </div>
@@ -179,7 +179,7 @@
       v-model="priceModal"
       max-width="550"
       style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
-        border-radius: 10px; z-index:1000; overflow:hidden;"
+        border-radius: 10px; z-index:1000; overflow-y:hidden;"
     >
       <v-card>
         <v-card-subtitle></v-card-subtitle>
@@ -214,15 +214,15 @@
 
               <v-card-text>
                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1">
+                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1" class="mt-xl-0 mt-lg-n3">
                     <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img" />
                   </v-col>
-                  <v-col xl="6" lg="6" md="6" sm="6" cols="6">
+                  <v-col xl="6" lg="6" md="6" sm="6" cols="6" class="mt-xl-0 mt-lg-n3">
                     <span class="price-option">{{item}}</span>
                   </v-col>
                 </v-row>
               </v-card-text>
-              <v-card-text align="center">
+              <v-card-text align="center" class="mt-xl-0 mt-lg-n3">
                 <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
               </v-card-text>
               <v-card-text align="center" class="mt-n5">
@@ -382,7 +382,7 @@ export default {
         .then(response => {
           console.log(response.data);
           if (savingType === "manual") {
-            this.$store.dispatch("fullScreenNotification");
+            this.$store.dispatch('flyingNotification');
           } else {
             this.$store.dispatch("flyingNotification");
           }
@@ -445,7 +445,7 @@ export default {
         .post("/api/user/account/submit", this.accountData)
         .then(response => {
           // changes saved pop-up
-          this.$store.dispatch("fullScreenNotification");
+          this.$store.dispatch('flyingNotification');
         })
         .catch(error => {
           if (typeof error.response.data === "object") {
@@ -526,7 +526,12 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+  #input-29{
+    margin-top:3px !important;
+  }
 
+</style>
 <style lang="scss">
 @import "../../../../sass/media-queries";
 
@@ -551,6 +556,11 @@ $placeholder-color: #9ba1ad;
 
 .my-account-tab-wrapper {
   padding:50px 100px;
+
+  @include lt-sm{
+    padding:50px 30px;
+  }
+
   .profile-pic-row-holder {
     height: 110px;
     width: 25%;
@@ -1445,8 +1455,13 @@ $placeholder-color: #9ba1ad;
 .payment-link:hover {
   cursor: pointer;
 }
-.modal-close {
-  position: absolute;
-  top: -20px;
+.v-dialog:not(.v-dialog--fullscreen){
+  max-height: 100% !important;
+}
+.centered-input input{
+  margin-top: 6px !important;
+}
+.input-margin-3 input{
+  margin-top: 3px !important;
 }
 </style>

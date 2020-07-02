@@ -18,7 +18,7 @@
                     </div>
                     <code class="p-4">
 Object_contains = [
-    'name','description','link','skills','software','user_id'
+    'is_public','name','description','link','skills','software','order','user_id'
 ];
 
 relations = ['images'];
@@ -59,6 +59,8 @@ axios.get('/api/user/{{current_endpoint_url}}');
             "skills": "tesssss",
             "software": "sdfsdf",
             "user_id": 2,
+            "is_public": 1,
+            "order": 2,
             "created_at": "2020-05-06 08:51:05",
             "updated_at": "2020-05-06 08:51:05",
             "images": [
@@ -105,8 +107,8 @@ axios.get('/api/user/{{current_endpoint_url}}');
                 </v-list-item-content>
             </v-list-item>
         </v-card>
-
         <hr>
+
 
         <v-card class="mx-auto mt-5" max-width="95%" outlined>
             <v-list-item three-line>
@@ -118,7 +120,7 @@ axios.get('/api/user/{{current_endpoint_url}}');
                         Headers:
 
                         <code class="mb-5 prettyprint lang-js p-4">
-{{headers_after_auth}}
+                            {{headers_after_auth}}
                         </code>
 
                         Request data:
@@ -134,7 +136,9 @@ axios.post('/api/user/{{current_endpoint_url}}',
         images[0]:file_1,
         images[1]:file_2,
         images[2]:file_3,
-        user_id: 2
+        user_id: 2,
+        order: 2,
+        is_public: 1
     }
 );
                         </code>
@@ -150,35 +154,135 @@ axios.post('/api/user/{{current_endpoint_url}}',
         "skills": "PHP, LARAVEL, API",
         "software": "Postman, PHPStorm",
         "user_id": "2",
-        "updated_at": "2020-05-06 08:59:45",
-        "created_at": "2020-05-06 08:59:45",
-        "id": 6,
+        "is_public": "1",
+        "order": "2",
+        "updated_at": "2020-07-01T06:46:15.000000Z",
+        "created_at": "2020-07-01T06:46:15.000000Z",
+        "id": 5,
         "images": [
             {
-                "id": 7,
-                "src": "/uploads/projectImages/1588755585_1.png",
+                "id": 6,
+                "src": "/uploads/projectImages/1593585975_1.png",
                 "is_main": 1,
-                "project_id": 6,
-                "created_at": "2020-05-06 08:59:45",
-                "updated_at": "2020-05-06 08:59:45"
+                "project_id": 5,
+                "created_at": "2020-07-01T06:46:15.000000Z",
+                "updated_at": "2020-07-01T06:46:15.000000Z"
+            },
+            {
+                "id": 7,
+                "src": "/uploads/projectImages/1593585975_2.jpeg",
+                "is_main": 0,
+                "project_id": 5,
+                "created_at": "2020-07-01T06:46:15.000000Z",
+                "updated_at": "2020-07-01T06:46:15.000000Z"
             },
             {
                 "id": 8,
-                "src": "/uploads/projectImages/1588755585_2.jpeg",
+                "src": "/uploads/projectImages/1593585975_3.png",
                 "is_main": 0,
-                "project_id": 6,
-                "created_at": "2020-05-06 08:59:45",
-                "updated_at": "2020-05-06 08:59:45"
-            },
-            {
-                "id": 9,
-                "src": "/uploads/projectImages/1588755585_3.png",
-                "is_main": 0,
-                "project_id": 6,
-                "created_at": "2020-05-06 08:59:45",
-                "updated_at": "2020-05-06 08:59:45"
+                "project_id": 5,
+                "created_at": "2020-07-01T06:46:15.000000Z",
+                "updated_at": "2020-07-01T06:46:15.000000Z"
             }
         ]
+    },
+    "version": "1.0.0",
+    "author_url": "https://civ.ie"
+}
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
+
+
+                        <code class="prettyprint p-4 lang-js">
+                            {
+                            "message": "Not Authenticated!"
+                            }
+                        </code>
+
+
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-card>
+        <hr>
+
+
+        <v-card class="mx-auto mt-5" max-width="95%" outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="overline mb-4">Update {{current_endpoint}} record | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> PUT: api/user/{{current_endpoint_url}} </v-list-item-title>
+                    <v-list-item-subtitle class="d-flex flex-column">
+
+                        Headers:
+
+                        <code class="mb-5 prettyprint lang-js p-4">
+                            {{headers_after_auth}}
+                        </code>
+
+                        Request data:
+
+                        <code class="prettyprint p-4 mb-5 lang-js code">
+    // Note that if put request did not work due to the file included, you can just send a post request which will update the record with the ID sent.
+axios.put('/api/user/{{current_endpoint_url}}',
+    {
+        name:'project API - UPDATED',
+        images[0]:file_4, // add a new image to the project.
+        user_id: 2
+    }
+);
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example response</b> | JSON</div>
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "data": {
+        "name": "project API - UPDATED",
+        "description": "Project uploaded from the API postman",
+        "link": "no-link",
+        "skills": "PHP, LARAVEL, API",
+        "software": "Postman, PHPStorm",
+        "user_id": "2",
+        "updated_at": "2020-05-06 08:59:45",
+        "created_at": "2020-05-06 08:59:45",
+        "id": 6,
+        "images":
+            [
+                {
+                    "id": 7,
+                    "src": "/uploads/projectImages/1588755585_1.png",
+                    "is_main": 1,
+                    "project_id": 6,
+                    "created_at": "2020-05-06 08:59:45",
+                    "updated_at": "2020-05-06 08:59:45"
+                },
+                {
+                    "id": 8,
+                    "src": "/uploads/projectImages/1588755585_2.jpeg",
+                    "is_main": 0,
+                    "project_id": 6,
+                    "created_at": "2020-05-06 08:59:45",
+                    "updated_at": "2020-05-06 08:59:45"
+                },
+                {
+                    "id": 9,
+                    "src": "/uploads/projectImages/1588755585_3.png",
+                    "is_main": 0,
+                    "project_id": 6,
+                    "created_at": "2020-05-06 08:59:45",
+                    "updated_at": "2020-05-06 08:59:45"
+                },
+                {
+                    "id": 10,
+                    "src": "/uploads/projectImages/1588755585_4.png",
+                    "is_main": 0,
+                    "project_id": 6,
+                    "created_at": "2020-05-06 08:59:45",
+                    "updated_at": "2020-05-06 08:59:45"
+                }
+            ]
     },
     "version": "1.0.0",
     "author_url": "https://civ.ie"
@@ -199,8 +303,8 @@ axios.post('/api/user/{{current_endpoint_url}}',
                 </v-list-item-content>
             </v-list-item>
         </v-card>
-
         <hr>
+
 
         <v-card class="mx-auto mt-5" max-width="95%" outlined>
             <v-list-item three-line>
@@ -227,6 +331,51 @@ axios.delete('/api/user/{{current_endpoint_url}}/' + {{current_endpoint_single}}
 {
     "data": {
           "id": 5
+    }
+}
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example ERROR response</b> | JSON</div>
+
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "message": "Not Authenticated!"
+}
+                        </code>
+
+
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-card>
+        <hr>
+
+        <v-card class="mx-auto mt-5" max-width="95%" outlined>
+            <v-list-item three-line>
+                <v-list-item-content>
+                    <div class="overline mb-4">Delete Project Image {{current_endpoint}} record | <b>Example request</b> | Javascript</div>
+                    <v-list-item-title class="headline mb-1 mb-3"> DELETE [Project Image]: api/user/{{current_endpoint_url}}/images/{image_id} </v-list-item-title>
+                    <v-list-item-subtitle class="d-flex flex-column">
+
+                        Headers:
+
+                        <code class="mb-5 prettyprint lang-js p-4">
+{{headers_after_auth}}
+                        </code>
+
+                        Request data:
+
+                        <code class="prettyprint p-4 mb-5 lang-js code">
+axios.delete('/api/user/{{current_endpoint_url}}/images' + image.id)
+                        </code>
+
+                        <div class="overline mb-4 mt-5"><b>Example response</b> | JSON | ID of the deleted record</div>
+
+                        <code class="prettyprint p-4 lang-js">
+{
+    "data": {
+        "id": 5
     }
 }
                         </code>

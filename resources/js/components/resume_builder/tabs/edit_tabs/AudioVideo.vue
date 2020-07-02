@@ -2,55 +2,52 @@
   <v-app>
     <v-container style="width:100%;">
       <v-tabs class="resume-builder__tab-bar" hide-slider v-model="audioTab">
-        <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i">{{tabName}}</v-tab>
+        <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i" @click="changeTab(tabName)">{{tabName}}</v-tab>
       </v-tabs>
       <v-card
         class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
         flat
-        id="hobbiesContent"
       >
         <v-tabs-items v-model="audioTab">
-          <v-tab-item v-for="i in 5" :key="i">
+          <v-tab-item v-for="i in 2" :key="i">
             <v-container style="width: 100%;">
               <v-form>
                 <v-row align="center">
-                  <v-col xl="3" lg="4" md="6" sm="6" cols="12">
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mb-md-0 mb-sm-0 mb-n2">
                     <v-input
                       class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
                       outlined
                       label="Upload File"
-                      hint="(Maximum 5 files)"
+                      hint="(Maximum 1 files)"
                       height="50"
                     >
                       <vue-dropzone
                         class="civie-dropzone-input"
-                        ref="myVueDropzone"
+                        ref="filesDropZone"
                         id="dropzone"
                         :options="dropzoneOptions"
                         :useCustomSlot="true"
+                        v-on:vdropzone-file-added="handlingEvent"
+
                       >
-                        <div
-                          class="dropzone-custom-content d-flex flex-row"
-                          style="float:left;"
-                        >
-                          <div class="mr-2">
+                        <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                          <div class="mr-5">
                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
                           </div>
-                          <div class="upload-text">Browse Drag</div>
+                          <div class="upload-text">Browse/Drag</div>
                         </div>
                       </vue-dropzone>
                     </v-input>
                   </v-col>
-
-                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-n2">
+                  <v-col cols="12" class="hidden-sm-and-up mt-n12 mb-n2">
+                    <label class="label-or">or</label>
+                  </v-col>
+                  <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n12">
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
+                      v-model="newAudio.url"
                       color="#001CE2"
-                      :rules="rules"
-                      :class="{'resume-builder__input--disabled': disabledInput}"
-                      :disabled="disabledInput"
-                      :label="windowWidth<600?'or':''"
                     >
                       <template v-slot:prepend>
                         <label class="label-or hidden-xs-only">or</label>
@@ -66,144 +63,155 @@
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <v-btn
-                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-n1 mt-lg-n1 mt-md-n5 mt-sm-n8 mt-n8"
+                      class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
                       depressed
+                      @click="uploadMedia"
                     >Add New</v-btn>
                   </v-col>
                 </v-row>
               </v-form>
-              <v-row align="center" dense>
-                <v-col xl="8" :lg="windowWidth<1440?'9':'8'" md="9" sm="12" cols="12">
-                  <v-card class="card-holder pa-2 mb-3 mt-3">
-                    <v-row justify="center">
-                      <v-col
-                        xl="1"
-                        lg="1"
-                        md="1"
-                        sm="1"
-                        cols="4"
-                        class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
-                        :align="windowWidth<767?'left':'center'"
-                      >
-                        <v-btn color="#ffffff" class="btn-v_bar" depressed>
-                          <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                        </v-btn>
-                      </v-col>
-                      <v-col
-                        xl="1"
-                        lg="1"
-                        md="1"
-                        sm="1"
-                        cols="1"
-                        class="mt-xl-n5 mt-lg-n5 mt-md-n5 mt-sm-n5 mt-0 hidden-xs-only"
-                      >
-                        <div class="vertical-line"></div>
-                      </v-col>
-                      <v-col
-                        xl="7"
-                        lg="7"
-                        md="7"
-                        :sm="windowWidth<=767?'6':'7'"
-                        cols="7"
-                        class="mt-n2 hidden-xs-only"
-                      >
-                        <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
-                          <v-row justify="center" align="center" dense class="card-audio-row">
-                            <v-col cols="2" align="right" class="mt-1">
-                              <v-btn icon small>
-                                <img
-                                  src="/images/new_resume_builder/icons/main/play.svg"
-                                  alt="play_button"
-                                  class="btn-play mt-n1"
-                                  width="20"
-                                  height="20"
-                                />
-                              </v-btn>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <span class="audio-duration">0.00/0.15</span>
-                              </v-card>
-                            </v-col>
-                            <v-col cols="4" class="mt-1">
-                              <v-progress-linear color background-color="#C4C9F5" class="seekbar"></v-progress-linear>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <v-btn icon small>
-                                  <img
-                                    src="/images/new_resume_builder/icons/main/volume-1.svg"
-                                    alt="play_button"
-                                    class="btn-volume"
-                                  />
-                                </v-btn>
-                                <v-btn icon small class>
-                                  <v-icon>mdi-dots-vertical</v-icon>
-                                </v-btn>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-card>
-                      </v-col>
-                      <v-col
-                        xl="3"
-                        lg="3"
-                        md="3"
-                        :sm="windowWidth<=767?'4':'3'"
-                        cols="8"
-                        align="right"
-                        class="action-col"
-                      >
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/eye.svg" alt />
-                        </v-btn>
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/edit-skill.svg" alt />
-                        </v-btn>
-                        <v-btn color="#F2F3FD" depressed class="btn-skill-action mr-auto">
-                          <img src="/images/new_resume_builder/icons/main/trash.svg" alt />
-                        </v-btn>
-                      </v-col>
-                      <v-col cols="12" class="hidden-sm-and-up">
-                        <v-card class="card-audio-controller" height="40" color="#F2F3FD" flat>
-                          <v-row justify="center" align="center" dense class="card-audio-row">
-                            <v-col cols="2" align="right" class="mt-1">
-                              <v-btn icon small class="btn-play">
-                                <img
-                                  src="/images/new_resume_builder/icons/main/play.svg"
-                                  alt="play_button"
-                                  class="btn-play mt-n1"
-                                />
-                              </v-btn>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <span class="audio-duration ml-n1">0.00/0.15</span>
-                              </v-card>
-                            </v-col>
-                            <v-col cols="4" class="mt-1">
-                              <v-progress-linear color background-color="#C4C9F5" class="seekbar"></v-progress-linear>
-                            </v-col>
-                            <v-col cols="3" class="mt-1">
-                              <v-card color="transparent" flat tile>
-                                <v-btn icon small class="btn-volume">
-                                  <img
-                                    src="/images/new_resume_builder/icons/main/volume-1.svg"
-                                    alt="play_button"
-                                  />
-                                </v-btn>
-                                <v-btn icon small class="btn-small-v_bar ml-n2">
-                                  <v-icon>mdi-dots-vertical</v-icon>
-                                </v-btn>
-                              </v-card>
-                            </v-col>
-                          </v-row>
-                        </v-card>
-                      </v-col>
-                    </v-row>
-                  </v-card>
+
+              <draggable v-if="medias"  v-model="medias" @start="drag=true" @end="drag=false"  handle=".drag-handler">
+                <v-row align="center" dense v-for="media in medias" :key="media.id">
+
+                <v-col xl="7" :lg="windowWidth<1440 ? '9' : '7' " md="9" sm="12" cols="12" v-show="audioTab === 0 && media.type === 'audio'">
+                    <!-- audio card -->
+                    <v-card class="card-holder pa-2 mb-3 mt-3">
+                      <v-row justify="center">
+                        <v-col
+                          xl="1"
+                          lg="1"
+                          md="1"
+                          sm="1"
+                          cols="4"
+                          class=" drag-handler mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0"
+                          :align="windowWidth<767?'left':'center'"
+                        >
+                          <v-btn color="#ffffff" class="btn-v_bar" depressed>
+                            <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                          </v-btn>
+                        </v-col>
+                        <v-col
+                          xl="1"
+                          lg="1"
+                          md="1"
+                          sm="1"
+                          cols="1"
+                          class="mt-xl-n5 mt-lg-n5 mt-md-n5 mt-sm-n5 mt-0 hidden-xs-only"
+                        >
+                          <div class="vertical-line"></div>
+                        </v-col>
+                        <v-col
+                          xl="6"
+                          lg="7"
+                          md="7"
+                          :sm="windowWidth<=767?'6':'7'"
+                          cols="7"
+                          class="hidden-xs-only"
+                          style="margin-top:-15px;"
+                        >
+                          <audio controls class="audio-controller ml-xl-n4">
+                            <source :src="media.url" />
+                          </audio>
+                        </v-col>
+                        <v-col
+                          xl="4"
+                          lg="3"
+                          md="3"
+                          :sm="windowWidth<=767?'4':'3'"
+                          cols="8"
+                          align="right"
+                          class="action-col resume-builder__action-buttons-container"
+                        >
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  depressed @click="toggleMedia(media)"
+                          >
+                            <svg-vue
+                                    icon="eye-icon"
+                                    :class="{'visible' : media.is_public}"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  @click="deleteMedia(media)"
+                                  depressed
+                          >
+                            <svg-vue
+                                    icon="trash-delete-icon"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                        </v-col>
+                        <v-col cols="12" class="hidden-sm-and-up" align="center">
+                          <audio controls class="audio-controller">
+                            <source :src="media.url" />
+                          </audio>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                    <!-- audio card -->
                 </v-col>
+
+                <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-show="audioTab === 1 && media.type === 'video'">
+                    <!-- Video Card -->
+                    <v-card class="card-holder pa-2 mb-3 mt-3"  height="auto">
+                      <v-row justify="center">
+                        <v-col
+                          xl="5"
+                          lg="5"
+                          md="5"
+                          sm="5"
+                          cols="5"
+                          class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0 drag-handler"
+                          align="left"
+                        >
+                          <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
+                            <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                          </v-btn>
+                        </v-col>
+
+                        <v-col xl="7" lg="7" md="7" sm="7" cols="7" align="right" class="action-col resume-builder__action-buttons-container">
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  depressed @click="toggleMedia(media)"
+                          >
+                            <svg-vue
+                                    icon="eye-icon"
+                                    :class="{'visible' : media.is_public}"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                          <v-btn
+                                  class="btn-icon civie-btn"
+                                  @click="deleteProject(project)"
+                                  depressed
+                          >
+                            <svg-vue
+                                    icon="trash-delete-icon"
+                                    class="icon"
+                            ></svg-vue>
+                          </v-btn>
+                        </v-col>
+                        <v-col cols="12" class align="center">
+                          <v-card flat color="transparent" tile class="pa-2">
+                            <video width="auto" height="auto" controls>
+                              <source
+                                :src="media.url"
+                                type="video/mp4"
+                              />
+                            </video>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card>
+                    <!-- Video Card -->
+                </v-col>
+
               </v-row>
+              </draggable>
+
             </v-container>
           </v-tab-item>
         </v-tabs-items>
@@ -215,10 +223,13 @@
 <script>
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
+import draggable from "vuedraggable";
+
 export default {
   name: "AudioVideo",
   components: {
-    vueDropzone: vue2Dropzone
+    vueDropzone: vue2Dropzone,
+    draggable
   },
   data() {
     return {
@@ -226,132 +237,85 @@ export default {
       dropzoneOptions: {
         url: "https://httpbin.org/post",
         thumbnailWidth: 150,
-        maxFilesize: 0.5
+        maxFilesize: 25,
+        maxFiles: 1,
+        addRemoveLinks: true
+      },
+      newAudio: {
+        title: "Audio",
+        type: "audio",
+        url: "",
+        mediaFile: null
       },
       tabs: ["Audio", "Video"],
-      disabledInput: false,
-      hobbyType: "",
-      hobbyTypes: ["Personal Hobby", "Personal Hobby2"],
-      hobbyNames: ["Gardening"],
-      rules: [value => !!value || "Please fill this field."],
-      hobbyName: "",
       audioTab: 0,
-      hobby: {
-        category: "select",
-        title: ""
-      },
-      categoryOptions: [
-        {
-          title: "Sports",
-          value: "sports"
-        },
-        {
-          title: "Ice skating",
-          value: "ice_skating"
-        },
-        {
-          title: "Cycling",
-          value: "cycling"
-        },
-        {
-          title: "Parkour",
-          value: "parkour"
-        }
-      ],
-      showCategoryOptions: false,
-      optionHobbyId: 0,
-      editedHobby: {},
-      errors: {
-        new: {},
-        edit: {}
-      }
+      errors: {}
     };
   },
   computed: {
-    hobbies() {
-      return this.$store.state.user.hobbies;
-    }
+    medias: {
+      get() {
+        return this.$store.state.user.media;
+      },
+      set(medias) {
+        this.$store.commit('updateMedia', medias);
+      }
+    },
   },
-
-  props: ["inputProps"],
   methods: {
-    toggleInput() {
-      this.disabledInput = !this.disabledInput;
+    changeTab(tabName){
+      this.newAudio.type = tabName.toLowerCase();
+      this.newAudio.title = tabName;
     },
-    selectCategory(title) {
-      this.hobby.category = title;
-      this.showCategoryOptions = false;
+    toggleMedia(media){
+      media.is_public = !media.is_public;
+      axios.put("/api/user/media", media)
+              .then( () => {
+                this.$store.dispatch("flyingNotification");
+              })
+              .catch(error => {
+                if (typeof error.response.data === "object") {
+                  this.errors = error.response.data.errors;
+                } else {
+                  this.errors =
+                          "Something went wrong. Please try again.";
+                }
+                this.$store.dispatch("flyingNotification", {
+                  message: "Error",
+                  iconSrc: "/images/resume_builder/error.png"
+                });
+              });
     },
-    addHobby() {
-      if (this.validateHobby()) {
-        this.hobby.user_id = this.$store.state.user.id;
-        axios
-          .post("/api/user/hobbies", this.hobby)
-          .then(response => {
-            let addedHobby = response.data.data;
-            this.hobbies.push(addedHobby);
-            this.clearHobby();
-            this.$store.dispatch("fullScreenNotification");
-          })
-          .catch(error => {
-            if (typeof error.response.data === "object") {
-              this.errors.new = error.response.data.errors;
-            } else {
-              this.errors.new = "Something went wrong. Please try again.";
-            }
-            this.$store.dispatch("flyingNotification", {
-              message: "Error",
-              iconSrc: "/images/resume_builder/error.png"
-            });
-          });
-      }
+    handlingEvent: function(file) {
+      this.newAudio.mediaFile = file;
     },
-    validateHobby() {
-      this.errors = {
-        new: {},
-        edit: {}
+    uploadMedia() {
+      let formData = new FormData();
+
+      $.each(this.newAudio, field => {
+        if (this.newAudio[field] !== null) {
+          formData.append(field, this.newAudio[field]);
+        }
+      });
+      formData.append("user_id", this.$store.state.user.id);
+      const config = {
+        onUploadProgress: progressEvent => {
+          let progress = (progressEvent.loaded / progressEvent.total) * 100;
+          $("#progressBar").css("width", progress + "%");
+        },
+        headers: { "Content-Type": "multipart/form-data" }
       };
-
-      if (this.hobby.title && this.hobby.category) {
-        return true;
-      }
-
-      if (!this.hobby.title) {
-        this.errors.new.title = "Title required.";
-      }
-      if (!this.hobby.category) {
-        this.errors.new.category = "Category required.";
-      }
-
-      return false;
-    },
-    clearHobby() {
-      this.hobby = {
-        category: "",
-        title: ""
-      };
-    },
-
-    editHobby(hobby) {
-      this.editedHobby = {
-        id: hobby.id,
-        category: hobby.category,
-        title: hobby.title
-      };
-      this.closeOptionsBtn();
-      document.getElementById("hobbiesContent").scrollTop = 0;
-    },
-    applyEdit() {
       axios
-        .put("/api/user/hobbies", this.editedHobby)
+        .post("/api/user/media", formData, config)
         .then(response => {
-          this.EditedSuccessfully(response.data.data);
-          this.clearErrors();
-          this.$store.dispatch("fullScreenNotification");
+          response.data.data.is_public = true;
+          this.medias.unshift(response.data.data);
+          this.clearMedia();
+          this.$store.dispatch("flyingNotification");
         })
         .catch(error => {
           if (typeof error.response.data === "object") {
-            this.errors.edit = error.response.data.errors;
+            this.errors = error.response.data.errors;
           } else {
             this.errors = "Something went wrong. Please try again.";
           }
@@ -361,70 +325,42 @@ export default {
           });
         });
     },
-    deleteHobby(hobby) {
-      if (
-        !confirm("Do you want to delete this hobby [" + hobby.title + "] ?")
-      ) {
+    clearMedia() {
+      this.newAudio = {
+        title: "Audio",
+        type: "audio",
+        url: "",
+        mediaFile: null
+      };
+      this.$refs.filesDropZone.removeAllFiles();
+    },
+    deleteMedia(mdeia) {
+      if (!confirm("Do you want to delete this Media file ?")) {
         return;
       }
       axios
-        .delete("/api/user/hobbies/" + hobby.id)
+        .delete("/api/user/media/" + mdeia.id)
         .then(response => {
           this.$store.dispatch("flyingNotificationDelete");
-          this.hobbies.forEach((hobby, index) => {
-            if (hobby.id === response.data.data.id) {
-              this.hobbies.splice(index, 1);
+          this.medias.forEach((media, index) => {
+            if (media.id === response.data.data.id) {
+              this.medias.splice(index, 1);
             }
           });
-
-          this.closeOptionsBtn();
         })
         .catch(error => {
           console.log(error);
+          this.$store.dispatch("flyingNotification", {
+            message: "Error",
+            iconSrc: "/images/resume_builder/error.png"
+          });
         });
-    },
-
-    EditedSuccessfully(editedHobby) {
-      this.clearEditedHobby();
-      // replace the edited hobby with the new one:
-      this.hobbies.forEach((hobby, index) => {
-        if (hobby.id === editedHobby.id) {
-          this.hobbies[index] = editedHobby;
-        }
-      });
-    },
-    closeOptionsBtn() {
-      this.optionHobbyId = 0;
-      this.clearErrors();
-    },
-    clearEditedHobby() {
-      this.editedHobby = {};
-    },
-    cancelEdit() {
-      this.clearEditedHobby();
-      this.closeOptionsBtn();
-    },
-    clearErrors() {
-      this.errors = {
-        new: {},
-        edit: {}
-      };
     }
   },
   mounted() {
-    (window.onresize = () => {
+    window.onresize = () => {
       this.windowWidth = window.innerWidth;
-    }),
-      $("#hobbiesSection").on("click", e => {
-        if (
-          this.showCategoryOptions &&
-          !$(e.target).parents(".civ-input").length
-        ) {
-          this.showCategoryOptions = false;
-        }
-      });
-
-    console.log(Vue.$cookies.get("spotify_access_token"));
+    }
   }
 };
 </script>
@@ -437,13 +373,11 @@ $mainBlue: #001ce2;
     display: none;
   }
 }
-
 .hidden-custom-tablet-and-up {
   @media screen and (min-width: 768px) {
     display: none;
   }
 }
-
 .main-content {
   height: 323px;
   background: #fff;
@@ -457,7 +391,6 @@ $mainBlue: #001ce2;
 }
 .card-main {
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
-  width: 1412px;
   @media screen and (max-width: 1903px) {
     width: auto;
   }
@@ -508,6 +441,42 @@ $mainBlue: #001ce2;
         margin-left: 0px;
       }
     }
+    .card-holder-video {
+      box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+      height: auto;
+      width: 523px;
+      @media screen and (max-width: 1903px) {
+        width: auto;
+      }
+      @media screen and (max-width: 599px) {
+        height: auto;
+        width: auto;
+      }
+      .btn-v_bar {
+        min-width: 30px !important;
+        min-height: 28px !important;
+        width: 30px !important;
+        height: 28px !important;
+        margin-left: 2px;
+        @media screen and (min-width: 1264px) and (max-width: 1903px) {
+          margin-left: 0px;
+        }
+        @media screen and (max-width: 1263px) {
+          margin-top: 4px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 767px) {
+          margin-left: -4px;
+        }
+        @media screen and (max-width: 599px) {
+          min-width: 24px !important;
+          min-height: 24px !important;
+          width: 24px !important;
+          height: 30x !important;
+          margin-top: 2px;
+          margin-left: 0px;
+        }
+      }
+    }
     .vertical-line {
       border-left: 1px solid #e6e8fc;
       height: 50px;
@@ -515,18 +484,7 @@ $mainBlue: #001ce2;
         margin-left: -7px;
       }
     }
-    .hobby-title {
-      font-family: "Noto Sans" !important;
-      font-size: 18px;
-      line-height: 25px;
-      color: #888db1 !important;
-      @media screen and (min-width: 600px) and (max-width: 767px) {
-        font-size: 12px;
-      }
-      @media screen and (max-width: 374px) {
-        font-size: 14px;
-      }
-    }
+
     .seekbar {
       border-radius: 10px !important;
     }
@@ -543,56 +501,8 @@ $mainBlue: #001ce2;
         margin-top: 0px;
       }
     }
-    .card-audio-controller {
-      border-radius: 100px;
-      min-width: 257px !important;
-      margin-top: -7px;
-      @media screen and (min-width: 600px) and (max-width: 767px) {
-        margin-left: -37px;
-      }
-      @media screen and(max-width: 599px) {
-        margin-top: 0px;
-        min-width: auto !important;
-      }
-      .card-audio-row {
-        @media screen and (min-width: 600px) and (max-width: 767px) {
-          margin-left: -11px;
-        }
-      }
-      .audio-duration {
-        font-family: "Noto Sans" !important;
-        font-weight: 500;
-        font-size: 14px !important;
-        line-height: 14px;
-        color: #888db1 !important;
-        @media screen and (max-width: 599px) {
-          font-size: 12px !important;
-        }
-        @media screen and (max-width: 376px) {
-          font-size: 10px !important;
-        }
-      }
-      .btn-play {
-        width: 20px;
-        height: 20px;
-        @media screen and (max-width: 599px) {
-          width: 14px;
-          height: 14px;
-        }
-      }
-      .btn-volume {
-        @media screen and (max-width: 391px) {
-          margin-left: -6px;
-        }
-      }
-      .btn-small-v_bar {
-        @media screen and(max-width: 411px) {
-          margin-left: -12px !important;
-        }
-        @media screen and(max-width: 370px) {
-          margin-left: -14px !important;
-        }
-      }
+    .audio-controller {
+      height: 40px !important;
     }
   }
 }
@@ -615,6 +525,22 @@ $mainBlue: #001ce2;
   }
 }
 .dropzone-custom-content {
+  margin-left: -18%;
+  @media screen and (min-width: 1366px) and (max-width: 1903px) {
+    margin-left: -15%;
+  }
+  @media screen and (min-width: 1264px) and (max-width: 1365px) {
+    margin-left: -13%;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    margin-left: -22%;
+  }
+  @media screen and (min-width: 600px) and (max-width: 767px) {
+    margin-left: -8%;
+  }
+  @media screen and (min-width: 394px) and (max-width: 599px) {
+    margin-left: -21% !important;
+  }
 }
 .dropzone.dz-clickable {
   border: 2px solid #c4c9f5 !important;
@@ -622,6 +548,7 @@ $mainBlue: #001ce2;
   height: 48px !important;
   border: 2px solid #c4c9f5;
   border-radius: 10px;
+  overflow: hidden !important;
 }
 .upload-text {
   font-family: "Noto Sans" !important;
@@ -636,28 +563,25 @@ $mainBlue: #001ce2;
 .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
+ {
   opacity: 0;
 }
 .input-group {
   margin-right: 15px;
-
   &:nth-child(4),
   &:last-child {
     margin-right: none;
   }
-
   .civie-textarea,
   .civie-dropzone {
     margin-bottom: 35.5px;
     height: auto;
-
     .v-input__control,
     .v-input__slot {
       height: 165px;
     }
   }
-
   &.files {
     .v-label {
       position: absolute;
@@ -670,8 +594,8 @@ $mainBlue: #001ce2;
 </style>
 
 <style>
-@media screen and (max-width: 599px){
-  #resumeBuilder .v-input__prepend-outer{
+@media screen and (max-width: 599px) {
+  #resumeBuilder .v-input__prepend-outer {
     display: none !important;
   }
 }
