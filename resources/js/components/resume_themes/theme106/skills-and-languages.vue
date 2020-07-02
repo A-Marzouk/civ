@@ -63,12 +63,12 @@ export default {
         .skill {
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
             grid-column: span 2;
             align-self: start;
 
             img {
                 height: 70px;
-                width: 92px;
                 margin-bottom: 42.7px;
             }
 
@@ -95,7 +95,6 @@ export default {
 
             .skill {
                 img {
-                    width: 55px;
                     height: 46px;
                     margin-bottom: 28px;
                 }
