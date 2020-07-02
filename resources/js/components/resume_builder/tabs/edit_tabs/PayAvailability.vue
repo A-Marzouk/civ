@@ -23,8 +23,8 @@
                                                 :items="payFrequency"
                                                 label="Frequency"
                                                 color="#001CE2"
-                                                @change="selectCurrentPayment(currentPayment.salary_frequency)"
-                                                v-model="currentPayment.salary_frequency"
+                                                @change="selectCurrentPayment(salary_frequency)"
+                                                v-model="salary_frequency"
                                         >
                                             <button class="dropdown-icon icon" slot="append">
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -75,10 +75,10 @@
                                                 outlined
                                                 placeholder="Select an option"
                                                 :items="hoursFrequency"
-                                                @change="selectCurrentAvailability(currentAvailability.available_hours_frequency)"
+                                                @change="selectCurrentAvailability(availability_frequency)"
                                                 label="Frequency"
                                                 color="#001CE2"
-                                                v-model="currentAvailability.available_hours_frequency"
+                                                v-model="availability_frequency"
                                         >
                                             <button class="dropdown-icon icon" slot="append">
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -122,6 +122,8 @@
         data() {
             return {
                 payTab: 0,
+                salary_frequency: 'hourly',
+                availability_frequency: 'weekly',
                 errors: {},
                 tabs: ["Payment", "Availability"],
                 currencies: [
@@ -293,6 +295,10 @@
         },
 
         mounted() {
+            if(this.paymentInfo){
+                this.selectCurrentPayment('hourly');
+                this.selectCurrentAvailability('weekly');
+            }
         }
     };
 </script>
