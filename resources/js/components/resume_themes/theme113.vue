@@ -110,7 +110,7 @@ $purple: #686299;
     position: relative;
     background-color: #FFF7F3;
     background-image: url('/images/resume_themes/theme113/mainBg.png');
-    background-size: auto 20vh;
+    background-size: auto 80vh;
     background-position-y: -70px;
     background-repeat: no-repeat;
 

@@ -68,7 +68,7 @@ export default {
 			display: block;
 			background: #001ce2;
 			position: absolute;
-			bottom: -24px;
+			bottom: -18px;
 			left: 0;
 			width: 100%;
 			height: 5px;
