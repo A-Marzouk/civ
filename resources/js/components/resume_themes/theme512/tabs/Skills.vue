@@ -42,7 +42,7 @@
                       <v-img
                         :src="skill.src"
                         :max-width="skillBtnImgSize"
-                        contain
+                        cover
                       ></v-img>
                     </v-btn>
                   </div>
@@ -130,6 +130,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap");
 .skillTab-title {
   font-family: "Archivo", sans-serif;
   font-style: normal;

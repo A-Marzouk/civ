@@ -75,6 +75,10 @@ export default {
             grid-gap: 40px 60px;
         }
 
+        @media (max-width: 768px) {
+            grid-gap: 10px 30px;
+        }
+
         @media (max-width: 600px) {
             width: 100%;
             grid-gap: 56px 0;

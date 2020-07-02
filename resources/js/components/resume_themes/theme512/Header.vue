@@ -31,6 +31,7 @@
                   <v-img
                     :src="s.src"
                     :max-width="socialBtnImgSize"
+                    :min-width="socialBtnImgSize"
                     contain
                   ></v-img>
                 </v-btn>
@@ -38,7 +39,7 @@
             </v-col>
             <v-col
               cols="2"
-              class="hidden-lg-and-up mr-auto pt-12"
+              class="hidden-lg-and-up ml-sm-auto pt-12"
               align="center"
             >
               <div class="py-2">
@@ -70,7 +71,7 @@
             justify-lg="end"
             justify-sm="center"
             justify="center"
-            class="pr-lg-12 hidden-md-and-down"
+            class="pr-lg-12 hidden-md-and-down "
             dense
           >
             <v-col
@@ -105,9 +106,9 @@
           </v-row>
           <v-row
             justify-lg="end"
-            justify-sm="center"
+            justify-sm="end"
             justify="space-around"
-            class="pr-lg-12 pt-lg-8 pt-6"
+            class="pr-lg-12 pt-lg-8 pt-6 pr-sm-12"
             dense
           >
             <v-col
@@ -115,9 +116,9 @@
               sm="3"
               lg="4"
               xl="3"
-              class="text-lg-right text-left"
+              class="text-lg-right text-center"
             >
-              <div class="rate-info d-lg-inline-block d-block ">
+              <div class="rate-info d-lg-inline-block d-block mt-lg-2">
                 15$
                 <div class="rate-title d-lg-inline-block d-block ">
                   Hourly rate
@@ -129,16 +130,23 @@
               sm="3"
               lg="4"
               xl="4"
-              class="text-lg-right text-left"
+              class="text-lg-right text-center"
             >
-              <div class="rate-info d-lg-inline-block d-block ">
+              <div class="rate-info d-lg-inline-block d-block mt-lg-2">
                 35hr
                 <div class="rate-title d-lg-inline-block d-block ">
                   Weekly Availability
                 </div>
               </div>
             </v-col>
-            <v-col cols="auto" sm="3" lg="4" xl="3" class="text-lg-center">
+            <v-col
+              cols="auto"
+              sm="3"
+              lg="4"
+              xl="3"
+              class="text-lg-center text-center"
+              align-self="center"
+            >
               <v-btn class="meida-btn" color="#0e0185" dark>
                 <div class="meida-btn-title ">Hire Me</div>
               </v-btn>
@@ -183,7 +191,7 @@ export default {
         case "sm":
           return 18;
         case "lg":
-          return 18;
+          return 24;
         case "xl":
           return 24;
       }
@@ -192,6 +200,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap");
 #avatar {
   border: 8px solid #dc266c;
   box-sizing: border-box;
@@ -325,6 +334,7 @@ export default {
     line-height: 22px;
     color: #2bf1e9;
   }
+
   #chat-btn {
     position: absolute;
     background: #100083;
@@ -335,6 +345,13 @@ export default {
     left: 6rem;
     width: 30px;
     height: 30px;
+  }
+  .meida-btn {
+    min-width: 140px !important;
+    max-width: 140px !important;
+    height: 50px !important;
+    background: #0e0185;
+    border-radius: 6px;
   }
 }
 </style>

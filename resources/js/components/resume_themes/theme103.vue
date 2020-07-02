@@ -379,6 +379,10 @@ $purple: #0556B6;
                 margin-left: 9px;
             }
         }
+
+        @media (max-width: 768px) {
+            left: -50px;
+        }
     }
 
     .hideOnMobile {
