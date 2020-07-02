@@ -245,6 +245,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 margin: 0 auto;
                 z-index: 0;
                 height: 100%;
+                width: 90%;
                 align-items: flex-start;
 
                 @media (max-width: 768px) {
@@ -379,6 +380,10 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 height: 7px;
                 margin-left: 9px;
             }
+        }
+
+        @media (max-width: 768px) {
+            left: -50px;
         }
     }
 
