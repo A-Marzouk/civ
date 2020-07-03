@@ -1,17 +1,32 @@
 <template>
   <v-app>
     <section class="back">
-      <v-row no-gutters justify-md="center" justify-sm="center" justify="center">
+      <v-row
+        no-gutters
+        justify-md="center"
+        justify-sm="center"
+        justify="center"
+      >
         <v-col lg="6" md="4" sm="12" cols="12">
           <div class="mx-md-5 my-md-3 my-xs-5 py-3">
             <v-row align="center" no-gutters>
               <v-col cols="3" md="5" lg="4" align="center">
                 <v-avatar class="ma-0 ma-sm-4 ma-md-4 ma-lg-4">
-                  <v-img src="/images/resume_themes/theme509/avatar.png" contain class="mt-1"></v-img>
+                  <v-img
+                    src="/images/resume_themes/theme509/avatar.png"
+                    contain
+                    class="mt-1"
+                  ></v-img>
                 </v-avatar>
               </v-col>
 
-              <v-col cols="9" md="7" lg="8" sm="7" class="pl-md-3 pl-sm-1 pl-2 mt-6 mt-sm-0">
+              <v-col
+                cols="9"
+                md="7"
+                lg="8"
+                sm="7"
+                class="pl-md-3 pl-sm-1 pl-2 mt-6 mt-sm-0"
+              >
                 <div class="head textcol font-weight-black">
                   Beverly Andrews
                   <div class="d-inline-block hidden-lg-and-up">
@@ -48,7 +63,9 @@
                   </div>
                 </div>
 
-                <div class="subtitle-2 grey--text text--lighten-2 pb-2 mb-2">User interface designer</div>
+                <div class="subtitle-2 grey--text text--lighten-2 pb-2 mb-2">
+                  User interface designer
+                </div>
                 <v-btn
                   fab
                   color="#4ADAE3"
@@ -72,9 +89,14 @@
                   color="white"
                   v-for="icon in icons"
                   :key="icon.id"
-                  class="mx-md-2 mx-sm-2 mx-lg-2 mx-1"
+                  class="mx-md-2 mx-sm-2 mx-lg-2 mx-1 mt-1 mt-lg-2 mt-sm-2"
                 >
-                  <v-img contain max-width="4rem" max-height="4rem" :src="icon.src" class="mt-n3"></v-img>
+                  <v-img
+                    contain
+                    max-width="4rem"
+                    max-height="4rem"
+                    :src="icon.src"
+                  ></v-img>
                 </v-btn>
               </v-col>
             </v-row>
@@ -86,7 +108,7 @@
           md="11"
           sm="11"
           cols="10"
-          class="ml-md-auto mr-md-12 mt-8"
+          class="ml-md-auto mr-md-12 mt-0"
           align-self="center"
         >
           <v-row
@@ -127,20 +149,52 @@
               ></v-img>
             </v-btn>
           </v-row>
-          <v-row justify-md="end" justify="center" align="center" class="hire-back py-3">
+          <v-row
+            justify-md="end"
+            justify="center"
+            align="center"
+            class="hire-back py-3"
+          >
             <v-col cols="4" sm="3" md="3" lg="3">
-              <div class="text-center antext subtitle-2 font-light">Hourly rate</div>
-              <div class="text-center grey--text text--lighten-2 title font-weight-bold">$25 USD</div>
+              <div class="text-center antext subtitle-2 font-light">
+                Hourly rate
+              </div>
+              <div
+                class="text-center grey--text text--lighten-2 title font-weight-bold"
+              >
+                $25 USD
+              </div>
             </v-col>
-            <v-col cols="2" lg="1" justify="center" align="center" class="mx-n4">
-              <div style="width:1px;height:2rem;background-color:rgba(255, 255, 255, 0.38); "></div>
+            <v-col
+              cols="2"
+              lg="1"
+              justify="center"
+              align="center"
+              class="mx-n4"
+            >
+              <div
+                style="width:1px;height:2rem;background-color:rgba(255, 255, 255, 0.38); "
+              ></div>
             </v-col>
 
             <v-col cols="4" sm="3" md="3" lg="3">
-              <div class="text-center antext subtitle-2 font-light">Available for</div>
-              <div class="text-center grey--text text--lighten-2 title font-weight-bold">8 hours</div>
+              <div class="text-center antext subtitle-2 font-light">
+                Available for
+              </div>
+              <div
+                class="text-center grey--text text--lighten-2 title font-weight-bold"
+              >
+                8 hours
+              </div>
             </v-col>
-            <v-col cols="12" sm="4" md="4" lg="5" class="text-center mr-md--5" justify="center">
+            <v-col
+              cols="12"
+              sm="4"
+              md="4"
+              lg="5"
+              class="text-center mr-md--5"
+              justify="center"
+            >
               <button class="hire py-3">
                 <div class="text-center blutext font-weight-bold">HIRE ME</div>
               </button>
@@ -170,7 +224,9 @@
 
               <div
                 class="tabtitle textcol font-weight-bold text-capitalize mx-md-4 pl-xs-2 mr-xs-5"
-              >{{ tab.name }}</div>
+              >
+                {{ tab.name }}
+              </div>
             </v-tab>
           </v-tabs>
         </v-col>
