@@ -9,7 +9,7 @@
         padding: calc(60px - #{$tab-font-size1}) calc(100px - #{$tab-font-size1}) calc(100px - #{$tab-font-size1}) calc(60px - #{$tab-font-size1});
         border-radius: calc(40px - #{$tab-font-size1});
     }
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1023px) {
 
         margin: 0 calc(100px /2);
         padding: calc(60px /2) calc(100px /2) calc(100px /2) calc(60px /2);
