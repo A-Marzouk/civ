@@ -43,14 +43,16 @@
             <v-row>
               <v-col md="6">
                 <v-row no-gutters justify="center" class="hidden-xs-only">
-                  <v-col cols="5" md="3" lg="4" align="center">
+                  <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
                     <div>
-                      <v-icon @click="availablePrev()">navigate_before</v-icon>
+                      <v-icon small @click="availablePrev()"
+                        >navigate_before</v-icon
+                      >
                       <div
                         v-for="(availability_info,
                         index) in currentUser.availability_info"
@@ -62,7 +64,9 @@
                           {{ availability_info.available_hours_frequency }}
                         </span>
                       </div>
-                      <v-icon @click="availableNext()">navigate_next</v-icon>
+                      <v-icon small @click="availableNext()"
+                        >navigate_next</v-icon
+                      >
                     </div>
                     <div>
                       <div
@@ -82,7 +86,7 @@
                       style="width:2px; height:2.5rem; background-color:#CBCBCB;margin-top:50%"
                     ></div>
                   </v-col>
-                  <v-col cols="5" md="3" lg="4" align="center">
+                  <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
                       src="/images/resume_themes/theme5/payment.svg"
@@ -90,7 +94,7 @@
                     ></v-img>
 
                     <div>
-                      <v-icon @click="paymentInfoPrev()"
+                      <v-icon small @click="paymentInfoPrev()"
                         >navigate_before</v-icon
                       >
                       <div
@@ -104,7 +108,9 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon @click="paymentInfoNext()">navigate_next</v-icon>
+                      <v-icon small @click="paymentInfoNext()"
+                        >navigate_next</v-icon
+                      >
                     </div>
                     <div>
                       <div
@@ -138,7 +144,7 @@
                   <v-col cols="5" align="center">
                     <div class="subtitle-1">Rate</div>
                     <div class="subtitle-1 txtcol">
-                      <v-icon @click="paymentInfoPrev()"
+                      <v-icon small @click="paymentInfoPrev()"
                         >navigate_before</v-icon
                       >
                       <div
@@ -152,7 +158,9 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon @click="paymentInfoNext()">navigate_next</v-icon>
+                      <v-icon small @click="paymentInfoNext()"
+                        >navigate_next</v-icon
+                      >
                     </div>
                     <div class="headline mt-3 font-weight-bold txtcol">
                       <div
