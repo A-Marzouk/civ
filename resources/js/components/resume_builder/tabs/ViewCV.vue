@@ -109,7 +109,13 @@
           <v-card flat tile color="transparent"></v-card>
         </v-col>
       </v-row>
-      <v-dialog v-model="viewThemeModal" class="view-theme-modal" width="964" height="678">
+      <v-dialog
+        v-model="viewThemeModal"
+        class="view-theme-modal"
+        max-width="964"
+        max-height="678"
+        style="border-radius:10px;"
+      >
         <v-card class="view-theme-modal-card">
           <img
             src="/images/new_resume_builder/themes-wrapper.svg"
@@ -294,12 +300,20 @@ $mainBlue: #001ce2;
   border: 1px solid #888db1;
   width: 964px;
   max-width: 964px;
+  @media screen and (max-width: 1903px){
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+
   .view-theme-modal-card {
     border: 1px solid #888db1;
     border-radius: 5px;
     .theme-img-modal {
       width: 964px;
       height: 678px;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 80%;
+      }
     }
   }
 }
