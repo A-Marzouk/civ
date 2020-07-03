@@ -1,11 +1,18 @@
 .resume-builder__btn.civie-btn.v-btn {
-
     // default btn
     &.filled {
         background-color: $mainColor !important;
         color: $secondaryColor;
+        width: 120px !important;
+        height: 50px !important;
+        font-size: 18px !important;
+        @media screen and (max-width: 599px) {
+            width: 100px !important;
+            min-height: 40px !important;
+            height: 40px;
+            font-size: 15px !important;
+        }
     }
-
     // Reset default size
     &.v-size--default {
         border-radius: 5px;
@@ -13,8 +20,11 @@
         padding: 13px 21px;
         font-size: 18px;
         text-transform: none;
+        @media screen and (max-width: 599px) {
+            height: 40px !important;
+            min-height: 40px !important;
+        }
     }
-
     // outlined btn
     &--outlined {
         background-color: transparent;
@@ -27,7 +37,6 @@
 .civie-btn.btn-icon {
     background-color: $auxBgColor-bluegray !important;
     border-radius: 5px;
-    
     &.v-size--default {
         padding: 0 !important;
     }
@@ -39,45 +48,37 @@
     align-items: flex-start;
     align-self: flex-start;
     justify-self: flex-end;
-
     .icon {
         height: 14px;
         stroke: #888DB1;
         fill: transparent;
-
         path {
             stroke: #888DB1;
             fill: none;
         }
-
-        &.visible{
+        &.visible {
             path {
-                stroke:rgb(21, 45, 228);
+                stroke: rgb(21, 45, 228);
                 fill: none;
             }
         }
     }
-
     .btn-icon {
         height: 30px !important;
         min-width: auto !important;
         width: 30px;
         margin: 0 5px;
-
         &:last-child {
             margin-right: 0;
         }
-
         &.mainBg {
             background-color: $mainColor !important;
         }
-
         &.toogleDropdownBtn {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-
             .v-btn__content {
                 display: block;
                 height: 1.5px;
@@ -85,7 +86,6 @@
                 background-color: $secondaryColor;
                 flex: 0 0 auto;
             }
-
             &::after {
                 content: "";
                 position: absolute;
@@ -96,7 +96,6 @@
                 transform: rotateZ(0deg);
                 transition: all ease .5s;
             }
-            
             &.closed {
                 &::after {
                     transform: rotateZ(90deg);

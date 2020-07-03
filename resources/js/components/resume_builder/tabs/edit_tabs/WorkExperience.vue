@@ -503,6 +503,10 @@
                                 height: 14px;
                                 padding-left: 0;
                                 margin-right: 8px;
+                                @media screen and (max-width:767px){
+                                    width: 18px;
+                                    height: 18px;
+                                }
                             }
                         }
                     }
