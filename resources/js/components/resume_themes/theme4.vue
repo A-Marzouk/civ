@@ -626,10 +626,14 @@ export default {
       color: #ffffff;
       padding-top: 25px;
       padding-bottom: 25px;
-      padding-right: 45px;
-      padding-left: 1%;
+      padding-right: 47px;
+      padding-left: 2%;
       position: relative;
       background: #00a3ff;
+      margin: -1px;
+      @media screen and (max-width: 959px){
+        padding-left: 3%;
+      }
     }
 
     .tab-text:not(:last-child) {
@@ -638,7 +642,7 @@ export default {
     .tab-text.active {
       color: #00a3ff;
       font-weight: bold;
-      background-color: white;
+      background-color: transparent;
     }
 
     .tab-text.borderLeft {
