@@ -4,9 +4,18 @@
       <v-row justify="center" align="center" class="mb-lg-12 pb-lg-12 mt-lg-10">
         <v-col md="6" lg="6" cols="12">
           <v-row justify="center" align="center" no-gutters>
-            <v-col md="2" lg="2" cols="3" sm="3" class="d-flex flex-column align-center">
+            <v-col
+              md="2"
+              lg="2"
+              cols="3"
+              sm="3"
+              class="d-flex flex-column align-center"
+            >
               <v-avatar class="profile" size="100">
-                <img src="/images/resume_themes/theme510/avatar.svg" alt="John" />
+                <img
+                  src="/images/resume_themes/theme510/avatar.svg"
+                  alt="John"
+                />
               </v-avatar>
               <!-- <v-avatar class="profile hidden-md-and-up" size="100">
                 <img src="/images/resume_themes/theme510/avatar.svg" alt="John" />
@@ -24,7 +33,13 @@
                     color="white"
                     class="butmarg"
                   >
-                    <v-img :src="icon" width="16" height="16" contain class="butmedia"></v-img>
+                    <v-img
+                      :src="icon"
+                      width="16"
+                      height="16"
+                      contain
+                      class="butmedia"
+                    ></v-img>
                   </v-btn>
                 </div>
               </div>
@@ -85,14 +100,25 @@
         <v-col md="6" lg="6" class="hidden-sm-and-down">
           <v-row no-gutters justify="center" align="center">
             <v-col md="8" class="blade">
-              <v-row no-gutters justify="center" align="center" class="mt-4 mr-8">
+              <v-row
+                no-gutters
+                justify="center"
+                align="center"
+                class="mt-4 mr-8"
+              >
                 <v-col md="3" class="index line mt-3">
-                  <h2 class="point text-center font-weight-bold textcol">$10</h2>
+                  <h2 class="point text-center font-weight-bold textcol">
+                    $10
+                  </h2>
                   <h2 class="subpoint text-center textcol">hourly rate</h2>
                 </v-col>
                 <v-col md="3" class="index mx-2 mt-3">
-                  <h2 class="point text-center font-weight-bold textcol">35 HOURS</h2>
-                  <h2 class="subpoint text-center textcol">weekly availability</h2>
+                  <h2 class="point text-center font-weight-bold textcol">
+                    35 HOURS
+                  </h2>
+                  <h2 class="subpoint text-center textcol">
+                    weekly availability
+                  </h2>
                 </v-col>
                 <v-col md="4" class="index text-center pl-3 mt-2">
                   <v-btn
@@ -102,7 +128,8 @@
                     style="border-radius:300px"
                     class="white--text but"
                     elevation="4"
-                  >HIRE ME</v-btn>
+                    >HIRE ME</v-btn
+                  >
                 </v-col>
               </v-row>
             </v-col>
@@ -111,14 +138,25 @@
 
         <v-col cols="12" sm="12" class="hidden-md-and-up">
           <v-row no-gutters justify="center" class="blademob" align="center">
-            <v-row no-gutters justify="center" class="margtop mr-3" align="center">
+            <v-row
+              no-gutters
+              justify="center"
+              class="margtop mr-3"
+              align="center"
+            >
               <v-col sm="6" cols="6" class="index linemob">
-                <h2 class="point text-center font-weight-bold white--text">10$</h2>
+                <h2 class="point text-center font-weight-bold white--text">
+                  10$
+                </h2>
                 <h2 class="subpoint text-center white--text">hourly rate</h2>
               </v-col>
               <v-col sm="6" cols="6" class="index">
-                <h2 class="point text-center font-weight-bold white--text">35 HOURS</h2>
-                <h2 class="subpoint text-center white--text">weekly availability</h2>
+                <h2 class="point text-center font-weight-bold white--text">
+                  35 HOURS
+                </h2>
+                <h2 class="subpoint text-center white--text">
+                  weekly availability
+                </h2>
               </v-col>
             </v-row>
             <v-col cols="12" sm="12" class="margintop text-center">
@@ -128,7 +166,8 @@
                 elevation="4"
                 class="white--text butmob"
                 style="border-radius:300px"
-              >HIRE ME</v-btn>
+                >HIRE ME</v-btn
+              >
             </v-col>
           </v-row>
         </v-col>
@@ -162,20 +201,34 @@
         <Education :currentTab="currentTab" />
       </div>
       <v-row no-gutters justify="end" align="end" class>
-        <v-col md="2" sm="6" cols="6" class="navblade py-3" style="text-align: center;">
+        <v-col
+          md="2"
+          sm="4"
+          cols="6"
+          class="navblade py-3"
+          style="text-align: center;"
+        >
           <v-btn
             dark
             fab
             outlined
             color="#fff"
-            :disabled="currentTab==0"
+            :disabled="currentTab == 0"
             @click="currentTab--"
             small
             class="ma-3"
           >
             <v-icon small>mdi-arrow-left</v-icon>
           </v-btn>
-          <v-btn dark fab outlined color="#fff" small class="ma-3" @click="currentTab++">
+          <v-btn
+            dark
+            fab
+            outlined
+            color="#fff"
+            small
+            class="ma-3"
+            @click="currentTab++"
+          >
             <v-icon small>mdi-arrow-right</v-icon>
           </v-btn>
         </v-col>

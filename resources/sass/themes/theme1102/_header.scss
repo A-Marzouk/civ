@@ -4,7 +4,7 @@
     padding-bottom: 20px;
     background-color: $color-white;
     font-family: $font-primary;
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1023px) {
         display: block;
     }
 
@@ -16,7 +16,7 @@
     align-self: center;
 
 
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1023px) {
         justify-content: center;
     }
 
@@ -28,7 +28,7 @@
         display: none;
         visibility: hidden;
 
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             position: absolute;
             display: block;
             visibility: visible;
@@ -51,7 +51,7 @@
     }
 
     &__speech-bubble {
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             height: calc(40px + #{$tab-font-size2});
             width: calc(40px + #{$tab-font-size2});
             padding-top: 15px;
@@ -70,7 +70,7 @@
         display: none;
         visibility: hidden;
 
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             display: flex;
             visibility: visible;
             flex-direction: column;
@@ -117,17 +117,25 @@
     }
 
     &__image {
-        height: 120px;
-        width: 100px;
-        border-radius: 5px;
 
+        height: 180px;
+        width: 150px;
+        border-radius: 10px;
+
+
+        @media only screen and (max-width: 1500px) {
+            height: 120px;
+            width: 100px;
+            border-radius: 5px;
+
+        }
         @media only screen and (max-width: 1200px) {
-            height: calc(120px - #{$tab-font-size});
-            width: calc(100px - #{$tab-font-size});
+            height: calc(120px - #{$tab-font-size2});
+            width: calc(100px - #{$tab-font-size2});
 
         }
 
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             height: 150px;
             width: 100px;
             background-size: cover;
@@ -142,16 +150,20 @@
     }
 
     &__information {
-        height: 120px;
-        margin-left: 30px;
+        height: 180px;
+        margin-left: 50px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        @media only screen and (max-width: 1200px) {
-            height: calc(120px - #{$tab-font-size});
-            margin-left: calc(30px - #{$tab-font-size});
+        @media only screen and (max-width: 1500px) {
+            height: 120px;
+            margin-left: 30px;
         }
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1200px) {
+            height: calc(120px - #{$tab-font-size2});
+            margin-left: calc(30px - #{$tab-font-size2});
+        }
+        @media only screen and (max-width: 1023px) {
             margin-left: calc(30px + #{$tab-font-size});
 
         }
@@ -163,15 +175,18 @@
     }
 
     &__name {
-        font-size: 30px;
+        font-size: calc(30px + #{$lg-font-size});
         font-family: $font-primary;
         font-weight: 700;
         color: $color-primary;
+        @media only screen and (max-width: 1500px) {
+            font-size: 30px;
+        }
         @media only screen and (max-width: 1200px) {
-            font-size: calc(30px - #{$tab-font-size});
+            font-size: calc(30px - #{$tab-font-size2});
         }
 
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             font-size: calc(30px + #{$tab-font-size});
         }
         @media only screen and (max-width: 550px) {
@@ -180,14 +195,18 @@
     }
 
     &__profession {
-        font-size: 18px;
+        font-size: calc(18px + #{$lg-font-size});
         font-family: $font-primary;
         font-weight: 300;
         color: $color-primary;
-        @media only screen and (max-width: 1200px) {
-            font-size: calc(18px - #{$tab-font-size});
+
+        @media only screen and (max-width: 1500px) {
+            font-size: 18px;
         }
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1200px) {
+            font-size: calc(18px - #{$tab-font-size2});
+        }
+        @media only screen and (max-width: 1023px) {
             font-size: calc(18px + #{$tab-font-size});
         }
         @media only screen and (max-width: 550px) {
@@ -202,10 +221,10 @@
         grid-column-gap: 20px;
         align-items: center;
         @media only screen and (max-width: 1200px) {
-            grid-column-gap: calc(20px - #{$tab-font-size});
+            grid-column-gap: calc(20px - #{$tab-font-size2});
 
         }
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             grid-column-gap: calc(20px + #{$tab-font-size});
         }
         @media only screen and (max-width: 550px) {
@@ -220,16 +239,19 @@
         border: none;
         border-radius: 5px;
         padding: 10px 20px;
-        font-size: 13px;
+        font-size: calc(13px + #{$lg-font-size});
         font-weight: 600;
         cursor: pointer;
         font-family: $font-primary;
+        @media only screen and (max-width: 1500px) {
+            font-size: 13px;
+        }
         @media only screen and (max-width: 1200px) {
             padding: calc(10px - #{$tab-font-size2}) calc(20px - #{$tab-font-size2});
             font-size: calc(13px - #{$tab-font-size2});
 
         }
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             display: none;
         }
 
@@ -237,19 +259,24 @@
 
     &__logo-border {
         background-color: $color-white;
-        height: 50px;
-        width: 50px;
+        height: calc(50px + #{$lg-font-size});
+        width: calc(50px + #{$lg-font-size});
         border-radius: 50%;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         text-align: center;
         cursor: pointer;
+        @media only screen and (max-width: 1500px) {
+            height: 50px;
+            width: 50px;
+        }
+
         @media only screen and (max-width: 1200px) {
-            height: calc(50px - #{$tab-font-size});
-            width: calc(50px - #{$tab-font-size});
-            box-shadow: 0 calc(10px - #{$tab-font-size}) calc(30px - #{$tab-font-size}) rgba(0, 0, 0, 0.1);
+            height: calc(50px - #{$tab-font-size2});
+            width: calc(50px - #{$tab-font-size2});
+            box-shadow: 0 calc(10px - #{$tab-font-size2}) calc(30px - #{$tab-font-size2}) rgba(0, 0, 0, 0.1);
 
         }
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             height: calc(50px + #{$tab-font-size});
             width: calc(50px + #{$tab-font-size});
             box-shadow: 0 calc(10px + #{$tab-font-size}) calc(30px + #{$tab-font-size}) rgba(0, 0, 0, 0.1);
@@ -265,16 +292,21 @@
 
     &__logo {
         margin-top: 15px;
-        height: 20px;
-        width: 20px;
+        height: calc(20px + #{$lg-font-size});
+        width: calc(20px + #{$lg-font-size});
         margin-left: 15px;
+        @media only screen and (max-width: 1500px) {
+            height: 20px;
+            width: 20px;
+        }
+
         @media only screen and (max-width: 1200px) {
-            margin-top: calc(15px - #{$tab-font-size2});
+
             height: calc(20px - #{$tab-font-size2});
             width: calc(20px - #{$tab-font-size2});
-            margin-left: calc(15px - #{$tab-font-size2});
+
         }
-        @media only screen and (max-width: 900px) {
+        @media only screen and (max-width: 1023px) {
             margin-top: calc(15px + #{$tab-font-size2});
             height: calc(20px + #{$tab-font-size2});
             width: calc(20px + #{$tab-font-size2});
@@ -299,7 +331,7 @@
     background-color: $color-white;
     position: relative;
 
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1023px) {
         display: none;
         visibility: hidden;
     }
@@ -316,13 +348,17 @@
     }
 
     &__interview {
-        font-size: 25px;
+        font-size: calc(25px + #{$lg-font-size});
         font-family: $font-primary;
         color: $color-primary;
         margin-right: 50px;
+        @media only screen and (max-width: 1500px) {
+            font-size: 25px;
+        }
+
         @media only screen and (max-width: 1200px) {
-            font-size: calc(25px - #{$tab-font-size});
-            margin-right: calc(50px - #{$tab-font-size});
+            font-size: calc(25px - #{$tab-font-size2});
+            margin-right: calc(50px - #{$tab-font-size2});
 
         }
 
@@ -330,7 +366,7 @@
 
     &__audio {
         padding: 10px 20px;
-        font-size: 15px;
+        font-size: calc(15px + #{$lg-font-size});
         color: $color-primary;
         font-weight: 700;
         background-color: $button-color;
@@ -340,6 +376,10 @@
         margin-right: 40px;
         display: flex;
         align-items: center;
+        @media only screen and (max-width: 1500px) {
+            font-size: 15px;
+        }
+
         @media only screen and (max-width: 1200px) {
             padding: calc(10px - #{$tab-font-size2}) calc(20px - #{$tab-font-size2});
             font-size: calc(15px - #{$tab-font-size2});
@@ -347,10 +387,18 @@
         }
 
         img {
-            height: 13px;
-            width: 13px;
+
+            height: calc(13px + #{$lg-font-size});
+            width: calc(13px + #{$lg-font-size});
+            margin-left: 10px;
+            @media only screen and (max-width: 1500px) {
+                height: 13px;
+                width: 13px;
+                margin-left: 5px;
+            }
+
             @media only screen and (max-width: 1200px) {
-                height: calc(13px - #{$tab-font-size2}) calc(13px - #{$tab-font-size2});
+                height: calc(13px - #{$tab-font-size2});
                 width: calc(13px - #{$tab-font-size2});
             }
 
@@ -359,7 +407,7 @@
 
     &__video {
         padding: 10px 20px;
-        font-size: 15px;
+        font-size: calc(15px + #{$lg-font-size});
         color: $color-primary;
         font-weight: 700;
         background-color: $button-color;
@@ -368,15 +416,24 @@
         text-align: center;
         display: flex;
         align-items: center;
+        @media only screen and (max-width: 1500px) {
+            font-size: 15px;
+        }
         @media only screen and (max-width: 1200px) {
             padding: calc(10px - #{$tab-font-size2}) calc(20px - #{$tab-font-size2});
             font-size: calc(15px - #{$tab-font-size2});
         }
 
         img {
-            height: 15px;
-            width: 15px;
-            margin-top: 2px;
+
+            height: calc(13px + #{$lg-font-size});
+            width: calc(13px + #{$lg-font-size});
+            margin-left: 10px;
+            @media only screen and (max-width: 1500px) {
+                height: 13px;
+                width: 13px;
+                margin-left: 5px;
+            }
             @media only screen and (max-width: 1200px) {
                 height: calc(15px - #{$tab-font-size2});
                 width: calc(15px - #{$tab-font-size2});
@@ -385,43 +442,57 @@
     }
 
     &__hourly {
-        font-size: 30px;
+        font-size: calc(30px + #{$lg-font-size});
         color: $color-primary;
         font-weight: 700;
         margin-right: 70px;
         font-family: $font-display;
+        @media only screen and (max-width: 1500px) {
+            font-size: 30px;
+        }
+
         @media only screen and (max-width: 1200px) {
-            font-size: calc(30px - #{$tab-font-size});
-            margin-right: calc(70px - #{$tab-font-size});
+            font-size: calc(30px - #{$tab-font-size2});
+            margin-right: calc(70px - #{$tab-font-size2});
 
         }
 
         span {
-            font-size: 25px;
+            font-size: calc(25px + #{$lg-font-size});
             font-weight: 300;
             font-family: $font-display;
+            @media only screen and (max-width: 1500px) {
+                font-size: 25px;
+            }
+
             @media only screen and (max-width: 1200px) {
-                font-size: calc(25px - #{$tab-font-size});
+                font-size: calc(25px - #{$tab-font-size2});
             }
         }
     }
 
     &__weekly {
-        font-size: 30px;
+        font-size: calc(30px + #{$lg-font-size});
         color: $color-primary;
         font-weight: 700;
         justify-items: flex-end;
         font-family: $font-display;
+        @media only screen and (max-width: 1500px) {
+            font-size: 30px;
+        }
         @media only screen and (max-width: 1200px) {
-            font-size: calc(30px - #{$tab-font-size});
+            font-size: calc(30px - #{$tab-font-size2});
         }
 
         span {
-            font-size: 25px;
+            font-size: calc(25px + #{$lg-font-size});
             font-weight: 300;
             font-family: $font-display;
+            @media only screen and (max-width: 1500px) {
+                font-size: 25px;
+            }
             @media only screen and (max-width: 1200px) {
-                font-size: calc(25px - #{$tab-font-size});
+                font-size: calc(25px - #{$tab-font-size2});
             }
 
         }
@@ -432,7 +503,7 @@
 .line {
     display: flex;
     justify-content: space-between;
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1023px) {
         display: none;
         visibility: hidden;
     }
@@ -442,51 +513,35 @@
         height: 10px;
         width: 400px;
         background-color: #e99065;
-        margin-right: 100px;
+        margin-right: 190px;
         border-radius: 10px;
-        margin-top: -24px;
+        margin-top: -30px;
+        box-shadow: -2px 1rem 7rem 20px rgb(233, 144, 101);
+        @media only screen and (max-width: 1500px) {
+            margin-right: 100px;
+        }
+
         @media only screen and (max-width: 1200px) {
             height: calc(10px + #{$tab-font-size2});
             width: calc(400px - 100px);
             margin-right: calc(100px - #{$tab-font-size2});
             border-radius: calc(10px - #{$tab-font-size2});
-            margin-top: calc(-24px - #{$tab-font-size2});
+            margin-top: -35px;
         }
 
     }
 }
 
-.transparent-box1 {
 
-    height: 60px;
-    width: 98%;
-    margin-left: 20px;
-    margin-right: 40px;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    margin-top: -40px;
-    @media only screen and (max-width: 1200px) {
-        height: calc(60px - #{$tab-font-size});
-        margin-left: calc(20px - #{$tab-font-size});
-        margin-right: calc(40px - #{$tab-font-size});
-        margin-top: calc(-40px - #{$tab-font-size});
-    }
-    @media only screen and (max-width: 900px) {
-        display: none;
-        visibility: hidden;
-    }
-
-}
 
 .mobile-header {
 
     display: none;
     visibility: hidden;
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1023px) {
         margin: -85px 15px 0 10px;
         background-color: $color-white;
-        padding: 20px 20px;
+        padding: 20px 20px 50px 20px;
         display: flex;
         justify-content: center;
         border-radius: 20px;
