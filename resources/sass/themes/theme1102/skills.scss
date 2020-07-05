@@ -12,7 +12,7 @@ $tab-font-size2: 3px;
         padding: calc(60px - #{$tab-font-size1}) calc(100px - #{$tab-font-size1}) calc(100px - #{$tab-font-size1}) calc(60px - #{$tab-font-size1});
         border-radius: calc(40px - #{$tab-font-size1});
     }
-    @media only screen and (max-width: 900px) {
+    @media only screen and (max-width: 1023px) {
         margin: 0 calc(100px / 2);
         padding: calc(60px / 2) calc(100px / 2) calc(100px / 2) calc(60px / 2);
         border-radius: calc(40px - #{$tab-font-size2});
@@ -57,7 +57,9 @@ $tab-font-size2: 3px;
     }
 
     &__progress {
-        border: 3px solid #9d440e;
+        height: 10px;
+        background-color: #9d440e;
+        border-radius: 5px;
         margin-top: 5px;
 
 
@@ -106,7 +108,9 @@ $tab-font-size2: 3px;
     @media only screen and (max-width: 550px) {
         font-size: 10px !important;
     }
-
+    @media only screen and (max-width: 365px) {
+        font-size: 7px !important;
+    }
 
 }
 
@@ -124,11 +128,14 @@ $tab-font-size2: 3px;
     @media only screen and (max-width: 550px) {
         font-size: 10px !important;
     }
+    @media only screen and (max-width: 365px) {
+        font-size: 7px !important;
+    }
 
 }
 
 .v-tab--active {
-    .tab-item__text {
+    .tab-item {
         color: #9d440e !important;
         font-family: 'Poppins', sans-serif !important;
         text-decoration: none !important;
@@ -136,13 +143,15 @@ $tab-font-size2: 3px;
         font-size: 30px !important;
         font-weight: 900 !important;
         text-transform: none !important;
-        transform: scale(1.3);
-        max-width: 20px !important;
         @media only screen and (max-width: 1380px) {
             font-size: calc(30px - #{$tab-font-size}) !important;
         }
         @media only screen and (max-width: 550px) {
-            font-size: 15px !important;
+            font-size: 13px !important;
+
+        }
+        @media only screen and (max-width: 365px) {
+            font-size: 10px !important;
 
         }
     }

@@ -19,7 +19,7 @@
                 <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
               </v-btn>
             </template>
-            <button class="dropdown-icon icon" slot="append">
+            <button class="dropdown-icon icon" slot="append" style="margin-top:2px;">
               <svg-vue :icon="`dropdown-caret`"></svg-vue>
             </button>
           </v-select>
@@ -75,7 +75,15 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class="col-theme-preview ml-xl-n12">
+        <v-col
+          xl="9"
+          lg="9"
+          md="12"
+          sm="12"
+          cols="12"
+          align="left"
+          class="col-theme-preview ml-xl-n12"
+        >
           <!-- tab bar -->
           <v-tabs class="resume-builder__tab-bar" hide-slider>
             <v-tab class="resume-builder__tab">Choose Theme</v-tab>
@@ -92,6 +100,8 @@
                   class="theme-img"
                   :class="selectedTheme == i ? 'selected-theme':''"
                   @click="selectTheme(i)"
+                  width="417"
+                  height="303"
                 />
               </v-col>
             </v-row>
@@ -99,6 +109,21 @@
           <v-card flat tile color="transparent"></v-card>
         </v-col>
       </v-row>
+      <v-dialog
+        v-model="viewThemeModal"
+        class="view-theme-modal"
+        max-width="964"
+        max-height="678"
+        style="border-radius:10px;"
+      >
+        <v-card class="view-theme-modal-card">
+          <img
+            src="/images/new_resume_builder/themes-wrapper.svg"
+            alt="themes"
+            class="theme-img-modal"
+          />
+        </v-card>
+      </v-dialog>
     </v-container>
   </v-app>
 </template>
@@ -108,6 +133,7 @@ export default {
   name: "ViewCV",
   data() {
     return {
+      viewThemeModal: false,
       themeTab: 0,
       selectedTheme: 1,
       windowWidth: window.innerWidth,
@@ -237,6 +263,7 @@ export default {
     },
     selectTheme(index) {
       this.selectedTheme = index;
+      this.viewThemeModal = true;
     },
     getThemesList() {
       axios
@@ -268,7 +295,29 @@ export default {
 <style scoped lang="scss">
 @import "../../../../sass/media-queries";
 $mainBlue: #001ce2;
-.resume-builder__tab{
+.view-theme-modal {
+  border-radius: 5px;
+  border: 1px solid #888db1;
+  width: 964px;
+  max-width: 964px;
+  @media screen and (max-width: 1903px){
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+
+  .view-theme-modal-card {
+    border: 1px solid #888db1;
+    border-radius: 5px;
+    .theme-img-modal {
+      width: 964px;
+      height: 678px;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 80%;
+      }
+    }
+  }
+}
+.resume-builder__tab {
   font-family: "Noto Sans" !important;
   font-size: 18px !important;
   line-height: 25px;
@@ -407,12 +456,11 @@ $mainBlue: #001ce2;
   background: #001ce2 !important;
   border-radius: 10px 0px 0px 10px !important;
 }
-
 </style>
 <style lang="scss">
-  .civie-input.custom-border-radius {
-    .v-input__slot fieldset {
-      border-radius: 5px !important;
-    }
+.civie-input.custom-border-radius {
+  .v-input__slot fieldset {
+    border-radius: 5px !important;
   }
+}
 </style>

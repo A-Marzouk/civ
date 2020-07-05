@@ -82,7 +82,7 @@
 
           <div class="col-12 d-flex flex-column">
             <div>
-              <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveAchievement">
+              <v-btn class="resume-builder__btn civie-btn filled ml-n2" raised @click="saveAchievement">
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 

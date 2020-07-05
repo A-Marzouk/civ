@@ -15,7 +15,12 @@
                   color="#001CE2"
                   v-model="reference.type"
                 >
-                  <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                  <button
+                    class="dropdown-icon icon ml-4"
+                    slot="append"
+                    @click="toggleSelect"
+                    style="margin-top:6px;"
+                  >
                     <svg-vue :icon="`dropdown-caret`"></svg-vue>
                   </button>
                 </v-select>
@@ -342,6 +347,7 @@ $mainBlue: #001ce2;
     height: 50px !important;
     font-size: 18px !important;
     font-weight: 500;
+    box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
     @media screen and (max-width: 599px) {
       width: 100px !important;
       height: 40px !important;

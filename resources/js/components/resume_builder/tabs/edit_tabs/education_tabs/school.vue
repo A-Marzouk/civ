@@ -81,7 +81,7 @@
                         label="Education Type"
                 >
                     <button
-                            class="dropdown-icon icon" @click.prevent
+                            class="dropdown-icon icon ml-4" @click.prevent
                             slot="append"
                     >
                         <svg-vue

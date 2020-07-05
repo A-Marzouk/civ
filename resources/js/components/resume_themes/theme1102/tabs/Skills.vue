@@ -8,41 +8,15 @@
             center-active
             centered
             hide-slider
-            height="50"
+            height="80"
             class="main-tabs"
         >
             <v-tab
 
             >
                 <div class="tab-item">
-                            <span class="tab-item__text">
-                               programming
-                            </span>
-                </div>
-            </v-tab>
-            <v-tab
-
-            >
-                <div class="tab-item">
-                            <span class="tab-item__text">
-                              FrameWorks
-                            </span>
-
-                </div>
-            </v-tab>
-            <v-tab
-
-            >
-                <div class="tab-item">
-                            <span class="tab-item__text">
-                                Design Skills
-                            </span>
-                    <div class="round">
-                        <div class="round__first">
-                            <div class="round__second">
-
-                            </div>
-                        </div>
+                    <div class="tab-item__text">
+                        Programing Languages
                     </div>
                 </div>
             </v-tab>
@@ -50,15 +24,30 @@
 
             >
                 <div class="tab-item">
-                            <span class="tab-item__text">
-                                Software
-                            </span>
-                    <div class="round1">
-                        <div class="round1__first">
-                            <div class="round1__second">
+                    <div class="tab-item__text">
+                        FrameWorks/
+                    </div>
+                    <div class="tab-item__text">
+                        Database
+                    </div>
+                </div>
+            </v-tab>
+            <v-tab
 
-                            </div>
-                        </div>
+            >
+                <div class="tab-item">
+
+                    <div class="tab-item__text">
+                                Design Skills
+                </div>
+                </div>
+            </v-tab>
+            <v-tab
+                class="tab-item"
+            >
+                <div class="tab-item">
+                    <div class="tab-item__text">
+                                Software
                     </div>
                 </div>
             </v-tab>
