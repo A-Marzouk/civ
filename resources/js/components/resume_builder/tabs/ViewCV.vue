@@ -102,6 +102,20 @@
             </v-row>
           </v-card>
           <v-card flat tile color="transparent"></v-card>
+
+          <div class="cv-content-preview-wrapper">
+            <div class="cv-content-preview">
+              <div class="cv-preview-link">
+                <a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
+              </div>
+              <div class="cv-preview-theme-wrapper">
+                <div class="cv-preview-theme">
+                  <user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </v-col>
       </v-row>
       <v-dialog
@@ -126,12 +140,15 @@
 <script>
 export default {
   name: "ViewCV",
-  components: {},
+  components: {
+    "user-theme": () => import(/* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index")
+  },
   data() {
     return {
       viewThemeModal: false,
       themeTab: 0,
       selectedTheme: 1,
+      currentThemeComponent: 'resumeTheme201',
       windowWidth: window.innerWidth,
       disabledInput: false,
       availableThemes: [],
@@ -443,6 +460,83 @@ $mainBlue: #001ce2;
     height: 80vh;
   }
 }
+
+.cv-content-preview-wrapper {
+  margin-right: -10px;
+  margin-left: -10px;
+  overflow-y: scroll;
+  margin-top: 40px;
+  padding: 10px;
+  max-height: 600px;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 0;
+    background: #e5e5e5;
+    border-radius: 5px 0 0 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #001ce2;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .cv-content-preview {
+    .cv-preview-link {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      padding-left: 25px;
+      border: 1px solid #e6e8fc;
+
+      a {
+        color: #888db1;
+        font-family: "Roboto", "sans-serif";
+        font-size: 20px;
+        line-height: 22px;
+
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+
+    .cv-preview-theme-wrapper {
+      .cv-preview-theme {
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          height: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          height: 0;
+        }
+      }
+    }
+  }
+
+  @include gt-xs {
+    padding: 10px;
+    padding-right: 20px;
+    max-width: unset;
+    margin-left: -10px;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      border-radius: 10px 0 0 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px 0 0 10px;
+    }
+  }
+}
+
 </style>
 <style>
 #resumeBuilder .v-tabs-slider-wrapper {
