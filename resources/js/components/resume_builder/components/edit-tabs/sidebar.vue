@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <div class="sidebar-container ml-md-5 ml-sm-0 ml-0">
+    <div class="sidebar-container ml-md-5 ml-sm-0 ml-1">
       <div class="sidebar-link-activator">
         <a href="#" @click.prevent="open=!open" class="activator-preview-link">
           <div
