@@ -91,7 +91,7 @@
                         </div>
 
                         <div>
-                            <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveProject">
+                            <v-btn class="resume-builder__btn civie-btn filled ml-n2" raised @click="saveProject">
                                 {{editedProject.id !== '' ? 'Update' : 'Add New'}}
                             </v-btn>
 

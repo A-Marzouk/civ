@@ -1,161 +1,139 @@
 <template>
-    <div class="portfolio__slide">
-        <portfolio__mobile></portfolio__mobile>
-        <v-slide-group
-            id="slide__portfolio"
-            v-model="model"
-            center-active
-            show-arrows
-            class="pa-4"
-            prev-icon="arrow_back"
-            next-icon="arrow_forward"
-        >
+    <div class="portfolio">
+        <template v-if="inSmallScreen">
+            <div class="project-wrapper" v-for="project in projects" :key="project.id">
+                <ItemView :thumbnail="project.thumbnail"/>
+            </div>
+        </template>
 
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/1.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/2.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/3.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/1.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/2.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/3.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/1.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/2.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/3.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/1.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/2.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-            <v-slide-item
-
-            >
-                <img class="portfolio__image" src="/images/resume_themes/theme1102/portfolio/3.jpg"
-                     alt="portfolio image">
-
-            </v-slide-item>
-
-
-        </v-slide-group>
-
-
+        <SimpleCarousel v-else :items="projects"/>
     </div>
 </template>
 
 <script>
-    import portfolio__mobile from "./portfolio__mobile"
+    import ItemView from "./../components/portfolio/ItemView";
+    import SimpleCarousel from "./../components/portfolio/SimpleCarousel";
 
     export default {
-        components:{portfolio__mobile},
-        data: () => {
+        name: "Portfolio",
+
+        components: {ItemView, SimpleCarousel},
+
+        data() {
             return {
-                model: null,
+                inSmallScreen: true,
+
+                projects: [
+                    {
+                        id: 1,
+                        thumbnail: "/images/resume_themes/theme1102/portfolio/1.jpg",
+
+                    },
+                    {
+                        id: 2,
+                        thumbnail: "/images/resume_themes/theme1102/portfolio/2.jpg",
+
+                    },
+                    {
+                        id: 3,
+                        thumbnail: "/images/resume_themes/theme1102/portfolio/3.jpg",
+
+                    },
+                    {
+                        id: 4,
+                        thumbnail: "/images/resume_themes/theme1102/portfolio/1.jpg",
+
+                    },
+                    {
+                        id: 5,
+                        thumbnail: "/images/resume_themes/theme1102/portfolio/2.jpg",
+
+                    },
+                    {
+                        id: 6,
+                        thumbnail: "/images/resume_themes/theme1102/portfolio/3.jpg",
+
+                    }
+                ]
             };
         },
 
+        methods: {
+            onResize() {
+                this.inSmallScreen = window.outerWidth < 1024;
+                this.$forceUpdate();
+            }
+        },
 
+        mounted() {
+            this.onResize();
+            window.addEventListener("resize", this.onResize);
+        },
+
+        beforeDestroy() {
+            window.removeEventListener("resize", this.onResize);
+        }
     };
 </script>
 
-<style lang="scss">
-    .portfolio__slide {
-        #slide__portfolio {
-            @media only screen and (max-width: 700px) {
-                display: none;
-                visibility: hidden;
-            }
+<style lang="scss" scoped>
+    @import "./../scss/variables";
 
-            .portfolio {
-                &__image {
-                    height: 400px;
-                    width: 300px;
-                    margin: 0 70px;
-                    border-radius: 15px;
-                    @media only screen and (max-width: 900px) {
-                        margin: 0 15px;
+    .portfolio {
+        max-width: $sm;
+        margin-left: auto;
+        margin-right: auto;
 
-                    }
-                    @media only screen and (max-width: 783px) {
-                        margin: 0 30px;
-                        height: 350px;
-                        width: 250px;
+        .project-wrapper {
+            display: flex;
+            justify-content: center;
+            padding-top: 13px;
+            padding-bottom: 13px;
+        }
+    }
 
-                    }
+    @media (min-width: $sm) {
+        .portfolio {
+            max-width: $sm;
+        }
+    }
 
-                }
+    @media (min-width: $md) {
+        .portfolio {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 12px;
+            max-width: $md;
+
+            .project-wrapper {
+                width: 50%;
+                padding-top: 15px;
+                padding-bottom: 15px;
             }
         }
     }
 
-    #slide__portfolio {
+    @media (min-width: $lg) {
+        .portfolio {
+            max-width: $lg;
+        }
+    }
 
+    @media (min-width: $semi-lg) {
+        .portfolio {
+            max-width: $semi-lg;
+        }
+    }
 
-        .theme--light.v-icon {
-            color: #9d440e;
-            padding: 10px 10px;
-            background-color: white;
-            border-radius: 50%;
+    @media (min-width: $xl) {
+        .portfolio {
+            max-width: $xl;
+        }
+    }
+
+    @media (min-width: $xxl) {
+        .portfolio {
+            max-width: $xxl;
         }
     }
 </style>

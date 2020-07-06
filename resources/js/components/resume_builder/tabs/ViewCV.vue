@@ -19,7 +19,7 @@
                 <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
               </v-btn>
             </template>
-            <button class="dropdown-icon icon" slot="append">
+            <button class="dropdown-icon icon" slot="append" style="margin-top:2px;">
               <svg-vue :icon="`dropdown-caret`"></svg-vue>
             </button>
           </v-select>
@@ -75,30 +75,102 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class="col-theme-preview ml-xl-n12">
-          <!-- tab bar -->
-          <v-tabs class="resume-builder__tab-bar" hide-slider>
-            <v-tab class="resume-builder__tab">Choose Theme</v-tab>
-            <v-tab class="resume-builder__tab">View your theme</v-tab>
-          </v-tabs>
+        <v-col
+          xl="9"
+          lg="9"
+          md="12"
+          sm="12"
+          cols="12"
+          align="left"
+          class="col-theme-preview ml-xl-n12"
+        >
           <!-- tab bar -->
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
-            <v-row align="center">
-              <v-col md="4" sm="4" cols="6" v-for="i in 12" :key="i">
-                <img
-                  src="/images/new_resume_builder/themes-wrapper.svg"
-                  alt="themes"
-                  class="theme-img"
-                  :class="selectedTheme == i ? 'selected-theme':''"
-                  @click="selectTheme(i)"
-                />
+            <v-row align="center" v-if="user.theme">
+              <v-col md="4" sm="4" cols="6" v-for="theme in availableThemes" :key="theme.id">
+                <v-hover>
+                  <template v-slot:default="{ hover }">
+                    <v-card class="card-theme-holder" flat color="transparent">
+                      <v-row justify="center">
+                        <img :src="theme.image" alt="themes" class @click="activateTheme(theme.id)" />
+                        <v-fade-transition>
+                          <v-overlay
+                            v-if="hover"
+                            absolute
+                            color="#ffffff"
+                            opacity="0.5"
+                            class="custom-overlay"
+                          >
+                            <v-btn color="#001CE2" absolute class="btn-activate">
+                              Activate
+                              <img src="/icons/check.svg" />
+                            </v-btn>
+                            <v-row>
+                              <v-col cols="12" align="center">
+                                <v-btn color="#001CE2" class="btn-my-data mb-n3" outlined depressed>
+                                  Play Video
+                                  <img src="/icons/youtube.svg" />
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="12" align="center">
+                                <v-btn color="#001CE2" class="btn-my-data mb-n3" outlined depressed>
+                                  My Data
+                                  <img src="/icons/eye-icon-blue.svg" />
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="12" align="center">
+                                <v-btn color="#001CE2" class="btn-preview-data" depressed>
+                                  Preview Data
+                                  <img src="/icons/eye-icon-white.svg" />
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </v-overlay>
+                        </v-fade-transition>
+                      </v-row>
+                    </v-card>
+                  </template>
+                </v-hover>
               </v-col>
             </v-row>
           </v-card>
           <v-card flat tile color="transparent"></v-card>
+
+          <div class="cv-content-preview-wrapper">
+            <div class="cv-content-preview">
+              <div class="cv-preview-link">
+                <a
+                  v-if="user.username"
+                  :href="`https://civ.ie/${user.username}`"
+                  target="_blank"
+                  v-text="`https://civ.ie/${user.username}`"
+                ></a>
+              </div>
+              <div class="cv-preview-theme-wrapper">
+                <div class="cv-preview-theme">
+                  <user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+                </div>
+              </div>
+            </div>
+          </div>
         </v-col>
       </v-row>
+      <v-dialog
+        v-model="viewThemeModal"
+        class="view-theme-modal"
+        max-width="964"
+        max-height="678"
+        style="border-radius:10px;"
+      >
+        <v-card class="view-theme-modal-card">
+          <img
+            src="/images/new_resume_builder/themes-wrapper.svg"
+            alt="themes"
+            class="theme-img-modal"
+          />
+        </v-card>
+      </v-dialog>
     </v-container>
   </v-app>
 </template>
@@ -106,10 +178,19 @@
 <script>
 export default {
   name: "ViewCV",
+  components: {
+    "user-theme": () =>
+      import(
+        /* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index"
+      )
+  },
   data() {
     return {
+      overlay: false,
+      viewThemeModal: false,
       themeTab: 0,
       selectedTheme: 1,
+      currentThemeComponent: "resumeTheme201",
       windowWidth: window.innerWidth,
       disabledInput: false,
       availableThemes: [],
@@ -237,6 +318,7 @@ export default {
     },
     selectTheme(index) {
       this.selectedTheme = index;
+      this.viewThemeModal = true;
     },
     getThemesList() {
       axios
@@ -268,7 +350,29 @@ export default {
 <style scoped lang="scss">
 @import "../../../../sass/media-queries";
 $mainBlue: #001ce2;
-.resume-builder__tab{
+.view-theme-modal {
+  border-radius: 5px;
+  border: 1px solid #888db1;
+  width: 964px;
+  max-width: 964px;
+  @media screen and (max-width: 1903px) {
+    width: 50% !important;
+    max-width: 50% !important;
+  }
+
+  .view-theme-modal-card {
+    border: 1px solid #888db1;
+    border-radius: 5px;
+    .theme-img-modal {
+      width: 964px;
+      height: 678px;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 80%;
+      }
+    }
+  }
+}
+.resume-builder__tab {
   font-family: "Noto Sans" !important;
   font-size: 18px !important;
   line-height: 25px;
@@ -368,6 +472,69 @@ $mainBlue: #001ce2;
       font-size: 13px;
     }
   }
+  .card-theme-holder {
+    max-width: 417px;
+    max-height: 302.56px;
+    img {
+      max-width: 100%;
+      min-height: 100%;
+      width: 95%;
+    }
+    .custom-overlay {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #888db1 !important;
+      border-radius: 5px !important;
+    }
+    .btn-preview-data {
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      img {
+        margin-left: 5px;
+      }
+    }
+    .btn-my-data {
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      color: #001ce2 !important;
+      img {
+        margin-left: 5px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+    .btn-activate {
+      top:-73px;
+      right:-3px;
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      img {
+        margin-left: 5px;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
   .theme-img {
     img {
       width: 417px !important;
@@ -383,6 +550,7 @@ $mainBlue: #001ce2;
     }
     border-radius: 0px !important;
   }
+
   .selected-theme {
     border: 3px solid #001ce2;
   }
@@ -390,10 +558,85 @@ $mainBlue: #001ce2;
 
 #previewModalContainer {
   width: 80%;
-
   iframe {
     width: 100%;
     height: 80vh;
+  }
+}
+
+.cv-content-preview-wrapper {
+  margin-right: -10px;
+  margin-left: -10px;
+  overflow-y: scroll;
+  margin-top: 40px;
+  padding: 10px;
+  max-height: 600px;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 0;
+    background: #e5e5e5;
+    border-radius: 5px 0 0 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #001ce2;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .cv-content-preview {
+    .cv-preview-link {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      padding-left: 25px;
+      border: 1px solid #e6e8fc;
+
+      a {
+        color: #888db1;
+        font-family: "Roboto", "sans-serif";
+        font-size: 20px;
+        line-height: 22px;
+
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+
+    .cv-preview-theme-wrapper {
+      .cv-preview-theme {
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          height: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          height: 0;
+        }
+      }
+    }
+  }
+
+  @include gt-xs {
+    padding: 10px;
+    padding-right: 20px;
+    max-width: unset;
+    margin-left: -10px;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      border-radius: 10px 0 0 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px 0 0 10px;
+    }
   }
 }
 </style>
@@ -407,12 +650,11 @@ $mainBlue: #001ce2;
   background: #001ce2 !important;
   border-radius: 10px 0px 0px 10px !important;
 }
-
 </style>
 <style lang="scss">
-  .civie-input.custom-border-radius {
-    .v-input__slot fieldset {
-      border-radius: 5px !important;
-    }
+.civie-input.custom-border-radius {
+  .v-input__slot fieldset {
+    border-radius: 5px !important;
   }
+}
 </style>
