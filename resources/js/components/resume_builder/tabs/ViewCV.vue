@@ -126,9 +126,7 @@
 <script>
 export default {
   name: "ViewCV",
-  components: {
-
-  },
+  components: {},
   data() {
     return {
       viewThemeModal: false,
@@ -298,7 +296,7 @@ $mainBlue: #001ce2;
   border: 1px solid #888db1;
   width: 964px;
   max-width: 964px;
-  @media screen and (max-width: 1903px){
+  @media screen and (max-width: 1903px) {
     width: 50% !important;
     max-width: 50% !important;
   }
@@ -429,6 +427,9 @@ $mainBlue: #001ce2;
       }
     }
     border-radius: 0px !important;
+  }
+  .theme-img:hover {
+    border: 3px solid #001ce2;
   }
   .selected-theme {
     border: 3px solid #001ce2;
