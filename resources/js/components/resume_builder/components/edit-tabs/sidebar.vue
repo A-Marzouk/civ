@@ -1,6 +1,6 @@
 <template>
   <aside class="sidebar">
-    <div class="sidebar-container ml-md-0 ml-sm-4 ml-0">
+    <div class="sidebar-container ml-md-5 ml-sm-0 ml-1">
       <div class="sidebar-link-activator">
         <a href="#" @click.prevent="open=!open" class="activator-preview-link">
           <div
@@ -261,10 +261,7 @@ export default {
     max-width: 350px;
     margin-left: auto;
     margin-right: auto;
-    @media screen and (max-width: 599px) {
-      margin-left: -5px;
-      margin-right: auto;
-    }
+    
 
     .sidebar-links,
     .sidebar-link-activator {
@@ -394,8 +391,8 @@ export default {
     margin-top: unset;
 
     .sidebar-container {
-      margin-left: unset;
-      margin-right: unset;
+      // margin-left: unset;
+      // margin-right: unset;
       padding-left: unset;
       padding-right: unset;
     }

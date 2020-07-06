@@ -360,6 +360,9 @@
                 font-size: 18px;
                 line-height: 25px;
                 color: #888db1 !important;
+                @media screen and (min-width:1264px) and (max-width:1440px){
+                    font-size: 14px;
+                }
                 @media screen and (min-width: 600px) and (max-width: 767px) {
                     font-size: 14px;
                 }
