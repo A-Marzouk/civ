@@ -488,6 +488,8 @@ $mainBlue: #001ce2;
       max-height: 302.56px;
       height: 302.56px;
       width: 95%;
+      border: 1px solid #888DB1;
+      border-radius:5px;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
         width: 274px;
         height: 200px;
