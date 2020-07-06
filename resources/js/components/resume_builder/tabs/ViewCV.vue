@@ -102,6 +102,10 @@
                             opacity="0.5"
                             class="custom-overlay"
                           >
+                            <v-btn color="#001CE2" absolute class="btn-activate">
+                              Activate
+                              <img src="/icons/check.svg" />
+                            </v-btn>
                             <v-row>
                               <v-col cols="12" align="center">
                                 <v-btn color="#001CE2" class="btn-my-data mb-n3" outlined depressed>
@@ -136,7 +140,12 @@
           <div class="cv-content-preview-wrapper">
             <div class="cv-content-preview">
               <div class="cv-preview-link">
-                <a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
+                <a
+                  v-if="user.username"
+                  :href="`https://civ.ie/${user.username}`"
+                  target="_blank"
+                  v-text="`https://civ.ie/${user.username}`"
+                ></a>
               </div>
               <div class="cv-preview-theme-wrapper">
                 <div class="cv-preview-theme">
@@ -145,7 +154,6 @@
               </div>
             </div>
           </div>
-
         </v-col>
       </v-row>
       <v-dialog
@@ -171,7 +179,10 @@
 export default {
   name: "ViewCV",
   components: {
-    "user-theme": () => import(/* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index")
+    "user-theme": () =>
+      import(
+        /* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index"
+      )
   },
   data() {
     return {
@@ -179,7 +190,7 @@ export default {
       viewThemeModal: false,
       themeTab: 0,
       selectedTheme: 1,
-      currentThemeComponent: 'resumeTheme201',
+      currentThemeComponent: "resumeTheme201",
       windowWidth: window.innerWidth,
       disabledInput: false,
       availableThemes: [],
@@ -501,8 +512,26 @@ $mainBlue: #001ce2;
       color: #001ce2 !important;
       img {
         margin-left: 5px;
-        width:12px;
-        height:12px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+    .btn-activate {
+      top:-73px;
+      right:-3px;
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      img {
+        margin-left: 5px;
+        width: 10px;
+        height: 10px;
       }
     }
   }
@@ -610,7 +639,6 @@ $mainBlue: #001ce2;
     }
   }
 }
-
 </style>
 <style>
 #resumeBuilder .v-tabs-slider-wrapper {
