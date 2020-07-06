@@ -89,15 +89,49 @@
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
             <v-row align="center" v-if="user.theme">
               <v-col md="4" sm="4" cols="6" v-for="theme in availableThemes" :key="theme.id">
-                <img
-                  :src="theme.image"
-                  alt="themes"
-                  class="theme-img"
-                  :class="user.theme.id === theme.id ? 'selected-theme':''"
-                  @click="activateTheme(theme.id)"
-                  width="417"
-                  height="303"
-                />
+                <v-hover>
+                  <template v-slot:default="{ hover }">
+                    <v-card class="card-theme-holder" flat color="transparent">
+                      <v-row justify="center">
+                        <img :src="theme.image" alt="themes" class @click="activateTheme(theme.id)" />
+                        <v-fade-transition>
+                          <v-overlay
+                            v-if="hover"
+                            absolute
+                            color="#ffffff"
+                            opacity="0.5"
+                            class="custom-overlay"
+                          >
+                            <v-btn color="#001CE2" absolute class="btn-activate">
+                              Activate
+                              <img src="/icons/check.svg" />
+                            </v-btn>
+                            <v-row>
+                              <v-col cols="12" align="center">
+                                <v-btn color="#001CE2" class="btn-my-data mb-n3" outlined depressed>
+                                  Play Video
+                                  <img src="/icons/youtube.svg" />
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="12" align="center">
+                                <v-btn color="#001CE2" class="btn-my-data mb-n3" outlined depressed>
+                                  My Data
+                                  <img src="/icons/eye-icon-blue.svg" />
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="12" align="center">
+                                <v-btn color="#001CE2" class="btn-preview-data" depressed>
+                                  Preview Data
+                                  <img src="/icons/eye-icon-white.svg" />
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </v-overlay>
+                        </v-fade-transition>
+                      </v-row>
+                    </v-card>
+                  </template>
+                </v-hover>
               </v-col>
             </v-row>
           </v-card>
@@ -106,7 +140,12 @@
           <div class="cv-content-preview-wrapper">
             <div class="cv-content-preview">
               <div class="cv-preview-link">
-                <a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
+                <a
+                  v-if="user.username"
+                  :href="`https://civ.ie/${user.username}`"
+                  target="_blank"
+                  v-text="`https://civ.ie/${user.username}`"
+                ></a>
               </div>
               <div class="cv-preview-theme-wrapper">
                 <div class="cv-preview-theme">
@@ -115,7 +154,6 @@
               </div>
             </div>
           </div>
-
         </v-col>
       </v-row>
       <v-dialog
@@ -141,14 +179,18 @@
 export default {
   name: "ViewCV",
   components: {
-    "user-theme": () => import(/* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index")
+    "user-theme": () =>
+      import(
+        /* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index"
+      )
   },
   data() {
     return {
+      overlay: false,
       viewThemeModal: false,
       themeTab: 0,
       selectedTheme: 1,
-      currentThemeComponent: 'resumeTheme201',
+      currentThemeComponent: "resumeTheme201",
       windowWidth: window.innerWidth,
       disabledInput: false,
       availableThemes: [],
@@ -430,6 +472,69 @@ $mainBlue: #001ce2;
       font-size: 13px;
     }
   }
+  .card-theme-holder {
+    max-width: 417px;
+    max-height: 302.56px;
+    img {
+      max-width: 100%;
+      min-height: 100%;
+      width: 95%;
+    }
+    .custom-overlay {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #888db1 !important;
+      border-radius: 5px !important;
+    }
+    .btn-preview-data {
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      img {
+        margin-left: 5px;
+      }
+    }
+    .btn-my-data {
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      color: #001ce2 !important;
+      img {
+        margin-left: 5px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+    .btn-activate {
+      top:-73px;
+      right:-3px;
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      img {
+        margin-left: 5px;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
   .theme-img {
     img {
       width: 417px !important;
@@ -445,9 +550,7 @@ $mainBlue: #001ce2;
     }
     border-radius: 0px !important;
   }
-  .theme-img:hover {
-    border: 3px solid #001ce2;
-  }
+
   .selected-theme {
     border: 3px solid #001ce2;
   }
@@ -536,7 +639,6 @@ $mainBlue: #001ce2;
     }
   }
 }
-
 </style>
 <style>
 #resumeBuilder .v-tabs-slider-wrapper {
