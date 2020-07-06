@@ -1,5 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/app-vuetify.css": "/css/app-vuetify.css"
+    "/css/app-vuetify.css": "/css/app-vuetify.css",
+    "/userTheme11.js": "/userTheme11.js",
+    "/userCurrentTheme.js": "/userCurrentTheme.js",
+    "/userCurrentTheme12.js": "/userCurrentTheme12.js"
 }

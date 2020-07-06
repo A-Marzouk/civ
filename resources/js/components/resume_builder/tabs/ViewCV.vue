@@ -85,21 +85,16 @@
           class="col-theme-preview ml-xl-n12"
         >
           <!-- tab bar -->
-          <v-tabs class="resume-builder__tab-bar" hide-slider>
-            <v-tab class="resume-builder__tab">Choose Theme</v-tab>
-            <v-tab class="resume-builder__tab">View your theme</v-tab>
-          </v-tabs>
-          <!-- tab bar -->
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
-            <v-row align="center">
-              <v-col md="4" sm="4" cols="6" v-for="i in 12" :key="i">
+            <v-row align="center" v-if="user.theme">
+              <v-col md="4" sm="4" cols="6" v-for="theme in availableThemes" :key="theme.id">
                 <img
-                  src="/images/new_resume_builder/themes-wrapper.svg"
+                  :src="theme.image"
                   alt="themes"
                   class="theme-img"
-                  :class="selectedTheme == i ? 'selected-theme':''"
-                  @click="selectTheme(i)"
+                  :class="user.theme.id === theme.id ? 'selected-theme':''"
+                  @click="activateTheme(theme.id)"
                   width="417"
                   height="303"
                 />
@@ -131,6 +126,9 @@
 <script>
 export default {
   name: "ViewCV",
+  components: {
+
+  },
   data() {
     return {
       viewThemeModal: false,
