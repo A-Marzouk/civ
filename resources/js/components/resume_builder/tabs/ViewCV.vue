@@ -91,7 +91,7 @@
               <v-col md="4" sm="4" cols="6" v-for="theme in availableThemes" :key="theme.id">
                 <v-hover>
                   <template v-slot:default="{ hover }">
-                    <v-card class="card-theme-holder" flat color="transparent">
+                    <v-card class="card-theme-holder pa-0 ma-0" flat color="transparent">
                       <v-row justify="center">
                         <img :src="theme.image" alt="themes" class @click="activateTheme(theme.id)" />
                         <v-fade-transition>
@@ -475,10 +475,27 @@ $mainBlue: #001ce2;
   .card-theme-holder {
     max-width: 417px;
     max-height: 302.56px;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      width: 274px;
+      height: 200px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 1263px) {
+      width: 200px;
+      height: 145.11px;
+    }
     img {
-      max-width: 100%;
-      min-height: 100%;
+      max-width: 417px;
+      max-height: 302.56px;
+      height: 302.56px;
       width: 95%;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 274px;
+        height: 200px;
+      }
+      @media screen and (min-width: 768px) and (max-width: 1263px) {
+        width: 200px;
+        height: 145.11px;
+      }
     }
     .custom-overlay {
       background: rgba(255, 255, 255, 0.95);
@@ -495,8 +512,19 @@ $mainBlue: #001ce2;
       font-size: 12px;
       line-height: 12px;
       text-transform: capitalize !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
       img {
         margin-left: 5px;
+        width: 12px;
+        height: 12px;
+        @media screen and (min-width: 1264px) and (max-width: 1920px) {
+          width: 10px;
+          height: 10px;
+        }
       }
     }
     .btn-my-data {
@@ -510,15 +538,24 @@ $mainBlue: #001ce2;
       line-height: 12px;
       text-transform: capitalize !important;
       color: #001ce2 !important;
+      @media screen and (min-width: 1264px) and (max-width: 1920px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
       img {
         margin-left: 5px;
         width: 12px;
         height: 12px;
+        @media screen and (min-width: 1264px) and (max-width: 1903px) {
+          width: 10px;
+          height: 10px;
+        }
       }
     }
     .btn-activate {
-      top:-73px;
-      right:-3px;
+      top: -73px;
+      right: -3px;
       width: 120px;
       height: 35px;
       border-radius: 5px;
@@ -528,6 +565,13 @@ $mainBlue: #001ce2;
       font-size: 12px;
       line-height: 12px;
       text-transform: capitalize !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+        top: -28px;
+        right: 0;
+      }
       img {
         margin-left: 5px;
         width: 10px;
