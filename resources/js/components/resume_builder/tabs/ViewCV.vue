@@ -93,7 +93,12 @@
                   <template v-slot:default="{ hover }">
                     <v-card class="card-theme-holder pa-0 ma-0" flat color="transparent">
                       <v-row justify="center">
-                        <img :src="theme.image" alt="themes" class @click="activateTheme(theme.id)" />
+                        <img
+                          :src="theme.image"
+                          alt="themes"
+                          :class="theme.id == user.theme.id? 'active': ''"
+                          @click="activateTheme(theme.id)"
+                        />
                         <v-fade-transition>
                           <v-overlay
                             v-if="hover"
@@ -483,13 +488,16 @@ $mainBlue: #001ce2;
       width: 200px;
       height: 145.11px;
     }
+    .active {
+      border: 3px solid #001ce2;
+    }
     img {
       max-width: 417px;
       max-height: 302.56px;
       height: 302.56px;
       width: 95%;
-      border: 1px solid #888DB1;
-      border-radius:5px;
+      border: 1px solid #888db1;
+      border-radius: 5px;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
         width: 274px;
         height: 200px;
