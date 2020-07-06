@@ -531,7 +531,7 @@ $mainBlue: #001ce2;
         margin-left: 5px;
         width: 12px;
         height: 12px;
-        @media screen and (min-width: 1264px) and (max-width: 1920px) {
+        @media screen and (min-width: 1264px) and (max-width: 1903px) {
           width: 10px;
           height: 10px;
         }
@@ -548,7 +548,7 @@ $mainBlue: #001ce2;
       line-height: 12px;
       text-transform: capitalize !important;
       color: #001ce2 !important;
-      @media screen and (min-width: 1264px) and (max-width: 1920px) {
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
         font-size: 10px;
         width: 100px;
         height: 30px;
