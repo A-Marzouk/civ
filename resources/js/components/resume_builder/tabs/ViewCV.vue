@@ -116,7 +116,7 @@
                               <v-col cols="12" align="center">
                                 <v-btn
                                   color="#001CE2"
-                                  class="btn-my-data mb-xl-n5 mb-n6"
+                                  class="btn-my-data mb-xl-n4 mb-lg-n6 mb-md-n6 mb-sm-n12 mb-n5"
                                   outlined
                                   depressed
                                 >
@@ -127,7 +127,7 @@
                               <v-col cols="12" align="center">
                                 <v-btn
                                   color="#001CE2"
-                                  class="btn-my-data mb-xl-n4 mb-n5"
+                                  class="btn-my-data mb-xl-n4 mb-lg-n5 mb-md-n5 mb-sm-n6 mb-n5"
                                   outlined
                                   depressed
                                 >
@@ -495,7 +495,7 @@ $mainBlue: #001ce2;
       width: 274px;
       height: 200px;
     }
-    @media screen and (min-width: 768px) and (max-width: 959px) {
+    @media screen and (min-width: 600px) and (max-width: 959px) {
       width: 200px;
       height: 145.11px;
     }
@@ -516,7 +516,7 @@ $mainBlue: #001ce2;
         width: 274px;
         height: 200px;
       }
-      @media screen and (min-width: 768px) and (max-width: 959px) {
+      @media screen and (min-width: 600px) and (max-width: 959px) {
         width: 200px;
         height: 145.11px;
       }
@@ -541,11 +541,20 @@ $mainBlue: #001ce2;
         width: 100px;
         height: 30px;
       }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        font-size: 10px;
+        width: 100px;
+        height: 23px;
+      }
       img {
         margin-left: 5px;
         width: 12px;
         height: 12px;
         @media screen and (min-width: 960px) and (max-width: 1903px) {
+          width: 10px;
+          height: 10px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 959px) {
           width: 10px;
           height: 10px;
         }
@@ -567,11 +576,21 @@ $mainBlue: #001ce2;
         width: 100px;
         height: 30px;
       }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        font-size: 10px;
+        width: 100px;
+        height: 23px;
+      }
+
       img {
         margin-left: 5px;
         width: 12px;
         height: 12px;
         @media screen and (min-width: 960px) and (max-width: 1903px) {
+          width: 10px;
+          height: 10px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 959px) {
           width: 10px;
           height: 10px;
         }
@@ -595,6 +614,13 @@ $mainBlue: #001ce2;
         height: 30px;
         top: -28px;
         right: 0;
+      }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        font-size: 8px;
+        width: 100px;
+        height: 23px;
+        top: -4px;
+        right: -1px;
       }
       img {
         margin-left: 5px;
