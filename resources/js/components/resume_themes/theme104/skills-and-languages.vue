@@ -65,10 +65,11 @@ export default {
             display: flex;
             flex-direction: column;
             grid-column: span 2;
+            align-items: flex-start;
+            align-self: start;
 
             img {
                 height: 77px;
-                align-self: flex-start;
                 margin-bottom: 42.7px;
             }
 
@@ -118,6 +119,13 @@ export default {
 
             .skill {
                 grid-column: span 3;
+            }
+        }
+
+        @media (max-width: 370px) {
+            .skill {
+                grid-column: span 6;
+                align-items: center;
             }
         }
     }
