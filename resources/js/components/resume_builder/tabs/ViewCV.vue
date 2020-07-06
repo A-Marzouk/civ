@@ -438,7 +438,6 @@ $mainBlue: #001ce2;
 
 #previewModalContainer {
   width: 80%;
-
   iframe {
     width: 100%;
     height: 80vh;
