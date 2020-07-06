@@ -31,7 +31,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-0 mt-n6"
+                class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -49,7 +49,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-0 mt-md-n6 mt-sm-n6 mt-n6"
                 :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
               >
                 <v-text-field
@@ -69,7 +69,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-0 mt-md-n6 mt-sm-n6 mt-n6"
                 :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
               >
                 <v-text-field
@@ -89,7 +89,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   type="email"
@@ -108,7 +108,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -126,7 +126,7 @@
                 :lg="windowWidth<1300?'6':'3'"
                 md="6"
                 sm="6"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -144,7 +144,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -162,7 +162,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n8"
               >
                 <label class="mb-n12 custom-label">Import/Drag Image</label>
                 <v-input
@@ -191,7 +191,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
+                class="mt-xl-n4 mt-lg-n4 mt-md-n4 mt-sm-n4 mt-n8"
               >
                 <v-textarea
                   class="resume-builder__input civie-textarea"
