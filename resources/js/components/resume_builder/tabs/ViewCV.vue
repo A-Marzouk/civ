@@ -88,12 +88,24 @@
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
             <v-row align="center" v-if="user.theme">
-              <v-col md="4" sm="4" cols="6" v-for="theme in availableThemes" :key="theme.id">
+              <v-col
+                md="4"
+                :sm="windowWidth<=767?'6':'4'"
+                cols="6"
+                v-for="theme in availableThemes"
+                :key="theme.id"
+              >
                 <v-hover>
                   <template v-slot:default="{ hover }">
-                    <v-card class="card-theme-holder" flat color="transparent">
+                    <v-card class="card-theme-holder pa-0 ma-0" flat color="transparent">
                       <v-row justify="center">
-                        <img :src="theme.image" alt="themes" class @click="activateTheme(theme.id)" />
+                        <img
+                          :src="theme.image"
+                          alt="themes"
+                          class="theme-image"
+                          :class="theme.id == user.theme.id? 'active': 'inactive'"
+                          @click="activateTheme(theme.id)"
+                        />
                         <v-fade-transition>
                           <v-overlay
                             v-if="hover"
@@ -102,19 +114,29 @@
                             opacity="0.5"
                             class="custom-overlay"
                           >
-                            <v-btn color="#001CE2" absolute class="btn-activate">
+                            <v-btn color="#001CE2" absolute class="btn-activate" depressed>
                               Activate
                               <img src="/icons/check.svg" />
                             </v-btn>
                             <v-row>
                               <v-col cols="12" align="center">
-                                <v-btn color="#001CE2" class="btn-my-data mb-n3" outlined depressed>
+                                <v-btn
+                                  color="#001CE2"
+                                  class="btn-my-data mb-xl-n4 mb-lg-n6 mb-md-n6 mb-sm-n12 mb-n5"
+                                  outlined
+                                  depressed
+                                >
                                   Play Video
                                   <img src="/icons/youtube.svg" />
                                 </v-btn>
                               </v-col>
                               <v-col cols="12" align="center">
-                                <v-btn color="#001CE2" class="btn-my-data mb-n3" outlined depressed>
+                                <v-btn
+                                  color="#001CE2"
+                                  class="btn-my-data mb-xl-n4 mb-lg-n5 mb-md-n5 mb-sm-n6 mb-n5"
+                                  outlined
+                                  depressed
+                                >
                                   My Data
                                   <img src="/icons/eye-icon-blue.svg" />
                                 </v-btn>
@@ -475,10 +497,51 @@ $mainBlue: #001ce2;
   .card-theme-holder {
     max-width: 417px;
     max-height: 302.56px;
+    @media screen and (min-width: 960px) and (max-width: 1903px) {
+      width: 274px;
+      height: 200px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+      width: 200px;
+      height: 145.11px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 767px) {
+      width: 240px;
+      height: 175.11px;
+    }
+    @media screen and (max-width: 599px) {
+      width: 142px;
+      height: 103.03px;
+    }
+
+    .active {
+      border: 3px solid #001ce2;
+    }
+    .inactive {
+      border: 1px solid #888db1;
+    }
     img {
-      max-width: 100%;
-      min-height: 100%;
+      max-width: 417px;
+      max-height: 302.56px;
+      height: 302.56px;
       width: 95%;
+      border-radius: 5px;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        width: 274px;
+        height: 200px;
+      }
+      @media screen and (min-width: 768px) and (max-width: 959px) {
+        width: 200px;
+        height: 145.11px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        width: 240px;
+        height: 175.11px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 142px;
+        height: 103.03px;
+      }
     }
     .custom-overlay {
       background: rgba(255, 255, 255, 0.95);
@@ -495,8 +558,28 @@ $mainBlue: #001ce2;
       font-size: 12px;
       line-height: 12px;
       text-transform: capitalize !important;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        font-size: 10px;
+        width: 100px;
+        height: 23px;
+      }
       img {
         margin-left: 5px;
+        width: 12px;
+        height: 12px;
+        @media screen and (min-width: 960px) and (max-width: 1903px) {
+          width: 10px;
+          height: 10px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 959px) {
+          width: 10px;
+          height: 10px;
+        }
       }
     }
     .btn-my-data {
@@ -510,15 +593,34 @@ $mainBlue: #001ce2;
       line-height: 12px;
       text-transform: capitalize !important;
       color: #001ce2 !important;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        font-size: 10px;
+        width: 100px;
+        height: 23px;
+      }
+
       img {
         margin-left: 5px;
         width: 12px;
         height: 12px;
+        @media screen and (min-width: 960px) and (max-width: 1903px) {
+          width: 10px;
+          height: 10px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 959px) {
+          width: 10px;
+          height: 10px;
+        }
       }
     }
     .btn-activate {
-      top:-73px;
-      right:-3px;
+      top: -77px;
+      right: -3px;
       width: 120px;
       height: 35px;
       border-radius: 5px;
@@ -528,6 +630,29 @@ $mainBlue: #001ce2;
       font-size: 12px;
       line-height: 12px;
       text-transform: capitalize !important;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+        top: -28px;
+        right: 0;
+      }
+      @media screen and (min-width: 768px) and (max-width: 959px) {
+        font-size: 8px;
+        width: 100px;
+        height: 23px;
+        top: -4px;
+        right: -1px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        top: -19px;
+        right: -1px;
+      }
+      @media screen and (max-width: 599px) {
+        top: -35px;
+        right: 0;
+      }
+
       img {
         margin-left: 5px;
         width: 10px;

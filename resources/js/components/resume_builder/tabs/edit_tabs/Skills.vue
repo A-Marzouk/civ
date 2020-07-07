@@ -121,7 +121,7 @@
                                           color="#F2F3FD"
                                           depressed
                                           @click="toggleVisibility(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                          class="btn-skill-action mr-xl-1 mr-lg-1 mx-1"
                                   >
                                     <svg-vue
                                             icon="eye-icon"
@@ -133,7 +133,7 @@
                                           color="#F2F3FD"
                                           depressed
                                           @click="editSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                          class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
                                   >
                                     <svg-vue icon="edit-icon" class="icon"></svg-vue>
                                   </v-btn>
@@ -141,7 +141,7 @@
                                           color="#F2F3FD"
                                           depressed
                                           @click="deleteSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                          class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
                                   >
                                     <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                                   </v-btn>
