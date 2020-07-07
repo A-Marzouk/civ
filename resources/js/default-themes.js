@@ -260,7 +260,7 @@ if ($("#resumeTheme202").length !== 0) {
 }
 // theme 202
 
-import resumeTheme300 from "./components/resume_themes/theme300";
+import resumeTheme300 from "./components/resume_themes/theme300/index.vue";
 if ($("#resumeTheme300").length !== 0) {
     new Vue({
         el: "#resumeTheme300",
@@ -272,7 +272,7 @@ if ($("#resumeTheme300").length !== 0) {
     });
 }
 
-import resumeTheme200 from "./components/resume_themes/theme200/Main";
+import resumeTheme200 from "./components/resume_themes/theme200/index";
 if ($("#resumeTheme200").length !== 0) {
     new Vue({
         el: "#resumeTheme200",
@@ -694,7 +694,7 @@ if ($("#resumeTheme600").length !== 0) {
         }
     });
 }
-import resumeTheme509 from "./components/resume_themes/theme509/Index";
+import resumeTheme509 from "./components/resume_themes/theme509/index";
 if ($("#resumeTheme509").length !== 0) {
     new Vue({
         el: "#resumeTheme509",
@@ -705,7 +705,7 @@ if ($("#resumeTheme509").length !== 0) {
         }
     });
 }
-import resumeTheme510 from "./components/resume_themes/theme510/Index";
+import resumeTheme510 from "./components/resume_themes/theme510/index";
 if ($("#resumeTheme510").length !== 0) {
     new Vue({
         el: "#resumeTheme510",
@@ -741,7 +741,8 @@ if ($("#resumeTheme602").length !== 0) {
         }
     });
 }
-import resumeTheme903 from "./components/resume_themes/theme903/Index";
+
+import resumeTheme903 from "./components/resume_themes/theme903/index";
 if ($("#resumeTheme903").length !== 0) {
     new Vue({
         el: "#resumeTheme903",
@@ -752,7 +753,8 @@ if ($("#resumeTheme903").length !== 0) {
         }
     });
 }
-import resumeTheme511 from "./components/resume_themes/theme511/Index";
+
+import resumeTheme511 from "./components/resume_themes/theme511/index";
 if ($("#resumeTheme511").length !== 0) {
     new Vue({
         el: "#resumeTheme511",
@@ -764,7 +766,7 @@ if ($("#resumeTheme511").length !== 0) {
     });
 }
 
-import resumeTheme512 from "./components/resume_themes/theme512/Index";
+import resumeTheme512 from "./components/resume_themes/theme512/index";
 if ($("#resumeTheme512").length !== 0) {
     new Vue({
         el: "#resumeTheme512",
