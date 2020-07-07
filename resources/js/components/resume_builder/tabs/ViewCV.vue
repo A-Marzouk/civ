@@ -104,7 +104,6 @@
                           alt="themes"
                           class="theme-image"
                           :class="theme.id == user.theme.id? 'active': 'inactive'"
-                          @click="activateTheme(theme.id)"
                         />
                         <v-fade-transition>
                           <v-overlay
@@ -114,7 +113,13 @@
                             opacity="0.5"
                             class="custom-overlay"
                           >
-                            <v-btn color="#001CE2" absolute class="btn-activate" depressed>
+                            <v-btn
+                              color="#001CE2"
+                              absolute
+                              class="btn-activate"
+                              depressed
+                              @click="activateTheme(theme.id)"
+                            >
                               Activate
                               <img src="/icons/check.svg" />
                             </v-btn>
@@ -136,13 +141,19 @@
                                   class="btn-my-data mb-xl-n4 mb-lg-n5 mb-md-n5 mb-sm-n6 mb-n5"
                                   outlined
                                   depressed
+                                  @click="openTheme(theme.id, 'true')"
                                 >
                                   My Data
                                   <img src="/icons/eye-icon-blue.svg" />
                                 </v-btn>
                               </v-col>
                               <v-col cols="12" align="center">
-                                <v-btn color="#001CE2" class="btn-preview-data" depressed>
+                                <v-btn
+                                  color="#001CE2"
+                                  class="btn-preview-data"
+                                  depressed
+                                  @click="openTheme(theme.id, 'false')"
+                                >
                                   Preview Data
                                   <img src="/icons/eye-icon-white.svg" />
                                 </v-btn>
@@ -283,10 +294,19 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    userTheme: function() {
+      let code = this.$store.state.user.theme.code;
+      if (code) {
+        return this.importComponent(code);
+      }
     }
   },
   props: ["inputProps", "selectProps"],
   methods: {
+    importComponent(path) {
+      return () => import("../../resume_themes/theme" + path + "/index.vue");
+    },
     toggleInput() {
       this.disabledInput = !this.disabledInput;
     },
@@ -298,9 +318,9 @@ export default {
       this.previewThemeID = theme_id;
       this.$refs.previewModal.show();
     },
-    openTheme(theme) {
-      let url = "/preview/theme" + theme.code;
-      window.open(url, "_blank") || window.location.replace(url);
+    openTheme(id, is_real) {
+        let url = "/preview/" + id + "?real=" + is_real;
+        window.open(url, "_blank") || window.location.replace(url);
     },
     activateTheme(theme_id) {
       if (this.user.theme_id === theme_id) {
