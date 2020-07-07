@@ -91,7 +91,7 @@
               <v-col
                 md="4"
                 :sm="windowWidth<=767?'6':'4'"
-                cols="6"
+                cols="12"
                 v-for="theme in availableThemes"
                 :key="theme.id"
               >
@@ -510,8 +510,8 @@ $mainBlue: #001ce2;
       height: 175.11px;
     }
     @media screen and (max-width: 599px) {
-      width: 142px;
-      height: 103.03px;
+      width: 300px;
+      height: 217.67px;
     }
 
     .active {
@@ -539,8 +539,8 @@ $mainBlue: #001ce2;
         height: 175.11px;
       }
       @media screen and (max-width: 599px) {
-        width: 142px;
-        height: 103.03px;
+        width: 300px;
+        height: 217.67px;
       }
     }
     .custom-overlay {
