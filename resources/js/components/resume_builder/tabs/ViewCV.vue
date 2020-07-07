@@ -88,7 +88,13 @@
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
             <v-row align="center" v-if="user.theme">
-              <v-col md="4" sm="4" cols="6" v-for="theme in availableThemes" :key="theme.id">
+              <v-col
+                md="4"
+                :sm="windowWidth<=767?'6':'4'"
+                cols="6"
+                v-for="theme in availableThemes"
+                :key="theme.id"
+              >
                 <v-hover>
                   <template v-slot:default="{ hover }">
                     <v-card class="card-theme-holder pa-0 ma-0" flat color="transparent">
@@ -495,9 +501,17 @@ $mainBlue: #001ce2;
       width: 274px;
       height: 200px;
     }
-    @media screen and (min-width: 600px) and (max-width: 959px) {
+    @media screen and (min-width: 768px) and (max-width: 959px) {
       width: 200px;
       height: 145.11px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 767px) {
+      width: 240px;
+      height: 175.11px;
+    }
+    @media screen and (max-width: 599px) {
+      width: 142px;
+      height: 103.03px;
     }
 
     .active {
@@ -516,9 +530,17 @@ $mainBlue: #001ce2;
         width: 274px;
         height: 200px;
       }
-      @media screen and (min-width: 600px) and (max-width: 959px) {
+      @media screen and (min-width: 768px) and (max-width: 959px) {
         width: 200px;
         height: 145.11px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        width: 240px;
+        height: 175.11px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 142px;
+        height: 103.03px;
       }
     }
     .custom-overlay {
@@ -615,13 +637,22 @@ $mainBlue: #001ce2;
         top: -28px;
         right: 0;
       }
-      @media screen and (min-width: 600px) and (max-width: 959px) {
+      @media screen and (min-width: 768px) and (max-width: 959px) {
         font-size: 8px;
         width: 100px;
         height: 23px;
         top: -4px;
         right: -1px;
       }
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        top: -19px;
+        right: -1px;
+      }
+      @media screen and (max-width: 599px) {
+        top: -35px;
+        right: 0;
+      }
+
       img {
         margin-left: 5px;
         width: 10px;
