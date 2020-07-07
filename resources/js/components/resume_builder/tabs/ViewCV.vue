@@ -94,7 +94,7 @@
                                         <v-card class="card-theme-holder" flat color="transparent">
                                             <v-row justify="center">
                                                 <img :src="theme.image" alt="themes" class
-                                                     @click="activateTheme(theme.id)"/>
+                                                    />
                                                 <v-fade-transition>
                                                     <v-overlay
                                                             v-if="hover"
@@ -103,7 +103,7 @@
                                                             opacity="0.5"
                                                             class="custom-overlay"
                                                     >
-                                                        <v-btn color="#001CE2" absolute class="btn-activate">
+                                                        <v-btn color="#001CE2" absolute class="btn-activate"  @click="activateTheme(theme.id)">
                                                             Activate
                                                             <img src="/icons/check.svg"/>
                                                         </v-btn>
@@ -116,16 +116,16 @@
                                                                 </v-btn>
                                                             </v-col>
                                                             <v-col cols="12" align="center">
-                                                                <v-btn color="#001CE2" class="btn-my-data mb-n3"
+                                                                <v-btn color="#001CE2" class="btn-my-data mb-n3" @click="openTheme(theme.id, 'true')"
                                                                        outlined depressed>
                                                                     My Data
                                                                     <img src="/icons/eye-icon-blue.svg"/>
                                                                 </v-btn>
                                                             </v-col>
                                                             <v-col cols="12" align="center">
-                                                                <v-btn color="#001CE2" class="btn-preview-data"
+                                                                <v-btn color="#001CE2" class="btn-preview-data" @click="openTheme(theme.id, 'false')"
                                                                        depressed>
-                                                                    Preview Data
+                                                                    Preview
                                                                     <img src="/icons/eye-icon-white.svg"/>
                                                                 </v-btn>
                                                             </v-col>
@@ -263,27 +263,25 @@
             userTheme: function () {
                 let code =  this.$store.state.user.theme.code ;
                 if(code){
-                    return () => import('../../resume_themes/theme5/index.vue')
+                    return this.importComponent(code);
                 }
-            },
+            }
         },
-        props: ["inputProps", "selectProps"],
         methods: {
-            toggleInput() {
-                this.disabledInput = !this.disabledInput;
-            },
-            toggleSelect() {
-                this.disabledSelect = !this.disabledSelect;
+            importComponent(path) {
+                return () => import('../../resume_themes/theme'+ path + '/index.vue');
             },
 
             showPreviewModal(theme_id) {
                 this.previewThemeID = theme_id;
                 this.$refs.previewModal.show();
             },
-            openTheme(theme) {
-                let url = "/preview/theme" + theme.code;
+
+            openTheme(id, is_real) {
+                let url = "/preview/" + id + "?real=" + is_real;
                 window.open(url, "_blank") || window.location.replace(url);
             },
+
             activateTheme(theme_id) {
                 if (this.user.theme_id === theme_id) {
                     return;
@@ -308,6 +306,7 @@
                         });
                     });
             },
+
             selectProfession(index) {
                 // Search profession on db using index
                 // axios request
@@ -324,6 +323,7 @@
                 this.selectedTheme = index;
                 this.viewThemeModal = true;
             },
+
             getThemesList() {
                 axios
                     .get("/api/user/themes-list")
