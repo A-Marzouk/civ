@@ -68,11 +68,16 @@ export default {
 			display: block;
 			background: #001ce2;
 			position: absolute;
-			bottom: -18px;
+			bottom: -20px;
 			left: 0;
 			width: 100%;
 			height: 5px;
 			border-radius: 10px 10px 0px 0px;
+
+			@include lt-sm{
+				bottom: -24px;
+			}
+
 		}
 	}
 
@@ -82,8 +87,8 @@ export default {
 		background-repeat: no-repeat;
 		background-position: center;
 		display: block;
-		width: 50px;
-		height: 50px;
+		width: 45px;
+		height: 45px;
 		overflow: hidden;
 		border-radius: 100px;
 	}

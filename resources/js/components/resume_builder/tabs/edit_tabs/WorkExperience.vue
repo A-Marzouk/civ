@@ -195,6 +195,7 @@
                     job_title:'',
                     description:'',
                     website:'',
+                    is_public:true,
                     date_from:'',
                     date_to:'',
                     present:false,
@@ -223,7 +224,7 @@
             toggleWorkVisibility(work){
                 work.is_public = !work.is_public;
                 axios.put("/api/user/work-experience", work)
-                    .then(response => {
+                    .then( response => {
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch(error => {
@@ -317,9 +318,10 @@
                     job_title:'',
                     description:'',
                     website:'',
+                    is_public:true,
                     date_from:'',
                     date_to:'',
-                    present:'',
+                    present:false,
                 }
             },
         },
