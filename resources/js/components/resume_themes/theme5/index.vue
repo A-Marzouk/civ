@@ -4,7 +4,7 @@
       <v-row class="borpad pt-md-4" no-gutters justify-sm="end">
         <v-col md="6" sm="12" cols="12">
           <v-container>
-            <v-row no-gutters justify="center">
+            <v-row no-gutters justify="center" :class="{'active-indicator' : currentTab === 'profile'}">
               <v-col
                 md="3"
                 sm="2"
@@ -26,7 +26,8 @@
                 class="text-md-left text-center text-sm-left"
               >
                 <div class="user-name font-weight-bold">
-                  {{ currentUser.personal_info.full_name }}
+                  {{ currentUser.personal_info.first_name }}  {{ currentUser.personal_info.last_name }}
+
                 </div>
                 <div class="job-title py-1 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
@@ -38,7 +39,7 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-col md="6" sm="10" cols="12" class="hidden-sm-only">
+        <v-col md="6" sm="10" cols="12" class="hidden-sm-only" :class="{'active-indicator' : currentTab === 'pay-availability' }">
           <v-container>
             <v-row>
               <v-col md="6">
@@ -317,7 +318,7 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-col sm="10" class="d-none d-sm-flex d-md-none">
+        <v-col sm="10" class="d-none d-sm-flex d-md-none" :class="{'active-indicator' : currentTab === 'pay-availability' }">
           <v-container>
             <v-row>
               <v-col md="6">
@@ -491,36 +492,17 @@
                 class="text-center"
               >
                 <v-tabs
-                  v-model="tab"
                   background-color="transparent"
                   hide-slider
                   centered
                 >
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 0" class="left">[</span>
-                    Portfolio
-                    <span v-if="tab == 0" class="right">]</span>
+
+                  <v-tab v-for="tab in tabs" :key="tab.value" @click="activeTab = tab.value" :class="{'active-indicator' : currentTab === tab.value }">
+                    <span v-if="tab.value === activeTab" class="left">[</span>
+                      {{tab.text}}
+                    <span v-if="tab.value === activeTab" class="right">]</span>
                   </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 1" class="left">[</span>
-                    Work Experience
-                    <span v-if="tab == 1" class="right">]</span>
-                  </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 2" class="left">[</span>
-                    Education
-                    <span v-if="tab == 2" class="right">]</span>
-                  </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 3" class="left">[</span>
-                    Skills
-                    <span v-if="tab == 3" class="right">]</span>
-                  </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 4" class="left">[</span>
-                    About
-                    <span v-if="tab == 4" class="right">]</span>
-                  </v-tab>
+
                 </v-tabs>
               </v-col>
             </v-row>
@@ -529,7 +511,7 @@
         <v-col md="12" sm="12" cols="12" class="mt-4">
           <v-container fluid ma-0 pa-0 style="max-width:100%">
             <v-row no-gutters justify="center">
-              <v-col v-if="tab == 0" md="11" sm="11" cols="11">
+              <v-col v-if="activeTab === 'portfolio' " md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
                   <v-col
                     md="4"
@@ -550,7 +532,7 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col v-if="tab == 1" md="6" sm="12" cols="12" class="pb-12">
+              <v-col v-if="activeTab === 'work-experience' " md="6" sm="12" cols="12" class="pb-12">
                 <v-timeline
                   dense
                   align-top
@@ -581,7 +563,7 @@
                   </v-timeline-item>
                 </v-timeline>
               </v-col>
-              <v-col v-if="tab == 2" md="11" sm="11" cols="11" class="pb-12">
+              <v-col v-if="activeTab === 'education' " md="11" sm="11" cols="11" class="pb-12">
                 <v-row no-gutters justify="center">
                   <v-col
                     v-for="education in currentUser.education"
@@ -614,7 +596,7 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col v-if="tab == 3" md="11" sm="11" cols="11">
+              <v-col v-if="activeTab === 'skills' " md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
                   <v-col
                     v-for="(s, index) in currentUser.skills"
@@ -663,7 +645,7 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col v-if="tab == 4" md="6" sm="11" cols="11" class="pb-12">
+              <v-col v-if="activeTab === 'about' " md="6" sm="11" cols="11" class="pb-12">
                 <v-row no-gutters justify="center" class="shade py-12">
                   <v-col md="10" sm="11" cols="11" class="pb-8">
                     <div class="headline">About Me</div>
@@ -693,6 +675,7 @@
 </template>
 <style lang="scss" scoped>
 #resumeTheme5 {
+
   .theme--light.v-application {
     background: #f1f1f1;
     color: rgba(0, 0, 0, 0.87);
@@ -983,16 +966,43 @@
 }
 </style>
 
+<style>
+  .active-indicator{
+    border:2px solid #66DAFF !important;
+  }
+</style>
 <script>
 export default {
   name: "theme8",
-  props: ["user", "is_preview",'currentTab'],
+  props: ["user", "is_preview","currentTab"],
   data() {
     return {
       tab: null,
+      tabs:[
+        {
+          text:'Portfolio',
+          value:'portfolio'
+        },
+        {
+          text:'Work Ex.',
+          value:'work-experience'
+        },
+        {
+          text:'Education',
+          value:'education'
+        },
+        {
+          text:'Skills',
+          value:'skills'
+        },
+        {
+          text:'About',
+          value:'about'
+        },
+      ],
       available: 0,
+      activeTab: '',
       paymentInfo: 0,
-      currentUser: this.user,
       portfolio: [
         {
           id: 0,
@@ -1077,6 +1087,12 @@ export default {
       ],
       currentUser: this.user
     };
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function (val) {
+      this.activeTab = val ;
+    }
   },
   methods: {
     availableNext() {
