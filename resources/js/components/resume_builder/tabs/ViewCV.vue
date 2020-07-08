@@ -75,15 +75,7 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col
-          xl="9"
-          lg="9"
-          md="12"
-          sm="12"
-          cols="12"
-          align="left"
-          class="col-theme-preview ml-xl-n12"
-        >
+        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class>
           <!-- tab bar -->
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
@@ -302,8 +294,8 @@ export default {
       return () => import("../../resume_themes/theme" + path + "/index.vue");
     },
     openTheme(id, is_real) {
-        let url = "/preview/" + id + "?real=" + is_real;
-        window.open(url, "_blank") || window.location.replace(url);
+      let url = "/preview/" + id + "?real=" + is_real;
+      window.open(url, "_blank") || window.location.replace(url);
     },
     activateTheme(theme_id) {
       if (this.user.theme_id === theme_id) {
@@ -458,6 +450,14 @@ $mainBlue: #001ce2;
   }
 }
 .card-themes-wrapper {
+  @media screen and (min-width: 1904px){
+     margin-left: -81px;
+     min-width: 105%;
+  }
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    min-width: 100%;
+    margin-left: 0;
+  }
   .themes-wrapper-title {
     font-family: "Noto Sans" !important;
     font-style: normal;
@@ -692,6 +692,10 @@ $mainBlue: #001ce2;
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
+  @media screen and (min-width: 1904px) {
+    min-width: 105%;
+    margin-left: -81px !important;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;
