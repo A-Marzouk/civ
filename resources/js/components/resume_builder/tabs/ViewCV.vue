@@ -117,10 +117,11 @@
                               color="#001CE2"
                               absolute
                               class="btn-activate"
+                              :class="{active : theme.id === user.theme.id}"
                               depressed
                               @click="activateTheme(theme.id)"
                             >
-                              Activate
+                              {{theme.id === user.theme.id ? 'Active' : 'Activate'}}
                               <img src="/icons/check.svg" />
                             </v-btn>
                             <v-row>
@@ -182,7 +183,7 @@
               </div>
               <div class="cv-preview-theme-wrapper">
                 <div class="cv-preview-theme">
-                  <user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+                  <component :is="userTheme" v-if="user.personal_info" :user="user" :is_preview="false"></component>
                 </div>
               </div>
             </div>
@@ -211,12 +212,6 @@
 <script>
 export default {
   name: "ViewCV",
-  components: {
-    "user-theme": () =>
-      import(
-        /* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index"
-      )
-  },
   data() {
     return {
       overlay: false,
@@ -302,21 +297,9 @@ export default {
       }
     }
   },
-  props: ["inputProps", "selectProps"],
   methods: {
     importComponent(path) {
       return () => import("../../resume_themes/theme" + path + "/index.vue");
-    },
-    toggleInput() {
-      this.disabledInput = !this.disabledInput;
-    },
-    toggleSelect() {
-      this.disabledSelect = !this.disabledSelect;
-    },
-
-    showPreviewModal(theme_id) {
-      this.previewThemeID = theme_id;
-      this.$refs.previewModal.show();
     },
     openTheme(id, is_real) {
         let url = "/preview/" + id + "?real=" + is_real;
@@ -345,22 +328,6 @@ export default {
             iconSrc: "/images/resume_builder/error.png"
           });
         });
-    },
-    selectProfession(index) {
-      // Search profession on db using index
-      // axios request
-      this.selectedProfession = index;
-      this.showProfessionOptions = false;
-    },
-    selectSpeciality(index) {
-      // Search speciality on db using index
-      // axios request
-      this.selectedSpeciality = index;
-      this.showSpecialityOptions = false;
-    },
-    selectTheme(index) {
-      this.selectedTheme = index;
-      this.viewThemeModal = true;
     },
     getThemesList() {
       axios
@@ -639,6 +606,12 @@ $mainBlue: #001ce2;
       }
     }
     .btn-activate {
+
+      &.active{
+        background: greenyellow !important;
+        border:none;
+      }
+
       top: -77px;
       right: -3px;
       width: 120px;

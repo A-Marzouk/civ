@@ -244,18 +244,6 @@ export default {
         window.location.href = "/";
       });
     }
-
-    /* changeTab(e) {
-			let _this = this;
-
-			let inputs = document.querySelectorAll("#myAccountTab input");
-			inputs.forEach(input => {
-				input.value = "";
-				input.placeholder = "";
-			});
-
-			moveTabsHelper(e, "mainLinksWrapper", _this);
-		}, */
   }
 };
 </script>
@@ -331,7 +319,7 @@ $resume-builder-nav-height: 90px;
       }
 
       &.collapsed {
-        margin-bottom: 0;
+        margin-bottom: 10px;
         .nav-action {
           &.active {
             &::after {
