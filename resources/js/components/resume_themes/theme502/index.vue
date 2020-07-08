@@ -13,7 +13,7 @@
             class="ml-md-0 ml-sm-12 ml-4"
           >
             <v-img
-              src="/images/resume_themes/theme502/avatar.png"
+              :src="currentUser.personal_info.profile_pic"
               :aspect-ratio="0.92"
               class="avatar mt-1"
               style="border-radius: 0px 1rem 2rem 0px ;"
@@ -28,7 +28,7 @@
             class="pl-sm-6 pl-md-3 pl-lg-6 pl-3"
           >
             <div class="head font-weight-bold">
-              Carla Pipin Ranga
+              {{ currentUser.personal_info.full_name }}
               <div class="text-left d-sm-inline-block d-none">
                 <v-btn fab color="#3E56CD" small class="ml-6" elevation="0">
                   <v-img
@@ -58,7 +58,7 @@
             </div>
 
             <div class="subhead grey--text text--darken-1 pb-sm-8 pb-4">
-              Web Ui/Ux Designer, Graphiс Designer
+              {{ currentUser.personal_info.designation }}
             </div>
 
             <div class="text-left hidden-xs-only">
@@ -66,12 +66,22 @@
                 class="px-0 mr-4"
                 color="#3E56CD"
                 fab
-                v-for="icon in icons"
-                :key="icon.id"
+                :href="Userlink.link"
+                v-for="Userlink in currentUser.links"
+                :key="Userlink.id + '_link'"
+                target="_blank"
+                v-show="Userlink.is_active && Userlink.is_public"
                 small
                 elevation="0"
               >
-                <v-img width="18" height="18" contain :src="icon.src"></v-img>
+                <v-img
+                  width="18"
+                  height="18"
+                  contain
+                  :src="
+                    `/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+                  "
+                ></v-img>
               </v-btn>
             </div>
             <div class="hidden-sm-and-up">
@@ -110,7 +120,7 @@
         md="4"
         sm="10"
         cols="10"
-        class="mt-8 ml-lg-auto ml-md-auto ml-xl-auto ml-sm-12 ml-auto pr-xl-0 pr-lg-0 pr-md-0 pr-sm-12 mt-sm-12 ml-sm-0"
+        class="mt-8 ml-lg-auto ml-md-auto ml-xl-auto ml-sm-12 ml-auto pr-xl-0 pr-lg-0 pr-md-0 pr-sm-0 mt-sm-12 ml-sm-0"
       >
         <v-row
           justify-lg="start"
@@ -121,28 +131,81 @@
           class="text-center"
           no-gutters
         >
-          <v-col cols="4" sm="2" md="4" lg="3" xl="4">
+          <v-col cols="auto" sm="3" md="4" lg="3" xl="4">
             <div
               class="text-center grey--text text--darken-1 subtitle-2 font-light"
             >
-              Hourly rate
+              <v-icon small @click="paymentInfoPrev()">navigate_before</v-icon>
+              <div
+                v-for="(payment_Info, index) in currentUser.payment_info"
+                :key="index"
+                v-show="payment_Info.is_public"
+                class="d-inline-block"
+              >
+                <span
+                  class="text-center grey--text text--darken-1 subtitle-2 font-light text-capitalize"
+                  v-if="paymentInfo == index"
+                >
+                  {{ payment_Info.salary_frequency }} Rate
+                </span>
+              </div>
+              <v-icon small @click="paymentInfoNext()">navigate_next</v-icon>
             </div>
             <div class="text-center textcol title font-weight-medium">
-              $25 USD
+              <div
+                v-for="(payment_Info, index) in currentUser.payment_info"
+                :key="index"
+                v-show="payment_Info.is_public"
+              >
+                <span
+                  class="text-center textcol title font-weight-medium text-uppercase"
+                  v-if="paymentInfo == index"
+                >
+                  ${{ payment_Info.salary }} {{ payment_Info.currency }}
+                </span>
+              </div>
             </div>
           </v-col>
-          <v-col cols="1" align="center" class="mx-xl-n6">
+          <v-col cols="1" sm="auto" lg="1" align="center" class="mx-xl-n6">
             <div style="width:1px;height:2rem;background-color:#D7D7D7;"></div>
           </v-col>
 
-          <v-col cols="4" sm="2" md="4" lg="3" xl="4">
+          <v-col cols="4" sm="3" md="4" lg="3" xl="4">
             <div
               class="text-center grey--text text--darken-1 subtitle-2 font-light"
             >
-              Available for
+              <v-icon small @click="availablePrev()">navigate_before</v-icon>
+              <div
+                v-for="(availability_info,
+                index) in currentUser.availability_info"
+                :key="index"
+                v-show="availability_info.is_public"
+                class="d-inline-block"
+              >
+                <span
+                  class="text-center grey--text text--darken-1 subtitle-2 font-light text-capitalize "
+                  v-if="available == index"
+                >
+                  {{ availability_info.available_hours_frequency }}
+                  for
+                </span>
+              </div>
+              <v-icon small @click="availableNext()">navigate_next</v-icon>
             </div>
             <div class="text-center textcol title font-weight-medium">
-              8 hours
+              <div
+                v-for="(availability_info,
+                index) in currentUser.availability_info"
+                :key="index"
+                v-show="availability_info.is_public"
+              >
+                <span
+                  class="text-center textcol title font-weight-medium"
+                  v-if="available == index"
+                >
+                  {{ availability_info.available_hours }} hours
+                </span>
+              </div>
             </div>
           </v-col>
           <v-col
@@ -173,12 +236,22 @@
             class="px-0 mr-4"
             color="#3E56CD"
             fab
-            v-for="icon in icons"
-            :key="icon.id"
+            :href="Userlink.link"
+            v-for="Userlink in currentUser.links"
+            :key="Userlink.id + '_link'"
+            target="_blank"
+            v-show="Userlink.is_active && Userlink.is_public"
             small
             elevation="0"
           >
-            <v-img width="18" height="18" contain :src="icon.src"></v-img>
+            <v-img
+              width="18"
+              height="18"
+              contain
+              :src="
+                `/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+              "
+            ></v-img>
           </v-btn>
         </div>
       </v-col>
@@ -245,11 +318,12 @@
               cols="12"
               sm="12"
               class="mx-xl-3 px-lg-3 px-sm-4 py-xl-6 py-sm-2 px-4 py-2"
-              v-for="img in images"
-              :key="img.id"
+              v-for="project in currentUser.projects"
+              :key="project.id + '_project'"
+              v-show="project.is_public"
             >
               <v-img
-                :src="img.src"
+                :src="getProjectMainImage(project)"
                 :aspect-ratio="1.2"
                 style="box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);border-radius:20px;"
               ></v-img>
@@ -274,21 +348,22 @@
               sm="12"
               cols="12"
               lg="6"
-              v-for="n in 4"
-              :key="n"
+              v-for="work in currentUser.work_experience"
+              :key="work.id"
+              v-show="work.is_public"
               class="mt-4 padleft"
             >
               <v-row class="mt-4" no-gutters>
                 <v-col md="12" sm="12" cols="12">
                   <h1 class="textcol headline font-weight-bold">
-                    {{ temp.title }}
+                    {{ work.job_title }}
                   </h1>
                 </v-col>
                 <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
                   <h1
                     class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
                   >
-                    {{ temp.sub }}
+                    {{ work.company_name }}
                   </h1>
                 </v-col>
 
@@ -296,14 +371,14 @@
                   <h1
                     class="caption font-weight-bold text-right grey--text text--darken-4"
                   >
-                    {{ temp.duration }}
+                    {{ work.date_from }} - {{ work.date_to }}
                   </h1>
                 </v-col>
                 <v-col md="12" sm="12" cols="12" xl="12" class="my-6">
                   <div
                     class="grey--text text--darken-1 sfont pb-2 font-weight-thin"
                   >
-                    {{ temp.para }}
+                    {{ work.description }}
                   </div>
                 </v-col>
               </v-row>
@@ -328,22 +403,23 @@
               sm="12"
               cols="12"
               lg="6"
-              v-for="n in 4"
-              :key="n"
+              v-for="education in currentUser.education"
+              :key="education.id"
+              v-show="education.is_public"
               class="mt-4 padleft"
             >
               <v-row justify="start" class no-gutters>
                 <v-row class="mt-md-4 mt-4" no-gutters>
                   <v-col md="12" sm="12" cols="12">
                     <h1 class="textcol headline font-weight-bold">
-                      {{ emp.title }}
+                      {{ education.university_name }}
                     </h1>
                   </v-col>
                   <v-col md="12" sm="12" cols="12" class="text-md-left my-6">
                     <h1
                       class="caption font-weight-bold pb-2 mr-12 grey--text text--darken-4"
                     >
-                      {{ emp.duration }}
+                      {{ education.date_from }} - {{ education.date_to }}
                     </h1>
                   </v-col>
 
@@ -351,7 +427,7 @@
                     <div
                       class="grey--text text--darken-1 sfont pb-2 font-weight-thin"
                     >
-                      {{ emp.para }}
+                      {{ education.degree_title }}
                     </div>
                   </v-col>
                 </v-row>
@@ -385,13 +461,45 @@
                 <v-tabs-slider
                   style="height:0px;padding:0 0 !important;"
                 ></v-tabs-slider>
+
                 <v-tab
-                  v-for="item in items"
-                  :key="item.id"
-                  exact
-                  class="subtitle-1 text-capitalize textcol skilltab"
-                  >{{ item.name }}</v-tab
+                  v-show="
+                    currentUser.skills.find(
+                      s => s.category == 'programming_languages'
+                    )
+                  "
                 >
+                  <div class="subtitle-1 text-capitalize textcol skilltab">
+                    Programming languages
+                  </div>
+                </v-tab>
+                <v-tab
+                  v-show="
+                    currentUser.skills.find(s => s.category == 'frameworks')
+                  "
+                >
+                  <div class="subtitle-1 text-capitalize textcol skilltab">
+                    Frameworks/ Databases
+                  </div>
+                </v-tab>
+                <v-tab
+                  v-show="
+                    currentUser.skills.find(s => s.category == 'software')
+                  "
+                >
+                  <div class="subtitle-1 text-capitalize textcol skilltab">
+                    Software
+                  </div>
+                </v-tab>
+                <v-tab
+                  v-show="
+                    currentUser.skills.find(s => s.category == 'software')
+                  "
+                >
+                  <div class="subtitle-1 text-capitalize textcol skilltab">
+                    Design
+                  </div>
+                </v-tab>
               </v-tabs>
 
               <v-row no-gutters class="mt-4">
@@ -400,7 +508,13 @@
                     v-model="tabskill"
                     style="background-color:transparent;"
                   >
-                    <v-tab-item v-for="item in items" :key="item.id">
+                    <v-tab-item
+                      v-show="
+                        currentUser.skills.find(
+                          s => s.category == 'programming_languages'
+                        )
+                      "
+                    >
                       <v-row
                         class="justify-center py-2"
                         align="center"
@@ -412,8 +526,9 @@
                           md="8"
                           sm="12"
                           cols="12"
-                          v-for="(s, index) in item.skills"
+                          v-for="(s, index) in currentUser.skills"
                           :key="index"
+                          v-show="s.category == 'programming_languages'"
                           class="px-md-6 my-4 px-2 mx-2"
                         >
                           <v-row
@@ -426,7 +541,7 @@
                               <div
                                 class="skilltext text-left font-weight-bold mb-sm-1 mb-xs-1"
                               >
-                                {{ s.name }} - {{ s.val }}
+                                {{ s.title }} - {{ s.percentage }}
                               </div>
                             </v-col>
 
@@ -434,7 +549,148 @@
                               <div class="pro-back ml-md-11 my-5">
                                 <div
                                   class="progress"
-                                  :style="'width:' + s.val"
+                                  :style="'width:' + s.percentage"
+                                ></div>
+                              </div>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-tab-item>
+                    <v-tab-item
+                      v-show="
+                        currentUser.skills.find(s => s.category == 'frameworks')
+                      "
+                    >
+                      <v-row
+                        class="justify-center py-2"
+                        align="center"
+                        no-gutters
+                      >
+                        <v-col
+                          xl="8"
+                          lg="8"
+                          md="8"
+                          sm="12"
+                          cols="12"
+                          v-for="(s, index) in currentUser.skills"
+                          :key="index"
+                          v-show="s.category == 'frameworks'"
+                          class="px-md-6 my-4 px-2 mx-2"
+                        >
+                          <v-row
+                            no-gutters
+                            class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-4"
+                            justify="center"
+                            align="center"
+                          >
+                            <v-col cols="12" sm="12" md="3" lg="4" xl="3">
+                              <div
+                                class="skilltext text-left font-weight-bold mb-sm-1 mb-xs-1"
+                              >
+                                {{ s.title }} - {{ s.percentage }}
+                              </div>
+                            </v-col>
+
+                            <v-col cols="12" sm="12" md="9" lg="8">
+                              <div class="pro-back ml-md-11 my-5">
+                                <div
+                                  class="progress"
+                                  :style="'width:' + s.percentage"
+                                ></div>
+                              </div>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-tab-item>
+                    <v-tab-item
+                      v-show="
+                        currentUser.skills.find(s => s.category == 'software')
+                      "
+                    >
+                      <v-row
+                        class="justify-center py-2"
+                        align="center"
+                        no-gutters
+                      >
+                        <v-col
+                          xl="8"
+                          lg="8"
+                          md="8"
+                          sm="12"
+                          cols="12"
+                          v-for="(s, index) in currentUser.skills"
+                          :key="index"
+                          v-show="s.category == 'software'"
+                          class="px-md-6 my-4 px-2 mx-2"
+                        >
+                          <v-row
+                            no-gutters
+                            class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-4"
+                            justify="center"
+                            align="center"
+                          >
+                            <v-col cols="12" sm="12" md="3" lg="4" xl="3">
+                              <div
+                                class="skilltext text-left font-weight-bold mb-sm-1 mb-xs-1"
+                              >
+                                {{ s.title }} - {{ s.percentage }}
+                              </div>
+                            </v-col>
+
+                            <v-col cols="12" sm="12" md="9" lg="8">
+                              <div class="pro-back ml-md-11 my-5">
+                                <div
+                                  class="progress"
+                                  :style="'width:' + s.percentage"
+                                ></div>
+                              </div>
+                            </v-col>
+                          </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-tab-item>
+                    <v-tab-item
+                      v-show="
+                        currentUser.skills.find(s => s.category == 'design')
+                      "
+                    >
+                      <v-row
+                        class="justify-center py-2"
+                        align="center"
+                        no-gutters
+                      >
+                        <v-col
+                          xl="8"
+                          lg="8"
+                          md="8"
+                          sm="12"
+                          cols="12"
+                          v-for="(s, index) in currentUser.skills"
+                          :key="index"
+                          v-show="s.category == 'design'"
+                          class="px-md-6 my-4 px-2 mx-2"
+                        >
+                          <v-row
+                            no-gutters
+                            class="mx-md-0 mx-lg-0 mx-xl-0 mx-sm-12 mx-4"
+                            justify="center"
+                            align="center"
+                          >
+                            <v-col cols="12" sm="12" md="3" lg="4" xl="3">
+                              <div
+                                class="skilltext text-left font-weight-bold mb-sm-1 mb-xs-1"
+                              >
+                                {{ s.title }} - {{ s.percentage }}
+                              </div>
+                            </v-col>
+
+                            <v-col cols="12" sm="12" md="9" lg="8">
+                              <div class="pro-back ml-md-11 my-5">
+                                <div
+                                  class="progress"
+                                  :style="'width:' + s.percentage"
                                 ></div>
                               </div>
                             </v-col>
@@ -462,8 +718,12 @@
 </style>
 <script>
 export default {
+  props: ["user", "is_preview"],
   data() {
     return {
+      available: 0,
+      paymentInfo: 0,
+      currentUser: this.user,
       tab: "Portfolio",
       media: [
         {
@@ -684,6 +944,52 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    availableNext() {
+      if (this.available == 2) {
+        this.available = 0;
+      } else this.available++;
+    },
+    availablePrev() {
+      if (this.available == 0) {
+        this.available = 2;
+      } else this.available--;
+    },
+    paymentInfoNext() {
+      if (this.paymentInfo == 2) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo++;
+    },
+    paymentInfoPrev() {
+      if (this.paymentInfo == 0) {
+        this.paymentInfo = 2;
+      } else this.paymentInfo--;
+    },
+    getProjectMainImage(project) {
+      let mainImage = "";
+
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+
+      return mainImage.src;
+    },
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+    }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>
