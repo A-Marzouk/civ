@@ -21,12 +21,18 @@
         }
     }
 
-    &.civie-select.icon-prepended // Select with prepend icon
+    &.civie-select
     {
-        .v-input__slot {
-            .v-input__append-inner {
-                right: 8px;
+        &.icon-prepended { // Select with prepend icon
+            .v-input__slot {
+                .v-input__append-inner {
+                    right: 8px;
+                }
             }
+        }
+
+        & > .v-input__control > .v-input__slot .v-input__append-inner {
+            right: 1%;
         }
     }
 

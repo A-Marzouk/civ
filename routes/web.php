@@ -24,7 +24,10 @@ Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 
 // Download Resume routes
-Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
+// Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
+
+// Test theme preview
+Route::get('/preview-theme-pdf-by-code/{themeCode}', 'ResumeController@downloadPDFResume');
 
 Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
