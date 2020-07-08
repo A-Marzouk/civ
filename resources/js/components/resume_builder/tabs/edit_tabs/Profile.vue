@@ -389,7 +389,9 @@ export default {
       return re.test(String(email).toLowerCase());
     },
     setUserPreSelectedLanguages() {
-      this.selectedLanguages = this.$store.state.user.languages.map(a => a.id);
+      if( this.$store.state.user.languages){
+        this.selectedLanguages = this.$store.state.user.languages.map(a => a.id);
+      }
     }
   },
   mounted() {
