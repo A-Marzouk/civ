@@ -986,7 +986,7 @@
 <script>
 export default {
   name: "theme8",
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview",'currentTab'],
   data() {
     return {
       tab: null,
