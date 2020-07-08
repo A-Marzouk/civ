@@ -705,7 +705,7 @@ export default {
     },
     availablePrev() {
       if (this.available == 0) {
-        this.available = 0;
+        this.available = 2;
       } else this.available--;
     },
     paymentInfoNext() {
@@ -715,7 +715,7 @@ export default {
     },
     paymentInfoPrev() {
       if (this.paymentInfo == 0) {
-        this.paymentInfo = 0;
+        this.paymentInfo = 2;
       } else this.paymentInfo--;
     },
     getProjectMainImage(project) {

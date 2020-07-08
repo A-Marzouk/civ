@@ -16,7 +16,7 @@
               align-content="end"
             >
               <v-img
-                src="/images/resume_themes/theme501/man-crossed-arms-1516680.jpg"
+                :src="currentUser.personal_info.profile_pic"
                 style="border: 3px solid white;border-radius:50%;"
                 class="profile"
                 cover
@@ -30,64 +30,51 @@
                 class="head font-weight-bold text-left mb-2"
                 style="color: whitesmoke;"
               >
-                David Runchev
+                {{ currentUser.personal_info.full_name }}
               </div>
               <div class="subhead text-left mb-4 white--text">
-                Visual Designer
+                {{ currentUser.personal_info.designation }}
               </div>
 
-              <div class="hidden-sm-and-down">
-                <v-btn fab outlined dark x-small color="#04C79B">
-                  <v-icon dark color="white">mdi-behance</v-icon>
-                </v-btn>
-                <v-btn class="mx-0" fab outlined dark x-small color="#04C79B">
-                  <v-icon dark color="white">mdi-dribbble</v-icon>
-                </v-btn>
-                <v-btn class="mx-0" fab outlined dark x-small color="#04C79B">
-                  <v-icon dark color="white">mdi-instagram</v-icon>
-                </v-btn>
-              </div>
-
-              <div class="hidden-md-and-up mt-sm-8">
+              <div class=" mt-sm-8">
                 <v-btn
+                  fab
+                  outlined
                   dark
-                  elevation="0"
-                  class="px-0 mr-1 iconsize"
-                  color="#217BFF"
+                  x-small
+                  v-for="Userlink in currentUser.links"
+                  :key="Userlink.id + '_link'"
+                  v-show="Userlink.is_active && Userlink.is_public"
+                  :href="Userlink.link"
+                  target="_blank"
+                  :height="iconSize"
+                  :width="iconSize"
+                  color="rgba(4, 199, 155,0.5)"
+                  class="mr-2 mt-1"
                 >
-                  <v-icon dark small color="white">mdi-behance</v-icon>
-                </v-btn>
-                <v-btn
-                  dark
-                  elevation="0"
-                  class="px-0 mx-1 iconsize"
-                  color="#EE588A"
-                >
-                  <v-icon dark small color="white">mdi-dribbble</v-icon>
-                </v-btn>
-                <v-btn
-                  dark
-                  elevation="0"
-                  class="px-0 mx-1 iconsize"
-                  color="#DD24BC"
-                >
-                  <v-icon dark small color="white">mdi-instagram</v-icon>
-                </v-btn>
-                <v-btn
-                  dark
-                  elevation="0"
-                  class="px-0 mx-1 iconsize"
-                  color="#DC4E41"
-                >
-                  <v-icon dark small color="white">mdi-google-plus</v-icon>
+                  <v-icon dark color="white"
+                    >mdi-{{ Userlink.link_title.toLowerCase() }}</v-icon
+                  >
                 </v-btn>
               </div>
             </v-col>
             <v-col class="hidden-md-and-up pl-4 pl-sm-10" cols="2">
-              <v-btn dark class="px-0 my-4 d-block iconsize" color="#03CA9F">
+              <v-btn
+                outlined
+                dark
+                x-small
+                color="rgba(4, 199, 155,0.5)"
+                class="px-0 my-4 d-block iconsize"
+              >
                 <v-icon dark small color="white">mdi-phone</v-icon>
               </v-btn>
-              <v-btn dark class="px-0 my-4 d-block iconsize" color="#2400FF">
+              <v-btn
+                outlined
+                dark
+                x-small
+                color="rgba(4, 199, 155,0.5)"
+                class="px-0 my-4 d-block iconsize"
+              >
                 <v-icon dark small color="white">mdi-video</v-icon>
               </v-btn>
             </v-col>
@@ -129,17 +116,82 @@
               </v-btn>
             </v-col>
             <v-col class="col-md-8 col-sm-11 mr-md-4" lg="10" cols="11">
-              <v-row class="info-pad">
-                <v-col cols="4" lg="4">
-                  <div class="info-title text-center">15$</div>
+              <v-row class="info-pad" dense>
+                <v-col cols="auto" sm="4" lg="4">
+                  <div class="info-title text-center">
+                    <div
+                      v-for="(payment_Info, index) in currentUser.payment_info"
+                      :key="index"
+                      v-show="payment_Info.is_public"
+                    >
+                      <span
+                        class="info-title text-center"
+                        v-if="paymentInfo == index"
+                      >
+                        {{ payment_Info.salary }}$
+                      </span>
+                    </div>
+                  </div>
                   <div class="info-subtitle text-center" style="opacity: 0.82">
-                    Hourly rate
+                    <v-icon :dark="lightMobile" small @click="paymentInfoPrev()"
+                      >navigate_before</v-icon
+                    >
+                    <div
+                      v-for="(payment_Info, index) in currentUser.payment_info"
+                      :key="index"
+                      v-show="payment_Info.is_public"
+                      class="d-inline-block"
+                    >
+                      <span
+                        class="info-subtitle text-center text-capitalize"
+                        v-if="paymentInfo == index"
+                      >
+                        {{ payment_Info.salary_frequency }} Rate
+                      </span>
+                    </div>
+                    <v-icon :dark="lightMobile" small @click="paymentInfoNext()"
+                      >navigate_next</v-icon
+                    >
                   </div>
                 </v-col>
-                <v-col cols="5" sm="4" lg="4">
-                  <div class="info-title text-center">40 hours</div>
+                <v-col cols="auto" sm="4" lg="4">
+                  <div class="info-title text-center">
+                    <div
+                      v-for="(availability_info,
+                      index) in currentUser.availability_info"
+                      :key="index"
+                      v-show="availability_info.is_public"
+                    >
+                      <span
+                        class="info-title text-center"
+                        v-if="available == index"
+                      >
+                        {{ availability_info.available_hours }} hours
+                      </span>
+                    </div>
+                  </div>
                   <div class="info-subtitle text-center" style="opacity: 0.82">
-                    Weekly Availability
+                    <v-icon :dark="lightMobile" small @click="availablePrev()"
+                      >navigate_before</v-icon
+                    >
+                    <div
+                      v-for="(availability_info,
+                      index) in currentUser.availability_info"
+                      :key="index"
+                      v-show="availability_info.is_public"
+                      class="d-inline-block"
+                    >
+                      <span
+                        class="info-subtitle text-center text-capitalize "
+                        v-if="available == index"
+                      >
+                        {{ availability_info.available_hours_frequency }}
+                        Availability
+                      </span>
+                    </div>
+                    <v-icon :dark="lightMobile" small @click="availableNext()"
+                      >navigate_next</v-icon
+                    >
                   </div>
                 </v-col>
 
@@ -164,20 +216,36 @@
                 background-color="#03CA9F"
                 class="tabmob"
               >
-                <v-tab>
+                <v-tab
+                  v-show="
+                    currentUser.skills.find(
+                      s => s.category == 'programming_languages'
+                    )
+                  "
+                >
                   <div class="subhead">
                     Programming languages
                   </div>
                 </v-tab>
-                <v-tab>
+                <v-tab
+                  v-show="
+                    currentUser.skills.find(s => s.category == 'frameworks')
+                  "
+                >
                   <div class="subhead">
                     Frameworks/ Databases
                   </div>
                 </v-tab>
-                <v-tab>
+                <v-tab
+                  v-show="
+                    currentUser.skills.find(s => s.category == 'software')
+                  "
+                >
                   <div class="subhead">Software</div>
                 </v-tab>
-                <v-tab>
+                <v-tab
+                  v-show="currentUser.skills.find(s => s.category == 'design')"
+                >
                   <div class="subhead">Design</div>
                 </v-tab>
               </v-tabs>
@@ -274,77 +342,30 @@
           <v-col
             class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3"
             cols="11"
+            v-for="project in currentUser.projects"
+            :key="project.id + '_project'"
+            v-show="project.is_public"
           >
             <v-card elevation="8" class="mx-lg-4">
               <div style="padding:10px 10px;">
                 <v-img
                   :aspect-ratio="0.96"
                   cover
-                  src="/images/resume_themes/theme501/Screenshot_1.png"
+                  :src="getProjectMainImage(project)"
                   style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
                 ></v-img>
               </div>
               <v-row class="justify-between">
                 <v-col cols="9">
-                  <v-card-title>Product Designer</v-card-title>
-                  <v-card-subtitle>insdrurial, creative, idea</v-card-subtitle>
+                  <v-card-title> {{ project.name }} </v-card-title>
+                  <v-card-subtitle>{{ project.skills }}</v-card-subtitle>
                 </v-col>
                 <v-col cols="3" justify="end" align="end">
-                  <v-icon color="#623CEA" large class="mt-6 mr-2"
-                    >open_in_new</v-icon
-                  >
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-col>
-          <v-col
-            class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3"
-            cols="11"
-          >
-            <v-card elevation="8" class="mx-lg-4">
-              <div style="padding:10px 10px;">
-                <v-img
-                  :aspect-ratio="0.96"
-                  cover
-                  src="/images/resume_themes/theme501/d2a.jpg"
-                  style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
-                ></v-img>
-              </div>
-              <v-row class="justify-between">
-                <v-col cols="9">
-                  <v-card-title>Product Designer</v-card-title>
-                  <v-card-subtitle>insdrurial, creative, idea</v-card-subtitle>
-                </v-col>
-                <v-col cols="3" justify="end" align="end">
-                  <v-icon color="#623CEA" large class="mt-6 mr-2"
-                    >open_in_new</v-icon
-                  >
-                </v-col>
-              </v-row>
-            </v-card>
-          </v-col>
-          <v-col
-            class="col-md-4 col-sm-12 px-sm-12 py-sm-3 px-lg-8 my-3"
-            cols="11"
-          >
-            <v-card elevation="8" class="mx-lg-4">
-              <div style="padding:10px 10px;">
-                <v-img
-                  :aspect-ratio="0.96"
-                  cover
-                  src="/images/resume_themes/theme501/image_processing20191208-15422-1m97ypn.png"
-                  style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
-                ></v-img>
-              </div>
-              <v-row class="justify-between">
-                <v-col cols="9">
-                  <v-card-title>Product Designer</v-card-title>
-                  <v-card-subtitle>insdrurial, creative, idea</v-card-subtitle>
-                </v-col>
-                <v-col cols="3" justify="end" align="end">
-                  <v-icon color="#623CEA" large class="mt-6 mr-2"
-                    >open_in_new</v-icon
-                  >
+                  <v-btn target="_blank" text :href="project.link">
+                    <v-icon color="#623CEA" large class="mt-6 mr-2"
+                      >open_in_new</v-icon
+                    >
+                  </v-btn>
                 </v-col>
               </v-row>
             </v-card>
@@ -353,127 +374,31 @@
       </v-tab-item>
       <v-tab-item value="tab-2">
         <v-container class="mt-md-6">
-          <v-row>
-            <v-col cols="12" md="6">
+          <v-row no-gutters>
+            <v-col
+              cols="12"
+              md="6"
+              v-for="(work, workIndex) in currentUser.work_experience"
+              :key="work.id"
+              v-show="work.is_public"
+            >
               <v-timeline align-top dense class="large_dot">
                 <v-timeline-item
                   fill-dot
-                  color="#0050FD"
-                  icon="mdi-package-variant"
+                  :color="Randomcolors[workIndex].color"
+                  :icon="RandomIcon[workIndex].icon"
                 >
-                  <p class="title mt-1">Product Designer</p>
+                  <p class="title mt-1">{{ work.job_title }}</p>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
+                  <div class="subtitle-2">{{ work.company_name }}</div>
                   <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
+                    {{ work.date_from }} - {{ work.date_to }}
                   </div>
                 </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#00C1FF"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Visual Designer</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
                 <v-timeline-item right hide-dot>
                   <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#69C03E"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Ux Designer</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#00C1FF"
-                  icon="mdi-package-variant"
-                >
-                  <p class="title mt-1">Animation Designer</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#69C03E"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Illustration Designer</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#0050FD"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Ux Designer</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
+                    {{ work.description }}
                   </div>
                 </v-timeline-item>
               </v-timeline>
@@ -483,127 +408,31 @@
       </v-tab-item>
       <v-tab-item value="tab-3">
         <v-container class="mt-md-6">
-          <v-row>
-            <v-col cols="12" md="6">
+          <v-row no-gutters>
+            <v-col
+              cols="12"
+              md="6"
+              v-for="(education, eduIndex) in currentUser.education"
+              :key="education.id"
+              v-show="education.is_public"
+            >
               <v-timeline align-top dense class="large_dot">
                 <v-timeline-item
                   fill-dot
-                  color="#0050FD"
-                  icon="mdi-package-variant"
+                  :color="Randomcolors[eduIndex].color"
+                  :icon="RandomIcon[eduIndex].icon"
                 >
-                  <p class="title mt-1">Graphic Arts Institute</p>
+                  <p class="title mt-1">{{ education.university_name }}</p>
                 </v-timeline-item>
                 <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
+                  <div class="subtitle-2">{{ education.institution_type }}</div>
                   <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
+                    {{ education.date_from }} - {{ education.date_to }}
                   </div>
                 </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#21D5B4"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Visual Design ltd</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
                 <v-timeline-item right hide-dot>
                   <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#DB2CB7"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Udemy</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-            </v-col>
-            <v-col cols="12" md="6">
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#21D5B4"
-                  icon="mdi-package-variant"
-                >
-                  <p class="title mt-1">Edx Ltd</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#DB2CB7"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Teachable.</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
-                  </div>
-                </v-timeline-item>
-              </v-timeline>
-              <v-timeline align-top dense class="large_dot">
-                <v-timeline-item
-                  fill-dot
-                  color="#FEA630"
-                  icon="mdi-ruler-square-compass"
-                >
-                  <p class="title mt-1">Learnworlds.</p>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">Gps Bangla</div>
-                  <div class="subtitle-2">Jan 2017 - Feb 2019</div>
-                </v-timeline-item>
-                <v-timeline-item right hide-dot>
-                  <div class="subtitle-2">
-                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                    diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                    aliquyam erat,
+                    {{ education.degree_title }}
                   </div>
                 </v-timeline-item>
               </v-timeline>
@@ -625,6 +454,11 @@
                 v-on:click="activetab = 0"
                 class="tabs"
                 v-bind:class="[activetab === 0 ? 'active' : '']"
+                v-show="
+                  currentUser.skills.find(
+                    s => s.category == 'programming_languages'
+                  )
+                "
               >
                 <a class="tabtitle">
                   Programming languages
@@ -636,6 +470,9 @@
                 cols="3"
                 v-on:click="activetab = 1"
                 class="tabs"
+                v-show="
+                  currentUser.skills.find(s => s.category == 'frameworks')
+                "
                 v-bind:class="[activetab === 1 ? 'active' : '']"
               >
                 <a class="tabtitle">
@@ -648,6 +485,7 @@
                 cols="3"
                 v-on:click="activetab = 2"
                 class="tabs"
+                v-show="currentUser.skills.find(s => s.category == 'software')"
                 v-bind:class="[activetab === 2 ? 'active' : '']"
               >
                 <a class="tabtitle">Software</a>
@@ -658,6 +496,7 @@
                 cols="3"
                 v-on:click="activetab = 3"
                 class="tabs"
+                v-show="currentUser.skills.find(s => s.category == 'design')"
                 v-bind:class="[activetab === 3 ? 'active' : '']"
               >
                 <a class="tabtitle">
@@ -680,12 +519,18 @@
                 <v-col class="col-md-12 col-sm-12" lg="12" cols="12">
                   <v-row
                     justify="space-around"
-                    justify-lg="space-between"
-                    justify-sm="space-between"
+                    justify-lg="space-around"
+                    justify-sm="space-around"
                     align="start"
                     dense
                   >
-                    <v-col class="col-md-3 col-sm-6" cols="5">
+                    <v-col
+                      class="col-md-3 col-sm-6"
+                      cols="5"
+                      v-for="(s, index) in currentUser.skills"
+                      :key="index"
+                      v-show="s.category == 'programming_languages'"
+                    >
                       <v-row
                         dense
                         class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
@@ -702,12 +547,12 @@
                           class="mb-2"
                           align-self="end"
                         >
-                          <div class="mini text-left pb-2">Illustrator</div>
+                          <div class="mini text-left pb-2">{{ s.title }}</div>
                           <v-progress-linear
-                            value="90"
+                            :color="Randomcolors[index].color"
+                            :value="s.percentage"
                             height="10"
                             background-color="#C5C5C5"
-                            color="#23A565"
                           ></v-progress-linear>
                         </v-col>
                         <v-col
@@ -717,115 +562,9 @@
                           class="mb-1"
                           align-self="end"
                         >
-                          <span class="text-left subhead">90%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="https://i.ibb.co/5LmT1d2/Group-296.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">Adobe XD</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="70"
-                            color="#BF3B2C"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">70%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="https://i.ibb.co/XF4kff4/Group-298.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">Photoshop</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="95"
-                            color="#109083"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">95%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="https://i.ibb.co/XX03172/Group-300.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">Premiere Pro</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="50"
-                            color="#F4B707"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">50%</span>
+                          <span class="text-left subhead"
+                            >{{ s.percentage }}%</span
+                          >
                         </v-col>
                       </v-row>
                     </v-col>
@@ -842,85 +581,18 @@
                 <v-col class="col-md-12 col-sm-12" lg="12" cols="12">
                   <v-row
                     justify="space-around"
-                    justify-lg="space-between"
-                    justify-sm="space-between"
+                    justify-lg="space-around"
+                    justify-sm="space-around"
                     align="start"
                     dense
                   >
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/html.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">HTML</div>
-                          <v-progress-linear
-                            value="90"
-                            height="10"
-                            background-color="#C5C5C5"
-                            color="#E34F26"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">90%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/css.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">CSS</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="70"
-                            color="#264DE4"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">70%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
+                    <v-col
+                      class="col-md-3 col-sm-6"
+                      cols="5"
+                      v-for="(s, index) in currentUser.skills"
+                      :key="index"
+                      v-show="s.category == 'frameworks'"
+                    >
                       <v-row
                         dense
                         class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
@@ -937,12 +609,12 @@
                           class="mb-2"
                           align-self="end"
                         >
-                          <div class="mini text-left pb-2">JavaScript</div>
+                          <div class="mini text-left pb-2">{{ s.title }}</div>
                           <v-progress-linear
-                            background-color="#C5C5C5"
+                            :color="Randomcolors[index].color"
+                            :value="s.percentage"
                             height="10"
-                            value="95"
-                            color="#FDD83C"
+                            background-color="#C5C5C5"
                           ></v-progress-linear>
                         </v-col>
                         <v-col
@@ -952,43 +624,9 @@
                           class="mb-1"
                           align-self="end"
                         >
-                          <span class="text-center subhead">95%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/magento.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">Magento</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="50"
-                            color="#EC6737"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">50%</span>
+                          <span class="text-left subhead"
+                            >{{ s.percentage }}%</span
+                          >
                         </v-col>
                       </v-row>
                     </v-col>
@@ -1003,85 +641,18 @@
                 <v-col class="col-md-12 col-sm-12" lg="12" cols="12">
                   <v-row
                     justify="space-around"
-                    justify-lg="space-between"
-                    justify-sm="space-between"
+                    justify-lg="space-around"
+                    justify-sm="space-around"
                     align="start"
                     dense
                   >
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/html.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">HTML</div>
-                          <v-progress-linear
-                            value="90"
-                            height="10"
-                            background-color="#C5C5C5"
-                            color="#E34F26"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">90%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/css.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">CSS</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="70"
-                            color="#264DE4"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">70%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
+                    <v-col
+                      class="col-md-3 col-sm-6"
+                      cols="5"
+                      v-for="(s, index) in currentUser.skills"
+                      :key="index"
+                      v-show="s.category == 'software'"
+                    >
                       <v-row
                         dense
                         class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
@@ -1098,12 +669,12 @@
                           class="mb-2"
                           align-self="end"
                         >
-                          <div class="mini text-left pb-2">JavaScript</div>
+                          <div class="mini text-left pb-2">{{ s.title }}</div>
                           <v-progress-linear
-                            background-color="#C5C5C5"
+                            :color="Randomcolors[index].color"
+                            :value="s.percentage"
                             height="10"
-                            value="95"
-                            color="#FDD83C"
+                            background-color="#C5C5C5"
                           ></v-progress-linear>
                         </v-col>
                         <v-col
@@ -1113,43 +684,9 @@
                           class="mb-1"
                           align-self="end"
                         >
-                          <span class="text-center subhead">95%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/magento.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">Magento</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="50"
-                            color="#EC6737"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">50%</span>
+                          <span class="text-left subhead"
+                            >{{ s.percentage }}%</span
+                          >
                         </v-col>
                       </v-row>
                     </v-col>
@@ -1166,85 +703,18 @@
                 <v-col class="col-md-12 col-sm-12" lg="12" cols="12">
                   <v-row
                     justify="space-around"
-                    justify-lg="space-between"
-                    justify-sm="space-between"
+                    justify-lg="space-around"
+                    justify-sm="space-around"
                     align="start"
                     dense
                   >
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/html.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">HTML</div>
-                          <v-progress-linear
-                            value="90"
-                            height="10"
-                            background-color="#C5C5C5"
-                            color="#E34F26"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">90%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/css.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">CSS</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="70"
-                            color="#264DE4"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">70%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
+                    <v-col
+                      class="col-md-3 col-sm-6"
+                      cols="5"
+                      v-for="(s, index) in currentUser.skills"
+                      :key="index"
+                      v-show="s.category == 'design'"
+                    >
                       <v-row
                         dense
                         class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
@@ -1261,12 +731,12 @@
                           class="mb-2"
                           align-self="end"
                         >
-                          <div class="mini text-left pb-2">JavaScript</div>
+                          <div class="mini text-left pb-2">{{ s.title }}</div>
                           <v-progress-linear
-                            background-color="#C5C5C5"
+                            :color="Randomcolors[index].color"
+                            :value="s.percentage"
                             height="10"
-                            value="95"
-                            color="#FDD83C"
+                            background-color="#C5C5C5"
                           ></v-progress-linear>
                         </v-col>
                         <v-col
@@ -1276,43 +746,9 @@
                           class="mb-1"
                           align-self="end"
                         >
-                          <span class="text-center subhead">95%</span>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                    <v-col class="col-md-3 col-sm-6" cols="5">
-                      <v-row
-                        dense
-                        class="justify-start backlayer mx-xl-4 mx-lg-2 mx-sm-4"
-                      >
-                        <v-col cols="3" sm="3" md="3">
-                          <v-img
-                            src="/images/resume_themes/theme501/magento.png"
-                          ></v-img>
-                        </v-col>
-                        <v-col
-                          cols="7"
-                          sm="7"
-                          md="7"
-                          class="mb-2"
-                          align-self="end"
-                        >
-                          <div class="mini text-left pb-2">Magento</div>
-                          <v-progress-linear
-                            background-color="#C5C5C5"
-                            height="10"
-                            value="50"
-                            color="#EC6737"
-                          ></v-progress-linear>
-                        </v-col>
-                        <v-col
-                          cols="1"
-                          sm="2"
-                          md="2"
-                          class="mb-1"
-                          align-self="end"
-                        >
-                          <span class="text-center subhead">50%</span>
+                          <span class="text-left subhead"
+                            >{{ s.percentage }}%</span
+                          >
                         </v-col>
                       </v-row>
                     </v-col>
@@ -1333,69 +769,47 @@
         >
           <v-col cols="9" sm="11" class="hidden-md-and-up mt-12">
             <v-img
-              src="/images/resume_themes/theme501/about.png"
+              :src="currentUser.personal_info.profile_pic"
               class="box-layer"
               contain
             ></v-img>
           </v-col>
           <v-col md="6" sm="12" cols="11" class="mt-12 mt-sm-10">
             <div class="mt-sm-10 mt-10 mt-lg-10">Hello, I'm</div>
-            <div class="display-2 mt-md-6 mt-sm-6">Mickel David</div>
+            <div class="display-2 mt-md-6 mt-sm-6">
+              {{ currentUser.personal_info.full_name }}
+            </div>
             <div class="display-2 mt-md-2 mt-sm-2">
               a
-              <span style="color:#623CEA;">UI & UX</span>
-              Designer
+              <span style="color:#623CEA;">{{
+                currentUser.personal_info.designation
+              }}</span>
             </div>
-            <div class="display-2 mt-md-12 mt-sm-8">About me.</div>
+            <div class="display-2 mt-md-12 mt-sm-8">About Me.</div>
             <v-row dense class="mt-md-12 mt-sm-8">
               <v-col cols="1">
                 <div class="line"></div>
               </v-col>
               <v-col cols="11" sm="12" lg="9">
                 <div class="title" style="color:#656565;">
-                  I have a great passion on designing and always love to create
-                  a new design. Thus now I am highly skilled, enthusiastic,
-                  self- motivated UI & UX Designer able to do any kinds of
-                  designing on upwork. Not only that I have worked for other
-                  company but I myself have also a website based on web
-                  programming and web developing of my own.
+                  {{ currentUser.personal_info.about }}
                 </div>
                 <div class="mt-md-8 mt-sm-8 mt-6">
                   <v-btn
+                    v-for="Userlink in currentUser.links"
+                    :key="Userlink.id + '_link'"
+                    v-show="Userlink.is_active && Userlink.is_public"
+                    :href="Userlink.link"
+                    target="_blank"
                     dark
-                    class="px-0"
+                    class="px-0 mr-1"
                     min-width="30"
                     height="30"
                     color="#414143"
                   >
-                    <v-icon dark small color="white">mdi-behance</v-icon>
-                  </v-btn>
-                  <v-btn
-                    dark
-                    class="px-0 mx-1"
-                    min-width="30"
-                    height="30"
-                    color="#414143"
-                  >
-                    <v-icon dark small color="white">mdi-dribbble</v-icon>
-                  </v-btn>
-                  <v-btn
-                    dark
-                    class="px-0 mx-1"
-                    min-width="30"
-                    height="30"
-                    color="#414143"
-                  >
-                    <v-icon dark small color="white">mdi-instagram</v-icon>
-                  </v-btn>
-                  <v-btn
-                    dark
-                    class="px-0 mx-1"
-                    min-width="30"
-                    height="30"
-                    color="#414143"
-                  >
-                    <v-icon dark small color="white">mdi-google-plus</v-icon>
+                    <v-icon dark small color="white"
+                      >mdi-{{ Userlink.link_title.toLowerCase() }}</v-icon
+                    >
                   </v-btn>
                 </div>
               </v-col>
@@ -1403,7 +817,7 @@
           </v-col>
           <v-col md="2" sm="4" class="hidden-sm-and-down mt-12">
             <v-img
-              src="/images/resume_themes/theme501/about.png"
+              :src="currentUser.personal_info.profile_pic"
               class="box-layer"
               contain
             ></v-img>
@@ -1445,6 +859,9 @@ export default {
   props: ["user", "is_preview"],
   data() {
     return {
+      available: 0,
+      paymentInfo: 0,
+      currentUser: this.user,
       currentTab: null,
       activetab: 1,
       tab: "#tab-1",
@@ -1480,8 +897,121 @@ export default {
           name: "About Me",
           icon: "mdi-comment-edit"
         }
+      ],
+      Randomcolors: [
+        { color: "#217BFF" },
+        { color: "#EE588A" },
+        { color: "#DD24BC" },
+        { color: "#F57C00" },
+        { color: "#00897B" },
+        { color: "#00ACC1" },
+        { color: "#E64A19" },
+        { color: "#217BFF" },
+        { color: "#EE588A" },
+        { color: "#DD24BC" },
+        { color: "#F57C00" },
+        { color: "#00897B" },
+        { color: "#00ACC1" },
+        { color: "#E64A19" },
+        { color: "#217BFF" },
+        { color: "#EE588A" },
+        { color: "#DD24BC" },
+        { color: "#F57C00" },
+        { color: "#00897B" },
+        { color: "#00ACC1" },
+        { color: "#E64A19" }
+      ],
+      RandomIcon: [
+        { icon: "mdi-package-variant" },
+        { icon: "mdi-ruler-square-compass" },
+        { icon: "mdi-package-variant" },
+        { icon: "mdi-ruler-square-compass" },
+        { icon: "mdi-package-variant" },
+        { icon: "mdi-ruler-square-compass" },
+        { icon: "mdi-package-variant" },
+        { icon: "mdi-ruler-square-compass" },
+        { icon: "mdi-package-variant" },
+        { icon: "mdi-ruler-square-compass" },
+        { icon: "mdi-package-variant" },
+        { icon: "mdi-ruler-square-compass" }
       ]
     };
+  },
+  computed: {
+    iconSize() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "30px";
+        case "sm":
+          return "36px";
+        case "md":
+          return "36px";
+        case "lg":
+          return "32px";
+        case "xl":
+          return "32px";
+      }
+    },
+    lightMobile() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return false;
+        case "sm":
+          return false;
+        case "md":
+          return false;
+        case "lg":
+          return true;
+        case "xl":
+          return true;
+      }
+    }
+  },
+  methods: {
+    availableNext() {
+      if (this.available == 2) {
+        this.available = 0;
+      } else this.available++;
+    },
+    availablePrev() {
+      if (this.available == 0) {
+        this.available = 2;
+      } else this.available--;
+    },
+    paymentInfoNext() {
+      if (this.paymentInfo == 2) {
+        this.paymentInfo = 0;
+      } else this.paymentInfo++;
+    },
+    paymentInfoPrev() {
+      if (this.paymentInfo == 0) {
+        this.paymentInfo = 2;
+      } else this.paymentInfo--;
+    },
+    getProjectMainImage(project) {
+      let mainImage = "";
+
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+
+      return mainImage.src;
+    },
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+    }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>
