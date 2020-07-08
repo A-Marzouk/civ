@@ -46,13 +46,12 @@ class ThemesController extends Controller
 
         $this->validator($request->all())->validate();
 
-        if($request->isMethod('put')){
+        if($request->isMethod('put') || $request->id != '' ){
             $theme = Theme::findOrFail($request->id);
             $theme->update($request->toArray());
         }else{
             $theme = Theme::create($request->toArray());
         }
-
 
         if (isset($_FILES['image'])) {
             $pathToPicture = Upload::themePreview('image');
@@ -131,8 +130,8 @@ class ThemesController extends Controller
             'emotions' => ['sometimes','max:255','min:1'],
             'design_style' => ['sometimes','string','min:3','max:255'],
             'color' =>['sometimes','string','max:255','min:3'],
-            'code' =>['sometimes','string','max:255','min:1', 'unique:themes'],
-            'image' =>['sometimes','image']
+            'code' => 'required|min:1|max:255|unique:themes,code,'. $data['id'].',id',
+            'image' =>['sometimes']
         ]);
     }
 

@@ -85,28 +85,109 @@
           class="col-theme-preview ml-xl-n12"
         >
           <!-- tab bar -->
-          <v-tabs class="resume-builder__tab-bar" hide-slider>
-            <v-tab class="resume-builder__tab">Choose Theme</v-tab>
-            <v-tab class="resume-builder__tab">View your theme</v-tab>
-          </v-tabs>
-          <!-- tab bar -->
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
-            <v-row align="center">
-              <v-col md="4" sm="4" cols="6" v-for="i in 12" :key="i">
-                <img
-                  src="/images/new_resume_builder/themes-wrapper.svg"
-                  alt="themes"
-                  class="theme-img"
-                  :class="selectedTheme == i ? 'selected-theme':''"
-                  @click="selectTheme(i)"
-                  width="417"
-                  height="303"
-                />
+            <v-row align="center" v-if="user.theme">
+              <v-col
+                md="4"
+                :sm="windowWidth<=767?'6':'4'"
+                cols="12"
+                v-for="theme in availableThemes"
+                :key="theme.id"
+              >
+                <v-hover>
+                  <template v-slot:default="{ hover }">
+                    <v-card class="card-theme-holder pa-0 ma-0" flat color="transparent">
+                      <v-row justify="center">
+                        <img
+                          :src="theme.image"
+                          alt="themes"
+                          class="theme-image"
+                          :class="theme.id == user.theme.id? 'active': 'inactive'"
+                        />
+                        <v-fade-transition>
+                          <v-overlay
+                            v-if="hover"
+                            absolute
+                            color="#ffffff"
+                            opacity="0.5"
+                            class="custom-overlay"
+                          >
+                            <v-btn
+                              color="#001CE2"
+                              absolute
+                              class="btn-activate"
+                              :class="{active : theme.id === user.theme.id}"
+                              depressed
+                              @click="activateTheme(theme.id)"
+                            >
+                              {{theme.id === user.theme.id ? 'Active' : 'Activate'}}
+                              <img src="/icons/check.svg" />
+                            </v-btn>
+                            <v-row>
+                              <v-col cols="12" align="center">
+                                <v-btn
+                                  color="#001CE2"
+                                  class="btn-my-data mb-xl-n4 mb-lg-n6 mb-md-n6 mb-sm-n12 mb-n5"
+                                  outlined
+                                  depressed
+                                >
+                                  Play Video
+                                  <img src="/icons/youtube.svg" />
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="12" align="center">
+                                <v-btn
+                                  color="#001CE2"
+                                  class="btn-my-data mb-xl-n4 mb-lg-n5 mb-md-n5 mb-sm-n6 mb-n5"
+                                  outlined
+                                  depressed
+                                  @click="openTheme(theme.id, 'true')"
+                                >
+                                  My Data
+                                  <img src="/icons/eye-icon-blue.svg" />
+                                </v-btn>
+                              </v-col>
+                              <v-col cols="12" align="center">
+                                <v-btn
+                                  color="#001CE2"
+                                  class="btn-preview-data"
+                                  depressed
+                                  @click="openTheme(theme.id, 'false')"
+                                >
+                                  Preview Data
+                                  <img src="/icons/eye-icon-white.svg" />
+                                </v-btn>
+                              </v-col>
+                            </v-row>
+                          </v-overlay>
+                        </v-fade-transition>
+                      </v-row>
+                    </v-card>
+                  </template>
+                </v-hover>
               </v-col>
             </v-row>
           </v-card>
           <v-card flat tile color="transparent"></v-card>
+
+          <div class="cv-content-preview-wrapper">
+            <div class="cv-content-preview">
+              <div class="cv-preview-link">
+                <a
+                  v-if="user.username"
+                  :href="`https://civ.ie/${user.username}`"
+                  target="_blank"
+                  v-text="`https://civ.ie/${user.username}`"
+                ></a>
+              </div>
+              <div class="cv-preview-theme-wrapper">
+                <div class="cv-preview-theme">
+                  <component :is="userTheme" v-if="user.personal_info" :user="user" :is_preview="false"></component>
+                </div>
+              </div>
+            </div>
+          </div>
         </v-col>
       </v-row>
       <v-dialog
@@ -133,9 +214,11 @@ export default {
   name: "ViewCV",
   data() {
     return {
+      overlay: false,
       viewThemeModal: false,
       themeTab: 0,
       selectedTheme: 1,
+      currentThemeComponent: "resumeTheme201",
       windowWidth: window.innerWidth,
       disabledInput: false,
       availableThemes: [],
@@ -206,24 +289,21 @@ export default {
   computed: {
     user() {
       return this.$store.state.user;
+    },
+    userTheme: function() {
+      let code = this.$store.state.user.theme.code;
+      if (code) {
+        return this.importComponent(code);
+      }
     }
   },
-  props: ["inputProps", "selectProps"],
   methods: {
-    toggleInput() {
-      this.disabledInput = !this.disabledInput;
+    importComponent(path) {
+      return () => import("../../resume_themes/theme" + path + "/index.vue");
     },
-    toggleSelect() {
-      this.disabledSelect = !this.disabledSelect;
-    },
-
-    showPreviewModal(theme_id) {
-      this.previewThemeID = theme_id;
-      this.$refs.previewModal.show();
-    },
-    openTheme(theme) {
-      let url = "/preview/theme" + theme.code;
-      window.open(url, "_blank") || window.location.replace(url);
+    openTheme(id, is_real) {
+        let url = "/preview/" + id + "?real=" + is_real;
+        window.open(url, "_blank") || window.location.replace(url);
     },
     activateTheme(theme_id) {
       if (this.user.theme_id === theme_id) {
@@ -248,22 +328,6 @@ export default {
             iconSrc: "/images/resume_builder/error.png"
           });
         });
-    },
-    selectProfession(index) {
-      // Search profession on db using index
-      // axios request
-      this.selectedProfession = index;
-      this.showProfessionOptions = false;
-    },
-    selectSpeciality(index) {
-      // Search speciality on db using index
-      // axios request
-      this.selectedSpeciality = index;
-      this.showSpecialityOptions = false;
-    },
-    selectTheme(index) {
-      this.selectedTheme = index;
-      this.viewThemeModal = true;
     },
     getThemesList() {
       axios
@@ -300,7 +364,7 @@ $mainBlue: #001ce2;
   border: 1px solid #888db1;
   width: 964px;
   max-width: 964px;
-  @media screen and (max-width: 1903px){
+  @media screen and (max-width: 1903px) {
     width: 50% !important;
     max-width: 50% !important;
   }
@@ -417,6 +481,178 @@ $mainBlue: #001ce2;
       font-size: 13px;
     }
   }
+  .card-theme-holder {
+    max-width: 417px;
+    max-height: 302.56px;
+    @media screen and (min-width: 960px) and (max-width: 1903px) {
+      width: 274px;
+      height: 200px;
+    }
+    @media screen and (min-width: 768px) and (max-width: 959px) {
+      width: 200px;
+      height: 145.11px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 767px) {
+      width: 240px;
+      height: 175.11px;
+    }
+    @media screen and (max-width: 599px) {
+      width: 300px;
+      height: 217.67px;
+    }
+
+    .active {
+      border: 3px solid #001ce2;
+    }
+    .inactive {
+      border: 1px solid #888db1;
+    }
+    img {
+      max-width: 417px;
+      max-height: 302.56px;
+      height: 302.56px;
+      width: 95%;
+      border-radius: 5px;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        width: 274px;
+        height: 200px;
+      }
+      @media screen and (min-width: 768px) and (max-width: 959px) {
+        width: 200px;
+        height: 145.11px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        width: 240px;
+        height: 175.11px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 300px;
+        height: 217.67px;
+      }
+    }
+    .custom-overlay {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid #888db1 !important;
+      border-radius: 5px !important;
+    }
+    .btn-preview-data {
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        font-size: 10px;
+        width: 100px;
+        height: 23px;
+      }
+      img {
+        margin-left: 5px;
+        width: 12px;
+        height: 12px;
+        @media screen and (min-width: 960px) and (max-width: 1903px) {
+          width: 10px;
+          height: 10px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 959px) {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+    .btn-my-data {
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      color: #001ce2 !important;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        font-size: 10px;
+        width: 100px;
+        height: 23px;
+      }
+
+      img {
+        margin-left: 5px;
+        width: 12px;
+        height: 12px;
+        @media screen and (min-width: 960px) and (max-width: 1903px) {
+          width: 10px;
+          height: 10px;
+        }
+        @media screen and (min-width: 600px) and (max-width: 959px) {
+          width: 10px;
+          height: 10px;
+        }
+      }
+    }
+    .btn-activate {
+
+      &.active{
+        background: greenyellow !important;
+        border:none;
+      }
+
+      top: -77px;
+      right: -3px;
+      width: 120px;
+      height: 35px;
+      border-radius: 5px;
+      font-family: "Noto Sans" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 12px;
+      text-transform: capitalize !important;
+      @media screen and (min-width: 960px) and (max-width: 1903px) {
+        font-size: 10px;
+        width: 100px;
+        height: 30px;
+        top: -28px;
+        right: 0;
+      }
+      @media screen and (min-width: 768px) and (max-width: 959px) {
+        font-size: 8px;
+        width: 100px;
+        height: 23px;
+        top: -4px;
+        right: -1px;
+      }
+      @media screen and (min-width: 600px) and (max-width: 767px) {
+        top: -19px;
+        right: -1px;
+      }
+      @media screen and (max-width: 599px) {
+        top: -35px;
+        right: 0;
+      }
+
+      img {
+        margin-left: 5px;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
   .theme-img {
     img {
       width: 417px !important;
@@ -432,6 +668,7 @@ $mainBlue: #001ce2;
     }
     border-radius: 0px !important;
   }
+
   .selected-theme {
     border: 3px solid #001ce2;
   }
@@ -439,10 +676,85 @@ $mainBlue: #001ce2;
 
 #previewModalContainer {
   width: 80%;
-
   iframe {
     width: 100%;
     height: 80vh;
+  }
+}
+
+.cv-content-preview-wrapper {
+  margin-right: -10px;
+  margin-left: -10px;
+  overflow-y: scroll;
+  margin-top: 40px;
+  padding: 10px;
+  max-height: 600px;
+  max-width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 0;
+    background: #e5e5e5;
+    border-radius: 5px 0 0 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #001ce2;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .cv-content-preview {
+    .cv-preview-link {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      padding-left: 25px;
+      border: 1px solid #e6e8fc;
+
+      a {
+        color: #888db1;
+        font-family: "Roboto", "sans-serif";
+        font-size: 20px;
+        line-height: 22px;
+
+        &:hover {
+          color: inherit;
+        }
+      }
+    }
+
+    .cv-preview-theme-wrapper {
+      .cv-preview-theme {
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+          height: 0;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          height: 0;
+        }
+      }
+    }
+  }
+
+  @include gt-xs {
+    padding: 10px;
+    padding-right: 20px;
+    max-width: unset;
+    margin-left: -10px;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      border-radius: 10px 0 0 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px 0 0 10px;
+    }
   }
 }
 </style>
