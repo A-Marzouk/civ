@@ -75,15 +75,7 @@
             </v-card>
           </v-navigation-drawer>
         </v-col>
-        <v-col
-          xl="9"
-          lg="9"
-          md="12"
-          sm="12"
-          cols="12"
-          align="left"
-          class="col-theme-preview ml-xl-n12"
-        >
+        <v-col xl="9" lg="9" md="12" sm="12" cols="12" align="left" class>
           <!-- tab bar -->
           <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
             <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
@@ -122,7 +114,9 @@
                               @click="activateTheme(theme.id)"
                             >
                               {{theme.id === user.theme.id ? 'Active' : 'Activate'}}
-                              <img src="/icons/check.svg" />
+                              <img
+                                src="/icons/check.svg"
+                              />
                             </v-btn>
                             <v-row>
                               <v-col cols="12" align="center">
@@ -183,7 +177,12 @@
               </div>
               <div class="cv-preview-theme-wrapper">
                 <div class="cv-preview-theme">
-                  <component :is="userTheme" v-if="user.personal_info" :user="user" :is_preview="false"></component>
+                  <component
+                    :is="userTheme"
+                    v-if="user.personal_info"
+                    :user="user"
+                    :is_preview="false"
+                  ></component>
                 </div>
               </div>
             </div>
@@ -302,8 +301,8 @@ export default {
       return () => import("../../resume_themes/theme" + path + "/index.vue");
     },
     openTheme(id, is_real) {
-        let url = "/preview/" + id + "?real=" + is_real;
-        window.open(url, "_blank") || window.location.replace(url);
+      let url = "/preview/" + id + "?real=" + is_real;
+      window.open(url, "_blank") || window.location.replace(url);
     },
     activateTheme(theme_id) {
       if (this.user.theme_id === theme_id) {
@@ -402,8 +401,12 @@ $mainBlue: #001ce2;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
+  @media screen and (min-width: 1904px) {
+    max-width: 1480px !important;
+    margin-left: -81px;
+  }
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    width: 95% !important;
+    width: 98% !important;
   }
   @media screen and (max-width: 599px) {
     width: auto !important;
@@ -458,6 +461,10 @@ $mainBlue: #001ce2;
   }
 }
 .card-themes-wrapper {
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    max-width: 1431.25px;
+    margin-left: 0;
+  }
   .themes-wrapper-title {
     font-family: "Noto Sans" !important;
     font-style: normal;
@@ -606,10 +613,9 @@ $mainBlue: #001ce2;
       }
     }
     .btn-activate {
-
-      &.active{
+      &.active {
         background: greenyellow !important;
-        border:none;
+        border: none;
       }
 
       top: -77px;
@@ -692,6 +698,14 @@ $mainBlue: #001ce2;
   max-width: 350px;
   margin-left: auto;
   margin-right: auto;
+  @media screen and (min-width: 1904px) {
+    max-width: 1480px;
+    width: 1480px;
+    margin-left: -81px !important;
+  }
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    max-width: 99.2% !important;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -775,4 +789,5 @@ $mainBlue: #001ce2;
     border-radius: 5px !important;
   }
 }
+
 </style>
