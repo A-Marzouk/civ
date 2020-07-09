@@ -2,7 +2,10 @@
   <div class="theme-container">
     <vue-particles></vue-particles>
     <div class="main-info-bar">
-      <div class="left">
+      <div
+        class="left"
+        :class="{ 'active-indicator': currentTab === 'profile' }"
+      >
         <div class="profile-picture">
           <img :src="currentUser.personal_info.profile_pic" alt />
         </div>
@@ -87,7 +90,10 @@
             </a>
           </div>
         </div>
-        <div class="prof-info">
+        <div
+          class="prof-info"
+          :class="{ 'active-indicator': currentTab === 'pay-availability' }"
+        >
           <div class="prof-left">
             <div class="hours">
               <div class="text" style="text-transform: capitalize;">
@@ -162,38 +168,15 @@
     <div class="tabs-bar">
       <div
         class="tab-text"
-        :class="{ active: activeTab === 'portfolio' }"
-        @click="setActiveTab('portfolio')"
+        v-for="tab in tabs"
+        :key="tab.value"
+        @click="activeTab = tab.value"
+        :class="[
+          { active: activeTab === tab.value },
+          { 'active-indicator': currentTab === tab.value }
+        ]"
       >
-        Portfolio
-      </div>
-      <div
-        class="tab-text"
-        :class="{ active: activeTab === 'workEx' }"
-        @click="setActiveTab('workEx')"
-      >
-        Work
-      </div>
-      <div
-        class="tab-text"
-        :class="{ active: activeTab === 'edu' }"
-        @click="setActiveTab('edu')"
-      >
-        Education
-      </div>
-      <div
-        class="tab-text"
-        :class="{ active: activeTab === 'skills' }"
-        @click="setActiveTab('skills')"
-      >
-        Skills
-      </div>
-      <div
-        class="tab-text mr-0"
-        :class="{ active: activeTab === 'about' }"
-        @click="setActiveTab('about')"
-      >
-        About
+        {{ tab.text }}
       </div>
     </div>
 
@@ -220,8 +203,8 @@
         </div>
         <div
           class="work-experience"
-          v-show="activeTab === 'workEx'"
-          :class="{ active: activeTab === 'workEx' }"
+          v-show="activeTab === 'work-experience'"
+          :class="{ active: activeTab === 'work-experience' }"
         >
           <div
             class="work-item"
@@ -239,8 +222,8 @@
         </div>
         <div
           class="education"
-          v-show="activeTab === 'edu'"
-          :class="{ active: activeTab === 'edu' }"
+          v-show="activeTab === 'education'"
+          :class="{ active: activeTab === 'education' }"
         >
           <div
             class="education-item"
@@ -308,12 +291,34 @@ import Slick from "vue-slick";
 
 export default {
   name: "theme8",
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview", "currentTab"],
   components: {
     Slick
   },
   data() {
     return {
+      tabs: [
+        {
+          text: "Portfolio",
+          value: "portfolio"
+        },
+        {
+          text: "Work Ex.",
+          value: "work-experience"
+        },
+        {
+          text: "Education",
+          value: "education"
+        },
+        {
+          text: "Skills",
+          value: "skills"
+        },
+        {
+          text: "About",
+          value: "about"
+        }
+      ],
       activeTab: "portfolio",
       available: 0,
       paymentInfo: 0,
@@ -364,9 +369,7 @@ export default {
       }
       return "social_icon";
     },
-    setActiveTab(tabName) {
-      this.activeTab = tabName;
-    },
+
     skillsBar() {
       $(".skills .skill .skill-bar span").each(function() {
         $(this).animate(
@@ -399,7 +402,12 @@ export default {
       this.currentUser = this.$store.state.dummyUser;
     }
   },
-
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
+  },
   computed: {
     socialLinks() {
       return this.user.links.filter(link => {

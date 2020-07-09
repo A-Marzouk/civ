@@ -2,7 +2,11 @@
   <v-app>
     <v-card flat tile color="#623CEA" id="theme501">
       <v-row no-gutters class="mt-xl-12 mt-lg-12 mt-sm-6 mt-6">
-        <v-col class="col-md-6 col-sm-12" cols="12">
+        <v-col
+          class="col-md-6 col-sm-12"
+          cols="12"
+          :class="{ 'active-indicator': currentTab === 'profile' }"
+        >
           <v-row no-gutters class="justify-start" align="center">
             <v-col
               class="col-md-3 ml-sm-6 pl-3 pl-lg-0 pl-sm-1 pl-xl-0"
@@ -115,7 +119,12 @@
                 <div class="ml-2 subtitle-1">Upload Video</div>
               </v-btn>
             </v-col>
-            <v-col class="col-md-8 col-sm-11 mr-md-4" lg="10" cols="11">
+            <v-col
+              class="col-md-8 col-sm-11 mr-md-4"
+              lg="10"
+              cols="11"
+              :class="{ 'active-indicator': currentTab === 'pay-availability' }"
+            >
               <v-row class="info-pad" dense>
                 <v-col cols="auto" sm="4" lg="4">
                   <div class="info-title text-center">
@@ -206,11 +215,14 @@
         </v-col>
       </v-row>
       <v-row class="hidden-sm-and-up">
-        <v-tabs-items v-model="tab">
-          <v-tab-item value="tab-4">
+        <v-tabs-items v-model="tabModel">
+          <v-tab-item
+            value="tab-3"
+            :class="{ 'active-indicator': currentTab === 'skills' }"
+          >
             <v-row class="justify-center text-center" no-gutters>
               <v-tabs
-                v-model="activetab"
+                v-model="skillTab"
                 slider-color="white"
                 show-arrows
                 background-color="#03CA9F"
@@ -256,7 +268,7 @@
       <v-row no-gutters justify="center" class="mt-sm-8">
         <v-col md="8" sm="12" cols="12" class="hidden-xs-only">
           <v-tabs
-            v-model="tab"
+            v-model="tabModel"
             background-color="rgb(255, 255, 255,0.0)"
             grow
             dark
@@ -264,9 +276,11 @@
             hide-slider
           >
             <v-tab
-              v-for="tab in tabs"
-              :key="tab.link"
-              :href="tab.link"
+              v-for="(tab, tabIndex) in tabs"
+              :key="tabIndex"
+              @click="activeTab = tab.value"
+              :href="`#tab-${tabIndex}`"
+              :class="[{ 'active-indicator': currentTab === tab.value }]"
               class="tablet"
             >
               <v-icon left>{{ tab.icon }}</v-icon>
@@ -279,15 +293,17 @@
             <v-tabs
               background-color="transparent"
               height="100"
-              v-model="tab"
+              v-model="tabModel"
               hide-slider
               center-active
             >
               <v-tab
                 class="text-center"
-                v-for="tab in tabs"
-                :key="tab.link"
-                :href="tab.link"
+                v-for="(tab, tabIndex) in tabs"
+                :key="tabIndex"
+                :href="`#tab-${tabIndex}`"
+                @click="activeTab = tab.value"
+                :class="[{ 'active-indicator': currentTab === tab.value }]"
               >
                 <!-- <div
                   @click="currentTab = tab.id"
@@ -296,10 +312,10 @@
                 <v-btn
                   fab
                   class="text-center d-block"
-                  :color="currentTab == tab.link ? '#623CEA' : '#AE97FF'"
-                  @click="currentTab = tab.link"
+                  @click="activeTab = tab.value"
+                  :color="activeTab == tab.value ? '#623CEA' : '#AE97FF'"
                   :class="[
-                    currentTab == tab.link ? 'tab-mobile-btn-active' : ''
+                    activeTab == tab.value ? 'tab-mobile-btn-active' : ''
                   ]"
                   dark
                   depressed
@@ -317,14 +333,14 @@
               fab
               text
               x-small
-              v-for="dot in tabs"
-              :key="dot.link"
-              @click="currentTab = dot.link"
+              v-for="(dot, dotIndex) in tabs"
+              :key="dotIndex"
+              @click="activeTab = dot.value"
             >
               <span
                 class="mt-2"
                 :class="[
-                  currentTab === dot.link ? 'tab-dot-active' : 'tab-dot'
+                  activeTab === dot.value ? 'tab-dot-active' : 'tab-dot'
                 ]"
               ></span>
             </v-btn>
@@ -333,8 +349,8 @@
       </v-row>
     </v-card>
 
-    <v-tabs-items v-model="tab">
-      <v-tab-item value="tab-1">
+    <v-tabs-items v-model="tabModel">
+      <v-tab-item value="tab-0">
         <v-row
           class="justify-center mt-xl-6 mt-lg-12 mt-sm-4 mx-lg-12"
           no-gutters
@@ -372,7 +388,7 @@
           </v-col>
         </v-row>
       </v-tab-item>
-      <v-tab-item value="tab-2">
+      <v-tab-item value="tab-1">
         <v-container class="mt-md-6">
           <v-row no-gutters>
             <v-col
@@ -406,7 +422,7 @@
           </v-row>
         </v-container>
       </v-tab-item>
-      <v-tab-item value="tab-3">
+      <v-tab-item value="tab-2">
         <v-container class="mt-md-6">
           <v-row no-gutters>
             <v-col
@@ -440,7 +456,7 @@
           </v-row>
         </v-container>
       </v-tab-item>
-      <v-tab-item value="tab-4">
+      <v-tab-item value="tab-3">
         <v-row class="justify-center mt-12 hidden-xs-only">
           <v-col
             class="col-md-7 col-sm-11 elevation-6 py-6"
@@ -451,9 +467,9 @@
                 md="3"
                 sm="3"
                 cols="3"
-                v-on:click="activetab = 0"
+                v-on:click="skillTab = 0"
                 class="tabs"
-                v-bind:class="[activetab === 0 ? 'active' : '']"
+                v-bind:class="[skillTab === 0 ? 'active' : '']"
                 v-show="
                   currentUser.skills.find(
                     s => s.category == 'programming_languages'
@@ -468,12 +484,12 @@
                 md="3"
                 sm="3"
                 cols="3"
-                v-on:click="activetab = 1"
+                v-on:click="skillTab = 1"
                 class="tabs"
                 v-show="
                   currentUser.skills.find(s => s.category == 'frameworks')
                 "
-                v-bind:class="[activetab === 1 ? 'active' : '']"
+                v-bind:class="[skillTab === 1 ? 'active' : '']"
               >
                 <a class="tabtitle">
                   Frameworks/ Databases
@@ -483,10 +499,10 @@
                 md="3"
                 sm="3"
                 cols="3"
-                v-on:click="activetab = 2"
+                v-on:click="skillTab = 2"
                 class="tabs"
                 v-show="currentUser.skills.find(s => s.category == 'software')"
-                v-bind:class="[activetab === 2 ? 'active' : '']"
+                v-bind:class="[skillTab === 2 ? 'active' : '']"
               >
                 <a class="tabtitle">Software</a>
               </v-col>
@@ -494,10 +510,10 @@
                 md="3"
                 sm="3"
                 cols="3"
-                v-on:click="activetab = 3"
+                v-on:click="skillTab = 3"
                 class="tabs"
                 v-show="currentUser.skills.find(s => s.category == 'design')"
-                v-bind:class="[activetab === 3 ? 'active' : '']"
+                v-bind:class="[skillTab === 3 ? 'active' : '']"
               >
                 <a class="tabtitle">
                   Design Skills
@@ -509,7 +525,7 @@
         <v-container>
           <v-row class="justify-center">
             <v-col sm="12" xl="10" lg="12" cols="12">
-              <v-row v-if="activetab === 0" class="justify-center">
+              <v-row v-if="skillTab === 0" class="justify-center">
                 <v-col>
                   <div class="title text-left font-weight-bold">
                     Programming languages
@@ -571,7 +587,7 @@
                   </v-row>
                 </v-col>
               </v-row>
-              <v-row v-if="activetab === 1" class="justify-center">
+              <v-row v-if="skillTab === 1" class="justify-center">
                 <v-col>
                   <div class="title text-left font-weight-bold">
                     Frameworks/ Databases
@@ -633,7 +649,7 @@
                   </v-row>
                 </v-col>
               </v-row>
-              <v-row v-if="activetab === 2" class="justify-center">
+              <v-row v-if="skillTab === 2" class="justify-center">
                 <v-col>
                   <div class="title text-left font-weight-bold">Software</div>
                 </v-col>
@@ -693,7 +709,7 @@
                   </v-row>
                 </v-col>
               </v-row>
-              <v-row v-if="activetab === 3" class="justify-center">
+              <v-row v-if="skillTab === 3" class="justify-center">
                 <v-col>
                   <div class="title text-left font-weight-bold">
                     Design Skills
@@ -759,7 +775,7 @@
           </v-row>
         </v-container>
       </v-tab-item>
-      <v-tab-item value="tab-5">
+      <v-tab-item value="tab-4">
         <v-row
           justify="start"
           justify-sm="start"
@@ -856,15 +872,16 @@
    
    <script>
 export default {
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview", "currentTab"],
   data() {
     return {
       available: 0,
       paymentInfo: 0,
       currentUser: this.user,
-      currentTab: null,
-      activetab: 1,
-      tab: "#tab-1",
+      skillTab: 0,
+      activeTab: "portfolio",
+      tabModel: null,
+
       text: [
         "",
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -873,28 +890,28 @@ export default {
       ],
       tabs: [
         {
-          link: "#tab-1",
           name: "Portfolio",
+          value: "portfolio",
           icon: "mdi-layers"
         },
         {
-          link: "#tab-2",
           name: "Work",
+          value: "work-experience",
           icon: "mdi-briefcase"
         },
         {
-          link: "#tab-3",
           name: "Education",
+          value: "education",
           icon: "mdi-school"
         },
         {
-          link: "#tab-4",
           name: "Skills",
+          value: "skills",
           icon: "mdi-head-snowflake-outline"
         },
         {
-          link: "#tab-5",
           name: "About Me",
+          value: "about",
           icon: "mdi-comment-edit"
         }
       ],
@@ -936,6 +953,12 @@ export default {
         { icon: "mdi-ruler-square-compass" }
       ]
     };
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
   },
   computed: {
     iconSize() {
