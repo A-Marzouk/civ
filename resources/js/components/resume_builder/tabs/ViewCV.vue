@@ -395,7 +395,7 @@ $mainBlue: #001ce2;
   margin-bottom: 70px;
   scroll-behavior: smooth;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    width: 95% !important;
+    width: 98% !important;
   }
   @media screen and (max-width: 599px) {
     width: auto !important;
@@ -452,10 +452,11 @@ $mainBlue: #001ce2;
 .card-themes-wrapper {
   @media screen and (min-width: 1904px){
      margin-left: -81px;
-     min-width: 105%;
+     max-width: 1515px;
+     width: 1515px;
   }
   @media screen and (min-width: 1264px) and (max-width: 1903px){
-    min-width: 100%;
+    max-width: 1431.25px;
     margin-left: 0;
   }
   .themes-wrapper-title {
@@ -695,6 +696,9 @@ $mainBlue: #001ce2;
   @media screen and (min-width: 1904px) {
     min-width: 105%;
     margin-left: -81px !important;
+  }
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    max-width: 99.2% !important;
   }
 
   &::-webkit-scrollbar {
