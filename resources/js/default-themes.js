@@ -12,7 +12,7 @@ if ($("#resumeTheme2").length !== 0) {
     });
 }
 
-import resumeTheme3 from "./components/resume_themes/theme3";
+import resumeTheme3 from "./components/resume_themes/theme3/index";
 if ($("#resumeTheme3").length !== 0) {
     new Vue({
         store,
