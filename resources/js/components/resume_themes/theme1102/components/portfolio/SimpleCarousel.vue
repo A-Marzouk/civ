@@ -73,7 +73,7 @@ export default {
 		justify-content: center;
         img
         {
-            max-width: 145%;
+            max-width: 220%;
         }
 	}
 
