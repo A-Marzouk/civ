@@ -114,7 +114,9 @@
                               @click="activateTheme(theme.id)"
                             >
                               {{theme.id === user.theme.id ? 'Active' : 'Activate'}}
-                              <img src="/icons/check.svg" />
+                              <img
+                                src="/icons/check.svg"
+                              />
                             </v-btn>
                             <v-row>
                               <v-col cols="12" align="center">
@@ -175,7 +177,12 @@
               </div>
               <div class="cv-preview-theme-wrapper">
                 <div class="cv-preview-theme">
-                  <component :is="userTheme" v-if="user.personal_info" :user="user" :is_preview="false"></component>
+                  <component
+                    :is="userTheme"
+                    v-if="user.personal_info"
+                    :user="user"
+                    :is_preview="false"
+                  ></component>
                 </div>
               </div>
             </div>
@@ -394,6 +401,10 @@ $mainBlue: #001ce2;
   padding: 50px;
   margin-bottom: 70px;
   scroll-behavior: smooth;
+  @media screen and (min-width: 1904px) {
+    max-width: 1480px !important;
+    margin-left: -81px;
+  }
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     width: 98% !important;
   }
@@ -450,12 +461,7 @@ $mainBlue: #001ce2;
   }
 }
 .card-themes-wrapper {
-  @media screen and (min-width: 1904px){
-     margin-left: -81px;
-     max-width: 1515px;
-     width: 1515px;
-  }
-  @media screen and (min-width: 1264px) and (max-width: 1903px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     max-width: 1431.25px;
     margin-left: 0;
   }
@@ -607,10 +613,9 @@ $mainBlue: #001ce2;
       }
     }
     .btn-activate {
-
-      &.active{
+      &.active {
         background: greenyellow !important;
-        border:none;
+        border: none;
       }
 
       top: -77px;
@@ -694,10 +699,11 @@ $mainBlue: #001ce2;
   margin-left: auto;
   margin-right: auto;
   @media screen and (min-width: 1904px) {
-    min-width: 105%;
+    max-width: 1480px;
+    width: 1480px;
     margin-left: -81px !important;
   }
-  @media screen and (min-width: 1264px) and (max-width: 1903px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     max-width: 99.2% !important;
   }
 
@@ -783,4 +789,5 @@ $mainBlue: #001ce2;
     border-radius: 5px !important;
   }
 }
+
 </style>
