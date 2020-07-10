@@ -17,10 +17,10 @@
                     <v-card-text>
                       <v-list-item two-line>
                         <v-list-item-avatar class="hidden-xs-only custom-avatar">
-                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
+                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
-                          <v-img src="/images/resume_themes/theme203/images/avatar.png"></v-img>
+                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
@@ -97,7 +97,8 @@
                 <v-col sm="5" cols="12" class="tablet-audio-video-flex">
                   <v-card
                     flat
-                    color="transparent" tile
+                    color="transparent"
+                    tile
                     class="mr-sm-5 mt-sm-n5 my-sm-0 my-10 mt-n8 audio-video-card"
                     style="z-index:2"
                   >
@@ -238,7 +239,8 @@
                             class="mb-2"
                             align="left"
                             flat
-                            color="transparent" tile
+                            color="transparent"
+                            tile
                           >
                             <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)"></v-img>
                             <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
@@ -269,7 +271,11 @@
                                 </v-list-item-icon>
                                 <v-list-item-content>
                                   <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent" tile>Google Inc. Introduction Google</v-card>
+                                    <v-card
+                                      flat
+                                      color="transparent"
+                                      tile
+                                    >Google Inc. Introduction Google</v-card>
                                   </v-list-item-title>
                                   <v-list-item-subtitle class="custom-work-subtitle">
                                     <v-card flat color="transparent" tile>User interface designer</v-card>
@@ -305,7 +311,11 @@
                               </v-list-item-icon>
                               <v-list-item-content>
                                 <v-list-item-title class="custom-work-title">
-                                  <v-card flat color="transparent" tile>California Insitute of Technology</v-card>
+                                  <v-card
+                                    flat
+                                    color="transparent"
+                                    tile
+                                  >California Insitute of Technology</v-card>
                                 </v-list-item-title>
                                 <v-list-item-subtitle class="custom-education-subtitle">
                                   <v-card flat color="transparent" tile style="color:#fbd76d;">
@@ -315,7 +325,8 @@
                                 </v-list-item-subtitle>
                                 <v-list-item-subtitle class="mt-6">
                                   <v-card
-                                    color="transparent" tile
+                                    color="transparent"
+                                    tile
                                     flat
                                     class="custom-education-details"
                                   >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
@@ -398,7 +409,8 @@
 </template>
 <script>
 export default {
-  name: "ResumeTheme40",
+  name: "ResumeTheme203",
+  props: ["user"],
   data() {
     return {
       socialIcons: [
@@ -519,8 +531,18 @@ export default {
           skill_value_text: "80%",
           icon_text: "fig"
         }
-      ]
+      ],
+      currentUser: this.user,
     };
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   },
   methods: {
     getSocialIcon(name) {
@@ -528,6 +550,9 @@ export default {
     },
     getPortfolioItems(id) {
       return `/images/resume_themes/theme203/portfolio/${id}.png`;
+    },
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
     }
   }
 };
