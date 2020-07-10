@@ -3,7 +3,12 @@
     <v-card flat tile color="#3361D0">
       <v-row class="justify-center pt-lg-4">
         <v-col md="6" sm="12" lg="6" cols="12">
-          <v-row justify-lg="center" justify-sm="start" no-gutters>
+          <v-row
+            justify-lg="center"
+            justify-sm="start"
+            no-gutters
+            :class="{ 'active-indicator': currentTab === 'profile' }"
+          >
             <v-col
               cols="5"
               lg="3"
@@ -106,6 +111,7 @@
               xl="8"
               class="col-md-10 col-sm-12 mt-8 marginr"
               cols="11"
+              :class="{ 'active-indicator': currentTab === 'pay-availability' }"
             >
               <v-row
                 style="background: rgb(37, 29, 68,0.20);border-radius: 10px;"
@@ -233,7 +239,7 @@
       <v-row no-gutters class="justify-center align-center mt-10">
         <v-col lg="10" xl="8" sm="12" md="8" cols="12">
           <v-tabs
-            v-model="tab"
+            v-model="tabModel"
             show-arrows
             background-color="rgb(255, 255, 255,0.0)"
             dark
@@ -241,19 +247,15 @@
           >
             <v-tabs-slider></v-tabs-slider>
 
-            <v-tab href="#tab-1">
-              <v-icon left>mdi-image-outline</v-icon>Portfolio
-            </v-tab>
-
-            <v-tab href="#tab-2">
-              <v-icon left>mdi-briefcase</v-icon>Work
-            </v-tab>
-
-            <v-tab href="#tab-3">
-              <v-icon left>mdi-school-outline</v-icon>Education
-            </v-tab>
-            <v-tab href="#tab-4">
-              <v-icon left>mdi-chat-processing</v-icon>Reviews
+            <v-tab
+              v-for="(tab, tabIndex) in tabs"
+              :key="tabIndex"
+              @click="activeTab = tab.value"
+              :href="`#tab-${tabIndex}`"
+              :class="[{ 'active-indicator': currentTab === tab.value }]"
+            >
+              <v-icon left>{{ tab.icon }}</v-icon
+              >{{ tab.text }}
             </v-tab>
           </v-tabs>
         </v-col>
@@ -262,6 +264,7 @@
         class="justify-center align-center tabrow"
         no-gutters
         style="background-color: #F0F3F1;"
+        :class="{ 'active-indicator': currentTab === 'skills' }"
       >
         <v-col class="col-md-5 col-sm-12 pl-xl-11" cols="12" lg="7" xl="6">
           <v-row class="justify-center text-center" no-gutters>
@@ -269,14 +272,14 @@
               md="3"
               sm="3"
               cols="3"
-              v-on:click="activetab = 1"
+              v-on:click="skillTab = 1"
               v-show="
                 currentUser.skills.find(
                   s => s.category == 'programming_languages'
                 )
               "
               class="tabs"
-              v-bind:class="[activetab === 1 ? 'active' : '']"
+              v-bind:class="[skillTab === 1 ? 'active' : '']"
             >
               <a class="tabtitle">
                 <v-icon class="d-block" color="#23A565"
@@ -288,9 +291,9 @@
               md="3"
               sm="3"
               cols="3"
-              v-on:click="activetab = 2"
+              v-on:click="skillTab = 2"
               class="tabs"
-              v-bind:class="[activetab === 2 ? 'active' : '']"
+              v-bind:class="[skillTab === 2 ? 'active' : '']"
               v-show="currentUser.skills.find(s => s.category == 'frameworks')"
             >
               <a class="tabtitle">
@@ -303,9 +306,9 @@
               md="3"
               sm="3"
               cols="3"
-              v-on:click="activetab = 4"
+              v-on:click="skillTab = 4"
               class="tabs"
-              v-bind:class="[activetab === 4 ? 'active' : '']"
+              v-bind:class="[skillTab === 4 ? 'active' : '']"
               v-show="currentUser.skills.find(s => s.category == 'software')"
             >
               <a class="tabtitle">
@@ -317,9 +320,9 @@
               md="3"
               sm="3"
               cols="3"
-              v-on:click="activetab = 3"
+              v-on:click="skillTab = 3"
               class="tabs"
-              v-bind:class="[activetab === 3 ? 'active' : '']"
+              v-bind:class="[skillTab === 3 ? 'active' : '']"
               v-show="currentUser.skills.find(s => s.category == 'design')"
             >
               <a class="tabtitle">
@@ -334,7 +337,7 @@
     </v-card>
 
     <v-container>
-      <v-row v-if="activetab === 1" class="justify-center">
+      <v-row v-if="skillTab === 1" class="justify-center">
         <v-col class="col-md-10 col-sm-12" lg="12">
           <v-row class="justify-center" align="start">
             <v-col
@@ -369,7 +372,7 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row v-if="activetab === 2" class="justify-center">
+      <v-row v-if="skillTab === 2" class="justify-center">
         <v-col class="col-md-10 col-sm-12">
           <v-row class="justify-center" align="start">
             <v-col
@@ -404,7 +407,7 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row v-if="activetab === 3" class="justify-center">
+      <v-row v-if="skillTab === 3" class="justify-center">
         <v-col class="col-md-10 col-sm-12">
           <v-row class="justify-center" align="start">
             <v-col
@@ -439,7 +442,7 @@
           </v-row>
         </v-col>
       </v-row>
-      <v-row v-if="activetab === 4" class="justify-center">
+      <v-row v-if="skillTab === 4" class="justify-center">
         <v-col class="col-md-10 col-sm-12">
           <v-row class="justify-center" align="start">
             <v-col
@@ -476,8 +479,8 @@
       </v-row>
     </v-container>
 
-    <v-tabs-items v-model="tab">
-      <v-tab-item value="tab-1">
+    <v-tabs-items v-model="tabModel">
+      <v-tab-item value="tab-0">
         <v-container>
           <v-row class="justify-center">
             <v-col class="col-md-8 col-sm-12" cols="12" lg="12">
@@ -501,7 +504,7 @@
           </v-row>
         </v-container>
       </v-tab-item>
-      <v-tab-item value="tab-2">
+      <v-tab-item value="tab-1">
         <v-container>
           <v-row style="overflow: scroll;">
             <v-col cols="12">
@@ -541,7 +544,7 @@
           </v-row>
         </v-container>
       </v-tab-item>
-      <v-tab-item value="tab-3">
+      <v-tab-item value="tab-2">
         <v-container>
           <v-row style="overflow-y: scroll;">
             <v-col cols="12">
@@ -581,7 +584,7 @@
           </v-row>
         </v-container>
       </v-tab-item>
-      <v-tab-item value="tab-4">
+      <v-tab-item value="tab-3">
         <v-container>
           <v-row style="overflow-y: scroll;">
             <v-col cols="12">
@@ -657,19 +660,36 @@
    
    <script>
 export default {
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview", "currentTab"],
   data() {
     return {
       taboo: null,
-      activetab: 1,
+      activeTab: "portfolio",
+      skillTab: 1,
       available: 0,
       paymentInfo: 0,
-      tab: null,
-      text: [
-        "",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "asdasdasdasd"
+      tabModel: null,
+      tabs: [
+        {
+          text: "Portfolio",
+          value: "portfolio",
+          icon: "mdi-image-outline"
+        },
+        {
+          text: "Work",
+          value: "work-experience",
+          icon: "mdi-briefcase"
+        },
+        {
+          text: "Education",
+          value: "education",
+          icon: "mdi-school-outline"
+        },
+        {
+          text: "Reviews",
+          value: "reviews",
+          icon: "mdi-chat-processing"
+        }
       ],
       currentUser: this.user,
       Randomcolors: [
@@ -696,6 +716,12 @@ export default {
         { color: "#E64A19" }
       ]
     };
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
   },
   methods: {
     availableNext() {

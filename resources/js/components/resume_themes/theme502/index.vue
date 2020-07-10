@@ -2,7 +2,14 @@
 <template>
   <v-app id="theme502">
     <v-row class="mt-6" no-gutters>
-      <v-col xl="8" lg="8" md="8" sm="12" cols="12">
+      <v-col
+        xl="8"
+        lg="8"
+        md="8"
+        sm="12"
+        cols="12"
+        :class="{ 'active-indicator': currentTab === 'profile' }"
+      >
         <v-row align="center" no-gutters>
           <v-col
             cols="3"
@@ -120,6 +127,7 @@
         md="4"
         sm="10"
         cols="10"
+        :class="{ 'active-indicator': currentTab === 'pay-availability' }"
         class="mt-8 ml-lg-auto ml-md-auto ml-xl-auto ml-sm-12 ml-auto pr-xl-0 pr-lg-0 pr-md-0 pr-sm-0 mt-sm-12 ml-sm-0"
       >
         <v-row
@@ -269,24 +277,15 @@
         class="tablet mr-xl-12 mr-sm-0 mt-sm-12"
       >
         <v-tabs background-color="transparent" hide-arrows grow class="helo">
-          <v-tab class="text-center" @click="tab = 'Portfolio'">
+          <v-tab
+            class="text-center"
+            v-for="(tab, tabIndex) in tabs"
+            :key="tabIndex"
+            @click="activeTab = tab.value"
+            :class="[{ 'active-indicator': currentTab === tab.value }]"
+          >
             <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Portfolio
-            </div>
-          </v-tab>
-          <v-tab class="text-center" @click="tab = 'Work'">
-            <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Work
-            </div>
-          </v-tab>
-          <v-tab class="text-center" @click="tab = 'Education'">
-            <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Education
-            </div>
-          </v-tab>
-          <v-tab class="text-center" @click="tab = 'Skills'">
-            <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Skills
+              {{ tab.text }}
             </div>
           </v-tab>
         </v-tabs>
@@ -301,7 +300,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Portfolio'"
+          v-if="activeTab == 'portfolio'"
           key="one"
           style="height:100vh;"
         >
@@ -338,7 +337,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Work'"
+          v-if="activeTab == 'work-experience'"
           key="two"
           style="height:100vh;"
         >
@@ -393,7 +392,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Education'"
+          v-if="activeTab == 'education'"
           key="three"
           style="height:100vh;"
         >
@@ -443,7 +442,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Skills'"
+          v-if="activeTab == 'skills'"
           key="four"
           style="height:100vh;"
         >
@@ -718,13 +717,15 @@
 </style>
 <script>
 export default {
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview", "currentTab"],
   data() {
     return {
       available: 0,
       paymentInfo: 0,
       currentUser: this.user,
-      tab: "Portfolio",
+      activeTab: "portfolio",
+      tabModel: null,
+      tabskill: null,
       media: [
         {
           id: 1,
@@ -763,187 +764,29 @@ export default {
       ],
       tabs: [
         {
-          id: 1,
-          name: "Portfolio",
-
-          link: "/"
+          text: "Portfolio",
+          value: "portfolio"
         },
         {
-          id: 2,
-          name: "Work",
-
-          link: "/work"
+          text: "Work",
+          value: "work-experience"
         },
         {
-          id: 3,
-          name: "Education",
-
-          link: "/education"
+          text: "Education",
+          value: "education"
         },
         {
-          id: 4,
-          name: "Skills",
-
-          link: "/skills"
-        }
-      ],
-      images: [
-        {
-          id: 1,
-          src: "/images/resume_themes/theme502/img1.png"
-        },
-        {
-          id: 2,
-          src: "/images/resume_themes/theme502/img2.png"
-        },
-        {
-          id: 3,
-          src: "/images/resume_themes/theme502/img3.png"
-        },
-        {
-          id: 4,
-          src: "/images/resume_themes/theme502/img4.png"
-        },
-        {
-          id: 5,
-          src: "/images/resume_themes/theme502/img5.png"
-        },
-        {
-          id: 6,
-          src: "/images/resume_themes/theme502/img6.png"
-        }
-      ],
-      temp: {
-        icon: "/images/resume_themes/theme502/work.svg",
-        title: "Google",
-        sub: "User interface designer",
-        duration: "Dec 19 - Present",
-        para:
-          "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
-      },
-      emp: {
-        icon: "/images/resume_themes/theme502/education.svg",
-        title: "California Institute of Technology",
-        sub: "University",
-        duration: "M.Sc in HCI, Dec 19 - Present",
-        para:
-          "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your  and make changes."
-      },
-      tabskill: null,
-      items: [
-        {
-          id: 1,
-          name: "Programming Languages",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Illustrator",
-              val: "80%",
-              icon: "ill"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            },
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Illustrator",
-              val: "80%",
-              icon: "ill"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
-        },
-        {
-          id: 2,
-          name: "Frameworks/ Databases",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-            {
-              name: "Illustrator",
-              val: "80%",
-              icon: "ill"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            },
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
-        },
-        {
-          id: 3,
-          name: "Design Skills",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            },
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
-        },
-        {
-          id: 4,
-          name: "Software",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
+          text: "Skills",
+          value: "skills"
         }
       ]
     };
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
   },
   methods: {
     availableNext() {
