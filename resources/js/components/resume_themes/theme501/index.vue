@@ -142,7 +142,11 @@
                     </div>
                   </div>
                   <div class="info-subtitle text-center" style="opacity: 0.82">
-                    <v-icon :dark="lightMobile" small @click="paymentInfoPrev()"
+                    <v-icon
+                      :dark="lightMobile"
+                      x-small
+                      @click="paymentInfoPrev()"
+                      right
                       >navigate_before</v-icon
                     >
                     <div
@@ -158,7 +162,11 @@
                         {{ payment_Info.salary_frequency }} Rate
                       </span>
                     </div>
-                    <v-icon :dark="lightMobile" small @click="paymentInfoNext()"
+                    <v-icon
+                      :dark="lightMobile"
+                      x-small
+                      left
+                      @click="paymentInfoNext()"
                       >navigate_next</v-icon
                     >
                   </div>
@@ -180,7 +188,7 @@
                     </div>
                   </div>
                   <div class="info-subtitle text-center" style="opacity: 0.82">
-                    <v-icon :dark="lightMobile" small @click="availablePrev()"
+                    <v-icon :dark="lightMobile" x-small @click="availablePrev()"
                       >navigate_before</v-icon
                     >
                     <div
@@ -198,13 +206,19 @@
                         Availability
                       </span>
                     </div>
-                    <v-icon :dark="lightMobile" small @click="availableNext()"
+                    <v-icon :dark="lightMobile" x-small @click="availableNext()"
                       >navigate_next</v-icon
                     >
                   </div>
                 </v-col>
 
-                <v-col cols="3" class="text-center" lg="4" align-self="center">
+                <v-col
+                  cols="auto"
+                  sm="3"
+                  class="text-center"
+                  lg="4"
+                  align-self="center"
+                >
                   <v-btn dark color="#03CA9F" elevation="0" class="buttonsize">
                     <div class="subhead">Hire Me</div>
                   </v-btn>

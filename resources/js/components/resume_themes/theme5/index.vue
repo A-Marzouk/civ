@@ -135,7 +135,6 @@
                         </span>
                       </div>
                     </div>
-                    <!-- <div class="title mt-3">$ 20/hr</div> -->
                   </v-col>
                   <v-col cols="8" align="center" class="mt-4">
                     <v-btn
@@ -173,7 +172,7 @@
                         >navigate_next</v-icon
                       >
                     </div>
-                    <div class="headline mt-3 font-weight-bold txtcol">
+                    <div class="headline font-weight-bold txtcol">
                       <div
                         v-for="(payment_Info,
                         index) in currentUser.payment_info"
@@ -194,7 +193,7 @@
                   </v-col>
                   <v-col cols="5" align="center">
                     <div class="subtitle-1">Available for</div>
-                    <div class="headline mt-3 font-weight-bold txtcol">
+                    <div class="headline  font-weight-bold txtcol">
                       <div>
                         <v-icon @click="availablePrev()"
                           >navigate_before</v-icon
