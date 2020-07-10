@@ -3,18 +3,29 @@
     background-size: cover !important;
     background-repeat: repeat !important;
     min-height: 100vh;
+    position: relative;
 
 
     @media only screen and (max-width: 1023px) {
         background-image: url("/images/resume_themes/theme1102/mobile-background.jpg") !important;
-        min-height: 410px !important;
-        height: 410px !important;
+        min-height: 469px !important;
+        height: 469px !important;
         border-bottom-right-radius: 50px;
     }
     @media only screen and (max-width: 550px) {
-        min-height: 350px !important;
-        height: 350px !important;
-        border-bottom-right-radius: 50px;
+        min-height: 384px !important;
+        height: 384px !important;
+        border-bottom-right-radius: 65px;
+    }
+    @media only screen and (max-width: 450px) {
+        min-height: 448px !important;
+        height: 448px !important;
+        border-bottom-right-radius: 100px;
+    }
+    @media only screen and (max-width: 440px) {
+        min-height: 448px !important;
+        height: 448px !important;
+        border-bottom-right-radius: 146px;
     }
 
     }
@@ -40,12 +51,16 @@
         margin-bottom: calc(30px - #{$header-font-size})
     }
     @media only screen and (max-width: 1023px) {
-        margin: 60px 30px;
-        padding: 40px 20px;
+        margin: 60px 30px 0 30px;
+        padding: 40px 20px 220px 20px;
+        border-top-left-radius: calc(40px - #{$header-font-size});
+        border-top-right-radius: calc(40px - #{$header-font-size});
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
     }
     @media only screen and (max-width: 550px) {
         margin: 50px 20px;
-        padding: 30px 10px 50px 10px;
+        padding: 30px 10px 100px 10px;
     }
 }
 
