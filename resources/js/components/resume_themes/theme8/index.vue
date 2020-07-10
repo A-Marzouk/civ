@@ -91,7 +91,7 @@
           <div class="prof-left">
             <div class="hours">
               <div class="text" style="text-transform: capitalize;">
-                <v-icon @click="paymentInfoPrev()">navigate_before</v-icon>
+                <v-icon dark color="#fff" @click="paymentInfoPrev()">navigate_before</v-icon>
                 <div
                   v-for="(payment_Info, index) in currentUser.payment_info"
                   :key="index"
@@ -102,7 +102,7 @@
                     {{ payment_Info.salary_frequency }} rate
                   </span>
                 </div>
-                <v-icon @click="paymentInfoNext()">navigate_next</v-icon>
+                <v-icon dark color="#fff" @click="paymentInfoNext()">navigate_next</v-icon>
               </div>
               <div class="number">
                 <div
@@ -120,7 +120,7 @@
             <div class="horizontal-divider"></div>
             <div class="rate">
               <div class="text">
-                Available (<v-icon @click="availablePrev()"
+                Available (<v-icon dark color="#fff" @click="availablePrev()"
                   >navigate_before</v-icon
                 >
                 <div
@@ -134,7 +134,7 @@
                     {{ availability_info.available_hours_frequency }}
                   </span>
                 </div>
-                <v-icon @click="availableNext()">navigate_next</v-icon>)
+                <v-icon dark color="#fff" @click="availableNext()">navigate_next</v-icon>)
               </div>
               <div class="number" style="text-transform: capitalize;">
                 <div
