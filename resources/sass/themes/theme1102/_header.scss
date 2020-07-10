@@ -6,6 +6,7 @@
     font-family: $font-primary;
     @media only screen and (max-width: 1023px) {
         display: block;
+
     }
 
 
@@ -533,23 +534,63 @@
 }
 
 
+.new__shadow {
+    position: absolute;
+    top: 342.2px;
+    display: flex;
+    flex-direction: column;
+    width: 96vw;
+    margin-left: 2vw;
+
+    @media only screen and (max-width: 550px) {
+        top: 276.76px;
+    }
+
+    }
+
+.mobile__shadowU {
+    display: flex;
+    justify-content: center;
+
+
+}
+
+.mobile__shadowD {
+    display: flex;
+    justify-content: center;
+
+}
+
+.shadow-upper {
+    height: auto;
+    width: 30%;
+    background-color: $color-white;
+    box-shadow: 1px -2rem 14rem 13px #07070787;
+}
+
+
+.shadow-down {
+    margin-top: -10px;
+    height: 0;
+    width: 50%;
+    background-color: $color-white;
+    box-shadow: -1px -2rem 14rem 13px #e99065bd;
+}
 
 .mobile-header {
 
     display: none;
     visibility: hidden;
     @media only screen and (max-width: 1023px) {
-        margin: -85px 15px 0 10px;
+        margin-top: -10px;
+        z-index: 1;
         background-color: $color-white;
         padding: 20px 20px 50px 20px;
         display: flex;
         justify-content: center;
         border-radius: 20px;
         visibility: visible;
-        @media only screen and (max-width: 700px) {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
+
 
 
         &__hourly {
@@ -598,4 +639,5 @@
     }
 
 }
+
 

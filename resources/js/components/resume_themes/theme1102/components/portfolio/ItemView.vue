@@ -67,8 +67,8 @@
 
     @media (min-width: $lg) {
         .item-view {
-            width: 300px;
-            height: 400px;
+            width: 230px;
+            height: 330px;
 
 
         }
