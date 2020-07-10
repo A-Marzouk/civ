@@ -17,15 +17,15 @@
                     <v-card-text>
                       <v-list-item two-line>
                         <v-list-item-avatar class="hidden-xs-only custom-avatar">
-                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
+                          <v-img :src="user.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
-                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
+                          <v-img :src="user.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent" tile>
-                              Carla Pipin Ranga
+                              {{ user.personal_info.full_name }}
                               <span
                                 class="mx-8 hidden-sm-and-down email-icon-block"
                               >
@@ -35,6 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
+                                  :href="'mailto:' + user.personal_info.email"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -83,7 +84,7 @@
                           </v-list-item-title>
                           <v-list-item-title>
                             <v-card flat color="transparent" tile>
-                              <span class="profile-subtitle">Web Ui/Ux Designer, Graphiс Designer</span>
+                              <span class="profile-subtitle">{{ user.personal_info.designation }}</span>
                             </v-card>
                           </v-list-item-title>
                         </v-list-item-content>
@@ -532,17 +533,17 @@ export default {
           icon_text: "fig"
         }
       ],
-      currentUser: this.user,
+      user: this.user
     };
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
-    if (!this.currentUser || this.is_preview) {
+    if (!this.user || this.is_preview) {
       this.setDummyUser();
     }
 
     // let user accessible in included components.
-    this.$store.dispatch("updateThemeUser", this.currentUser);
+    this.$store.dispatch("updateThemeUser", this.user);
   },
   methods: {
     getSocialIcon(name) {
@@ -552,7 +553,7 @@ export default {
       return `/images/resume_themes/theme203/portfolio/${id}.png`;
     },
     setDummyUser() {
-      this.currentUser = this.$store.state.dummyUser;
+      this.user = this.$store.state.dummyUser;
     }
   }
 };
@@ -677,6 +678,7 @@ export default {
 }
 .icon-email {
   font-size: 1.25 !important;
+  margin-top: 1px;
 }
 
 .btn-video-player {
