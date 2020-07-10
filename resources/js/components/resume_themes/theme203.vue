@@ -74,10 +74,16 @@
                                   small
                                   class="mx-md-1 mx-sm-2 social-btn"
                                   depressed
-                                  v-for="item in socialIcons"
-                                  :key="item.id"
+
+                                  v-for="item in socialLinks"
+                                  :key="item.id + '_link'"
+                                  target="_blank"
+                                  v-show="item.is_active"
                                 >
-                                  <img width="15" :src="getSocialIcon(item.title)" />
+                                  <img
+                                    width="15"
+                                    :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
+                                  />
                                 </v-btn>
                               </span>
                             </v-card>
@@ -145,10 +151,16 @@
                         small
                         class="mx-md-1 mx-sm-2 mx-1 social-btn"
                         depressed
-                        v-for="item in socialIcons"
-                        :key="item.id"
+                        :href="item.link"
+                        v-for="item in socialLinks"
+                        :key="item.id + '_link'"
+                        target="_blank"
+                        v-show="item.is_active"
                       >
-                        <img width="15" :src="getSocialIcon(item.title)" />
+                        <img
+                          width="15"
+                          :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
+                        />
                       </v-btn>
                     </v-card-text>
                   </v-card>
@@ -536,6 +548,13 @@ export default {
       user: this.user
     };
   },
+  computed: {
+    socialLinks() {
+      return this.user.links.filter(link => {
+        return link.category === "social_link" ? link : false;
+      });
+    }
+  },
   mounted() {
     // if there is no user or the preview is true, set dummy user
     if (!this.user || this.is_preview) {
@@ -545,6 +564,7 @@ export default {
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
+
   methods: {
     getSocialIcon(name) {
       return `/images/resume_themes/theme203/social_icons/${name}.webp`;
@@ -552,6 +572,20 @@ export default {
     getPortfolioItems(id) {
       return `/images/resume_themes/theme203/portfolio/${id}.png`;
     },
+    getProviderLink(provider) {
+      let links = this.user.links;
+      let providerLink = "";
+      links.forEach(link => {
+        if (link.category === "social_link") {
+          if (link.link_title.toLowerCase() === provider.toLowerCase()) {
+            providerLink = link.link;
+          }
+        }
+      });
+
+      return providerLink;
+    },
+    sendEmail() {},
     setDummyUser() {
       this.user = this.$store.state.dummyUser;
     }
