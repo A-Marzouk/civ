@@ -290,17 +290,17 @@
                                 </v-list-item-icon>
                                 <v-list-item-content>
                                   <v-list-item-title class="custom-work-title">
-                                    <v-card
-                                      flat
-                                      color="transparent"
-                                      tile
-                                    >{{work.company_name}}</v-card>
+                                    <v-card flat color="transparent" tile>{{work.company_name}}</v-card>
                                   </v-list-item-title>
                                   <v-list-item-subtitle class="custom-work-subtitle">
                                     <v-card flat color="transparent" tile>{{work.job_title}}</v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class="custom-work-duration mt-6">
-                                    <v-card color="transparent" tile flat>{{work.date_from}}- {{work.date_to}}</v-card>
+                                    <v-card
+                                      color="transparent"
+                                      tile
+                                      flat
+                                    >{{work.date_from}}- {{work.date_to}}</v-card>
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
@@ -318,8 +318,15 @@
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
-                      <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
+                      <v-row align="center">
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="6"
+                          class="mb-12"
+                          v-for="(education,index) in user.education"
+                          :key="index"
+                        >
                           <v-card flat color="transparent" tile>
                             <v-list-item three-line>
                               <v-list-item-icon>
@@ -334,12 +341,18 @@
                                     flat
                                     color="transparent"
                                     tile
-                                  >California Insitute of Technology</v-card>
+                                  >{{education.university_name}}</v-card>
                                 </v-list-item-title>
                                 <v-list-item-subtitle class="custom-education-subtitle">
                                   <v-card flat color="transparent" tile style="color:#fbd76d;">
-                                    M.Sc in HCI,
-                                    <span class="ml-5">Dec 19 - Present</span>
+                                    {{ education.degree_title }},
+                                    <span class="ml-5">
+                                      {{education.date_from}} -
+                                      <span
+                                        v-if="education.present == true"
+                                      >Present</span>
+                                      <span v-else>{{education.date_to}}</span>
+                                    </span>
                                   </v-card>
                                 </v-list-item-subtitle>
                                 <v-list-item-subtitle class="mt-6">
@@ -348,7 +361,9 @@
                                     tile
                                     flat
                                     class="custom-education-details"
-                                  >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
+                                  >
+                                  {{education.institution_type}}
+                                  </v-card>
                                 </v-list-item-subtitle>
                               </v-list-item-content>
                             </v-list-item>
