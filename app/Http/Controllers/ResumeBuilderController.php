@@ -16,11 +16,14 @@ class ResumeBuilderController extends Controller
         $this->middleware(['auth']);
     }
 
+    // we will allow even admin to have a resume-builder account
+
     public function index(){
+        $is_admin = false ;
         if(Auth::user()->hasRole('admin')){
-            return redirect('/workforce-admin');
+            $is_admin = true;
         }
-        return view('resume_builder.index');
+        return view('resume_builder.index', compact('is_admin'));
     }
 
 }

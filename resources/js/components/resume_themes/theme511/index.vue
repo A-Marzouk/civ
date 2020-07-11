@@ -84,11 +84,11 @@
                 >
                   <div class="info-text d-inline-block mr-6 mr-sm-2">
                     hour rate
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1">$20</div>
+                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.payment_info">{{currentUser.payment_info[0].salary}} {{currentUser.payment_info[0].currency}}</div>
                   </div>
                   <div class="info-text d-inline-block">
                     Weekly availability
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1">250</div>
+                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.availability_info">{{currentUser.availability_info[0].available_hours}} Hours</div>
                   </div>
                 </div>
               </v-col>
@@ -318,14 +318,7 @@ export default {
       drawer: null,
       currentUser: this.user,
       activeTab: "portfolio",
-
       paymentToggle: false,
-      social: [
-        { src: "/images/resume_themes/theme511/twitter.svg" },
-        { src: "/images/resume_themes/theme511/facebook.svg" },
-        { src: "/images/resume_themes/theme511/instagram.svg" }
-      ],
-
       tabs: [
         { name: "Portfolio", value: "portfolio" },
         { name: "Education", value: "education" },
