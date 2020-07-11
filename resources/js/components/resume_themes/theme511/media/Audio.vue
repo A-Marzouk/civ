@@ -20,13 +20,20 @@
             elevation="0"
             @click.native="playing ? pause() : play()"
           >
-            <v-icon color="#ffff" large v-if="!playing || paused">mdi-play</v-icon>
+            <v-icon color="#ffff" large v-if="!playing || paused"
+              >mdi-play</v-icon
+            >
             <v-icon color="#ffff" large v-else>mdi-pause</v-icon>
           </v-btn>
         </v-col>
       </v-row>
     </v-card>
-    <v-footer style="z-index:500" fixed color="#fff" class="media-player-tm903 hidden-xs-only">
+    <v-footer
+      style="z-index:500"
+      fixed
+      color="#fff"
+      class="media-player-tm903 hidden-xs-only"
+    >
       <v-row justify="center" class="align-center">
         <v-col class="avatar-media-player-tm903" lg="3" cols="2" sm="4">
           <v-row justify="center" class="align-center">
@@ -42,7 +49,10 @@
                 <span class="subtitle-audio-tm903">Hean Prinsloo</span>
               </div>
             </v-col>
-            <v-col class="linear-playing-audio-tm903 d-none d-lg-none d-sm-block" sm="12">
+            <v-col
+              class="linear-playing-audio-tm903 d-none d-lg-none d-sm-block"
+              sm="12"
+            >
               <div class="mt-n4">
                 <v-progress-linear
                   height="54"
@@ -65,11 +75,22 @@
                   <span class="timer-player-903">5:38</span>
                 </div>
               </div>
-              <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
+              <audio
+                id="player"
+                ref="player"
+                v-on:ended="ended"
+                v-on:canplay="canPlay"
+                :src="file"
+              ></audio>
             </v-col>
           </v-row>
         </v-col>
-        <v-col class="linear-playing-audio-tm903 hidden-lg-and-down" cols="3" lg="3" sm="6">
+        <v-col
+          class="linear-playing-audio-tm903 hidden-lg-and-down"
+          cols="3"
+          lg="3"
+          sm="6"
+        >
           <div class="ml-n12">
             <v-progress-linear
               height="54"
@@ -81,7 +102,10 @@
               :disabled="!loaded"
               v-model="percentage"
             >
-              <v-img class="ml-6 mt-6 mb-6 mr-6" src="/images/resume_themes/theme511/bars.png"></v-img>
+              <v-img
+                class="ml-6 mt-6 mb-6 mr-6"
+                src="/images/resume_themes/theme511/bars.png"
+              ></v-img>
             </v-progress-linear>
             <div class="d-flex">
               <span class="timer-player-903">0:00</span>
@@ -118,7 +142,9 @@
                 fab
                 @click.native="playing ? pause() : play()"
               >
-                <v-icon color="#ffff" large v-if="!playing || paused">mdi-play</v-icon>
+                <v-icon color="#ffff" large v-if="!playing || paused"
+                  >mdi-play</v-icon
+                >
                 <v-icon color="#ffff" large v-else>mdi-pause</v-icon>
               </v-btn>
               <v-btn
@@ -139,7 +165,13 @@
             </v-list-item-icon>
           </div>
           <div class="hidden-sm-and-up">
-            <v-progress-linear class="mt-2" color="#FFD43B" value="50" rounded height="10"></v-progress-linear>
+            <v-progress-linear
+              class="mt-2"
+              color="#FFD43B"
+              value="50"
+              rounded
+              height="10"
+            ></v-progress-linear>
             <span class="pl-7">2:00:00</span>
           </div>
         </v-col>
@@ -178,14 +210,28 @@
         <v-row justify="center">
           <v-col cols="12" class="text-center">
             <div>
-              <v-btn icon text dark class="mob-other-btn" width="60" height="60">
+              <v-btn
+                icon
+                text
+                dark
+                class="mob-other-btn"
+                width="60"
+                height="60"
+              >
                 <v-icon>mdi-chevron-double-left</v-icon>
               </v-btn>
               <v-btn icon text dark class="mob-play" width="60" height="60">
                 <v-icon v-if="!playing || paused">mdi-play</v-icon>
                 <v-icon v-else>mdi-pause</v-icon>
               </v-btn>
-              <v-btn icon text dark class="mob-other-btn" width="60" height="60">
+              <v-btn
+                icon
+                text
+                dark
+                class="mob-other-btn"
+                width="60"
+                height="60"
+              >
                 <v-icon>mdi-chevron-double-right</v-icon>
               </v-btn>
             </div>
@@ -193,7 +239,13 @@
         </v-row>
         <v-row justify="center">
           <v-col cols="9">
-            <v-progress-linear class="mt-2" color="#FFD43B" value="50" rounded height="10"></v-progress-linear>
+            <v-progress-linear
+              class="mt-2"
+              color="#FFD43B"
+              value="50"
+              rounded
+              height="10"
+            ></v-progress-linear>
           </v-col>
           <v-col cols="2">
             <span class="pl-1">1:05:00</span>

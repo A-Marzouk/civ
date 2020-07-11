@@ -1,18 +1,32 @@
 <template>
-  <v-container fluid v-if="currentTab===4">
+  <v-container fluid v-if="activeTab === 'media'">
     <v-row>
       <v-col>
         <v-row>
           <v-col lg="8" cols="12">
             <v-row no-gutters>
-              <v-col cols="12" lg="5" v-for="media in mediaFiles" :key="media.id" class="mx-3">
+              <v-col
+                cols="12"
+                lg="5"
+                v-for="m in media"
+                :key="m.id"
+                class="mx-3"
+              >
                 <v-row no-gutters justify="center" align="center" class="mb-8">
                   <v-col cols="2" sm="2" class="hidden-xs-only">
-                    <div class="mediaSerial">{{media.id}}</div>
+                    <div class="mediaSerial">{{ m.id }}</div>
                   </v-col>
                   <v-col cols="12" sm="10">
-                    <Audio v-if="media.audio" :file="media.audio" :img="media.img"></Audio>
-                    <Video v-if="media.video" :link="media.video" :img="media.img"></Video>
+                    <Audio
+                      v-if="m.type == 'audio'"
+                      :file="m.url"
+                      img="/images/resume_themes/theme511/audio_thumb-1.png"
+                    ></Audio>
+                    <Video
+                      v-if="m.type == 'video'"
+                      :link="m.url"
+                      img="/images/resume_themes/theme511/video-thumb.png"
+                    ></Video>
                   </v-col>
                 </v-row>
               </v-col>
@@ -27,7 +41,7 @@
 import Audio from "./../media/Audio";
 import Video from "./../media/Video";
 export default {
-  props: ["currentTab"],
+  props: ["activeTab", "media"],
   components: { Audio, Video },
   data: () => ({
     playing: true,

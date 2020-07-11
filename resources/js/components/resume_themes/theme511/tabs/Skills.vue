@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid v-if="currentTab===3">
+  <v-container fluid v-if="activeTab === 'skills'">
     <v-row justify="center">
       <v-col lg="10">
         <v-tabs
@@ -9,8 +9,13 @@
           slider-size="5"
           center-active
         >
-          <v-tab v-for="(s,i) in skilltab" :key="i" class="mr-6">
-            <div class="text-capitalize tabtitle">{{s.title}}</div>
+          <v-tab
+            v-for="(skill, i) in skilltab"
+            :key="i"
+            v-show="skills.find(s => s.category == skill.value)"
+            class="mr-6"
+          >
+            <div class="text-capitalize tabtitle">{{ skill.name }}</div>
           </v-tab>
         </v-tabs>
       </v-col>
@@ -18,30 +23,49 @@
     <v-row>
       <v-col cols="12">
         <v-tabs-items v-model="tablet" style="background-color:transparent;">
-          <v-tab-item v-for="(s,i) in skilltab" :key="i">
+          <v-tab-item
+            v-for="(skill, i) in skilltab"
+            :key="i"
+            v-show="skills.find(s => s.category == skill.value)"
+          >
             <v-row>
               <v-col
                 lg="4"
                 cols="12"
                 sm="12"
-                v-for="(skill,i) in s.skills"
-                :key="i"
+                v-for="(s, index) in skills"
+                :key="index"
+                v-show="s.category == skill.value"
                 class="px-lg-4 px-sm-4 px-2"
               >
                 <v-row no-gutters class="card pa-5">
-                  <v-col cols="3" class="py-5 text-center" align-self="center">
-                    <div class="head">{{skill.name}}</div>
+                  <v-col
+                    cols="auto"
+                    class="py-5 text-center"
+                    align-self="center"
+                  >
+                    <div class="head">{{ s.title }}</div>
                   </v-col>
-                  <v-col cols="1" class="py-5" align-self="center" align="center" justify="center">
+                  <v-col
+                    cols="1"
+                    class="py-5"
+                    align-self="center"
+                    align="center"
+                    justify="center"
+                  >
                     <div class="line"></div>
                   </v-col>
 
-                  <v-col cols="6" class="py-5" align-self="center">
-                    <div class="value">{{skill.value}}%</div>
+                  <v-col cols="auto" class="py-5" align-self="center">
+                    <div class="value">{{ s.percentage }}%</div>
                   </v-col>
                   <v-col cols="2" class="ml-auto">
                     <v-btn fab large color="#F56068" elevation="0">
-                      <v-img src="/images/resume_themes/theme511/skill.svg" contain max-width="20"></v-img>
+                      <v-img
+                        src="/images/resume_themes/theme511/skill.svg"
+                        contain
+                        max-width="20"
+                      ></v-img>
                     </v-btn>
                   </v-col>
                 </v-row>
@@ -55,77 +79,29 @@
 </template>
 <script>
 export default {
-  props: ["currentTab"],
+  props: ["activeTab", "skills"],
   data: () => ({
     tablet: null,
     skilltab: [
       {
-        title: "Programming languages",
-        skills: [
-          {
-            name: "Node Js",
-            value: 58
-          },
-          {
-            name: "Laravel",
-            value: 86
-          },
-          {
-            name: "PHP",
-            value: 74
-          }
-        ]
+        id: 1,
+        name: "Programming Languages",
+        value: "programming_languages"
       },
       {
-        title: "Frameworks",
-        skills: [
-          {
-            name: "Vue",
-            value: 58
-          },
-          {
-            name: "React",
-            value: 86
-          },
-          {
-            name: "Django",
-            value: 74
-          }
-        ]
+        id: 2,
+        name: "Frameworks/ Databases",
+        value: "frameworks"
       },
       {
-        title: "Design Skills",
-        skills: [
-          {
-            name: "CSS",
-            value: 58
-          },
-          {
-            name: "SASS",
-            value: 86
-          },
-          {
-            name: "Jquery",
-            value: 74
-          }
-        ]
+        id: 3,
+        name: "Design Skills",
+        value: "design"
       },
       {
-        title: "Software",
-        skills: [
-          {
-            name: "Adobe XD",
-            value: 58
-          },
-          {
-            name: "Figma",
-            value: 86
-          },
-          {
-            name: "Sketch",
-            value: 74
-          }
-        ]
+        id: 4,
+        name: "Software",
+        value: "software"
       }
     ]
   })
