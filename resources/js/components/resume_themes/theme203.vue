@@ -74,7 +74,6 @@
                                   small
                                   class="mx-md-1 mx-sm-2 social-btn"
                                   depressed
-
                                   v-for="item in socialLinks"
                                   :key="item.id + '_link'"
                                   target="_blank"
@@ -423,7 +422,6 @@
 <script>
 export default {
   name: "ResumeTheme203",
-  props: ["user"],
   data() {
     return {
       socialIcons: [
@@ -545,7 +543,7 @@ export default {
           icon_text: "fig"
         }
       ],
-      user: this.user
+      user: "",
     };
   },
   computed: {
@@ -553,6 +551,9 @@ export default {
       return this.user.links.filter(link => {
         return link.category === "social_link" ? link : false;
       });
+    },
+    projects() {
+      return this.$store.state.themeUser.projects;
     }
   },
   mounted() {
@@ -588,6 +589,18 @@ export default {
     sendEmail() {},
     setDummyUser() {
       this.user = this.$store.state.dummyUser;
+    },
+    getMainImageUrl(project) {
+      let mainImage = "";
+
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+
+      return mainImage;
     }
   }
 };
