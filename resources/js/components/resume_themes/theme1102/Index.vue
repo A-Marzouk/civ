@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="line">
-                    <div>
+                    <div class="line__flex">
 
                     </div>
                     <div class="line__format">
@@ -71,21 +71,33 @@
                 </div>
             </header>
 
-            <div class="mobile-header">
-                <div class="mobile-header__hourly">
-                    <div class="mobile-header__rate">
-                        10$
-                    </div>
-                    <div class="mobile-header__description">
-                        Hourly rate
+            <div class="new__shadow">
+                <div class="mobile__shadowU">
+                    <div class="shadow-upper">
+
                     </div>
                 </div>
-                <div class="mobile-header__hourly">
-                    <div class="mobile-header__rate">
-                        35 hours
+                <div class="mobile-header">
+                    <div class="mobile-header__hourly">
+                        <div class="mobile-header__rate">
+                            10$
+                        </div>
+                        <div class="mobile-header__description">
+                            Hourly rate
+                        </div>
                     </div>
-                    <div class="mobile-header__description">
-                        Weekly Availability
+                    <div class="mobile-header__hourly">
+                        <div class="mobile-header__rate">
+                            35 hours
+                        </div>
+                        <div class="mobile-header__description">
+                            Weekly Availability
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile__shadowD">
+                    <div class="shadow-down">
+
                     </div>
                 </div>
             </div>
