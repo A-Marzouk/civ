@@ -271,8 +271,15 @@
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
-                        <v-row align="center" justify="center">
-                          <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
+                        <v-row align="center">
+                          <v-col
+                            cols="12"
+                            sm="12"
+                            md="6"
+                            class="mb-12"
+                            v-for="(work,index) in user.work_experience"
+                            :key="index"
+                          >
                             <v-card flat color="transparent" tile>
                               <v-list-item three-line>
                                 <v-list-item-icon>
@@ -287,13 +294,13 @@
                                       flat
                                       color="transparent"
                                       tile
-                                    >Google Inc. Introduction Google</v-card>
+                                    >{{work.company_name}}</v-card>
                                   </v-list-item-title>
                                   <v-list-item-subtitle class="custom-work-subtitle">
-                                    <v-card flat color="transparent" tile>User interface designer</v-card>
+                                    <v-card flat color="transparent" tile>{{work.job_title}}</v-card>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle class="custom-work-duration mt-6">
-                                    <v-card color="transparent" tile flat>2012- Current</v-card>
+                                    <v-card color="transparent" tile flat>{{work.date_from}}- {{work.date_to}}</v-card>
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
                               </v-list-item>
