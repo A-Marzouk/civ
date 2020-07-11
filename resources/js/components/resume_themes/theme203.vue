@@ -2,7 +2,7 @@
   <v-app style="width:100%;">
     <div class="triangle-top-left"></div>
     <div class="verical-sidebar"></div>
-    <v-container ma-0 pa-0 fluid style="max-width:100% !important;"  v-if="user.personal_info">
+    <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="user.personal_info">
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -246,7 +246,7 @@
                           :gutter="{default: '30px', 700: '15px'}"
                         >
                           <v-card
-                            v-for="item in portfolioItems"
+                            v-for="item in user.projects"
                             :key="item.id"
                             class="mb-2"
                             align="left"
@@ -254,9 +254,9 @@
                             color="transparent"
                             tile
                           >
-                            <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)"></v-img>
-                            <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
-                            <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
+                            <v-img class="custom-portfolio-img" :src="getProjectMainImage(item)"></v-img>
+                            <v-card-title class="custom-portfolio-title">{{item.name}}</v-card-title>
+                            <v-card-subtitle class="custom-portfolio-subtitle">{{item.description}}</v-card-subtitle>
                           </v-card>
                         </masonry>
                       </v-col>
@@ -589,8 +589,9 @@ export default {
     sendEmail() {},
     setDummyUser() {
       this.user = this.$store.state.dummyUser;
+      console.log(this.user);
     },
-    getMainImageUrl(project) {
+    getProjectMainImage(project) {
       let mainImage = "";
 
       let images = project.images;
@@ -600,7 +601,7 @@ export default {
         }
       });
 
-      return mainImage;
+      return mainImage.src;
     }
   }
 };
