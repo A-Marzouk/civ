@@ -1,15 +1,31 @@
 <template>
-  <v-container fluid v-if="currentTab===5" class="pb-sm-12">
+  <v-container fluid v-if="activeTab === 'about'" class="pb-sm-12">
     <v-row>
       <v-col lg="12" cols="12" sm="12">
-        <div
-          class="para"
-        >Donec a augue gravida, vulputate ligula et, pellentesque arcu. 🤖Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. 🥙 Mauris gravida laoreet lacus, non hendrerit elit suscipit a. 🎉 Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum🍭 elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere 🎨vestibulum.</div>
+        <div class="para">
+          {{ user.personal_info.about }}
+        </div>
       </v-col>
       <v-col cols="12" class="d-sm-block d-none d-lg-none py-4">
         <div>
-          <v-btn v-for="(s,i) in social" :key="i" class="socialRed mr-6" fab elevation="0">
-            <v-img :src="s.src" contain max-width="24" height="24"></v-img>
+          <v-btn
+            v-for="Userlink in user.links"
+            :key="Userlink.id + '_link'"
+            v-show="Userlink.is_active && Userlink.is_public"
+            :href="Userlink.link"
+            target="_blank"
+            class="socialRed mr-6"
+            fab
+            elevation="0"
+          >
+            <v-img
+              :src="
+                `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+              "
+              contain
+              max-width="24"
+              height="24"
+            ></v-img>
           </v-btn>
         </div>
       </v-col>
@@ -26,8 +42,23 @@
         </div>
         <div class="follow py-2">Follow me</div>
         <div class="py-6">
-          <v-btn v-for="(s,i) in socialGreen" :key="i" class="socialGreen mr-6" fab elevation="0">
-            <v-img :src="s.src" contain max-width="24" height="24"></v-img>
+          <v-btn
+            v-for="Userlink in user.links"
+            :key="Userlink.id + '_link'"
+            v-show="Userlink.is_active && Userlink.is_public"
+            :href="Userlink.link"
+            class="socialGreen mr-6"
+            fab
+            elevation="0"
+          >
+            <v-img
+              :src="
+                `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}Green.svg`
+              "
+              contain
+              max-width="24"
+              height="24"
+            ></v-img>
           </v-btn>
         </div>
       </v-col>
@@ -36,7 +67,7 @@
 </template>
 <script>
 export default {
-  props: ["currentTab"],
+  props: ["activeTab", "user"],
   data: () => ({
     social: [
       { src: "/images/resume_themes/theme511/twitter.svg" },
