@@ -2,7 +2,7 @@
   <v-app style="width:100%;">
     <div class="triangle-top-left"></div>
     <div class="verical-sidebar"></div>
-    <v-container ma-0 pa-0 fluid style="max-width:100% !important;">
+    <v-container ma-0 pa-0 fluid style="max-width:100% !important;"  v-if="user.personal_info">
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -543,7 +543,7 @@ export default {
           icon_text: "fig"
         }
       ],
-      user: "",
+      user: ""
     };
   },
   computed: {
