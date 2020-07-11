@@ -1,11 +1,21 @@
 
 .main-tabs {
     margin-bottom: 5px;
+
     @media only screen and (max-width: 1200px) {
         margin-bottom: calc(5px - #{$tab-font-size});
 
     }
-}
+    @media only screen and (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media only screen and (max-width: 550px) {
+        padding-top: 0px;
+
+    }
+
+
+    }
 
 .tab-item {
     position: relative;
@@ -114,33 +124,21 @@
 
 .v-tab--active {
     background-color: transparent !important;
-
-    .tab-item__text {
-        color: $color-white !important;
-        font-family: $font-primary !important;
-        text-decoration: none !important;
-
-        font-size: 40px !important;
-        font-weight: 300 !important;
-        text-transform: none !important;
-        @media only screen and (max-width: 1200px) {
-            font-size: calc(40px - #{$tab-font-size}) !important;
-        }
-    }
 }
 
-.v-tab[data-v-31818b80][data-v-31818b80] {
-    background-color: rgba(255, 255, 255, 0) !important;
+.tab-item__text {
     color: $color-white !important;
     font-family: $font-primary !important;
     text-decoration: none !important;
-    text-transform: none !important;
+
     font-size: 40px !important;
     font-weight: 300 !important;
+    text-transform: none !important;
     @media only screen and (max-width: 1200px) {
         font-size: calc(40px - #{$tab-font-size}) !important;
     }
 }
+
 
 .main-tab-items {
     background-color: transparent!important;

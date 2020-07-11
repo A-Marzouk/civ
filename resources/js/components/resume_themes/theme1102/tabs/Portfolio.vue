@@ -94,7 +94,8 @@
 
     @media (min-width: $sm) {
         .portfolio {
-            max-width: $sm;
+
+            max-width: calc(#{$sm} - 40px);
         }
     }
 
@@ -103,7 +104,7 @@
             display: flex;
             flex-wrap: wrap;
             padding: 0 12px;
-            max-width: $md;
+            max-width: calc(#{$md} - 40px);
 
             .project-wrapper {
                 width: 50%;
@@ -115,25 +116,30 @@
 
     @media (min-width: $lg) {
         .portfolio {
-            max-width: $lg;
+
+            max-width: calc(#{$lg} - 40px)
+
         }
     }
 
     @media (min-width: $semi-lg) {
         .portfolio {
-            max-width: $semi-lg;
+
+            max-width: calc(#{$semi-lg} - 40px)
         }
     }
 
     @media (min-width: $xl) {
         .portfolio {
-            max-width: $xl;
+
+            max-width: calc(#{$xl} - 40px)
         }
     }
 
     @media (min-width: $xxl) {
         .portfolio {
-            max-width: $xxl;
+
+            max-width: calc(#{$xxl} - 40px)
         }
     }
 </style>
