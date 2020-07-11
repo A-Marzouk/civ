@@ -5,6 +5,7 @@
                 <img src="/images/admin/navbar_logo.svg" alt="logo">
             </div>
             <div class="right NoDecor">
+                <a href="/resume-builder" class="v-btn logout-btn">Resume builder</a>
                 <a href="javascript:void(0)" @click="logout" class="v-btn logout-btn">Logout</a>
             </div>
         </div>

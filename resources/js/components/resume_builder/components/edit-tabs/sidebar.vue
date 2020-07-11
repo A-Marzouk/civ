@@ -150,96 +150,22 @@ export default {
       this.currentSidebarLink = activeLink;
       this.$emit("onChange", activeLink.icon);
     }
-
-    /*
-        formatSectionString: str => {
-			/**
-			 * Convert the url in a friendly text
-			 * @param String str
-			 * @returns String formated
-			 * /
-
-			let strArray = str.split("-");
-
-			let formatedString = "";
-
-			strArray.forEach((strItem, idx) => {
-				formatedString +=
-					strItem.charAt(0).toUpperCase() + strItem.slice(1);
-				if (idx < strArray.length - 1) formatedString += " ";
-			});
-
-			return formatedString;
-        },
-
-        setActiveTab(e, section_name) {
-			this.activeTab = section_name;
-			let activeNow = document.querySelector(".aside-link.active");
-			activeNow && activeNow.classList.toggle("active");
-			e.target.parentNode.classList.toggle("active");
-			this.scrollHandler(e.target.parentNode);
-
-			$([document.documentElement, document.body]).animate(
-				{
-					scrollTop: 0
-				},
-				600
-			);
-        },
-
-		scrollHandler(target) {
-			let scrollItem = document.getElementById("scrollItem");
-			// let scrollItemHeight = scrollItem.style.height !== "" ? parseFloat(scrollItem.style.height.replace('px', '')) : 0;
-			let scrollItemPos =
-				scrollItem.style.top !== ""
-					? parseFloat(scrollItem.style.top.replace("px", ""))
-					: 0;
-
-			// diff between actual size and the target size
-			// let heightDiff = target.offsetHeight - scrollItemHeight;
-
-			// diff between actual pos and target pos
-			let posDiff = target.offsetTop - scrollItemPos;
-
-			// To position and height gradually during 0.5 secs
-			let moveInterval = posDiff / 15;
-			// let growInterval = heightDiff / 15;
-
-			let count = 1;
-
-			let interval = setInterval(() => {
-				scrollItemPos += moveInterval;
-				// scrollItemHeight += growInterval
-
-				scrollItem.style.top = scrollItemPos + "px";
-				// scrollItem.style.height = scrollItemHeight + "px";
-			}, 20);
-
-			setTimeout(() => {
-				if (scrollItem.style.top !== target.offsetTop) {
-					scrollItem.style.top = target.offsetTop + "px";
-				}
-				clearInterval(interval);
-			}, 301);
-		}
-        */
   },
 
-  /* mounted() {
-		let _this = this;
-		setTimeout(() => {
-			_this.scrollHandler(document.querySelector(".aside-link.active"));
-		}, 100);
-    }, */
 
-  created() {
+  mounted() {
     // Set the correct activeTab on refresh, and on changing the view
     const pathSplit = this.$route.path.split("/"),
       activeTab = pathSplit[pathSplit.length - 1];
 
-    const activeLink = this.sidebarLinks.find(
-      link => link.icon === this.activeTab
-    );
+    let activeLink = {} ;
+
+    this.sidebarLinks.forEach( (link) => {
+      if(link.icon === activeTab){
+        activeLink = link ;
+      }
+    });
+
     this.setActive(activeLink);
   }
 };
