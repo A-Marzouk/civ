@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminsController extends Controller
@@ -33,6 +34,13 @@ class AdminsController extends Controller
         if(!$tempUser){
             return redirect('/workforce-admin');
         }
-        return view('admin.resume-builder',compact('tempUser'));
+
+        $is_admin = false ;
+
+        if(Auth::user()->hasRole('admin')){
+            $is_admin = true;
+        }
+
+        return view('admin.resume-builder',compact('tempUser','is_admin'));
     }
 }

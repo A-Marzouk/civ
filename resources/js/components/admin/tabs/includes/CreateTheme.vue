@@ -171,7 +171,7 @@
                         this.dialog = false;
                         // fire evenet of adding the theme.
                         if(!this.new_theme_item.id){
-                            this.$emit('themeCreated', response.data);
+                            this.$emit('themeCreated', response.data.data);
                         }
                     })
                     .catch((error) => {

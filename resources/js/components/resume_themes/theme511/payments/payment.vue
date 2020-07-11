@@ -10,55 +10,59 @@
           slider-size="4"
           height="75"
         >
-          <v-tab v-for="(item,i) in items" :key="i" class="mx-auto">
-            <div class="paytitle text-capitalize white--text">{{item.tab}}</div>
+          <v-tab v-for="(item, i) in items" :key="i" class="mx-auto">
+            <div class="paytitle text-capitalize white--text">
+              {{ item.tab }}
+            </div>
           </v-tab>
         </v-tabs>
       </v-col>
       <v-col cols="12" class="mt-8">
         <div class="fill-details">Fill in your details</div>
         <v-tabs-items v-model="tab" style="background-color:transparent;">
-          <v-tab-item v-for="(item,i) in items" :key="i">
-            <v-row justify="center" class="py-3">
-              <v-col cols="12" sm="8" lg="5">
-                <div class="input--label ml-6 pb-1">{{item.email}}</div>
-                <v-text-field
-                  class="input--field"
-                  elevation="0"
-                  placeholder="exampla@civie.con"
-                  solo
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row justify="center" class="py-3">
-              <v-col cols="12" sm="8" lg="5">
-                <div class="input--label ml-6 pb-1">{{item.pass}}</div>
-                <v-text-field
-                  class="input--field"
-                  elevation="0"
-                  :label="item.pass"
-                  solo
-                  type="password"
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row justify="center" class="py-5">
-              <v-col cols="12" sm="8" lg="5">
-                <v-btn class="button--payment" height="58">
-                  <div>{{item.button}}</div>
-                  <v-btn
-                    class="button--payment-icon"
-                    height="50"
-                    min-width="50"
-                    max-width="50"
+          <v-tab-item v-for="(item, i) in items" :key="i">
+            <v-form>
+              <v-row justify="center" class="py-3">
+                <v-col cols="12" sm="8" lg="5">
+                  <div class="input--label ml-6 pb-1">{{ item.email }}</div>
+                  <v-text-field
+                    class="input--field"
                     elevation="0"
-                    color="#39e1aa"
-                  >
-                    <v-img :src="item.icon"></v-img>
+                    placeholder="exampla@civie.con"
+                    solo
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row justify="center" class="py-3">
+                <v-col cols="12" sm="8" lg="5">
+                  <div class="input--label ml-6 pb-1">{{ item.pass }}</div>
+                  <v-text-field
+                    class="input--field"
+                    elevation="0"
+                    :label="item.pass"
+                    solo
+                    type="password"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row justify="center" class="py-5">
+                <v-col cols="12" sm="8" lg="5">
+                  <v-btn class="button--payment" height="58">
+                    <div>{{ item.button }}</div>
+                    <v-btn
+                      class="button--payment-icon"
+                      height="50"
+                      min-width="50"
+                      max-width="50"
+                      elevation="0"
+                      color="#39e1aa"
+                    >
+                      <v-img :src="item.icon"></v-img>
+                    </v-btn>
                   </v-btn>
-                </v-btn>
-              </v-col>
-            </v-row>
+                </v-col>
+              </v-row>
+            </v-form>
           </v-tab-item>
         </v-tabs-items>
         <div class="py-lg-12"></div>
@@ -72,6 +76,7 @@
 export default {
   data: () => ({
     tab: null,
+
     items: [
       {
         tab: "Pay with Paypal",

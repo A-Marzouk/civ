@@ -8,8 +8,9 @@
               <v-col cols="2" lg="2" sm="3" align="center" align-self="center">
                 <v-img
                   @click.stop="drawer = !drawer"
-                  src="/images/resume_themes/theme511/avatar.png"
+                  :src="currentUser.personal_info.profile_pic"
                   alt="avatar"
+                  style="border-radius:50%;"
                   contain
                 ></v-img>
 
@@ -23,21 +24,34 @@
                 >
                   <div class="text-right mt-4">
                     <v-btn text small>
-                      <v-icon color="#fff">close</v-icon>
+                      <v-icon color="#fff" @click.stop="drawer = !drawer"
+                        >close</v-icon
+                      >
                     </v-btn>
                   </div>
                   <v-list-item>
                     <v-list-item-content>
-                      <v-list-item-title class="menu text-left">Menu</v-list-item-title>
+                      <v-list-item-title class="menu text-left"
+                        >Menu</v-list-item-title
+                      >
                     </v-list-item-content>
                   </v-list-item>
 
                   <v-divider></v-divider>
 
                   <v-list>
-                    <v-list-item v-for="(tab,i) in tabs" :key="i" @click="currentTab=i">
+                    <v-list-item
+                      v-for="(tab, i) in tabs"
+                      :key="i"
+                      @click="activeTab = tab.value"
+                    >
                       <v-list-item-content
-                        :class=" [currentTab == i ? 'drawer--tab-active' : 'drawer--tab-disable', 'menu--tabs white--text text-left']"
+                        :class="[
+                          activeTab === tab.value
+                            ? 'drawer--tab-active'
+                            : 'drawer--tab-disable',
+                          'menu--tabs white--text text-left'
+                        ]"
                       >
                         <v-list-item-title>{{ tab.name }}</v-list-item-title>
                       </v-list-item-content>
@@ -45,20 +59,36 @@
                   </v-list>
                 </v-navigation-drawer>
               </v-col>
-              <v-col cols="auto" lg="4" class="pl-lg-8" sm="6" align-self="center">
-                <div class="head">Amy Williams</div>
-                <div class="subhead">BackEnd Developer</div>
+              <v-col
+                cols="auto"
+                lg="4"
+                class="pl-lg-8"
+                sm="6"
+                align-self="center"
+                :class="{ 'active-indicator': currentTab === 'profile' }"
+              >
+                <div class="head">
+                  {{ currentUser.personal_info.full_name }}
+                </div>
+                <div class="subhead">
+                  {{ currentUser.personal_info.designation }}
+                </div>
+                <div class="details hidden-xs-only">
+                  {{ currentUser.personal_info.overview }}
+                </div>
                 <div
-                  class="details hidden-xs-only"
-                >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices.🚲</div>
-                <div class="hidden-xs-only">
+                  class="hidden-xs-only"
+                  :class="{
+                    'active-indicator': currentTab === 'pay-availability'
+                  }"
+                >
                   <div class="info-text d-inline-block mr-6 mr-sm-2">
                     hour rate
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1">$20</div>
+                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.payment_info">{{currentUser.payment_info[0].salary}} {{currentUser.payment_info[0].currency}}</div>
                   </div>
                   <div class="info-text d-inline-block">
                     Weekly availability
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1">250</div>
+                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.availability_info">{{currentUser.availability_info[0].available_hours}} Hours</div>
                   </div>
                 </div>
               </v-col>
@@ -70,8 +100,24 @@
                 align-self="center"
               >
                 <div class="text-right mt-lg-4 hidden-md-and-down">
-                  <v-btn v-for="(s,i) in social" :key="i" class="social mx-3" fab elevation="0">
-                    <v-img :src="s.src" contain max-width="24" height="24"></v-img>
+                  <v-btn
+                    v-for="Userlink in currentUser.links"
+                    :key="Userlink.id + '_link'"
+                    v-show="Userlink.is_active && Userlink.is_public"
+                    :href="Userlink.link"
+                    target="_blank"
+                    class="social mx-3"
+                    fab
+                    elevation="0"
+                  >
+                    <v-img
+                      :src="
+                        `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+                      "
+                      contain
+                      max-width="24"
+                      height="24"
+                    ></v-img>
                   </v-btn>
 
                   <v-btn
@@ -80,7 +126,7 @@
                     width="200"
                     min-width="60"
                     elevation="0"
-                    @click.stop="payment = !payment"
+                    @click.stop="paymentToggle = !paymentToggle"
                   >
                     <div class="text-capitalize hire-text mr-lg-8">hire me</div>
                     <v-btn
@@ -90,7 +136,7 @@
                       min-width="50"
                       max-width="50"
                       elevation="0"
-                      @click.stop="payment = !payment"
+                      @click.stop="paymentToggle = !paymentToggle"
                     >
                       <v-img
                         src="/images/resume_themes/theme511/email.svg"
@@ -108,7 +154,7 @@
                     width="135"
                     min-width="40"
                     elevation="0"
-                    @click.stop="payment = !payment"
+                    @click.stop="paymentToggle = !paymentToggle"
                   >
                     <div class="text-capitalize hire-text mr-6">hire me</div>
 
@@ -119,7 +165,7 @@
                       min-width="40"
                       max-width="40"
                       elevation="0"
-                      @click.stop="payment = !payment"
+                      @click.stop="paymentToggle = !paymentToggle"
                     >
                       <v-img
                         src="/images/resume_themes/theme511/email.svg"
@@ -135,7 +181,7 @@
                       min-width="40"
                       max-width="40"
                       elevation="0"
-                      @click.stop="payment = !payment"
+                      @click.stop="paymentToggle = !paymentToggle"
                     >
                       <v-img
                         src="/images/resume_themes/theme511/emailmob.svg"
@@ -152,8 +198,22 @@
         </v-col>
         <!-- Payment-dialog-box   -->
         <div>
-          <v-dialog v-model="payment" fullscreen hide-overlay transition="slide-y-transition">
+          <v-dialog
+            v-model="paymentToggle"
+            fullscreen
+            hide-overlay
+            transition="slide-y-transition"
+          >
             <v-card class="pa-6">
+              <div class="text-right">
+                <v-btn text fab absolute top right small class="margBtn">
+                  <v-icon
+                    :color="lightMobile"
+                    @click.stop="paymentToggle = !paymentToggle"
+                    >close</v-icon
+                  >
+                </v-btn>
+              </div>
               <v-container fluid>
                 <v-row no-gutters justify="center">
                   <v-col cols="12" sm="12" lg="5" class="pa-4">
@@ -164,8 +224,12 @@
                         alt="avatar"
                         contain
                       ></v-img>
-                      <div class="pt-lg-12 pt-8 send_payment">Send payment to</div>
-                      <div class="pb-lg-12 pb-12 payment_head">Amy Williams</div>
+                      <div class="pt-lg-12 pt-8 send_payment">
+                        Send payment to
+                      </div>
+                      <div class="pb-lg-12 pb-12 payment_head">
+                        {{ currentUser.personal_info.full_name }}
+                      </div>
                       <div class="py-lg-12"></div>
                       <div class="py-lg-12"></div>
                       <div class="py-lg-6"></div>
@@ -187,25 +251,39 @@
               <v-col lg="10" sm="12" class="hidden-xs-only">
                 <v-tabs
                   background-color="transparent"
-                  v-model="currentTab"
                   :slider-color="sliderColor()"
                   slider-size="5"
                   color="#000"
                   center-active
                   centered
                 >
-                  <v-tab v-for="(tab,i) in tabs" :key="i" @click="currentTab=i" class="mx-auto">
-                    <div class="text-capitalize tabtitle">{{tab.name}}</div>
+                  <v-tab
+                    v-for="(tab, i) in tabs"
+                    :key="i"
+                    @click="activeTab = tab.value"
+                    class="mx-auto"
+                    :class="[{ 'active-indicator': currentTab === tab.value }]"
+                  >
+                    <div class="text-capitalize tabtitle">{{ tab.name }}</div>
                   </v-tab>
                 </v-tabs>
               </v-col>
               <v-col lg="11">
-                <Portfolio :currentTab="currentTab" />
-                <Experience :currentTab="currentTab" />
-                <Skills :currentTab="currentTab" />
-                <Education :currentTab="currentTab" />
-                <Media :currentTab="currentTab" />
-                <About :currentTab="currentTab" />
+                <Portfolio
+                  :projects="currentUser.projects"
+                  :activeTab="activeTab"
+                />
+                <Experience
+                  :works="currentUser.work_experience"
+                  :activeTab="activeTab"
+                />
+                <Skills :skills="currentUser.skills" :activeTab="activeTab" />
+                <Education
+                  :education="currentUser.education"
+                  :activeTab="activeTab"
+                />
+                <Media :activeTab="activeTab" :media="currentUser.media" />
+                <About :activeTab="activeTab" :user="currentUser" />
               </v-col>
             </v-row>
           </v-container>
@@ -234,25 +312,28 @@ export default {
     About,
     payment
   },
+  props: ["user", "is_preview", "currentTab"],
   data() {
     return {
       drawer: null,
-      payment: false,
-      social: [
-        { src: "/images/resume_themes/theme511/twitter.svg" },
-        { src: "/images/resume_themes/theme511/facebook.svg" },
-        { src: "/images/resume_themes/theme511/instagram.svg" }
-      ],
-      currentTab: 0,
+      currentUser: this.user,
+      activeTab: "portfolio",
+      paymentToggle: false,
       tabs: [
-        { name: "Portfolio" },
-        { name: "Education" },
-        { name: "Experience" },
-        { name: "Skills" },
-        { name: "Media" },
-        { name: "About Me" }
+        { name: "Portfolio", value: "portfolio" },
+        { name: "Education", value: "education" },
+        { name: "Experience", value: "work-experience" },
+        { name: "Skills", value: "skills" },
+        { name: "Media", value: "media" },
+        { name: "About Me", value: "about" }
       ]
     };
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
   },
   computed: {
     borderadius() {
@@ -272,33 +353,55 @@ export default {
           return "#39E1AA";
       }
     },
-    newTab(id) {
-      // this.currentTab = id
-      return (this.currentTab = id);
+    lightMobile() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "#000";
+        case "sm":
+          return "#000";
+        case "md":
+          return "#000";
+        case "lg":
+          return "#ffff";
+        case "xl":
+          return "#ffff";
+      }
     }
   },
 
   methods: {
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+    },
     sliderColor() {
-      if (this.currentTab == 0) {
+      if (this.activeTab == "portfolio") {
         return "#F7B301";
       }
-      if (this.currentTab == 1) {
+      if (this.activeTab == "education") {
         return "#19AAC9";
       }
-      if (this.currentTab == 2) {
+      if (this.activeTab == "work") {
         return "#6764C8";
       }
-      if (this.currentTab == 3) {
+      if (this.activeTab == "skills") {
         return "#F56068";
       }
-      if (this.currentTab == 4) {
+      if (this.activeTab == "media") {
         return "#39E1AA";
       }
-      if (this.currentTab == 5) {
+      if (this.activeTab == "about") {
         return "#F7B301";
       }
     }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>
@@ -351,6 +454,10 @@ export default {
   background: #6764c8;
   box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
   border-radius: 50px;
+}
+.margBtn {
+  margin-top: 75px;
+  margin-right: 30px;
 }
 @media screen and (max-width: 1024px) and (min-width: 700px) {
   .layer {
