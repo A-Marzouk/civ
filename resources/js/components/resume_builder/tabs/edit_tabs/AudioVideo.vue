@@ -62,10 +62,6 @@
                     </v-text-field>
                   </v-col>
 
-                  <v-col cols="12" class="hidden-sm-and-up mt-n12 mb-n2">
-                    <label class="label-or">or</label>
-                  </v-col>
-
                   <a href="#" @click="currentUploadMethod= 'record' ">Record</a>
 
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
@@ -78,7 +74,7 @@
                 </v-row>
               </v-form>
 
-              <div class="w-100 d-flex justify-content-center" v-show="currentUploadMethod === 'record' ">
+              <div class="w-100 d-flex justify-content-center" v-if="currentUploadMethod === 'record' ">
                 <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
                                 :show-upload-button="false"/>
               </div>
