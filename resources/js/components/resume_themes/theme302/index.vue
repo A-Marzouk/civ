@@ -490,7 +490,7 @@
             ref="videoElem"
             v-if="currentUser.media.find(s => s.type == 'video')"
             controls
-            :src="currentUser.media[0].url"
+            :src="currentUser.media[1].url"
           ></video>
         </div>
       </v-card>
