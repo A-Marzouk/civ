@@ -50,13 +50,17 @@ class MediaController extends Controller
             $media = Media::create($request->toArray());
 
             if($request->hasfile('mediaFile')) {
+
                 $path = Upload::media($request);
-                $media->update([
-                    'url' => $path
-                ]);
+                if($path){
+                    $media->update([
+                        'url' => $path
+                    ]);
+                }else{
+                    return $path;
+                }
+
             }
-
-
 
         }
 
@@ -86,7 +90,7 @@ class MediaController extends Controller
         }
 
         // remove media from the system if the file exists
-        if (file_exists(public_path($media->url))) {
+        if ($media->url && file_exists(public_path($media->url))) {
             unlink(public_path($media->url));
         }
 
