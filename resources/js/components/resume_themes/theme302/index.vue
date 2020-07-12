@@ -1,6 +1,6 @@
 <template>
-  <v-app style="width: 100%">
-    <v-container class="hold_theme13" style="max-width: 1920px;">
+  <v-app style="width: 100%" v-if="currentUser">
+    <v-container class="hold_theme13" style="max-width: 1920px;" >
       <v-row class="freelancerCard">
         <v-col lg="12" md="12" cols="12" class="resumeCardRight">
           <div class="showOnlyOnmd">
@@ -1963,7 +1963,9 @@ export default {
     },
     pauseAudio() {
       this.playing = false;
-      this.$refs.audioElem.pause();
+      if(this.$refs.audioElem){
+        this.$refs.audioElem.pause();
+      }
     },
     playVideo() {
       this.$refs.videoPoster.style.display = "none";
@@ -2000,12 +2002,6 @@ export default {
     countSlide() {
       return this.slideCount;
     },
-    // handleInitSlider() {
-    //   let slidesCount = $("#sliderTab_" + this.activeTabSkill.split("-")[1])
-    //     .find(".slick-track")
-    //     .find(".slick-slide").length;
-    //   this.itemsTabSkills = slidesCount;
-    // },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
     }
