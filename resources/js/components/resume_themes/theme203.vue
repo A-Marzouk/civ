@@ -172,15 +172,19 @@
                       <v-row no-gutters align="center" justify="center">
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="tranparent">
-                            <v-card-title class="hire-me-title">Hourly rate</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">$25 USD</v-card-subtitle>
+                            <v-card-title
+                              class="hire-me-title"
+                            >{{ user.payment_info[0].salary_frequency | capitalize }} rate</v-card-title>
+                            <v-card-subtitle
+                              class="hire-me-subtitle"
+                            >{{ user.payment_info[0].salary }} {{ user.payment_info[0].currency.toUpperCase() }}</v-card-subtitle>
                           </v-card>
                         </v-col>
                         <div style="height:41px; border:1px solid #D7D7D7;"></div>
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">8 Hours</v-card-subtitle>
+                            <v-card-subtitle class="hire-me-subtitle">{{user.payment_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
@@ -452,6 +456,13 @@
 <script>
 export default {
   name: "ResumeTheme203",
+  filters: {
+    capitalize: function(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+  },
   data() {
     return {
       socialIcons: [
