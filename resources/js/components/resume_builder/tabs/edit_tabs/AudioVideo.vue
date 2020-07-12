@@ -46,7 +46,8 @@
                     <v-text-field
                       class="resume-builder__input civie-input"
                       outlined
-                      v-model="newAudio.url"
+                      v-model="newMedia.url"
+                      :error="!!errors.url"
                       color="#001CE2"
                     >
                       <template v-slot:prepend>
@@ -61,6 +62,12 @@
                     </v-text-field>
                   </v-col>
 
+                  <v-col cols="12" class="hidden-sm-and-up mt-n12 mb-n2">
+                    <label class="label-or">or</label>
+                  </v-col>
+
+                  <a href="#" @click="currentUploadMethod= 'record' ">Record</a>
+
                   <v-col xl="3" lg="4" md="6" sm="6" cols="12">
                     <v-btn
                       class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
@@ -70,6 +77,11 @@
                   </v-col>
                 </v-row>
               </v-form>
+
+              <div class="w-100 d-flex justify-content-center" v-show="currentUploadMethod === 'record' ">
+                <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
+                                :show-upload-button="false"/>
+              </div>
 
               <draggable v-if="medias"  v-model="medias" @start="drag=true" @end="drag=false"  handle=".drag-handler">
                 <v-row align="center" dense v-for="media in medias" :key="media.id">
@@ -239,14 +251,16 @@ export default {
         thumbnailWidth: 150,
         maxFilesize: 25,
         maxFiles: 1,
+        acceptedFiles: 'audio/*,video/*',
         addRemoveLinks: true
       },
-      newAudio: {
+      newMedia: {
         title: "Audio",
         type: "audio",
         url: "",
         mediaFile: null
       },
+      currentUploadMethod: null,
       tabs: ["Audio", "Video"],
       audioTab: 0,
       errors: {}
@@ -264,14 +278,41 @@ export default {
   },
   methods: {
     changeTab(tabName){
-      this.newAudio.type = tabName.toLowerCase();
-      this.newAudio.title = tabName;
+      this.newMedia.type = tabName.toLowerCase();
+      this.newMedia.title = tabName;
+    },
+    recordingFinish(data) {
+      this.newAudio.mediaFile = data.blob;
+      // auto select the audio
+      setTimeout(() => {
+        $('.ar-records__record').click();
+
+        // add upload button :
+        let uploadBtn = '<img alt="upload" id="uploadRecord" src="/icons/done-record-icon.svg"/>';
+        $('.ar-records__record').prepend(uploadBtn);
+        $('#uploadRecord').on('click', this.uploadMedia);
+
+      }, 1000);
+    },
+    validateUrl(){
+      let url = this.newMedia.url;
+      if(url.length > 1 && this.newMedia.mediaFile === null){
+        let urlRegex = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/ ;
+        return url.match(urlRegex);
+      }
+      return true ;
+    },
+    handleAudioUpload() {
+      this.newMedia.mediaFile = this.$refs.audio.files[0];
+      this.uploadMedia();
     },
     toggleMedia(media){
       media.is_public = !media.is_public;
       axios.put("/api/user/media", media)
               .then( () => {
                 this.$store.dispatch("flyingNotification");
+                // clear file after upload.
+                this.clearMedia();
               })
               .catch(error => {
                 if (typeof error.response.data === "object") {
@@ -287,14 +328,15 @@ export default {
               });
     },
     handlingEvent: function(file) {
-      this.newAudio.mediaFile = file;
+      this.newMedia.mediaFile = file;
     },
     uploadMedia() {
-      let formData = new FormData();
+      this.errors = {} ;
 
-      $.each(this.newAudio, field => {
-        if (this.newAudio[field] !== null) {
-          formData.append(field, this.newAudio[field]);
+      let formData = new FormData();
+      $.each(this.newMedia, field => {
+        if (this.newMedia[field] !== null) {
+          formData.append(field, this.newMedia[field]);
         }
       });
       formData.append("user_id", this.$store.state.user.id);
@@ -305,8 +347,12 @@ export default {
         },
         headers: { "Content-Type": "multipart/form-data" }
       };
-      axios
-        .post("/api/user/media", formData, config)
+
+      if(!this.validateUrl()){
+        this.errors.url = 'Not a valid url';
+        return;
+      }
+      axios.post("/api/user/media", formData, config)
         .then(response => {
           response.data.data.is_public = true;
           this.medias.unshift(response.data.data);
@@ -326,7 +372,7 @@ export default {
         });
     },
     clearMedia() {
-      this.newAudio = {
+      this.newMedia = {
         title: "Audio",
         type: "audio",
         url: "",
