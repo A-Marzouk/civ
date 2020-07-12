@@ -167,3 +167,20 @@ button:hover {
         }
     }
 }
+
+.admin-panel-bar{
+    background: black;
+    color: white;
+    font-size: 15px;
+    padding: 7px 25px;
+    font-weight: 600;
+
+    li{
+        a{
+            &:hover{
+                text-decoration: none;
+                color: wheat;
+            }
+        }
+    }
+}

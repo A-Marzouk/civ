@@ -125,7 +125,7 @@
                                   >
                                     <svg-vue
                                             icon="eye-icon"
-                                            :class="{'visible' : !skill.is_public}"
+                                            :class="{'visible' : skill.is_public}"
                                             class="icon"
                                     ></svg-vue>
                                   </v-btn>
@@ -168,7 +168,7 @@
                                   >
                                     <svg-vue
                                             icon="eye-icon"
-                                            :class="{'visible' : !skill.is_public}"
+                                            :class="{'visible' : skill.is_public}"
                                             class="icon"
                                     ></svg-vue>
                                   </v-btn>

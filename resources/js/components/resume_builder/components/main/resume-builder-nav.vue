@@ -127,70 +127,6 @@
           </svg>
         </router-link>
 
-        <router-link
-          id="coverLetter"
-          class="nav-action"
-          :class="{'active' : activeTab === 'coverLetter'}"
-          data-target="coverLetter"
-          v-on:click.native="setActiveTab('coverLetter')"
-          to="/resume-builder/cover-letter"
-        >
-          <svg
-            width="18"
-            height="22"
-            viewBox="0 0 18 22"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 18.5C1 17.837 1.26339 17.2011 1.73223 16.7322C2.20107 16.2634 2.83696 16 3.5 16H17"
-              stroke="#888DB1"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M3.5 1H17V21H3.5C2.83696 21 2.20107 20.7366 1.73223 20.2678C1.26339 19.7989 1 19.163 1 18.5V3.5C1 2.83696 1.26339 2.20107 1.73223 1.73223C2.20107 1.26339 2.83696 1 3.5 1V1Z"
-              stroke="#888DB1"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </router-link>
-
-        <router-link
-          id="jobAlert"
-          class="nav-action"
-          :class="{'active' : activeTab === 'jobAlert'}"
-          data-target="jobAlert"
-          v-on:click.native="setActiveTab('jobAlert')"
-          to="/resume-builder/jobs"
-        >
-          <svg
-            width="22"
-            height="20"
-            viewBox="0 0 22 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M19 5H3C1.89543 5 1 5.89543 1 7V17C1 18.1046 1.89543 19 3 19H19C20.1046 19 21 18.1046 21 17V7C21 5.89543 20.1046 5 19 5Z"
-              stroke="#888DB1"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M15 19V3C15 2.46957 14.7893 1.96086 14.4142 1.58579C14.0391 1.21071 13.5304 1 13 1H9C8.46957 1 7.96086 1.21071 7.58579 1.58579C7.21071 1.96086 7 2.46957 7 3V19"
-              stroke="#888DB1"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </router-link>
-
         <my-account-dropdown
           :avatar="personalInfo ? personalInfo.profile_pic : null"
           :isActive="activeTab === 'myAccount'"
@@ -310,7 +246,7 @@ $resume-builder-nav-height: 90px;
       padding-right: 10px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-around;
       margin-bottom: -$resume-builder-nav-height;
       transition: all 0.3s;
       margin-top: 2px;
@@ -398,7 +334,7 @@ $resume-builder-nav-height: 90px;
         position: static;
         margin-right: 30px;
         margin-left: auto;
-        max-width: 300px;
+        max-width: 230px;
       }
 
       .builder-nav-toggle {
