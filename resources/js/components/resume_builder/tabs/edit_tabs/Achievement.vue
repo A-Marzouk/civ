@@ -93,8 +93,8 @@
           </div>
         </v-form>
 
-        <draggable class="projects-list ml-md-4" v-if="achievements" v-model="achievements" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-          <div class="project" v-for="achievement in achievements">
+        <draggable class="projects-list" v-if="achievements" v-model="achievements" @start="drag=true" @end="drag=false"  handle=".drag-handler">
+          <div class="project ml-md-4" v-for="achievement in achievements">
             <div class="project__header">
               <v-btn
                       depressed

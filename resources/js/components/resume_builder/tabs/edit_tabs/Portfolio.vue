@@ -1,7 +1,7 @@
 <template>
   <div class="resume-builder__scroll" id="portfolio-tab">
     <div class="data-container">
-      <v-card class="view-container resume-builder__scroll">
+      <v-card class="view-container resume-builder__scroll" style="overflow-x: hidden !important;">
         <v-form class="grid-form" ref="form">
           <v-text-field
             id="projectName"
@@ -107,14 +107,14 @@
         </v-form>
 
         <draggable
-          class="projects-list ml-4"
+          class="projects-list"
           v-if="projects"
           v-model="projects"
           @start="drag=true"
           @end="drag=false"
           handle=".drag-handler"
         >
-          <div class="project" v-for="project in projects">
+          <div class="project ml-md-4" v-for="project in projects">
             <div class="project__header">
               <v-btn depressed class="drag-and-drop-handler drag-handler">
                 <svg-vue :icon="'drag-and-drop-icon'" class="icon"></svg-vue>
