@@ -2,7 +2,7 @@
   <v-app style="width:100%;">
     <div class="triangle-top-left"></div>
     <div class="verical-sidebar"></div>
-    <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="user.personal_info">
+    <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="currentUser">
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -17,15 +17,15 @@
                     <v-card-text>
                       <v-list-item two-line>
                         <v-list-item-avatar class="hidden-xs-only custom-avatar">
-                          <v-img :src="user.personal_info.profile_pic"></v-img>
+                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
-                          <v-img :src="user.personal_info.profile_pic"></v-img>
+                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent" tile>
-                              {{ user.personal_info.full_name }}
+                              {{ currentUser.personal_info.full_name }}
                               <span
                                 class="mx-8 hidden-sm-and-down email-icon-block"
                               >
@@ -35,7 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
-                                  :href="'mailto:' + user.personal_info.email"
+                                  :href="'mailto:' + currentUser.personal_info.email"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -89,7 +89,7 @@
                           </v-list-item-title>
                           <v-list-item-title>
                             <v-card flat color="transparent" tile>
-                              <span class="profile-subtitle">{{ user.personal_info.designation }}</span>
+                              <span class="profile-subtitle">{{ currentUser.personal_info.designation }}</span>
                             </v-card>
                           </v-list-item-title>
                         </v-list-item-content>
@@ -174,17 +174,17 @@
                           <v-card flat class="text-center" color="tranparent">
                             <v-card-title
                               class="hire-me-title"
-                            >{{ user.payment_info[0].salary_frequency | capitalize }} rate</v-card-title>
+                            >{{ currentUser.payment_info[0].salary_frequency | capitalize }} rate</v-card-title>
                             <v-card-subtitle
                               class="hire-me-subtitle"
-                            >{{ user.payment_info[0].salary }} {{ user.payment_info[0].currency.toUpperCase() }}</v-card-subtitle>
+                            >{{ currentUser.payment_info[0].salary }} {{ currentUser.payment_info[0].currency.toUpperCase() }}</v-card-subtitle>
                           </v-card>
                         </v-col>
                         <div style="height:41px; border:1px solid #D7D7D7;"></div>
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">{{user.payment_info[0].available_hours}} Hours</v-card-subtitle>
+                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.payment_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
@@ -249,7 +249,7 @@
                           :cols="{default: 4, 959: 1, 599: 1}"
                           :gutter="{default: '30px', 700: '15px'}"
                         >
-                          <template v-for="item in user.projects">
+                          <template v-for="item in currentUser.projects">
                             <v-card
                               class="mb-2"
                               align="left"
@@ -280,7 +280,7 @@
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
                         <v-row align="center">
-                          <template v-for="(work,index) in user.work_experience">
+                          <template v-for="(work,index) in currentUser.work_experience">
                             <v-col
                               cols="12"
                               sm="12"
@@ -329,7 +329,7 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center">
-                        <template v-for="(education,index) in user.education">
+                        <template v-for="(education,index) in currentUser.education">
                           <v-col
                             cols="12"
                             sm="12"
@@ -390,7 +390,7 @@
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" tile flat>
                     <v-row align="center">
-                      <template v-for="skill in user.skills">
+                      <template v-for="skill in currentUser.skills">
                         <v-col
                           cols="12"
                           sm="12"
@@ -456,6 +456,7 @@
 <script>
 export default {
   name: "ResumeTheme203",
+  props:["user","is_preview"],
   filters: {
     capitalize: function(value) {
       if (!value) return "";
@@ -584,7 +585,7 @@ export default {
           icon_text: "fig"
         }
       ],
-      user: ""
+      user: this.currentUser,
     };
   },
   computed: {
@@ -593,9 +594,6 @@ export default {
         return link.category === "social_link" ? link : false;
       });
     },
-    projects() {
-      return this.$store.state.themeUser.projects;
-    }
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
