@@ -6,8 +6,8 @@
           <v-img :src="img" contain width="65"></v-img>
         </v-col>
         <v-col cols="6">
-          <div class="title-audio-tm903">AUD17/04/2020</div>
-          <div class="subtitle-audio-tm903">Hean Prinsloo</div>
+          <div class="title-audio-tm903">AUD{{title}}</div>
+          <div class="subtitle-audio-tm903">{{user_name}}</div>
           <div class="timer-audio-tm903">{{ currentTime }}</div>
         </v-col>
         <v-col cols="3" align="center" justify="center">
@@ -44,9 +44,9 @@
             </v-col>
             <v-col sm="12" lg="auto" cols="3">
               <div class="audio-info-903">
-                <span class="title-audio-tm903">AUDIO_04/09/2020</span>
+                <span class="title-audio-tm903">AUDIO_{{title}}</span>
                 <br />
-                <span class="subtitle-audio-tm903">Hean Prinsloo</span>
+                <span class="subtitle-audio-tm903">{{user_name}}</span>
               </div>
             </v-col>
             <v-col
@@ -72,7 +72,7 @@
                 <div class="d-flex">
                   <span class="timer-player-903">0:00</span>
                   <v-spacer></v-spacer>
-                  <span class="timer-player-903">5:38</span>
+                  <span class="timer-player-903">{{currentTime}}</span>
                 </div>
               </div>
               <audio
@@ -110,7 +110,7 @@
             <div class="d-flex">
               <span class="timer-player-903">0:00</span>
               <v-spacer></v-spacer>
-              <span class="timer-player-903">5:38</span>
+              <span class="timer-player-903">{{currentTime}}</span>
             </div>
           </div>
         </v-col>
@@ -191,7 +191,7 @@
       <v-container>
         <v-row justify="space-between">
           <v-col cols="3">
-            <div class="subtitle-audio-tm903 white--text">AUD17/04/2020</div>
+            <div class="subtitle-audio-tm903 white--text">AUD{{title}}</div>
           </v-col>
           <v-col cols="5">
             <div>
@@ -282,6 +282,14 @@ export default {
       default: () => {}
     },
     color: {
+      type: String,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    user_name: {
       type: String,
       default: null
     },
