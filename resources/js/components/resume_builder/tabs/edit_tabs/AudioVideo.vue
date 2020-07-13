@@ -842,7 +842,7 @@ $mainBlue: #001ce2;
   font-size: 18px;
   line-height: 25px;
   color: #888db1 !important;
-  margin-top: 3px;
+  margin-top: 1px;
 }
 
 .fade-enter-active,
