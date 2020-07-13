@@ -2,7 +2,14 @@
 <template>
   <v-app id="theme503">
     <v-row class="mt-6" no-gutters>
-      <v-col xl="9" lg="9" md="9" sm="12" cols="12">
+      <v-col
+        xl="9"
+        lg="9"
+        md="9"
+        sm="12"
+        cols="12"
+        :class="{ 'active-indicator': currentTab === 'profile' }"
+      >
         <v-row align="center" no-gutters>
           <v-col
             cols="7"
@@ -17,7 +24,7 @@
             class="pl-md-12 pl-sm-6 pl-3 mt-lg-10"
           >
             <div class="head font-weight-bold">
-              Carla Pipin Ranga
+              {{ currentUser.personal_info.full_name }}
               <div
                 class="text-left d-lg-inline-block d-sm-inline-block d-none hidden-xs-only pl-xl-8 pl-sm-8"
               >
@@ -47,7 +54,7 @@
             </div>
 
             <div class="subhead grey--text text--darken-1 pb-sm-8 pb-4">
-              Web Ui/Ux Designer, Graphiс Designer
+              {{ currentUser.personal_info.designation }}
             </div>
 
             <div class="text-left hidden-sm-and-down">
@@ -55,12 +62,22 @@
                 class="px-0 mr-4"
                 color="#3E56CD"
                 fab
-                v-for="icon in icons"
-                :key="icon.id"
+                :href="Userlink.link"
+                v-for="Userlink in currentUser.links"
+                :key="Userlink.id + '_link'"
+                target="_blank"
+                v-show="Userlink.is_active && Userlink.is_public"
                 small
                 elevation="0"
               >
-                <v-img width="18" height="18" contain :src="icon.src"></v-img>
+                <v-img
+                  width="18"
+                  height="18"
+                  contain
+                  :src="
+                    `/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+                  "
+                ></v-img>
               </v-btn>
             </div>
           </v-col>
@@ -130,12 +147,22 @@
         >
           <v-slide-group multiple>
             <v-slide-item
-              v-for="icon in media"
-              :key="icon.id"
+              :href="Userlink.link"
+              v-for="Userlink in currentUser.links"
+              :key="Userlink.id + '_link'"
+              target="_blank"
+              v-show="Userlink.is_active && Userlink.is_public"
               class="mx-5 hidden-md-and-up"
             >
               <v-btn class fab small color="#3E56CD" elevation="0">
-                <v-img width="18" height="18" contain :src="icon.src"></v-img>
+                <v-img
+                  width="18"
+                  height="18"
+                  contain
+                  :src="
+                    `/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+                  "
+                ></v-img>
               </v-btn>
             </v-slide-item>
           </v-slide-group>
@@ -155,29 +182,15 @@
         class="tablet mr-xl-12 mr-sm-0 mt-sm-12"
       >
         <v-tabs background-color="transparent" hide-arrows grow class="helo">
-          <v-tab class="text-center" @click="tab = 'About'">
+          <v-tab
+            class="text-center"
+            v-for="(tab, tabIndex) in tabs"
+            :key="tabIndex"
+            @click="activeTab = tab.value"
+            :class="[{ 'active-indicator': currentTab === tab.value }]"
+          >
             <div class="tabtitle textcol font-weight-bold text-capitalize">
-              About
-            </div>
-          </v-tab>
-          <v-tab class="text-center" @click="tab = 'Portfolio'">
-            <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Portfolio
-            </div>
-          </v-tab>
-          <v-tab class="text-center" @click="tab = 'Work'">
-            <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Work
-            </div>
-          </v-tab>
-          <v-tab class="text-center" @click="tab = 'Education'">
-            <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Education
-            </div>
-          </v-tab>
-          <v-tab class="text-center" @click="tab = 'Skills'">
-            <div class="tabtitle textcol font-weight-bold text-capitalize">
-              Skills
+              {{ tab.text }}
             </div>
           </v-tab>
         </v-tabs>
@@ -192,7 +205,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'About'"
+          v-if="activeTab == 'about'"
           key="two"
           style="height:100vh;"
         >
@@ -204,18 +217,9 @@
                 About
               </h1>
             </v-col>
-            <v-col
-              xl="12"
-              sm="12"
-              cols="12"
-              v-for="n in 6"
-              :key="n"
-              class="py-xl-4 py-sm-4 py-4"
-            >
+            <v-col xl="12" sm="12" cols="12" class="py-xl-4 py-sm-4 py-4">
               <div class="subtitle-2 text-xl-left">
-                I'm Conor, I'm a product manager from London. I'm currently
-                looking for new permanent job opportunities within London area
-                that will allow my career to develop...
+                {{ currentUser.personal_info.about }}
               </div>
             </v-col>
           </v-row>
@@ -228,7 +232,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Portfolio'"
+          v-if="activeTab == 'portfolio'"
           key="one"
           style="height:100vh;"
         >
@@ -245,11 +249,12 @@
               cols="12"
               sm="12"
               class="mx-xl-3 px-lg-3 px-sm-4 py-xl-6 py-sm-2 px-4 py-2"
-              v-for="img in images"
-              :key="img.id"
+              v-for="project in currentUser.projects"
+              :key="project.id + '_project'"
+              v-show="project.is_public"
             >
               <v-img
-                :src="img.src"
+                :src="getProjectMainImage(project)"
                 :aspect-ratio="1.2"
                 style="box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);border-radius:20px;"
               ></v-img>
@@ -264,7 +269,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Work'"
+          v-if="activeTab == 'work-experience'"
           key="two"
           style="height:100vh;"
         >
@@ -274,21 +279,22 @@
               sm="12"
               cols="12"
               lg="6"
-              v-for="n in 4"
-              :key="n"
+              v-for="work in currentUser.work_experience"
+              :key="work.id"
+              v-show="work.is_public"
               class="mt-4 padleft"
             >
               <v-row class="mt-4" no-gutters>
                 <v-col md="12" sm="12" cols="12">
                   <h1 class="textcol headline font-weight-bold">
-                    {{ temp.title }}
+                    {{ work.job_title }}
                   </h1>
                 </v-col>
                 <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
                   <h1
                     class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
                   >
-                    {{ temp.sub }}
+                    {{ work.company_name }}
                   </h1>
                 </v-col>
 
@@ -296,14 +302,15 @@
                   <h1
                     class="caption font-weight-bold text-right grey--text text--darken-4"
                   >
-                    {{ temp.duration }}
+                    {{ getFullYear(work.date_from) }} -
+                    {{ getFullYear(work.date_to) }}
                   </h1>
                 </v-col>
                 <v-col md="12" sm="12" cols="12" xl="12" class="my-6">
                   <div
                     class="grey--text text--darken-1 sfont pb-2 font-weight-thin"
                   >
-                    {{ temp.para }}
+                    {{ work.description }}
                   </div>
                 </v-col>
               </v-row>
@@ -318,7 +325,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Education'"
+          v-if="activeTab == 'education'"
           key="three"
           style="height:100vh;"
         >
@@ -328,22 +335,24 @@
               sm="12"
               cols="12"
               lg="6"
-              v-for="n in 4"
-              :key="n"
+              v-for="education in currentUser.education"
+              :key="education.id"
+              v-show="education.is_public"
               class="mt-4 padleft"
             >
               <v-row justify="start" class no-gutters>
                 <v-row class="mt-md-4 mt-4" no-gutters>
                   <v-col md="12" sm="12" cols="12">
                     <h1 class="textcol headline font-weight-bold">
-                      {{ emp.title }}
+                      {{ education.university_name }}
                     </h1>
                   </v-col>
                   <v-col md="12" sm="12" cols="12" class="text-md-left my-6">
                     <h1
                       class="caption font-weight-bold pb-2 mr-12 grey--text text--darken-4"
                     >
-                      {{ emp.duration }}
+                      {{ getFullYear(education.date_from) }} -
+                      {{ getFullYear(education.date_to) }}
                     </h1>
                   </v-col>
 
@@ -351,7 +360,7 @@
                     <div
                       class="grey--text text--darken-1 sfont pb-2 font-weight-thin"
                     >
-                      {{ emp.para }}
+                      {{ education.degree_title }}
                     </div>
                   </v-col>
                 </v-row>
@@ -367,7 +376,7 @@
           xl="12"
           lg="12"
           sm="12"
-          v-if="tab == 'Skills'"
+          v-if="activeTab == 'skills'"
           key="four"
           style="height:100vh;"
         >
@@ -388,6 +397,9 @@
                 <v-tab
                   v-for="item in items"
                   :key="item.id"
+                  v-show="
+                    currentUser.skills.find(s => s.category == item.value)
+                  "
                   exact
                   class="subtitle-1 text-capitalize textcol skilltab"
                   >{{ item.name }}</v-tab
@@ -400,7 +412,13 @@
                     v-model="tabskill"
                     style="background-color:transparent;"
                   >
-                    <v-tab-item v-for="item in items" :key="item.id">
+                    <v-tab-item
+                      v-for="item in items"
+                      :key="item.id"
+                      v-show="
+                        currentUser.skills.find(s => s.category == item.value)
+                      "
+                    >
                       <v-row
                         class="justify-center py-2"
                         align="center"
@@ -412,8 +430,9 @@
                           md="8"
                           sm="12"
                           cols="12"
-                          v-for="(s, index) in item.skills"
+                          v-for="(s, index) in currentUser.skills"
                           :key="index"
+                          v-show="s.category == item.value"
                           class="px-md-6 my-4 px-2 mx-2"
                         >
                           <v-row
@@ -426,7 +445,7 @@
                               <div
                                 class="skilltext text-left font-weight-bold mb-sm-1 mb-xs-1"
                               >
-                                {{ s.name }} - {{ s.val }}
+                                {{ s.title }} - {{ s.percentage }}
                               </div>
                             </v-col>
 
@@ -434,7 +453,7 @@
                               <div class="pro-back ml-md-11 my-5">
                                 <div
                                   class="progress"
-                                  :style="'width:' + s.val"
+                                  :style="'width:' + s.percentage"
                                 ></div>
                               </div>
                             </v-col>
@@ -470,9 +489,11 @@
 </style>
 <script>
 export default {
+  props: ["user", "is_preview", "currentTab"],
   data() {
     return {
-      tab: "About",
+      currentUser: this.user,
+      activeTab: "about",
       media: [
         {
           id: 1,
@@ -539,187 +560,89 @@ export default {
       ],
       tabs: [
         {
-          id: 1,
-          name: "Portfolio",
-
-          link: "/"
+          text: "About",
+          value: "about"
         },
         {
-          id: 2,
-          name: "Work",
-
-          link: "/work"
+          text: "Portfolio",
+          value: "portfolio"
         },
         {
-          id: 3,
-          name: "Education",
-
-          link: "/education"
+          text: "Work",
+          value: "work-experience"
         },
         {
-          id: 4,
-          name: "Skills",
-
-          link: "/skills"
+          text: "Education",
+          value: "education"
+        },
+        {
+          text: "Skills",
+          value: "skills"
         }
       ],
-      images: [
-        {
-          id: 1,
-          src: "/images/resume_themes/theme502/img1.png"
-        },
-        {
-          id: 2,
-          src: "/images/resume_themes/theme502/img2.png"
-        },
-        {
-          id: 3,
-          src: "/images/resume_themes/theme502/img3.png"
-        },
-        {
-          id: 4,
-          src: "/images/resume_themes/theme502/img4.png"
-        },
-        {
-          id: 5,
-          src: "/images/resume_themes/theme502/img5.png"
-        },
-        {
-          id: 6,
-          src: "/images/resume_themes/theme502/img6.png"
-        }
-      ],
-      temp: {
-        icon: "/images/resume_themes/theme502/work.svg",
-        title: "Google",
-        sub: "User interface designer",
-        duration: "Dec 19 - Present",
-        para:
-          "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
-      },
-      emp: {
-        icon: "/images/resume_themes/theme502/education.svg",
-        title: "California Institute of Technology",
-        sub: "University",
-        duration: "M.Sc in HCI, Dec 19 - Present",
-        para:
-          "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your  and make changes."
-      },
+
       tabskill: null,
       items: [
         {
           id: 1,
           name: "Programming Languages",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Illustrator",
-              val: "80%",
-              icon: "ill"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            },
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Illustrator",
-              val: "80%",
-              icon: "ill"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
+          value: "programming_languages"
         },
         {
           id: 2,
           name: "Frameworks/ Databases",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-            {
-              name: "Illustrator",
-              val: "80%",
-              icon: "ill"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            },
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
+          value: "frameworks"
         },
         {
           id: 3,
           name: "Design Skills",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            },
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
+          value: "design"
         },
         {
           id: 4,
           name: "Software",
-          skills: [
-            {
-              name: "Photoshop",
-              val: "90%",
-              icon: "ph"
-            },
-
-            {
-              name: "Figma",
-              val: "75%",
-              icon: "fig"
-            }
-          ]
+          value: "software"
         }
       ]
     };
+  },
+
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
+  },
+  methods: {
+    getFullYear(date) {
+      let newDate = new Date(date);
+      let yyyy = newDate.getUTCFullYear();
+      return yyyy;
+    },
+    getProjectMainImage(project) {
+      let mainImage = "";
+
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+
+      return mainImage.src;
+    },
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+    }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>

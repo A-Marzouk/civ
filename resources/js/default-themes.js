@@ -417,10 +417,11 @@ if ($("#resumeTheme502").length !== 0) {
     });
 }
 
-import resumeTheme302 from "./components/resume_themes/theme302";
+import resumeTheme302 from "./components/resume_themes/theme302/index";
 if ($("#resumeTheme302").length !== 0) {
     new Vue({
         el: "#resumeTheme302",
+        store,
         vuetify,
         components: {
             "resume-theme-302": resumeTheme302
