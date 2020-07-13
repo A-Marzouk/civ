@@ -298,7 +298,6 @@ export default {
       axios
         .put("/api/user/reference", formData)
         .then(response => {
-          console.log(response.data);
           savingType === "manual"
             ? this.$store.dispatch("fullScreenNotification")
             : this.$store.dispatch("flyingNotification");

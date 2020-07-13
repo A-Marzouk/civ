@@ -268,7 +268,6 @@
       },
       checkMaximumFiles(){
         if (this.editedAchievement.images.length >= 1) {
-          console.log('Please, no more files...');
         }
       },
       removeFiles() {
