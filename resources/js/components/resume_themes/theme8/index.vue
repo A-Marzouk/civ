@@ -1896,7 +1896,8 @@ export default {
       height: 90px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      padding: 0 20px;
+      justify-content: space-between;
 
       .tab-text {
         font-style: italic;
@@ -1905,6 +1906,8 @@ export default {
         line-height: 48px;
         color: rgba(0, 91, 209, 0.3);
         position: relative;
+        min-width: 140px;
+        text-align: center;
       }
 
       .tab-text:hover {
