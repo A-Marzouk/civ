@@ -4,7 +4,11 @@
       <v-row class="borpad pt-md-4" no-gutters justify-sm="end">
         <v-col md="6" sm="12" cols="12">
           <v-container>
-            <v-row no-gutters justify="center">
+            <v-row
+              no-gutters
+              justify="center"
+              :class="{ 'active-indicator': currentTab === 'profile' }"
+            >
               <v-col
                 md="3"
                 sm="2"
@@ -26,7 +30,8 @@
                 class="text-md-left text-center text-sm-left"
               >
                 <div class="user-name font-weight-bold">
-                  {{ currentUser.personal_info.full_name }}
+                  {{ currentUser.personal_info.first_name }}
+                  {{ currentUser.personal_info.last_name }}
                 </div>
                 <div class="job-title py-1 pb-sm-2">
                   {{ currentUser.personal_info.designation }}
@@ -38,19 +43,27 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-col md="6" sm="10" cols="12" class="hidden-sm-only">
+        <v-col
+          md="6"
+          sm="10"
+          cols="12"
+          class="hidden-sm-only"
+          :class="{ 'active-indicator': currentTab === 'pay-availability' }"
+        >
           <v-container>
             <v-row>
               <v-col md="6">
                 <v-row no-gutters justify="center" class="hidden-xs-only">
-                  <v-col cols="5" md="3" lg="4" align="center">
+                  <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
                       src="/images/resume_themes/theme5/time.svg"
                       alt
                     ></v-img>
                     <div>
-                      <v-icon @click="availablePrev()">navigate_before</v-icon>
+                      <v-icon small @click="availablePrev()"
+                        >navigate_before</v-icon
+                      >
                       <div
                         v-for="(availability_info,
                         index) in currentUser.availability_info"
@@ -62,7 +75,9 @@
                           {{ availability_info.available_hours_frequency }}
                         </span>
                       </div>
-                      <v-icon @click="availableNext()">navigate_next</v-icon>
+                      <v-icon small @click="availableNext()"
+                        >navigate_next</v-icon
+                      >
                     </div>
                     <div>
                       <div
@@ -82,7 +97,7 @@
                       style="width:2px; height:2.5rem; background-color:#CBCBCB;margin-top:50%"
                     ></div>
                   </v-col>
-                  <v-col cols="5" md="3" lg="4" align="center">
+                  <v-col cols="5" md="5" lg="5" align="center">
                     <v-img
                       class="info-img"
                       src="/images/resume_themes/theme5/payment.svg"
@@ -90,7 +105,7 @@
                     ></v-img>
 
                     <div>
-                      <v-icon @click="paymentInfoPrev()"
+                      <v-icon small @click="paymentInfoPrev()"
                         >navigate_before</v-icon
                       >
                       <div
@@ -104,7 +119,9 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon @click="paymentInfoNext()">navigate_next</v-icon>
+                      <v-icon small @click="paymentInfoNext()"
+                        >navigate_next</v-icon
+                      >
                     </div>
                     <div>
                       <div
@@ -118,7 +135,6 @@
                         </span>
                       </div>
                     </div>
-                    <!-- <div class="title mt-3">$ 20/hr</div> -->
                   </v-col>
                   <v-col cols="8" align="center" class="mt-4">
                     <v-btn
@@ -138,7 +154,7 @@
                   <v-col cols="5" align="center">
                     <div class="subtitle-1">Rate</div>
                     <div class="subtitle-1 txtcol">
-                      <v-icon @click="paymentInfoPrev()"
+                      <v-icon small @click="paymentInfoPrev()"
                         >navigate_before</v-icon
                       >
                       <div
@@ -152,9 +168,11 @@
                           {{ payment_Info.salary_frequency }}
                         </span>
                       </div>
-                      <v-icon @click="paymentInfoNext()">navigate_next</v-icon>
+                      <v-icon small @click="paymentInfoNext()"
+                        >navigate_next</v-icon
+                      >
                     </div>
-                    <div class="headline mt-3 font-weight-bold txtcol">
+                    <div class="headline font-weight-bold txtcol">
                       <div
                         v-for="(payment_Info,
                         index) in currentUser.payment_info"
@@ -175,7 +193,7 @@
                   </v-col>
                   <v-col cols="5" align="center">
                     <div class="subtitle-1">Available for</div>
-                    <div class="headline mt-3 font-weight-bold txtcol">
+                    <div class="headline  font-weight-bold txtcol">
                       <div>
                         <v-icon @click="availablePrev()"
                           >navigate_before</v-icon
@@ -309,7 +327,11 @@
             </v-row>
           </v-container>
         </v-col>
-        <v-col sm="10" class="d-none d-sm-flex d-md-none">
+        <v-col
+          sm="10"
+          class="d-none d-sm-flex d-md-none"
+          :class="{ 'active-indicator': currentTab === 'pay-availability' }"
+        >
           <v-container>
             <v-row>
               <v-col md="6">
@@ -482,36 +504,16 @@
                 style="background-color:#f1f1f1;margin:1rem;border-radius:5px;padding:1rem;"
                 class="text-center"
               >
-                <v-tabs
-                  v-model="tab"
-                  background-color="transparent"
-                  hide-slider
-                  centered
-                >
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 0" class="left">[</span>
-                    Portfolio
-                    <span v-if="tab == 0" class="right">]</span>
-                  </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 1" class="left">[</span>
-                    Work Experience
-                    <span v-if="tab == 1" class="right">]</span>
-                  </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 2" class="left">[</span>
-                    Education
-                    <span v-if="tab == 2" class="right">]</span>
-                  </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 3" class="left">[</span>
-                    Skills
-                    <span v-if="tab == 3" class="right">]</span>
-                  </v-tab>
-                  <v-tab class="text-capitalize">
-                    <span v-if="tab == 4" class="left">[</span>
-                    About
-                    <span v-if="tab == 4" class="right">]</span>
+                <v-tabs background-color="transparent" hide-slider centered>
+                  <v-tab
+                    v-for="tab in tabs"
+                    :key="tab.value"
+                    @click="activeTab = tab.value"
+                    :class="{ 'active-indicator': currentTab === tab.value }"
+                  >
+                    <span v-if="tab.value === activeTab" class="left">[</span>
+                    {{ tab.text }}
+                    <span v-if="tab.value === activeTab" class="right">]</span>
                   </v-tab>
                 </v-tabs>
               </v-col>
@@ -521,7 +523,7 @@
         <v-col md="12" sm="12" cols="12" class="mt-4">
           <v-container fluid ma-0 pa-0 style="max-width:100%">
             <v-row no-gutters justify="center">
-              <v-col v-if="tab == 0" md="11" sm="11" cols="11">
+              <v-col v-if="activeTab === 'portfolio'" md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
                   <v-col
                     md="4"
@@ -542,7 +544,13 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col v-if="tab == 1" md="6" sm="12" cols="12" class="pb-12">
+              <v-col
+                v-if="activeTab === 'work-experience'"
+                md="6"
+                sm="12"
+                cols="12"
+                class="pb-12"
+              >
                 <v-timeline
                   dense
                   align-top
@@ -573,7 +581,13 @@
                   </v-timeline-item>
                 </v-timeline>
               </v-col>
-              <v-col v-if="tab == 2" md="11" sm="11" cols="11" class="pb-12">
+              <v-col
+                v-if="activeTab === 'education'"
+                md="11"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
                 <v-row no-gutters justify="center">
                   <v-col
                     v-for="education in currentUser.education"
@@ -606,7 +620,7 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col v-if="tab == 3" md="11" sm="11" cols="11">
+              <v-col v-if="activeTab === 'skills'" md="11" sm="11" cols="11">
                 <v-row no-gutters justify="center">
                   <v-col
                     v-for="(s, index) in currentUser.skills"
@@ -655,7 +669,13 @@
                   </v-col>
                 </v-row>
               </v-col>
-              <v-col v-if="tab == 4" md="6" sm="11" cols="11" class="pb-12">
+              <v-col
+                v-if="activeTab === 'about'"
+                md="6"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
                 <v-row no-gutters justify="center" class="shade py-12">
                   <v-col md="10" sm="11" cols="11" class="pb-8">
                     <div class="headline">About Me</div>
@@ -975,16 +995,42 @@
 }
 </style>
 
+<style>
+.active-indicator {
+  border: 2px solid #66daff !important;
+}
+</style>
 <script>
 export default {
   name: "theme8",
-  props: ["user", "is_preview"],
+  props: ["user", "is_preview", "currentTab"],
   data() {
     return {
-      tab: null,
+      tabs: [
+        {
+          text: "Portfolio",
+          value: "portfolio"
+        },
+        {
+          text: "Work Ex.",
+          value: "work-experience"
+        },
+        {
+          text: "Education",
+          value: "education"
+        },
+        {
+          text: "Skills",
+          value: "skills"
+        },
+        {
+          text: "About",
+          value: "about"
+        }
+      ],
       available: 0,
+      activeTab: "portfolio",
       paymentInfo: 0,
-      currentUser: this.user,
       portfolio: [
         {
           id: 0,
@@ -1069,6 +1115,12 @@ export default {
       ],
       currentUser: this.user
     };
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
   },
   methods: {
     availableNext() {

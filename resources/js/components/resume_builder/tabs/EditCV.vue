@@ -14,7 +14,7 @@
 					</div>
 					<div class="cv-preview-theme-wrapper">
 						<div class="cv-preview-theme">
-							<user-theme v-if="user.personal_info" :user="user" :is_preview="false"></user-theme>
+							<component :is="userTheme" :currentTab="activeTab" v-if="user.personal_info" :user="user" :is_preview="false"></component>
 						</div>
 					</div>
 				</div>
@@ -31,7 +31,6 @@ export default {
 
 	components: {
 		sidebar: sidebar,
-		"user-theme": () => import(/* webpackChunkName: "userTheme" */ "../../resume_themes/theme5/index")
 	},
 
 	data: () => ({
@@ -91,6 +90,18 @@ export default {
 	computed: {
 		user() {
 			return this.$store.state.user;
+		},
+		userTheme: function () {
+			let code =  this.$store.state.user.theme.code ;
+
+			if(code){
+				return this.importComponent(code);
+			}
+		}
+	},
+	methods:{
+		importComponent(path) {
+			return () => import('../../resume_themes/theme'+ path + '/index.vue');
 		}
 	},
 

@@ -26,7 +26,7 @@
           @change="handleProfilePictureUpload"
         />
 
-        <div class="form-wrapper">
+        <div class="form-wrapper mt-n1">
           <div class="content-wrapper">
             <div class="mar-form">
               <v-text-field
@@ -40,7 +40,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin input-margin-3"
+                class="resume-builder__input input-margin input-margin-3 mt-n3"
                 label="Email"
                 v-model="accountData.email"
                 :outlined="true"
@@ -50,7 +50,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin centered-input"
+                class="resume-builder__input input-margin centered-input mt-n3"
                 label="Password"
                 type="password"
                 v-model="accountData.password"
@@ -61,7 +61,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input centered-input"
+                class="resume-builder__input centered-input mt-n3"
                 label="Re-Type Password"
                 type="password"
                 v-model="accountData.password_confirmation"
@@ -89,7 +89,7 @@
               </div>
 
               <div class="action-btns NoDecor">
-                <a href="#" class="purchase-btn" @click="priceModal=true">Purchase Subscription</a>
+                <a href="#" class="purchase-btn mt-n3" @click="priceModal=true">Purchase Subscription</a>
               </div>
 
               <span class="v-label v-label--active theme--light" style="color: #888DB1;">
@@ -195,9 +195,9 @@
               <v-card-text align="center">
                 <v-row align="center" justify="center">
                   <v-col cols="12">
-                    <div class="now-only-text mt-n5">Now Only</div>
+                    <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
                   </v-col>
-                  <v-col cols="12" class="mt-n5">
+                  <v-col cols="12" class="mt-sm-n5 mt-n7">
                     <div class="rate-text">
                       <span class="old-price mr-5">$25</span>
                       <span class="new-price">$15</span>
@@ -214,10 +214,10 @@
 
               <v-card-text>
                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1" class="mt-xl-0 mt-lg-n3">
+                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1" class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
                     <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img" />
                   </v-col>
-                  <v-col xl="6" lg="6" md="6" sm="6" cols="6" class="mt-xl-0 mt-lg-n3">
+                  <v-col xl="6" lg="6" md="6" sm="6" cols="6" class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
                     <span class="price-option">{{item}}</span>
                   </v-col>
                 </v-row>
@@ -1462,6 +1462,6 @@ $placeholder-color: #9ba1ad;
   margin-top: 6px !important;
 }
 .input-margin-3 input{
-  margin-top: 3px !important;
+  margin-top: 0px !important;
 }
 </style>

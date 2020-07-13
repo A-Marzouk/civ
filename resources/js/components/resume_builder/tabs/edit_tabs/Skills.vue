@@ -121,11 +121,11 @@
                                           color="#F2F3FD"
                                           depressed
                                           @click="toggleVisibility(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                          class="btn-skill-action mr-xl-1 mr-lg-1 mx-1"
                                   >
                                     <svg-vue
                                             icon="eye-icon"
-                                            :class="{'visible' : !skill.is_public}"
+                                            :class="{'visible' : skill.is_public}"
                                             class="icon"
                                     ></svg-vue>
                                   </v-btn>
@@ -133,7 +133,7 @@
                                           color="#F2F3FD"
                                           depressed
                                           @click="editSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                          class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
                                   >
                                     <svg-vue icon="edit-icon" class="icon"></svg-vue>
                                   </v-btn>
@@ -141,7 +141,7 @@
                                           color="#F2F3FD"
                                           depressed
                                           @click="deleteSkill(skill)"
-                                          class="btn-skill-action mr-xl-1 mr-lg-auto mx-auto"
+                                          class="btn-skill-action mr-xl-1 mr-lg-1 mr-1"
                                   >
                                     <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                                   </v-btn>
@@ -168,7 +168,7 @@
                                   >
                                     <svg-vue
                                             icon="eye-icon"
-                                            :class="{'visible' : !skill.is_public}"
+                                            :class="{'visible' : skill.is_public}"
                                             class="icon"
                                     ></svg-vue>
                                   </v-btn>
@@ -435,6 +435,7 @@ civie-input {
     height: 50px !important;
     font-size: 18px !important;
     font-weight: 500;
+    box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
     @media screen and (max-width: 767px) {
       width: 100px !important;
       height: 40px !important;

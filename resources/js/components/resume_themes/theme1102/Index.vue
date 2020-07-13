@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="line">
-                    <div>
+                    <div class="line__flex">
 
                     </div>
                     <div class="line__format">
@@ -70,24 +70,34 @@
                     </div>
                 </div>
             </header>
-            <div class="transparent-box1">
 
-            </div>
-            <div class="mobile-header">
-                <div class="mobile-header__hourly">
-                    <div class="mobile-header__rate">
-                        10$
-                    </div>
-                    <div class="mobile-header__description">
-                        Hourly rate
+            <div class="new__shadow">
+                <div class="mobile__shadowU">
+                    <div class="shadow-upper">
+
                     </div>
                 </div>
-                <div class="mobile-header__hourly">
-                    <div class="mobile-header__rate">
-                        35 hours
+                <div class="mobile-header">
+                    <div class="mobile-header__hourly">
+                        <div class="mobile-header__rate">
+                            10$
+                        </div>
+                        <div class="mobile-header__description">
+                            Hourly rate
+                        </div>
                     </div>
-                    <div class="mobile-header__description">
-                        Weekly Availability
+                    <div class="mobile-header__hourly">
+                        <div class="mobile-header__rate">
+                            35 hours
+                        </div>
+                        <div class="mobile-header__description">
+                            Weekly Availability
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile__shadowD">
+                    <div class="shadow-down">
+
                     </div>
                 </div>
             </div>
@@ -100,11 +110,13 @@
                     centered
                     hide-slider
                     class="main-tabs"
-                    height="120"
-                    mobile-breakpoint="900"
+                    height="150"
+                    mobile-breakpoint="1024"
                     show-arrows
+
                 >
                     <v-tab
+                        class="index__tab-item"
 
                     >
                         <div class="logo__tab">
@@ -115,9 +127,9 @@
 
                             <div class="tab-item">
 
-                            <span class="tab-item__text">
+                            <div class="tab-item__text">
                                 Portfolio
-                            </span>
+                            </div>
                                 <div class="round">
                                     <div class="round__first">
                                         <div class="round__second">
@@ -137,9 +149,9 @@
                             <work_icon class="work__icon common__icon"></work_icon>
                         </div>
                         <div class="tab-item">
-                            <span class="tab-item__text">
+                            <div class="tab-item__text">
                                 Work
-                            </span>
+                            </div>
                             <div class="round1">
                                 <div class="round1__first">
                                     <div class="round1__second">
@@ -159,9 +171,9 @@
                             <skills_icon class="skills__icon common__icon"></skills_icon>
                         </div>
                         <div class="tab-item">
-                            <span class="tab-item__text">
+                            <div class="tab-item__text">
                                Skills
-                            </span>
+                            </div>
                             <div class="round1">
                                 <div class="round1__first">
                                     <div class="round1__second">
@@ -181,9 +193,9 @@
                             <education_icon class="education__icon common__icon"></education_icon>
                         </div>
                         <div class="tab-item">
-                            <span class="tab-item__text">
+                            <div class="tab-item__text">
                                Education
-                            </span>
+                            </div>
                             <div class="round">
                                 <div class="round__first">
                                     <div class="round__second">

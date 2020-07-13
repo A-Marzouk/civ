@@ -82,7 +82,7 @@
 
           <div class="col-12 d-flex flex-column">
             <div>
-              <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveAchievement">
+              <v-btn class="resume-builder__btn civie-btn filled ml-custom-n12" raised @click="saveAchievement">
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 
@@ -94,7 +94,7 @@
         </v-form>
 
         <draggable class="projects-list" v-if="achievements" v-model="achievements" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-          <div class="project" v-for="achievement in achievements">
+          <div class="project ml-md-4" v-for="achievement in achievements">
             <div class="project__header">
               <v-btn
                       depressed
@@ -362,7 +362,9 @@
 <style lang="scss">
   @import '../../../../../sass/variables';
   @import '../../../../../sass/media-queries';
-
+  .ml-custom-n12{
+    margin-left: -12px;
+  }
   #portfolio-tab {
     .view-container {
       max-height: 678px;

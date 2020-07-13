@@ -166,9 +166,6 @@
             }
         },
         methods: {
-            callback(data) {
-                console.log(data);
-            },
             recordingFinish(data) {
                 this.newAudio.mediaFile = data.blob;
                 // auto select the audio
@@ -182,7 +179,6 @@
 
                 }, 1000);
             },
-
             handleAudioUpload() {
                 this.newAudio.mediaFile = this.$refs.audio.files[0];
                 this.uploadMedia();

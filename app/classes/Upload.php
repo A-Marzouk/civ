@@ -8,9 +8,8 @@
 
 namespace App\classes;
 
-use App\UserData;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeExtensionGuesser;
+use Exception;
 
 class Upload
 {
@@ -341,13 +340,61 @@ class Upload
     {
         // TODO: validate allowed formats for the API
 
+        // allowed formats :
+        $formats = ['audio/mpeg', 'audio/x-mpeg', 'audio/mpeg3', 'audio/x-mpeg-3', 'audio/aiff',
+            'audio/mid', 'audio/x-aiff', 'audio/x-mpequrl', 'audio/midi', 'audio/x-mid',
+            'audio/x-midi', 'audio/wav', 'audio/x-wav', 'audio/xm', 'audio/x-aac', 'audio/basic',
+            'audio/flac', 'audio/mp4', 'audio/mp3', 'audio/x-matroska', 'audio/ogg', 'audio/s3m', 'audio/x-ms-wax',
+            'audio/xm', 'audio/x-m4a',
+            'audio/adpcm',
+            'audio/basic',
+            'audio/midi',
+            'audio/mp4',
+            'audio/mpeg',
+            'audio/ogg',
+            'audio/s3m',
+            'audio/silk',
+            'audio/vnd.dece.audio',
+            'audio/vnd.digital-winds',
+            'audio/vnd.dra',
+            'audio/vnd.dts',
+            'audio/vnd.dts.hd',
+            'audio/vnd.lucent.voice',
+            'audio/vnd.ms-playready.media.pya',
+            'audio/vnd.nuera.ecelp4800',
+            'audio/vnd.nuera.ecelp7470',
+            'audio/vnd.nuera.ecelp9600',
+            'audio/vnd.rip',
+            'audio/webm',
+            'audio/x-aac',
+            'audio/x-aiff',
+            'audio/x-caf',
+            'audio/x-flac',
+            'audio/x-matroska',
+            'audio/x-mpegurl',
+            'audio/x-ms-wax',
+            'audio/x-ms-wma',
+            'audio/x-pn-realaudio',
+            'audio/x-pn-realaudio-plugin',
+            'audio/x-wav',
+            'audio/xm',
+        ];
+
+        // check file type :
+        if (!in_array($_FILES['mediaFile']['type'], $formats)) {
+            throw new Exception('Not Authenticated!');
+        }
+
         $file = $request->file('mediaFile');
         $name = date(time()) . '_' . $file->getClientOriginalName();
+
         if (strpos($name, 'blob') !== false) { // audio record
             $name .= 'user_record.mp3';
         }
+
         $file->move(public_path() . '/uploads/media/', $name);
         $path = '/uploads/media/' . $name;
+
         return $path;
     }
 

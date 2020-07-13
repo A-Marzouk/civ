@@ -1,15 +1,25 @@
 
 .main-tabs {
-    margin-bottom: 50px;
+    margin-bottom: 5px;
+
     @media only screen and (max-width: 1200px) {
-        margin-bottom: calc(50px - #{$tab-font-size});
+        margin-bottom: calc(5px - #{$tab-font-size});
 
     }
-}
+    @media only screen and (max-width: 1023px) {
+        padding-top: 30px;
+    }
+    @media only screen and (max-width: 550px) {
+        padding-top: 0px;
+
+    }
+
+
+    }
 
 .tab-item {
     position: relative;
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 1023px) {
         display: none;
         visibility: hidden;
     }
@@ -112,32 +122,23 @@
 }
 
 
-.theme--light.v-tabs > .v-tabs-bar .v-tab:not(.v-tab--active) {
-    color: $color-white !important;
-    font-family: $font-primary !important;
-    text-decoration: none !important;
+.v-tab--active {
     background-color: transparent !important;
-    font-size: 40px !important;
-    font-weight: 300 !important;
-    text-transform: none !important;
-    @media only screen and (max-width: 1200px) {
-        font-size: calc(40px - #{$tab-font-size}) !important;
-    }
 }
 
-
-.v-tab[data-v-31818b80][data-v-31818b80] {
-    background-color: rgba(255, 255, 255, 0) !important;
+.tab-item__text {
     color: $color-white !important;
     font-family: $font-primary !important;
     text-decoration: none !important;
-    text-transform: none !important;
+
     font-size: 40px !important;
     font-weight: 300 !important;
+    text-transform: none !important;
     @media only screen and (max-width: 1200px) {
         font-size: calc(40px - #{$tab-font-size}) !important;
     }
 }
+
 
 .main-tab-items {
     background-color: transparent!important;
@@ -163,18 +164,26 @@
 
 
     .icon__box {
-        transform: scale(1.1);
+        transform: scale(1.3);
         display: none;
         visibility: hidden;
         background-color: $color-white;
         padding: 20px 20px;
-        margin: 0 50px;
+        margin: 0 90px;
         border-radius: 50%;
         box-shadow: 0 5px 30px rgba(0, 0, 0, 0.09);
 
-        @media only screen and (max-width: 700px) {
+        @media only screen and (max-width: 1023px) {
             display: block;
             visibility: visible;
+        }
+        @media only screen and (max-width: 850px) {
+            margin: 0 50px;
+        }
+        @media only screen and (max-width: 700px) {
+            transform: scale(1.1);
+            margin: unset;
+
         }
         @media only screen and (max-width: 550px) {
             transform: scale(0.8);
@@ -189,6 +198,7 @@
     }
 
     .icon__box.education {
+        transform: scale(1.1);
         display: none;
         visibility: hidden;
         background-color: $color-white;
@@ -196,10 +206,16 @@
         border-radius: 50%;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
-        @media only screen and (max-width: 700px) {
+        @media only screen and (max-width: 1023px) {
             display: block;
             visibility: visible;
         }
+        @media only screen and (max-width: 700px) {
+
+            transform: scale(0.8);
+        }
+
+
         @media only screen and (max-width: 550px) {
             transform: scale(0.8);
             margin: unset;
@@ -216,18 +232,29 @@
 }
 
 .icon__box {
-    transform: scale(0.8);
+    transform: scale(1);
     overflow: visible;
     display: none;
     visibility: hidden;
     background-color: $color-white;
     padding: 20px 20px;
-    margin: 0 50px;
+    margin: 0 90px;
     border-radius: 50%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 1023px) {
         display: block;
         visibility: visible;
+    }
+    @media only screen and (max-width: 850px) {
+        margin: 0 50px;
+    }
+    @media only screen and (max-width: 700px) {
+        margin: 0 30px;
+        transform: scale(0.8);
+    }
+    @media only screen and (max-width: 700px) {
+        margin: unset;
+        transform: scale(0.8);
     }
     @media only screen and (max-width: 550px) {
         transform: scale(0.5);
@@ -239,7 +266,7 @@
     }
 
 .icon__box.education {
-    transform: scale(0.8);
+    transform: scale(0.9);
     display: none;
     visibility: hidden;
     background-color: $color-white;
@@ -247,9 +274,13 @@
     border-radius: 50%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 1023px) {
         display: block;
         visibility: visible;
+    }
+    @media only screen and (max-width: 700px) {
+
+        transform: scale(0.7);
     }
     @media only screen and (max-width: 550px) {
         transform: scale(0.5);
@@ -258,10 +289,14 @@
 }
 
 .tab-item {
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: 1023px) {
         background-color: $color-white;
     }
 
+}
+
+.portfolio {
+    margin-bottom: 50px;
 }
 
 //.nav-link:visited ~ .round {

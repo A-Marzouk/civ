@@ -2,7 +2,7 @@
     <v-row justify="end">
         <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
             <template v-slot:activator="{ on }">
-                <v-btn color="primary" dark v-on="on">Add a theme</v-btn>
+                <v-btn color="primary" dark v-on="on" @click="clearTheme">Add a theme</v-btn>
             </template>
             <v-card :loading="loading">
                 <v-toolbar dark color="primary">
@@ -19,25 +19,29 @@
                     <v-container>
                         <v-row>
                             <v-col cols="12" sm="6" md="6">
-                                <v-text-field label="Title*" required v-model="new_theme_item.title" :error="errors.title"></v-text-field>
+                                <v-text-field label="Title*" required v-model="new_theme_item.title"
+                                              :error="!!errors.title"></v-text-field>
                                 <div class="custom-error" v-if="errors.title">
                                     {{ Array.isArray(errors.title) ? errors.title[0] : errors.title}}
                                 </div>
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
-                                <v-text-field label="Category*" required v-model="new_theme_item.category" :error="errors.category"></v-text-field>
+                                <v-text-field label="Category*" required v-model="new_theme_item.category"
+                                              :error="!!errors.category"></v-text-field>
                                 <div class="custom-error" v-if="errors.category">
                                     {{ Array.isArray(errors.category) ? errors.category[0] : errors.category}}
                                 </div>
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
-                                <v-text-field label="Color*" :error="errors.color" persistent-hint required v-model="new_theme_item.color"></v-text-field>
+                                <v-text-field label="Color*" :error="!!errors.color" persistent-hint required
+                                              v-model="new_theme_item.color"></v-text-field>
                                 <div class="custom-error" v-if="errors.color">
                                     {{ Array.isArray(errors.color) ? errors.color[0] : errors.color}}
                                 </div>
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
-                                <v-text-field label="Developer of this theme*" :error="errors.developer" persistent-hint required v-model="new_theme_item.developer"></v-text-field>
+                                <v-text-field label="Developer of this theme*" :error="!!errors.developer" persistent-hint
+                                              required v-model="new_theme_item.developer"></v-text-field>
                                 <div class="custom-error" v-if="errors.developer">
                                     {{ Array.isArray(errors.developer) ? errors.developer[0] : errors.developer}}
                                 </div>
@@ -48,7 +52,7 @@
                                         label="Theme Code*"
                                         required
                                         v-model="new_theme_item.code"
-                                        :error="errors.code"
+                                        :error="!!errors.code"
                                 ></v-select>
                                 <div class="custom-error" v-if="errors.code">
                                     {{ Array.isArray(errors.code) ? errors.code[0] : errors.code}}
@@ -60,7 +64,7 @@
                                         label="Job title*"
                                         required
                                         v-model="new_theme_item.job_title"
-                                        :error="errors.job_title"
+                                        :error="!!errors.job_title"
                                 ></v-select>
                                 <div class="custom-error" v-if="errors.job_title">
                                     {{ Array.isArray(errors.job_title) ? errors.job_title[0] : errors.job_title}}
@@ -73,10 +77,11 @@
                                         required
                                         v-model="new_theme_item.design_style"
                                         required
-                                        :error="errors.design_style"
+                                        :error="!!errors.design_style"
                                 ></v-select>
                                 <div class="custom-error" v-if="errors.design_style">
-                                    {{ Array.isArray(errors.design_style) ? errors.design_style[0] : errors.design_style}}
+                                    {{ Array.isArray(errors.design_style) ? errors.design_style[0] :
+                                    errors.design_style}}
                                 </div>
                             </v-col>
                             <v-col cols="12" sm="6" md="6">
@@ -86,7 +91,7 @@
                                         v-model="new_theme_item.emotions"
                                         multiple
                                         required
-                                        :error="errors.emotions"
+                                        :error="!!errors.emotions"
                                 ></v-autocomplete>
                                 <div class="custom-error" v-if="errors.emotions">
                                     {{ Array.isArray(errors.emotions) ? errors.emotions[0] : errors.emotions}}
@@ -108,14 +113,14 @@
                             v-model="new_theme_item.image"
                             ref="file"
                             @change="handleFileUpload"
-                            :error="errors.image"
+                            :error="!!errors.image"
                     ></v-file-input>
 
                     <div class="custom-error" v-if="errors.image">
                         {{ Array.isArray(errors.image) ? errors.image[0] : errors.image}}
                     </div>
 
-                    <img v-if="new_theme_item.image" class="theme-preview" :src="image_url" alt="theme preview">
+                    <img v-if="image_url" class="theme-preview" :src="image_url" alt="theme preview">
                 </v-container>
             </v-card>
         </v-dialog>
@@ -124,48 +129,52 @@
 <script>
     export default {
         name: "CreateTheme",
-        data(){
-            return{
+        data() {
+            return {
                 dialog: false,
                 notifications: false,
                 sound: true,
                 widgets: false,
-                image_url : '',
-                new_theme_item : {
-                    title:'',
-                    category:'',
-                    color:'',
-                    code:'',
-                    job_title:'',
-                    developer:'',
-                    design_style:'',
-                    emotions:'',
-                    image:null
+                image_url: '',
+                new_theme_item: {
+                    id: '',
+                    title: '',
+                    category: '',
+                    color: '',
+                    code: '',
+                    job_title: '',
+                    developer: '',
+                    design_style: '',
+                    emotions: '',
+                    image: null
                 },
-                errors:{},
-                loading:true,
-                availableCodes:[]
+                errors: {},
+                loading: true,
+                availableCodes: []
             }
         },
-        methods:{
+        methods: {
             handleFileUpload() {
-                if(this.new_theme_item.image){
+                if (this.new_theme_item.image) {
                     this.image_url = window.URL.createObjectURL(this.new_theme_item.image);
                 }
             },
-            saveTheme(){
-                this.errors = {} ;
+            saveTheme() {
+                this.errors = {};
                 let formData = new FormData();
                 $.each(this.new_theme_item, (field) => {
                     formData.append(field, this.new_theme_item[field]);
                 });
                 axios.post('/api/user/themes', formData)
-                    .then( (response) => {
-                        console.log(response.data);
+                    .then((response) => {
                         this.$store.dispatch('flyingNotification');
-                        this.dialog = false ;
+                        this.dialog = false;
+                        // fire evenet of adding the theme.
+                        if(!this.new_theme_item.id){
+                            this.$emit('themeCreated', response.data.data);
+                        }
                     })
-                    .catch( (error) => {
+                    .catch((error) => {
                         if (typeof error.response.data === 'object') {
                             this.errors = error.response.data.errors;
                         } else {
@@ -177,10 +186,35 @@
                         });
                     })
             },
-            getAvailableThemes(){
+            editTheme(theme) {
+                this.dialog = true;
+
+                this.new_theme_item = theme;
+                this.image_url = theme.image;
+                if(theme.emotions){
+                    this.new_theme_item.emotions = theme.emotions.split(',');
+                }else{
+                    this.new_theme_item.emotions = [] ;
+                }
+            },
+            clearTheme(){
+                this.new_theme_item = {
+                    id: '',
+                    title: '',
+                    category: '',
+                    color: '',
+                    code: '',
+                    job_title: '',
+                    developer: '',
+                    design_style: '',
+                    emotions: '',
+                    image: null
+                };
+            },
+            getAvailableThemes() {
                 this.errors = {};
                 axios.get('/api/user/available-themes')
-                    .then( (response) => {
+                    .then((response) => {
                         this.availableCodes = response.data.sort((a, b) => {
                             // console.log('a ' + a + ' b ' + b);
                             if (a === "K" || b === "N") {
@@ -192,26 +226,27 @@
                             return +a - +b;
                         });
                     })
-                    .catch( (error) => {
+                    .catch((error) => {
                         this.errors = ['Something went wrong. Please try again.'];
                     });
             }
         },
         mounted() {
             this.getAvailableThemes();
+            // check if we open as edit:
         }
     }
 </script>
 
 <style scoped lang="scss">
-    .theme-preview{
+    .theme-preview {
         margin: 25px;
         width: 420px;
         height: auto;
         border-radius: 25px;
     }
 
-    .custom-error{
+    .custom-error {
         margin-top: -10px;
         color: red;
     }

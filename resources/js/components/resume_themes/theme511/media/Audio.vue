@@ -6,8 +6,8 @@
           <v-img :src="img" contain width="65"></v-img>
         </v-col>
         <v-col cols="6">
-          <div class="title-audio-tm903">AUD17/04/2020</div>
-          <div class="subtitle-audio-tm903">Hean Prinsloo</div>
+          <div class="title-audio-tm903">AUD{{title}}</div>
+          <div class="subtitle-audio-tm903">{{user_name}}</div>
           <div class="timer-audio-tm903">{{ currentTime }}</div>
         </v-col>
         <v-col cols="3" align="center" justify="center">
@@ -20,13 +20,20 @@
             elevation="0"
             @click.native="playing ? pause() : play()"
           >
-            <v-icon color="#ffff" large v-if="!playing || paused">mdi-play</v-icon>
+            <v-icon color="#ffff" large v-if="!playing || paused"
+              >mdi-play</v-icon
+            >
             <v-icon color="#ffff" large v-else>mdi-pause</v-icon>
           </v-btn>
         </v-col>
       </v-row>
     </v-card>
-    <v-footer style="z-index:500" fixed color="#fff" class="media-player-tm903 hidden-xs-only">
+    <v-footer
+      style="z-index:500"
+      fixed
+      color="#fff"
+      class="media-player-tm903 hidden-xs-only"
+    >
       <v-row justify="center" class="align-center">
         <v-col class="avatar-media-player-tm903" lg="3" cols="2" sm="4">
           <v-row justify="center" class="align-center">
@@ -37,12 +44,15 @@
             </v-col>
             <v-col sm="12" lg="auto" cols="3">
               <div class="audio-info-903">
-                <span class="title-audio-tm903">AUDIO_04/09/2020</span>
+                <span class="title-audio-tm903">AUDIO_{{title}}</span>
                 <br />
-                <span class="subtitle-audio-tm903">Hean Prinsloo</span>
+                <span class="subtitle-audio-tm903">{{user_name}}</span>
               </div>
             </v-col>
-            <v-col class="linear-playing-audio-tm903 d-none d-lg-none d-sm-block" sm="12">
+            <v-col
+              class="linear-playing-audio-tm903 d-none d-lg-none d-sm-block"
+              sm="12"
+            >
               <div class="mt-n4">
                 <v-progress-linear
                   height="54"
@@ -62,14 +72,25 @@
                 <div class="d-flex">
                   <span class="timer-player-903">0:00</span>
                   <v-spacer></v-spacer>
-                  <span class="timer-player-903">5:38</span>
+                  <span class="timer-player-903">{{currentTime}}</span>
                 </div>
               </div>
-              <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
+              <audio
+                id="player"
+                ref="player"
+                v-on:ended="ended"
+                v-on:canplay="canPlay"
+                :src="file"
+              ></audio>
             </v-col>
           </v-row>
         </v-col>
-        <v-col class="linear-playing-audio-tm903 hidden-lg-and-down" cols="3" lg="3" sm="6">
+        <v-col
+          class="linear-playing-audio-tm903 hidden-lg-and-down"
+          cols="3"
+          lg="3"
+          sm="6"
+        >
           <div class="ml-n12">
             <v-progress-linear
               height="54"
@@ -81,12 +102,15 @@
               :disabled="!loaded"
               v-model="percentage"
             >
-              <v-img class="ml-6 mt-6 mb-6 mr-6" src="/images/resume_themes/theme511/bars.png"></v-img>
+              <v-img
+                class="ml-6 mt-6 mb-6 mr-6"
+                src="/images/resume_themes/theme511/bars.png"
+              ></v-img>
             </v-progress-linear>
             <div class="d-flex">
               <span class="timer-player-903">0:00</span>
               <v-spacer></v-spacer>
-              <span class="timer-player-903">5:38</span>
+              <span class="timer-player-903">{{currentTime}}</span>
             </div>
           </div>
         </v-col>
@@ -118,7 +142,9 @@
                 fab
                 @click.native="playing ? pause() : play()"
               >
-                <v-icon color="#ffff" large v-if="!playing || paused">mdi-play</v-icon>
+                <v-icon color="#ffff" large v-if="!playing || paused"
+                  >mdi-play</v-icon
+                >
                 <v-icon color="#ffff" large v-else>mdi-pause</v-icon>
               </v-btn>
               <v-btn
@@ -139,7 +165,13 @@
             </v-list-item-icon>
           </div>
           <div class="hidden-sm-and-up">
-            <v-progress-linear class="mt-2" color="#FFD43B" value="50" rounded height="10"></v-progress-linear>
+            <v-progress-linear
+              class="mt-2"
+              color="#FFD43B"
+              value="50"
+              rounded
+              height="10"
+            ></v-progress-linear>
             <span class="pl-7">2:00:00</span>
           </div>
         </v-col>
@@ -159,7 +191,7 @@
       <v-container>
         <v-row justify="space-between">
           <v-col cols="3">
-            <div class="subtitle-audio-tm903 white--text">AUD17/04/2020</div>
+            <div class="subtitle-audio-tm903 white--text">AUD{{title}}</div>
           </v-col>
           <v-col cols="5">
             <div>
@@ -178,14 +210,28 @@
         <v-row justify="center">
           <v-col cols="12" class="text-center">
             <div>
-              <v-btn icon text dark class="mob-other-btn" width="60" height="60">
+              <v-btn
+                icon
+                text
+                dark
+                class="mob-other-btn"
+                width="60"
+                height="60"
+              >
                 <v-icon>mdi-chevron-double-left</v-icon>
               </v-btn>
               <v-btn icon text dark class="mob-play" width="60" height="60">
                 <v-icon v-if="!playing || paused">mdi-play</v-icon>
                 <v-icon v-else>mdi-pause</v-icon>
               </v-btn>
-              <v-btn icon text dark class="mob-other-btn" width="60" height="60">
+              <v-btn
+                icon
+                text
+                dark
+                class="mob-other-btn"
+                width="60"
+                height="60"
+              >
                 <v-icon>mdi-chevron-double-right</v-icon>
               </v-btn>
             </div>
@@ -193,7 +239,13 @@
         </v-row>
         <v-row justify="center">
           <v-col cols="9">
-            <v-progress-linear class="mt-2" color="#FFD43B" value="50" rounded height="10"></v-progress-linear>
+            <v-progress-linear
+              class="mt-2"
+              color="#FFD43B"
+              value="50"
+              rounded
+              height="10"
+            ></v-progress-linear>
           </v-col>
           <v-col cols="2">
             <span class="pl-1">1:05:00</span>
@@ -230,6 +282,14 @@ export default {
       default: () => {}
     },
     color: {
+      type: String,
+      default: null
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    user_name: {
       type: String,
       default: null
     },

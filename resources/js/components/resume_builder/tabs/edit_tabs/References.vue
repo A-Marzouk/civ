@@ -15,7 +15,12 @@
                   color="#001CE2"
                   v-model="reference.type"
                 >
-                  <button class="dropdown-icon icon" slot="append" @click="toggleSelect">
+                  <button
+                    class="dropdown-icon icon ml-4"
+                    slot="append"
+                    @click="toggleSelect"
+                    style="margin-top:6px;"
+                  >
                     <svg-vue :icon="`dropdown-caret`"></svg-vue>
                   </button>
                 </v-select>
@@ -26,7 +31,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-0 mt-lg-0 mt-md-n10 mt-sm-0 mt-n6"
+                class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -44,7 +49,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-0 mt-md-n6 mt-sm-n6 mt-n6"
                 :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
               >
                 <v-text-field
@@ -64,7 +69,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-0 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-0 mt-md-n6 mt-sm-n6 mt-n6"
                 :class="windowWidth<1300?'mt-lg-n6':'mt-lg-0'"
               >
                 <v-text-field
@@ -84,7 +89,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   type="email"
@@ -103,7 +108,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -121,7 +126,7 @@
                 :lg="windowWidth<1300?'6':'3'"
                 md="6"
                 sm="6"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -139,7 +144,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n6"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n6"
               >
                 <v-text-field
                   class="resume-builder__input civie-input"
@@ -157,7 +162,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
+                class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n8"
               >
                 <label class="mb-n12 custom-label">Import/Drag Image</label>
                 <v-input
@@ -186,7 +191,7 @@
                 md="6"
                 sm="6"
                 cols="12"
-                class="mt-xl-n6 mt-lg-n6 mt-md-n10 mt-sm-n6 mt-n8"
+                class="mt-xl-n4 mt-lg-n4 mt-md-n4 mt-sm-n4 mt-n8"
               >
                 <v-textarea
                   class="resume-builder__input civie-textarea"
@@ -342,6 +347,7 @@ $mainBlue: #001ce2;
     height: 50px !important;
     font-size: 18px !important;
     font-weight: 500;
+    box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1) !important;
     @media screen and (max-width: 599px) {
       width: 100px !important;
       height: 40px !important;

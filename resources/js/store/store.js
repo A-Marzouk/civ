@@ -289,7 +289,8 @@ export const store = new Vuex.Store({
                     is_active: true,
                     is_public: 1
                 }
-            ]
+            ],
+            media:[]
         },
         themeUser: {},
         access_token: Vue.$cookies.get('access_token') || null

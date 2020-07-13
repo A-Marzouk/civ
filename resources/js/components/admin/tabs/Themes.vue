@@ -1,6 +1,6 @@
 <template>
     <div>
-        <create-theme></create-theme>
+        <create-theme @themeCreated="themeCreated" ref="createThemeComponent"></create-theme>
 
         <h1 class="mt-5">
             List of <b>Accepted</b> themes on civ.ie
@@ -32,17 +32,16 @@
                     <td>{{ item.job_title }}</td>
                     <td>{{ item.developer }}</td>
                     <td>
-                        <v-icon
-                                small
-                                class="mr-2"
-                        >
-                            mdi-pencil
-                        </v-icon>
-                        <v-icon
-                                small
-                        >
-                            mdi-delete
-                        </v-icon>
+                       <v-btn icon depressed  class="mr-2" @click="editTheme(item)">
+                           <v-icon small>
+                               mdi-pencil
+                           </v-icon>
+                       </v-btn>
+                       <v-btn icon depressed @click="deleteTheme(item)">
+                           <v-icon small>
+                               mdi-delete
+                           </v-icon>
+                       </v-btn>
                     </td>
 
                 </tr>
@@ -121,6 +120,29 @@
                     .catch( (error) => {
                         this.errors = ['Something went wrong. Please try again.'];
                     });
+            },
+            deleteTheme(theme){
+                if (!confirm("Do you want to delete this theme [" + theme.title + "] ?")) {return;}
+                axios
+                    .delete("/api/user/themes/" + theme.id)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotificationDelete");
+                        this.acceptedThemes.forEach((theme, index) => {
+                            if (theme.id === response.data.data.id) {
+                                this.acceptedThemes.splice(index, 1);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+            themeCreated(theme){
+                this.acceptedThemes.push(theme);
+            },
+            editTheme(theme){
+                this.$refs.createThemeComponent.editTheme(theme);
+
             }
         },
         mounted() {

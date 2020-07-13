@@ -177,7 +177,7 @@
             outlined
             hide-details="auto"
           >
-            <button class="dropdown-icon icon mt-custom6" slot="append">
+            <button class="dropdown-icon icon mt-custom6 ml-3" slot="append">
               <svg-vue :icon="`dropdown-caret`"></svg-vue>
             </button>
           </v-select>
@@ -389,7 +389,9 @@ export default {
       return re.test(String(email).toLowerCase());
     },
     setUserPreSelectedLanguages() {
-      this.selectedLanguages = this.$store.state.user.languages.map(a => a.id);
+      if( this.$store.state.user.languages){
+        this.selectedLanguages = this.$store.state.user.languages.map(a => a.id);
+      }
     }
   },
   mounted() {
@@ -855,5 +857,8 @@ export default {
       height: auto;
     }
   }
+}
+#resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default{
+  margin-left: -7px;
 }
 </style>
