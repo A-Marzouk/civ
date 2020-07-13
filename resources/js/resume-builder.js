@@ -10,6 +10,8 @@ Vue.use(VueRouter);
 import UUID from 'vue-uuid';
 Vue.use(UUID);
 
+import VueFriendlyIframe from 'vue-friendly-iframe';
+Vue.use(VueFriendlyIframe);
 
 import resumeBuilder from './components/resume_builder/Main';
 

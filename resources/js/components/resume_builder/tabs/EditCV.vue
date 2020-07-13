@@ -15,6 +15,7 @@
 					<div class="cv-preview-theme-wrapper">
 						<div class="cv-preview-theme">
 							<component :is="userTheme" :currentTab="activeTab" v-if="user.personal_info" :user="user" :is_preview="false"></component>
+							<!--<vue-friendly-iframe :src="themeUrl" @load="onLoad"></vue-friendly-iframe>-->
 						</div>
 					</div>
 				</div>
@@ -84,7 +85,8 @@ export default {
 				icon: null
 			}
 		],
-		activeTab: "profile"
+		activeTab: "profile",
+		themeUrl: ''
 	}),
 
 	computed: {
@@ -102,11 +104,33 @@ export default {
 	methods:{
 		importComponent(path) {
 			return () => import('../../resume_themes/theme'+ path + '/index.vue');
+		},
+		getThemeUrl(){
+			this.themeUrl =  this.baseUrl() + 'agent';
+		},
+		baseUrl() {
+			let getUrl = window.location;
+			return getUrl.protocol + "//" + getUrl.host + "/";
+		},
+		onLoad(){
+			// remove the spinner loader.
+
+
+		},
+		updateIframe(){
+			this.themeUrl = '';
+			console.log('updated iframe 2 ');
+			setTimeout(() => {
+				this.getThemeUrl();
+			},0);
 		}
 	},
 
 	created() {
 		this.activeTab = window.location.pathname.split("/")[3];
+	},
+	mounted() {
+		this.getThemeUrl();
 	}
 };
 </script>
@@ -299,8 +323,16 @@ justify-content: flex-start;
 }
 </style>
 
-<style>
+<style lang="scss">
 	.v-application--wrap{
 		min-height: 450px !important;
+	}
+
+	/* I frame styling */
+	.vue-friendly-iframe{
+		iframe{
+			width:100%;
+			min-height:800px;
+		}
 	}
 </style>
