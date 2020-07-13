@@ -26,7 +26,7 @@
           @change="handleProfilePictureUpload"
         />
 
-        <div class="form-wrapper">
+        <div class="form-wrapper mt-n1">
           <div class="content-wrapper">
             <div class="mar-form">
               <v-text-field
@@ -1462,6 +1462,6 @@ $placeholder-color: #9ba1ad;
   margin-top: 6px !important;
 }
 .input-margin-3 input{
-  margin-top: 3px !important;
+  margin-top: 0px !important;
 }
 </style>
