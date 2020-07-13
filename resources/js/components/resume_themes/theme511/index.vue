@@ -282,7 +282,7 @@
                   :education="currentUser.education"
                   :activeTab="activeTab"
                 />
-                <Media :activeTab="activeTab" :media="currentUser.media" />
+                <Media style="margin-bottom:150px;" :activeTab="activeTab" :media="currentUser.media" :user_name="currentUser.full_name" />
                 <About :activeTab="activeTab" :user="currentUser" />
               </v-col>
             </v-row>
