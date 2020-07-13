@@ -11,7 +11,7 @@
 
         @font-face {
             font-family: 'Muli';
-            src: url("/fonts/Muli-VariableFont_wght.ttf") format("truetype");
+            src: url({{ public_path('/fonts/Muli-VariableFont_wght.ttf') }}) format("truetype");
             /* font-weight: 400; // use the matching font-weight here ( 100, 200, 300, 400, etc).
             font-style: normal; // use the matching font-style here */
         }
@@ -20,6 +20,10 @@
             font-family: Muli, Arial, Helvetica, sans-serif;
             width: 100%;
             color: #28404A;
+        }
+        
+        h1 {
+            font-family: Muli, Arial, Helvetica, sans-serif;
         }
 
         /* Header */
@@ -57,7 +61,8 @@
 
         .user-name {
             font-size: 30px;
-            margin-bottom: 15px;
+            font-family: Muli, Arial, Helvetica, sans-serif;
+            margin-bottom: 10px;
             margin-top: 0;
         }
 
@@ -83,7 +88,7 @@
             background-color: #28404A;
             border-radius: 3px;
             margin-left: 6px;
-            top: 10px;
+            top: 18px;
         }
 
         .user-skills span:last-child i {
@@ -102,7 +107,6 @@
 
         .payment-details div {
             font-size: 16px;
-            margin-top: 3px;
         }
 
         .payment-details .hourly-rate,
@@ -120,7 +124,7 @@
             font-size: 18px;
             width: 200px;
             height: 62px;
-            line-height: 42px;
+            line-height: 35px;
             color: #fff;
             text-decoration: none;
         }

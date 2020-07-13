@@ -81,15 +81,18 @@
     'normal' => $rootDir . '/lib/fonts/open-sans-normal_2d61eedf1a366b3351d9409ac4a567a9',
   ),
   'opensans-regular' => array(
-    'normal' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'bold' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'bold_italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
+    'normal' => $fontDir . '/OpenSans-Regular',
+    'bold' => $fontDir . '/OpenSans-Regular',
+    'italic' => $fontDir . '/OpenSans-Regular',
+    'bold_italic' => $fontDir . '/OpenSans-Regular',
   ),
   'raleway' => array(
     'normal' => $fontDir . '/Raleway-Regular',
     'bold' => $fontDir . '/Raleway-Bold',
     'italic' => $fontDir . '/Raleway-BoldItalic',
     'bold_italic' => $fontDir . '/Raleway-Regular',
+  ),
+  'muli' => array(
+    'normal' => $fontDir . '/muli-normal_ac284dc71e1b0704e4d0e81d205378b2',
   ),
 ) ?>
