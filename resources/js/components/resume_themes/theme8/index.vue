@@ -27,7 +27,7 @@
                   <span>Message</span>
                 </a>
               </div>
-              <div class="video-btn hideOnNotTablet hideMeOnPhone">
+              <div class="video-btn hideOnNotTablet">
                 <a href="javascript:void(0)">
                   <img
                     src="/images/resume_themes/theme8/video-player.svg"
@@ -36,7 +36,7 @@
                   <span>Video</span>
                 </a>
               </div>
-              <div class="audio-btn hideOnNotTablet hideMeOnPhone">
+              <div class="audio-btn hideOnNotTablet">
                 <a href="javascript:void(0)">
                   <img
                     src="/images/resume_themes/theme8/headphones.svg"
@@ -197,9 +197,9 @@
             <div
               v-for="project in currentUser.projects"
               :key="project.id + '_project'"
-            >
-              <img :src="getProjectMainImage(project)" alt="portfolio img" />
-            </div>
+              class="work-img"
+              :style="{backgroundImage: `url('${getProjectMainImage(project)}')`}"
+            ></div>
           </div>
 
           <div class="loading d-none">
@@ -439,7 +439,7 @@ export default {
 @import url(//fonts.googleapis.com/earlyaccess/thabit.css);
 
 .hideOnNotTablet {
-  @media only screen and (min-width: 1600px) {
+  @media only screen and (min-width: 768px) {
     display: none !important;
   }
 }
@@ -472,11 +472,14 @@ export default {
 
     .left {
       display: flex;
+      position: relative;
+      margin-right: 15px;
 
       .profile-picture {
+        width: 200px;
+
         img {
-          width: 200px;
-          height: 200px;
+          width: 100%;
           border-radius: 50%;
         }
       }
@@ -504,8 +507,10 @@ export default {
         .social {
           display: flex;
           margin-top: 54px;
+
           .message-btn {
             margin-right: 56px;
+            margin-bottom: 20px;
 
             a {
               background: #005bd1;
@@ -531,8 +536,9 @@ export default {
 
           .icons {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             padding-bottom: 5px;
+            margin-bottom: 20px;
 
             a {
               img {
@@ -545,6 +551,10 @@ export default {
               margin-right: 0;
             }
           }
+
+          @media (max-width: 1400px) {
+            flex-wrap: wrap;
+          }
         }
       }
     }
@@ -553,6 +563,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      max-width: 60%;
 
       .interviews {
         display: flex;
@@ -570,6 +581,7 @@ export default {
 
         .video-btn {
           margin-right: 9px;
+
           a {
             background: #005bd1;
             box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
@@ -582,8 +594,8 @@ export default {
             font-weight: bold;
             font-size: 18px;
             line-height: 24px;
-
             color: #ffffff;
+
             img {
               width: 22px;
               height: 17px;
@@ -605,8 +617,8 @@ export default {
             font-weight: bold;
             font-size: 18px;
             line-height: 24px;
-
             color: #ffffff;
+
             img {
               width: 18px;
               height: 16px;
@@ -620,8 +632,12 @@ export default {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
-        width: 800px;
-        height: 135px;
+        align-self: flex-end;
+        margin-top: 15px;
+        min-height: 175px;
+        max-width: 900px;
+        min-width: 635px;     
+        padding: 30px;
         background: #333232;
         box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
         border-radius: 30px;
@@ -634,6 +650,7 @@ export default {
             flex-direction: column;
             margin-right: 36px;
             align-items: center;
+
             .text {
               font-weight: 500;
               font-size: 20px;
@@ -641,6 +658,7 @@ export default {
               color: #ffffff;
               margin-bottom: 10px;
             }
+
             .number {
               font-weight: bold;
               font-size: 26px;
@@ -696,6 +714,155 @@ export default {
               height: 63px;
             }
           }
+        }
+      }
+
+      @media (max-width: 1600px) {
+        .prof-info {
+          flex-wrap: wrap;
+
+          .prof-right {
+            .hire-me-btn {
+              a {
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 1200px) {
+      padding: 40px;      
+
+      .left {
+        .profile-picture {
+          width: 160px;
+        }
+
+        .main-info {
+          margin-left: 20px;
+
+          .user-name {
+            font-size: 33px;
+          }
+
+          .job-title {
+            font-size: 18px;
+          }
+
+          .social {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+
+            .message-btn {
+              a {
+                font-size: 16px;
+              }
+            }
+
+            .icons {
+              a {
+                img {
+                  width: 26px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .right {
+        width: auto;
+        max-width: 100%;
+
+        .interviews {
+          .text {
+            font-size: 18px;
+          }
+
+          .video-btn,
+          .audio-btn {
+            a {
+              font-size: 16px;
+            }
+          }
+        }
+
+        .prof-info {
+          min-width: 600px;
+
+          .prof-left {
+            .hours,
+            .rate {
+              .text {
+                font-size: 18px;
+                margin-bottom: 8px;
+              }
+
+              .number {
+                font-size: 24px;
+              }
+            }
+
+            .hours {
+              margin-right: 25px;
+            }
+
+            .rate {
+              margin-left: 25px;
+            }
+
+            .horizontal-divider {
+              height: 25px;
+            }
+          }
+
+          .prof-right {
+            .hire-me-btn {
+              a {
+                font-size: 20px;
+                width: 180px;
+                height: 50px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 1024px) {
+      flex-wrap: wrap;
+      position: relative;
+
+      .left,
+      .right {
+        width: 100%;
+      }
+
+      .left {
+        .main-info {
+          .user-name {
+            padding-right: 400px;
+          }
+
+          .social {
+            position: static;
+          }
+        }
+      }
+
+      .right {
+        .interviews {
+          position: absolute;
+          top: 50px;
+          right: 40px;
+        }
+
+        .prof-info {
+          max-width: 100%;
+          width: 100%;
         }
       }
     }
@@ -787,15 +954,16 @@ export default {
         width: 100%;
 
         .images {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-around;
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-gap: 20px;
 
-          img {
-            width: 488px;
+          .work-img {
+            grid-column: span 2;
             height: 381px;
-            border-radius: 10px;
-            margin-bottom: 27px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 16px;
           }
         }
 
@@ -823,7 +991,8 @@ export default {
 
         .work-item {
           margin-bottom: 29px;
-          width: 790px;
+          max-width: 790px;
+          width: 49%;
           background: #333232;
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
           border-radius: 30px;
@@ -871,7 +1040,8 @@ export default {
 
         .education-item {
           margin-bottom: 29px;
-          width: 790px;
+          max-width: 790px;
+          width: 49%;
           background: #333232;
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
           border-radius: 30px;
@@ -918,7 +1088,8 @@ export default {
         flex-wrap: wrap;
 
         .skill-item {
-          width: 790px;
+          max-width: 790px;
+          width: 49%;
           height: 287px;
           padding-left: 58px;
           padding-right: 58px;
@@ -1003,21 +1174,21 @@ export default {
       justify-content: space-between;
 
       width: 100%;
-      padding: 37px 51px 63px 51px;
+      padding: 20px 20px 63px 20px;
 
       .left {
         display: flex;
 
         .profile-picture {
+          width: 180px;
+
           img {
-            width: 180px;
-            height: 180px;
             border-radius: 50%;
           }
         }
 
         .main-info {
-          margin-left: 40px;
+          margin-left: 20px;
           margin-top: 5px;
 
           .user-name {
@@ -1026,6 +1197,7 @@ export default {
             color: #005bd1 !important;
             font-weight: bold;
             opacity: 1;
+            padding-right: 0;
             padding-bottom: 16px;
           }
 
@@ -1040,8 +1212,11 @@ export default {
             display: flex;
             flex-direction: column;
             margin-top: 25px;
+
             .message-btn {
               margin-right: 15px;
+              margin-bottom: 0;
+
               a {
                 background: #005bd1;
                 box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
@@ -1068,6 +1243,7 @@ export default {
               display: flex;
               align-items: center;
               margin-top: 25px;
+
               img {
                 width: 27px;
                 height: 17px;
@@ -1142,7 +1318,6 @@ export default {
           .text {
             font-style: normal;
             font-weight: 500;
-            font-size: 21px;
             line-height: 27px;
             color: #ffffff;
             margin-right: 16px;
@@ -1202,11 +1377,11 @@ export default {
           flex-direction: column;
           align-items: center;
           justify-content: space-evenly;
-          width: 664px;
-          height: 262px;
           background: #333232;
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
           border-radius: 30px;
+          padding: 20px 15px;
+          min-width: auto;
 
           .prof-left {
             display: flex;
@@ -1214,45 +1389,33 @@ export default {
             .hours {
               display: flex;
               flex-direction: column;
-              margin-right: 48px;
               align-items: center;
               .text {
                 font-weight: 500;
-                font-size: 24px;
                 line-height: 31px;
                 color: #ffffff;
                 margin-bottom: 6px;
               }
               .number {
                 font-weight: bold;
-                font-size: 36px;
                 line-height: 48px;
                 color: #005bd1;
               }
             }
 
-            .horizontal-divider {
-              height: 41px;
-              width: 1px;
-              background: rgba(255, 255, 255, 0.38);
-            }
-
             .rate {
               display: flex;
               flex-direction: column;
-              margin-left: 48px;
               align-items: center;
 
               .text {
                 font-weight: 500;
-                font-size: 24px;
                 line-height: 31px;
                 color: #ffffff;
                 margin-bottom: 6px;
               }
               .number {
                 font-weight: bold;
-                font-size: 36px;
                 line-height: 48px;
                 color: #005bd1;
               }
@@ -1264,18 +1427,14 @@ export default {
               a {
                 background: #005bd1;
                 box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
-                border-radius: 10px;
 
                 font-weight: bold;
-                font-size: 24px;
                 line-height: 32px;
                 color: #ffffff;
 
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                width: 243px;
-                height: 71px;
               }
             }
           }
@@ -1288,6 +1447,7 @@ export default {
       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
       width: 100%;
       height: 101px;
+      padding: 0 20px;
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -1296,8 +1456,9 @@ export default {
       .tab-text {
         font-style: italic;
         font-weight: bold;
-        font-size: 30px;
-        line-height: 40px;
+        font-size: 26px;
+        padding: 0 10px;
+        line-height: 32px;
         color: rgba(0, 91, 209, 0.3);
         position: relative;
       }
@@ -1311,7 +1472,7 @@ export default {
         content: "";
         position: absolute;
         left: -8%;
-        bottom: -75%;
+        bottom: -106%;
         height: 4px;
         width: 116%;
         border: 1px solid #005bd1;
@@ -1337,7 +1498,7 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 50px 50px 50px;
+      padding: 0 20px 50px 20px;
 
       .tab-content-wrapper {
         margin-top: 60px;
@@ -1362,15 +1523,9 @@ export default {
           width: 100%;
 
           .images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-
-            img {
-              width: 638px;
-              height: 498px;
+            .work-img {
+              grid-column: span 3;
               border-radius: 10px;
-              margin-bottom: 52px;
             }
           }
 
@@ -1563,7 +1718,7 @@ export default {
   }
 }
 
-@media only screen and (max-width: 425px) {
+@media only screen and (max-width: 610px) {
   .theme-container {
     display: flex;
     position: relative;
@@ -1581,17 +1736,15 @@ export default {
       justify-content: space-between;
       position: relative;
       z-index: 1;
-
       width: 100%;
-      padding: 78px;
 
       .left {
         display: flex;
+        padding-bottom: 140px;
 
         .profile-picture {
           img {
-            width: 200px;
-            height: 200px;
+            min-width: 180px;
             border-radius: 50%;
           }
         }
@@ -1601,8 +1754,8 @@ export default {
           margin-top: 5px;
 
           .user-name {
-            font-size: 40px;
-            line-height: 53px;
+            font-size: 28px;
+            line-height: 37px;
             color: #005bd1 !important;
             font-weight: bold;
             opacity: 1;
@@ -1611,63 +1764,25 @@ export default {
 
           .job-title {
             font-weight: 500;
-            font-size: 21px;
-            line-height: 27px;
+            font-size: 18px;
+            line-height: 25px;
             color: #ffffff;
           }
 
           .social {
-            display: flex;
+            position: absolute;
             margin-top: 54px;
-            .message-btn {
-              margin-right: 56px;
+            width: 100%;
 
-              a {
-                background: #005bd1;
-                box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
-                border-radius: 30px;
-                width: 139px;
-                height: 41px;
-                font-weight: bold;
-                font-size: 18px;
-                line-height: 24px;
-                color: #ffffff;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                  width: 22px;
-                  height: 17px;
-                  margin-right: 10px;
-                }
-              }
-            }
-
-            .icons {
-              display: flex;
-              align-items: flex-end;
-              padding-bottom: 5px;
-
-              a {
-                img {
-                  width: 20px;
-                  height: auto;
-                }
-                margin-right: 30px;
-              }
-              a:last-child {
-                margin-right: 0;
-              }
+            .d-flex {
+              justify-content: space-between;
             }
           }
         }
       }
 
       .right {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        margin-top: 20px;
 
         .interviews {
           display: flex;
@@ -1732,84 +1847,40 @@ export default {
         }
 
         .prof-info {
-          display: flex;
-          align-items: center;
-          justify-content: space-evenly;
-          width: 725px;
-          height: 135px;
+          min-height: 135px;
           background: #333232;
           box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
           border-radius: 30px;
 
           .prof-left {
             display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
 
-            .hours {
-              display: flex;
-              flex-direction: column;
-              margin-right: 36px;
-              align-items: center;
+            .hours,
+            .rate {
+              width: 100%;
+              margin: 0;
+              margin-bottom: 18px;
+
               .text {
                 font-weight: 500;
                 font-size: 20px;
-                line-height: 26px;
+                line-height: 20px;
                 color: #ffffff;
                 margin-bottom: 10px;
               }
+
               .number {
                 font-weight: bold;
-                font-size: 26px;
-                line-height: 34px;
+                font-size: 24px;
+                line-height: 26px;
                 color: #005bd1;
               }
             }
 
             .horizontal-divider {
-              height: 41px;
-              width: 1px;
-              background: rgba(255, 255, 255, 0.38);
-            }
-
-            .rate {
-              display: flex;
-              flex-direction: column;
-              margin-left: 36px;
-              align-items: center;
-
-              .text {
-                font-weight: 500;
-                font-size: 20px;
-                line-height: 26px;
-                color: #ffffff;
-                margin-bottom: 10px;
-              }
-              .number {
-                font-weight: bold;
-                font-size: 26px;
-                line-height: 34px;
-                color: #005bd1;
-              }
-            }
-          }
-
-          .prof-right {
-            .hire-me-btn {
-              a {
-                background: #005bd1;
-                box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
-                border-radius: 50px;
-
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 32px;
-                color: #ffffff;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 214px;
-                height: 63px;
-              }
+              display: none;
             }
           }
         }
@@ -1822,18 +1893,21 @@ export default {
       background: #333232;
       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
       width: 100%;
-      height: 119px;
+      height: 90px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
+      padding: 0 20px;
+      justify-content: space-between;
 
       .tab-text {
         font-style: italic;
         font-weight: bold;
-        font-size: 36px;
+        font-size: 18px;
         line-height: 48px;
         color: rgba(0, 91, 209, 0.3);
         position: relative;
+        min-width: 140px;
+        text-align: center;
       }
 
       .tab-text:hover {
@@ -1845,7 +1919,7 @@ export default {
         content: "";
         position: absolute;
         left: -8%;
-        bottom: -75%;
+        bottom: -42%;
         height: 4px;
         width: 116%;
         border: 1px solid #005bd1;
@@ -1876,7 +1950,6 @@ export default {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 0 150px 67px 150px;
 
       .tab-content-wrapper {
         width: 100%;
@@ -1902,15 +1975,8 @@ export default {
           width: 100%;
 
           .images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-
-            img {
-              width: 488px;
-              height: 381px;
-              border-radius: 10px;
-              margin-bottom: 27px;
+            .work-img {
+              grid-column: span 6;
             }
           }
 
@@ -2096,546 +2162,6 @@ export default {
         }
       }
     }
-  }
-}
-
-@media only screen and (max-width: 765px) {
-  /* CSS that should be displayed if width is equal to or less than 1024px and larger
-         than 425px goes here */
-  .theme-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    background-image: url("/images/resume_themes/theme8/background.svg");
-    background-attachment: fixed;
-    font-family: "Thabit", monospace !important;
-    max-width: 1920px;
-
-    .main-info-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-      padding: 22px 14px 30px 13px;
-
-      .left {
-        display: flex;
-
-        .profile-picture {
-          img {
-            width: 95.5px;
-            height: 95.5px;
-            border-radius: 50%;
-          }
-        }
-
-        .main-info {
-          margin-left: 9px;
-          margin-top: 0px;
-
-          .user-name {
-            font-size: 24px;
-            line-height: 32px;
-            color: #005bd1 !important;
-            font-weight: bold;
-            opacity: 1;
-            padding-bottom: 5px;
-          }
-
-          .job-title {
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 18px;
-            color: #ffffff;
-          }
-
-          .social {
-            display: flex;
-            margin-top: 18px;
-            .message-btn {
-              margin-right: 22px;
-
-              a {
-                background: #005bd1;
-                box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
-                border-radius: 30px;
-                width: 79px;
-                height: 24px;
-                font-weight: bold;
-                font-size: 10px;
-                line-height: 13px;
-                color: #ffffff;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-
-                img {
-                  width: 10px;
-                  height: 8px;
-                  margin-right: 8px;
-                }
-              }
-            }
-
-            .icons {
-              display: flex;
-              align-items: center;
-              img {
-                width: 30px;
-                height: 12px;
-                margin-right: 10px;
-              }
-              img:last-child {
-                margin-right: 0;
-              }
-            }
-          }
-        }
-      }
-
-      .right {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 100%;
-
-        margin-top: 33px;
-
-        .interviews {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          margin-right: 0;
-          .text {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 21px;
-            line-height: 27px;
-            color: #ffffff;
-            margin-right: 16px;
-          }
-
-          .video-btn {
-            margin-right: 12px;
-            a {
-              background: #005bd1;
-              box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
-              border-radius: 30px;
-              width: 87px;
-              height: 26px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-weight: bold;
-              font-size: 10px;
-              line-height: 13px;
-
-              color: #ffffff;
-              img {
-                width: 14px;
-                height: 11px;
-                margin-right: 7px;
-              }
-            }
-          }
-
-          .audio-btn {
-            a {
-              background: #005bd1;
-              box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
-              border-radius: 30px;
-              width: 87px;
-              height: 26px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              font-weight: bold;
-              font-size: 10px;
-              line-height: 13px;
-
-              color: #ffffff;
-              img {
-                width: 14px;
-                height: 11px;
-                margin-right: 7px;
-              }
-            }
-          }
-        }
-
-        .prof-info {
-          display: flex;
-          flex-direction: column;
-          margin-top: 25px;
-          align-items: center;
-          justify-content: center;
-          width: 100%;
-          height: 196px;
-          background: #333232;
-          box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-          border-radius: 30px;
-
-          .prof-left {
-            display: flex;
-
-            .hours {
-              display: flex;
-              flex-direction: column;
-              margin-right: 21px;
-              align-items: center;
-              .text {
-                font-weight: 500;
-                font-size: 14px;
-                line-height: 18px;
-                color: #ffffff;
-                margin-bottom: 8px;
-              }
-              .number {
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 32px;
-                color: #005bd1;
-              }
-            }
-
-            .horizontal-divider {
-              height: 41px;
-              width: 1px;
-              background: rgba(255, 255, 255, 0.38);
-            }
-
-            .rate {
-              display: flex;
-              flex-direction: column;
-              margin-left: 21px;
-              align-items: center;
-
-              .text {
-                font-weight: 500;
-                font-size: 14px;
-                line-height: 18px;
-                color: #ffffff;
-                margin-bottom: 8px;
-              }
-              .number {
-                font-weight: bold;
-                font-size: 24px;
-                line-height: 32px;
-                color: #005bd1;
-              }
-            }
-          }
-
-          .prof-right {
-            .hire-me-btn {
-              margin-top: 23px;
-              a {
-                background: #005bd1;
-                box-shadow: 0px 0px 16px rgba(0, 91, 209, 0.5);
-                border-radius: 50px;
-
-                font-weight: bold;
-                font-size: 18px;
-                line-height: 24px;
-                color: #ffffff;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 171px;
-                height: 50px;
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .tabs-bar {
-      background: #333232;
-      box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      height: 59px;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      overflow: auto;
-
-      .tab-text {
-        font-style: italic;
-        font-weight: bold;
-        font-size: 18px;
-        line-height: 24px;
-        color: rgba(0, 91, 209, 0.3);
-        position: relative;
-        margin-right: 10px;
-        margin-left: 10px;
-      }
-
-      .tab-text:hover {
-        cursor: pointer;
-        color: #005bd1;
-      }
-
-      .tab-text.active:before {
-        content: "";
-        position: absolute;
-        left: -8%;
-        bottom: -75%;
-        height: 4px;
-        width: 116%;
-        border: 1px solid #005bd1;
-        -webkit-box-shadow: 0px 0px 16px #005bd1;
-        box-shadow: 0px 0px 16px #005bd1;
-        background: #005bd1;
-        border-radius: 2px;
-      }
-
-      .tabs-bar {
-        div:last-child {
-          margin-right: 0;
-        }
-      }
-
-      .tab-text.active {
-        color: #005bd1;
-        text-shadow: 0px 0px 16px rgba(142, 192, 255, 0.3);
-      }
-    }
-
-    .tabs-wrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 12px 30px 12px;
-
-      .tab-content-wrapper {
-        margin-top: 54px;
-
-        .portfolio.active,
-        .skills.active,
-        .about.active,
-        .work-experience.active,
-        .education.active {
-          opacity: 1;
-        }
-
-        .portfolio,
-        .about,
-        .work-experience,
-        .education {
-          opacity: 0;
-          transition: all 0.6s ease;
-        }
-
-        .portfolio {
-          width: 100%;
-          .images {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-
-            img {
-              width: 100%;
-              max-width: 352px;
-              height: 275px;
-              border-radius: 10px;
-              margin-bottom: 29px;
-            }
-          }
-
-          .loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            color: #3c3748cf;
-            font-size: 16px;
-
-            img {
-              width: 40px;
-              height: 40px;
-              margin-bottom: 8px;
-            }
-          }
-        }
-
-        .work-experience {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          width: 100%;
-
-          .work-item {
-            margin-bottom: 29px;
-            width: 100%;
-            max-width: 355px;
-            background: #333232;
-            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 30px;
-            padding: 25px;
-
-            .company {
-              font-style: normal;
-              font-weight: bold;
-              font-size: 24px;
-              line-height: 32px;
-              color: #ffffff;
-              margin-bottom: 14px;
-            }
-
-            .title {
-              font-weight: bold;
-              font-size: 12px;
-              line-height: 16px;
-              color: #ffffff;
-              margin-bottom: 18px;
-            }
-
-            .duration {
-              font-weight: bold;
-              font-size: 12px;
-              line-height: 16px;
-              color: #1f5de4;
-              margin-bottom: 13px;
-            }
-
-            .work-info {
-              font-weight: 500;
-              font-size: 10px;
-              line-height: 13px;
-              color: #ffffff;
-            }
-          }
-        }
-
-        .education {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          width: 100%;
-
-          .education-item {
-            margin-bottom: 29px;
-            width: 100%;
-            max-width: 355px;
-            background: #333232;
-            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 30px;
-            padding: 25px;
-
-            .education-type {
-              font-style: normal;
-              font-weight: bold;
-              font-size: 10px;
-              line-height: 13px;
-              color: #1f5de4;
-              margin-bottom: 12px;
-              margin-top: 12px;
-            }
-
-            .education-name {
-              font-weight: bold;
-              font-size: 32px;
-              line-height: 42px;
-              color: #ffffff;
-              margin-bottom: 12px;
-            }
-
-            .education-date {
-              font-weight: bold;
-              font-size: 18px;
-              line-height: 24px;
-              color: #1f5de4;
-              margin-bottom: 10px;
-            }
-
-            .education-info {
-              font-weight: 500;
-              font-size: 14px;
-              line-height: 18px;
-              color: #ffffff;
-            }
-          }
-        }
-
-        .skills-tab {
-          display: flex;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          .skill-item {
-            width: 100%;
-            max-width: 355px;
-            height: 129px;
-            padding-left: 28px;
-            padding-right: 28px;
-            padding-bottom: 5px;
-            margin-bottom: 35px;
-            background: #333232;
-            box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 30px;
-          }
-
-          .percentage {
-            font-weight: bold;
-            font-size: 18px !important;
-            line-height: 24px;
-            color: #ffffff !important;
-          }
-        }
-
-        .about {
-          width: 100%;
-          margin-top: 0;
-          background: #333232;
-          box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-          border-radius: 30px;
-          padding: 25px;
-
-          .about-me {
-            .about-title {
-              font-weight: bold;
-              font-size: 26px;
-              line-height: 36px;
-              color: #ffffff;
-            }
-
-            .about-text {
-              margin-top: 30px;
-              font-size: 18px;
-              color: #ffffff;
-            }
-          }
-
-          .contact {
-            margin-top: 68px;
-
-            .contact-title {
-              line-height: 33px;
-              font-size: 24px;
-              color: #ffffff;
-              font-weight: 500;
-              margin-bottom: 33px;
-            }
-
-            .email {
-              line-height: 33px;
-              font-size: 20px;
-              color: #ffffff;
-              font-weight: 500;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .hideMeOnPhone {
-    display: none !important;
   }
 }
 
