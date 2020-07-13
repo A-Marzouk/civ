@@ -2,7 +2,7 @@
   <v-app style="width:100%;">
     <div class="triangle-top-left"></div>
     <div class="verical-sidebar"></div>
-    <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="user.personal_info">
+    <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="currentUser">
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -17,15 +17,15 @@
                     <v-card-text>
                       <v-list-item two-line>
                         <v-list-item-avatar class="hidden-xs-only custom-avatar">
-                          <v-img :src="user.personal_info.profile_pic"></v-img>
+                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-avatar size="80" class="hidden-sm-and-up mr-2">
-                          <v-img :src="user.personal_info.profile_pic"></v-img>
+                          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
                         </v-list-item-avatar>
                         <v-list-item-content>
                           <v-list-item-title class="profile-title">
                             <v-card class="pa-0" flat color="transparent" tile>
-                              {{ user.personal_info.full_name }}
+                              {{ currentUser.personal_info.full_name }}
                               <span
                                 class="mx-8 hidden-sm-and-down email-icon-block"
                               >
@@ -35,7 +35,7 @@
                                   small
                                   depressed
                                   class="mx-md-auto mx-sm-2 btn-email"
-                                  :href="'mailto:' + user.personal_info.email"
+                                  :href="'mailto:' + currentUser.personal_info.email"
                                 >
                                   <v-icon class="icon-email">mdi-email</v-icon>
                                 </v-btn>
@@ -89,7 +89,7 @@
                           </v-list-item-title>
                           <v-list-item-title>
                             <v-card flat color="transparent" tile>
-                              <span class="profile-subtitle">{{ user.personal_info.designation }}</span>
+                              <span class="profile-subtitle">{{ currentUser.personal_info.designation }}</span>
                             </v-card>
                           </v-list-item-title>
                         </v-list-item-content>
@@ -174,17 +174,17 @@
                           <v-card flat class="text-center" color="tranparent">
                             <v-card-title
                               class="hire-me-title"
-                            >{{ user.payment_info[0].salary_frequency | capitalize }} rate</v-card-title>
+                            >{{ currentUser.payment_info[0].salary_frequency | capitalize }} rate</v-card-title>
                             <v-card-subtitle
                               class="hire-me-subtitle"
-                            >{{ user.payment_info[0].salary }} {{ user.payment_info[0].currency.toUpperCase() }}</v-card-subtitle>
+                            >{{ currentUser.payment_info[0].salary }} {{ currentUser.payment_info[0].currency.toUpperCase() }}</v-card-subtitle>
                           </v-card>
                         </v-col>
                         <div style="height:41px; border:1px solid #D7D7D7;"></div>
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">{{user.payment_info[0].available_hours}} Hours</v-card-subtitle>
+                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.payment_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
@@ -249,7 +249,7 @@
                           :cols="{default: 4, 959: 1, 599: 1}"
                           :gutter="{default: '30px', 700: '15px'}"
                         >
-                          <template v-for="item in user.projects">
+                          <template v-for="item in currentUser.projects">
                             <v-card
                               class="mb-2"
                               align="left"
@@ -280,7 +280,7 @@
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
                         <v-row align="center">
-                          <template v-for="(work,index) in user.work_experience">
+                          <template v-for="(work,index) in currentUser.work_experience">
                             <v-col
                               cols="12"
                               sm="12"
@@ -329,7 +329,7 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center">
-                        <template v-for="(education,index) in user.education">
+                        <template v-for="(education,index) in currentUser.education">
                           <v-col
                             cols="12"
                             sm="12"
@@ -390,7 +390,7 @@
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" tile flat>
                     <v-row align="center">
-                      <template v-for="skill in user.skills">
+                      <template v-for="skill in currentUser.skills">
                         <v-col
                           cols="12"
                           sm="12"
@@ -456,6 +456,7 @@
 <script>
 export default {
   name: "ResumeTheme203",
+  props:["user","is_preview"],
   filters: {
     capitalize: function(value) {
       if (!value) return "";
@@ -584,7 +585,7 @@ export default {
           icon_text: "fig"
         }
       ],
-      user: ""
+      currentUser: this.user
     };
   },
   computed: {
@@ -593,9 +594,6 @@ export default {
         return link.category === "social_link" ? link : false;
       });
     },
-    projects() {
-      return this.$store.state.themeUser.projects;
-    }
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -630,97 +628,6 @@ export default {
       });
 
       return providerLink;
-    },
-    getSkillIcon(skill_title) {
-      let arrayOfSkillImages = {
-        "ui design": "/images/skills_icons/user_interface.png",
-        "ux design": "/images/skills_icons/user_experience.png",
-        "logo design": "/images/skills_icons/logo_design.png",
-        animation: "/images/skills_icons/animation.jpg",
-        "motion graphics": "/images/skills_icons/motion_graphics.png",
-        illustration: "/images/skills_icons/illustration.png",
-        advertising: "/images/skills_icons/advertising.png",
-        branding: "/images/skills_icons/branding.png",
-        "brochure Design": "/images/skills_icons/brochure_design.png",
-        "website design": "/images/skills_icons/web_design.png",
-        "game designer": "/images/skills_icons/game_designer.png",
-        "character design": "/images/skills_icons/character_design.png",
-        "digital painting": "/images/skills_icons/digital_painting.png",
-        "creative director": "/images/skills_icons/creative_director.png",
-        "html / css": "/images/skills_icons/HTML.png",
-        // 2-
-
-        "adobe after effects": "/images/skills_icons/AE.png",
-        sketch: "/images/skills_icons/Sketch.png",
-        "adobe illustrator": "/images/skills_icons/Illustrator.png",
-        "adobe xd": "/images/skills_icons/AdobeXD.png",
-        photoshop: "/images/skills_icons/Photoshop.png",
-        autocad: "/images/skills_icons/autocad.png",
-        solidworks: "/images/skills_icons/solid_works.png",
-        "adobe flash": "/images/skills_icons/adobe_flash.png",
-        "digital drawing Tablet":
-          "/images/skills_icons/digital_drawing_tablet.png",
-        "adobe indesign": "/images/skills_icons/indesign.png",
-        coreldraw: "/images/skills_icons/corel_draw.png",
-        "3d max": "/images/skills_icons/3d_max.png",
-
-        // developer :
-        // 1-
-        javascript: "/images/skills_icons/javascript.png",
-        sql: "/images/skills_icons/mysql.png",
-        java: "resumeApp/resources/assets/images/skills_icons/java.png",
-        "c#": "/images/skills_icons/c#.png",
-        python: "/images/skills_icons/python.png",
-        php: "/images/skills_icons/php.png",
-        "c++": "/images/skills_icons/c_language.png",
-        c: "/images/skills_icons/c_language.png",
-        typescript: "/images/skills_icons/typescript.png",
-        ruby: "/images/skills_icons/ruby.png",
-        "objective-C": "/images/skills_icons/objective_c.png",
-        swift: "/images/skills_icons/swift.png",
-        "vb.net": "/images/skills_icons/vb_net.png",
-        go: "/images/skills_icons/go.png",
-        perl: "/images/skills_icons/perl.png",
-        scala: "/images/skills_icons/scala.png",
-        groovy: "/images/skills_icons/groovy.png",
-        assembly: "/images/skills_icons/assembly.png",
-        coffeescript: "/images/skills_icons/coffeeScript.png",
-        vba: "/images/skills_icons/vba.png",
-        r: "/images/skills_icons/r_lang.png",
-        matlab: "/images/skills_icons/matlab.png",
-        "visual basic 6": "/images/skills_icons/matlab.png",
-        lua: "/images/skills_icons/lua.png",
-        haskell: "/images/skills_icons/haskell.png",
-        html: "/images/skills_icons/HTML.png",
-        css: "/images/skills_icons/CSS.png",
-        laravel: "/images/skills_icons/laravel.png",
-        phpstorm: "/images/skills_icons/phpstorm.png",
-
-        //2-
-        angularjs: "/images/skills_icons/Angularjs.png",
-        "angular.js": "/images/skills_icons/Angularjs.png",
-        "node.js": "/images/skills_icons/node_js.png",
-        nodejs: "/images/skills_icons/node_js.png",
-        ".net Core": "/images/skills_icons/netcore.png",
-        react: "/images/skills_icons/react.png",
-        cordova: "/images/skills_icons/cordava.png",
-        firebase: "",
-        xamarin: "",
-        hadoop: "/images/skills_icons/hadoop.png",
-        spark: "/images/skills_icons/spark.png",
-        mysql: "/images/skills_icons/mysql.png",
-        "sql server": "/images/skills_icons/sql server.png",
-        postgresql: "/images/skills_icons/postgreSQL.png",
-        sqlite: "/images/skills_icons/SQLite.png",
-        mongodb: "/images/skills_icons/mongoDB.png",
-        oracle: "/images/skills_icons/Oracle.png",
-        redis: "/images/skills_icons/redis.png",
-        cassandra: "/images/skills_icons/cassandra.png"
-      };
-      if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
-        return arrayOfSkillImages[skill_title.toLowerCase()];
-      }
-      return "/images/skills_icons/skill.png";
     },
     sendEmail() {},
     setDummyUser() {
