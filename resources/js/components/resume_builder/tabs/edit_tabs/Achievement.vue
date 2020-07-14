@@ -1,5 +1,5 @@
 <template>
-  <div class="resume-builder__scroll" id="portfolio-tab">
+  <div class="main-content" id="portfolio-tab">
     <div class="data-container pa-md-0 pa-sm-0 pa-10">
       <v-card class="view-container resume-builder__scroll">
         <v-form
@@ -363,6 +363,13 @@
   @import '../../../../../sass/media-queries';
   .ml-custom-n12{
     margin-left: -12px;
+  }
+  .main-content{
+    @include lt-sm{
+      max-width: 94%;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
   #portfolio-tab {
     .view-container {

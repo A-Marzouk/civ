@@ -1,5 +1,5 @@
 <template>
-  <v-app class="resume-builder__scroll">
+  <v-app class="main-content">
     <div style="width:100%;">
       <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
         <v-container class>
@@ -321,6 +321,14 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.main-content{
+  @include lt-sm{
+    max-width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 .reference-content {
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
