@@ -95,4 +95,7 @@
   'muli' => array(
     'normal' => $fontDir . '/muli-normal_ac284dc71e1b0704e4d0e81d205378b2',
   ),
+  'fira' => array(
+    'normal' => $fontDir . '/fira-normal_87773dd5327ba0ec7ecfd977507e9240',
+  ),
 ) ?>
