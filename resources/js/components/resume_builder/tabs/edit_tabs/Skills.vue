@@ -1,6 +1,6 @@
 <template>
   <v-app class="resume-builder__scroll">
-    <div style="width: 100%">
+    <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-10">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab

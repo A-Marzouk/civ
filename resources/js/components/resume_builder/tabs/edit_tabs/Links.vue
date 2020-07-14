@@ -1,5 +1,5 @@
 <template>
-	<div id="linksSection" data-app>
+	<div id="linksSection" data-app class="pa-md-0 pa-sm-0 pa-10">
 
 		<!-- Tabs -->
 		<v-tabs class="resume-builder__tab-bar" hide-slider>
