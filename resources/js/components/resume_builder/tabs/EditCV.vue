@@ -167,13 +167,11 @@ $disabledColor: #9f9e9e;
 }
 
 .cv-content-preview-wrapper {
-	margin-right: -10px;
-	margin-left: -10px;
 	overflow-y: scroll;
 	margin-top: 40px;
 	padding: 10px;
 	max-height: 600px;
-	max-width: 350px;
+	max-width: 94%;
 	margin-left: auto;
 	margin-right: auto;
 
