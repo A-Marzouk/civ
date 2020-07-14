@@ -7,7 +7,7 @@
 				<router-view></router-view>
 			</transition>
 
-			<span @click="updateIframe" id="updateIframe"></span>
+			<!--<span @click="updateIframe" id="updateIframe"></span>-->
 
 			<div class="cv-content-preview-wrapper">
 				<div class="cv-content-preview">
