@@ -16,7 +16,6 @@
 					</div>
 					<div class="cv-preview-theme-wrapper">
 						<div class="cv-preview-theme">
-							<!--<component :is="userTheme" :currentTab="activeTab" v-if="user.personal_info" :user="user" :is_preview="false"></component>-->
 							<vue-friendly-iframe :src="themeUrl" @load="onLoad"></vue-friendly-iframe>
 						</div>
 					</div>
