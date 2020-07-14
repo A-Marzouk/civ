@@ -1,6 +1,6 @@
 <template>
   <v-app class="resume-builder__scroll">
-    <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-10">
+    <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab
@@ -159,7 +159,7 @@
                                     <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                                   </v-btn>
                                 </v-col>
-                                <v-col cols="6" align="right">
+                                <v-col cols="6" align="right" class="resume-builder__action-buttons-container">
                                   <v-btn
                                           color="#F2F3FD"
                                           depressed
