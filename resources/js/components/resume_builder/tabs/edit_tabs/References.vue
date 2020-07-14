@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-container>
+  <v-app class="resume-builder__scroll">
+    <div style="width:100%;">
       <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
         <v-container class>
           <v-form v-if="reference">
@@ -213,7 +213,7 @@
           </v-form>
         </v-container>
       </v-card>
-    </v-container>
+    </div>
   </v-app>
 </template>
 
