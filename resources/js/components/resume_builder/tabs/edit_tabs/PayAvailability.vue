@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <v-container style="width:100%;">
+    <v-app class="resume-builder__scroll">
+        <div style="width:100%;">
             <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab">
                 <v-tab
                         class="resume-builder__tab"
@@ -107,7 +107,7 @@
                     </v-tab-item>
                 </v-tabs-items>
             </v-card>
-        </v-container>
+        </div>
     </v-app>
 </template>
 
