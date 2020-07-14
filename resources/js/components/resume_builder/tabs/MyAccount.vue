@@ -26,7 +26,7 @@
           @change="handleProfilePictureUpload"
         />
 
-        <div class="form-wrapper">
+        <div class="form-wrapper mt-n1">
           <div class="content-wrapper">
             <div class="mar-form">
               <v-text-field
@@ -40,7 +40,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin input-margin-3"
+                class="resume-builder__input input-margin input-margin-3 mt-n3"
                 label="Email"
                 v-model="accountData.email"
                 :outlined="true"
@@ -50,7 +50,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input input-margin centered-input"
+                class="resume-builder__input input-margin centered-input mt-n3"
                 label="Password"
                 type="password"
                 v-model="accountData.password"
@@ -61,7 +61,7 @@
               ></v-text-field>
 
               <v-text-field
-                class="resume-builder__input centered-input"
+                class="resume-builder__input centered-input mt-n3"
                 label="Re-Type Password"
                 type="password"
                 v-model="accountData.password_confirmation"
@@ -89,7 +89,7 @@
               </div>
 
               <div class="action-btns NoDecor">
-                <a href="#" class="purchase-btn" @click="priceModal=true">Purchase Subscription</a>
+                <a href="#" class="purchase-btn mt-n3" @click="priceModal=true">Purchase Subscription</a>
               </div>
 
               <span class="v-label v-label--active theme--light" style="color: #888DB1;">
@@ -1462,6 +1462,6 @@ $placeholder-color: #9ba1ad;
   margin-top: 6px !important;
 }
 .input-margin-3 input{
-  margin-top: 3px !important;
+  margin-top: 0px !important;
 }
 </style>
