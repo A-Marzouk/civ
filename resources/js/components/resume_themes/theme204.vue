@@ -585,7 +585,7 @@ export default {
 }
 
 .verical-sidebar {
-  position: absolute;
+  position: fixed;
   background: #e6bf4e;
   width: 2rem;
   height: 1000vh;
