@@ -284,7 +284,6 @@ export default {
     },
     checkMaximumFiles() {
       if (this.editedProject.images.length >= 5) {
-        console.log("Please, no more files...");
       }
     },
     removeFiles() {

@@ -308,9 +308,9 @@ export default {
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
-              this.errors.new = error.response.data.errors;
+              this.errors = error.response.data.errors;
             } else {
-              this.errors.new = "Something went wrong. Please try again.";
+              this.errors = "Something went wrong. Please try again.";
             }
             this.$store.dispatch("flyingNotification", {
               message: "Error",

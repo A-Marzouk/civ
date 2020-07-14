@@ -29,10 +29,10 @@
                                 class="resume-builder__input civie-input"
                                 outlined
                                 color="#001CE2"
-                                placeholder="Job title"
+                                placeholder="Job Title"
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
-                                label="Job title"
+                                label="Job Ttitle"
                                 :error="!!errors.job_title"
                                 v-model="newWork.job_title"
                         >

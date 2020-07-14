@@ -632,7 +632,6 @@ export default {
     sendEmail() {},
     setDummyUser() {
       this.user = this.$store.state.dummyUser;
-      console.log(this.user);
     },
     getProjectMainImage(project) {
       let mainImage = "";

@@ -1,5 +1,5 @@
 <template>
-  <v-app id="theme511">
+  <v-app id="theme511" v-if="currentUser">
     <v-container fluid>
       <v-row justify="center" class="px-lg-6 px-sm-4" dense>
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4">
@@ -73,7 +73,10 @@
                 <div class="subhead">
                   {{ currentUser.personal_info.designation }}
                 </div>
-                <div class="details hidden-xs-only">
+                <div
+                  class="details hidden-xs-only"
+                  v-if="currentUser.personal_info.overview"
+                >
                   {{ currentUser.personal_info.overview }}
                 </div>
                 <div
@@ -84,11 +87,23 @@
                 >
                   <div class="info-text d-inline-block mr-6 mr-sm-2">
                     hour rate
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.payment_info">{{currentUser.payment_info[0].salary}} {{currentUser.payment_info[0].currency}}</div>
+                    <div
+                      class="info-rate d-inline-block mx-2 mx-sm-1"
+                      v-if="currentUser.payment_info"
+                    >
+                      {{ currentUser.payment_info[0].salary }}
+                      {{ currentUser.payment_info[0].currency }}
+                    </div>
                   </div>
                   <div class="info-text d-inline-block">
                     Weekly availability
-                    <div class="info-rate d-inline-block mx-2 mx-sm-1" v-if="currentUser.availability_info">{{currentUser.availability_info[0].available_hours}} Hours</div>
+                    <div
+                      class="info-rate d-inline-block mx-2 mx-sm-1"
+                      v-if="currentUser.availability_info"
+                    >
+                      {{ currentUser.availability_info[0].available_hours }}
+                      Hours
+                    </div>
                   </div>
                 </div>
               </v-col>
@@ -112,7 +127,7 @@
                   >
                     <v-img
                       :src="
-                        `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+                        `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}Red.svg`
                       "
                       contain
                       max-width="24"

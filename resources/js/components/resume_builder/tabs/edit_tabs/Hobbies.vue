@@ -284,8 +284,6 @@
                     this.showCategoryOptions = false;
                 }
             });
-
-            console.log(Vue.$cookies.get("spotify_access_token"));
         }
     };
 </script>

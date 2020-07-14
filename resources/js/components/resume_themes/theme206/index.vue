@@ -1,40 +1,60 @@
 <template>
-  <v-app style="width:100%;">
+  <v-app style="width:100%;" v-if="currentUser">
     <v-container fluid ma-0 pa-0 style="width:100%;">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#fafafa" height="250" class="hidden-xs-only">
         <v-avatar size="120" class="mr-5">
-          <v-img src="/images/resume_themes/theme206/avatar.png"></v-img>
+          <v-img :src="currentUser.personal_info.profile_pic"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
         <v-container fluid pa-0 ma-0 style="width:100%">
           <v-row class align="center" justify="center" dense>
-            <v-col md="4" sm="7">
+            <v-col
+              md="4"
+              sm="7"
+              :class="{ 'active-indicator': currentTab === 'profile' }"
+            >
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">{{personalData.name}}</v-card-title>
-                <v-card-subtitle class="custom-profile-subtitle">{{personalData.designation}}</v-card-subtitle>
-                <v-card-text class="custom-profile-text hidden-sm-and-down">{{personalData.detail}}</v-card-text>
+                <v-card-title class="custom-profile-title">{{
+                  currentUser.personal_info.full_name
+                }}</v-card-title>
+                <v-card-subtitle class="custom-profile-subtitle">
+                  {{ currentUser.personal_info.designation }}</v-card-subtitle
+                >
+                <v-card-text
+                  class="custom-profile-text hidden-sm-and-down"
+                  v-if="currentUser.personal_info.overview"
+                >
+                  {{ currentUser.personal_info.overview }}</v-card-text
+                >
               </v-card>
             </v-col>
 
             <!-- Social Buttons for tablet only -->
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
+                <v-btn
+                  color="#FAFAFA"
+                  class="btn-hire-me hidden-sm-and-down"
+                  x-large
+                >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-2"
-                  v-for="item in socialIcons"
-                  :key="item.title"
+                  :href="Userlink.link"
+                  v-for="Userlink in currentUser.links"
+                  :key="Userlink.id + '_link'"
+                  target="_blank"
+                  v-show="Userlink.is_active && Userlink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="item.title == 'facebook'? '12' : '20' "
+                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(item.title)"
+                    :src="getSocialIcon(Userlink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -53,7 +73,10 @@
               >
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
-                    <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
+                    <img
+                      width="18"
+                      src="/images/resume_themes/theme206/icons/usd.png"
+                    />
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
@@ -61,9 +84,11 @@
                         <span class="hour-rate">Hour Rate</span>
                       </v-card>
                     </v-list-item-subtitle>
-                    <v-list-item-subtitle>
+                    <v-list-item-subtitle v-if="currentUser.payment_info">
                       <v-card color="transparent" flat tile>
-                        <span class="rate">20</span>
+                        <span class="rate">{{
+                          currentUser.payment_info[0].salary
+                        }}</span>
                       </v-card>
                     </v-list-item-subtitle>
                   </v-list-item-content>
@@ -74,7 +99,10 @@
 
                 <v-list-item two-line class="availibilty-col">
                   <v-list-item-avatar size="16">
-                    <img width="16" src="/images/resume_themes/theme206/icons/watch.png" />
+                    <img
+                      width="16"
+                      src="/images/resume_themes/theme206/icons/watch.png"
+                    />
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
@@ -82,9 +110,13 @@
                         <span class="hour-rate">Weekly availibility</span>
                       </v-card>
                     </v-list-item-subtitle>
-                    <v-list-item-subtitle>
+                    <v-list-item-subtitle v-if="currentUser.availability_info">
                       <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <span class="rate">250</span>
+                        <span class="rate"
+                          >{{
+                            currentUser.availability_info[0].available_hours
+                          }}
+                        </span>
                       </v-card>
                     </v-list-item-subtitle>
                   </v-list-item-content>
@@ -97,21 +129,28 @@
             <!-- 3rd column -->
             <v-col md="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
+                <v-btn
+                  color="#FAFAFA"
+                  class="btn-hire-me hidden-sm-and-down"
+                  x-large
+                >
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
                 <!-- social buttons -->
                 <v-btn
                   class="custom-social-btn mx-2"
-                  v-for="item in socialIcons"
-                  :key="item.title"
+                  :href="Userlink.link"
+                  v-for="Userlink in currentUser.links"
+                  :key="Userlink.id + '_link'"
+                  target="_blank"
+                  v-show="Userlink.is_active && Userlink.is_public"
                   color="#FAFAFA"
                 >
                   <img
-                    :width="item.title == 'facebook'? '12' : '20' "
+                    :width="Userlink.link_title == 'facebook' ? '12' : '20'"
                     x-large
-                    :src="getSocialIcon(item.title)"
+                    :src="getSocialIcon(Userlink.link_title)"
                   />
                 </v-btn>
                 <!-- social buttons -->
@@ -139,10 +178,23 @@
         <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">{{personalData.name}}</v-toolbar-title>
+        <v-toolbar-title class="custom-toolbar-title-mobile">{{
+          currentUser.personal_info.full_name
+        }}</v-toolbar-title>
       </v-app-bar>
-      <v-navigation-drawer app color="#fafafa" v-model="drawer" temporary absolute width="350">
-        <v-card flat color="transparent">
+      <v-navigation-drawer
+        app
+        color="#fafafa"
+        v-model="drawer"
+        temporary
+        absolute
+        width="350"
+      >
+        <v-card
+          flat
+          color="transparent"
+          :class="{ 'active-indicator': currentTab === 'profile' }"
+        >
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
@@ -152,12 +204,16 @@
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">{{ personalData.name }}</span>
+                  <span class="profile-title-mobile">{{
+                    currentUser.personal_info.full_name
+                  }}</span>
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
                 <v-card flat color="transparent" class="pa-2 mt-n5">
-                  <span class="profile-subtitle-mobile">{{ personalData.designation }}</span>
+                  <span class="profile-subtitle-mobile">{{
+                    currentUser.personal_info.designation
+                  }}</span>
                 </v-card>
               </v-list-item-subtitle>
               <v-list-item-title>
@@ -165,14 +221,17 @@
                   <v-btn
                     x-small
                     class="custom-social-btn mx-2"
-                    v-for="item in socialIcons"
-                    :key="item.title"
+                    :href="Userlink.link"
+                    v-for="Userlink in currentUser.links"
+                    :key="Userlink.id + '_link'"
+                    target="_blank"
+                    v-show="Userlink.is_active && Userlink.is_public"
                     color="#FAFAFA"
                     height="40"
                   >
                     <img
-                      :width="item.title == 'facebook'? '8' : '14' "
-                      :src="getSocialIcon(item.title)"
+                      :width="Userlink.link_title == 'facebook' ? '8' : '14'"
+                      :src="getSocialIcon(Userlink.link_title)"
                     />
                   </v-btn>
                 </v-card>
@@ -187,9 +246,9 @@
         </v-card>
         <v-card flat color="transparent">
           <v-card-title class="about-me-title-mobile">About Me</v-card-title>
-          <v-card-text
-            class="about-me-text-mobile"
-          >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor..</v-card-text>
+          <v-card-text class="about-me-text-mobile">{{
+            currentUser.personal_info.about
+          }}</v-card-text>
         </v-card>
       </v-navigation-drawer>
       <!-- For mobile version only -->
@@ -200,19 +259,24 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up my-10">
+            <v-tabs
+              v-model="mainDataTab"
+              fixed-tabs
+              hide-slider
+              class="hidden-sm-and-up my-10"
+            >
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
-                @click="currentTab=tab.id"
-                :class="[
-                  currentTab == tab.id ? 'active-mobile-tab' : ''
-                ]"
+                @click="activeTab = tab.value"
+                :class="[activeTab == tab.value ? 'active-mobile-tab' : '']"
               >
                 <v-avatar tile size="16">
                   <img :src="getTabIcon(tab.id)" width="16" />
                 </v-avatar>
-                <span class="ml-2" v-if="currentTab == tab.id">{{tab.title}}</span>
+                <span class="ml-2" v-if="activeTab == tab.value">{{
+                  tab.title
+                }}</span>
               </v-tab>
             </v-tabs>
             <!-- for mobile version  -->
@@ -227,11 +291,12 @@
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
-                @click="currentTab=tab.id"
+                @click="activeTab = tab.value"
                 class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
-                currentTab == tab.id ? 'custom-active-tab' : '', 'ct-tab',
-              ]"
+                  activeTab == tab.value ? 'custom-active-tab' : '',
+                  'ct-tab'
+                ]"
               >
                 <v-avatar tile>
                   <img :src="getTabIcon(tab.id)" class="mr-md-4" />
@@ -260,11 +325,15 @@
                           cols="12"
                           sm="6"
                           md="3"
-                          v-for="item in portfolioItems"
-                          :key="item.id"
+                          v-for="project in currentUser.projects"
+                          :key="project.id"
+                          v-show="project.is_public"
                         >
                           <v-card class="card-portfolio" hover>
-                            <v-img :src="getPortfolio(item.image)"></v-img>
+                            <v-img
+                              :aspect-ratio="1.2"
+                              :src="getProjectMainImage(project)"
+                            ></v-img>
                           </v-card>
                         </v-col>
                       </v-row>
@@ -275,19 +344,32 @@
                 <!-- Education -->
                 <v-tab-item>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="n in 3" :key="n">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                      v-for="education in currentUser.education"
+                      :key="education.id"
+                      v-show="education.is_public"
+                    >
                       <v-card class="card-education pa-5" hover>
                         <v-card-title class="education-title">
-                          Ryerson University
+                          {{ education.university_name }}
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img src="/images/resume_themes/theme206/tabs/2.png" alt />
+                            <img
+                              src="/images/resume_themes/theme206/tabs/2.png"
+                              alt
+                            />
                           </span>
                         </v-card-title>
-                        <v-card-text
-                          class="education-subtitle"
-                        >Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.</v-card-text>
-                        <v-card-actions class="education-session">2010-2013</v-card-actions>
+                        <v-card-text class="education-subtitle">{{
+                          education.description
+                        }}</v-card-text>
+                        <v-card-actions class="education-session pl-4">
+                          {{ getFullYear(education.date_from) }} -
+                          {{ getFullYear(education.date_to) }}</v-card-actions
+                        >
                       </v-card>
                     </v-col>
                   </v-row>
@@ -297,17 +379,32 @@
                 <!-- Experience -->
                 <v-tab-item>
                   <v-row>
-                    <v-col cols="12" sm="6" md="4" v-for="item in experienceItems" :key="item.id">
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="4"
+                      v-for="work in currentUser.work_experience"
+                      :key="work.id"
+                      v-show="work.is_public"
+                    >
                       <v-card class="card-education pa-5" hover>
                         <v-card-title class="experience-title">
-                          {{item.title}}
+                          {{ work.job_title }}
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img src="/images/resume_themes/theme206/tabs/3.png" alt />
+                            <img
+                              src="/images/resume_themes/theme206/tabs/3.png"
+                              alt
+                            />
                           </span>
                         </v-card-title>
-                        <v-card-text class="education-subtitle">{{item.detail}}</v-card-text>
-                        <v-card-actions class="education-session">{{item.session}}</v-card-actions>
+                        <v-card-text class="education-subtitle">{{
+                          work.company_name
+                        }}</v-card-text>
+                        <v-card-actions class="education-session pl-4">
+                          {{ getFullYear(work.date_from) }} -
+                          {{ getFullYear(work.date_to) }}</v-card-actions
+                        >
                       </v-card>
                     </v-col>
                   </v-row>
@@ -325,8 +422,18 @@
                             v-for="skill in skills"
                             :key="skill.id"
                             @click="currentSkillTab = skill.id"
-                            :class="[currentSkillTab == skill.id ? 'skill-child-tab-active':'skill-child-tab' ]"
-                          >{{skill.title}}</v-tab>
+                            v-show="
+                              currentUser.skills.find(
+                                s => s.category == skill.value
+                              )
+                            "
+                            :class="[
+                              currentSkillTab == skill.id
+                                ? 'skill-child-tab-active'
+                                : 'skill-child-tab'
+                            ]"
+                            >{{ skill.title }}</v-tab
+                          >
                         </v-tabs>
                       </v-card>
                       <!-- Child Tabs -->
@@ -337,7 +444,15 @@
                       <!-- Child Tab Items -->
                       <v-tabs-items v-model="skillTab">
                         <!-- All Programming Languges -->
-                        <v-tab-item v-for="n in 4" :key="n">
+                        <v-tab-item
+                          v-for="skill in skills"
+                          :key="skill.id"
+                          v-show="
+                            currentUser.skills.find(
+                              s => s.category == skill.value
+                            )
+                          "
+                        >
                           <v-card flat color="transparent">
                             <v-card-text>
                               <v-row>
@@ -345,18 +460,24 @@
                                   md="4"
                                   sm="6"
                                   cols="12"
-                                  v-for="item in childSkills"
-                                  :key="item.id"
+                                  v-for="(s, index) in skillCategory(
+                                    skill.value
+                                  )"
+                                  :key="index"
+                                  v-show="s.is_public"
                                 >
                                   <v-card color="#FAFAFA">
                                     <v-card-text>
                                       <v-row>
-                                        <v-col cols="6" class="skill-title">{{item.title}}</v-col>
+                                        <v-col cols="6" class="skill-title">{{
+                                          s.title
+                                        }}</v-col>
                                         <v-col
                                           cols="6"
                                           align="right"
                                           class="skill-title"
-                                        >{{item.value_text}}</v-col>
+                                          >{{ s.percentage }}%</v-col
+                                        >
                                         <v-col cols="12">
                                           <v-progress-linear
                                             style="border:3px solid #F0F0F3; border-radius:12px;"
@@ -365,7 +486,7 @@
                                             rounded
                                             background-color="#eeeeee"
                                             height="15"
-                                            :value="item.value"
+                                            :value="s.percentage"
                                           ></v-progress-linear>
                                         </v-col>
                                       </v-row>
@@ -385,41 +506,18 @@
                 <!-- Skills -->
                 <!-- Media -->
                 <v-tab-item>
-                  <v-card flat color="transparent">
+                  <v-card flat color="transparent" v-if="currentUser.media">
                     <v-card-text>
                       <v-row>
-                        <v-col cols="12" sm="6" md="4" v-for="n in 6" :key="n">
-                          <v-card color="#F0F0F3" style="border-radius:9px;" hover>
-                            <v-card-text>
-                              <v-list-item>
-                                <v-list-content>
-                                  <v-list-title class="audio-title">AUDIO 02 - 07/04/2020</v-list-title>
-                                  <v-list-item-subtitle class="audio-duration">1:05:00</v-list-item-subtitle>
-                                </v-list-content>
-                                <v-spacer></v-spacer>
-                                <v-list-item-icon>
-                                  <v-btn class="play-btn" color="#5843BE" depressed fab small>
-                                    <v-icon color="white">mdi-play</v-icon>
-                                  </v-btn>
-                                </v-list-item-icon>
-                              </v-list-item>
-                            </v-card-text>
-                            <v-card-text class="ml-3 mt-n10">
-                              <v-row>
-                                <v-col cols="9">
-                                  <v-progress-linear
-                                    style="border:3px solid #EEEEEE; border-radius:12px;"
-                                    class="custom-progress-bar"
-                                    color="#5843BE"
-                                    rounded
-                                    background-color="#eeeeee"
-                                    height="15"
-                                    :value="60"
-                                  ></v-progress-linear>
-                                </v-col>
-                              </v-row>
-                            </v-card-text>
-                          </v-card>
+                        <v-col
+                          cols="12"
+                          sm="6"
+                          md="4"
+                          v-for="audio in filterAudio(currentUser.media)"
+                          :key="audio.id"
+                          v-show="audio.is_public"
+                        >
+                          <audioMedia :audioMedia="audio"></audioMedia>
                         </v-col>
                       </v-row>
                     </v-card-text>
@@ -432,7 +530,9 @@
                     <v-card-title class="about-me-title">About Me</v-card-title>
                     <v-card-text
                       class="about-me-text"
-                    >Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices, et venenatis velit posuere. Donec bibendum commodo dui, eget sollicitudin urna sagittis non. Donec ac commodo tortor. Interdum et malesuada fames ac ante ipsum primis in faucibus. Mauris gravida laoreet lacus, non hendrerit elit suscipit a. Nunc ut ultricies massa, eu sollicitudin enim. Praesent quis ultrices nibh. Donec bibendum elit sed erat convallis, at feugiat arcu mollis. Nunc quam eros, venenatis id tristique malesuada, ornare eu augue. Aliquam volutpat eros id libero posuere vestibulum.</v-card-text>
+                      v-if="currentUser.personal_info.about"
+                      >{{ currentUser.personal_info.about }}</v-card-text
+                    >
                   </v-card>
                 </v-tab-item>
                 <!-- About Me -->
@@ -448,13 +548,19 @@
 </template>
 
 <script>
+import audioMedia from "./media/audioMedia";
 export default {
+  props: ["user", "is_preview", "currentTab"],
+  components: {
+    audioMedia
+  },
   data() {
     return {
       drawer: false,
       mainDataTab: "",
       skillTab: "",
-      currentTab: 1,
+      activeTab: "portfolio",
+      currentUser: this.user,
       currentSkillTab: 1,
       personalData: {
         name: "Hean Prinsloo",
@@ -468,12 +574,12 @@ export default {
         { id: 3, title: "instagram" }
       ],
       tabItems: [
-        { id: 1, title: "Portfolio" },
-        { id: 2, title: "Education" },
-        { id: 3, title: "Experience" },
-        { id: 4, title: "Skills" },
-        { id: 5, title: "Media" },
-        { id: 6, title: "About Me" }
+        { id: 1, title: "Portfolio", value: "portfolio" },
+        { id: 2, title: "Education", value: "education" },
+        { id: 3, title: "Experience", value: "work-experience" },
+        { id: 4, title: "Skills", value: "skills" },
+        { id: 5, title: "Media", value: "media" },
+        { id: 6, title: "About Me", value: "about" }
       ],
       portfolioItems: [
         { id: 1, image: 1 },
@@ -509,21 +615,61 @@ export default {
         }
       ],
       skills: [
-        { id: 1, title: "Programming Languages" },
-        { id: 2, title: "Frameworks" },
-        { id: 3, title: "Design Skills" },
-        { id: 4, title: "Software" }
-      ],
-      childSkills: [
-        { id: 1, title: "Flutter", value: 85, value_text: "85%" },
-        { id: 2, title: "Angular", value: 85, value_text: "85%" },
-        { id: 3, title: "React", value: 85, value_text: "85%" }
+        {
+          id: 1,
+          title: "Programming Languages",
+          value: "programming_languages"
+        },
+        { id: 2, title: "Frameworks", value: "frameworks" },
+        { id: 3, title: "Design Skills", value: "design" },
+        { id: 4, title: "Software", value: "software" }
       ]
     };
   },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
+  },
   methods: {
+    skillCategory(skillName) {
+      var filteredSkill = this.currentUser.skills.filter(
+        s => s.category === skillName
+      );
+      return filteredSkill;
+    },
+    findAudio(audio) {
+      var url = audio.find(s => s.type === "audio").url;
+      return url;
+    },
+    filterAudio(audios) {
+      var filterArray = audios.filter(a => a.type === "audio");
+      return filterArray;
+    },
+    findVideo(video) {
+      var url = video.find(s => s.type === "video").url;
+      return url;
+    },
+    getFullYear(date) {
+      let newDate = new Date(date);
+      let yyyy = newDate.getUTCFullYear();
+      return yyyy;
+    },
+    getProjectMainImage(project) {
+      let mainImage = "";
+
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+
+      return mainImage.src;
+    },
     getSocialIcon(title) {
-      return `/images/resume_themes/theme206/social_icons/${title}.webp`;
+      return `/images/resume_themes/theme206/social_icons/${title.toLowerCase()}.webp`;
     },
     getTabIcon(id) {
       return `/images/resume_themes/theme206/tabs/${id}.png`;
@@ -534,6 +680,15 @@ export default {
     getPortfolio(image) {
       return `/images/resume_themes/theme206/portfolio/${image}.png`;
     }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>
@@ -655,8 +810,8 @@ export default {
   @media screen and (max-width: 959px) {
     width: 225px;
   }
-   @media screen and (min-width: 600px) and (max-width: 759px){
-     width: 185px;
+  @media screen and (min-width: 600px) and (max-width: 759px) {
+    width: 185px;
   }
   @media screen and (max-width: 599px) {
     color: #5843be !important;
@@ -668,10 +823,10 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1200px) {
     min-width: 51px !important;
   }
-  @media screen and (min-width: 600px) and (max-width: 759px){
+  @media screen and (min-width: 600px) and (max-width: 759px) {
     min-width: 51px !important;
   }
-  
+
   @media screen and (max-width: 599px) {
     height: 30px !important;
     width: 30px !important;
@@ -692,8 +847,8 @@ export default {
     width: 20px;
     height: 20px;
   }
-  @media screen and (min-width: 960px) and (max-width:1200px){
-    margin-left:-2px !important;
+  @media screen and (min-width: 960px) and (max-width: 1200px) {
+    margin-left: -2px !important;
   }
   @media screen and (max-width: 959px) {
     span {
