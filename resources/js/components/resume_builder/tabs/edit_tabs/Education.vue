@@ -1,21 +1,7 @@
 <template>
     <v-app class="resume-builder__scroll">
         <div class="data-container">            
-            <v-card color="transparent" flat tile>
-                <!-- <v-tabs
-                    class="resume-builder__tab-bar"
-                    hide-slider
-                >
-                    <v-tab
-                        class="resume-builder__tab"
-                        v-for="tab in tabs"
-                        :key="tab"
-                        @click="activeTab = tab"
-                    >{{ tab }}</v-tab>
-                </v-tabs> -->
-            </v-card>
-
-            <v-card class="view-container resume-builder__scroll">
+            <v-card class="view-container resume-builder__scroll" flat>
                 <SchoolView :activeTab ="activeTab"></SchoolView>
             </v-card>
         </div>
