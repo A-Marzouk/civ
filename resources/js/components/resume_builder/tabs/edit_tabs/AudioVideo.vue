@@ -897,14 +897,20 @@ $mainBlue: #001ce2;
 </style>
 <style lang="scss">
   // recorder styles not scoped
+  @import "../../../../../sass/media-queries";
 
-  .ar-player > .ar-player-bar > .ar-player__progress {
-    width: 40px !important;
+  @include lt-sm{
+    .ar-player > .ar-player-bar > .ar-player__progress {
+      width: 40px !important;
+    }
+
+    .ar-content, .ar-player {
+      width: 300px !important;
+    }
   }
 
-  .ar-content, .ar-player {
-    width: 300px !important;
-  }
+
+
 
   .ar-icon {
       border: 1px solid #001CE2 !important;

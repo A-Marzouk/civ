@@ -1,5 +1,5 @@
 <template>
-    <v-app class="resume-builder__scroll">
+    <v-app>
         <div class="data-container">            
             <v-card class="view-container resume-builder__scroll" flat>
                 <SchoolView :activeTab ="activeTab"></SchoolView>
