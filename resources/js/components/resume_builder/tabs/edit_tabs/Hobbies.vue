@@ -1,5 +1,5 @@
 <template>
-    <v-app class="resume-builder__scroll">
+    <v-app class="main-content">
         <div style="width:100%;">
             <v-tabs class="resume-builder__tab-bar" hide-slider>
                 <v-tab class="resume-builder__tab"> Hobbies</v-tab>
@@ -290,6 +290,14 @@
 
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
+
+    .main-content{
+        @include lt-sm{
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
 
     $mainBlue: #001ce2;
     .hobbies-content {

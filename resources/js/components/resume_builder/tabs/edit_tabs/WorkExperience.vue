@@ -355,8 +355,9 @@
 
     #worksSection {
         @include lt-sm{
-            margin: 2%;
-            width: 95%;
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
         }
         .links-content {
 

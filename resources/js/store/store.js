@@ -313,7 +313,6 @@ export const store = new Vuex.Store({
             let updateIframeHolder = $('#updateIframe');
             if(updateIframeHolder.length){
                 updateIframeHolder.click();
-                console.log('Updated iframe 1');
             }
         },
         updateLinks(state, links){

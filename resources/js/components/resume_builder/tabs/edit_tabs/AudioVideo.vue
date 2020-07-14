@@ -1,5 +1,5 @@
 <template>
-  <v-app class="resume-builder__scroll">
+  <v-app class="media-contents">
     <div style="width:100%;">
       <v-tabs class="resume-builder__tab-bar" hide-slider v-model="audioTab">
         <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i" @click="changeTab(tabName)">{{tabName}}</v-tab>
@@ -76,10 +76,10 @@
               <v-row>
                 <v-col xl="3" lg="4" md="6" sm="6" cols="12" v-if="currentUploadMethod === 'upload' ">
                   <v-btn
-                          class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
+                          class="resume-builder__btn civie-btn filled btn-add-new"
                           depressed
                           @click="currentUploadMethod = 'record' "
-                  >Recorder</v-btn>
+                  >Record</v-btn>
                 </v-col>
               </v-row>
               <v-row>
@@ -88,7 +88,7 @@
                           class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
                           depressed
                           @click="currentUploadMethod = 'upload' "
-                  >Uploader</v-btn>
+                  >Back</v-btn>
                 </v-col>
               </v-row>
 
@@ -658,6 +658,15 @@ $mainBlue: #001ce2;
     display: none;
   }
 }
+
+.media-contents{
+  @include lt-sm{
+    max-width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 .hidden-custom-tablet-and-up {
   @media screen and (min-width: 768px) {
     display: none;
@@ -888,6 +897,25 @@ $mainBlue: #001ce2;
 </style>
 <style lang="scss">
   // recorder styles not scoped
+  @import "../../../../../sass/media-queries";
+
+  @include lt-sm{
+    .ar-player > .ar-player-bar > .ar-player__progress {
+      width: 40px !important;
+    }
+
+    .ar-content, .ar-player {
+      width: 300px !important;
+    }
+  }
+
+
+
+
+  .ar-icon {
+      border: 1px solid #001CE2 !important;
+  }
+
   .audio-recorder {
     .ar-recorder__records-limit {
       display: none !important;

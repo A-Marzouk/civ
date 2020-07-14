@@ -7,6 +7,8 @@
 				<router-view></router-view>
 			</transition>
 
+			<!--<span @click="updateIframe" id="updateIframe"></span>-->
+
 			<div class="cv-content-preview-wrapper">
 				<div class="cv-content-preview">
 					<div class="cv-preview-link">
@@ -14,8 +16,7 @@
 					</div>
 					<div class="cv-preview-theme-wrapper">
 						<div class="cv-preview-theme">
-							<component :is="userTheme" :currentTab="activeTab" v-if="user.personal_info" :user="user" :is_preview="false"></component>
-							<!--<vue-friendly-iframe :src="themeUrl" @load="onLoad"></vue-friendly-iframe>-->
+							<vue-friendly-iframe :src="themeUrl" @load="onLoad"></vue-friendly-iframe>
 						</div>
 					</div>
 				</div>
@@ -119,7 +120,6 @@ export default {
 		},
 		updateIframe(){
 			this.themeUrl = '';
-			console.log('updated iframe 2 ');
 			setTimeout(() => {
 				this.getThemeUrl();
 			},0);

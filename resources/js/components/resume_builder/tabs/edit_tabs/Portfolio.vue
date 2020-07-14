@@ -1,5 +1,5 @@
 <template>
-  <div class="resume-builder__scroll" id="portfolio-tab">
+  <div class="portfolio-contents" id="portfolio-tab">
     <div class="data-container">
       <v-card class="view-container resume-builder__scroll" style="overflow-x: hidden !important;">
         <v-form class="grid-form" ref="form">
@@ -378,6 +378,15 @@ export default {
 .ml-custom-n12 {
   margin-left: -12px;
 }
+
+.portfolio-contents{
+  @include lt-sm{
+    max-width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 #portfolio-tab {
   .view-container {
     max-height: 678px;
