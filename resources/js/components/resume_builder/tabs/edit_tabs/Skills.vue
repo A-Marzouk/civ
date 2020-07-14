@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-container style="width: 100%">
+  <v-app class="resume-builder__scroll">
+    <div style="width: 100%">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab
@@ -222,7 +222,7 @@
           </v-tab-item>
         </v-tabs-items>
       </v-card>
-    </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -308,9 +308,9 @@ export default {
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
-              this.errors.new = error.response.data.errors;
+              this.errors = error.response.data.errors;
             } else {
-              this.errors.new = "Something went wrong. Please try again.";
+              this.errors = "Something went wrong. Please try again.";
             }
             this.$store.dispatch("flyingNotification", {
               message: "Error",

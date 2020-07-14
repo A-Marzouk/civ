@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-container style="width:100%;">
+  <v-app class="resume-builder__scroll">
+    <div style="width:100%;">
       <v-tabs class="resume-builder__tab-bar" hide-slider v-model="audioTab">
         <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i" @click="changeTab(tabName)">{{tabName}}</v-tab>
       </v-tabs>
@@ -451,7 +451,7 @@
 
         </v-tabs-items>
       </v-card>
-    </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -842,7 +842,7 @@ $mainBlue: #001ce2;
   font-size: 18px;
   line-height: 25px;
   color: #888db1 !important;
-  margin-top: 3px;
+  margin-top: 1px;
 }
 
 .fade-enter-active,

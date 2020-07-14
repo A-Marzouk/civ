@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <v-container style="width:100%;">
+    <v-app class="resume-builder__scroll">
+        <div style="width:100%;">
             <v-tabs class="resume-builder__tab-bar" hide-slider>
                 <v-tab class="resume-builder__tab"> Hobbies</v-tab>
             </v-tabs>
@@ -111,7 +111,7 @@
                     </v-container>
                 </v-tabs-items>
             </v-card>
-        </v-container>
+        </div>
     </v-app>
 </template>
 
@@ -284,8 +284,6 @@
                     this.showCategoryOptions = false;
                 }
             });
-
-            console.log(Vue.$cookies.get("spotify_access_token"));
         }
     };
 </script>
