@@ -414,7 +414,7 @@ export default {
   margin-top: 6px !important;
 }
 .profile {
-  max-width: 350px;
+  max-width: 94%;
   margin-right: auto;
   margin-left: auto;
 
@@ -480,7 +480,7 @@ export default {
 
           .label {
             color: #888db1;
-            font-size: 16px;
+            font-size: 19px;
             line-height: 18px;
             margin-bottom: 12px;
           }
