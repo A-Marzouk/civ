@@ -708,10 +708,10 @@ export default {
 }
 
 .verical-sidebar {
-  position: absolute;
+  position: fixed;
   background: #e6bf4e;
   width: 2rem;
-  height: 1000vh;
+  height: 100vh;
   z-index: 1;
   bottom: 0;
   @media screen and (max-width: 599px) {
