@@ -24,7 +24,13 @@
 					</div>
 					<div class="cv-preview-theme-wrapper">
 						<div class="cv-preview-theme">
-							<vue-friendly-iframe :src="themeUrl" @load="onLoad"></vue-friendly-iframe>
+							<div class="theme-preview-loader" v-if="!isFrameLoaded">
+								<v-skeleton-loader
+										class="mx-auto loader"
+										type="list-item-avatar-three-line, image, article, actions"
+								></v-skeleton-loader>
+							</div>
+							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username" @iframe-load="onLoad"></vue-friendly-iframe>
 						</div>
 					</div>
 				</div>
@@ -46,27 +52,13 @@ export default {
 	data: () => ({
 		activeTab: "profile",
 		baseUrl: '',
-		cvAutoUpdate: false
+		cvAutoUpdate: false,
+		isFrameLoaded: false
 	}),
 
 	computed: {
 		user() {
 			return this.$store.state.user;
-		},
-		userTheme: function () {
-			let code =  this.$store.state.user.theme.code ;
-
-			if(code){
-				return this.importComponent(code);
-			}
-		},
-		themeUrl:{
-			get() {
-				return this.baseUrl + this.$store.state.user.username;
-			},
-			set(newValue) {
-				this.baseUrl = newValue;
-			}
 		}
 	},
 	methods:{
@@ -87,13 +79,14 @@ export default {
 		},
 		onLoad(){
 			// remove the spinner loader.
-
-
+			this.isFrameLoaded = true;
+			console.log('loaded');
 		},
 		updateIframe(){
 			if(!this.cvAutoUpdate){
 				return;
 			}
+			this.isFrameLoaded = false;
 			setTimeout(() => {
 				this.getThemeUrl();
 			},0);
@@ -310,7 +303,41 @@ justify-content: flex-start;
 	.vue-friendly-iframe{
 		iframe{
 			width:100%;
-			min-height:1400px;
+			min-height:1300px;
+		}
+	}
+
+	.theme-preview-loader{
+		width: 100%;
+		min-height:1300px;
+
+		.loader{
+			max-width:95%;
+			margin-top:25px;
+			.v-skeleton-loader__list-item-avatar-three-line.v-skeleton-loader__bone{
+				margin-top:25px;
+				margin-bottom: 20px;
+				.v-skeleton-loader__avatar.v-skeleton-loader__bone{
+					margin-right:12px;
+				}
+			}
+
+			.v-skeleton-loader__image.v-skeleton-loader__bone{
+				margin-top:25px;
+				margin-bottom: 20px;
+			}
+
+			.v-skeleton-loader__article.v-skeleton-loader__bone{
+				margin-top:25px;
+				margin-bottom: 20px;
+			}
+
+			.v-skeleton-loader__actions.v-skeleton-loader__bone{
+				margin-top:20px;
+				.v-skeleton-loader__button.v-skeleton-loader__bone{
+					margin-right:30px;
+				}
+			}
 		}
 	}
 </style>
