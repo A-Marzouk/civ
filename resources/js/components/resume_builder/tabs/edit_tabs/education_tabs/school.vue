@@ -103,7 +103,7 @@
                 <div
                         v-for="education in educations"
                         class="education-item"
-                        :class="{'closed' : expandedEducationID !== education.id}"
+                        :class="{'closed' : expandedEducationID !== education.id, 'half-opacity' : !education.is_public}"
                         :key="education.id"
                 >
                     <div class="drag-handler">

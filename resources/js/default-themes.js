@@ -321,7 +321,7 @@ if ($("#resumeTheme403").length !== 0) {
     });
 }
 
-import resumeTheme203 from "./components/resume_themes/theme203";
+import resumeTheme203 from "./components/resume_themes/theme203/index";
 if ($("#resumeTheme203").length !== 0) {
     new Vue({
         el: "#resumeTheme203",

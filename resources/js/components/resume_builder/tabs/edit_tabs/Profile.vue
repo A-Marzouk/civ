@@ -74,7 +74,7 @@
                             class="resume-builder__input profile-input"
                             label="Current Location"
                             v-model="personalInfo.location"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
                             :error="!!errors.location"
                             @blur="applyEdit('auto')"
                             hide-details="auto"
@@ -83,7 +83,7 @@
                         <button
                                 class=" trigger-icon icon mt-custom6"
                                 slot="append"
-                                @click="()=>false"
+                                @click="updateVisibility('location')"
                         >
                             <svg-vue class="profile-eye-icon" :icon="`eye-icon`"
                                      :class="{'visible' : personalInfo.is_location_active}"></svg-vue>
@@ -144,7 +144,7 @@
                             class="resume-builder__input profile-input"
                             label="Nationality"
                             v-model="personalInfo.nationality"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
                             :error="!!errors.nationality"
                             hide-details="auto"
                             outlined
@@ -154,10 +154,10 @@
                                 class=" trigger-icon icon mt-custom6"
                                 :class="{'icon--disabled': false}"
                                 slot="append"
-                                @click="()=>false"
+                                @click="updateVisibility('nationality')"
                         >
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.nationality}"></svg-vue>
+                                     :class="{'visible' : personalInfo.is_nationality_active}"></svg-vue>
                         </button>
                     </v-text-field>
                 </div>
@@ -188,7 +188,7 @@
                             class="resume-builder__input profile-input"
                             label="Hometown"
                             v-model="personalInfo.hometown"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
                             :error="!!errors.hometown"
                             hide-details="auto"
                             outlined
@@ -198,10 +198,10 @@
                                 class=" trigger-icon icon mt-custom6"
                                 :class="{'icon--disabled': false}"
                                 slot="append"
-                                @click="()=>false"
+                                @click="updateVisibility('hometown')"
                         >
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.hometown}"></svg-vue>
+                                     :class="{'visible' : personalInfo.is_hometown_active}"></svg-vue>
                         </button>
                     </v-text-field>
                 </div>
@@ -210,7 +210,7 @@
                     <v-textarea
                             class="resume-builder__input profile-input civie-textarea"
                             color="#001CE2"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_about_active}"
                             :disabled="false"
                             v-model="personalInfo.about"
                             label="About Me"
@@ -218,9 +218,9 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append">
+                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.about}"></svg-vue>
+                                     :class="{'visible' : personalInfo.is_about_active}"></svg-vue>
                         </button>
                     </v-textarea>
                 </div>
@@ -229,7 +229,7 @@
                     <v-textarea
                             class="resume-builder__input profile-input civie-textarea"
                             color="#001CE2"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_overview_active}"
                             :disabled="false"
                             v-model="personalInfo.overview"
                             label="Overview Summary"
@@ -237,9 +237,9 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append">
+                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.overview}"></svg-vue>
+                                     :class="{'visible' : personalInfo.is_overview_active}"></svg-vue>
                         </button>
                     </v-textarea>
                 </div>
@@ -248,7 +248,7 @@
                     <v-textarea
                             class="resume-builder__input profile-input civie-textarea"
                             color="#001CE2"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_quote_active}"
                             :disabled="false"
                             label="Quote"
                             v-model="personalInfo.quote"
@@ -256,9 +256,9 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append">
+                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
-                                     :class="{'visible' : personalInfo.quote}"></svg-vue>
+                                     :class="{'visible' : personalInfo.is_quote_active}"></svg-vue>
                         </button>
                     </v-textarea>
                 </div>
@@ -297,6 +297,10 @@
             // date functions
             saveDate() {
                 this.$refs.menu.save(this.personalInfo.date_of_birth);
+                this.applyEdit("auto");
+            },
+            updateVisibility(field_name){
+                this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
                 this.applyEdit("auto");
             },
 

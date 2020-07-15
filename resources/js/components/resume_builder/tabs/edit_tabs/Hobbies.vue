@@ -54,7 +54,7 @@
                             </v-row>
                         </v-form>
                         <draggable v-model="hobbies" @start="drag=true" @end="drag=false"  handle=".drag-btn">
-                            <v-row align="center" v-for="hobby in hobbies" :key="hobby.id" v-if="hobbies">
+                            <v-row align="center" v-for="hobby in hobbies" :key="hobby.id" v-if="hobbies" :class="{'half-opacity' : !hobby.is_public}">
                                 <v-col xl="6" lg="8" md="8" sm="10" cols="12">
                                     <v-card class="card-holder pa-2 mb-3">
                                         <v-row justify="center">

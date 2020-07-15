@@ -98,7 +98,7 @@
               </div>
 
               <draggable v-if="medias"  v-model="medias" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                <v-row align="center" dense v-for="media in medias" :key="media.id">
+                <v-row align="center" dense v-for="media in medias" :key="media.id" :class="{'half-opacity' : !media.is_public}">
 
                 <v-col xl="7" :lg="windowWidth<1440 ? '9' : '7' " md="9" sm="12" cols="12" v-show="audioTab === 0 && media.type === 'audio'">
                     <!-- audio card -->
@@ -306,7 +306,7 @@
               </v-form>
 
               <draggable v-if="medias"  v-model="medias" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                <v-row align="center" dense v-for="media in medias" :key="media.id">
+                <v-row align="center" dense v-for="media in medias" :key="media.id" :class="{'half-opacity' : !media.is_public}">
 
                   <v-col xl="7" :lg="windowWidth<1440 ? '9' : '7' " md="9" sm="12" cols="12" v-show="audioTab === 0 && media.type === 'audio'">
                     <!-- audio card -->

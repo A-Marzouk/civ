@@ -100,7 +100,7 @@
                 <div
                         v-for="work in works"
                         class="education-item"
-                        :class="{'closed' : expandedWorkID !== work.id}"
+                        :class="{'closed' : expandedWorkID !== work.id, 'half-opacity' : !work.is_public}"
                         :key="work.id"
                 >
                     <div class="drag-handler">
