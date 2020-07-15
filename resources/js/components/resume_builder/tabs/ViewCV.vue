@@ -706,6 +706,9 @@ $mainBlue: #001ce2;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     max-width: 99.2% !important;
   }
+  @media screen and (max-width: 599px){
+    max-width: 385px;
+  }
 
   &::-webkit-scrollbar {
     width: 5px;
