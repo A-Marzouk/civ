@@ -2,9 +2,7 @@
   <v-container fluid v-if="activeTab === 'about'" class="pb-sm-12">
     <v-row>
       <v-col lg="12" cols="12" sm="12">
-        <div class="para">
-          {{ user.personal_info.about }}
-        </div>
+        <div class="para" :html="user.personal_info.about"></div>
       </v-col>
       <v-col cols="12" class="d-sm-block d-none d-lg-none py-4">
         <div>
@@ -20,7 +18,7 @@
           >
             <v-img
               :src="
-                `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+                `/images/icons/${Userlink.link_title.toLowerCase()}-icon.svg`
               "
               contain
               max-width="24"
