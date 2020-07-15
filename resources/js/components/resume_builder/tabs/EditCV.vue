@@ -10,12 +10,17 @@
 			<span @click="updateIframe" id="updateIframe"></span>
 
 
-			<!--<v-app class="preview-action-row">-->
-				<!--<div>-->
-					<!--Preview auto-update-->
-				<!--</div>-->
-				<!--<v-switch v-model="cvAutoUpdate"></v-switch>-->
-			<!--</v-app>-->
+			<div class="v-application preview-action-row v-application--is-ltr theme--light">
+				<div class="switch">
+					<div class="text">
+						Preview Auto Update
+					</div>
+					<v-switch v-model="cvAutoUpdate"></v-switch>
+				</div>
+				<div class="refresh" @click="updateIframe('true')">
+					Refresh Your Data <img src="/icons/refresh.svg" alt="">
+				</div>
+			</div>
 
 			<div class="cv-content-preview-wrapper">
 				<div class="cv-content-preview">
@@ -82,14 +87,13 @@ export default {
 			this.isFrameLoaded = true;
 			console.log('loaded');
 		},
-		updateIframe(){
-			if(!this.cvAutoUpdate){
-				return;
+		updateIframe(force = 'false'){
+			if(this.cvAutoUpdate || force === 'true'){
+				this.isFrameLoaded = false;
+				setTimeout(() => {
+					this.getThemeUrl();
+				},0);
 			}
-			this.isFrameLoaded = false;
-			setTimeout(() => {
-				this.getThemeUrl();
-			},0);
 		}
 	},
 
@@ -111,8 +115,40 @@ $disabledColor: #9f9e9e;
 .edit-cv {
 	.preview-action-row{
 		display: flex;
+		justify-content: space-between;
 		flex-direction: row;
+		margin-top: 40px;
 		height: 50px;
+
+		font-style: normal;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 22px;
+		color: #888DB1;
+
+		padding-right: 30px;
+		@include lt-sm{
+			padding-right: 15px;
+		}
+
+		.switch{
+			display: flex;
+			align-items: center;
+
+			.text{
+				margin-right:10px;
+			}
+		}
+		.refresh{
+			display: flex;
+			align-items: center;
+			img{
+				margin-left:10px;
+			}
+			&:hover{
+				cursor: pointer;
+			}
+		}
 	}
 
 	.edit-cv-content {
@@ -141,7 +177,6 @@ $disabledColor: #9f9e9e;
 
 .cv-content-preview-wrapper {
 	overflow-y: scroll;
-	margin-top: 40px;
 	padding: 10px;
 	max-height: 600px;
 	max-width: 94%;
