@@ -1,5 +1,5 @@
 <template>
-  <div class="resume-builder__scroll" id="portfolio-tab">
+  <div class="portfolio-contents" id="portfolio-tab">
     <div class="data-container">
       <v-card class="view-container resume-builder__scroll" style="overflow-x: hidden !important;">
         <v-form class="grid-form" ref="form">
@@ -114,7 +114,7 @@
           @end="drag=false"
           handle=".drag-handler"
         >
-          <div class="project ml-md-4" v-for="project in projects">
+          <div class="project ml-md-4" v-for="project in projects" :class="{'half-opacity' : !project.is_public}">
             <div class="project__header">
               <v-btn depressed class="drag-and-drop-handler drag-handler">
                 <svg-vue :icon="'drag-and-drop-icon'" class="icon"></svg-vue>
@@ -284,7 +284,6 @@ export default {
     },
     checkMaximumFiles() {
       if (this.editedProject.images.length >= 5) {
-        console.log("Please, no more files...");
       }
     },
     removeFiles() {
@@ -379,6 +378,15 @@ export default {
 .ml-custom-n12 {
   margin-left: -12px;
 }
+
+.portfolio-contents{
+  @include lt-sm{
+    max-width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 #portfolio-tab {
   .view-container {
     max-height: 678px;

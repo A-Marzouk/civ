@@ -304,10 +304,16 @@ export const store = new Vuex.Store({
         },
         updateActivity(state) {
             axios.post('/api/user/update-last-activity',{user_id: state.user.id}).then((response) => {
-                console.log(response.data);
+                console.log('Activity updated.');
             }).catch((error) => {
                 console.log('Error - last activity');
             });
+
+            // reload the iframe of exists:
+            let updateIframeHolder = $('#updateIframe');
+            if(updateIframeHolder.length){
+                updateIframeHolder.click();
+            }
         },
         updateLinks(state, links){
             state.user.links = links;

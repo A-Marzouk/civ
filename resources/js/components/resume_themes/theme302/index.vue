@@ -1,6 +1,6 @@
 <template>
   <v-app style="width: 100%" v-if="currentUser">
-    <v-container class="hold_theme13" style="max-width: 1920px;" >
+    <v-container class="hold_theme13" style="max-width: 1920px;">
       <v-row class="freelancerCard">
         <v-col lg="12" md="12" cols="12" class="resumeCardRight">
           <div class="showOnlyOnmd">
@@ -205,6 +205,7 @@
                       sm="12"
                       v-for="(work, index) in currentUser.work_experience"
                       :key="index + 'W'"
+                      v-show="work.is_public"
                     >
                       <div class="hold-titles">
                         <span class="title-work">{{ work.job_title }}</span>
@@ -234,6 +235,7 @@
                       sm="12"
                       v-for="(education, index) in currentUser.education"
                       :key="index + 'E'"
+                      v-show="education.is_public"
                     >
                       <div class="hold-titles">
                         <span class="title-work">{{
@@ -294,9 +296,9 @@
                           <v-row dense justify="center" align="center">
                             <v-col
                               cols="2"
-                              v-for="(s, index) in currentUser.skills"
+                              v-for="(s, index) in skillCategory(item.value)"
                               :key="index"
-                              v-show="s.category == item.value"
+                              v-show="s.is_public"
                               align="center"
                             >
                               <v-progress-circular
@@ -461,7 +463,7 @@
             ref="audioElem"
             id="audioElem"
             v-if="currentUser.media.find(s => s.type == 'audio')"
-            :src="currentUser.media[0].url"
+            :src="findAudio(currentUser.media)"
             @ended="playing = !playing"
           ></audio>
         </div>
@@ -490,7 +492,7 @@
             ref="videoElem"
             v-if="currentUser.media.find(s => s.type == 'video')"
             controls
-            :src="currentUser.media[0].url"
+            :src="findVideo(currentUser.media)"
           ></video>
         </div>
       </v-card>
@@ -1898,6 +1900,20 @@ export default {
     }
   },
   methods: {
+    skillCategory(skillName) {
+      var filteredSkill = this.currentUser.skills.filter(
+        s => s.category === skillName
+      );
+      return filteredSkill;
+    },
+    findAudio(audio) {
+      var url = audio.find(s => s.type === "audio").url;
+      return url;
+    },
+    findVideo(video) {
+      var url = video.find(s => s.type === "video").url;
+      return url;
+    },
     getProjectMainImage(project) {
       let mainImage = "";
 
@@ -1963,7 +1979,7 @@ export default {
     },
     pauseAudio() {
       this.playing = false;
-      if(this.$refs.audioElem){
+      if (this.$refs.audioElem) {
         this.$refs.audioElem.pause();
       }
     },

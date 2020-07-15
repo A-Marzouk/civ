@@ -29,10 +29,10 @@
                                 class="resume-builder__input civie-input"
                                 outlined
                                 color="#001CE2"
-                                placeholder="Job title"
+                                placeholder="Job Title"
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
-                                label="Job title"
+                                label="Job Ttitle"
                                 :error="!!errors.job_title"
                                 v-model="newWork.job_title"
                         >
@@ -100,7 +100,7 @@
                 <div
                         v-for="work in works"
                         class="education-item"
-                        :class="{'closed' : expandedWorkID !== work.id}"
+                        :class="{'closed' : expandedWorkID !== work.id, 'half-opacity' : !work.is_public}"
                         :key="work.id"
                 >
                     <div class="drag-handler">
@@ -355,8 +355,9 @@
 
     #worksSection {
         @include lt-sm{
-            margin: 2%;
-            width: 95%;
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
         }
         .links-content {
 

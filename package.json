@@ -28,6 +28,7 @@
         "sass": "^1.20.1",
         "sass-loader": "^8.0.0",
         "vue": "^2.6.11",
+        "vue-friendly-iframe": "^0.18.0",
         "vue-masonry-css": "^1.0.3"
     },
     "dependencies": {

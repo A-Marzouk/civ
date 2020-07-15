@@ -1,6 +1,6 @@
 <template>
-    <v-app>
-        <v-container style="width:100%;">
+    <v-app class="main-content">
+        <div style="width:100%;">
             <v-tabs class="resume-builder__tab-bar" hide-slider>
                 <v-tab class="resume-builder__tab"> Hobbies</v-tab>
             </v-tabs>
@@ -54,7 +54,7 @@
                             </v-row>
                         </v-form>
                         <draggable v-model="hobbies" @start="drag=true" @end="drag=false"  handle=".drag-btn">
-                            <v-row align="center" v-for="hobby in hobbies" :key="hobby.id" v-if="hobbies">
+                            <v-row align="center" v-for="hobby in hobbies" :key="hobby.id" v-if="hobbies" :class="{'half-opacity' : !hobby.is_public}">
                                 <v-col xl="6" lg="8" md="8" sm="10" cols="12">
                                     <v-card class="card-holder pa-2 mb-3">
                                         <v-row justify="center">
@@ -111,7 +111,7 @@
                     </v-container>
                 </v-tabs-items>
             </v-card>
-        </v-container>
+        </div>
     </v-app>
 </template>
 
@@ -284,14 +284,20 @@
                     this.showCategoryOptions = false;
                 }
             });
-
-            console.log(Vue.$cookies.get("spotify_access_token"));
         }
     };
 </script>
 
 <style scoped lang="scss">
     @import "../../../../../sass/media-queries";
+
+    .main-content{
+        @include lt-sm{
+            max-width: 94%;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
 
     $mainBlue: #001ce2;
     .hobbies-content {
