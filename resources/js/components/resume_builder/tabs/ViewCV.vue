@@ -279,7 +279,7 @@ export default {
         { id: 9, title: "Big Data", count: 75 }
       ],
       baseUrl:'',
-      cvAutoUpdate: true
+      cvAutoUpdate: false
     };
   },
   computed: {
