@@ -184,7 +184,7 @@
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.payment_info[0].available_hours}} Hours</v-card-subtitle>
+                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.availability_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
