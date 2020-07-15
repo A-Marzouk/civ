@@ -418,7 +418,7 @@
                                         cols="6"
                                         align="right"
                                         class="skill-title-text"
-                                      >{{skill.skill_value_text}}</v-col>
+                                      >{{skill.percentage}}</v-col>
                                     </v-row>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle>
@@ -426,7 +426,7 @@
                                       color="#FCD259"
                                       height="12"
                                       rounded
-                                      :value="skill.skill_value"
+                                      :value="skill.percentage"
                                     ></v-progress-linear>
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
@@ -631,6 +631,7 @@ export default {
     sendEmail() {},
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
+      console.log(this.currentUser)
     },
     getProjectMainImage(project) {
       let mainImage = "";
