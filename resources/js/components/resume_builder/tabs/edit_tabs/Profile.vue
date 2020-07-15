@@ -74,7 +74,7 @@
                             class="resume-builder__input profile-input"
                             label="Current Location"
                             v-model="personalInfo.location"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
                             :error="!!errors.location"
                             @blur="applyEdit('auto')"
                             hide-details="auto"
@@ -144,7 +144,7 @@
                             class="resume-builder__input profile-input"
                             label="Nationality"
                             v-model="personalInfo.nationality"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
                             :error="!!errors.nationality"
                             hide-details="auto"
                             outlined
@@ -188,7 +188,7 @@
                             class="resume-builder__input profile-input"
                             label="Hometown"
                             v-model="personalInfo.hometown"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
                             :error="!!errors.hometown"
                             hide-details="auto"
                             outlined
@@ -210,7 +210,7 @@
                     <v-textarea
                             class="resume-builder__input profile-input civie-textarea"
                             color="#001CE2"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_about_active}"
                             :disabled="false"
                             v-model="personalInfo.about"
                             label="About Me"
@@ -229,7 +229,7 @@
                     <v-textarea
                             class="resume-builder__input profile-input civie-textarea"
                             color="#001CE2"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_overview_active}"
                             :disabled="false"
                             v-model="personalInfo.overview"
                             label="Overview Summary"
@@ -248,7 +248,7 @@
                     <v-textarea
                             class="resume-builder__input profile-input civie-textarea"
                             color="#001CE2"
-                            :class="{'resume-builder__input--disabled': false}"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_quote_active}"
                             :disabled="false"
                             label="Quote"
                             v-model="personalInfo.quote"

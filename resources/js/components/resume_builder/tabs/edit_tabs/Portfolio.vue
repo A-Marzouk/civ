@@ -114,7 +114,7 @@
           @end="drag=false"
           handle=".drag-handler"
         >
-          <div class="project ml-md-4" v-for="project in projects">
+          <div class="project ml-md-4" v-for="project in projects" :class="{'half-opacity' : !project.is_public}">
             <div class="project__header">
               <v-btn depressed class="drag-and-drop-handler drag-handler">
                 <svg-vue :icon="'drag-and-drop-icon'" class="icon"></svg-vue>

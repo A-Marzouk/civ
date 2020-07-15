@@ -78,6 +78,7 @@
                           <v-card v-show="skill.category === tabs[activeTab]"
                                   color="#E6E8FC"
                                   class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
+                                  :class="{'half-opacity' : !skill.is_public}"
                                   flat
                                   v-for="skill in skills"
                                   :key="skill.id"

@@ -40,7 +40,7 @@
 			</div>
 
 			<draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false"  handle=".mover">
-				<div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory">
+				<div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory" :class="{'half-opacity' : !link.is_active}">
 					<div class="link-data">
 						<div class="mover">
 							<img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
