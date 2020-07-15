@@ -7,7 +7,7 @@
 				<router-view></router-view>
 			</transition>
 
-			<!--<span @click="updateIframe" id="updateIframe"></span>-->
+			<span @click="updateIframe" id="updateIframe"></span>
 
 			<div class="cv-content-preview-wrapper">
 				<div class="cv-content-preview">
@@ -87,7 +87,7 @@ export default {
 			}
 		],
 		activeTab: "profile",
-		themeUrl: ''
+		baseUrl: ''
 	}),
 
 	computed: {
@@ -100,6 +100,14 @@ export default {
 			if(code){
 				return this.importComponent(code);
 			}
+		},
+		themeUrl:{
+			get() {
+				return this.baseUrl + this.$store.state.user.username;
+			},
+			set(newValue) {
+				this.baseUrl = newValue;
+			}
 		}
 	},
 	methods:{
@@ -107,11 +115,16 @@ export default {
 			return () => import('../../resume_themes/theme'+ path + '/index.vue');
 		},
 		getThemeUrl(){
-			this.themeUrl =  this.baseUrl() + 'agent';
+			// refresh iframe src:
+				this.baseUrl =  '';
+				setTimeout(() => {
+					this.setBaseURL();
+				}, 0)
+
 		},
-		baseUrl() {
+		setBaseURL() {
 			let getUrl = window.location;
-			return getUrl.protocol + "//" + getUrl.host + "/";
+			this.baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
 		},
 		onLoad(){
 			// remove the spinner loader.
@@ -119,7 +132,7 @@ export default {
 
 		},
 		updateIframe(){
-			this.themeUrl = '';
+			console.log('update iframe');
 			setTimeout(() => {
 				this.getThemeUrl();
 			},0);
@@ -130,7 +143,7 @@ export default {
 		this.activeTab = window.location.pathname.split("/")[3];
 	},
 	mounted() {
-		this.getThemeUrl();
+		this.setBaseURL();
 	}
 };
 </script>
