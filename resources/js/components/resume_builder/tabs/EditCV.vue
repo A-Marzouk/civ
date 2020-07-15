@@ -10,12 +10,12 @@
 			<span @click="updateIframe" id="updateIframe"></span>
 
 
-			<v-app class="preview-action-row">
-				<div>
-					Preview auto-update
-				</div>
-				<v-switch v-model="cvAutoUpdate"></v-switch>
-			</v-app>
+			<!--<v-app class="preview-action-row">-->
+				<!--<div>-->
+					<!--Preview auto-update-->
+				<!--</div>-->
+				<!--<v-switch v-model="cvAutoUpdate"></v-switch>-->
+			<!--</v-app>-->
 
 			<div class="cv-content-preview-wrapper">
 				<div class="cv-content-preview">
@@ -310,7 +310,7 @@ justify-content: flex-start;
 	.vue-friendly-iframe{
 		iframe{
 			width:100%;
-			min-height:800px;
+			min-height:1400px;
 		}
 	}
 </style>

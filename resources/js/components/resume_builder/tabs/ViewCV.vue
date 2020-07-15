@@ -177,12 +177,7 @@
               </div>
               <div class="cv-preview-theme-wrapper">
                 <div class="cv-preview-theme">
-                  <component
-                    :is="userTheme"
-                    v-if="user.personal_info"
-                    :user="user"
-                    :is_preview="false"
-                  ></component>
+                  <vue-friendly-iframe :src="themeUrl" @load="onLoad"></vue-friendly-iframe>
                 </div>
               </div>
             </div>
@@ -282,7 +277,9 @@ export default {
         { id: 7, title: "Motion Designer", count: 19 },
         { id: 8, title: "Database Specialist", count: 16 },
         { id: 9, title: "Big Data", count: 75 }
-      ]
+      ],
+      baseUrl:'',
+      cvAutoUpdate: true
     };
   },
   computed: {
@@ -294,7 +291,15 @@ export default {
       if (code) {
         return this.importComponent(code);
       }
+    },
+  themeUrl:{
+    get() {
+      return this.baseUrl + this.$store.state.user.username;
+    },
+    set(newValue) {
+      this.baseUrl = newValue;
     }
+  }
   },
   methods: {
     importComponent(path) {
@@ -313,6 +318,7 @@ export default {
         .then(response => {
           this.user.theme_id = theme_id;
           this.setActiveTheme(theme_id);
+          this.updateIframe();
           this.$store.dispatch("flyingNotification");
         })
         .catch(error => {
@@ -344,6 +350,32 @@ export default {
           this.user.theme = theme;
         }
       });
+    },
+    getThemeUrl(){
+      // refresh iframe src:
+      this.baseUrl =  '';
+      setTimeout(() => {
+        this.setBaseURL();
+      }, 0)
+
+    },
+    setBaseURL() {
+      let getUrl = window.location;
+      this.baseUrl = getUrl.protocol + "//" + getUrl.host + "/";
+    },
+    onLoad(){
+      // remove the spinner loader.
+
+
+    },
+    updateIframe(){
+      console.log('Update');
+      if(!this.cvAutoUpdate){
+        return;
+      }
+      setTimeout(() => {
+        this.getThemeUrl();
+      },0);
     }
   },
   mounted() {
@@ -351,6 +383,7 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
+    this.setBaseURL();
   }
 };
 </script>
@@ -790,4 +823,11 @@ $mainBlue: #001ce2;
   }
 }
 
+/* I frame styling */
+.vue-friendly-iframe{
+  iframe{
+    width:100%;
+    min-height:1400px;
+  }
+}
 </style>
