@@ -648,7 +648,7 @@ $mainBlue: #001ce2;
         right: -1px;
       }
       @media screen and (max-width: 599px) {
-        top: -35px;
+        top: -33px;
         right: 0;
       }
 
