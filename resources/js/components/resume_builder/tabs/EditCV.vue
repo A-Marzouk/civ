@@ -113,46 +113,10 @@ $disabledColor: #9f9e9e;
 @import "../../../../sass/media-queries";
 
 .edit-cv {
-	.preview-action-row{
-		display: flex;
-		justify-content: space-between;
-		flex-direction: row;
-		margin-top: 40px;
-		height: 50px;
 
-		font-style: normal;
-		font-weight: 500;
-		font-size: 18px;
-		line-height: 22px;
-		color: #888DB1;
-
-		padding-right: 30px;
-		@include lt-sm{
-			padding-right: 15px;
-		}
-
-		.switch{
-			display: flex;
-			align-items: center;
-
-			.text{
-				margin-right:10px;
-			}
-		}
-		.refresh{
-			display: flex;
-			align-items: center;
-			img{
-				margin-left:10px;
-			}
-			&:hover{
-				cursor: pointer;
-			}
-		}
-	}
 
 	.edit-cv-content {
-		padding: 40px 20px 20;
+		padding: 40px 20px;
 	}
 
 	@include gt-xs {
@@ -330,8 +294,70 @@ justify-content: flex-start;
 </style>
 
 <style lang="scss">
+	@import "../../../../sass/media-queries";
+
 	.v-application--wrap{
 		min-height: 450px !important;
+	}
+
+	.preview-action-row{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-direction: row;
+		margin-top: 40px;
+		height: 50px;
+
+		font-style: normal;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 22px;
+		color: #888DB1 !important;
+
+		padding-right: 30px;
+		@include lt-sm{
+			font-size: 14px;
+			padding-right: 24px;
+			padding-left: 24px;
+		}
+
+		.switch{
+			display: flex;
+			align-items: center;
+
+
+			@include lt-sm{
+				flex-wrap: wrap;
+				justify-content :center;
+				.v-input--selection-controls.v-input--switch{
+					margin-top: 0 !important;
+					padding-top: 0 !important;
+					.v-input__control{
+						height: 28px !important;
+						.v-input__slot{
+							margin-bottom: 0 !important;
+						}
+					}
+				}
+			}
+			.text{
+				margin-right:10px;
+			}
+		}
+		.refresh{
+			display: flex;
+			align-items: center;
+			@include lt-sm{
+				flex-wrap: wrap;
+				justify-content :center;
+			}
+			img{
+				margin-left:10px;
+			}
+			&:hover{
+				cursor: pointer;
+			}
+		}
 	}
 
 	/* I frame styling */
