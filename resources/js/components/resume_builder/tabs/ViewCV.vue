@@ -15,7 +15,7 @@
             height="60"
           >
             <template slot="append">
-              <v-btn class="eye-btn ml-n7 mr-4 mt-n2" depressed>
+              <v-btn class="eye-btn ml-n12 mr-4 mt-n2" depressed>
                 <img width="35.59" height="35" src="/icons/count-icon.svg" alt="icon" />
               </v-btn>
             </template>
