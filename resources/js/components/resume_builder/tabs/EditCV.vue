@@ -9,6 +9,14 @@
 
 			<span @click="updateIframe" id="updateIframe"></span>
 
+
+			<v-app class="preview-action-row">
+				<div>
+					Preview auto-update
+				</div>
+				<v-switch v-model="cvAutoUpdate"></v-switch>
+			</v-app>
+
 			<div class="cv-content-preview-wrapper">
 				<div class="cv-content-preview">
 					<div class="cv-preview-link">
@@ -36,58 +44,9 @@ export default {
 	},
 
 	data: () => ({
-		asideSections: [
-			{
-				name: "profile",
-				icon: null
-			},
-			{
-				name: "links",
-				icon: null
-			},
-			{
-				name: "work-experience",
-				icon: null
-			},
-			{
-				name: "education",
-				icon: null
-			},
-			{
-				name: "skills",
-				icon: null
-			},
-			{
-				name: "portfolio",
-				icon: null
-			},
-			{
-				name: "achievements",
-				icon: null
-			},
-			{
-				name: "hobbies",
-				icon: null
-			},
-			{
-				name: "audio-video",
-				icon: null
-			},
-			{
-				name: "imports",
-				icon: null
-			},
-			{
-				name: "references",
-				icon: null
-			},
-			{
-				name: "pay-availability",
-				icon: null
-			}
-		],
 		activeTab: "profile",
-		baseUrl: ''
+		baseUrl: '',
+		cvAutoUpdate: false
 	}),
 
 	computed: {
@@ -132,7 +91,9 @@ export default {
 
 		},
 		updateIframe(){
-			console.log('update iframe');
+			if(!this.cvAutoUpdate){
+				return;
+			}
 			setTimeout(() => {
 				this.getThemeUrl();
 			},0);
@@ -155,6 +116,12 @@ $disabledColor: #9f9e9e;
 @import "../../../../sass/media-queries";
 
 .edit-cv {
+	.preview-action-row{
+		display: flex;
+		flex-direction: row;
+		height: 50px;
+	}
+
 	.edit-cv-content {
 		padding: 40px 20px 20;
 	}
