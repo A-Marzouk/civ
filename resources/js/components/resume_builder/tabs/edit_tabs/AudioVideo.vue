@@ -63,7 +63,7 @@
                                 </v-input>
                                 <span class="or-text">or</span>
                                 <v-text-field
-                                        class="resume-builder__input civie-input title-input"
+                                        class="resume-builder__input civie-input title-input link-input"
                                         outlined
                                         v-model="newMedia.url"
                                         :error="!!errors.url"
@@ -81,8 +81,7 @@
                                 <v-btn class="btn-record" depressed @click="currentUploadMethod = 'record' ">
                                     Record
                                 </v-btn>
-                                <v-btn class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
-                                       depressed @click="uploadMedia">
+                                <v-btn class="btn-new" depressed @click="uploadMedia">
                                     Add New
                                 </v-btn>
                             </div>
@@ -542,6 +541,10 @@
         display: flex;
         flex-direction: column;
 
+        @include lt-sm{
+            margin-top:25px;
+        }
+
         .text-inputs{
             width: 100%;
             display: flex;
@@ -551,6 +554,9 @@
 
             .transcript-input {
                 max-width: 590px;
+                @include lt-sm{
+                    max-width: 300px;
+                }
             }
 
             .title-input{
@@ -565,8 +571,24 @@
             justify-content: space-between;
             align-items: center;
 
+            @include lt-sm{
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
             .title-input{
                 max-width:300px;
+                min-width:300px !important;
+
+                @include lt-sm{
+                    margin-bottom: -18px;
+                }
+
+                &.link-input{
+                    @include lt-sm{
+                        margin-top: -18px;
+                    }
+                }
             }
 
             .or-text{
@@ -575,12 +597,15 @@
                 font-size: 16px;
                 line-height: 22px;
                 margin-top: 6px;
+                @include lt-sm{
+                    margin-left:7px;
+                }
             }
         }
 
         .btn-record {
             width: 120px;
-            height: 51px !important;
+            height: 49px !important;
             margin-top: 7px;
             display: flex;
             align-items: center;
@@ -593,6 +618,30 @@
             font-size: 18px;
             line-height: 25px;
             color: #888DB1 !important;
+
+            @include lt-sm{
+                margin-top:10px;
+            }
+        }
+
+        .btn-new {
+            width: 120px;
+            height: 49px !important;
+            margin-top: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background-color: #001CE2 !important;
+
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 25px;
+            color: white !important;
+
+            @include lt-sm{
+                margin-top:20px;
+            }
         }
     }
 
