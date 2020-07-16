@@ -1,11 +1,11 @@
 <template>
-  <div id="wrapper_theme1001">
-    <Header :currentTab="currentTab" :currentUser="currentUser" />
+	<div id="wrapper_theme1001">
+		<Header :currentTab="currentTab" :currentUser="currentUser" />
 
-    <TabsNavigation :currentTab="currentTab" @tabChanged="currentTab=$event" />
+		<TabsNavigation :currentTab="currentTab" @tabChanged="currentTab=$event" />
 
-    <TabsContent :currentTab="currentTab" />
-  </div>
+		<TabsContent :currentTab="currentTab" />
+	</div>
 </template>
 
 <script>
@@ -14,22 +14,21 @@ import TabsNavigation from "./components/TabsNavigation";
 import TabsContent from "./components/TabsContent";
 
 export default {
-  name: "resume-theme-1001",
-  props: ["user", "is_preview"],
-  components: { Header, TabsNavigation, TabsContent },
+	name: "resume-theme-1001",
 
-  data: () => {
-    return {
-      currentTab: "portfolio",
-      currentUser: this.user
-    };
-  },
-  computed: {
-    socialLinks() {
-      return this.currentUser.links.filter(link => {
-        return link.category === "social_link" ? link : false;
-      });
-    }
-  }
+	components: { Header, TabsNavigation, TabsContent },
+
+	data: () => {
+		return {
+			currentTab: "portfolio",
+			currentUser: {
+				avatar: "/images/resume_themes/theme1001/profiles/girl.jpg",
+				fullname: "Amber Salma Heard",
+				jobTitle: "UX UI Designer",
+				hourRate: 45,
+				weeklyAvailability: 45
+			}
+		};
+	}
 };
 </script>

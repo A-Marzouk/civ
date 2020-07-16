@@ -600,7 +600,6 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
@@ -631,18 +630,15 @@ export default {
     sendEmail() {},
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-      console.log(this.currentUser)
     },
     getProjectMainImage(project) {
       let mainImage = "";
-
       let images = project.images;
       images.forEach(image => {
         if (image.is_main) {
           mainImage = image;
         }
       });
-
       return mainImage.src;
     }
   }
