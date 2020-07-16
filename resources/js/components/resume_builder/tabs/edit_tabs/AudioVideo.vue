@@ -78,26 +78,23 @@
                                     </template>
                                 </v-text-field>
                                 <span class="or-text">or</span>
-                                <v-btn class="btn-record" depressed @click="currentUploadMethod = 'record' ">
+                                <v-btn class="btn-record" depressed @click="toggleRecord">
                                     Record
                                 </v-btn>
+
+                                <div class="w-100" v-if="currentUploadMethod == 'record'">
+                                    <div class="w-100 d-flex justify-content-center audio-recorder mt-3">
+                                        <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
+                                                        :show-upload-button="false"/>
+                                    </div>
+                                </div>
+
                                 <v-btn class="btn-new" depressed @click="uploadMedia">
                                     Add New
                                 </v-btn>
                             </div>
 
 
-                            <v-btn v-if="currentUploadMethod == 'record'"
-                                   class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
-                                   depressed @click="currentUploadMethod = 'upload' ">
-                                Back
-                            </v-btn>
-
-                            <div class="w-100 d-flex justify-content-center audio-recorder"
-                                 v-if="currentUploadMethod == 'record'">
-                                <audio-recorder :attempts="1" :time="3" :after-recording="recordingFinish"
-                                                :show-upload-button="false"/>
-                            </div>
 
                         </div>
                     </v-tab-item>
@@ -378,6 +375,9 @@
                 this.newMedia.type = tabName.toLowerCase();
                 this.newMedia.title = tabName;
             },
+            toggleRecord(){
+                this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
+            },
             recordingFinish(data) {
                 this.newMedia.mediaFile = data.blob;
                 // auto select the audio
@@ -544,6 +544,9 @@
         @include lt-sm{
             margin-top:25px;
         }
+        @include lt-md{
+            margin-top:25px;
+        }
 
         .text-inputs{
             width: 100%;
@@ -554,8 +557,14 @@
 
             .transcript-input {
                 max-width: 590px;
-                @include lt-sm{
+                @media only screen and (min-width: 300px) and (max-width: 768px)  {
                     max-width: 300px;
+                }
+                @media only screen and (min-width: 769px) and (max-width: 1020px)  {
+                    max-width: 350px;
+                }
+                @media only screen and (min-width: 1020px) and (max-width: 1440px)  {
+                    max-width: 550px;
                 }
             }
 
@@ -572,8 +581,12 @@
             align-items: center;
 
             @include lt-sm{
-                align-items: flex-start;
                 flex-direction: column;
+                align-items: flex-start;
+            }
+            @include lt-md{
+                flex-direction: column;
+                align-items: flex-start;
             }
 
             .title-input{
@@ -583,9 +596,19 @@
                 @include lt-sm{
                     margin-bottom: -18px;
                 }
+                @include lt-md{
+                    margin-bottom: -18px;
+                }
+
+                @include lt-lg{
+                    margin-right: 10px;
+                }
 
                 &.link-input{
                     @include lt-sm{
+                        margin-top: -18px;
+                    }
+                    @include lt-md{
                         margin-top: -18px;
                     }
                 }
@@ -598,6 +621,9 @@
                 line-height: 22px;
                 margin-top: 6px;
                 @include lt-sm{
+                    margin-left:7px;
+                }
+                @include lt-md{
                     margin-left:7px;
                 }
             }
@@ -640,6 +666,9 @@
             color: white !important;
 
             @include lt-sm{
+                margin-top:20px;
+            }
+            @include lt-md{
                 margin-top:20px;
             }
         }
