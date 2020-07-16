@@ -30,11 +30,12 @@
                                         v-model="newMedia.transcript"
                                         :error="!!errors.transcript"
                                         color="#001CE2"
-                                        label="Ttranscript"
+                                        label="Transcript"
+                                        hint="Optional"
+
                                 >
                                 </v-text-field>
                             </div>
-
                             <div class="media-inputs">
                                 <v-input
                                         class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
@@ -93,78 +94,83 @@
                                     Add New
                                 </v-btn>
                             </div>
-
-
-
                         </div>
                     </v-tab-item>
 
                     <!-- Video tab -->
                     <v-tab-item>
-                        <v-container style="width: 100%;">
-                            <v-form>
-                                <v-row align="center">
-                                    <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mb-md-0 mb-sm-0 mb-n2">
-                                        <v-input
-                                                class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
-                                                outlined
-                                                label="Upload File"
-                                                hint="(Maximum 1 files)"
-                                                height="50"
-                                                :error="!!errors.url"
-                                        >
-                                            <vue-dropzone
-                                                    class="civie-dropzone-input"
-                                                    ref="filesDropZone_1"
-                                                    id="dropzone_1"
-                                                    :options="dropzoneOptionsVideo"
-                                                    :useCustomSlot="true"
-                                                    v-on:vdropzone-file-added="handlingEvent"
+                        <div style="width: 100%;">
+                            <div class="inputs-wrapper">
+                                <div class="text-inputs">
+                                    <v-text-field
+                                            class="resume-builder__input civie-input title-input"
+                                            outlined
+                                            v-model="newMedia.title"
+                                            :error="!!errors.title"
+                                            color="#001CE2"
+                                            label="Title"
+                                    >
+                                    </v-text-field>
+                                    <v-text-field
+                                            class="resume-builder__input civie-input transcript-input"
+                                            outlined
+                                            v-model="newMedia.transcript"
+                                            :error="!!errors.transcript"
+                                            color="#001CE2"
+                                            label="Transcript"
+                                            hint="Optional"
+                                    >
+                                    </v-text-field>
+                                </div>
+                                <div class="media-inputs">
+                                    <v-input
+                                            class="resume-builder__input civie-dropzone title-input v-text-field v-text-field--outlined v-text-field--enclosed"
+                                            outlined
+                                            label="Upload File"
+                                            hint="(Maximum 1 files)"
+                                            height="50"
+                                            :error="!!errors.url"
+                                    >
+                                        <vue-dropzone
+                                                class="civie-dropzone-input"
+                                                ref="filesDropZone_1"
+                                                id="dropzone_1"
+                                                :options="dropzoneOptionsVideo"
+                                                :useCustomSlot="true"
+                                                v-on:vdropzone-file-added="handlingEvent"
 
-                                            >
-                                                <div class="dropzone-custom-content d-flex flex-row"
-                                                     style="float:left;">
-                                                    <div class="mr-5">
-                                                        <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
-                                                    </div>
-                                                    <div class="upload-text">Browse/Drag</div>
-                                                </div>
-                                            </vue-dropzone>
-                                        </v-input>
-                                    </v-col>
-                                    <v-col cols="12" class="hidden-sm-and-up mt-n12 mb-n2">
-                                        <label class="label-or">or</label>
-                                    </v-col>
-                                    <v-col xl="3" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n12">
-                                        <v-text-field
-                                                class="resume-builder__input civie-input"
-                                                outlined
-                                                v-model="newMedia.url"
-                                                :error="!!errors.url"
-                                                color="#001CE2"
                                         >
-                                            <template v-slot:prepend>
-                                                <label class="label-or hidden-xs-only">or</label>
-                                            </template>
-                                            <template v-slot:prepend-inner>
-                                                <img
-                                                        class="ml-3 mt-n1"
-                                                        src="/images/new_resume_builder/icons/main/link.svg"
-                                                />
-                                            </template>
-                                        </v-text-field>
-                                    </v-col>
-                                    <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                                        <v-btn
-                                                class="resume-builder__btn civie-btn filled btn-add-new mt-xl-1 mt-lg-1 mt-md-1 mt-sm-n8 mt-n8"
-                                                depressed
-                                                @click="uploadMedia"
-                                        >Add New
-                                        </v-btn>
-                                    </v-col>
-                                </v-row>
-                            </v-form>
-                        </v-container>
+                                            <div class="dropzone-custom-content d-flex flex-row" style="float:left;">
+                                                <div class="mr-5">
+                                                    <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
+                                                </div>
+                                                <div class="upload-text">Browse/Drag</div>
+                                            </div>
+                                        </vue-dropzone>
+                                    </v-input>
+                                    <span class="or-text">or</span>
+                                    <v-text-field
+                                            class="resume-builder__input civie-input title-input link-input"
+                                            outlined
+                                            v-model="newMedia.url"
+                                            :error="!!errors.url"
+                                            placeholder="Link URL"
+                                            color="#001CE2"
+                                    >
+                                        <template v-slot:prepend-inner>
+                                            <img
+                                                    class="ml-3 mt-n1"
+                                                    src="/images/new_resume_builder/icons/main/link.svg"
+                                            />
+                                        </template>
+                                    </v-text-field>
+                                    <v-btn class="btn-new" depressed @click="uploadMedia">
+                                        Add New
+                                    </v-btn>
+                                </div>
+                            </div>
+
+                        </div>
                     </v-tab-item>
 
                     <draggable v-if="medias" v-model="medias" @start="drag=true" @end="drag=false" class="mt-3" handle=".drag-handler">
@@ -348,9 +354,9 @@
                     addRemoveLinks: true
                 },
                 newMedia: {
-                    title: "Audio",
+                    title: "",
                     type: "audio",
-                    transcript: "audio",
+                    transcript: "",
                     url: "",
                     mediaFile: null
                 },
@@ -373,7 +379,6 @@
         methods: {
             changeTab(tabName) {
                 this.newMedia.type = tabName.toLowerCase();
-                this.newMedia.title = tabName;
             },
             toggleRecord(){
                 this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
@@ -383,12 +388,6 @@
                 // auto select the audio
                 setTimeout(() => {
                     $('.ar-records__record').click();
-
-                    // add upload button :
-                    let uploadBtn = '<img alt="upload" id="uploadRecord" src="/icons/done-record-icon.svg"/>';
-                    $('.ar-records__record').prepend(uploadBtn);
-                    $('#uploadRecord').on('click', this.uploadMedia);
-
                 }, 1000);
             },
             validateMedia() {
@@ -405,16 +404,11 @@
 
                 return file_valid || url_valid;
             },
-            handleAudioUpload() {
-                this.newMedia.mediaFile = this.$refs.audio.files[0];
-                this.uploadMedia();
-            },
             toggleMedia(media) {
                 media.is_public = !media.is_public;
                 axios.put("/api/user/media", media)
                     .then(() => {
                         this.$store.dispatch("flyingNotification");
-                        // clear file after upload.
                         this.clearMedia();
                     })
                     .catch(error => {
@@ -456,13 +450,15 @@
                     return;
                 }
                 axios.post("/api/user/media", formData, config)
-                    .then(response => {
+                    .then( (response) => {
                         response.data.data.is_public = true;
-                        this.medias.unshift(response.data.data);
+                        this.medias.push(response.data.data);
                         this.clearMedia();
+                        $("#progressBar").css("width",'0%');
                         this.$store.dispatch("flyingNotification");
                     })
-                    .catch(error => {
+                    .catch( (error) => {
+                        $("#progressBar").css("width",'0%');
                         if (typeof error.response.data === "object") {
                             this.errors = error.response.data.errors;
                         } else {
@@ -475,16 +471,20 @@
                     });
             },
             clearMedia() {
-                this.newMedia = {
-                    title: "Audio",
-                    type: "audio",
-                    transcript: "",
-                    url: "",
-                    mediaFile: null
-                };
-                this.currentUploadMethod = 'upload';
-                this.$refs.filesDropZone_0.removeAllFiles();
-                this.$refs.filesDropZone_1.removeAllFiles();
+                try {
+                    this.newMedia = {
+                        title: "",
+                        type: "audio",
+                        transcript: "",
+                        url: "",
+                        mediaFile: null
+                    };
+                    this.currentUploadMethod = 'upload';
+                    this.$refs.filesDropZone_0.removeAllFiles();
+                    this.$refs.filesDropZone_1.removeAllFiles();
+                }catch(error){
+                    console.log(error)
+                }
             },
             deleteMedia(mdeia) {
                 if (!confirm("Do you want to delete this Media file ?")) {
