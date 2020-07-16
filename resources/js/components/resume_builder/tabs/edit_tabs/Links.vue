@@ -103,7 +103,7 @@ export default {
 		linkCategory: "professional",
 		editedLink: {
 			id: "",
-			link_title: "website",
+			link_title: "Website",
 			link: "",
 			is_active: true
 		},

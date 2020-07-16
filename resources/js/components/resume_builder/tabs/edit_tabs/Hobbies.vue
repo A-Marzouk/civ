@@ -22,6 +22,7 @@
                                             label="Type"
                                             color="#001CE2"
                                             v-model="editedHobby.category"
+                                            :error="!!errors.category"
                                     >
                                         <button class="dropdown-icon icon" slot="append" @click.prevent>
                                             <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -37,6 +38,8 @@
                                             label="Name"
                                             color="#001CE2"
                                             v-model="editedHobby.title"
+                                            :error="!!errors.title"
+
                                     >
                                     </v-text-field>
                                 </v-col>

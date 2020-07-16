@@ -154,7 +154,7 @@
                   <b>URL:</b> <a :href="achievement.url">{{achievement.url}}</a>
                 </div>
                 <div class="project__skills">
-                  <b>Skills:</b> {{achievement.category}}
+                  <b>Year:</b> {{achievement.year}}
                 </div>
                 <div class="project__description">
                   <b>Description: </b>
@@ -280,7 +280,7 @@
         let formData = new FormData();
 
         $.each(this.editedAchievement, (field) => {
-          if (this.editedAchievement[field].length && field !== 'images') {
+          if (field !== 'images') {
             formData.append(field, this.editedAchievement[field]);
           }
         });
@@ -301,6 +301,7 @@
         axios.post('/api/user/achievements', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
                   if (!edit) {
+                    response.data.data.is_public = true ;
                     this.achievements.push(response.data.data);
                   } else {
                     this.achievements.forEach((achievement, index) => {
