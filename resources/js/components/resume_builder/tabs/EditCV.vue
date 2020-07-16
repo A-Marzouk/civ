@@ -116,7 +116,7 @@ $disabledColor: #9f9e9e;
 
 
 	.edit-cv-content {
-		padding: 40px 20px;
+		padding: 40px 5px;
 	}
 
 	@include gt-xs {

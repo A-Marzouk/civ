@@ -125,14 +125,10 @@
                     fab
                     elevation="0"
                   >
-                    <v-img
-                      :src="
-                        `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}Red.svg`
-                      "
-                      contain
-                      max-width="24"
-                      height="24"
-                    ></v-img>
+                    <svg-vue
+                      class="icon"
+                      :icon="Userlink.link_title.toLowerCase() + '-icon'"
+                    ></svg-vue>
                   </v-btn>
 
                   <v-btn
@@ -548,6 +544,12 @@ export default {
   border: 5px solid #f56068;
   box-sizing: border-box;
   border-radius: 50px;
+
+  .icon {
+    height: 24px;
+    width: 24px;
+    fill: #f56068;
+  }
 }
 .hire {
   background: #fbffff;
@@ -693,8 +695,6 @@ export default {
 }
 @media screen and (max-width: 699px) and (min-width: 200px) {
   .head {
-    font-family: Poppins;
-    font-style: normal;
     font-weight: 800;
     font-size: 16px;
     line-height: 24px;
