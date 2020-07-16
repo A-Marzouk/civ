@@ -578,7 +578,7 @@
 
             .title-input{
                 max-width:300px;
-                min-width:300px !important;
+                width:100%;
 
                 @include lt-sm{
                     margin-bottom: -18px;
