@@ -977,7 +977,7 @@ export default {
 //..................Skills Desktop.....................................
 // Watermark text
 .watermark-text {
-  position: absolute;
+  position: fixed;
   font-size: 10vw;
   width: 100%;
   opacity: 0.1;

@@ -210,7 +210,7 @@
                 <!-- About -->
                 <v-tab-item>
                   <div class="watermark-text text-center mt-12">About</div>
-                  <v-card flat color="transparent" tile align="center">
+                  <v-card flat color="transparent" tile align="center" style="z-index:1001;">
                     <v-row align="center" justify="center">
                       <v-col cols="12">
                         <v-card flat color="transparent" tile>
@@ -263,7 +263,7 @@
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
-                        <v-row align="center" justify="center">
+                        <v-row align="center">
                           <template v-for="(work,index) in currentUser.work_experience">
                             <v-col
                               cols="12"
@@ -312,7 +312,7 @@
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
-                      <v-row align="center" justify="center">
+                      <v-row align="center">
                         <template v-for="(education,index) in currentUser.education">
                           <v-col
                             cols="12"
@@ -373,50 +373,52 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" tile flat>
-                    <v-row align="center" justify="center">
-                      <v-col
-                        cols="12"
-                        sm="12"
-                        md="5"
-                        class="mb-12"
-                        v-for="skill in skills"
-                        :key="skill.id"
-                      >
-                        <v-card flat color="transparent" tile class="mx-auto">
-                          <v-card-text>
-                            <v-list-item>
-                              <v-list-item-avatar
-                                class="skill-circle mr-n1 mt-sm-2"
-                                style="z-index:1;"
-                              >
-                                <span>{{skill.icon_text}}</span>
-                              </v-list-item-avatar>
-                              <v-list-item-content class="mt-n6">
-                                <v-list-item-subtitle>
-                                  <v-row no-gutters>
-                                    <v-col cols="6" class="skill-title-text">
-                                      <span class="ml-2">{{ skill.title }}</span>
-                                    </v-col>
-                                    <v-col
-                                      cols="6"
-                                      align="right"
-                                      class="skill-title-text"
-                                    >{{skill.skill_value_text}}</v-col>
-                                  </v-row>
-                                </v-list-item-subtitle>
-                                <v-list-item-subtitle>
-                                  <v-progress-linear
-                                    color="#FCD259"
-                                    height="12"
-                                    rounded
-                                    :value="skill.skill_value"
-                                  ></v-progress-linear>
-                                </v-list-item-subtitle>
-                              </v-list-item-content>
-                            </v-list-item>
-                          </v-card-text>
-                        </v-card>
-                      </v-col>
+                    <v-row align="center">
+                      <template v-for="skill in currentUser.skills">
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="5"
+                          class="mb-12"
+                          :key="skill.id"
+                          v-show="skill.is_public"
+                        >
+                          <v-card flat color="transparent" tile class="mx-auto">
+                            <v-card-text>
+                              <v-list-item>
+                                <v-list-item-avatar
+                                  class="skill-circle mr-n1 mt-sm-2"
+                                  style="z-index:1;"
+                                >
+                                  <span>{{skillSubString(skill.title)}}</span>
+                                </v-list-item-avatar>
+                                <v-list-item-content class="mt-n6">
+                                  <v-list-item-subtitle>
+                                    <v-row no-gutters>
+                                      <v-col cols="6" class="skill-title-text">
+                                        <span class="ml-2">{{ skill.title }}</span>
+                                      </v-col>
+                                      <v-col
+                                        cols="6"
+                                        align="right"
+                                        class="skill-title-text"
+                                      >{{skill.percentage}}</v-col>
+                                    </v-row>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle>
+                                    <v-progress-linear
+                                      color="#FCD259"
+                                      height="12"
+                                      rounded
+                                      :value="skill.percentage"
+                                    ></v-progress-linear>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-card-text>
+                          </v-card>
+                        </v-col>
+                      </template>
                     </v-row>
                   </v-card>
                 </v-tab-item>
@@ -978,15 +980,16 @@ export default {
 //..................Skills Desktop.....................................
 // Watermark text
 .watermark-text {
-  position: absolute;
+  position: fixed;
   font-size: 18vw;
   width: 100%;
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 0;
 }
 </style>
 
