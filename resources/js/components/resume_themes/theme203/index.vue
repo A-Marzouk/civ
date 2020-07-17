@@ -114,6 +114,7 @@
                       small
                       depressed
                       class="mx-md-1 mx-sm-2 mx-1 btn-email"
+                      :href="'mailto:' + currentUser.personal_info.email"
                     >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
