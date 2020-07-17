@@ -5,25 +5,23 @@
         <v-container class>
           <v-form v-if="reference">
             <v-row align="center">
-              <v-col xl="3" :lg="windowWidth<1300?'6':'3'" md="6" sm="6" cols="12">
-                <v-select
-                  class="resume-builder__input civie-select"
-                  outlined
-                  placeholder="Select an option"
-                  :items="references"
-                  label="Referecent Type"
-                  color="#001CE2"
-                  v-model="reference.type"
-                >
-                  <button
-                    class="dropdown-icon icon ml-4"
-                    slot="append"
-                    @click="toggleSelect"
-                    style="margin-top:6px;"
-                  >
-                    <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                  </button>
-                </v-select>
+              <v-col
+                      xl="3"
+                      :lg="windowWidth<1300?'6':'3'"
+                      md="6"
+                      sm="6"
+                      cols="12"
+                      class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n6"
+              >
+                <v-text-field
+                        class="resume-builder__input civie-input"
+                        outlined
+                        color="#001CE2"
+                        :class="{'resume-builder__input--disabled': disabledInput}"
+                        :disabled="disabledInput"
+                        label="Reference Type"
+                        v-model="reference.type"
+                ></v-text-field>
               </v-col>
               <v-col
                 xl="3"

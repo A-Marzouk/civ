@@ -53,20 +53,14 @@
 
                         <div class="date-group">
                             <div class="date-input">
-                                <label for="dateFrom">Date</label>
-                                <input type="date"  v-model="newWork.date_from">
-                                <div class="error" v-if="errors.date_from">
-                                    {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                                </div>
+                                <label :class="{'error-label' : errors.date_from}">Date</label>
+                                <input type="date" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
                             </div>
                             <div class="date-input">
-                                <label for="dateTo" class="light d-flex align-items-center">
+                                <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
                                     <input type="checkbox" class="checkbox" v-model="newWork.present"> Present
                                 </label>
-                                <input type="date"  v-model="newWork.date_to" :disabled="newWork.present">
-                                <div class="error" v-if="errors.date_to">
-                                    {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
-                                </div>
+                                <input type="date" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present">
                             </div>
                         </div>
                     </div>
@@ -497,6 +491,10 @@
                                 }
                             }
 
+                            input.error-input{
+                                border: 2px solid red !important;
+                            }
+
                             input:focus{
                                 outline: none;
                             }
@@ -782,5 +780,13 @@
         @include lt-sm{
 
         }
+    }
+
+    .error-label{
+        color: red !important;
+    }
+
+    .error-input{
+        border: 1.5px solid red !important;
     }
 </style>
