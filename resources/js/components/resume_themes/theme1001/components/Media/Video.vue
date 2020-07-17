@@ -1,9 +1,9 @@
 <template>
-  <v-card class="video-tm903">
+  <v-card class="video-tm1001">
     <div ref="videoPoster">
-      <v-img class="img-video-tm903" cover :src="img" alt>
+      <v-img class="img-video-tm1001" cover :src="img" alt>
         <v-btn
-          class="b-play-tm903"
+          class="b-play-tm1001"
           color="#D4DDFF"
           height="90"
           width="90"
@@ -17,7 +17,7 @@
         </v-btn>
       </v-img>
     </div>
-    <div ref="videotm903" class="videotm903">
+    <div ref="videotm1001" class="videotm1001">
       <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
       <video width="100%" ref="videoElem" controls :src="link"></video>
     </div>
@@ -38,12 +38,12 @@ export default {
   },
   methods: {
     playVideo() {
-      this.$refs.videotm903.style.display = "block";
+      this.$refs.videotm1001.style.display = "block";
       this.$refs.videoPoster.style.display = "none";
       this.$refs.videoElem.play();
     },
     stopVideo() {
-      this.$refs.videotm903.style.display = "none";
+      this.$refs.videotm1001.style.display = "none";
       this.$refs.videoPoster.style.display = "block";
       this.$refs.videoElem.pause();
     }
@@ -52,11 +52,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.video-tm903 {
-  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
+.video-tm1001 {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+  .img-video-tm1001 {
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
 
-  .b-play-tm903 {
+    border-radius: 10px;
+  }
+
+  .b-play-tm1001 {
     left: -20%;
     top: 38%;
     @media only screen and (max-width: 597px) {
@@ -64,7 +68,7 @@ export default {
       top: 38%;
     }
   }
-  .videotm903 {
+  .videotm1001 {
     display: none;
   }
 }
