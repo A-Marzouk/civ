@@ -184,7 +184,7 @@
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.payment_info[0].available_hours}} Hours</v-card-subtitle>
+                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.availability_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
@@ -418,7 +418,7 @@
                                         cols="6"
                                         align="right"
                                         class="skill-title-text"
-                                      >{{skill.skill_value_text}}</v-col>
+                                      >{{skill.percentage}}</v-col>
                                     </v-row>
                                   </v-list-item-subtitle>
                                   <v-list-item-subtitle>
@@ -426,7 +426,7 @@
                                       color="#FCD259"
                                       height="12"
                                       rounded
-                                      :value="skill.skill_value"
+                                      :value="skill.percentage"
                                     ></v-progress-linear>
                                   </v-list-item-subtitle>
                                 </v-list-item-content>
@@ -466,6 +466,7 @@ export default {
   },
   data() {
     return {
+      currentUser: this.user,
       socialIcons: [
         { id: 1, title: "behance" },
         { id: 2, title: "dribbble" },
@@ -585,19 +586,18 @@ export default {
           icon_text: "fig"
         }
       ],
-      currentUser: this.user
     };
   },
   computed: {
     socialLinks() {
-      return this.user.links.filter(link => {
+      return this.currentUser.links.filter(link => {
         return link.category === "social_link" ? link : false;
       });
     },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
-    if (!this.user || this.is_preview) {
+    if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
 
@@ -626,13 +626,12 @@ export default {
           }
         }
       });
-
       return providerLink;
     },
     sendEmail() {},
     setDummyUser() {
-      this.user = this.$store.state.dummyUser;
-      console.log(this.user);
+      this.currentUser = this.$store.state.dummyUser;
+      console.log(this.currentUser)
     },
     getProjectMainImage(project) {
       let mainImage = "";
@@ -710,10 +709,10 @@ export default {
 }
 
 .verical-sidebar {
-  position: absolute;
+  position: fixed;
   background: #e6bf4e;
   width: 2rem;
-  height: 1000vh;
+  height: 100vh;
   z-index: 1;
   bottom: 0;
   @media screen and (max-width: 599px) {

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-container style="width: 100%">
+    <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
           <v-tab
@@ -78,6 +78,7 @@
                           <v-card v-show="skill.category === tabs[activeTab]"
                                   color="#E6E8FC"
                                   class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
+                                  :class="{'half-opacity' : !skill.is_public}"
                                   flat
                                   v-for="skill in skills"
                                   :key="skill.id"
@@ -159,7 +160,7 @@
                                     <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
                                   </v-btn>
                                 </v-col>
-                                <v-col cols="6" align="right">
+                                <v-col cols="6" align="right" class="resume-builder__action-buttons-container">
                                   <v-btn
                                           color="#F2F3FD"
                                           depressed
@@ -222,7 +223,7 @@
           </v-tab-item>
         </v-tabs-items>
       </v-card>
-    </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -308,9 +309,9 @@ export default {
           })
           .catch(error => {
             if (typeof error.response.data === "object") {
-              this.errors.new = error.response.data.errors;
+              this.errors = error.response.data.errors;
             } else {
-              this.errors.new = "Something went wrong. Please try again.";
+              this.errors = "Something went wrong. Please try again.";
             }
             this.$store.dispatch("flyingNotification", {
               message: "Error",

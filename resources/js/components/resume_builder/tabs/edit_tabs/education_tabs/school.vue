@@ -15,6 +15,7 @@
                         outlined
                         label="Institution Name"
                         color="#001CE2"
+                        :error="!!errors.university_name"
                 ></v-text-field>
                 <v-text-field
                         id="gradeTitle"
@@ -23,6 +24,7 @@
                         outlined
                         label="Title"
                         color="#001CE2"
+                        :error="!!errors.degree_title"
                 ></v-text-field>
                 <v-text-field
                         id="location"
@@ -31,6 +33,7 @@
                         outlined
                         label="Location"
                         color="#001CE2"
+                        :error="!!errors.location"
                 ></v-text-field>
                 <v-textarea
                         id="description"
@@ -39,6 +42,7 @@
                         outlined
                         label="Description"
                         color="#001CE2"
+                        :error="!!errors.description"
                 ></v-textarea>
                 <v-text-field
                         id="website"
@@ -47,27 +51,22 @@
                         outlined
                         label="Website"
                         color="#001CE2"
+                        :error="!!errors.website"
                 ></v-text-field>
                 <div class="inputs-wrapper">
                     <div class="date-group">
                         <div class="date-input">
-                            <label for="">Date</label>
-                            <input type="date"  v-model="newEducation.date_from">
-                            <div class="error" v-if="errors.date_from">
-                                {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                            </div>
+                            <label  :class="{'error-label' : errors.date_from}">Date</label>
+                            <input type="date"  :class="{'error-input' : errors.date_from}"  v-model="newEducation.date_from">
                         </div>
                         <div class="date-text">
 
                         </div>
                         <div class="date-input">
-                            <label for="" class="light d-flex align-items-center">
+                            <label  :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
                                 <input type="checkbox" class="checkbox" v-model="newEducation.present"> Present
                             </label>
-                            <input type="date"  v-model="newEducation.date_to" :disabled="newEducation.present">
-                            <div class="error" v-if="errors.date_to">
-                                {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
-                            </div>
+                            <input type="date"  :class="{'error-input' : errors.date_to}" v-model="newEducation.date_to" :disabled="newEducation.present">
                         </div>
                     </div>
                 </div>
@@ -79,6 +78,7 @@
                         placeholder="Select an option"
                         :items="institutionTypes"
                         label="Education Type"
+                        :error="!!errors.institution_type"
                 >
                     <button
                             class="dropdown-icon icon ml-4" @click.prevent
@@ -103,7 +103,7 @@
                 <div
                         v-for="education in educations"
                         class="education-item"
-                        :class="{'closed' : expandedEducationID !== education.id}"
+                        :class="{'closed' : expandedEducationID !== education.id, 'half-opacity' : !education.is_public}"
                         :key="education.id"
                 >
                     <div class="drag-handler">
@@ -740,6 +740,11 @@
                 @include lt-md {
 
                 }
+
+            }
+
+            input.error-input{
+                border: 2px solid red !important;
             }
 
             input:focus{
@@ -753,6 +758,14 @@
                 margin-right: 8px;
             }
         }
+    }
+
+    .error-label{
+        color: red !important;
+    }
+
+    .error-input{
+        border: 2px solid red !important;
     }
 
 </style>

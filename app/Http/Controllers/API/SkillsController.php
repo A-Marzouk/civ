@@ -101,7 +101,7 @@ class SkillsController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'title' => ['sometimes', 'string', 'max:255','min:3'],
+            'title' => ['sometimes', 'string', 'max:255','min:2'],
             'percentage' => ['sometimes', 'numeric','min:30', 'max:100'],
         ]);
     }

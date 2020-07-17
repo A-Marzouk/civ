@@ -316,7 +316,7 @@ body.modal-open {
 	height: 7px;
 	bottom: 0;
 	left: 0;
-	background: #1ec300;
+	background: #001ce2;
 }
 
 // import modal styles:

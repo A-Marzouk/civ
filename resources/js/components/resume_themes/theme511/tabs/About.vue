@@ -20,7 +20,7 @@
           >
             <v-img
               :src="
-                `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}.svg`
+                `/images/icons/${Userlink.link_title.toLowerCase()}-icon.svg`
               "
               contain
               max-width="24"

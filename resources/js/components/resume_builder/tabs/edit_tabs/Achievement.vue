@@ -1,6 +1,6 @@
 <template>
-  <div class="resume-builder__scroll" id="portfolio-tab">
-    <div class="data-container container">
+  <div class="main-content" id="portfolio-tab">
+    <div class="data-container pa-md-0 pa-sm-0 pa-10">
       <v-card class="view-container resume-builder__scroll">
         <v-form
                 class="grid-form"
@@ -94,7 +94,7 @@
         </v-form>
 
         <draggable class="projects-list" v-if="achievements" v-model="achievements" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-          <div class="project ml-md-4" v-for="achievement in achievements">
+          <div class="project ml-md-4" v-for="achievement in achievements" :class="{'half-opacity' : !achievement.is_public}">
             <div class="project__header">
               <v-btn
                       depressed
@@ -154,7 +154,7 @@
                   <b>URL:</b> <a :href="achievement.url">{{achievement.url}}</a>
                 </div>
                 <div class="project__skills">
-                  <b>Skills:</b> {{achievement.category}}
+                  <b>Year:</b> {{achievement.year}}
                 </div>
                 <div class="project__description">
                   <b>Description: </b>
@@ -268,7 +268,6 @@
       },
       checkMaximumFiles(){
         if (this.editedAchievement.images.length >= 1) {
-          console.log('Please, no more files...');
         }
       },
       removeFiles() {
@@ -281,7 +280,7 @@
         let formData = new FormData();
 
         $.each(this.editedAchievement, (field) => {
-          if (this.editedAchievement[field].length && field !== 'images') {
+          if (field !== 'images') {
             formData.append(field, this.editedAchievement[field]);
           }
         });
@@ -302,6 +301,7 @@
         axios.post('/api/user/achievements', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
                   if (!edit) {
+                    response.data.data.is_public = true ;
                     this.achievements.push(response.data.data);
                   } else {
                     this.achievements.forEach((achievement, index) => {
@@ -364,6 +364,13 @@
   @import '../../../../../sass/media-queries';
   .ml-custom-n12{
     margin-left: -12px;
+  }
+  .main-content{
+    @include lt-sm{
+      max-width: 94%;
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
   #portfolio-tab {
     .view-container {

@@ -13,6 +13,8 @@ Vue.use(UUID);
 
 import adminResumeBuilder from './components/resume_builder/Main';
 
+import VueFriendlyIframe from 'vue-friendly-iframe';
+Vue.use(VueFriendlyIframe);
 
 // main tabs
 import ResumeBuilderMyAccount from './components/resume_builder/tabs/MyAccount'

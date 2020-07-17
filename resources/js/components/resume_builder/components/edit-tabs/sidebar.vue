@@ -119,11 +119,11 @@ export default {
           icon: "achievement",
           label: "Achievement"
         },
-        {
-          url: "/resume-builder/edit/imports",
-          icon: "imports",
-          label: "Imports"
-        },
+        // {
+        //   url: "/resume-builder/edit/imports",
+        //   icon: "imports",
+        //   label: "Imports"
+        // },
         {
           url: "/resume-builder/edit/references",
           icon: "references",

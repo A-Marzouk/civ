@@ -1,29 +1,27 @@
 <template>
-  <v-app>
-    <v-container>
+  <v-app class="main-content">
+    <div style="width:100%;">
       <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
         <v-container class>
           <v-form v-if="reference">
             <v-row align="center">
-              <v-col xl="3" :lg="windowWidth<1300?'6':'3'" md="6" sm="6" cols="12">
-                <v-select
-                  class="resume-builder__input civie-select"
-                  outlined
-                  placeholder="Select an option"
-                  :items="references"
-                  label="Referecent Type"
-                  color="#001CE2"
-                  v-model="reference.type"
-                >
-                  <button
-                    class="dropdown-icon icon ml-4"
-                    slot="append"
-                    @click="toggleSelect"
-                    style="margin-top:6px;"
-                  >
-                    <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                  </button>
-                </v-select>
+              <v-col
+                      xl="3"
+                      :lg="windowWidth<1300?'6':'3'"
+                      md="6"
+                      sm="6"
+                      cols="12"
+                      class="mt-xl-0 mt-lg-0 mt-md-0 mt-sm-0 mt-n6"
+              >
+                <v-text-field
+                        class="resume-builder__input civie-input"
+                        outlined
+                        color="#001CE2"
+                        :class="{'resume-builder__input--disabled': disabledInput}"
+                        :disabled="disabledInput"
+                        label="Reference Type"
+                        v-model="reference.type"
+                ></v-text-field>
               </v-col>
               <v-col
                 xl="3"
@@ -213,7 +211,7 @@
           </v-form>
         </v-container>
       </v-card>
-    </v-container>
+    </div>
   </v-app>
 </template>
 
@@ -298,7 +296,6 @@ export default {
       axios
         .put("/api/user/reference", formData)
         .then(response => {
-          console.log(response.data);
           savingType === "manual"
             ? this.$store.dispatch("fullScreenNotification")
             : this.$store.dispatch("flyingNotification");
@@ -322,6 +319,14 @@ export default {
 <style scoped lang="scss">
 @import "../../../../../sass/media-queries";
 $mainBlue: #001ce2;
+.main-content{
+  @include lt-sm{
+    max-width: 94%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
 .reference-content {
   background: #fff;
   box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
