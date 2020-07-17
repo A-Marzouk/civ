@@ -313,41 +313,56 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent" tile>
-                            <v-list-item three-line>
-                              <v-list-item-icon>
-                                <img
-                                  class="work-icon"
-                                  src="/images/resume_themes/theme204/images/ellipse.png"
-                                />
-                              </v-list-item-icon>
-                              <v-list-item-content>
-                                <v-list-item-title class="custom-work-title">
-                                  <v-card
-                                    flat
-                                    color="transparent"
-                                    tile
-                                  >California Insitute of Technology</v-card>
-                                </v-list-item-title>
-                                <v-list-item-subtitle class="custom-education-subtitle">
-                                  <v-card flat color="transparent" tile style="color:#fbd76d;">
-                                    M.Sc in HCI,
-                                    <span class="ml-5">Dec 19 - Present</span>
-                                  </v-card>
-                                </v-list-item-subtitle>
-                                <v-list-item-subtitle class="mt-6">
-                                  <v-card
-                                    color="transparent"
-                                    tile
-                                    flat
-                                    class="custom-education-details"
-                                  >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
-                                </v-list-item-subtitle>
-                              </v-list-item-content>
-                            </v-list-item>
-                          </v-card>
-                        </v-col>
+                        <template v-for="(education,index) in currentUser.education">
+                          <v-col
+                            cols="12"
+                            sm="12"
+                            md="6"
+                            class="mb-12"
+                            :key="index"
+                            v-show="education.is_public==1"
+                          >
+                            <v-card flat color="transparent" tile>
+                              <v-list-item three-line>
+                                <v-list-item-icon>
+                                  <img
+                                    class="work-icon"
+                                    src="/images/resume_themes/theme204/images/ellipse.png"
+                                  />
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                  <v-list-item-title class="custom-work-title">
+                                    <v-card
+                                      flat
+                                      color="transparent"
+                                      tile
+                                    >{{education.university_name}}</v-card>
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle class="custom-education-subtitle">
+                                    <v-card flat color="transparent" tile style="color:#fbd76d;">
+                                      {{ education.degree_title }},
+                                      <span class="ml-5">
+                                        {{education.date_from}} -
+                                        <span
+                                          v-if="education.present == true"
+                                        >Present</span>
+                                        <span v-else>{{education.date_to}}</span>
+                                      </span>
+                                    </v-card>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle class="mt-6">
+                                    <v-card
+                                      color="transparent"
+                                      tile
+                                      flat
+                                      class="custom-education-details"
+                                    >{{education.institution_type}}</v-card>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-card>
+                          </v-col>
+                        </template>
                       </v-row>
                     </v-container>
                   </v-card>
