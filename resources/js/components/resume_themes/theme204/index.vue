@@ -980,13 +980,13 @@ export default {
 //..................Skills Desktop.....................................
 // Watermark text
 .watermark-text {
-  position: fixed;
+  position: absolute;
   font-size: 18vw;
   width: 100%;
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
-  top: 60%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 0;
