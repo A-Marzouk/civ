@@ -177,7 +177,7 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
                   <v-card flat color="transparent" tile align="center">
-                    <v-row align="center" justify="center">
+                    <v-row align="center">
                       <v-col cols="12">
                         <masonry
                           :cols="{default: 4, 959: 1, 599: 1}"
@@ -208,7 +208,7 @@
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
-                        <v-row align="center" justify="center">
+                        <v-row align="center">
                           <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
                             <v-card flat color="transparent" tile>
                               <v-list-item three-line>
@@ -244,7 +244,7 @@
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
-                      <v-row align="center" justify="center">
+                      <v-row align="center">
                         <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
                           <v-card flat color="transparent" tile>
                             <v-list-item three-line>
@@ -285,7 +285,7 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" tile flat>
-                    <v-row align="center" justify="center">
+                    <v-row align="center">
                       <v-col
                         cols="12"
                         sm="12"
