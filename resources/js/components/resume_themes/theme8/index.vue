@@ -377,7 +377,7 @@ export default {
       return "social_icon";
     },
     formatSalary (salary, currency) {
-      return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(salary)
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(salary)
     },
 
     skillsBar() {

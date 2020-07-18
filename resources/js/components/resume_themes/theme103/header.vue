@@ -63,7 +63,7 @@ export default {
         formatedSalary: function () {
             const { salary, currency } = this.currentUser.payment_info[this.paymentSelected_Idx]
 
-            return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(salary)
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(salary)
         }
     },
     mounted () {}
