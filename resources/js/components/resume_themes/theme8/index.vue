@@ -121,8 +121,7 @@
                   v-show="payment_Info.is_public"
                 >
                   <span class="title" v-if="paymentInfo == index">
-                    $ {{ payment_Info.salary }}
-                    {{ payment_Info.currency.toUpperCase() }}
+                    {{ formatSalary(payment_Info.salary, payment_Info.currency.toUpperCase() ) }}
                   </span>
                 </div>
               </div>
@@ -278,7 +277,7 @@
         >
           <div class="about-me">
             <div class="about-title">About me</div>
-            <div class="about-text">{{ currentUser.personal_info.about }}</div>
+            <vue-markdown class="about-text">{{ currentUser.personal_info.about }}</vue-markdown>
           </div>
           <div class="contact">
             <div class="contact-title">Contact</div>
@@ -294,12 +293,14 @@
 
 <script>
 import Slick from "vue-slick";
+import VueMarkdown from 'vue-markdown';
 
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
   components: {
-    Slick
+    Slick,
+    'vue-markdown': VueMarkdown
   },
   data() {
     return {
@@ -374,6 +375,9 @@ export default {
         return string.toLowerCase();
       }
       return "social_icon";
+    },
+    formatSalary (salary, currency) {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(salary)
     },
 
     skillsBar() {
