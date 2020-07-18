@@ -33,34 +33,16 @@
                         </transition>
                         <div class="theme-aside hideOnTablet">
                             Follow me - 
-                            <a href="javascript:;">
-                                Dribble
-                            </a>
-                            <a href="javascript:;">
-                                LinkedIn
-                            </a>
-                            <a href="javascript:;">
-                                Instagram
-                            </a>
-                            <a href="javascript:;">
-                                Behance
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + i">
+                                {{ link.link_title }}
                             </a>
                         </div>
 
                         <div class="theme-aside showOnTablet hideOnMobile">
                             Social links
                             <span></span>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + '-' + i">
+                                <font-awesome-icon :icon="['fab', link.link_title.toLowerCase()]"></font-awesome-icon>
                             </a>
                         </div>
 
@@ -299,10 +281,11 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
         height: 20px;
         z-index: 5;
         transform: rotateZ(-90deg);
+	    transform-origin: right;
         align-items: center;
         position: absolute;
-        top: 365px;
-        right: -115px;
+        top: 300px;
+        right: 45px;
         background: transparent;
 
         &.showOnTablet {
@@ -311,8 +294,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
 
         a {
             height: 14px;
-            display: block;
-            margin: 7px;
+            display: flex;
+	        align-items: center;
+            margin: 0 7px;
             color: $mainColor;
             position: relative;
 
@@ -320,7 +304,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                 content: "/";
                 position: absolute;
                 right: -8px;
-                bottom: -10px;
+                bottom: -6px;
             }
 
             &:last-child {

@@ -1,62 +1,19 @@
 <template>
     <div class="container education-flex">
-        <div class="education-item">
+        <div class="education-item" v-for="(educationItem, i) in currentUser.education" :key="educationItem.university_name + i" >
             <div class="education-header">
                 <div class="education-icon">
                     <img src="/images/resume_themes/theme103/education-icon.png" />
                 </div>
-                <div class="date">2014 - 2019</div>
-                <h2 class="college-name">Simon Bolivar University</h2>
+                <div class="date">
+		    {{ educationItem.date_from.split('-')[0] }} - {{ educationItem.present ? 'Now' : educationItem.date_to.split('-')[0] }}
+		</div>
+                <h2 class="college-name">{{ educationItem.university_name }}</h2>
             </div>
             <div class="education-body">
-                <div class="grade-title">Computing and Statistic Mathemathics</div>
+                <div class="grade-title">{{ educationItem.degree_title }}</div>
                 <div class="education-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="education-item">
-            <div class="education-header">
-                <div class="education-icon">
-                    <img src="/images/resume_themes/theme103/education-icon.png" />
-                </div>
-                <div class="date">2014 - 2019</div>
-                <h2 class="college-name">Simon Bolivar University</h2>
-            </div>
-            <div class="education-body">
-                <div class="grade-title">Computing and Statistic Mathemathics</div>
-                <div class="education-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="education-item">
-            <div class="education-header">
-                <div class="education-icon">
-                    <img src="/images/resume_themes/theme103/education-icon.png" />
-                </div>
-                <div class="date">2014 - 2019</div>
-                <h2 class="college-name">Simon Bolivar University</h2>
-            </div>
-            <div class="education-body">
-                <div class="grade-title">Computing and Statistic Mathemathics</div>
-                <div class="education-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="education-item">
-            <div class="education-header">
-                <div class="education-icon">
-                    <img src="/images/resume_themes/theme103/education-icon.png" />
-                </div>
-                <div class="date">2014 - 2019</div>
-                <h2 class="college-name">Simon Bolivar University</h2>
-            </div>
-            <div class="education-body">
-                <div class="grade-title">Computing and Statistic Mathemathics</div>
-                <div class="education-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
+		    {{ educationItem.description }}
                 </div>
             </div>
         </div>
@@ -65,6 +22,9 @@
 
 <script>
 export default {
+    props: [
+	'currentUser'
+    ],
     data: () => ({
 
     })
