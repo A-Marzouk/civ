@@ -273,7 +273,7 @@
                                       <v-tab-item v-for="n in 3" :key="n">
                                         <div class="hire-me-subtitle">Rate $ USD</div>
                                         <div
-                                          class="hire-me-title hire-me-frequency-active"
+                                          class="hire-me-title hire-me-frequency-active mt-2"
                                         >{{currentUser.payment_info.available_hours}}$</div>
                                       </v-tab-item>
                                     </v-tabs-items>
@@ -316,7 +316,7 @@
                                       <v-tab-item v-for="n in 3" :key="n">
                                         <div class="hire-me-subtitle">Availibilty Hourly</div>
                                         <div
-                                          class="hire-me-title hire-me-frequency-active"
+                                          class="hire-me-title hire-me-frequency-active mt-2"
                                         >{{currentUser.payment_info.salary}}$</div>
                                       </v-tab-item>
                                     </v-tabs-items>
