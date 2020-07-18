@@ -1721,6 +1721,10 @@ $tab_FourColor: #4285f4;
   @media screen and (max-width: 959px){
     max-width: 600px !important;
   }
+  @media screen and (max-width: 599px){
+    width: 80%;
+    max-height: 165px !important;
+  }
   .poster-video {
     position: absolute;
     z-index: 2;
