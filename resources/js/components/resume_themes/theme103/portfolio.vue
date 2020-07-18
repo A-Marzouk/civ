@@ -2,7 +2,7 @@
     <div class="container">
         <div class="portfolio-grid">
             <div v-for="(project, index) in currentUser.projects" class="portfolio-item" :key="'project-' + index">
-                <a :href="project.link">
+                <a :href="project.link" target="_blank">
                     <img :src="project.images[0].src" :alt="project.desctiption + project.skills">
                     <div class="content">
                         <h2 class="title">{{ project.name }}</h2>
