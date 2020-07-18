@@ -67,7 +67,7 @@
                                   v-show="item.is_active"
                                 >
                                   <img
-                                    width="15"
+                                    :width="item.title == 'map-markup'?11:15"
                                     :src="`/images/resume_themes/theme204/social_icons/${item.link_title.toLowerCase()}.webp`"
                                   />
                                 </v-btn>
