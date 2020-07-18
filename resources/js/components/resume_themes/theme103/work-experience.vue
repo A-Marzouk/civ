@@ -65,6 +65,9 @@
 
 <script>
 export default {
+    props: [
+        'currentUser'
+    ],
     data: () => ({
 
     })

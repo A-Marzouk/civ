@@ -55,3 +55,7 @@ Vue.use(VueMasonryPlugin)
 //vue agile
 import VueAgile from 'vue-agile'
 Vue.use(VueAgile)
+
+// vue markdown
+import VueMarkdown from 'vue-markdown'
+Vue.use(VueMarkdown);
