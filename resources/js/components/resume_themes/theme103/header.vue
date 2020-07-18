@@ -8,13 +8,9 @@
                 </div>
 
                 <div class="user-data">
-                    <div class="name">José Daniel Quintero</div>
-                    <div class="profession">Fullstack Developer</div>
-                    <ul class="speciallity">
-                        <li class="item">Node js</li>
-                        <li class="item">React js</li>
-                        <li class="item">Laravel</li>
-                    </ul>
+                    <div class="name">{{ currentUser.personal_info.full_name }}</div>
+                    <div class="profession">{{ currentUser.personal_info.designation }}</div>
+                    <div class="overview">{{ currentUser.personal_info.overview }}</div>
                 </div>
 
                 <div class="more-icon">
@@ -35,12 +31,12 @@
 
                 <div class="payment-data">
                     <div class="hourly-rate">
-                        $15
-                        <small>Hourly rate</small>
+                        {{ formatedSalary }}
+                        <small>{{ currentUser.payment_info[paymentSelected_Idx].salary_frequency }} rate</small>
                     </div>
                     <div class="hourly-availability">
-                        40Hrs
-                        <small>Weekly Availability</small>
+                        {{ currentUser.availability_info[availabilitySelected_Idx].available_hours }}Hrs
+                        <small>{{ currentUser.availability_info[availabilitySelected_Idx].available_hours_frequency }} Availability</small>
                     </div>
 
                     <button class="hire-me-btn">
@@ -55,9 +51,22 @@
 
 <script>
 export default {
-    data: () => ({
-        showMore: false
-    })
+    props:[
+        'currentUser'
+    ],
+    data: (vm) => ({
+        showMore: false,
+        paymentSelected_Idx: 0, // Index of payment rate choice
+        availabilitySelected_Idx: 0 // Index of available hours choice
+    }),
+    computed: {
+        formatedSalary: function () {
+            const { salary, currency } = this.currentUser.payment_info[this.paymentSelected_Idx]
+
+            return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 0, minimumFractionDigits: 0 }).format(salary)
+        }
+    },
+    mounted () {}
 }
 </script>
 
@@ -399,45 +408,8 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                 }
 
-                .speciallity {
-                    display: flex;
+                .overview {
                     padding: 0;
-                    
-                    .item {
-                        margin-right: 40px;
-                        position: relative;
-
-                        &:last-child {
-                            margin-right: 0;
-
-                            &::after {
-                                display: none;
-                            }
-                        }
-
-                        &::after {
-                            content: "";
-                            position: absolute;
-                            width: 7px;
-                            height: 7px;
-                            background: $mainColor;
-                            border-radius: 50%;
-                            right: -20px;
-                            top: calc(50% - 3.5px);
-                        }
-
-                        @media (max-width: 1200px) {
-
-                            &::after {
-                                height: 5px;
-                                width: 5px;
-                            }
-                        }
-                    }
-
-                    @media (max-width: 780px) {
-                        flex-wrap: wrap;
-                    }
                 }
 
                 @media (max-width: 1400px) {
@@ -469,9 +441,9 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         margin-bottom: 18px;
                     }
 
-                    .speciallity {
-                        display: none;
-                    }
+                    // .overview {
+                    //     display: none;
+                    // }
                 }
             }
         }
