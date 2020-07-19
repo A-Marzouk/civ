@@ -2,7 +2,7 @@
   <v-app style="width:100%;">
     <div class="triangle-top-left"></div>
     <div class="verical-sidebar"></div>
-    <v-container ma-0 pa-0 fluid style="max-width:100% !important;">
+    <v-container ma-0 pa-0 fluid style="max-width:100% !important;" v-if="currentUser">
       <!-- Header Row -->
       <v-row no-gutters>
         <v-col cols="12">
@@ -20,13 +20,18 @@
                           <v-list-item two-line class="profile-list">
                             <v-list-item-content>
                               <v-list-item-title class="profile-title">
-                                <v-card class="pa-1" flat color="transparent" tile>Carla Pipin Ranga</v-card>
+                                <v-card
+                                  class="pa-1"
+                                  flat
+                                  color="transparent"
+                                  tile
+                                >{{currentUser.personal_info.full_name}}</v-card>
                               </v-list-item-title>
                               <v-list-item-title class="mt-n2">
                                 <v-card flat color="transparent" tile class="pa-1">
                                   <span
                                     class="profile-subtitle"
-                                  >Web Ui/Ux Designer, Graphiс Designer</span>
+                                  >{{currentUser.personal_info.designation}}</span>
                                 </v-card>
                               </v-list-item-title>
                               <v-list-item-subtitle class="ml-n1 hidden-sm-and-down">
@@ -56,6 +61,7 @@
                               small
                               depressed
                               class="mx-md-1 mx-sm-2 btn-email"
+                              :href="'mailto:' + currentUser.personal_info.email"
                             >
                               <v-icon class="icon-email">mdi-email</v-icon>
                             </v-btn>
@@ -89,7 +95,7 @@
                       small
                       class="mx-md-1 mx-sm-2 mx-1 my-5 social-btn"
                       depressed
-                      v-for="item in socialIconsTablet"
+                      v-for="item in socialIcons"
                       :key="item.id"
                     >
                       <img width="15" :src="getSocialIcon(item.title)" />
@@ -106,12 +112,18 @@
                         small
                         class="mx-md-1 mx-sm-2 social-btn"
                         depressed
-                        v-for="item in socialIcons"
-                        :key="item.id"
+                        v-for="item in socialLinks"
+                        :key="item.id + '_link'"
+                        target="_blank"
+                        v-show="item.is_active"
                       >
-                        <img
+                        <!-- <img
                           :width="item.title == 'map-markup'?11:16"
                           :src="getSocialIcon(item.title)"
+                        />-->
+                        <img
+                          :width="item.title == 'map-markup'?11:16"
+                          :src="`/images/resume_themes/theme204/social_icons/${item.link_title.toLowerCase()}.webp`"
                         />
                       </v-btn>
                     </v-card-text>
@@ -161,12 +173,7 @@
                         <v-card flat color="transparent" tile>
                           <div class="about-title">About</div>
                           <br />
-                          <div class="about-detail">
-                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                            I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                            <br />
-                            <br />I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                          </div>
+                          <div class="about-detail">{{currentUser.personal_info.about}}</div>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -177,24 +184,29 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Portfolio</div>
                   <v-card flat color="transparent" tile align="center">
-                    <v-row align="center" justify="center">
+                    <v-row align="center">
                       <v-col cols="12">
                         <masonry
                           :cols="{default: 4, 959: 1, 599: 1}"
                           :gutter="{default: '30px', 700: '15px'}"
                         >
-                          <v-card
-                            v-for="item in portfolioItems"
-                            :key="item.id"
-                            class="mb-2"
-                            align="left"
-                            flat
-                            color="transparent" tile
-                          >
-                            <v-img class="custom-portfolio-img" :src="getPortfolioItems(item.id)"></v-img>
-                            <v-card-title class="custom-portfolio-title">{{item.title}}</v-card-title>
-                            <v-card-subtitle class="custom-portfolio-subtitle">{{item.subtitle}}</v-card-subtitle>
-                          </v-card>
+                          <template v-for="item in currentUser.projects">
+                            <v-card
+                              :key="item.id"
+                              class="mb-2"
+                              align="left"
+                              flat
+                              color="transparent"
+                              tile
+                              v-show="item.is_public == 1"
+                            >
+                              <v-img class="custom-portfolio-img" :src="getProjectMainImage(item)"></v-img>
+                              <v-card-title class="custom-portfolio-title">{{item.name}}</v-card-title>
+                              <v-card-subtitle
+                                class="custom-portfolio-subtitle"
+                              >{{item.description}}</v-card-subtitle>
+                            </v-card>
+                          </template>
                         </masonry>
                       </v-col>
                     </v-row>
@@ -208,30 +220,43 @@
                   <v-card color="transparent" tile flat>
                     <v-card-text class>
                       <v-container fluid ma-0 pa-0 style="width:100%">
-                        <v-row align="center" justify="center">
-                          <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                            <v-card flat color="transparent" tile>
-                              <v-list-item three-line>
-                                <v-list-item-icon>
-                                  <img
-                                    class="work-icon"
-                                    src="/images/resume_themes/theme205/images/ellipse.png"
-                                  />
-                                </v-list-item-icon>
-                                <v-list-item-content>
-                                  <v-list-item-title class="custom-work-title">
-                                    <v-card flat color="transparent" tile>Google Inc. Introduction Google</v-card>
-                                  </v-list-item-title>
-                                  <v-list-item-subtitle class="custom-work-subtitle">
-                                    <v-card flat color="transparent" tile>User interface designer</v-card>
-                                  </v-list-item-subtitle>
-                                  <v-list-item-subtitle class="custom-work-duration mt-6">
-                                    <v-card color="transparent" tile flat>2012- Current</v-card>
-                                  </v-list-item-subtitle>
-                                </v-list-item-content>
-                              </v-list-item>
-                            </v-card>
-                          </v-col>
+                        <v-row align="center">
+                          <template v-for="(work,index) in currentUser.work_experience">
+                            <v-col
+                              cols="12"
+                              sm="12"
+                              md="6"
+                              class="mb-12"
+                              :key="index"
+                              v-show="work.is_public==1"
+                            >
+                              <v-card flat color="transparent" tile>
+                                <v-list-item three-line>
+                                  <v-list-item-icon>
+                                    <img
+                                      class="work-icon"
+                                      src="/images/resume_themes/theme204/images/ellipse.png"
+                                    />
+                                  </v-list-item-icon>
+                                  <v-list-item-content>
+                                    <v-list-item-title class="custom-work-title">
+                                      <v-card flat color="transparent" tile>{{work.company_name}}</v-card>
+                                    </v-list-item-title>
+                                    <v-list-item-subtitle class="custom-work-subtitle">
+                                      <v-card flat color="transparent" tile>{{work.job_title}}</v-card>
+                                    </v-list-item-subtitle>
+                                    <v-list-item-subtitle class="custom-work-duration mt-6">
+                                      <v-card color="transparent" tile flat>
+                                        {{work.date_from}}-
+                                        <span v-if="work.present == 1">Present</span>
+                                        <span v-else>{{work.to}}</span>
+                                      </v-card>
+                                    </v-list-item-subtitle>
+                                  </v-list-item-content>
+                                </v-list-item>
+                              </v-card>
+                            </v-col>
+                          </template>
                         </v-row>
                       </v-container>
                     </v-card-text>
@@ -244,37 +269,57 @@
                   <div class="watermark-text text-center">Education</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
-                      <v-row align="center" justify="center">
-                        <v-col cols="12" sm="12" md="6" class="mb-12" v-for="n in 4" :key="n">
-                          <v-card flat color="transparent" tile>
-                            <v-list-item three-line>
-                              <v-list-item-icon>
-                                <img
-                                  class="work-icon"
-                                  src="/images/resume_themes/theme205/images/ellipse.png"
-                                />
-                              </v-list-item-icon>
-                              <v-list-item-content>
-                                <v-list-item-title class="custom-work-title">
-                                  <v-card flat color="transparent" tile>California Insitute of Technology</v-card>
-                                </v-list-item-title>
-                                <v-list-item-subtitle class="custom-education-subtitle">
-                                  <v-card flat color="transparent" tile style="color:#fbd76d;">
-                                    M.Sc in HCI,
-                                    <span class="ml-5">Dec 19 - Present</span>
-                                  </v-card>
-                                </v-list-item-subtitle>
-                                <v-list-item-subtitle class="mt-6">
-                                  <v-card
-                                    color="transparent" tile
-                                    flat
-                                    class="custom-education-details"
-                                  >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</v-card>
-                                </v-list-item-subtitle>
-                              </v-list-item-content>
-                            </v-list-item>
-                          </v-card>
-                        </v-col>
+                      <v-row align="center">
+                        <template v-for="(education,index) in currentUser.education">
+                          <v-col
+                            cols="12"
+                            sm="12"
+                            md="6"
+                            class="mb-12"
+                            :key="index"
+                            v-show="education.is_public==1"
+                          >
+                            <v-card flat color="transparent" tile>
+                              <v-list-item three-line>
+                                <v-list-item-icon>
+                                  <img
+                                    class="work-icon"
+                                    src="/images/resume_themes/theme204/images/ellipse.png"
+                                  />
+                                </v-list-item-icon>
+                                <v-list-item-content>
+                                  <v-list-item-title class="custom-work-title">
+                                    <v-card
+                                      flat
+                                      color="transparent"
+                                      tile
+                                    >{{education.university_name}}</v-card>
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle class="custom-education-subtitle">
+                                    <v-card flat color="transparent" tile style="color:#fbd76d;">
+                                      {{ education.degree_title }},
+                                      <span class="ml-5">
+                                        {{education.date_from}} -
+                                        <span
+                                          v-if="education.present == true"
+                                        >Present</span>
+                                        <span v-else>{{education.date_to}}</span>
+                                      </span>
+                                    </v-card>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle class="mt-6">
+                                    <v-card
+                                      color="transparent"
+                                      tile
+                                      flat
+                                      class="custom-education-details"
+                                    >{{education.institution_type}}</v-card>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-card>
+                          </v-col>
+                        </template>
                       </v-row>
                     </v-container>
                   </v-card>
@@ -285,50 +330,52 @@
                 <v-tab-item>
                   <div class="watermark-text text-center">Skills</div>
                   <v-card color="transparent" tile flat>
-                    <v-row align="center" justify="center">
-                      <v-col
-                        cols="12"
-                        sm="12"
-                        md="5"
-                        class="mb-12"
-                        v-for="skill in skills"
-                        :key="skill.id"
-                      >
-                        <v-card flat color="transparent" tile class="mx-auto">
-                          <v-card-text>
-                            <v-list-item>
-                              <v-list-item-avatar
-                                class="skill-circle mr-n1 mt-sm-2"
-                                style="z-index:1;"
-                              >
-                                <span>{{skill.icon_text}}</span>
-                              </v-list-item-avatar>
-                              <v-list-item-content class="mt-n6">
-                                <v-list-item-subtitle>
-                                  <v-row no-gutters>
-                                    <v-col cols="6" class="skill-title-text">
-                                      <span class="ml-2">{{ skill.title }}</span>
-                                    </v-col>
-                                    <v-col
-                                      cols="6"
-                                      align="right"
-                                      class="skill-title-text"
-                                    >{{skill.skill_value_text}}</v-col>
-                                  </v-row>
-                                </v-list-item-subtitle>
-                                <v-list-item-subtitle>
-                                  <v-progress-linear
-                                    color="#FCD259"
-                                    height="12"
-                                    rounded
-                                    :value="skill.skill_value"
-                                  ></v-progress-linear>
-                                </v-list-item-subtitle>
-                              </v-list-item-content>
-                            </v-list-item>
-                          </v-card-text>
-                        </v-card>
-                      </v-col>
+                    <v-row align="center">
+                      <template v-for="skill in currentUser.skills">
+                        <v-col
+                          cols="12"
+                          sm="12"
+                          md="5"
+                          class="mb-12"
+                          :key="skill.id"
+                          v-show="skill.is_public"
+                        >
+                          <v-card flat color="transparent" tile class="mx-auto">
+                            <v-card-text>
+                              <v-list-item>
+                                <v-list-item-avatar
+                                  class="skill-circle mr-n1 mt-sm-2"
+                                  style="z-index:1;"
+                                >
+                                  <span>{{skillSubString(skill.title)}}</span>
+                                </v-list-item-avatar>
+                                <v-list-item-content class="mt-n6">
+                                  <v-list-item-subtitle>
+                                    <v-row no-gutters>
+                                      <v-col cols="6" class="skill-title-text">
+                                        <span class="ml-2">{{ skill.title }}</span>
+                                      </v-col>
+                                      <v-col
+                                        cols="6"
+                                        align="right"
+                                        class="skill-title-text"
+                                      >{{skill.percentage}}</v-col>
+                                    </v-row>
+                                  </v-list-item-subtitle>
+                                  <v-list-item-subtitle>
+                                    <v-progress-linear
+                                      color="#FCD259"
+                                      height="12"
+                                      rounded
+                                      :value="skill.percentage"
+                                    ></v-progress-linear>
+                                  </v-list-item-subtitle>
+                                </v-list-item-content>
+                              </v-list-item>
+                            </v-card-text>
+                          </v-card>
+                        </v-col>
+                      </template>
                     </v-row>
                   </v-card>
                 </v-tab-item>
@@ -349,9 +396,18 @@
 </template>
 <script>
 export default {
-  name: "ResumeTheme40",
+  name: "ResumeTheme205",
+  props: ["user", "is_preview"],
+  filters: {
+    capitalize: function(value) {
+      if (!value) return "";
+      value = value.toString();
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+  },
   data() {
     return {
+      currentUser: this.user,
       socialIcons: [
         { id: 1, title: "map-markup" },
         { id: 2, title: "whatsapp" },
@@ -489,12 +545,59 @@ export default {
       ]
     };
   },
+  computed: {
+    socialLinks() {
+      return this.currentUser.links.filter(link => {
+        return link.category === "social_link" ? link : false;
+      });
+    }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.user);
+  },
+
   methods: {
+    skillSubString(string) {
+      let result = string.substring(0, 2);
+      return result.toLowerCase();
+    },
     getSocialIcon(name) {
       return `/images/resume_themes/theme205/social_icons/${name}.webp`;
     },
     getPortfolioItems(id) {
       return `/images/resume_themes/theme205/portfolio/${id}.png`;
+    },
+    getProviderLink(provider) {
+      let links = this.user.links;
+      let providerLink = "";
+      links.forEach(link => {
+        if (link.category === "social_link") {
+          if (link.link_title.toLowerCase() === provider.toLowerCase()) {
+            providerLink = link.link;
+          }
+        }
+      });
+      return providerLink;
+    },
+    sendEmail() {},
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+      console.log(this.currentUser);
+    },
+    getProjectMainImage(project) {
+      let mainImage = "";
+      let images = project.images;
+      images.forEach(image => {
+        if (image.is_main) {
+          mainImage = image;
+        }
+      });
+      return mainImage.src;
     }
   }
 };
