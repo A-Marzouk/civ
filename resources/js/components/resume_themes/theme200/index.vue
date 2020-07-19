@@ -1002,10 +1002,8 @@
       <!-- n -->
       <!-- footer row -->
       <!-- Photo Zoom Dialog -->
-      <v-dialog v-model="zoomModal" max-width="800">
-        <v-card class="modal-card" color="transparent">
-          <img :src="currentImgObj != null ? getProjectMainImage(currentImgObj) : ''">
-        </v-card>
+      <v-dialog v-model="zoomModal" max-width="600" align="center" style="border-radius:50px;">
+        <img :src="currentImgObj != null ? getProjectMainImage(currentImgObj) : ''" />
       </v-dialog>
       <!-- Photo Zoom Dialog -->
     </div>
