@@ -10,7 +10,7 @@ $factory->define(Testimonial::class, function (Faker $faker) {
         'user_id' => 2,
         'name' => $faker->name,
         'company' => $faker->company,
-        'title' => $faker->text,
+        'title' => $faker->text($maxNbChars = 200),
         'description' => $faker->text,
     ];
 });
