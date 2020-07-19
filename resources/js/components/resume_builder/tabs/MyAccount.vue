@@ -2,7 +2,7 @@
     <v-app>
         <div v-if="currentUser">
 
-            <my-upload @crop-success="cropSuccess" v-model="showImageUpload" :width="300" :height="300" langType="en"></my-upload>
+            <my-upload @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></my-upload>
 
             <div id="myAccountTab" class="my-account-tab-wrapper">
                 <div class="profile-pic-row" v-if="personalInfo">
@@ -1530,4 +1530,44 @@
     .input-margin-3 input {
         margin-top: 0px !important;
     }
+</style>
+
+<style lang="scss">
+    @import "../../../../sass/media-queries";
+
+    // image crop styles not scoped
+
+    .vue-image-crop-upload{
+        .vicp-wrap{
+            width: 95%;
+            max-width: 600px;
+            height: fit-content;
+            min-height: 300px;
+
+            @include lt-sm{
+                min-height: 530px;
+            }
+
+            .vicp-close{
+                right:0 !important;
+            }
+
+            .vicp-step2{
+
+                .vicp-crop{
+                    @include lt-sm{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        .vicp-crop-right{
+                            margin-top: 40px;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
 </style>
