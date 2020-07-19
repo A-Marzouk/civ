@@ -325,13 +325,9 @@
 </template>
 
 <script>
-import monthlyPlan from "./includes/monthly_plan";
-import yearlyPlan from "./includes/yearly_plan";
 
 export default {
   name: "MyAccount",
-  components: { monthlyPlan, yearlyPlan },
-
   data() {
     return {
       priceModal: false,
