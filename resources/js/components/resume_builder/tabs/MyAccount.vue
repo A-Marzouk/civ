@@ -191,7 +191,7 @@
         </v-card-text>
         <v-card-text>
           <v-tabs-items v-model="priceTab">
-            <v-tab-item v-for="i in 2" :key="i">
+            <v-tab-item>
               <v-card-text align="center">
                 <v-row align="center" justify="center">
                   <v-col cols="12">
@@ -199,13 +199,77 @@
                   </v-col>
                   <v-col cols="12" class="mt-sm-n5 mt-n7">
                     <div class="rate-text">
-                      <span class="old-price mr-5">$25</span>
-                      <span class="new-price">$15</span>
+                      <span class="old-price mr-5">$10</span>
+                      <span class="new-price">$5</span>
                       <sub>/month</sub>
                     </div>
                   </v-col>
                   <v-col cols="12">
-                    <div class="save-text mt-n7">(Save 40%)</div>
+                    <div class="save-text mt-n7">(Save 50%)</div>
+                  </v-col>
+                </v-row>
+
+                <hr class="hr-line" />
+              </v-card-text>
+              <v-card-text>
+                <v-row align="center" v-for="(item,index) in price_options" :key="index">
+                  <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1" class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
+                    <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img" />
+                  </v-col>
+                  <v-col xl="6" lg="6" md="6" sm="6" cols="6" class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
+                    <span class="price-option">{{item}}</span>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <v-card-text align="center" class="mt-xl-0 mt-lg-n3">
+                <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
+              </v-card-text>
+              <v-card-text align="center" class="mt-n5">
+                <v-row align="center" justify="center">
+                  <v-col xl="3" lg="3" md="3" sm="3" cols="3">
+                    <form action="/subscribe" method="post" id="subscribe_form">
+                      <input type="hidden" :value="csrf_token" name="_token">
+                      <input type="hidden" :value=" priceTab === 0 ? 'monthly' : 'yearly' " name="plan">
+                    </form>
+                    <a href="javascript:void(0)" @click="subscribe" class="payment-link">
+                      <img
+                        :src="stripeHover === false ?stripeInactive  :stripeActive"
+                        @mouseover="stripeHover = true"
+                        @mouseleave="stripeHover = false"
+                        alt="Stripe Logo"
+                        class="payment-logo-stripe"
+                      />
+                    </a>
+                  </v-col>
+                  <v-col xl="3" lg="3" md="3" sm="3" cols="3">
+                    <a href="/subscribe/paypal/monthly" class="payment-link">
+                      <img
+                        :src="paypalHover == false? paypalInactive : paypalActive"
+                        @mouseover="paypalHover=true"
+                        @mouseleave="paypalHover=false"
+                        alt="Paypal Logo"
+                        class="payment-logo-paypal"
+                      />
+                    </a>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+            </v-tab-item>
+            <v-tab-item>
+              <v-card-text align="center">
+                <v-row align="center" justify="center">
+                  <v-col cols="12">
+                    <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
+                  </v-col>
+                  <v-col cols="12" class="mt-sm-n5 mt-n7">
+                    <div class="rate-text">
+                      <span class="old-price mr-5">$100</span>
+                      <span class="new-price">$50</span>
+                      <sub>/month</sub>
+                    </div>
+                  </v-col>
+                  <v-col cols="12">
+                    <div class="save-text mt-n7">(Save 50%)</div>
                   </v-col>
                 </v-row>
 
@@ -228,24 +292,24 @@
               <v-card-text align="center" class="mt-n5">
                 <v-row align="center" justify="center">
                   <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                    <a href="#" class="payment-link">
+                    <a href="javascript:void(0)" @click="subscribe" class="payment-link">
                       <img
-                        :src="stripeHover==false?stripeInactive:stripeActive"
-                        @mouseover="stripeHover=true"
-                        @mouseleave="stripeHover=false"
-                        alt="Stripe Logo"
-                        class="payment-logo-stripe"
+                              :src="stripeHover === false ?stripeInactive  :stripeActive"
+                              @mouseover="stripeHover = true"
+                              @mouseleave="stripeHover = false"
+                              alt="Stripe Logo"
+                              class="payment-logo-stripe"
                       />
                     </a>
                   </v-col>
                   <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                    <a href="#" class="payment-link">
+                    <a href="/subscribe/paypal/yearly" class="payment-link">
                       <img
-                        :src="paypalHover == false? paypalInactive : paypalActive"
-                        @mouseover="paypalHover=true"
-                        @mouseleave="paypalHover=false"
-                        alt="Paypal Logo"
-                        class="payment-logo-paypal"
+                              :src="paypalHover == false? paypalInactive : paypalActive"
+                              @mouseover="paypalHover=true"
+                              @mouseleave="paypalHover=false"
+                              alt="Paypal Logo"
+                              class="payment-logo-paypal"
                       />
                     </a>
                   </v-col>
@@ -301,11 +365,12 @@ export default {
       profile_pic_error: "",
       price_options: [
         "Online Resume",
-        "100+ Theme",
+        "20+ Theme",
         "Export PDF",
         "Visual Builder",
         "Free Domain URL"
-      ]
+      ],
+      csrf_token: $('meta[name="csrf-token"]').attr('content'),
     };
   },
   computed: {
@@ -329,6 +394,9 @@ export default {
     }
   },
   methods: {
+    subscribe() {
+      $('#subscribe_form').submit();
+    },
     clickUploadInput() {
       $("#profile_picture").click();
     },
@@ -1434,11 +1502,12 @@ $placeholder-color: #9ba1ad;
   height: 60px !important;
   border-radius: 5px !important;
   text-transform: capitalize !important;
-  font-family: "Noto Sans" !important;
+  font-family: "Noto Sans", sans-serif !important;
   font-size: 18px !important;
   font-weight: 500;
   line-height: 18px;
 }
+
 .check-img{
   @media screen and (max-width: 599px){
     width: 16px;
