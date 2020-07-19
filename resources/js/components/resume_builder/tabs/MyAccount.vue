@@ -513,6 +513,9 @@ export default {
         .then(response => {
           // changes saved pop-up
           this.$store.dispatch('flyingNotification');
+
+          // redirect user to the edit:
+            this.$router.push('/resume-builder/edit/profile');
         })
         .catch(error => {
           if (typeof error.response.data === "object") {
