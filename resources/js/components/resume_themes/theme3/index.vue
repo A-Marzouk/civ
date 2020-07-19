@@ -1916,15 +1916,15 @@
     
     .slick-dots li.slick-active button:before {
         opacity: 1;
-        color: #5289E7;
+        color: #5289E7 !important;
     }
     
     .slick-dots li.slick-active button {
-        background-color: #5289E7;
+        background-color: #5289E7 !important;
     }
     
     .slick-dots li button {
-        background-color: #DEDEDE;
+        background-color: #DEDEDE !important;
         border: none;
         width: 12px;
         height: 12px;

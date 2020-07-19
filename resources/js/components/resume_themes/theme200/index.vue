@@ -273,7 +273,7 @@
                                       <v-tab-item v-for="n in 3" :key="n">
                                         <div class="hire-me-subtitle">Rate $ USD</div>
                                         <div
-                                          class="hire-me-title hire-me-frequency-active"
+                                          class="hire-me-title hire-me-frequency-active mt-2"
                                         >{{currentUser.payment_info.available_hours}}$</div>
                                       </v-tab-item>
                                     </v-tabs-items>
@@ -316,7 +316,7 @@
                                       <v-tab-item v-for="n in 3" :key="n">
                                         <div class="hire-me-subtitle">Availibilty Hourly</div>
                                         <div
-                                          class="hire-me-title hire-me-frequency-active"
+                                          class="hire-me-title hire-me-frequency-active mt-2"
                                         >{{currentUser.payment_info.salary}}$</div>
                                       </v-tab-item>
                                     </v-tabs-items>
@@ -538,7 +538,9 @@
                       <img width="15" :src="getImgUrlIcon(item.id)" />
                     </v-btn>
                   </div>
-                  <div :class="currentTab == item.id ? 'active-mobile-tab-text':'inactive-mobile-tab-text'">{{item.title}}</div>
+                  <div
+                    :class="currentTab == item.id ? 'active-mobile-tab-text':'inactive-mobile-tab-text'"
+                  >{{item.title}}</div>
                 </div>
               </v-tab>
             </v-tabs>
@@ -585,7 +587,7 @@
                                   opacity="0.8"
                                   color="#6152CF"
                                 >
-                                  <v-btn fab small color="#ffffff">
+                                  <v-btn fab small color="#ffffff" @click="zoomPhoto(project)">
                                     <img
                                       src="/images/resume_themes/theme200/icons/overlay-icon.png"
                                     />
@@ -999,6 +1001,11 @@
       <!-- footer row -->
       <!-- n -->
       <!-- footer row -->
+      <!-- Photo Zoom Dialog -->
+      <v-dialog v-model="zoomModal" max-width="600" align="center" style="border-radius:50px;">
+        <img :src="currentImgObj != null ? getProjectMainImage(currentImgObj) : ''" />
+      </v-dialog>
+      <!-- Photo Zoom Dialog -->
     </div>
   </v-app>
 </template>
@@ -1017,6 +1024,8 @@ export default {
       currentTab: 1,
       tabRate: null,
       tabFrequency: null,
+      zoomModal: false,
+      currentImgObj: null,
       tabs: [
         { title: "Portfolio", id: 1 },
         { title: "Works", id: 2 },
@@ -1387,6 +1396,11 @@ export default {
         return arrayOfSkillImages[skill_title.toLowerCase()];
       }
       return "/images/skills_icons/skill.png";
+    },
+    zoomPhoto(obj) {
+      this.zoomModal = true;
+      this.currentImgObj = obj;
+      console.log(obj);
     }
   },
   computed: {
@@ -1434,17 +1448,16 @@ export default {
 }
 
 //mobile -tab
-.active-mobile-tab-text{
-  color:#FF5231 !important;
+.active-mobile-tab-text {
+  color: #ff5231 !important;
   font-size: 14px !important;
   font-weight: bold;
 }
 
-.inactive-mobile-tab-text{
-  color:#FFA797 !important;
+.inactive-mobile-tab-text {
+  color: #ffa797 !important;
   font-size: 12px !important;
 }
-
 
 //mobile tab
 </style>
@@ -1457,7 +1470,5 @@ export default {
 #resumeTheme200 .v-slide-group__next {
   display: none;
 }
-
-
 </style>
 

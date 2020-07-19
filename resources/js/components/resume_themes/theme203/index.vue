@@ -114,6 +114,7 @@
                       small
                       depressed
                       class="mx-md-1 mx-sm-2 mx-1 btn-email"
+                      :href="'mailto:' + currentUser.personal_info.email"
                     >
                       <v-icon class="icon-email">mdi-email</v-icon>
                     </v-btn>
@@ -157,7 +158,7 @@
                         v-show="item.is_active"
                       >
                         <img
-                          width="15"
+                          :width="item.title == 'map-markup'?11:15"
                           :src="`/images/resume_themes/theme203/social_icons/${item.link_title.toLowerCase()}.webp`"
                         />
                       </v-btn>
@@ -600,7 +601,6 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
@@ -631,18 +631,15 @@ export default {
     sendEmail() {},
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-      console.log(this.currentUser)
     },
     getProjectMainImage(project) {
       let mainImage = "";
-
       let images = project.images;
       images.forEach(image => {
         if (image.is_main) {
           mainImage = image;
         }
       });
-
       return mainImage.src;
     }
   }
