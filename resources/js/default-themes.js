@@ -103,7 +103,7 @@ if ($("#resumeTheme102").length !== 0) {
     });
 }
 
-import resumeTheme103 from "./components/resume_themes/theme103";
+import resumeTheme103 from "./components/resume_themes/theme103/index";
 if ($("#resumeTheme103").length !== 0) {
     new Vue({
         el: "#resumeTheme103",

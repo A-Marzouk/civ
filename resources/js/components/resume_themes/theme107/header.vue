@@ -402,7 +402,7 @@ $purple: #335E5E;
                         }
                     }
 
-                    .speciallity {
+                    .overview {
                         display: flex;
                         padding: 0;
                         
@@ -472,7 +472,7 @@ $purple: #335E5E;
                             margin-bottom: 18px;
                         }
 
-                        .speciallity {
+                        .overview {
                             display: none;
                         }
                     }

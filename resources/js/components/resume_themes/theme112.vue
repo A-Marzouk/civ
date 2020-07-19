@@ -34,34 +34,16 @@
                         
                         <div class="theme-aside hideOnTablet">
                             Follow me - 
-                            <a href="javascript:;">
-                                Dribble
-                            </a>
-                            <a href="javascript:;">
-                                LinkedIn
-                            </a>
-                            <a href="javascript:;">
-                                Instagram
-                            </a>
-                            <a href="javascript:;">
-                                Behance
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + i">
+                                {{ link.link_title }}
                             </a>
                         </div>
 
                         <div class="theme-aside showOnTablet hideOnMobile">
                             Social links
                             <span></span>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + '-' + i">
+                                <font-awesome-icon :icon="['fab', link.link_title.toLowerCase()]"></font-awesome-icon>
                             </a>
                         </div>
 
