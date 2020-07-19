@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="portfolio-grid">
-            <div v-for="(project, index) in currentUser.projects" class="portfolio-item" :key="'project-' + index">
+            <div v-for="(project, index) in currentUser.projects.filter(proj => proj.is_public)" class="portfolio-item" :key="'project-' + index">
                 <a :href="project.link" target="_blank">
                     <img :src="project.images[0].src" :alt="project.desctiption + project.skills">
                     <div class="content">

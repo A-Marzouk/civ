@@ -10,7 +10,7 @@
                 <div class="user-data">
                     <div class="name">{{ currentUser.personal_info.full_name }}</div>
                     <div class="profession">{{ currentUser.personal_info.designation }}</div>
-                    <div class="overview">{{ currentUser.personal_info.overview }}</div>
+                    <div v-if="currentUser.personal_info.is_overview_active" class="overview">{{ currentUser.personal_info.overview }}</div>
                 </div>
 
                 <div class="more-icon">

@@ -1,6 +1,6 @@
 <template>
     <div class="container work-flex">
-        <div class="work-item" v-for="(work, i) in currentUser.work_experience" :key="work.company_name + i">
+        <div class="work-item" v-for="(work, i) in currentUser.work_experience.filter(w => w.is_public)" :key="work.company_name + i">
             <div class="work-header">
                 <div class="work-icon">
                     <img src="/images/resume_themes/theme103/work-icon.png" />

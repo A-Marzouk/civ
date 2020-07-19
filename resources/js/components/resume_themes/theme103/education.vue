@@ -1,6 +1,6 @@
 <template>
     <div class="container education-flex">
-        <div class="education-item" v-for="(educationItem, i) in currentUser.education" :key="educationItem.university_name + i" >
+        <div class="education-item" v-for="(educationItem, i) in currentUser.education.filter(edu => edu.is_public)" :key="educationItem.university_name + i" >
             <div class="education-header">
                 <div class="education-icon">
                     <img src="/images/resume_themes/theme103/education-icon.png" />

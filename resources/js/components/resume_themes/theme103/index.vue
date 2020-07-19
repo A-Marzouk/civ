@@ -20,6 +20,7 @@
                                 v-for="(tabItem) in viewTabs"
                                 :key="tabItem"
                                 :ripple="false"
+                                :style="{ display: (tabItem === 'about-me-&-awards' && !currentUser.personal_info.is_about_active) && 'none' }"
                             >
                                 {{ formatTab(tabItem) }}
                             </v-tab>
@@ -28,7 +29,7 @@
                             <EducationTab :currentUser="currentUser" v-if="viewTabs[tab] === 'education'" />
                             <PortfolioTab :currentUser="currentUser" v-else-if="viewTabs[tab] === 'portfolio'" />
                             <WorkExperienceTab :currentUser="currentUser" v-else-if="viewTabs[tab] === 'work-experience'" />
-                            <AboutTab :currentUser="currentUser" v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
+                            <AboutTab :currentUser="currentUser" v-else-if="viewTabs[tab] === 'about-me-&-awards' && currentUser.personal_info.is_about_active" />
                             <SkillsTab :currentUser="currentUser" v-else />
                         </transition>
                         <div class="theme-aside hideOnTablet">
