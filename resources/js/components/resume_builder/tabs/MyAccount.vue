@@ -1552,6 +1552,15 @@
                 right:0 !important;
             }
 
+            .vicp-step1{
+                .vicp-operate{
+                    a{
+                        color: #001ce2;
+                        font-weight: 500;
+                    }
+                }
+            }
+
             .vicp-step2{
 
                 .vicp-crop{
@@ -1565,6 +1574,13 @@
                         }
                     }
 
+                }
+
+                .vicp-operate{
+                    a{
+                        color: #001ce2;
+                        font-weight: 500;
+                    }
                 }
             }
         }
