@@ -1057,6 +1057,7 @@
                         margin-right: 35px;
                         img {
                             min-width: 59px;
+                            width:59px;
                             height: 59px;
                         }
                     }
