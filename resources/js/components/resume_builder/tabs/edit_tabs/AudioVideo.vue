@@ -20,6 +20,7 @@
                                         outlined
                                         v-model="newMedia.title"
                                         :error="!!errors.title"
+                                        :error-messages="errors.title"
                                         color="#001CE2"
                                         label="Title"
                                 >
@@ -29,6 +30,7 @@
                                         outlined
                                         v-model="newMedia.transcript"
                                         :error="!!errors.transcript"
+                                        :error-messages="errors.transcript"
                                         color="#001CE2"
                                         label="Transcript"
                                         hint="Optional"
@@ -44,6 +46,8 @@
                                         hint="(Maximum 1 files)"
                                         height="50"
                                         :error="!!errors.url"
+                                        :error-messages="errors.url"
+
                                 >
                                     <vue-dropzone
                                             class="civie-dropzone-input"
@@ -68,6 +72,7 @@
                                         outlined
                                         v-model="newMedia.url"
                                         :error="!!errors.url"
+                                        :error-messages="errors.url"
                                         placeholder="Link URL"
                                         color="#001CE2"
                                 >
@@ -107,6 +112,7 @@
                                             outlined
                                             v-model="newMedia.title"
                                             :error="!!errors.title"
+                                            :error-messages="errors.title"
                                             color="#001CE2"
                                             label="Title"
                                     >
@@ -116,6 +122,7 @@
                                             outlined
                                             v-model="newMedia.transcript"
                                             :error="!!errors.transcript"
+                                            :error-messages="errors.transcript"
                                             color="#001CE2"
                                             label="Transcript"
                                             hint="Optional"
@@ -130,6 +137,8 @@
                                             hint="(Maximum 1 files)"
                                             height="50"
                                             :error="!!errors.url"
+                                            :error-messages="errors.url"
+
                                     >
                                         <vue-dropzone
                                                 class="civie-dropzone-input"
@@ -154,6 +163,7 @@
                                             outlined
                                             v-model="newMedia.url"
                                             :error="!!errors.url"
+                                            :error-messages="errors.url"
                                             placeholder="Link URL"
                                             color="#001CE2"
                                     >

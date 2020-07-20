@@ -21,6 +21,7 @@
                                 :disabled="false"
                                 label="Company Name"
                                 :error="!!errors.company_name"
+                                :error-messages="errors.company_name"
                                 v-model="newWork.company_name"
                         >
                         </v-text-field>
@@ -34,6 +35,7 @@
                                 :disabled="false"
                                 label="Job Ttitle"
                                 :error="!!errors.job_title"
+                                :error-messages="errors.job_title"
                                 v-model="newWork.job_title"
                         >
                         </v-text-field>
@@ -47,6 +49,7 @@
                                 :disabled="false"
                                 label="Website"
                                 :error="!!errors.website"
+                                :error-messages="errors.website"
                                 v-model="newWork.website"
                         >
                         </v-text-field>
@@ -73,6 +76,7 @@
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
                                 :error="!!errors.description"
+                                :error-messages="errors.description"
                                 v-model="newWork.description"
                                 label="Description"
                         >

@@ -16,6 +16,7 @@
                         label="Institution Name"
                         color="#001CE2"
                         :error="!!errors.university_name"
+                        :error-messages="errors.university_name"
                 ></v-text-field>
                 <v-text-field
                         id="gradeTitle"
@@ -25,6 +26,7 @@
                         label="Title"
                         color="#001CE2"
                         :error="!!errors.degree_title"
+                        :error-messages="errors.degree_title"
                 ></v-text-field>
                 <v-text-field
                         id="location"
@@ -34,6 +36,7 @@
                         label="Location"
                         color="#001CE2"
                         :error="!!errors.location"
+                        :error-messages="errors.location"
                 ></v-text-field>
                 <v-textarea
                         id="description"
@@ -43,6 +46,7 @@
                         label="Description"
                         color="#001CE2"
                         :error="!!errors.description"
+                        :error-messages="errors.description"
                 ></v-textarea>
                 <v-text-field
                         id="website"
@@ -52,6 +56,7 @@
                         label="Website"
                         color="#001CE2"
                         :error="!!errors.website"
+                        :error-messages="errors.website"
                 ></v-text-field>
                 <div class="inputs-wrapper">
                     <div class="date-group">
@@ -79,6 +84,7 @@
                         :items="institutionTypes"
                         label="Education Type"
                         :error="!!errors.institution_type"
+                        :error-messages="errors.institution_type"
                 >
                     <button
                             class="dropdown-icon icon ml-4" @click.prevent

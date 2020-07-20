@@ -11,6 +11,7 @@
             color="#001CE2"
             v-model="editedProject.name"
             :error="!!errors.name"
+            :error-messages="errors.name"
           ></v-text-field>
           <v-text-field
             id="url"
@@ -21,6 +22,7 @@
             color="#001CE2"
             v-model="editedProject.link"
             :error="!!errors.link"
+            :error-messages="errors.link"
           ></v-text-field>
           <v-textarea
             id="description"
@@ -30,6 +32,7 @@
             color="#001CE2"
             v-model="editedProject.description"
             :error="!!errors.description"
+            :error-messages="errors.description"
           ></v-textarea>
           <!-- Using v-input classes -->
           <v-input
@@ -62,6 +65,7 @@
             color="#001CE2"
             v-model="editedProject.skills"
             :error="!!errors.skills"
+            :error-messages="errors.skills"
           ></v-text-field>
           <v-text-field
             id="software"
@@ -72,6 +76,7 @@
             color="#001CE2"
             v-model="editedProject.software"
             :error="!!errors.software"
+            :error-messages="errors.software"
           ></v-text-field>
 
           <div class="col-12 d-flex flex-column">

@@ -31,6 +31,7 @@
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.name"
+                                    :error-messages="errors.name"
                                     :disabled="false"
                             ></v-text-field>
 
@@ -41,6 +42,7 @@
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.email"
+                                    :error-messages="errors.email"
                                     :disabled="canEditEmail()"
                             ></v-text-field>
 
@@ -53,6 +55,7 @@
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
+                                    :error-messages="errors.password"
                             ></v-text-field>
 
                             <v-text-field
@@ -64,6 +67,7 @@
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
+                                    :error-messages="errors.password"
                             ></v-text-field>
 
                             <div class="my-subscription">
@@ -99,6 +103,7 @@
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.username"
+                                    :error-messages="errors.username"
                             >
                                 <template slot="prepend-inner">
                                     <span class="inner-text" style="margin-top:-3px;">www.civ.ie/</span>

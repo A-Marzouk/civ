@@ -50,6 +50,7 @@
                             label="First Name"
                             v-model="personalInfo.first_name"
                             :error="!!errors.first_name"
+                            :error-messages="errors.first_name"
                             @blur="applyEdit('auto')"
                             hide-details="auto"
                             outlined
@@ -63,6 +64,7 @@
                             v-model="personalInfo.last_name"
                             :class="{'resume-builder__input--disabled': false}"
                             :error="!!errors.last_name"
+                            :error-messages="errors.last_name"
                             @blur="applyEdit('auto')"
                             hide-details="auto"
                             outlined
@@ -76,6 +78,7 @@
                             v-model="personalInfo.location"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
                             :error="!!errors.location"
+                            :error-messages="errors.location"
                             @blur="applyEdit('auto')"
                             hide-details="auto"
                             outlined
@@ -133,6 +136,7 @@
                             v-model="personalInfo.designation"
                             :class="{'resume-builder__input--disabled': false}"
                             :error="!!errors.designation"
+                            :error-messages="errors.designation"
                             outlined
                             hide-details="auto"
                             @blur="applyEdit('auto')"
@@ -146,6 +150,7 @@
                             v-model="personalInfo.nationality"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
                             :error="!!errors.nationality"
+                            :error-messages="errors.nationality"
                             hide-details="auto"
                             outlined
                             @blur="applyEdit('auto')"
@@ -190,6 +195,7 @@
                             v-model="personalInfo.hometown"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
                             :error="!!errors.hometown"
+                            :error-messages="errors.hometown"
                             hide-details="auto"
                             outlined
                             @blur="applyEdit('auto')"

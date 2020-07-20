@@ -28,6 +28,7 @@
                       v-model="editedSkill.title"
                       label="Skill Title"
                       :error="!!errors.title"
+                      :error-messages="errors.title"
                       color="#001CE2"
                     ></v-text-field>
                   </v-card>
@@ -53,6 +54,7 @@
                       v-model="editedSkill.percentage"
                       label="Skill Amount"
                       :error="!!errors.percentage"
+                      :error-messages="errors.percentage"
                       color="#001CE2"
                     ></v-text-field>
                   </v-card>
