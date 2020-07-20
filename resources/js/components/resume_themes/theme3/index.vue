@@ -1056,7 +1056,7 @@
                     .work-icon {
                         margin-right: 35px;
                         img {
-                            width: 118px;
+                            min-width: 59px;
                             height: 59px;
                         }
                     }
