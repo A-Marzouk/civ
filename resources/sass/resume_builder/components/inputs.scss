@@ -45,13 +45,33 @@
 
     // Textarea
     &.civie-textarea {
-        .v-input__slot,
-        textarea {
+        .v-input__slot, textarea {
             // input height is different to textarea
             height: 160px;
             resize: none;
         }
     }
+    &.civie-textarea {
+        .v-input__slot {
+           .v-text-field__slot{
+               overflow: visible;
+               textarea{
+                   height: 95%;
+                   margin-top: 3px !important;
+
+                   // scroll hidden
+                   overflow: auto;
+                   -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                   scrollbar-width: none;  /* Firefox */
+                   &::-webkit-scrollbar {
+                       display: none;  /* Safari and Chrome */
+                   }
+               }
+           }
+        }
+    }
+
+
 
     // Checkbox
     &.civie-checkbox > .v-input__control > {

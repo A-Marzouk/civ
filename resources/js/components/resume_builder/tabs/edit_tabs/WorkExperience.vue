@@ -157,7 +157,7 @@
                         <div class="date">
                             {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
                         </div>
-                        <article>
+                        <article class="description-text">
                             {{work.description}}
                         </article>
                     </div>
@@ -335,6 +335,10 @@
         @media screen and (min-width: 1441px) and (max-width: 1903px){
             margin-left: 50px !important;
         }
+    }
+
+    .description-text{
+
     }
 
     .work-container {
@@ -723,6 +727,7 @@
                     color: $inputTextColor;
                     margin-top: 20px;
                     overflow: auto;
+                    word-break: break-all;
                 }
             }
 
