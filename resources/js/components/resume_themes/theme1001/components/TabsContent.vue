@@ -1,6 +1,6 @@
 <template>
   <div class="tabs-content">
-    <component v-bind:is="currentTab"></component>
+    <component v-bind:is="activeTab" :currentUser="currentUser"></component>
   </div>
 </template>
 
@@ -23,8 +23,12 @@ export default {
   },
 
   props: {
-    currentTab: {
+    activeTab: {
       type: String,
+      required: true
+    },
+    currentUser: {
+      type: undefined,
       required: true
     }
   }

@@ -33,8 +33,14 @@
     </div>
 
     <div :class="{ 'experience-education': windowWidth >= 768 }">
-      <Experience v-if="activeTab === 'experience' || windowWidth >= 768" />
-      <Education v-if="activeTab === 'education' || windowWidth >= 768" />
+      <Experience
+        :work_experience="currentUser.work_experience"
+        v-if="activeTab === 'experience' || windowWidth >= 768"
+      />
+      <Education
+        :educations="currentUser.education"
+        v-if="activeTab === 'education' || windowWidth >= 768"
+      />
     </div>
   </div>
 </template>
@@ -47,7 +53,7 @@ export default {
   name: "experience-education",
 
   components: { Education, Experience },
-
+  props: ["currentUser"],
   data: () => {
     return {
       activeTab: "experience",
