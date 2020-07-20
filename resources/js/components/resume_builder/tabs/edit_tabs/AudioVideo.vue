@@ -272,45 +272,39 @@
                                    v-show="audioTab === 1 && media.type === 'video'">
                                 <!-- Video Card -->
                                 <v-card class="card-holder pa-2 mb-3 mt-3" height="auto">
-                                    <v-row justify="center">
-                                        <v-col
-                                                xl="5"
-                                                lg="5"
-                                                md="5"
-                                                sm="5"
-                                                cols="5"
-                                                class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0 drag-handler"
-                                                align="left"
-                                        >
-                                            <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
-                                                <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                                            </v-btn>
-                                        </v-col>
-
-                                        <v-col xl="7" lg="7" md="7" sm="7" cols="7" align="right"
-                                               class="action-col resume-builder__action-buttons-container">
-                                            <v-btn
-                                                    class="btn-icon civie-btn"
-                                                    depressed @click="toggleMedia(media)"
-                                            >
-                                                <svg-vue
-                                                        icon="eye-icon"
-                                                        :class="{'visible' : media.is_public}"
-                                                        class="icon"
-                                                ></svg-vue>
-                                            </v-btn>
-                                            <v-btn
-                                                    class="btn-icon civie-btn"
-                                                    @click="deleteMedia(media)"
-                                                    depressed
-                                            >
-                                                <svg-vue
-                                                        icon="trash-delete-icon"
-                                                        class="icon"
-                                                ></svg-vue>
-                                            </v-btn>
-                                        </v-col>
-                                        <v-col cols="12" class align="center">
+                                    <div class="video-item">
+                                        <div class="video-action-row">
+                                            <div class="drag-handler">
+                                                <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
+                                                    <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                                                </v-btn>
+                                            </div>
+                                            <div>
+                                                <v-col class="action-col resume-builder__action-buttons-container">
+                                                    <v-btn
+                                                            class="btn-icon civie-btn"
+                                                            depressed @click="toggleMedia(media)"
+                                                    >
+                                                        <svg-vue
+                                                                icon="eye-icon"
+                                                                :class="{'visible' : media.is_public}"
+                                                                class="icon"
+                                                        ></svg-vue>
+                                                    </v-btn>
+                                                    <v-btn
+                                                            class="btn-icon civie-btn"
+                                                            @click="deleteMedia(media)"
+                                                            depressed
+                                                    >
+                                                        <svg-vue
+                                                                icon="trash-delete-icon"
+                                                                class="icon"
+                                                        ></svg-vue>
+                                                    </v-btn>
+                                                </v-col>
+                                            </div>
+                                        </div>
+                                        <div class="video-frame">
                                             <v-card flat color="transparent" tile class="pa-2">
                                                 <video width="auto" height="auto" controls>
                                                     <source
@@ -319,8 +313,8 @@
                                                     />
                                                 </video>
                                             </v-card>
-                                        </v-col>
-                                    </v-row>
+                                        </div>
+                                    </div>
                                 </v-card>
                                 <!-- Video Card -->
                             </v-col>
@@ -721,6 +715,20 @@
         }
 
         .card-holder {
+
+            .video-item{
+                display: flex;
+                flex-direction: column;
+                .video-action-row{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .video-frame{
+                    display: flex;
+                }
+            }
+
             box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
             height: 50px;
             width: 523px;
