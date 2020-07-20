@@ -183,7 +183,7 @@
                             outlined
                             hide-details="auto"
                     >
-                        <button class="dropdown-icon icon mt-custom6 ml-3" slot="append">
+                        <button class="dropdown-icon icon" slot="append">
                             <svg-vue :icon="`dropdown-caret`"></svg-vue>
                         </button>
                     </v-select>

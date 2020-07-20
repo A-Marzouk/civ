@@ -170,7 +170,7 @@
                   height="155"
                 >
                   <vue-dropzone
-                    class="civie-dropzone-input"
+                    class="civie-dropzone-input sm-image"
                     ref="myVueDropzone"
                     id="dropzone"
                     :options="dropzoneOptions"
@@ -234,7 +234,8 @@ export default {
       dropzoneOptions: {
         url: "https://httpbin.org/post",
         thumbnailWidth: 150,
-        maxFilesize: 0.5
+        maxFilesize: 0.5,
+        addRemoveLinks: true
       },
       newTestimonial: {
         title: "",

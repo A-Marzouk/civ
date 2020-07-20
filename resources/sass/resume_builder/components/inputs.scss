@@ -174,7 +174,12 @@
                 }
             }
 
-
+            .civie-dropzone-input.sm-image{
+                .dz-preview{
+                    min-height: 160px;
+                    min-width: 165px;
+                }
+            }
         }
     }
 
