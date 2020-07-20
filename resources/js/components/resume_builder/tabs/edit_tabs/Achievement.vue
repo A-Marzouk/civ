@@ -45,7 +45,7 @@
                   hint="(Maximum 1 file)"
           >
             <vue-dropzone
-                    class="civie-dropzone-input sm-image"
+                    class="civie-dropzone-input"
                     id="dropzone"
                     :options="dropzoneOptions"
                     v-model = "editedAchievement.images"
