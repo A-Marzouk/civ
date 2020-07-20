@@ -295,6 +295,7 @@
                     arrows: false,
                     slidesToShow: 3,
                     slidesToScroll: 1,
+                    rows:1,
                     responsive: [{
                         breakpoint: 600,
                         settings: {
@@ -756,7 +757,7 @@
                 }
                 .media-btns {
                     display: flex;
-                    margin-left: 27px;
+                    margin-left: 44px;
                     @media screen and (max-width: 599px){
                         margin-left: 128px;
                     }
