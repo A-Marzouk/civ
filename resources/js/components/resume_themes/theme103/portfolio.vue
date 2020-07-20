@@ -1,12 +1,14 @@
 <template>
     <div class="container">
         <div class="portfolio-grid">
-            <div v-for="(project, index) in projects" class="portfolio-item" :class="{ isLarge: isLarge(project) }" :key="'project-' + index">
-                <img :src="project.img" alt="">
-                <div class="content">
-                    <h2 class="title">{{ project.title }}</h2>
-                    <div class="type">Web Design</div>
-                </div>
+            <div v-for="(project, index) in currentUser.projects.filter(proj => proj.is_public)" class="portfolio-item" :key="'project-' + index">
+                <a :href="project.link" target="_blank">
+                    <img :src="project.images[0].src" :alt="project.desctiption + project.skills">
+                    <div class="content">
+                        <h2 class="title">{{ project.name }}</h2>
+                        <div class="type">{{ project.skills }}</div>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -14,6 +16,7 @@
 
 <script>
 export default {
+    props: ['currentUser'],
     data: () => ({
         projects: [
             {
@@ -37,18 +40,7 @@ export default {
                 img: '/images/resume_themes/theme109/portfolio-img4.png'
             }
         ]
-    }),
-    methods: {
-        isLarge (project) {
-            let img = new Image()
-            img.src = project.img
-            img.onload = e => {
-                e.target
-            }
-
-            return img.width > img.height
-        }
-    }
+    })
 }
 </script>
 

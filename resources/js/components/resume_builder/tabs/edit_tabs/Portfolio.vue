@@ -39,7 +39,7 @@
             hint="(Maximum 5 files)"
           >
             <vue-dropzone
-              class="civie-dropzone-input sm-image"
+              class="civie-dropzone-input"
               id="dropzone"
               :options="dropzoneOptions"
               v-model="editedProject.images"

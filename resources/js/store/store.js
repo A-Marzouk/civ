@@ -304,7 +304,6 @@ export const store = new Vuex.Store({
         },
         updateActivity(state) {
             axios.post('/api/user/update-last-activity',{user_id: state.user.id}).then((response) => {
-                console.log('Activity updated.');
             }).catch((error) => {
                 console.log('Error - last activity');
             });

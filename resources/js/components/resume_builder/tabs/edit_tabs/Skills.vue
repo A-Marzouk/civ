@@ -294,6 +294,7 @@ export default {
           .post("/api/user/skills", this.editedSkill)
           .then(response => {
             if (!edit) {
+              response.data.data.is_public = true;
               let addedSkill = response.data.data;
               this.skills.push(addedSkill);
             } else {

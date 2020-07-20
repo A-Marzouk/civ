@@ -17,10 +17,6 @@ class SubscriptionController extends Controller
     }
 
     public function index(){
-        if(Auth::user()->hasRole('admin')){
-            return redirect('/workforce-admin');
-        }
-
         return view('subscription');
     }
 
