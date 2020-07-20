@@ -1,7 +1,7 @@
 <template>
 <!-- Developer: Jose Quintero -->
     <v-app id="theme103" style="width: 100%">
-        <ThemeHeader></ThemeHeader>
+        <ThemeHeader :currentUser="currentUser"></ThemeHeader>
 
         <div class="theme-body">
             <div class="wrapper">
@@ -20,47 +20,30 @@
                                 v-for="(tabItem) in viewTabs"
                                 :key="tabItem"
                                 :ripple="false"
+                                :style="{ display: (tabItem === 'about-me-&-awards' && !currentUser.personal_info.is_about_active) && 'none' }"
                             >
                                 {{ formatTab(tabItem) }}
                             </v-tab>
                         </v-tabs>
                         <transition>
-                            <EducationTab v-if="viewTabs[tab] === 'education'" />
-                            <PortfolioTab v-else-if="viewTabs[tab] === 'portfolio'" />
-                            <WorkExperienceTab v-else-if="viewTabs[tab] === 'work-experience'" />
-                            <AboutTab v-else-if="viewTabs[tab] === 'about-me-&-awards'" />
-                            <SkillsTab v-else />
+                            <EducationTab :currentUser="currentUser" v-if="viewTabs[tab] === 'education'" />
+                            <PortfolioTab :currentUser="currentUser" v-else-if="viewTabs[tab] === 'portfolio'" />
+                            <WorkExperienceTab :currentUser="currentUser" v-else-if="viewTabs[tab] === 'work-experience'" />
+                            <AboutTab :currentUser="currentUser" v-else-if="viewTabs[tab] === 'about-me-&-awards' && currentUser.personal_info.is_about_active" />
+                            <SkillsTab :currentUser="currentUser" v-else />
                         </transition>
                         <div class="theme-aside hideOnTablet">
                             Follow me - 
-                            <a href="javascript:;">
-                                Dribble
-                            </a>
-                            <a href="javascript:;">
-                                LinkedIn
-                            </a>
-                            <a href="javascript:;">
-                                Instagram
-                            </a>
-                            <a href="javascript:;">
-                                Behance
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + i">
+                                {{ link.link_title }}
                             </a>
                         </div>
 
                         <div class="theme-aside showOnTablet hideOnMobile">
                             Social links
                             <span></span>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'behance']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'facebook']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'instagram']"></font-awesome-icon>
-                            </a>
-                            <a href="javascript:;">
-                                <font-awesome-icon :icon="['fab', 'linkedin']"></font-awesome-icon>
+                            <a :href="link.link" target="_blank" v-for="(link, i) in currentUser.links.filter(l => l.category === 'social' && l.is_active)" :key="link.link_title + '-' + i">
+                                <font-awesome-icon :icon="['fab', link.link_title.toLowerCase()]"></font-awesome-icon>
                             </a>
                         </div>
 
@@ -78,14 +61,16 @@
 </template>
 
 <script>
-import EducationTab from './theme103/education'
-import WorkExperienceTab from './theme103/work-experience'
-import PortfolioTab from './theme103/portfolio'
-import AboutTab from './theme103/about'
-import SkillsTab from './theme103/skills-and-languages'
-import ThemeHeader from './theme103/header'
+import EducationTab from './education'
+import WorkExperienceTab from './work-experience'
+import PortfolioTab from './portfolio'
+import AboutTab from './about'
+import SkillsTab from './skills-and-languages'
+import ThemeHeader from './header'
 
 export default {
+    name: "theme103",
+    props: ["user", "is_preview", "currentTab"],
     components: {
         AboutTab,
         EducationTab,
@@ -94,7 +79,7 @@ export default {
         SkillsTab,
         ThemeHeader
     },
-    data: () => ({
+    data: (vm) => ({
         tab: 0,
         viewTabs: [
             'portfolio',
@@ -102,13 +87,39 @@ export default {
             'education',
             'skills-and-language',
             'about-me-&-awards'
-        ]
+        ],
+        currentUser: vm.user
     }),
     methods: {
+        /**
+         * @description
+         * Format the tab name replacing '-' for blank spaces, and capitalize all words
+         * 
+         * Ex:
+         *  my-current-tab => My Current Tab
+         * 
+         * @return {String} formatedTab
+         */
         formatTab(tab) {
             let tabArray = tab.split('-').map(t => t.charAt(0).toUpperCase() + t.slice(1))
             return tabArray.join(" ")
+        },
+        /**
+         * @description
+         * Set the currentUser from dummyUser in the store state
+         */
+        setDummyUser() {
+            this.currentUser = this.$store.state.dummyUser;
         }
+    },
+    mounted () {
+        // if there is no user or the preview is true, set dummy user
+        if (!this.currentUser || this.is_preview) {
+            this.setDummyUser();
+        }
+
+        // let user accessible in included components.
+        this.$store.dispatch("updateThemeUser", this.currentUser);
     }
 }
 </script>
@@ -116,7 +127,7 @@ export default {
 
 <style lang="scss">
 
-@import '../../../sass/media-queries';
+@import '../../../../sass/media-queries';
 @import url('https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
@@ -268,10 +279,11 @@ $purple: #0556B6;
         height: 20px;
         z-index: 5;
         transform: rotateZ(-90deg);
+	    transform-origin: right;
         align-items: center;
         position: absolute;
-        top: 365px;
-        right: -115px;
+        top: 300px;
+        right: 45px;
         background: transparent;
 
         &.showOnTablet {
@@ -280,8 +292,9 @@ $purple: #0556B6;
 
         a {
             height: 14px;
-            display: block;
-            margin: 7px;
+            display: flex;
+	        align-items: center;
+            margin: 0 7px;
             color: $mainColor;
             position: relative;
 
@@ -289,7 +302,7 @@ $purple: #0556B6;
                 content: "/";
                 position: absolute;
                 right: -8px;
-                bottom: -10px;
+                bottom: -6px;
             }
 
             &:last-child {

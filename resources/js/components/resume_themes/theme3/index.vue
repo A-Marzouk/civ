@@ -295,6 +295,7 @@
                     arrows: false,
                     slidesToShow: 3,
                     slidesToScroll: 1,
+                    rows:1,
                     responsive: [{
                         breakpoint: 600,
                         settings: {
@@ -756,7 +757,7 @@
                 }
                 .media-btns {
                     display: flex;
-                    margin-left: 27px;
+                    margin-left: 44px;
                     @media screen and (max-width: 599px){
                         margin-left: 128px;
                     }
@@ -1916,15 +1917,15 @@
     
     .slick-dots li.slick-active button:before {
         opacity: 1;
-        color: #5289E7;
+        color: #5289E7 !important;
     }
     
     .slick-dots li.slick-active button {
-        background-color: #5289E7;
+        background-color: #5289E7 !important;
     }
     
     .slick-dots li button {
-        background-color: #DEDEDE;
+        background-color: #DEDEDE !important;
         border: none;
         width: 12px;
         height: 12px;

@@ -7,8 +7,15 @@
     &.multiple-selection > .v-input__control > .v-input__slot > .v-select__slot > .v-select__selections {
         min-height: 50px !important;
         height: 50px;
-        overflow: auto;
         padding: 8px 3px 8px 3px;
+
+        // hide the scrollbar but allow scrolling.
+        overflow: auto;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;  /* Safari and Chrome */
+        }
     }
 
     &.civie-input, // Simple input
@@ -125,6 +132,13 @@
                 background: none !important;
                 height: 100%;
                 width: 100%;
+                // hide the scrollbar but allow scrolling.
+                overflow: auto;
+                -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                scrollbar-width: none;  /* Firefox */
+                &::-webkit-scrollbar {
+                    display: none;  /* Safari and Chrome */
+                }
               
                 .dropzone-custom-content {
                     position: absolute;
@@ -140,12 +154,7 @@
                 }
             }
 
-            .civie-dropzone-input.sm-image{
-                .dz-image{
-                    width:45px !important;
-                    height:45px !important;
-                }
-            }
+
         }
     }
 

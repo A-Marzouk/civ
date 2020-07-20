@@ -39,7 +39,7 @@
             hint="(Maximum 5 files)"
           >
             <vue-dropzone
-              class="civie-dropzone-input sm-image"
+              class="civie-dropzone-input"
               id="dropzone"
               :options="dropzoneOptions"
               v-model="editedProject.images"
@@ -296,7 +296,7 @@ export default {
       let formData = new FormData();
 
       $.each(this.editedProject, field => {
-        if (this.editedProject[field].length && field !== "images") {
+        if (field !== "images") {
           formData.append(field, this.editedProject[field]);
         }
       });
@@ -313,8 +313,7 @@ export default {
       formData.append("user_id", this.$store.state.user.id);
       formData.append("id", this.editedProject.id);
 
-      axios
-        .post("/api/user/projects", formData, {
+      axios.post("/api/user/projects", formData, {
           headers: { "Content-Type": "multipart/form-data" }
         })
         .then(response => {
