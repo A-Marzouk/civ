@@ -451,8 +451,8 @@
                                 position: absolute;
                                 top: -29px;
                                 letter-spacing: 0;
-                                font-weight: 500;
                                 font-size: 18px;
+                                font-weight: 400;
                                 line-height: 25px;
                                 color: #888DB1;
                                 opacity: 1;
@@ -461,23 +461,15 @@
                                     font-size: 18px;
                                     color: #888DB1;
                                 }
-
-                                @include lt-sm {
-                                    font-size: 15px;
-                                }
                             }
 
                             label.light {
-                                font-size: 12px;
+                                font-size: 18px;
                                 letter-spacing: 0;
+                                right: 0;
                                 opacity: 1;
 
-                                @include lt-lg {
-                                    font-size: 15px;
-                                }
-
                                 @include lt-md {
-                                    font-size: 11px;
                                     color: #888DB1;
                                 }
                             }
