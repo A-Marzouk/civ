@@ -94,9 +94,9 @@
               </div>
             </div>
 
-            <div>
+            <div class="d-flex mb-4">
               <v-btn
-                class="resume-builder__btn civie-btn filled ml-custom-n12"
+                class="resume-builder__btn civie-btn filled"
                 raised
                 @click="saveProject"
               >{{editedProject.id !== '' ? 'Update' : 'Add New'}}</v-btn>

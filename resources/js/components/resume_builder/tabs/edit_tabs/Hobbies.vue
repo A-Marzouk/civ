@@ -1,9 +1,6 @@
 <template>
     <v-app class="main-content">
         <div style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider>
-                <v-tab class="resume-builder__tab"> Hobbies</v-tab>
-            </v-tabs>
             <v-card
                     class="card-main-hobbies pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll hobbies-content"
                     flat

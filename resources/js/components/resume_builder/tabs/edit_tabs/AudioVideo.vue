@@ -3,7 +3,7 @@
         <div style="width:100%;">
             <v-tabs class="resume-builder__tab-bar" hide-slider>
                 <v-tab class="resume-builder__tab" v-for="tab in tabs" :key="tab" @click="changeTab(tab)">
-                    {{tab}}
+                    {{ tab === 'audio' ? 'Audio' : 'Video' }}
                 </v-tab>
             </v-tabs>
             <v-card
@@ -365,7 +365,7 @@
                     mediaFile: null
                 },
                 currentUploadMethod: 'upload',
-                tabs: ["Audio", "Video"],
+                tabs: ["audio", "video"],
                 errors: {},
                 mediaCategory: 'audio'
             };
