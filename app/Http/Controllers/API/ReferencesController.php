@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Reference;
 use App\Http\Resources\Reference as ReferenceResource;
@@ -40,6 +41,17 @@ class ReferencesController extends Controller
         $user = User::find($request->user_id);
         $reference = $user->reference;
         $reference->update($request->toArray());
+
+        if (isset($_FILES['image'])) {
+            $imagePath = Upload::referenceImage($request);
+            if($imagePath){
+                $reference->update([
+                    'image' => $imagePath['path']
+                ]);
+            }else{
+                throw new Exception('Failed to upload image');
+            }
+        }
 
         if ($reference->id){
             return new ReferenceResource($reference);
