@@ -249,6 +249,23 @@
     //         margin-left: -60px !important;
     //     }
     // }
+    @media screen and (min-width:960px) and (max-width:1263px) {
+        .availibility-tablet {
+            display: flex;
+        }
+        .btn-hire-me {
+            width: 129px;
+            font-size: 12px;
+        }
+        .hire-me-parent-tab {
+            margin-left: 10px !important;
+        }
+        .hire-card-frequency2 {
+            img {
+                margin-left: -5px !important;
+            }
+        }
+    }
     @media screen and (min-width:600px) and (max-width: 959px) {
         .availibility-tablet {
             display: inline;
@@ -573,19 +590,5 @@
     /* mobile devices */
     /* min screen devices*/
     // ipad pro
-    @media only screen and (max-width:1024px) {
-        .btn-hire-me {
-            width: 5vw;
-            font-size: 12px;
-        }
-        .hire-me-parent-tab {
-            margin-left: 10px !important;
-        }
-        .hire-card-frequency2 {
-            img {
-                margin-left: -5px !important;
-            }
-        }
-    }
     // ipad pro
 }

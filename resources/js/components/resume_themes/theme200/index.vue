@@ -195,7 +195,7 @@
                         <v-row no-gutters>
                           <!-- Only shows on tablet and dekstop version -->
                           <v-col cols="12" md="10" sm="12" class="interview-flex">
-                            <v-card flat color="transparent">
+                            <v-card flat color="transparent" class="mt-xl-0 mt-lg-0 mt-md-5 mt-sm-0 mt-0">
                               <v-card-text align="center">
                                 <v-row align="center">
                                   <v-col cols="12" md="4" class="interview-col hidden-sm-and-down">
@@ -231,7 +231,7 @@
                           <!-- Only shows on tablet desktop version -->
 
                           <!-- Only shows in desktop  -->
-                          <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
+                          <v-col cols="10" md="11" sm="12" class="hidden-md-and-down">
                             <v-card
                               flat
                               tile
