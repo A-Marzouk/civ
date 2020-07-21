@@ -2,21 +2,20 @@
   <v-app>
     <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
-        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
+        <v-tabs class="resume-builder__tab-bar" hide-slider>
           <v-tab
-            class="resume-builder__tab"
-            v-for="(tabName,i) in tabs"
-            :key="i"
-            @click="clearSkill"
-          >{{tabName.replace('_',' ')}}</v-tab>
+            class="resume-builder__tab" @click="setSkillCategory(tab)"
+            v-for="tab in tabs"
+            :key="tab"
+          >{{tab.replace('_',' ')}}</v-tab>
         </v-tabs>
       </v-card>
       <v-card
         class="card-skill-items pa-sm-5 pa-2 skills-content resume-builder__scroll"
         id="skillsContent"
       >
-        <v-tabs-items v-model="activeTab">
-          <v-tab-item v-for="(tabName,i) in tabs" :key="tabName + i">
+        <div>
+          <div>
             <v-container style="width:100%;">
               <v-row align="baseline">
                 <v-col xl="4" lg="4" md="6" sm="6" cols="12" class="mt-md-0 mt-sm-0 mt-n10">
@@ -28,6 +27,7 @@
                       v-model="editedSkill.title"
                       label="Skill Title"
                       :error="!!errors.title"
+                      :error-messages="errors.title"
                       color="#001CE2"
                     ></v-text-field>
                   </v-card>
@@ -53,6 +53,7 @@
                       v-model="editedSkill.percentage"
                       label="Skill Amount"
                       :error="!!errors.percentage"
+                      :error-messages="errors.percentage"
                       color="#001CE2"
                     ></v-text-field>
                   </v-card>
@@ -75,13 +76,14 @@
                     <v-row align="center" dense>
                       <v-col cols="12">
                         <draggable v-model="skills" @start="drag=true" @end="drag=false"  handle=".drag-handler">
-                          <v-card v-show="skill.category === tabs[activeTab]"
+                          <v-card
+                                  v-for="skill in skills"
+                                  :key="skill.id"
+                                  v-show="skill.category === skillCategory"
                                   color="#E6E8FC"
                                   class="card-skill ml-xl-10 mt-md-0 mt-sm-5 mt-5 mb-5"
                                   :class="{'half-opacity' : !skill.is_public}"
                                   flat
-                                  v-for="skill in skills"
-                                  :key="skill.id"
                           >
                             <v-card-text>
                               <!-- skill for desktop -->
@@ -220,8 +222,8 @@
                 </v-col>
               </v-row>
             </v-container>
-          </v-tab-item>
-        </v-tabs-items>
+          </div>
+        </div>
       </v-card>
     </div>
   </v-app>
@@ -241,6 +243,7 @@ export default {
       windowWidth: window.innerWidth,
       typeItems: ["Programming Language"],
       activeTab: 0,
+      skillCategory:'programming_languages',
       tabs: ["programming_languages", "software", "design", "frameworks"],
       addNewSkill: false,
       optionSkillId: 0,
@@ -266,6 +269,10 @@ export default {
   methods: {
     toggleSelect() {
       this.disabledSelect = !this.disabledSelect;
+    },
+    setSkillCategory(category) {
+      this.skillCategory = category;
+      this.clearSkill();
     },
     toggleVisibility(skill) {
       skill.is_public = !skill.is_public;
@@ -342,7 +349,7 @@ export default {
     },
     clearSkill() {
       this.editedSkill = {
-        category: "",
+        category: this.skillCategory,
         title: "",
         percentage: ""
       };

@@ -1,9 +1,6 @@
 <template>
     <v-app class="main-content">
         <div style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider>
-                <v-tab class="resume-builder__tab"> Hobbies</v-tab>
-            </v-tabs>
             <v-card
                     class="card-main-hobbies pa-lg-10 pa-md-10 pa-sm-10 pa-3 resume-builder__scroll hobbies-content"
                     flat
@@ -23,6 +20,7 @@
                                             color="#001CE2"
                                             v-model="editedHobby.category"
                                             :error="!!errors.category"
+                                            :error-messages="errors.category"
                                     >
                                         <button class="dropdown-icon icon" slot="append" @click.prevent>
                                             <svg-vue :icon="`dropdown-caret`"></svg-vue>
@@ -39,7 +37,7 @@
                                             color="#001CE2"
                                             v-model="editedHobby.title"
                                             :error="!!errors.title"
-
+                                            :error-messages="errors.title"
                                     >
                                     </v-text-field>
                                 </v-col>
