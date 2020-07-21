@@ -608,13 +608,13 @@
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="prev">
+                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="prevPortfolio">
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
                               <span
                                 class="title pagination-text"
                               >{{portfolioPage}}/{{currentUser.projects.length/6}}</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="next">
+                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="nextPortfolio">
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -1305,6 +1305,46 @@ export default {
             }
           }
         ]
+      },
+      slickOptionsSkills: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        rows: 4,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 4
+            }
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              rows: 4
+            }
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3
+            }
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1
+            }
+          }
+        ]
       }
     };
   },
@@ -1454,13 +1494,13 @@ export default {
       console.log(obj);
     },
     //slick carousel
-    next() {
+    nextPortfolio() {
       this.$refs.slick.next();
       if (this.portfolioPage < this.currentUser.projects.length/6) {
         this.portfolioPage++;
       }
     },
-    prev() {
+    prevPortfolio() {
       this.$refs.slick.prev();
       if (this.portfolioPage > 1) {
         this.portfolioPage--;
