@@ -61,17 +61,19 @@
                 <div class="inputs-wrapper">
                     <div class="date-group">
                         <div class="date-input">
-                            <label  :class="{'error-label' : errors.date_from}">Date</label>
-                            <input type="date"  :class="{'error-input' : errors.date_from}"  v-model="newEducation.date_from">
+                            <label :class="{'error-label' : errors.date_from}">Date</label>
+                            <input type="date" :class="{'error-input' : errors.date_from}"
+                                   v-model="newEducation.date_from">
                         </div>
                         <div class="date-text">
 
                         </div>
                         <div class="date-input">
-                            <label  :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
+                            <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
                                 <input type="checkbox" class="checkbox" v-model="newEducation.present"> Present
                             </label>
-                            <input type="date"  :class="{'error-input' : errors.date_to}" v-model="newEducation.date_to" :disabled="newEducation.present">
+                            <input type="date" :class="{'error-input' : errors.date_to}" v-model="newEducation.date_to"
+                                   :disabled="newEducation.present">
                         </div>
                     </div>
                 </div>
@@ -95,17 +97,21 @@
                         ></svg-vue>
                     </button>
                 </v-select>
-                <div>
-                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="addEducation">
-                        {{newEducation.id !== '' ? 'Update' : 'Add New'}}
-                    </v-btn>
-
-                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearEducation" v-show="newEducation.id !== '' ">
-                        Cancel
-                    </v-btn>
-                </div>
             </v-form>
-            <draggable class="education-list" v-model="educations" @start="drag=true" @end="drag=false"  handle=".drag-handler">
+
+            <div class="edu-action-btns mt-3">
+                <v-btn class="resume-builder__btn civie-btn filled" raised @click="addEducation">
+                    {{newEducation.id !== '' ? 'Update' : 'Add New'}}
+                </v-btn>
+
+                <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearEducation"
+                       v-show="newEducation.id !== '' ">
+                    Cancel
+                </v-btn>
+            </div>
+
+            <draggable class="education-list" v-model="educations" @start="drag=true" @end="drag=false"
+                       handle=".drag-handler">
                 <div
                         v-for="education in educations"
                         class="education-item"
@@ -131,7 +137,7 @@
                                 class="resume-builder__action-buttons-container"
                         >
                             <v-btn
-                                    class="btn-icon civie-btn"  @click="toggleEducationVisibility(education)"
+                                    class="btn-icon civie-btn" @click="toggleEducationVisibility(education)"
                                     depressed
                             >
                                 <svg-vue
@@ -152,7 +158,7 @@
                                 ></svg-vue>
                             </v-btn>
                             <v-btn
-                                    class="btn-icon civie-btn"  @click="deleteEducation(education)"
+                                    class="btn-icon civie-btn" @click="deleteEducation(education)"
                                     depressed
                             >
                                 <svg-vue
@@ -171,7 +177,8 @@
 
                     <div class="education-item__content">
                         <div class="date">
-                            {{ `${education.date_from}${education.present ? ' - Present' : ' - ' + education.date_to}` }}
+                            {{ `${education.date_from}${education.present ? ' - Present' : ' - ' + education.date_to}`
+                            }}
                         </div>
                         <article>
                             {{education.description}}
@@ -187,7 +194,7 @@
     import draggable from "vuedraggable";
 
     export default {
-        props:['activeTab'],
+        props: ['activeTab'],
         components: {
             draggable
         },
@@ -195,15 +202,15 @@
             lazy: false,
             institutionTypes: ['School', 'University', 'College', 'Seminar', 'Course', 'Training'],
             newEducation: {
-                id:'',
-                institution_type:'',
-                university_name:'',
-                degree_title:'',
-                description:'',
-                website:'',
-                date_from:'',
-                date_to:'',
-                present:false,
+                id: '',
+                institution_type: '',
+                university_name: '',
+                degree_title: '',
+                description: '',
+                website: '',
+                date_from: '',
+                date_to: '',
+                present: false,
             },
             errors: {},
             expandedEducationID: 0,
@@ -221,9 +228,7 @@
                 }
             }
         },
-        watch: {
-
-        },
+        watch: {},
         methods: {
             toggleInput(inputData) {
                 inputData.disabled = !inputData.disabled
@@ -250,11 +255,11 @@
                 return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
             },
 
-        //    functions for backend
-            toggleEducationCard(education){
-                this.expandedEducationID === education.id ?  this.expandedEducationID = 0 :  this.expandedEducationID = education.id ;
+            //    functions for backend
+            toggleEducationCard(education) {
+                this.expandedEducationID === education.id ? this.expandedEducationID = 0 : this.expandedEducationID = education.id;
             },
-            toggleEducationVisibility(education){
+            toggleEducationVisibility(education) {
                 education.is_public = !education.is_public;
                 axios.put("/api/user/education", education)
                     .then(response => {
@@ -274,27 +279,27 @@
             },
             editEducation(education) {
                 this.newEducation = {
-                    id:education.id,
-                    institution_type:education.institution_type,
-                    university_name:education.university_name,
-                    degree_title:education.degree_title,
-                    description:education.description,
-                    website:education.website,
-                    date_from:education.date_from,
-                    date_to:education.date_to,
-                    present:education.present,
+                    id: education.id,
+                    institution_type: education.institution_type,
+                    university_name: education.university_name,
+                    degree_title: education.degree_title,
+                    description: education.description,
+                    website: education.website,
+                    date_from: education.date_from,
+                    date_to: education.date_to,
+                    present: education.present,
                 }
             },
-            deleteEducation(education){
+            deleteEducation(education) {
                 if (!confirm('Do you want to delete this education ?')) {
                     return;
                 }
                 axios.delete('/api/user/education/' + education.id)
                     .then((response) => {
                         this.$store.dispatch('flyingNotificationDelete');
-                        this.educations.forEach( (myEducation,index) => {
-                            if(myEducation.id === response.data.data.id){
-                                this.educations.splice(index,1);
+                        this.educations.forEach((myEducation, index) => {
+                            if (myEducation.id === response.data.data.id) {
+                                this.educations.splice(index, 1);
                             }
                         });
 
@@ -304,7 +309,7 @@
                         console.log(error);
                     })
             },
-            addEducation(){
+            addEducation() {
                 this.errors = {};
                 this.newEducation.user_id = this.$store.state.user.id;
                 this.newEducation.category = this.activeTab;
@@ -317,11 +322,11 @@
                 axios.post('/api/user/education', this.newEducation)
                     .then((response) => {
 
-                        if(!edit){
+                        if (!edit) {
                             this.educations.unshift(response.data.data);
-                        }else{
-                            this.educations.forEach( (myEducation,index) => {
-                                if(myEducation.id === response.data.data.id){
+                        } else {
+                            this.educations.forEach((myEducation, index) => {
+                                if (myEducation.id === response.data.data.id) {
                                     this.educations[index] = response.data.data;
                                 }
                             });
@@ -334,7 +339,7 @@
                         if (typeof error.response.data === 'object') {
                             this.errors = error.response.data.errors;
                         } else {
-                            this.errors  = 'Something went wrong. Please try again.';
+                            this.errors = 'Something went wrong. Please try again.';
                         }
                         this.$store.dispatch('flyingNotification', {
                             message: 'Error',
@@ -342,17 +347,17 @@
                         });
                     });
             },
-            clearEducation(){
+            clearEducation() {
                 this.newEducation = {
-                    id:'',
-                    institution_type:'',
-                    university_name:'',
-                    degree_title:'',
-                    description:'',
-                    website:'',
-                    date_from:'',
-                    date_to:'',
-                    present:false,
+                    id: '',
+                    institution_type: '',
+                    university_name: '',
+                    degree_title: '',
+                    description: '',
+                    website: '',
+                    date_from: '',
+                    date_to: '',
+                    present: false,
                 }
             },
         }
@@ -364,10 +369,16 @@
     @import '../../../../../../sass/media-queries';
 
     .education-wrapper {
+
+
+        .edu-action-btns {
+            display: flex;
+        }
+
         position: relative;
         padding: 60px 50px;
 
-        @include lt-sm{
+        @include lt-sm {
             padding: 30px 15px;
         }
 
@@ -741,11 +752,11 @@
 
             }
 
-            input.error-input{
+            input.error-input {
                 border: 2px solid red !important;
             }
 
-            input:focus{
+            input:focus {
                 outline: none;
             }
 
@@ -758,11 +769,11 @@
         }
     }
 
-    .error-label{
+    .error-label {
         color: red !important;
     }
 
-    .error-input{
+    .error-input {
         border: 2px solid red !important;
     }
 
