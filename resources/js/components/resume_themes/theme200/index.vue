@@ -568,6 +568,7 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
                       <v-card-text align="center">
+                        <slick class="portfolioSlides" ref="slick" :options="slickOptions"></slick>
                         <v-row>
                           <v-col
                             md="4"
@@ -579,7 +580,7 @@
                               <v-img
                                 :src="getProjectMainImage(project)"
                                 @mouseover="hoveredProjectId = project.id"
-                                @mouseleave="hoveredProjectId =0"
+                                @mouseleave="hoveredProjectId = 0"
                               >
                                 <v-overlay
                                   :absolute="absolute"
@@ -736,7 +737,7 @@
                             >{{item.title}}</v-tab>
                           </v-tabs>
                           <v-spacer></v-spacer>
-                          <v-btn icon class="mx-md-3">
+                          <!-- <v-btn icon class="mx-md-3">
                             <img
                               width="40"
                               src="/images/resume_themes/theme200/icons/skills/arrange.png"
@@ -748,7 +749,7 @@
                               width="20"
                               src="/images/resume_themes/theme200/icons/skills/view-list.png"
                             />
-                          </v-btn>
+                          </v-btn> -->
                         </v-toolbar>
                         <!-- Inner Tab Items -->
                         <v-tabs-items v-model="skillTab">
@@ -1254,7 +1255,39 @@ export default {
         { title: "google", icon: "fa-google-plus", color: "#DC4E41" }
       ],
 
-      currentUser: this.user
+      currentUser: this.user,
+      slickOptions: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        rows: 1
+        // responsive: [
+        //   {
+        //     breakpoint: 600,
+        //     settings: {
+        //       slidesToShow: 1,
+        //       slidesToScroll: 1,
+        //       rows: 2
+        //     }
+        //   },
+        //   {
+        //     breakpoint: 1200,
+        //     settings: {
+        //       slidesToShow: 1,
+        //       slidesToScroll: 1
+        //     }
+        //   },
+        //   {
+        //     breakpoint: 1600,
+        //     settings: {
+        //       slidesToShow: 2,
+        //       slidesToScroll: 1
+        //     }
+        //   }
+        // ]
+      }
     };
   },
 
