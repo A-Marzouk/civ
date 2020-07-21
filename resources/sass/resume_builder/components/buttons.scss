@@ -13,6 +13,12 @@
             font-size: 15px !important;
         }
     }
+    @media screen and (max-width: 599px) {
+        width: 100px !important;
+        min-height: 40px !important;
+        height: 40px;
+        font-size: 15px !important;
+    }
     // Reset default size
     &.v-size--default {
         border-radius: 5px;

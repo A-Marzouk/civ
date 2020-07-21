@@ -1056,15 +1056,16 @@
                     .work-icon {
                         margin-right: 35px;
                         img {
-                            width: 99px;
+                            min-width: 59px;
+                            width:59px;
                             height: 59px;
                         }
                     }
                     .education-icon{    
                         margin-right:17px;
                         img{
-                            width: 80px;
-                            height:auto;
+                            width: 59px;
+                            height:59px;
                         }
                     }
                     .work-info {
@@ -1553,15 +1554,15 @@
                         .work-icon {
                             margin-right: 35px;
                             img {
-                                width: 48px;
-                                height: 48px;
+                                width: 42px;
+                                height: 42px;
                             }
                         }
                         .education-icon{
                             margin-right:35px;
                             img{
-                                width: 48px;
-                                height:auto;
+                                width: 42px;
+                                height:42px;
                             }
                         }
                         .work-info {
@@ -1818,15 +1819,16 @@
                         .work-icon {
                             margin-right: 35px;
                             img {
-                                width: 99px;
-                                height: 59px;
+                                width: 70px;
+                                height: 70px;
                             }
+                            
                         }
                         .education-icon {
                             margin-right: 35px;
                             img {
-                                width: 80px;
-                                height: 59px;
+                                width: 48px;
+                                height: 48px;
                             }
                         }
                         .work-info {

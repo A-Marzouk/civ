@@ -5,8 +5,8 @@
 
 
     &.multiple-selection > .v-input__control > .v-input__slot > .v-select__slot > .v-select__selections {
-        min-height: 50px !important;
-        height: 50px;
+        min-height: 42px !important;
+        height: 42px;
         padding: 8px 3px 8px 3px;
 
         // hide the scrollbar but allow scrolling.
@@ -45,13 +45,33 @@
 
     // Textarea
     &.civie-textarea {
-        .v-input__slot,
-        textarea {
+        .v-input__slot, textarea {
             // input height is different to textarea
             height: 160px;
             resize: none;
         }
     }
+    &.civie-textarea {
+        .v-input__slot {
+           .v-text-field__slot{
+               overflow: visible;
+               textarea{
+                   height: 95%;
+                   margin-top: 3px !important;
+
+                   // scroll hidden
+                   overflow: auto;
+                   -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                   scrollbar-width: none;  /* Firefox */
+                   &::-webkit-scrollbar {
+                       display: none;  /* Safari and Chrome */
+                   }
+               }
+           }
+        }
+    }
+
+
 
     // Checkbox
     &.civie-checkbox > .v-input__control > {
@@ -154,7 +174,12 @@
                 }
             }
 
-
+            .civie-dropzone-input.sm-image{
+                .dz-preview{
+                    min-height: 160px;
+                    min-width: 165px;
+                }
+            }
         }
     }
 
@@ -222,7 +247,7 @@
             .dropdown-icon {
                 width: 100%;
                 height: 100%;
-                margin-top: 4px;
+                margin-top: 7px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -274,8 +299,7 @@
             padding: 16px 21px 16px 13px;
         }
 
-        input .icon-prepended,
-        .v-select__selection {
+        input .icon-prepended{
             padding: 16px 21px 16px 26px;
         }
     }

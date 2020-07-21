@@ -21,6 +21,7 @@
                                 :disabled="false"
                                 label="Company Name"
                                 :error="!!errors.company_name"
+                                :error-messages="errors.company_name"
                                 v-model="newWork.company_name"
                         >
                         </v-text-field>
@@ -34,6 +35,7 @@
                                 :disabled="false"
                                 label="Job Ttitle"
                                 :error="!!errors.job_title"
+                                :error-messages="errors.job_title"
                                 v-model="newWork.job_title"
                         >
                         </v-text-field>
@@ -47,6 +49,7 @@
                                 :disabled="false"
                                 label="Website"
                                 :error="!!errors.website"
+                                :error-messages="errors.website"
                                 v-model="newWork.website"
                         >
                         </v-text-field>
@@ -73,6 +76,7 @@
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
                                 :error="!!errors.description"
+                                :error-messages="errors.description"
                                 v-model="newWork.description"
                                 label="Description"
                         >
@@ -157,7 +161,7 @@
                         <div class="date">
                             {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
                         </div>
-                        <article>
+                        <article class="description-text">
                             {{work.description}}
                         </article>
                     </div>
@@ -337,6 +341,10 @@
         }
     }
 
+    .description-text{
+
+    }
+
     .work-container {
         width: 100%;
     }
@@ -443,8 +451,8 @@
                                 position: absolute;
                                 top: -29px;
                                 letter-spacing: 0;
-                                font-weight: 500;
                                 font-size: 18px;
+                                font-weight: 400;
                                 line-height: 25px;
                                 color: #888DB1;
                                 opacity: 1;
@@ -453,23 +461,15 @@
                                     font-size: 18px;
                                     color: #888DB1;
                                 }
-
-                                @include lt-sm {
-                                    font-size: 15px;
-                                }
                             }
 
                             label.light {
-                                font-size: 12px;
+                                font-size: 18px;
                                 letter-spacing: 0;
+                                right: 0;
                                 opacity: 1;
 
-                                @include lt-lg {
-                                    font-size: 15px;
-                                }
-
                                 @include lt-md {
-                                    font-size: 11px;
                                     color: #888DB1;
                                 }
                             }
@@ -723,6 +723,7 @@
                     color: $inputTextColor;
                     margin-top: 20px;
                     overflow: auto;
+                    word-break: break-all;
                 }
             }
 

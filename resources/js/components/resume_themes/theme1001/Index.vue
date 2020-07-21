@@ -1,13 +1,14 @@
 <template>
   <div id="wrapper_theme1001">
-    <Header :currentTab="currentTab" :currentUser="currentUser" />
+    <Header :activeTab="activeTab" :currentUser="currentUser" />
 
     <TabsNavigation
-      :currentTab="currentTab"
-      @tabChanged="currentTab = $event"
+      :activeTab="activeTab"
+      :currentUser="currentUser"
+      @tabChanged="activeTab = $event"
     />
 
-    <TabsContent :currentTab="currentTab" />
+    <TabsContent :activeTab="activeTab" :currentUser="currentUser" />
   </div>
 </template>
 
@@ -20,18 +21,33 @@ export default {
   name: "resume-theme-1001",
 
   components: { Header, TabsNavigation, TabsContent },
-
-  data: () => {
+  props: ["user", "is_preview", "currentTab"],
+  data() {
     return {
-      currentTab: "portfolio",
-      currentUser: {
-        avatar: "/images/resume_themes/theme1001/profiles/girl.jpg",
-        fullname: "Amber Salma Heard",
-        jobTitle: "UX UI Designer",
-        hourRate: 45,
-        weeklyAvailability: 45
-      }
+      activeTab: "portfolio",
+
+      currentUser: this.user
     };
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
+  },
+  methods: {
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
+    }
+  },
+  mounted() {
+    // if there is no user or the preview is true, set dummy user
+    if (!this.currentUser || this.is_preview) {
+      this.setDummyUser();
+    }
+
+    // let user accessible in included components.
+    this.$store.dispatch("updateThemeUser", this.currentUser);
   }
 };
 </script>

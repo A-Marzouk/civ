@@ -336,6 +336,18 @@ class Upload
         return $data;
     }
 
+    public static function referenceImage(Request $request)
+    {
+        $data = [];
+
+        $file = $request->file('image') ;
+        $name = date(time()) . '_' . $file->getClientOriginalName();
+        $file->move(public_path() . '/uploads/referenceImages/', $name);
+        $data['path'] = '/uploads/referenceImages/' . $name;
+
+        return $data;
+    }
+
     public static function media(Request $request)
     {
         $file = $request->file('mediaFile');

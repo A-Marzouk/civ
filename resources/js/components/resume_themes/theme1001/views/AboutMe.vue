@@ -6,25 +6,7 @@
 
     <div class="about-me__detail">
       <div class="detail__paragraph">
-        Currently I'm a freelance designer and web developer, who works with a
-        variety of clients and on many diverse projects.
-      </div>
-
-      <div class="detail__paragraph">
-        Currently I'm a freelance designer and web developer, who works with a
-        variety of clients and on many diverse projects.
-      </div>
-
-      <div class="detail__paragraph">
-        I work to create innovative solutions that inspire, and foster memorable
-        relationships between brands and their clients. With a focus on branding
-        and UI / Web, I strive to create usable and polished products through
-        passionate and deliberate design
-      </div>
-
-      <div class="detail__paragraph">
-        I work to create innovative solutions that inspire, and foster memorable
-        relationships between brands and their clients.
+        {{ currentUser.personal_info.about }}
       </div>
     </div>
   </div>
@@ -32,7 +14,8 @@
 
 <script>
 export default {
-  name: "about-me"
+  name: "about-me",
+  props: ["currentUser"]
 };
 </script>
 

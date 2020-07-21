@@ -39,6 +39,7 @@
                                                 color="#001CE2"
                                                 label="Amount"
                                                 :error="!!errors.salary"
+                                                :error-messages="errors.salary"
                                                 v-model="currentPayment.salary"
                                         >
                                             <v-select
@@ -93,6 +94,7 @@
                                                 color="#001CE2"
                                                 label="Hours"
                                                 :error="!!errors.available_hours"
+                                                :error-messages="errors.available_hours"
                                                 v-model="currentAvailability.available_hours"
                                         >
                                         </v-text-field>
