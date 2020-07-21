@@ -1456,7 +1456,7 @@ export default {
     //slick carousel
     next() {
       this.$refs.slick.next();
-      if (this.portfolioPage < this.currentUser.projects.length) {
+      if (this.portfolioPage < this.currentUser.projects.length/6) {
         this.portfolioPage++;
       }
     },
