@@ -8,8 +8,9 @@
               <v-col
                 cols="12"
                 lg="5"
-                v-for="m in mediaFiles"
-                :key="m.id"
+                v-for="(m, mediaIndex) in currentUser.media"
+                :key="mediaIndex"
+                v-show="m.is_public"
                 class=" margBottom"
               >
                 <v-row no-gutters justify="center" align="center">
@@ -19,18 +20,22 @@
                     align-self="center"
                     class="hidden-xs-only"
                   >
-                    <div class="mediaSerial">{{ m.id }}</div>
+                    <div class="mediaSerial">0{{ mediaIndex + 1 }}</div>
                   </v-col>
                   <v-col cols="12" sm="10">
                     <Audio
-                      v-if="m.audio"
-                      :file="m.audio"
-                      :img="m.img"
+                      v-if="m.type == 'audio'"
+                      :title="getFormattedData(m.created_at)"
+                      :file="m.url"
+                      :user_name="currentUser.name"
+                      img="/images/resume_themes/theme1001/media/audio-1.png"
                     ></Audio>
                     <Video
-                      v-if="m.video"
-                      :link="m.video"
-                      :img="m.img"
+                      v-if="m.type == 'video'"
+                      :title="getFormattedData(m.created_at)"
+                      :link="m.url"
+                      :user_name="currentUser.name"
+                      img="/images/resume_themes/theme1001/media/video-1.png"
                     ></Video>
                   </v-col>
                 </v-row>
@@ -47,6 +52,7 @@ import Audio from "./../components/media/Audio";
 import Video from "./../components/media/Video";
 export default {
   components: { Audio, Video },
+  props: ["currentUser"],
   data: () => ({
     playing: true,
     loaded: false,

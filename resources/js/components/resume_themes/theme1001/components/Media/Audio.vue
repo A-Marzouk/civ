@@ -10,8 +10,8 @@
           ></v-img>
         </v-col>
         <v-col cols="6">
-          <div class="title-audio-tm1001">AUD17/04/2020</div>
-          <div class="subtitle-audio-tm1001">Hean Prinsloo</div>
+          <div class="title-audio-tm1001">AUDIO_{{ title }}</div>
+          <div class="subtitle-audio-tm1001">{{ user_name }}</div>
           <div class="timer-audio-tm1001">{{ currentTime }}</div>
           <audio
             id="player"
@@ -59,9 +59,9 @@
             </v-col>
             <v-col sm="auto" lg="auto" cols="3">
               <div class="audio-info-1001">
-                <span class="title-audio-tm1001">AUD17/04/2020</span>
+                <span class="title-audio-tm1001">AUDIO_{{ title }}</span>
                 <br />
-                <span class="subtitle-audio-tm1001">Hean Prinsloo</span>
+                <span class="subtitle-audio-tm1001">{{ user_name }}</span>
               </div>
             </v-col>
           </v-row>
@@ -72,6 +72,7 @@
           sm="3"
           md="4"
           lg="4"
+          xl="5"
         >
           <div>
             <v-progress-linear
@@ -96,7 +97,7 @@
             </div>
           </div>
         </v-col>
-        <v-col lg="5" sm="auto" cols="4">
+        <v-col xl="4" lg="5" sm="auto" cols="4">
           <div class="d-flex">
             <v-list-item-icon>
               <v-btn icon>
@@ -148,7 +149,7 @@
           <v-row class="align-center justify-space-between" dense>
             <v-col cols="auto">
               <div class="audio-info-1001">
-                <span class="title-audio-tm1001">AUD17/04/2020</span>
+                <span class="title-audio-tm1001">AUDIO_{{ title }}</span>
                 <!-- <br />
                 <span class="subtitle-audio-tm1001">Hean Prinsloo</span> -->
               </div>
@@ -228,6 +229,14 @@ const formatTime = second =>
 export default {
   name: "vuetify-audio",
   props: {
+    title: {
+      type: String,
+      default: null
+    },
+    user_name: {
+      type: String,
+      default: null
+    },
     file: {
       type: String,
       default: null
@@ -474,8 +483,8 @@ export default {
 }
 
 .media-player-tm1001 {
-  padding-right: 150px;
-  padding-left: 150px;
+  padding-right: 120px;
+  padding-left: 120px;
   padding-top: 1.5rem;
   padding-bottom: 1rem;
 }
