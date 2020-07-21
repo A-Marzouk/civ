@@ -2,9 +2,9 @@
   <v-container fluid v-if="activeTab === 'about'" class="pb-sm-12">
     <v-row>
       <v-col lg="12" cols="12" sm="12">
-        <vue-markdown class="para">
+        <div class="para">
           {{ user.personal_info.about }}
-        </vue-markdown>
+        </div>
       </v-col>
       <v-col cols="12" class="d-sm-block d-none d-lg-none py-4">
         <div>
@@ -66,13 +66,8 @@
   </v-container>
 </template>
 <script>
-import VueMarkdown from 'vue-markdown'
-
 export default {
   props: ["activeTab", "user"],
-  components: {
-    'vue-markdown': VueMarkdown
-  },
   data: () => ({
     social: [
       { src: "/images/resume_themes/theme511/twitter.svg" },
