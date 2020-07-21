@@ -137,7 +137,7 @@
                 <v-card-text>
                     <v-tabs-items v-model="priceTab">
                         <v-tab-item>
-                            <v-card-text align="center">
+                            <v-card-text align="center" class="padding-sm-1">
                                 <v-row align="center" justify="center">
                                     <v-col cols="12">
                                         <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
@@ -156,22 +156,22 @@
 
                                 <hr class="hr-line"/>
                             </v-card-text>
-                            <v-card-text>
+                            <v-card-text class="padding-sm-1">
                                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
                                     <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
+                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2  padding-sm-1">
                                         <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img"/>
                                     </v-col>
                                     <v-col xl="6" lg="6" md="6" sm="6" cols="6"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
+                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2  padding-sm-1">
                                         <span class="price-option">{{item}}</span>
                                     </v-col>
                                 </v-row>
                             </v-card-text>
-                            <v-card-text align="center" class="mt-xl-0 mt-lg-n3">
+                            <v-card-text align="center" class="padding-sm-1 mt-xl-0 mt-lg-n3">
                                 <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
                             </v-card-text>
-                            <v-card-text align="center" class="mt-n5">
+                            <v-card-text align="center" class="pb-md-0 mt-n5">
                                 <v-row align="center" justify="center">
                                     <v-col xl="3" lg="3" md="3" sm="3" cols="3">
                                         <form action="/subscribe" method="post" id="subscribe_form">
@@ -204,7 +204,7 @@
                             </v-card-text>
                         </v-tab-item>
                         <v-tab-item>
-                            <v-card-text align="center">
+                            <v-card-text align="center" class="padding-sm-1">
                                 <v-row align="center" justify="center">
                                     <v-col cols="12">
                                         <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
@@ -223,23 +223,22 @@
 
                                 <hr class="hr-line"/>
                             </v-card-text>
-
-                            <v-card-text>
+                            <v-card-text class="padding-sm-1">
                                 <v-row align="center" v-for="(item,index) in price_options" :key="index">
                                     <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
+                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2 padding-sm-1">
                                         <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img"/>
                                     </v-col>
                                     <v-col xl="6" lg="6" md="6" sm="6" cols="6"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2">
+                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2 padding-sm-1">
                                         <span class="price-option">{{item}}</span>
                                     </v-col>
                                 </v-row>
                             </v-card-text>
-                            <v-card-text align="center" class="mt-xl-0 mt-lg-n3">
+                            <v-card-text align="center" class="mt-xl-0 mt-lg-n3 padding-sm-1">
                                 <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
                             </v-card-text>
-                            <v-card-text align="center" class="mt-n5">
+                            <v-card-text align="center" class="pb-md-0 mt-n5">
                                 <v-row align="center" justify="center">
                                     <v-col xl="3" lg="3" md="3" sm="3" cols="3">
                                         <a href="javascript:void(0)" @click="subscribe" class="payment-link">
@@ -572,6 +571,8 @@
         margin-top: 3px !important;
     }
 
+
+
 </style>
 <style lang="scss">
     @import "../../../../sass/media-queries";
@@ -581,6 +582,25 @@
     $bg-color: white;
     $input-bg: #f1f8fc;
     $placeholder-color: #9ba1ad;
+
+
+    .subscription-modal{
+        .v-dialog{
+            max-width:550px;
+            @include lt-md{
+                max-width:500px;
+            }
+        }
+    }
+
+    .padding-sm-1{
+        @include lt-sm{
+            padding: 5px !important;
+        }
+        @include lt-md{
+            padding: 5px !important;
+        }
+    }
 
     .view-sub-btn {
         a {

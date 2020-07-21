@@ -27,6 +27,14 @@
 <script>
 export default {
   props: {
+    title: {
+      type: String,
+      default: null
+    },
+    user_name: {
+      type: String,
+      default: null
+    },
     link: {
       type: String,
       default: null

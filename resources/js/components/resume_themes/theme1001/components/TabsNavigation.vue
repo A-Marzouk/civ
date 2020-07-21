@@ -5,7 +5,10 @@
         <ul class="navigation">
           <li
             class="navigation__link"
-            :class="{ active: currentTab === 'portfolio' }"
+            :class="[
+              { active: activeTab === 'portfolio' },
+              { 'active-indicator': currentTab === 'portfolio' }
+            ]"
           >
             <a href="#" @click.prevent="$emit('tabChanged', 'portfolio')"
               >Portfolio</a
@@ -13,7 +16,10 @@
           </li>
           <li
             class="navigation__link"
-            :class="{ active: currentTab === 'experience-education' }"
+            :class="[
+              { active: activeTab === 'experience-education' },
+              { 'active-indicator': currentTab === 'work-experience' }
+            ]"
           >
             <a
               href="#"
@@ -23,7 +29,10 @@
           </li>
           <li
             class="navigation__link"
-            :class="{ active: currentTab === 'skills-languages' }"
+            :class="[
+              { active: activeTab === 'skills-languages' },
+              { 'active-indicator': currentTab === 'skills' }
+            ]"
           >
             <a href="#" @click.prevent="$emit('tabChanged', 'skills-languages')"
               >Skills & Language</a
@@ -32,7 +41,10 @@
 
           <li
             class="navigation__link"
-            :class="{ active: currentTab === 'about-me' }"
+            :class="[
+              { active: activeTab === 'about-me' },
+              { 'active-indicator': currentTab === 'about' }
+            ]"
           >
             <a href="#" @click.prevent="$emit('tabChanged', 'about-me')"
               >About Me</a
@@ -40,7 +52,10 @@
           </li>
           <li
             class="navigation__link"
-            :class="{ active: currentTab === 'media' }"
+            :class="[
+              { active: activeTab === 'media' },
+              { 'active-indicator': currentTab === 'media' }
+            ]"
           >
             <a href="#" @click.prevent="$emit('tabChanged', 'media')">Media </a>
           </li>
@@ -70,7 +85,7 @@
         </a>
       </div>
 
-      <SocialLinks :isOpen="isOpen" />
+      <SocialLinks :isOpen="isOpen" :currentUser="currentUser" />
     </div>
   </nav>
 </template>
@@ -82,8 +97,12 @@ export default {
   name: "tabs-navigation",
 
   props: {
-    currentTab: {
+    activeTab: {
       type: String,
+      required: true
+    },
+    currentUser: {
+      type: undefined,
       required: true
     }
   },
