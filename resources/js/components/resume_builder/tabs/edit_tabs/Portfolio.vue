@@ -256,6 +256,7 @@ export default {
         });
     },
     editProject(project) {
+      this.removeFiles();
       $.each(project, field => {
         this.editedProject[field] = project[field];
       });

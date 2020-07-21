@@ -235,7 +235,7 @@
                                                 :sm="windowWidth<=767?'4':'3'"
                                                 cols="8"
                                                 align="right"
-                                                class="action-col resume-builder__action-buttons-container"
+                                                class="action-col d-flex justify-content-end resume-builder__action-buttons-container"
                                         >
                                             <v-btn
                                                     class="btn-icon civie-btn"
