@@ -1,18 +1,18 @@
 <template>
     <v-app class="media-contents">
         <div style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="audioTab">
-                <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i" @click="changeTab(tabName)">
-                    {{tabName}}
+            <v-tabs class="resume-builder__tab-bar" hide-slider>
+                <v-tab class="resume-builder__tab" v-for="tab in tabs" :key="tab" @click="changeTab(tab)">
+                    {{tab}}
                 </v-tab>
             </v-tabs>
             <v-card
                     class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
                     flat
             >
-                <v-tabs-items v-model="audioTab">
+                <div>
                     <!-- Audio tab -->
-                    <v-tab-item>
+                    <div v-if="mediaCategory === 'audio'">
                         <div style="width: 100%;" class="inputs-wrapper">
                             <div class="text-inputs">
                                 <v-text-field
@@ -100,10 +100,10 @@
                                 </v-btn>
                             </div>
                         </div>
-                    </v-tab-item>
+                    </div>
 
                     <!-- Video tab -->
-                    <v-tab-item>
+                    <div v-if="mediaCategory === 'video'">
                         <div style="width: 100%;">
                             <div class="inputs-wrapper">
                                 <div class="text-inputs">
@@ -181,14 +181,14 @@
                             </div>
 
                         </div>
-                    </v-tab-item>
+                    </div>
 
                     <draggable v-if="medias" v-model="medias" @start="drag=true" @end="drag=false" class="mt-3" handle=".drag-handler">
                         <v-row align="center" dense v-for="media in medias" :key="media.id"
                                :class="{'half-opacity' : !media.is_public}">
 
                             <v-col xl="7" :lg="windowWidth<1440 ? '9' : '7' " md="9" sm="12" cols="12"
-                                   v-show="audioTab === 0 && media.type === 'audio'">
+                                   v-show="mediaCategory === 'audio' && media.type === 'audio'">
                                 <!-- audio card -->
                                 <v-card class="card-holder pa-2 mb-3 mt-3">
                                     <v-row justify="center">
@@ -269,7 +269,7 @@
                             </v-col>
 
                             <v-col xl="6" lg="6" md="12" sm="12" cols="12"
-                                   v-show="audioTab === 1 && media.type === 'video'">
+                                   v-show="mediaCategory === 'video' && media.type === 'video'">
                                 <!-- Video Card -->
                                 <v-card class="card-holder pa-2 mb-3 mt-3" height="auto">
                                     <div class="video-item">
@@ -321,7 +321,7 @@
 
                         </v-row>
                     </draggable>
-                </v-tabs-items>
+                </div>
             </v-card>
         </div>
     </v-app>
@@ -366,8 +366,8 @@
                 },
                 currentUploadMethod: 'upload',
                 tabs: ["Audio", "Video"],
-                audioTab: 0,
-                errors: {}
+                errors: {},
+                mediaCategory: 'audio'
             };
         },
         computed: {
@@ -381,8 +381,9 @@
             },
         },
         methods: {
-            changeTab(tabName) {
-                this.newMedia.type = tabName.toLowerCase();
+            changeTab(tab) {
+                this.mediaCategory = tab;
+                this.newMedia.type = tab.toLowerCase();
             },
             toggleRecord(){
                 this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
