@@ -1057,9 +1057,20 @@
       </v-dialog>
       <!-- Photo Zoom Dialog -->
       <!-- video modal -->
-      <v-dialog v-model="videoModal" max-width="1690">
-        <v-card>
-          Video Modal
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740">
+        <v-card class="card-modal-video-holder pa-10">
+          <slick ref="slick" :options="slickOptionsVideoModal" class="ml-xl-6 ml-lg-0">
+            <div v-for="i in 2" :key="i" class="mx-xl-10 ml-lg-5">
+              <v-card class="card-video">
+                <video style="width:100%;" controls>
+                  <source src="mov_bbb.mp4" type="video/mp4" />
+                  <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
+                </video>
+                <v-card-title class="video-window-title">Product Design</v-card-title>
+                <v-card-subtitle class="video-window-subtitle">INSDRURIAL, CREATIVE, IDEA</v-card-subtitle>
+              </v-card>
+            </div>
+          </slick>
         </v-card>
       </v-dialog>
       <!-- Video modal -->
@@ -1441,6 +1452,39 @@ export default {
             }
           }
         ]
+      },
+      //video modal
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1
+            }
+          }
+        ]
       }
     };
   },
@@ -1673,6 +1717,26 @@ export default {
 .inactive-mobile-tab-text {
   color: #ffa797 !important;
   font-size: 12px !important;
+}
+.card-modal-video-holder {
+  max-height: 734px;
+  .card-video {
+    max-width: 674px;
+    max-height: 476px;
+    border-radius: 12px;
+    .video-window-title {
+      font-family: "Open Sans" !important;
+      font-size: 30px;
+      color: #2e2e2e !important;
+    }
+    .video-window-subtitle {
+      margin-top: 10px;
+      font-family: "Open Sans" !important;
+      font-size: 19px;
+      color: #7d7d7d !important;
+      text-transform: capitalize;
+    }
+  }
 }
 
 //mobile tab
