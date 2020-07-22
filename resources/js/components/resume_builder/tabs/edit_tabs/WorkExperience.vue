@@ -289,7 +289,7 @@
                         }else{
                             this.works.forEach( (myWork,index) => {
                                 if(myWork.id === response.data.data.id){
-                                    this.works[index] = response.data.data;
+                                    this.works.splice(index, 1, response.data.data);
                                 }
                             });
                         }

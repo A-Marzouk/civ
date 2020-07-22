@@ -266,7 +266,7 @@ export default {
       project.is_public = !project.is_public;
       axios
         .put("/api/user/projects", project)
-        .then(() => {
+        .then((response) => {
           this.$store.dispatch("flyingNotification");
         })
         .catch(error => {
@@ -328,7 +328,7 @@ export default {
           } else {
             this.projects.forEach((project, index) => {
               if (project.id === response.data.data.id) {
-                this.projects[index] = response.data.data;
+                this.projects.splice(index, 1, response.data.data);
               }
             });
           }

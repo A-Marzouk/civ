@@ -1,14 +1,13 @@
 <template>
     <div>
-        Imports
+        Structure
     </div>
 </template>
 
 <script>
-
-
     export default {
-        name: "Imports",
+
+        name: "Structure",
         data() {
             return {
 
