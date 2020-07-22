@@ -576,7 +576,7 @@
                           <div
                             v-for="project in currentUser.projects"
                             :key="project.id"
-                            class="mb-5"
+                            class="mb-10"
                           >
                             <v-card elevation-12 class="card-portfolio">
                               <v-img
@@ -1271,7 +1271,7 @@ export default {
         dots: false,
         arrows: false,
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 3,
         rows: 2,
         responsive: [
           {
@@ -1286,7 +1286,7 @@ export default {
             breakpoint: 960,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 1,
+              slidesToScroll: 2,
               rows: 3
             }
           },
@@ -1301,7 +1301,7 @@ export default {
             breakpoint: 1600,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 1
+              slidesToScroll: 3
             }
           }
         ]
@@ -1311,7 +1311,7 @@ export default {
         dots: false,
         arrows: false,
         slidesToShow: 4,
-        slidesToScroll: 1,
+        slidesToScroll: 4,
         rows: 4,
         responsive: [
           {
@@ -1326,7 +1326,7 @@ export default {
             breakpoint: 960,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 1,
+              slidesToScroll: 2,
               rows: 4
             }
           },
@@ -1341,7 +1341,7 @@ export default {
             breakpoint: 1600,
             settings: {
               slidesToShow: 4,
-              slidesToScroll: 1
+              slidesToScroll: 4
             }
           }
         ]
