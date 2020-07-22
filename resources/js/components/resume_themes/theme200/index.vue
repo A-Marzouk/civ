@@ -211,16 +211,19 @@
                                       <v-btn color="#03CA9F" class="btn-voice-call">
                                         <img
                                           class="mr-2"
-                                          src="/images/resume_themes/theme200/icons/phone.png"
-                                        />Voice
-                                        Call
+                                          src="/images/resume_themes/theme200/icons/volume.svg"
+                                        />Audio
                                       </v-btn>
                                     </v-card>
                                   </v-col>
 
                                   <v-col cols="12" md="4" sm="5" class>
                                     <v-card flat color="transparent" class="mt-md-0 mt-sm-7 mt-0">
-                                      <v-btn color="#2400FF" class="btn-upload">
+                                      <v-btn
+                                        color="#2400FF"
+                                        class="btn-upload"
+                                        @click.stop="videoModal=true"
+                                      >
                                         <img
                                           src="/images/resume_themes/theme200/icons/camera.png"
                                           class="mr-2"
@@ -1053,6 +1056,13 @@
         <img :src="currentImgObj != null ? getProjectMainImage(currentImgObj) : ''" />
       </v-dialog>
       <!-- Photo Zoom Dialog -->
+      <!-- video modal -->
+      <v-dialog v-model="videoModal" max-width="1690">
+        <v-card>
+          Video Modal
+        </v-card>
+      </v-dialog>
+      <!-- Video modal -->
     </div>
   </v-app>
 </template>
@@ -1066,6 +1076,8 @@ export default {
   },
   data() {
     return {
+      videoModal: false,
+      audioModal: false,
       portfolioPage: 1,
       achivementPage: 1,
       skillTab: 0,
