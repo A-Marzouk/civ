@@ -971,37 +971,61 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
                       <v-card-text>
-                        <v-row
-                          v-for="(achievement,index) in currentUser.achievements"
-                          :key="index + '_achievement'"
-                        >
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" elevation-12>
-                              <v-img :src="achievement.image_src"></v-img>
-                            </v-card>
-                          </v-col>
+                        <slick ref="slick" :options="slickOptionsAchievements">
+                          <div
+                            v-for="(achievement,index) in currentUser.achievements"
+                            :key="index + '_achievement'"
+                          >
+                            <v-row>
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" elevation-12>
+                                  <v-img :src="achievement.image_src"></v-img>
+                                </v-card>
+                              </v-col>
 
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" class="certification">
-                              <v-card-title>
-                                <span class="achievement-title">{{achievement.title}}</span>
-                              </v-card-title>
-                              <v-card-subtitle class="achievement-subtitle">{{achievement.category}}</v-card-subtitle>
-                              <v-card-text
-                                class="achievement-text caption"
-                              >{{achievement.description}}</v-card-text>
-                            </v-card>
-                          </v-col>
-                        </v-row>
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" class="certification">
+                                  <v-card-title>
+                                    <span class="achievement-title">{{achievement.title}}</span>
+                                  </v-card-title>
+                                  <v-card-subtitle
+                                    class="achievement-subtitle"
+                                  >{{achievement.category}}</v-card-subtitle>
+                                  <v-card-text
+                                    class="achievement-text caption"
+                                  >{{achievement.description}}</v-card-text>
+                                </v-card>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </slick>
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevAchievement()"
+                                :disabled="achivementPage==1?true:false"
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
-                              <span class="title pagination-text">1/5</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <span
+                                class="title pagination-text"
+                              >{{achivementPage}}/{{currentUser.achievements.length}}</span>
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="nextAchievement()"
+                                :disabled="achivementPage==this.currentUser.achievements.length?true:false"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -1043,6 +1067,7 @@ export default {
   data() {
     return {
       portfolioPage: 1,
+      achivementPage: 1,
       skillTab: 0,
       page: 1,
       overlay: true,
@@ -1362,6 +1387,48 @@ export default {
             }
           }
         ]
+      },
+
+      slickOptionsAchievements: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 2
+            }
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 2
+            }
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 2
+            }
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
       }
     };
   },
@@ -1521,6 +1588,18 @@ export default {
       this.$refs.slick.prev();
       if (this.portfolioPage > 1) {
         this.portfolioPage--;
+      }
+    },
+    nextAchievement() {
+      this.$refs.slick.next();
+      if (this.achivementPage < this.currentUser.achievements.length) {
+        this.achivementPage++;
+      }
+    },
+    prevAchievement() {
+      this.$refs.slick.prev();
+      if (this.achivementPage > 1) {
+        this.achivementPage--;
       }
     }
   },
