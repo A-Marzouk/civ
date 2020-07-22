@@ -267,7 +267,6 @@ export default {
       axios
         .put("/api/user/projects", project)
         .then((response) => {
-          console.log(response.data);
           this.$store.dispatch("flyingNotification");
         })
         .catch(error => {
@@ -324,7 +323,6 @@ export default {
           headers: { "Content-Type": "multipart/form-data" }
         })
         .then(response => {
-          console.log(response.data);
           if (!edit) {
             this.projects.push(response.data.data);
           } else {
