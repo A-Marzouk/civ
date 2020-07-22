@@ -608,13 +608,30 @@
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="prevPortfolio">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevPortfolio"
+                                :disabled="portfolioPage==1? true : false "
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
                               <span
                                 class="title pagination-text"
                               >{{portfolioPage}}/{{currentUser.projects.length/6}}</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="nextPortfolio">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                :disabled="currentUser.projects.length/6==1? true:false"
+                                fab
+                                color="#6152CF"
+                                @click="nextPortfolio"
+                                :class="currentUser.projects.length/6==1? 'btn-pagination-disabled':''"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -1496,7 +1513,7 @@ export default {
     //slick carousel
     nextPortfolio() {
       this.$refs.slick.next();
-      if (this.portfolioPage < this.currentUser.projects.length/6) {
+      if (this.portfolioPage < this.currentUser.projects.length / 6) {
         this.portfolioPage++;
       }
     },
@@ -1533,6 +1550,10 @@ export default {
 }
 
 @import "resources/sass/themes/theme200.scss";
+.theme--dark.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: #6152cf !important;
+}
+
 .hire-me-frequency {
   color: white;
   font-size: 12px !important;
