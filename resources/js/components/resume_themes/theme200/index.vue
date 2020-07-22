@@ -1402,7 +1402,7 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 2
+              rows: 1
             }
           },
           {
@@ -1410,7 +1410,7 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 2
+              rows: 1
             }
           },
           {
@@ -1418,7 +1418,7 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 2
+              rows: 1
             }
           },
           {
