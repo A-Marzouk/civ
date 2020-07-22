@@ -299,15 +299,15 @@ export default {
 
         axios
           .post("/api/user/skills", this.editedSkill)
-          .then(response => {
+          .then( (response) => {
+            response.data.data.is_public = true;
             if (!edit) {
-              response.data.data.is_public = true;
               let addedSkill = response.data.data;
               this.skills.push(addedSkill);
             } else {
               this.skills.forEach((skill, index) => {
                 if (skill.id === response.data.data.id) {
-                  this.skills[index] = response.data.data;
+                  this.skills.splice(index, 1, response.data.data);
                 }
               });
             }

@@ -327,7 +327,7 @@
                         } else {
                             this.educations.forEach((myEducation, index) => {
                                 if (myEducation.id === response.data.data.id) {
-                                    this.educations[index] = response.data.data;
+                                    this.educations.splice(index, 1, response.data.data);
                                 }
                             });
                         }
