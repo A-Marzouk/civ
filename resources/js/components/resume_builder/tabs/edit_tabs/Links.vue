@@ -190,7 +190,7 @@ export default {
 					} else {
 						this.links.forEach((link, index) => {
 							if (link.id === response.data.data.id) {
-								this.links[index] = response.data.data;
+								this.links.splice(index, 1, response.data.data);
 							}
 						});
 					}
@@ -213,7 +213,7 @@ export default {
 		clearLink() {
 			this.editedLink = {
 				id: "",
-				link_title: "website",
+				link_title: "Website",
 				category: this.linkCategory,
 				link: "",
 				is_active: true,

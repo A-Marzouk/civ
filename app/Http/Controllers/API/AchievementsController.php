@@ -37,6 +37,12 @@ class AchievementsController extends Controller
         if($request->isMethod('put') || $request->id != '' ){
             // update
             $achievement = Achievement::findOrFail($request->id);
+            if($request['is_public'] == false || $request['is_public'] === 'false' ){
+                $request['is_public'] = false ;
+            }
+            else if($request['is_public'] == true || $request['is_public'] === 'true') {
+                $request['is_public'] = true ;
+            }
             $achievement->update($request->toArray());
         }else{
             $achievement =Achievement::create($request->toArray());

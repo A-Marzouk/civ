@@ -201,7 +201,7 @@
                         }else{
                             this.hobbies.forEach((hobby, index) => {
                                 if (hobby.id === response.data.data.id) {
-                                    this.hobbies[index] = response.data.data;
+                                    this.hobbies.splice(index, 1, response.data.data);
                                 }
                             });
                         }

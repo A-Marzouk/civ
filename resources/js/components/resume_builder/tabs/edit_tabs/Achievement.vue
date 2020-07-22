@@ -306,7 +306,7 @@
                   } else {
                     this.achievements.forEach((achievement, index) => {
                       if (achievement.id === response.data.data.id) {
-                        this.achievements[index] = response.data.data;
+                        this.achievements.splice(index, 1, response.data.data);
                       }
                     });
                   }
