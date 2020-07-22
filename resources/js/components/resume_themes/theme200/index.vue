@@ -1723,7 +1723,7 @@ export default {
   .card-video {
     max-width: 674px;
     max-height: 476px;
-    border-radius: 12px;
+    border-radius: 12px !important;
     .video-window-title {
       font-family: "Open Sans" !important;
       font-size: 30px;
