@@ -1060,7 +1060,7 @@
       <v-dialog v-model="videoModal" max-width="1690" max-height="740">
         <v-card class="card-modal-video-holder pa-10">
           <slick ref="slick" :options="slickOptionsVideoModal" class="ml-xl-6 ml-lg-0">
-            <div v-for="i in 2" :key="i" class="mx-xl-10 ml-lg-5">
+            <div v-for="i in 6" :key="i" class="mx-xl-10 ml-lg-10">
               <v-card class="card-video">
                 <video style="width:100%;" controls>
                   <source src="mov_bbb.mp4" type="video/mp4" />
@@ -1724,17 +1724,27 @@ export default {
     max-width: 674px;
     max-height: 476px;
     border-radius: 12px !important;
+    @media screen and (min-width: 1264px) and (max-width:1903px){
+      width: 90%;
+      height: 90%;
+    }
     .video-window-title {
       font-family: "Open Sans" !important;
       font-size: 30px;
       color: #2e2e2e !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px){
+        font-size: 24px;
+      }
     }
     .video-window-subtitle {
-      margin-top: 10px;
+      margin-top: 5px;
       font-family: "Open Sans" !important;
       font-size: 19px;
       color: #7d7d7d !important;
       text-transform: capitalize;
+      @media screen and (min-width: 1264px) and (max-width: 1903px){
+        font-size: 24px;
+      }
     }
   }
 }
