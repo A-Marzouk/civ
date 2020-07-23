@@ -63,11 +63,17 @@
 
     .str-main-content-container{
         width: 100%;
-        height:250px;
+        min-height:250px;
         background: #FFFFFF;
         box-shadow: 0 5px 100px rgba(0, 16, 131, 0.1);
         border-radius: 0;
         padding:50px 40px;
+
+        @include lt-sm{
+            width: 96%;
+            margin: auto;
+            padding:40px 0 40px 20px;
+        }
 
         .str-main-content{
             display: flex;
@@ -103,6 +109,12 @@
                 .tab-chip{
                     display:flex;
                     align-items: center;
+
+                    @media screen and (max-width: 1024px){
+                        width: 100%;
+                        margin-bottom: 30px;
+                    }
+
 
                     img{
                         width: 30px;
