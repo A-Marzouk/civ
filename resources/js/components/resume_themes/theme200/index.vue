@@ -1067,7 +1067,7 @@
                   <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
                 </video>
                 <v-card-title class="video-window-title">Product Design</v-card-title>
-                <v-card-subtitle class="video-window-subtitle">INSDRURIAL, CREATIVE, IDEA</v-card-subtitle>
+                <v-card-subtitle class="video-window-subtitle">Industrial, Creative, Idea</v-card-subtitle>
               </v-card>
             </div>
           </slick>
@@ -1741,7 +1741,7 @@ export default {
       font-family: "Open Sans" !important;
       font-size: 19px;
       color: #7d7d7d !important;
-      text-transform: capitalize;
+      text-transform: capitalize !important;
       @media screen and (min-width: 1264px) and (max-width: 1903px){
         font-size: 24px;
       }
