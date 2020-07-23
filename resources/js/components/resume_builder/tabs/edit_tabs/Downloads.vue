@@ -37,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <draggable @start="drag=true" @end="drag=false"  handle=".drag-handler" style="diplay: contents">
+                    <draggable @start="drag=true" @end="drag=false"  handle=".drag-handler" style="display: contents">
                         <tr v-for="i in 10" :key="i">
                             <td>
                                 <div class="table-file">
