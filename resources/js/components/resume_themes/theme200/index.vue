@@ -1070,15 +1070,15 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <slick ref="slick" :options="slickOptionsVideoModal" class="ml-xl-6 ml-lg-0">
-            <div v-for="i in 6" :key="i" class="mx-xl-10 ml-lg-10 ml-md-12">
-              <v-card class="card-video ml-xl-0 ml-lg-0 ml-md-6">
+          <slick ref="slick" :options="slickOptionsVideoModal" class="">
+            <div v-for="i in 6" :key="i" class="" align="center">
+              <v-card class="card-video">
                 <video style="width:100%;" controls>
                   <source src="mov_bbb.mp4" type="video/mp4" />
                   <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
                 </video>
                 <v-card-title class="video-window-title mb-5">Product Design</v-card-title>
-                <v-card-subtitle class="video-window-subtitle mb-5">Industrial, Creative, Idea</v-card-subtitle>
+                <v-card-subtitle class="video-window-subtitle mb-5" align="left">Industrial, Creative, Idea</v-card-subtitle>
               </v-card>
             </div>
           </slick>
@@ -1492,7 +1492,7 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 1,
+              rows: 1
             }
           }
         ]
@@ -1748,7 +1748,7 @@ export default {
       width: 90%;
       height: 90%;
     }
-    @media screen and (min-width: 960px) and (max-width: 1263px){
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
       max-width: 750px;
     }
     .video-window-title {
