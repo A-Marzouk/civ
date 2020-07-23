@@ -1059,6 +1059,17 @@
       <!-- video modal -->
       <v-dialog v-model="videoModal" max-width="1690" max-height="740">
         <v-card class="card-modal-video-holder pa-10">
+          <v-card-subtitle align="right">
+            <v-btn
+              color="transparent"
+              class="btn-video-close mb-xl-8 mb-lg-8"
+              fab
+              @click.stop="videoModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme200/icons/close.svg" />
+            </v-btn>
+          </v-card-subtitle>
           <slick ref="slick" :options="slickOptionsVideoModal" class="ml-xl-6 ml-lg-0">
             <div v-for="i in 6" :key="i" class="mx-xl-10 ml-lg-10">
               <v-card class="card-video">
@@ -1066,8 +1077,8 @@
                   <source src="mov_bbb.mp4" type="video/mp4" />
                   <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
                 </video>
-                <v-card-title class="video-window-title">Product Design</v-card-title>
-                <v-card-subtitle class="video-window-subtitle">Industrial, Creative, Idea</v-card-subtitle>
+                <v-card-title class="video-window-title mb-5">Product Design</v-card-title>
+                <v-card-subtitle class="video-window-subtitle mb-5">Industrial, Creative, Idea</v-card-subtitle>
               </v-card>
             </div>
           </slick>
@@ -1719,12 +1730,21 @@ export default {
   font-size: 12px !important;
 }
 .card-modal-video-holder {
-  max-height: 734px;
+  height: 734px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 80%;
+  }
+  .btn-video-close {
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
   .card-video {
     max-width: 674px;
     max-height: 476px;
     border-radius: 12px !important;
-    @media screen and (min-width: 1264px) and (max-width:1903px){
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
       width: 90%;
       height: 90%;
     }
@@ -1732,18 +1752,17 @@ export default {
       font-family: "Open Sans" !important;
       font-size: 30px;
       color: #2e2e2e !important;
-      @media screen and (min-width: 1264px) and (max-width: 1903px){
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
         font-size: 24px;
       }
     }
     .video-window-subtitle {
-      margin-top: 5px;
       font-family: "Open Sans" !important;
       font-size: 19px;
       color: #7d7d7d !important;
       text-transform: capitalize !important;
-      @media screen and (min-width: 1264px) and (max-width: 1903px){
-        font-size: 24px;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 14px;
       }
     }
   }
@@ -1759,6 +1778,16 @@ export default {
 
 #resumeTheme200 .v-slide-group__next {
   display: none;
+}
+
+#resumeTheme200 .slick-dots li.slick-active button {
+  background-color: #6152cf !important;
+  opacity: 1 !important;
+}
+
+#resumeTheme200 .slick-dots li button {
+  background-color: #6152cf !important;
+  opacity: 0.57 !important;
 }
 </style>
 
