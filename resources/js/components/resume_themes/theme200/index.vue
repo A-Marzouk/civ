@@ -211,16 +211,19 @@
                                       <v-btn color="#03CA9F" class="btn-voice-call">
                                         <img
                                           class="mr-2"
-                                          src="/images/resume_themes/theme200/icons/phone.png"
-                                        />Voice
-                                        Call
+                                          src="/images/resume_themes/theme200/icons/volume.svg"
+                                        />Audio
                                       </v-btn>
                                     </v-card>
                                   </v-col>
 
                                   <v-col cols="12" md="4" sm="5" class>
                                     <v-card flat color="transparent" class="mt-md-0 mt-sm-7 mt-0">
-                                      <v-btn color="#2400FF" class="btn-upload">
+                                      <v-btn
+                                        color="#2400FF"
+                                        class="btn-upload"
+                                        @click.stop="videoModal=true"
+                                      >
                                         <img
                                           src="/images/resume_themes/theme200/icons/camera.png"
                                           class="mr-2"
@@ -576,7 +579,7 @@
                           <div
                             v-for="project in currentUser.projects"
                             :key="project.id"
-                            class="mb-5"
+                            class="mb-10"
                           >
                             <v-card elevation-12 class="card-portfolio">
                               <v-img
@@ -608,13 +611,30 @@
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="prev">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevPortfolio"
+                                :disabled="portfolioPage==1? true : false "
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
                               <span
                                 class="title pagination-text"
                               >{{portfolioPage}}/{{currentUser.projects.length/6}}</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="next">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                :disabled="currentUser.projects.length/6==1? true:false"
+                                fab
+                                color="#6152CF"
+                                @click="nextPortfolio"
+                                :class="currentUser.projects.length/6==1? 'btn-pagination-disabled':''"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -954,37 +974,61 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
                       <v-card-text>
-                        <v-row
-                          v-for="(achievement,index) in currentUser.achievements"
-                          :key="index + '_achievement'"
-                        >
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" elevation-12>
-                              <v-img :src="achievement.image_src"></v-img>
-                            </v-card>
-                          </v-col>
+                        <slick ref="slick" :options="slickOptionsAchievements">
+                          <div
+                            v-for="(achievement,index) in currentUser.achievements"
+                            :key="index + '_achievement'"
+                          >
+                            <v-row>
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" elevation-12>
+                                  <v-img :src="achievement.image_src"></v-img>
+                                </v-card>
+                              </v-col>
 
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" class="certification">
-                              <v-card-title>
-                                <span class="achievement-title">{{achievement.title}}</span>
-                              </v-card-title>
-                              <v-card-subtitle class="achievement-subtitle">{{achievement.category}}</v-card-subtitle>
-                              <v-card-text
-                                class="achievement-text caption"
-                              >{{achievement.description}}</v-card-text>
-                            </v-card>
-                          </v-col>
-                        </v-row>
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" class="certification">
+                                  <v-card-title>
+                                    <span class="achievement-title">{{achievement.title}}</span>
+                                  </v-card-title>
+                                  <v-card-subtitle
+                                    class="achievement-subtitle"
+                                  >{{achievement.category}}</v-card-subtitle>
+                                  <v-card-text
+                                    class="achievement-text caption"
+                                  >{{achievement.description}}</v-card-text>
+                                </v-card>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </slick>
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevAchievement()"
+                                :disabled="achivementPage==1?true:false"
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
-                              <span class="title pagination-text">1/5</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <span
+                                class="title pagination-text"
+                              >{{achivementPage}}/{{currentUser.achievements.length}}</span>
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="nextAchievement()"
+                                :disabled="achivementPage==this.currentUser.achievements.length?true:false"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -1012,6 +1056,24 @@
         <img :src="currentImgObj != null ? getProjectMainImage(currentImgObj) : ''" />
       </v-dialog>
       <!-- Photo Zoom Dialog -->
+      <!-- video modal -->
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740">
+        <v-card class="card-modal-video-holder pa-10">
+          <slick ref="slick" :options="slickOptionsVideoModal" class="ml-xl-6 ml-lg-0">
+            <div v-for="i in 2" :key="i" class="mx-xl-10 ml-lg-5">
+              <v-card class="card-video">
+                <video style="width:100%;" controls>
+                  <source src="mov_bbb.mp4" type="video/mp4" />
+                  <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
+                </video>
+                <v-card-title class="video-window-title">Product Design</v-card-title>
+                <v-card-subtitle class="video-window-subtitle">INSDRURIAL, CREATIVE, IDEA</v-card-subtitle>
+              </v-card>
+            </div>
+          </slick>
+        </v-card>
+      </v-dialog>
+      <!-- Video modal -->
     </div>
   </v-app>
 </template>
@@ -1025,7 +1087,10 @@ export default {
   },
   data() {
     return {
+      videoModal: false,
+      audioModal: false,
       portfolioPage: 1,
+      achivementPage: 1,
       skillTab: 0,
       page: 1,
       overlay: true,
@@ -1271,7 +1336,7 @@ export default {
         dots: false,
         arrows: false,
         slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesToScroll: 3,
         rows: 2,
         responsive: [
           {
@@ -1286,7 +1351,7 @@ export default {
             breakpoint: 960,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 1,
+              slidesToScroll: 2,
               rows: 3
             }
           },
@@ -1301,7 +1366,122 @@ export default {
             breakpoint: 1600,
             settings: {
               slidesToShow: 3,
+              slidesToScroll: 3
+            }
+          }
+        ]
+      },
+      slickOptionsSkills: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        rows: 4,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 4
+            }
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              rows: 4
+            }
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3
+            }
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 4
+            }
+          }
+        ]
+      },
+
+      slickOptionsAchievements: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1
+            }
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1
+            }
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1
+            }
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 1,
               slidesToScroll: 1
+            }
+          }
+        ]
+      },
+      //video modal
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1
             }
           }
         ]
@@ -1454,16 +1634,28 @@ export default {
       console.log(obj);
     },
     //slick carousel
-    next() {
+    nextPortfolio() {
       this.$refs.slick.next();
-      if (this.portfolioPage < this.currentUser.projects.length/6) {
+      if (this.portfolioPage < this.currentUser.projects.length / 6) {
         this.portfolioPage++;
       }
     },
-    prev() {
+    prevPortfolio() {
       this.$refs.slick.prev();
       if (this.portfolioPage > 1) {
         this.portfolioPage--;
+      }
+    },
+    nextAchievement() {
+      this.$refs.slick.next();
+      if (this.achivementPage < this.currentUser.achievements.length) {
+        this.achivementPage++;
+      }
+    },
+    prevAchievement() {
+      this.$refs.slick.prev();
+      if (this.achivementPage > 1) {
+        this.achivementPage--;
       }
     }
   },
@@ -1493,6 +1685,10 @@ export default {
 }
 
 @import "resources/sass/themes/theme200.scss";
+.theme--dark.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: #6152cf !important;
+}
+
 .hire-me-frequency {
   color: white;
   font-size: 12px !important;
@@ -1521,6 +1717,26 @@ export default {
 .inactive-mobile-tab-text {
   color: #ffa797 !important;
   font-size: 12px !important;
+}
+.card-modal-video-holder {
+  max-height: 734px;
+  .card-video {
+    max-width: 674px;
+    max-height: 476px;
+    border-radius: 12px !important;
+    .video-window-title {
+      font-family: "Open Sans" !important;
+      font-size: 30px;
+      color: #2e2e2e !important;
+    }
+    .video-window-subtitle {
+      margin-top: 10px;
+      font-family: "Open Sans" !important;
+      font-size: 19px;
+      color: #7d7d7d !important;
+      text-transform: capitalize;
+    }
+  }
 }
 
 //mobile tab
