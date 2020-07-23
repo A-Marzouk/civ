@@ -22,7 +22,7 @@
 				</div>
 			</div>
 
-			<div class="cv-content-preview-wrapper">
+			<div class="cv-content-preview-wrapper" v-if="activeTab !== 'imports'">
 				<div class="cv-content-preview">
 					<div class="cv-preview-link">
 						<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>

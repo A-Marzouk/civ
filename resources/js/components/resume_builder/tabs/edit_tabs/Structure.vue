@@ -1,5 +1,5 @@
 <template>
-    <div class="str-main-content-container resume-builder__scroll">
+    <div class="str-main-content-container">
         <div class="str-main-content">
             <div class="title">
                 <img src="/icons/edit-cv-sidebar/structure.svg" alt="structure icon">
