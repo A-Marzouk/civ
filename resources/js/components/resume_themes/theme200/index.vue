@@ -1484,7 +1484,8 @@ export default {
             breakpoint: 960,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              rows:2,
             }
           },
           {
@@ -1734,6 +1735,9 @@ export default {
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 80%;
   }
+  @media screen and (max-width: 959px){
+    height: auto;
+  }
   .btn-video-close {
     img {
       width: 30px;
@@ -1750,6 +1754,9 @@ export default {
     }
     @media screen and (min-width: 960px) and (max-width: 1263px) {
       max-width: 750px;
+    }
+    @media screen and (max-width: 959px){
+      width: 90%;
     }
     .video-window-title {
       font-family: "Open Sans" !important;
