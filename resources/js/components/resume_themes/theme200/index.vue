@@ -97,8 +97,8 @@
                       </v-btn>
                     </v-card>
                     <v-card flat color="transparent" class="mt-6">
-                      <v-btn small color="#E8E5F6" class="video-btn">
-                        <img src="/images/resume_themes/theme200/icons/youtube-camera.png" />
+                      <v-btn small color="#E8E5F6" class="video-btn" @click.stop="videoModal=true">
+                        <img src="/images/resume_themes/theme200/icons/camera.svg" />
                       </v-btn>
                     </v-card>
                   </v-col>
@@ -1058,11 +1058,11 @@
       <!-- Photo Zoom Dialog -->
       <!-- video modal -->
       <v-dialog v-model="videoModal" max-width="1690" max-height="740">
-        <v-card class="card-modal-video-holder pa-10">
+        <v-card class="card-modal-video-holder pa-sm-10 pa-0">
           <v-card-subtitle align="right">
             <v-btn
               color="transparent"
-              class="btn-video-close mb-xl-8 mb-lg-8"
+              class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-sm-0 mt-2"
               fab
               @click.stop="videoModal=false"
               depressed
@@ -1070,15 +1070,18 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <slick ref="slick" :options="slickOptionsVideoModal" class="">
-            <div v-for="i in 6" :key="i" class="" align="center">
-              <v-card class="card-video">
+          <slick ref="slick" :options="slickOptionsVideoModal" class>
+            <div v-for="i in 3" :key="i" class align="center">
+              <v-card class="card-video mb-md-0 md-sm-0 mb-5">
                 <video style="width:100%;" controls>
                   <source src="mov_bbb.mp4" type="video/mp4" />
                   <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
                 </video>
-                <v-card-title class="video-window-title mb-5">Product Design</v-card-title>
-                <v-card-subtitle class="video-window-subtitle mb-5" align="left">Industrial, Creative, Idea</v-card-subtitle>
+                <v-card-title class="video-window-title mb-sm-5 mb-0">Product Design</v-card-title>
+                <v-card-subtitle
+                  class="video-window-subtitle mb-sm-5 mb-0 mt-sm-0 mt-n5"
+                  align="left"
+                >Industrial, Creative, Idea</v-card-subtitle>
               </v-card>
             </div>
           </slick>
@@ -1477,7 +1480,9 @@ export default {
             breakpoint: 600,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1
+              slidesToScroll: 1,
+              rows: 2,
+              centerPadding: "80px",
             }
           },
           {
@@ -1485,7 +1490,8 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows:2,
+              rows: 2,
+              centerPadding: "80px"
             }
           },
           {
@@ -1735,14 +1741,22 @@ export default {
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 80%;
   }
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     height: auto;
+  }
+  @media screen and (max-width: 599px){
+    height:650px;
   }
   .btn-video-close {
     img {
       width: 30px;
       height: 30px;
+      @media screen and (max-width: 599px){
+        width: 38px;
+        height: 38px;
+      }
     }
+    
   }
   .card-video {
     max-width: 674px;
@@ -1755,8 +1769,12 @@ export default {
     @media screen and (min-width: 960px) and (max-width: 1263px) {
       max-width: 750px;
     }
-    @media screen and (max-width: 959px){
+    @media screen and (max-width: 959px) {
       width: 90%;
+    }
+    @media screen and (max-width: 599px){
+      max-width: 361px;
+      max-height: 263px;
     }
     .video-window-title {
       font-family: "Open Sans" !important;
@@ -1764,6 +1782,12 @@ export default {
       color: #2e2e2e !important;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
         font-size: 24px;
+      }
+      @media screen and (max-width: 959px) {
+        font-size: 32px;
+      }
+      @media screen and (max-width: 599px) {
+        font-size: 18px;
       }
     }
     .video-window-subtitle {
@@ -1773,6 +1797,12 @@ export default {
       text-transform: capitalize !important;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
         font-size: 14px;
+      }
+      @media screen and (max-width: 959px) {
+        font-size: 18px;
+      }
+      @media screen and (max-width: 599px) {
+        font-size: 10px;
       }
     }
   }
