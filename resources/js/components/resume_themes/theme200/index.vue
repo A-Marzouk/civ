@@ -195,7 +195,11 @@
                         <v-row no-gutters>
                           <!-- Only shows on tablet and dekstop version -->
                           <v-col cols="12" md="10" sm="12" class="interview-flex">
-                            <v-card flat color="transparent">
+                            <v-card
+                              flat
+                              color="transparent"
+                              class="mt-xl-0 mt-lg-0 mt-md-5 mt-sm-0 mt-0"
+                            >
                               <v-card-text align="center">
                                 <v-row align="center">
                                   <v-col cols="12" md="4" class="interview-col hidden-sm-and-down">
@@ -231,7 +235,7 @@
                           <!-- Only shows on tablet desktop version -->
 
                           <!-- Only shows in desktop  -->
-                          <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
+                          <v-col cols="10" md="11" sm="12" class="hidden-md-and-down">
                             <v-card
                               flat
                               tile
@@ -568,18 +572,17 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
                       <v-card-text align="center">
-                        <v-row>
-                          <v-col
-                            md="4"
-                            sm="6"
+                        <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+                          <div
                             v-for="project in currentUser.projects"
                             :key="project.id"
+                            class="mb-5"
                           >
                             <v-card elevation-12 class="card-portfolio">
                               <v-img
                                 :src="getProjectMainImage(project)"
                                 @mouseover="hoveredProjectId = project.id"
-                                @mouseleave="hoveredProjectId =0"
+                                @mouseleave="hoveredProjectId = 0"
                               >
                                 <v-overlay
                                   :absolute="absolute"
@@ -598,17 +601,20 @@
                               <v-card-title>{{project.name}}</v-card-title>
                               <v-card-subtitle align="left">{{project.description}}</v-card-subtitle>
                             </v-card>
-                          </v-col>
-                        </v-row>
+                          </div>
+                        </slick>
+
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="prev">
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
-                              <span class="title pagination-text">1/5</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <span
+                                class="title pagination-text"
+                              >{{portfolioPage}}/{{currentUser.projects.length/6}}</span>
+                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="next">
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -736,7 +742,7 @@
                             >{{item.title}}</v-tab>
                           </v-tabs>
                           <v-spacer></v-spacer>
-                          <v-btn icon class="mx-md-3">
+                          <!-- <v-btn icon class="mx-md-3">
                             <img
                               width="40"
                               src="/images/resume_themes/theme200/icons/skills/arrange.png"
@@ -748,7 +754,7 @@
                               width="20"
                               src="/images/resume_themes/theme200/icons/skills/view-list.png"
                             />
-                          </v-btn>
+                          </v-btn>-->
                         </v-toolbar>
                         <!-- Inner Tab Items -->
                         <v-tabs-items v-model="skillTab">
@@ -1011,10 +1017,15 @@
 </template>
 
 <script>
+import Slick from "vue-slick";
 export default {
   props: ["user", "is_preview"],
+  components: {
+    Slick
+  },
   data() {
     return {
+      portfolioPage: 1,
       skillTab: 0,
       page: 1,
       overlay: true,
@@ -1254,7 +1265,47 @@ export default {
         { title: "google", icon: "fa-google-plus", color: "#DC4E41" }
       ],
 
-      currentUser: this.user
+      currentUser: this.user,
+      slickOptions: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        rows: 2,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 6
+            }
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+              rows: 3
+            }
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3
+            }
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
     };
   },
 
@@ -1401,6 +1452,19 @@ export default {
       this.zoomModal = true;
       this.currentImgObj = obj;
       console.log(obj);
+    },
+    //slick carousel
+    next() {
+      this.$refs.slick.next();
+      if (this.portfolioPage < this.currentUser.projects.length/6) {
+        this.portfolioPage++;
+      }
+    },
+    prev() {
+      this.$refs.slick.prev();
+      if (this.portfolioPage > 1) {
+        this.portfolioPage--;
+      }
     }
   },
   computed: {

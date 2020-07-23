@@ -214,7 +214,7 @@
     /* for google chrome and safari */
     .v-line {
         position: absolute;
-        margin-top: 57px;
+        margin-top: 110px;
         margin-left: 19px;
         height: 110%;
         border: 1px solid #707070;
@@ -249,6 +249,23 @@
     //         margin-left: -60px !important;
     //     }
     // }
+    @media screen and (min-width:960px) and (max-width:1263px) {
+        .availibility-tablet {
+            display: flex;
+        }
+        .btn-hire-me {
+            width: 129px;
+            font-size: 12px;
+        }
+        .hire-me-parent-tab {
+            margin-left: 10px !important;
+        }
+        .hire-card-frequency2 {
+            img {
+                margin-left: -5px !important;
+            }
+        }
+    }
     @media screen and (min-width:600px) and (max-width: 959px) {
         .availibility-tablet {
             display: inline;
@@ -360,7 +377,7 @@
             font-size: 16px !important;
         }
         .work-text {
-            font-size: 14px !important;
+            font-size: 12px !important;
         }
         /* Work */
         /* Skill tabs */
@@ -395,7 +412,7 @@
         /* vertical line */
         .v-line {
             position: absolute;
-            margin-top: 56px;
+            margin-top: 109px;
             margin-left: 19px;
             height: 110%;
             border: 1px solid #707070 !important;
@@ -550,7 +567,7 @@
         }
         /* achievement */
         .v-line {
-            margin-top: 48px;
+            margin-top: 94px;
             height: 115%;
         }
         @-moz-document url-prefix() {
@@ -573,19 +590,5 @@
     /* mobile devices */
     /* min screen devices*/
     // ipad pro
-    @media only screen and (max-width:1024px) {
-        .btn-hire-me {
-            width: 5vw;
-            font-size: 12px;
-        }
-        .hire-me-parent-tab {
-            margin-left: 10px !important;
-        }
-        .hire-card-frequency2 {
-            img {
-                margin-left: -5px !important;
-            }
-        }
-    }
     // ipad pro
 }
