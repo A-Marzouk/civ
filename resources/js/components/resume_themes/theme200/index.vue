@@ -92,7 +92,7 @@
                   <!-- Hidden in sm and up phone icons -->
                   <v-col col="1" class="hidden-sm-and-up" align="right">
                     <v-card flat color="transparent">
-                      <v-btn small color="#00CDF7" class="phone-btn">
+                      <v-btn small color="#00CDF7" class="phone-btn" @click.stop="audioModal=true">
                         <img src="/images/resume_themes/theme200/icons/telephone-handle.png" />
                       </v-btn>
                     </v-card>
@@ -208,7 +208,11 @@
                                   <v-spacer class="hidden-md-only"></v-spacer>
                                   <v-col cols="12" md="4" sm="5" class>
                                     <v-card color="transparent" flat class="mt-md-0 mt-sm-7 mt-0">
-                                      <v-btn color="#03CA9F" class="btn-voice-call">
+                                      <v-btn
+                                        color="#03CA9F"
+                                        class="btn-voice-call"
+                                        @click.stop="audioModal=true"
+                                      >
                                         <img
                                           class="mr-2"
                                           src="/images/resume_themes/theme200/icons/volume.svg"
@@ -1057,7 +1061,7 @@
       </v-dialog>
       <!-- Photo Zoom Dialog -->
       <!-- video modal -->
-      <v-dialog v-model="videoModal" max-width="1690" max-height="740">
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
         <v-card class="card-modal-video-holder pa-sm-10 pa-0">
           <v-card-subtitle align="right">
             <v-btn
@@ -1088,6 +1092,35 @@
         </v-card>
       </v-dialog>
       <!-- Video modal -->
+
+      <!-- Audio Modal -->
+      <v-dialog v-model="audioModal" max-width="1690" max-height="740" persistent>
+        <v-card class="audio-modal-main-card pa-xl-10 pa-sm-4 pa-2">
+          <v-card-subtitle align="right">
+            <v-btn
+              color="transparent"
+              class="btn-video-close mb-xl-8 mb-lg-8 mr-xl-n5 mr-lg-n5 mr-md-n5 mr-sm-n5 mr-n5 mt-sm-0 mt-2"
+              fab
+              @click.stop="audioModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme200/icons/close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+          <vueSlickCarousel v-bind="slickOptionsAudioModal">
+            <div v-for="i in 6" :key="i" class="mb-5">
+              <audio controls style="width:100%;">
+                <source src="horse.ogg" type="audio/ogg" />
+                <source src="horse.mp3" type="audio/mpeg" />Your browser does not support the audio element.
+              </audio>
+            </div>
+            <!-- <template #customPaging="page">
+              <div class="custom-dot">{{ page }}</div>
+            </template>-->
+          </vueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Audio Modal -->
     </div>
   </v-app>
 </template>
@@ -1351,13 +1384,13 @@ export default {
         infinite: false,
         dots: false,
         arrows: false,
-        slidesPerRow:3,
-        rows:2,
+        slidesPerRow: 3,
+        rows: 2,
         responsive: [
           {
             breakpoint: 600,
             settings: {
-              slidesPerRow:1,
+              slidesPerRow: 1,
               rows: 6
             }
           },
@@ -1365,7 +1398,7 @@ export default {
             breakpoint: 960,
             settings: {
               slidesToScroll: 2,
-              slidesPerRow:2,
+              slidesPerRow: 2,
               rows: 3
             }
           },
@@ -1502,6 +1535,15 @@ export default {
             }
           }
         ]
+      },
+      //audio Modal
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3
       }
     };
   },
@@ -1804,6 +1846,21 @@ export default {
       }
     }
   }
+}
+
+.audio-modal-main-card {
+  max-height: 471px;
+  height: 471px;
+
+  @media screen and (max-width: 959px) {
+    height: 400px;
+  }
+}
+audio,
+canvas,
+progress,
+video {
+  width: -webkit-fill-available !important;
 }
 
 //mobile tab
