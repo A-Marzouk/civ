@@ -1861,6 +1861,7 @@ canvas,
 progress,
 video {
   width: -webkit-fill-available !important;
+  width: -moz-available;
 }
 
 //mobile tab
