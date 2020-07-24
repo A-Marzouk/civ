@@ -1081,9 +1081,9 @@
                   <source src="mov_bbb.mp4" type="video/mp4" />
                   <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
                 </video>
-                <v-card-title class="video-window-title mb-sm-5 mb-0">Product Design</v-card-title>
+                <v-card-title class="video-window-title">Product Design</v-card-title>
                 <v-card-subtitle
-                  class="video-window-subtitle mb-sm-5 mb-0 mt-sm-0 mt-n5"
+                  class="video-window-subtitle mt-n5"
                   align="left"
                 >Industrial, Creative, Idea</v-card-subtitle>
               </v-card>
