@@ -578,7 +578,7 @@
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
-                      <v-card-text align="center">
+                      <v-card-text>
                         <VueSlickCarousel v-bind="slickOptions" ref="slick">
                           <div
                             v-for="project in currentUser.projects"
@@ -628,7 +628,7 @@
                               </v-btn>
                               <span
                                 class="title pagination-text"
-                              >{{portfolioPage}}/{{currentUser.projects.length/6}}</span>
+                              >{{portfolioPage}}/{{currentUser.projects.length/6 | floor}}</span>
                               <v-btn
                                 dark
                                 x-small
@@ -1078,8 +1078,10 @@
             <div v-for="i in 3" :key="i" class align="center">
               <v-card class="card-video mb-md-0 md-sm-0 mb-5">
                 <video style="width:100%;" controls>
-                  <source src="mov_bbb.mp4" type="video/mp4" />
-                  <source src="mov_bbb.ogg" type="video/ogg" />Your browser does not support HTML video.
+                  <source
+                    src="http://techslides.com/demos/sample-videos/small.mp4"
+                    type="video/mp4"
+                  />
                 </video>
                 <v-card-title class="video-window-title">Product Design</v-card-title>
                 <v-card-subtitle
@@ -1130,6 +1132,12 @@ import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
 export default {
   props: ["user", "is_preview"],
+  filters: {
+    floor: function(value) {
+      if (!value) return "";
+      return Math.ceil(value);
+    }
+  },
   components: {
     Slick,
     VueSlickCarousel
@@ -1790,8 +1798,12 @@ export default {
   }
   .btn-video-close {
     img {
-      width: 30px;
-      height: 30px;
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
       @media screen and (max-width: 599px) {
         width: 38px;
         height: 38px;
