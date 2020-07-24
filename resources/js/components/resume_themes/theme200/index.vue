@@ -575,7 +575,7 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
                       <v-card-text align="center">
-                        <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+                        <VueSlickCarousel v-bind="slickOptions" ref="slick">
                           <div
                             v-for="project in currentUser.projects"
                             :key="project.id"
@@ -605,7 +605,7 @@
                               <v-card-subtitle align="left">{{project.description}}</v-card-subtitle>
                             </v-card>
                           </div>
-                        </slick>
+                        </VueSlickCarousel>
 
                         <!-- Pagination -->
                         <v-row class="mt-5">
@@ -974,7 +974,7 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
                       <v-card-text>
-                        <VueSlickCarousel :arrows="true" :options="slickOptionsAchievements" ref="slick">
+                        <VueSlickCarousel :options="slickOptionsAchievements" ref="slick">
                           <div
                             v-for="(achievement,index) in currentUser.achievements"
                             :key="index + '_achievement'"
@@ -1094,7 +1094,7 @@
 
 <script>
 import Slick from "vue-slick";
-import VueSlickCarousel from 'vue-slick-carousel'
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   props: ["user", "is_preview"],
   components: {
@@ -1351,37 +1351,33 @@ export default {
         infinite: false,
         dots: false,
         arrows: false,
-        slidesToShow: 3,
-        slidesToScroll: 3,
-        rows: 2,
+        slidesPerRow:3,
+        rows:2,
         responsive: [
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1,
+              slidesPerRow:1,
               rows: 6
             }
           },
           {
             breakpoint: 960,
             settings: {
-              slidesToShow: 2,
               slidesToScroll: 2,
+              slidesPerRow:2,
               rows: 3
             }
           },
           {
             breakpoint: 1264,
             settings: {
-              slidesToShow: 3,
               slidesToScroll: 3
             }
           },
           {
             breakpoint: 1600,
             settings: {
-              slidesToShow: 3,
               slidesToScroll: 3
             }
           }
@@ -1442,7 +1438,7 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               rows: 1,
-              simple: true,
+              simple: true
             }
           },
           {
@@ -1485,7 +1481,7 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               rows: 2,
-              centerPadding: "80px",
+              centerPadding: "80px"
             }
           },
           {
@@ -1747,19 +1743,18 @@ export default {
   @media screen and (max-width: 959px) {
     height: auto;
   }
-  @media screen and (max-width: 599px){
-    height:682px;
+  @media screen and (max-width: 599px) {
+    height: 682px;
   }
   .btn-video-close {
     img {
       width: 30px;
       height: 30px;
-      @media screen and (max-width: 599px){
+      @media screen and (max-width: 599px) {
         width: 38px;
         height: 38px;
       }
     }
-    
   }
   .card-video {
     max-width: 674px;
@@ -1775,7 +1770,7 @@ export default {
     @media screen and (max-width: 959px) {
       width: 90%;
     }
-    @media screen and (max-width: 599px){
+    @media screen and (max-width: 599px) {
       max-width: 361px;
       max-height: 263px;
     }
