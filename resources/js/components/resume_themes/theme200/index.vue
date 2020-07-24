@@ -974,12 +974,12 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
                       <v-card-text>
-                        <slick ref="slick" :options="slickOptionsAchievements">
+                        <VueSlickCarousel :arrows="true" :options="slickOptionsAchievements" ref="slick">
                           <div
                             v-for="(achievement,index) in currentUser.achievements"
                             :key="index + '_achievement'"
                           >
-                            <v-row>
+                            <v-row justify="center">
                               <v-col cols="12" md="6" sm="6">
                                 <v-card flat color="transparent" elevation-12>
                                   <v-img :src="achievement.image_src"></v-img>
@@ -1001,7 +1001,7 @@
                               </v-col>
                             </v-row>
                           </div>
-                        </slick>
+                        </VueSlickCarousel>
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
@@ -1094,10 +1094,12 @@
 
 <script>
 import Slick from "vue-slick";
+import VueSlickCarousel from 'vue-slick-carousel'
 export default {
   props: ["user", "is_preview"],
   components: {
-    Slick
+    Slick,
+    VueSlickCarousel
   },
   data() {
     return {
@@ -1439,7 +1441,8 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 1
+              rows: 1,
+              simple: true,
             }
           },
           {
@@ -1745,7 +1748,7 @@ export default {
     height: auto;
   }
   @media screen and (max-width: 599px){
-    height:650px;
+    height:682px;
   }
   .btn-video-close {
     img {
