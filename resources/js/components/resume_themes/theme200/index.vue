@@ -633,7 +633,7 @@
                                 dark
                                 x-small
                                 class="mx-8"
-                                :disabled="currentUser.projects.length/6==1? true:false"
+                                :disabled="currentUser.projects.length/6<=1? true:false"
                                 fab
                                 color="#6152CF"
                                 @click="nextPortfolio"
@@ -1075,21 +1075,25 @@
             </v-btn>
           </v-card-subtitle>
           <slick ref="slick" :options="slickOptionsVideoModal" class>
-            <div v-for="i in 3" :key="i" class align="center">
-              <v-card class="card-video mb-md-0 md-sm-0 mb-5">
-                <video style="width:100%;" controls>
-                  <source
-                    src="http://techslides.com/demos/sample-videos/small.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-                <v-card-title class="video-window-title">Product Design</v-card-title>
-                <v-card-subtitle
-                  class="video-window-subtitle mt-n5"
-                  align="left"
-                >Industrial, Creative, Idea</v-card-subtitle>
-              </v-card>
-            </div>
+            <template v-for="video in currentUser.media">
+              <div
+                :key="video.id"
+                class
+                align="center"
+                v-if="video.type=='video' && video.is_public==1"
+              >
+                <v-card class="card-video mb-md-0 md-sm-0 mb-5">
+                  <video style="width:100%;" controls>
+                    <source :src="video.url" type="video/mp4" />
+                  </video>
+                  <v-card-title class="video-window-title">{{video.title}}</v-card-title>
+                  <v-card-subtitle
+                    class="video-window-subtitle mt-n5"
+                    align="left"
+                  >{{video.transcript}}</v-card-subtitle>
+                </v-card>
+              </div>
+            </template>
           </slick>
         </v-card>
       </v-dialog>
@@ -1110,12 +1114,13 @@
             </v-btn>
           </v-card-subtitle>
           <vueSlickCarousel v-bind="slickOptionsAudioModal">
-            <div v-for="i in 6" :key="i" class="mb-5">
-              <audio controls style="width:100%;">
-                <source src="horse.ogg" type="audio/ogg" />
-                <source src="horse.mp3" type="audio/mpeg" />Your browser does not support the audio element.
-              </audio>
-            </div>
+            <template v-for="audio in currentUser.media">
+              <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
+                <audio controls style="width:100%;">
+                  <source :src="audio.url" type="audio/mpeg" />Your browser does not support the audio element.
+                </audio>
+              </div>
+            </template>
             <!-- <template #customPaging="page">
               <div class="custom-dot">{{ page }}</div>
             </template>-->
@@ -1736,6 +1741,7 @@ export default {
 
   mounted() {
     // if there is no user or the preview is true, set dummy user
+    console.log(this.currentUser);
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
