@@ -789,16 +789,9 @@
                                 style="font-weight: 600; color: rgba(0,0,0,.87);"
                               >{{skillTabs[skillTab].title}}</v-card-title>
                               <v-card-text>
-                                <v-row>
-                                  <v-col
-                                    cols="12"
-                                    md="3"
-                                    sm="6"
-                                    class="skill-item"
-                                    v-for="skill in currentUser.skills"
-                                    :key="skill.id"
-                                  >
-                                    <v-card flat color="#D5EEFF" class="pa-0">
+                                <VueSlickCarousel v-bind="slickOptionsSkills" ref="carousel">
+                                  <div v-for="skill in currentUser.skills" :key="skill.id">
+                                    <v-card flat color="#D5EEFF" class="pa-0 mx-5 mb-10">
                                       <v-card-text>
                                         <v-list-item>
                                           <v-list-item-icon>
@@ -808,7 +801,9 @@
                                           <v-list-item-content class="ml-n6">
                                             <v-list-item-subtitle>
                                               <v-row no-gutters>
-                                                <v-col cols="9">{{skill.title}}</v-col>
+                                                <v-col cols="9">
+                                                  <v-card color="transparent" flat>{{skill.title}}</v-card>
+                                                </v-col>
                                                 <v-col
                                                   cols="3"
                                                   class="hidden-sm-and-up caption"
@@ -839,17 +834,36 @@
                                         </v-list-item>
                                       </v-card-text>
                                     </v-card>
-                                  </v-col>
-                                </v-row>
+                                  </div>
+                                </VueSlickCarousel>
+
                                 <!-- Pagination -->
                                 <v-row class="mt-5">
                                   <v-col cols="12">
                                     <div class="text-center">
-                                      <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                                      <v-btn
+                                        dark
+                                        x-small
+                                        class="mx-8"
+                                        fab
+                                        color="#6152CF"
+                                        @click="prevSkill()"
+                                        :disabled="skillPage==1?true:false"
+                                      >
                                         <v-icon disabled>mdi-arrow-left</v-icon>
                                       </v-btn>
-                                      <span class="title pagination-text">1/5</span>
-                                      <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                                      <span
+                                        class="title pagination-text"
+                                      >{{skillPage}}/{{totalSkillPages}}</span>
+                                      <v-btn
+                                        dark
+                                        x-small
+                                        class="mx-8"
+                                        fab
+                                        color="#6152CF"
+                                        @click="nextSkill()"
+                                        :disabled="skillPage==totalSkillPages?true:false"
+                                      >
                                         <v-icon>mdi-arrow-right</v-icon>
                                       </v-btn>
                                     </div>
@@ -978,7 +992,7 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
                       <v-card-text>
-                        <VueSlickCarousel :options="slickOptionsAchievements" ref="slick">
+                        <VueSlickCarousel :options="slickOptionsAchievements" ref="slickAchivement">
                           <div
                             v-for="(achievement,index) in currentUser.achievements"
                             :key="index + '_achievement'"
@@ -1149,9 +1163,12 @@ export default {
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       videoModal: false,
       audioModal: false,
       portfolioPage: 1,
+      skillPage: 1,
+      totalSkillPages: 1,
       achivementPage: 1,
       skillTab: 0,
       page: 1,
@@ -1435,7 +1452,7 @@ export default {
         arrows: false,
         slidesToShow: 4,
         slidesToScroll: 4,
-        rows: 4,
+        rows: 2,
         responsive: [
           {
             breakpoint: 600,
@@ -1718,17 +1735,44 @@ export default {
         this.portfolioPage--;
       }
     },
+    prevSkill() {
+      if (this.skillPage > 1) {
+        this.$refs.carousel[0].prev();
+        this.skillPage--;
+      }
+    },
+    nextSkill() {
+      if (this.skillPage < this.totalSkillPages) {
+        this.$refs.carousel[0].next();
+        this.skillPage++;
+      }
+    },
     nextAchievement() {
-      this.$refs.slick.next();
+      this.$refs.slickAchivement.next();
       if (this.achivementPage < this.currentUser.achievements.length) {
         this.achivementPage++;
       }
     },
     prevAchievement() {
-      this.$refs.slick.prev();
+      this.$refs.slickAchivement.prev();
       if (this.achivementPage > 1) {
         this.achivementPage--;
       }
+    },
+    skillPageCounter() {
+      let totalItems = this.currentUser.skills.length;
+      if (this.windowWidth > 1263) {
+        this.totalSkillPages = Math.ceil(totalItems / 8);
+      }
+      else if(this.windowWidth>959 && this.windowWidth<=1263){
+        this.totalSkillPages = Math.ceil(totalItems / 6);
+      }
+      else if (this.windowWidth>599 && this.windowWidth<=959){
+        this.totalSkillPages = Math.ceil(totalItems / 8);
+      }
+      else if (this.windowWidth<=599){
+        this.totalSkillPages = Math.ceil(totalItems/4);
+      } 
     }
   },
   computed: {
@@ -1740,8 +1784,11 @@ export default {
   },
 
   mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+    this.skillPageCounter();
     // if there is no user or the preview is true, set dummy user
-    console.log(this.currentUser);
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
