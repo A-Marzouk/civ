@@ -198,7 +198,7 @@
                             <v-card
                               flat
                               color="transparent"
-                              class="mt-xl-0 mt-lg-0 mt-md-5 mt-sm-0 mt-0"
+                              class="mt-xl-0 mt-lg-0 mt-md-10 mt-sm-0 mt-0"
                             >
                               <v-card-text align="center">
                                 <v-row align="center">
@@ -849,7 +849,7 @@
                                         color="#6152CF"
                                         @click="prevSkill()"
                                         :disabled="skillPage==1?true:false"
-                                      >
+                                      >git 
                                         <v-icon disabled>mdi-arrow-left</v-icon>
                                       </v-btn>
                                       <span
