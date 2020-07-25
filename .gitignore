@@ -5,7 +5,6 @@
 /node_modules
 /public/hot
 /public/storage
-/public/uploads
 /storage/*.key
 /vendor
 /composer-setup.php
