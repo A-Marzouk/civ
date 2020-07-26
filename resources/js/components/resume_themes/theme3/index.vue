@@ -1804,12 +1804,63 @@ export default {
               line-height: 15px;
               color: #000000;
             }
-            .work-title {
-              margin-top: 10px;
-              font-weight: 300;
-              font-size: 16px;
-              line-height: 15px;
-              color: #000000;
+            .work {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              padding-left: 150px;
+              padding-right: 150px;
+              .work-item {
+                margin-bottom: 100px;
+                display: flex;
+                flex-basis: 48%;
+                .work-icon {
+                  margin-right: 35px;
+                  img {
+                    min-width: 59px;
+                    width: 59px;
+                    height: 59px;
+                  }
+                }
+                .education-icon {
+                  margin-right: 17px;
+                  img {
+                    width: 59px;
+                    height: 59px;
+                  }
+                }
+                .work-info {
+                  .date {
+                    margin-top: 6px;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 15px;
+                    color: #000000;
+                  }
+                  .work-title {
+                    margin-top: 10px;
+                    font-weight: 300;
+                    font-size: 16px;
+                    line-height: 15px;
+                    color: #000000;
+                  }
+                  .work-details {
+                    margin-top: 35px;
+                    .company-name {
+                      font-size: 20px;
+                      line-height: 14px;
+                      color: #000000;
+                    }
+                    .job-roles {
+                      font-size: 16px;
+                      color: #000000;
+                      white-space: pre-line;
+                      line-height: 24px;
+                      font-weight: 300;
+                    }
+                  }
+                }
+              }
             }
             .work-details {
               margin-top: 35px;
@@ -1828,8 +1879,6 @@ export default {
             }
           }
         }
-      }
-      .education {
       }
     }
   }
@@ -1857,13 +1906,167 @@ export default {
           }
           .job-title {
             font-size: 20px;
-            img {
-            }
           }
           .social-icons {
-            img {
-            }
-            img:last-child {
+            .main-tab-content {
+              margin-top: 86px;
+              min-height: 550px;
+              padding-bottom: 45px;
+              @media only screen and (max-width: 765px) {
+                margin-top: 35px;
+              }
+              .portfolio {
+                .portfolioSlides {
+                  padding-left: 40px;
+                  padding-right: 40px;
+                  @media only screen and (max-width: 765px) {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                  }
+                  @media only screen and (min-width: 1600px) {
+                    padding-left: 135px;
+                    padding-right: 135px;
+                  }
+                  display: flex;
+                  justify-content: center;
+                  img {
+                    margin-top: 25px;
+                    margin-right: 25px;
+                    margin-left: 25px;
+                    width: 510px !important;
+                    height: 400px;
+                    @media only screen and (max-width: 765px) {
+                      padding: 10px;
+                      width: 500px !important;
+                      height: auto;
+                    }
+                  }
+                  .slide-text {
+                    margin-top: 15px;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 23px;
+                    color: #333333;
+                    @media only screen and (max-width: 765px) {
+                      font-size: 12px;
+                      line-height: 12px;
+                      margin-bottom: 25px;
+                    }
+                  }
+                }
+              }
+              .skills-tabs {
+                display: flex;
+                justify-content: center;
+                overflow-x: auto;
+                width: 100%;
+                @media only screen and (max-width: 765px) {
+                  justify-content: space-between;
+                  margin-top: 30px;
+                }
+                .skills-tab-text {
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 25px;
+                  line-height: 37px;
+                  padding: 16px 33px;
+                  color: #000000;
+                  white-space: nowrap;
+                  @media only screen and (max-width: 765px) {
+                    font-size: 10px;
+                    line-height: 15px;
+                    padding: 13px 29px;
+                  }
+                  @media only screen and (max-width: 599px) {
+                    margin-left: 5px;
+                  }
+                }
+                .skills-tab-text:hover {
+                  cursor: pointer;
+                }
+                .skills-tab-text.active {
+                  font-style: normal;
+                  font-weight: normal;
+                  background: #5289e7;
+                  border-radius: 35px;
+                  color: #ffffff;
+                }
+              }
+              .skills-icons-bar {
+                margin-top: 35.67px;
+                padding-bottom: 10px;
+                display: flex;
+                justify-content: center;
+                overflow-x: auto;
+                img {
+                  width: 30px;
+                  height: 30px;
+                  @media only screen and (max-width: 765px) {
+                    width: 30px;
+                    height: 30px;
+                  }
+                }
+                img:last-child {
+                  margin-right: 0;
+                }
+              }
+              .work {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding-left: 40px;
+                padding-right: 40px;
+                .work-item {
+                  margin-bottom: 100px;
+                  display: flex;
+                  flex-basis: 100%;
+                  .work-icon {
+                    margin-right: 35px;
+                    img {
+                      width: 42px;
+                      height: 42px;
+                    }
+                  }
+                  .education-icon {
+                    margin-right: 35px;
+                    img {
+                      width: 42px;
+                      height: 42px;
+                    }
+                  }
+                  .work-info {
+                    .date {
+                      font-weight: normal;
+                      font-size: 16px;
+                      line-height: 15px;
+                      color: #000000;
+                    }
+                    .work-title {
+                      margin-top: 10px;
+                      font-weight: 300;
+                      font-size: 16px;
+                      line-height: 15px;
+                      color: #000000;
+                    }
+                    .work-details {
+                      margin-top: 35px;
+                      .company-name {
+                        font-size: 20px;
+                        line-height: 14px;
+                        color: #000000;
+                      }
+                      .job-roles {
+                        font-size: 16px;
+                        color: #000000;
+                        white-space: pre-line;
+                        line-height: 24px;
+                        font-weight: 300;
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -1878,18 +2081,6 @@ export default {
       .right {
         justify-content: space-between;
         width: 100%;
-        .hourly-rate {
-        }
-        .weekly-availability {
-        }
-        .hourly-rate-text {
-        }
-        .hourly-rate-text.light {
-        }
-        .hire-me-btn {
-          a {
-          }
-        }
       }
     }
     .tabs-bar {
@@ -1989,79 +2180,164 @@ export default {
               line-height: 12px;
               margin-bottom: 25px;
             }
-          }
-        }
-      }
-      .skills-tabs {
-        display: flex;
-        justify-content: center;
-        overflow-x: auto;
-        width: 100%;
-        @media only screen and (max-width: 765px) {
-          justify-content: space-between;
-          margin-top: 30px;
-        }
-        .skills-tab-text {
-          font-style: normal;
-          font-weight: normal;
-          font-size: 25px;
-          line-height: 37px;
-          padding: 16px 33px;
-          color: #000000;
-          white-space: nowrap;
-          @media only screen and (max-width: 959px) {
-            font-size: 18px;
-          }
-          @media only screen and (max-width: 765px) {
-            font-size: 10px;
-            line-height: 15px;
-            padding: 13px 29px;
-          }
-        }
-        .skills-tab-text:hover {
-          cursor: pointer;
-        }
-        .skills-tab-text.active {
-          font-style: normal;
-          font-weight: normal;
-          background: #5289e7;
-          border-radius: 35px;
-          color: #ffffff;
-        }
-      }
-      .skills-icons-bar {
-        margin-top: 35.67px;
-        padding-bottom: 10px;
-        display: flex;
-        justify-content: center;
-        overflow-x: auto;
-        img {
-          width: 30px;
-          height: 30px;
-          @media only screen and (max-width: 765px) {
-            width: 30px;
-            height: 30px;
-          }
-        }
-        img:last-child {
-          margin-right: 0;
-        }
-      }
-      .work {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        padding-left: 40px;
-        padding-right: 40px;
-        .work-item {
-          margin-bottom: 100px;
-          display: flex;
-          flex-basis: 100%;
-          .work-icon {
-            margin-right: 35px;
-            img {
-              width: 99px;
-              height: 59px;
+            .main-tab-content {
+              margin-top: 86px;
+              min-height: 550px;
+              padding-bottom: 45px;
+              @media only screen and (max-width: 765px) {
+                margin-top: 35px;
+              }
+              .portfolio {
+                .portfolioSlides {
+                  padding-left: 40px;
+                  padding-right: 40px;
+                  @media only screen and (max-width: 765px) {
+                    padding-left: 0px;
+                    padding-right: 0px;
+                  }
+                  @media only screen and (min-width: 1600px) {
+                    padding-left: 135px;
+                    padding-right: 135px;
+                  }
+                  display: flex;
+                  justify-content: center;
+                  img {
+                    margin-top: 25px;
+                    margin-right: 25px;
+                    margin-left: 25px;
+                    width: 510px !important;
+                    height: 400px;
+                    @media only screen and (max-width: 765px) {
+                      width: 177px !important;
+                      height: 139px;
+                    }
+                  }
+                  .slide-text {
+                    margin-top: 15px;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 23px;
+                    color: #333333;
+                    @media only screen and (max-width: 765px) {
+                      font-size: 10px;
+                      line-height: 12px;
+                      margin-bottom: 25px;
+                    }
+                  }
+                }
+              }
+              .skills-tabs {
+                display: flex;
+                justify-content: center;
+                overflow-x: auto;
+                width: 100%;
+                @media only screen and (max-width: 765px) {
+                  justify-content: space-between;
+                  margin-top: 30px;
+                }
+                .skills-tab-text {
+                  font-style: normal;
+                  font-weight: normal;
+                  font-size: 25px;
+                  line-height: 37px;
+                  padding: 16px 33px;
+                  color: #000000;
+                  white-space: nowrap;
+                  @media only screen and (max-width: 959px) {
+                    font-size: 18px;
+                  }
+                  @media only screen and (max-width: 765px) {
+                    font-size: 10px;
+                    line-height: 15px;
+                    padding: 13px 29px;
+                  }
+                }
+                .skills-tab-text:hover {
+                  cursor: pointer;
+                }
+                .skills-tab-text.active {
+                  font-style: normal;
+                  font-weight: normal;
+                  background: #5289e7;
+                  border-radius: 35px;
+                  color: #ffffff;
+                }
+              }
+              .skills-icons-bar {
+                margin-top: 35.67px;
+                padding-bottom: 10px;
+                display: flex;
+                justify-content: center;
+                overflow-x: auto;
+                img {
+                  width: 30px;
+                  height: 30px;
+                  @media only screen and (max-width: 765px) {
+                    width: 30px;
+                    height: 30px;
+                  }
+                }
+                img:last-child {
+                  margin-right: 0;
+                }
+              }
+              .work {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                padding-left: 40px;
+                padding-right: 40px;
+                .work-item {
+                  margin-bottom: 100px;
+                  display: flex;
+                  flex-basis: 100%;
+                  .work-icon {
+                    margin-right: 35px;
+                    img {
+                      width: 70px;
+                      height: 70px;
+                    }
+                  }
+                  .education-icon {
+                    margin-right: 35px;
+                    img {
+                      width: 48px;
+                      height: 48px;
+                    }
+                  }
+                  .work-info {
+                    .date {
+                      font-weight: normal;
+                      font-size: 16px;
+                      line-height: 15px;
+                      color: #000000;
+                    }
+                    .work-title {
+                      margin-top: 10px;
+                      font-weight: 300;
+                      font-size: 16px;
+                      line-height: 15px;
+                      color: #000000;
+                    }
+                    .work-details {
+                      margin-top: 35px;
+                      .company-name {
+                        font-size: 20px;
+                        line-height: 14px;
+                        color: #000000;
+                      }
+                      .job-roles {
+                        font-size: 16px;
+                        color: #000000;
+                        white-space: pre-line;
+                        line-height: 24px;
+                        font-weight: 300;
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
           .education-icon {

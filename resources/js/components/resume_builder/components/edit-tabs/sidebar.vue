@@ -119,11 +119,11 @@ export default {
           icon: "achievement",
           label: "Achievement"
         },
-        // {
-        //   url: "/resume-builder/edit/imports",
-        //   icon: "imports",
-        //   label: "Imports"
-        // },
+        {
+          url: "/resume-builder/edit/imports",
+          icon: "imports",
+          label: "Imports"
+        },
         {
           url: "/resume-builder/edit/references",
           icon: "references",
@@ -133,7 +133,17 @@ export default {
           url: "/resume-builder/edit/pay-availability",
           icon: "pay-availability",
           label: "Pay availability"
-        }
+        },
+        {
+          url: "/resume-builder/edit/downloads",
+          icon: "downloads",
+          label: "Downloads"
+        },
+        {
+          url: "/resume-builder/edit/structure",
+          icon: "structure",
+          label: "Structure"
+        },
       ],
 
       currentSidebarLink: {
@@ -269,7 +279,7 @@ export default {
         }
 
         .sidebar-link {
-          padding: 5px;
+          padding: 3px;
 
           a {
             padding: 7.5px 15px;

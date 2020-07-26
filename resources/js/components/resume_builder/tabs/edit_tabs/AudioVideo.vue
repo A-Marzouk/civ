@@ -1,18 +1,18 @@
 <template>
     <v-app class="media-contents">
         <div style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="audioTab">
-                <v-tab class="resume-builder__tab" v-for="(tabName,i) in tabs" :key="i" @click="changeTab(tabName)">
-                    {{tabName}}
+            <v-tabs class="resume-builder__tab-bar" hide-slider>
+                <v-tab class="resume-builder__tab" v-for="tab in tabs" :key="tab" @click="changeTab(tab)">
+                    {{ tab === 'audio' ? 'Audio' : 'Video' }}
                 </v-tab>
             </v-tabs>
             <v-card
                     class="card-main pa-lg-10 pa-md-10 pa-sm-3 pa-3 resume-builder__scroll main-content"
                     flat
             >
-                <v-tabs-items v-model="audioTab">
+                <div>
                     <!-- Audio tab -->
-                    <v-tab-item>
+                    <div v-if="mediaCategory === 'audio'">
                         <div style="width: 100%;" class="inputs-wrapper">
                             <div class="text-inputs">
                                 <v-text-field
@@ -20,6 +20,7 @@
                                         outlined
                                         v-model="newMedia.title"
                                         :error="!!errors.title"
+                                        :error-messages="errors.title"
                                         color="#001CE2"
                                         label="Title"
                                 >
@@ -29,6 +30,7 @@
                                         outlined
                                         v-model="newMedia.transcript"
                                         :error="!!errors.transcript"
+                                        :error-messages="errors.transcript"
                                         color="#001CE2"
                                         label="Transcript"
                                         hint="Optional"
@@ -44,6 +46,8 @@
                                         hint="(Maximum 1 files)"
                                         height="50"
                                         :error="!!errors.url"
+                                        :error-messages="errors.url"
+
                                 >
                                     <vue-dropzone
                                             class="civie-dropzone-input"
@@ -68,6 +72,7 @@
                                         outlined
                                         v-model="newMedia.url"
                                         :error="!!errors.url"
+                                        :error-messages="errors.url"
                                         placeholder="Link URL"
                                         color="#001CE2"
                                 >
@@ -95,10 +100,10 @@
                                 </v-btn>
                             </div>
                         </div>
-                    </v-tab-item>
+                    </div>
 
                     <!-- Video tab -->
-                    <v-tab-item>
+                    <div v-if="mediaCategory === 'video'">
                         <div style="width: 100%;">
                             <div class="inputs-wrapper">
                                 <div class="text-inputs">
@@ -107,6 +112,7 @@
                                             outlined
                                             v-model="newMedia.title"
                                             :error="!!errors.title"
+                                            :error-messages="errors.title"
                                             color="#001CE2"
                                             label="Title"
                                     >
@@ -116,6 +122,7 @@
                                             outlined
                                             v-model="newMedia.transcript"
                                             :error="!!errors.transcript"
+                                            :error-messages="errors.transcript"
                                             color="#001CE2"
                                             label="Transcript"
                                             hint="Optional"
@@ -130,6 +137,8 @@
                                             hint="(Maximum 1 files)"
                                             height="50"
                                             :error="!!errors.url"
+                                            :error-messages="errors.url"
+
                                     >
                                         <vue-dropzone
                                                 class="civie-dropzone-input"
@@ -154,6 +163,7 @@
                                             outlined
                                             v-model="newMedia.url"
                                             :error="!!errors.url"
+                                            :error-messages="errors.url"
                                             placeholder="Link URL"
                                             color="#001CE2"
                                     >
@@ -171,14 +181,14 @@
                             </div>
 
                         </div>
-                    </v-tab-item>
+                    </div>
 
                     <draggable v-if="medias" v-model="medias" @start="drag=true" @end="drag=false" class="mt-3" handle=".drag-handler">
                         <v-row align="center" dense v-for="media in medias" :key="media.id"
                                :class="{'half-opacity' : !media.is_public}">
 
                             <v-col xl="7" :lg="windowWidth<1440 ? '9' : '7' " md="9" sm="12" cols="12"
-                                   v-show="audioTab === 0 && media.type === 'audio'">
+                                   v-show="mediaCategory === 'audio' && media.type === 'audio'">
                                 <!-- audio card -->
                                 <v-card class="card-holder pa-2 mb-3 mt-3">
                                     <v-row justify="center">
@@ -225,7 +235,7 @@
                                                 :sm="windowWidth<=767?'4':'3'"
                                                 cols="8"
                                                 align="right"
-                                                class="action-col resume-builder__action-buttons-container"
+                                                class="action-col d-flex justify-content-end resume-builder__action-buttons-container"
                                         >
                                             <v-btn
                                                     class="btn-icon civie-btn"
@@ -259,48 +269,42 @@
                             </v-col>
 
                             <v-col xl="6" lg="6" md="12" sm="12" cols="12"
-                                   v-show="audioTab === 1 && media.type === 'video'">
+                                   v-show="mediaCategory === 'video' && media.type === 'video'">
                                 <!-- Video Card -->
                                 <v-card class="card-holder pa-2 mb-3 mt-3" height="auto">
-                                    <v-row justify="center">
-                                        <v-col
-                                                xl="5"
-                                                lg="5"
-                                                md="5"
-                                                sm="5"
-                                                cols="5"
-                                                class="mt-xl-n2 mt-lg-n2 mt-md-n3 mt-sm-n3 mt-0 drag-handler"
-                                                align="left"
-                                        >
-                                            <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
-                                                <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
-                                            </v-btn>
-                                        </v-col>
-
-                                        <v-col xl="7" lg="7" md="7" sm="7" cols="7" align="right"
-                                               class="action-col resume-builder__action-buttons-container">
-                                            <v-btn
-                                                    class="btn-icon civie-btn"
-                                                    depressed @click="toggleMedia(media)"
-                                            >
-                                                <svg-vue
-                                                        icon="eye-icon"
-                                                        :class="{'visible' : media.is_public}"
-                                                        class="icon"
-                                                ></svg-vue>
-                                            </v-btn>
-                                            <v-btn
-                                                    class="btn-icon civie-btn"
-                                                    @click="deleteMedia(media)"
-                                                    depressed
-                                            >
-                                                <svg-vue
-                                                        icon="trash-delete-icon"
-                                                        class="icon"
-                                                ></svg-vue>
-                                            </v-btn>
-                                        </v-col>
-                                        <v-col cols="12" class align="center">
+                                    <div class="video-item">
+                                        <div class="video-action-row">
+                                            <div class="drag-handler">
+                                                <v-btn color="#ffffff" class="btn-v_bar ml-2" depressed>
+                                                    <v-icon color="#888DB1">mdi-dots-vertical</v-icon>
+                                                </v-btn>
+                                            </div>
+                                            <div>
+                                                <v-col class="action-col resume-builder__action-buttons-container">
+                                                    <v-btn
+                                                            class="btn-icon civie-btn"
+                                                            depressed @click="toggleMedia(media)"
+                                                    >
+                                                        <svg-vue
+                                                                icon="eye-icon"
+                                                                :class="{'visible' : media.is_public}"
+                                                                class="icon"
+                                                        ></svg-vue>
+                                                    </v-btn>
+                                                    <v-btn
+                                                            class="btn-icon civie-btn"
+                                                            @click="deleteMedia(media)"
+                                                            depressed
+                                                    >
+                                                        <svg-vue
+                                                                icon="trash-delete-icon"
+                                                                class="icon"
+                                                        ></svg-vue>
+                                                    </v-btn>
+                                                </v-col>
+                                            </div>
+                                        </div>
+                                        <div class="video-frame">
                                             <v-card flat color="transparent" tile class="pa-2">
                                                 <video width="auto" height="auto" controls>
                                                     <source
@@ -309,15 +313,15 @@
                                                     />
                                                 </video>
                                             </v-card>
-                                        </v-col>
-                                    </v-row>
+                                        </div>
+                                    </div>
                                 </v-card>
                                 <!-- Video Card -->
                             </v-col>
 
                         </v-row>
                     </draggable>
-                </v-tabs-items>
+                </div>
             </v-card>
         </div>
     </v-app>
@@ -361,9 +365,9 @@
                     mediaFile: null
                 },
                 currentUploadMethod: 'upload',
-                tabs: ["Audio", "Video"],
-                audioTab: 0,
-                errors: {}
+                tabs: ["audio", "video"],
+                errors: {},
+                mediaCategory: 'audio'
             };
         },
         computed: {
@@ -377,8 +381,9 @@
             },
         },
         methods: {
-            changeTab(tabName) {
-                this.newMedia.type = tabName.toLowerCase();
+            changeTab(tab) {
+                this.mediaCategory = tab;
+                this.newMedia.type = tab.toLowerCase();
             },
             toggleRecord(){
                 this.currentUploadMethod === 'record' ?   this.currentUploadMethod = 'upload' :   this.currentUploadMethod = 'record';
@@ -711,6 +716,20 @@
         }
 
         .card-holder {
+
+            .video-item{
+                display: flex;
+                flex-direction: column;
+                .video-action-row{
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+                .video-frame{
+                    display: flex;
+                }
+            }
+
             box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
             height: 50px;
             width: 523px;
