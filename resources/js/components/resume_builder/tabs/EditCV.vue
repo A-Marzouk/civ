@@ -10,7 +10,7 @@
 			<span @click="updateIframe" id="updateIframe"></span>
 
 
-			<div class="v-application preview-action-row v-application--is-ltr theme--light">
+			<div v-if="activeTab !== 'imports'" class="v-application preview-action-row v-application--is-ltr theme--light">
 				<div class="switch">
 					<div class="text">
 						Preview Auto Update
