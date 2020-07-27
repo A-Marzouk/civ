@@ -745,7 +745,6 @@
                 </v-tab-item>
                 <!-- Tab Item For Education -->
 
-                <!-- Tab Item for skills -->
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
@@ -789,9 +788,16 @@
                                 style="font-weight: 600; color: rgba(0,0,0,.87);"
                               >{{skillTabs[skillTab].title}}</v-card-title>
                               <v-card-text>
-                                <VueSlickCarousel v-bind="slickOptionsSkills" ref="carousel">
-                                  <div v-for="skill in currentUser.skills" :key="skill.id">
-                                    <v-card flat color="#D5EEFF" class="pa-0 mx-5 mb-10">
+                                <v-row>
+                                  <v-col
+                                    cols="12"
+                                    md="3"
+                                    sm="6"
+                                    class="skill-item"
+                                    v-for="skill in currentUser.skills"
+                                    :key="skill.id"
+                                  >
+                                    <v-card flat color="#D5EEFF" class="pa-0">
                                       <v-card-text>
                                         <v-list-item>
                                           <v-list-item-icon>
@@ -801,9 +807,7 @@
                                           <v-list-item-content class="ml-n6">
                                             <v-list-item-subtitle>
                                               <v-row no-gutters>
-                                                <v-col cols="9">
-                                                  <v-card color="transparent" flat>{{skill.title}}</v-card>
-                                                </v-col>
+                                                <v-col cols="9">{{skill.title}}</v-col>
                                                 <v-col
                                                   cols="3"
                                                   class="hidden-sm-and-up caption"
@@ -834,36 +838,17 @@
                                         </v-list-item>
                                       </v-card-text>
                                     </v-card>
-                                  </div>
-                                </VueSlickCarousel>
-
+                                  </v-col>
+                                </v-row>
                                 <!-- Pagination -->
                                 <v-row class="mt-5">
                                   <v-col cols="12">
                                     <div class="text-center">
-                                      <v-btn
-                                        dark
-                                        x-small
-                                        class="mx-8"
-                                        fab
-                                        color="#6152CF"
-                                        @click="prevSkill()"
-                                        :disabled="skillPage==1?true:false"
-                                      >git 
+                                      <v-btn dark x-small class="mx-8" fab color="#6152CF">
                                         <v-icon disabled>mdi-arrow-left</v-icon>
                                       </v-btn>
-                                      <span
-                                        class="title pagination-text"
-                                      >{{skillPage}}/{{totalSkillPages}}</span>
-                                      <v-btn
-                                        dark
-                                        x-small
-                                        class="mx-8"
-                                        fab
-                                        color="#6152CF"
-                                        @click="nextSkill()"
-                                        :disabled="skillPage==totalSkillPages?true:false"
-                                      >
+                                      <span class="title pagination-text">1/5</span>
+                                      <v-btn dark x-small class="mx-8" fab color="#6152CF">
                                         <v-icon>mdi-arrow-right</v-icon>
                                       </v-btn>
                                     </div>
@@ -1152,14 +1137,14 @@ import VueSlickCarousel from "vue-slick-carousel";
 export default {
   props: ["user", "is_preview"],
   filters: {
-    floor: function(value) {
+    floor: function (value) {
       if (!value) return "";
       return Math.ceil(value);
-    }
+    },
   },
   components: {
     Slick,
-    VueSlickCarousel
+    VueSlickCarousel,
   },
   data() {
     return {
@@ -1187,17 +1172,17 @@ export default {
         { title: "Education", id: 3 },
         { title: "Skills", id: 4 },
         { title: "About Me", id: 5 },
-        { title: "Achievement", id: 6 }
+        { title: "Achievement", id: 6 },
       ],
       skillTabs: [
         {
           title: "Programming Languages",
           value: "Programming_languages",
-          id: 1
+          id: 1,
         },
         { title: "Framework/Databases", value: "Frameworks", id: 2 },
         { title: "Software", value: "Software", id: 3 },
-        { title: "Design Skills", value: "Design", id: 4 }
+        { title: "Design Skills", value: "Design", id: 4 },
       ],
       skillDetails: [
         {
@@ -1208,30 +1193,30 @@ export default {
               icon: "illustrator",
               color: "#FF7C00",
               value: "90",
-              valueText: "90%"
+              valueText: "90%",
             },
             {
               name: "Adobe XD",
               icon: "xd",
               color: "#FF21AF",
               value: "70",
-              valueText: "70%"
+              valueText: "70%",
             },
             {
               name: "Photoshop",
               icon: "photoshop",
               color: "#00C8FF",
               value: "95",
-              valueText: "95%"
+              valueText: "95%",
             },
             {
               name: "Premier Pro",
               icon: "premier",
               color: "#E788FF",
               value: "50",
-              valueText: "50%"
-            }
-          ]
+              valueText: "50%",
+            },
+          ],
         },
         {
           title: "Languages",
@@ -1241,63 +1226,63 @@ export default {
               icon: "html",
               color: "#E34F26",
               value: "90",
-              valueText: "90%"
+              valueText: "90%",
             },
             {
               name: "CSS",
               icon: "css",
               color: "#264DE4",
               value: "70",
-              valueText: "70%"
+              valueText: "70%",
             },
             {
               name: "Javascript",
               icon: "js",
               color: "#FDD83C",
               value: "95",
-              valueText: "95%"
+              valueText: "95%",
             },
             {
               name: "Magento",
               icon: "magento",
               color: "#EC6737",
               value: "50",
-              valueText: "50%"
-            }
-          ]
-        }
+              valueText: "50%",
+            },
+          ],
+        },
       ],
       portfolio: [
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 1
+          id: 1,
         },
         {
           title: "Website Design",
           subtitle: "industrial,creative,idea",
-          id: 2
+          id: 2,
         },
         {
           title: "Pattern Design",
           subtitle: "industrial,creative,idea",
-          id: 3
+          id: 3,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 4
+          id: 4,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 5
+          id: 5,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 6
-        }
+          id: 6,
+        },
       ],
       work: [
         {
@@ -1306,7 +1291,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 2,
@@ -1314,7 +1299,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 3,
@@ -1322,7 +1307,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 4,
@@ -1330,7 +1315,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 5,
@@ -1338,7 +1323,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 6,
@@ -1346,8 +1331,8 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-        }
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
+        },
       ],
 
       // Education
@@ -1358,7 +1343,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 2,
@@ -1366,7 +1351,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 3,
@@ -1374,7 +1359,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 4,
@@ -1382,7 +1367,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 5,
@@ -1390,7 +1375,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 6,
@@ -1398,15 +1383,15 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-        }
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
+        },
       ],
 
       socialMedia: [
         { title: "behance", icon: "fa-behance", color: "#217BFF" },
         { title: "dribbble", icon: "fa-dribbble", color: "#EE588A" },
         { title: "instagram", icon: "fa-instagram", color: "#DD24BC" },
-        { title: "google", icon: "fa-google-plus", color: "#DC4E41" }
+        { title: "google", icon: "fa-google-plus", color: "#DC4E41" },
       ],
 
       currentUser: this.user,
@@ -1421,37 +1406,36 @@ export default {
             breakpoint: 600,
             settings: {
               slidesPerRow: 1,
-              rows: 6
-            }
+              rows: 6,
+            },
           },
           {
             breakpoint: 960,
             settings: {
               slidesToScroll: 2,
               slidesPerRow: 2,
-              rows: 3
-            }
+              rows: 3,
+            },
           },
           {
             breakpoint: 1264,
             settings: {
-              slidesToScroll: 3
-            }
+              slidesToScroll: 3,
+            },
           },
           {
             breakpoint: 1600,
             settings: {
-              slidesToScroll: 3
-            }
-          }
-        ]
+              slidesToScroll: 3,
+            },
+          },
+        ],
       },
       slickOptionsSkills: {
         infinite: false,
         dots: false,
         arrows: false,
-        slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesPerRow: 4,
         rows: 2,
         responsive: [
           {
@@ -1459,32 +1443,32 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 4
-            }
+              rows: 4,
+            },
           },
           {
             breakpoint: 960,
             settings: {
               slidesToShow: 2,
               slidesToScroll: 2,
-              rows: 4
-            }
+              rows: 4,
+            },
           },
           {
             breakpoint: 1264,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 3
-            }
+              slidesToScroll: 3,
+            },
           },
           {
             breakpoint: 1600,
             settings: {
               slidesToShow: 4,
-              slidesToScroll: 4
-            }
-          }
-        ]
+              slidesToScroll: 4,
+            },
+          },
+        ],
       },
 
       slickOptionsAchievements: {
@@ -1501,33 +1485,33 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               rows: 1,
-              simple: true
-            }
+              simple: true,
+            },
           },
           {
             breakpoint: 960,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 1
-            }
+              rows: 1,
+            },
           },
           {
             breakpoint: 1264,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 1
-            }
+              rows: 1,
+            },
           },
           {
             breakpoint: 1600,
             settings: {
               slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
+              slidesToScroll: 1,
+            },
+          },
+        ],
       },
       //video modal
       slickOptionsVideoModal: {
@@ -1544,8 +1528,8 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               rows: 2,
-              centerPadding: "80px"
-            }
+              centerPadding: "80px",
+            },
           },
           {
             breakpoint: 960,
@@ -1553,18 +1537,18 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               rows: 2,
-              centerPadding: "80px"
-            }
+              centerPadding: "80px",
+            },
           },
           {
             breakpoint: 1264,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 1
-            }
-          }
-        ]
+              rows: 1,
+            },
+          },
+        ],
       },
       //audio Modal
       slickOptionsAudioModal: {
@@ -1573,8 +1557,8 @@ export default {
         arrows: false,
         slidesPerRow: 1,
         slidesToScroll: 1,
-        rows: 3
-      }
+        rows: 3,
+      },
     };
   },
 
@@ -1587,7 +1571,7 @@ export default {
       let mainImage = "";
 
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -1710,7 +1694,7 @@ export default {
         mongodb: "/images/skills_icons/mongoDB.png",
         oracle: "/images/skills_icons/Oracle.png",
         redis: "/images/skills_icons/redis.png",
-        cassandra: "/images/skills_icons/cassandra.png"
+        cassandra: "/images/skills_icons/cassandra.png",
       };
       if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
         return arrayOfSkillImages[skill_title.toLowerCase()];
@@ -1720,7 +1704,6 @@ export default {
     zoomPhoto(obj) {
       this.zoomModal = true;
       this.currentImgObj = obj;
-      console.log(obj);
     },
     //slick carousel
     nextPortfolio() {
@@ -1759,35 +1742,20 @@ export default {
         this.achivementPage--;
       }
     },
-    skillPageCounter() {
-      let totalItems = this.currentUser.skills.length;
-      if (this.windowWidth > 1263) {
-        this.totalSkillPages = Math.ceil(totalItems / 8);
-      }
-      else if(this.windowWidth>959 && this.windowWidth<=1263){
-        this.totalSkillPages = Math.ceil(totalItems / 6);
-      }
-      else if (this.windowWidth>599 && this.windowWidth<=959){
-        this.totalSkillPages = Math.ceil(totalItems / 8);
-      }
-      else if (this.windowWidth<=599){
-        this.totalSkillPages = Math.ceil(totalItems/4);
-      } 
-    }
   },
   computed: {
     socialLinks() {
-      return this.currentUser.links.filter(link => {
+      return this.currentUser.links.filter((link) => {
         return link.category === "social_link" ? link : false;
       });
-    }
+    },
   },
 
   mounted() {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
-    this.skillPageCounter();
+    //this.skillPageCounter();
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
@@ -1795,7 +1763,7 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+  },
 };
 </script>
 
