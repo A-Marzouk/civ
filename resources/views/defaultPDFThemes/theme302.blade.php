@@ -94,8 +94,14 @@
             text-decoration-line: underline;
             text-align: center;
             display: inline-block;
+            margin-right: 30px;
+            vertical-align: bottom;
 
             color: #104EFB;
+        }
+
+        .user-social .link:last-child {
+            margin: 0;
         }
 
         .user-social .link img {
@@ -253,23 +259,23 @@
         </div>
 
         <div class="user-social">
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/pinterest-icon.png')}}" alt="">
                 Pinterest user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/behance-icon.png')}}" alt="">
                 Behance user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/dribbble-icon.png')}}" alt="">
                 Dribbble user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/instagram-icon.png')}}" alt="">
                 Instagram user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/linkedin-icon.png')}}" alt="">
                 Linkedin user
             </a>
