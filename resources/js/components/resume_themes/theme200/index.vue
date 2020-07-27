@@ -1074,7 +1074,7 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <slick ref="slick" :options="slickOptionsVideoModal" class>
+          <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.lenght>0">
             <template v-for="video in currentUser.media">
               <div
                 :key="video.id"
@@ -1113,7 +1113,7 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <vueSlickCarousel v-bind="slickOptionsAudioModal">
+          <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.lenght>0">
             <template v-for="audio in currentUser.media">
               <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
                 <audio controls style="width:100%;">
@@ -1121,9 +1121,6 @@
                 </audio>
               </div>
             </template>
-            <!-- <template #customPaging="page">
-              <div class="custom-dot">{{ page }}</div>
-            </template>-->
           </vueSlickCarousel>
         </v-card>
       </v-dialog>
