@@ -17,21 +17,30 @@
                             <span>Please Upload Your CV from PDF or docx format</span>
                         </div>
 
-                        <div class="import-btn">
-                            <v-btn class="resume-builder__btn civie-btn filled" raised>
-                              Import File
-                            </v-btn>
-                        </div>
+                        <div class="dropzone-area">
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import File
+                                </v-btn>
+                            </div>
 
-                        <div class="drop-zone">
-                            <vue-dropzone
-                                    class="sm-image"
-                                    id="dropzone"
-                                    :options="dropzoneOptions"
-                                    :useCustomSlot="true"
-                                    v-on:vdropzone-file-added="handlingEvent"
-                                    ref="newFile">
-                            </vue-dropzone>
+                            <div class="drop-zone">
+                                <vue-dropzone
+                                        class="sm-image"
+                                        id="dropzone"
+                                        :options="dropzoneOptions"
+                                        :useCustomSlot="true"
+                                        v-on:vdropzone-file-added="handlingEvent"
+                                        ref="newFile">
+                                    <div class="dropzone-custom-content">
+                                        <span>
+                                            Or Drag Your File
+                                        </span>
+                                        <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
+                                    </div>
+                                </vue-dropzone>
+                            </div>
+
                         </div>
 
                     </v-tab-item>
@@ -54,7 +63,7 @@
 
         <div class="outer-container">
             <div class="title">
-                <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
                 <span>Manage Imports</span>
             </div>
             <div class="dns-main-content-container resume-builder__scroll">
@@ -211,7 +220,7 @@
     .import-tab-item{
         .title {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
 
             img {
                 width: 24px;
@@ -224,6 +233,23 @@
                 font-size: 22px;
                 line-height: 30px;
                 color: #888DB1;
+            }
+        }
+
+        .dropzone-area{
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            max-width: 600px;
+            margin-top: 20px;
+            background: #F8F8FF;
+            border-radius: 10px;
+
+            .import-btn{
+                margin-bottom: 30px;
+                .civie-btn{
+                    width: 160px !important;
+                }
             }
         }
     }
@@ -377,4 +403,30 @@
 
 
 
+</style>
+
+<style lang="scss">
+    .drop-zone{
+        .vue-dropzone{
+            border: 2px dotted #e5e4e4;
+        }
+
+        .dropzone-custom-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 32px;
+            text-align: center;
+            color: #888DB1;
+
+            img{
+                margin-top: 20px;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
 </style>
