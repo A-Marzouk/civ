@@ -840,6 +840,7 @@
                                     </v-card>
                                   </v-col>
                                 </v-row>
+
                                 <!-- Pagination -->
                                 <v-row class="mt-5">
                                   <v-col cols="12">
@@ -1755,7 +1756,6 @@ export default {
     window.onresize = () => {
       this.windowWidth = window.innerWidth;
     };
-    //this.skillPageCounter();
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
