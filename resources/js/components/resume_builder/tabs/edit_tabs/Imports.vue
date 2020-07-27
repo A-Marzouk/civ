@@ -12,7 +12,27 @@
             <v-card class="card-main pa-10 resume-builder__scroll pay-content" flat id="payContent">
                 <v-tabs-items v-model="importTab">
                     <v-tab-item class="import-tab-item">
-                        PDF/DOC
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Please Upload Your CV from PDF or docx format</span>
+                        </div>
+
+                        <div class="import-btn">
+                            <v-btn class="resume-builder__btn civie-btn filled" raised>
+                              Import File
+                            </v-btn>
+                        </div>
+
+                        <div class="drop-zone">
+                            <vue-dropzone
+                                    class="sm-image"
+                                    id="dropzone"
+                                    :options="dropzoneOptions"
+                                    :useCustomSlot="true"
+                                    v-on:vdropzone-file-added="handlingEvent"
+                                    ref="newFile">
+                            </vue-dropzone>
+                        </div>
 
                     </v-tab-item>
 
@@ -128,22 +148,33 @@
 
 <script>
     import draggable from "vuedraggable";
+    import vue2Dropzone from "vue2-dropzone";
 
     export default {
         name: "Imports",
         components: {
-            draggable
+            draggable,
+            vueDropzone: vue2Dropzone,
         },
         data() {
             return {
                 tabs: ["PDF/DOC", "Behance", "LinkedIn"],
                 importTab: 0,
+                dropzoneOptions: {
+                    url: "https://httpbin.org/post",
+                    thumbnailWidth: 150,
+                    maxFilesize: 25,
+                    maxFiles: 5,
+                    acceptedFiles: "image/*",
+                    addRemoveLinks: true
+                },
 
             }
         },
         methods: {
+            handlingEvent: function(file) {
 
-
+            }
         },
         mounted() {
 
@@ -174,6 +205,26 @@
         box-shadow: 0 5px 100px rgba(0, 16, 131, 0.1) !important;
         @media screen and (max-width: 1903px) {
             width: auto;
+        }
+    }
+
+    .import-tab-item{
+        .title {
+            display: flex;
+            align-items: flex-end;
+
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
+
+            span {
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 30px;
+                color: #888DB1;
+            }
         }
     }
 
