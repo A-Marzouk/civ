@@ -330,6 +330,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateDownloads(state, downloads){
+            state.user.downloads = downloads;
+            axios.post('/api/user/downloads/update-order', {tabs : downloads})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateWorks(state, works){
             state.user.work_experience = works;
             axios.post('/api/user/work-experience/update-order', {works : works})
