@@ -93,7 +93,7 @@
                   <v-col col="1" class="hidden-sm-and-up" align="right">
                     <v-card flat color="transparent">
                       <v-btn small color="#00CDF7" class="phone-btn" @click.stop="audioModal=true">
-                        <img src="/images/resume_themes/theme200/icons/telephone-handle.png" />
+                        <img src="/images/resume_themes/theme200/icons/volume.svg" />
                       </v-btn>
                     </v-card>
                     <v-card flat color="transparent" class="mt-6">
