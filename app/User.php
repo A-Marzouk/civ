@@ -47,6 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'referee',
             'testimonials',
             'imports',
+            'downloads',
             'languages',
             'personalInfo',
             'availabilityInfo',
@@ -78,6 +79,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'media',
         'testimonials',
         'imports',
+        'downloads',
         'languages'
     ];
 
@@ -123,6 +125,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function skills()
     {
         return $this->hasMany(Skill::class)->orderBy('order');
+    }
+
+    public function downloads()
+    {
+        return $this->hasMany(Download::class)->orderBy('order');
     }
 
     public function hobbies()
