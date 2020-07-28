@@ -47,13 +47,62 @@
 
                     <v-tab-item class="import-tab-item">
 
-                        Behance
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Import from Behance</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                             URL
+                            </span>
+                            <v-text-field
+                                    style="margin-top: -15px;"
+                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    :outlined="true"
+                            >
+                                <template slot="prepend-inner">
+                                    <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
+                                </template>
+                            </v-text-field>
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import CV
+                                </v-btn>
+                            </div>
+                        </div>
+
 
                     </v-tab-item>
 
                     <v-tab-item class="import-tab-item">
 
-                        Linkedin
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Import from Linkedin</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                             URL
+                            </span>
+                            <v-text-field
+                                    style="margin-top: -15px;"
+                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    :outlined="true"
+                            >
+                                <template slot="prepend-inner">
+                                    <span class="inner-text" style="margin-top:-3px;">linkedin.com/</span>
+                                </template>
+                            </v-text-field>
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import CV
+                                </v-btn>
+                            </div>
+                        </div>
 
                     </v-tab-item>
                 </v-tabs-items>
@@ -208,6 +257,9 @@
         padding: 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
+        @media screen and (max-width: 768px) {
+            padding: 20px;
+        }
     }
 
     .card-main {
@@ -221,6 +273,13 @@
         .title {
             display: flex;
             align-items: center;
+
+            @include lt-sm{
+                align-items: flex-start;
+                img{
+                    margin-top: 6px;
+                }
+            }
 
             img {
                 width: 24px;
