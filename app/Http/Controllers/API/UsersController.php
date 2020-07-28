@@ -34,27 +34,7 @@ class UsersController extends Controller
             $id = Auth::user()->id;
         }
 
-        $user = User::where('id',$id)->with([
-            'skills',
-            'hobbies',
-            'education',
-            'workExperience',
-            'links',
-            'projects.images',
-            'achievements',
-            'media',
-            'reference',
-            'referee',
-            'testimonials',
-            'imports',
-            'languages',
-            'personalInfo',
-            'paymentInfo',
-            'availabilityInfo',
-            'summary',
-            'theme',
-            'subscription'
-        ])->first();
+        $user = User::where('id',$id)->with(User::$defaultRelations)->first();
         if($user){
             return response()->json($user, 200);
         }
