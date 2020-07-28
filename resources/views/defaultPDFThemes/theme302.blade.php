@@ -53,6 +53,10 @@
 
         }
 
+        p {
+            margin-top: 0;
+        }
+
         .user-name {
             font-family: Raleway;
             color: #104EFB;
@@ -141,12 +145,12 @@
             line-height: 15px;
             color: #104EFB;
 
-            margin-top: 10px;
+            margin-top: 40px;
         }
 
         .works-container,
         .educations-container {
-            margin-top: 10px;
+            margin-top: 40px;
             width: 100%;
         }
 
@@ -223,9 +227,14 @@
 			margin-bottom: 20px;
 		}
 
+        .skills-container table tr .skill .skill-img {
+            height: 100px;
+            border: 1px solid red;
+        }
 
 		.skills-container table tr .skill .skill-img img {
-			display: block;
+            vertical-align: middle;
+            display: block;
 		}
 
     </style>
@@ -244,15 +253,15 @@
 
             <div class="user-data">
                 <div class="link">
-                    <img src="{{public_path('images/resume_themes/theme302/location-icon.png')}}" alt="">
+                    <img style="width: 8px;" src="{{public_path('images/resume_themes/theme302/location-icon.png')}}" alt="">
                     42 Great Windmill Street London W1D 7NB
                 </div>
                 <a class="link" href='#'>
-                    <img src="{{public_path('images/resume_themes/theme302/whatsapp-icon.png')}}" alt="">
+                    <img style="width: 12px;" src="{{public_path('images/resume_themes/theme302/whatsapp-icon.png')}}" alt="">
                     +584241714022
                 </a>
                 <a class="link" href='https://civ.ie'>
-                    <img src="{{public_path('images/resume_themes/theme302/google-icon.png')}}" alt="">
+                    <img style="width: 10px;" src="{{public_path('images/resume_themes/theme302/google-icon.png')}}" alt="">
                     Civie.com/myprofile
                 </a>
             </div>
