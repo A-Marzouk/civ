@@ -121,6 +121,13 @@ class UserObserver
                 'is_public' => true,
                 'title' => 'about_me',
                 'label' => 'About Me'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'media',
+                'label' => 'Media'
             ]
         ]);
 
