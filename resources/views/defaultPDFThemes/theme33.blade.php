@@ -13,7 +13,7 @@
 
         @font-face {
             font-family: 'Open Sans';
-            src: url(OpenSans-Regular.ttf) format("truetype");
+            src: url({{ public_path('/fonts/OpenSans-Regular.ttf' }}) format("truetype");
             /* font-weight: 400; // use the matching font-weight here ( 100, 200, 300, 400, etc).
             font-style: normal; // use the matching font-style here */
         }
@@ -271,14 +271,14 @@
 
         .skill-bar {
             border: 1.5px solid #1D1D1D;
-            height: 22px;
+            height: 16px;
             width: 100%;
         }
 
         .skill-total {
             display: inline-block;
             background: #1D1D1D;
-            height: 22px;
+            height: 16px;
             vertical-align: top;
         }
 

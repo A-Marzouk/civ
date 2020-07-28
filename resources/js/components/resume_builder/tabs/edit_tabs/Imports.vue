@@ -1,204 +1,241 @@
 <template>
-    <div class="imports-wrap">
-        <div class="section-title">
-            <h2>Imports</h2>
-        </div>
-        <div class="section-body-wrapper">
-            <div class="achievements-bar" id="importLinksWrapper">
-                <div class="bar-item" v-for="(tabName,i) in tabs" :key="i" :index="i" :item="tabName" :data-target="tabName" @click="changeTab" :class="{ active : activeTab === tabName}">
-                    {{tabName.replace('_', ' ')}}
-                </div>
+    <div>
+        <div class="pa-md-0 pa-sm-0 pa-3 content-container">
+            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="importTab">
+                <v-tab
+                        class="resume-builder__tab"
+                        v-for="(tabName,i) in tabs"
+                        :key="i"
+                >{{tabName.replace('_',' ')}}
+                </v-tab>
+            </v-tabs>
+            <v-card class="card-main pa-10 resume-builder__scroll pay-content" flat id="payContent">
+                <v-tabs-items v-model="importTab">
+                    <v-tab-item class="import-tab-item">
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Please Upload Your CV from PDF or docx format</span>
+                        </div>
 
-                <div class="decorator"></div>
+                        <div class="dropzone-area">
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import File
+                                </v-btn>
+                            </div>
+
+                            <div class="drop-zone">
+                                <vue-dropzone
+                                        class="sm-image"
+                                        id="dropzone"
+                                        :options="dropzoneOptions"
+                                        :useCustomSlot="true"
+                                        v-on:vdropzone-file-added="handlingEvent"
+                                        ref="newFile">
+                                    <div class="dropzone-custom-content">
+                                        <span>
+                                            Or Drag Your File
+                                        </span>
+                                        <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
+                                    </div>
+                                </vue-dropzone>
+                            </div>
+
+                        </div>
+
+                    </v-tab-item>
+
+                    <v-tab-item class="import-tab-item">
+
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Import from Behance</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                             URL
+                            </span>
+                            <v-text-field
+                                    style="margin-top: -15px;"
+                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    :outlined="true"
+                            >
+                                <template slot="prepend-inner">
+                                    <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
+                                </template>
+                            </v-text-field>
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import CV
+                                </v-btn>
+                            </div>
+                        </div>
+
+
+                    </v-tab-item>
+
+                    <v-tab-item class="import-tab-item">
+
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Import from Linkedin</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                             URL
+                            </span>
+                            <v-text-field
+                                    style="margin-top: -15px;"
+                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    :outlined="true"
+                            >
+                                <template slot="prepend-inner">
+                                    <span class="inner-text" style="margin-top:-3px;">linkedin.com/</span>
+                                </template>
+                            </v-text-field>
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import CV
+                                </v-btn>
+                            </div>
+                        </div>
+
+                    </v-tab-item>
+                </v-tabs-items>
+            </v-card>
+        </div>
+
+
+        <div class="outer-container">
+            <div class="title">
+                <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
+                <span>Manage Imports</span>
             </div>
-            <div class="achievements-bar sub-bar" v-if="activeTab === 'Manage'">
-                <div class="bar-item" :class="{ active : selectedSubTab === 'PDF'}" @click="selectedSubTab = 'PDF'">
-                    PDF
-                </div>
-                <div class="bar-item" :class="{ active : selectedSubTab === 'Linkedin'}"
-                     @click="selectedSubTab = 'Linkedin'">
-                    Linkedin
-                </div>
-                <div class="bar-item" :class="{ active : selectedSubTab === 'Github'}"
-                     @click="selectedSubTab = 'Github'">
-                    Github
-                </div>
-                <div class="bar-item" :class="{ active : selectedSubTab === 'Behance'}"
-                     @click="selectedSubTab = 'Behance'">
-                    Behance
-                </div>
-                <div class="bar-item" :class="{ active : selectedSubTab === 'Word'}" @click="selectedSubTab = 'Word'">
-                    Word/docs
+            <div class="dns-main-content-container resume-builder__scroll">
+                <div class="dns-main-content">
+                    <table class="table table-bordered dns-table table-responsive-sm">
+                        <thead>
+                        <tr>
+                            <th scope="col">
+                                <div class="left-col">
+                                    File Name
+                                </div>
+                            </th>
+                            <th scope="col" class="sm-col">
+                                <div class="center-col">
+                                    Date
+                                </div>
+                            </th>
+
+                            <!-- hide on screens smaller than medium -->
+                            <th scope="col" class="sm-col d-none d-lg-table-cell">
+                                <div class="center-col">
+                                    View
+                                </div>
+                            </th>
+                            <th scope="col" class="sm-col d-none d-lg-table-cell">
+                                <div class="center-col">
+                                    Download
+                                </div>
+                            </th>
+                            <th scope="col" class="sm-col d-none d-lg-table-cell">
+                                <div class="center-col">
+                                    Delete
+                                </div>
+                            </th>
+
+                            <!-- hide on screens wider than medium -->
+                            <th scope="col" class="sm-col d-lg-none">
+                                <div class="center-col">
+                                    Options
+                                </div>
+                            </th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <draggable @start="drag=true" @end="drag=false" handle=".drag-handler" style="display: contents">
+                            <tr v-for="i in 10" :key="i">
+                                <td>
+                                    <div class="table-file">
+                                        <img src="/icons/edit-cv-sidebar/drag-btn-icon.svg" alt="drag" class="drag-handler">
+                                        <span>Theme_0{{i}}_file.pdf</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="center-col">
+                                        01/03/2020
+                                    </div>
+                                </td>
+                                <td class="d-none d-lg-table-cell">
+                                    <div class="center-col">
+                                        <img src="/icons/view.svg" alt="view icon">
+                                    </div>
+                                </td>
+                                <td class="d-none d-lg-table-cell">
+                                    <div class="center-col">
+                                        <img src="/icons/download.svg" alt="download icon">
+                                    </div>
+                                </td>
+                                <td class="d-none d-lg-table-cell">
+                                    <div class="center-col">
+                                        <img src="/icons/delete.svg" alt="delete icon">
+                                    </div>
+                                </td>
+                                <td class="d-lg-none">
+                                    <div class="center-col">
+                                        <img src="/icons/view.svg" alt="view icon">
+                                        <img src="/icons/download.svg" alt="download icon">
+                                        <img src="/icons/delete.svg" alt="delete icon">
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </draggable>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <transition name="component-fade" mode="out-in">
-                <div class="imports-list" v-if="activeTab === 'Downloads'">
-                    <div class="import-item">
-                        <div class="import-info">
-                            <div class="import-name">
-                                File 2
-                            </div>
-                            <div class="import-date">
-                                01/17/2022
-                            </div>
-                        </div>
-                        <div class="import-actions">
-                            <div class="import-icon-view">
-                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                            </div>
-                            <div class="import-delete-iceon">
-                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="import-item">
-                        <div class="import-info">
-                            <div class="import-name">
-                                File 2
-                            </div>
-                            <div class="import-date">
-                                01/17/2022
-                            </div>
-                        </div>
-                        <div class="import-actions">
-                            <div class="import-icon-view">
-                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                            </div>
-                            <div class="import-delete-iceon">
-                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="imports-list" v-else-if="activeTab === 'Manage'">
-                    <div class="import-item">
-                        <div class="import-info">
-                            <div class="import-name">
-                                PDF import 1
-                            </div>
-                            <div class="import-date">
-                                01/17/2022
-                            </div>
-                        </div>
-                        <div class="import-actions">
-                            <div class="import-icon-view">
-                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                            </div>
-                            <div class="import-edit-icon">
-                                <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
-                            </div>
-                            <div class="import-delete-iceon">
-                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="import-item">
-                        <div class="import-info">
-                            <div class="import-name">
-                                PDF import 2
-                            </div>
-                            <div class="import-date">
-                                01/17/2022
-                            </div>
-                        </div>
-                        <div class="import-actions">
-                            <div class="import-icon-view">
-                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                            </div>
-                            <div class="import-edit-icon">
-                                <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
-                            </div>
-                            <div class="import-delete-iceon">
-                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="import-item">
-                        <div class="import-name">
-                            PDF import 3
-                        </div>
-                        <div class="import-date">
-                            01/23/2022
-                        </div>
-                        <div class="import-icon-view">
-                            <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                        </div>
-                        <div class="import-edit-icon">
-                            <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
-                        </div>
-                        <div class="import-delete-iceon">
-                            <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
-                        </div>
-                    </div>
-                </div>
-                <div class="imports-list" v-else-if="activeTab === 'Import_CV'">
-                    <import-cv></import-cv>
-                </div>
-                <div class="imports-list" v-else>
-                    <div class="import-item">
-                        <div class="import-info">
-                            <div class="import-name">
-                                123workforce.com/Aymane
-                            </div>
-                            <div class="import-date">
-                                01/17/2022
-                            </div>
-                        </div>
-                        <div class="import-actions">
-                            <div class="import-icon-view">
-                                <img src="/images/resume_builder/imports/eye.png" alt="eye-icon">
-                            </div>
-                            <div class="import-edit-icon">
-                                <img src="/images/resume_builder/imports/edit.svg" alt="eye-icon">
-                            </div>
-                            <div class="import-copy-icon">
-                                <img src="/images/resume_builder/imports/copy.png" alt="copy-icon">
-                            </div>
-                            <div class="import-delete-iceon">
-                                <img src="/images/resume_builder/imports/trash.png" alt="eye-icon">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </transition >
         </div>
     </div>
 </template>
 
 <script>
-import { moveTabsHelper } from '../../helpers/tab-animations'
-import  ImportCV  from '../../components/ImportCV'
+    import draggable from "vuedraggable";
+    import vue2Dropzone from "vue2-dropzone";
+
     export default {
+        name: "Imports",
         components: {
-            'import-cv': ImportCV
+            draggable,
+            vueDropzone: vue2Dropzone,
         },
-        name: "imports",
         data() {
             return {
-                activeTab: 'Downloads',
-                selectedSubTab: 'PDF',
-                tabs: [
-                    'Downloads',
-                    'Manage_imports',
-                    'URL_links',
-                    'Import_CV'
-                ]
+                tabs: ["PDF/DOC", "Behance", "LinkedIn"],
+                importTab: 0,
+                dropzoneOptions: {
+                    url: "https://httpbin.org/post",
+                    thumbnailWidth: 150,
+                    maxFilesize: 25,
+                    maxFiles: 5,
+                    acceptedFiles: "image/*",
+                    addRemoveLinks: true
+                },
+
             }
         },
         methods: {
-            setActiveTab (tab) {
-                this.activeTab = tab
-            },
-            changeTab (e) {
+            handlingEvent: function(file) {
 
-                // Here will be the animations between transitions
-                
-                moveTabsHelper(e, 'importLinksWrapper', this)
             }
         },
         mounted() {
-            this.changeTab({ target: document.querySelector(`.bar-item[data-target=${this.activeTab}]`)})
+
         }
     }
 </script>
@@ -206,166 +243,249 @@ import  ImportCV  from '../../components/ImportCV'
 <style scoped lang="scss">
     @import '../../../../../sass/media-queries';
 
-    .imports-wrap{
-
-        width: 100%; 
-
-        @include lt-md {
-            width: 100%;
+    .content-container{
+        width: 100%;
+        @include lt-sm {
+            width: 96%;
+            margin: auto;
         }
     }
-    .section-body-wrapper {
-        max-width: 1337px;
-        width: 100%;
-
-        .achievements-bar.sub-bar {
-            margin-top: 74px;
+    .pay-content {
+        height: 420px;
+        background: #fff;
+        box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+        padding: 50px;
+        margin-bottom: 70px;
+        scroll-behavior: smooth;
+        @media screen and (max-width: 768px) {
+            padding: 20px;
         }
+    }
 
-        .imports-list {
-            padding-right: 80px;
+    .card-main {
+        box-shadow: 0 5px 100px rgba(0, 16, 131, 0.1) !important;
+        @media screen and (max-width: 1903px) {
+            width: auto;
+        }
+    }
 
-            @include lt-md {
-                padding: 0;
+    .import-tab-item{
+        .title {
+            display: flex;
+            align-items: center;
 
-                .import-cv-wrapper{
-                    padding: 0px;
+            @include lt-sm{
+                align-items: flex-start;
+                img{
+                    margin-top: 6px;
                 }
-
             }
 
-            .import-item {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 63px;
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
 
-                @include lt-md {
-                    flex-direction: column;
+            span {
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 30px;
+                color: #888DB1;
+            }
+        }
+
+        .dropzone-area{
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            max-width: 600px;
+            margin-top: 20px;
+            background: #F8F8FF;
+            border-radius: 10px;
+
+            .import-btn{
+                margin-bottom: 30px;
+                .civie-btn{
+                    width: 160px !important;
                 }
+            }
+        }
+    }
 
-                .import-name {
-                    font: 600 30px Noto Sans;
-                    font-size: 30px;
-                    text-align: left;
-                    color: #001ce2;
-                }
 
-                .import-date {
-                    font: 600 30px Noto Sans;
-                    font-size: 30px;
-                    text-align: left;
-                    color: #001ce2;
-                }
+    .outer-container {
+        width: 100%;
+        background: #FFFFFF;
+        padding: 40px 30px 40px 40px;
+        border: solid whitesmoke 0.5px;
+        box-shadow: 0 5px 100px rgba(0, 16, 131, 0.1);
 
-                .import-view-icon {
-                    img{
-                        width: 42.75px;
-                        height: 27.24px;
-                    }
-                }
+        @media screen and (max-width: 1024px){
+            padding: 20px 10px 20px 20px;
+        }
 
-                .import-edit-icon {
-                   img{
-                       width: 30.32px;
-                       height: 30.17px;
-                   }
+        .title {
+            display: flex;
+            align-items: flex-end;
 
-                }
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
 
-                .import-copy-icon {
-                   img{
-                       width: 29.5px;
-                       height: 34px;
-                   }
-                }
+            span {
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 30px;
+                color: #888DB1;
+            }
+        }
 
-                .import-delete-icon {
-                   img{
-                       width: 29px;
-                       height: 31px;
-                   }
-                }
-                .import-info{
-                    width: 70%;
-                    justify-content: space-between;
+        @include lt-sm {
+            width: 96%;
+            margin: auto;
+        }
 
-                    @include lt-md {
-                        border-radius: 19px;
-                        box-shadow: 0px 9px 10px rgba(0, 0, 0, 0.03);
-                        max-width: 492px;
+        .dns-main-content-container {
+            margin-top: 25px;
+            border-radius: 0;
+            height: 350px;
+
+            .dns-main-content {
+                margin-right: 20px;
+
+                .dns-table {
+                    width: 100%;
+                    border: 1px solid #E6E8FC;
+                    box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+
+                    .center-col {
+                        display: flex;
                         width: 100%;
-                        height: 67px;
+                        height: 100%;
                         align-items: center;
-                        padding: 0px 24px;
-                        position: relative;
-                        z-index: 2;
-                        background: #fff;
-                    }
+                        justify-content: center;
 
-                    @include lt-sm {
-                        padding: 0px 15px;
-                    }
-
-                    
-
-                    .import-name{
-                        @include lt-md {
-                            font-size: 22px;
+                        img:hover {
+                            cursor: pointer;
                         }
-                        @include lt-sm {
-                            font-size: 12px;
-                        }
-                    }
 
-                    .import-date{
-                        padding-right: 35%;
-                        // text-align
-
-                        @include lt-md {
-                            padding: 0;
-                            font-size: 22px;
-                        }
-                        @include lt-sm {
-                            font-size: 12px;
-                        }
-                    }
-                }
-                .import-actions{
-                    width: 30%;
-                    justify-content: space-around;
-                    max-width: 360px;
-                    background: #F6F6F6;
-                    padding: 22px 0px;
-
-                    @include lt-md {
-                        max-width: 385px;
-                        width: 90%;
-                        position: relative;
-                        z-index: 1;
-                        padding: 20px 0px 10px 0px;
-                        border-radius: 12px;
-                        top: -10px;
-                        align-items: center;
-                    }
-
-                    >div{
-                        img{
-                            @include lt-md {
-                                max-width: 24px;
-                                max-height: 20px;
+                        @media screen and (max-width: 1024px){
+                            img{
+                                width: 25px;
+                                height: 25px;
+                                margin-right: 5px;
                             }
                         }
                     }
-                    
-                    
 
+                    .left-col {
+                        display: flex;
+                        width: 100%;
+                        min-width:250px;
+                        height: 100%;
+                        align-items: center;
+                        justify-content: flex-start;
+                        padding-left: 20px;
+                    }
+
+                    .sm-col {
+                        width: 130px;
+                    }
+
+                    thead {
+                        background: #F2F3FF;
+
+                        tr {
+                            th {
+                                font-weight: 600;
+                                font-size: 18px;
+                                line-height: 25px;
+                                color: #888DB1;
+                                border: 0;
+                                height: 70px;
+                            }
+                        }
+                    }
+
+                    tbody {
+                        tr {
+                            td {
+                                font-weight: normal;
+                                font-size: 18px;
+                                line-height: 25px;
+                                color: #888DB1;
+                                height: 70px;
+                                @media screen and (max-width: 1024px){
+                                    font-size: 14px;
+                                    line-height: 14px;
+                                }
+                            }
+
+                            &:hover {
+                                background: rgba(249, 249, 255, 1);
+                            }
+                        }
+                    }
+
+                    .table-file {
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        padding-left: 20px;
+
+                        img {
+                            width: 30px;
+                            height: 28px;
+                            margin-right: 20px;
+
+                            &:hover {
+                                cursor: grab;
+                            }
+                        }
+
+                        span {
+                            font-weight: normal;
+                            font-size: 18px;
+                            line-height: 25px;
+                            color: #888DB1;
+                        }
+                    }
                 }
-                .import-info,.import-actions{
-                    display: inline-flex;
-                }
+
             }
+
+        }
+    }
+
+
+
+</style>
+
+<style lang="scss">
+    .drop-zone{
+        .vue-dropzone{
+            border: 2px dotted #e5e4e4;
         }
 
+        .dropzone-custom-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 32px;
+            text-align: center;
+            color: #888DB1;
+
+            img{
+                margin-top: 20px;
+                width: 30px;
+                height: 30px;
+            }
+        }
     }
 </style>

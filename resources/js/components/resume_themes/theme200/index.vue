@@ -92,13 +92,13 @@
                   <!-- Hidden in sm and up phone icons -->
                   <v-col col="1" class="hidden-sm-and-up" align="right">
                     <v-card flat color="transparent">
-                      <v-btn small color="#00CDF7" class="phone-btn">
+                      <v-btn small color="#00CDF7" class="phone-btn" @click.stop="audioModal=true">
                         <img src="/images/resume_themes/theme200/icons/telephone-handle.png" />
                       </v-btn>
                     </v-card>
                     <v-card flat color="transparent" class="mt-6">
-                      <v-btn small color="#E8E5F6" class="video-btn">
-                        <img src="/images/resume_themes/theme200/icons/youtube-camera.png" />
+                      <v-btn small color="#E8E5F6" class="video-btn" @click.stop="videoModal=true">
+                        <img src="/images/resume_themes/theme200/icons/camera.svg" />
                       </v-btn>
                     </v-card>
                   </v-col>
@@ -198,7 +198,7 @@
                             <v-card
                               flat
                               color="transparent"
-                              class="mt-xl-0 mt-lg-0 mt-md-5 mt-sm-0 mt-0"
+                              class="mt-xl-0 mt-lg-0 mt-md-10 mt-sm-0 mt-0"
                             >
                               <v-card-text align="center">
                                 <v-row align="center">
@@ -208,19 +208,26 @@
                                   <v-spacer class="hidden-md-only"></v-spacer>
                                   <v-col cols="12" md="4" sm="5" class>
                                     <v-card color="transparent" flat class="mt-md-0 mt-sm-7 mt-0">
-                                      <v-btn color="#03CA9F" class="btn-voice-call">
+                                      <v-btn
+                                        color="#03CA9F"
+                                        class="btn-voice-call"
+                                        @click.stop="audioModal=true"
+                                      >
                                         <img
                                           class="mr-2"
-                                          src="/images/resume_themes/theme200/icons/phone.png"
-                                        />Voice
-                                        Call
+                                          src="/images/resume_themes/theme200/icons/volume.svg"
+                                        />Audio
                                       </v-btn>
                                     </v-card>
                                   </v-col>
 
                                   <v-col cols="12" md="4" sm="5" class>
                                     <v-card flat color="transparent" class="mt-md-0 mt-sm-7 mt-0">
-                                      <v-btn color="#2400FF" class="btn-upload">
+                                      <v-btn
+                                        color="#2400FF"
+                                        class="btn-upload"
+                                        @click.stop="videoModal=true"
+                                      >
                                         <img
                                           src="/images/resume_themes/theme200/icons/camera.png"
                                           class="mr-2"
@@ -571,12 +578,12 @@
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
-                      <v-card-text align="center">
-                        <slick class="portfolioSlides" ref="slick" :options="slickOptions">
+                      <v-card-text>
+                        <VueSlickCarousel v-bind="slickOptions" ref="slick">
                           <div
                             v-for="project in currentUser.projects"
                             :key="project.id"
-                            class="mb-5"
+                            class="mb-10"
                           >
                             <v-card elevation-12 class="card-portfolio">
                               <v-img
@@ -602,19 +609,36 @@
                               <v-card-subtitle align="left">{{project.description}}</v-card-subtitle>
                             </v-card>
                           </div>
-                        </slick>
+                        </VueSlickCarousel>
 
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="prev">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevPortfolio"
+                                :disabled="portfolioPage==1? true : false "
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
                               <span
                                 class="title pagination-text"
-                              >{{portfolioPage}}/{{currentUser.projects.length/6}}</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF" @click="next">
+                              >{{portfolioPage}}/{{currentUser.projects.length/6 | floor}}</span>
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                :disabled="currentUser.projects.length/6<=1? true:false"
+                                fab
+                                color="#6152CF"
+                                @click="nextPortfolio"
+                                :class="currentUser.projects.length/6==1? 'btn-pagination-disabled':''"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -721,7 +745,6 @@
                 </v-tab-item>
                 <!-- Tab Item For Education -->
 
-                <!-- Tab Item for skills -->
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
@@ -817,6 +840,7 @@
                                     </v-card>
                                   </v-col>
                                 </v-row>
+
                                 <!-- Pagination -->
                                 <v-row class="mt-5">
                                   <v-col cols="12">
@@ -954,37 +978,61 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
                       <v-card-text>
-                        <v-row
-                          v-for="(achievement,index) in currentUser.achievements"
-                          :key="index + '_achievement'"
-                        >
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" elevation-12>
-                              <v-img :src="achievement.image_src"></v-img>
-                            </v-card>
-                          </v-col>
+                        <VueSlickCarousel :options="slickOptionsAchievements" ref="slickAchivement">
+                          <div
+                            v-for="(achievement,index) in currentUser.achievements"
+                            :key="index + '_achievement'"
+                          >
+                            <v-row justify="center">
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" elevation-12>
+                                  <v-img :src="achievement.image_src"></v-img>
+                                </v-card>
+                              </v-col>
 
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" class="certification">
-                              <v-card-title>
-                                <span class="achievement-title">{{achievement.title}}</span>
-                              </v-card-title>
-                              <v-card-subtitle class="achievement-subtitle">{{achievement.category}}</v-card-subtitle>
-                              <v-card-text
-                                class="achievement-text caption"
-                              >{{achievement.description}}</v-card-text>
-                            </v-card>
-                          </v-col>
-                        </v-row>
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" class="certification">
+                                  <v-card-title>
+                                    <span class="achievement-title">{{achievement.title}}</span>
+                                  </v-card-title>
+                                  <v-card-subtitle
+                                    class="achievement-subtitle"
+                                  >{{achievement.category}}</v-card-subtitle>
+                                  <v-card-text
+                                    class="achievement-text caption"
+                                  >{{achievement.description}}</v-card-text>
+                                </v-card>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </VueSlickCarousel>
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevAchievement()"
+                                :disabled="achivementPage==1?true:false"
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
-                              <span class="title pagination-text">1/5</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <span
+                                class="title pagination-text"
+                              >{{achivementPage}}/{{currentUser.achievements.length}}</span>
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="nextAchievement()"
+                                :disabled="achivementPage==this.currentUser.achievements.length?true:false"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -1012,20 +1060,102 @@
         <img :src="currentImgObj != null ? getProjectMainImage(currentImgObj) : ''" />
       </v-dialog>
       <!-- Photo Zoom Dialog -->
+      <!-- video modal -->
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+        <v-card class="card-modal-video-holder pa-sm-10 pa-0">
+          <v-card-subtitle align="right">
+            <v-btn
+              color="transparent"
+              class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-sm-0 mt-2"
+              fab
+              @click.stop="videoModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme200/icons/close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+          <slick ref="slick" :options="slickOptionsVideoModal" class>
+            <template v-for="video in currentUser.media">
+              <div
+                :key="video.id"
+                class
+                align="center"
+                v-if="video.type=='video' && video.is_public==1"
+              >
+                <v-card class="card-video mb-md-0 md-sm-0 mb-5">
+                  <video style="width:100%;" controls>
+                    <source :src="video.url" type="video/mp4" />
+                  </video>
+                  <v-card-title class="video-window-title">{{video.title}}</v-card-title>
+                  <v-card-subtitle
+                    class="video-window-subtitle mt-n5"
+                    align="left"
+                  >{{video.transcript}}</v-card-subtitle>
+                </v-card>
+              </div>
+            </template>
+          </slick>
+        </v-card>
+      </v-dialog>
+      <!-- Video modal -->
+
+      <!-- Audio Modal -->
+      <v-dialog v-model="audioModal" max-width="1690" max-height="740" persistent>
+        <v-card class="audio-modal-main-card pa-xl-10 pa-sm-4 pa-2">
+          <v-card-subtitle align="right">
+            <v-btn
+              color="transparent"
+              class="btn-video-close mb-xl-8 mb-lg-8 mr-xl-n5 mr-lg-n5 mr-md-n5 mr-sm-n5 mr-n5 mt-sm-0 mt-2"
+              fab
+              @click.stop="audioModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme200/icons/close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+          <vueSlickCarousel v-bind="slickOptionsAudioModal">
+            <template v-for="audio in currentUser.media">
+              <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
+                <audio controls style="width:100%;">
+                  <source :src="audio.url" type="audio/mpeg" />Your browser does not support the audio element.
+                </audio>
+              </div>
+            </template>
+            <!-- <template #customPaging="page">
+              <div class="custom-dot">{{ page }}</div>
+            </template>-->
+          </vueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Audio Modal -->
     </div>
   </v-app>
 </template>
 
 <script>
 import Slick from "vue-slick";
+import VueSlickCarousel from "vue-slick-carousel";
 export default {
   props: ["user", "is_preview"],
+  filters: {
+    floor: function (value) {
+      if (!value) return "";
+      return Math.ceil(value);
+    },
+  },
   components: {
-    Slick
+    Slick,
+    VueSlickCarousel,
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
+      videoModal: false,
+      audioModal: false,
       portfolioPage: 1,
+      skillPage: 1,
+      totalSkillPages: 1,
+      achivementPage: 1,
       skillTab: 0,
       page: 1,
       overlay: true,
@@ -1043,17 +1173,17 @@ export default {
         { title: "Education", id: 3 },
         { title: "Skills", id: 4 },
         { title: "About Me", id: 5 },
-        { title: "Achievement", id: 6 }
+        { title: "Achievement", id: 6 },
       ],
       skillTabs: [
         {
           title: "Programming Languages",
           value: "Programming_languages",
-          id: 1
+          id: 1,
         },
         { title: "Framework/Databases", value: "Frameworks", id: 2 },
         { title: "Software", value: "Software", id: 3 },
-        { title: "Design Skills", value: "Design", id: 4 }
+        { title: "Design Skills", value: "Design", id: 4 },
       ],
       skillDetails: [
         {
@@ -1064,30 +1194,30 @@ export default {
               icon: "illustrator",
               color: "#FF7C00",
               value: "90",
-              valueText: "90%"
+              valueText: "90%",
             },
             {
               name: "Adobe XD",
               icon: "xd",
               color: "#FF21AF",
               value: "70",
-              valueText: "70%"
+              valueText: "70%",
             },
             {
               name: "Photoshop",
               icon: "photoshop",
               color: "#00C8FF",
               value: "95",
-              valueText: "95%"
+              valueText: "95%",
             },
             {
               name: "Premier Pro",
               icon: "premier",
               color: "#E788FF",
               value: "50",
-              valueText: "50%"
-            }
-          ]
+              valueText: "50%",
+            },
+          ],
         },
         {
           title: "Languages",
@@ -1097,63 +1227,63 @@ export default {
               icon: "html",
               color: "#E34F26",
               value: "90",
-              valueText: "90%"
+              valueText: "90%",
             },
             {
               name: "CSS",
               icon: "css",
               color: "#264DE4",
               value: "70",
-              valueText: "70%"
+              valueText: "70%",
             },
             {
               name: "Javascript",
               icon: "js",
               color: "#FDD83C",
               value: "95",
-              valueText: "95%"
+              valueText: "95%",
             },
             {
               name: "Magento",
               icon: "magento",
               color: "#EC6737",
               value: "50",
-              valueText: "50%"
-            }
-          ]
-        }
+              valueText: "50%",
+            },
+          ],
+        },
       ],
       portfolio: [
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 1
+          id: 1,
         },
         {
           title: "Website Design",
           subtitle: "industrial,creative,idea",
-          id: 2
+          id: 2,
         },
         {
           title: "Pattern Design",
           subtitle: "industrial,creative,idea",
-          id: 3
+          id: 3,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 4
+          id: 4,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 5
+          id: 5,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 6
-        }
+          id: 6,
+        },
       ],
       work: [
         {
@@ -1162,7 +1292,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 2,
@@ -1170,7 +1300,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 3,
@@ -1178,7 +1308,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 4,
@@ -1186,7 +1316,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 5,
@@ -1194,7 +1324,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 6,
@@ -1202,8 +1332,8 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-        }
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
+        },
       ],
 
       // Education
@@ -1214,7 +1344,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 2,
@@ -1222,7 +1352,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 3,
@@ -1230,7 +1360,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 4,
@@ -1238,7 +1368,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 5,
@@ -1246,7 +1376,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 6,
@@ -1254,15 +1384,15 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-        }
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
+        },
       ],
 
       socialMedia: [
         { title: "behance", icon: "fa-behance", color: "#217BFF" },
         { title: "dribbble", icon: "fa-dribbble", color: "#EE588A" },
         { title: "instagram", icon: "fa-instagram", color: "#DD24BC" },
-        { title: "google", icon: "fa-google-plus", color: "#DC4E41" }
+        { title: "google", icon: "fa-google-plus", color: "#DC4E41" },
       ],
 
       currentUser: this.user,
@@ -1270,8 +1400,43 @@ export default {
         infinite: false,
         dots: false,
         arrows: false,
-        slidesToShow: 3,
-        slidesToScroll: 1,
+        slidesPerRow: 3,
+        rows: 2,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow: 1,
+              rows: 6,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToScroll: 2,
+              slidesPerRow: 2,
+              rows: 3,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToScroll: 3,
+            },
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToScroll: 3,
+            },
+          },
+        ],
+      },
+      slickOptionsSkills: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesPerRow: 4,
         rows: 2,
         responsive: [
           {
@@ -1279,33 +1444,122 @@ export default {
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1,
-              rows: 6
-            }
+              rows: 4,
+            },
           },
           {
             breakpoint: 960,
             settings: {
               slidesToShow: 2,
-              slidesToScroll: 1,
-              rows: 3
-            }
+              slidesToScroll: 2,
+              rows: 4,
+            },
           },
           {
             breakpoint: 1264,
             settings: {
               slidesToShow: 3,
-              slidesToScroll: 3
-            }
+              slidesToScroll: 3,
+            },
           },
           {
             breakpoint: 1600,
             settings: {
-              slidesToShow: 3,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      }
+              slidesToShow: 4,
+              slidesToScroll: 4,
+            },
+          },
+        ],
+      },
+
+      slickOptionsAchievements: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+              simple: true,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
+      //video modal
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+              centerPadding: "80px",
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 2,
+              centerPadding: "80px",
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+        ],
+      },
+      //audio Modal
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
     };
   },
 
@@ -1318,7 +1572,7 @@ export default {
       let mainImage = "";
 
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -1441,7 +1695,7 @@ export default {
         mongodb: "/images/skills_icons/mongoDB.png",
         oracle: "/images/skills_icons/Oracle.png",
         redis: "/images/skills_icons/redis.png",
-        cassandra: "/images/skills_icons/cassandra.png"
+        cassandra: "/images/skills_icons/cassandra.png",
       };
       if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
         return arrayOfSkillImages[skill_title.toLowerCase()];
@@ -1451,39 +1705,66 @@ export default {
     zoomPhoto(obj) {
       this.zoomModal = true;
       this.currentImgObj = obj;
-      console.log(obj);
     },
     //slick carousel
-    next() {
+    nextPortfolio() {
       this.$refs.slick.next();
-      if (this.portfolioPage < this.currentUser.projects.length/6) {
+      if (this.portfolioPage < this.currentUser.projects.length / 6) {
         this.portfolioPage++;
       }
     },
-    prev() {
+    prevPortfolio() {
       this.$refs.slick.prev();
       if (this.portfolioPage > 1) {
         this.portfolioPage--;
       }
-    }
+    },
+    prevSkill() {
+      if (this.skillPage > 1) {
+        this.$refs.carousel[0].prev();
+        this.skillPage--;
+      }
+    },
+    nextSkill() {
+      if (this.skillPage < this.totalSkillPages) {
+        this.$refs.carousel[0].next();
+        this.skillPage++;
+      }
+    },
+    nextAchievement() {
+      this.$refs.slickAchivement.next();
+      if (this.achivementPage < this.currentUser.achievements.length) {
+        this.achivementPage++;
+      }
+    },
+    prevAchievement() {
+      this.$refs.slickAchivement.prev();
+      if (this.achivementPage > 1) {
+        this.achivementPage--;
+      }
+    },
   },
   computed: {
     socialLinks() {
-      return this.currentUser.links.filter(link => {
+      return this.currentUser.links.filter((link) => {
         return link.category === "social_link" ? link : false;
       });
-    }
+    },
   },
 
   mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
+
       this.setDummyUser();
     }
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+  },
 };
 </script>
 
@@ -1493,6 +1774,10 @@ export default {
 }
 
 @import "resources/sass/themes/theme200.scss";
+.theme--dark.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: #6152cf !important;
+}
+
 .hire-me-frequency {
   color: white;
   font-size: 12px !important;
@@ -1522,6 +1807,96 @@ export default {
   color: #ffa797 !important;
   font-size: 12px !important;
 }
+.card-modal-video-holder {
+  height: 734px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 80%;
+  }
+  @media screen and (max-width: 959px) {
+    height: auto;
+  }
+  @media screen and (max-width: 599px) {
+    height: 682px;
+  }
+  .btn-video-close {
+    img {
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+  .card-video {
+    max-width: 674px;
+    max-height: 476px;
+    border-radius: 12px !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      width: 90%;
+      height: 90%;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      max-width: 750px;
+    }
+    @media screen and (max-width: 959px) {
+      width: 90%;
+    }
+    @media screen and (max-width: 599px) {
+      max-width: 361px;
+      max-height: 263px;
+    }
+    .video-window-title {
+      font-family: "Open Sans" !important;
+      font-size: 30px;
+      color: #2e2e2e !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 24px;
+      }
+      @media screen and (max-width: 959px) {
+        font-size: 32px;
+      }
+      @media screen and (max-width: 599px) {
+        font-size: 18px;
+      }
+    }
+    .video-window-subtitle {
+      font-family: "Open Sans" !important;
+      font-size: 19px;
+      color: #7d7d7d !important;
+      text-transform: capitalize !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 14px;
+      }
+      @media screen and (max-width: 959px) {
+        font-size: 18px;
+      }
+      @media screen and (max-width: 599px) {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+.audio-modal-main-card {
+  max-height: 471px;
+  height: 471px;
+
+  @media screen and (max-width: 959px) {
+    height: 400px;
+  }
+}
+audio,
+canvas,
+progress,
+video {
+  width: -webkit-fill-available !important;
+  width: -moz-available;
+}
 
 //mobile tab
 </style>
@@ -1533,6 +1908,16 @@ export default {
 
 #resumeTheme200 .v-slide-group__next {
   display: none;
+}
+
+#resumeTheme200 .slick-dots li.slick-active button {
+  background-color: #6152cf !important;
+  opacity: 1 !important;
+}
+
+#resumeTheme200 .slick-dots li button {
+  background-color: #6152cf !important;
+  opacity: 0.57 !important;
 }
 </style>
 

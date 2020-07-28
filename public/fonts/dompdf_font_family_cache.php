@@ -87,7 +87,7 @@
     'bold_italic' => $fontDir . '/OpenSans-Regular',
   ),
   'raleway' => array(
-    'normal' => $fontDir . '/Raleway-Regular',
+    'normal' => $fontDir . '/raleway-normal_ca9d6508b9293006ddd573a03d9c8467',
     'bold' => $fontDir . '/Raleway-Bold',
     'italic' => $fontDir . '/Raleway-BoldItalic',
     'bold_italic' => $fontDir . '/Raleway-Regular',
@@ -96,6 +96,6 @@
     'normal' => $fontDir . '/muli-normal_ac284dc71e1b0704e4d0e81d205378b2',
   ),
   'fira' => array(
-    'normal' => $fontDir . '/fira-normal_87773dd5327ba0ec7ecfd977507e9240',
+    'normal' => $fontDir . '/fira-normal_21029b28bb237c42b004f9637e51c223',
   ),
 ) ?>
