@@ -231,7 +231,7 @@
                                         <img
                                           src="/images/resume_themes/theme200/icons/camera.png"
                                           class="mr-2"
-                                        />Upload Video
+                                        />Video
                                       </v-btn>
                                     </v-card>
                                   </v-col>
@@ -1074,7 +1074,7 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.lenght>0">
+          <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
             <template v-for="video in currentUser.media">
               <div
                 :key="video.id"
@@ -1113,7 +1113,7 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.lenght>0">
+          <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
             <template v-for="audio in currentUser.media">
               <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
                 <audio controls style="width:100%;">
@@ -1754,8 +1754,8 @@ export default {
       this.windowWidth = window.innerWidth;
     };
     // if there is no user or the preview is true, set dummy user
+    console.log(this.currentUser);
     if (!this.currentUser || this.is_preview) {
-
       this.setDummyUser();
     }
 
