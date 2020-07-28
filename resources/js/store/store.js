@@ -322,6 +322,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateTabs(state, tabs){
+            state.user.tabs = tabs;
+            axios.post('/api/user/tabs/update-order', {tabs : tabs})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateWorks(state, works){
             state.user.work_experience = works;
             axios.post('/api/user/work-experience/update-order', {works : works})

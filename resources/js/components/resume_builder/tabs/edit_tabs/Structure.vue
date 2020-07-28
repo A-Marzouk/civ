@@ -1,5 +1,5 @@
 <template>
-    <div class="str-main-content-container">
+    <div class="str-main-content-container" v-if="tabs">
         <div class="str-main-content">
             <div class="title">
                 <img src="/icons/edit-cv-sidebar/structure.svg" alt="structure icon">
@@ -26,26 +26,17 @@
         },
         data() {
             return {
-                tabs: [
-                    {
-                        label: 'Portfolio'
-                    },
-                    {
-                        label: 'Education'
-                    },
-                    {
-                        label: 'Experience'
-                    },
-                    {
-                        label: 'Skills'
-                    },
-                    {
-                        label: 'Media'
-                    },
-                    {
-                        label: 'About Me'
-                    }
-                ]
+
+            }
+        },
+        computed: {
+            tabs: {
+                get() {
+                    return this.$store.state.user.tabs;
+                },
+                set(tabs) {
+                    this.$store.commit("updateTabs", tabs);
+                }
             }
         },
         methods: {

@@ -12,19 +12,97 @@
             <v-card class="card-main pa-10 resume-builder__scroll pay-content" flat id="payContent">
                 <v-tabs-items v-model="importTab">
                     <v-tab-item class="import-tab-item">
-                        PDF/DOC
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Please Upload Your CV from PDF or docx format</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import File
+                                </v-btn>
+                            </div>
+
+                            <div class="drop-zone">
+                                <vue-dropzone
+                                        class="sm-image"
+                                        id="dropzone"
+                                        :options="dropzoneOptions"
+                                        :useCustomSlot="true"
+                                        v-on:vdropzone-file-added="handlingEvent"
+                                        ref="newFile">
+                                    <div class="dropzone-custom-content">
+                                        <span>
+                                            Or Drag Your File
+                                        </span>
+                                        <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
+                                    </div>
+                                </vue-dropzone>
+                            </div>
+
+                        </div>
 
                     </v-tab-item>
 
                     <v-tab-item class="import-tab-item">
 
-                        Behance
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Import from Behance</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                             URL
+                            </span>
+                            <v-text-field
+                                    style="margin-top: -15px;"
+                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    :outlined="true"
+                            >
+                                <template slot="prepend-inner">
+                                    <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
+                                </template>
+                            </v-text-field>
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import CV
+                                </v-btn>
+                            </div>
+                        </div>
+
 
                     </v-tab-item>
 
                     <v-tab-item class="import-tab-item">
 
-                        Linkedin
+                        <div class="title">
+                            <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                            <span>Import from Linkedin</span>
+                        </div>
+
+                        <div class="dropzone-area">
+                            <span class="v-label v-label--active theme--light" style="color: #888DB1;">
+                            <!-- Added a label here due to prepend-inner slot change -->
+                             URL
+                            </span>
+                            <v-text-field
+                                    style="margin-top: -15px;"
+                                    class="resume-builder__input top-input-margin url mt-n6"
+                                    :outlined="true"
+                            >
+                                <template slot="prepend-inner">
+                                    <span class="inner-text" style="margin-top:-3px;">linkedin.com/</span>
+                                </template>
+                            </v-text-field>
+                            <div class="import-btn">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                    Import CV
+                                </v-btn>
+                            </div>
+                        </div>
 
                     </v-tab-item>
                 </v-tabs-items>
@@ -34,7 +112,7 @@
 
         <div class="outer-container">
             <div class="title">
-                <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="downloads icon">
+                <img src="/icons/edit-cv-sidebar/imports-table.svg" alt="imports icon">
                 <span>Manage Imports</span>
             </div>
             <div class="dns-main-content-container resume-builder__scroll">
@@ -128,22 +206,33 @@
 
 <script>
     import draggable from "vuedraggable";
+    import vue2Dropzone from "vue2-dropzone";
 
     export default {
         name: "Imports",
         components: {
-            draggable
+            draggable,
+            vueDropzone: vue2Dropzone,
         },
         data() {
             return {
                 tabs: ["PDF/DOC", "Behance", "LinkedIn"],
                 importTab: 0,
+                dropzoneOptions: {
+                    url: "https://httpbin.org/post",
+                    thumbnailWidth: 150,
+                    maxFilesize: 25,
+                    maxFiles: 5,
+                    acceptedFiles: "image/*",
+                    addRemoveLinks: true
+                },
 
             }
         },
         methods: {
+            handlingEvent: function(file) {
 
-
+            }
         },
         mounted() {
 
@@ -168,12 +257,59 @@
         padding: 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
+        @media screen and (max-width: 768px) {
+            padding: 20px;
+        }
     }
 
     .card-main {
         box-shadow: 0 5px 100px rgba(0, 16, 131, 0.1) !important;
         @media screen and (max-width: 1903px) {
             width: auto;
+        }
+    }
+
+    .import-tab-item{
+        .title {
+            display: flex;
+            align-items: center;
+
+            @include lt-sm{
+                align-items: flex-start;
+                img{
+                    margin-top: 6px;
+                }
+            }
+
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
+
+            span {
+                font-weight: 500;
+                font-size: 22px;
+                line-height: 30px;
+                color: #888DB1;
+            }
+        }
+
+        .dropzone-area{
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            max-width: 600px;
+            margin-top: 20px;
+            background: #F8F8FF;
+            border-radius: 10px;
+
+            .import-btn{
+                margin-bottom: 30px;
+                .civie-btn{
+                    width: 160px !important;
+                }
+            }
         }
     }
 
@@ -326,4 +462,30 @@
 
 
 
+</style>
+
+<style lang="scss">
+    .drop-zone{
+        .vue-dropzone{
+            border: 2px dotted #e5e4e4;
+        }
+
+        .dropzone-custom-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 32px;
+            text-align: center;
+            color: #888DB1;
+
+            img{
+                margin-top: 20px;
+                width: 30px;
+                height: 30px;
+            }
+        }
+    }
 </style>
