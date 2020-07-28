@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static $defaultRelations =
         [
+            'tabs',
             'skills',
             'hobbies',
             'education',
@@ -66,6 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'subscription'
     ];
     public static $defaultOneToManyRelations = [
+        'tabs',
         'skills',
         'hobbies',
         'education',
@@ -113,6 +115,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
 
     // relations has Many
+    public function tabs()
+    {
+        return $this->hasMany(Tab::class)->orderBy('order');
+    }
+
     public function skills()
     {
         return $this->hasMany(Skill::class)->orderBy('order');

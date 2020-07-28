@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Tab;
 use App\User;
 use App\AvailabilityInfo;
 use App\Link;
@@ -83,6 +84,46 @@ class UserObserver
     }
 
     protected function assignDefaultValuesForNewUser($user){
+
+        // Main default tabs
+        Tab::insert([
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'work_experience',
+                'label' => 'Work Experience'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'education',
+                'label' => 'Education'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'skills',
+                'label' => 'Skills'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'portfolio',
+                'label' => 'Portfolio'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'about_me',
+                'label' => 'About Me'
+            ]
+        ]);
+
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
