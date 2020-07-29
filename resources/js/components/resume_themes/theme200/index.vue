@@ -1113,13 +1113,38 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
+          <!-- <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
             <template v-for="audio in currentUser.media">
               <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
                 <audio controls style="width:100%;">
                   <source :src="audio.url" type="audio/mpeg" />Your browser does not support the audio element.
                 </audio>
               </div>
+            </template>
+          </vueSlickCarousel>-->
+
+          <vueSlickCarousel v-bind="slickOptionsAudioModal">
+            <template>
+              <v-container style="width:80%">
+                <v-card flat class>
+                  <v-row justify="center">
+                    <v-col lg="1" cols="3">
+                      <v-btn fab color="#FC5C8A" class="btn-play" depressed>
+                        <v-icon color="white" x-large>mdi-play</v-icon>
+                      </v-btn>
+                    </v-col>
+                    <v-col lg="11" cols="9" align="left" class="mt-n8">
+                      <v-row>
+                        <v-col cols="6">1</v-col>
+                        <v-col cols="6" align="right">2</v-col>
+                        <v-col cols="12" align="left">
+                          <v-progress-linear value="15" height="8" color="#FC5C8A"></v-progress-linear>
+                        </v-col>
+                      </v-row>
+                    </v-col>
+                  </v-row>
+                </v-card>
+              </v-container>
             </template>
           </vueSlickCarousel>
         </v-card>
@@ -1887,14 +1912,10 @@ export default {
     height: 400px;
   }
 }
-audio,
-canvas,
-progress,
-video {
-  width: -webkit-fill-available !important;
-  width: -moz-available;
+.btn-play {
+  width: 54px;
+  height: 54px;
 }
-
 //mobile tab
 </style>
 
