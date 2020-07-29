@@ -1101,14 +1101,14 @@
 
       <!-- Audio Modal -->
       <v-dialog v-model="audioModal" max-width="1690" max-height="740" persistent>
-        <v-card class="audio-modal-main-card pa-xl-10 pa-sm-4 pa-2">
+        <v-card class="audio-modal-main-card pa-xl-12" align="center">
           <v-card-subtitle align="right">
             <v-btn
               color="transparent"
-              class="btn-video-close mb-xl-8 mb-lg-8 mr-xl-n5 mr-lg-n5 mr-md-n5 mr-sm-n5 mr-n5 mt-sm-0 mt-2"
-              fab
+              class="btn-video-close mb-xl-8 mb-lg-8 mt-xl-5 mt-lg-5"
               @click.stop="audioModal=false"
               depressed
+              icon
             >
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
@@ -1122,31 +1122,8 @@
               </div>
             </template>
           </vueSlickCarousel>-->
-
-          <vueSlickCarousel v-bind="slickOptionsAudioModal">
-            <template>
-              <v-container style="width:80%">
-                <v-card flat class>
-                  <v-row justify="center">
-                    <v-col lg="1" cols="3">
-                      <v-btn fab color="#FC5C8A" class="btn-play" depressed>
-                        <v-icon color="white" x-large>mdi-play</v-icon>
-                      </v-btn>
-                    </v-col>
-                    <v-col lg="11" cols="9" align="left" class="mt-n8">
-                      <v-row>
-                        <v-col cols="6">1</v-col>
-                        <v-col cols="6" align="right">2</v-col>
-                        <v-col cols="12" align="left">
-                          <v-progress-linear value="15" height="8" color="#FC5C8A"></v-progress-linear>
-                        </v-col>
-                      </v-row>
-                    </v-col>
-                  </v-row>
-                </v-card>
-              </v-container>
-            </template>
-          </vueSlickCarousel>
+          <audio-player></audio-player>
+          
         </v-card>
       </v-dialog>
       <!-- Audio Modal -->
@@ -1157,6 +1134,7 @@
 <script>
 import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
+import AudioPlayer from "./media/AudioPlayer"
 export default {
   props: ["user", "is_preview"],
   filters: {
@@ -1168,6 +1146,7 @@ export default {
   components: {
     Slick,
     VueSlickCarousel,
+    AudioPlayer,
   },
   data() {
     return {
@@ -1574,14 +1553,7 @@ export default {
         ],
       },
       //audio Modal
-      slickOptionsAudioModal: {
-        infinite: false,
-        dots: true,
-        arrows: false,
-        slidesPerRow: 1,
-        slidesToScroll: 1,
-        rows: 3,
-      },
+      
     };
   },
 
@@ -1779,7 +1751,6 @@ export default {
       this.windowWidth = window.innerWidth;
     };
     // if there is no user or the preview is true, set dummy user
-    console.log(this.currentUser);
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
