@@ -220,7 +220,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="section-content-items" v-show="section.title === 'summary'">
+                                            <div class="section-content-items" v-show="section.title === 'About Me'">
                                                 <div class="edit-inputs" v-if="section.edited">
                                                     <v-textarea
                                                             class="resume-builder__input  civie-textarea"
