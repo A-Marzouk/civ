@@ -1122,7 +1122,7 @@
               </div>
             </template>
           </vueSlickCarousel>-->
-          <audio-player></audio-player>
+          <audio-player file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"></audio-player>
           
         </v-card>
       </v-dialog>

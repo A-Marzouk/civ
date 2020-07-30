@@ -10,7 +10,7 @@
                 color="#FC5C8A"
                 class="btn-play"
                 depressed
-                @click.prevent="playing = !playing"
+                @click.prevent="playing ? pause() : play()"
               >
                 <v-icon color="white" x-large v-if="playing">mdi-pause</v-icon>
                 <v-icon color="white" x-large v-else>mdi-play</v-icon>
@@ -22,12 +22,13 @@
                   <div class="durationTime">{{currentTime}}</div>
                 </v-col>
                 <v-col xl="5" lg="5" cols="6" align="right">
-                  <div class="durationTime">{{durationTime}}</div>
+                  <div class="durationTime">5:38</div>
                 </v-col>
                 <v-col xl="11" lg="11" align="left">
-                  <v-progress-linear value="15" height="8" color="#FC5C8A"></v-progress-linear>
+                  <v-progress-linear value="50" height="8" color="#FC5C8A"></v-progress-linear>
                 </v-col>
               </v-row>
+              <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
             </v-col>
           </v-row>
         </v-card-text>
@@ -37,12 +38,17 @@
 </template>
 <script>
 import VueSlickCarousel from "vue-slick-carousel";
+const formatTime = (second) =>
+  new Date(second * 1000).toISOString().substr(11, 8);
 export default {
   name: "AudioPlayer",
   components: {
     VueSlickCarousel,
   },
   props: {
+    index: {
+      type: Number,
+    },
     file: {
       type: String,
       default: null,
@@ -51,17 +57,26 @@ export default {
       type: Boolean,
       default: false,
     },
-    loop: {
-      type: Boolean,
-      default: false,
+    ended: {
+      type: Function,
+      default: () => {},
+    },
+    canPlay: {
+      type: Function,
+      default: () => {},
     },
   },
   data() {
     return {
-      audio: undefined,
+      firstPlay: true,
+      isMuted: false,
+      loaded: false,
       playing: false,
-      currentSeconds: 0,
-      durationSeconds: 0,
+      paused: false,
+      percentage: 0,
+      currentTime: "00:00:00",
+      audio: undefined,
+      totalDuration: 0,
       slickOptionsAudioModal: {
         infinite: false,
         dots: true,
@@ -73,16 +88,105 @@ export default {
     };
   },
 
-  computed: {
-    currentTime() {
-      return "0:00";
+  computed: {},
+  methods: {
+    setPosition() {
+      this.audio.currentTime = parseInt(
+        (this.audio.duration / 100) * this.percentage
+      );
     },
-    durationTime() {
-      return "5:28";
+    stop() {
+      this.audio.pause();
+      this.paused = true;
+      this.playing = false;
+      this.audio.currentTime = 0;
     },
-    percentComplete() {
-      return parseInt((this.currentSeconds / this.durationSeconds) * 100);
+    play() {
+      if (this.playing) return;
+      this.audio.play().then((_) => (this.playing = true));
+      this.paused = false;
+      this.playing = true;
     },
+    pause() {
+      this.paused = !this.paused;
+      this.paused ? this.audio.pause() : this.audio.play();
+      this.playing = false;
+    },
+
+    mute() {
+      this.isMuted = !this.isMuted;
+      this.audio.muted = this.isMuted;
+      this.volumeValue = this.isMuted ? 0 : 75;
+    },
+    reload() {
+      this.audio.pause();
+      this.audio.currentTime = 0;
+      this.audio.load();
+      this.audio.play();
+    },
+    _handleLoaded: function () {
+      if (this.audio.readyState >= 2) {
+        if (this.audio.duration === Infinity) {
+          // Fix duration for streamed audio source or blob based
+          // https://stackoverflow.com/questions/38443084/how-can-i-add-predefined-length-to-audio-recorded-from-mediarecorder-in-chrome/39971175#39971175
+          this.audio.currentTime = 1e101;
+          this.audio.ontimeupdate = () => {
+            this.audio.ontimeupdate = () => {};
+            this.audio.currentTime = 0;
+            this.totalDuration = parseInt(this.audio.duration);
+            this.loaded = true;
+          };
+        } else {
+          this.totalDuration = parseInt(this.audio.duration);
+          this.loaded = true;
+        }
+        if (this.autoPlay) this.audio.play();
+      } else {
+        throw new Error("Failed to load sound file");
+      }
+    },
+    _handlePlayingUI: function (e) {
+      this.percentage = (this.audio.currentTime / this.audio.duration) * 100;
+      this.currentTime = formatTime(this.audio.currentTime);
+      this.playing = true;
+    },
+    _handlePlayPause: function (e) {
+      if (e.type === "play" && this.firstPlay) {
+        // in some situations, audio.currentTime is the end one on chrome
+        this.audio.currentTime = 0;
+        if (this.firstPlay) {
+          this.firstPlay = false;
+        }
+      }
+      if (
+        e.type === "pause" &&
+        this.paused === false &&
+        this.playing === false
+      ) {
+        this.currentTime = "00:00:00";
+      }
+    },
+    _handleEnded() {
+      this.paused = this.playing = false;
+    },
+    init: function () {
+      this.audio.addEventListener("timeupdate", this._handlePlayingUI);
+      this.audio.addEventListener("loadeddata", this._handleLoaded);
+      this.audio.addEventListener("pause", this._handlePlayPause);
+      this.audio.addEventListener("play", this._handlePlayPause);
+      this.audio.addEventListener("ended", this._handleEnded);
+    },
+  },
+  mounted() {
+    this.audio = this.$refs.player;
+    this.init();
+  },
+  beforeDestroy() {
+    this.audio.removeEventListener("timeupdate", this._handlePlayingUI);
+    this.audio.removeEventListener("loadeddata", this._handleLoaded);
+    this.audio.removeEventListener("pause", this._handlePlayPause);
+    this.audio.removeEventListener("play", this._handlePlayPause);
+    this.audio.removeEventListener("ended", this._handleEnded);
   },
 };
 </script>
