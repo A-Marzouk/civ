@@ -161,10 +161,42 @@
 
                                             <div class="section-content-items" v-show="section.title === 'profile'">
                                                 <div class="edit-inputs" v-if="section.edited">
-                                                    <input type="email" placeholder="Email" v-model="personalInfo.email">
-                                                    <input type="text" placeholder="Phone" v-model="personalInfo.phone">
-                                                    <input type="text" placeholder="Location" v-model="personalInfo.location">
-                                                    <input type="text" placeholder="Designation" v-model="personalInfo.designation">
+                                                    <v-text-field
+                                                            v-model="personalInfo.email"
+                                                            class="resume-builder__input civie-input"
+                                                            outlined
+                                                            label="Email"
+                                                            color="#001CE2"
+                                                            :error="!!errors.email"
+                                                            :error-messages="errors.email"
+                                                    ></v-text-field>
+                                                    <v-text-field
+                                                        v-model="personalInfo.phone"
+                                                        class="resume-builder__input civie-input"
+                                                        outlined
+                                                        label="Phone"
+                                                        color="#001CE2"
+                                                        :error="!!errors.phone"
+                                                        :error-messages="errors.phone"
+                                                ></v-text-field>
+                                                    <v-text-field
+                                                            v-model="personalInfo.location"
+                                                            class="resume-builder__input civie-input"
+                                                            outlined
+                                                            label="Location"
+                                                            color="#001CE2"
+                                                            :error="!!errors.location"
+                                                            :error-messages="errors.location"
+                                                    ></v-text-field>
+                                                    <v-text-field
+                                                            v-model="personalInfo.designation"
+                                                            class="resume-builder__input civie-input"
+                                                            outlined
+                                                            label="Job title"
+                                                            color="#001CE2"
+                                                            :error="!!errors.designation"
+                                                            :error-messages="errors.designation"
+                                                    ></v-text-field>
                                                 </div>
                                                 <div class="items" v-else>
                                                     <div class="content-item">
@@ -190,8 +222,16 @@
 
                                             <div class="section-content-items" v-show="section.title === 'summary'">
                                                 <div class="edit-inputs" v-if="section.edited">
-                                                    inputs here
-                                                </div>
+                                                    <v-textarea
+                                                            class="resume-builder__input  civie-textarea"
+                                                            outlined
+                                                            color="#001CE2"
+                                                            :error="!!errors.about"
+                                                            :error-messages="errors.about"
+                                                            v-model="personalInfo.about"
+                                                            label="Description"
+                                                    >
+                                                    </v-textarea>                                                </div>
                                                 <div class="items" v-else>
                                                     <div class="content-item">
                                                         <div class="bold"> About:</div>
@@ -239,40 +279,62 @@
                                                                 {{work.job_title}}
                                                             </div>
                                                             <div class="ml-2">
-                                                                <img src="/images/resume_builder/imports/edit-grey.svg" class="hover-pointer" alt="edit icon"
+                                                                <img src="/images/resume_builder/imports/edit-grey.svg" style="min-width: 30px;min-height: 30px;" class="hover-pointer" alt="edit icon"
                                                                      @click="editedWork = work.uuid" v-show="editedWork !== work.uuid">
-                                                                <img src="/images/resume_builder/imports/close.svg" class="hover-pointer" alt="close icon"
+                                                                <img src="/images/resume_builder/imports/close.svg"  style="min-width: 30px;min-height: 30px;" class="hover-pointer" alt="close icon"
                                                                      @click="editedWork = 0" v-show="editedWork === work.uuid">
                                                             </div>
                                                         </div>
 
                                                         <div v-if="editedWork === work.uuid" class="pt-3 pb-4">
-                                                            <input class='shorter' type="text" placeholder="Company name" v-model="work.company_name">
-                                                            <div class="error" v-if="errors.company_name">
-                                                                {{ Array.isArray(errors.company_name) ? errors.company_name[0] : errors.company_name}}
-                                                            </div>
-                                                            <input type="text"  placeholder="Job title" v-model="work.job_title">
-                                                            <div class="error" v-if="errors.job_title">
-                                                                {{ Array.isArray(errors.job_title) ? errors.job_title[0] : errors.job_title}}
-                                                            </div>
-                                                            <textarea type="text"  placeholder="Description" v-model="work.description"></textarea>
-                                                            <div class="error" v-if="errors.description">
-                                                                {{ Array.isArray(errors.description) ? errors.description[0] : errors.description}}
-                                                            </div>
-                                                            <input type="text" placeholder="Website" v-model="work.website">
-                                                            <div class="error" v-if="errors.website">
-                                                                {{ Array.isArray(errors.website) ? errors.website[0] : errors.website}}
-                                                            </div>
-                                                            <input type="date" v-model="work.date_from">
-                                                            <div class="error" v-if="errors.date_from">
-                                                                {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                                                            </div>
-                                                            <label for="dateTo" class="light d-flex align-items-center mt-4">
-                                                                <input type="checkbox" class="checkbox" v-model="work.present"> I currently work here.
-                                                            </label>
-                                                            <input type="date"  v-model="work.date_to" :disabled="work.present">
-                                                            <div class="error" v-if="errors.date_to">
-                                                                {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+                                                            <v-text-field
+                                                                    v-model="work.company_name"
+                                                                    class="resume-builder__input civie-input"
+                                                                    outlined
+                                                                    label="Company Name"
+                                                                    color="#001CE2"
+                                                                    :error="!!errors.company_name"
+                                                                    :error-messages="errors.company_name"
+                                                            ></v-text-field>
+                                                            <v-text-field
+                                                                    v-model="work.job_title"
+                                                                    class="resume-builder__input civie-input"
+                                                                    outlined
+                                                                    label="Job Title"
+                                                                    color="#001CE2"
+                                                                    :error="!!errors.job_title"
+                                                                    :error-messages="errors.job_title"
+                                                            ></v-text-field>
+                                                            <v-textarea
+                                                                    class="resume-builder__input  civie-textarea"
+                                                                    outlined
+                                                                    color="#001CE2"
+                                                                    :error="!!errors.description"
+                                                                    :error-messages="errors.description"
+                                                                    v-model="work.description"
+                                                                    label="Description"
+                                                            >
+                                                            </v-textarea>
+                                                            <v-text-field
+                                                                    v-model="work.website"
+                                                                    class="resume-builder__input civie-input"
+                                                                    outlined
+                                                                    label="Website"
+                                                                    color="#001CE2"
+                                                                    :error="!!errors.website"
+                                                                    :error-messages="errors.website"
+                                                            ></v-text-field>
+                                                            <div class="date-group">
+                                                                <div class="date-input">
+                                                                    <label :class="{'error-label' : errors.date_from}">Date</label>
+                                                                    <input type="date" :class="{'error-input' : errors.date_from}" v-model="work.date_from">
+                                                                </div>
+                                                                <div class="date-input">
+                                                                    <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
+                                                                        <input type="checkbox" class="checkbox" v-model="work.present"> Present
+                                                                    </label>
+                                                                    <input type="date" :class="{'error-label' : errors.date_to}"  v-model="work.date_to" :disabled="work.present">
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -297,36 +359,58 @@
                                                                 {{education.university_name}}
                                                             </div>
                                                             <div class="ml-2">
-                                                                <img src="/images/resume_builder/imports/edit-grey.svg" class="hover-pointer" alt="edit icon"
+                                                                <img src="/images/resume_builder/imports/edit-grey.svg" style="min-width: 30px;min-height: 30px;" class="hover-pointer" alt="edit icon"
                                                                      @click="editedEducation = education.uuid" v-show="editedEducation !== education.uuid">
-                                                                <img src="/images/resume_builder/imports/close.svg" class="hover-pointer" alt="close icon"
+                                                                <img src="/images/resume_builder/imports/close.svg" style="min-width: 30px;min-height: 30px;" class="hover-pointer" alt="close icon"
                                                                      @click="editedEducation = 0" v-show="editedEducation === education.uuid">
                                                             </div>
                                                         </div>
 
                                                         <div v-if="editedEducation === education.uuid" >
-                                                            <input type="text"  placeholder="Institution type"  class="shorter" v-model="education.institution_type">
-                                                            <div class="error" v-if="errors.institution_type">
-                                                                {{ Array.isArray(errors.institution_type) ? errors.institution_type[0] : errors.institution_type}}
-                                                            </div>
-                                                            <input type="text" placeholder="University name" v-model="education.university_name">
-                                                            <div class="error" v-if="errors.university_name">
-                                                                {{ Array.isArray(errors.university_name) ? errors.university_name[0] : errors.university_name}}
-                                                            </div>
-                                                            <input type="text" placeholder="Degree title"  class="shorter" v-model="education.degree_title">
-                                                            <div class="error" v-if="errors.degree_title">
-                                                                {{ Array.isArray(errors.degree_title) ? errors.degree_title[0] : errors.degree_title}}
-                                                            </div>
-                                                            <input type="date"  v-model="education.date_from">
-                                                            <div class="error" v-if="errors.date_from">
-                                                                {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                                                            </div>
-                                                            <label  class="light d-flex align-items-center mt-4">
-                                                                <input type="checkbox" class="checkbox" v-model="education.present"> I currently study here.
-                                                            </label>
-                                                            <input type="date"  v-model="education.date_to" :disabled="education.present">
-                                                            <div class="error" v-if="errors.date_to">
-                                                                {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
+
+                                                            <v-text-field
+                                                                    v-model="education.institution_type"
+                                                                    class="resume-builder__input civie-input"
+                                                                    outlined
+                                                                    label="Institution Type"
+                                                                    color="#001CE2"
+                                                                    :error="!!errors.institution_type"
+                                                                    :error-messages="errors.institution_type"
+                                                            ></v-text-field>
+
+                                                            <v-text-field
+                                                                    v-model="education.university_name"
+                                                                    class="resume-builder__input civie-input"
+                                                                    outlined
+                                                                    label="University Name"
+                                                                    color="#001CE2"
+                                                                    :error="!!errors.university_name"
+                                                                    :error-messages="errors.university_name"
+                                                            ></v-text-field>
+
+
+                                                            <v-text-field
+                                                                    v-model="education.degree_title"
+                                                                    class="resume-builder__input civie-input"
+                                                                    outlined
+                                                                    label="Degree Title"
+                                                                    color="#001CE2"
+                                                                    :error="!!errors.degree_title"
+                                                                    :error-messages="errors.degree_title"
+                                                            ></v-text-field>
+
+
+                                                            <div class="date-group">
+                                                                <div class="date-input">
+                                                                    <label :class="{'error-label' : errors.date_from}">Date</label>
+                                                                    <input type="date" :class="{'error-input' : errors.date_from}" v-model="education.date_from">
+                                                                </div>
+                                                                <div class="date-input">
+                                                                    <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
+                                                                        <input type="checkbox" class="checkbox" v-model="education.present"> Present
+                                                                    </label>
+                                                                    <input type="date" :class="{'error-label' : errors.date_to}"  v-model="education.date_to" :disabled="education.present">
+                                                                </div>
                                                             </div>
                                                         </div>
 
@@ -1132,7 +1216,7 @@
 
                     },
                     {
-                        title: 'summary',
+                        title: 'About Me',
                         selected: 0,
                         edited: 0
                     },
@@ -2387,6 +2471,7 @@
                             }
 
                             .edit-inputs{
+                                margin-top:25px;
                                 display: flex;
                                 flex-direction: column;
                                 &.skills{
@@ -2466,6 +2551,103 @@
         color:red;
         font-weight: bold;
         margin-top: 8px;
+    }
+
+    .date-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 28px;
+        max-width: 530px;
+
+        @include lt-lg {
+
+
+        }
+
+        @include lt-md {
+
+        }
+
+
+        .date-input {
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            position: relative;
+
+            &:first-child{
+                margin-right: 5px;
+            }
+
+            @include lt-sm {
+
+            }
+
+            label {
+                text-align: left;
+                position: absolute;
+                top: -29px;
+                letter-spacing: 0;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 25px;
+                color: #888DB1;
+                opacity: 1;
+
+                @include lt-md {
+                    font-size: 18px;
+                    color: #888DB1;
+                }
+            }
+
+            label.light {
+                font-size: 18px;
+                letter-spacing: 0;
+                right: 0;
+                opacity: 1;
+
+                @include lt-md {
+                    color: #888DB1;
+                }
+            }
+
+            input {
+                height: 50px;
+                border: 2px solid #C4C9F5 !important;
+                border-radius: 10px;
+                opacity: 1;
+                color: #c4c9f5;
+                padding-left: 12px;
+                width: 250px;
+
+                @include lt-lg {
+
+                }
+
+                @include lt-md {
+
+                }
+            }
+
+            input.error-input{
+                border: 2px solid red !important;
+            }
+
+            input:focus{
+                outline: none;
+            }
+
+            input.checkbox {
+                width: 14px;
+                height: 14px;
+                padding-left: 0;
+                margin-right: 8px;
+                @media screen and (max-width:767px){
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
     }
 </style>
 
