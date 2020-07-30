@@ -1,8 +1,13 @@
 <template>
     <div class="outer-container">
         <div class="title">
-            <img src="/icons/edit-cv-sidebar/downloads.svg" alt="downloads icon">
-            <span>Manage Downloads</span>
+            <div class="d-flex align-items-center">
+                <img src="/icons/edit-cv-sidebar/downloads.svg" alt="downloads icon">
+                <span>Manage Downloads</span>
+            </div>
+            <v-btn class="resume-builder__btn civie-btn filled download-btn" raised>
+                Download My CV
+            </v-btn>
         </div>
         <div class="dns-main-content-container resume-builder__scroll">
             <div class="dns-main-content">
@@ -134,7 +139,22 @@
 
         .title {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 20px;
+
+
+            @include lt-sm {
+                flex-wrap: wrap;
+                .download-btn{
+                    margin-top: 25px;
+                }
+            }
+
+
+            .download-btn.v-btn{
+                width: 200px !important;
+            }
 
             img {
                 width: 24px;
