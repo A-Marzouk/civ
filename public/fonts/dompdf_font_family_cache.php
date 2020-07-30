@@ -87,7 +87,7 @@
     'bold_italic' => $fontDir . '/OpenSans-Regular',
   ),
   'raleway' => array(
-    'normal' => $fontDir . '/raleway-normal_f7dae5d2bb59050f9e3530eabf5776f7',
+    'normal' => $fontDir . '/raleway-normal_50d0eebadfd70281d351d5a617de5928',
     'bold' => $fontDir . '/Raleway-Bold',
     'italic' => $fontDir . '/Raleway-BoldItalic',
     'bold_italic' => $fontDir . '/Raleway-Regular',
@@ -97,5 +97,11 @@
   ),
   'fira' => array(
     'normal' => $fontDir . '/fira-normal_87773dd5327ba0ec7ecfd977507e9240',
+  ),
+  'montserrat' => array(
+    'normal' => $fontDir . '/montserrat-normal_3f4ced0214179fda4ed8b5ca9920ea29',
+  ),
+  'montserrat bold' => array(
+    'normal' => $fontDir . '/montserrat-bold-normal_5f02ad5e4fb9f5d1888b050ae61df03b',
   ),
 ) ?>

@@ -224,17 +224,17 @@
 
 
         .skills-container table tr .skill .percentage {
-			margin-bottom: 20px;
+			margin-bottom: 15px;
+            font-weight: bold;
 		}
 
         .skills-container table tr .skill .skill-img {
-            height: 100px;
-            border: 1px solid red;
+            vertical-align: top;
         }
 
 		.skills-container table tr .skill .skill-img img {
-            vertical-align: middle;
             display: block;
+            vertical-align: middle;
 		}
 
     </style>
@@ -468,19 +468,19 @@
                 <tr>
                     <td class="skill">
                         <div class="percentage">80%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-php.png') }}" /></div>
+						<div class="skill-img">Php</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-css3.png') }}" /></div>
+						<div class="skill-img">Javascript</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">97%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-html5.png') }}" /></div>
+						<div class="skill-img">HTML</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-js.png') }}" /></div>
+						<div class="skill-img">CSS</div>
                     </td>
                 </tr>
             </table>
@@ -488,19 +488,19 @@
                 <tr>
                     <td class="skill">
                         <div class="percentage">80%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-php.png') }}" /></div>
+						<div class="skill-img">Php</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-css3.png') }}" /></div>
+						<div class="skill-img">Javascript</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">97%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-html5.png') }}" /></div>
+						<div class="skill-img">HTML</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-js.png') }}" /></div>
+						<div class="skill-img">CSS</div>
                     </td>
                 </tr>
             </table>
