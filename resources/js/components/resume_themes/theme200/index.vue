@@ -1101,11 +1101,11 @@
 
       <!-- Audio Modal -->
       <v-dialog v-model="audioModal" max-width="1690" max-height="740" persistent>
-        <v-card class="audio-modal-main-card pa-xl-12 pa-lg-12 pa-md-8 pa-sm-8 pa-0" align="center">
+        <v-card class="audio-modal-main-card pa-xl-12 pa-lg-12 pa-md-8 pa-sm-0 pa-0" align="center">
           <v-card-subtitle align="right">
             <v-btn
               color="transparent"
-              class="btn-video-close mb-xl-8 mb-lg-8 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-0 mt-5"
+              class="btn-video-close mb-xl-8 mb-lg-8 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-5 mt-5"
               @click.stop="audioModal=false"
               depressed
               icon
@@ -1891,10 +1891,7 @@ export default {
   max-height: 471px;
   height: 471px;
 
-  @media screen and (max-width: 959px) {
-    height: 400px;
-  }
-  @media screen and (max-width:599px){
+  @media screen and (max-width:959px){
     min-height: 734px;
   }
 }
