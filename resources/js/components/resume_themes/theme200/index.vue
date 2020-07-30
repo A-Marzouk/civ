@@ -1101,7 +1101,7 @@
 
       <!-- Audio Modal -->
       <v-dialog v-model="audioModal" max-width="1690" max-height="740" persistent>
-        <v-card class="audio-modal-main-card pa-xl-12" align="center">
+        <v-card class="audio-modal-main-card pa-xl-12 pa-lg-12" align="center">
           <v-card-subtitle align="right">
             <v-btn
               color="transparent"

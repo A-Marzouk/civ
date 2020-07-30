@@ -1,8 +1,8 @@
 <template>
   <vueSlickCarousel v-bind="slickOptionsAudioModal">
     <template>
-      <v-card flat class color="transparent">
-        <v-card-text class="ml-xl-5">
+      <v-card flat class="pa-12" color="transparent">
+        <v-card-text class="ml-xl-6 ml-lg-6">
           <v-row justify="center" dense class="mt-xl-10">
             <v-col xl="1" lg="1" cols="3">
               <v-btn
@@ -21,10 +21,10 @@
                 <v-col xl="6" lg="6" cols="6">
                   <div class="durationTime">{{currentTime}}</div>
                 </v-col>
-                <v-col xl="5" lg="6" cols="6" align="right">
+                <v-col xl="5" lg="5" cols="6" align="right">
                   <div class="durationTime">{{durationTime}}</div>
                 </v-col>
-                <v-col xl="11" lg="12" align="left">
+                <v-col xl="11" lg="11" align="left">
                   <v-progress-linear value="15" height="8" color="#FC5C8A"></v-progress-linear>
                 </v-col>
               </v-row>
