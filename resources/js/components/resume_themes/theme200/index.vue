@@ -1124,6 +1124,7 @@
           </vueSlickCarousel>-->
           <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <audio-player
+              color="#FC5C8A"
               v-for="i in 6"
               :key="i"
               file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"

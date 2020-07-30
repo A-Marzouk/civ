@@ -23,7 +23,12 @@
               <div class="durationTime">{{totalDuration}}</div>
             </v-col>
             <v-col xl="11" lg="11" md="12" sm="12" align="left">
-              <v-progress-linear class="custom-progressbar" :value="percentage" height="8" color="#FC5C8A"></v-progress-linear>
+              <v-progress-linear
+                class="custom-progressbar"
+                :value="percentage"
+                height="8"
+                :color="color"
+              ></v-progress-linear>
             </v-col>
           </v-row>
           <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
@@ -39,6 +44,9 @@ export default {
   name: "AudioPlayer",
   components: {},
   props: {
+    color: {
+      type: String,
+    },
     index: {
       type: Number,
     },
@@ -193,8 +201,8 @@ export default {
     height: 51px;
   }
 }
-.custom-progressbar{
-  @media screen and (min-width: 768px) and (max-width: 959px){
+.custom-progressbar {
+  @media screen and (min-width: 768px) and (max-width: 959px) {
     height: 12px !important;
   }
 }
