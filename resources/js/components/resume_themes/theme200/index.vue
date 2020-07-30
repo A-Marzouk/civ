@@ -1122,8 +1122,11 @@
               </div>
             </template>
           </vueSlickCarousel>-->
-          <audio-player file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"></audio-player>
-          
+          <vueSlickCarousel v-bind="slickOptionsAudioModal">
+            <audio-player
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
+          </vueSlickCarousel>
         </v-card>
       </v-dialog>
       <!-- Audio Modal -->
@@ -1134,7 +1137,7 @@
 <script>
 import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
-import AudioPlayer from "./media/AudioPlayer"
+import AudioPlayer from "./media/AudioPlayer";
 export default {
   props: ["user", "is_preview"],
   filters: {
@@ -1553,7 +1556,14 @@ export default {
         ],
       },
       //audio Modal
-      
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
     };
   },
 

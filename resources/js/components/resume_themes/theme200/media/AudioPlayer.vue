@@ -1,50 +1,43 @@
 <template>
-  <vueSlickCarousel v-bind="slickOptionsAudioModal">
-    <template>
-      <v-card flat class="pa-12" color="transparent">
-        <v-card-text class="ml-xl-6 ml-lg-6">
-          <v-row justify="center" dense class="mt-xl-10">
-            <v-col xl="1" lg="1" cols="3">
-              <v-btn
-                fab
-                color="#FC5C8A"
-                class="btn-play"
-                depressed
-                @click.prevent="playing ? pause() : play()"
-              >
-                <v-icon color="white" x-large v-if="!playing || paused">mdi-play</v-icon>
-                <v-icon color="white" x-large v-else>mdi-pause</v-icon>
-              </v-btn>
+  <v-card flat class="pa-12" color="transparent">
+    <v-card-text class="ml-xl-6 ml-lg-6">
+      <v-row justify="center" dense class="mt-xl-10">
+        <v-col xl="1" lg="1" cols="3">
+          <v-btn
+            fab
+            color="#FC5C8A"
+            class="btn-play"
+            depressed
+            @click.prevent="playing ? pause() : play()"
+          >
+            <v-icon color="white" x-large v-if="!playing || paused">mdi-play</v-icon>
+            <v-icon color="white" x-large v-else>mdi-pause</v-icon>
+          </v-btn>
+        </v-col>
+        <v-col xl="11" lg="11" cols="9" align="left" class="mt-n8">
+          <v-row>
+            <v-col xl="6" lg="6" cols="6">
+              <div class="durationTime">{{currentTime}}</div>
             </v-col>
-            <v-col xl="11" lg="11" cols="9" align="left" class="mt-n8">
-              <v-row>
-                <v-col xl="6" lg="6" cols="6">
-                  <div class="durationTime">{{currentTime}}</div>
-                </v-col>
-                <v-col xl="5" lg="5" cols="6" align="right">
-                  <div class="durationTime">5:38</div>
-                </v-col>
-                <v-col xl="11" lg="11" align="left">
-                  <v-progress-linear :value="percentage" height="8" color="#FC5C8A"></v-progress-linear>
-                </v-col>
-              </v-row>
-              <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
+            <v-col xl="5" lg="5" cols="6" align="right">
+              <div class="durationTime">{{totalDuration}}</div>
+            </v-col>
+            <v-col xl="11" lg="11" align="left">
+              <v-progress-linear :value="percentage" height="8" color="#FC5C8A"></v-progress-linear>
             </v-col>
           </v-row>
-        </v-card-text>
-      </v-card>
-    </template>
-  </vueSlickCarousel>
+          <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 <script>
-import VueSlickCarousel from "vue-slick-carousel";
 const formatTime = (second) =>
   new Date(second * 1000).toISOString().substr(11, 8);
 export default {
   name: "AudioPlayer",
-  components: {
-    VueSlickCarousel,
-  },
+  components: {},
   props: {
     index: {
       type: Number,
@@ -77,14 +70,6 @@ export default {
       currentTime: "00:00:00",
       audio: undefined,
       totalDuration: 0,
-      slickOptionsAudioModal: {
-        infinite: false,
-        dots: true,
-        arrows: false,
-        slidesPerRow: 1,
-        slidesToScroll: 1,
-        rows: 3,
-      },
     };
   },
 
