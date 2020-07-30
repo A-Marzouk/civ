@@ -1100,12 +1100,12 @@
       <!-- Video modal -->
 
       <!-- Audio Modal -->
-      <v-dialog v-model="audioModal" max-width="1690" max-height="740" persistent>
+      <v-dialog v-model="audioModal" max-width="1690" persistent>
         <v-card class="audio-modal-main-card pa-xl-12 pa-lg-12 pa-md-8 pa-sm-0 pa-0" align="center">
           <v-card-subtitle align="right">
             <v-btn
               color="transparent"
-              class="btn-video-close mb-xl-8 mb-lg-8 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-5 mt-5"
+              class="btn-video-close mb-xl-1 mb-lg-1 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-5 mt-5"
               @click.stop="audioModal=false"
               depressed
               icon
@@ -1122,9 +1122,9 @@
               </div>
             </template>
           </vueSlickCarousel>-->
-          <vueSlickCarousel v-bind="slickOptionsAudioModal">
+          <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
             <audio-player
-              v-for = "i in 6"
+              v-for="i in 6"
               :key="i"
               file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
             ></audio-player>
@@ -1888,10 +1888,16 @@ export default {
 }
 
 .audio-modal-main-card {
-  max-height: 471px;
-  height: 471px;
+  min-height: 500px;
+  @media screen and (min-width:960px) and (max-width: 1263px){
+    min-height: 600px;
+  }
 
-  @media screen and (max-width:959px){
+  @media screen and (max-width: 959px) {
+    min-height: 570px;
+  }
+
+  @media screen and (max-width: 599px) {
     min-height: 734px;
   }
 }
@@ -1899,7 +1905,7 @@ export default {
 //mobile tab
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme200 .v-slide-group__prev {
   display: none;
 }
@@ -1916,6 +1922,22 @@ export default {
 #resumeTheme200 .slick-dots li button {
   background-color: #6152cf !important;
   opacity: 0.57 !important;
+}
+// #resumeTheme200 .slick-dots{
+//   @media screen and (max-width: 959px){
+//     bottom: -140px !important;
+//   }
+// }
+#resumeTheme200 .audio-slick .slick-list{
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    padding-bottom: 40px !important;
+  }
+  @media screen and (max-width:959px){
+    padding-bottom: 80px !important;
+  }
+  @media screen and (max-width:599px){
+    padding-bottom: 300px !important;
+  }
 }
 </style>
 
