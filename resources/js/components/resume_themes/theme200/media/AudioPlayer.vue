@@ -20,7 +20,7 @@
               <div class="durationTime">{{currentTime}}</div>
             </v-col>
             <v-col xl="5" lg="5" md="6" cols="6" align="right">
-              <div class="durationTime">{{totalDuration}}</div>
+              <div class="durationTime">{{totalDuration | secondToMinHours}}</div>
             </v-col>
             <v-col xl="11" lg="11" md="12" sm="12" align="left">
               <v-progress-linear
@@ -41,6 +41,18 @@
 const formatTime = (second) =>
   new Date(second * 1000).toISOString().substr(11, 8);
 export default {
+  filters: {
+    secondToMinHours(sec) {
+      sec = Number(sec);
+      var h = Math.floor(sec / 3600);
+      var m = Math.floor((sec % 3600) / 60);
+      var s = Math.floor((sec % 3600) % 60);
+      var newH = h < 10 ? "0" + h : h;
+      var newM = m < 10 ? "0" + m : m;
+      var newS = s < 10 ? "0" + s : s;
+      return newH + ":" + newM + ":" + newS;
+    },
+  },
   name: "AudioPlayer",
   components: {},
   props: {
