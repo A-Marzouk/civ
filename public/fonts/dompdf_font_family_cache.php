@@ -78,7 +78,7 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'open sans' => array(
-    'normal' => $rootDir . '/lib/fonts/open-sans-normal_2d61eedf1a366b3351d9409ac4a567a9',
+    'normal' => $fontDir . '/open-sans-normal_c7c2933cf25bf788d06ffa02358f3b92',
   ),
   'opensans-regular' => array(
     'normal' => $fontDir . '/OpenSans-Regular',
@@ -103,5 +103,8 @@
   ),
   'montserrat bold' => array(
     'normal' => $fontDir . '/montserrat-bold-normal_5f02ad5e4fb9f5d1888b050ae61df03b',
+  ),
+  'open sans bold' => array(
+    'normal' => $fontDir . '/open-sans-bold-normal_0ec39ddaa9bbbc1815bddb835c62acdf',
   ),
 ) ?>
