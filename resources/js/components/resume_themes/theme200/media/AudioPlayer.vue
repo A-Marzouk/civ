@@ -31,7 +31,7 @@
               ></v-progress-linear>
             </v-col>
           </v-row>
-          <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
+          <audio id="player" ref="player" :modalOpen="modalOpen" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
         </v-col>
       </v-row>
     </v-card-text>
@@ -56,6 +56,10 @@ export default {
   name: "AudioPlayer",
   components: {},
   props: {
+    modalOpen:{
+      type: Boolean,
+      default:true,
+    },
     color: {
       type: String,
     },
@@ -93,7 +97,13 @@ export default {
     };
   },
 
-  computed: {},
+  watch:{
+    modalOpen:function(val){
+      if(val== false){
+        this.stop();
+      }
+    }
+  },
   methods: {
     setPosition() {
       this.audio.currentTime = parseInt(
