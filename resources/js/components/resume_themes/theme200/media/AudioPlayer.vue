@@ -12,8 +12,8 @@
                 depressed
                 @click.prevent="playing ? pause() : play()"
               >
-                <v-icon color="white" x-large v-if="playing">mdi-pause</v-icon>
-                <v-icon color="white" x-large v-else>mdi-play</v-icon>
+                <v-icon color="white" x-large v-if="!playing || paused">mdi-play</v-icon>
+                <v-icon color="white" x-large v-else>mdi-pause</v-icon>
               </v-btn>
             </v-col>
             <v-col xl="11" lg="11" cols="9" align="left" class="mt-n8">
@@ -25,7 +25,7 @@
                   <div class="durationTime">5:38</div>
                 </v-col>
                 <v-col xl="11" lg="11" align="left">
-                  <v-progress-linear value="50" height="8" color="#FC5C8A"></v-progress-linear>
+                  <v-progress-linear :value="percentage" height="8" color="#FC5C8A"></v-progress-linear>
                 </v-col>
               </v-row>
               <audio id="player" ref="player" v-on:ended="ended" v-on:canplay="canPlay" :src="file"></audio>
