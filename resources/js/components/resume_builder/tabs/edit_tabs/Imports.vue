@@ -140,19 +140,23 @@
                             <div class="import-results">
                                 <div class="sections">
                                     <div class="section" v-for="section in sections" :key="section.title">
-                                        <div class="checkbox" @click="toggleSelectionOfSection(section)">
-                                            <img v-show="section.selected" src="/images/resume_builder/import/checkedBox.svg"
-                                                 alt="checkbox">
-                                            <img v-show="!section.selected" src="/images/resume_builder/import/uncheckedBox.svg"
-                                                 alt="checkbox">
-                                        </div>
                                         <div class="section-content" :class="{active : section.selected}">
                                             <div class="import-section-title">
                                                 <span @click="toggleSelectionOfSection(section)">{{section.title.replace('_',' ')}}</span>
-                                                <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
-                                                     @click="openEdit(section)" v-show="!section.edited && section.title !== 'work_experience' && section.title !== 'education'">
-                                                <img src="/images/resume_builder/import/exit.svg" alt="close icon"
-                                                     @click="closeEdit(section)" v-show="section.edited && section.title !== 'work_experience' && section.title !== 'education'">
+                                                <div class="d-flex align-items-center actions-row">
+                                                    <div class="checkbox" @click="toggleSelectionOfSection(section)">
+                                                        <img v-show="section.selected" src="/images/resume_builder/imports/checkbox-on.svg"
+                                                             alt="checkbox">
+                                                        <img v-show="!section.selected" src="/images/resume_builder/imports/checkbox-off.svg"
+                                                             alt="checkbox">
+                                                    </div>
+                                                    <div>
+                                                        <img src="/images/resume_builder/imports/edit-grey.svg" alt="edit icon"
+                                                             @click="openEdit(section)" v-show="!section.edited && section.title !== 'work_experience' && section.title !== 'education'">
+                                                        <img src="/images/resume_builder/imports/close.svg" alt="close icon"
+                                                             @click="closeEdit(section)" v-show="section.edited && section.title !== 'work_experience' && section.title !== 'education'">
+                                                    </div>
+                                                </div>
                                             </div>
 
                                             <div class="section-content-items" v-show="section.title === 'profile'">
@@ -202,7 +206,7 @@
                                                     <div v-for="(language,index) in freelancerData.languages" :key="language + index +'_language'">
                                                         <div class="skill-item">
                                                             {{language}}
-                                                            <img src="/images/resume_builder/import/exit.svg" alt="remove skill" @click="removeLanguage(index)">
+                                                            <img src="/images/resume_builder/imports/close.svg" alt="remove skill" @click="removeLanguage(index)">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -231,13 +235,13 @@
                                                 <div class="edit-inputs">
                                                     <div v-for="work in work_experience">
                                                         <div class="d-flex align-items-center">
-                                                            <div style="font-size: 2em">
+                                                            <div>
                                                                 {{work.job_title}}
                                                             </div>
-                                                            <div class="ml-4">
-                                                                <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
+                                                            <div class="ml-2">
+                                                                <img src="/images/resume_builder/imports/edit-grey.svg" class="hover-pointer" alt="edit icon"
                                                                      @click="editedWork = work.uuid" v-show="editedWork !== work.uuid">
-                                                                <img src="/images/resume_builder/import/exit.svg" alt="close icon"
+                                                                <img src="/images/resume_builder/imports/close.svg" class="hover-pointer" alt="close icon"
                                                                      @click="editedWork = 0" v-show="editedWork === work.uuid">
                                                             </div>
                                                         </div>
@@ -289,13 +293,13 @@
                                                 <div class="edit-inputs">
                                                     <div v-for="education in educations">
                                                         <div class="d-flex align-items-center">
-                                                            <div style="font-size: 2em">
+                                                            <div>
                                                                 {{education.university_name}}
                                                             </div>
-                                                            <div class="ml-4">
-                                                                <img src="/images/resume_builder/import/edit-icon.svg" alt="edit icon"
+                                                            <div class="ml-2">
+                                                                <img src="/images/resume_builder/imports/edit-grey.svg" class="hover-pointer" alt="edit icon"
                                                                      @click="editedEducation = education.uuid" v-show="editedEducation !== education.uuid">
-                                                                <img src="/images/resume_builder/import/exit.svg" alt="close icon"
+                                                                <img src="/images/resume_builder/imports/close.svg" class="hover-pointer" alt="close icon"
                                                                      @click="editedEducation = 0" v-show="editedEducation === education.uuid">
                                                             </div>
                                                         </div>
@@ -342,7 +346,7 @@
                                                     <div v-for="(skill,index) in freelancerData.skills" :key="skill + index +'_skill'">
                                                         <div class="skill-item">
                                                             {{skill}}
-                                                            <img src="/images/resume_builder/import/exit.svg" alt="remove skill" @click="removeSkill(index)">
+                                                            <img src="/images/resume_builder/imports/close.svg" alt="remove skill" @click="removeSkill(index)">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -399,29 +403,29 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="import-action-btns no-background mb-5">
-                                <div class="d-flex justify-space-between">
-                                    <div class="d-flex">
-                                        <a class="btn btn-outline short" href="javascript:void(0)" @click="importAvailableData" :class="{disabled : importingExtractedData}">
-                                            <img class="icon" src="/images/resume_builder/work-ex/add-box.png" alt="add">
-                                            {{importingExtractedData ? 'Importing.. ' : 'Import'}}
-                                        </a>
-                                        <div class="auto-import-btn NoDecor">
-                                            <a href="javascript:void(0)" @click="toggleSelectAll">
-                                                {{ isAllSelected ? 'Deselect' : 'Select'}} all
-                                                <img class="extract" src="/images/resume_builder/import/extract.png" alt="add">
-                                            </a>
+
+                                    <div class="import-action-btns no-background mb-5">
+                                        <div class="d-flex justify-space-between">
+                                            <div class="d-flex">
+                                                <div class="import-btn">
+                                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importAvailableData" :class="{disabled : importingExtractedData}">
+                                                        {{importingExtractedData ? 'Importing.. ' : 'Import'}}
+                                                    </v-btn>
+                                                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAll">
+                                                        {{ isAllSelected ? 'Deselect' : 'Select'}} all
+                                                    </v-btn>
+                                                </div>
+                                            </div>
+                                            <div class="eye-icon"  @click="showFullText = !showFullText"
+                                                 @mouseenter="showToolTip = true" @mouseleave="showToolTip = false">
+                                                <img src="/images/resume_builder/imports/eye.png" alt="eye icon">
+                                                <div class="custom-tooltip" v-show="showToolTip">
+                                                    {{ showFullText ? 'Hide' : 'Show'}} full CV text
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="eye-icon"  @click="showFullText = !showFullText"
-                                         @mouseenter="showToolTip = true" @mouseleave="showToolTip = false">
-                                        <img src="/images/resume_builder/imports/eye.png" alt="eye icon">
-                                        <div class="custom-tooltip" v-show="showToolTip">
-                                            {{ showFullText ? 'Hide' : 'Show'}} full CV text
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                             <div class="pl-5 pr-5" v-show="showFullText">
@@ -1312,8 +1316,6 @@
             },
             clearAll() {
                 this.clearFreelancerData();
-                this.$refs.newImport.removeAllFiles();
-
                 this.file = '';
                 this.extractedText = '';
                 this.progress = 0;
@@ -1414,6 +1416,9 @@
                     this.extractedText.lastIndexOf("Experience")
                 );
 
+                if(summary.length >= 2499){
+                     summary = summary.substring(0, 2499);
+                }
                 this.personalInfo.about = summary;
 
 
@@ -2198,6 +2203,13 @@
             }
             padding: 60px 70px;
 
+
+            .import-btn{
+                .deselect-btn.v-btn{
+                    width:140px !important;
+                }
+            }
+
             .d-flex {
                 justify-content: flex-start;
                 width: 100%;
@@ -2294,44 +2306,51 @@
                 }
             }
 
-            .sections {
+            .sections{
 
                 width: 100%;
                 height: auto;
-                background: whitesmoke;
+                background: white;
                 padding: 60px 70px;
 
                 .section {
                     display: flex;
                     align-items: flex-start;
-                    border-bottom: 1px solid #EEEEEE;
-                    padding-bottom: 16px;
-                    padding-top: 16px;
-
-                    .checkbox {
-                        margin-right: 20px;
-
-                        img {
-                            width: 35px;
-                            height: 35px;
-                            margin-top: 16px;
-                        }
-                    }
-
+                    margin-bottom: 30px;
 
                     .section-content {
                         line-height: normal;
-                        color: #777777;
+                        color: #888DB1;
+                        padding: 30px;
+                        border-radius: 15px;
                         width: 100%;
 
                         .import-section-title {
                             display: flex;
                             align-items: center;
-                            font-weight: bold;
-                            font-size: 46px;
                             text-align: left;
                             text-transform: capitalize;
                             width: fit-content;
+                            font-weight: bold;
+                            font-size: 32px;
+                            line-height: 44px;
+                            color: #001CE2;
+
+
+                            .actions-row{
+                                display: flex;
+                                align-items: center;
+                                padding-left: 6px;
+                                margin-left: 13px;
+                                border-left: 1px lightgray solid;
+                            }
+
+                            .checkbox {
+                                img {
+                                    width: 30px;
+                                    height: 30px;
+                                }
+                            }
 
                             span {
                                 &:hover {
@@ -2340,11 +2359,8 @@
                             }
 
                             img {
-                                width: 42px;
-                                height: 42px;
-                                margin-left: 24px;
-                                opacity: 0.6;
-                                filter: grayscale(100%);
+                                width: 30px;
+                                height: 30px;
 
                                 &:hover {
                                     cursor: pointer;
@@ -2357,10 +2373,10 @@
                                 .content-item {
                                     display: flex;
                                     color: inherit;
-                                    font-size: 24px;
+                                    font-size: 16px;
                                     text-align: left;
                                     text-transform: capitalize;
-                                    margin-top: 22px;
+                                    margin-top: 15px;
 
                                     .bold {
                                         font-weight: bold;
@@ -2403,10 +2419,10 @@
 
                                 .skill-item{
                                     display: flex;
-                                    align-items:center;
-                                    font-size: 24px;
+                                    align-items: center;
+                                    font-size: 16px;
                                     border: 1px solid;
-                                    padding: 10px;
+                                    padding: 7px;
                                     margin: 10px;
                                     border-radius: 10px;
 
@@ -2424,8 +2440,9 @@
                         }
 
 
+
                         &.active {
-                            color: #081fe2;
+                            background: whitesmoke;
 
                             .import-section-title {
                                 img {
@@ -2439,6 +2456,10 @@
                 }
             }
         }
+    }
+
+    .hover-pointer:hover{
+        cursor: pointer;
     }
 
     .error{
