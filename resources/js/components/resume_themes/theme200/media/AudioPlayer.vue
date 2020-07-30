@@ -1,8 +1,8 @@
 <template>
-  <v-card flat class="pa-12" color="transparent">
+  <v-card flat class="pa-md-12 pa-0" color="transparent">
     <v-card-text class="ml-xl-6 ml-lg-6">
-      <v-row justify="center" dense class="mt-xl-10">
-        <v-col xl="1" lg="1" cols="3">
+      <v-row justify="center" dense class="mt-xl-10 mt-lg-0 mt-md-0 mt-sm-0 mt-10">
+        <v-col xl="1" lg="1" md="1" cols="2">
           <v-btn
             fab
             color="#FC5C8A"
@@ -14,15 +14,15 @@
             <v-icon color="white" x-large v-else>mdi-pause</v-icon>
           </v-btn>
         </v-col>
-        <v-col xl="11" lg="11" cols="9" align="left" class="mt-n8">
+        <v-col xl="11" lg="11" md="11" cols="10" align="left" class="mt-n8">
           <v-row>
-            <v-col xl="6" lg="6" cols="6">
+            <v-col xl="6" lg="6" md="6" cols="6">
               <div class="durationTime">{{currentTime}}</div>
             </v-col>
-            <v-col xl="5" lg="5" cols="6" align="right">
+            <v-col xl="5" lg="5" md="5" cols="6" align="right">
               <div class="durationTime">{{totalDuration}}</div>
             </v-col>
-            <v-col xl="11" lg="11" align="left">
+            <v-col xl="11" lg="11" md="12" align="left">
               <v-progress-linear :value="percentage" height="8" color="#FC5C8A"></v-progress-linear>
             </v-col>
           </v-row>
@@ -180,5 +180,25 @@ export default {
 .durationTime {
   font-size: 22px;
   color: #343434 !important;
+}
+.btn-play {
+  width: 54px;
+  height: 54px;
+  @media screen and (max-width: 959px) {
+    width: 73.85;
+    height: 73.85px;
+  }
+  @media screen and (max-width: 599px) {
+    width: 51px;
+    height: 51px;
+  }
+}
+</style>
+
+<style lang="scss">
+.slick-dots {
+  @media screen and (max-width: 599px) {
+    bottom: -200px;
+  }
 }
 </style>
