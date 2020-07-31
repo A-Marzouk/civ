@@ -12,7 +12,7 @@
       </div>
       <div ref="videotm903" class="videotm903">
         <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
-        <video width="100%" ref="videoElem" controls :src="link"></video>
+        <video width="100%" ref="videoElem" controls :src="link" :modalOpen="modalOpen"></video>
       </div>
       <v-card-title class="video-window-title">Video Title</v-card-title>
       <v-card-subtitle
@@ -37,12 +37,23 @@ export default {
       type: String,
       default: null,
     },
+    modalOpen:{
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
       overlay: true,
       playing: false,
     };
+  },
+  watch:{
+    modalOpen: function(val){
+      if(val == false){
+        this.stopVideo();
+      }
+    }
   },
   methods: {
     playVideo() {

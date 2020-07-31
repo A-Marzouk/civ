@@ -1067,7 +1067,7 @@
             <v-btn
               color="transparent"
               class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2"
-              fab
+              icon
               @click.stop="videoModal=false"
               depressed
             >
@@ -1099,6 +1099,7 @@
             <video-player
               v-for="i in 6"
               :key="i"
+              :modalOpen="videoModal"
               link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             ></video-player>
           </VueSlickCarousel>
