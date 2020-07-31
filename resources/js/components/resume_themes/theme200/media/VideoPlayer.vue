@@ -5,7 +5,7 @@
         <v-img src="/images/resume_themes/theme200/preview.svg">
           <v-overlay absolute="true" :value="overlay" color="#6152CF">
             <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
-              <v-icon x-large>mdi-play</v-icon>
+              <v-icon x-large color="#6152CF">mdi-play</v-icon>
             </v-btn>
           </v-overlay>
         </v-img>
