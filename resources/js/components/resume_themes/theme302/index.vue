@@ -1,5 +1,5 @@
 <template>
-  <v-app style="width: 100%" v-if="currentUser">
+  <v-app style="width: 100%;" v-if="currentUser">
     <v-container class="hold_theme13" style="max-width: 1920px;">
       <v-row class="freelancerCard">
         <v-col lg="12" md="12" cols="12" class="resumeCardRight">
@@ -63,7 +63,7 @@
                   class="hold-hireme"
                   lg="auto"
                   :class="{
-                    'active-indicator': currentTab === 'pay-availability'
+                    'active-indicator': currentTab === 'pay-availability',
                   }"
                 >
                   <div class="rateSection">
@@ -105,9 +105,7 @@
                     v-show="Userlink.is_active && Userlink.is_public"
                   >
                     <img
-                      :src="
-                        `/images/resume_themes/theme302/social_icons/${Userlink.link_title.toLowerCase()}.webp`
-                      "
+                      :src="`/images/resume_themes/theme302/social_icons/${Userlink.link_title.toLowerCase()}.webp`"
                       alt="social icons"
                     />
                   </a>
@@ -273,7 +271,7 @@
                         :key="index"
                         v-show="
                           currentUser.skills.find(
-                            s => s.category == skill.value
+                            (s) => s.category == skill.value
                           )
                         "
                         :ripple="false"
@@ -289,7 +287,9 @@
                         v-for="item in items"
                         :key="item.id"
                         v-show="
-                          currentUser.skills.find(s => s.category == item.value)
+                          currentUser.skills.find(
+                            (s) => s.category == item.value
+                          )
                         "
                       >
                         <v-container pa-0 fluid>
@@ -320,51 +320,7 @@
                           </v-row>
                         </v-container>
 
-                        <div class="hold-skills">
-                          <!-- <slick
-                            :options="slickContents"
-                            :id="`sliderTab_${item.id}`"
-                          >
-                            <div
-                              class="item-skill"
-                              v-for="(s, index) in currentUser.skills"
-                              :key="index"
-                              v-show="s.category == item.value"
-                            >
-                              <v-progress-circular
-                                size="93"
-                                width="10"
-                                :value="s.percentage"
-                                color="#4C71F0"
-                              >
-                                {{ s.percentage }}% {{ item.value }}
-                                {{ s.category }}
-                              </v-progress-circular>
-                              <img
-                                src="/images/resume_themes/theme302/icons/icon-php.png"
-                                alt=""
-                              />
-                            </div>
-                          </slick> -->
-
-                          <!-- <div class="nav-slider">
-                            <a
-                              href="#"
-                              @click.prevent="prevSlide('contentSlides')"
-                              ><img
-                                src="/images/resume_themes/theme302/arrow-left.png"
-                                alt=""
-                            /></a>
-                            <span class="navDotsContents"></span>
-                            <a
-                              href="#"
-                              @click.prevent="nextSlide('contentSlides')"
-                              ><img
-                                src="/images/resume_themes/theme302/arrow-right.png"
-                                alt=""
-                            /></a>
-                          </div> -->
-                        </div>
+                        <div class="hold-skills"></div>
                       </v-tab-item>
                     </v-tabs-items>
                   </v-col>
@@ -425,78 +381,94 @@
         </v-form>
       </v-card>
     </v-dialog>
+
+    <!-- Audio Modal -->
     <v-dialog
       v-model="dialogAudio"
       persistent
-      max-width="850"
+      max-width="95%"
       overlay-opacity="0.5"
       overlay-color="#202124"
     >
-      <v-card>
-        <v-card-actions>
-          <v-icon
-            class="close-icon"
-            @click="dialogAudio = false || pauseAudio()"
-            >mdi-close</v-icon
-          >
-        </v-card-actions>
-        <div class="player">
-          <div
-            class="hold-spectre"
-            @click.prevent="!playing ? playAudio() : pauseAudio()"
-          >
-            <img
-              src="/images/resume_themes/theme302/icons/spectre.png"
-              alt=""
-            />
-          </div>
-          <a
-            @click.prevent="!playing ? playAudio() : pauseAudio()"
-            title="Play/Pause"
-            href="#"
-          >
-            <v-icon v-if="!playing">mdi-play-circle</v-icon>
-            <v-icon v-else>mdi-pause-circle</v-icon>
-          </a>
-          <audio
-            style="display:none"
-            ref="audioElem"
-            id="audioElem"
-            v-if="currentUser.media.find(s => s.type == 'audio')"
-            :src="findAudio(currentUser.media)"
-            @ended="playing = !playing"
-          ></audio>
-        </div>
+      <v-card tile>
+        <v-container fluid class="pt-6">
+          <v-row no-gutters style="background: #104efb;" class="pa-4">
+            <v-col cols="12">
+              <div class="float-left">
+                <div class="audio-head">
+                  My Audio
+                </div>
+              </div>
+              <div class="float-right">
+                <v-icon
+                  color="#fff"
+                  large
+                  @click="dialogAudio = false || pauseAudio()"
+                  >mdi-close</v-icon
+                >
+              </div>
+            </v-col>
+          </v-row>
+        </v-container>
+
+        <AudioCarousel class="audio-player"></AudioCarousel>
       </v-card>
     </v-dialog>
-    <v-dialog
+    <!-- Audio Modal -->
+
+    <!-- Video Modal -->
+    <div class="media" v-if="dialogVideo">
+      <div class="media__contentV">
+        <v-container fluid class="pt-6">
+          <v-row no-gutters style="background: #104efb;" class="pa-4">
+            <v-col cols="12">
+              <div class="float-left">
+                <div class="audio-head">
+                  My Video
+                </div>
+              </div>
+              <div class="float-right">
+                <v-icon color="#fff" large @click="dialogVideo = false"
+                  >mdi-close</v-icon
+                >
+              </div>
+            </v-col>
+          </v-row>
+        </v-container>
+        <VideoCarousel class="media__contentV__video"></VideoCarousel>
+      </div>
+    </div>
+    <!-- Video Modal -->
+
+    <!-- <v-dialog
       v-model="dialogVideo"
       persistent
-      max-width="850"
+      scrollable
+      max-width="95%"
       overlay-opacity="0.5"
       overlay-color="#202124"
     >
-      <v-card>
-        <v-card-actions>
-          <v-icon class="close-icon" @click="dialogVideo = false"
-            >mdi-close</v-icon
-          >
-        </v-card-actions>
-        <div class="hold-video">
-          <div class="poster-video" ref="videoPoster">
-            <a href="#" @click.prevent="playVideo()">
-              <v-icon>mdi-play-circle</v-icon>
-            </a>
-          </div>
-          <video
-            ref="videoElem"
-            v-if="currentUser.media.find(s => s.type == 'video')"
-            controls
-            :src="findVideo(currentUser.media)"
-          ></video>
-        </div>
+      <v-card tile>
+        <v-container fluid class="pt-6">
+          <v-row no-gutters style="background: #104efb;" class="pa-4">
+            <v-col cols="12">
+              <div class="float-left">
+                <div class="audio-head">
+                  My Video
+                </div>
+              </div>
+              <div class="float-right">
+                <v-icon color="#fff" large @click="dialogVideo = false"
+                  >mdi-close</v-icon
+                >
+              </div>
+            </v-col>
+          </v-row>
+        </v-container>
+
+        <VideoCarousel class="video-player"></VideoCarousel>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
     <v-dialog
       v-model="dialogHireme"
       persistent
@@ -554,7 +526,7 @@
     </v-dialog>
   </v-app>
 </template>
-<style lang="scss">
+<style lang="scss" >
 @import "resources/sass/themes/theme302.scss";
 </style>
 <style lang="scss" scoped>
@@ -1334,10 +1306,6 @@ $colorBlue: #104efb;
       color: $colorBlue;
       font-size: 46px;
     }
-
-    .container {
-      padding: 70px;
-    }
   }
 
   /** Only dialogs fixes on mobile */
@@ -1737,12 +1705,15 @@ $colorBlue: #104efb;
 </style>
 <script>
 import Slick from "vue-slick";
-
+import AudioCarousel from "./media/AudioCarousel";
+import VideoCarousel from "./media/VideoCarousel";
 export default {
   name: "theme302",
   props: ["user", "is_preview", "currentTab"],
   components: {
-    Slick
+    Slick,
+    AudioCarousel,
+    VideoCarousel
   },
   data() {
     return {

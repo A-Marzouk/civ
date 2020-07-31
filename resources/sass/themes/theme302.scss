@@ -1,6 +1,115 @@
 #resumeTheme302{
-
-
+    $dialog-max-height: 100% !default;
+    @mixin modalPostion {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      @mixin modalPositionLarge {
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+      }
+      @mixin modalPostionTablet {
+        position: absolute;
+        top: 50%;
+        left: 46%;
+        transform: translate(-50%, -50%);
+      }
+      @mixin modalPostionMobile {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-54%, -50%);
+      }
+    .audio-head{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1.5rem;
+        line-height: 42px;
+      
+        color: #ffff;
+      
+        text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    }
+    .audio-title{
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 21px;
+        
+        color: #104EFB;
+        
+        text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    }
+    .audio-player{
+        margin-top: 6%;
+    }
+    .video-player{
+        margin-top: 6%;
+    }
+    .media {
+        width: 100%;
+        height: 100vh;
+        z-index: 9999;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+    &__contentV {
+        @include modalPostion;
+        width: 95%;
+        height: 40rem;
+        background-color: #fff;
+       
+        @media only screen and (min-width: 650px) and (max-width: 1024px) {
+            top: 52%;
+            left: 49%;
+            transform: translate(-50%, -50%);
+          width: 88%;
+          height: 60rem;
+        }
+        @media only screen and (min-width: 320px) and (max-width: 500px) {
+          top: 52%;
+          left: 53%;
+          transform: translate(-55%, -50%);
+          width: 85%;
+          height: 43rem;
+        }
+        &_close {
+          width: 30px;
+          height: 30px;
+    
+          border-radius: 50%;
+          background: #5289e7;
+          color: #fff;
+          float: right;
+          margin-top: 1.5rem;
+          margin-right: 1.5rem;
+    
+          a > img {
+            width: 25px;
+            height: 25px;
+            margin: auto;
+            margin-top: 2px;
+          }
+        }
+    
+        &__video {
+          margin-top: 6%;
+          @media only screen and (min-width: 650px) and (max-width: 1024px) {
+            margin-top: 7%;
+          }
+          @media only screen and (min-width: 320px) and (max-width: 500px) {
+            margin-top: 10%;
+          }
+        }
+      }
+    }
     .hold-tabs .v-slide-group__content{
         justify-content: center;
     }
