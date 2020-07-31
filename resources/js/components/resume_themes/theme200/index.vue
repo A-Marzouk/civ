@@ -1062,11 +1062,11 @@
       <!-- Photo Zoom Dialog -->
       <!-- video modal -->
       <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
-        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-0 pa-0" align="center">
-          <v-card-subtitle align="right">
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
               color="transparent"
-              class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-sm-0 mt-2"
+              class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2"
               fab
               @click.stop="videoModal=false"
               depressed
@@ -1543,7 +1543,7 @@ export default {
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 1,
+              slidesPerRow:1,
               slidesToScroll: 1,
               rows: 2,
             },
@@ -1830,10 +1830,10 @@ export default {
     height: auto;
   }
   @media screen and (max-width: 959px) {
-    height: auto;
+    height: 1300px;
   }
   @media screen and (max-width: 599px) {
-    height: 682px;
+    height: 770px;
   }
   .btn-video-close {
     img {
@@ -1914,6 +1914,9 @@ export default {
   padding-bottom: 50px;
   @media screen and (min-width: 1264px) and (max-width: 1903px){
     padding-bottom: 20px;
+  }
+  @media screen and (min-width: 600px) and (max-width:959px){
+    padding-bottom: 30px;
   }
 }
 </style>

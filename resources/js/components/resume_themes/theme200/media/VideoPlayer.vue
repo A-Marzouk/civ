@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <v-card class="card-video">
+    <v-card class="card-video mb-md-0 mb-sm-5 mv-5">
       <v-img src="/images/resume_themes/theme200/preview.svg"></v-img>
       <v-card-title class="video-window-title">Video Title</v-card-title>
-      <v-card-subtitle class="video-window-subtitle" align="left">Video Transcript</v-card-subtitle>
+      <v-card-subtitle class="video-window-subtitle mt-sm-0 mt-n6" align="left">Video Transcript</v-card-subtitle>
       <div ref="videotm903" class="videotm903">
         <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
         <video width="100%" ref="videoElem" controls :src="link"></video>
@@ -60,7 +60,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     max-width: 361px;
-    max-height: 263px;
+    height: 280px;
   }
   .video-window-title {
     font-family: "Open Sans" !important;
