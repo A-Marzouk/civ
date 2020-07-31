@@ -1,23 +1,25 @@
 <template>
   <v-container>
     <v-card class="card-video mb-md-0 mb-sm-5 mv-5">
-      <v-img src="/images/resume_themes/theme200/preview.svg">
-        <v-overlay absolute="true" :value="overlay" color="#6152CF">
-          <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
-            <v-icon x-large>mdi-play</v-icon>
-          </v-btn>
-        </v-overlay>
-      </v-img>
+      <div ref="videoPoster">
+        <v-img src="/images/resume_themes/theme200/preview.svg">
+          <v-overlay absolute="true" :value="overlay" color="#6152CF">
+            <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
+              <v-icon x-large>mdi-play</v-icon>
+            </v-btn>
+          </v-overlay>
+        </v-img>
+      </div>
+      <div ref="videotm903" class="videotm903">
+        <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
+        <video width="100%" ref="videoElem" controls :src="link"></video>
+      </div>
       <v-card-title class="video-window-title">Video Title</v-card-title>
       <v-card-subtitle
         class="video-window-subtitle mt-xl-0 mt-lg-n6 mt-sm-0 mt-n6"
         align="left"
       >Video Transcript</v-card-subtitle>
     </v-card>
-    <div ref="videotm903" class="videotm903">
-      <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
-      <video width="100%" ref="videoElem" controls :src="link"></video>
-    </div>
   </v-container>
 </template>
 <script>
@@ -53,6 +55,7 @@ export default {
       this.$refs.videotm903.style.display = "none";
       this.$refs.videoPoster.style.display = "block";
       this.$refs.videoElem.pause();
+      this.overlay = true;
     },
   },
 };
