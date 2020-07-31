@@ -12,7 +12,7 @@
       </div>
       <div ref="videotm903" class="videotm903">
         <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
-        <video width="100%" ref="videoElem" controls :src="link" :modalOpen="modalOpen"></video>
+        <video width="100%" ref="videoElem" :src="link" :modalOpen="modalOpen"></video>
       </div>
       <v-card-title class="video-window-title">Video Title</v-card-title>
       <v-card-subtitle
