@@ -1096,7 +1096,11 @@
             </template>
           </slick>-->
           <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
-            <video-player v-for="i in 6" :key="i"></video-player>
+            <video-player
+              v-for="i in 6"
+              :key="i"
+              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ></video-player>
           </VueSlickCarousel>
         </v-card>
       </v-dialog>
@@ -1542,16 +1546,14 @@ export default {
               slidesToShow: 1,
               slidesToScroll: 1,
               rows: 2,
-              centerPadding: "80px",
             },
           },
           {
             breakpoint: 960,
             settings: {
-              slidesToShow: 1,
+              slidesPerRow:1,
               slidesToScroll: 1,
               rows: 2,
-              centerPadding: "80px",
             },
           },
           {
@@ -1820,9 +1822,9 @@ export default {
   font-size: 12px !important;
 }
 .card-modal-video-holder {
-  height: 734px;
+  height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 80%;
+    height: 90%;
   }
   @media screen and (max-width: 959px) {
     height: auto;
@@ -1841,54 +1843,6 @@ export default {
       @media screen and (max-width: 599px) {
         width: 38px;
         height: 38px;
-      }
-    }
-  }
-  .card-video {
-    max-width: 674px;
-    max-height: 476px;
-    border-radius: 12px !important;
-    @media screen and (min-width: 1264px) and (max-width: 1903px) {
-      width: 90%;
-      height: 90%;
-    }
-    @media screen and (min-width: 960px) and (max-width: 1263px) {
-      max-width: 750px;
-    }
-    @media screen and (max-width: 959px) {
-      width: 90%;
-    }
-    @media screen and (max-width: 599px) {
-      max-width: 361px;
-      max-height: 263px;
-    }
-    .video-window-title {
-      font-family: "Open Sans" !important;
-      font-size: 30px;
-      color: #2e2e2e !important;
-      @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        font-size: 24px;
-      }
-      @media screen and (max-width: 959px) {
-        font-size: 32px;
-      }
-      @media screen and (max-width: 599px) {
-        font-size: 18px;
-      }
-    }
-    .video-window-subtitle {
-      font-family: "Open Sans" !important;
-      font-size: 19px;
-      color: #7d7d7d !important;
-      text-transform: capitalize !important;
-      @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        font-size: 14px;
-      }
-      @media screen and (max-width: 959px) {
-        font-size: 18px;
-      }
-      @media screen and (max-width: 599px) {
-        font-size: 10px;
       }
     }
   }
@@ -1944,6 +1898,13 @@ export default {
   }
   @media screen and (max-width: 599px) {
     padding-bottom: 180px !important;
+  }
+}
+
+#resumeTheme200 .video-slick .slick-list{
+  padding-bottom: 50px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    padding-bottom: 20px;
   }
 }
 </style>
