@@ -7,10 +7,6 @@
             <v-icon x-large>mdi-play</v-icon>
           </v-btn>
         </v-overlay>
-        <div ref="videotm903" class="videotm903">
-          <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
-          <video width="100%" ref="videoElem" controls :src="link"></video>
-        </div>
       </v-img>
       <v-card-title class="video-window-title">Video Title</v-card-title>
       <v-card-subtitle
@@ -18,6 +14,10 @@
         align="left"
       >Video Transcript</v-card-subtitle>
     </v-card>
+    <div ref="videotm903" class="videotm903">
+      <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
+      <video width="100%" ref="videoElem" controls :src="link"></video>
+    </div>
   </v-container>
 </template>
 <script>
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       overlay: true,
+      playing: false,
     };
   },
   methods: {
