@@ -1,8 +1,13 @@
 <template>
     <div class="outer-container">
         <div class="title">
-            <img src="/icons/edit-cv-sidebar/downloads.svg" alt="downloads icon">
-            <span>Manage Downloads</span>
+            <div class="d-flex align-items-center">
+                <img src="/icons/edit-cv-sidebar/downloads.svg" alt="downloads icon">
+                <span>Manage Downloads</span>
+            </div>
+            <v-btn class="resume-builder__btn civie-btn filled download-btn" raised>
+                Download My CV
+            </v-btn>
         </div>
         <div class="dns-main-content-container resume-builder__scroll">
             <div class="dns-main-content">
@@ -11,7 +16,7 @@
                     <tr>
                         <th scope="col">
                             <div class="left-col">
-                                Save Downloads
+                                Saved Downloads
                             </div>
                         </th>
                         <th scope="col" class="sm-col">
@@ -48,16 +53,16 @@
                     </thead>
                     <tbody>
                     <draggable @start="drag=true" @end="drag=false" handle=".drag-handler" style="display: contents">
-                        <tr v-for="i in 10" :key="i">
+                        <tr v-for="download in downloads" :key="download.id" v-if="downloads">
                             <td>
                                 <div class="table-file">
                                     <img src="/icons/edit-cv-sidebar/drag-btn-icon.svg" alt="drag" class="drag-handler">
-                                    <span>Theme_0{{i}}_file.pdf</span>
+                                    <span>{{download.label}}</span>
                                 </div>
                             </td>
                             <td>
                                 <div class="center-col">
-                                    01/03/2020
+                                    {{getFormattedData(download.created_at)}}
                                 </div>
                             </td>
                             <td class="d-none d-lg-table-cell">
@@ -103,7 +108,22 @@
         data() {
             return {}
         },
-        methods: {},
+        computed: {
+            downloads: {
+                get() {
+                    return this.$store.state.user.downloads;
+                },
+                set(downloads) {
+                    this.$store.commit("updateDownloads", downloads);
+                }
+            }
+        },
+        methods: {
+            getFormattedData(date) {
+                let d = new Date(date);
+                return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
+            }
+        },
         mounted() {
 
         }
@@ -119,7 +139,22 @@
 
         .title {
             display: flex;
-            align-items: flex-end;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 20px;
+
+
+            @include lt-sm {
+                flex-wrap: wrap;
+                .download-btn{
+                    margin-top: 25px;
+                }
+            }
+
+
+            .download-btn.v-btn{
+                width: 200px !important;
+            }
 
             img {
                 width: 24px;

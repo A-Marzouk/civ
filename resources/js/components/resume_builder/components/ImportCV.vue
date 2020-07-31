@@ -2181,8 +2181,7 @@
 
         .dz-image-preview .dz-details,
         .dz-preview .dz-details {
-            // background: rgba($color: $activeColor, $alpha: .8);
-            // background: none;
+
         }
     }
 

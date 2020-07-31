@@ -93,7 +93,7 @@
                   <v-col col="1" class="hidden-sm-and-up" align="right">
                     <v-card flat color="transparent">
                       <v-btn small color="#00CDF7" class="phone-btn" @click.stop="audioModal=true">
-                        <img src="/images/resume_themes/theme200/icons/telephone-handle.png" />
+                        <img src="/images/resume_themes/theme200/icons/volume.svg" />
                       </v-btn>
                     </v-card>
                     <v-card flat color="transparent" class="mt-6">
@@ -231,7 +231,7 @@
                                         <img
                                           src="/images/resume_themes/theme200/icons/camera.png"
                                           class="mr-2"
-                                        />Upload Video
+                                        />Video
                                       </v-btn>
                                     </v-card>
                                   </v-col>
@@ -1074,7 +1074,7 @@
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <slick ref="slick" :options="slickOptionsVideoModal" class>
+          <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
             <template v-for="video in currentUser.media">
               <div
                 :key="video.id"
@@ -1100,20 +1100,20 @@
       <!-- Video modal -->
 
       <!-- Audio Modal -->
-      <v-dialog v-model="audioModal" max-width="1690" max-height="740" persistent>
-        <v-card class="audio-modal-main-card pa-xl-10 pa-sm-4 pa-2">
+      <v-dialog v-model="audioModal" max-width="1690" persistent>
+        <v-card class="audio-modal-main-card pa-xl-12 pa-lg-12 pa-md-8 pa-sm-0 pa-0" align="center">
           <v-card-subtitle align="right">
             <v-btn
               color="transparent"
-              class="btn-video-close mb-xl-8 mb-lg-8 mr-xl-n5 mr-lg-n5 mr-md-n5 mr-sm-n5 mr-n5 mt-sm-0 mt-2"
-              fab
+              class="btn-video-close mb-xl-1 mb-lg-1 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-5 mt-5"
               @click.stop="audioModal=false"
               depressed
+              icon
             >
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <vueSlickCarousel v-bind="slickOptionsAudioModal">
+          <!-- <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
             <template v-for="audio in currentUser.media">
               <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
                 <audio controls style="width:100%;">
@@ -1121,9 +1121,15 @@
                 </audio>
               </div>
             </template>
-            <!-- <template #customPaging="page">
-              <div class="custom-dot">{{ page }}</div>
-            </template>-->
+          </vueSlickCarousel>-->
+          <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+            <audio-player
+              :modalOpen="audioModal"
+              color="#FC5C8A"
+              v-for="i in 6"
+              :key="i"
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
           </vueSlickCarousel>
         </v-card>
       </v-dialog>
@@ -1135,6 +1141,7 @@
 <script>
 import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
+import AudioPlayer from "./media/AudioPlayer";
 export default {
   props: ["user", "is_preview"],
   filters: {
@@ -1146,6 +1153,7 @@ export default {
   components: {
     Slick,
     VueSlickCarousel,
+    AudioPlayer,
   },
   data() {
     return {
@@ -1882,25 +1890,24 @@ export default {
 }
 
 .audio-modal-main-card {
-  max-height: 471px;
-  height: 471px;
+  min-height: 500px;
+  @media screen and (min-width:960px) and (max-width: 1263px){
+    min-height: 600px;
+  }
 
   @media screen and (max-width: 959px) {
-    height: 400px;
+    min-height: 570px;
   }
-}
-audio,
-canvas,
-progress,
-video {
-  width: -webkit-fill-available !important;
-  width: -moz-available;
+
+  @media screen and (max-width: 599px) {
+    min-height: 734px;
+  }
 }
 
 //mobile tab
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme200 .v-slide-group__prev {
   display: none;
 }
@@ -1917,6 +1924,22 @@ video {
 #resumeTheme200 .slick-dots li button {
   background-color: #6152cf !important;
   opacity: 0.57 !important;
+}
+// #resumeTheme200 .slick-dots{
+//   @media screen and (max-width: 959px){
+//     bottom: -140px !important;
+//   }
+// }
+#resumeTheme200 .audio-slick .slick-list{
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    padding-bottom: 40px !important;
+  }
+  @media screen and (max-width:959px){
+    padding-bottom: 80px !important;
+  }
+  @media screen and (max-width:599px){
+    padding-bottom: 300px !important;
+  }
 }
 </style>
 

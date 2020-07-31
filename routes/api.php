@@ -91,6 +91,11 @@ Route::group(['prefix' => 'user/'], function () {
 
 
 // WorkEx api routes:
+
+    // tabs
+    Route::post('/tabs/update-order', 'API\TabsController@updateTabsOrder');
+    Route::put('/tabs', 'API\TabsController@toggleVisibility');
+
     //list workExperience
     Route::get('/work-experience', 'API\WorkExController@index');
     //list single workExperience

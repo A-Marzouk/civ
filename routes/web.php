@@ -23,8 +23,9 @@ Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode
 Route::get('/api/docs', 'HomeController@docs'); // API Docs
 Route::get('/api/docs/{any}', 'HomeController@docs'); // API Docs
 
+
 // Download Resume routes
-// Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
+ Route::get('/download/resume/{themeCode}/{userName}', 'ResumeController@downloadPDFResume');
 
 // Test theme preview
 Route::get('/preview-theme-pdf-by-code/{themeCode}', 'ResumeController@downloadPDFResume');
@@ -60,6 +61,7 @@ Route::get('/resume-builder/edit/{any?}', 'ResumeBuilderController@index')->name
 Route::get('/resume-builder/edit/projects/new', 'ResumeBuilderController@index')->name('resume.builder.edit');
 Route::post('/resume-builder/import/pdf', 'ImportsController@extractTextFromPDF')->name('pdf.import.submit');
 Route::post('/resume-builder/import/docx', 'ImportsController@extractTextFromDocx')->name('docx.import');
+Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsController@getDataFromBehance')->name('behance.import');
 
 
 // subscription routes

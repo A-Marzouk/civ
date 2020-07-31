@@ -402,7 +402,7 @@ export default {
 @import "../../../../../sass/media-queries";
 
 .civie-select,
-civie-input {
+.civie-input {
   min-width: 300px;
 }
 
