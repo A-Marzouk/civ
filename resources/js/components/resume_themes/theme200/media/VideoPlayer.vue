@@ -60,7 +60,7 @@ export default {
   }
   @media screen and (max-width: 599px) {
     max-width: 361px;
-    height: 280px;
+    height: 260px;
   }
   .video-window-title {
     font-family: "Open Sans" !important;

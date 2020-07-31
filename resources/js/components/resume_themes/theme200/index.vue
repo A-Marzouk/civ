@@ -578,7 +578,7 @@
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
-                      <v-card-text>
+                      <v-card-text :align="windowWidth<=599? 'center':'left'">
                         <VueSlickCarousel v-bind="slickOptions" ref="slick">
                           <div
                             v-for="project in currentUser.projects"
