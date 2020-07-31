@@ -1062,7 +1062,7 @@
       <!-- Photo Zoom Dialog -->
       <!-- video modal -->
       <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
-        <v-card class="card-modal-video-holder pa-sm-10 pa-0" align="center">
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-0 pa-0" align="center">
           <v-card-subtitle align="right">
             <v-btn
               color="transparent"
@@ -1826,6 +1826,9 @@ export default {
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 90%;
   }
+  @media screen and (min-width:960px) and (max-width: 1263px){
+    height: auto;
+  }
   @media screen and (max-width: 959px) {
     height: auto;
   }
@@ -1883,6 +1886,12 @@ export default {
 #resumeTheme200 .slick-dots li button {
   background-color: #6152cf !important;
   opacity: 0.57 !important;
+}
+
+#resumeTheme200 .video-slick .slick-dots{
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    bottom: 0px !important;
+  }
 }
 // #resumeTheme200 .slick-dots{
 //   @media screen and (max-width: 959px){
