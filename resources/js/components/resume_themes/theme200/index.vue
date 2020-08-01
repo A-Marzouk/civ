@@ -1831,7 +1831,7 @@ export default {
     height: auto;
   }
   @media screen and (max-width: 959px) {
-    height: 1300px;
+    height: 1250px;
   }
   @media screen and (max-width: 599px) {
     height: 770px;
@@ -1918,6 +1918,9 @@ export default {
   }
   @media screen and (min-width: 600px) and (max-width:959px){
     padding-bottom: 30px;
+  }
+  @media screen and (max-width: 599px){
+    padding-bottom: 15px;
   }
 }
 </style>
