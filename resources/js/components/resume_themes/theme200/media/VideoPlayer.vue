@@ -93,6 +93,9 @@ export default {
   @media screen and (min-width: 960px) and (max-width: 1263px) {
     height: 80%;
   }
+  @media screen and (max-width: 959px) {
+    height: auto;
+  }
 
   // overlay
   .video-overlay {
@@ -106,6 +109,12 @@ export default {
       width: 444px;
       height: 249.75px;
     }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      height: 382.5px;
+    }
+    @media screen and (max-width: 599px) {
+      height: 198.56px;
+    }
   }
   img {
     height: 439.31px;
@@ -115,6 +124,12 @@ export default {
     @media screen and (min-width: 960px) and (max-width: 1263px) {
       width: 444px;
       height: 249.75px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 959px) {
+      height: 382.5px;
+    }
+    @media screen and (max-width: 599px) {
+      height: 198.56px;
     }
   }
   // overlay
