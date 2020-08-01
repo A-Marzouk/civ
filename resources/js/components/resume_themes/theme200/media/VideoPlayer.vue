@@ -2,12 +2,12 @@
   <v-container>
     <v-card class="card-video mb-md-0 mb-sm-5 mb-5">
       <div ref="videoPoster">
-        <img src="/images/resume_themes/theme200/preview1.png"/>
-          <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
-            <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
-              <v-icon x-large color="#6152CF">mdi-play</v-icon>
-            </v-btn>
-          </v-overlay>
+        <img src="/images/resume_themes/theme200/preview1.png" />
+        <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
+          <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
+            <v-icon x-large color="#6152CF">mdi-play</v-icon>
+          </v-btn>
+        </v-overlay>
       </div>
       <div ref="videotm903" class="videotm903">
         <video width="100%" ref="videoElem" controls :src="link" :modalOpen="modalOpen"></video>
@@ -87,8 +87,11 @@ export default {
   border-radius: 12px !important;
   width: 781px;
   height: 541.31px;
-  @media screen and (min-width: 1264px) and (max-width: 1903px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     height: 90%;
+  }
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    height: 80%;
   }
 
   // overlay
@@ -96,14 +99,22 @@ export default {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     height: 439.31px;
-    @media screen and (min-width:1264px) and (max-width: 1903px){
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
       height: 355.5px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      width: 444px;
+      height: 249.75px;
     }
   }
   img {
     height: 439.31px;
-    @media screen and (min-width:1264px) and (max-width: 1903px){
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
       height: 355.5px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1263px) {
+      width: 444px;
+      height: 249.75px;
     }
   }
   // overlay
