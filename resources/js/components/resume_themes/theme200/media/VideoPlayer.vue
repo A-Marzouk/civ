@@ -1,18 +1,16 @@
 <template>
   <v-container>
-    <v-card class="card-video mb-md-0 mb-sm-5 mv-5">
+    <v-card class="card-video mb-md-0 mb-sm-5 mb-5">
       <div ref="videoPoster">
-        <v-img src="/images/resume_themes/theme200/preview.svg">
-          <v-overlay absolute="true" :value="overlay" color="#6152CF">
+        <img src="/images/resume_themes/theme200/preview1.png"/>
+          <v-overlay absolute="true" :value="overlay" color="#6152CF" class="video-overlay">
             <v-btn color="#FC5C8A" fab class="btn-play" @click.prevent="playVideo()">
               <v-icon x-large color="#6152CF">mdi-play</v-icon>
             </v-btn>
           </v-overlay>
-        </v-img>
       </div>
       <div ref="videotm903" class="videotm903">
-        <v-icon @click.prevent="stopVideo()" right>mdi-close</v-icon>
-        <video width="100%" ref="videoElem" :src="link" :modalOpen="modalOpen"></video>
+        <video width="100%" ref="videoElem" controls :src="link" :modalOpen="modalOpen"></video>
       </div>
       <v-card-title class="video-window-title">Video Title</v-card-title>
       <v-card-subtitle
@@ -37,7 +35,7 @@ export default {
       type: String,
       default: null,
     },
-    modalOpen:{
+    modalOpen: {
       type: Boolean,
       default: true,
     },
@@ -48,23 +46,23 @@ export default {
       playing: false,
     };
   },
-  watch:{
-    modalOpen: function(val){
-      if(val == false){
+  watch: {
+    modalOpen: function (val) {
+      if (val == false) {
         this.stopVideo();
       }
-    }
+    },
   },
   methods: {
     playVideo() {
-      this.$refs.videotm903.style.display = "block";
+      this.$refs.videotm903.style.display = "flex";
       this.$refs.videoPoster.style.display = "none";
       this.$refs.videoElem.play();
       this.overlay = false;
     },
     stopVideo() {
       this.$refs.videotm903.style.display = "none";
-      this.$refs.videoPoster.style.display = "block";
+      this.$refs.videoPoster.style.display = "flex";
       this.$refs.videoElem.pause();
       this.overlay = true;
     },
@@ -86,24 +84,20 @@ export default {
   }
 }
 .card-video {
-  max-width: 674px;
-  max-height: 600px;
   border-radius: 12px !important;
-  @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    max-height: 476px;
-    width: 90%;
-    height: 90%;
+  width: 781px;
+  height: 541.31px;
+
+  // overlay
+  .video-overlay {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    height: 439.31px;
   }
-  @media screen and (min-width: 960px) and (max-width: 1263px) {
-    max-width: 750px;
+  img {
+    height: 439.31px;
   }
-  @media screen and (max-width: 959px) {
-    width: 90%;
-  }
-  @media screen and (max-width: 599px) {
-    max-width: 361px;
-    height: 260px;
-  }
+  // overlay
   .video-window-title {
     font-family: "Open Sans" !important;
     font-size: 30px;
