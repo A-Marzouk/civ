@@ -14,7 +14,7 @@
       </div>
       <v-card-title class="video-window-title">Video Title</v-card-title>
       <v-card-subtitle
-        class="video-window-subtitle mt-xl-0 mt-lg-n6 mt-sm-0 mt-n6"
+        class="video-window-subtitle mt-xl-0 mt-lg-n3 mt-sm-0 mt-n6"
         align="left"
       >Video Transcript</v-card-subtitle>
     </v-card>
@@ -87,15 +87,24 @@ export default {
   border-radius: 12px !important;
   width: 781px;
   height: 541.31px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    height: 90%;
+  }
 
   // overlay
   .video-overlay {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     height: 439.31px;
+    @media screen and (min-width:1264px) and (max-width: 1903px){
+      height: 355.5px;
+    }
   }
   img {
     height: 439.31px;
+    @media screen and (min-width:1264px) and (max-width: 1903px){
+      height: 355.5px;
+    }
   }
   // overlay
   .video-window-title {

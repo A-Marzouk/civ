@@ -1825,7 +1825,7 @@ export default {
 .card-modal-video-holder {
   height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 90%;
+    height: 700px;
   }
   @media screen and (min-width:960px) and (max-width: 1263px){
     height: auto;
@@ -1914,7 +1914,7 @@ export default {
 #resumeTheme200 .video-slick .slick-list{
   padding-bottom: 50px;
   @media screen and (min-width: 1264px) and (max-width: 1903px){
-    padding-bottom: 20px;
+    padding-bottom: 40px;
   }
   @media screen and (min-width: 600px) and (max-width:959px){
     padding-bottom: 30px;
