@@ -2420,8 +2420,14 @@ export default {
 
 @mixin modalPostion {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin modalPositionLarge {
+  position: absolute;
+  top: 50%;
+  left: 40%;
   transform: translate(-50%, -50%);
 }
 @mixin modalPostionTablet {
@@ -2450,6 +2456,12 @@ export default {
     height: 40rem;
     background-color: #fff;
     border-radius: 30px;
+    // @media only screen and (min-width: 1605px) and (max-width: 2150px) {
+    //   @include modalPositionLarge;
+    //   width: 85%;
+    //   height: 30rem;
+    // }
+
     @media only screen and (min-width: 650px) and (max-width: 1024px) {
       @include modalPostionTablet;
       width: 88%;
