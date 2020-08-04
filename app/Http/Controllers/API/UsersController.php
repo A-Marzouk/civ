@@ -10,6 +10,7 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
+use App\Tab;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,31 +35,62 @@ class UsersController extends Controller
             $id = Auth::user()->id;
         }
 
-        $user = User::where('id',$id)->with([
-            'skills',
-            'hobbies',
-            'education',
-            'workExperience',
-            'links',
-            'projects.images',
-            'achievements',
-            'media',
-            'reference',
-            'referee',
-            'testimonials',
-            'imports',
-            'languages',
-            'personalInfo',
-            'paymentInfo',
-            'availabilityInfo',
-            'summary',
-            'theme',
-            'subscription'
-        ])->first();
+        $user = User::where('id',$id)->with(User::$defaultRelations)->first();
         if($user){
+            $this->setDefaultTabs($user);
             return response()->json($user, 200);
         }
         return response()->json(['Error' => "Something went wrong."], 404);
+    }
+
+    protected function setDefaultTabs($user){
+        if(count($user->tabs) > 0){
+            return true;
+        }
+        return Tab::insert([
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'work_experience',
+                'label' => 'Work Experience'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'education',
+                'label' => 'Education'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'skills',
+                'label' => 'Skills'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'portfolio',
+                'label' => 'Portfolio'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'about_me',
+                'label' => 'About Me'
+            ],
+            [
+                'user_id' => $user->id,
+                'order' => 1,
+                'is_public' => true,
+                'title' => 'media',
+                'label' => 'Media'
+            ]
+        ]);
     }
 
 

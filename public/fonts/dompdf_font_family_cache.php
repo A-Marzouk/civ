@@ -96,7 +96,7 @@
     'normal' => $fontDir . '/muli-normal_ac284dc71e1b0704e4d0e81d205378b2',
   ),
   'fira' => array(
-    'normal' => $fontDir . '/fira-normal_87773dd5327ba0ec7ecfd977507e9240',
+    'normal' => $fontDir . '/fira-normal_21029b28bb237c42b004f9637e51c223',
   ),
   'montserrat' => array(
     'normal' => $fontDir . '/montserrat-normal_3f4ced0214179fda4ed8b5ca9920ea29',

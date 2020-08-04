@@ -483,26 +483,31 @@
             font-size: 8px !important;
         }
         .phone-btn {
-            padding: 0px 8.444px !important;
+            // padding: 0px 8.444px !important;
             margin-top: 46px;
             margin-bottom: -0.8vw;
-            height: 32px !important;
-            min-width: 32px !important;
+            height: 33px !important;
+            width: 35px !important;
+            min-width: 35px !important;
             @media screen and(max-width: 334) {
                 margin-right: -3px;
+            }
+            img{
+                width: 16.35px !important;
             }
         }
         .phone-icon {
             font-size: 18px !important;
         }
         .video-btn {
-            padding: 0px 4.444px !important;
-            height: 32px !important;
-            min-width: 32px !important;
-            img {
-                width: 16px !important;
-                height: 13px !important;
-            }
+            // padding: 0px 4.444px !important;
+            height: 33px !important;
+            width:35px !important;
+            min-width: 35px !important;
+            // img {
+            //     width: 16px !important;
+            //     height: 13px !important;
+            // }
             @media screen and(max-width:334px) {
                 margin-right: -3px;
             }

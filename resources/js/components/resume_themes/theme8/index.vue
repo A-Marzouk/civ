@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-container">
+  <div class="theme-container" v-if="currentUser">
     <vue-particles></vue-particles>
     <div class="main-info-bar">
       <div
@@ -37,7 +37,7 @@
                 </a>
               </div>
               <div class="audio-btn hideOnNotTablet">
-                <a href="javascript:void(0)">
+                <a href="javascript:void(0)" @click.prevent="audioPopup = !audioPopup">
                   <img
                     src="/images/resume_themes/theme8/headphones.svg"
                     alt="audio icon"
@@ -81,7 +81,7 @@
             </a>
           </div>
           <div class="audio-btn">
-            <a href="javascript:void(0)">
+            <a href="javascript:void(0)" @click.prevent="audioPopup = !audioPopup">
               <img
                 src="/images/resume_themes/theme8/headphones.svg"
                 alt="audio icon"
@@ -288,12 +288,30 @@
         </div>
       </div>
     </div>
+    <!-- Audio Modal -->
+      <div class="media" v-if="audioPopup">
+        <div class="media__content">
+          <div class="media__content_close">
+            <a href="javascript:void(0)" @click.prevent="audioPopup = false"
+              ><img
+                src="/images/resume_themes/theme3/close.svg"
+                alt="close-icon"
+              />
+            </a>
+          </div>
+          <span style="margin-top:6%;">
+            Hello World
+          </span>
+        </div>
+      </div>
+    <!-- Audio Modal -->
   </div>
 </template>
 
 <script>
 import Slick from "vue-slick";
 import VueMarkdown from 'vue-markdown';
+import Audio from './media/Audio'
 
 export default {
   name: "theme8",
@@ -304,6 +322,7 @@ export default {
   },
   data() {
     return {
+      audioPopup:false,
       tabs: [
         {
           text: "Portfolio",
@@ -427,12 +446,10 @@ export default {
   },
   mounted() {
     this.skillsBar();
-
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
   }
@@ -2283,5 +2300,124 @@ export default {
   position: absolute;
   height: 100%;
   width: 100%;
+}
+
+@mixin modalPostion {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin modalPostionTablet {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+}
+@mixin modalPostionMobile {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-54%, -50%);
+}
+.media {
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  &__content {
+    @include modalPostion;
+    width: 95%;
+    height: 40rem;
+    background-color: #fff;
+    border-radius: 30px;
+    @media only screen and (min-width: 650px) and (max-width: 1024px) {
+      @include modalPostionTablet;
+      width: 88%;
+      height: 30rem;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 500px) {
+      @include modalPostionMobile;
+      width: 85%;
+      height: 30rem;
+    }
+    &_close {
+      width: 30px;
+      height: 30px;
+
+      border-radius: 50%;
+      background: #5289e7;
+      color: #fff;
+      float: right;
+      margin-top: 1.5rem;
+      margin-right: 1.5rem;
+
+      a > img {
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        margin-top: 2px;
+      }
+    }
+    &__audio {
+      margin-top: 6%;
+      @media only screen and (min-width: 650px) and (max-width: 1024px) {
+        margin-top: 7%;
+      }
+      @media only screen and (min-width: 320px) and (max-width: 500px) {
+        margin-top: 12%;
+      }
+    }
+  }
+  &__contentV {
+    @include modalPostion;
+    width: 95%;
+    height: 40rem;
+    background-color: #fff;
+    border-radius: 30px;
+    @media only screen and (min-width: 650px) and (max-width: 1024px) {
+      @include modalPostionTablet;
+      width: 88%;
+      height: 60rem;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 500px) {
+      top: 52%;
+      left: 50%;
+      transform: translate(-55%, -50%);
+      width: 85%;
+      height: 43rem;
+    }
+    &_close {
+      width: 30px;
+      height: 30px;
+
+      border-radius: 50%;
+      background: #5289e7;
+      color: #fff;
+      float: right;
+      margin-top: 1.5rem;
+      margin-right: 1.5rem;
+
+      a > img {
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        margin-top: 2px;
+      }
+    }
+
+    &__video {
+      margin-top: 6%;
+      @media only screen and (min-width: 650px) and (max-width: 1024px) {
+        margin-top: 7%;
+      }
+      @media only screen and (min-width: 320px) and (max-width: 500px) {
+        margin-top: 10%;
+      }
+    }
+  }
 }
 </style>
