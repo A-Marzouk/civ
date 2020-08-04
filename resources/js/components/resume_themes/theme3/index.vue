@@ -47,6 +47,14 @@
                   <span class="hideOnPhone">Video</span>
                 </a>
               </div>
+              <div class="pdf-btn NoDecor">
+                <a
+                  href="/preview-theme-pdf-by-code/theme21"
+                  target="_blank"
+                >
+                  <svg-vue class="pdf-icon" :icon="'themes.pdf-button-theme2'"></svg-vue>
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -1018,16 +1026,46 @@ export default {
               height: 15px;
               margin-right: 6px;
             }
+            
             @media only screen and (max-width: 600px) {
               width: auto;
               height: auto;
               border: none;
+
               img {
                 margin-right: 0;
                 width: 22px;
                 height: 18px;
               }
             }
+          }
+        }
+
+        .pdf-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid #5289e7;
+          border-radius: 50%;
+          height: 43px;
+          width: 43px;
+          margin-left: 27px;
+
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+          }
+
+          svg {
+            height: 41px;
+            fill: none;
+          }
+
+          @media only screen and (max-width: 765px) {
+            margin-right: 10px;
           }
         }
       }
