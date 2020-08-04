@@ -53,13 +53,17 @@ class ImportsController extends Controller
             $projects = $client->getUserProjects($behanceUsername);
             $data->projects = $projects;
 
+            foreach ($projects as &$project) {
+                $project->selected = false ;
+            }
+
             $fullProjects = [];
 
             foreach ($projects as $project) {
                 $fullProjects[] = $client->getProject($project->id);
             }
 
-            $data->fullpProjects = $fullProjects;
+            $data->fullProjects = $fullProjects;
 
         } else {
             $data = [];

@@ -542,6 +542,45 @@
                         <div>
                             <div class="import-results">
                                 <div class="sections">
+                                    <div>
+                                        <div class="projects-list">
+                                            <div class="project ml-md-4" v-for="project in behanceProjects">
+                                                <div class="project__header">
+                                                    <div class="resume-builder__action-buttons-container">
+                                                        <div class="checkbox" @click="toggleSelectionOfBehanceProject(project.id)">
+                                                            <img v-show="project.selected" src="/images/resume_builder/imports/checkbox-on.svg"
+                                                                 alt="checkbox">
+                                                            <img v-show="!project.selected" src="/images/resume_builder/imports/checkbox-off.svg"
+                                                                 alt="checkbox">
+                                                        </div>
+                                                        <v-btn class="btn-icon civie-btn"  depressed>
+                                                            <svg-vue
+                                                                    icon="edit-icon"
+                                                                    class="icon"
+                                                            ></svg-vue>
+                                                        </v-btn>
+                                                    </div>
+                                                </div>
+                                                <div class="project__body">
+                                                    <div class="project__img">
+                                                        <div class="project__name">{{project.slug}}</div>
+                                                        <img :src="project.covers.original" alt="portfolio img" />
+                                                    </div>
+                                                    <div class="project__info">
+                                                        <div class="project__name">{{project.slug}}</div>
+                                                        <div class="project__url">
+                                                            <b>URL:</b>
+                                                            <a :href="project.url">{{project.url}}</a>
+                                                        </div>
+                                                        <div class="project__description">
+                                                            <b>Description:</b>
+                                                            {{project.description}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="import-action-btns no-background mb-5">
                                         <div class="d-flex justify-space-between">
                                             <div class="d-flex">
@@ -1454,8 +1493,8 @@
                 axios.get('/resume-builder/import/behance/' + this.behanceUsername)
                     .then((response) => {
                         console.log('Behance Data:');
-                        console.log(response.data.fullpProjects);
-                        this.behanceProjects = response.data.fullpProjects;
+                        console.log(response.data.projects);
+                        this.behanceProjects = response.data.projects;
                     }
                 );
             },
@@ -2164,6 +2203,7 @@
 
 <!-- extract styles -->
 <style scoped lang="scss">
+    @import "../../../../../sass/variables";
     @import '../../../../../sass/media-queries';
 
     $activeColor: #001CE2;
@@ -2699,6 +2739,124 @@
                 @media screen and (max-width:767px){
                     width: 18px;
                     height: 18px;
+                }
+            }
+        }
+    }
+
+    .projects-list {
+        width: 100%;
+        padding: 20px;
+        background: whitesmoke;
+
+        .project {
+            max-width: 620px;
+            width: 100%;
+            box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+            background: white;
+            min-height: 225px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+
+            &__header {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .drag-and-drop-handler {
+                    background-color: $auxBgColor-gray;
+                    border-radius: 5px;
+                    height: 25px;
+                    width: 25px;
+
+                    // Reset default props of v-btn class
+                    min-width: auto !important;
+                    padding: 0 !important;
+
+                    .icon {
+                        height: 10px;
+                        width: 3px;
+                    }
+                }
+
+                .resume-builder__action-buttons-container {
+                    .btn-icon {
+                        width: 25px;
+                        height: 25px !important;
+                    }
+                }
+            }
+
+            &__body {
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+
+                .project__img {
+                    img {
+                        min-width: 120px;
+                    }
+
+                    .project {
+                        &__name {
+                            display: none;
+
+                            @include lt-sm {
+                                display: block;
+                                font-size: 20px;
+                                font-weight: normal;
+                                color: $mainColor;
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+
+                        img,
+                        .project__name {
+                            width: 100%;
+                        }
+
+                        img {
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+
+                .project__info {
+                    margin-left: 20px;
+                    margin-top: -10px;
+
+                    .project {
+                        &__name {
+                            font-size: 24px;
+                            font-weight: 700;
+                            color: $mainColor;
+                            margin-bottom: 10px;
+
+                            @include lt-sm {
+                                display: none;
+                            }
+                        }
+
+                        &__url,
+                        &__skills,
+                        &__softwares,
+                        &__description {
+                            color: $inputTextColor;
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+                        margin-left: 0;
+                    }
+                }
+
+                @include lt-sm {
+                    flex-wrap: wrap;
                 }
             }
         }
