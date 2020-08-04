@@ -86,18 +86,25 @@
             font-size: 14px;
             color: #2B2B2B;
             margin-bottom: 10px;
-            vertical-align: center;
+            vertical-align: middle;
+        }
+
+        .user-contact a {
+            color: #1D1D1D;
+            vertical-align: middle;
+        }
+
+        .no-decoration {
+            text-decoration: none;
         }
 
         .user-contact .contact:last-child {
             margin-bottom: 0;
         }
 
-        .user-contact .contact span {
-        }
-
         .user-contact .icon-wrapper {
             margin-right: 9px;
+            margin-top: 5px;
             padding: 7px 4px;
             box-sizing: border-box;
             width: 17px;
@@ -295,23 +302,29 @@
 
                     <div class="user-contact">
                         <div class="contact">
-                            <div class="icon-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme21/location-icon.png') }}" alt="" class="icon" />
-                            </div>
-                            Av. Panteon, Caracas. Venezuela.
+                            <a href="" class='no-decoration'>
+                                <div class="icon-wrapper">
+                                    <img src="{{ public_path('images/resume_themes/theme21/location-icon.png') }}" alt="" class="icon" />
+                                </div>
+                                Av. Panteon, Caracas. Venezuela.
+                            </a>
                         </div>
                         <div class="contact">
-                            <div class="icon-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme21/whatsapp-icon.png') }}" alt="" class="icon" />
-                            </div>
-                            +584241714022
+                            <a href="" class='no-decoration'>
+                                <div class="icon-wrapper">
+                                    <img src="{{ public_path('images/resume_themes/theme21/whatsapp-icon.png') }}" alt="" class="icon" />
+                                </div>
+                                +584241714022
+                            </a>
                         </div>
-                        <a href="https://civ.ie/josedan10" class="contact">
-                            <div class="icon-wrapper">
-                                <img src="{{ public_path('images/resume_themes/theme21/google-icon.png') }}" alt="" class="icon" />
-                            </div>
-                            civ.ie/josedan10
-                        </a>
+                        <div class="contact">
+                            <a href="https://civ.ie/josedan10" >
+                                <div class="icon-wrapper">
+                                    <img src="{{ public_path('images/resume_themes/theme21/google-icon.png') }}" alt="" class="icon" />
+                                </div>
+                                civ.ie/josedan10
+                            </a>
+                        </div>
                     </div>
                 </td>
 
