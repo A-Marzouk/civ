@@ -578,7 +578,7 @@
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
-                      <v-card-text>
+                      <v-card-text :align="windowWidth<=599? 'center':'left'">
                         <VueSlickCarousel v-bind="slickOptions" ref="slick">
                           <div
                             v-for="project in currentUser.projects"
@@ -1062,19 +1062,19 @@
       <!-- Photo Zoom Dialog -->
       <!-- video modal -->
       <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
-        <v-card class="card-modal-video-holder pa-sm-10 pa-0">
-          <v-card-subtitle align="right">
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
             <v-btn
               color="transparent"
-              class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-sm-0 mt-2"
-              fab
+              class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              icon
               @click.stop="videoModal=false"
               depressed
             >
               <img src="/images/resume_themes/theme200/icons/close.svg" />
             </v-btn>
           </v-card-subtitle>
-          <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
+          <!-- <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
             <template v-for="video in currentUser.media">
               <div
                 :key="video.id"
@@ -1094,7 +1094,15 @@
                 </v-card>
               </div>
             </template>
-          </slick>
+          </slick>-->
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <video-player
+              v-for="i in 6"
+              :key="i"
+              :modalOpen="videoModal"
+              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ></video-player>
+          </VueSlickCarousel>
         </v-card>
       </v-dialog>
       <!-- Video modal -->
@@ -1142,6 +1150,7 @@
 import Slick from "vue-slick";
 import VueSlickCarousel from "vue-slick-carousel";
 import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from "./media/VideoPlayer";
 export default {
   props: ["user", "is_preview"],
   filters: {
@@ -1154,6 +1163,7 @@ export default {
     Slick,
     VueSlickCarousel,
     AudioPlayer,
+    VideoPlayer,
   },
   data() {
     return {
@@ -1527,26 +1537,24 @@ export default {
         infinite: false,
         dots: true,
         arrows: false,
-        slidesToShow: 2,
+        slidesPerRow: 2,
         slidesToScroll: 1,
         rows: 1,
         responsive: [
           {
             breakpoint: 600,
             settings: {
-              slidesToShow: 1,
+              slidesPerRow:1,
               slidesToScroll: 1,
               rows: 2,
-              centerPadding: "80px",
             },
           },
           {
             breakpoint: 960,
             settings: {
-              slidesToShow: 1,
+              slidesPerRow:1,
               slidesToScroll: 1,
               rows: 2,
-              centerPadding: "80px",
             },
           },
           {
@@ -1815,15 +1823,18 @@ export default {
   font-size: 12px !important;
 }
 .card-modal-video-holder {
-  height: 734px;
+  height: 850px;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    height: 80%;
+    height: 700px;
   }
-  @media screen and (max-width: 959px) {
+  @media screen and (min-width:960px) and (max-width: 1263px){
     height: auto;
   }
+  @media screen and (max-width: 959px) {
+    height: 1250px;
+  }
   @media screen and (max-width: 599px) {
-    height: 682px;
+    height: 770px;
   }
   .btn-video-close {
     img {
@@ -1839,64 +1850,16 @@ export default {
       }
     }
   }
-  .card-video {
-    max-width: 674px;
-    max-height: 476px;
-    border-radius: 12px !important;
-    @media screen and (min-width: 1264px) and (max-width: 1903px) {
-      width: 90%;
-      height: 90%;
-    }
-    @media screen and (min-width: 960px) and (max-width: 1263px) {
-      max-width: 750px;
-    }
-    @media screen and (max-width: 959px) {
-      width: 90%;
-    }
-    @media screen and (max-width: 599px) {
-      max-width: 361px;
-      max-height: 263px;
-    }
-    .video-window-title {
-      font-family: "Open Sans" !important;
-      font-size: 30px;
-      color: #2e2e2e !important;
-      @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        font-size: 24px;
-      }
-      @media screen and (max-width: 959px) {
-        font-size: 32px;
-      }
-      @media screen and (max-width: 599px) {
-        font-size: 18px;
-      }
-    }
-    .video-window-subtitle {
-      font-family: "Open Sans" !important;
-      font-size: 19px;
-      color: #7d7d7d !important;
-      text-transform: capitalize !important;
-      @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        font-size: 14px;
-      }
-      @media screen and (max-width: 959px) {
-        font-size: 18px;
-      }
-      @media screen and (max-width: 599px) {
-        font-size: 10px;
-      }
-    }
-  }
 }
 
 .audio-modal-main-card {
   min-height: 500px;
-  @media screen and (min-width:960px) and (max-width: 1263px){
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     min-height: 600px;
   }
 
   @media screen and (max-width: 959px) {
-    min-height: 570px;
+    min-height: 670px;
   }
 
   @media screen and (max-width: 599px) {
@@ -1925,20 +1888,39 @@ export default {
   background-color: #6152cf !important;
   opacity: 0.57 !important;
 }
+
+#resumeTheme200 .video-slick .slick-dots{
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    bottom: 0px !important;
+  }
+}
 // #resumeTheme200 .slick-dots{
 //   @media screen and (max-width: 959px){
 //     bottom: -140px !important;
 //   }
 // }
-#resumeTheme200 .audio-slick .slick-list{
-  @media screen and (min-width: 960px) and (max-width: 1263px){
+#resumeTheme200 .audio-slick .slick-list {
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     padding-bottom: 40px !important;
   }
-  @media screen and (max-width:959px){
+  @media screen and (max-width: 959px) {
     padding-bottom: 80px !important;
   }
-  @media screen and (max-width:599px){
-    padding-bottom: 300px !important;
+  @media screen and (max-width: 599px) {
+    padding-bottom: 180px !important;
+  }
+}
+
+#resumeTheme200 .video-slick .slick-list{
+  padding-bottom: 50px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    padding-bottom: 40px;
+  }
+  @media screen and (min-width: 600px) and (max-width:959px){
+    padding-bottom: 30px;
+  }
+  @media screen and (max-width: 599px){
+    padding-bottom: 15px;
   }
 }
 </style>
