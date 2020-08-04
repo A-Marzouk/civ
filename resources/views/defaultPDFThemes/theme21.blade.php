@@ -41,6 +41,14 @@
             font-style: normal; // use the matching font-style here */
         }
 
+        @page {
+            margin: 56px 65px;
+        }
+        
+        html {
+            margin: 56px 65px;
+        }
+
         main {
             font-family: Raleway, Arial, Helvetica, sans-serif;
         }
@@ -85,7 +93,7 @@
         .user-contact .contact {
             font-size: 14px;
             color: #2B2B2B;
-            margin-bottom: 10px;
+            margin-bottom: 2px;
             vertical-align: middle;
         }
 
@@ -151,7 +159,7 @@
         }
 
         section {
-            margin-top: 90px;
+            margin-top: 60px;
         }
 
         .section-title {
@@ -184,6 +192,10 @@
             line-height: 15px;
             font-family: Raleway, Arial, Helvetica, sans-serif;
             color: #5B5B5B;
+        }
+
+        .about {
+            margin-top: 40px;
         }
 
         .about .container p {
