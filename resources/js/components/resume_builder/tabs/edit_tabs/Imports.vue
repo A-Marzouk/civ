@@ -77,13 +77,14 @@
                                     style="margin-top: -15px;"
                                     class="resume-builder__input top-input-margin url mt-n6"
                                     :outlined="true"
+                                    v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
                                     <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
-                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDataFromBehance">
                                     Import CV
                                 </v-btn>
                             </div>
@@ -522,6 +523,39 @@
 
                                 <div v-show="errors.cv" style="color: red;" class="mt-3">
                                     {{errors.cv}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="outer-container information-container"  v-if="behanceProjects.length > 0" >
+            <div class="title">
+                <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
+                <span>Please pick your projects</span>
+            </div>
+            <div class="dns-main-content-container resume-builder__scroll">
+                <div class="dns-main-content">
+                    <div class="import-cv-wrapper">
+                        <div>
+                            <div class="import-results">
+                                <div class="sections">
+                                    <div class="import-action-btns no-background mb-5">
+                                        <div class="d-flex justify-space-between">
+                                            <div class="d-flex">
+                                                <div class="import-btn">
+                                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importBehanceProjects" :class="{disabled : importingBehanceProjects}">
+                                                        {{importingBehanceProjects ? 'Importing.. ' : 'Import'}}
+                                                    </v-btn>
+                                                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAllProjects">
+                                                        {{ isAllProjectsSelected ? 'Deselect' : 'Select'}} all
+                                                    </v-btn>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1208,6 +1242,7 @@
                 downloadProgress: 0,
                 importing: false,
                 importingExtractedData: false,
+                importingBehanceProjects: false,
                 sections: [
                     {
                         title: 'profile',
@@ -1257,9 +1292,12 @@
                     }
                 ],
                 isAllSelected:false,
+                isAllProjectsSelected:false,
                 showFullText: false,
                 showToolTip: false,
-                linkedInProfile:''
+                linkedInProfile:'',
+                behanceUsername:'',
+                behanceProjects:[],
 
             }
         },
@@ -1411,6 +1449,19 @@
                 this.file = this.$refs.file.files[0];
             },
 
+            // Import data from Behance:
+            importDataFromBehance(){
+                axios.get('/resume-builder/import/behance/' + this.behanceUsername)
+                    .then((response) => {
+                        console.log('Behance Data:');
+                        console.log(response.data.fullpProjects);
+                        this.behanceProjects = response.data.fullpProjects;
+                    }
+                );
+            },
+            importBehanceProjects(){
+
+            },
 
             // dropzone funcions
             handlingEvent: function (file) {
@@ -1443,6 +1494,9 @@
                     return;
                 }
                 this.SelectAllSections();
+            },
+            toggleSelectAllProjects(){
+
             },
             SelectAllSections(){
                 this.isAllSelected = true;
