@@ -107,4 +107,7 @@
   'open sans bold' => array(
     'normal' => $fontDir . '/open-sans-bold-normal_0ec39ddaa9bbbc1815bddb835c62acdf',
   ),
+  'actor' => array(
+    'normal' => $fontDir . '/actor-normal_db9f1e3bf24b2b2a45469cebab9b002e',
+  ),
 ) ?>
