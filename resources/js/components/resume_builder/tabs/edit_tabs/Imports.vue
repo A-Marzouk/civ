@@ -547,7 +547,7 @@
                                             <div class="project ml-md-4" v-for="project in behanceProjects">
                                                 <div class="project__header">
                                                     <div class="resume-builder__action-buttons-container">
-                                                        <div class="checkbox" @click="toggleSelectionOfBehanceProject(project.id)">
+                                                        <div class="checkbox" @click="toggleSelectionOfBehanceProject(project)">
                                                             <img v-show="project.selected" src="/images/resume_builder/imports/checkbox-on.svg"
                                                                  alt="checkbox">
                                                             <img v-show="!project.selected" src="/images/resume_builder/imports/checkbox-off.svg"
@@ -1500,6 +1500,9 @@
             },
             importBehanceProjects(){
 
+            },
+            toggleSelectionOfBehanceProject(project){
+                project.selected = !project.selected;
             },
 
             // dropzone funcions
