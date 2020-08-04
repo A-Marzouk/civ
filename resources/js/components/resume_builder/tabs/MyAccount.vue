@@ -1,19 +1,19 @@
 <template>
     <v-app>
-        <div v-if="currentUser">
+        <div v-if="currentUser && personalInfo">
 
             <my-upload @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></my-upload>
 
             <div id="myAccountTab" class="my-account-tab-wrapper">
                 <div class="profile-pic-row" v-if="personalInfo">
                     <div class="profile-pic">
-                        <img :src="personalInfo.profile_pic" alt/>
+                        <img :src="personalInfo.profile_pic"/>
                         <div class="photo-cover" @click="showImageUpload = true">
                             <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
                         </div>
                     </div>
                     <div class="info-my-account">
-                        <div class="name">{{accountData.name}}</div>
+                        <div class="name">{{personalInfo.first_name}}</div>
                         <div class="job-title">{{personalInfo.designation}}</div>
                     </div>
                 </div>
@@ -24,10 +24,10 @@
                 <div class="form-wrapper mt-n1">
                     <div class="content-wrapper">
                         <div class="mar-form">
-                            <v-text-field
+                            <v-text-field v-if="personalInfo"
                                     class="resume-builder__input input-margin input-margin-3"
-                                    label="Full name"
-                                    v-model="accountData.name"
+                                    label="First name"
+                                    v-model="personalInfo.first_name"
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.name"
@@ -343,14 +343,17 @@
             },
             personalInfo() {
                 return this.$store.state.user.personal_info;
+            },
+            user() {
+                return this.$store.state.user;
             }
         },
         methods: {
 
             // Image cropping
             cropSuccess(imgDataUrl) {
-                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl,'profile');
-                this.applyEdit("auto");
+                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
+                this.applyEdit();
             },
 
             dataURLtoFile(dataURL, filename) {
@@ -379,7 +382,7 @@
                     this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
                     this.tempPic = URL.createObjectURL(this.$refs.profile_picture.files[0]);
                     this.profile_pic_error = "";
-                    this.applyEdit("auto");
+                    this.applyEdit();
                 } else {
                     console.log("error in pic");
                     this.profile_pic_error = "Incorrect file chosen!";
@@ -395,7 +398,7 @@
                 }
                 return isValid;
             },
-            applyEdit(savingType) {
+            applyEdit() {
                 let formData = new FormData();
                 formData.append("_method", "put");
                 formData.append("user_id", this.currentUser.id);
@@ -413,16 +416,11 @@
 
                 this.errors = {};
 
-                axios
-                    .post("/api/user/personal-info", formData, {
+                axios.post("/api/user/personal-info", formData, {
                         headers: {"Content-Type": "multipart/form-data"}
                     })
                     .then(response => {
-                        if (savingType === "manual") {
-                            this.$store.dispatch('flyingNotification');
-                        } else {
-                            this.$store.dispatch("flyingNotification");
-                        }
+                        this.$store.dispatch('flyingNotification');
                         this.personalInfo.profile_pic = response.data.data.profile_pic;
                     })
                     .catch(error => {
@@ -476,15 +474,12 @@
 
                 if (this.isUsernameChanged()) {
                     this.accountData.userNameChanged = true;
+                    this.user.username = this.accountData.username;
                 }
 
-                axios
-                    .post("/api/user/account/submit", this.accountData)
-                    .then(response => {
-                        // changes saved pop-up
-                        this.$store.dispatch('flyingNotification');
-
-                        // redirect user to the edit:
+                axios.post("/api/user/account/submit", this.accountData)
+                    .then( (response) => {
+                        this.applyEdit();
                         this.$router.push('/resume-builder/edit/profile');
                     })
                     .catch(error => {
@@ -572,7 +567,6 @@
     }
 
 
-
 </style>
 <style lang="scss">
     @import "../../../../sass/media-queries";
@@ -584,20 +578,20 @@
     $placeholder-color: #9ba1ad;
 
 
-    .subscription-modal{
-        .v-dialog{
-            max-width:550px;
-            @include lt-md{
-                max-width:500px;
+    .subscription-modal {
+        .v-dialog {
+            max-width: 550px;
+            @include lt-md {
+                max-width: 500px;
             }
         }
     }
 
-    .padding-sm-1{
-        @include lt-sm{
+    .padding-sm-1 {
+        @include lt-sm {
             padding: 5px !important;
         }
-        @include lt-md{
+        @include lt-md {
             padding: 5px !important;
         }
     }
@@ -633,6 +627,7 @@
             display: flex;
             align-items: center;
             margin-bottom: 40px;
+
             .profile-pic {
 
                 position: relative;
@@ -1562,47 +1557,47 @@
 
     // image crop styles not scoped
 
-    .vue-image-crop-upload{
-        .vicp-wrap{
+    .vue-image-crop-upload {
+        .vicp-wrap {
             width: 95%;
             max-width: 600px;
             height: fit-content;
             min-height: 300px;
 
-            @include lt-sm{
+            @include lt-sm {
                 min-height: 530px;
             }
 
-            .vicp-close{
-                right:0 !important;
+            .vicp-close {
+                right: 0 !important;
             }
 
-            .vicp-step1{
-                .vicp-operate{
-                    a{
+            .vicp-step1 {
+                .vicp-operate {
+                    a {
                         color: #001ce2;
                         font-weight: 500;
                     }
                 }
             }
 
-            .vicp-step2{
+            .vicp-step2 {
 
-                .vicp-crop{
-                    @include lt-sm{
+                .vicp-crop {
+                    @include lt-sm {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
 
-                        .vicp-crop-right{
+                        .vicp-crop-right {
                             margin-top: 40px;
                         }
                     }
 
                 }
 
-                .vicp-operate{
-                    a{
+                .vicp-operate {
+                    a {
                         color: #001ce2;
                         font-weight: 500;
                     }
