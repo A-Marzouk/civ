@@ -20,7 +20,6 @@
                                 v-for="(tabItem) in viewTabs"
                                 :key="tabItem"
                                 :ripple="false"
-                                :style="{ display: (tabItem === 'about-me-&-awards' && !currentUser.personal_info.is_about_active) && 'none' }"
                             >
                                 {{ formatTab(tabItem) }}
                             </v-tab>

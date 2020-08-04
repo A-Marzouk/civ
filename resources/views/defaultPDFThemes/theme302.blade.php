@@ -53,6 +53,10 @@
 
         }
 
+        p {
+            margin-top: 0;
+        }
+
         .user-name {
             font-family: Raleway;
             color: #104EFB;
@@ -94,8 +98,14 @@
             text-decoration-line: underline;
             text-align: center;
             display: inline-block;
+            margin-right: 30px;
+            vertical-align: bottom;
 
             color: #104EFB;
+        }
+
+        .user-social .link:last-child {
+            margin: 0;
         }
 
         .user-social .link img {
@@ -135,12 +145,12 @@
             line-height: 15px;
             color: #104EFB;
 
-            margin-top: 10px;
+            margin-top: 40px;
         }
 
         .works-container,
         .educations-container {
-            margin-top: 10px;
+            margin-top: 40px;
             width: 100%;
         }
 
@@ -214,12 +224,17 @@
 
 
         .skills-container table tr .skill .percentage {
-			margin-bottom: 20px;
+			margin-bottom: 15px;
+            font-weight: bold;
 		}
 
+        .skills-container table tr .skill .skill-img {
+            vertical-align: top;
+        }
 
 		.skills-container table tr .skill .skill-img img {
-			display: block;
+            display: block;
+            vertical-align: middle;
 		}
 
     </style>
@@ -238,38 +253,38 @@
 
             <div class="user-data">
                 <div class="link">
-                    <img src="{{public_path('images/resume_themes/theme302/location-icon.png')}}" alt="">
+                    <img style="width: 8px;" src="{{public_path('images/resume_themes/theme302/location-icon.png')}}" alt="">
                     42 Great Windmill Street London W1D 7NB
                 </div>
                 <a class="link" href='#'>
-                    <img src="{{public_path('images/resume_themes/theme302/whatsapp-icon.png')}}" alt="">
+                    <img style="width: 12px;" src="{{public_path('images/resume_themes/theme302/whatsapp-icon.png')}}" alt="">
                     +584241714022
                 </a>
                 <a class="link" href='https://civ.ie'>
-                    <img src="{{public_path('images/resume_themes/theme302/google-icon.png')}}" alt="">
+                    <img style="width: 10px;" src="{{public_path('images/resume_themes/theme302/google-icon.png')}}" alt="">
                     Civie.com/myprofile
                 </a>
             </div>
         </div>
 
         <div class="user-social">
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/pinterest-icon.png')}}" alt="">
                 Pinterest user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/behance-icon.png')}}" alt="">
                 Behance user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/dribbble-icon.png')}}" alt="">
                 Dribbble user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/instagram-icon.png')}}" alt="">
                 Instagram user
             </a>
-            <a href="https://pinterest.com" class="link" style="width: 20%">
+            <a href="https://pinterest.com" class="link">
                 <img src="{{public_path('images/resume_themes/theme302/linkedin-icon.png')}}" alt="">
                 Linkedin user
             </a>
@@ -453,19 +468,19 @@
                 <tr>
                     <td class="skill">
                         <div class="percentage">80%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-php.png') }}" /></div>
+						<div class="skill-img">Php</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-css3.png') }}" /></div>
+						<div class="skill-img">Javascript</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">97%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-html5.png') }}" /></div>
+						<div class="skill-img">HTML</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-js.png') }}" /></div>
+						<div class="skill-img">CSS</div>
                     </td>
                 </tr>
             </table>
@@ -473,19 +488,19 @@
                 <tr>
                     <td class="skill">
                         <div class="percentage">80%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-php.png') }}" /></div>
+						<div class="skill-img">Php</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-css3.png') }}" /></div>
+						<div class="skill-img">Javascript</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">97%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-html5.png') }}" /></div>
+						<div class="skill-img">HTML</div>
                     </td>	
                     <td class="skill">
                         <div class="percentage">90%</div>
-						<div class="skill-img"><img src="{{ public_path('images/resume_themes/theme302/icons/icon-js.png') }}" /></div>
+						<div class="skill-img">CSS</div>
                     </td>
                 </tr>
             </table>
