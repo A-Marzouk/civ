@@ -144,6 +144,11 @@ export default {
           icon: "structure",
           label: "Structure"
         },
+        {
+          url: "/resume-builder/edit/themes",
+          icon: "themes",
+          label: "Themes"
+        },
       ],
 
       currentSidebarLink: {

@@ -9,7 +9,7 @@
                 >{{tabName.replace('_',' ')}}
                 </v-tab>
             </v-tabs>
-            <v-card class="card-main pa-10 resume-builder__scroll pay-content" :class="{'shortened' : extractedText.length > 1}" flat id="payContent">
+            <v-card class="card-main pa-10 resume-builder__scroll pay-content" :class="{'shortened' : extractedText.length > 1 || behanceProjects.length > 0}" flat id="payContent">
                 <v-tabs-items v-model="importTab">
                     <v-tab-item class="import-tab-item">
                         <div class="title">
@@ -553,12 +553,6 @@
                                                             <img v-show="!project.selected" src="/images/resume_builder/imports/checkbox-off.svg"
                                                                  alt="checkbox">
                                                         </div>
-                                                        <v-btn class="btn-icon civie-btn"  depressed>
-                                                            <svg-vue
-                                                                    icon="edit-icon"
-                                                                    class="icon"
-                                                            ></svg-vue>
-                                                        </v-btn>
                                                     </div>
                                                 </div>
                                                 <div class="project__body">
@@ -1499,12 +1493,38 @@
                 );
             },
             importBehanceProjects(){
+                // get only selected projects:
+                let selectedProjects = this.behanceProjects.filter( project => project.selected);
+                let toImportProjects = [] ;
+
+
+                selectedProjects.forEach((project) => {
+                    toImportProjects.push({
+                        name: project.name,
+                        link: project.url,
+                        image: project.covers.original,
+                        description: project.description,
+                        user_id: this.$store.state.user.id,
+                        is_public: 1
+                    })
+                });
+
+                axios.post('/api/user/projects/many', {projects: toImportProjects, user_id: this.$store.state.user.id})
+                    .then( (response) => {
+                        this.clearBehanceImport();
+                        let savedProjects = response.data;
+                        savedProjects.forEach( (project) => {
+                            this.projects.push(project);
+                        });
+                        this.$store.dispatch('flyingNotification');
+                    });
 
             },
-            toggleSelectionOfBehanceProject(project){
-                project.selected = !project.selected;
-            },
 
+            clearBehanceImport(){
+              this.behanceProjects = [] ;
+              this.behanceUsername = '';
+            },
             // dropzone funcions
             handlingEvent: function (file) {
                 this.file = file
@@ -1537,9 +1557,6 @@
                 }
                 this.SelectAllSections();
             },
-            toggleSelectAllProjects(){
-
-            },
             SelectAllSections(){
                 this.isAllSelected = true;
                 this.sections.forEach( (section) => {
@@ -1550,6 +1567,29 @@
                 this.isAllSelected = false;
                 this.sections.forEach( (section) => {
                     section.selected = false;
+                })
+            },
+
+            toggleSelectionOfBehanceProject(project){
+                project.selected = !project.selected;
+            },
+            toggleSelectAllProjects(){
+                if(this.isAllProjectsSelected){
+                    this.DeSelectAllProjects();
+                    return;
+                }
+                this.SelectAllProjects();
+            },
+            SelectAllProjects(){
+                this.isAllProjectsSelected = true;
+                this.behanceProjects.forEach( (project) => {
+                    project.selected = true;
+                })
+            },
+            DeSelectAllProjects(){
+                this.isAllProjectsSelected = false;
+                this.behanceProjects.forEach( (project) => {
+                    project.selected = false;
                 })
             },
 
@@ -1957,6 +1997,16 @@
                     });
                 }
             },
+        },
+        computed:{
+            projects: {
+                get() {
+                    return this.$store.state.user.projects;
+                },
+                set(projects) {
+                    this.$store.commit("updateProjects", projects);
+                }
+            }
         },
         mounted() {
 

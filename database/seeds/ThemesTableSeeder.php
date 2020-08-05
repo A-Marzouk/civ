@@ -14,60 +14,60 @@ class ThemesTableSeeder extends Seeder
     {
         Theme::insert([
             [
-                'title' => 'Theme 201 - white',
-                'category' => 'developer',
-                'color'=> 'white',
-                'code' => 201,
-                'image' => '/images/resume_themes/theme201/preview.png'
+                'title' => 'Theme 1001',
+                'category' => 'new',
+                'color'=> 'mixed',
+                'code' => 1001,
+                'image' => '/images/resume_themes/theme1001/preview.png'
             ],
             [
-                'title' => 'Theme 3 - white & blue',
-                'category' => 'developer',
-                'color'=> 'white and blue',
-                'code' => 3,
-                'image' => '/images/resume_themes/theme3/preview.png'
-            ],
-            [
-                'title' => 'Theme 200 - purple',
-                'category' => 'developer',
-                'color'=> 'purple',
-                'code' => 200,
-                'image' => '/images/resume_themes/theme200/preview.png'
-            ],
-            [
-                'title' => 'Theme 8 - black',
-                'category' => 'developer',
-                'color'=> 'black',
-                'code' => 8,
-                'image' => '/images/resume_themes/theme8/preview.png'
-            ],
-            [
-                'title' => 'Theme 300 - white and red',
-                'category' => 'developer',
-                'color'=> 'white and red',
-                'code' => 300,
-                'image' => '/images/resume_themes/theme300/preview.png'
-            ],
-            [
-                'title' => 'Theme 5 - mixed',
-                'category' => 'developer',
-                'color'=> 'white and red',
-                'code' => 5,
-                'image' => '/images/resume_themes/theme300/preview.png'
-            ],
-            [
-                'title' => 'Theme 500 - mixed',
-                'category' => 'developer',
-                'color'=> 'white and red',
-                'code' => 500,
-                'image' => '/images/resume_themes/theme300/preview.png'
-            ],
-            [
-                'title' => 'Theme 500 - mixed',
-                'category' => 'developer',
-                'color'=> 'white and red',
+                'title' => 'Theme 511',
+                'category' => 'new',
+                'color'=> 'mixed',
                 'code' => 511,
                 'image' => '/images/resume_themes/theme511/preview.png'
+            ],
+            [
+                'title' => 'Theme 206',
+                'category' => 'new',
+                'color'=> 'mixed',
+                'code' => 206,
+                'image' => '/images/resume_themes/theme206/preview.png'
+            ],
+            [
+                'title' => 'Theme 501',
+                'category' => 'new',
+                'color'=> 'mixed',
+                'code' => 501,
+                'image' => '/images/resume_themes/theme501/preview.png'
+            ],
+            [
+                'title' => 'Theme 502',
+                'category' => 'new',
+                'color'=> 'mixed',
+                'code' => 502,
+                'image' => '/images/resume_themes/theme502/preview.png'
+            ],
+            [
+                'title' => 'Theme 203',
+                'category' => 'new',
+                'color'=> 'mixed',
+                'code' => 203,
+                'image' => '/images/resume_themes/theme203/preview.png'
+            ],
+            [
+                'title' => 'Theme 5',
+                'category' => 'new',
+                'color'=> 'mixed',
+                'code' => 5,
+                'image' => '/images/resume_themes/theme5/preview.png'
+            ],
+            [
+                'title' => 'Theme 8',
+                'category' => 'new',
+                'color'=> 'mixed',
+                'code' => 8,
+                'image' => '/images/resume_themes/theme8/preview.png'
             ],
         ]);
     }

@@ -38,6 +38,7 @@ import ResumeBuilderEditCVPayAvailability  from './components/resume_builder/tab
 import ResumeBuilderEditCVImports from './components/resume_builder/tabs/edit_tabs/Imports'
 import ResumeBuilderEditCVDownloads from './components/resume_builder/tabs/edit_tabs/Downloads'
 import ResumeBuilderEditCVStructure from './components/resume_builder/tabs/edit_tabs/Structure'
+import ResumeBuilderEditCVSThemes from './components/resume_builder/tabs/edit_tabs/Themes'
 import ResumeBuilderEditCVReferences from './components/resume_builder/tabs/edit_tabs/References'
 
 if ($("#adminResumeBuilder").length !== 0) {
@@ -112,6 +113,10 @@ if ($("#adminResumeBuilder").length !== 0) {
                 {
                     path: '/resume-builder/edit/references',
                     component: ResumeBuilderEditCVReferences
+                },
+                {
+                    path: '/resume-builder/edit/themes',
+                    component: ResumeBuilderEditCVSThemes
                 },
             ]
         },
