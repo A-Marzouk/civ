@@ -36,7 +36,7 @@
                                   target="_blank"
                                   class='pdf-button'
                                 >
-                                  <svg-vue :icon="'themes.pdf-button-theme3'"></svg-vue>
+                                  <svg-vue :icon="'themes.pdf-button-theme200'"></svg-vue>
                                 </a>
                               </v-list-item-title>
                               <v-list-item-subtitle class="ml-md-5">

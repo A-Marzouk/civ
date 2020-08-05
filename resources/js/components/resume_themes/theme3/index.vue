@@ -52,7 +52,7 @@
                   href="/preview-theme-pdf-by-code/theme21"
                   target="_blank"
                 >
-                  <svg-vue class="pdf-icon" :icon="'themes.pdf-button-theme2'"></svg-vue>
+                  <svg-vue class="pdf-icon" :icon="'themes.pdf-button-theme3'"></svg-vue>
                 </a>
               </div>
             </div>
