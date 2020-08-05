@@ -221,7 +221,7 @@ export default {
 			};
 		},
 		validURL(str) {
-			var pattern = new RegExp(
+			let pattern = new RegExp(
 				"^(https?:\\/\\/)?" + // protocol
 				"((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
 				"((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
@@ -230,7 +230,14 @@ export default {
 					"(\\#[-a-z\\d_]*)?$",
 				"i"
 			); // fragment locator
+			if(this.editedLink.link_title === 'Skype'){
+				return this.testSkypeUrl(str);
+			}
 			return !!pattern.test(str);
+		},
+		testSkypeUrl(skype_url){
+			let skypePattern = /skype:/ig ;
+			return skypePattern.test(skype_url);
 		},
 		getCurrentCategories() {
 			if (this.linkCategory === "professional") {
