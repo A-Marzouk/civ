@@ -1042,14 +1042,10 @@ export default {
         }
 
         .pdf-btn {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border: 1px solid #5289e7;
-          border-radius: 50%;
           height: 43px;
           width: 43px;
           margin-left: 27px;
+          vertical-align: bottom;
 
           a {
             display: flex;
@@ -1062,6 +1058,11 @@ export default {
           svg {
             height: 41px;
             fill: none;
+            // transform: scale(1.3);
+          }
+
+          path {
+            fill: white;
           }
 
           @media only screen and (max-width: 765px) {
