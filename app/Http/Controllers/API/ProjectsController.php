@@ -66,6 +66,28 @@ class ProjectsController extends Controller
         }
     }
 
+    public function storeMany(Request $request){
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
+        $addedProjects = [];
+
+        foreach($request->projects as $project){
+            $newProject = Project::create($project);
+            if(isset($project['image'])){
+                $newProject->images()->create([
+                    'src' => $project['image'],
+                    'is_main' => true
+                ]);
+            }
+            $newProject['images'] = $newProject->images;
+            $addedProjects[] = $newProject;
+        }
+
+        return $addedProjects;
+    }
+
     public function show($id)
     {
         $project = Project::where([
