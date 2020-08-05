@@ -18,6 +18,7 @@ class Theme extends Model
         'code',
         'developer',
         'image',
+        'order',
     ];
 
 
