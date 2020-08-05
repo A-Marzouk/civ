@@ -17,14 +17,9 @@
                             >
                                 <v-hover>
                                     <template v-slot:default="{ hover }">
-                                        <v-card class="card-theme-holder pa-0 ma-0" flat color="transparent">
+                                        <v-card class="card-theme-holder pa-0 ma-0":style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
                                             <v-row justify="center">
-                                                <img
-                                                        :src="theme.image"
-                                                        alt="themes"
-                                                        class="theme-image"
-                                                        :class="theme.id == user.theme.id? 'active': 'inactive'"
-                                                />
+                                                <div class="theme-image holder" :class="theme.id == user.theme.id? 'active': 'inactive'"></div>
                                                 <v-fade-transition>
                                                     <v-overlay
                                                             v-if="hover"
@@ -94,21 +89,6 @@
                     <v-card flat tile color="transparent"></v-card>
                 </v-col>
             </v-row>
-            <v-dialog
-                    v-model="viewThemeModal"
-                    class="view-theme-modal"
-                    max-width="964"
-                    max-height="678"
-                    style="border-radius:10px;"
-            >
-                <v-card class="view-theme-modal-card">
-                    <img
-                            src="/images/new_resume_builder/themes-wrapper.svg"
-                            alt="themes"
-                            class="theme-img-modal"
-                    />
-                </v-card>
-            </v-dialog>
         </v-container>
     </v-app>
 </template>
@@ -424,6 +404,7 @@
         .card-theme-holder {
             max-width: 417px;
             max-height: 302.56px;
+            background-size: cover;
             @media screen and (min-width: 960px) and (max-width: 1903px) {
                 width: 274px;
                 height: 200px;
@@ -447,7 +428,7 @@
             .inactive {
                 border: 1px solid #888db1;
             }
-            img {
+            .holder {
                 max-width: 417px;
                 max-height: 302.56px;
                 height: 302.56px;
