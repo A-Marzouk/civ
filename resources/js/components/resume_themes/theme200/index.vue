@@ -31,6 +31,13 @@
                             <v-list-item-content>
                               <v-list-item-title class="ml-md-4">
                                 <span class="profile-title">{{currentUser.personal_info.full_name}}</span>
+                                <a 
+                                  href="/preview-theme-pdf-by-code/theme21"
+                                  target="_blank"
+                                  class='pdf-button'
+                                >
+                                  <svg-vue :icon="'themes.pdf-button-theme3'"></svg-vue>
+                                </a>
                               </v-list-item-title>
                               <v-list-item-subtitle class="ml-md-5">
                                 <span
@@ -1925,3 +1932,17 @@ export default {
 }
 </style>
 
+<style lang="scss">
+  #resumeTheme200 {
+    .pdf-button {
+      path {
+        fill: white;
+      }
+      
+      circle {
+          fill: rgb(0, 205, 247);
+          height: 100%;
+      }
+    }
+  }
+</style>
