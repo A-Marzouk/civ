@@ -23,17 +23,19 @@
         border-radius: 22px !important;
     }
     .pdf-button {
-        height: 44px;
-        width: 44px;
+        height: 36px;
+        width: 36px;
         margin-left: 5px;
-        display: inline-block;
+        display: inline-flex;
+        align-items: flex-end;
+        justify-content: center;
         vertical-align: bottom;
-
+        
         svg {
             height: 100%;
             width: 100%;
             fill: rgb(0, 205, 247);
-            transform: scale(1.5);
+            // transform: scale(1);
         }
     }
 

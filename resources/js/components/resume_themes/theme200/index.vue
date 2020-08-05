@@ -1931,18 +1931,3 @@ export default {
   }
 }
 </style>
-
-<style lang="scss">
-  #resumeTheme200 {
-    .pdf-button {
-      path {
-        fill: white;
-      }
-      
-      circle {
-          fill: rgb(0, 205, 247);
-          height: 100%;
-      }
-    }
-  }
-</style>
