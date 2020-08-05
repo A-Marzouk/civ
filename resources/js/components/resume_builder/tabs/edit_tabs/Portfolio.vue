@@ -264,8 +264,7 @@ export default {
 
     toggleProject(project) {
       project.is_public = !project.is_public;
-      axios
-        .put("/api/user/projects", project)
+      axios.put("/api/user/projects", project)
         .then((response) => {
           this.$store.dispatch("flyingNotification");
         })

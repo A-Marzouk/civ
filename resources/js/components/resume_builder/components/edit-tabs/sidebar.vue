@@ -134,11 +134,11 @@ export default {
           icon: "pay-availability",
           label: "Pay availability"
         },
-        {
-          url: "/resume-builder/edit/downloads",
-          icon: "downloads",
-          label: "Downloads"
-        },
+        // {
+        //   url: "/resume-builder/edit/downloads",
+        //   icon: "downloads",
+        //   label: "Downloads"
+        // },
         {
           url: "/resume-builder/edit/structure",
           icon: "structure",

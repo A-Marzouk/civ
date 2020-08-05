@@ -76,7 +76,7 @@ export default {
         SkillsTab,
         ThemeHeader
     },
-    data: () => ({
+    data: (vm) => ({
         tab: 0,
         viewTabs: [
             'portfolio',
@@ -84,13 +84,30 @@ export default {
             'education',
             'skills-and-language',
             'about-me-&-awards'
-        ]
+        ],
+        currentUser: vm.user
     }),
     methods: {
         formatTab(tab) {
             let tabArray = tab.split('-').map(t => t.charAt(0).toUpperCase() + t.slice(1))
             return tabArray.join(" ")
+        },
+        /**
+         * @description
+         * Set the currentUser from dummyUser in the store state
+         */
+        setDummyUser() {
+            this.currentUser = this.$store.state.dummyUser;
         }
+    },
+    mounted () {
+        // if there is no user or the preview is true, set dummy user
+        if (!this.currentUser || this.is_preview) {
+            this.setDummyUser();
+        }
+
+        // let user accessible in included components.
+        this.$store.dispatch("updateThemeUser", this.currentUser);
     }
 }
 </script>
