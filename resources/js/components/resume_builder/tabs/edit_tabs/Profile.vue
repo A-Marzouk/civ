@@ -80,7 +80,11 @@
                             <v-text-field
                                     v-model="personalInfo.date_of_birth"
                                     class="resume-builder__input civie-datepicker profile-input"
+<<<<<<< HEAD
                                     label="Birthdate"
+=======
+                                    label="Date Of Birth"
+>>>>>>> 57e0c2111685c50408eaed169a9b4733c8a21bd9
                                     color="#001CE2"
                                     readonly
                                     v-on="on"
