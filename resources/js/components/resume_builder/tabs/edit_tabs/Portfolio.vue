@@ -1,7 +1,10 @@
 <template>
   <div class="portfolio-contents" id="portfolio-tab">
     <div class="data-container">
-      <v-card class="view-container resume-builder__scroll" style="overflow-x: hidden !important;">
+      <v-card
+        class="view-container resume-builder__scroll"
+        style="overflow-x: hidden !important;"
+      >
         <v-form class="grid-form" ref="form">
           <v-text-field
             id="projectName"
@@ -80,12 +83,15 @@
           ></v-text-field>
 
           <div class="col-12 d-flex flex-column">
-            <div class="uploadedImagesList" v-if="editedProject.images.length > 0 ">
+            <div
+              class="uploadedImagesList"
+              v-if="editedProject.images.length > 0"
+            >
               <div
                 class="imageRow"
                 v-for="image in editedProject.images"
                 :key="image.id"
-                v-if="image.src"
+                v-show="image.src"
               >
                 <img :src="image.src" alt="project image" />
                 <div class="remove-image" @click="deleteProjectImage(image)">
@@ -99,14 +105,16 @@
                 class="resume-builder__btn civie-btn filled"
                 raised
                 @click="saveProject"
-              >{{editedProject.id !== '' ? 'Update' : 'Add New'}}</v-btn>
+                >{{ editedProject.id !== "" ? "Update" : "Add New" }}</v-btn
+              >
 
               <v-btn
                 class="resume-builder__btn civie-btn ml-2"
                 raised
                 @click="clearProject"
-                v-show="editedProject.id !== '' "
-              >Cancel</v-btn>
+                v-show="editedProject.id !== ''"
+                >Cancel</v-btn
+              >
             </div>
           </div>
         </v-form>
@@ -115,56 +123,111 @@
           class="projects-list"
           v-if="projects"
           v-model="projects"
-          @start="drag=true"
-          @end="drag=false"
+          @start="drag = true"
+          @end="drag = false"
           handle=".drag-handler"
         >
-          <div class="project ml-md-4" v-for="project in projects" :class="{'half-opacity' : !project.is_public}">
+          <div
+            class="project ml-md-4"
+            v-for="project in projects"
+            :key="project.id"
+            :class="{ 'half-opacity': !project.is_public }"
+          >
             <div class="project__header">
               <v-btn depressed class="drag-and-drop-handler drag-handler">
                 <svg-vue :icon="'drag-and-drop-icon'" class="icon"></svg-vue>
               </v-btn>
               <div class="resume-builder__action-buttons-container">
-                <v-btn class="btn-icon civie-btn" depressed @click="toggleProject(project)">
-                  <svg-vue icon="eye-icon" :class="{'visible' : project.is_public}" class="icon"></svg-vue>
+                <v-btn
+                  class="btn-icon civie-btn"
+                  depressed
+                  @click="toggleProject(project)"
+                >
+                  <svg-vue
+                    icon="eye-icon"
+                    :class="{ visible: project.is_public }"
+                    class="icon"
+                  ></svg-vue>
                 </v-btn>
-                <v-btn class="btn-icon civie-btn" @click="editProject(project)" depressed>
+                <v-btn
+                  class="btn-icon civie-btn"
+                  @click="editProject(project)"
+                  depressed
+                >
                   <svg-vue
                     icon="edit-icon"
                     class="icon"
-                    :class="{'visible' : project.id === editedProject.id}"
+                    :class="{ visible: project.id === editedProject.id }"
                   ></svg-vue>
                 </v-btn>
-                <v-btn class="btn-icon civie-btn" @click="deleteProject(project)" depressed>
+                <v-btn
+                  class="btn-icon civie-btn"
+                  @click="deleteProject(project)"
+                  depressed
+                >
                   <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
                 </v-btn>
               </div>
             </div>
-            <div class="project__body">
+            <!-- <div class="project__body">
               <div class="project__img">
-                <div class="project__name">{{project.name}}</div>
+                <div class="project__name">{{ project.name }}</div>
                 <img :src="getMainImage(project)" alt="portfolio img" />
               </div>
-              <div class="project__info">
-                <div class="project__name">{{project.name}}</div>
+              <div class="project__info text-wrap">
+                <div class="project__name">
+                  {{ project.name }}
+                </div>
                 <div class="project__url">
                   <b>URL:</b>
-                  <a :href="project.link">{{project.link}}</a>
+                  <a :href="project.link">{{ project.link }}</a>
                 </div>
                 <div class="project__skills">
                   <b>Skills:</b>
-                  {{project.skills}}
+                  {{ project.skills }}
                 </div>
                 <div class="project__softwares">
                   <b>Software:</b>
-                  {{project.software}}
+                  {{ project.software }}
                 </div>
                 <div class="project__description">
                   <b>Description:</b>
-                  {{project.description}}
+                  {{ project.description }}
                 </div>
               </div>
-            </div>
+            </div> -->
+
+            <v-row class="project_body" no-gutters>
+              <v-col cols="12" sm="4" lg="4" class="project_img">
+                <div class="project_name d-block d-sm-none d-lg-none">
+                  {{ project.name }}
+                </div>
+                <v-img
+                  cover
+                  :aspect-ratio="1.2"
+                  :src="getMainImage(project)"
+                  alt="portfolio img"
+                >
+                </v-img>
+              </v-col>
+              <v-col cols="12" sm="8" lg="8" class="pl-0 pl-sm-4 project_info">
+                <div class="project_name d-none d-sm-block d-lg-block">
+                  {{ project.name }}
+                </div>
+                <div class="project_url">
+                  <b>URL:</b>
+                  <a :href="project.link">{{ project.link }}</a>
+                </div>
+                <div class="project_skills">
+                  <b>Skills:</b>
+                  {{ project.skills }}
+                </div>
+                <div class="project_description">
+                  <b>Description:</b>
+                  {{ project.description }}
+                </div>
+              </v-col>
+            </v-row>
           </div>
         </draggable>
       </v-card>
@@ -383,8 +446,8 @@ export default {
   margin-left: -12px;
 }
 
-.portfolio-contents{
-  @include lt-sm{
+.portfolio-contents {
+  @include lt-sm {
     max-width: 94%;
     margin-right: auto;
     margin-left: auto;
@@ -596,6 +659,53 @@ export default {
 
           @include lt-sm {
             flex-wrap: wrap;
+          }
+        }
+        &_body {
+          margin-top: 10px;
+          .project_img {
+            .project {
+              &_name {
+                @include lt-sm {
+                  display: block;
+                  font-size: 20px;
+                  font-weight: normal;
+                  color: $mainColor;
+                  margin-bottom: 10px;
+                }
+              }
+            }
+
+            @include lt-sm {
+              img {
+                margin-bottom: 15px;
+              }
+            }
+          }
+
+          .project_info {
+            margin-top: 14px;
+
+            .project {
+              &_name {
+                font-size: 24px;
+                font-weight: 700;
+                color: $mainColor;
+                margin-bottom: 10px;
+              }
+
+              &_url,
+              &_skills,
+              &_softwares,
+              &_description {
+                color: $inputTextColor;
+              }
+            }
+
+            @include lt-sm {
+              width: 100%;
+              margin-left: 0;
+            }
           }
         }
       }
