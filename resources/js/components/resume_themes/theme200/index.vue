@@ -31,6 +31,13 @@
                             <v-list-item-content>
                               <v-list-item-title class="ml-md-4">
                                 <span class="profile-title">{{currentUser.personal_info.full_name}}</span>
+                                <a 
+                                  href="/preview-theme-pdf-by-code/theme21"
+                                  target="_blank"
+                                  class='pdf-button'
+                                >
+                                  <svg-vue :icon="'themes.pdf-button-theme200'"></svg-vue>
+                                </a>
                               </v-list-item-title>
                               <v-list-item-subtitle class="ml-md-5">
                                 <span
@@ -92,13 +99,13 @@
                   <!-- Hidden in sm and up phone icons -->
                   <v-col col="1" class="hidden-sm-and-up" align="right">
                     <v-card flat color="transparent">
-                      <v-btn small color="#00CDF7" class="phone-btn">
-                        <img src="/images/resume_themes/theme200/icons/telephone-handle.png" />
+                      <v-btn small color="#00CDF7" class="phone-btn" @click.stop="audioModal=true">
+                        <img src="/images/resume_themes/theme200/icons/volume.svg" />
                       </v-btn>
                     </v-card>
                     <v-card flat color="transparent" class="mt-6">
-                      <v-btn small color="#E8E5F6" class="video-btn">
-                        <img src="/images/resume_themes/theme200/icons/youtube-camera.png" />
+                      <v-btn small color="#E8E5F6" class="video-btn" @click.stop="videoModal=true">
+                        <img src="/images/resume_themes/theme200/icons/camera.svg" />
                       </v-btn>
                     </v-card>
                   </v-col>
@@ -195,7 +202,11 @@
                         <v-row no-gutters>
                           <!-- Only shows on tablet and dekstop version -->
                           <v-col cols="12" md="10" sm="12" class="interview-flex">
-                            <v-card flat color="transparent">
+                            <v-card
+                              flat
+                              color="transparent"
+                              class="mt-xl-0 mt-lg-0 mt-md-10 mt-sm-0 mt-0"
+                            >
                               <v-card-text align="center">
                                 <v-row align="center">
                                   <v-col cols="12" md="4" class="interview-col hidden-sm-and-down">
@@ -204,23 +215,30 @@
                                   <v-spacer class="hidden-md-only"></v-spacer>
                                   <v-col cols="12" md="4" sm="5" class>
                                     <v-card color="transparent" flat class="mt-md-0 mt-sm-7 mt-0">
-                                      <v-btn color="#03CA9F" class="btn-voice-call">
+                                      <v-btn
+                                        color="#03CA9F"
+                                        class="btn-voice-call"
+                                        @click.stop="audioModal=true"
+                                      >
                                         <img
                                           class="mr-2"
-                                          src="/images/resume_themes/theme200/icons/phone.png"
-                                        />Voice
-                                        Call
+                                          src="/images/resume_themes/theme200/icons/volume.svg"
+                                        />Audio
                                       </v-btn>
                                     </v-card>
                                   </v-col>
 
                                   <v-col cols="12" md="4" sm="5" class>
                                     <v-card flat color="transparent" class="mt-md-0 mt-sm-7 mt-0">
-                                      <v-btn color="#2400FF" class="btn-upload">
+                                      <v-btn
+                                        color="#2400FF"
+                                        class="btn-upload"
+                                        @click.stop="videoModal=true"
+                                      >
                                         <img
                                           src="/images/resume_themes/theme200/icons/camera.png"
                                           class="mr-2"
-                                        />Upload Video
+                                        />Video
                                       </v-btn>
                                     </v-card>
                                   </v-col>
@@ -231,7 +249,7 @@
                           <!-- Only shows on tablet desktop version -->
 
                           <!-- Only shows in desktop  -->
-                          <v-col cols="10" md="11" sm="12" class="hidden-sm-and-down">
+                          <v-col cols="10" md="11" sm="12" class="hidden-md-and-down">
                             <v-card
                               flat
                               tile
@@ -273,7 +291,7 @@
                                       <v-tab-item v-for="n in 3" :key="n">
                                         <div class="hire-me-subtitle">Rate $ USD</div>
                                         <div
-                                          class="hire-me-title hire-me-frequency-active"
+                                          class="hire-me-title hire-me-frequency-active mt-2"
                                         >{{currentUser.payment_info.available_hours}}$</div>
                                       </v-tab-item>
                                     </v-tabs-items>
@@ -316,7 +334,7 @@
                                       <v-tab-item v-for="n in 3" :key="n">
                                         <div class="hire-me-subtitle">Availibilty Hourly</div>
                                         <div
-                                          class="hire-me-title hire-me-frequency-active"
+                                          class="hire-me-title hire-me-frequency-active mt-2"
                                         >{{currentUser.payment_info.salary}}$</div>
                                       </v-tab-item>
                                     </v-tabs-items>
@@ -538,7 +556,9 @@
                       <img width="15" :src="getImgUrlIcon(item.id)" />
                     </v-btn>
                   </div>
-                  <div :class="currentTab == item.id ? 'active-mobile-tab-text':'inactive-mobile-tab-text'">{{item.title}}</div>
+                  <div
+                    :class="currentTab == item.id ? 'active-mobile-tab-text':'inactive-mobile-tab-text'"
+                  >{{item.title}}</div>
                 </div>
               </v-tab>
             </v-tabs>
@@ -565,19 +585,18 @@
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10" style="z-index:1;">
-                      <v-card-text align="center">
-                        <v-row>
-                          <v-col
-                            md="4"
-                            sm="6"
+                      <v-card-text :align="windowWidth<=599? 'center':'left'">
+                        <VueSlickCarousel v-bind="slickOptions" ref="slick">
+                          <div
                             v-for="project in currentUser.projects"
                             :key="project.id"
+                            class="mb-10"
                           >
                             <v-card elevation-12 class="card-portfolio">
                               <v-img
                                 :src="getProjectMainImage(project)"
                                 @mouseover="hoveredProjectId = project.id"
-                                @mouseleave="hoveredProjectId =0"
+                                @mouseleave="hoveredProjectId = 0"
                               >
                                 <v-overlay
                                   :absolute="absolute"
@@ -585,7 +604,7 @@
                                   opacity="0.8"
                                   color="#6152CF"
                                 >
-                                  <v-btn fab small color="#ffffff">
+                                  <v-btn fab small color="#ffffff" @click="zoomPhoto(project)">
                                     <img
                                       src="/images/resume_themes/theme200/icons/overlay-icon.png"
                                     />
@@ -596,17 +615,37 @@
                               <v-card-title>{{project.name}}</v-card-title>
                               <v-card-subtitle align="left">{{project.description}}</v-card-subtitle>
                             </v-card>
-                          </v-col>
-                        </v-row>
+                          </div>
+                        </VueSlickCarousel>
+
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevPortfolio"
+                                :disabled="portfolioPage==1? true : false "
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
-                              <span class="title pagination-text">1/5</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <span
+                                class="title pagination-text"
+                              >{{portfolioPage}}/{{currentUser.projects.length/6 | floor}}</span>
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                :disabled="currentUser.projects.length/6<=1? true:false"
+                                fab
+                                color="#6152CF"
+                                @click="nextPortfolio"
+                                :class="currentUser.projects.length/6==1? 'btn-pagination-disabled':''"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -713,7 +752,6 @@
                 </v-tab-item>
                 <!-- Tab Item For Education -->
 
-                <!-- Tab Item for skills -->
                 <v-tab-item>
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
@@ -734,7 +772,7 @@
                             >{{item.title}}</v-tab>
                           </v-tabs>
                           <v-spacer></v-spacer>
-                          <v-btn icon class="mx-md-3">
+                          <!-- <v-btn icon class="mx-md-3">
                             <img
                               width="40"
                               src="/images/resume_themes/theme200/icons/skills/arrange.png"
@@ -746,7 +784,7 @@
                               width="20"
                               src="/images/resume_themes/theme200/icons/skills/view-list.png"
                             />
-                          </v-btn>
+                          </v-btn>-->
                         </v-toolbar>
                         <!-- Inner Tab Items -->
                         <v-tabs-items v-model="skillTab">
@@ -809,6 +847,7 @@
                                     </v-card>
                                   </v-col>
                                 </v-row>
+
                                 <!-- Pagination -->
                                 <v-row class="mt-5">
                                   <v-col cols="12">
@@ -946,37 +985,61 @@
                   <div>
                     <v-card flat color="transparent" class="mt-n10">
                       <v-card-text>
-                        <v-row
-                          v-for="(achievement,index) in currentUser.achievements"
-                          :key="index + '_achievement'"
-                        >
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" elevation-12>
-                              <v-img :src="achievement.image_src"></v-img>
-                            </v-card>
-                          </v-col>
+                        <VueSlickCarousel :options="slickOptionsAchievements" ref="slickAchivement">
+                          <div
+                            v-for="(achievement,index) in currentUser.achievements"
+                            :key="index + '_achievement'"
+                          >
+                            <v-row justify="center">
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" elevation-12>
+                                  <v-img :src="achievement.image_src"></v-img>
+                                </v-card>
+                              </v-col>
 
-                          <v-col cols="12" md="6" sm="6">
-                            <v-card flat color="transparent" class="certification">
-                              <v-card-title>
-                                <span class="achievement-title">{{achievement.title}}</span>
-                              </v-card-title>
-                              <v-card-subtitle class="achievement-subtitle">{{achievement.category}}</v-card-subtitle>
-                              <v-card-text
-                                class="achievement-text caption"
-                              >{{achievement.description}}</v-card-text>
-                            </v-card>
-                          </v-col>
-                        </v-row>
+                              <v-col cols="12" md="6" sm="6">
+                                <v-card flat color="transparent" class="certification">
+                                  <v-card-title>
+                                    <span class="achievement-title">{{achievement.title}}</span>
+                                  </v-card-title>
+                                  <v-card-subtitle
+                                    class="achievement-subtitle"
+                                  >{{achievement.category}}</v-card-subtitle>
+                                  <v-card-text
+                                    class="achievement-text caption"
+                                  >{{achievement.description}}</v-card-text>
+                                </v-card>
+                              </v-col>
+                            </v-row>
+                          </div>
+                        </VueSlickCarousel>
                         <!-- Pagination -->
                         <v-row class="mt-5">
                           <v-col cols="12">
                             <div class="text-center">
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="prevAchievement()"
+                                :disabled="achivementPage==1?true:false"
+                              >
                                 <v-icon disabled>mdi-arrow-left</v-icon>
                               </v-btn>
-                              <span class="title pagination-text">1/5</span>
-                              <v-btn dark x-small class="mx-8" fab color="#6152CF">
+                              <span
+                                class="title pagination-text"
+                              >{{achivementPage}}/{{currentUser.achievements.length}}</span>
+                              <v-btn
+                                dark
+                                x-small
+                                class="mx-8"
+                                fab
+                                color="#6152CF"
+                                @click="nextAchievement()"
+                                :disabled="achivementPage==this.currentUser.achievements.length?true:false"
+                              >
                                 <v-icon>mdi-arrow-right</v-icon>
                               </v-btn>
                             </div>
@@ -999,15 +1062,125 @@
       <!-- footer row -->
       <!-- n -->
       <!-- footer row -->
+      <!-- Photo Zoom Dialog -->
+      <v-dialog v-model="zoomModal" max-width="600" align="center" style="border-radius:50px;">
+        <img :src="currentImgObj != null ? getProjectMainImage(currentImgObj) : ''" />
+      </v-dialog>
+      <!-- Photo Zoom Dialog -->
+      <!-- video modal -->
+      <v-dialog v-model="videoModal" max-width="1690" max-height="740" persistent>
+        <v-card class="card-modal-video-holder pa-lg-10 pa-md-5 pa-sm-2 pa-0" align="center">
+          <v-card-subtitle align="right" class="mb-md-0 mb-sm-5 mb-0">
+            <v-btn
+              color="transparent"
+              class="btn-video-close mb-xl-8 mb-lg-8 mr-md-0 mr-sm-0 mr-n5 mt-md-0 mt-sm-3 mt-2 ml-md-0 ml-sm-0 ml-n2"
+              icon
+              @click.stop="videoModal=false"
+              depressed
+            >
+              <img src="/images/resume_themes/theme200/icons/close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+          <!-- <slick ref="slick" :options="slickOptionsVideoModal" v-if="currentUser.media.length>0">
+            <template v-for="video in currentUser.media">
+              <div
+                :key="video.id"
+                class
+                align="center"
+                v-if="video.type=='video' && video.is_public==1"
+              >
+                <v-card class="card-video mb-md-0 md-sm-0 mb-5">
+                  <video style="width:100%;" controls>
+                    <source :src="video.url" type="video/mp4" />
+                  </video>
+                  <v-card-title class="video-window-title">{{video.title}}</v-card-title>
+                  <v-card-subtitle
+                    class="video-window-subtitle mt-n5"
+                    align="left"
+                  >{{video.transcript}}</v-card-subtitle>
+                </v-card>
+              </div>
+            </template>
+          </slick>-->
+          <VueSlickCarousel v-bind="slickOptionsVideoModal" class="video-slick">
+            <video-player
+              v-for="i in 6"
+              :key="i"
+              :modalOpen="videoModal"
+              link="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            ></video-player>
+          </VueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Video modal -->
+
+      <!-- Audio Modal -->
+      <v-dialog v-model="audioModal" max-width="1690" persistent>
+        <v-card class="audio-modal-main-card pa-xl-12 pa-lg-12 pa-md-8 pa-sm-0 pa-0" align="center">
+          <v-card-subtitle align="right">
+            <v-btn
+              color="transparent"
+              class="btn-video-close mb-xl-1 mb-lg-1 mt-xl-5 mt-lg-5 mt-md-0 mt-sm-5 mt-5"
+              @click.stop="audioModal=false"
+              depressed
+              icon
+            >
+              <img src="/images/resume_themes/theme200/icons/close.svg" />
+            </v-btn>
+          </v-card-subtitle>
+          <!-- <vueSlickCarousel v-bind="slickOptionsAudioModal" v-if="currentUser.media.length>0">
+            <template v-for="audio in currentUser.media">
+              <div class="mb-5" :key="audio.id" v-if="audio.type=='audio' && audio.is_public==1">
+                <audio controls style="width:100%;">
+                  <source :src="audio.url" type="audio/mpeg" />Your browser does not support the audio element.
+                </audio>
+              </div>
+            </template>
+          </vueSlickCarousel>-->
+          <vueSlickCarousel v-bind="slickOptionsAudioModal" class="audio-slick">
+            <audio-player
+              :modalOpen="audioModal"
+              color="#FC5C8A"
+              v-for="i in 6"
+              :key="i"
+              file="https://file-examples-com.github.io/uploads/2017/11/file_example_MP3_700KB.mp3"
+            ></audio-player>
+          </vueSlickCarousel>
+        </v-card>
+      </v-dialog>
+      <!-- Audio Modal -->
     </div>
   </v-app>
 </template>
 
 <script>
+import Slick from "vue-slick";
+import VueSlickCarousel from "vue-slick-carousel";
+import AudioPlayer from "./media/AudioPlayer";
+import VideoPlayer from "./media/VideoPlayer";
 export default {
   props: ["user", "is_preview"],
+  filters: {
+    floor: function (value) {
+      if (!value) return "";
+      return Math.ceil(value);
+    },
+  },
+  components: {
+    Slick,
+    VueSlickCarousel,
+    AudioPlayer,
+    VideoPlayer,
+  },
   data() {
     return {
+      windowWidth: window.innerWidth,
+      videoModal: false,
+      audioModal: false,
+      portfolioPage: 1,
+      skillPage: 1,
+      totalSkillPages: 1,
+      achivementPage: 1,
       skillTab: 0,
       page: 1,
       overlay: true,
@@ -1017,23 +1190,25 @@ export default {
       currentTab: 1,
       tabRate: null,
       tabFrequency: null,
+      zoomModal: false,
+      currentImgObj: null,
       tabs: [
         { title: "Portfolio", id: 1 },
         { title: "Works", id: 2 },
         { title: "Education", id: 3 },
         { title: "Skills", id: 4 },
         { title: "About Me", id: 5 },
-        { title: "Achievement", id: 6 }
+        { title: "Achievement", id: 6 },
       ],
       skillTabs: [
         {
           title: "Programming Languages",
           value: "Programming_languages",
-          id: 1
+          id: 1,
         },
         { title: "Framework/Databases", value: "Frameworks", id: 2 },
         { title: "Software", value: "Software", id: 3 },
-        { title: "Design Skills", value: "Design", id: 4 }
+        { title: "Design Skills", value: "Design", id: 4 },
       ],
       skillDetails: [
         {
@@ -1044,30 +1219,30 @@ export default {
               icon: "illustrator",
               color: "#FF7C00",
               value: "90",
-              valueText: "90%"
+              valueText: "90%",
             },
             {
               name: "Adobe XD",
               icon: "xd",
               color: "#FF21AF",
               value: "70",
-              valueText: "70%"
+              valueText: "70%",
             },
             {
               name: "Photoshop",
               icon: "photoshop",
               color: "#00C8FF",
               value: "95",
-              valueText: "95%"
+              valueText: "95%",
             },
             {
               name: "Premier Pro",
               icon: "premier",
               color: "#E788FF",
               value: "50",
-              valueText: "50%"
-            }
-          ]
+              valueText: "50%",
+            },
+          ],
         },
         {
           title: "Languages",
@@ -1077,63 +1252,63 @@ export default {
               icon: "html",
               color: "#E34F26",
               value: "90",
-              valueText: "90%"
+              valueText: "90%",
             },
             {
               name: "CSS",
               icon: "css",
               color: "#264DE4",
               value: "70",
-              valueText: "70%"
+              valueText: "70%",
             },
             {
               name: "Javascript",
               icon: "js",
               color: "#FDD83C",
               value: "95",
-              valueText: "95%"
+              valueText: "95%",
             },
             {
               name: "Magento",
               icon: "magento",
               color: "#EC6737",
               value: "50",
-              valueText: "50%"
-            }
-          ]
-        }
+              valueText: "50%",
+            },
+          ],
+        },
       ],
       portfolio: [
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 1
+          id: 1,
         },
         {
           title: "Website Design",
           subtitle: "industrial,creative,idea",
-          id: 2
+          id: 2,
         },
         {
           title: "Pattern Design",
           subtitle: "industrial,creative,idea",
-          id: 3
+          id: 3,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 4
+          id: 4,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 5
+          id: 5,
         },
         {
           title: "Product Design",
           subtitle: "industrial,creative,idea",
-          id: 6
-        }
+          id: 6,
+        },
       ],
       work: [
         {
@@ -1142,7 +1317,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 2,
@@ -1150,7 +1325,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 3,
@@ -1158,7 +1333,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 4,
@@ -1166,7 +1341,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 5,
@@ -1174,7 +1349,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 6,
@@ -1182,8 +1357,8 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-        }
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
+        },
       ],
 
       // Education
@@ -1194,7 +1369,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 2,
@@ -1202,7 +1377,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 3,
@@ -1210,7 +1385,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 4,
@@ -1218,7 +1393,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "Jan 2017 - Feb 2019",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 5,
@@ -1226,7 +1401,7 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
         },
         {
           id: 6,
@@ -1234,18 +1409,180 @@ export default {
           subtitle1: "Gps Bangla",
           subtitle2: "",
           bodyText:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,"
-        }
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabore et dolore magna aliquyam erat,",
+        },
       ],
 
       socialMedia: [
         { title: "behance", icon: "fa-behance", color: "#217BFF" },
         { title: "dribbble", icon: "fa-dribbble", color: "#EE588A" },
         { title: "instagram", icon: "fa-instagram", color: "#DD24BC" },
-        { title: "google", icon: "fa-google-plus", color: "#DC4E41" }
+        { title: "google", icon: "fa-google-plus", color: "#DC4E41" },
       ],
 
-      currentUser: this.user
+      currentUser: this.user,
+      slickOptions: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesPerRow: 3,
+        rows: 2,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow: 1,
+              rows: 6,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToScroll: 2,
+              slidesPerRow: 2,
+              rows: 3,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToScroll: 3,
+            },
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToScroll: 3,
+            },
+          },
+        ],
+      },
+      slickOptionsSkills: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesPerRow: 4,
+        rows: 2,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 4,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              rows: 4,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+            },
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 4,
+            },
+          },
+        ],
+      },
+
+      slickOptionsAchievements: {
+        infinite: false,
+        dots: false,
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+              simple: true,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+          {
+            breakpoint: 1600,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      },
+      //video modal
+      slickOptionsVideoModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 2,
+        slidesToScroll: 1,
+        rows: 1,
+        responsive: [
+          {
+            breakpoint: 600,
+            settings: {
+              slidesPerRow:1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 960,
+            settings: {
+              slidesPerRow:1,
+              slidesToScroll: 1,
+              rows: 2,
+            },
+          },
+          {
+            breakpoint: 1264,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              rows: 1,
+            },
+          },
+        ],
+      },
+      //audio Modal
+      slickOptionsAudioModal: {
+        infinite: false,
+        dots: true,
+        arrows: false,
+        slidesPerRow: 1,
+        slidesToScroll: 1,
+        rows: 3,
+      },
     };
   },
 
@@ -1258,7 +1595,7 @@ export default {
       let mainImage = "";
 
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -1381,23 +1718,67 @@ export default {
         mongodb: "/images/skills_icons/mongoDB.png",
         oracle: "/images/skills_icons/Oracle.png",
         redis: "/images/skills_icons/redis.png",
-        cassandra: "/images/skills_icons/cassandra.png"
+        cassandra: "/images/skills_icons/cassandra.png",
       };
       if (arrayOfSkillImages.hasOwnProperty(skill_title.toLowerCase())) {
         return arrayOfSkillImages[skill_title.toLowerCase()];
       }
       return "/images/skills_icons/skill.png";
-    }
+    },
+    zoomPhoto(obj) {
+      this.zoomModal = true;
+      this.currentImgObj = obj;
+    },
+    //slick carousel
+    nextPortfolio() {
+      this.$refs.slick.next();
+      if (this.portfolioPage < this.currentUser.projects.length / 6) {
+        this.portfolioPage++;
+      }
+    },
+    prevPortfolio() {
+      this.$refs.slick.prev();
+      if (this.portfolioPage > 1) {
+        this.portfolioPage--;
+      }
+    },
+    prevSkill() {
+      if (this.skillPage > 1) {
+        this.$refs.carousel[0].prev();
+        this.skillPage--;
+      }
+    },
+    nextSkill() {
+      if (this.skillPage < this.totalSkillPages) {
+        this.$refs.carousel[0].next();
+        this.skillPage++;
+      }
+    },
+    nextAchievement() {
+      this.$refs.slickAchivement.next();
+      if (this.achivementPage < this.currentUser.achievements.length) {
+        this.achivementPage++;
+      }
+    },
+    prevAchievement() {
+      this.$refs.slickAchivement.prev();
+      if (this.achivementPage > 1) {
+        this.achivementPage--;
+      }
+    },
   },
   computed: {
     socialLinks() {
-      return this.currentUser.links.filter(link => {
+      return this.currentUser.links.filter((link) => {
         return link.category === "social_link" ? link : false;
       });
-    }
+    },
   },
 
   mounted() {
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
@@ -1405,7 +1786,7 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+  },
 };
 </script>
 
@@ -1415,6 +1796,10 @@ export default {
 }
 
 @import "resources/sass/themes/theme200.scss";
+.theme--dark.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: #6152cf !important;
+}
+
 .hire-me-frequency {
   color: white;
   font-size: 12px !important;
@@ -1434,22 +1819,65 @@ export default {
 }
 
 //mobile -tab
-.active-mobile-tab-text{
-  color:#FF5231 !important;
+.active-mobile-tab-text {
+  color: #ff5231 !important;
   font-size: 14px !important;
   font-weight: bold;
 }
 
-.inactive-mobile-tab-text{
-  color:#FFA797 !important;
+.inactive-mobile-tab-text {
+  color: #ffa797 !important;
   font-size: 12px !important;
 }
+.card-modal-video-holder {
+  height: 850px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    height: 700px;
+  }
+  @media screen and (min-width:960px) and (max-width: 1263px){
+    height: auto;
+  }
+  @media screen and (max-width: 959px) {
+    height: 1250px;
+  }
+  @media screen and (max-width: 599px) {
+    height: 770px;
+  }
+  .btn-video-close {
+    img {
+      width: 50px;
+      height: 50px;
+      @media screen and (max-width: 959px) {
+        width: 63px;
+        height: 62px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+  }
+}
 
+.audio-modal-main-card {
+  min-height: 500px;
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    min-height: 600px;
+  }
+
+  @media screen and (max-width: 959px) {
+    min-height: 670px;
+  }
+
+  @media screen and (max-width: 599px) {
+    min-height: 734px;
+  }
+}
 
 //mobile tab
 </style>
 
-<style>
+<style lang="scss">
 #resumeTheme200 .v-slide-group__prev {
   display: none;
 }
@@ -1458,6 +1886,48 @@ export default {
   display: none;
 }
 
+#resumeTheme200 .slick-dots li.slick-active button {
+  background-color: #6152cf !important;
+  opacity: 1 !important;
+}
 
+#resumeTheme200 .slick-dots li button {
+  background-color: #6152cf !important;
+  opacity: 0.57 !important;
+}
+
+#resumeTheme200 .video-slick .slick-dots{
+  @media screen and (min-width: 960px) and (max-width: 1263px){
+    bottom: 0px !important;
+  }
+}
+// #resumeTheme200 .slick-dots{
+//   @media screen and (max-width: 959px){
+//     bottom: -140px !important;
+//   }
+// }
+#resumeTheme200 .audio-slick .slick-list {
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
+    padding-bottom: 40px !important;
+  }
+  @media screen and (max-width: 959px) {
+    padding-bottom: 80px !important;
+  }
+  @media screen and (max-width: 599px) {
+    padding-bottom: 180px !important;
+  }
+}
+
+#resumeTheme200 .video-slick .slick-list{
+  padding-bottom: 50px;
+  @media screen and (min-width: 1264px) and (max-width: 1903px){
+    padding-bottom: 40px;
+  }
+  @media screen and (min-width: 600px) and (max-width:959px){
+    padding-bottom: 30px;
+  }
+  @media screen and (max-width: 599px){
+    padding-bottom: 15px;
+  }
+}
 </style>
-

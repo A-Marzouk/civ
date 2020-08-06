@@ -81,8 +81,8 @@
           </v-text-field>
 
           <div class="col-12 d-flex flex-column">
-            <div>
-              <v-btn class="resume-builder__btn civie-btn filled ml-custom-n12" raised @click="saveAchievement">
+            <div class="d-flex">
+              <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveAchievement">
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 
@@ -154,7 +154,7 @@
                   <b>URL:</b> <a :href="achievement.url">{{achievement.url}}</a>
                 </div>
                 <div class="project__skills">
-                  <b>Skills:</b> {{achievement.category}}
+                  <b>Year:</b> {{achievement.year}}
                 </div>
                 <div class="project__description">
                   <b>Description: </b>
@@ -280,7 +280,7 @@
         let formData = new FormData();
 
         $.each(this.editedAchievement, (field) => {
-          if (this.editedAchievement[field].length && field !== 'images') {
+          if (field !== 'images') {
             formData.append(field, this.editedAchievement[field]);
           }
         });
@@ -301,11 +301,12 @@
         axios.post('/api/user/achievements', formData, {headers: {'Content-Type': 'multipart/form-data'}})
                 .then((response) => {
                   if (!edit) {
+                    response.data.data.is_public = true ;
                     this.achievements.push(response.data.data);
                   } else {
                     this.achievements.forEach((achievement, index) => {
                       if (achievement.id === response.data.data.id) {
-                        this.achievements[index] = response.data.data;
+                        this.achievements.splice(index, 1, response.data.data);
                       }
                     });
                   }

@@ -304,7 +304,6 @@ export const store = new Vuex.Store({
         },
         updateActivity(state) {
             axios.post('/api/user/update-last-activity',{user_id: state.user.id}).then((response) => {
-                console.log('Activity updated.');
             }).catch((error) => {
                 console.log('Error - last activity');
             });
@@ -318,6 +317,22 @@ export const store = new Vuex.Store({
         updateLinks(state, links){
             state.user.links = links;
             axios.post('/api/user/links/update-order', {links : links})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateTabs(state, tabs){
+            state.user.tabs = tabs;
+            axios.post('/api/user/tabs/update-order', {tabs : tabs})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
+        updateDownloads(state, downloads){
+            state.user.downloads = downloads;
+            axios.post('/api/user/downloads/update-order', {tabs : downloads})
                 .then( response => {
                     this.dispatch('flyingNotification');
                 })

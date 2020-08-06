@@ -35,6 +35,9 @@ import ResumeBuilderEditCVHobbies from './components/resume_builder/tabs/edit_ta
 import ResumeBuilderEditCVAudioVideo from './components/resume_builder/tabs/edit_tabs/AudioVideo'
 import ResumeBuilderEditCVPayAvailability  from './components/resume_builder/tabs/edit_tabs/PayAvailability'
 import ResumeBuilderEditCVImports from './components/resume_builder/tabs/edit_tabs/Imports'
+import ResumeBuilderEditCVDownloads from './components/resume_builder/tabs/edit_tabs/Downloads'
+import ResumeBuilderEditCVStructure from './components/resume_builder/tabs/edit_tabs/Structure'
+import ResumeBuilderEditCVSThemes from './components/resume_builder/tabs/edit_tabs/Themes'
 import ResumeBuilderEditCVReferences from './components/resume_builder/tabs/edit_tabs/References'
 
 // Test components view
@@ -102,8 +105,20 @@ if ($("#resumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVImports
                 },
                 {
+                    path: '/resume-builder/edit/downloads',
+                    component: ResumeBuilderEditCVDownloads
+                },
+                {
+                    path: '/resume-builder/edit/structure',
+                    component: ResumeBuilderEditCVStructure
+                },
+                {
                     path: '/resume-builder/edit/references',
                     component: ResumeBuilderEditCVReferences
+                },
+                {
+                    path: '/resume-builder/edit/themes',
+                    component: ResumeBuilderEditCVSThemes
                 },
             ]
 

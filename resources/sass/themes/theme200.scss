@@ -22,6 +22,23 @@
         height: auto !important;
         border-radius: 22px !important;
     }
+    .pdf-button {
+        height: 36px;
+        width: 36px;
+        margin-left: 5px;
+        display: inline-flex;
+        align-items: flex-end;
+        justify-content: center;
+        vertical-align: bottom;
+        
+        svg {
+            height: 100%;
+            width: 100%;
+            fill: rgb(0, 205, 247);
+            // transform: scale(1);
+        }
+    }
+
     .profile-title {
         font-family: "Open Sans", sans-serif !important;
         font-size: 36px !important;
@@ -214,7 +231,7 @@
     /* for google chrome and safari */
     .v-line {
         position: absolute;
-        margin-top: 57px;
+        margin-top: 110px;
         margin-left: 19px;
         height: 110%;
         border: 1px solid #707070;
@@ -249,6 +266,23 @@
     //         margin-left: -60px !important;
     //     }
     // }
+    @media screen and (min-width:960px) and (max-width:1263px) {
+        .availibility-tablet {
+            display: flex;
+        }
+        .btn-hire-me {
+            width: 129px;
+            font-size: 12px;
+        }
+        .hire-me-parent-tab {
+            margin-left: 10px !important;
+        }
+        .hire-card-frequency2 {
+            img {
+                margin-left: -5px !important;
+            }
+        }
+    }
     @media screen and (min-width:600px) and (max-width: 959px) {
         .availibility-tablet {
             display: inline;
@@ -360,7 +394,7 @@
             font-size: 16px !important;
         }
         .work-text {
-            font-size: 14px !important;
+            font-size: 12px !important;
         }
         /* Work */
         /* Skill tabs */
@@ -395,7 +429,7 @@
         /* vertical line */
         .v-line {
             position: absolute;
-            margin-top: 56px;
+            margin-top: 109px;
             margin-left: 19px;
             height: 110%;
             border: 1px solid #707070 !important;
@@ -466,26 +500,31 @@
             font-size: 8px !important;
         }
         .phone-btn {
-            padding: 0px 8.444px !important;
+            // padding: 0px 8.444px !important;
             margin-top: 46px;
             margin-bottom: -0.8vw;
-            height: 32px !important;
-            min-width: 32px !important;
+            height: 33px !important;
+            width: 35px !important;
+            min-width: 35px !important;
             @media screen and(max-width: 334) {
                 margin-right: -3px;
+            }
+            img{
+                width: 16.35px !important;
             }
         }
         .phone-icon {
             font-size: 18px !important;
         }
         .video-btn {
-            padding: 0px 4.444px !important;
-            height: 32px !important;
-            min-width: 32px !important;
-            img {
-                width: 16px !important;
-                height: 13px !important;
-            }
+            // padding: 0px 4.444px !important;
+            height: 33px !important;
+            width:35px !important;
+            min-width: 35px !important;
+            // img {
+            //     width: 16px !important;
+            //     height: 13px !important;
+            // }
             @media screen and(max-width:334px) {
                 margin-right: -3px;
             }
@@ -550,7 +589,7 @@
         }
         /* achievement */
         .v-line {
-            margin-top: 48px;
+            margin-top: 94px;
             height: 115%;
         }
         @-moz-document url-prefix() {
@@ -573,19 +612,5 @@
     /* mobile devices */
     /* min screen devices*/
     // ipad pro
-    @media only screen and (max-width:1024px) {
-        .btn-hire-me {
-            width: 5vw;
-            font-size: 12px;
-        }
-        .hire-me-parent-tab {
-            margin-left: 10px !important;
-        }
-        .hire-card-frequency2 {
-            img {
-                margin-left: -5px !important;
-            }
-        }
-    }
     // ipad pro
 }

@@ -21,6 +21,7 @@
                                 :disabled="false"
                                 label="Company Name"
                                 :error="!!errors.company_name"
+                                :error-messages="errors.company_name"
                                 v-model="newWork.company_name"
                         >
                         </v-text-field>
@@ -34,6 +35,7 @@
                                 :disabled="false"
                                 label="Job Ttitle"
                                 :error="!!errors.job_title"
+                                :error-messages="errors.job_title"
                                 v-model="newWork.job_title"
                         >
                         </v-text-field>
@@ -47,26 +49,21 @@
                                 :disabled="false"
                                 label="Website"
                                 :error="!!errors.website"
+                                :error-messages="errors.website"
                                 v-model="newWork.website"
                         >
                         </v-text-field>
 
                         <div class="date-group">
                             <div class="date-input">
-                                <label for="dateFrom">Date</label>
-                                <input type="date"  v-model="newWork.date_from">
-                                <div class="error" v-if="errors.date_from">
-                                    {{ Array.isArray(errors.date_from) ? errors.date_from[0] : errors.date_from}}
-                                </div>
+                                <label :class="{'error-label' : errors.date_from}">Date</label>
+                                <input type="date" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
                             </div>
                             <div class="date-input">
-                                <label for="dateTo" class="light d-flex align-items-center">
+                                <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
                                     <input type="checkbox" class="checkbox" v-model="newWork.present"> Present
                                 </label>
-                                <input type="date"  v-model="newWork.date_to" :disabled="newWork.present">
-                                <div class="error" v-if="errors.date_to">
-                                    {{ Array.isArray(errors.date_to) ? errors.date_to[0] : errors.date_to}}
-                                </div>
+                                <input type="date" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present">
                             </div>
                         </div>
                     </div>
@@ -79,6 +76,7 @@
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
                                 :error="!!errors.description"
+                                :error-messages="errors.description"
                                 v-model="newWork.description"
                                 label="Description"
                         >
@@ -163,7 +161,7 @@
                         <div class="date">
                             {{ `${work.date_from}${work.present ? ' - Present' : ' - ' + work.date_to}` }}
                         </div>
-                        <article>
+                        <article class="description-text">
                             {{work.description}}
                         </article>
                     </div>
@@ -291,7 +289,7 @@
                         }else{
                             this.works.forEach( (myWork,index) => {
                                 if(myWork.id === response.data.data.id){
-                                    this.works[index] = response.data.data;
+                                    this.works.splice(index, 1, response.data.data);
                                 }
                             });
                         }
@@ -341,6 +339,10 @@
         @media screen and (min-width: 1441px) and (max-width: 1903px){
             margin-left: 50px !important;
         }
+    }
+
+    .description-text{
+
     }
 
     .work-container {
@@ -449,8 +451,8 @@
                                 position: absolute;
                                 top: -29px;
                                 letter-spacing: 0;
-                                font-weight: 500;
                                 font-size: 18px;
+                                font-weight: 400;
                                 line-height: 25px;
                                 color: #888DB1;
                                 opacity: 1;
@@ -459,23 +461,15 @@
                                     font-size: 18px;
                                     color: #888DB1;
                                 }
-
-                                @include lt-sm {
-                                    font-size: 15px;
-                                }
                             }
 
                             label.light {
-                                font-size: 12px;
+                                font-size: 18px;
                                 letter-spacing: 0;
+                                right: 0;
                                 opacity: 1;
 
-                                @include lt-lg {
-                                    font-size: 15px;
-                                }
-
                                 @include lt-md {
-                                    font-size: 11px;
                                     color: #888DB1;
                                 }
                             }
@@ -495,6 +489,10 @@
                                 @include lt-md {
 
                                 }
+                            }
+
+                            input.error-input{
+                                border: 2px solid red !important;
                             }
 
                             input:focus{
@@ -725,6 +723,7 @@
                     color: $inputTextColor;
                     margin-top: 20px;
                     overflow: auto;
+                    word-break: break-all;
                 }
             }
 
@@ -782,5 +781,13 @@
         @include lt-sm{
 
         }
+    }
+
+    .error-label{
+        color: red !important;
+    }
+
+    .error-input{
+        border: 1.5px solid red !important;
     }
 </style>

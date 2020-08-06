@@ -1,13 +1,13 @@
 <template>
-  <v-app style="width:100%;" v-if="currentUser">
-    <v-container fluid ma-0 pa-0 style="width:100%;">
+  <v-app style="width: 100%;" v-if="currentUser">
+    <v-container fluid ma-0 pa-0 style="width: 100%;">
       <!-- For Desktop and Tablet -->
       <v-app-bar color="#fafafa" height="250" class="hidden-xs-only">
         <v-avatar size="120" class="mr-5">
           <v-img :src="currentUser.personal_info.profile_pic"></v-img>
         </v-avatar>
         <div class="half-circle"></div>
-        <v-container fluid pa-0 ma-0 style="width:100%">
+        <v-container fluid pa-0 ma-0 style="width: 100%;">
           <v-row class align="center" justify="center" dense>
             <v-col
               md="4"
@@ -255,7 +255,7 @@
       <!-- ....................................................................................................... -->
 
       <!-- Tab Container -->
-      <v-container fluid style="width:100%">
+      <v-container fluid style="width: 100%;">
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
@@ -295,7 +295,7 @@
                 class="mx-md-2 mx-sm-2 text-capitalize"
                 :class="[
                   activeTab == tab.value ? 'custom-active-tab' : '',
-                  'ct-tab'
+                  'ct-tab',
                 ]"
               >
                 <v-avatar tile>
@@ -311,7 +311,7 @@
       </v-container>
       <!--Tab Container  -->
       <!-- tab items container -->
-      <v-container fluid pa-md-10 mt-n12 style="width:100%">
+      <v-container fluid pa-md-10 mt-n12 style="width: 100%;">
         <v-row align="center" justify="center">
           <v-col cols="12">
             <v-card flat color="transparent">
@@ -424,13 +424,13 @@
                             @click="currentSkillTab = skill.id"
                             v-show="
                               currentUser.skills.find(
-                                s => s.category == skill.value
+                                (s) => s.category == skill.value
                               )
                             "
                             :class="[
                               currentSkillTab == skill.id
                                 ? 'skill-child-tab-active'
-                                : 'skill-child-tab'
+                                : 'skill-child-tab',
                             ]"
                             >{{ skill.title }}</v-tab
                           >
@@ -449,7 +449,7 @@
                           :key="skill.id"
                           v-show="
                             currentUser.skills.find(
-                              s => s.category == skill.value
+                              (s) => s.category == skill.value
                             )
                           "
                         >
@@ -480,7 +480,10 @@
                                         >
                                         <v-col cols="12">
                                           <v-progress-linear
-                                            style="border:3px solid #F0F0F3; border-radius:12px;"
+                                            style="
+                                              border: 3px solid #f0f0f3;
+                                              border-radius: 12px;
+                                            "
                                             class="custom-progress-bar"
                                             color="#5843BE"
                                             rounded
@@ -679,6 +682,9 @@ export default {
     },
     getPortfolio(image) {
       return `/images/resume_themes/theme206/portfolio/${image}.png`;
+    },
+    setDummyUser() {
+      this.currentUser = this.$store.state.dummyUser;
     }
   },
   mounted() {

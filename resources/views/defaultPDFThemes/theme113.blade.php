@@ -11,22 +11,26 @@
 
         @font-face {
             font-family: 'Muli';
-            src: url("/fonts/Muli-VariableFont_wght.ttf") format("truetype");
+            src: url({{ public_path('/fonts/Muli-VariableFont_wght.ttf') }}) format("truetype");
             /* font-weight: 400; // use the matching font-weight here ( 100, 200, 300, 400, etc).
             font-style: normal; // use the matching font-style here */
         }
 
         main {
-            background-image: url('/images/resume_themes/theme113/mainBg.png');
-            background-color: #FFF7F3;
-            background-position: -10px 300px;
             font-family: Muli, Arial, Helvetica, sans-serif;
             width: 100%;
             color: #28404A;
         }
+        
+        h1 {
+            font-family: Muli, Arial, Helvetica, sans-serif;
+        }
 
         /* Header */
         .theme-header {
+            background-position: -10px 300px;
+            background-image: url('/images/resume_themes/theme113/mainBg.png');
+            background-color: #FFF7F3;
             padding: 10px;
         }
 
@@ -57,7 +61,8 @@
 
         .user-name {
             font-size: 30px;
-            margin-bottom: 15px;
+            font-family: Muli, Arial, Helvetica, sans-serif;
+            margin-bottom: 10px;
             margin-top: 0;
         }
 
@@ -83,7 +88,7 @@
             background-color: #28404A;
             border-radius: 3px;
             margin-left: 6px;
-            top: 10px;
+            top: 18px;
         }
 
         .user-skills span:last-child i {
@@ -102,7 +107,6 @@
 
         .payment-details div {
             font-size: 16px;
-            margin-top: 3px;
         }
 
         .payment-details .hourly-rate,
@@ -120,7 +124,7 @@
             font-size: 18px;
             width: 200px;
             height: 62px;
-            line-height: 42px;
+            line-height: 35px;
             color: #fff;
             text-decoration: none;
         }
@@ -158,7 +162,7 @@
         /* Portfolio */
 
         .portfolio .section-title {
-            margin: 10px 0 0 0;
+            margin: -10px 0 0 0;
         }
         .portfolio table td:last-child .work {
             margin-left: 140px;
@@ -191,6 +195,11 @@
         }
 
         /* Work Experience and Education */
+        .work-experience,
+        .education {
+            background-color: white;
+        }
+
         .work-experience table,
         .education table {
             width: 100%;
@@ -275,7 +284,22 @@
         .education-body .description {
             margin-top: 10px;
             font-size: 18px;
+            line-height: 1.5;
             padding-bottom: 20px;
+        }
+
+        .about {
+            background-color: white;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .container p {
+            line-height: 1.5;
+            font-size: 18px;
+            margin-bottom: 20px 30px;
         }
 
         .page-break {
@@ -511,37 +535,18 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                <div class="education-header">
-                                    <div class="education-icon">
-                                        <img src="{{ public_path('/images/resume_themes/theme113/education-icon.png') }}" alt="">
-                                    </div>
-                                    <div class="decorator"></div>
-                                    <div class="school-name">Simon Bolivar University</div>
-                                    <div class="date">2014 - 2019</div>
-                                </div>
-                                <div class="education-body">
-                                    <div class="grade-title">Computing and Statistics Mathematics</div>
-                                    <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut repellat assumenda, odio numquam ducimus qui illo iure nesciunt beatae cum, doloribus tempore provident similique amet reprehenderit voluptates nihil vitae voluptas.</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="education-header">
-                                    <div class="education-icon">
-                                        <img src="{{ public_path('/images/resume_themes/theme113/education-icon.png') }}" alt="">
-                                    </div>
-                                    <div class="decorator"></div>
-                                    <div class="school-name">Simon Bolivar University</div>
-                                    <div class="date">2014 - 2019</div>
-                                </div>
-                                <div class="education-body">
-                                    <div class="grade-title">Computing and Statistics Mathematics</div>
-                                    <div class="description">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut repellat assumenda, odio numquam ducimus qui illo iure nesciunt beatae cum, doloribus tempore provident similique amet reprehenderit voluptates nihil vitae voluptas.</div>
-                                </div>
-                            </td>
-                        </tr>
                     </table>
+                </div>
+            </section>
+
+            <div class="page-break"></div>
+
+            <section class="about">
+                <h1 class="section-title">About</h1>
+                <div class="container">
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, dicta eaque deserunt earum consequuntur optio repudiandae voluptatum deleniti beatae voluptatem omnis, quaerat fugiat aliquid, nostrum ab unde vel! Ipsum, architecto!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, minima quaerat. Explicabo delectus, debitis saepe fugit itaque at maiores commodi error assumenda! Optio nisi ex deserunt debitis, iure quas. Doloribus.</p>
+                    <p>Eius, ipsam et rerum, aut, vitae ipsa non illo nisi adipisci sit suscipit nemo sint est numquam sunt? Excepturi totam ex accusantium. Earum porro doloribus cupiditate, quia dolor facere officia.</p>
                 </div>
             </section>
         </div>

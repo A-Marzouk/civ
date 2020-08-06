@@ -17,11 +17,7 @@
                 <div class="user-data">
                     <div class="name">José Daniel Quintero</div>
                     <div class="profession">Fullstack Developer</div>
-                    <ul class="speciallity">
-                        <li class="item">Node js</li>
-                        <li class="item">React js</li>
-                        <li class="item">Laravel</li>
-                    </ul>
+                    <div class="overview">Overview here</div>
                 </div>
 
                 <div class="more-icon">
@@ -458,7 +454,7 @@ $purple: #355E5E;
                     }
                 }
 
-                .speciallity {
+                .overview {
                     display: flex;
                     padding: 0;
                     
@@ -528,7 +524,7 @@ $purple: #355E5E;
                         margin-bottom: 18px;
                     }
 
-                    .speciallity {
+                    .overview {
                         display: none;
                     }
                 }

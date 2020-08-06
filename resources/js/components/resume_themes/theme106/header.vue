@@ -9,11 +9,7 @@
                 <div class="user-data">
                     <div class="name">José Daniel Quintero</div>
                     <div class="profession">Fullstack Developer</div>
-                    <ul class="speciallity">
-                        <li class="item">Node js</li>
-                        <li class="item">React js</li>
-                        <li class="item">Laravel</li>
-                    </ul>
+                    <div class="overview">Overview here</div>
                 </div>
 
                 <div class="more-icon">
@@ -415,7 +411,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                     }
                 }
 
-                .speciallity {
+                .overview {
                     display: flex;
                     padding: 0;
                     color: white;
@@ -486,7 +482,7 @@ $gradient: linear-gradient(to right, #9434CD, #EE3DC6);
                         margin-bottom: 18px;
                     }
 
-                    .speciallity {
+                    .overview {
                         display: none;
                     }
                 }

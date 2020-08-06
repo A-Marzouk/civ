@@ -37,6 +37,12 @@ class AchievementsController extends Controller
         if($request->isMethod('put') || $request->id != '' ){
             // update
             $achievement = Achievement::findOrFail($request->id);
+            if($request['is_public'] == false || $request['is_public'] === 'false' ){
+                $request['is_public'] = false ;
+            }
+            else if($request['is_public'] == true || $request['is_public'] === 'true') {
+                $request['is_public'] = true ;
+            }
             $achievement->update($request->toArray());
         }else{
             $achievement =Achievement::create($request->toArray());
@@ -102,11 +108,11 @@ class AchievementsController extends Controller
     {
         return Validator::make($data, [
             'title' => ['sometimes', 'string', 'max:255','min:3'],
-            'type' => ['nullable', 'string', 'max:255'],
-            'year' => ['nullable', 'string', 'max:255'],
-            'description' => ['nullable','string','min:3', 'max:2500'],
+            'type' => ['sometimes', 'string', 'max:255','min:3'],
+            'year' => ['sometimes', 'string', 'max:255','min:3'],
+            'description' => ['sometimes','string','min:3', 'max:2500','min:3'],
             'file' => ['nullable','file'],
-            'url' => ['nullable','max:255']
+            'url' => ['sometimes','max:255','min:3']
         ]);
     }
 

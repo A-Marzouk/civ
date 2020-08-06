@@ -24,7 +24,7 @@
 
 				</v-select>
 
-				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" placeholder="https://github.com/john-doe" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" v-model="editedLink.link">
+				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
 				</v-text-field>
 
 				<div class="d-flex mt-2">
@@ -103,7 +103,7 @@ export default {
 		linkCategory: "professional",
 		editedLink: {
 			id: "",
-			link_title: "website",
+			link_title: "Website",
 			link: "",
 			is_active: true
 		},
@@ -190,7 +190,7 @@ export default {
 					} else {
 						this.links.forEach((link, index) => {
 							if (link.id === response.data.data.id) {
-								this.links[index] = response.data.data;
+								this.links.splice(index, 1, response.data.data);
 							}
 						});
 					}
@@ -213,7 +213,7 @@ export default {
 		clearLink() {
 			this.editedLink = {
 				id: "",
-				link_title: "website",
+				link_title: "Website",
 				category: this.linkCategory,
 				link: "",
 				is_active: true,
@@ -221,7 +221,7 @@ export default {
 			};
 		},
 		validURL(str) {
-			var pattern = new RegExp(
+			let pattern = new RegExp(
 				"^(https?:\\/\\/)?" + // protocol
 				"((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
 				"((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
@@ -230,7 +230,14 @@ export default {
 					"(\\#[-a-z\\d_]*)?$",
 				"i"
 			); // fragment locator
+			if(this.editedLink.link_title === 'Skype'){
+				return this.testSkypeUrl(str);
+			}
 			return !!pattern.test(str);
+		},
+		testSkypeUrl(skype_url){
+			let skypePattern = /skype:/ig ;
+			return skypePattern.test(skype_url);
 		},
 		getCurrentCategories() {
 			if (this.linkCategory === "professional") {

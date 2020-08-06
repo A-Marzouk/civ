@@ -1,5 +1,5 @@
 <template>
-  <div class="theme-container">
+  <div class="theme-container" v-if="currentUser">
     <vue-particles></vue-particles>
     <div class="main-info-bar">
       <div
@@ -12,6 +12,13 @@
         <div class="main-info">
           <div class="user-name">
             {{ currentUser.personal_info.full_name }}
+            <a
+              href="/pdf-theme-preview-by-code-8"
+              class="pdf-btn"
+              target="_blank"
+            >
+              <svg-vue :icon="'themes.pdf-button-theme8'"></svg-vue>
+            </a>
           </div>
           <div class="job-title">
             {{ currentUser.personal_info.designation }}
@@ -37,7 +44,7 @@
                 </a>
               </div>
               <div class="audio-btn hideOnNotTablet">
-                <a href="javascript:void(0)">
+                <a href="javascript:void(0)" @click.prevent="audioPopup = !audioPopup">
                   <img
                     src="/images/resume_themes/theme8/headphones.svg"
                     alt="audio icon"
@@ -81,7 +88,7 @@
             </a>
           </div>
           <div class="audio-btn">
-            <a href="javascript:void(0)">
+            <a href="javascript:void(0)" @click.prevent="audioPopup = !audioPopup">
               <img
                 src="/images/resume_themes/theme8/headphones.svg"
                 alt="audio icon"
@@ -121,8 +128,7 @@
                   v-show="payment_Info.is_public"
                 >
                   <span class="title" v-if="paymentInfo == index">
-                    $ {{ payment_Info.salary }}
-                    {{ payment_Info.currency.toUpperCase() }}
+                    {{ formatSalary(payment_Info.salary, payment_Info.currency.toUpperCase() ) }}
                   </span>
                 </div>
               </div>
@@ -278,7 +284,7 @@
         >
           <div class="about-me">
             <div class="about-title">About me</div>
-            <div class="about-text">{{ currentUser.personal_info.about }}</div>
+            <vue-markdown class="about-text">{{ currentUser.personal_info.about }}</vue-markdown>
           </div>
           <div class="contact">
             <div class="contact-title">Contact</div>
@@ -289,20 +295,41 @@
         </div>
       </div>
     </div>
+    <!-- Audio Modal -->
+      <div class="media" v-if="audioPopup">
+        <div class="media__content">
+          <div class="media__content_close">
+            <a href="javascript:void(0)" @click.prevent="audioPopup = false"
+              ><img
+                src="/images/resume_themes/theme3/close.svg"
+                alt="close-icon"
+              />
+            </a>
+          </div>
+          <span style="margin-top:6%;">
+            Hello World
+          </span>
+        </div>
+      </div>
+    <!-- Audio Modal -->
   </div>
 </template>
 
 <script>
 import Slick from "vue-slick";
+import VueMarkdown from 'vue-markdown';
+import Audio from './media/Audio'
 
 export default {
   name: "theme8",
   props: ["user", "is_preview", "currentTab"],
   components: {
-    Slick
+    Slick,
+    'vue-markdown': VueMarkdown
   },
   data() {
     return {
+      audioPopup:false,
       tabs: [
         {
           text: "Portfolio",
@@ -375,6 +402,9 @@ export default {
       }
       return "social_icon";
     },
+    formatSalary (salary, currency) {
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(salary)
+    },
 
     skillsBar() {
       $(".skills .skill .skill-bar span").each(function() {
@@ -423,12 +453,10 @@ export default {
   },
   mounted() {
     this.skillsBar();
-
     // if there is no user or the preview is true, set dummy user
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
-
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
   }
@@ -495,6 +523,14 @@ export default {
           font-weight: bold;
           opacity: 1;
           padding-bottom: 13px;
+          display: flex;
+
+          .pdf-btn {
+            width: 60px;
+            height: 60px;
+            margin-top: -6px;
+            margin-left: 10px;
+          }
         }
 
         .job-title {
@@ -2279,5 +2315,124 @@ export default {
   position: absolute;
   height: 100%;
   width: 100%;
+}
+
+@mixin modalPostion {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin modalPostionTablet {
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+}
+@mixin modalPostionMobile {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-54%, -50%);
+}
+.media {
+  width: 100%;
+  height: 100vh;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  &__content {
+    @include modalPostion;
+    width: 95%;
+    height: 40rem;
+    background-color: #fff;
+    border-radius: 30px;
+    @media only screen and (min-width: 650px) and (max-width: 1024px) {
+      @include modalPostionTablet;
+      width: 88%;
+      height: 30rem;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 500px) {
+      @include modalPostionMobile;
+      width: 85%;
+      height: 30rem;
+    }
+    &_close {
+      width: 30px;
+      height: 30px;
+
+      border-radius: 50%;
+      background: #5289e7;
+      color: #fff;
+      float: right;
+      margin-top: 1.5rem;
+      margin-right: 1.5rem;
+
+      a > img {
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        margin-top: 2px;
+      }
+    }
+    &__audio {
+      margin-top: 6%;
+      @media only screen and (min-width: 650px) and (max-width: 1024px) {
+        margin-top: 7%;
+      }
+      @media only screen and (min-width: 320px) and (max-width: 500px) {
+        margin-top: 12%;
+      }
+    }
+  }
+  &__contentV {
+    @include modalPostion;
+    width: 95%;
+    height: 40rem;
+    background-color: #fff;
+    border-radius: 30px;
+    @media only screen and (min-width: 650px) and (max-width: 1024px) {
+      @include modalPostionTablet;
+      width: 88%;
+      height: 60rem;
+    }
+    @media only screen and (min-width: 320px) and (max-width: 500px) {
+      top: 52%;
+      left: 50%;
+      transform: translate(-55%, -50%);
+      width: 85%;
+      height: 43rem;
+    }
+    &_close {
+      width: 30px;
+      height: 30px;
+
+      border-radius: 50%;
+      background: #5289e7;
+      color: #fff;
+      float: right;
+      margin-top: 1.5rem;
+      margin-right: 1.5rem;
+
+      a > img {
+        width: 25px;
+        height: 25px;
+        margin: auto;
+        margin-top: 2px;
+      }
+    }
+
+    &__video {
+      margin-top: 6%;
+      @media only screen and (min-width: 650px) and (max-width: 1024px) {
+        margin-top: 7%;
+      }
+      @media only screen and (min-width: 320px) and (max-width: 500px) {
+        margin-top: 10%;
+      }
+    }
+  }
 }
 </style>

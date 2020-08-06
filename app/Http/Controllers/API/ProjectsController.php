@@ -43,6 +43,12 @@ class ProjectsController extends Controller
         if($request->isMethod('put') || $request->id != '' ){
             // update
             $project = Project::findOrFail($request->id);
+            if($request['is_public'] == false || $request['is_public'] === 'false' ){
+                $request['is_public'] = false ;
+            }
+            else if($request['is_public'] == true || $request['is_public'] === 'true') {
+                $request['is_public'] = true ;
+            }
             $project->update($request->toArray());
         }else{
             // add
@@ -54,9 +60,32 @@ class ProjectsController extends Controller
         }
         $project['images'] = $project->images;
 
+
         if ($project->id){
             return new ProjectResource($project);
         }
+    }
+
+    public function storeMany(Request $request){
+        if(!$this->is_auth($request)){
+            throw new Exception('Not Authenticated!');
+        }
+
+        $addedProjects = [];
+
+        foreach($request->projects as $project){
+            $newProject = Project::create($project);
+            if(isset($project['image'])){
+                $newProject->images()->create([
+                    'src' => $project['image'],
+                    'is_main' => true
+                ]);
+            }
+            $newProject['images'] = $newProject->images;
+            $addedProjects[] = $newProject;
+        }
+
+        return $addedProjects;
     }
 
     public function show($id)

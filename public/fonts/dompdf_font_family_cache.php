@@ -78,18 +78,36 @@
     'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
   ),
   'open sans' => array(
-    'normal' => $rootDir . '/lib/fonts/open-sans-normal_2d61eedf1a366b3351d9409ac4a567a9',
+    'normal' => $fontDir . '/open-sans-normal_c7c2933cf25bf788d06ffa02358f3b92',
   ),
   'opensans-regular' => array(
-    'normal' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'bold' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
-    'bold_italic' => 'C:\Users\josed\OneDrive\Documentos\123workforce\civ\public\fonts//OpenSans-Regular',
+    'normal' => $fontDir . '/OpenSans-Regular',
+    'bold' => $fontDir . '/OpenSans-Regular',
+    'italic' => $fontDir . '/OpenSans-Regular',
+    'bold_italic' => $fontDir . '/OpenSans-Regular',
   ),
   'raleway' => array(
-    'normal' => $fontDir . '/Raleway-Regular',
+    'normal' => $fontDir . '/raleway-normal_50d0eebadfd70281d351d5a617de5928',
     'bold' => $fontDir . '/Raleway-Bold',
     'italic' => $fontDir . '/Raleway-BoldItalic',
     'bold_italic' => $fontDir . '/Raleway-Regular',
+  ),
+  'muli' => array(
+    'normal' => $fontDir . '/muli-normal_ac284dc71e1b0704e4d0e81d205378b2',
+  ),
+  'fira' => array(
+    'normal' => $fontDir . '/fira-normal_21029b28bb237c42b004f9637e51c223',
+  ),
+  'montserrat' => array(
+    'normal' => $fontDir . '/montserrat-normal_3f4ced0214179fda4ed8b5ca9920ea29',
+  ),
+  'montserrat bold' => array(
+    'normal' => $fontDir . '/montserrat-bold-normal_5f02ad5e4fb9f5d1888b050ae61df03b',
+  ),
+  'open sans bold' => array(
+    'normal' => $fontDir . '/open-sans-bold-normal_0ec39ddaa9bbbc1815bddb835c62acdf',
+  ),
+  'actor' => array(
+    'normal' => $fontDir . '/actor-normal_db9f1e3bf24b2b2a45469cebab9b002e',
   ),
 ) ?>

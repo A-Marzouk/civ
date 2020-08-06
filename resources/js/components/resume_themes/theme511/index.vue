@@ -5,7 +5,7 @@
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4">
           <v-container fluid>
             <v-row dense>
-              <v-col cols="2" lg="2" sm="3" align="center" align-self="center">
+              <v-col class="profile-picture" cols="2" lg="2" sm="3" align="center" align-self="center">
                 <v-img
                   @click.stop="drawer = !drawer"
                   :src="currentUser.personal_info.profile_pic"
@@ -13,6 +13,10 @@
                   style="border-radius:50%;"
                   contain
                 ></v-img>
+
+                <a href="/preview-pdf-theme-by-code/theme21" class="pdf-btn" target="_blank">
+                  <svg-vue :icon="'themes.pdf-button-theme511'"></svg-vue>
+                </a>
 
                 <v-navigation-drawer
                   color="rgba(103, 100, 200, 0.95)"
@@ -125,14 +129,10 @@
                     fab
                     elevation="0"
                   >
-                    <v-img
-                      :src="
-                        `/images/resume_themes/theme511/social_icons/${Userlink.link_title.toLowerCase()}Red.svg`
-                      "
-                      contain
-                      max-width="24"
-                      height="24"
-                    ></v-img>
+                    <svg-vue
+                      class="icon"
+                      :icon="Userlink.link_title.toLowerCase() + '-icon'"
+                    ></svg-vue>
                   </v-btn>
 
                   <v-btn
@@ -548,6 +548,12 @@ export default {
   border: 5px solid #f56068;
   box-sizing: border-box;
   border-radius: 50px;
+
+  .icon {
+    height: 24px;
+    width: 24px;
+    fill: #f56068;
+  }
 }
 .hire {
   background: #fbffff;
@@ -624,6 +630,19 @@ export default {
   color: #000000;
 }
 
+.profile-picture {
+  position: relative;
+  
+  .pdf-btn {
+    position: absolute;
+    right: 0;
+    bottom: 45px;
+    height: 50px;
+    width: 50px;
+  }
+}
+
+
 @media screen and (max-width: 1024px) and (min-width: 700px) {
   .head {
     font-family: Poppins;
@@ -693,8 +712,6 @@ export default {
 }
 @media screen and (max-width: 699px) and (min-width: 200px) {
   .head {
-    font-family: Poppins;
-    font-style: normal;
     font-weight: 800;
     font-size: 16px;
     line-height: 24px;

@@ -1,62 +1,17 @@
 <template>
     <div class="container work-flex">
-        <div class="work-item">
+        <div class="work-item" v-for="(work, i) in currentUser.work_experience.filter(w => w.is_public)" :key="work.company_name + i">
             <div class="work-header">
                 <div class="work-icon">
                     <img src="/images/resume_themes/theme103/work-icon.png" />
                 </div>
-                <div class="date">2019 - 2020</div>
-                <h2 class="company-name">123Workforce</h2>
+                <div class="date">{{ work.date_from.split('-')[0] }} - {{ work.present ? 'Now' : work.date_to.split('-')[0] }}</div>
+                <h2 class="company-name">{{ work.company_name }}</h2>
             </div>
             <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
+                <div class="job-title">{{ work.job_title }}</div>
                 <div class="work-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="work-item">
-            <div class="work-header">
-                <div class="work-icon">
-                    <img src="/images/resume_themes/theme103/work-icon.png" />
-                </div>
-                <div class="date">2019 - 2020</div>
-                <h2 class="company-name">123Workforce</h2>
-            </div>
-            <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
-                <div class="work-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="work-item">
-            <div class="work-header">
-                <div class="work-icon">
-                    <img src="/images/resume_themes/theme103/work-icon.png" />
-                </div>
-                <div class="date">2019 - 2020</div>
-                <h2 class="company-name">123Workforce</h2>
-            </div>
-            <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
-                <div class="work-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
-                </div>
-            </div>
-        </div>
-        <div class="work-item">
-            <div class="work-header">
-                <div class="work-icon">
-                    <img src="/images/resume_themes/theme103/work-icon.png" />
-                </div>
-                <div class="date">2019 - 2020</div>
-                <h2 class="company-name">123Workforce</h2>
-            </div>
-            <div class="work-body">
-                <div class="job-title">Fullstack Developer</div>
-                <div class="work-description">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat voluptatum ipsum eius, nihil commodi obcaecati, deleniti non distinctio consectetur minus ratione. Sit totam eaque et, eos ex esse ab ullam.</p>
+                    {{ work.description }}
                 </div>
             </div>
         </div>
@@ -65,6 +20,9 @@
 
 <script>
 export default {
+    props: [
+        'currentUser'
+    ],
     data: () => ({
 
     })

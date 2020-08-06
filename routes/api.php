@@ -91,6 +91,11 @@ Route::group(['prefix' => 'user/'], function () {
 
 
 // WorkEx api routes:
+
+    // tabs
+    Route::post('/tabs/update-order', 'API\TabsController@updateTabsOrder');
+    Route::put('/tabs', 'API\TabsController@toggleVisibility');
+
     //list workExperience
     Route::get('/work-experience', 'API\WorkExController@index');
     //list single workExperience
@@ -140,6 +145,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/projects', 'API\ProjectsController@index');
     Route::get('/projects/{id}', 'API\ProjectsController@show');
     Route::post('/projects', 'API\ProjectsController@store');
+    Route::post('/projects/many', 'API\ProjectsController@storeMany');
     Route::post('/projects/update-order', 'API\ProjectsController@updateProjectsOrder');
     Route::put('/projects', 'API\ProjectsController@store');
     Route::delete('/projects/{id}', 'API\ProjectsController@destroy');

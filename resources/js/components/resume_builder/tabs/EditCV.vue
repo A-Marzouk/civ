@@ -10,7 +10,7 @@
 			<span @click="updateIframe" id="updateIframe"></span>
 
 
-			<div class="v-application preview-action-row v-application--is-ltr theme--light">
+			<div v-if="activeTab !== 'imports'" class="v-application preview-action-row v-application--is-ltr theme--light">
 				<div class="switch">
 					<div class="text">
 						Preview Auto Update
@@ -22,7 +22,7 @@
 				</div>
 			</div>
 
-			<div class="cv-content-preview-wrapper">
+			<div class="cv-content-preview-wrapper" v-if="activeTab !== 'imports'">
 				<div class="cv-content-preview">
 					<div class="cv-preview-link">
 						<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
@@ -116,7 +116,7 @@ $disabledColor: #9f9e9e;
 
 
 	.edit-cv-content {
-		padding: 40px 20px;
+		padding: 40px 5px;
 	}
 
 	@include gt-xs {
