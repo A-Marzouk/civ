@@ -5,7 +5,7 @@
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4">
           <v-container fluid>
             <v-row dense>
-              <v-col cols="2" lg="2" sm="3" align="center" align-self="center">
+              <v-col class="profile-picture" cols="2" lg="2" sm="3" align="center" align-self="center">
                 <v-img
                   @click.stop="drawer = !drawer"
                   :src="currentUser.personal_info.profile_pic"
@@ -13,6 +13,10 @@
                   style="border-radius:50%;"
                   contain
                 ></v-img>
+
+                <a href="/preview-pdf-theme-by-code/theme21" class="pdf-btn" target="_blank">
+                  <svg-vue :icon="'themes.pdf-button-theme511'"></svg-vue>
+                </a>
 
                 <v-navigation-drawer
                   color="rgba(103, 100, 200, 0.95)"
@@ -625,6 +629,19 @@ export default {
   align-items: center;
   color: #000000;
 }
+
+.profile-picture {
+  position: relative;
+  
+  .pdf-btn {
+    position: absolute;
+    right: 0;
+    bottom: 45px;
+    height: 50px;
+    width: 50px;
+  }
+}
+
 
 @media screen and (max-width: 1024px) and (min-width: 700px) {
   .head {
