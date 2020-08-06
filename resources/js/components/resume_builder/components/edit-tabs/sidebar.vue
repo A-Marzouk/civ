@@ -371,8 +371,9 @@ export default {
               border: unset;
 
               &:hover {
-                background-color: #f9f9f9;
+                background-color:transparent;
                 text-decoration: none;
+                color: #001ce2;
               }
             }
 
