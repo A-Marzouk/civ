@@ -407,3 +407,13 @@ export default {
   stroke: #001ce2;
 }
 </style>
+
+<style lang="scss">
+  .profile-ixklwxz-link-icon-active {
+    svg{
+      g{
+        fill: #001ce2 !important;
+      }
+    }
+  }
+</style>
