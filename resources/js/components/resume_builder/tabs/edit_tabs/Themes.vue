@@ -1,11 +1,11 @@
 <template>
     <v-app>
-        <v-container fluid class="pa-xl-0 pa-lg-0 pa-md-8 pa-sm-5 pa-6">
+        <v-container fluid>
             <v-row>
                 <!-- side menu -->
                 <v-col xl="12" lg="12" md="12" sm="12" cols="12" align="left" class>
                     <!-- tab bar -->
-                    <v-card class="card-themes-wrapper main-content resume-builder__scroll pa-10">
+                    <v-card class="card-themes-wrapper main-content resume-builder__scroll">
                         <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
                         <v-row align="center" v-if="user.theme">
                             <v-col
@@ -315,6 +315,12 @@
         padding: 50px;
         margin-bottom: 70px;
         scroll-behavior: smooth;
+        @include lt-md{
+            padding: 25px;
+        }
+        @include lt-sm{
+            padding: 25px;
+        }
         @media screen and (min-width: 1904px) {
             max-width: 1480px !important;
         }
@@ -418,7 +424,7 @@
                 height: 175.11px;
             }
             @media screen and (max-width: 599px) {
-                width: 300px;
+                width: 100%;
                 height: 217.67px;
             }
 
@@ -447,7 +453,7 @@
                     height: 175.11px;
                 }
                 @media screen and (max-width: 599px) {
-                    width: 300px;
+                    width: 93%;
                     height: 217.67px;
                 }
             }
@@ -603,8 +609,6 @@
     }
 
     .cv-content-preview-wrapper {
-        margin-right: -10px;
-        margin-left: -10px;
         overflow-y: scroll;
         margin-top: 40px;
         padding: 10px;

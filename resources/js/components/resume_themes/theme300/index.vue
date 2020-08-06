@@ -17,18 +17,23 @@
               <v-col lg="2" md="5" sm="4" cols="5" class="profileCol">
                 <div class="head-name">{{currentUser.personal_info.full_name}}</div>
                 <div class="head-profile">{{currentUser.personal_info.designation}}</div>
-                <div class="social-wrap">
-                  <a
-                    :href="item.link"
-                    v-for="item in socialLinks"
-                    :key="item.id + '_link'"
-                    target="_blank"
-                    v-show="item.is_active"
-                  >
-                    <img
-                      :src="`/images/resume_themes/theme300/social_icons/${stringToLowerCase(item.link_title)}.webp`"
-                      alt="social icon"
-                    />
+                <div class="social-pdf">
+                  <div class="social-wrap">
+                    <a
+                      :href="item.link"
+                      v-for="item in socialLinks"
+                      :key="item.id + '_link'"
+                      target="_blank"
+                      v-show="item.is_active"
+                    >
+                      <img
+                        :src="`/images/resume_themes/theme300/social_icons/${stringToLowerCase(item.link_title)}.webp`"
+                        alt="social icon"
+                      />
+                    </a>
+                  </div>
+                  <a href="/preview-pdf-by-theme-code/" class="pdf-btn">
+                    <svg-vue :icon="'themes.pdf-button-theme300'"></svg-vue>
                   </a>
                 </div>
               </v-col>
@@ -729,15 +734,20 @@ $tab_FourColor: #4285f4;
       .head-profile {
         font-size: 12px;
       }
-      .social-wrap {
-        a {
-          min-width: 23px;
-          min-height: 23px;
-          line-height: 20px;
-          margin-right: 10px;
 
-          img {
-            max-width: 12px;
+      .social-pdf {
+        display: flex;
+        
+        .social-wrap {
+          a {
+            min-width: 23px;
+            min-height: 23px;
+            line-height: 20px;
+            margin-right: 10px;
+
+            img {
+              max-width: 12px;
+            }
           }
         }
       }
@@ -1007,6 +1017,22 @@ $tab_FourColor: #4285f4;
   font-family: "Roboto";
   font-size: 18px;
   color: #5f6368;
+}
+
+.social-pdf {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+
+  .pdf-btn {
+    height: 35px;
+    width: 35px;
+    justify-self: flex-end;
+
+    svg {
+      width: 100%;
+    }
+  }
 }
 .social-wrap {
   justify-content: flex-start;

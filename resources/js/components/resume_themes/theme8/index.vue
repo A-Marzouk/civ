@@ -12,6 +12,13 @@
         <div class="main-info">
           <div class="user-name">
             {{ currentUser.personal_info.full_name }}
+            <a
+              href="/pdf-theme-preview-by-code-8"
+              class="pdf-btn"
+              target="_blank"
+            >
+              <svg-vue :icon="'themes.pdf-button-theme8'"></svg-vue>
+            </a>
           </div>
           <div class="job-title">
             {{ currentUser.personal_info.designation }}
@@ -516,6 +523,14 @@ export default {
           font-weight: bold;
           opacity: 1;
           padding-bottom: 13px;
+          display: flex;
+
+          .pdf-btn {
+            width: 60px;
+            height: 60px;
+            margin-top: -6px;
+            margin-left: 10px;
+          }
         }
 
         .job-title {
