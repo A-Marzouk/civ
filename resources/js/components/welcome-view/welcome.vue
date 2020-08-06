@@ -514,6 +514,7 @@ export default {
   .inner-link {
     padding-top: 4px;
     padding-right: 10px;
+    white-space: nowrap;
     &:hover {
       text-decoration: none;
     }
