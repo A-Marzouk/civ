@@ -43,7 +43,12 @@
           :class="{'active': activeTab === sidebarLink.icon}"
           :key="sidebarLink.icon"
         >
-          <router-link :to="sidebarLink.url" @click.native="setActive(sidebarLink)">
+          <router-link
+            :to="sidebarLink.url"
+            @click.native="setActive(sidebarLink)"
+            @mouseover.native="menuHover(sidebarLink)"
+            @mouseleave.native="menuHover(sidebarLink)"
+          >
             <div
               class="link-icon"
               :class="{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}"
@@ -65,74 +70,73 @@ export default {
   props: {
     activeTab: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
     return {
       open: false,
-
       sidebarLinks: [
         {
           url: "/resume-builder/edit/profile",
           icon: "profile",
-          label: "Profile"
+          label: "Profile",
         },
         {
           url: "/resume-builder/edit/links",
           icon: "links",
-          label: "Links"
+          label: "Links",
         },
         {
           url: "/resume-builder/edit/work-experience",
           icon: "work-experience",
-          label: "Work experience"
+          label: "Work experience",
         },
         {
           url: "/resume-builder/edit/education",
           icon: "education",
-          label: "Education"
+          label: "Education",
         },
         {
           url: "/resume-builder/edit/skills",
           icon: "skills",
-          label: "Skills"
+          label: "Skills",
         },
         {
           url: "/resume-builder/edit/portfolio",
           icon: "portfolio",
-          label: "Portfolio"
+          label: "Portfolio",
         },
         {
           url: "/resume-builder/edit/audio-video",
           icon: "audio-video",
-          label: "Audio/Video"
+          label: "Audio/Video",
         },
         {
           url: "/resume-builder/edit/hobbies",
           icon: "hobbies",
-          label: "Hobbies"
+          label: "Hobbies",
         },
         {
           url: "/resume-builder/edit/achievement",
           icon: "achievement",
-          label: "Achievement"
+          label: "Achievement",
         },
         {
           url: "/resume-builder/edit/imports",
           icon: "imports",
-          label: "Imports"
+          label: "Imports",
         },
         {
           url: "/resume-builder/edit/references",
           icon: "references",
-          label: "References"
+          label: "References",
         },
         {
           url: "/resume-builder/edit/pay-availability",
           icon: "pay-availability",
-          label: "Pay availability"
+          label: "Pay availability",
         },
         // {
         //   url: "/resume-builder/edit/downloads",
@@ -142,20 +146,20 @@ export default {
         {
           url: "/resume-builder/edit/structure",
           icon: "structure",
-          label: "Structure"
+          label: "Structure",
         },
         {
           url: "/resume-builder/edit/themes",
           icon: "themes",
-          label: "Themes"
+          label: "Themes",
         },
       ],
 
       currentSidebarLink: {
         url: "/resume-builder/edit/profile",
         icon: "profile",
-        label: "Profile"
-      }
+        label: "Profile",
+      },
     };
   },
 
@@ -164,25 +168,28 @@ export default {
       this.open = false;
       this.currentSidebarLink = activeLink;
       this.$emit("onChange", activeLink.icon);
-    }
+    },
+    menuHover(activeLink) {
+      this.currentSidebarLink = activeLink;
+      this.$emit("onChange", activeLink.icon);
+    },
   },
-
 
   mounted() {
     // Set the correct activeTab on refresh, and on changing the view
     const pathSplit = this.$route.path.split("/"),
       activeTab = pathSplit[pathSplit.length - 1];
 
-    let activeLink = {} ;
+    let activeLink = {};
 
-    this.sidebarLinks.forEach( (link) => {
-      if(link.icon === activeTab){
-        activeLink = link ;
+    this.sidebarLinks.forEach((link) => {
+      if (link.icon === activeTab) {
+        activeLink = link;
       }
     });
 
     this.setActive(activeLink);
-  }
+  },
 };
 </script>
 
@@ -202,7 +209,6 @@ export default {
     max-width: 350px;
     margin-left: auto;
     margin-right: auto;
-    
 
     .sidebar-links,
     .sidebar-link-activator {
@@ -371,8 +377,9 @@ export default {
               border: unset;
 
               &:hover {
-                background-color: #f9f9f9;
+                background-color: transparent;
                 text-decoration: none;
+                color: #001ce2;
               }
             }
 
