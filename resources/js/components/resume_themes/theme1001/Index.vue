@@ -5,7 +5,8 @@
     <TabsNavigation
       :activeTab="activeTab"
       :currentUser="currentUser"
-      @tabChanged="activeTab = $event"
+      @tab-changed="activeTab = $event"
+      :currentTab="currentTab"
     />
 
     <TabsContent :activeTab="activeTab" :currentUser="currentUser" />
