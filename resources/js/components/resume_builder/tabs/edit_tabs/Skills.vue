@@ -65,7 +65,7 @@
                     @click="addSkill"
                   >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
                   <v-btn
-                    class="resume-builder__btn civie-btn btn-add-new ml-3 mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
+                    class="resume-builder__btn civie-btn btn-add-new mt-2 ml-5"
                     @click="cancelEdit"
                     v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>
