@@ -104,7 +104,7 @@
                     {{newEducation.id !== '' ? 'Update' : 'Add New'}}
                 </v-btn>
 
-                <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearEducation"
+                <v-btn class="resume-builder__btn civie-btn ml-4" raised @click="clearEducation"
                        v-show="newEducation.id !== '' ">
                     Cancel
                 </v-btn>
