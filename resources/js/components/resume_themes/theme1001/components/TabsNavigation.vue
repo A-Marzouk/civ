@@ -7,10 +7,10 @@
             class="navigation__link"
             :class="[
               { active: activeTab === 'portfolio' },
-              { 'active-indicator': currentTab === 'portfolio' }
+              { 'active-indicator': currentTab === 'portfolio' },
             ]"
           >
-            <a href="#" @click.prevent="$emit('tabChanged', 'portfolio')"
+            <a href="#" @click.prevent="$emit('tab-changed', 'portfolio')"
               >Portfolio</a
             >
           </li>
@@ -18,12 +18,12 @@
             class="navigation__link"
             :class="[
               { active: activeTab === 'experience-education' },
-              { 'active-indicator': currentTab === 'work-experience' }
+              { 'active-indicator': currentTab === 'work-experience' },
             ]"
           >
             <a
               href="#"
-              @click.prevent="$emit('tabChanged', 'experience-education')"
+              @click.prevent="$emit('tab-changed', 'experience-education')"
               >Work experience & Education</a
             >
           </li>
@@ -31,10 +31,12 @@
             class="navigation__link"
             :class="[
               { active: activeTab === 'skills-languages' },
-              { 'active-indicator': currentTab === 'skills' }
+              { 'active-indicator': currentTab === 'skills' },
             ]"
           >
-            <a href="#" @click.prevent="$emit('tabChanged', 'skills-languages')"
+            <a
+              href="#"
+              @click.prevent="$emit('tab-changed', 'skills-languages')"
               >Skills & Language</a
             >
           </li>
@@ -43,10 +45,10 @@
             class="navigation__link"
             :class="[
               { active: activeTab === 'about-me' },
-              { 'active-indicator': currentTab === 'about' }
+              { 'active-indicator': currentTab === 'about' },
             ]"
           >
-            <a href="#" @click.prevent="$emit('tabChanged', 'about-me')"
+            <a href="#" @click.prevent="$emit('tab-changed', 'about-me')"
               >About Me</a
             >
           </li>
@@ -54,10 +56,12 @@
             class="navigation__link"
             :class="[
               { active: activeTab === 'media' },
-              { 'active-indicator': currentTab === 'media' }
+              { 'active-indicator': currentTab === 'media' },
             ]"
           >
-            <a href="#" @click.prevent="$emit('tabChanged', 'media')">Media </a>
+            <a href="#" @click.prevent="$emit('tab-changed', 'media')"
+              >Media
+            </a>
           </li>
         </ul>
 
@@ -104,6 +108,9 @@ export default {
     currentUser: {
       type: undefined,
       required: true
+    },
+    currentTab:{
+      type:undefined
     }
   },
 
@@ -113,7 +120,13 @@ export default {
     return {
       isOpen: false
     };
-  }
+  },
+  watch: {
+    // if current tab changed, change the active tab as well.
+    currentTab: function(val) {
+      this.activeTab = val;
+    }
+  },
 };
 </script>
 
