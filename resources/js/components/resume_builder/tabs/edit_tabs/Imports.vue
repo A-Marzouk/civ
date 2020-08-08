@@ -675,7 +675,7 @@
                                 </td>
                                 <td class="d-none d-lg-table-cell">
                                     <div class="center-col">
-                                        <img src="/icons/delete.svg" @click="deleteImport" alt="delete icon">
+                                        <img src="/icons/delete.svg" @click="deleteImport(importHistory)" alt="delete icon">
                                     </div>
                                 </td>
                                 <td class="d-lg-none">
@@ -718,7 +718,6 @@
                     maxFiles: 1,
                     acceptedFiles: "application/pdf,.doc,.docx,",
                 },
-
 
                 // extract:
                 translationLanguage: 'select',
@@ -1335,7 +1334,8 @@
                 linkedInProfile:'',
                 behanceUsername:'',
                 behanceProjects:[],
-
+                importURL: '',
+                importType:'File'
             }
         },
         methods: {
@@ -1360,6 +1360,9 @@
             },
 
             importLinkedInProfile() {
+                this.importURL =  this.linkedInProfile ;
+                this.importType = 'LinkedIn' ;
+
                 if(this.importing){
                     return;
                 }
@@ -1435,7 +1438,9 @@
                                 iconSrc: '/images/resume_builder/error.png'
                             });
                         });
-                } else {
+                }
+
+                else {
                     axios.post('/resume-builder/import/docx', formData, config)
                         .then((response) => {
                             this.extractDocText(response.data);
@@ -1452,7 +1457,6 @@
                             });
                         });
                 }
-
             },
             clearFreelancerData() {
                 this.freelancerData = {
@@ -1492,6 +1496,8 @@
 
             // Import data from Behance:
             importDataFromBehance(){
+                this.importURL = 'https://behance.com/' + this.behanceUsername ;
+                this.importType = 'Behance' ;
                 axios.get('/resume-builder/import/behance/' + this.behanceUsername)
                     .then((response) => {
                         console.log('Behance Data:');
@@ -1525,6 +1531,7 @@
                             this.projects.push(project);
                         });
                         this.$store.dispatch('flyingNotification');
+                        this.addImport();
                     });
 
             },
@@ -1862,6 +1869,8 @@
                     })
                     .then( () => {
                         this.updateUserInfo();
+
+                        this.addImport();
                     })
             },
 
@@ -2004,6 +2013,40 @@
 
 
             // crud on imports:
+            addImport() {
+                console.log('called');
+
+                let formData = new FormData();
+                let newImport = {
+                    title: 'Import ' + (this.imports.length+1) + ' | ' + this.importType,
+                    url:   this.importURL ,
+                    importFile: this.file,
+                    user_id: this.$store.state.user.id
+                };
+
+                $.each(newImport, (field) => {
+                    formData.append(field, newImport[field]);
+                });
+
+                axios.post('/api/user/imports', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+                    .then((response) => {
+                        this.imports.push(response.data.data);
+                        this.$store.dispatch('flyingNotification');
+                        console.log('success');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
             deleteImport(importHistory) {
                 if (
                     !confirm(
