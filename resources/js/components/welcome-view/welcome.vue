@@ -50,8 +50,7 @@
                         <template slot="append">
                           <a
                             class="inner-link"
-                            href="javascript:void(0)"
-                            @click="scrollTo('createAccount')"
+                            href="/register"
                             v-show="is_username_valid"
                           >Sign up</a>
                         </template>
@@ -484,19 +483,8 @@ export default {
     getGalleryImages(id) {
       return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
     },
-    getIntegrationImage(id) {
-      return `/images/welcome_landing_page/imgs/integration/${id}.png`;
-    },
     getContactIcons(title) {
       return `/images/welcome_landing_page/icons/${title}.png`;
-    },
-    scrollTo(id) {
-      $("html, body").animate(
-        {
-          scrollTop: $("#" + id).offset().top
-        },
-        1500
-      );
     },
     playIntroVideo(){
       this.videoOn = true;
