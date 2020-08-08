@@ -639,6 +639,8 @@
                 position: relative;
                 overflow-y: hidden;
                 border-radius: 50%;
+                min-width: 110px;
+                min-height: 110px;
 
                 img {
                     width: 110px;
@@ -680,6 +682,10 @@
                     font-size: 24px;
                     line-height: 36px;
                     color: #888db1;
+                    @include lt-sm{
+                        font-size: 18px;
+                        line-height: 26px;
+                    }
                 }
 
                 .job-title {

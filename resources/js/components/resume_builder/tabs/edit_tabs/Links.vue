@@ -24,7 +24,7 @@
 
 				</v-select>
 
-				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" placeholder="https://github.com/john-doe" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
+				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
 				</v-text-field>
 
 				<div class="d-flex" style="margin-top: 5.8px">
