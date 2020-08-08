@@ -6,8 +6,7 @@
         <img class="logo" src="/images/welcome_landing_page/logo/civie_logo-blue.png" alt="logo" />
         <v-spacer></v-spacer>
         <a class="btn-appbar-login" href="/login">
-          Log
-          <span>&nbsp;in</span>
+          Login
         </a>
       </v-app-bar>
       <!-- 1st inner container -->
@@ -655,13 +654,15 @@ export default {
   //appbar login btn
   .btn-appbar-login {
     font-family: "Montserrat" !important;
-    font-size: 18px !important;
+    padding: 0.76rem 2.6rem;
+    border-radius: 7px;
+    box-shadow: 0 10px 15px -3px rgba(0, 72, 254, 0.335);
+    letter-spacing: 2px;
+    background-color: rgb(0,70,254);
+    font-size: 12px !important;
     font-weight: bold !important;
-    text-transform: capitalize !important;
-    color: #0046fe !important;
-    span {
-      text-transform: lowercase !important;
-    }
+    text-transform: uppercase !important;
+    color: white !important;
 
     @media screen and (min-width: 1600px) {
       margin-right: 100px;

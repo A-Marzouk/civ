@@ -25,7 +25,7 @@
                     <div class="content-wrapper">
                         <div class="mar-form">
                             <v-text-field v-if="personalInfo"
-                                    class="resume-builder__input input-margin input-margin-3"
+                                    class="resume-builder__input input-margin input-margin-3 ct-fix-input"
                                     label="First name"
                                     v-model="personalInfo.first_name"
                                     :outlined="true"
@@ -36,7 +36,7 @@
                             ></v-text-field>
 
                             <v-text-field
-                                    class="resume-builder__input input-margin input-margin-3 mt-n3"
+                                    class="resume-builder__input input-margin input-margin-3 mt-n3 ct-fix-input"
                                     label="Email"
                                     v-model="accountData.email"
                                     :outlined="true"
@@ -47,11 +47,11 @@
                             ></v-text-field>
 
                             <v-text-field
-                                    class="resume-builder__input input-margin centered-input mt-n3"
+                                    class="resume-builder__input input-margin centered-input mt-n3 ct-fix-input"
                                     label="Password"
                                     type="password"
                                     v-model="accountData.password"
-                                    placeholder="*********"
+                                    placeholder="••••••••••"
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
@@ -63,7 +63,7 @@
                                     label="Re-Type Password"
                                     type="password"
                                     v-model="accountData.password_confirmation"
-                                    placeholder="*********"
+                                    placeholder="••••••••••"
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
@@ -106,7 +106,7 @@
                                     :error-messages="errors.username"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">www.civ.ie/</span>
+                                    <span class="inner-text" style="margin-top:-4.8px;">www.civ.ie/</span>
                                 </template>
                             </v-text-field>
                         </div>
@@ -121,11 +121,12 @@
 
         <!-- dialog -->
         <v-dialog
-                v-model="priceModal"
-                max-width="550"
-                style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
-        border-radius: 10px; z-index:1000; overflow-y:hidden;"
+            v-model="priceModal"
+            max-width="550"
+            style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
+            border-radius: 10px; z-index:1000; overflow-y:hidden;"
         >
+
             <v-card>
                 <v-card-subtitle></v-card-subtitle>
                 <v-card-text class="mt-5">
@@ -566,6 +567,11 @@
         margin-top: 3px !important;
     }
 
+    // custom fix 1.0
+    .ct-fix-input {
+        height: 5.8rem;
+    }
+ 
 
 </style>
 <style lang="scss">
@@ -633,8 +639,6 @@
                 position: relative;
                 overflow-y: hidden;
                 border-radius: 50%;
-                min-width: 110px;
-                min-height: 110px;
 
                 img {
                     width: 110px;
@@ -676,10 +680,6 @@
                     font-size: 24px;
                     line-height: 36px;
                     color: #888db1;
-                    @include lt-sm{
-                        font-size: 18px;
-                        line-height: 26px;
-                    }
                 }
 
                 .job-title {
@@ -1007,6 +1007,13 @@
                         font-size: 18px;
                         line-height: 25px;
                         color: #001ce2;
+                        transition: 0.2s;
+                    }
+
+                    // custom fix 1.0
+                    .purchase-btn:hover {
+                        color: white;
+                        background: #001ce2;
                     }
                 }
             }
@@ -1035,7 +1042,7 @@
         .aux-fill {
             width: 183%;
             position: absolute;
-            background: #1f5de4;
+            background: #001CE2;
             border-radius: 20px;
             height: 38px;
             top: 0;
@@ -1044,7 +1051,7 @@
     }
 
     .toggle-panel {
-        border: solid 1.3px $primary;
+        border: solid 1.3px #001CE2;
         border-radius: 50px;
         position: relative;
         overflow: hidden;
@@ -1594,6 +1601,7 @@
                         display: flex;
                         flex-direction: column;
                         align-items: center;
+
 
                         .vicp-crop-right {
                             margin-top: 40px;

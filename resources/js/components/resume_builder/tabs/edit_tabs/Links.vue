@@ -24,15 +24,16 @@
 
 				</v-select>
 
-				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
+				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" placeholder="https://github.com/john-doe" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
 				</v-text-field>
 
-				<div class="d-flex mt-2">
+				<div class="d-flex" style="margin-top: 5.8px">
 					<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
 						{{editedLink.id !== '' ? 'Update' : 'Add New'}}
 					</v-btn>
 
-					<v-btn class="resume-builder__btn civie-btn ml-3" raised @click="clearLink" v-show="editedLink.id !== '' ">
+					<v-btn style="margin-left: 2rem"
+						class="resume-builder__btn civie-btn" raised @click="clearLink" v-show="editedLink.id !== '' ">
 						Cancel
 					</v-btn>
 				</div>
@@ -221,7 +222,7 @@ export default {
 			};
 		},
 		validURL(str) {
-			let pattern = new RegExp(
+			var pattern = new RegExp(
 				"^(https?:\\/\\/)?" + // protocol
 				"((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
 				"((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
@@ -230,14 +231,7 @@ export default {
 					"(\\#[-a-z\\d_]*)?$",
 				"i"
 			); // fragment locator
-			if(this.editedLink.link_title === 'Skype'){
-				return this.testSkypeUrl(str);
-			}
 			return !!pattern.test(str);
-		},
-		testSkypeUrl(skype_url){
-			let skypePattern = /skype:/ig ;
-			return skypePattern.test(skype_url);
 		},
 		getCurrentCategories() {
 			if (this.linkCategory === "professional") {
@@ -457,4 +451,13 @@ $mainBlue: #001ce2;
 	padding-top: 5px;
 	padding-left: 3px;
 }
+
+//Custom fix 1.0
+
+.tabName {
+	text-transform: capitalize;
+	font-size: 1rem;
+	padding: 1.6rem;
+}
+
 </style>
