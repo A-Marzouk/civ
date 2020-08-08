@@ -46,12 +46,13 @@
           <router-link
             :to="sidebarLink.url"
             @click.native="setActive(sidebarLink)"
-            @mouseover.native="menuHover(sidebarLink)"
-            @mouseleave.native="menuHover(sidebarLink)"
+            @mouseover.native="menuHover=true"
+            @mouseleave.native="menuHover=false"
           >
             <div
               class="link-icon"
-              :class="{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}"
+              :class="[{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon},
+              {'profile-ixklwxz-link-icon-active':menuHover}]"
             >
               <svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
             </div>
@@ -77,6 +78,7 @@ export default {
   data() {
     return {
       open: false,
+      menuHover:false,
       sidebarLinks: [
         {
           url: "/resume-builder/edit/profile",
