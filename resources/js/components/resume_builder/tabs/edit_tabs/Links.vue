@@ -32,7 +32,7 @@
 						{{editedLink.id !== '' ? 'Update' : 'Add New'}}
 					</v-btn>
 
-					<v-btn class="resume-builder__btn civie-btn ml-3" raised @click="clearLink" v-show="editedLink.id !== '' ">
+					<v-btn class="resume-builder__btn civie-btn ml-4" raised @click="clearLink" v-show="editedLink.id !== '' ">
 						Cancel
 					</v-btn>
 				</div>

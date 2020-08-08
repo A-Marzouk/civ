@@ -196,7 +196,7 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
+                        <button class="trigger-icon mt-1" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_about_active}"></svg-vue>
                         </button>
@@ -215,7 +215,7 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
+                        <button class=" trigger-icon mt-1" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_overview_active}"></svg-vue>
                         </button>
@@ -234,7 +234,7 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
+                        <button class=" trigger-icon mt-1" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_quote_active}"></svg-vue>
                         </button>
