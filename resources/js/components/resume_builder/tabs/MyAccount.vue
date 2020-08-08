@@ -123,11 +123,16 @@
         <v-dialog
                 v-model="priceModal"
                 max-width="550"
+                persistent
                 style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
         border-radius: 10px; z-index:1000; overflow-y:hidden;"
         >
             <v-card>
-                <v-card-subtitle></v-card-subtitle>
+                <v-card-subtitle align="right">
+                    <v-btn icon class="btn-close-modal" absolute @click.stop="priceModal=false">
+                        <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon" />
+                    </v-btn>
+                </v-card-subtitle>
                 <v-card-text class="mt-5">
                     <v-tabs centered v-model="priceTab" hide-slider>
                         <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
@@ -577,6 +582,11 @@
     $input-bg: #f1f8fc;
     $placeholder-color: #9ba1ad;
 
+    .btn-close-modal{
+        top:20px;
+        right: 20px;
+        z-index: 100;
+    }
 
     .subscription-modal {
         .v-dialog {
