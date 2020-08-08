@@ -62,6 +62,16 @@ class ImportsController extends Controller
         }
     }
 
+    public function updateImportsOrder(Request $request){
+        $imports = $request->imports ;
+        foreach ($imports as $key => $import){
+            $myImport = Import::find($import['id']);
+            $myImport->update([
+                'order' => $key + 1
+            ]);
+        }
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [

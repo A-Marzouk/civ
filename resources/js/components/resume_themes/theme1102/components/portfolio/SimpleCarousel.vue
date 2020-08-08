@@ -74,6 +74,7 @@ export default {
         img
         {
             max-width: 220%;
+            z-index: 1;
         }
 	}
 

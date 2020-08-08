@@ -27,12 +27,14 @@
 				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
 				</v-text-field>
 
-				<div class="d-flex mt-2">
+				<div class="d-flex" style="margin-top: 5.8px">
 					<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
 						{{editedLink.id !== '' ? 'Update' : 'Add New'}}
 					</v-btn>
 
-					<v-btn class="resume-builder__btn civie-btn ml-3" raised @click="clearLink" v-show="editedLink.id !== '' ">
+					<v-btn style="margin-left: 2rem"
+						class="resume-builder__btn civie-btn" raised @click="clearLink" v-show="editedLink.id !== '' ">
+
 						Cancel
 					</v-btn>
 				</div>
@@ -457,4 +459,13 @@ $mainBlue: #001ce2;
 	padding-top: 5px;
 	padding-left: 3px;
 }
+
+//Custom fix 1.0
+
+.tabName {
+	text-transform: capitalize;
+	font-size: 1rem;
+	padding: 1.6rem;
+}
+
 </style>

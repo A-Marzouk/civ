@@ -262,6 +262,9 @@
                                             <audio controls class="audio-controller">
                                                 <source :src="media.url"/>
                                             </audio>
+                                            .audio-controller:after{
+                                                outline: none;
+                                            }
                                         </v-col>
                                     </v-row>
                                 </v-card>
@@ -833,6 +836,9 @@
 
             .audio-controller {
                 height: 40px !important;
+            }
+            .audio-controller:focus{
+                outline: none;
             }
         }
     }

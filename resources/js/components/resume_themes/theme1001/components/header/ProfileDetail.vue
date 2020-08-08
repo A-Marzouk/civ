@@ -24,6 +24,9 @@ export default {
     currentUser: {
       type: undefined,
       required: true
+    },
+    currentTab:{
+      type:undefined
     }
   },
 

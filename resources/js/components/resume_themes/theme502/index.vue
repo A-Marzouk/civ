@@ -23,7 +23,7 @@
               :src="currentUser.personal_info.profile_pic"
               :aspect-ratio="0.92"
               class="avatar mt-1"
-              style="border-radius: 0px 1rem 2rem 0px ;"
+              style="border-radius: 0px 1rem 2rem 0px;"
             ></v-img>
           </v-col>
           <v-col
@@ -85,9 +85,7 @@
                   width="18"
                   height="18"
                   contain
-                  :src="
-                    `/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`
-                  "
+                  :src="`/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
                 ></v-img>
               </v-btn>
             </div>
@@ -139,7 +137,7 @@
           class="text-center"
           no-gutters
         >
-          <v-col cols="auto" sm="3" md="4" lg="3" xl="4">
+          <v-col cols="12" sm="3" md="4" lg="3" xl="4">
             <div
               class="text-center grey--text text--darken-1 subtitle-2 font-light"
             >
@@ -174,11 +172,19 @@
               </div>
             </div>
           </v-col>
-          <v-col cols="1" sm="auto" lg="1" align="center" class="mx-xl-n6">
-            <div style="width:1px;height:2rem;background-color:#D7D7D7;"></div>
+          <v-col
+            cols="1"
+            sm="auto"
+            lg="1"
+            align="center"
+            class="mx-xl-n6 d-none d-sm-block d-lg-block"
+          >
+            <div
+              style="width: 1px; height: 2rem; background-color: #d7d7d7;"
+            ></div>
           </v-col>
 
-          <v-col cols="4" sm="3" md="4" lg="3" xl="4">
+          <v-col cols="12" sm="3" md="4" lg="3" xl="4" class="mt-2 mt-sm-0">
             <div
               class="text-center grey--text text--darken-1 subtitle-2 font-light"
             >
@@ -191,7 +197,7 @@
                 class="d-inline-block"
               >
                 <span
-                  class="text-center grey--text text--darken-1 subtitle-2 font-light text-capitalize "
+                  class="text-center grey--text text--darken-1 subtitle-2 font-light text-capitalize"
                   v-if="available == index"
                 >
                   {{ availability_info.available_hours_frequency }}
@@ -222,11 +228,11 @@
             md="6"
             lg="4"
             xl="4"
-            class="mt-6 mt-lg-0 mt-sm-0"
+            class="mt-4 mt-lg-0 mt-sm-0"
           >
             <v-btn
               color="#2943c7"
-              style="border-radius: 10px;height:50px;"
+              style="border-radius: 10px; height: 50px;"
               class="hire"
             >
               <div
@@ -256,9 +262,7 @@
               width="18"
               height="18"
               contain
-              :src="
-                `/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`
-              "
+              :src="`/images/resume_themes/theme502/social_icons/${Userlink.link_title.toLowerCase()}.svg`"
             ></v-img>
           </v-btn>
         </div>
@@ -302,7 +306,7 @@
           sm="12"
           v-if="activeTab == 'portfolio'"
           key="one"
-          style="height:100vh;"
+          style="height: 100vh;"
         >
           <v-row
             justify="center"
@@ -324,7 +328,10 @@
               <v-img
                 :src="getProjectMainImage(project)"
                 :aspect-ratio="1.2"
-                style="box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);border-radius:20px;"
+                style="
+                  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.15);
+                  border-radius: 20px;
+                "
               ></v-img>
             </v-col>
           </v-row>
@@ -339,7 +346,7 @@
           sm="12"
           v-if="activeTab == 'work-experience'"
           key="two"
-          style="height:100vh;"
+          style="height: 100vh;"
         >
           <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
             <v-col
@@ -394,7 +401,7 @@
           sm="12"
           v-if="activeTab == 'education'"
           key="three"
-          style="height:100vh;"
+          style="height: 100vh;"
         >
           <v-row justify="start" no-gutters class="px-4 px-lg-0 px-sm-6 mt-6">
             <v-col
@@ -444,7 +451,7 @@
           sm="12"
           v-if="activeTab == 'skills'"
           key="four"
-          style="height:100vh;"
+          style="height: 100vh;"
         >
           <v-row no-gutters justify="start" class="padleft">
             <v-col md="12" lg="12" class="mt-md-8 mt-sm-4">
@@ -458,13 +465,13 @@
                 grow
               >
                 <v-tabs-slider
-                  style="height:0px;padding:0 0 !important;"
+                  style="height: 0px; padding: 0 0 !important;"
                 ></v-tabs-slider>
 
                 <v-tab
                   v-show="
                     currentUser.skills.find(
-                      s => s.category == 'programming_languages'
+                      (s) => s.category == 'programming_languages'
                     )
                   "
                 >
@@ -474,7 +481,7 @@
                 </v-tab>
                 <v-tab
                   v-show="
-                    currentUser.skills.find(s => s.category == 'frameworks')
+                    currentUser.skills.find((s) => s.category == 'frameworks')
                   "
                 >
                   <div class="subtitle-1 text-capitalize textcol skilltab">
@@ -483,7 +490,7 @@
                 </v-tab>
                 <v-tab
                   v-show="
-                    currentUser.skills.find(s => s.category == 'software')
+                    currentUser.skills.find((s) => s.category == 'software')
                   "
                 >
                   <div class="subtitle-1 text-capitalize textcol skilltab">
@@ -492,7 +499,7 @@
                 </v-tab>
                 <v-tab
                   v-show="
-                    currentUser.skills.find(s => s.category == 'software')
+                    currentUser.skills.find((s) => s.category == 'software')
                   "
                 >
                   <div class="subtitle-1 text-capitalize textcol skilltab">
@@ -505,12 +512,12 @@
                 <v-col md="12" sm="12" cols="12">
                   <v-tabs-items
                     v-model="tabskill"
-                    style="background-color:transparent;"
+                    style="background-color: transparent;"
                   >
                     <v-tab-item
                       v-show="
                         currentUser.skills.find(
-                          s => s.category == 'programming_languages'
+                          (s) => s.category == 'programming_languages'
                         )
                       "
                     >
@@ -558,7 +565,9 @@
                     </v-tab-item>
                     <v-tab-item
                       v-show="
-                        currentUser.skills.find(s => s.category == 'frameworks')
+                        currentUser.skills.find(
+                          (s) => s.category == 'frameworks'
+                        )
                       "
                     >
                       <v-row
@@ -605,7 +614,7 @@
                     </v-tab-item>
                     <v-tab-item
                       v-show="
-                        currentUser.skills.find(s => s.category == 'software')
+                        currentUser.skills.find((s) => s.category == 'software')
                       "
                     >
                       <v-row
@@ -652,7 +661,7 @@
                     </v-tab-item>
                     <v-tab-item
                       v-show="
-                        currentUser.skills.find(s => s.category == 'design')
+                        currentUser.skills.find((s) => s.category == 'design')
                       "
                     >
                       <v-row

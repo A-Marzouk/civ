@@ -80,13 +80,13 @@
           >
           </v-text-field>
 
-          <div class="col-12 d-flex flex-column">
+          <div class="col-12 d-flex flex-column" style="transform: translateX(-9px)">
             <div class="d-flex">
               <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveAchievement">
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 
-              <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
+              <v-btn class="resume-builder__btn civie-btn ml-4" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
                 Cancel
               </v-btn>
             </div>

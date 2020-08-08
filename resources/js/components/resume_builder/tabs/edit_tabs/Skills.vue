@@ -3,7 +3,7 @@
     <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
         <v-tabs class="resume-builder__tab-bar" hide-slider>
-          <v-tab
+          <v-tab style="font-weight: 400"
             class="resume-builder__tab" @click="setSkillCategory(tab)"
             v-for="tab in tabs"
             :key="tab"
@@ -61,11 +61,12 @@
 
                 <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-md-n2 mt-sm-n10 mt-n6 d-flex">
                   <v-btn
-                    class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0"
+                    class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0 mr-lg-7 mr-md-7"
                     @click="addSkill"
                   >{{editedSkill.id === undefined ? 'Add New' : 'Update'}}</v-btn>
+                  
                   <v-btn
-                    class="resume-builder__btn civie-btn btn-add-new ml-3 mt-2 ml-xl-0 ml-lg-n2 ml-sm-n2 ml-0"
+                    class="resume-builder__btn civie-btn btn-add-new mt-2 ml-5"
                     @click="cancelEdit"
                     v-show="editedSkill.id !== undefined"
                   >Cancel</v-btn>

@@ -203,7 +203,7 @@
                                         v-model="reference.reference_text"
                                 ></v-textarea>
                             </v-col>
-                            <v-col
+                            <!-- <v-col
                                     xl="3"
                                     :lg="windowWidth<1300?'6':'3'"
                                     md="6"
@@ -214,7 +214,7 @@
                                 <div class="referenceImage" >
                                     <img :src="typeof reference.image === 'object' ? this.tempReferenceImage : reference.image " alt="reference image">
                                 </div>
-                            </v-col>
+                            </v-col> -->
                             <v-col xl="12" lg="12" md="12" sm="12" cols="12">
                                 <v-btn
                                         class="resume-builder__btn civie-btn filled btn-add-new mt-n5"
