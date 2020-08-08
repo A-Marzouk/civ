@@ -126,20 +126,25 @@
               tile
               align="center"
             >
-              <v-img
+              <video id="introVideo" width="95%" height="100%" controls v-show="videoOn">
+                <source src="/videos/civ_intro_video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+
+              <v-img v-show="!videoOn"
                 src="/images/welcome_landing_page/icons/poster-video.png"
                 class="align-center hidden-sm-and-down"
               >
-                <v-btn fab color="#F8F8F8" class="btn-play" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" />
+                <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false" x-large>
+                  <img src="/images/welcome_landing_page/icons/play.png" @click="playIntroVideo"/>
                 </v-btn>
               </v-img>
-              <v-img
+              <v-img v-show="!videoOn"
                 src="/images/welcome_landing_page/icons/poster-video-tablet.png"
                 class="align-center hidden-md-and-up"
               >
-                <v-btn fab color="#F8F8F8" class="btn-play" x-large>
-                  <img src="/images/welcome_landing_page/icons/play.png" />
+                <v-btn fab color="#F8F8F8" class="btn-play" :ripple="false"  x-large>
+                  <img src="/images/welcome_landing_page/icons/play.png"  @click="playIntroVideo" />
                 </v-btn>
               </v-img>
             </v-card>
@@ -333,6 +338,7 @@ export default {
   },
   data() {
     return {
+      videoOn: false,
       windowWidth: window.innerWidth,
       username: "",
       valid: false,
@@ -491,7 +497,11 @@ export default {
         },
         1500
       );
-    }
+    },
+    playIntroVideo(){
+      this.videoOn = true;
+      document.getElementById('introVideo').play();
+    },
   }
 };
 </script>

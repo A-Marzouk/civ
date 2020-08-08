@@ -646,32 +646,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <draggable @start="drag=true" @end="drag=false" handle=".drag-handler" style="display: contents">
-                            <tr v-for="i in 10" :key="i">
+                        <draggable @start="drag=true" @end="drag=false" v-model="imports" handle=".drag-handler" style="display: contents">
+                            <tr v-for="importHistory in imports" :key="importHistory.id">
                                 <td>
                                     <div class="table-file">
                                         <img src="/icons/edit-cv-sidebar/drag-btn-icon.svg" alt="drag" class="drag-handler">
-                                        <span>Theme_0{{i}}_file.pdf</span>
+                                        <span>{{importHistory.title}}</span>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="center-col">
-                                        01/03/2020
+                                        {{getFormattedData(importHistory.created_at)}}
                                     </div>
                                 </td>
                                 <td class="d-none d-lg-table-cell">
                                     <div class="center-col">
-                                        <img src="/icons/view.svg" alt="view icon">
+                                        <a :href="importHistory.url">
+                                            <img src="/icons/view.svg" alt="view icon">
+                                        </a>
                                     </div>
                                 </td>
                                 <td class="d-none d-lg-table-cell">
                                     <div class="center-col">
-                                        <img src="/icons/download.svg" alt="download icon">
+                                        <a :href="importHistory.url">
+                                            <img src="/icons/download.svg" alt="download icon">
+                                        </a>
                                     </div>
                                 </td>
                                 <td class="d-none d-lg-table-cell">
                                     <div class="center-col">
-                                        <img src="/icons/delete.svg" alt="delete icon">
+                                        <img src="/icons/delete.svg" @click="deleteImport" alt="delete icon">
                                     </div>
                                 </td>
                                 <td class="d-lg-none">
@@ -1336,6 +1340,10 @@
         },
         methods: {
 
+            getFormattedData(date) {
+                let d = new Date(date);
+                return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
+            },
             // extract
             // handle file upload
             openBrowse() {
@@ -1629,7 +1637,6 @@
                 this.searchForReferencesText();
 
             },
-
             searchForSummary(){
                 let summary = this.extractedText.substring(
                     this.extractedText.lastIndexOf("Summary") + 7,
@@ -1646,7 +1653,6 @@
                     this.sections.forEach( (section) => { section.title === 'summary' ? section.selected = true : ''} );
                 }
             },
-
             searchForEducationText(arrayOfData) {
 
                 // check if any word of the text line is a country name
@@ -1831,7 +1837,6 @@
                 this.freelancerData.languages.splice(index,1);
             },
 
-
             // import available Data:
             async importAvailableData(){
                 if(this.importingExtractedData){
@@ -1859,7 +1864,6 @@
                         this.updateUserInfo();
                     })
             },
-
 
             // saving data:
             async savePersonalData() {
@@ -1997,6 +2001,30 @@
                     });
                 }
             },
+
+
+            // crud on imports:
+            deleteImport(importHistory) {
+                if (
+                    !confirm(
+                        "Do you want to delete this import history [" + importHistory.title + "] ?"
+                    )
+                ) {
+                    return;
+                }
+                axios.delete("/api/user/imports/" + importHistory.id)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotificationDelete");
+                        this.imports.forEach((importHistory, index) => {
+                            if (importHistory.id === response.data.data.id) {
+                                this.imports.splice(index, 1);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
         },
         computed:{
             projects: {
@@ -2005,6 +2033,14 @@
                 },
                 set(projects) {
                     this.$store.commit("updateProjects", projects);
+                }
+            },
+            imports:{
+                get() {
+                    return this.$store.state.user.imports;
+                },
+                set(imports) {
+                    this.$store.commit("updateImports", imports);
                 }
             }
         },

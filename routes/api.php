@@ -189,6 +189,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/imports', 'API\ImportsController@index');
     Route::get('/imports/{id}', 'API\ImportsController@show');
     Route::post('/imports', 'API\ImportsController@store');
+    Route::post('/imports/update-order', 'API\ImportsController@updateImportsOrder');
     Route::put('/imports', 'API\ImportsController@store');
     Route::delete('/imports/{id}', 'API\ImportsController@destroy');
 
