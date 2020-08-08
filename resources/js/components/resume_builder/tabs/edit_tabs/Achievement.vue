@@ -86,7 +86,7 @@
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 
-              <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
+              <v-btn class="resume-builder__btn civie-btn ml-4" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
                 Cancel
               </v-btn>
             </div>

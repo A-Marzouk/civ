@@ -34,6 +34,7 @@
 
 					<v-btn style="margin-left: 2rem"
 						class="resume-builder__btn civie-btn" raised @click="clearLink" v-show="editedLink.id !== '' ">
+
 						Cancel
 					</v-btn>
 				</div>
