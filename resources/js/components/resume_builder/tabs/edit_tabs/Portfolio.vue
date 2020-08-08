@@ -100,7 +100,7 @@
               </div>
             </div>
 
-            <div class="d-flex mb-4">
+            <div class="d-flex mb-4" style="transform: translateX(-9px)">
               <v-btn
                 class="resume-builder__btn civie-btn filled"
                 raised
@@ -109,7 +109,7 @@
               >
 
               <v-btn
-                class="resume-builder__btn civie-btn ml-2"
+                class="resume-builder__btn civie-btn ml-3"
                 raised
                 @click="clearProject"
                 v-show="editedProject.id !== ''"
