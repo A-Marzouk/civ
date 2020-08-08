@@ -137,14 +137,13 @@
         }
 
         @media only screen and (max-width: 1023px) {
-            height: 150px;
-            width: 100px;
+            height: 133px;
+            width: 94px;
             background-size: cover;
             border-radius: 8px;
         }
         @media only screen and (max-width: 550px) {
-            height: calc(150px - 15px);
-            width: calc(100px - 15px);
+
             background-size: cover;
             border-radius: 8px;
         }
@@ -192,6 +191,9 @@
         }
         @media only screen and (max-width: 550px) {
             font-size: calc(30px - #{$mobile-font-size});
+        }
+        @media only screen and (max-width: 370px) {
+            font-size: calc(27px - #{$mobile-font-size});
         }
     }
 
