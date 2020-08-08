@@ -2,7 +2,7 @@
   <div
     class="profile__hireme"
     :class="{
-      'active-indicator': currentTab === 'pay-availability'
+      'active-indicator': currentTab === 'pay-availability',
     }"
   >
     <div class="hireme">
@@ -35,6 +35,9 @@ export default {
     weeklyAvailability: {
       type: String,
       required: true
+    },
+    currentTab:{
+      type:undefined
     }
   },
 
