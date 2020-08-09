@@ -1,5 +1,5 @@
 <template>
-    <v-container style="width:100%" id="createAccount">
+    <v-container style="width:100%">
         <v-row align="center" justify="center">
             <v-col lg="6" xl="5" md="6" sm="11" cols="12">
                 <v-card color="transparent" tile flat class="mt-md-0 mt-sm-0 mt-n5">
