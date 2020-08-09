@@ -1335,7 +1335,12 @@
                 behanceUsername:'',
                 behanceProjects:[],
                 importURL: '',
-                importType:'File'
+                importType:'File',
+                newImport:{
+                    title:'',
+                    url:'',
+                    importFile:'',
+                }
             }
         },
         methods: {
@@ -1390,6 +1395,7 @@
                         let blob = new Blob([response.data], {type: 'application/pdf'});
                         blob.name = 'LinkedIn imported profile';
                         this.file = blob;
+                        this.newImport.importFile   = blob;
                         this.uploadPDFFile();
                         this.downloadProgress = 0 ;
                         this.importing = false;
@@ -1492,6 +1498,8 @@
             },
             handleFileUpload() {
                 this.file = this.$refs.file.files[0];
+                this.newImport.importFile = this.$refs.file.files[0];
+
             },
 
             // Import data from Behance:
@@ -1542,7 +1550,8 @@
             },
             // dropzone funcions
             handlingEvent: function (file) {
-                this.file = file
+                this.file = file;
+                this.newImport.importFile   = file;
             },
             // document extracting text funtions:
             extractDocText(sections) {
@@ -1869,8 +1878,6 @@
                     })
                     .then( () => {
                         this.updateUserInfo();
-
-                        this.addImport();
                     })
             },
 
@@ -2001,6 +2008,7 @@
                 if(Object.keys(this.errors).length === 0){
                     this.$store.dispatch('setCurrentUser',{});
                     this.$store.dispatch('flyingNotification');
+                    this.addImport();
                     this.clearAll();
                 }else{
                     console.log(this.errors);
@@ -2017,15 +2025,12 @@
                 console.log('called');
 
                 let formData = new FormData();
-                let newImport = {
-                    title: 'Import ' + (this.imports.length+1) + ' | ' + this.importType,
-                    url:   this.importURL ,
-                    importFile: this.file,
-                    user_id: this.$store.state.user.id
-                };
+                this.newImport.title = 'Import ' + (this.imports.length+1) + ' | ' + this.importType ;
+                this.newImport.url   = this.importURL;
+                this.newImport.user_id= this.$store.state.user.id;
 
-                $.each(newImport, (field) => {
-                    formData.append(field, newImport[field]);
+                $.each(this.newImport, (field) => {
+                    formData.append(field, this.newImport[field]);
                 });
 
                 axios.post('/api/user/imports', formData, {headers: {'Content-Type': 'multipart/form-data'}})
