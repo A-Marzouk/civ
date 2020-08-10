@@ -88,9 +88,8 @@
                                 </div>
                             </div>
 
-                            <div class="action-btns NoDecor">
-                                <a href="#" class="purchase-btn mt-n3" @click="priceModal=true">Purchase
-                                    Subscription</a>
+                            <div class="action-btns NoDecor" v-if="accountData.subscription === null">
+                                <a href="#" class="purchase-btn mt-n3" @click="priceModal=true">Purchase Subscription</a>
                             </div>
 
                             <span class="v-label v-label--active theme--light" style="color: #888DB1;">
@@ -118,6 +117,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="subscription" tabindex="-1" role="dialog" aria-labelledby="subscription" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body d-flex align-items-center" v-if="accountData.subscription">
+                        You have a {{accountData.subscription.sub_frequency}} subscription
+                        <br />
+                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '15 USD/month' : '99 USD/year'}}
+                        <br />
+                        Payment method: {{accountData.subscription.payment_method}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <!-- dialog -->
         <v-dialog
