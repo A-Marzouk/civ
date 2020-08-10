@@ -16,7 +16,11 @@ class subscribed
     public function handle($request, Closure $next)
     {
         $user = auth()->user();
-        $subscription = $user->subscription ?? null  ;
+        $subscription = $user->subscription ?? null ;
+
+        if($user->can('test.builder')){
+            return $next($request);
+        }
 
         if ($subscription) {
            if($subscription->sub_status === 'active'){

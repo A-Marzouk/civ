@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static $defaultRelations =
         [
+            'permissions',
             'tabs',
             'skills',
             'hobbies',

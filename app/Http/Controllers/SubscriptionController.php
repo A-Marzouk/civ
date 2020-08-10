@@ -22,6 +22,11 @@ class SubscriptionController extends Controller
 
     public function subscribePage(){
         $subscription = auth()->user()->subscription ;
+
+        if(auth()->user()->can('test.builder')){
+            return redirect('/resume-builder');
+        }
+
         if ($subscription){
             if($subscription->sub_status === 'active'){
                 return redirect('/resume-builder');
