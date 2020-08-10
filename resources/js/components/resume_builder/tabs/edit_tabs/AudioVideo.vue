@@ -482,7 +482,7 @@
                 try {
                     this.newMedia = {
                         title: "",
-                        type: "audio",
+                        type: this.mediaCategory,
                         transcript: "",
                         url: "",
                         mediaFile: null

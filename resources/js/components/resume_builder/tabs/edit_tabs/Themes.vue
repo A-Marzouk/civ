@@ -7,18 +7,12 @@
                     <!-- tab bar -->
                     <v-card class="card-themes-wrapper main-content resume-builder__scroll">
                         <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
-                        <v-row align="center" v-if="user.theme">
-                            <v-col
-                                    md="4"
-                                    :sm="windowWidth<=767?'6':'4'"
-                                    cols="12"
-                                    v-for="theme in availableThemes"
-                                    :key="theme.id"
-                            >
+                        <div v-if="user.theme"  class="theme-container-wrapper">
+                            <div v-for="theme in availableThemes" :key="theme.id" class="theme-container">
                                 <v-hover>
                                     <template v-slot:default="{ hover }">
                                         <v-card class="card-theme-holder pa-0 ma-0":style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
-                                            <v-row justify="center">
+                                            <div>
                                                 <div class="theme-image holder" :class="theme.id == user.theme.id? 'active': 'inactive'"></div>
                                                 <v-fade-transition>
                                                     <v-overlay
@@ -79,12 +73,12 @@
                                                         </v-row>
                                                     </v-overlay>
                                                 </v-fade-transition>
-                                            </v-row>
+                                            </div>
                                         </v-card>
                                     </template>
                                 </v-hover>
-                            </v-col>
-                        </v-row>
+                            </div>
+                        </div>
                     </v-card>
                     <v-card flat tile color="transparent"></v-card>
                 </v-col>
@@ -271,6 +265,7 @@
 
 <style scoped lang="scss">
     @import '../../../../../sass/media-queries';
+
     $mainBlue: #001ce2;
     .view-theme-modal {
         border-radius: 5px;
@@ -407,192 +402,175 @@
                 font-size: 13px;
             }
         }
-        .card-theme-holder {
-            max-width: 417px;
-            max-height: 302.56px;
-            background-size: cover;
-            @media screen and (min-width: 960px) and (max-width: 1903px) {
-                width: 274px;
-                height: 200px;
+        .theme-container-wrapper{
+
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            @include lt-lg{
+                justify-content: space-around;
             }
-            @media screen and (min-width: 768px) and (max-width: 959px) {
-                width: 200px;
-                height: 145.11px;
+
+            @media screen and (min-width: 1280px) and (max-width: 1460px) {
+                justify-content: space-around;
             }
-            @media screen and (min-width: 600px) and (max-width: 767px) {
-                width: 240px;
-                height: 175.11px;
-            }
-            @media screen and (max-width: 599px) {
+
+            .theme-container{
+                margin-top: 25px;
                 width: 100%;
-                height: 217.67px;
-            }
+                max-width: 430px;
 
-            .active {
-                border: 3px solid #001ce2;
-            }
-            .inactive {
-                border: 1px solid #888db1;
-            }
-            .holder {
-                max-width: 417px;
-                max-height: 302.56px;
-                height: 302.56px;
-                width: 95%;
-                border-radius: 5px;
-                @media screen and (min-width: 960px) and (max-width: 1903px) {
-                    width: 274px;
-                    height: 200px;
-                }
-                @media screen and (min-width: 768px) and (max-width: 959px) {
-                    width: 200px;
-                    height: 145.11px;
-                }
-                @media screen and (min-width: 600px) and (max-width: 767px) {
-                    width: 240px;
-                    height: 175.11px;
-                }
-                @media screen and (max-width: 599px) {
-                    width: 93%;
-                    height: 217.67px;
-                }
-            }
-            .custom-overlay {
-                background: rgba(255, 255, 255, 0.95);
-                border: 1px solid #888db1 !important;
-                border-radius: 5px !important;
-            }
-            .btn-preview-data {
-                width: 120px;
-                height: 35px;
-                border-radius: 5px;
-                font-family: "Noto Sans" !important;
-                font-style: normal;
-                font-weight: 500;
-                font-size: 12px;
-                line-height: 12px;
-                text-transform: capitalize !important;
-                @media screen and (min-width: 960px) and (max-width: 1903px) {
-                    font-size: 10px;
-                    width: 100px;
-                    height: 30px;
-                }
-                @media screen and (min-width: 600px) and (max-width: 959px) {
-                    font-size: 10px;
-                    width: 100px;
-                    height: 23px;
-                }
-                img {
-                    margin-left: 5px;
-                    width: 12px;
-                    height: 12px;
-                    @media screen and (min-width: 960px) and (max-width: 1903px) {
-                        width: 10px;
-                        height: 10px;
-                    }
-                    @media screen and (min-width: 600px) and (max-width: 959px) {
-                        width: 10px;
-                        height: 10px;
-                    }
-                }
-            }
-            .btn-my-data {
-                width: 120px;
-                height: 35px;
-                border-radius: 5px;
-                font-family: "Noto Sans" !important;
-                font-style: normal;
-                font-weight: 500;
-                font-size: 12px;
-                line-height: 12px;
-                text-transform: capitalize !important;
-                color: #001ce2 !important;
-                @media screen and (min-width: 960px) and (max-width: 1903px) {
-                    font-size: 10px;
-                    width: 100px;
-                    height: 30px;
-                }
-                @media screen and (min-width: 600px) and (max-width: 959px) {
-                    font-size: 10px;
-                    width: 100px;
-                    height: 23px;
+                @include lt-lg{
+                    max-width: 310px;
                 }
 
-                img {
-                    margin-left: 5px;
-                    width: 12px;
-                    height: 12px;
-                    @media screen and (min-width: 960px) and (max-width: 1903px) {
-                        width: 10px;
-                        height: 10px;
-                    }
-                    @media screen and (min-width: 600px) and (max-width: 959px) {
-                        width: 10px;
-                        height: 10px;
-                    }
-                }
-            }
-            .btn-activate {
-                &.active {
-                    background: greenyellow !important;
-                    border: none;
+                @media screen and (min-width: 1280px) and (max-width: 1460px) {
+                    max-width: 310px;
                 }
 
-                top: -77px;
-                right: -3px;
-                width: 120px;
-                height: 35px;
-                border-radius: 5px;
-                font-family: "Noto Sans" !important;
-                font-style: normal;
-                font-weight: 500;
-                font-size: 12px;
-                line-height: 12px;
-                text-transform: capitalize !important;
-                @media screen and (min-width: 960px) and (max-width: 1903px) {
-                    font-size: 10px;
-                    width: 100px;
-                    height: 30px;
-                    top: -28px;
-                    right: 0;
-                }
-                @media screen and (min-width: 768px) and (max-width: 959px) {
-                    font-size: 8px;
-                    width: 100px;
-                    height: 23px;
-                    top: -4px;
-                    right: -1px;
-                }
-                @media screen and (min-width: 600px) and (max-width: 767px) {
-                    top: -19px;
-                    right: -1px;
-                }
-                @media screen and (max-width: 599px) {
-                    top: -33px;
-                    right: 0;
+                .card-theme-holder {
+                    background-size: cover;
+                    width: 417px;
+                    height: 300px;
+
+                    @include lt-lg{
+                        width: 300px;
+                        height:217px;
+                    }
+
+                    @media screen and (min-width: 1280px) and (max-width: 1460px) {
+                        width: 300px;
+                        height:217px;
+                    }
+
+                    @include lt-sm{
+                        width: 100%;
+                        height:217px;
+                    }
+
+                    .holder {
+                        width: 100%;
+                        height: 300px;
+                        border-radius: 5px;
+
+                        @include lt-lg{
+                            height:217px;
+                        }
+
+                        @media screen and (min-width: 1280px) and (max-width: 1460px) {
+                            height:217px;
+                        }
+
+
+                        @include lt-sm{
+                            height:217px;
+                        }
+                    }
+
+
+                    .custom-overlay {
+                        background: rgba(255, 255, 255, 0.95);
+                        border: 1px solid #888db1 !important;
+                        border-radius: 5px !important;
+                    }
+                    .btn-preview-data {
+                        width: 120px;
+                        height: 35px;
+                        border-radius: 5px;
+                        font-family: "Noto Sans" !important;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 12px;
+                        text-transform: capitalize !important;
+                        @media screen and (min-width: 960px) and (max-width: 1903px) {
+
+                        }
+                        @media screen and (min-width: 600px) and (max-width: 959px) {
+
+                        }
+                        img {
+                            margin-left: 5px;
+                            width: 12px;
+                            height: 12px;
+                            @media screen and (min-width: 960px) and (max-width: 1903px) {
+                                width: 10px;
+                                height: 10px;
+                            }
+                            @media screen and (min-width: 600px) and (max-width: 959px) {
+                                width: 10px;
+                                height: 10px;
+                            }
+                        }
+                    }
+                    .btn-my-data {
+                        width: 120px;
+                        height: 35px;
+                        border-radius: 5px;
+                        font-family: "Noto Sans" !important;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 12px;
+                        text-transform: capitalize !important;
+                        color: #001ce2 !important;
+                        @media screen and (min-width: 960px) and (max-width: 1903px) {
+
+                        }
+                        @media screen and (min-width: 600px) and (max-width: 959px) {
+                        }
+
+                        img {
+                            margin-left: 5px;
+                            width: 12px;
+                            height: 12px;
+                            @media screen and (min-width: 960px) and (max-width: 1903px) {
+                                width: 10px;
+                                height: 10px;
+                            }
+                            @media screen and (min-width: 600px) and (max-width: 959px) {
+                                width: 10px;
+                                height: 10px;
+                            }
+                        }
+                    }
+                    .btn-activate {
+                        &.active {
+                            background: greenyellow !important;
+                            border: none;
+                        }
+
+                        top: -1px;
+                        right: -2px;
+                        width: 120px;
+                        height: 35px;
+                        border-radius: 5px;
+                        font-family: "Noto Sans", sans-serif !important;
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 12px;
+                        line-height: 12px;
+                        text-transform: capitalize !important;
+
+                        img {
+                            margin-left: 5px;
+                            width: 10px;
+                            height: 10px;
+                        }
+                    }
+
+
+                    .active {
+                        border: 3px solid #001ce2;
+                    }
+
+                    .inactive {
+                        border: 1px solid #888db1;
+                    }
                 }
 
-                img {
-                    margin-left: 5px;
-                    width: 10px;
-                    height: 10px;
-                }
             }
-        }
-        .theme-img {
-            img {
-                width: 417px !important;
-                height: 302.56px !important;
-                @media screen and (max-width: 959px) {
-                    width: 200px !important;
-                    height: 145.11px !important;
-                }
-                @media screen and (max-width: 767px) {
-                    width: 142px !important;
-                    height: 103.03px !important;
-                }
-            }
-            border-radius: 0px !important;
         }
 
         .selected-theme {
@@ -708,6 +686,14 @@
     .civie-input.custom-border-radius {
         .v-input__slot fieldset {
             border-radius: 5px !important;
+        }
+    }
+
+    .custom-overlay{
+        .v-overlay__content{
+            height: 100%;
+            display: flex;
+            align-items: center;
         }
     }
 
