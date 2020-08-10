@@ -20,6 +20,16 @@ class SubscriptionController extends Controller
         return view('subscription');
     }
 
+    public function subscribePage(){
+        $subscription = auth()->user()->subscription ;
+        if ($subscription){
+            if($subscription->sub_status === 'active'){
+                return redirect('/resume-builder');
+            }
+        }
+        return view('resume_builder.subscription_page');
+    }
+
 
     public function subscribeStripe(Request $request)
     {

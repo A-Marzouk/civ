@@ -135,7 +135,7 @@
 
 
         <!-- dialog -->
-        <v-dialog
+            <v-dialog
             v-model="priceModal"
             max-width="550"
             style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
@@ -1600,7 +1600,6 @@
     @import "../../../../sass/media-queries";
 
     // image crop styles not scoped
-
     .vue-image-crop-upload {
         .vicp-wrap {
             width: 95%;
@@ -1650,5 +1649,4 @@
             }
         }
     }
-
 </style>

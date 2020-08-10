@@ -65,6 +65,8 @@ Route::get('/resume-builder/import/behance/{behanceUsername}', 'ImportsControlle
 
 
 // subscription routes
+Route::get('/subscribe', 'SubscriptionController@subscribePage')->name('subscribe.page');
+
 Route::get('/subscription', 'SubscriptionController@index')->name('subscription');
 Route::get('/subscription/cancel', 'SubscriptionController@cacnel')->name('subscription.cancel');
 Route::get('/subscription/success', 'SubscriptionController@subscriptionSuccess')->name('subscription.success');
