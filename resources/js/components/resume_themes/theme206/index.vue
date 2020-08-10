@@ -712,7 +712,7 @@ export default {
   border-left: 5px solid #5843be;
   border-right: 5px solid #5843be;
   border-top: 5px solid #5843be;
-  margin-top: 19px;
+  margin-top: 36px;
   margin-left: 22px;
   transform: rotate(122deg);
   z-index: 1;
@@ -731,7 +731,7 @@ export default {
   border-left: 3px solid #5843be;
   border-right: 3px solid #5843be;
   border-top: 3px solid #5843be;
-  margin-top: 13px;
+  margin-top: 23px;
   margin-left: 10px;
   transform: rotate(122deg);
   z-index: 1;
@@ -748,6 +748,9 @@ export default {
   font-size: 2rem;
   line-height: 3.375rem;
   color: #333333 !important;
+  @media screen and (min-width:960px) and (max-width:1263px){
+    font-size: 1.75rem;
+  }
   @media screen and(max-width:959px) {
     font-size: 1.5rem;
   }

@@ -46,12 +46,13 @@
           <router-link
             :to="sidebarLink.url"
             @click.native="setActive(sidebarLink)"
-            @mouseover.native="menuHover(sidebarLink)"
-            @mouseleave.native="menuHover(sidebarLink)"
+            @mouseover.native="hoverMenu(sidebarLink)"
+            @mouseleave.native="hoverMenu(null)"
           >
             <div
               class="link-icon"
-              :class="{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}"
+              :class="[{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon},
+              {'profile-ixklwxz-link-icon-active':activeHoverMenu==sidebarLink.icon}]"
             >
               <svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
             </div>
@@ -77,6 +78,8 @@ export default {
   data() {
     return {
       open: false,
+      menuHover: false,
+      activeHoverMenu: null,
       sidebarLinks: [
         {
           url: "/resume-builder/edit/profile",
@@ -169,9 +172,12 @@ export default {
       this.currentSidebarLink = activeLink;
       this.$emit("onChange", activeLink.icon);
     },
-    menuHover(activeLink) {
-      this.currentSidebarLink = activeLink;
-      this.$emit("onChange", activeLink.icon);
+    hoverMenu(sidebarLink) {
+      if (sidebarLink !== null) {
+        this.activeHoverMenu = sidebarLink.icon;
+      } else {
+        this.activeHoverMenu = null;
+      }
     },
   },
 
@@ -416,11 +422,11 @@ export default {
 </style>
 
 <style lang="scss">
-  .profile-ixklwxz-link-icon-active {
-    svg{
-      g{
-        fill: #001ce2 !important;
-      }
+.profile-ixklwxz-link-icon-active {
+  svg {
+    g {
+      fill: #001ce2 !important;
     }
   }
+}
 </style>
