@@ -666,7 +666,8 @@ export default {
       margin-right: 100px;
     }
     @media screen and (max-width: 1263px) {
-      font-size: 16px !important;
+      padding: 0.5rem 1.6rem;
+      font-size: 12px !important;
     }
   }
 
