@@ -125,7 +125,7 @@
                     <div class="modal-body d-flex align-items-center" v-if="accountData.subscription">
                         You have a {{accountData.subscription.sub_frequency}} subscription
                         <br />
-                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '15 USD/month' : '99 USD/year'}}
+                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}
                         <br />
                         Payment method: {{accountData.subscription.payment_method}}
                     </div>
