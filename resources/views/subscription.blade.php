@@ -2,8 +2,9 @@
 
 @section('content')
     <script src="https://js.stripe.com/v3/"></script>
+    <span id="stripe_public_key" style="display: none">{{env('STRIPE_KEY')}}</span>
     <script>
-        var stripe = Stripe('pk_test_ONs0RLUvvsJy9P3XWHOkCWRB');
+        var stripe = Stripe(document.getElementById('stripe_public_key').innerText);
         let searchParams = new URLSearchParams(window.location.search);
 
         if (searchParams.has('session_id')) {

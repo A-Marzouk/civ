@@ -24,7 +24,7 @@ class SubscriptionController extends Controller
     public function subscribeStripe(Request $request)
     {
 
-        $plan = $request->plan;
+        $plan = $request->plan === 'monthly' ? env('STRIPE_LIVE_MONTHLY_PLAN_ID') : env('STRIPE_LIVE_YEARLY_PLAN_ID') ;
         Session::put('plan', $plan);
 
         Stripe::setApiKey(config('services.stripe.secret'));
@@ -57,6 +57,10 @@ class SubscriptionController extends Controller
         ]);
 
         return redirect(url('/') . '/resume-builder?redirect_from=stripe&status=success');
+    }
+
+    public function cacnel(){
+        return redirect(url('/') . '/resume-builder?redirect_from=stripe&status=cancel');
     }
 
 }
