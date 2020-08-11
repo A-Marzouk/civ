@@ -29,11 +29,11 @@ export default {
 
   props: {
     hourlyRate: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     weeklyAvailability: {
-      type: String,
+      type: [String, Number],
       required: true
     },
     currentTab:{
