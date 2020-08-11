@@ -174,7 +174,7 @@
 
             toggleUserPermissionToTestBuilder(user){
                 axios.post('/api/admin/give-test-permission', {user_id : user.id}).then( (response) => {
-                    console.log(response.data)
+                    this.$store.dispatch('flyingNotification');
                 });
             },
             editItem (item) {
