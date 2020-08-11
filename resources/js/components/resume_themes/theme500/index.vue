@@ -114,27 +114,31 @@
               :class="{ 'active-indicator': currentTab === 'pay-availability' }"
             >
               <v-row
-                style="background: rgb(37, 29, 68,0.20);border-radius: 10px;"
+                style="background: rgb(37, 29, 68, 0.2); border-radius: 10px;"
                 class="align-center px-2 px-sm-3 px-lg-3 py-2"
                 no-gutters
                 justify-lg="center"
                 justify-sm="space-between"
+                justify="center"
               >
-                <v-col cols="auto" md="4" sm="auto" lg="3" xl="3">
-                  <div class="title text-left" style="color: whitesmoke;">
+                <v-col cols="12" md="4" sm="auto" lg="3" xl="3">
+                  <div
+                    class="title text-sm-left text-center"
+                    style="color: whitesmoke;"
+                  >
                     <div
                       v-for="(payment_Info, index) in currentUser.payment_info"
                       :key="index"
                       v-show="payment_Info.is_public"
                     >
-                      <span class="title text-left" v-if="paymentInfo == index">
+                      <span class="title" v-if="paymentInfo == index">
                         $ {{ payment_Info.salary }}
                       </span>
                     </div>
                   </div>
                   <div
-                    class="caption text-left"
-                    style="color: #FFFFFF;opacity: 0.82"
+                    class="caption text-sm-left text-center"
+                    style="color: #ffffff; opacity: 0.82;"
                   >
                     <v-icon dark small @click="paymentInfoPrev()"
                       >navigate_before</v-icon
@@ -146,7 +150,7 @@
                       class="d-inline-block"
                     >
                       <span
-                        class="caption text-left text-capitalize"
+                        class="caption text-capitalize"
                         v-if="paymentInfo == index"
                       >
                         {{ payment_Info.salary_frequency }} Rate
@@ -160,15 +164,18 @@
                 <v-col
                   cols="auto"
                   lg="1"
-                  class="px-1 px-sm-2 px-lg-2"
+                  class="px-1 px-sm-2 px-lg-2 d-none d-sm-block"
                   align="center"
                 >
                   <div
-                    style="width:1px;height:2rem;background-color:#D7D7D7;"
+                    style="width: 1px; height: 2rem; background-color: #d7d7d7;"
                   ></div>
                 </v-col>
-                <v-col cols="5" md="4" sm="4" lg="4">
-                  <div class="title text-left pl-3" style="color: whitesmoke;">
+                <v-col cols="12" md="4" sm="4" lg="4">
+                  <div
+                    class="title text-sm-left text-center pl-3"
+                    style="color: whitesmoke;"
+                  >
                     <div
                       v-for="(availability_info,
                       index) in currentUser.availability_info"
@@ -176,7 +183,7 @@
                       v-show="availability_info.is_public"
                     >
                       <span
-                        class="title text-left"
+                        class="title"
                         style="color: whitesmoke;"
                         v-if="available == index"
                       >
@@ -185,8 +192,8 @@
                     </div>
                   </div>
                   <div
-                    class="caption text-left "
-                    style="color: #FFFFFF;opacity: 0.82"
+                    class="caption text-sm-left text-center"
+                    style="color: #ffffff; opacity: 0.82;"
                   >
                     <v-icon dark small @click="availablePrev()"
                       >navigate_before</v-icon
@@ -199,7 +206,7 @@
                       class="d-inline-block"
                     >
                       <span
-                        class="caption text-capitalize text-left"
+                        class="caption text-capitalize"
                         v-if="available == index"
                       >
                         {{ availability_info.available_hours_frequency }}
@@ -218,7 +225,7 @@
                   sm="3"
                   lg="3"
                   xl="3"
-                  class="text-center ml-lg-6 ml-sm-0 ml-0"
+                  class="text-sm-left text-center ml-lg-6 ml-sm-0 mt-3 mt-sm-0"
                 >
                   <v-btn
                     dark
@@ -263,7 +270,7 @@
       <v-row
         class="justify-center align-center tabrow"
         no-gutters
-        style="background-color: #F0F3F1;"
+        style="background-color: #f0f3f1;"
         :class="{ 'active-indicator': currentTab === 'skills' }"
       >
         <v-col class="col-md-5 col-sm-12 pl-xl-11" cols="12" lg="7" xl="6">
@@ -275,7 +282,7 @@
               v-on:click="skillTab = 1"
               v-show="
                 currentUser.skills.find(
-                  s => s.category == 'programming_languages'
+                  (s) => s.category == 'programming_languages'
                 )
               "
               class="tabs"
@@ -294,7 +301,9 @@
               v-on:click="skillTab = 2"
               class="tabs"
               v-bind:class="[skillTab === 2 ? 'active' : '']"
-              v-show="currentUser.skills.find(s => s.category == 'frameworks')"
+              v-show="
+                currentUser.skills.find((s) => s.category == 'frameworks')
+              "
             >
               <a class="tabtitle">
                 <v-icon class="d-block" color="#23A565"
@@ -309,7 +318,7 @@
               v-on:click="skillTab = 4"
               class="tabs"
               v-bind:class="[skillTab === 4 ? 'active' : '']"
-              v-show="currentUser.skills.find(s => s.category == 'software')"
+              v-show="currentUser.skills.find((s) => s.category == 'software')"
             >
               <a class="tabtitle">
                 <v-icon class="d-block" color="#23A565">mdi-disc-player</v-icon
@@ -323,7 +332,7 @@
               v-on:click="skillTab = 3"
               class="tabs"
               v-bind:class="[skillTab === 3 ? 'active' : '']"
-              v-show="currentUser.skills.find(s => s.category == 'design')"
+              v-show="currentUser.skills.find((s) => s.category == 'design')"
             >
               <a class="tabtitle">
                 <v-icon class="d-block" color="#23A565"
@@ -496,7 +505,10 @@
                     :src="getProjectMainImage(project)"
                     :aspect-ratio="1.2"
                     alt="portfolio img"
-                    style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                    style="
+                      border-radius: 10px;
+                      box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);
+                    "
                   ></v-img>
                 </v-col>
               </v-row>
@@ -508,7 +520,7 @@
         <v-container>
           <v-row style="overflow: scroll;">
             <v-col cols="12">
-              <p class="display-2" style="color: #3C3748;">Work</p>
+              <p class="display-2" style="color: #3c3748;">Work</p>
               <div class="mainPoint"></div>
               <div class="lilPoint"></div>
             </v-col>
@@ -548,7 +560,7 @@
         <v-container>
           <v-row style="overflow-y: scroll;">
             <v-col cols="12">
-              <p class="display-2" style="color: #3C3748;">Education</p>
+              <p class="display-2" style="color: #3c3748;">Education</p>
               <div class="mainPoint"></div>
               <div class="lilPoint"></div>
             </v-col>
@@ -588,7 +600,7 @@
         <v-container>
           <v-row style="overflow-y: scroll;">
             <v-col cols="12">
-              <p class="display-2" style="color: #3C3748;">Reviews</p>
+              <p class="display-2" style="color: #3c3748;">Reviews</p>
               <div class="mainPoint"></div>
               <div class="lilPoint"></div>
             </v-col>

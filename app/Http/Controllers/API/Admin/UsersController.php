@@ -24,6 +24,16 @@ class UsersController extends Controller
         $this->middleware(['auth:api', 'role:admin']);
     }
 
+    public function giveTestPermission(Request $request){
+        $user = User::find($request->user_id);
+        if($user->can('test.builder.users')){
+            $user->revokePermissionTo('test.builder.users');
+        }else{
+            $user->givePermissionTo('test.builder.users');
+        }
+
+        return $user->permissions;
+    }
 
     public function createUser(Request $request){
         $this->validator($request->all())->validate();
@@ -78,7 +88,6 @@ class UsersController extends Controller
         ]);
     }
 
-
     protected function updateValidator(array $data)
     {
         return Validator::make($data, [
@@ -87,6 +96,5 @@ class UsersController extends Controller
             'username' => 'required|unique:users,username,'. $data['id'].',id',
         ]);
     }
-
 
 }

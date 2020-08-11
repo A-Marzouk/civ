@@ -920,7 +920,7 @@ export default {
       font-weight: bold;
       font-size: 36px;
       line-height: 48px;
-      color: rgba(0, 91, 209, 0.3);
+      color: white;
       position: relative;
     }
 

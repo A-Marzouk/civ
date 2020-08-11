@@ -8,128 +8,167 @@
 
     <style>
         @font-face {
-            font-family: 'Fira';
-            src: url({{ public_path('/fonts/fira-mono/FiraMono-Medium.ttf') }}) format("truetype");
+            font-family: 'Thabit';
+            src: url({{ public_path('/fonts/Thabit/thabit/Thabit.ttf') }}) format("truetype");
+            /* font-weight: 400; // use the matching font-weight here ( 100, 200, 300, 400, etc).
+            font-style: normal; // use the matching font-style here */
+        }
+        
+        @font-face {
+            font-family: 'Thabit Bold';
+            src: url({{ public_path('/fonts/Thabit/thabit/Thabit-Bold.ttf') }}) format("truetype");
             /* font-weight: 400; // use the matching font-weight here ( 100, 200, 300, 400, etc).
             font-style: normal; // use the matching font-style here */
         }
 
-        main {
+        html,
+        body {
+            margin: 0;
+            padding: 0;
             background-image: url('/images/resume_themes/theme8/background.png');
+        }
+
+        main {
             color: white;
-            font-family: 'Fira', 'Courier New', Courier, monospace;
+            font-family: 'Thabit', 'Courier New', Courier, monospace;
         }
 
         .theme-header {
-            padding: 10px;
+            padding: 65px 65px 0;
         }
 
-        .theme-header td {
+        .user-img img {
+            border-radius: 115px;
+            width: 230px;
+            height: 230px;
+        }
+
+        .user-info {
             vertical-align: top;
-        }
-
-        .col-img {
-            width: 170px;
-        }
-
-        .col-info {
-            width: 362px;
-            padding-top: 20px;
-            padding-left: 10px;
-        }
-
-        .col-payment {
-            width: 520px;
-            padding-top: 25px;
-        }
-
-        .user-img {
-            width: 170px;
-            height: 170px;
+            padding-left: 40px;
+            width: 500px;
         }
 
         .user-name {
-            color: #005bd1;
-            font-size: 30px;
-            margin-top: -10px;
+            font-size: 40px;
+            font-family: 'Thabit', 'Courier New', Courier, monospace;
+            vertical-align: top;
+            color: #005BD1;
         }
 
         .user-profession {
-            font-size: 20px;
-            margin-top: 10px;
-            margin-bottom: 5px;
+            font-size: 21px;
+            line-height: 0px;
+            margin-top: 15px;
+            /* identical to box height, or 0% */
         }
 
-        .social img {
-            height: 25px;
+        .user-contact {
+            padding-top: 25px;
         }
 
-        .payment-details {
-            width: 100%;
-            margin-top: -10px;
+        .user-contact .contact {
+            font-size: 14px;
+            color: #005BD1;
+            margin-bottom: 2px;
+            vertical-align: middle;
         }
 
-        .payment-details td {
-            text-align: center;
+        .user-contact a {
+            color: #005BD1;
+            vertical-align: middle;
         }
 
-        .payment-details tr:last-child td {
-            border-top: solid transparent 5px;
-        }
-
-        .payment-details div {
-            font-size: 20px;
-            margin-top: 8px;
-        }
-
-        .payment-details b {
-            color: #005bd1;
-            font-size: 26px;
-        }
-
-        .payment-details .hourly-rate,
-        .payment-details .weekly-availability {
-            margin-right: 10px;
-            font-size: 24px;
-            text-align: center;
-        }
-
-        .btn-hireMe {
-            display: block;
-            border: 0;
-            border-radius: 31px;
-            background-color: #005bd1;
-            text-align: center;
-            font-size: 18px;
-            width: 200px;
-            height: 62px;
-            line-height: 35px;
-            color: #fff;
-            margin: 0 auto;
+        .no-decoration {
             text-decoration: none;
+        }
+
+        .user-contact .contact:last-child {
+            margin-bottom: 0;
+        }
+
+        .user-contact .icon-wrapper {
+            margin-right: 9px;
+            margin-top: 5px;
+            padding: 7px 4px;
+            box-sizing: border-box;
+            width: 17px;
+            height: 11px;
+            background-color: #F8F8F8;
+            display: inline-block;
+            border-radius: 13px;
+            text-align: center;
+            border: 1px solid rgb(228, 227, 227);
+        }
+
+        .user-contact .icon-wrapper img {
+            height: 10px;
+        }
+
+        .user-social {
+            font-size: 14px;
+            line-height: 17px;
+            width: 350px;
+            padding-top: 55px;
+        }
+
+        .user-social a {
+            color: #005BD1;
+            vertical-align: middle;
+        }
+
+        .user-social .social {
+            margin-bottom: 10px;
+        }
+
+        .user-social .social:last-child {
+            margin-bottom: 0px;
+        }
+
+        .user-social .img-wrapper {
+            display: inline-block;
+            border-radius: 10px;
+            margin-top: 5px;
+            margin-right: 10px;
+        }
+
+        .user-social .img-wrapper img {
+            width: 20px;
         }
 
         /* Theme body */
 
         section {
-            padding: 0 40px;
+            margin-top: 40px;
         }
 
         .section-title {
-            font-size: 28px;
+            font-size: 40px;
+            font-family: 'Thabit Bold', 'Courier New', Courier, monospace;
+            padding: 25px 65px;
             color: #005bd1;
-            text-align: center;
+            width: 100vw;
+            background: #333232;
         }
 
         .container {
             font-size: 16px;
+            padding: 30px 65px 0;
         }
 
         /* Work Experience and Education */
 
+        .work-experience .work,
+        .education .school {
+            background: #333232;
+            border-radius: 20px;
+            padding: 20px 30px 40px;
+        }
+
         .company-name,
         .school-name {
-            font-size: 22px;
+            font-size: 40px;
+            line-height: 45px;
             margin-bottom: 5px;
         }
 
@@ -137,7 +176,7 @@
         .grade-title {
             font-size: 20px;
             font-weight: bold;
-            margin-bottom: 2px;
+            margin-bottom: 12px;
         }
 
         .education .date,
@@ -145,7 +184,7 @@
             color: #005bd1;
             font-size: 18px;
             font-style: italic;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .education table td,
@@ -153,9 +192,71 @@
             border-bottom: 35px solid transparent;
         }
 
-        .education table tr:last-child td,
-        .work-experience table tr:last-child td {
+        .education table:last-child td,
+        .work-experience table:last-child td {
             border-bottom: 0;
+        }
+
+        .education table td:last-child,
+        .work-experience table td:last-child {
+            border-left: 22px solid transparent;
+        }
+        
+        .education table td:first-child,
+        .work-experience table td:first-child {
+            border-right: 22px solid transparent;
+        }
+
+        .skills table {
+            width: 100%;
+        }
+
+        .skills table td {
+            width: 50%;
+        }
+
+        .skills table td {
+            border-bottom: 22px solid transparent;
+        }
+        
+        .skills table:last-child td {
+            border-bottom: 0;
+        }
+
+        .skills table td:last-child {
+            border-left: 22px solid transparent;
+        }
+        
+        .skills table td:first-child {
+            border-right: 22px solid transparent;
+        }
+
+        .skill {
+            background: #333232;
+            border-radius: 20px;
+            padding: 49px 38px;
+        }
+
+        .skill-data {
+            font-size: 40px;
+        }
+
+        .skill .percentage {
+            text-align: right;
+        }
+
+        .skill-bar {
+            position: relative;
+            background: #C4C4C4;
+            height: 22px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        .skill-bar .fill {
+            background: #005BD1;
+            height: 22px;
+            border-radius: 10px;
         }
 
         .page-break {
@@ -168,47 +269,65 @@
     <main>
         <div class="theme-header">
             <table>
-                <td class="col-img">
-                    <img class="user-img" src="{{public_path('images/resume_builder/default-user-round.png')}}" />
+                <td class="user-img">
+                    <img src="{{ public_path('images/resume_builder/default-user.jpg') }}" alt="">
                 </td>
-                <td class="col-info">
+                <td class="user-info">
                     <div class="user-name">José Quintero</div>
                     <div class="user-profession">Fullstack Developer</div>
-                    <div class="social">
-                        <a href="https://www.instagram.com/josedanqf" target="_blank">
-                            <img src="{{ public_path('/images/resume_themes/theme8/instagram.png') }}" alt="instagram">
-                        </a>
-                        <a href="https://api.whatsapp.com/send?phone=584241714022
-                        " target="_blank">
-                            <img src="{{ public_path('/images/resume_themes/theme8/whatsapp.png') }}" alt="whatsapp">
-                        </a>
+
+                    <div class="user-contact">
+                        <div class="contact">
+                            <a href="" class='no-decoration'>
+                                Av. Panteon, Caracas. Venezuela.
+                            </a>
+                        </div>
+                        <div class="contact">
+                            <a href="" class='no-decoration'>
+                                +584241714022
+                            </a>
+                        </div>
+                        <div class="contact">
+                            <a href="https://civ.ie/josedan10" >
+                                civ.ie/josedan10
+                            </a>
+                        </div>
                     </div>
                 </td>
-                <td class="col-payment">
-                    <table class="payment-details">
-                        <tr>
-                            <td>
-                                <div class="hourly-rate">
-                                    <b>$8</b>
-                                    <div>Hourly Rate</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="weekly-availability">
-                                    <b>40 Hrs</b>
-                                    <div>Weekly Availability</div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <a class="btn-hireMe" href="https://civ.ie/josedan10">
-                                    Hire Me
-                                </a>
-                            </td>
-                        </tr>
-                    </table>   
+
+                <td class="user-social">
+                    <div class="social">
+                        <a href="https://behance.com">
+                            <div class="img-wrapper">
+                                <img src="{{ public_path('images/resume_themes/theme8/behance-icon.png') }}" alt="">
+                            </div>
+                            Behance username
+                        </a>
+                    </div>
+                    <div class="social">
+                        <a href="https://dribbble.com">
+                            <div class="img-wrapper">
+                                <img src="{{ public_path('images/resume_themes/theme8/dribbble-icon.png') }}" alt="">
+                            </div>
+                            Dribbble username
+                        </a>
+                    </div>
+                    <div class="social">
+                        <a href="https://instagram.com">
+                            <div class="img-wrapper">
+                                <img src="{{ public_path('images/resume_themes/theme8/instagram-icon.png') }}" alt="">
+                            </div>
+                            Instagram username
+                        </a>
+                    </div>
+                    <div class="social">
+                        <a href="https://behance.com">
+                            <div class="img-wrapper">
+                                <img src="{{ public_path('images/resume_themes/theme8/linkedin-icon.png') }}" alt="">
+                            </div>
+                            LinkedIn username
+                        </a>
+                    </div>
                 </td>
             </table>
         </div>
@@ -225,37 +344,47 @@
                 <table>
                     <tr>
                         <td>
-                            <div class="company-name">Civie</div>
-                            <div class="job-title">Fullstack Developer</div>
-                            <div class="date">2019 - Now</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque itaque dolorem dolorum eaque nesciunt facilis enim fugit odio maiores minima? Placeat optio mollitia earum asperiores perferendis voluptate rerum eveniet magnam!
+                            <div class="work">
+                                <div class="company-name">Civie</div>
+                                <div class="job-title">Fullstack Developer</div>
+                                <div class="date">2019 - Now</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
+                                </div>
                             </div>
                         </td>
                         <td>
-                            <div class="company-name">Civie</div>
-                            <div class="job-title">Fullstack Developer</div>
-                            <div class="date">2019 - Now</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque itaque dolorem dolorum eaque nesciunt facilis enim fugit odio maiores minima? Placeat optio mollitia earum asperiores perferendis voluptate rerum eveniet magnam!
+                            <div class="work">
+                                <div class="company-name">Civie</div>
+                                <div class="job-title">Fullstack Developer</div>
+                                <div class="date">2019 - Now</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
+                                </div>
                             </div>
                         </td>
                     </tr>
+                </table>
+                <table>
                     <tr>
                         <td>
-                            <div class="company-name">Civie</div>
-                            <div class="job-title">Fullstack Developer</div>
-                            <div class="date">2019 - Now</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque itaque dolorem dolorum eaque nesciunt facilis enim fugit odio maiores minima? Placeat optio mollitia earum asperiores perferendis voluptate rerum eveniet magnam!
+                            <div class="work">
+                                <div class="company-name">Civie</div>
+                                <div class="job-title">Fullstack Developer</div>
+                                <div class="date">2019 - Now</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
+                                </div>
                             </div>
                         </td>
                         <td>
-                            <div class="company-name">Civie</div>
-                            <div class="job-title">Fullstack Developer</div>
-                            <div class="date">2019 - Now</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque itaque dolorem dolorum eaque nesciunt facilis enim fugit odio maiores minima? Placeat optio mollitia earum asperiores perferendis voluptate rerum eveniet magnam!
+                            <div class="work">
+                                <div class="company-name">Civie</div>
+                                <div class="job-title">Fullstack Developer</div>
+                                <div class="date">2019 - Now</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis.
+                                </div>
                             </div>
                         </td>
                     </tr>
@@ -268,19 +397,118 @@
                 <table>
                     <tr>
                         <td>
-                            <div class="school-name">Civie</div>
-                            <div class="grade-title">Fullstack Developer</div>
-                            <div class="date">2019 - Now</div>
-                            <div class="description">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit, suscipit placeat dolore nostrum deserunt amet veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque itaque dolorem dolorum eaque nesciunt facilis enim fugit odio maiores minima? Placeat optio mollitia earum asperiores perferendis voluptate rerum eveniet magnam!
+                            <div class="school">
+                                <div class="school-name">Simon Bolivar University</div>
+                                <div class="grade-title">Computing Mathematics</div>
+                                <div class="date">2014 - 2019</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
+                                </div>
                             </div>
                         </td>
-                        <td>    </td>
+                        <td>
+                            <div class="school">
+                                <div class="school-name">Simon Bolivar University</div>
+                                <div class="grade-title">Computing Mathematics</div>
+                                <div class="date">2014 - 2019</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="school">
+                                <div class="school-name">Simon Bolivar University</div>
+                                <div class="grade-title">Computing Mathematics</div>
+                                <div class="date">2014 - 2019</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="school">
+                                <div class="school-name">Simon Bolivar University</div>
+                                <div class="grade-title">Computing Mathematics</div>
+                                <div class="date">2014 - 2019</div>
+                                <div class="description">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat in quaerat aperiam dignissimos eos. Sit, est obcaecati laboriosam nulla, a ipsum saepe fugit.
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>
         </section>
-        <div class="page-break"></div>
+        <section class="skills">
+            <div class="section-title">Skills</div>
+            <div class="container">
+                <table>
+                    <tr>
+                        <td>
+                            <div class="skill">
+                                <table class="skill-data">
+                                    <tr>
+                                        <td class="skill-name">Node.js</td>
+                                        <td class="percentage">84%</td>
+                                    </tr>
+                                </table>
+                                <div class="skill-bar">
+                                    <div class="fill" style="width: 84%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="skill">
+                                <table class="skill-data">
+                                    <tr>
+                                        <td class="skill-name">Laravel</td>
+                                        <td class="percentage">70%</td>
+                                    </tr>
+                                </table>
+                                <div class="skill-bar">
+                                    <div class="fill" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="skill">
+                                <table class="skill-data">
+                                    <tr>
+                                        <td class="skill-name">Node.js</td>
+                                        <td class="percentage">84%</td>
+                                    </tr>
+                                </table>
+                                <div class="skill-bar">
+                                    <div class="fill" style="width: 84%"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="skill">
+                                <table class="skill-data">
+                                    <tr>
+                                        <td class="skill-name">Laravel</td>
+                                        <td class="percentage">70%</td>
+                                    </tr>
+                                </table>
+                                <div class="skill-bar">
+                                    <div class="fill" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
     </main>
 </body>
 </html>

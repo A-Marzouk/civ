@@ -67,21 +67,26 @@
             </v-toolbar>
         </template>
         <template v-slot:item.actions="{ item }">
-            <v-icon
-                    small
-                    v-show="!item.is_admin"
-                    class="mr-2"
-                    @click="editItem(item)"
-            >
-                mdi-pencil
-            </v-icon>
-            <v-icon
-                    small
-                    v-show="!item.is_admin"
-                    @click="deleteItem(item)"
-            >
-                mdi-delete
-            </v-icon>
+            <div class="d-flex align-items-center justify-content-between">
+                <v-icon
+                        small
+                        v-show="!item.is_admin"
+                        class="mr-3"
+                        @click="editItem(item)"
+                >
+                    mdi-pencil
+                </v-icon>
+                <v-icon
+                        small
+                        v-show="!item.is_admin"
+                        @click="deleteItem(item)"
+                >
+                    mdi-delete
+                </v-icon>
+            </div>
+        </template>
+        <template v-slot:item.tester="{ item }">
+            <v-checkbox v-model="item.can_test_builder" label="Can open builder without subscription" @change="toggleUserPermissionToTestBuilder(item)"></v-checkbox>
         </template>
         <template v-slot:item.profileLink="{ item }">
             <div class="NoDecor">
@@ -120,6 +125,7 @@
                 { text: 'Status', value: '', sortable: false },
                 { text: 'Notes', value: '', sortable: false },
                 { text: 'Actions', value: 'actions', sortable: false },
+                { text: 'Tester', value: 'tester', sortable: false },
             ],
             tableUsers: [],
             editedIndex: -1,
@@ -166,6 +172,11 @@
                 this.tableUsers = this.users ;
             },
 
+            toggleUserPermissionToTestBuilder(user){
+                axios.post('/api/admin/give-test-permission', {user_id : user.id}).then( (response) => {
+                    console.log(response.data)
+                });
+            },
             editItem (item) {
                 this.editedIndex = this.tableUsers.indexOf(item);
                 this.editedItem  = Object.assign({}, item);

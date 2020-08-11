@@ -217,6 +217,7 @@ Route::post('logout', 'API\Auth\AuthController@logout');
 Route::group(['prefix' => 'admin/'], function () {
     Route::post('create-user', 'API\Admin\UsersController@createUser');
     Route::put('update-user', 'API\Admin\UsersController@updateUser');
+    Route::post('/give-test-permission', 'API\Admin\UsersController@giveTestPermission');
     Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
 });
 

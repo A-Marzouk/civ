@@ -144,6 +144,7 @@
     // File input
 
     &.civie-dropzone {
+        font-family: 'Noto Sans', Arial, Helvetica, sans-serif !important;
 
         .v-input__slot {
             border: 2px solid $inputBorderColor--enabled;
@@ -182,10 +183,24 @@
 
             .civie-dropzone-input.sm-image{
                 .dz-preview{
-                    min-height: 160px;
-                    min-width: 165px;
+                    height: 100%;
+                    width: 100%;
+                    margin: 0;
+
+                    img {
+                        margin: 0 auto !important;
+                    }
                 }
             }
+        }
+
+        .dz-details {
+            background-color: rgba($color: $mainColor, $alpha: .8) !important;
+        }
+
+        .dz-remove {
+            border-radius: 5px;
+            bottom: 8px !important;
         }
     }
 
