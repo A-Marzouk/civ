@@ -25,14 +25,14 @@
                     <div class="content-wrapper">
                         <div class="mar-form">
                             <v-text-field v-if="personalInfo"
-                                    class="resume-builder__input input-margin input-margin-3 ct-fix-input"
-                                    label="First name"
-                                    v-model="personalInfo.first_name"
-                                    :outlined="true"
-                                    :class="{'resume-builder__input--disabled': false}"
-                                    :error="!!errors.name"
-                                    :error-messages="errors.name"
-                                    :disabled="false"
+                                          class="resume-builder__input input-margin input-margin-3 ct-fix-input"
+                                          label="First name"
+                                          v-model="personalInfo.first_name"
+                                          :outlined="true"
+                                          :class="{'resume-builder__input--disabled': false}"
+                                          :error="!!errors.name"
+                                          :error-messages="errors.name"
+                                          :disabled="false"
                             ></v-text-field>
 
                             <v-text-field
@@ -72,30 +72,17 @@
 
                             <div class="my-subscription">
                                 <div class="form-title sub">My Subscription</div>
-                                <div class="toggle-panel smaller" v-if="accountData.subscription === null">
-                                    <div
-                                            class="aux-fill"
-                                            :class="{left: subscription === 'on',right: subscription === 'off'}"
-                                    ></div>
-                                    <div class="buttons">
-                                        <button class="toggle-btn monthly" @click="subscription = 'on' ">On</button>
-                                        <button class="toggle-btn yearly" @click="subscription = 'off' ">Off</button>
-                                    </div>
-                                </div>
-                                <div v-else class="view-sub-btn NoDecor">
-                                    <a href="javascript:void(0)" data-toggle="modal"
-                                       data-target="#subscription">View</a>
-                                </div>
                             </div>
 
-                            <div class="action-btns NoDecor" v-if="accountData.subscription === null">
-                                <a href="#" class="purchase-btn mt-n3" @click="priceModal=true">Purchase Subscription</a>
+                            <div class="action-btns NoDecor" v-if="accountData.subscription !== null">
+                                <a class="purchase-btn mt-n3" href="javascript:void(0)" data-toggle="modal"
+                                   data-target="#subscription">View Subscription</a>
                             </div>
 
                             <span class="v-label v-label--active theme--light" style="color: #888DB1;">
-                <!-- Added a label here due to prepend-inner slot change -->
-                My URL
-              </span>
+                                <!-- Added a label here due to prepend-inner slot change -->
+                                My URL
+                            </span>
                             <v-text-field
                                     class="resume-builder__input top-input-margin url mt-n6"
                                     v-model="accountData.username"
@@ -119,14 +106,15 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="subscription" tabindex="-1" role="dialog" aria-labelledby="subscription" aria-hidden="true">
+        <div class="modal fade" id="subscription" tabindex="-1" role="dialog" aria-labelledby="subscription"
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body d-flex align-items-center" v-if="accountData.subscription">
                         You have a {{accountData.subscription.sub_frequency}} subscription
-                        <br />
+                        <br/>
                         Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}
-                        <br />
+                        <br/>
                         Payment method: {{accountData.subscription.payment_method}}
                     </div>
                 </div>
@@ -135,10 +123,10 @@
 
 
         <!-- dialog -->
-            <v-dialog
-            v-model="priceModal"
-            max-width="550"
-            style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
+        <v-dialog
+                v-model="priceModal"
+                max-width="550"
+                style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
             border-radius: 10px; z-index:1000; overflow-y:hidden;"
 
         >
@@ -146,7 +134,7 @@
             <v-card>
                 <v-card-subtitle align="right">
                     <v-btn icon class="btn-close-modal" absolute @click.stop="priceModal=false">
-                        <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon" />
+                        <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon"/>
                     </v-btn>
                 </v-card-subtitle>
                 <v-card-text class="mt-5">
@@ -438,8 +426,8 @@
                 this.errors = {};
 
                 axios.post("/api/user/personal-info", formData, {
-                        headers: {"Content-Type": "multipart/form-data"}
-                    })
+                    headers: {"Content-Type": "multipart/form-data"}
+                })
                     .then(response => {
                         this.$store.dispatch('flyingNotification');
                         this.personalInfo.profile_pic = response.data.data.profile_pic;
@@ -499,7 +487,7 @@
                 }
 
                 axios.post("/api/user/account/submit", this.accountData)
-                    .then( (response) => {
+                    .then((response) => {
                         this.applyEdit();
                         this.$router.push('/resume-builder/edit/profile');
                     })
@@ -591,7 +579,7 @@
     .ct-fix-input {
         height: 5.8rem;
     }
- 
+
 
 </style>
 <style lang="scss">
@@ -603,8 +591,8 @@
     $input-bg: #f1f8fc;
     $placeholder-color: #9ba1ad;
 
-    .btn-close-modal{
-        top:20px;
+    .btn-close-modal {
+        top: 20px;
         right: 20px;
         z-index: 100;
     }
@@ -707,7 +695,7 @@
                     font-size: 24px;
                     line-height: 36px;
                     color: #888db1;
-                    @include lt-sm{
+                    @include lt-sm {
                         font-size: 18px;
                         line-height: 26px;
                     }
