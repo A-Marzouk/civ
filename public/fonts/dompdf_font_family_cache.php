@@ -96,7 +96,7 @@
     'normal' => $fontDir . '/muli-normal_ac284dc71e1b0704e4d0e81d205378b2',
   ),
   'fira' => array(
-    'normal' => $fontDir . '/fira-normal_21029b28bb237c42b004f9637e51c223',
+    'normal' => $fontDir . '/fira-normal_87773dd5327ba0ec7ecfd977507e9240',
   ),
   'montserrat' => array(
     'normal' => $fontDir . '/montserrat-normal_3f4ced0214179fda4ed8b5ca9920ea29',
@@ -109,5 +109,17 @@
   ),
   'actor' => array(
     'normal' => $fontDir . '/actor-normal_db9f1e3bf24b2b2a45469cebab9b002e',
+  ),
+  'thabit' => array(
+    'normal' => $fontDir . '/thabit-normal_69bc16a762370a42b4e9c1bf4dba49ea',
+  ),
+  'thabit bold' => array(
+    'normal' => $fontDir . '/thabit-bold-normal_2f07533a091e96b9cc533af285387030',
+  ),
+  'noto sans' => array(
+    'normal' => $fontDir . '/noto-sans-normal_e008ce4e7d1fb705e3c18c74dddecf0e',
+  ),
+  'noto sans bold' => array(
+    'normal' => $fontDir . '/noto-sans-bold-normal_0fefd6257cb2f55a5ef5adc6ac3562e9',
   ),
 ) ?>
