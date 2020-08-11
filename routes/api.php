@@ -145,6 +145,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/projects', 'API\ProjectsController@index');
     Route::get('/projects/{id}', 'API\ProjectsController@show');
     Route::post('/projects', 'API\ProjectsController@store');
+    Route::post('/projects/many', 'API\ProjectsController@storeMany');
     Route::post('/projects/update-order', 'API\ProjectsController@updateProjectsOrder');
     Route::put('/projects', 'API\ProjectsController@store');
     Route::delete('/projects/{id}', 'API\ProjectsController@destroy');
@@ -188,6 +189,7 @@ Route::group(['prefix' => 'user/'], function () {
     Route::get('/imports', 'API\ImportsController@index');
     Route::get('/imports/{id}', 'API\ImportsController@show');
     Route::post('/imports', 'API\ImportsController@store');
+    Route::post('/imports/update-order', 'API\ImportsController@updateImportsOrder');
     Route::put('/imports', 'API\ImportsController@store');
     Route::delete('/imports/{id}', 'API\ImportsController@destroy');
 
@@ -215,6 +217,7 @@ Route::post('logout', 'API\Auth\AuthController@logout');
 Route::group(['prefix' => 'admin/'], function () {
     Route::post('create-user', 'API\Admin\UsersController@createUser');
     Route::put('update-user', 'API\Admin\UsersController@updateUser');
+    Route::post('/give-test-permission', 'API\Admin\UsersController@giveTestPermission');
     Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
 });
 

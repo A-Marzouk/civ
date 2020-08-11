@@ -1,19 +1,19 @@
 <template>
     <v-app>
-        <div v-if="currentUser">
+        <div v-if="currentUser && personalInfo">
 
             <my-upload @crop-success="cropSuccess" v-model="showImageUpload" langType="en"></my-upload>
 
             <div id="myAccountTab" class="my-account-tab-wrapper">
                 <div class="profile-pic-row" v-if="personalInfo">
                     <div class="profile-pic">
-                        <img :src="personalInfo.profile_pic" alt/>
+                        <img :src="personalInfo.profile_pic"/>
                         <div class="photo-cover" @click="showImageUpload = true">
                             <img src="/images/resume_builder/camera-icon.png" alt="camera icon">
                         </div>
                     </div>
                     <div class="info-my-account">
-                        <div class="name">{{accountData.name}}</div>
+                        <div class="name">{{personalInfo.first_name}}</div>
                         <div class="job-title">{{personalInfo.designation}}</div>
                     </div>
                 </div>
@@ -24,10 +24,10 @@
                 <div class="form-wrapper mt-n1">
                     <div class="content-wrapper">
                         <div class="mar-form">
-                            <v-text-field
-                                    class="resume-builder__input input-margin input-margin-3"
-                                    label="Full name"
-                                    v-model="accountData.name"
+                            <v-text-field v-if="personalInfo"
+                                    class="resume-builder__input input-margin input-margin-3 ct-fix-input"
+                                    label="First name"
+                                    v-model="personalInfo.first_name"
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.name"
@@ -36,7 +36,7 @@
                             ></v-text-field>
 
                             <v-text-field
-                                    class="resume-builder__input input-margin input-margin-3 mt-n3"
+                                    class="resume-builder__input input-margin input-margin-3 mt-n3 ct-fix-input"
                                     label="Email"
                                     v-model="accountData.email"
                                     :outlined="true"
@@ -47,11 +47,11 @@
                             ></v-text-field>
 
                             <v-text-field
-                                    class="resume-builder__input input-margin centered-input mt-n3"
+                                    class="resume-builder__input input-margin centered-input mt-n3 ct-fix-input"
                                     label="Password"
                                     type="password"
                                     v-model="accountData.password"
-                                    placeholder="*********"
+                                    placeholder="••••••••••"
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
@@ -63,7 +63,7 @@
                                     label="Re-Type Password"
                                     type="password"
                                     v-model="accountData.password_confirmation"
-                                    placeholder="*********"
+                                    placeholder="••••••••••"
                                     :outlined="true"
                                     :class="{'resume-builder__input--disabled': false}"
                                     :error="!!errors.password"
@@ -88,9 +88,8 @@
                                 </div>
                             </div>
 
-                            <div class="action-btns NoDecor">
-                                <a href="#" class="purchase-btn mt-n3" @click="priceModal=true">Purchase
-                                    Subscription</a>
+                            <div class="action-btns NoDecor" v-if="accountData.subscription === null">
+                                <a href="#" class="purchase-btn mt-n3" @click="priceModal=true">Purchase Subscription</a>
                             </div>
 
                             <span class="v-label v-label--active theme--light" style="color: #888DB1;">
@@ -106,7 +105,7 @@
                                     :error-messages="errors.username"
                             >
                                 <template slot="prepend-inner">
-                                    <span class="inner-text" style="margin-top:-3px;">www.civ.ie/</span>
+                                    <span class="inner-text" style="margin-top:-4.8px;">www.civ.ie/</span>
                                 </template>
                             </v-text-field>
                         </div>
@@ -119,15 +118,37 @@
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="subscription" tabindex="-1" role="dialog" aria-labelledby="subscription" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body d-flex align-items-center" v-if="accountData.subscription">
+                        You have a {{accountData.subscription.sub_frequency}} subscription
+                        <br />
+                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}
+                        <br />
+                        Payment method: {{accountData.subscription.payment_method}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- dialog -->
-        <v-dialog
-                v-model="priceModal"
-                max-width="550"
-                style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
-        border-radius: 10px; z-index:1000; overflow-y:hidden;"
+            <v-dialog
+            v-model="priceModal"
+            max-width="550"
+            style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
+            border-radius: 10px; z-index:1000; overflow-y:hidden;"
+
         >
+
             <v-card>
-                <v-card-subtitle></v-card-subtitle>
+                <v-card-subtitle align="right">
+                    <v-btn icon class="btn-close-modal" absolute @click.stop="priceModal=false">
+                        <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon" />
+                    </v-btn>
+                </v-card-subtitle>
                 <v-card-text class="mt-5">
                     <v-tabs centered v-model="priceTab" hide-slider>
                         <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
@@ -343,14 +364,17 @@
             },
             personalInfo() {
                 return this.$store.state.user.personal_info;
+            },
+            user() {
+                return this.$store.state.user;
             }
         },
         methods: {
 
             // Image cropping
             cropSuccess(imgDataUrl) {
-                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl,'profile');
-                this.applyEdit("auto");
+                this.personalInfo.profile_pic_file = this.dataURLtoFile(imgDataUrl, 'profile');
+                this.applyEdit();
             },
 
             dataURLtoFile(dataURL, filename) {
@@ -379,7 +403,7 @@
                     this.personalInfo.profile_pic = this.$refs.profile_picture.files[0];
                     this.tempPic = URL.createObjectURL(this.$refs.profile_picture.files[0]);
                     this.profile_pic_error = "";
-                    this.applyEdit("auto");
+                    this.applyEdit();
                 } else {
                     console.log("error in pic");
                     this.profile_pic_error = "Incorrect file chosen!";
@@ -395,7 +419,7 @@
                 }
                 return isValid;
             },
-            applyEdit(savingType) {
+            applyEdit() {
                 let formData = new FormData();
                 formData.append("_method", "put");
                 formData.append("user_id", this.currentUser.id);
@@ -413,16 +437,11 @@
 
                 this.errors = {};
 
-                axios
-                    .post("/api/user/personal-info", formData, {
+                axios.post("/api/user/personal-info", formData, {
                         headers: {"Content-Type": "multipart/form-data"}
                     })
                     .then(response => {
-                        if (savingType === "manual") {
-                            this.$store.dispatch('flyingNotification');
-                        } else {
-                            this.$store.dispatch("flyingNotification");
-                        }
+                        this.$store.dispatch('flyingNotification');
                         this.personalInfo.profile_pic = response.data.data.profile_pic;
                     })
                     .catch(error => {
@@ -476,15 +495,12 @@
 
                 if (this.isUsernameChanged()) {
                     this.accountData.userNameChanged = true;
+                    this.user.username = this.accountData.username;
                 }
 
-                axios
-                    .post("/api/user/account/submit", this.accountData)
-                    .then(response => {
-                        // changes saved pop-up
-                        this.$store.dispatch('flyingNotification');
-
-                        // redirect user to the edit:
+                axios.post("/api/user/account/submit", this.accountData)
+                    .then( (response) => {
+                        this.applyEdit();
                         this.$router.push('/resume-builder/edit/profile');
                     })
                     .catch(error => {
@@ -571,7 +587,11 @@
         margin-top: 3px !important;
     }
 
-
+    // custom fix 1.0
+    .ct-fix-input {
+        height: 5.8rem;
+    }
+ 
 
 </style>
 <style lang="scss">
@@ -583,21 +603,26 @@
     $input-bg: #f1f8fc;
     $placeholder-color: #9ba1ad;
 
+    .btn-close-modal{
+        top:20px;
+        right: 20px;
+        z-index: 100;
+    }
 
-    .subscription-modal{
-        .v-dialog{
-            max-width:550px;
-            @include lt-md{
-                max-width:500px;
+    .subscription-modal {
+        .v-dialog {
+            max-width: 550px;
+            @include lt-md {
+                max-width: 500px;
             }
         }
     }
 
-    .padding-sm-1{
-        @include lt-sm{
+    .padding-sm-1 {
+        @include lt-sm {
             padding: 5px !important;
         }
-        @include lt-md{
+        @include lt-md {
             padding: 5px !important;
         }
     }
@@ -633,11 +658,14 @@
             display: flex;
             align-items: center;
             margin-bottom: 40px;
+
             .profile-pic {
 
                 position: relative;
                 overflow-y: hidden;
                 border-radius: 50%;
+                min-width: 110px;
+                min-height: 110px;
 
                 img {
                     width: 110px;
@@ -679,6 +707,10 @@
                     font-size: 24px;
                     line-height: 36px;
                     color: #888db1;
+                    @include lt-sm{
+                        font-size: 18px;
+                        line-height: 26px;
+                    }
                 }
 
                 .job-title {
@@ -1006,6 +1038,13 @@
                         font-size: 18px;
                         line-height: 25px;
                         color: #001ce2;
+                        transition: 0.2s;
+                    }
+
+                    // custom fix 1.0
+                    .purchase-btn:hover {
+                        color: white;
+                        background: #001ce2;
                     }
                 }
             }
@@ -1034,7 +1073,7 @@
         .aux-fill {
             width: 183%;
             position: absolute;
-            background: #1f5de4;
+            background: #001CE2;
             border-radius: 20px;
             height: 38px;
             top: 0;
@@ -1043,7 +1082,7 @@
     }
 
     .toggle-panel {
-        border: solid 1.3px $primary;
+        border: solid 1.3px #001CE2;
         border-radius: 50px;
         position: relative;
         overflow: hidden;
@@ -1561,48 +1600,48 @@
     @import "../../../../sass/media-queries";
 
     // image crop styles not scoped
-
-    .vue-image-crop-upload{
-        .vicp-wrap{
+    .vue-image-crop-upload {
+        .vicp-wrap {
             width: 95%;
             max-width: 600px;
             height: fit-content;
             min-height: 300px;
 
-            @include lt-sm{
+            @include lt-sm {
                 min-height: 530px;
             }
 
-            .vicp-close{
-                right:0 !important;
+            .vicp-close {
+                right: 0 !important;
             }
 
-            .vicp-step1{
-                .vicp-operate{
-                    a{
+            .vicp-step1 {
+                .vicp-operate {
+                    a {
                         color: #001ce2;
                         font-weight: 500;
                     }
                 }
             }
 
-            .vicp-step2{
+            .vicp-step2 {
 
-                .vicp-crop{
-                    @include lt-sm{
+                .vicp-crop {
+                    @include lt-sm {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
 
-                        .vicp-crop-right{
+
+                        .vicp-crop-right {
                             margin-top: 40px;
                         }
                     }
 
                 }
 
-                .vicp-operate{
-                    a{
+                .vicp-operate {
+                    a {
                         color: #001ce2;
                         font-weight: 500;
                     }
@@ -1610,5 +1649,4 @@
             }
         }
     }
-
 </style>

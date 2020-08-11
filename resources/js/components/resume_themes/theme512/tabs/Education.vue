@@ -12,7 +12,7 @@
             <v-col cols="2" sm="1" lg="auto">
               <div class="timeline-item--serial">0{{ index + 1 }}</div>
             </v-col>
-            <v-col cols="10" sm="11" lg="11" class="timeline-item--content ">
+            <v-col cols="10" sm="11" lg="11" class="timeline-item--content">
               <div class="timeline-item--title pb-2">{{ edu.position }}</div>
               <div class="timeline-item--position py-2">
                 {{ edu.location }}
@@ -62,7 +62,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap");
 .timeline-item--serial {
   font-family: "Archivo", sans-serif;
   font-style: normal;
@@ -157,6 +157,19 @@ export default {
 
     top: 50px;
     background-color: rgba(220, 38, 108, 0.4);
+  }
+  .backText:before {
+    content: "EDUCA";
+    position: absolute;
+    top: 290px;
+    right: -186px;
+    transform: rotate(-90deg);
+    font-family: "Archivo", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 150px;
+    line-height: 110px;
+    color: rgba(220, 38, 108, 0.15);
   }
 }
 </style>

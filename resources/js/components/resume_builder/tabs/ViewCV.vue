@@ -502,8 +502,8 @@ $mainBlue: #001ce2;
     font-family: "Noto Sans" !important;
     font-style: normal;
     font-weight: 600;
-    font-size: 40px;
-    line-height: 54px;
+    font-size: 30px;
+    line-height: 35px;
     color: #001ce2 !important;
     @media screen and (max-width: 959px) {
       font-size: 22px;

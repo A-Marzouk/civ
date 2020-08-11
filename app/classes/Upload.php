@@ -363,4 +363,15 @@ class Upload
         return $path;
     }
 
+    public static function docFile(Request $request)
+    {
+        $file = $request->file('importFile');
+        $name = date(time()) . '_' . $file->getClientOriginalName();
+
+        $file->move(public_path() . '/uploads/imports/', $name);
+        $path = '/uploads/imports/' . $name;
+
+        return $path;
+    }
+
 }

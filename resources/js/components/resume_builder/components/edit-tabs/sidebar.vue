@@ -43,10 +43,16 @@
           :class="{'active': activeTab === sidebarLink.icon}"
           :key="sidebarLink.icon"
         >
-          <router-link :to="sidebarLink.url" @click.native="setActive(sidebarLink)">
+          <router-link
+            :to="sidebarLink.url"
+            @click.native="setActive(sidebarLink)"
+            @mouseover.native="hoverMenu(sidebarLink)"
+            @mouseleave.native="hoverMenu(null)"
+          >
             <div
               class="link-icon"
-              :class="{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon}"
+              :class="[{'profile-ixklwxz-link-icon-active': activeTab === sidebarLink.icon},
+              {'profile-ixklwxz-link-icon-active':activeHoverMenu==sidebarLink.icon}]"
             >
               <svg-vue :icon="`edit-cv-sidebar/${sidebarLink.icon}`"></svg-vue>
             </div>
@@ -65,92 +71,98 @@ export default {
   props: {
     activeTab: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   data() {
     return {
       open: false,
-
+      menuHover: false,
+      activeHoverMenu: null,
       sidebarLinks: [
         {
           url: "/resume-builder/edit/profile",
           icon: "profile",
-          label: "Profile"
+          label: "Profile",
         },
         {
           url: "/resume-builder/edit/links",
           icon: "links",
-          label: "Links"
+          label: "Links",
         },
         {
           url: "/resume-builder/edit/work-experience",
           icon: "work-experience",
-          label: "Work experience"
+          label: "Work experience",
         },
         {
           url: "/resume-builder/edit/education",
           icon: "education",
-          label: "Education"
+          label: "Education",
         },
         {
           url: "/resume-builder/edit/skills",
           icon: "skills",
-          label: "Skills"
+          label: "Skills",
         },
         {
           url: "/resume-builder/edit/portfolio",
           icon: "portfolio",
-          label: "Portfolio"
+          label: "Portfolio",
         },
         {
           url: "/resume-builder/edit/audio-video",
           icon: "audio-video",
-          label: "Audio/Video"
+          label: "Audio/Video",
         },
-        {
-          url: "/resume-builder/edit/hobbies",
-          icon: "hobbies",
-          label: "Hobbies"
-        },
+        // {
+        //   url: "/resume-builder/edit/hobbies",
+        //   icon: "hobbies",
+        //   label: "Hobbies",
+        // },
         {
           url: "/resume-builder/edit/achievement",
           icon: "achievement",
-          label: "Achievement"
+          label: "Achievement",
         },
         {
           url: "/resume-builder/edit/imports",
           icon: "imports",
-          label: "Imports"
+          label: "Imports",
         },
         {
           url: "/resume-builder/edit/references",
           icon: "references",
-          label: "References"
+          label: "References",
         },
         {
           url: "/resume-builder/edit/pay-availability",
           icon: "pay-availability",
-          label: "Pay availability"
+          label: "Pay availability",
         },
-        {
-          url: "/resume-builder/edit/downloads",
-          icon: "downloads",
-          label: "Downloads"
-        },
+        // {
+        //   url: "/resume-builder/edit/downloads",
+        //   icon: "downloads",
+        //   label: "Downloads"
+        // },
         {
           url: "/resume-builder/edit/structure",
           icon: "structure",
-          label: "Structure"
+          label: "Structure",
+        },
+        {
+          url: "/resume-builder/edit/themes",
+          icon: "themes",
+          label: "Themes",
         },
       ],
 
       currentSidebarLink: {
         url: "/resume-builder/edit/profile",
         icon: "profile",
-        label: "Profile"
-      }
+        label: "Profile",
+      },
     };
   },
 
@@ -159,25 +171,31 @@ export default {
       this.open = false;
       this.currentSidebarLink = activeLink;
       this.$emit("onChange", activeLink.icon);
-    }
+    },
+    hoverMenu(sidebarLink) {
+      if (sidebarLink !== null) {
+        this.activeHoverMenu = sidebarLink.icon;
+      } else {
+        this.activeHoverMenu = null;
+      }
+    },
   },
-
 
   mounted() {
     // Set the correct activeTab on refresh, and on changing the view
     const pathSplit = this.$route.path.split("/"),
       activeTab = pathSplit[pathSplit.length - 1];
 
-    let activeLink = {} ;
+    let activeLink = {};
 
-    this.sidebarLinks.forEach( (link) => {
-      if(link.icon === activeTab){
-        activeLink = link ;
+    this.sidebarLinks.forEach((link) => {
+      if (link.icon === activeTab) {
+        activeLink = link;
       }
     });
 
     this.setActive(activeLink);
-  }
+  },
 };
 </script>
 
@@ -197,7 +215,6 @@ export default {
     max-width: 350px;
     margin-left: auto;
     margin-right: auto;
-    
 
     .sidebar-links,
     .sidebar-link-activator {
@@ -366,8 +383,9 @@ export default {
               border: unset;
 
               &:hover {
-                background-color: #f9f9f9;
+                background-color: transparent;
                 text-decoration: none;
+                color: #001ce2;
               }
             }
 
@@ -400,5 +418,15 @@ export default {
 <style>
 .profile-ixklwxz-link-icon-active svg [stroke] {
   stroke: #001ce2;
+}
+</style>
+
+<style lang="scss">
+.profile-ixklwxz-link-icon-active {
+  svg {
+    g {
+      fill: #001ce2 !important;
+    }
+  }
 }
 </style>

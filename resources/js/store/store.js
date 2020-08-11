@@ -362,6 +362,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateImports(state, imports){
+            state.user.imports = imports;
+            axios.post('/api/user/imports/update-order', {imports : imports})
+                .then( response => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateMedia(state, medias){
             state.user.media  = medias;
             axios.post('/api/user/media/update-order', {medias : medias})

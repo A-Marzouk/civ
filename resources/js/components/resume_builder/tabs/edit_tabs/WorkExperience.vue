@@ -8,6 +8,7 @@
             </v-tab>
         </v-tabs>
 
+
         <div class="links-content resume-builder__scroll" v-if="works">
             <div class="link-inputs-row">
                 <div class="inputs">
@@ -33,7 +34,7 @@
                                 placeholder="Job Title"
                                 :class="{'resume-builder__input--disabled': false}"
                                 :disabled="false"
-                                label="Job Ttitle"
+                                label="Job Title"
                                 :error="!!errors.job_title"
                                 :error-messages="errors.job_title"
                                 v-model="newWork.job_title"
@@ -84,7 +85,7 @@
                     </div>
                 </div>
                 <div class="btns">
-                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="addWorkEx">
+                    <v-btn class="resume-builder__btn civie-btn filled mr-2" raised @click="addWorkEx">
                         {{newWork.id !== '' ? 'Update' : 'Add New'}}
                     </v-btn>
 

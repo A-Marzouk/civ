@@ -9,7 +9,7 @@
                 >{{tabName.replace('_',' ')}}
                 </v-tab>
             </v-tabs>
-            <v-card class="card-main pa-10 resume-builder__scroll pay-content" :class="{'shortened' : extractedText.length > 1}" flat id="payContent">
+            <v-card class="card-main pa-10 resume-builder__scroll pay-content" :class="{'shortened' : extractedText.length > 1 || behanceProjects.length > 0}" flat id="payContent">
                 <v-tabs-items v-model="importTab">
                     <v-tab-item class="import-tab-item">
                         <div class="title">
@@ -77,13 +77,14 @@
                                     style="margin-top: -15px;"
                                     class="resume-builder__input top-input-margin url mt-n6"
                                     :outlined="true"
+                                    v-model="behanceUsername"
                             >
                                 <template slot="prepend-inner">
                                     <span class="inner-text" style="margin-top:-3px;">behance.com/</span>
                                 </template>
                             </v-text-field>
                             <div class="import-btn">
-                                <v-btn class="resume-builder__btn civie-btn filled" raised>
+                                <v-btn class="resume-builder__btn civie-btn filled" raised @click="importDataFromBehance">
                                     Import CV
                                 </v-btn>
                             </div>
@@ -530,6 +531,72 @@
             </div>
         </div>
 
+        <div class="outer-container information-container"  v-if="behanceProjects.length > 0" >
+            <div class="title">
+                <img src="/icons/edit-cv-sidebar/information-icon.svg" alt="info icon">
+                <span>Please pick your projects</span>
+            </div>
+            <div class="dns-main-content-container resume-builder__scroll">
+                <div class="dns-main-content">
+                    <div class="import-cv-wrapper">
+                        <div>
+                            <div class="import-results">
+                                <div class="sections">
+                                    <div>
+                                        <div class="projects-list">
+                                            <div class="project ml-md-4" v-for="project in behanceProjects">
+                                                <div class="project__header">
+                                                    <div class="resume-builder__action-buttons-container">
+                                                        <div class="checkbox" @click="toggleSelectionOfBehanceProject(project)">
+                                                            <img v-show="project.selected" src="/images/resume_builder/imports/checkbox-on.svg"
+                                                                 alt="checkbox">
+                                                            <img v-show="!project.selected" src="/images/resume_builder/imports/checkbox-off.svg"
+                                                                 alt="checkbox">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="project__body">
+                                                    <div class="project__img">
+                                                        <div class="project__name">{{project.slug}}</div>
+                                                        <img :src="project.covers.original" alt="portfolio img" />
+                                                    </div>
+                                                    <div class="project__info">
+                                                        <div class="project__name">{{project.slug}}</div>
+                                                        <div class="project__url">
+                                                            <b>URL:</b>
+                                                            <a :href="project.url">{{project.url}}</a>
+                                                        </div>
+                                                        <div class="project__description">
+                                                            <b>Description:</b>
+                                                            {{project.description}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="import-action-btns no-background mb-5">
+                                        <div class="d-flex justify-space-between">
+                                            <div class="d-flex">
+                                                <div class="import-btn">
+                                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="importBehanceProjects" :class="{disabled : importingBehanceProjects}">
+                                                        {{importingBehanceProjects ? 'Importing.. ' : 'Import'}}
+                                                    </v-btn>
+                                                    <v-btn class="resume-builder__btn civie-btn filled deselect-btn" raised  @click="toggleSelectAllProjects">
+                                                        {{ isAllProjectsSelected ? 'Deselect' : 'Select'}} all
+                                                    </v-btn>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="outer-container">
             <div class="title">
@@ -579,32 +646,36 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <draggable @start="drag=true" @end="drag=false" handle=".drag-handler" style="display: contents">
-                            <tr v-for="i in 10" :key="i">
+                        <draggable @start="drag=true" @end="drag=false" v-model="imports" handle=".drag-handler" style="display: contents">
+                            <tr v-for="importHistory in imports" :key="importHistory.id">
                                 <td>
                                     <div class="table-file">
                                         <img src="/icons/edit-cv-sidebar/drag-btn-icon.svg" alt="drag" class="drag-handler">
-                                        <span>Theme_0{{i}}_file.pdf</span>
+                                        <span>{{importHistory.title}}</span>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="center-col">
-                                        01/03/2020
+                                        {{getFormattedData(importHistory.created_at)}}
                                     </div>
                                 </td>
                                 <td class="d-none d-lg-table-cell">
                                     <div class="center-col">
-                                        <img src="/icons/view.svg" alt="view icon">
+                                        <a :href="importHistory.url">
+                                            <img src="/icons/view.svg" alt="view icon">
+                                        </a>
                                     </div>
                                 </td>
                                 <td class="d-none d-lg-table-cell">
                                     <div class="center-col">
-                                        <img src="/icons/download.svg" alt="download icon">
+                                        <a :href="importHistory.url">
+                                            <img src="/icons/download.svg" alt="download icon">
+                                        </a>
                                     </div>
                                 </td>
                                 <td class="d-none d-lg-table-cell">
                                     <div class="center-col">
-                                        <img src="/icons/delete.svg" alt="delete icon">
+                                        <img src="/icons/delete.svg" @click="deleteImport(importHistory)" alt="delete icon">
                                     </div>
                                 </td>
                                 <td class="d-lg-none">
@@ -647,7 +718,6 @@
                     maxFiles: 1,
                     acceptedFiles: "application/pdf,.doc,.docx,",
                 },
-
 
                 // extract:
                 translationLanguage: 'select',
@@ -1208,6 +1278,7 @@
                 downloadProgress: 0,
                 importing: false,
                 importingExtractedData: false,
+                importingBehanceProjects: false,
                 sections: [
                     {
                         title: 'profile',
@@ -1257,14 +1328,27 @@
                     }
                 ],
                 isAllSelected:false,
+                isAllProjectsSelected:false,
                 showFullText: false,
                 showToolTip: false,
-                linkedInProfile:''
-
+                linkedInProfile:'',
+                behanceUsername:'',
+                behanceProjects:[],
+                importURL: '',
+                importType:'File',
+                newImport:{
+                    title:'',
+                    url:'',
+                    importFile:'',
+                }
             }
         },
         methods: {
 
+            getFormattedData(date) {
+                let d = new Date(date);
+                return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
+            },
             // extract
             // handle file upload
             openBrowse() {
@@ -1281,6 +1365,9 @@
             },
 
             importLinkedInProfile() {
+                this.importURL =  this.linkedInProfile ;
+                this.importType = 'LinkedIn' ;
+
                 if(this.importing){
                     return;
                 }
@@ -1308,6 +1395,7 @@
                         let blob = new Blob([response.data], {type: 'application/pdf'});
                         blob.name = 'LinkedIn imported profile';
                         this.file = blob;
+                        this.newImport.importFile   = blob;
                         this.uploadPDFFile();
                         this.downloadProgress = 0 ;
                         this.importing = false;
@@ -1356,7 +1444,9 @@
                                 iconSrc: '/images/resume_builder/error.png'
                             });
                         });
-                } else {
+                }
+
+                else {
                     axios.post('/resume-builder/import/docx', formData, config)
                         .then((response) => {
                             this.extractDocText(response.data);
@@ -1373,7 +1463,6 @@
                             });
                         });
                 }
-
             },
             clearFreelancerData() {
                 this.freelancerData = {
@@ -1409,12 +1498,60 @@
             },
             handleFileUpload() {
                 this.file = this.$refs.file.files[0];
+                this.newImport.importFile = this.$refs.file.files[0];
+
             },
 
+            // Import data from Behance:
+            importDataFromBehance(){
+                this.importURL = 'https://behance.com/' + this.behanceUsername ;
+                this.importType = 'Behance' ;
+                axios.get('/resume-builder/import/behance/' + this.behanceUsername)
+                    .then((response) => {
+                        console.log('Behance Data:');
+                        console.log(response.data.projects);
+                        this.behanceProjects = response.data.projects;
+                    }
+                );
+            },
+            importBehanceProjects(){
+                // get only selected projects:
+                let selectedProjects = this.behanceProjects.filter( project => project.selected);
+                let toImportProjects = [] ;
 
+
+                selectedProjects.forEach((project) => {
+                    toImportProjects.push({
+                        name: project.name,
+                        link: project.url,
+                        image: project.covers.original,
+                        description: project.description,
+                        user_id: this.$store.state.user.id,
+                        is_public: 1
+                    })
+                });
+
+                axios.post('/api/user/projects/many', {projects: toImportProjects, user_id: this.$store.state.user.id})
+                    .then( (response) => {
+                        this.clearBehanceImport();
+                        let savedProjects = response.data;
+                        savedProjects.forEach( (project) => {
+                            this.projects.push(project);
+                        });
+                        this.$store.dispatch('flyingNotification');
+                        this.addImport();
+                    });
+
+            },
+
+            clearBehanceImport(){
+              this.behanceProjects = [] ;
+              this.behanceUsername = '';
+            },
             // dropzone funcions
             handlingEvent: function (file) {
-                this.file = file
+                this.file = file;
+                this.newImport.importFile   = file;
             },
             // document extracting text funtions:
             extractDocText(sections) {
@@ -1457,6 +1594,29 @@
                 })
             },
 
+            toggleSelectionOfBehanceProject(project){
+                project.selected = !project.selected;
+            },
+            toggleSelectAllProjects(){
+                if(this.isAllProjectsSelected){
+                    this.DeSelectAllProjects();
+                    return;
+                }
+                this.SelectAllProjects();
+            },
+            SelectAllProjects(){
+                this.isAllProjectsSelected = true;
+                this.behanceProjects.forEach( (project) => {
+                    project.selected = true;
+                })
+            },
+            DeSelectAllProjects(){
+                this.isAllProjectsSelected = false;
+                this.behanceProjects.forEach( (project) => {
+                    project.selected = false;
+                })
+            },
+
 
             // search functions
             searchForData() {
@@ -1493,7 +1653,6 @@
                 this.searchForReferencesText();
 
             },
-
             searchForSummary(){
                 let summary = this.extractedText.substring(
                     this.extractedText.lastIndexOf("Summary") + 7,
@@ -1510,7 +1669,6 @@
                     this.sections.forEach( (section) => { section.title === 'summary' ? section.selected = true : ''} );
                 }
             },
-
             searchForEducationText(arrayOfData) {
 
                 // check if any word of the text line is a country name
@@ -1695,7 +1853,6 @@
                 this.freelancerData.languages.splice(index,1);
             },
 
-
             // import available Data:
             async importAvailableData(){
                 if(this.importingExtractedData){
@@ -1723,7 +1880,6 @@
                         this.updateUserInfo();
                     })
             },
-
 
             // saving data:
             async savePersonalData() {
@@ -1852,6 +2008,7 @@
                 if(Object.keys(this.errors).length === 0){
                     this.$store.dispatch('setCurrentUser',{});
                     this.$store.dispatch('flyingNotification');
+                    this.addImport();
                     this.clearAll();
                 }else{
                     console.log(this.errors);
@@ -1861,6 +2018,79 @@
                     });
                 }
             },
+
+
+            // crud on imports:
+            addImport() {
+                console.log('called');
+
+                let formData = new FormData();
+                this.newImport.title = 'Import ' + (this.imports.length+1) + ' | ' + this.importType ;
+                this.newImport.url   = this.importURL;
+                this.newImport.user_id= this.$store.state.user.id;
+
+                $.each(this.newImport, (field) => {
+                    formData.append(field, this.newImport[field]);
+                });
+
+                axios.post('/api/user/imports', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+                    .then((response) => {
+                        this.imports.push(response.data.data);
+                        this.$store.dispatch('flyingNotification');
+                        console.log('success');
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            deleteImport(importHistory) {
+                if (
+                    !confirm(
+                        "Do you want to delete this import history [" + importHistory.title + "] ?"
+                    )
+                ) {
+                    return;
+                }
+                axios.delete("/api/user/imports/" + importHistory.id)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotificationDelete");
+                        this.imports.forEach((importHistory, index) => {
+                            if (importHistory.id === response.data.data.id) {
+                                this.imports.splice(index, 1);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+        },
+        computed:{
+            projects: {
+                get() {
+                    return this.$store.state.user.projects;
+                },
+                set(projects) {
+                    this.$store.commit("updateProjects", projects);
+                }
+            },
+            imports:{
+                get() {
+                    return this.$store.state.user.imports;
+                },
+                set(imports) {
+                    this.$store.commit("updateImports", imports);
+                }
+            }
         },
         mounted() {
 
@@ -2110,6 +2340,7 @@
 
 <!-- extract styles -->
 <style scoped lang="scss">
+    @import "../../../../../sass/variables";
     @import '../../../../../sass/media-queries';
 
     $activeColor: #001CE2;
@@ -2645,6 +2876,124 @@
                 @media screen and (max-width:767px){
                     width: 18px;
                     height: 18px;
+                }
+            }
+        }
+    }
+
+    .projects-list {
+        width: 100%;
+        padding: 20px;
+        background: whitesmoke;
+
+        .project {
+            max-width: 620px;
+            width: 100%;
+            box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+            background: white;
+            min-height: 225px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+
+            &__header {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+
+                .drag-and-drop-handler {
+                    background-color: $auxBgColor-gray;
+                    border-radius: 5px;
+                    height: 25px;
+                    width: 25px;
+
+                    // Reset default props of v-btn class
+                    min-width: auto !important;
+                    padding: 0 !important;
+
+                    .icon {
+                        height: 10px;
+                        width: 3px;
+                    }
+                }
+
+                .resume-builder__action-buttons-container {
+                    .btn-icon {
+                        width: 25px;
+                        height: 25px !important;
+                    }
+                }
+            }
+
+            &__body {
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+
+                .project__img {
+                    img {
+                        min-width: 120px;
+                    }
+
+                    .project {
+                        &__name {
+                            display: none;
+
+                            @include lt-sm {
+                                display: block;
+                                font-size: 20px;
+                                font-weight: normal;
+                                color: $mainColor;
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+
+                        img,
+                        .project__name {
+                            width: 100%;
+                        }
+
+                        img {
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+
+                .project__info {
+                    margin-left: 20px;
+                    margin-top: -10px;
+
+                    .project {
+                        &__name {
+                            font-size: 24px;
+                            font-weight: 700;
+                            color: $mainColor;
+                            margin-bottom: 10px;
+
+                            @include lt-sm {
+                                display: none;
+                            }
+                        }
+
+                        &__url,
+                        &__skills,
+                        &__softwares,
+                        &__description {
+                            color: $inputTextColor;
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+                        margin-left: 0;
+                    }
+                }
+
+                @include lt-sm {
+                    flex-wrap: wrap;
                 }
             }
         }

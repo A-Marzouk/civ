@@ -55,9 +55,9 @@ class PaypalController extends Controller
     public function create_plan($plan_period){
 
          // plan_period Month or Year
-        $amount = 15 ;
+        $amount = 5 ;
         if($plan_period === 'Year'){
-            $amount = 99 ;
+            $amount = 50 ;
         }
 
         // Create a new billing plan
@@ -136,7 +136,7 @@ class PaypalController extends Controller
 
         $agreement = new Agreement();
         $agreement->setName('CIV Monthly Subscription Agreement')
-            ->setDescription('Monthly Subscription - 15$ | 7 days free trial')
+            ->setDescription('Monthly Subscription - 5$ | 7 days free trial')
             ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
 
         // Set plan id
@@ -172,7 +172,7 @@ class PaypalController extends Controller
         // Create new agreement
         $agreement = new Agreement();
         $agreement->setName('CIV Yearly Subscription Agreement')
-            ->setDescription('Yearly Subscription - 99$ | 7 days free trial')
+            ->setDescription('Yearly Subscription - 50$ | 7 days free trial')
             ->setStartDate(\Carbon\Carbon::now()->addMinutes(5)->toIso8601String());
 
         // Set plan id

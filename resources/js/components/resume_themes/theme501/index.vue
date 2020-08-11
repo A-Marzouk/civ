@@ -21,7 +21,7 @@
             >
               <v-img
                 :src="currentUser.personal_info.profile_pic"
-                style="border: 3px solid white;border-radius:50%;"
+                style="border: 3px solid white; border-radius: 50%;"
                 class="profile"
                 cover
               ></v-img>
@@ -40,7 +40,7 @@
                 {{ currentUser.personal_info.designation }}
               </div>
 
-              <div class=" mt-sm-8">
+              <div class="mt-sm-8">
                 <v-btn
                   fab
                   outlined
@@ -125,8 +125,8 @@
               cols="11"
               :class="{ 'active-indicator': currentTab === 'pay-availability' }"
             >
-              <v-row class="info-pad" dense>
-                <v-col cols="auto" sm="4" lg="4">
+              <v-row class="info-pad" dense justify="center">
+                <v-col cols="12" sm="4" lg="4">
                   <div class="info-title text-center">
                     <div
                       v-for="(payment_Info, index) in currentUser.payment_info"
@@ -141,7 +141,7 @@
                       </span>
                     </div>
                   </div>
-                  <div class="info-subtitle text-center" style="opacity: 0.82">
+                  <div class="info-subtitle text-center" style="opacity: 0.82;">
                     <v-icon
                       :dark="lightMobile"
                       x-small
@@ -171,7 +171,7 @@
                     >
                   </div>
                 </v-col>
-                <v-col cols="auto" sm="4" lg="4">
+                <v-col cols="12" sm="4" lg="4">
                   <div class="info-title text-center">
                     <div
                       v-for="(availability_info,
@@ -187,7 +187,7 @@
                       </span>
                     </div>
                   </div>
-                  <div class="info-subtitle text-center" style="opacity: 0.82">
+                  <div class="info-subtitle text-center" style="opacity: 0.82;">
                     <v-icon :dark="lightMobile" x-small @click="availablePrev()"
                       >navigate_before</v-icon
                     >
@@ -199,7 +199,7 @@
                       class="d-inline-block"
                     >
                       <span
-                        class="info-subtitle text-center text-capitalize "
+                        class="info-subtitle text-center text-capitalize"
                         v-if="available == index"
                       >
                         {{ availability_info.available_hours_frequency }}
@@ -213,7 +213,7 @@
                 </v-col>
 
                 <v-col
-                  cols="auto"
+                  cols="12"
                   sm="3"
                   class="text-center"
                   lg="4"
@@ -245,7 +245,7 @@
                 <v-tab
                   v-show="
                     currentUser.skills.find(
-                      s => s.category == 'programming_languages'
+                      (s) => s.category == 'programming_languages'
                     )
                   "
                 >
@@ -255,7 +255,7 @@
                 </v-tab>
                 <v-tab
                   v-show="
-                    currentUser.skills.find(s => s.category == 'frameworks')
+                    currentUser.skills.find((s) => s.category == 'frameworks')
                   "
                 >
                   <div class="subhead">
@@ -264,13 +264,15 @@
                 </v-tab>
                 <v-tab
                   v-show="
-                    currentUser.skills.find(s => s.category == 'software')
+                    currentUser.skills.find((s) => s.category == 'software')
                   "
                 >
                   <div class="subhead">Software</div>
                 </v-tab>
                 <v-tab
-                  v-show="currentUser.skills.find(s => s.category == 'design')"
+                  v-show="
+                    currentUser.skills.find((s) => s.category == 'design')
+                  "
                 >
                   <div class="subhead">Design</div>
                 </v-tab>
@@ -329,7 +331,7 @@
                   @click="activeTab = tab.value"
                   :color="activeTab == tab.value ? '#623CEA' : '#AE97FF'"
                   :class="[
-                    activeTab == tab.value ? 'tab-mobile-btn-active' : ''
+                    activeTab == tab.value ? 'tab-mobile-btn-active' : '',
                   ]"
                   dark
                   depressed
@@ -354,7 +356,7 @@
               <span
                 class="mt-2"
                 :class="[
-                  activeTab === dot.value ? 'tab-dot-active' : 'tab-dot'
+                  activeTab === dot.value ? 'tab-dot-active' : 'tab-dot',
                 ]"
               ></span>
             </v-btn>
@@ -377,12 +379,15 @@
             v-show="project.is_public"
           >
             <v-card elevation="8" class="mx-lg-4">
-              <div style="padding:10px 10px;">
+              <div style="padding: 10px 10px;">
                 <v-img
                   :aspect-ratio="0.96"
                   cover
                   :src="getProjectMainImage(project)"
-                  style="border-radius: 10px;box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);"
+                  style="
+                    border-radius: 10px;
+                    box-shadow: 0px 10px 23px rgba(0, 0, 0, 0.161);
+                  "
                 ></v-img>
               </div>
               <v-row class="justify-between">
@@ -474,7 +479,11 @@
         <v-row class="justify-center mt-12 hidden-xs-only">
           <v-col
             class="col-md-7 col-sm-11 elevation-6 py-6"
-            style="height:auto;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;"
+            style="
+              height: auto;
+              border-bottom-left-radius: 5px;
+              border-bottom-right-radius: 5px;
+            "
           >
             <v-row class="justify-center text-center" no-gutters>
               <v-col
@@ -486,7 +495,7 @@
                 v-bind:class="[skillTab === 0 ? 'active' : '']"
                 v-show="
                   currentUser.skills.find(
-                    s => s.category == 'programming_languages'
+                    (s) => s.category == 'programming_languages'
                   )
                 "
               >
@@ -501,7 +510,7 @@
                 v-on:click="skillTab = 1"
                 class="tabs"
                 v-show="
-                  currentUser.skills.find(s => s.category == 'frameworks')
+                  currentUser.skills.find((s) => s.category == 'frameworks')
                 "
                 v-bind:class="[skillTab === 1 ? 'active' : '']"
               >
@@ -515,7 +524,9 @@
                 cols="3"
                 v-on:click="skillTab = 2"
                 class="tabs"
-                v-show="currentUser.skills.find(s => s.category == 'software')"
+                v-show="
+                  currentUser.skills.find((s) => s.category == 'software')
+                "
                 v-bind:class="[skillTab === 2 ? 'active' : '']"
               >
                 <a class="tabtitle">Software</a>
@@ -526,7 +537,7 @@
                 cols="3"
                 v-on:click="skillTab = 3"
                 class="tabs"
-                v-show="currentUser.skills.find(s => s.category == 'design')"
+                v-show="currentUser.skills.find((s) => s.category == 'design')"
                 v-bind:class="[skillTab === 3 ? 'active' : '']"
               >
                 <a class="tabtitle">
@@ -811,7 +822,7 @@
             </div>
             <div class="display-2 mt-md-2 mt-sm-2">
               a
-              <span style="color:#623CEA;">{{
+              <span style="color: #623cea;">{{
                 currentUser.personal_info.designation
               }}</span>
             </div>
@@ -821,7 +832,7 @@
                 <div class="line"></div>
               </v-col>
               <v-col cols="11" sm="12" lg="9">
-                <div class="title" style="color:#656565;">
+                <div class="title" style="color: #656565;">
                   {{ currentUser.personal_info.about }}
                 </div>
                 <div class="mt-md-8 mt-sm-8 mt-6">
