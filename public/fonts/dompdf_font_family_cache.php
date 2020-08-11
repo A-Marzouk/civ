@@ -116,4 +116,10 @@
   'thabit bold' => array(
     'normal' => $fontDir . '/thabit-bold-normal_2f07533a091e96b9cc533af285387030',
   ),
+  'noto sans' => array(
+    'normal' => $fontDir . '/noto-sans-normal_e008ce4e7d1fb705e3c18c74dddecf0e',
+  ),
+  'noto sans bold' => array(
+    'normal' => $fontDir . '/noto-sans-bold-normal_0fefd6257cb2f55a5ef5adc6ac3562e9',
+  ),
 ) ?>
