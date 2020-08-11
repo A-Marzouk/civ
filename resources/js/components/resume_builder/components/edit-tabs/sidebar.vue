@@ -116,11 +116,11 @@ export default {
           icon: "audio-video",
           label: "Audio/Video",
         },
-        // {
-        //   url: "/resume-builder/edit/hobbies",
-        //   icon: "hobbies",
-        //   label: "Hobbies",
-        // },
+        {
+          url: "/resume-builder/edit/hobbies",
+          icon: "hobbies",
+          label: "Hobbies",
+        },
         {
           url: "/resume-builder/edit/achievement",
           icon: "achievement",
