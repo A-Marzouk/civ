@@ -70,14 +70,17 @@
                                     :error-messages="errors.password"
                             ></v-text-field>
 
-                            <div class="my-subscription">
-                                <div class="form-title sub">My Subscription</div>
+                            <div v-if="accountData.subscription !== null">
+                                <div class="my-subscription">
+                                    <div class="form-title sub">My Subscription</div>
+                                </div>
+
+                                <div class="action-btns NoDecor" >
+                                    <a class="purchase-btn mt-n3" href="javascript:void(0)"
+                                       @click="subscriptionInfoModal = true">View Subscription</a>
+                                </div>
                             </div>
 
-                            <div class="action-btns NoDecor" v-if="accountData.subscription !== null">
-                                <a class="purchase-btn mt-n3" href="javascript:void(0)" data-toggle="modal"
-                                   data-target="#subscription">View Subscription</a>
-                            </div>
 
                             <span class="v-label v-label--active theme--light" style="color: #888DB1;">
                                 <!-- Added a label here due to prepend-inner slot change -->
@@ -104,27 +107,10 @@
                 </div>
             </div>
         </div>
+        <!-- dialogs -->
 
-        <!-- Modal -->
-        <div class="modal fade" id="subscription" tabindex="-1" role="dialog" aria-labelledby="subscription"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body d-flex align-items-center" v-if="accountData.subscription">
-                        You have a {{accountData.subscription.sub_frequency}} subscription
-                        <br/>
-                        Amount: {{accountData.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}
-                        <br/>
-                        Payment method: {{accountData.subscription.payment_method}}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- dialog -->
         <v-dialog
-                v-model="priceModal"
+                v-model="subscriptionInfoModal"
                 max-width="550"
                 style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
             border-radius: 10px; z-index:1000; overflow-y:hidden;"
@@ -133,152 +119,27 @@
 
             <v-card>
                 <v-card-subtitle align="right">
-                    <v-btn icon class="btn-close-modal" absolute @click.stop="priceModal=false">
+                    <v-btn icon class="btn-close-modal" absolute @click.stop="subscriptionInfoModal=false">
                         <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon"/>
                     </v-btn>
                 </v-card-subtitle>
-                <v-card-text class="mt-5">
-                    <v-tabs centered v-model="priceTab" hide-slider>
-                        <v-tab class="custom-tab1" active-class="custom-active">Monthly</v-tab>
-                        <v-tab class="custom-tab2" active-class="custom-active">Yearly</v-tab>
-                    </v-tabs>
-                </v-card-text>
-                <v-card-text>
-                    <v-tabs-items v-model="priceTab">
-                        <v-tab-item>
-                            <v-card-text align="center" class="padding-sm-1">
-                                <v-row align="center" justify="center">
-                                    <v-col cols="12">
-                                        <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
-                                    </v-col>
-                                    <v-col cols="12" class="mt-sm-n5 mt-n7">
-                                        <div class="rate-text">
-                                            <span class="old-price mr-5">$10</span>
-                                            <span class="new-price">$5</span>
-                                            <sub>/month</sub>
-                                        </div>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <div class="save-text mt-n7">(Save 50%)</div>
-                                    </v-col>
-                                </v-row>
-
-                                <hr class="hr-line"/>
-                            </v-card-text>
-                            <v-card-text class="padding-sm-1">
-                                <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                                    <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2  padding-sm-1">
-                                        <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img"/>
-                                    </v-col>
-                                    <v-col xl="6" lg="6" md="6" sm="6" cols="6"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2  padding-sm-1">
-                                        <span class="price-option">{{item}}</span>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-                            <v-card-text align="center" class="padding-sm-1 mt-xl-0 mt-lg-n3">
-                                <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
-                            </v-card-text>
-                            <v-card-text align="center" class="pb-md-0 mt-n5">
-                                <v-row align="center" justify="center">
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <form action="/subscribe" method="post" id="subscribe_form">
-                                            <input type="hidden" :value="csrf_token" name="_token">
-                                            <input type="hidden" :value=" priceTab === 0 ? 'monthly' : 'yearly' "
-                                                   name="plan">
-                                        </form>
-                                        <a href="javascript:void(0)" @click="subscribe" class="payment-link">
-                                            <img
-                                                    :src="stripeHover === false ?stripeInactive  :stripeActive"
-                                                    @mouseover="stripeHover = true"
-                                                    @mouseleave="stripeHover = false"
-                                                    alt="Stripe Logo"
-                                                    class="payment-logo-stripe"
-                                            />
-                                        </a>
-                                    </v-col>
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <a href="/subscribe/paypal/monthly" class="payment-link">
-                                            <img
-                                                    :src="paypalHover == false? paypalInactive : paypalActive"
-                                                    @mouseover="paypalHover=true"
-                                                    @mouseleave="paypalHover=false"
-                                                    alt="Paypal Logo"
-                                                    class="payment-logo-paypal"
-                                            />
-                                        </a>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-                        </v-tab-item>
-                        <v-tab-item>
-                            <v-card-text align="center" class="padding-sm-1">
-                                <v-row align="center" justify="center">
-                                    <v-col cols="12">
-                                        <div class="now-only-text mt-sm-n5 mt-n7">Now Only</div>
-                                    </v-col>
-                                    <v-col cols="12" class="mt-sm-n5 mt-n7">
-                                        <div class="rate-text">
-                                            <span class="old-price mr-5">$100</span>
-                                            <span class="new-price">$50</span>
-                                            <sub>/month</sub>
-                                        </div>
-                                    </v-col>
-                                    <v-col cols="12">
-                                        <div class="save-text mt-n7">(Save 50%)</div>
-                                    </v-col>
-                                </v-row>
-
-                                <hr class="hr-line"/>
-                            </v-card-text>
-                            <v-card-text class="padding-sm-1">
-                                <v-row align="center" v-for="(item,index) in price_options" :key="index">
-                                    <v-col xl="1" lg="1" md="1" sm="1" cols="2" offset="1"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2 padding-sm-1">
-                                        <img src="/images/new_resume_builder/icons/main/check.svg" class="check-img"/>
-                                    </v-col>
-                                    <v-col xl="6" lg="6" md="6" sm="6" cols="6"
-                                           class="mt-xl-0 mt-lg-n3 mt-md-0 mt-sm-0 mt-n2 padding-sm-1">
-                                        <span class="price-option">{{item}}</span>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-                            <v-card-text align="center" class="mt-xl-0 mt-lg-n3 padding-sm-1">
-                                <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
-                            </v-card-text>
-                            <v-card-text align="center" class="pb-md-0 mt-n5">
-                                <v-row align="center" justify="center">
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <a href="javascript:void(0)" @click="subscribe" class="payment-link">
-                                            <img
-                                                    :src="stripeHover === false ?stripeInactive  :stripeActive"
-                                                    @mouseover="stripeHover = true"
-                                                    @mouseleave="stripeHover = false"
-                                                    alt="Stripe Logo"
-                                                    class="payment-logo-stripe"
-                                            />
-                                        </a>
-                                    </v-col>
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <a href="/subscribe/paypal/yearly" class="payment-link">
-                                            <img
-                                                    :src="paypalHover == false? paypalInactive : paypalActive"
-                                                    @mouseover="paypalHover=true"
-                                                    @mouseleave="paypalHover=false"
-                                                    alt="Paypal Logo"
-                                                    class="payment-logo-paypal"
-                                            />
-                                        </a>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
-                        </v-tab-item>
-                    </v-tabs-items>
+                <v-card-text align="center" class="padding-sm-1">
+                    <v-row align="center" justify="center" class="p-5 d-flex flex-column" v-if="accountData.subscription">
+                        <div>
+                            You have a <b style="text-transform: capitalize;">{{accountData.subscription.sub_frequency}}</b> subscription
+                        </div>
+                        <div>
+                            Price: <b style="text-transform: capitalize;">{{accountData.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
+                        </div>
+                        <div>
+                            Payment method: <b style="text-transform: capitalize;">{{accountData.subscription.payment_method}}</b>
+                        </div>
+                    </v-row>
+                    <hr class="hr-line"/>
                 </v-card-text>
             </v-card>
         </v-dialog>
-        <!-- dialog -->
+        <!-- dialogs -->
     </v-app>
 </template>
 
@@ -295,7 +156,7 @@
 
                 // image cropping:
                 showImageUpload: false,
-                priceModal: false,
+                subscriptionInfoModal: false,
                 priceTab: 0,
                 stripeInactive: "/images/pricing/icons/stripe-logo-inactive.png",
                 stripeActive: "/images/pricing/icons/stripe-logo-active.svg",
