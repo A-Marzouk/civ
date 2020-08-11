@@ -9,7 +9,7 @@
         </v-tabs>
 
 
-        <div class="links-content resume-builder__scroll" v-if="works">
+        <v-card class="links-content resume-builder__scroll" v-if="works">
             <div class="link-inputs-row">
                 <div class="inputs">
                     <div class="left">
@@ -168,7 +168,7 @@
                     </div>
                 </div>
             </draggable>
-        </div>
+        </v-card>
 
     </div>
 </template>
