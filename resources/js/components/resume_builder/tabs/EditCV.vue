@@ -35,7 +35,7 @@
 										type="list-item-avatar-three-line, image, article, actions"
 								></v-skeleton-loader>
 							</div>
-							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username" @iframe-load="onLoad"></vue-friendly-iframe>
+							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username + `?current-view=${activeTab}`" @iframe-load="onLoad"></vue-friendly-iframe>
 						</div>
 					</div>
 				</div>

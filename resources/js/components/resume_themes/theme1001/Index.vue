@@ -50,11 +50,11 @@ export default {
         this.activeTab = 'skills-languages';
       }
 
-      if(currentParam.includes('media')){
+      if(currentParam.includes('media') || currentParam.includes('audio') || currentParam.includes('video')){
         this.activeTab = 'media';
       }
 
-      if(currentParam.includes('about')){
+      if(currentParam.includes('about') || currentParam.includes('profile')){
         this.activeTab = 'about-me';
       }
     }
