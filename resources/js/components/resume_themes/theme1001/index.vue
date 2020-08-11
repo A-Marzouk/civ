@@ -67,6 +67,8 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
+
+    // set active tab
     this.setActiveTabByURL();
   }
 };

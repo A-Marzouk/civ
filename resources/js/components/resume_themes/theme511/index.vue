@@ -50,12 +50,7 @@
                       @click="activeTab = tab.value"
                     >
                       <v-list-item-content
-                        :class="[
-                          activeTab === tab.value
-                            ? 'drawer--tab-active'
-                            : 'drawer--tab-disable',
-                          'menu--tabs white--text text-left'
-                        ]"
+                        :class="[ activeTab === tab.value ? 'drawer--tab-active' : 'drawer--tab-disable', 'menu--tabs white--text text-left']"
                       >
                         <v-list-item-title>{{ tab.name }}</v-list-item-title>
                       </v-list-item-content>
@@ -69,7 +64,6 @@
                 class="pl-lg-8"
                 sm="6"
                 align-self="center"
-                :class="{ 'active-indicator': currentTab === 'profile' }"
               >
                 <div class="head">
                   {{ currentUser.personal_info.full_name }}
@@ -85,9 +79,6 @@
                 </div>
                 <div
                   class="hidden-xs-only"
-                  :class="{
-                    'active-indicator': currentTab === 'pay-availability'
-                  }"
                 >
                   <div class="info-text d-inline-block mr-6 mr-sm-2">
                     hour rate
@@ -267,17 +258,17 @@
                 <v-tabs
                   background-color="transparent"
                   :slider-color="sliderColor()"
+                  v-model="indexOfActiveTab"
                   slider-size="5"
                   color="#000"
                   center-active
                   centered
                 >
                   <v-tab
-                    v-for="(tab, i) in tabs"
-                    :key="i"
+                    v-for="tab in tabs"
+                    :key="tab.value"
                     @click="activeTab = tab.value"
                     class="mx-auto"
-                    :class="[{ 'active-indicator': currentTab === tab.value }]"
                   >
                     <div class="text-capitalize tabtitle">{{ tab.name }}</div>
                   </v-tab>
@@ -334,6 +325,7 @@ export default {
       currentUser: this.user,
       activeTab: "portfolio",
       paymentToggle: false,
+      indexOfActiveTab:0,
       tabs: [
         { name: "Portfolio", value: "portfolio" },
         { name: "Education", value: "education" },
@@ -352,11 +344,7 @@ export default {
   },
   computed: {
     borderadius() {
-      var border = document
-        .querySelector(".v-tabs-slider")
-        .borderRadius("50px");
-      return border;
-      console.log(border);
+      return document.querySelector(".v-tabs-slider").borderRadius("50px");
     },
     hireColor() {
       switch (this.$vuetify.breakpoint.name) {
@@ -389,24 +377,37 @@ export default {
       this.currentUser = this.$store.state.dummyUser;
     },
     sliderColor() {
-      if (this.activeTab == "portfolio") {
+      if (this.activeTab === "portfolio") {
         return "#F7B301";
       }
-      if (this.activeTab == "education") {
+      if (this.activeTab === "education") {
         return "#19AAC9";
       }
-      if (this.activeTab == "work") {
+      if (this.activeTab === "work") {
         return "#6764C8";
       }
-      if (this.activeTab == "skills") {
+      if (this.activeTab === "skills") {
         return "#F56068";
       }
-      if (this.activeTab == "media") {
+      if (this.activeTab === "media") {
         return "#39E1AA";
       }
-      if (this.activeTab == "about") {
+      if (this.activeTab === "about") {
         return "#F7B301";
       }
+    },
+    setActiveTabByURL(){
+      let currentParam = this.$route.query['current-view'];
+      this.activeTab = currentParam;
+
+      if(currentParam.includes('audio') || currentParam.includes('video')){
+        this.activeTab = 'media';
+      }
+      if(currentParam.includes('about') || currentParam.includes('profile')){
+        this.activeTab = 'about';
+      }
+
+      this.indexOfActiveTab = this.tabs.findIndex(tab => tab.value ===   this.activeTab);
     }
   },
   mounted() {
@@ -417,6 +418,11 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
+  },
+  created() {
+
+    // set active tab
+    this.setActiveTabByURL();
   }
 };
 </script>
