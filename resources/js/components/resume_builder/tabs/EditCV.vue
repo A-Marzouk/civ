@@ -57,7 +57,7 @@ export default {
 	data: () => ({
 		activeTab: "profile",
 		baseUrl: '',
-		cvAutoUpdate: false,
+		cvAutoUpdate: true,
 		isFrameLoaded: false
 	}),
 
@@ -85,7 +85,6 @@ export default {
 		onLoad(){
 			// remove the spinner loader.
 			this.isFrameLoaded = true;
-			console.log('loaded');
 		},
 		updateIframe(force = 'false'){
 			if(this.cvAutoUpdate || force === 'true'){
