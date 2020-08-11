@@ -35,7 +35,7 @@
 										type="list-item-avatar-three-line, image, article, actions"
 								></v-skeleton-loader>
 							</div>
-							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username" @iframe-load="onLoad"></vue-friendly-iframe>
+							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username + `?current-view=${activeTab}`" @iframe-load="onLoad"></vue-friendly-iframe>
 						</div>
 					</div>
 				</div>
@@ -57,7 +57,7 @@ export default {
 	data: () => ({
 		activeTab: "profile",
 		baseUrl: '',
-		cvAutoUpdate: false,
+		cvAutoUpdate: true,
 		isFrameLoaded: false
 	}),
 
@@ -85,7 +85,6 @@ export default {
 		onLoad(){
 			// remove the spinner loader.
 			this.isFrameLoaded = true;
-			console.log('loaded');
 		},
 		updateIframe(force = 'false'){
 			if(this.cvAutoUpdate || force === 'true'){

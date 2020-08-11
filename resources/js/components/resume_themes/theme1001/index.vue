@@ -26,7 +26,6 @@ export default {
   data() {
     return {
       activeTab: "portfolio",
-
       currentUser: this.user
     };
   },
@@ -39,6 +38,25 @@ export default {
   methods: {
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
+    },
+    setActiveTabByURL(){
+      let currentParam = this.$route.query['current-view'];
+
+      if(currentParam.includes('education') || currentParam.includes('experience')){
+        this.activeTab = 'experience-education';
+      }
+
+      if(currentParam.includes('skills') || currentParam.includes('languages')){
+        this.activeTab = 'skills-languages';
+      }
+
+      if(currentParam.includes('media') || currentParam.includes('audio') || currentParam.includes('video')){
+        this.activeTab = 'media';
+      }
+
+      if(currentParam.includes('about') || currentParam.includes('profile')){
+        this.activeTab = 'about-me';
+      }
     }
   },
   mounted() {
@@ -49,6 +67,9 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
+
+    // set active tab
+    this.setActiveTabByURL();
   }
 };
 </script>

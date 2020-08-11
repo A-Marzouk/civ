@@ -2,6 +2,14 @@ import vuetify from "./vuetify";
 
 import { store } from "./store/store";
 
+// VueRouter
+import VueRouter from 'vue-router';
+Vue.use(VueRouter)
+
+const router = new VueRouter({
+    mode: 'history',
+});
+
 import resumeTheme2 from "./components/resume_themes/theme2/index";
 if ($("#resumeTheme2").length !== 0) {
     new Vue({
@@ -560,6 +568,7 @@ if ($("#resumeTheme1001").length !== 0) {
     new Vue({
         el: "#resumeTheme1001",
         store,
+        router,
         components: {
             "resume-theme-1001": resumeTheme1001
         }
@@ -762,6 +771,7 @@ if ($("#resumeTheme511").length !== 0) {
         el: "#resumeTheme511",
         vuetify,
         store,
+        router,
         components: {
             "resume-theme-511": resumeTheme511
         }
