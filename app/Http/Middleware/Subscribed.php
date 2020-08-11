@@ -18,7 +18,7 @@ class subscribed
         $user = auth()->user();
         $subscription = $user->subscription ?? null ;
 
-        if($user->can('test.builder')){
+        if($user->can('test.builder.users') || env('APP_ENV') === 'local'){
             return $next($request);
         }
 

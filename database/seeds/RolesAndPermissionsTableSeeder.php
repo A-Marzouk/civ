@@ -25,7 +25,7 @@ class RolesAndPermissionsTableSeeder extends Seeder
             'edit' => 'Edit',
             'update' => 'Update',
             'destroy' => 'Delete',
-            'test' => 'Test builder',
+            'test.builder' => 'Test builder',
         ]);
 
         $entitiesTables = collect([

@@ -26,10 +26,10 @@ class UsersController extends Controller
 
     public function giveTestPermission(Request $request){
         $user = User::find($request->user_id);
-        if($user->can('test.builder')){
-            $user->revokePermissionTo('test.builder');
+        if($user->can('test.builder.users')){
+            $user->revokePermissionTo('test.builder.users');
         }else{
-            $user->givePermissionTo('test.builder');
+            $user->givePermissionTo('test.builder.users');
         }
 
         return $user->permissions;

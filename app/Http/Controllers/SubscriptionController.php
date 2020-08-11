@@ -23,7 +23,7 @@ class SubscriptionController extends Controller
     public function subscribePage(){
         $subscription = auth()->user()->subscription ;
 
-        if(auth()->user()->can('test.builder')){
+        if(auth()->user()->can('test.builder.users') || env('APP_ENV') === 'local'){
             return redirect('/resume-builder');
         }
 
