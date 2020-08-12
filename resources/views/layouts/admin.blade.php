@@ -18,14 +18,14 @@
     @yield('content')
 
     <div class="flying-notification" id="flyingNotification" style="bottom: 70px;">
-        <div class="d-flex align-items-center justify-content-center">
+        <div style="display: flex; align-items: center; justify-content: center; width: 100%">
             <img src="" id="flyingNotificationIconSrc" alt="notification modal">
             <div class="text" id="flyingNotificationText"></div>
         </div>
     </div>
 
     <div class="flying-notification delete" id="flyingNotificationDelete" style="bottom: 70px;">
-        <div class="d-flex align-items-center justify-content-center">
+        <div style="display: flex; align-items: center; justify-content: center; width: 100%">
             <img src="/images/resume_builder/delete-icon-red.png" alt="notification modal">
             <div class="text">Deleted</div>
         </div>
