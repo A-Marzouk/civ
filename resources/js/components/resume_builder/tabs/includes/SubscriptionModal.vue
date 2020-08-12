@@ -50,40 +50,49 @@
                                     </v-col>
                                 </v-row>
                             </v-card-text>
-                            <v-card-text align="center" class="padding-sm-1 mt-xl-0 mt-lg-n3">
-                                <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
-                            </v-card-text>
-                            <v-card-text align="center" class="pb-md-0 mt-n5">
-                                <v-row align="center" justify="center">
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <form action="/subscribe" method="post" id="subscribe_form">
-                                            <input type="hidden" :value="csrf_token" name="_token">
-                                            <input type="hidden" :value=" priceTab === 0 ? 'monthly' : 'yearly' "
-                                                   name="plan">
-                                        </form>
-                                        <a href="javascript:void(0)" @click="subscribe" class="payment-link">
-                                            <img
-                                                    :src="stripeHover === false ?stripeInactive  :stripeActive"
-                                                    @mouseover="stripeHover = true"
-                                                    @mouseleave="stripeHover = false"
-                                                    alt="Stripe Logo"
-                                                    class="payment-logo-stripe"
-                                            />
-                                        </a>
-                                    </v-col>
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <a href="/subscribe/paypal/monthly" class="payment-link">
-                                            <img
-                                                    :src="paypalHover == false? paypalInactive : paypalActive"
-                                                    @mouseover="paypalHover=true"
-                                                    @mouseleave="paypalHover=false"
-                                                    alt="Paypal Logo"
-                                                    class="payment-logo-paypal"
-                                            />
-                                        </a>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
+
+
+                            <div class="pay-with-row">
+                                <div class="line"></div>
+                                <div class="text">
+                                    Pay with
+                                </div>
+                                <div class="line"></div>
+                            </div>
+
+                            <div class="payment-row">
+                                <div class="payment-link">
+                                    <form action="/subscribe" method="post" id="subscribe_form">
+                                        <input type="hidden" :value="csrf_token" name="_token">
+                                        <input type="hidden" :value=" priceTab === 0 ? 'monthly' : 'yearly' "
+                                               name="plan">
+                                    </form>
+                                    <a href="javascript:void(0)" @click="subscribe">
+                                        <img
+                                                :src="stripeIcon"
+                                                @mouseover="stripeHover = true"
+                                                @mouseleave="stripeHover = false"
+                                                alt="Stripe Logo"
+                                                class="payment-logo-stripe"
+                                        />
+                                    </a>
+                                </div>
+                                <div>
+                                    or
+                                </div>
+                                <div class="payment-link">
+                                    <a href="/subscribe/paypal/monthly" >
+                                        <img
+                                                :src="paypalIcon"
+                                                alt="Paypal Logo"
+                                                class="payment-logo-paypal"
+                                        />
+                                    </a>
+                                </div>
+                            </div>
+
+
+
                         </v-tab-item>
                         <v-tab-item>
                             <v-card-text align="center" class="padding-sm-1">
@@ -117,35 +126,41 @@
                                     </v-col>
                                 </v-row>
                             </v-card-text>
-                            <v-card-text align="center" class="mt-xl-0 mt-lg-n3 padding-sm-1">
-                                <v-btn color="#001CE2" dark class="btn-modal-subscribe">Subscribe Now</v-btn>
-                            </v-card-text>
-                            <v-card-text align="center" class="pb-md-0 mt-n5">
-                                <v-row align="center" justify="center">
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <a href="javascript:void(0)" @click="subscribe" class="payment-link">
-                                            <img
-                                                    :src="stripeHover === false ?stripeInactive  :stripeActive"
-                                                    @mouseover="stripeHover = true"
-                                                    @mouseleave="stripeHover = false"
-                                                    alt="Stripe Logo"
-                                                    class="payment-logo-stripe"
-                                            />
-                                        </a>
-                                    </v-col>
-                                    <v-col xl="3" lg="3" md="3" sm="3" cols="3">
-                                        <a href="/subscribe/paypal/yearly" class="payment-link">
-                                            <img
-                                                    :src="paypalHover == false? paypalInactive : paypalActive"
-                                                    @mouseover="paypalHover=true"
-                                                    @mouseleave="paypalHover=false"
-                                                    alt="Paypal Logo"
-                                                    class="payment-logo-paypal"
-                                            />
-                                        </a>
-                                    </v-col>
-                                </v-row>
-                            </v-card-text>
+
+
+                            <div class="pay-with-row">
+                                <div class="line"></div>
+                                <div class="text">
+                                    Pay with
+                                </div>
+                                <div class="line"></div>
+                            </div>
+
+                            <div class="payment-row">
+                                <div class="payment-link">
+                                    <a href="javascript:void(0)" @click="subscribe" >
+                                        <img
+                                                :src="stripeIcon"
+                                                @mouseover="stripeHover = true"
+                                                @mouseleave="stripeHover = false"
+                                                alt="Stripe Logo"
+                                                class="payment-logo-stripe"
+                                        />
+                                    </a>
+                                </div>
+                                <div>
+                                    or
+                                </div>
+                                <div class="payment-link">
+                                    <a href="/subscribe/paypal/yearly" >
+                                        <img
+                                                :src="paypalIcon"
+                                                alt="Paypal Logo"
+                                                class="payment-logo-paypal"
+                                        />
+                                    </a>
+                                </div>
+                            </div>
                         </v-tab-item>
                     </v-tabs-items>
                 </v-card-text>
@@ -172,10 +187,8 @@
                     "Free Domain URL"
                 ],
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
-                stripeInactive: "/images/pricing/icons/stripe-logo-inactive.png",
-                stripeActive: "/images/pricing/icons/stripe-logo-active.svg",
-                paypalInactive: "/images/pricing/icons/paypal-logo-inactive.svg",
-                paypalActive: "/images/pricing/icons/paypal-logo-active.png",
+                stripeIcon: "/images/pricing/icons/stripe-logo.svg",
+                paypalIcon: "/images/pricing/icons/paypal-logo.svg",
                 paypalHover: false,
                 stripeHover: false,
                 selectedPlan: "monthly",
@@ -198,4 +211,49 @@
         filter: blur(6px);
         -webkit-filter: blur(6px);
     }
+
+    .pay-with-row{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        margin-top: 10px;
+        margin-bottom: 40px;
+
+        .line{
+            height: 2px;
+            width:100%;
+            background: #888DB1;
+        }
+
+        .text{
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 18px;
+            color: #001CE2;
+            min-width: 100px;
+            text-align: center;
+        }
+    }
+
+    .payment-row{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        padding-bottom: 20px;
+
+        .payment-link{
+            background: rgba(196, 196, 196, 0.4);
+            width: 210px;
+            height: 90px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+
 </style>
