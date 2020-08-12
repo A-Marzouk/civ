@@ -77,7 +77,7 @@
                                         />
                                     </a>
                                 </div>
-                                <div>
+                                <div class="mr-2 ml-2">
                                     or
                                 </div>
                                 <div class="payment-link">
@@ -148,7 +148,7 @@
                                         />
                                     </a>
                                 </div>
-                                <div>
+                                <div class="mr-2 ml-2">
                                     or
                                 </div>
                                 <div class="payment-link">
@@ -204,6 +204,8 @@
 </script>
 
 <style lang="scss" scoped>
+    @import "../../../../../sass/media-queries";
+
     .main-subscription-container {
         background-image: url("/images/new_resume_builder/my_account_preview.png");
         background-size: cover;
@@ -253,6 +255,17 @@
             justify-content: center;
             font-size: 18px;
             font-weight: 500;
+            @include lt-sm{
+                width: 130px;
+                height: 60px;
+            }
+            a{
+                img{
+                    @include lt-sm{
+                        width: 80px;
+                    }
+                }
+            }
         }
     }
 
