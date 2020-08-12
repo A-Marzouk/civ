@@ -14,6 +14,7 @@ use App\Promocode;
 use App\Subscription;
 use App\Tab;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -165,11 +166,14 @@ class UsersController extends Controller
     }
 
     protected function createFreeSubscription($promCode){
+        // free period:
+        $free_months = $int = (int) filter_var( $promCode->free_period, FILTER_SANITIZE_NUMBER_INT);
         return Subscription::create([
             'user_id' => auth()->user()->id,
             'payment_method' => 'Promo code',
             'sub_status' => 'active',
             'sub_frequency' => 'monthly',
+            'expires_at' => Carbon::now()->addMonths($free_months)->toDateString(),
             'promocode_id' => $promCode->id,
         ]);
 

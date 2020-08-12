@@ -73,8 +73,8 @@ class PromocodesController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255','min:3'],
-            'free_period' => ['max:255'],
-            'expires_at' => ['date','max:255'],
+            'free_period' => ['required','max:255'],
+            'expires_at' => ['required','date','max:255'],
         ]);
     }
 

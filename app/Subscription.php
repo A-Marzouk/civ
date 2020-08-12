@@ -13,6 +13,7 @@ class Subscription extends Model
         'payment_method',
         'sub_frequency',
         'sub_status',
+        'expires_at',
         'customer_id',
         'paypal_agreement_id',
         'user_id',

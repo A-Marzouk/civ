@@ -59,16 +59,15 @@
                                                 <v-date-picker v-model="editedItem.expires_at" @input="menu = false" :min="new Date().toISOString().substr(0, 10)"></v-date-picker>
                                             </v-menu>
                                         </v-col>
-                                        <v-col cols="12" sm="6" md="4">
-                                            <v-text-field
+                                        <v-col cols="12" sm="12" md="12">
+                                            <v-select
+                                                    :items="monthOptions"
+                                                    dense
                                                     v-model="editedItem.free_period"
                                                     label="Free period"
                                                     :error="!!errors.free_period"
-                                                    persistent-hint
-                                                    hint="Optional"
                                                     :error-messages="errors.free_period"
-                                            >
-                                            </v-text-field>
+                                            ></v-select>
                                         </v-col>
                                         <v-col cols="12" sm="6" md="4">
                                             <v-checkbox v-model="editedItem.is_active" label="Active"></v-checkbox>
@@ -148,6 +147,7 @@
                     is_active: true,
                     expires_at: '',
                 },
+                monthOptions:['1 Month', '2 Months', '3 Months', '4 Months', '5 Months', '6 Months', '7 Months', '8 Months', '9 Months', '10 Months', '11 Months', '12 Months'],
                 errors:[],
                 menu:false,
             }
