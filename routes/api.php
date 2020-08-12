@@ -120,6 +120,8 @@ Route::group(['prefix' => 'user/'], function () {
     Route::post('/account/submit', 'API\UsersController@editAccountData')->name('account.edit');
 // update activity
     Route::post('/update-last-activity', 'API\UsersController@updateLastActivity')->name('account.validate');
+// Promo code
+    Route::post('/apply-promo-code', 'API\UsersController@applyPromoCode')->name('user.apply.promocode');
 
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
@@ -219,6 +221,11 @@ Route::group(['prefix' => 'admin/'], function () {
     Route::put('update-user', 'API\Admin\UsersController@updateUser');
     Route::post('/give-test-permission', 'API\Admin\UsersController@giveTestPermission');
     Route::delete('delete-user/{id}', 'API\Admin\UsersController@deleteUser');
+
+    // Promocodes routes:
+    Route::get('promocodes', 'API\Admin\PromocodesController@index');
+    Route::post('promocode', 'API\Admin\PromocodesController@store');
+    Route::delete('delete-promocode/{id}', 'API\Admin\PromocodesController@destroy');
 });
 
 

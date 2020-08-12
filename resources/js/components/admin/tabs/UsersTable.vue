@@ -249,6 +249,7 @@
                         });
                 }
             },
+
             getElapsedTime (timeInSeconds) {
                 let days    =  Math.floor(timeInSeconds / 86400);
                 let hours   =  Math.floor((timeInSeconds % 86400) / 3600);

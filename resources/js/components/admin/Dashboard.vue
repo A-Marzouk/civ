@@ -56,7 +56,7 @@
                 </v-navigation-drawer>
             </v-card>
 
-            <div class="content">
+            <div class="table-content" style="width: 100%;">
                 <router-view :users="users"></router-view>
             </div>
         </div>
@@ -141,9 +141,10 @@
         min-height:100vh !important;
 
 
-        .content{
+        .table-content{
             padding-left: 50px;
             padding-right: 50px;
+            margin-bottom: 100px;
            .searchInput{
                .input{
                    width: 630px;

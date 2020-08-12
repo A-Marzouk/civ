@@ -16,11 +16,17 @@ class Subscription extends Model
         'customer_id',
         'paypal_agreement_id',
         'user_id',
+        'promocode_id',
     ];
 
-    // relation belongs to
+    // relations belongs to
     public function user(){
         return $this->belongsTo(User::class);
+    }
+
+    // relations has one:
+    public function promocode(){
+        return $this->hasOne(Promocode::class);
     }
 
 

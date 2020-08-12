@@ -10,6 +10,8 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
+use App\Promocode;
+use App\Subscription;
 use App\Tab;
 use App\User;
 use Illuminate\Http\Request;
@@ -93,7 +95,6 @@ class UsersController extends Controller
         ]);
     }
 
-
     public function updateUserTheme(Request $request){
 
         Auth::user()->update(
@@ -102,7 +103,6 @@ class UsersController extends Controller
 
         return ['status' => 'success'];
     }
-
 
     public function editAccountData(Request $request){
         $request->validate([
@@ -143,7 +143,6 @@ class UsersController extends Controller
         return $user;
     }
 
-
     public function updateLastActivity(Request $request){
         if (Auth::user()->hasRole('admin')){
             Auth::user()->updateLastActivity();
@@ -152,6 +151,28 @@ class UsersController extends Controller
             $user->updateLastActivity();
             return ['status' => 'success'];
         }
+    }
+
+    public function applyPromoCode(Request $request){
+        $promoCodeName = $request->promocode;
+        $promCode = Promocode::where('name',$promoCodeName)->first();
+        if($promCode){
+            if($this->createFreeSubscription($promCode)){
+                return  [ 'success' => 'Promo code applied', 'data' => $promCode];
+            };
+        }
+        return [ 'error' => 'Not a valid promo code!'];
+    }
+
+    protected function createFreeSubscription($promCode){
+        return Subscription::create([
+            'user_id' => auth()->user()->id,
+            'payment_method' => 'Promo code',
+            'sub_status' => 'active',
+            'sub_frequency' => 'monthly',
+            'promocode_id' => $promCode->id,
+        ]);
+
     }
 
 }

@@ -184,7 +184,5 @@
 </script>
 
 <style scoped>
-    .agree-text{
-        margin-top: 8px;
-    }
+
 </style>
