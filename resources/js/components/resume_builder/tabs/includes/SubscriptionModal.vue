@@ -51,6 +51,21 @@
                                 </v-row>
                             </v-card-text>
 
+                            <div class="promocode">
+                                <div class="promo-input">
+                                    <v-text-field
+                                            label="Promo Code"
+                                            v-model="promocode"
+                                            :error="!!errors.promocode"
+                                            :error-messages="errors.promocode"
+                                    >
+                                    </v-text-field>
+                                </div>
+                                <div class="apply-btn">
+                                    <v-btn class="resume-builder__btn civie-btn filled" filled @click="applyPromoCode">Apply</v-btn>
+                                </div>
+                            </div>
+
 
                             <div class="pay-with-row">
                                 <div class="line"></div>
@@ -193,11 +208,23 @@
                 stripeHover: false,
                 selectedPlan: "monthly",
                 selectedBtn: "monthly",
+                promocode: "",
+                errors:{ promocode: ''}
             }
         },
         methods: {
             subscribe() {
                 $('#subscribe_form').submit();
+            },
+            applyPromoCode(){
+                this.errors = { promocode: ''};
+                axios.post('/api/user/apply-promo-code', {promocode : this.promocode})
+                    .then( (response) => {
+                        console.log(response.data);
+                        if(response.data.error){
+                            this.errors = { promocode: response.data.error} ;
+                        }
+                    });
             }
         }
     }
@@ -266,6 +293,18 @@
                     }
                 }
             }
+        }
+    }
+
+    .promocode{
+        display: flex;
+
+        .promo-input{
+
+        }
+
+        .apply-btn{
+
         }
     }
 
