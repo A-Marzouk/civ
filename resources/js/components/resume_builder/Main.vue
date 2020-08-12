@@ -23,14 +23,14 @@
 		</div>
 
 		<div class="flying-notification" id="flyingNotification">
-			<div class="d-flex align-items-center justify-content-center">
+			<div class="d-flex align-items-center justify-content-center" style="display: flex; align-items: center;">
 				<img src="" id="flyingNotificationIconSrc" alt="notification modal">
 				<div class="text" id="flyingNotificationText"></div>
 			</div>
 		</div>
 
 		<div class="flying-notification delete" id="flyingNotificationDelete">
-			<div class="d-flex align-items-center justify-content-center">
+			<div class="d-flex align-items-center justify-content-center" style="display: flex; align-items: center;">
 				<img src="/images/resume_builder/delete-icon-red.png" alt="notification modal">
 				<div class="text">Deleted</div>
 			</div>
