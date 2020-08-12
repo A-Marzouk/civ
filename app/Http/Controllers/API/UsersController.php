@@ -169,6 +169,7 @@ class UsersController extends Controller
             'user_id' => auth()->user()->id,
             'payment_method' => 'Promo code',
             'sub_status' => 'active',
+            'sub_frequency' => 'monthly',
             'promocode_id' => $promCode->id,
         ]);
 
