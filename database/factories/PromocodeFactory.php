@@ -9,7 +9,7 @@ $factory->define(Promocode::class, function (Faker $faker) {
     return [
         'name' => 'betafree1',
         'free_period' => 'month',
-        'expires_at' => '12-09-2020',
+        'expires_at' => '2020-09-012',
         'is_active' => 1,
     ];
 });

@@ -26,7 +26,7 @@ class PromocodesController extends Controller
      */
     public function index()
     {
-        $promocodes = Promocode::where('user_id',Auth::user()->id)->paginate(5);
+        $promocodes = Promocode::all();
         return PromocodeResource::collection($promocodes);
     }
 
