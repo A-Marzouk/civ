@@ -694,9 +694,27 @@ export default {
     flex-direction: column;
     width: 142px;
     position: relative;
-    @media screen and (min-width: 1440px) and (max-width: 1903px) {
+    @media screen and (min-width: 1280px) and (max-width: 1903px) {
       min-width: 204px;
     }
+    @media screen and (min-width: 1280px) and (max-width: 1430px) {
+      min-width: 165px;
+    }
+    @media screen and (max-width: 1279px) {
+      min-width: 196px;
+    }
+    @media screen and (max-width: 1023px) {
+      min-width: 132px;
+      max-width: 279px;
+    }
+    @media screen and (max-width: 750px) {
+      //min-width: 279px;
+    }
+
+    @media screen and (max-width: 599px) {
+      min-width: 165px;
+    }
+
     @include lt-sm {
     }
 
@@ -769,5 +787,16 @@ export default {
 }
 .current-work-text {
   margin-right: 53px;
+  @media screen and (max-width: 1903px) {
+    margin-right: 120px;
+  }
+  @media screen and (max-width: 1430px) {
+    margin-right: 80px;
+  }
+  @media screen and (max-width: 1279px) {
+    margin-right: 108px;
+  }
+  @media screen and (max-width: 1024px) {
+  }
 }
 </style>
