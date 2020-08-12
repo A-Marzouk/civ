@@ -164,7 +164,7 @@ $mainBlue: #001CE2;
         margin-bottom:30px;
 
         .view-container {
-            max-height: 678px;
+            max-height: 335px;
             box-shadow: 0 5px 100px rgba($color: #001083, $alpha: 0.1);
         }
     }
