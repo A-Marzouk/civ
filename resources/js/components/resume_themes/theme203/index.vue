@@ -451,16 +451,17 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center">
-                        <v-col md="4" sm="6" xs="12">
+                        <v-col md="4" sm="6" xs="12" v-for="i in 6" :key="i" class="mb-5">
                           <v-list-item>
-                            <v-list-item-avatar size="126.88">
-                              <img src="/images/resume_themes/theme203/icons/hobby.svg" alt="hobby icon" />
+                            <v-list-item-avatar class="hobbies-avatar">
+                              <img
+                                src="/images/resume_themes/theme203/icons/hobby.svg"
+                                alt="hobby icon"
+                              />
                             </v-list-item-avatar>
                             <v-list-item-content>
-                              <v-list-item-title class="hobby-title">
-                                <v-card flat color="transparent">
-                                  Football
-                                </v-card>
+                              <v-list-item-title class="hobby-title ml-xl-5">
+                                <v-card flat color="transparent">Football</v-card>
                               </v-list-item-title>
                             </v-list-item-content>
                           </v-list-item>
@@ -1030,13 +1031,28 @@ export default {
   transform: translate(-50%, -50%);
 }
 //hobby tab
-.hobby-title{
+.hobby-title {
   font-family: "Gotham Pro" !important;
   font-weight: 500;
   font-size: 40px;
   line-height: 38px;
   color: #000000 !important;
   letter-spacing: 0.05em;
+  @media screen and (max-width: 1903px) and (min-width: 1264px) {
+    font-size: 30px;
+  }
+}
+.hobbies-avatar {
+  min-width: 126.88px !important;
+  min-height: 126.88px !important;
+  height: 126.88px !important;
+  width: 126.88px !important;
+  @media screen and (max-width: 1903px) and (min-width: 1264px) {
+    min-width: 100px !important;
+    min-height: 100px !important;
+    height: 100px !important;
+    width: 100px !important;
+  }
 }
 </style>
 
