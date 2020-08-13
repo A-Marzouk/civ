@@ -169,7 +169,6 @@
             getAllPromoCodes(){
                 axios.get('/api/admin/promocodes').then( (response) => {
                     this.promocodes = response.data.data ;
-                    console.log(response.data.data);
                 });
             },
 
