@@ -451,7 +451,7 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center">
-                        <v-col md="4" sm="6" xs="12" v-for="i in 6" :key="i" class="mb-5">
+                        <v-col lg="4" md="6" sm="6" cols="6" v-for="i in 6" :key="i" class="mb-5">
                           <v-list-item>
                             <v-list-item-avatar class="hobbies-avatar">
                               <img
@@ -1041,6 +1041,13 @@ export default {
   @media screen and (max-width: 1903px) and (min-width: 1264px) {
     font-size: 30px;
   }
+
+  @media screen and (min-width: 600px) and (max-width: 960px) {
+    font-size: 24px;
+  }
+  @media screen and(max-width: 599px) {
+    font-size: 16px;
+  }
 }
 .hobbies-avatar {
   min-width: 126.88px !important;
@@ -1052,6 +1059,18 @@ export default {
     min-height: 100px !important;
     height: 100px !important;
     width: 100px !important;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    min-width: 80px !important;
+    min-height: 80px !important;
+    height: 80px !important;
+    width: 80px !important;
+  }
+  @media screen and(max-width: 599px) {
+    min-width: 45px !important;
+    min-height: 45px !important;
+    height: 45px !important;
+    width: 45px !important;
   }
 }
 </style>
