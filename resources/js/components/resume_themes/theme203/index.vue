@@ -499,7 +499,7 @@
                                 <v-card flat color="transparent">
                                   <v-card-subtitle class="achievement-title">1 st Dribbble shot</v-card-subtitle>
                                   <v-card-subtitle
-                                    class="achievement-subtitle"
+                                    class="achievement-subtitle mt-xl-0 mt-n5"
                                   >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</v-card-subtitle>
                                 </v-card>
                               </v-list-item-title>
@@ -511,6 +511,47 @@
                   </v-card>
                 </v-tab-item>
                 <!--  tab item achivement  -->
+                <!-- ...... Tab item Reference ..... -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Referenes</div>
+                  <v-card color="transparent" tile flat>
+                    <v-container ma-0 pa-0 style="width:100%">
+                      <v-row align="center" justify="space-between">
+                        <v-col
+                          xl="6"
+                          lg="6"
+                          md="12"
+                          sm="12"
+                          cols="12"
+                          v-for="i in 6"
+                          :key="i"
+                          class="mb-5"
+                        >
+                          <v-card flat color="transparent">
+                            <v-row>
+                              <v-col cols="6">
+                                <div class="reference-title">Jhone Doe</div>
+                              </v-col>
+                              <v-col cols="6" align="right">
+                                <div class="reference-date">1/1/2020</div>
+                              </v-col>
+                              <v-col cols="12">
+                                <div class="reference-email">Jhone doe@gmail.com</div>
+                              </v-col>
+                              <v-col cols="12">
+                                <div class="reference-desc">
+                                  I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                                  I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow
+                                </div>
+                              </v-col>
+                            </v-row>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-tab-item>
+                <!--  tab item Reference  -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -1135,8 +1176,8 @@ export default {
   letter-spacing: 0.05em;
   color: #000000 !important;
   @media screen and (min-width: 1264px) and (max-width: 1903px) {
-    font-size: 30px;
-    line-height: 28px;
+    font-size: 24px;
+    line-height: 22px;
   }
   @media screen and (max-width: 959px) {
     font-size: 24px;
@@ -1152,6 +1193,36 @@ export default {
 }
 
 // achievement tab
+// reference tab
+.reference-title {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 36px;
+  letter-spacing: 0.05em;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: #000000 !important;
+}
+.reference-date {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: #262626 !important;
+}
+.reference-email {
+  font-family: "Open Sans" !important;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 23px;
+  color: #4e4e4e !important;
+}
+// reference tab
 </style>
 
 <style>
