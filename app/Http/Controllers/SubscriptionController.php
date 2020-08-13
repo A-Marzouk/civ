@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Subscription;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -28,11 +29,19 @@ class SubscriptionController extends Controller
         }
 
         if ($subscription){
-            if($subscription->sub_status === 'active'){
+            if($subscription->sub_status === 'active' && !$this->isExpired($subscription)){
                 return redirect('/resume-builder');
             }
         }
         return view('resume_builder.subscription_page');
+    }
+
+
+    protected function isExpired($subscription){
+        $expiring_date = Carbon::parse($subscription->expires_at);
+        $todays_date   = Carbon::now();
+
+        return $todays_date->gt($expiring_date);
     }
 
 
