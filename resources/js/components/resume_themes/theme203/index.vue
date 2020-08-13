@@ -477,7 +477,16 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width:100%">
                       <v-row align="center" justify="space-between">
-                        <v-col xl="6" lg="6" md="6" sm="6" cols="6" v-for="i in 6" :key="i" class="mb-5">
+                        <v-col
+                          xl="6"
+                          lg="6"
+                          md="12"
+                          sm="12"
+                          cols="12"
+                          v-for="i in 6"
+                          :key="i"
+                          class="mb-5"
+                        >
                           <v-list-item>
                             <v-list-item-avatar class="achievement-avatar">
                               <img
@@ -1111,23 +1120,11 @@ export default {
   min-height: 152px !important;
   height: 152px !important;
   width: 152px !important;
-  @media screen and (max-width: 1903px) and (min-width: 1264px) {
-    min-width: 100px !important;
-    min-height: 100px !important;
-    height: 100px !important;
-    width: 100px !important;
-  }
-  @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 80px !important;
-    min-height: 80px !important;
-    height: 80px !important;
-    width: 80px !important;
-  }
-  @media screen and(max-width: 599px) {
-    min-width: 45px !important;
-    min-height: 45px !important;
-    height: 45px !important;
-    width: 45px !important;
+  @media screen and (max-width: 599px) {
+    min-width: 50px !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    width: 50px !important;
   }
 }
 .achievement-title {
@@ -1137,8 +1134,13 @@ export default {
   line-height: 43px;
   letter-spacing: 0.05em;
   color: #000000 !important;
-  @media screen and (min-width: 1264px) and (max-width:1903px){
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
     font-size: 30px;
+    line-height: 28px;
+  }
+  @media screen and (max-width: 959px) {
+    font-size: 24px;
+    line-height: 20px;
   }
 }
 .achievement-subtitle {
