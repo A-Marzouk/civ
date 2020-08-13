@@ -56,7 +56,7 @@
                 </v-navigation-drawer>
             </v-card>
 
-            <div class="table-content">
+            <div class="table-content" style="width: 100%;">
                 <router-view :users="users"></router-view>
             </div>
         </div>

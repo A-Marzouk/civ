@@ -20,9 +20,11 @@ class CreateSubscriptionsTable extends Migration
             $table->string('customer_id')->nullable();
             $table->string('paypal_agreement_id')->nullable();
             $table->string('sub_status')->nullable();
+            $table->date('expires_at')->nullable();
 
 
             $table->integer('user_id')->unsigned();
+            $table->integer('promocode_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

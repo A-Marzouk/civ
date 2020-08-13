@@ -10,8 +10,11 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
+use App\Promocode;
+use App\Subscription;
 use App\Tab;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -93,7 +96,6 @@ class UsersController extends Controller
         ]);
     }
 
-
     public function updateUserTheme(Request $request){
 
         Auth::user()->update(
@@ -102,7 +104,6 @@ class UsersController extends Controller
 
         return ['status' => 'success'];
     }
-
 
     public function editAccountData(Request $request){
         $request->validate([
@@ -143,7 +144,6 @@ class UsersController extends Controller
         return $user;
     }
 
-
     public function updateLastActivity(Request $request){
         if (Auth::user()->hasRole('admin')){
             Auth::user()->updateLastActivity();
@@ -152,6 +152,31 @@ class UsersController extends Controller
             $user->updateLastActivity();
             return ['status' => 'success'];
         }
+    }
+
+    public function applyPromoCode(Request $request){
+        $promoCodeName = $request->promocode;
+        $promCode = Promocode::where('name',$promoCodeName)->first();
+        if($promCode){
+            if($this->createFreeSubscription($promCode)){
+                return  [ 'success' => 'Promo code applied', 'data' => $promCode];
+            };
+        }
+        return [ 'error' => 'Not a valid promo code!'];
+    }
+
+    protected function createFreeSubscription($promCode){
+        // free period:
+        $free_months = $int = (int) filter_var( $promCode->free_period, FILTER_SANITIZE_NUMBER_INT);
+        return Subscription::create([
+            'user_id' => auth()->user()->id,
+            'payment_method' => 'Promo code',
+            'sub_status' => 'active',
+            'sub_frequency' => 'monthly',
+            'expires_at' => Carbon::now()->addMonths($free_months)->toDateString(),
+            'promocode_id' => $promCode->id,
+        ]);
+
     }
 
 }
