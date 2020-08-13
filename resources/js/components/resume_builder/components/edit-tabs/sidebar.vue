@@ -361,7 +361,15 @@ export default {
       background: transparent;
       width: 300px;
 
-      .sidebar-links,
+      @media screen and (min-width: 1280px) and (max-width: 1520px) {
+        width: 200px;
+        margin-left: 20px !important;
+      }
+      @media screen and (min-width: 1520px) and (max-width: 1720px) {
+        width: 240px;
+        margin-left: 30px !important;
+      }
+        .sidebar-links,
       .sidebar-link-activator {
         &.sidebar-link-activator {
           display: none;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Closure;
 
 class subscribed
@@ -23,11 +24,18 @@ class subscribed
         }
 
         if ($subscription) {
-           if($subscription->sub_status === 'active'){
+           if($subscription->sub_status === 'active' && !$this->isExpired($subscription)){
                return $next($request);
            }
         }
 
         return redirect('/subscribe');
+    }
+
+    protected function isExpired($subscription){
+        $expiring_date = Carbon::parse($subscription->expires_at);
+        $todays_date   = Carbon::now();
+
+        return $todays_date->gt($expiring_date);
     }
 }
