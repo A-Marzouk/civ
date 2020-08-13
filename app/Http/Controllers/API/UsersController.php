@@ -110,7 +110,7 @@ class UsersController extends Controller
             'name' => 'required|max:191|min:3',
             'email'     => 'required|max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
-            'username' => 'required|min:3|max:191',
+            'username' => 'required|unique:users,username,'. $request['id'].',id',
         ]);
 
 
