@@ -89,7 +89,9 @@
                           </v-list-item-title>
                           <v-list-item-title>
                             <v-card flat color="transparent" tile>
-                              <span class="profile-subtitle">{{ currentUser.personal_info.designation }}</span>
+                              <span
+                                class="profile-subtitle"
+                              >{{ currentUser.personal_info.designation }}</span>
                             </v-card>
                           </v-list-item-title>
                         </v-list-item-content>
@@ -185,7 +187,9 @@
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.availability_info[0].available_hours}} Hours</v-card-subtitle>
+                            <v-card-subtitle
+                              class="hire-me-subtitle"
+                            >{{currentUser.availability_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
@@ -440,6 +444,114 @@
                   </v-card>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
+
+                <!-- ...... Tab item hobbies ..... -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Hobbies</div>
+                  <v-card color="transparent" tile flat>
+                    <v-container ma-0 pa-0 fluid style="width:100%">
+                      <v-row align="center">
+                        <v-col lg="4" md="6" sm="6" cols="6" v-for="i in 6" :key="i" class="mb-5">
+                          <v-list-item>
+                            <v-list-item-avatar class="hobbies-avatar">
+                              <img
+                                src="/images/resume_themes/theme203/icons/hobby.svg"
+                                alt="hobby icon"
+                              />
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                              <v-list-item-title class="hobby-title ml-xl-5">
+                                <v-card flat color="transparent">Football</v-card>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-tab-item>
+                <!--  tab item hobbies  -->
+                <!-- ...... Tab item achievement ..... -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Achievement</div>
+                  <v-card color="transparent" tile flat>
+                    <v-container ma-0 pa-0 style="width:100%">
+                      <v-row align="center" justify="space-between">
+                        <v-col
+                          xl="6"
+                          lg="6"
+                          md="12"
+                          sm="12"
+                          cols="12"
+                          v-for="i in 6"
+                          :key="i"
+                          class="mb-5"
+                        >
+                          <v-list-item>
+                            <v-list-item-avatar class="achievement-avatar">
+                              <img
+                                src="/images/resume_themes/theme203/icons/achievement.svg"
+                                alt="hobby icon"
+                              />
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                              <v-list-item-title class="hobby-title">
+                                <v-card flat color="transparent">
+                                  <v-card-subtitle class="achievement-title">1 st Dribbble shot</v-card-subtitle>
+                                  <v-card-subtitle
+                                    class="achievement-subtitle mt-xl-0 mt-n5"
+                                  >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</v-card-subtitle>
+                                </v-card>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-tab-item>
+                <!--  tab item achivement  -->
+                <!-- ...... Tab item Reference ..... -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Referenes</div>
+                  <v-card color="transparent" tile flat>
+                    <v-container ma-0 pa-0 style="width:100%">
+                      <v-row align="center" justify="space-around">
+                        <v-col
+                          xl="5"
+                          lg="5"
+                          md="12"
+                          sm="12"
+                          cols="12"
+                          v-for="i in 6"
+                          :key="i"
+                          class="mb-5"
+                        >
+                          <v-card flat color="transparent">
+                            <v-row>
+                              <v-col cols="7">
+                                <div class="reference-title">Jhone Doe</div>
+                              </v-col>
+                              <v-col cols="5" align="right">
+                                <div class="reference-date">1/1/2020</div>
+                              </v-col>
+                              <v-col cols="12">
+                                <div class="reference-email">Jhone doe@gmail.com</div>
+                              </v-col>
+                              <v-col cols="12">
+                                <div class="reference-desc">
+                                  I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
+                                  I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow
+                                </div>
+                              </v-col>
+                            </v-row>
+                          </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-tab-item>
+                <!--  tab item Reference  -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -457,13 +569,13 @@
 <script>
 export default {
   name: "ResumeTheme203",
-  props:["user","is_preview"],
+  props: ["user", "is_preview"],
   filters: {
-    capitalize: function(value) {
+    capitalize: function (value) {
       if (!value) return "";
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
-    }
+    },
   },
   data() {
     return {
@@ -473,75 +585,87 @@ export default {
         { id: 2, title: "dribbble" },
         { id: 3, title: "instagram" },
         { id: 4, title: "linkedin" },
-        { id: 5, title: "google-plus" }
+        { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
       progressBarColor: "yellow",
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio"
+          title: "Portfolio",
         },
         {
           id: 2,
-          title: "Work"
+          title: "Work",
         },
         {
           id: 3,
-          title: "Education"
+          title: "Education",
         },
         {
           id: 4,
-          title: "Skills"
-        }
+          title: "Skills",
+        },
+        {
+          id: 5,
+          title: "Hobbies",
+        },
+        {
+          id: 6,
+          title: "Achievement",
+        },
+        {
+          id: 7,
+          title: "References",
+        },
       ],
       portfolioItems: [
         {
           id: 1,
           title: "Mobile App-Ice Cream",
-          subtitle: "Mobile app concept"
+          subtitle: "Mobile app concept",
         },
         {
           id: 2,
           title: "Mobile App-Ice Cream",
-          subtitle: "Mobile app concept"
+          subtitle: "Mobile app concept",
         },
         {
           id: 3,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
         {
           id: 4,
           title: "Tracking App-Traq",
-          subtitle: "Tracking App-Traq"
+          subtitle: "Tracking App-Traq",
         },
         {
           id: 5,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
 
         {
           id: 6,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
         {
           id: 7,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
         {
           id: 8,
           title: "Love custom app",
-          subtitle: "Love custom app"
+          subtitle: "Love custom app",
         },
         {
           id: 9,
           title: "Love custom app",
-          subtitle: "Love custom app"
-        }
+          subtitle: "Love custom app",
+        },
       ],
       skills: [
         {
@@ -549,49 +673,49 @@ export default {
           title: "Photoshop",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ph"
+          icon_text: "ph",
         },
         {
           id: 2,
           title: "Photoshop",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ph"
+          icon_text: "ph",
         },
         {
           id: 3,
           title: "Illustrator",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ill"
+          icon_text: "ill",
         },
         {
           id: 4,
           title: "Illustrator",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ill"
+          icon_text: "ill",
         },
         {
           id: 5,
           title: "Figma",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "fig"
+          icon_text: "fig",
         },
         {
           id: 6,
           title: "Figma",
           skill_value: 50,
           skill_value_text: "80%",
-          icon_text: "fig"
-        }
+          icon_text: "fig",
+        },
       ],
     };
   },
   computed: {
     socialLinks() {
-      return this.currentUser.links.filter(link => {
+      return this.currentUser.links.filter((link) => {
         return link.category === "social_link" ? link : false;
       });
     },
@@ -619,7 +743,7 @@ export default {
     getProviderLink(provider) {
       let links = this.user.links;
       let providerLink = "";
-      links.forEach(link => {
+      links.forEach((link) => {
         if (link.category === "social_link") {
           if (link.link_title.toLowerCase() === provider.toLowerCase()) {
             providerLink = link.link;
@@ -635,14 +759,14 @@ export default {
     getProjectMainImage(project) {
       let mainImage = "";
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
       });
       return mainImage.src;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -987,6 +1111,126 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+//hobby tab
+.hobby-title {
+  font-family: "Gotham Pro" !important;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 38px;
+  color: #000000 !important;
+  letter-spacing: 0.05em;
+  @media screen and (max-width: 1903px) and (min-width: 1264px) {
+    font-size: 30px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 960px) {
+    font-size: 24px;
+  }
+  @media screen and(max-width: 599px) {
+    font-size: 16px;
+  }
+}
+.hobbies-avatar {
+  min-width: 126.88px !important;
+  min-height: 126.88px !important;
+  height: 126.88px !important;
+  width: 126.88px !important;
+  @media screen and (max-width: 1903px) and (min-width: 1264px) {
+    min-width: 100px !important;
+    min-height: 100px !important;
+    height: 100px !important;
+    width: 100px !important;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    min-width: 80px !important;
+    min-height: 80px !important;
+    height: 80px !important;
+    width: 80px !important;
+  }
+  @media screen and(max-width: 599px) {
+    min-width: 45px !important;
+    min-height: 45px !important;
+    height: 45px !important;
+    width: 45px !important;
+  }
+}
+// hobbies tab
+// achievement tab
+.achievement-avatar {
+  min-width: 152px !important;
+  min-height: 152px !important;
+  height: 152px !important;
+  width: 152px !important;
+  @media screen and (max-width: 599px) {
+    min-width: 50px !important;
+    min-height: 50px !important;
+    height: 50px !important;
+    width: 50px !important;
+  }
+}
+.achievement-title {
+  font-family: "Gotham Pro" !important;
+  font-weight: 500;
+  font-size: 45px;
+  line-height: 43px;
+  letter-spacing: 0.05em;
+  color: #000000 !important;
+  @media screen and (min-width: 1264px) and (max-width: 1903px) {
+    font-size: 24px;
+    line-height: 22px;
+  }
+  @media screen and (max-width: 959px) {
+    font-size: 24px;
+    line-height: 20px;
+  }
+}
+.achievement-subtitle {
+  font-family: "Gotham Pro" !important;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 23px;
+  color: #4e4e4e !important;
+}
+
+// achievement tab
+// reference tab
+.reference-title {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 38px;
+  line-height: 36px;
+  letter-spacing: 0.05em;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: #000000 !important;
+  @media screen and (max-width: 599px){
+    font-size: 24px;
+    line-height: 24px;
+  }
+}
+.reference-date {
+  font-family: "Gotham Pro" !important;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 20px;
+  letter-spacing: 0.05em;
+  font-feature-settings: "tnum" on, "lnum" on;
+  color: #262626 !important;
+  @media screen and (max-width: 599px){
+    font-size: 18px;
+    line-height: 14px;
+  }
+}
+.reference-email {
+  font-family: "Open Sans" !important;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 23px;
+  color: #4e4e4e !important;
+}
+// reference tab
 </style>
 
 <style>
