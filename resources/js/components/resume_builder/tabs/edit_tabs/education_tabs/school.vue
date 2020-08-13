@@ -694,19 +694,19 @@ export default {
     flex-direction: column;
     width: 142px;
     position: relative;
-    @media screen and (min-width: 1280px) and (max-width: 1903px) {
-      min-width: 204px;
-    }
-    @media screen and (min-width: 1280px) and (max-width: 1430px) {
-      min-width: 165px;
-    }
-    @media screen and (max-width: 1279px) {
-      min-width: 196px;
-    }
-    @media screen and (max-width: 1023px) {
-      min-width: 0 !important;
-      max-width: 132px;
-    }
+    // @media screen and (min-width: 1280px) and (max-width: 1903px) {
+    //   min-width: 204px;
+    // }
+    // @media screen and (min-width: 1280px) and (max-width: 1430px) {
+    //   min-width: 165px;
+    // }
+    // @media screen and (max-width: 1279px) {
+    //   min-width: 196px;
+    // }
+    // @media screen and (max-width: 1023px) {
+    //   min-width: 0 !important;
+    //   max-width: 132px;
+    // }
 
     @include lt-sm {
     }
