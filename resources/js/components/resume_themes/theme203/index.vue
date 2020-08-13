@@ -529,10 +529,10 @@
                         >
                           <v-card flat color="transparent">
                             <v-row>
-                              <v-col cols="6">
+                              <v-col cols="7">
                                 <div class="reference-title">Jhone Doe</div>
                               </v-col>
-                              <v-col cols="6" align="right">
+                              <v-col cols="5" align="right">
                                 <div class="reference-date">1/1/2020</div>
                               </v-col>
                               <v-col cols="12">
@@ -1203,6 +1203,10 @@ export default {
   letter-spacing: 0.05em;
   font-feature-settings: "tnum" on, "lnum" on;
   color: #000000 !important;
+  @media screen and (max-width: 599px){
+    font-size: 24px;
+    line-height: 24px;
+  }
 }
 .reference-date {
   font-family: "Gotham Pro" !important;
@@ -1213,6 +1217,10 @@ export default {
   letter-spacing: 0.05em;
   font-feature-settings: "tnum" on, "lnum" on;
   color: #262626 !important;
+  @media screen and (max-width: 599px){
+    font-size: 18px;
+    line-height: 14px;
+  }
 }
 .reference-email {
   font-family: "Open Sans" !important;
