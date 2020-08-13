@@ -62,7 +62,7 @@
                 v-model="newEducation.date_from"
               />
             </div>
-            <div class="date-text">-</div>
+            <div class="date-text text-center">-</div>
             <div class="date-input">
               <label
                 :class="{'error-label' : errors.date_to}"
@@ -704,15 +704,8 @@ export default {
       min-width: 196px;
     }
     @media screen and (max-width: 1023px) {
-      min-width: 132px;
-      max-width: 279px;
-    }
-    @media screen and (max-width: 750px) {
-      //min-width: 279px;
-    }
-
-    @media screen and (max-width: 599px) {
-      min-width: 165px;
+      min-width: 0 !important;
+      max-width: 132px;
     }
 
     @include lt-sm {
@@ -796,7 +789,8 @@ export default {
   @media screen and (max-width: 1279px) {
     margin-right: 108px;
   }
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 959px) {
+    margin-right: 50px;
   }
 }
 </style>
