@@ -89,7 +89,9 @@
                           </v-list-item-title>
                           <v-list-item-title>
                             <v-card flat color="transparent" tile>
-                              <span class="profile-subtitle">{{ currentUser.personal_info.designation }}</span>
+                              <span
+                                class="profile-subtitle"
+                              >{{ currentUser.personal_info.designation }}</span>
                             </v-card>
                           </v-list-item-title>
                         </v-list-item-content>
@@ -185,7 +187,9 @@
                         <v-col cols="4" class="d-flex">
                           <v-card flat class="text-center" color="transparent" tile>
                             <v-card-title class="hire-me-title">Available for</v-card-title>
-                            <v-card-subtitle class="hire-me-subtitle">{{currentUser.availability_info[0].available_hours}} Hours</v-card-subtitle>
+                            <v-card-subtitle
+                              class="hire-me-subtitle"
+                            >{{currentUser.availability_info[0].available_hours}} Hours</v-card-subtitle>
                           </v-card>
                         </v-col>
 
@@ -440,6 +444,32 @@
                   </v-card>
                 </v-tab-item>
                 <!--................... Tab item Skills............................... -->
+
+                <!-- ...... Tab item hobbies ..... -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Hobbies</div>
+                  <v-card color="transparent" tile flat>
+                    <v-container ma-0 pa-0 fluid style="width:100%">
+                      <v-row align="center">
+                        <v-col md="4" sm="6" xs="12">
+                          <v-list-item>
+                            <v-list-item-avatar size="126.88">
+                              <img src="/images/resume_themes/theme203/icons/hobby.svg" alt="hobby icon" />
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                              <v-list-item-title class="hobby-title">
+                                <v-card flat color="transparent">
+                                  Football
+                                </v-card>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-tab-item>
+                <!--  tab item hobbies  -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -457,13 +487,13 @@
 <script>
 export default {
   name: "ResumeTheme203",
-  props:["user","is_preview"],
+  props: ["user", "is_preview"],
   filters: {
-    capitalize: function(value) {
+    capitalize: function (value) {
       if (!value) return "";
       value = value.toString();
       return value.charAt(0).toUpperCase() + value.slice(1);
-    }
+    },
   },
   data() {
     return {
@@ -473,75 +503,87 @@ export default {
         { id: 2, title: "dribbble" },
         { id: 3, title: "instagram" },
         { id: 4, title: "linkedin" },
-        { id: 5, title: "google-plus" }
+        { id: 5, title: "google-plus" },
       ],
       mainDataTab: null,
       progressBarColor: "yellow",
       mainTabs: [
         {
           id: 1,
-          title: "Portfolio"
+          title: "Portfolio",
         },
         {
           id: 2,
-          title: "Work"
+          title: "Work",
         },
         {
           id: 3,
-          title: "Education"
+          title: "Education",
         },
         {
           id: 4,
-          title: "Skills"
-        }
+          title: "Skills",
+        },
+        {
+          id: 5,
+          title: "Hobbies",
+        },
+        {
+          id: 6,
+          title: "Achievement",
+        },
+        {
+          id: 7,
+          title: "Refrences",
+        },
       ],
       portfolioItems: [
         {
           id: 1,
           title: "Mobile App-Ice Cream",
-          subtitle: "Mobile app concept"
+          subtitle: "Mobile app concept",
         },
         {
           id: 2,
           title: "Mobile App-Ice Cream",
-          subtitle: "Mobile app concept"
+          subtitle: "Mobile app concept",
         },
         {
           id: 3,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
         {
           id: 4,
           title: "Tracking App-Traq",
-          subtitle: "Tracking App-Traq"
+          subtitle: "Tracking App-Traq",
         },
         {
           id: 5,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
 
         {
           id: 6,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
         {
           id: 7,
           title: "Made market Concept",
-          subtitle: "Made market concept"
+          subtitle: "Made market concept",
         },
         {
           id: 8,
           title: "Love custom app",
-          subtitle: "Love custom app"
+          subtitle: "Love custom app",
         },
         {
           id: 9,
           title: "Love custom app",
-          subtitle: "Love custom app"
-        }
+          subtitle: "Love custom app",
+        },
       ],
       skills: [
         {
@@ -549,49 +591,49 @@ export default {
           title: "Photoshop",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ph"
+          icon_text: "ph",
         },
         {
           id: 2,
           title: "Photoshop",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ph"
+          icon_text: "ph",
         },
         {
           id: 3,
           title: "Illustrator",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ill"
+          icon_text: "ill",
         },
         {
           id: 4,
           title: "Illustrator",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "ill"
+          icon_text: "ill",
         },
         {
           id: 5,
           title: "Figma",
           skill_value: 90,
           skill_value_text: "90%",
-          icon_text: "fig"
+          icon_text: "fig",
         },
         {
           id: 6,
           title: "Figma",
           skill_value: 50,
           skill_value_text: "80%",
-          icon_text: "fig"
-        }
+          icon_text: "fig",
+        },
       ],
     };
   },
   computed: {
     socialLinks() {
-      return this.currentUser.links.filter(link => {
+      return this.currentUser.links.filter((link) => {
         return link.category === "social_link" ? link : false;
       });
     },
@@ -619,7 +661,7 @@ export default {
     getProviderLink(provider) {
       let links = this.user.links;
       let providerLink = "";
-      links.forEach(link => {
+      links.forEach((link) => {
         if (link.category === "social_link") {
           if (link.link_title.toLowerCase() === provider.toLowerCase()) {
             providerLink = link.link;
@@ -635,14 +677,14 @@ export default {
     getProjectMainImage(project) {
       let mainImage = "";
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
       });
       return mainImage.src;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -986,6 +1028,15 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+//hobby tab
+.hobby-title{
+  font-family: "Gotham Pro" !important;
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 38px;
+  color: #000000 !important;
+  letter-spacing: 0.05em;
 }
 </style>
 
