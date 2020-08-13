@@ -99,6 +99,45 @@
         <template v-slot:no-data>
             No available data
         </template>
+        <template  v-slot:item.subscription="{ item }">
+            <!-- dialogs -->
+
+            <a href="javascript:void(0)" @click="setCurrentSubscription(item)">View subscription</a>
+
+            <v-dialog
+                    v-model="item.id === subscriptionModalUserID"
+                    max-width="550"
+                    style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;">
+                <v-card>
+                    <v-card-subtitle align="right">
+                        <v-btn icon class="btn-close-modal" absolute>
+                            <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon"/>
+                        </v-btn>
+                    </v-card-subtitle>
+                    <v-card-text align="center" class="padding-sm-1">
+                        <v-row align="center" justify="center" class="p-5 d-flex flex-column" v-if="item.subscription">
+                            <div>
+                                <b style="text-transform: capitalize;">{{item.subscription.sub_frequency}}</b> subscription
+                            </div>
+                            <div>
+                                Price: <b style="text-transform: capitalize;">{{item.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
+                            </div>
+                            <div>
+                                Expires at: <b style="text-transform: capitalize;">{{item.subscription.expires_at}}</b>
+                            </div>
+                            <div>
+                                Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}} | {{item.subscription.promocode.name}}</b>
+                            </div>
+                        </v-row>
+                        <v-row class="d-flex justify-center m-5" v-else>
+                            Not subscribed
+                        </v-row>
+                        <hr class="hr-line"/>
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
+            <!-- dialogs -->
+        </template>
     </v-data-table>
 </template>
 
@@ -118,7 +157,7 @@
                 },
                 { text: 'Email', value: 'email' },
                 { text: 'Link to resume builder', value: 'profileLink'},
-                { text: 'Sub. Status', value: '' },
+                { text: 'Sub. Status', value: 'subscription' },
                 { text: 'Signup date', value: 'created_at' },
                 { text: 'Last activity', value: 'lastActivity' },
                 { text: 'Sub. Renewal', value: '' },
@@ -128,6 +167,7 @@
                 { text: 'Tester', value: 'tester', sortable: false },
             ],
             tableUsers: [],
+            subscriptionModalUserID: '',
             editedIndex: -1,
             editedItem: {
                 id: '',
@@ -171,6 +211,12 @@
             initialize () {
                 this.tableUsers = this.users ;
             },
+
+            setCurrentSubscription(user){
+                this.subscriptionModalUserID = user.id ;
+            },
+
+
 
             toggleUserPermissionToTestBuilder(user){
                 axios.post('/api/admin/give-test-permission', {user_id : user.id}).then( (response) => {

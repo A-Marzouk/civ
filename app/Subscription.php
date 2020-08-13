@@ -27,7 +27,7 @@ class Subscription extends Model
 
     // relations has one:
     public function promocode(){
-        return $this->hasOne(Promocode::class);
+        return $this->belongsTo(Promocode::class);
     }
 
 

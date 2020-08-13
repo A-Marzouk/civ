@@ -189,7 +189,7 @@
                     return;
                 }
                 axios
-                    .put("/api/user/update-theme", { theme_id: theme_id })
+                    .put("/api/user/update-theme", { theme_id: theme_id, user_id: this.user.id })
                     .then(response => {
                         this.user.theme_id = theme_id;
                         this.setActiveTheme(theme_id);

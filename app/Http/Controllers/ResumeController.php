@@ -75,7 +75,7 @@ class ResumeController extends Controller
         $is_preview = 'false' ;
         if($user){
             // get theme code
-            $themeCode = $user->theme->code ;
+            $themeCode = $user->theme ? $user->theme->code : '1001' ;
             return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
             return abort(404);

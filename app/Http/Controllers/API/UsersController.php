@@ -98,7 +98,9 @@ class UsersController extends Controller
 
     public function updateUserTheme(Request $request){
 
-        Auth::user()->update(
+        $user = User::findOrFail($request->user_id);
+
+        $user->update(
             ['theme_id' => $request->theme_id]
         );
 
