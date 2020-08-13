@@ -1107,7 +1107,7 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
-  top: 50%;
+  margin-top:200px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
