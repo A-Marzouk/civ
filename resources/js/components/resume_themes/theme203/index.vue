@@ -471,6 +471,37 @@
                   </v-card>
                 </v-tab-item>
                 <!--  tab item hobbies  -->
+                <!-- ...... Tab item achievement ..... -->
+                <v-tab-item>
+                  <div class="watermark-text text-center">Achievement</div>
+                  <v-card color="transparent" tile flat>
+                    <v-container ma-0 pa-0 style="width:100%">
+                      <v-row align="center" justify="space-between">
+                        <v-col xl="6" lg="6" md="6" sm="6" cols="6" v-for="i in 6" :key="i" class="mb-5">
+                          <v-list-item>
+                            <v-list-item-avatar class="achievement-avatar">
+                              <img
+                                src="/images/resume_themes/theme203/icons/achievement.svg"
+                                alt="hobby icon"
+                              />
+                            </v-list-item-avatar>
+                            <v-list-item-content>
+                              <v-list-item-title class="hobby-title">
+                                <v-card flat color="transparent">
+                                  <v-card-subtitle class="achievement-title">1 st Dribbble shot</v-card-subtitle>
+                                  <v-card-subtitle
+                                    class="achievement-subtitle"
+                                  >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</v-card-subtitle>
+                                </v-card>
+                              </v-list-item-title>
+                            </v-list-item-content>
+                          </v-list-item>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-card>
+                </v-tab-item>
+                <!--  tab item achivement  -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -1073,6 +1104,52 @@ export default {
     width: 45px !important;
   }
 }
+// hobbies tab
+// achievement tab
+.achievement-avatar {
+  min-width: 152px !important;
+  min-height: 152px !important;
+  height: 152px !important;
+  width: 152px !important;
+  @media screen and (max-width: 1903px) and (min-width: 1264px) {
+    min-width: 100px !important;
+    min-height: 100px !important;
+    height: 100px !important;
+    width: 100px !important;
+  }
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    min-width: 80px !important;
+    min-height: 80px !important;
+    height: 80px !important;
+    width: 80px !important;
+  }
+  @media screen and(max-width: 599px) {
+    min-width: 45px !important;
+    min-height: 45px !important;
+    height: 45px !important;
+    width: 45px !important;
+  }
+}
+.achievement-title {
+  font-family: "Gotham Pro" !important;
+  font-weight: 500;
+  font-size: 45px;
+  line-height: 43px;
+  letter-spacing: 0.05em;
+  color: #000000 !important;
+  @media screen and (min-width: 1264px) and (max-width:1903px){
+    font-size: 30px;
+  }
+}
+.achievement-subtitle {
+  font-family: "Gotham Pro" !important;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 23px;
+  color: #4e4e4e !important;
+}
+
+// achievement tab
 </style>
 
 <style>
