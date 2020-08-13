@@ -102,19 +102,15 @@
         <template  v-slot:item.subscription="{ item }">
             <!-- dialogs -->
 
-            <a href="javascript:void(0)" @click="subscriptionModalUserID = item.id">View subscription</a>
+            <a href="javascript:void(0)" @click="setCurrentSubscription(item)">View subscription</a>
 
             <v-dialog
-                    v-model="subscriptionModalUserID === item.id"
+                    v-model="item.id === subscriptionModalUserID"
                     max-width="550"
-                    style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);
-            border-radius: 10px; z-index:1000; overflow-y:hidden;"
-
-            >
-
+                    style="box-shadow: 0px 0px 130px rgba(0, 16, 133, 0.07);border-radius: 10px; z-index:1000; overflow-y:hidden;">
                 <v-card>
                     <v-card-subtitle align="right">
-                        <v-btn icon class="btn-close-modal" absolute @click.stop="subscriptionModalUserID = null">
+                        <v-btn icon class="btn-close-modal" absolute>
                             <img src="/images/new_resume_builder/icons/main/close.svg" alt="close icon"/>
                         </v-btn>
                     </v-card-subtitle>
@@ -133,8 +129,8 @@
                                 Payment method: <b style="text-transform: capitalize;">{{item.subscription.payment_method}} | {{item.subscription.promocode.name}}</b>
                             </div>
                         </v-row>
-                        <v-row class="d-flex justify-center" v-else>
-                            Not subscribed.
+                        <v-row class="d-flex justify-center m-5" v-else>
+                            Not subscribed
                         </v-row>
                         <hr class="hr-line"/>
                     </v-card-text>
@@ -171,7 +167,7 @@
                 { text: 'Tester', value: 'tester', sortable: false },
             ],
             tableUsers: [],
-            subscriptionModalUserID: null,
+            subscriptionModalUserID: '',
             editedIndex: -1,
             editedItem: {
                 id: '',
@@ -215,6 +211,12 @@
             initialize () {
                 this.tableUsers = this.users ;
             },
+
+            setCurrentSubscription(user){
+                this.subscriptionModalUserID = user.id ;
+            },
+
+
 
             toggleUserPermissionToTestBuilder(user){
                 axios.post('/api/admin/give-test-permission', {user_id : user.id}).then( (response) => {
