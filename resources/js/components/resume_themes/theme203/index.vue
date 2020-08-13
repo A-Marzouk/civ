@@ -516,10 +516,10 @@
                   <div class="watermark-text text-center">Referenes</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width:100%">
-                      <v-row align="center" justify="space-between">
+                      <v-row align="center" justify="space-around">
                         <v-col
-                          xl="6"
-                          lg="6"
+                          xl="5"
+                          lg="5"
                           md="12"
                           sm="12"
                           cols="12"
@@ -616,7 +616,7 @@ export default {
         },
         {
           id: 7,
-          title: "Refrences",
+          title: "References",
         },
       ],
       portfolioItems: [
