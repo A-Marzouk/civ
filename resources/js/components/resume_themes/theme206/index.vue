@@ -539,10 +539,10 @@
                   <v-container>
                     <v-row align="center" class="mx-auto">
                       <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-for="i in 12" :key="i">
-                        <v-card class="card-reference mb-5 pa-10">
+                        <v-card class="card-reference mb-5 pa-xl-10 pa-lg-8 pa-md-10 pa-sm-10 pa-5">
                           <v-row align="center" justify="space-between">
                             <!-- 1st column -->
-                            <v-col md="6" sm="6" cols="6">
+                            <v-col md="6" sm="6" cols="12">
                               <div class="d-flex flex-column">
                                 <h3 class="reference-title">Beverly Andrews</h3>
                                 <p class="reference-subtitle mt-2">User interface designer</p>
@@ -550,7 +550,7 @@
                             </v-col>
                             <!-- 1st column -->
                             <!-- 2nd column -->
-                            <v-col md="6" sm="6" cols="6">
+                            <v-col md="6" sm="6" cols="12">
                               <div class="d-flex flex-column">
                                 <p class="reference-address">42 Great Windmill Street London W1D 7NB</p>
                                 <p class="reference-address mt-n3">+915679654386754</p>
@@ -580,6 +580,28 @@
                   </v-container>
                 </v-tab-item>
                 <!-- References tab -->
+                <!-- Achievements tab -->
+                <v-tab-item>
+                  <v-container>
+                    <v-row align="center" class="mx-auto">
+                      <v-col xl="3" lg="4" md="4" sm="6" cols="12" v-for="i in 12" :key="i">
+                        <v-card class="card-hobby pa-5 mb-5">
+                          <v-card-text>
+                            <div class="d-flex flex-row justify-content-center align-items-center">
+                              <img
+                                src="/images/resume_themes/theme206/football.svg"
+                                alt="football"
+                                class="mx-auto"
+                              />
+                              <div class="hobby-title mx-auto my-auto">Football</div>
+                            </div>
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+                <!-- Achievements Tab -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -1151,7 +1173,7 @@ export default {
   box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
   border-radius: 30px !important;
   font-family: "Open Sans" !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     width: auto;
     height: auto;
   }
