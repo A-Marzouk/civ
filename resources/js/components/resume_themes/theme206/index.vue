@@ -516,10 +516,12 @@
                 <v-tab-item>
                   <v-container>
                     <v-row align="center" class="mx-auto">
-                      <v-col xl="3" lg="4" md="4" sm="6" cols="12" v-for="i in 12" :key="i">
-                        <v-card class="card-hobby pa-5 mb-5" hover>
+                      <v-col xl="3" lg="4" md="4" sm="6" cols="6" v-for="i in 12" :key="i">
+                        <v-card class="card-hobby pa-md-5 pa-sm-5 pa-0 mb-5" hover>
                           <v-card-text>
-                            <div class="d-flex flex-row justify-content-center align-items-center">
+                            <div
+                              class="d-flex flex-row justify-content-center align-items-center mt-md-0 mt-sm-0 mt-1"
+                            >
                               <img
                                 src="/images/resume_themes/theme206/football.svg"
                                 alt="football"
@@ -589,23 +591,35 @@
                     <v-row align="center" justify="center" class="mx-auto">
                       <v-col lg="6" md="12" sm="12" cols="12" v-for="i in 6" :key="i">
                         <v-card
-                          class="card-achievement pa-xl-12 pa-lg-6 pa-md-12 pa-sm-9 pa-12 mb-6"
+                          class="card-achievement pa-xl-12 pa-lg-6 pa-md-12 pa-sm-9 pa-2 mb-6"
                           hover
                         >
                           <div class="d-flex flex-row my-auto">
                             <img
+                              class="mt-sm-0 mt-3"
                               src="/images/resume_themes/theme206/certificate.svg"
                               alt="certificate"
                             />
-                            <div class="ml-6">
-                              <p class="year mt-md-0 mt-sm-4 mt-0">2018</p>
-                              <h3 class="title mt-xl-0 mt-lg-n5">Award Certificate</h3>
-                              <p class="address">URL: 877859509505ghgkkdmdfj</p>
+                            <div class="ml-md-6 ml-sm-3 ml-1">
+                              <p class="year mt-md-0 mt-sm-4 mt-0 hidden-xs-only">2018</p>
+                              <v-row>
+                                <v-col md="12" sm="12" cols="9">
+                                  <h3 class="title mt-xl-0 mt-lg-n5">Award Certificate</h3>
+                                </v-col>
+                                <v-col cols="3" class="hidden-sm-and-up">
+                                  <p class="year">2018</p>
+                                </v-col>
+                              </v-row>
+
+                              <p class="address mt-sm-0 mt-n7">URL: 877859509505ghgkkdmdfj</p>
                               <p
-                                class="desc"
+                                class="desc hidden-xs-only"
                               >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
                             </div>
                           </div>
+                          <p
+                            class="desc hidden-xs-sm-and-up mt-3"
+                          >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -1170,6 +1184,14 @@ export default {
   border-radius: 20px !important;
   width: 323px;
   height: 130px;
+  @media screen and (max-width: 599px) {
+    width: 180px;
+    height: 73px;
+    img {
+      width: 35.61px;
+      height: 35.61px;
+    }
+  }
 }
 
 .hobby-title {
@@ -1178,6 +1200,10 @@ export default {
   line-height: 27px;
   text-transform: uppercase;
   color: #000000;
+  @media screen and (max-width: 599px) {
+    font-size: 14px;
+    line-height: 21px;
+  }
 }
 
 .card-reference {
@@ -1224,7 +1250,7 @@ export default {
 
 //achievement tab
 .achievement-container {
-  @media screen and (max-width: 959px){
+  @media screen and (max-width: 959px) {
     margin: 0 !important;
     padding: 0 !important;
   }
@@ -1239,11 +1265,24 @@ export default {
       width: auto !important;
       height: auto !important;
     }
+    @media screen and (max-width: 599px) {
+      width: 375px !important;
+      height: 223px !important;
+    }
     .title {
       font-weight: bold;
-      font-size: 30px;
+      font-size: 30px !important;
       line-height: 41px;
       color: #333333 !important;
+      @media screen and (max-width: 599px) {
+        font-size: 18px !important;
+        line-height: 25px;
+      }
+      span {
+        font-size: 14px !important;
+        line-height: 19px !important;
+        color: #4c4c4c !important;
+      }
     }
     .subtitle {
       font-size: 18px;
@@ -1261,6 +1300,9 @@ export default {
       font-size: 18px;
       line-height: 25px;
       color: #4c4c4c !important;
+      @media screen and (max-width: 599px) {
+        font-size: 14px;
+      }
     }
     .desc {
       font-size: 18px;
@@ -1280,6 +1322,10 @@ export default {
         width: 321px;
         height: 248px;
         margin-top: 11px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 104px;
+        height: 81px;
       }
     }
   }
