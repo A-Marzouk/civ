@@ -618,7 +618,7 @@
                             </div>
                           </div>
                           <p
-                            class="desc hidden-xs-sm-and-up mt-3"
+                            class="desc hidden-sm-and-up mt-3"
                           >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
                         </v-card>
                       </v-col>
@@ -1274,6 +1274,9 @@ export default {
       font-size: 30px !important;
       line-height: 41px;
       color: #333333 !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px){
+        font-size: 24px !important;
+      }
       @media screen and (max-width: 599px) {
         font-size: 18px !important;
         line-height: 25px;
@@ -1309,7 +1312,7 @@ export default {
       line-height: 23px;
       color: #333333;
       @media screen and (min-width: 1264px) and (max-width: 1903px) {
-        font-size: 16px;
+        font-size: 14px;
         line-height: 18px;
       }
     }
