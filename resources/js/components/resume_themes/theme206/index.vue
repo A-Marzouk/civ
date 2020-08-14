@@ -512,7 +512,7 @@
                 </v-tab-item>
                 <!-- About Me -->
 
-                <!-- About Me -->
+                <!-- Hobbies tab -->
                 <v-tab-item>
                   <v-container>
                     <v-row align="center" class="mx-auto">
@@ -520,7 +520,11 @@
                         <v-card class="card-hobby pa-5 mb-5">
                           <v-card-text>
                             <div class="d-flex flex-row justify-content-center align-items-center">
-                              <img src="/images/resume_themes/theme206/football.svg" alt="football" class="mx-auto" />
+                              <img
+                                src="/images/resume_themes/theme206/football.svg"
+                                alt="football"
+                                class="mx-auto"
+                              />
                               <div class="hobby-title mx-auto my-auto">Football</div>
                             </div>
                           </v-card-text>
@@ -529,7 +533,53 @@
                     </v-row>
                   </v-container>
                 </v-tab-item>
-                <!-- About Me -->
+                <!-- Hobbies tab -->
+                <!-- References tab -->
+                <v-tab-item>
+                  <v-container>
+                    <v-row align="center" class="mx-auto">
+                      <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-for="i in 12" :key="i">
+                        <v-card class="card-reference mb-5 pa-10">
+                          <v-row align="center" justify="space-between">
+                            <!-- 1st column -->
+                            <v-col md="6" sm="6" cols="6">
+                              <div class="d-flex flex-column">
+                                <h3 class="reference-title">Beverly Andrews</h3>
+                                <p class="reference-subtitle mt-2">User interface designer</p>
+                              </div>
+                            </v-col>
+                            <!-- 1st column -->
+                            <!-- 2nd column -->
+                            <v-col md="6" sm="6" cols="6">
+                              <div class="d-flex flex-column">
+                                <p class="reference-address">42 Great Windmill Street London W1D 7NB</p>
+                                <p class="reference-address mt-n3">+915679654386754</p>
+                                <p class="reference-address mt-n3">Civie.com/myprofile</p>
+                              </div>
+                            </v-col>
+                            <!-- 2nd column -->
+                            <!-- 3rd column -->
+                            <v-col xl="9" lg="11" md="9" sm="10" cols="12">
+                              <v-card flat color="transparent pa-0">
+                                <div class="reference-duration">
+                                  <div class="d-flex flex-row">
+                                    <p>Google</p>
+                                    <p class="ml-2">Duration: Dec 19</p>
+                                  </div>
+                                </div>
+                                <div
+                                  class="reference-desc"
+                                >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
+                              </v-card>
+                            </v-col>
+                            <!-- 3rd column -->
+                          </v-row>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+                <!-- References tab -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -1081,9 +1131,9 @@ export default {
 .card-hobby {
   background: linear-gradient(0deg, #fafafa, #fafafa) !important;
   box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 20px !important; 
+  border-radius: 20px !important;
   width: 323px;
-  height:130px;
+  height: 130px;
 }
 
 .hobby-title {
@@ -1094,6 +1144,46 @@ export default {
   color: #000000;
 }
 
+.card-reference {
+  width: 753px;
+  height: 339px;
+  background: linear-gradient(0deg, #fafafa, #fafafa) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 30px !important;
+  font-family: "Open Sans" !important;
+  @media screen and (max-width: 599px){
+    width: auto;
+    height: auto;
+  }
+  .reference-title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 41px;
+    color: #333333 !important;
+  }
+  .reference-subtitle {
+    font-size: 18px;
+    line-height: 25px;
+    color: #333333 !important;
+  }
+  .reference-address {
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    text-decoration-line: underline;
+    color: #5843be !important;
+  }
+  .reference-duration {
+    font-size: 14px;
+    line-height: 19px;
+    color: #5843be !important;
+  }
+  .reference-desc {
+    font-size: 18px;
+    line-height: 23px;
+    color: #333333;
+  }
+}
 // hobbies tab
 </style>
 
