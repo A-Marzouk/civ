@@ -296,7 +296,7 @@
         padding-bottom: 20px;
 
         .payment-link{
-            background: rgba(196, 196, 196, 0.4);
+            background: rgba(196, 196, 196, 0.2);
             width: 210px;
             height: 90px;
             border-radius: 13px;

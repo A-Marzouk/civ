@@ -132,6 +132,9 @@
                             Price: <b style="text-transform: capitalize;">{{accountData.subscription.sub_frequency === 'monthly' ? '5 USD/month' : '50 USD/year'}}</b>
                         </div>
                         <div>
+                            Expires at: <b style="text-transform: capitalize;">{{accountData.subscription.expires_at}}</b>
+                        </div>
+                        <div>
                             Payment method: <b style="text-transform: capitalize;">{{accountData.subscription.payment_method}}</b>
                         </div>
                     </v-row>
@@ -845,6 +848,7 @@
                     justify-content: space-between;
                     width: 100%;
                     margin-bottom: 20px;
+                    margin-top: 20px;
 
                     @include lt-md {
                         .btn {

@@ -274,10 +274,11 @@
                   x-small
                   color="#ffffff"
                   class="footer-social-icon mx-1"
-                  v-for="i in contactIcons"
-                  :key="i.title"
+                  v-for="icon in contactIcons"
+                  :key="icon.title"
+                  :href="icon.url"
                 >
-                  <img :src="getContactIcons(i.title)" />
+                  <img :src="getContactIcons(icon.title)" />
                 </v-btn>
               </v-card-text>
             </v-card>
@@ -312,10 +313,11 @@
                   x-small
                   color="#ffffff"
                   class="footer-social-icon mx-sm-2 mx-1 mt-n2"
-                  v-for="i in contactIcons"
-                  :key="i.title"
+                  v-for="icon in contactIcons"
+                  :key="icon.title"
+                  :href="icon.url"
                 >
-                  <img :src="getContactIcons(i.title)" />
+                  <img :src="getContactIcons(icon.title)" />
                 </v-btn>
               </v-card-subtitle>
             </v-card>
@@ -398,11 +400,11 @@ export default {
         { id: 5, title: "Easy acception line payments" }
       ],
       contactIcons: [
-        { id: 1, title: "email" },
-        { id: 2, title: "messenger" },
-        { id: 3, title: "skype" },
-        { id: 4, title: "whatsapp" },
-        { id: 5, title: "slack" }
+        { id: 1, title: "email", url:'mailto:hi@civ.ie' },
+        { id: 2, title: "messenger", url: "https://www.facebook.com/civieapp" },
+        { id: 3, title: "skype", url:'skype:magictime.uk'},
+        { id: 4, title: "whatsapp", url: 'https://wa.me/353868447832'},
+        { id: 4, title: "telegram", url: 'https://t.me/conormarjoram'},
       ],
       users: ["nishad", "ahmed", "anton", "gladwin"],
 
@@ -484,7 +486,7 @@ export default {
       return `/images/welcome_landing_page/imgs/gallery/${id}.png`;
     },
     getContactIcons(title) {
-      return `/images/welcome_landing_page/icons/${title}.png`;
+      return `/images/welcome_landing_page/icons/contact_icons/${title}.png`;
     },
     playIntroVideo(){
       this.videoOn = true;

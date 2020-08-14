@@ -98,7 +98,9 @@ class UsersController extends Controller
 
     public function updateUserTheme(Request $request){
 
-        Auth::user()->update(
+        $user = User::findOrFail($request->user_id);
+
+        $user->update(
             ['theme_id' => $request->theme_id]
         );
 
@@ -110,7 +112,7 @@ class UsersController extends Controller
             'name' => 'required|max:191|min:3',
             'email'     => 'required|max:191|email',
             'password' => 'nullable|min:6|max:191|confirmed',
-            'username' => 'required|min:3|max:191',
+            'username' => 'required|unique:users,username,'. $request['id'].',id',
         ]);
 
 
@@ -166,6 +168,11 @@ class UsersController extends Controller
     }
 
     protected function createFreeSubscription($promCode){
+        // check code:
+        $activeCode = $promCode->is_active && !$this->isExpired($promCode);
+        if(!$activeCode){
+            return false;
+        }
         // free period:
         $free_months = $int = (int) filter_var( $promCode->free_period, FILTER_SANITIZE_NUMBER_INT);
         return Subscription::create([
@@ -176,7 +183,13 @@ class UsersController extends Controller
             'expires_at' => Carbon::now()->addMonths($free_months)->toDateString(),
             'promocode_id' => $promCode->id,
         ]);
+    }
 
+    protected function isExpired($promCode){
+        $expiring_date = Carbon::parse($promCode->expires_at);
+        $todays_date   = Carbon::now();
+
+        return $todays_date->gt($expiring_date);
     }
 
 }

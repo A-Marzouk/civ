@@ -107,16 +107,6 @@ export default {
           label: "Skills",
         },
         {
-          url: "/resume-builder/edit/portfolio",
-          icon: "portfolio",
-          label: "Portfolio",
-        },
-        {
-          url: "/resume-builder/edit/audio-video",
-          icon: "audio-video",
-          label: "Audio/Video",
-        },
-        {
           url: "/resume-builder/edit/hobbies",
           icon: "hobbies",
           label: "Hobbies",
@@ -127,30 +117,43 @@ export default {
           label: "Achievement",
         },
         {
-          url: "/resume-builder/edit/imports",
-          icon: "imports",
-          label: "Imports",
-        },
-        {
           url: "/resume-builder/edit/references",
           icon: "references",
           label: "References",
+        },
+        {
+          url: "/resume-builder/edit/audio-video",
+          icon: "audio-video",
+          label: "Audio/Video",
+        },
+        {
+          url: "/resume-builder/edit/portfolio",
+          icon: "portfolio",
+          label: "Portfolio",
         },
         {
           url: "/resume-builder/edit/pay-availability",
           icon: "pay-availability",
           label: "Pay availability",
         },
-        // {
-        //   url: "/resume-builder/edit/downloads",
-        //   icon: "downloads",
-        //   label: "Downloads"
-        // },
         {
           url: "/resume-builder/edit/structure",
           icon: "structure",
           label: "Structure",
         },
+        {
+          url: "/resume-builder/edit/imports",
+          icon: "imports",
+          label: "Imports",
+        },
+
+
+        // {
+        //   url: "/resume-builder/edit/downloads",
+        //   icon: "downloads",
+        //   label: "Downloads"
+        // },
+
         {
           url: "/resume-builder/edit/themes",
           icon: "themes",
@@ -361,7 +364,15 @@ export default {
       background: transparent;
       width: 300px;
 
-      .sidebar-links,
+      @media screen and (min-width: 1280px) and (max-width: 1520px) {
+        width: 200px;
+        margin-left: 20px !important;
+      }
+      @media screen and (min-width: 1520px) and (max-width: 1720px) {
+        width: 240px;
+        margin-left: 30px !important;
+      }
+        .sidebar-links,
       .sidebar-link-activator {
         &.sidebar-link-activator {
           display: none;
