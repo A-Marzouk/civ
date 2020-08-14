@@ -48,6 +48,17 @@ if ($("#subscription_modal").length !== 0) {
     });
 }
 
+import externalReference from './components/resume_builder/externalReference';
+if ($("#external_reference").length !== 0) {
+    new Vue({
+        el: '#external_reference',
+        vuetify,
+        components: {
+            'external-reference': externalReference
+        }
+    });
+}
+
 //api components
 require('./API');
 
