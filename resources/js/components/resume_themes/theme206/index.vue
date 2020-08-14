@@ -517,7 +517,7 @@
                   <v-container>
                     <v-row align="center" class="mx-auto">
                       <v-col xl="3" lg="4" md="4" sm="6" cols="12" v-for="i in 12" :key="i">
-                        <v-card class="card-hobby pa-5 mb-5">
+                        <v-card class="card-hobby pa-5 mb-5" hover>
                           <v-card-text>
                             <div class="d-flex flex-row justify-content-center align-items-center">
                               <img
@@ -539,7 +539,10 @@
                   <v-container>
                     <v-row align="center" class="mx-auto">
                       <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-for="i in 12" :key="i">
-                        <v-card class="card-reference mb-5 pa-xl-10 pa-lg-8 pa-md-10 pa-sm-10 pa-5">
+                        <v-card
+                          class="card-reference mb-5 pa-xl-10 pa-lg-8 pa-md-10 pa-sm-10 pa-5"
+                          hover
+                        >
                           <v-row align="center" justify="space-between">
                             <!-- 1st column -->
                             <v-col md="6" sm="6" cols="12">
@@ -582,20 +585,27 @@
                 <!-- References tab -->
                 <!-- Achievements tab -->
                 <v-tab-item>
-                  <v-container>
-                    <v-row align="center" class="mx-auto">
-                      <v-col xl="3" lg="4" md="4" sm="6" cols="12" v-for="i in 12" :key="i">
-                        <v-card class="card-hobby pa-5 mb-5">
-                          <v-card-text>
-                            <div class="d-flex flex-row justify-content-center align-items-center">
-                              <img
-                                src="/images/resume_themes/theme206/football.svg"
-                                alt="football"
-                                class="mx-auto"
-                              />
-                              <div class="hobby-title mx-auto my-auto">Football</div>
+                  <v-container :fluid="windowWidth<=959?true:false" class="achievement-container">
+                    <v-row align="center" justify="center" class="mx-auto">
+                      <v-col lg="6" md="12" sm="12" cols="12" v-for="i in 6" :key="i">
+                        <v-card
+                          class="card-achievement pa-xl-12 pa-lg-6 pa-md-12 pa-sm-9 pa-12 mb-6"
+                          hover
+                        >
+                          <div class="d-flex flex-row my-auto">
+                            <img
+                              src="/images/resume_themes/theme206/certificate.svg"
+                              alt="certificate"
+                            />
+                            <div class="ml-6">
+                              <p class="year mt-md-0 mt-sm-4 mt-0">2018</p>
+                              <h3 class="title mt-xl-0 mt-lg-n5">Award Certificate</h3>
+                              <p class="address">URL: 877859509505ghgkkdmdfj</p>
+                              <p
+                                class="desc"
+                              >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
                             </div>
-                          </v-card-text>
+                          </div>
                         </v-card>
                       </v-col>
                     </v-row>
@@ -622,6 +632,7 @@ export default {
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       drawer: false,
       mainDataTab: "",
       skillTab: "",
@@ -761,6 +772,9 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
   },
 };
 </script>
@@ -1207,6 +1221,71 @@ export default {
   }
 }
 // hobbies tab
+
+//achievement tab
+.achievement-container {
+  @media screen and (max-width: 959px){
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .card-achievement {
+    width: 813px !important;
+    height: 339px !important;
+    background: linear-gradient(0deg, #fafafa, #fafafa);
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 30px !important;
+    font-family: "Open Sans" !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      width: auto !important;
+      height: auto !important;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 41px;
+      color: #333333 !important;
+    }
+    .subtitle {
+      font-size: 18px;
+      line-height: 25px;
+      color: #333333 !important;
+    }
+    .address {
+      font-size: 14px;
+      line-height: 19px;
+      /* identical to box height */
+      text-decoration-line: underline;
+      color: #5843be !important;
+    }
+    .year {
+      font-size: 18px;
+      line-height: 25px;
+      color: #4c4c4c !important;
+    }
+    .desc {
+      font-size: 18px;
+      line-height: 23px;
+      color: #333333;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 16px;
+        line-height: 18px;
+      }
+    }
+    img {
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 50%;
+        height: auto;
+      }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        width: 321px;
+        height: 248px;
+        margin-top: 11px;
+      }
+    }
+  }
+}
+
+//achievement tab
 </style>
 
 <style>
