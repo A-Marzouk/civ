@@ -9,35 +9,27 @@
         <div class="half-circle"></div>
         <v-container fluid pa-0 ma-0 style="width: 100%;">
           <v-row class align="center" justify="center" dense>
-            <v-col
-              md="4"
-              sm="7"
-              :class="{ 'active-indicator': currentTab === 'profile' }"
-            >
+            <v-col md="4" sm="7" :class="{ 'active-indicator': currentTab === 'profile' }">
               <v-card flat color="transparent" class="pa-0">
-                <v-card-title class="custom-profile-title">{{
+                <v-card-title class="custom-profile-title">
+                  {{
                   currentUser.personal_info.full_name
-                }}</v-card-title>
-                <v-card-subtitle class="custom-profile-subtitle">
-                  {{ currentUser.personal_info.designation }}</v-card-subtitle
-                >
+                  }}
+                </v-card-title>
+                <v-card-subtitle
+                  class="custom-profile-subtitle"
+                >{{ currentUser.personal_info.designation }}</v-card-subtitle>
                 <v-card-text
                   class="custom-profile-text hidden-sm-and-down"
                   v-if="currentUser.personal_info.overview"
-                >
-                  {{ currentUser.personal_info.overview }}</v-card-text
-                >
+                >{{ currentUser.personal_info.overview }}</v-card-text>
               </v-card>
             </v-col>
 
             <!-- Social Buttons for tablet only -->
             <v-col sm="5" class="d-none d-sm-flex d-md-none">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn
-                  color="#FAFAFA"
-                  class="btn-hire-me hidden-sm-and-down"
-                  x-large
-                >
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
@@ -73,10 +65,7 @@
               >
                 <v-list-item two-line class>
                   <v-list-item-avatar size="18">
-                    <img
-                      width="18"
-                      src="/images/resume_themes/theme206/icons/usd.png"
-                    />
+                    <img width="18" src="/images/resume_themes/theme206/icons/usd.png" />
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
@@ -86,9 +75,11 @@
                     </v-list-item-subtitle>
                     <v-list-item-subtitle v-if="currentUser.payment_info">
                       <v-card color="transparent" flat tile>
-                        <span class="rate">{{
+                        <span class="rate">
+                          {{
                           currentUser.payment_info[0].salary
-                        }}</span>
+                          }}
+                        </span>
                       </v-card>
                     </v-list-item-subtitle>
                   </v-list-item-content>
@@ -99,10 +90,7 @@
 
                 <v-list-item two-line class="availibilty-col">
                   <v-list-item-avatar size="16">
-                    <img
-                      width="16"
-                      src="/images/resume_themes/theme206/icons/watch.png"
-                    />
+                    <img width="16" src="/images/resume_themes/theme206/icons/watch.png" />
                   </v-list-item-avatar>
                   <v-list-item-content>
                     <v-list-item-subtitle>
@@ -112,9 +100,9 @@
                     </v-list-item-subtitle>
                     <v-list-item-subtitle v-if="currentUser.availability_info">
                       <v-card color="transparent" class="pa-0 ma-0" flat tile>
-                        <span class="rate"
-                          >{{
-                            currentUser.availability_info[0].available_hours
+                        <span class="rate">
+                          {{
+                          currentUser.availability_info[0].available_hours
                           }}
                         </span>
                       </v-card>
@@ -129,11 +117,7 @@
             <!-- 3rd column -->
             <v-col md="5" class="hidden-sm-and-down" align="right">
               <v-card flat color="transparent" class="pa-0 hire-me-card">
-                <v-btn
-                  color="#FAFAFA"
-                  class="btn-hire-me hidden-sm-and-down"
-                  x-large
-                >
+                <v-btn color="#FAFAFA" class="btn-hire-me hidden-sm-and-down" x-large>
                   <v-icon color="#5843BE" left>mdi-email</v-icon>Hire Me
                 </v-btn>
 
@@ -178,23 +162,14 @@
         <v-btn icon color="#333333" @click.stop="drawer = !drawer">
           <v-app-bar-nav-icon color="#333333"></v-app-bar-nav-icon>
         </v-btn>
-        <v-toolbar-title class="custom-toolbar-title-mobile">{{
+        <v-toolbar-title class="custom-toolbar-title-mobile">
+          {{
           currentUser.personal_info.full_name
-        }}</v-toolbar-title>
+          }}
+        </v-toolbar-title>
       </v-app-bar>
-      <v-navigation-drawer
-        app
-        color="#fafafa"
-        v-model="drawer"
-        temporary
-        absolute
-        width="350"
-      >
-        <v-card
-          flat
-          color="transparent"
-          :class="{ 'active-indicator': currentTab === 'profile' }"
-        >
+      <v-navigation-drawer app color="#fafafa" v-model="drawer" temporary absolute width="350">
+        <v-card flat color="transparent" :class="{ 'active-indicator': currentTab === 'profile' }">
           <v-card-title class="profile-text-mobile">Profile</v-card-title>
           <v-list-item class="mt-n12">
             <v-list-item-avatar size="80">
@@ -204,16 +179,20 @@
             <v-list-item-content class="mt-12">
               <v-list-item-title>
                 <v-card color="transparent" class="pa-2" flat>
-                  <span class="profile-title-mobile">{{
+                  <span class="profile-title-mobile">
+                    {{
                     currentUser.personal_info.full_name
-                  }}</span>
+                    }}
+                  </span>
                 </v-card>
               </v-list-item-title>
               <v-list-item-subtitle>
                 <v-card flat color="transparent" class="pa-2 mt-n5">
-                  <span class="profile-subtitle-mobile">{{
+                  <span class="profile-subtitle-mobile">
+                    {{
                     currentUser.personal_info.designation
-                  }}</span>
+                    }}
+                  </span>
                 </v-card>
               </v-list-item-subtitle>
               <v-list-item-title>
@@ -246,9 +225,11 @@
         </v-card>
         <v-card flat color="transparent">
           <v-card-title class="about-me-title-mobile">About Me</v-card-title>
-          <v-card-text class="about-me-text-mobile">{{
+          <v-card-text class="about-me-text-mobile">
+            {{
             currentUser.personal_info.about
-          }}</v-card-text>
+            }}
+          </v-card-text>
         </v-card>
       </v-navigation-drawer>
       <!-- For mobile version only -->
@@ -259,12 +240,7 @@
         <v-row justify="center" align="center">
           <v-col cols="12" md="11">
             <!-- for mobile version  -->
-            <v-tabs
-              v-model="mainDataTab"
-              fixed-tabs
-              hide-slider
-              class="hidden-sm-and-up my-10"
-            >
+            <v-tabs v-model="mainDataTab" fixed-tabs hide-slider class="hidden-sm-and-up my-10">
               <v-tab
                 v-for="tab in tabItems"
                 :key="tab.id"
@@ -274,9 +250,11 @@
                 <v-avatar tile size="16">
                   <img :src="getTabIcon(tab.id)" width="16" />
                 </v-avatar>
-                <span class="ml-2" v-if="activeTab == tab.value">{{
+                <span class="ml-2" v-if="activeTab == tab.value">
+                  {{
                   tab.title
-                }}</span>
+                  }}
+                </span>
               </v-tab>
             </v-tabs>
             <!-- for mobile version  -->
@@ -330,10 +308,7 @@
                           v-show="project.is_public"
                         >
                           <v-card class="card-portfolio" hover>
-                            <v-img
-                              :aspect-ratio="1.2"
-                              :src="getProjectMainImage(project)"
-                            ></v-img>
+                            <v-img :aspect-ratio="1.2" :src="getProjectMainImage(project)"></v-img>
                           </v-card>
                         </v-col>
                       </v-row>
@@ -357,19 +332,18 @@
                           {{ education.university_name }}
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img
-                              src="/images/resume_themes/theme206/tabs/2.png"
-                              alt
-                            />
+                            <img src="/images/resume_themes/theme206/tabs/2.png" alt />
                           </span>
                         </v-card-title>
-                        <v-card-text class="education-subtitle">{{
+                        <v-card-text class="education-subtitle">
+                          {{
                           education.description
-                        }}</v-card-text>
+                          }}
+                        </v-card-text>
                         <v-card-actions class="education-session pl-4">
                           {{ getFullYear(education.date_from) }} -
-                          {{ getFullYear(education.date_to) }}</v-card-actions
-                        >
+                          {{ getFullYear(education.date_to) }}
+                        </v-card-actions>
                       </v-card>
                     </v-col>
                   </v-row>
@@ -392,19 +366,18 @@
                           {{ work.job_title }}
                           <v-spacer></v-spacer>
                           <span class="ml-12">
-                            <img
-                              src="/images/resume_themes/theme206/tabs/3.png"
-                              alt
-                            />
+                            <img src="/images/resume_themes/theme206/tabs/3.png" alt />
                           </span>
                         </v-card-title>
-                        <v-card-text class="education-subtitle">{{
+                        <v-card-text class="education-subtitle">
+                          {{
                           work.company_name
-                        }}</v-card-text>
+                          }}
+                        </v-card-text>
                         <v-card-actions class="education-session pl-4">
                           {{ getFullYear(work.date_from) }} -
-                          {{ getFullYear(work.date_to) }}</v-card-actions
-                        >
+                          {{ getFullYear(work.date_to) }}
+                        </v-card-actions>
                       </v-card>
                     </v-col>
                   </v-row>
@@ -432,8 +405,7 @@
                                 ? 'skill-child-tab-active'
                                 : 'skill-child-tab',
                             ]"
-                            >{{ skill.title }}</v-tab
-                          >
+                          >{{ skill.title }}</v-tab>
                         </v-tabs>
                       </v-card>
                       <!-- Child Tabs -->
@@ -469,15 +441,16 @@
                                   <v-card color="#FAFAFA">
                                     <v-card-text>
                                       <v-row>
-                                        <v-col cols="6" class="skill-title">{{
+                                        <v-col cols="6" class="skill-title">
+                                          {{
                                           s.title
-                                        }}</v-col>
+                                          }}
+                                        </v-col>
                                         <v-col
                                           cols="6"
                                           align="right"
                                           class="skill-title"
-                                          >{{ s.percentage }}%</v-col
-                                        >
+                                        >{{ s.percentage }}%</v-col>
                                         <v-col cols="12">
                                           <v-progress-linear
                                             style="
@@ -534,11 +507,125 @@
                     <v-card-text
                       class="about-me-text"
                       v-if="currentUser.personal_info.about"
-                      >{{ currentUser.personal_info.about }}</v-card-text
-                    >
+                    >{{ currentUser.personal_info.about }}</v-card-text>
                   </v-card>
                 </v-tab-item>
                 <!-- About Me -->
+
+                <!-- Hobbies tab -->
+                <v-tab-item>
+                  <v-container>
+                    <v-row align="center" class="mx-auto">
+                      <v-col xl="3" lg="4" md="4" sm="6" cols="6" v-for="i in 12" :key="i">
+                        <v-card class="card-hobby pa-md-5 pa-sm-5 pa-0 mb-5" hover>
+                          <v-card-text>
+                            <div
+                              class="d-flex flex-row justify-content-center align-items-center mt-md-0 mt-sm-0 mt-1"
+                            >
+                              <img
+                                src="/images/resume_themes/theme206/football.svg"
+                                alt="football"
+                                class="mx-auto"
+                              />
+                              <div class="hobby-title mx-auto my-auto">Football</div>
+                            </div>
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+                <!-- Hobbies tab -->
+                <!-- References tab -->
+                <v-tab-item>
+                  <v-container>
+                    <v-row align="center" class="mx-auto">
+                      <v-col xl="6" lg="6" md="12" sm="12" cols="12" v-for="i in 12" :key="i">
+                        <v-card
+                          class="card-reference mb-5 pa-xl-10 pa-lg-8 pa-md-10 pa-sm-10 pa-5"
+                          hover
+                        >
+                          <v-row align="center" justify="space-between">
+                            <!-- 1st column -->
+                            <v-col md="6" sm="6" cols="12">
+                              <div class="d-flex flex-column">
+                                <h3 class="reference-title">Beverly Andrews</h3>
+                                <p class="reference-subtitle mt-2">User interface designer</p>
+                              </div>
+                            </v-col>
+                            <!-- 1st column -->
+                            <!-- 2nd column -->
+                            <v-col md="6" sm="6" cols="12">
+                              <div class="d-flex flex-column">
+                                <p class="reference-address">42 Great Windmill Street London W1D 7NB</p>
+                                <p class="reference-address mt-n3">+915679654386754</p>
+                                <p class="reference-address mt-n3">Civie.com/myprofile</p>
+                              </div>
+                            </v-col>
+                            <!-- 2nd column -->
+                            <!-- 3rd column -->
+                            <v-col xl="9" lg="11" md="9" sm="10" cols="12">
+                              <v-card flat color="transparent pa-0">
+                                <div class="reference-duration">
+                                  <div class="d-flex flex-row">
+                                    <p>Google</p>
+                                    <p class="ml-2">Duration: Dec 19</p>
+                                  </div>
+                                </div>
+                                <div
+                                  class="reference-desc"
+                                >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</div>
+                              </v-card>
+                            </v-col>
+                            <!-- 3rd column -->
+                          </v-row>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+                <!-- References tab -->
+                <!-- Achievements tab -->
+                <v-tab-item>
+                  <v-container :fluid="windowWidth<=959?true:false" class="achievement-container">
+                    <v-row align="center" justify="center" class="mx-auto">
+                      <v-col lg="6" md="12" sm="12" cols="12" v-for="i in 6" :key="i">
+                        <v-card
+                          class="card-achievement pa-xl-12 pa-lg-6 pa-md-12 pa-sm-9 pa-2 mb-6"
+                          hover
+                        >
+                          <div class="d-flex flex-row my-auto">
+                            <img
+                              class="mt-sm-0 mt-3"
+                              src="/images/resume_themes/theme206/certificate.svg"
+                              alt="certificate"
+                            />
+                            <div class="ml-md-6 ml-sm-3 ml-1">
+                              <p class="year mt-md-0 mt-sm-4 mt-0 hidden-xs-only">2018</p>
+                              <v-row>
+                                <v-col md="12" sm="12" cols="9">
+                                  <h3 class="title mt-xl-0 mt-lg-n5">Award Certificate</h3>
+                                </v-col>
+                                <v-col cols="3" class="hidden-sm-and-up">
+                                  <p class="year">2018</p>
+                                </v-col>
+                              </v-row>
+
+                              <p class="address mt-sm-0 mt-n7">URL: 877859509505ghgkkdmdfj</p>
+                              <p
+                                class="desc hidden-xs-only"
+                              >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
+                            </div>
+                          </div>
+                          <p
+                            class="desc hidden-xs-sm-and-up mt-3"
+                          >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+                <!-- Achievements Tab -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -555,10 +642,11 @@ import audioMedia from "./media/audioMedia";
 export default {
   props: ["user", "is_preview", "currentTab"],
   components: {
-    audioMedia
+    audioMedia,
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       drawer: false,
       mainDataTab: "",
       skillTab: "",
@@ -569,12 +657,12 @@ export default {
         name: "Hean Prinsloo",
         designation: "Graphic Designer",
         detail:
-          "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices..."
+          "Donec a augue gravida, vulputate ligula et, pellentesque arcu. Morbi feugiat eros nec sem ultrices...",
       },
       socialIcons: [
         { id: 1, title: "twitter" },
         { id: 2, title: "facebook" },
-        { id: 3, title: "instagram" }
+        { id: 3, title: "instagram" },
       ],
       tabItems: [
         { id: 1, title: "Portfolio", value: "portfolio" },
@@ -582,7 +670,10 @@ export default {
         { id: 3, title: "Experience", value: "work-experience" },
         { id: 4, title: "Skills", value: "skills" },
         { id: 5, title: "Media", value: "media" },
-        { id: 6, title: "About Me", value: "about" }
+        { id: 6, title: "About Me", value: "about" },
+        { id: 7, title: "Hobbies", value: "hobby" },
+        { id: 8, title: "References", value: "reference" },
+        { id: 9, title: "Achievements", value: "achievement" },
       ],
       portfolioItems: [
         { id: 1, image: 1 },
@@ -592,7 +683,7 @@ export default {
         { id: 5, image: 1 },
         { id: 6, image: 2 },
         { id: 7, image: 3 },
-        { id: 8, image: 4 }
+        { id: 8, image: 4 },
       ],
       experienceItems: [
         {
@@ -600,58 +691,58 @@ export default {
           title: "Front End Developer",
           detail:
             "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013"
+          session: "2010-2013",
         },
         {
           id: 2,
           title: "UX/UI Designer",
           detail:
             "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013"
+          session: "2010-2013",
         },
         {
           id: 2,
           title: "Graphic Design",
           detail:
             "Parallel to the Potsgraduate degree in computer security, I studied Digital Marketing.",
-          session: "2010-2013"
-        }
+          session: "2010-2013",
+        },
       ],
       skills: [
         {
           id: 1,
           title: "Programming Languages",
-          value: "programming_languages"
+          value: "programming_languages",
         },
         { id: 2, title: "Frameworks", value: "frameworks" },
         { id: 3, title: "Design Skills", value: "design" },
-        { id: 4, title: "Software", value: "software" }
-      ]
+        { id: 4, title: "Software", value: "software" },
+      ],
     };
   },
   watch: {
     // if current tab changed, change the active tab as well.
-    currentTab: function(val) {
+    currentTab: function (val) {
       this.activeTab = val;
-    }
+    },
   },
   methods: {
     skillCategory(skillName) {
       var filteredSkill = this.currentUser.skills.filter(
-        s => s.category === skillName
+        (s) => s.category === skillName
       );
       return filteredSkill;
     },
     findAudio(audio) {
-      var url = audio.find(s => s.type === "audio").url;
+      var url = audio.find((s) => s.type === "audio").url;
       return url;
     },
     filterAudio(audios) {
-      var filterArray = audios.filter(a => a.type === "audio");
+      var filterArray = audios.filter((a) => a.type === "audio");
       return filterArray;
     },
     findVideo(video) {
-      var url = video.find(s => s.type === "video").url;
+      var url = video.find((s) => s.type === "video").url;
       return url;
     },
     getFullYear(date) {
@@ -663,7 +754,7 @@ export default {
       let mainImage = "";
 
       let images = project.images;
-      images.forEach(image => {
+      images.forEach((image) => {
         if (image.is_main) {
           mainImage = image;
         }
@@ -685,7 +776,7 @@ export default {
     },
     setDummyUser() {
       this.currentUser = this.$store.state.dummyUser;
-    }
+    },
   },
   mounted() {
     // if there is no user or the preview is true, set dummy user
@@ -695,7 +786,10 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
-  }
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
+  },
 };
 </script>
 
@@ -748,7 +842,7 @@ export default {
   font-size: 2rem;
   line-height: 3.375rem;
   color: #333333 !important;
-  @media screen and (min-width:960px) and (max-width:1263px){
+  @media screen and (min-width: 960px) and (max-width: 1263px) {
     font-size: 1.75rem;
   }
   @media screen and(max-width:959px) {
@@ -1083,6 +1177,161 @@ export default {
     margin-left: -20px;
   }
 }
+//hobbies tab
+.card-hobby {
+  background: linear-gradient(0deg, #fafafa, #fafafa) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 20px !important;
+  width: 323px;
+  height: 130px;
+  @media screen and (max-width: 599px) {
+    width: 180px;
+    height: 73px;
+    img {
+      width: 35.61px;
+      height: 35.61px;
+    }
+  }
+}
+
+.hobby-title {
+  font-family: "Poppins";
+  font-size: 18px;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: #000000;
+  @media screen and (max-width: 599px) {
+    font-size: 14px;
+    line-height: 21px;
+  }
+}
+
+.card-reference {
+  width: 753px;
+  height: 339px;
+  background: linear-gradient(0deg, #fafafa, #fafafa) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 30px !important;
+  font-family: "Open Sans" !important;
+  @media screen and (max-width: 599px) {
+    width: auto;
+    height: auto;
+  }
+  .reference-title {
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 41px;
+    color: #333333 !important;
+  }
+  .reference-subtitle {
+    font-size: 18px;
+    line-height: 25px;
+    color: #333333 !important;
+  }
+  .reference-address {
+    font-size: 14px;
+    line-height: 19px;
+    /* identical to box height */
+    text-decoration-line: underline;
+    color: #5843be !important;
+  }
+  .reference-duration {
+    font-size: 14px;
+    line-height: 19px;
+    color: #5843be !important;
+  }
+  .reference-desc {
+    font-size: 18px;
+    line-height: 23px;
+    color: #333333;
+  }
+}
+// hobbies tab
+
+//achievement tab
+.achievement-container {
+  @media screen and (max-width: 959px) {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .card-achievement {
+    width: 813px !important;
+    height: 339px !important;
+    background: linear-gradient(0deg, #fafafa, #fafafa);
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 30px !important;
+    font-family: "Open Sans" !important;
+    @media screen and (min-width: 1264px) and (max-width: 1903px) {
+      width: auto !important;
+      height: auto !important;
+    }
+    @media screen and (max-width: 599px) {
+      width: 375px !important;
+      height: 223px !important;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 30px !important;
+      line-height: 41px;
+      color: #333333 !important;
+      @media screen and (max-width: 599px) {
+        font-size: 18px !important;
+        line-height: 25px;
+      }
+      span {
+        font-size: 14px !important;
+        line-height: 19px !important;
+        color: #4c4c4c !important;
+      }
+    }
+    .subtitle {
+      font-size: 18px;
+      line-height: 25px;
+      color: #333333 !important;
+    }
+    .address {
+      font-size: 14px;
+      line-height: 19px;
+      /* identical to box height */
+      text-decoration-line: underline;
+      color: #5843be !important;
+    }
+    .year {
+      font-size: 18px;
+      line-height: 25px;
+      color: #4c4c4c !important;
+      @media screen and (max-width: 599px) {
+        font-size: 14px;
+      }
+    }
+    .desc {
+      font-size: 18px;
+      line-height: 23px;
+      color: #333333;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 16px;
+        line-height: 18px;
+      }
+    }
+    img {
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        width: 50%;
+        height: auto;
+      }
+      @media screen and (min-width: 600px) and (max-width: 959px) {
+        width: 321px;
+        height: 248px;
+        margin-top: 11px;
+      }
+      @media screen and (max-width: 599px) {
+        width: 104px;
+        height: 81px;
+      }
+    }
+  }
+}
+
+//achievement tab
 </style>
 
 <style>
