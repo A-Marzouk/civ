@@ -17,10 +17,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Reference Type"
                                         v-model="reference.type"
+                                        :error="!!errors.type"
+                                        :error-messages="errors.type"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -35,10 +35,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Full Name"
                                         v-model="reference.name"
+                                        :error="!!errors.name"
+                                        :error-messages="errors.name"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -54,10 +54,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Title/Position"
                                         v-model="reference.title"
+                                        :error="!!errors.title"
+                                        :error-messages="errors.title"
                                 ></v-text-field>
                             </v-col>
 
@@ -74,10 +74,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Phone"
                                         v-model="reference.phone"
+                                        :error="!!errors.phone"
+                                        :error-messages="errors.phone"
                                 ></v-text-field>
                             </v-col>
 
@@ -95,9 +95,9 @@
                                         outlined
                                         color="#001CE2"
                                         v-model="reference.email"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Email"
+                                        :error="!!errors.email"
+                                        :error-messages="errors.email"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -112,10 +112,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Company"
                                         v-model="reference.company"
+                                        :error="!!errors.company"
+                                        :error-messages="errors.company"
                                 ></v-text-field>
                             </v-col>
 
@@ -130,10 +130,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Address"
                                         v-model="reference.address"
+                                        :error="!!errors.address"
+                                        :error-messages="errors.address"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -148,10 +148,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="URL"
                                         v-model="reference.url"
+                                        :error="!!errors.url"
+                                        :error-messages="errors.url"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -177,6 +177,8 @@
                                             :options="dropzoneOptions"
                                             :useCustomSlot="true"
                                             v-model="reference.image"
+                                            :error="!!errors.imag"
+                                            :error-messages="errors.image"
                                     >
                                         <div class="dropzone-custom-content">
                                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
@@ -197,10 +199,10 @@
                                         class="resume-builder__input civie-textarea"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledTextarea}"
-                                        :disabled="disabledTextarea"
                                         label="Description"
                                         v-model="reference.reference_text"
+                                        :error="!!errors.reference_text"
+                                        :error-messages="errors.reference_text"
                                 ></v-textarea>
                             </v-col>
                             <!-- <v-col
@@ -231,7 +233,6 @@
 </template>
 
 <script>
-    import {moveTabsHelper} from "../../helpers/tab-animations";
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
 
@@ -243,9 +244,6 @@
         data() {
             return {
                 windowWidth: window.innerWidth,
-                activeTab: "References",
-                tabs: ["References", "Referee", "Testimonials"],
-                references: ["Reference", "Reference2"],
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
                     thumbnailWidth: 150,
@@ -254,30 +252,14 @@
                     acceptedFiles: "image/*",
                     addRemoveLinks: true
                 },
-                newTestimonial: {
-                    title: "",
-                    description: ""
-                },
-                editedTestimonial: {},
-                optionTestimonialId: 0,
                 errors: {},
-                rules: [value => !!value || "Please fill this field."],
-                disabledInput: false,
-                disabledTextarea: false,
-                addNewTestimonial: false,
                 importImage: "",
-                tempReferenceImage: ''
+                tempReferenceImage: '',
             };
         },
         computed: {
             reference() {
                 return this.$store.state.user.reference;
-            },
-            referee() {
-                return this.$store.state.user.referee;
-            },
-            testimonials() {
-                return this.$store.state.user.testimonials;
             }
         },
         props: ["selectProps", "inputProps", "textareaProps"],
