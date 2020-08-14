@@ -511,6 +511,25 @@
                   </v-card>
                 </v-tab-item>
                 <!-- About Me -->
+
+                <!-- About Me -->
+                <v-tab-item>
+                  <v-container>
+                    <v-row align="center" class="mx-auto">
+                      <v-col xl="3" lg="4" md="4" sm="6" cols="12" v-for="i in 12" :key="i">
+                        <v-card class="card-hobby pa-5 mb-5">
+                          <v-card-text>
+                            <div class="d-flex flex-row justify-content-center align-items-center">
+                              <img src="/images/resume_themes/theme206/football.svg" alt="football" class="mx-auto" />
+                              <div class="hobby-title mx-auto my-auto">Football</div>
+                            </div>
+                          </v-card-text>
+                        </v-card>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-tab-item>
+                <!-- About Me -->
               </v-tabs-items>
             </v-card>
           </v-col>
@@ -1058,6 +1077,24 @@ export default {
     margin-left: -20px;
   }
 }
+//hobbies tab
+.card-hobby {
+  background: linear-gradient(0deg, #fafafa, #fafafa) !important;
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 20px !important; 
+  width: 323px;
+  height:130px;
+}
+
+.hobby-title {
+  font-family: "Poppins";
+  font-size: 18px;
+  line-height: 27px;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+// hobbies tab
 </style>
 
 <style>
