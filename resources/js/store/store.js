@@ -49,7 +49,7 @@ export const store = new Vuex.Store({
                     is_public: 1
                 },
             ],
-            availability_info:[
+            availability_info: [
                 {
                     available_hours: '40',
                     available_hours_frequency: 'weekly',
@@ -290,7 +290,95 @@ export const store = new Vuex.Store({
                     is_public: 1
                 }
             ],
-            media:[]
+            references: [
+                {
+                    id: "1",
+                    type: "Reference",
+                    name: "John Doe",
+                    title: "UX DESINGER",
+                    phone: "+212634842495",
+                    email: "john@doe.com",
+                    company: "123WORKEFORCE",
+                    address: "London, UK",
+                    url: 'https://civ.ie',
+                    reference_text: 'John Doe, One of the greatest UX designers of all time.',
+                    notes: null,
+                    image: '/images/portfolio2.png',
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                },
+                {
+                    id: "1",
+                    type: "Reference",
+                    name: "John Doe",
+                    title: "UX DESINGER",
+                    phone: "+212634842495",
+                    email: "john@doe.com",
+                    company: "123WORKEFORCE",
+                    address: "London, UK",
+                    url: 'https://civ.ie',
+                    reference_text: 'John Doe, One of the greatest UX designers of all time.',
+                    notes: null,
+                    image: '/images/portfolio2.png',
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                },
+                {
+                    id: "1",
+                    type: "Reference",
+                    name: "John Doe",
+                    title: "UX DESINGER",
+                    phone: "+212634842495",
+                    email: "john@doe.com",
+                    company: "123WORKEFORCE",
+                    address: "London, UK",
+                    url: 'https://civ.ie',
+                    reference_text: 'John Doe, One of the greatest UX designers of all time.',
+                    notes: null,
+                    image: '/images/portfolio2.png',
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                },
+            ],
+            hobbies: [
+                {
+                    title: "Football",
+                    category: "Sports",
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                },
+                {
+                    title: "Football",
+                    category: "Sports",
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                },
+                {
+                    title: "Football",
+                    category: "Sports",
+                    order: "1",
+                    is_public: "1",
+                    user_id: "2",
+                    created_at: "2020-06-23 09:34:43",
+                    updated_at: "2020-07-20 09:12:51"
+                },
+            ],
+            media: []
         },
         themeUser: {},
         access_token: Vue.$cookies.get('access_token') || null
@@ -303,109 +391,109 @@ export const store = new Vuex.Store({
             state.themeUser = themeUser;
         },
         updateActivity(state) {
-            axios.post('/api/user/update-last-activity',{user_id: state.user.id}).then((response) => {
+            axios.post('/api/user/update-last-activity', {user_id: state.user.id}).then((response) => {
             }).catch((error) => {
                 console.log('Error - last activity');
             });
 
             // reload the iframe of exists:
             let updateIframeHolder = $('#updateIframe');
-            if(updateIframeHolder.length){
+            if (updateIframeHolder.length) {
                 updateIframeHolder.click();
             }
         },
-        updateLinks(state, links){
+        updateLinks(state, links) {
             state.user.links = links;
-            axios.post('/api/user/links/update-order', {links : links})
-                .then( response => {
+            axios.post('/api/user/links/update-order', {links: links})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateReferences(state, references){
+        updateReferences(state, references) {
             state.user.references = references;
-            axios.post('/api/user/references/update-order', {references : references})
-                .then( () => {
+            axios.post('/api/user/references/update-order', {references: references})
+                .then(() => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateTabs(state, tabs){
+        updateTabs(state, tabs) {
             state.user.tabs = tabs;
-            axios.post('/api/user/tabs/update-order', {tabs : tabs})
-                .then( response => {
+            axios.post('/api/user/tabs/update-order', {tabs: tabs})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateDownloads(state, downloads){
+        updateDownloads(state, downloads) {
             state.user.downloads = downloads;
-            axios.post('/api/user/downloads/update-order', {tabs : downloads})
-                .then( response => {
+            axios.post('/api/user/downloads/update-order', {tabs: downloads})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateWorks(state, works){
+        updateWorks(state, works) {
             state.user.work_experience = works;
-            axios.post('/api/user/work-experience/update-order', {works : works})
-                .then( response => {
+            axios.post('/api/user/work-experience/update-order', {works: works})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateEducation(state, educations){
+        updateEducation(state, educations) {
             state.user.education = educations;
-            axios.post('/api/user/education/update-order', {educations : educations})
-                .then( response => {
+            axios.post('/api/user/education/update-order', {educations: educations})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateProjects(state, projects){
+        updateProjects(state, projects) {
             state.user.projects = projects;
-            axios.post('/api/user/projects/update-order', {projects : projects})
-                .then( response => {
+            axios.post('/api/user/projects/update-order', {projects: projects})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateImports(state, imports){
+        updateImports(state, imports) {
             state.user.imports = imports;
-            axios.post('/api/user/imports/update-order', {imports : imports})
-                .then( response => {
+            axios.post('/api/user/imports/update-order', {imports: imports})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateMedia(state, medias){
-            state.user.media  = medias;
-            axios.post('/api/user/media/update-order', {medias : medias})
-                .then( response => {
+        updateMedia(state, medias) {
+            state.user.media = medias;
+            axios.post('/api/user/media/update-order', {medias: medias})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateSkills(state, skills){
+        updateSkills(state, skills) {
             state.user.skills = skills;
-            axios.post('/api/user/skills/update-order', {skills : skills})
-                .then( response => {
+            axios.post('/api/user/skills/update-order', {skills: skills})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateHobbies(state, hobbies){
+        updateHobbies(state, hobbies) {
             state.user.hobbies = hobbies;
-            axios.post('/api/user/hobbies/update-order', {hobbies : hobbies})
-                .then( response => {
+            axios.post('/api/user/hobbies/update-order', {hobbies: hobbies})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
         },
-        updateAchievements(state, achievements){
+        updateAchievements(state, achievements) {
             state.user.achievements = achievements;
-            axios.post('/api/user/achievements/update-order', {achievements : achievements})
-                .then( response => {
+            axios.post('/api/user/achievements/update-order', {achievements: achievements})
+                .then(response => {
                     this.dispatch('flyingNotification');
                 })
                 .catch();
@@ -462,12 +550,12 @@ export const store = new Vuex.Store({
 
     },
     actions: {
-        setCurrentUser: (store,payload = {}) => {
-            if(payload.id){
+        setCurrentUser: (store, payload = {}) => {
+            if (payload.id) {
                 store.commit('setCurrentUser', payload);
-            }else{
+            } else {
                 let param = '';
-                if(store.state.user.id !== undefined){
+                if (store.state.user.id !== undefined) {
                     param = '?user_id=' + store.state.user.id;
                 }
                 axios.get('/api/user' + param).then((response) => {
