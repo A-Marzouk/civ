@@ -26,7 +26,7 @@
                                                 @change="selectCurrentPayment(salary_frequency)"
                                                 v-model="salary_frequency"
                                         >
-                                            <button class="dropdown-icon icon" slot="append">
+                                            <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
                                             </button>
                                         </v-select>
@@ -81,7 +81,7 @@
                                                 color="#001CE2"
                                                 v-model="availability_frequency"
                                         >
-                                            <button class="dropdown-icon icon" slot="append">
+                                            <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
                                             </button>
                                         </v-select>
