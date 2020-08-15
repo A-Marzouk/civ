@@ -143,6 +143,16 @@
 
     // File input
 
+    &.civie-dropzone.error {
+
+        .v-input__slot {
+            border-color: red !important;
+            label{
+                color: red !important;
+            }
+        }
+    }
+
     &.civie-dropzone {
         font-family: 'Noto Sans', Arial, Helvetica, sans-serif !important;
 

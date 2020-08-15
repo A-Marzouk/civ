@@ -14,6 +14,7 @@
                   color="#001CE2"
                   v-model="editedAchievement.type"
                   :error = "!!errors.type"
+                  :error-messages = "errors.type"
           >
           </v-text-field>
           <v-text-field
@@ -25,6 +26,7 @@
                   color="#001CE2"
                   v-model="editedAchievement.url"
                   :error = "!!errors.url"
+                  :error-messages = "errors.url"
           >
           </v-text-field>
           <v-textarea
@@ -35,11 +37,13 @@
                   color="#001CE2"
                   v-model="editedAchievement.description"
                   :error = "!!errors.description"
+                  :error-messages = "errors.description"
 
           ></v-textarea>
           <!-- Using v-input classes -->
           <v-input
                   class="resume-builder__input civie-dropzone v-text-field v-text-field--outlined v-text-field--enclosed"
+                  :class="{'error' : !!errors.file || !!errors.image_src}"
                   outlined
                   label="Upload Image"
                   hint="(Maximum 1 file)"
@@ -50,7 +54,7 @@
                     :options="dropzoneOptions"
                     v-model = "editedAchievement.images"
                     :useCustomSlot="true"
-                    v-on:vdropzone-file-added="handlingEvent" v-on:vdropzone-drop="checkMaximumFiles" ref="newImages"
+                    v-on:vdropzone-file-added="handlingEvent" v-on:vdropzone-drop="checkMaximumFiles" v-on:vdropzone-removed-file="removeFile" ref="newImages"
             >
               <div class="dropzone-custom-content">
                 <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
@@ -62,10 +66,10 @@
                   class="resume-builder__input civie-input"
                   outlined
                   label="Year"
-                  hint="(Year)"
                   color="#001CE2"
                   v-model="editedAchievement.year"
                   :error = "!!errors.year"
+                  :error-messages = "errors.year"
           >
           </v-text-field>
           <v-text-field
@@ -73,10 +77,10 @@
                   class="resume-builder__input civie-input"
                   outlined
                   label="Title"
-                  hint="Type"
                   color="#001CE2"
                   v-model="editedAchievement.title"
                   :error = "!!errors.title"
+                  :error-messages = "errors.title"
           >
           </v-text-field>
 
@@ -158,7 +162,7 @@
                 </div>
                 <div class="project__description">
                   <b>Description: </b>
-                  { {{achievement.description}}
+                  {{achievement.description}}
                 </div>
               </div>
             </div>
@@ -236,7 +240,6 @@
         } );
 
       },
-
       toggleAchievement(achievement) {
         achievement.is_public = !achievement.is_public;
         axios.put("/api/user/achievements", achievement)
@@ -262,6 +265,7 @@
       handlingEvent: function (file) {
         if (this.editedAchievement.images.length < 1) {
           this.editedAchievement.images.push(file);
+          this.editedAchievement.image_src = 'Temporary URL';
         }else{
 
         }
@@ -274,7 +278,9 @@
         this.editedAchievement.images = [];
         this.$refs.newImages.removeAllFiles();
       },
-
+      removeFile(){
+        this.editedAchievement.image_src = '';
+      },
       saveAchievement() {
         this.errors = {};
         let formData = new FormData();
@@ -339,17 +345,6 @@
           images: [],
         };
         this.$refs.newImages.removeAllFiles();
-      },
-      canSubmit() {
-        let canSubmit = true;
-
-        $.each(this.editedAchievement, (field) => {
-          if (!this.editedAchievement[field].length) {
-            canSubmit = false;
-          }
-        });
-
-        return canSubmit;
       }
 
     },

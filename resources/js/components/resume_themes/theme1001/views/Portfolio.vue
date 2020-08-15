@@ -93,7 +93,7 @@
         class="portfolio-item"
       >
         <div class="item-wrapper">
-          <Thumbnail :src="portfolio.images[0].src" />
+          <Thumbnail v-if="portfolio.images[0]" :src="portfolio.images[0].src" />
 
           <div v-show="displayMode === 'detail'" class="item-detail">
             <h3 class="item-detail__title" v-text="portfolio.name"></h3>

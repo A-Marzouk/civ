@@ -98,3 +98,4 @@ Route::group(['prefix' => 'workforce-admin'], function () {
 
 // public cv url
 Route::get('/{username}', 'ResumeController@userResume'); // resume with real user data
+Route::get('/{username}/reference', 'ResumeController@externalReferencePage'); // external reference

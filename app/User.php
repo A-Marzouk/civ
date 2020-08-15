@@ -44,8 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'projects.images',
             'achievements',
             'media',
-            'reference',
-            'referee',
+            'references',
             'testimonials',
             'imports',
             'downloads',
@@ -59,8 +58,6 @@ class User extends Authenticatable implements MustVerifyEmail
         ];
 
     public static $defaultOneToOneRelations = [
-        'reference',
-        'referee',
         'personalInfo',
         'availabilityInfo',
         'paymentInfo',
@@ -71,6 +68,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static $defaultOneToManyRelations = [
         'tabs',
         'skills',
+        'references',
         'hobbies',
         'education',
         'workExperience',
@@ -213,9 +211,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Summary::class);
     }
 
-    public function reference()
+    public function references()
     {
-        return $this->hasOne(Reference::class);
+        return $this->hasMany(Reference::class);
     }
 
     public function referee()

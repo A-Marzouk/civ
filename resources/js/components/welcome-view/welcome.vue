@@ -247,7 +247,7 @@
             <v-card flat tile color="transparent">
               <v-card-text class="follow-us-text">
                 <label>Follow Us:</label>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-2 ml-sm-0 ml-0" href="https://www.facebook.com/civieapp">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/facebook.png"
                     alt="facebook"
@@ -294,7 +294,7 @@
                     alt="facebook"
                   />
                 </v-btn>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2"  href="https://www.facebook.com/civieapp">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
@@ -504,6 +504,7 @@ export default {
 
 #welcomeView,
 #registerForm,
+#external_reference,
 #loginForm {
   .inner-text {
     padding-top: 6px;
