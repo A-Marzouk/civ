@@ -322,6 +322,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateReferences(state, references){
+            state.user.references = references;
+            axios.post('/api/user/references/update-order', {references : references})
+                .then( () => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateTabs(state, tabs){
             state.user.tabs = tabs;
             axios.post('/api/user/tabs/update-order', {tabs : tabs})

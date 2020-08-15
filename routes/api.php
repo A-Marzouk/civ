@@ -180,12 +180,13 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/availability-info', 'API\AvailabilityInfoController@store');
 
 // References api routes:
-    Route::get('/reference', 'API\ReferencesController@index');
-    Route::put('/reference', 'API\ReferencesController@store');
+    Route::get('/references', 'API\ReferencesController@index');
+    Route::get('/references/{id}', 'API\ReferencesController@show');
+    Route::put('/references', 'API\ReferencesController@store');
+    Route::post('/references', 'API\ReferencesController@store');
+    Route::post('/references/update-order', 'API\ReferencesController@updateReferencesOrder');
+    Route::delete('/references/{id}', 'API\ReferencesController@destroy');
 
-// Referee api routes:
-    Route::get('/referee', 'API\RefereeController@index');
-    Route::put('/referee', 'API\RefereeController@store');
 
 // Imports api routes:
     Route::get('/imports', 'API\ImportsController@index');

@@ -8,7 +8,7 @@ class Reference extends Model
 {
     protected $table= 'references';
     protected $fillable = [
-        'is_public','user_id','name','title','phone','email','company','address','reference_text','notes','type','url','image'
+        'is_public','user_id','name','title','phone','email','company','address','reference_text','notes','type','url','image','order'
     ];
 
 

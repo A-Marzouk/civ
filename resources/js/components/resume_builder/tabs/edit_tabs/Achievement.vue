@@ -240,7 +240,6 @@
         } );
 
       },
-
       toggleAchievement(achievement) {
         achievement.is_public = !achievement.is_public;
         axios.put("/api/user/achievements", achievement)
@@ -279,7 +278,6 @@
         this.editedAchievement.images = [];
         this.$refs.newImages.removeAllFiles();
       },
-
       removeFile(){
         this.editedAchievement.image_src = '';
       },
@@ -347,17 +345,6 @@
           images: [],
         };
         this.$refs.newImages.removeAllFiles();
-      },
-      canSubmit() {
-        let canSubmit = true;
-
-        $.each(this.editedAchievement, (field) => {
-          if (!this.editedAchievement[field].length) {
-            canSubmit = false;
-          }
-        });
-
-        return canSubmit;
       }
 
     },
