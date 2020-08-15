@@ -1107,7 +1107,7 @@ export default {
   opacity: 0.1;
   white-space: nowrap;
   display: inline-block;
-  margin-top:200px;
+  margin-top: 200px;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -1142,10 +1142,10 @@ export default {
     width: 100px !important;
   }
   @media screen and (min-width: 600px) and (max-width: 959px) {
-    min-width: 80px !important;
-    min-height: 80px !important;
-    height: 80px !important;
-    width: 80px !important;
+    min-width: 94.16px !important;
+    min-height: 94.16px !important;
+    height: 94.16px !important;
+    width: 94.16px !important;
   }
   @media screen and(max-width: 599px) {
     min-width: 45px !important;
@@ -1161,11 +1161,18 @@ export default {
   min-height: 152px !important;
   height: 152px !important;
   width: 152px !important;
+  @media screen and (min-width: 600px) and (max-width: 959px) {
+    min-width: 119.1px !important;
+    min-height: 134px !important;
+    height: 134px !important;
+    width: 119.1px !important;
+  }
   @media screen and (max-width: 599px) {
-    min-width: 50px !important;
-    min-height: 50px !important;
-    height: 50px !important;
-    width: 50px !important;
+    min-width: 76.75px !important;
+    min-height: 87px !important;
+    width: 76.75px !important;
+    height: 87px !important;
+    margin-top: -80px;
   }
 }
 .achievement-title {
@@ -1180,8 +1187,14 @@ export default {
     line-height: 22px;
   }
   @media screen and (max-width: 959px) {
-    font-size: 24px;
-    line-height: 20px;
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 15px;
+  }
+  @media screen and (max-width: 599px) {
+    font-size: 18px;
+    line-height: 18px;
+    margin-bottom: 5px;
   }
 }
 .achievement-subtitle {
@@ -1190,6 +1203,10 @@ export default {
   font-size: 17px;
   line-height: 23px;
   color: #4e4e4e !important;
+  @media screen and(max-width: 599px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
 }
 
 // achievement tab
@@ -1203,9 +1220,9 @@ export default {
   letter-spacing: 0.05em;
   font-feature-settings: "tnum" on, "lnum" on;
   color: #000000 !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 24px;
-    line-height: 24px;
+    line-height: 23px;
   }
 }
 .reference-date {
@@ -1217,7 +1234,7 @@ export default {
   letter-spacing: 0.05em;
   font-feature-settings: "tnum" on, "lnum" on;
   color: #262626 !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 18px;
     line-height: 14px;
   }
@@ -1226,9 +1243,20 @@ export default {
   font-family: "Open Sans" !important;
   font-style: normal;
   font-weight: 300;
+  font-size: 21px;
+  line-height: 20px;
+  color: #4e4e4e !important;
+}
+.reference-desc {
+  font-family: "Open Sans" !important;
+  font-style: normal;
+  font-weight: 300;
   font-size: 17px;
   line-height: 23px;
   color: #4e4e4e !important;
+  @media screen and (max-width: 599px){
+    font-size: 14px;
+  }
 }
 // reference tab
 </style>
