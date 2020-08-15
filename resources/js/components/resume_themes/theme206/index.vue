@@ -604,14 +604,14 @@
                               <p class="year mt-md-0 mt-sm-4 mt-0 hidden-xs-only">2018</p>
                               <v-row>
                                 <v-col md="12" sm="12" cols="9">
-                                  <h3 class="title mt-xl-0 mt-lg-n5">Award Certificate</h3>
+                                  <h3 class="title mt-xl-0 mt-lg-n8">Award Certificate</h3>
                                 </v-col>
                                 <v-col cols="3" class="hidden-sm-and-up">
                                   <p class="year">2018</p>
                                 </v-col>
                               </v-row>
 
-                              <p class="address mt-sm-0 mt-n7">URL: 877859509505ghgkkdmdfj</p>
+                              <p class="address mt-xl-0 mt-lg-n5 mt-sm-0 mt-n7">URL: 877859509505ghgkkdmdfj</p>
                               <p
                                 class="desc hidden-xs-only"
                               >I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes.</p>
@@ -1303,6 +1303,10 @@ export default {
       font-size: 18px;
       line-height: 25px;
       color: #4c4c4c !important;
+      @media screen and (min-width: 1264px) and (max-width: 1903px) {
+        font-size: 14px;
+        line-height: 18px;
+      }
       @media screen and (max-width: 599px) {
         font-size: 14px;
       }
