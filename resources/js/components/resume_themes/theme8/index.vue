@@ -115,6 +115,10 @@
           v-show="activeTab === 'references'"
 		      :class="{ active: activeTab === 'references' }"
         ></References>
+        <Achievements
+          v-show="activeTab === 'achievements'"
+		      :class="{ active: activeTab === 'achievements' }"
+        ></Achievements>
       </div>
     </div>
   </div>
@@ -129,6 +133,7 @@ import HeaderTheme8 from './header';
 import Portfolio from './portfolio';
 import Hobbies from './hobbies';
 import References from './references';
+import Achievements from './achievements';
 
 export default {
   name: "theme8",
@@ -140,6 +145,7 @@ export default {
     Portfolio,
     Hobbies,
     References,
+    Achievements,
   },
   data() {
     return {
