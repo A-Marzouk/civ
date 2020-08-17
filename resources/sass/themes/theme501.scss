@@ -198,7 +198,11 @@
              height: 50px;
         }
 @media (max-width:1600px) {
-
+    .scrollbar{
+        overflow-y: scroll;
+        height: 500px;
+        direction: rtl; 
+    }
      #theme501{
         padding: 0 5.8rem ;
         }
@@ -311,7 +315,11 @@
             line-height: 1.5em;
             font-size: 1.5rem;
         }
-
+        .scrollbar{
+            overflow-y: hidden;
+            height: auto;
+            direction: ltr; 
+        }
         .newTitle{
       
             text-align: left;

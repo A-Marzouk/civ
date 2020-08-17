@@ -7,7 +7,7 @@
     &.multiple-selection > .v-input__control > .v-input__slot > .v-select__slot > .v-select__selections {
         min-height: 42px !important;
         height: 42px;
-        padding: 8px 3px 8px 3px;
+        padding: 3px 3px 9px 3px; // adjusted | 8px 3px 8px 3px
 
         // hide the scrollbar but allow scrolling.
         overflow: auto;
@@ -25,6 +25,8 @@
         .v-input__slot {
             // input height is different to textarea
             height: 50px;
+
+            
         }
     }
 
@@ -53,10 +55,12 @@
     &.civie-textarea {
         .v-input__slot, textarea {
             // input height is different to textarea
-            height: 160px;
+            height: 147px; //adjusted | 160px
             resize: none;
+            
         }
     }
+    
     &.civie-textarea {
         .v-input__slot {
            .v-text-field__slot{
@@ -64,6 +68,7 @@
                textarea{
                    height: 95%;
                    margin-top: 3px !important;
+                   padding: 7px; //added
 
                    // scroll hidden
                    overflow: auto;
@@ -157,7 +162,7 @@
         font-family: 'Noto Sans', Arial, Helvetica, sans-serif !important;
 
         .v-input__slot {
-            border: 2px solid $inputBorderColor--enabled;
+            border: 1.95px solid $inputBorderColor--enabled; //2px
             border-radius: 10px;
             position: relative;
             
@@ -231,7 +236,7 @@
 
         fieldset {
             // Border fieldset
-            border: 2px solid $inputBorderColor--enabled; // Default state of inputs
+            border: 1.95px solid $inputBorderColor--enabled; // Default state of inputs | 2px
             border-radius: 10px;
             transition: border 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
 
@@ -385,6 +390,61 @@
             }
         }
     }
+
+    // Custom style 1.1 --------------
+
+    //label
+    &.civie-input,
+    &.civie-select,
+    &.civie-textarea,
+    &.civie-checkbox,
+    &.civie-datepicker,
+    &.civie-dropzone,
+    &.civie-currency
+    {
+        .v-input__slot {
+            .v-label {
+                font-size: 15px !important;    
+            }
+        }
+    }
+
+    //chip style
+    &.civie-select {
+        .v-select__slot {
+            .v-chip {
+                padding: 0px 15px;
+                margin-top: 5px;
+                padding-top: 1px;
+                font-size: 12.5px;
+                height: 1.6rem;
+            }
+        }
+    }
+
+
+    &.civie-input,
+    &.civie-select,
+    &.civie-datepicker,
+    &.civie-currency {
+        .v-input__slot {
+            //Set input field height
+            fieldset {
+                height: 3.28rem;
+            }
+
+            .v-text-field__slot {
+                input {
+                    font-size: 16px;
+                    padding: 6px 3px 8px 6px;
+                }
+            }
+        }
+
+        
+    }
+
+    // Custom style 1.1 end ----------------
 }
 
 // Dropdown menu items styles

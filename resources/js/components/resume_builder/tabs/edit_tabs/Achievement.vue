@@ -86,11 +86,11 @@
 
           <div class="col-12 d-flex flex-column" style="transform: translateX(-9px)">
             <div class="d-flex">
-              <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveAchievement">
+              <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveAchievement">
                 {{editedAchievement.id !== '' ? 'Update' : 'Add New'}}
               </v-btn>
 
-              <v-btn class="resume-builder__btn civie-btn ml-4" raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
+              <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearAchievement" v-show="editedAchievement.id !== '' ">
                 Cancel
               </v-btn>
             </div>
@@ -378,7 +378,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-auto-rows: 104px;
-        grid-gap: 15px;
+        grid-gap: 20px; //adjusted | 15px
         padding: 50px 46px;
 
         .resume-builder__input {
@@ -388,7 +388,7 @@
           &.civie-dropzone {
             grid-row-start: 1;
             grid-row-end: 3;
-            height: 100%;
+            height: 98%;
 
             .v-input__control,
             .v-input__slot {

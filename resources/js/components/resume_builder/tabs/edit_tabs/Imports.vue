@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="pa-md-0 pa-sm-0 pa-3 content-container">
-            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="importTab">
+            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="importTab" height="51">
                 <v-tab
                         class="resume-builder__tab"
                         v-for="(tabName,i) in tabs"
