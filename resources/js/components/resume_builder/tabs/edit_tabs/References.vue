@@ -1,9 +1,9 @@
 <template>
-    <v-app class="main-content">
+    <div class="main-content">
         <div style="width:100%;">
             <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
                 <v-container class>
-                    <v-form v-if="reference">
+                    <v-form>
                         <v-row align="center">
                             <v-col
                                     xl="3"
@@ -17,10 +17,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Reference Type"
-                                        v-model="reference.type"
+                                        v-model="editedReference.type"
+                                        :error="!!errors.type"
+                                        :error-messages="errors.type"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -35,10 +35,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Full Name"
-                                        v-model="reference.name"
+                                        v-model="editedReference.name"
+                                        :error="!!errors.name"
+                                        :error-messages="errors.name"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -54,10 +54,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Title/Position"
-                                        v-model="reference.title"
+                                        v-model="editedReference.title"
+                                        :error="!!errors.title"
+                                        :error-messages="errors.title"
                                 ></v-text-field>
                             </v-col>
 
@@ -74,10 +74,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Phone"
-                                        v-model="reference.phone"
+                                        v-model="editedReference.phone"
+                                        :error="!!errors.phone"
+                                        :error-messages="errors.phone"
                                 ></v-text-field>
                             </v-col>
 
@@ -94,10 +94,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        v-model="reference.email"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
+                                        v-model="editedReference.email"
                                         label="Email"
+                                        :error="!!errors.email"
+                                        :error-messages="errors.email"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -112,10 +112,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Company"
-                                        v-model="reference.company"
+                                        v-model="editedReference.company"
+                                        :error="!!errors.company"
+                                        :error-messages="errors.company"
                                 ></v-text-field>
                             </v-col>
 
@@ -130,10 +130,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="Address"
-                                        v-model="reference.address"
+                                        v-model="editedReference.address"
+                                        :error="!!errors.address"
+                                        :error-messages="errors.address"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -148,10 +148,10 @@
                                         class="resume-builder__input civie-input"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledInput}"
-                                        :disabled="disabledInput"
                                         label="URL"
-                                        v-model="reference.url"
+                                        v-model="editedReference.url"
+                                        :error="!!errors.url"
+                                        :error-messages="errors.url"
                                 ></v-text-field>
                             </v-col>
                             <v-col
@@ -162,21 +162,27 @@
                                     cols="12"
                                     class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n8"
                             >
-                                <label class="mb-n12 custom-label">Import/Drag Image</label>
+                                <label  :class="{'error' : !!errors.file || !!errors.image}" style="position: absolute; top: -16px; color: #888DB1;font-size: 18px;">Upload Image</label>
                                 <v-input
-                                        class="resume-builder__input civie-dropzone mt-n4"
+                                        class="resume-builder__input civie-dropzone"
                                         outlined
+                                        :class="{'error' : !!errors.file || !!errors.image}"
                                         hint="(Maximum 5 files)"
-                                        height="155"
+                                        height="157"
+                                        style="margin-top: -21px;"
                                 >
                                     <vue-dropzone
                                             class="civie-dropzone-input sm-image"
                                             ref="myVueDropzone"
                                             id="dropzone"
-                                            v-on:vdropzone-file-added="handleFileUpload"
+                                            v-on:vdropzone-file-added="handlingEvent"
+                                            v-on:vdropzone-drop="checkMaximumFiles"
+                                            v-on:vdropzone-removed-file="removeFile"
                                             :options="dropzoneOptions"
                                             :useCustomSlot="true"
-                                            v-model="reference.image"
+                                            v-model="editedReference.image"
+                                            :error="!!errors.imag"
+                                            :error-messages="errors.image"
                                     >
                                         <div class="dropzone-custom-content">
                                             <svg-vue class="icon" :icon="'upload-input-icon'"></svg-vue>
@@ -197,41 +203,119 @@
                                         class="resume-builder__input civie-textarea"
                                         outlined
                                         color="#001CE2"
-                                        :class="{'resume-builder__input--disabled': disabledTextarea}"
-                                        :disabled="disabledTextarea"
                                         label="Description"
-                                        v-model="reference.reference_text"
+                                        v-model="editedReference.reference_text"
+                                        :error="!!errors.reference_text"
+                                        :error-messages="errors.reference_text"
                                 ></v-textarea>
                             </v-col>
-                            <!-- <v-col
-                                    xl="3"
-                                    :lg="windowWidth<1300?'6':'3'"
-                                    md="6"
-                                    sm="6"
-                                    cols="12"
-                                    class="mt-xl-n4 mt-lg-n4 mt-md-n4 mt-sm-n4 mt-n8"
-                            >
-                                <div class="referenceImage" >
-                                    <img :src="typeof reference.image === 'object' ? this.tempReferenceImage : reference.image " alt="reference image">
-                                </div>
-                            </v-col> -->
-                            <v-col xl="12" lg="12" md="12" sm="12" cols="12">
-                                <v-btn
-                                        class="resume-builder__btn civie-btn filled btn-add-new mt-n5"
-                                        @click="applyReferenceEdit"
-                                >Save
-                                </v-btn>
-                            </v-col>
                         </v-row>
+                        <div class="col-12 d-flex flex-column" style="transform: translateX(-9px)">
+                            <div class="d-flex">
+                                <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveReference">
+                                    {{editedReference.id !== '' ? 'Update' : 'Add New'}}
+                                </v-btn>
+
+                                <v-btn class="resume-builder__btn civie-btn ml-4" raised @click="clearReference" v-show="editedReference.id !== '' ">
+                                    Cancel
+                                </v-btn>
+                            </div>
+                        </div>
                     </v-form>
+
+                    <draggable class="projects-list" v-if="references" v-model="references" @start="drag=true" @end="drag=false"  handle=".drag-handler">
+                        <div class="project ml-md-4" v-for="reference in references" :class="{'half-opacity' : !reference.is_public}">
+                            <div class="project__header">
+                                <v-btn
+                                        depressed
+                                        class="drag-and-drop-handler drag-handler"
+                                >
+                                    <svg-vue
+                                            :icon="'drag-and-drop-icon'"
+                                            class="icon"
+                                    ></svg-vue>
+                                </v-btn>
+                                <div
+                                        class="resume-builder__action-buttons-container"
+                                >
+                                    <v-btn
+                                            class="btn-icon civie-btn"
+                                            depressed @click="toggleReference(reference)"
+                                    >
+                                        <svg-vue
+                                                icon="eye-icon"
+                                                :class="{'visible' : reference.is_public}"
+                                                class="icon"
+                                        ></svg-vue>
+                                    </v-btn>
+                                    <v-btn
+                                            class="btn-icon civie-btn"
+                                            @click="editReference(reference)"
+                                            depressed
+                                    >
+                                        <svg-vue
+                                                icon="edit-icon"
+                                                class="icon"
+                                                :class="{'visible' : reference.id === editedReference.id}"
+                                        ></svg-vue>
+                                    </v-btn>
+                                    <v-btn
+                                            class="btn-icon civie-btn"
+                                            @click="deleteReference(reference)"
+                                            depressed
+                                    >
+                                        <svg-vue
+                                                icon="trash-delete-icon"
+                                                class="icon"
+                                        ></svg-vue>
+                                    </v-btn>
+                                </div>
+                            </div>
+                            <div class="project__body">
+                                <div class="project__img">
+                                    <div class="project__name">{{reference.title}}</div>
+                                    <img
+                                            :src="reference.image"
+                                            alt="achievement img">
+                                </div>
+                                <div class="project__info">
+                                    <div class="project__name">{{reference.title}}</div>
+                                    <div class="project__url">
+                                        <b>URL:</b> <a :href="reference.url">{{reference.url}}</a>
+                                    </div>
+                                    <div class="project__skills">
+                                        <b>Company:</b> {{reference.company}}
+                                    </div>
+                                    <div class="project__skills">
+                                        <b>Name:</b> {{reference.name}}
+                                    </div>
+                                    <div class="project__skills">
+                                        <b>Title:</b> {{reference.title}}
+                                    </div>
+                                    <div class="project__skills">
+                                        <b>Phone:</b> {{reference.phone}}
+                                    </div>
+                                    <div class="project__skills">
+                                        <b>Email:</b> {{reference.email}}
+                                    </div>
+                                    <div class="project__skills">
+                                        <b>Address:</b> {{reference.address}}
+                                    </div>
+                                    <div class="project__description">
+                                        <b>Reference text: </b>
+                                        {{reference.reference_text}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </draggable>
                 </v-container>
             </v-card>
         </div>
-    </v-app>
+    </div>
 </template>
 
 <script>
-    import {moveTabsHelper} from "../../helpers/tab-animations";
     import vue2Dropzone from "vue2-dropzone";
     import "vue2-dropzone/dist/vue2Dropzone.min.css";
 
@@ -243,9 +327,6 @@
         data() {
             return {
                 windowWidth: window.innerWidth,
-                activeTab: "References",
-                tabs: ["References", "Referee", "Testimonials"],
-                references: ["Reference", "Reference2"],
                 dropzoneOptions: {
                     url: "https://httpbin.org/post",
                     thumbnailWidth: 150,
@@ -254,30 +335,33 @@
                     acceptedFiles: "image/*",
                     addRemoveLinks: true
                 },
-                newTestimonial: {
-                    title: "",
-                    description: ""
-                },
-                editedTestimonial: {},
-                optionTestimonialId: 0,
                 errors: {},
-                rules: [value => !!value || "Please fill this field."],
-                disabledInput: false,
-                disabledTextarea: false,
-                addNewTestimonial: false,
                 importImage: "",
-                tempReferenceImage: ''
+                tempReferenceImage: '',
+
+                editedReference: {
+                    id: '',
+                    type: '',
+                    name: '',
+                    title: '',
+                    phone: '',
+                    email: '',
+                    company: '',
+                    address: '',
+                    url: '',
+                    images: [],
+                    reference_text: ''
+                },
             };
         },
         computed: {
-            reference() {
-                return this.$store.state.user.reference;
-            },
-            referee() {
-                return this.$store.state.user.referee;
-            },
-            testimonials() {
-                return this.$store.state.user.testimonials;
+            references: {
+                get() {
+                    return this.$store.state.user.references;
+                },
+                set(references) {
+                    this.$store.commit('updateReferences', references);
+                }
             }
         },
         props: ["selectProps", "inputProps", "textareaProps"],
@@ -287,60 +371,142 @@
             };
         },
         methods: {
-            toggleSelect() {
-                this.disabledSelect = !this.disabledSelect;
-            },
-            handleFileUpload: function(file) {
-                if(this.$refs.myVueDropzone.getAcceptedFiles().length < 1){
-                    this.reference.image = file;
-                    this.tempReferenceImage = URL.createObjectURL(file);
+
+            // references list functions:
+            deleteReference(reference) {
+                if (!confirm('Do you want to delete this reference ?')) {
+                    return;
                 }
+                axios.delete('/api/user/references/' + reference.id)
+                    .then((response) => {
+                        this.$store.dispatch('flyingNotificationDelete');
+                        this.references.forEach((myReference, index) => {
+                            if (myReference.id === response.data.data.id) {
+                                this.references.splice(index, 1);
+                            }
+                        });
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             },
-            applyReferenceEdit() {
-                this.errors = {};
-                let formData = new FormData();
-                formData.append("_method", "put");
-                formData.append("user_id", this.reference.user_id);
-
-                $.each(this.reference, field => {
-                    if (this.reference[field] !== null) {
-                        if (this.reference[field].length) {
-                            formData.append(field, this.reference[field]);
-                        }
-                    }
-
-                    if(field === 'image'){
-                        formData.append(field, this.reference[field]);
-                    }
-
-                });
-
-
-                axios.post("/api/user/reference", formData, { headers: {"Content-Type": "multipart/form-data"}})
-                    .then( (response) => {
+            editReference(reference){
+                $.each(reference, (field) => {
+                    this.editedReference[field] = reference[field];
+                } );
+            },
+            toggleReference(reference) {
+                reference.is_public = !reference.is_public;
+                axios.put("/api/user/references", reference)
+                    .then( () => {
                         this.$store.dispatch("flyingNotification");
-                        this.reference.image = response.data.data.image ;
-                        this.$refs.myVueDropzone.removeAllFiles();
                     })
                     .catch(error => {
                         if (typeof error.response.data === "object") {
                             this.errors = error.response.data.errors;
                         } else {
-                            this.errors = "Something went wrong. Please try again.";
+                            this.errors =
+                                "Something went wrong. Please try again.";
                         }
                         this.$store.dispatch("flyingNotification", {
                             message: "Error",
                             iconSrc: "/images/resume_builder/error.png"
                         });
                     });
+            },
+
+
+            // new reference functions
+            handlingEvent: function (file) {
+                if (this.editedReference.images.length < 1) {
+                    this.editedReference.images.push(file);
+                    this.editedReference.image = 'Temporary URL';
+                }else{
+
+                }
+            },
+            checkMaximumFiles(){
+                if (this.editedReference.images.length >= 1) {
+                }
+            },
+            removeFile(){
+                this.editedReference.image = '';
+            },
+            saveReference() {
+                this.errors = {};
+                let formData = new FormData();
+
+                $.each(this.editedReference, (field) => {
+                    if (field !== 'images') {
+                        formData.append(field, this.editedReference[field]);
+                    }
+                });
+
+                this.editedReference.images.forEach((image) => {
+                    formData.append('file', image);
+                });
+
+                let edit = false;
+                if (this.editedReference.id !== "") {
+                    edit = true;
+                }
+
+                formData.append('user_id', this.$store.state.user.id);
+                formData.append('id', this.editedReference.id);
+
+
+                axios.post('/api/user/references', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+                    .then((response) => {
+                        if (!edit) {
+                            response.data.data.is_public = true ;
+                            this.references.push(response.data.data);
+                        } else {
+                            this.references.forEach((reference, index) => {
+                                if (reference.id === response.data.data.id) {
+                                    this.references.splice(index, 1, response.data.data);
+                                }
+                            });
+                        }
+
+                        this.$store.dispatch('flyingNotification');
+                        this.clearReference();
+                    })
+                    .catch((error) => {
+                        if (typeof error.response.data === 'object') {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = 'Something went wrong. Please try again.';
+                        }
+
+                        this.$store.dispatch('flyingNotification', {
+                            message: 'Error',
+                            iconSrc: '/images/resume_builder/error.png'
+                        });
+                    });
+            },
+            clearReference() {
+                this.editedReference = {
+                    id: '',
+                    type: '',
+                    name: '',
+                    title: '',
+                    phone: '',
+                    email: '',
+                    company: '',
+                    address: '',
+                    url: '',
+                    images: [],
+                    reference_text: ''
+                };
+                this.$refs.myVueDropzone.removeAllFiles();
             }
         }
     };
 </script>
 
 <style scoped lang="scss">
-    @import "../../../../../sass/media-queries";
-
+    @import '../../../../../sass/variables';
+    @import '../../../../../sass/media-queries';
     $mainBlue: #001ce2;
     .main-content {
         @include lt-sm {
@@ -401,7 +567,7 @@
 
         &:nth-child(4),
         &:last-child {
-            margin-right: none;
+            margin-right: 0;
         }
 
         .civie-textarea,
@@ -426,18 +592,132 @@
         }
     }
 
-    .error {
-        color: red;
-        padding-top: 5px;
-        padding-left: 3px;
-    }
-
     .custom-label {
         font-family: "Noto Sans" !important;
         font-style: normal;
         font-weight: 500;
-        font-size: 18px !important;
+        font-size: 15px !important; // adjusted | 18px
         line-height: 25px;
         color: #888db1;
+    }
+
+    .projects-list {
+        width: 100%;
+        padding: 20px;
+
+        .project {
+            max-width: 620px;
+            width: 100%;
+            box-shadow: 0px 5px 20px rgba(0, 16, 131, 0.06);
+            background: white;
+            min-height: 225px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+
+            &__header {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+
+                .drag-and-drop-handler {
+                    background-color: $auxBgColor-gray;
+                    border-radius: 5px;
+                    height: 25px;
+                    width: 25px;
+
+                    // Reset default props of v-btn class
+                    min-width: auto !important;
+                    padding: 0 !important;
+
+                    .icon {
+                        height: 10px;
+                        width: 3px;
+                    }
+                }
+
+                .resume-builder__action-buttons-container {
+                    .btn-icon {
+                        width: 25px;
+                        height: 25px !important;
+
+                    }
+                }
+            }
+
+            &__body {
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+
+                .project__img {
+                    img {
+                        min-width: 120px;
+                        max-width: 220px;
+                    }
+
+                    .project {
+                        &__name {
+                            display: none;
+
+                            @include lt-sm {
+                                display: block;
+                                font-size: 20px;
+                                font-weight: normal;
+                                color: $mainColor;
+                                margin-bottom: 10px;
+                            }
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+
+                        img,
+                        .project__name {
+                            width: 100%;
+                        }
+
+                        img {
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+
+                .project__info {
+                    margin-left: 20px;
+                    margin-top: 14px;
+
+                    .project {
+                        &__name {
+                            font-size: 24px;
+                            font-weight: 700;
+                            color: $mainColor;
+                            margin-bottom: 10px;
+
+                            @include lt-sm {
+                                display: none;
+                            }
+                        }
+
+                        &__url,
+                        &__skills,
+                        &__softwares,
+                        &__description {
+                            color: $inputTextColor;
+                        }
+                    }
+
+                    @include lt-sm {
+                        width: 100%;
+                        margin-left: 0;
+                    }
+                }
+
+                @include lt-sm {
+                    flex-wrap: wrap;
+                }
+            }
+
+        }
     }
 </style>

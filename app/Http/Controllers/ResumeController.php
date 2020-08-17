@@ -13,6 +13,7 @@ use App\Theme;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use mysql_xdevapi\Exception;
 
 class ResumeController extends Controller
 {
@@ -80,6 +81,15 @@ class ResumeController extends Controller
         }else{
             return abort(404);
         }
+    }
+
+
+    public function externalReferencePage($username){
+        $user = User::where($username, 'username');
+        if(!$user){
+            abort(404);
+        }
+        return view('resume_builder.external_reference', compact('username'));
     }
 
 }

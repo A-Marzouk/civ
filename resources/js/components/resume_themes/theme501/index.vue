@@ -282,7 +282,7 @@
         </v-tabs-items>
       </v-row>
       <v-row no-gutters justify="center" class="mt-sm-8">
-        <v-col md="8" sm="12" cols="12" class="hidden-xs-only">
+        <v-col md="12" sm="12" cols="12" class="hidden-xs-only">
           <v-tabs
             v-model="tabModel"
             background-color="rgb(255, 255, 255,0.0)"
@@ -299,7 +299,21 @@
               :class="[{ 'active-indicator': currentTab === tab.value }]"
               class="tablet"
             >
-              <v-icon left>{{ tab.icon }}</v-icon>
+              <!-- <v-icon left>{{ tab.icon }}</v-icon> -->
+              <v-img
+                v-if="activeTab != tab.value"
+                width="20"
+                max-width="20"
+                class="mx-2"
+                :src="`/images/resume_themes/theme501/${tab.value}_white.svg`"
+              ></v-img>
+              <v-img
+                v-else
+                width="20"
+                max-width="20"
+                class="mx-2"
+                :src="`/images/resume_themes/theme501/${tab.value}_green.svg`"
+              ></v-img>
               <div class="title text-capitalize">{{ tab.name }}</div>
             </v-tab>
           </v-tabs>
@@ -335,9 +349,23 @@
                   ]"
                   dark
                   depressed
-                  x-small
+                  small
                 >
-                  <v-icon class="sicon">{{ tab.icon }}</v-icon>
+                  <!-- <v-icon class="sicon">{{ tab.icon }}</v-icon> -->
+                  <v-img
+                    v-if="activeTab != tab.value"
+                    width="18"
+                    max-width="18"
+                    class="mx-2"
+                    :src="`/images/resume_themes/theme501/${tab.value}_white.svg`"
+                  ></v-img>
+                  <v-img
+                    v-else
+                    width="26"
+                    max-width="26"
+                    class="mx-2"
+                    :src="`/images/resume_themes/theme501/${tab.value}_white.svg`"
+                  ></v-img>
                 </v-btn>
               </v-tab>
             </v-tabs>
@@ -865,6 +893,182 @@
           </v-col>
         </v-row>
       </v-tab-item>
+      <v-tab-item value="tab-5">
+        <v-row
+          justify="start"
+          justify-sm="start"
+          justify-lg="center"
+          class="mt-xl-6 mt-lg-10 mx-sm-6 mx-3 mx-lg-2"
+          no-gutters
+        >
+          <v-col
+            md="8"
+            sm="12"
+            cols="12"
+            class="mt-12 mt-sm-10 scrollbar"
+            id="style-1"
+          >
+            <v-row
+              no-gutters
+              justify="start"
+              class="mb-8 flex-md-row-reverse"
+              v-for="(achievement, i) in currentUser.achievements"
+              :key="i"
+              v-show="achievement.is_public"
+            >
+              <v-col cols="2" md="1" class="mt-3 ml-sm-5 flex-md-row-reverse">
+                <v-img
+                  src="/images/resume_themes/theme501/achievement_green.svg"
+                  contain
+                  class="mx-auto"
+                  :width="rowIconSize"
+                ></v-img>
+              </v-col>
+              <v-col cols="10" sm="7">
+                <div class="newTitle">{{ achievement.title }}</div>
+                <div class="newSubtitle">
+                  {{ achievement.description }}
+                </div>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col md="2" sm="4" class="hidden-sm-and-down mt-12">
+            <img
+              src="/images/resume_themes/theme501/achievement_white.svg"
+              class="box-layer"
+              style="background-color: #2fd5b4; width: 453px; padding: 100px;"
+            />
+          </v-col>
+        </v-row>
+      </v-tab-item>
+      <v-tab-item value="tab-6">
+        <v-row
+          justify="start"
+          justify-sm="start"
+          justify-lg="center"
+          class="mt-xl-6 mt-lg-10 mx-sm-6 mx-6 mx-lg-2 fill-height"
+          no-gutters
+        >
+          <v-col
+            md="8"
+            sm="12"
+            cols="11"
+            class="mt-12 mt-sm-10"
+            id="style-1"
+            align-self="center"
+          >
+            <v-row no-gutters justify="center">
+              <v-col
+                cols="12"
+                sm="6"
+                md="5"
+                v-for="(hobby, i) in currentUser.hobbies"
+                :key="i"
+                v-show="hobby.is_public"
+                class="mb-12"
+              >
+                <v-row no-gutters>
+                  <v-col
+                    cols="2"
+                    align="center"
+                    align-self="center"
+                    class="mr-4"
+                  >
+                    <v-img
+                      :src="`/images/resume_themes/theme501/${hobby.title}.svg`"
+                      max-width="60"
+                      class="ma-auto"
+                    ></v-img
+                  ></v-col>
+                  <v-col cols="9"
+                    ><div class="hobbyTitle">{{ hobby.title }}</div></v-col
+                  >
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col md="2" sm="4" class="hidden-sm-and-down mt-12">
+            <img
+              src="/images/resume_themes/theme501/hobbies_white.svg"
+              class="box-layer"
+              style="background-color: #2fd5b4; width: 453px; padding: 100px;"
+            />
+          </v-col>
+        </v-row>
+      </v-tab-item>
+      <v-tab-item value="tab-7">
+        <v-row
+          justify="start"
+          justify-sm="start"
+          justify-lg="center"
+          class="mt-xl-6 mt-lg-10 mx-sm-6 mx-6 mx-lg-2"
+          no-gutters
+        >
+          <v-col
+            md="8"
+            sm="12"
+            cols="12"
+            class="mt-12 mt-sm-10 scrollbar"
+            id="style-1"
+          >
+            <v-row
+              no-gutters
+              justify="start"
+              class="mb-8 flex-md-row-reverse"
+              v-for="(reference, i) in currentUser.references"
+              :key="i"
+              v-show="reference.is_public"
+            >
+              <v-col cols="2" md="1" class="mt-3 ml-sm-3 flex-md-row-reverse">
+                <v-img
+                  src="/images/resume_themes/theme501/references_green.svg"
+                  contain
+                  class="mx-auto"
+                  :width="rowIconSize"
+                ></v-img>
+              </v-col>
+              <v-col cols="10" sm="7">
+                <v-row no-gutters class="flex-md-row-reverse">
+                  <v-col cols="8">
+                    <div class="newTitle">
+                      {{ reference.title }}
+                    </div></v-col
+                  >
+                  <v-col cols="4">
+                    <div
+                      class="subtitle-2 grey--text text--darken-1 text-right mt-2"
+                    >
+                      {{ reference.created_at }}
+                    </div></v-col
+                  >
+                  <v-col cols="12">
+                    <div class="subtitle-2 grey--text text--darken-1 text-left">
+                      {{ reference.email }}
+                    </div></v-col
+                  >
+                  <v-col cols="12">
+                    <div class="subtitle-2 grey--text text--darken-1 text-left">
+                      {{ reference.phone }}
+                    </div></v-col
+                  >
+                  <v-col cols="12">
+                    <div class="newSubtitle">
+                      {{ reference.reference_text }}
+                    </div></v-col
+                  >
+                </v-row>
+              </v-col>
+            </v-row>
+          </v-col>
+          <v-col md="2" sm="4" class="hidden-sm-and-down mt-12">
+            <img
+              src="/images/resume_themes/theme501/references_white.svg"
+              class="box-layer"
+              style="background-color: #2fd5b4; width: 453px; padding: 100px;"
+            />
+          </v-col>
+        </v-row>
+      </v-tab-item>
     </v-tabs-items>
   </v-app>
 </template>
@@ -937,6 +1141,21 @@ export default {
           name: "About Me",
           value: "about",
           icon: "mdi-comment-edit"
+        },
+        {
+          name: "Achievement",
+          value: "achievement",
+          icon: "mdi-trophy"
+        },
+        {
+          name: "Hobbies",
+          value: "hobbies",
+          icon: "mdi-puzzle-outline"
+        },
+        {
+          name: "References",
+          value: "references",
+          icon: "mdi-account-arrow-right-outline"
         }
       ],
       Randomcolors: [
@@ -975,7 +1194,24 @@ export default {
         { icon: "mdi-ruler-square-compass" },
         { icon: "mdi-package-variant" },
         { icon: "mdi-ruler-square-compass" }
-      ]
+      ],
+      hobbies:[
+        {title:"Football",
+        value:"football"},
+        {title:"Basketball",
+        value:"basketball"},
+        {title:"Video Games",
+        value:"video_games"},
+        {title:"Travel",
+        value:"travel"},
+      ],
+      reference:{
+        title:"Jhone doe",
+        date:"20 april 2020",
+        gmail:"Jhone@gmail.com",
+        phone:"+212082840542",
+        description:"I have a great passion on designing and always love to create a new design. Thus now I am highly skilled, enthusiastic"
+      }
     };
   },
   watch: {
@@ -1012,7 +1248,21 @@ export default {
         case "xl":
           return true;
       }
-    }
+    },
+    rowIconSize() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xs":
+          return "34px";
+        case "sm":
+          return "40px";
+        case "md":
+          return "50px";
+        case "lg":
+          return "60px";
+        case "xl":
+          return "62px";
+      }
+    },
   },
   methods: {
     availableNext() {

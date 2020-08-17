@@ -106,13 +106,15 @@ class AchievementsController extends Controller
 
     protected function validator(array $data)
     {
+        $url_regex = "/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w\-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/" ;
         return Validator::make($data, [
-            'title' => ['sometimes', 'string', 'max:255','min:3'],
-            'type' => ['sometimes', 'string', 'max:255','min:3'],
-            'year' => ['sometimes', 'string', 'max:255','min:3'],
-            'description' => ['sometimes','string','min:3', 'max:2500','min:3'],
-            'file' => ['nullable','file'],
-            'url' => ['sometimes','max:255','min:3']
+            'title' => ['required', 'string', 'max:255','min:3'],
+            'type' => ['required', 'string', 'max:255','min:3'],
+            'year' => ['required', 'string', 'max:255','min:3'],
+            'description' => ['required','string','min:3', 'max:2500','min:3'],
+            'file' => ['sometimes','file'],
+            'image_src' => ['required','max:255','min:3'],
+            'url' => ['required','max:255','min:3', "regex:".$url_regex]
         ]);
     }
 

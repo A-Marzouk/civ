@@ -340,7 +340,7 @@ class Upload
     {
         $data = [];
 
-        $file = $request->file('image') ;
+        $file = $request->file('file') ;
         $name = date(time()) . '_' . $file->getClientOriginalName();
         $file->move(public_path() . '/uploads/referenceImages/', $name);
         $data['path'] = '/uploads/referenceImages/' . $name;

@@ -1,7 +1,7 @@
 <template>
     <v-app>
         <div style="width:100%;" class="pa-md-0 pa-sm-0 pa-3">
-            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab">
+            <v-tabs class="resume-builder__tab-bar" hide-slider v-model="payTab" height="51">
                 <v-tab
                         class="resume-builder__tab"
                         v-for="(tabName,i) in tabs"
@@ -26,7 +26,7 @@
                                                 @change="selectCurrentPayment(salary_frequency)"
                                                 v-model="salary_frequency"
                                         >
-                                            <button class="dropdown-icon icon" slot="append">
+                                            <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
                                             </button>
                                         </v-select>
@@ -81,7 +81,7 @@
                                                 color="#001CE2"
                                                 v-model="availability_frequency"
                                         >
-                                            <button class="dropdown-icon icon" slot="append">
+                                            <button class="dropdown-icon icon" slot="append" @click.prevent>
                                                 <svg-vue :icon="`dropdown-caret`"></svg-vue>
                                             </button>
                                         </v-select>

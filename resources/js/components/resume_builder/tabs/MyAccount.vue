@@ -1277,10 +1277,7 @@
     }
 
     .error {
-        color: red;
-        font-weight: 600;
-        margin-left: 10px;
-        margin-top: 25px;
+        color: red !important;
     }
 
     .custom-tab1 {

@@ -103,13 +103,14 @@
             <div class="d-flex mb-4" style="transform: translateX(-9px)">
               <v-btn
                 class="resume-builder__btn civie-btn filled"
-                raised
+                raised depressed
                 @click="saveProject"
                 >{{ editedProject.id !== "" ? "Update" : "Add New" }}</v-btn
               >
 
               <v-btn
-                class="resume-builder__btn civie-btn ml-3"
+                class="resume-builder__btn civie-btn cancel-btn"
+                depressed
                 raised
                 @click="clearProject"
                 v-show="editedProject.id !== ''"
