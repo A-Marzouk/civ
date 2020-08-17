@@ -488,13 +488,19 @@
                     <v-container ma-0 pa-0 style="width:100%">
                       <v-row align="center" justify="space-between">
                         <template v-for="(achievement,index) in currentUser.achievements">
-                          <v-col xl="6" lg="6" md="12" sm="12" cols="12" class="mb-5" :key="index" v-show="achievement.is_public">
+                          <v-col
+                            xl="6"
+                            lg="6"
+                            md="12"
+                            sm="12"
+                            cols="12"
+                            class="mb-5"
+                            :key="index"
+                            v-show="achievement.is_public"
+                          >
                             <v-list-item>
                               <v-list-item-avatar class="achievement-avatar">
-                                <img
-                                  :src="achievement.image_src"
-                                  alt="hobby icon"
-                                />
+                                <img :src="achievement.image_src" alt="hobby icon" />
                               </v-list-item-avatar>
                               <v-list-item-content>
                                 <v-list-item-title class="hobby-title">
@@ -519,37 +525,29 @@
                   <div class="watermark-text text-center">Referenes</div>
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width:100%">
-                      <v-row align="center" justify="space-around">
-                        <v-col
-                          xl="5"
-                          lg="5"
-                          md="12"
-                          sm="12"
-                          cols="12"
-                          v-for="i in 6"
-                          :key="i"
-                          class="mb-5"
-                        >
-                          <v-card flat color="transparent">
-                            <v-row>
-                              <v-col cols="7">
-                                <div class="reference-title">Jhone Doe</div>
-                              </v-col>
-                              <v-col cols="5" align="right">
-                                <div class="reference-date">1/1/2020</div>
-                              </v-col>
-                              <v-col cols="12">
-                                <div class="reference-email">Jhone doe@gmail.com</div>
-                              </v-col>
-                              <v-col cols="12">
-                                <div class="reference-desc">
-                                  I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...
-                                  I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow
-                                </div>
-                              </v-col>
-                            </v-row>
-                          </v-card>
-                        </v-col>
+                      <v-row align="center" justify="space-between">
+                        <template v-for="(reference,index) in currentUser.references">
+                          <v-col xl="5" lg="5" md="12" sm="12" cols="12" class="mb-5 " :key="index">
+                            <v-card flat color="transparent">
+                              <v-row>
+                                <v-col cols="7">
+                                  <div class="reference-title">{{reference.name}}</div>
+                                </v-col>
+                                <v-col cols="5" align="right">
+                                  <div class="reference-date">1/1/2020</div>
+                                </v-col>
+                                <v-col cols="12">
+                                  <div class="reference-email">{{reference.email}}</div>
+                                </v-col>
+                                <v-col cols="12">
+                                  <div class="reference-desc">
+                                    {{reference.reference_text}}
+                                  </div>
+                                </v-col>
+                              </v-row>
+                            </v-card>
+                          </v-col>
+                        </template>
                       </v-row>
                     </v-container>
                   </v-card>
