@@ -1,7 +1,7 @@
 <template>
     <v-app class="media-contents">
         <div style="width:100%;">
-            <v-tabs class="resume-builder__tab-bar" hide-slider>
+            <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
                 <v-tab class="resume-builder__tab" v-for="tab in tabs" :key="tab" @click="changeTab(tab)">
                     {{ tab === 'audio' ? 'Audio' : 'Video' }}
                 </v-tab>
