@@ -155,7 +155,7 @@ export default {
           value: "portfolio"
         },
         {
-          text: "Work Ex.",
+          text: "Work",
           value: "work-experience"
         },
         {
@@ -858,7 +858,6 @@ export default {
           line-height: 48px;
           color: rgba(0, 91, 209, 0.3);
           position: relative;
-          min-width: 140px;
           text-align: center;
         }
 
