@@ -43,11 +43,11 @@
                                 </v-col>
 
                                 <v-col xl="3" lg="4" md="6" sm="6" cols="12">
-                                    <v-btn class="resume-builder__btn civie-btn filled" raised @click="saveHobby">
+                                    <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveHobby">
                                         {{editedHobby.id !== '' ? 'Update' : 'Add New'}}
                                     </v-btn>
 
-                                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearHobby" v-show="editedHobby.id !== '' ">
+                                    <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearHobby" v-show="editedHobby.id !== '' ">
                                         Cancel
                                     </v-btn>
                                 </v-col>

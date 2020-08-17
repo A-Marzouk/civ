@@ -4,7 +4,7 @@
             <div class="profile-fields">
                 <div class="profile-picture">
                     <div class="profile-label">
-                        <div class="label">Photo</div>
+                        <div class="label" style="font-size: 15px">Photo</div>
 
                         <div
                                 class="picture-preview"
@@ -17,7 +17,7 @@
 
                 <div class="profile-input-field input-field--firstname input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input profile-input"
+                            class="resume-builder__input civie-input"
                             :class="{'resume-builder__input--disabled': false}"
                             label="First Name"
                             v-model="personalInfo.first_name"
@@ -31,7 +31,7 @@
 
                 <div class="profile-input-field input-field--lastname input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input profile-input"
+                            class="resume-builder__input civie-input"
                             label="Last Name"
                             v-model="personalInfo.last_name"
                             :class="{'resume-builder__input--disabled': false}"
@@ -45,7 +45,7 @@
 
                 <div class="profile-input-field input-field--current-location input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input profile-input"
+                            class="resume-builder__input civie-input"
                             label="Current Location"
                             v-model="personalInfo.location"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
@@ -103,7 +103,7 @@
 
                 <div class="profile-input-field input-field--job-title input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input profile-input"
+                            class="resume-builder__input civie-input"
                             label="Job Title"
                             v-model="personalInfo.designation"
                             :class="{'resume-builder__input--disabled': false}"
@@ -117,7 +117,7 @@
 
                 <div class="profile-input-field input-field--nationality input-field--group-1">
                     <v-text-field
-                            class="resume-builder__input profile-input"
+                            class="resume-builder__input civie-input"
                             label="Nationality"
                             v-model="personalInfo.nationality"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
@@ -162,7 +162,7 @@
                 </div>
                 <div class="profile-input-field input-field--hometown input-field--group-2">
                     <v-text-field
-                            class="resume-builder__input profile-input"
+                            class="resume-builder__input civie-input"
                             label="Hometown"
                             v-model="personalInfo.hometown"
                             :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
@@ -196,7 +196,7 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class="trigger-icon mt-1" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
+                        <button class="trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_about_active}"></svg-vue>
                         </button>
@@ -215,7 +215,7 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon mt-1" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_overview_active}"></svg-vue>
                         </button>
@@ -234,7 +234,7 @@
                             outlined
                             @blur="applyEdit('auto')"
                     >
-                        <button class=" trigger-icon mt-1" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
                             <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
                                      :class="{'visible' : personalInfo.is_quote_active}"></svg-vue>
                         </button>

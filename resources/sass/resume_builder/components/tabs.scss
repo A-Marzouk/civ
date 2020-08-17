@@ -5,7 +5,11 @@
         background-color: $auxBgColor-gray;
         color: $inputTextColor;
         border-right: 1px solid $inputBorderColor--disabled;
-        font-size: 18px;
+        font-size: 15px; //adjusted | 18px
+        letter-spacing: 0.5px; //added
+        font-weight: 400; //added
+
+        font-family: Noto Sans;
 
         &:first-child {
             border-radius: 10px 0px 0px 0px;

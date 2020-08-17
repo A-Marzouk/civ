@@ -2,7 +2,7 @@
   <v-app>
     <div style="width: 100%" class="pa-md-0 pa-sm-0 pa-3">
       <v-card color="transparent" flat tile>
-        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab">
+        <v-tabs class="resume-builder__tab-bar" hide-slider v-model="activeTab" height="51">
           <v-tab style="font-weight: 400"
             class="resume-builder__tab" @click="setSkillCategory(tab)"
             v-for="tab in tabs"

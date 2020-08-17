@@ -596,7 +596,7 @@
         font-family: "Noto Sans" !important;
         font-style: normal;
         font-weight: 500;
-        font-size: 18px !important;
+        font-size: 15px !important; // adjusted | 18px
         line-height: 25px;
         color: #888db1;
     }
