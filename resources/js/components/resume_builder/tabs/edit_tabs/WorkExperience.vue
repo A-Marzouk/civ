@@ -62,7 +62,7 @@
                             </div>
                             <div class="date-input">
                                 <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
-                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> Present
+                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
                                 </label>
                                 <input type="date" class="pr-2" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present">
                             </div>
@@ -349,8 +349,8 @@
         }
     }
 
-    .description-text{
-
+    .present-text{
+        margin-right: 58px;
     }
 
     .work-container {

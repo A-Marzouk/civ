@@ -229,7 +229,7 @@ export default {
 					return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(salary)
 				},
 				toggleAudio () {
-					this.$emit('toggleAudio')
+					this.$emit('toggleAudioPofpup')                                        
 				}
     }
 }

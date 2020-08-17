@@ -22,25 +22,11 @@
 
     <div class="tabs-wrapper">
       <div class="tab-content-wrapper">
-        <div
-          class="portfolio"
+        <Portfolio
+          :currentUser="currentUser"
           v-show="activeTab === 'portfolio'"
           :class="{ active: activeTab === 'portfolio' }"
-        >
-          <div class="images">
-            <div
-              v-for="project in currentUser.projects"
-              :key="project.id + '_project'"
-              class="work-img"
-              :style="{backgroundImage: `url('${getProjectMainImage(project)}')`}"
-            ></div>
-          </div>
-
-          <div class="loading d-none">
-            <img src="/images/resume_themes/theme5/loading.svg" alt="loading" />
-            <div>Loading more items</div>
-          </div>
-        </div>
+        ></Portfolio>
         <div
           class="work-experience"
           v-show="activeTab === 'work-experience'"
@@ -121,50 +107,14 @@
             </div>
           </div>
         </div>
-        <div
-          class="hobbies"
+        <Hobbies
           v-show="activeTab === 'hobbies'"
-          :class="{ active: activeTab === 'hobbies' }"
-        >
-          <div class="hobbies-container">
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/football-skill.svg" alt="Football Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Football</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/hockey-skill.svg" alt="Hockey Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Hockey</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/volleyball-skill.svg" alt="Volleyball Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Volleyball</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/football-skill.svg" alt="Football Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Football</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/hockey-skill.svg" alt="Hockey Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Hockey</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/volleyball-skill.svg" alt="Volleyball Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Volleyball</div>
-            </div>
-          </div>
-        </div>
+		      :class="{ active: activeTab === 'hobbies' }"
+        ></Hobbies>
+        <References
+          v-show="activeTab === 'references'"
+		      :class="{ active: activeTab === 'references' }"
+        ></References>
       </div>
     </div>
   </div>
@@ -176,6 +126,9 @@ import VueMarkdown from 'vue-markdown';
 import Audio from './media/Audio'
 
 import HeaderTheme8 from './header';
+import Portfolio from './portfolio';
+import Hobbies from './hobbies';
+import References from './references';
 
 export default {
   name: "theme8",
@@ -183,7 +136,10 @@ export default {
   components: {
     Slick,
     'vue-markdown': VueMarkdown,
-    HeaderTheme8
+    HeaderTheme8,
+    Portfolio,
+    Hobbies,
+    References,
   },
   data() {
     return {
@@ -266,18 +222,6 @@ export default {
           1000
         );
       });
-    },
-    getProjectMainImage(project) {
-      let mainImage = "";
-
-      let images = project.images;
-      images.forEach(image => {
-        if (image.is_main) {
-          mainImage = image;
-        }
-      });
-
-      return mainImage.src;
     },
     getRandomColor() {
       return "background:#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -429,39 +373,6 @@ export default {
         .education {
           opacity: 0;
           transition: all 0.6s ease;
-        }
-
-        .portfolio {
-          width: 100%;
-
-          .images {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: 20px;
-
-            .work-img {
-              grid-column: span 2;
-              height: 381px;
-              background-size: cover;
-              background-position: center;
-              border-radius: 16px;
-            }
-          }
-
-          .loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            color: #3c3748cf;
-            font-size: 16px;
-
-            img {
-              width: 40px;
-              height: 40px;
-              margin-bottom: 8px;
-            }
-          }
         }
 
         .work-experience {
@@ -632,83 +543,7 @@ export default {
           }
         }
 
-        .hobbies {
-          width: 100%;
-
-          .hobbies-container {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: 26px 49px;
-
-            .hobbie {
-              display: flex;
-              align-items: center;
-              background: #333232;
-              border-radius: 20px;
-              color: white;
-              padding: 42px;
-              align-items: center;
-              grid-column: span 2;
-              height: 194px;
-
-              .hobbie-icon {
-                background-color: #fff;
-                width: 112px;
-                height: 112px;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-                img {
-                  align-self: center;
-                }
-              }
-
-              .hobbie-name {
-                font-size: 28px;
-                margin-left: 37px;
-                display: inline-block;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @media only screen and (max-width: 1600px) {
-    .theme-container {
-      .tabs-wrapper {
-        .tab-content-wrapper {
-          .hobbies {
-            .hobbies-container {
-              grid-gap: 26px;
-
-              .hobbie {
-                grid-column: span 3;
-                padding: 20px;
-                height: 170px;
-
-                .hobbie-icon {
-                  width: 90px;
-                  height: 90px;
-
-                  img {
-                    height: 60px;
-                  }
-                }
-
-                .hobbie-name {
-                  margin-left: 20px;
-                  font-size: 26px;
-                }
-              }
-            }
-          }
-        }
-
+        
       }
     }
   }
@@ -717,23 +552,6 @@ export default {
     .theme-container {
       .tabs-wrapper {
         padding: 0 80px 67px 80px;
-
-        .tab-content-wrapper {
-          .hobbies {
-            .hobbies-container {
-              grid-gap: 26px;
-
-              .hobbie {
-                grid-column: span 3;
-
-                .hobbie-name {
-                  font-size: 18px;
-                }
-              }
-            }
-          }
-        }
-
       }
     }
   }
@@ -827,32 +645,6 @@ export default {
           .education {
             opacity: 0;
             transition: all 0.6s ease;
-          }
-
-          .portfolio {
-            width: 100%;
-
-            .images {
-              .work-img {
-                grid-column: span 3;
-                border-radius: 10px;
-              }
-            }
-
-            .loading {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              margin-top: 50px;
-              color: #3c3748cf;
-              font-size: 16px;
-
-              img {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 8px;
-              }
-            }
           }
 
           .work-experience {
@@ -1028,25 +820,6 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 756px) {
-    .theme-container {
-      .tabs-wrapper {
-        .tab-content-wrapper {
-          .hobbies {
-            .hobbies-container {
-              .hobbie {
-                height: 120px;
-                grid-column: span 6;
-
-                
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   @media only screen and (max-width: 610px) {
     .theme-container {
       display: flex;
@@ -1142,31 +915,6 @@ export default {
           .education {
             opacity: 0;
             transition: all 0.6s ease;
-          }
-
-          .portfolio {
-            width: 100%;
-
-            .images {
-              .work-img {
-                grid-column: span 6;
-              }
-            }
-
-            .loading {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              margin-top: 50px;
-              color: #3c3748cf;
-              font-size: 16px;
-
-              img {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 8px;
-              }
-            }
           }
 
           .work-experience {
