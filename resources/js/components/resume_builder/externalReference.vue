@@ -7,8 +7,11 @@
             </v-app-bar>
         </v-container>
 
-        <h1 class="external-reference-header">
-            Here goes the external reference page header!
+        <h1 class="container external-reference-header">
+            You have been named as a referee for <b>{{user.name}}</b>, <br>
+            <span>
+                please can you complete the following online form to leave a reference.
+            </span>
         </h1>
 
         <div class="container external-reference-content-wrapper">
@@ -536,7 +539,11 @@
     }
 
     .external-reference-header{
-        font-size: 24px;
+        font-size: 36px;
+        color: grey;
+        span{
+            font-size: 30px;
+        }
     }
 
     .external-reference-content-wrapper{
