@@ -452,21 +452,29 @@
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center">
                         <template v-for="(hobby,index) in currentUser.hobbies">
-                        <v-col lg="4" md="6" sm="6" cols="6"  class="mb-5" :key="index" v-show="hobby.is_public==1">
-                          <v-list-item>
-                            <v-list-item-avatar class="hobbies-avatar">
-                              <img
-                                src="/images/resume_themes/theme203/icons/hobby.svg"
-                                alt="hobby icon"
-                              />
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                              <v-list-item-title class="hobby-title ml-xl-5">
-                                <v-card flat color="transparent">{{hobby.title}}</v-card>
-                              </v-list-item-title>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-col>
+                          <v-col
+                            lg="4"
+                            md="6"
+                            sm="6"
+                            cols="6"
+                            class="mb-5"
+                            :key="index"
+                            v-show="hobby.is_public==1"
+                          >
+                            <v-list-item>
+                              <v-list-item-avatar class="hobbies-avatar">
+                                <img
+                                  src="/images/resume_themes/theme203/icons/hobby.svg"
+                                  alt="hobby icon"
+                                />
+                              </v-list-item-avatar>
+                              <v-list-item-content>
+                                <v-list-item-title class="hobby-title ml-xl-5">
+                                  <v-card flat color="transparent">{{hobby.title}}</v-card>
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </v-col>
                         </template>
                       </v-row>
                     </v-container>
@@ -479,35 +487,28 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 style="width:100%">
                       <v-row align="center" justify="space-between">
-                        <v-col
-                          xl="6"
-                          lg="6"
-                          md="12"
-                          sm="12"
-                          cols="12"
-                          v-for="i in 6"
-                          :key="i"
-                          class="mb-5"
-                        >
-                          <v-list-item>
-                            <v-list-item-avatar class="achievement-avatar">
-                              <img
-                                src="/images/resume_themes/theme203/icons/achievement.svg"
-                                alt="hobby icon"
-                              />
-                            </v-list-item-avatar>
-                            <v-list-item-content>
-                              <v-list-item-title class="hobby-title">
-                                <v-card flat color="transparent">
-                                  <v-card-subtitle class="achievement-title">1 st Dribbble shot</v-card-subtitle>
-                                  <v-card-subtitle
-                                    class="achievement-subtitle mt-xl-0 mt-n5"
-                                  >I'm Conor, I'm a product manager from London. I'm currently looking for new permanent job opportunities within London area that will allow my career to develop...</v-card-subtitle>
-                                </v-card>
-                              </v-list-item-title>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-col>
+                        <template v-for="(achievement,index) in currentUser.achievements">
+                          <v-col xl="6" lg="6" md="12" sm="12" cols="12" class="mb-5" :key="index" v-show="achievement.is_public">
+                            <v-list-item>
+                              <v-list-item-avatar class="achievement-avatar">
+                                <img
+                                  :src="achievement.image_src"
+                                  alt="hobby icon"
+                                />
+                              </v-list-item-avatar>
+                              <v-list-item-content>
+                                <v-list-item-title class="hobby-title">
+                                  <v-card flat color="transparent">
+                                    <v-card-subtitle class="achievement-title">{{achievement.title}}</v-card-subtitle>
+                                    <v-card-subtitle
+                                      class="achievement-subtitle mt-xl-0 mt-n5"
+                                    >{{achievement.description}}</v-card-subtitle>
+                                  </v-card>
+                                </v-list-item-title>
+                              </v-list-item-content>
+                            </v-list-item>
+                          </v-col>
+                        </template>
                       </v-row>
                     </v-container>
                   </v-card>
@@ -614,7 +615,7 @@ export default {
         },
         {
           id: 6,
-          title: "Achievement",
+          title: "Achievements",
         },
         {
           id: 7,
@@ -1257,7 +1258,7 @@ export default {
   font-size: 17px;
   line-height: 23px;
   color: #4e4e4e !important;
-  @media screen and (max-width: 599px){
+  @media screen and (max-width: 599px) {
     font-size: 14px;
   }
 }
