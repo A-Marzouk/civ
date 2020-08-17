@@ -446,7 +446,7 @@ export default {
 
     @media screen and (max-width: 715px) {
       .date-input input {
-        max-width: 5rem;
+        max-width: 9rem;
       }
     }
 
