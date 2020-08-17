@@ -451,7 +451,8 @@
                   <v-card color="transparent" tile flat>
                     <v-container ma-0 pa-0 fluid style="width:100%">
                       <v-row align="center">
-                        <v-col lg="4" md="6" sm="6" cols="6" v-for="i in 6" :key="i" class="mb-5">
+                        <template v-for="(hobby,index) in currentUser.hobbies">
+                        <v-col lg="4" md="6" sm="6" cols="6"  class="mb-5" :key="index" v-show="hobby.is_public==1">
                           <v-list-item>
                             <v-list-item-avatar class="hobbies-avatar">
                               <img
@@ -461,11 +462,12 @@
                             </v-list-item-avatar>
                             <v-list-item-content>
                               <v-list-item-title class="hobby-title ml-xl-5">
-                                <v-card flat color="transparent">Football</v-card>
+                                <v-card flat color="transparent">{{hobby.title}}</v-card>
                               </v-list-item-title>
                             </v-list-item-content>
                           </v-list-item>
                         </v-col>
+                        </template>
                       </v-row>
                     </v-container>
                   </v-card>
@@ -725,6 +727,7 @@ export default {
     if (!this.currentUser || this.is_preview) {
       this.setDummyUser();
     }
+    console.log(this.currentUser);
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.user);
   },
