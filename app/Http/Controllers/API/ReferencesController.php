@@ -15,7 +15,7 @@ class ReferencesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('store');
     }
 
 
@@ -28,11 +28,6 @@ class ReferencesController extends Controller
     }
     public function store(Request $request)
     {
-
-        if(!$this->is_auth($request)){
-            throw new Exception('Not Authenticated!');
-        }
-
 
         $this->validator($request->all())->validate();
 
