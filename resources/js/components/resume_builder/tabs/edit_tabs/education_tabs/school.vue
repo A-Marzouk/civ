@@ -72,7 +72,7 @@
 
             <div class="date-input ml-1" style="flex: 1;">
                 <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center mr-1">
-                    <input type="checkbox" class="checkbox" v-model="newEducation.present"> Present
+                    <input type="checkbox" class="checkbox" v-model="newEducation.present"> <span class="present-text">Present</span>
                 </label>
                 
                 <div style="display: flex">
@@ -377,6 +377,23 @@ export default {
 .education-wrapper {
   .edu-action-btns {
     display: flex;
+  }
+
+  .present-text{
+    margin-right: 95px;
+    @media screen and (min-width: 1280px) and (max-width: 1700px){
+      margin-right: 50px;
+    }
+    @media screen and (min-width:1701px) and (max-width: 1800px){
+      margin-right: 65px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1279px){
+      margin-right:50px;
+    }
+    @media screen and (max-width: 959px){
+      margin-right: 100px;
+    }
+
   }
 
   position: relative;
