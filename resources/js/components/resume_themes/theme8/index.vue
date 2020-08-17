@@ -110,14 +110,17 @@
         <Hobbies
           v-show="activeTab === 'hobbies'"
 		      :class="{ active: activeTab === 'hobbies' }"
+          :currentUser="currentUser"
         ></Hobbies>
         <References
           v-show="activeTab === 'references'"
 		      :class="{ active: activeTab === 'references' }"
+          :currentUser="currentUser"
         ></References>
         <Achievements
           v-show="activeTab === 'achievements'"
 		      :class="{ active: activeTab === 'achievements' }"
+          :currentUser="currentUser"
         ></Achievements>
       </div>
     </div>

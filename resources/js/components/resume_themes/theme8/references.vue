@@ -2,76 +2,26 @@
     <div
         class="references"
     >
-        <div class="reference">
+        <div
+            class="reference"
+            v-for="reference in currentUser.references"
+            :key="'ref-' + reference.id"
+        >
             <div class="left">
-                <h2 class="reference-name">Conor Marjoram</h2>
-                <div class="reference-profession">CEO</div>
-                <div class="reference-company">Civie</div>
-                <div class="reference-date">May 2019 - Now</div>
-                <div class="reference-comment">Lorem ipsum dolor sit amet consectetur. Voluptates commodi sapiente, iste quae eligendi dignissimos labore aperiam dolores! Temporibus esse, eius error molestiae corporis similique. Accusamus consequatur eos libero cumque.</div>
+                <h2 class="reference-name">{{ reference.name }}</h2>
+                <div class="reference-profession">{{ reference.title }}</div>
+                <div class="reference-company">{{ reference.company }}</div>
+                <!-- <div class="reference-date">{{ reference.date }}</div> -->
+                <div class="reference-comment">{{ reference.reference_text }}</div>
             </div>
             <div class="right">
-                <div class="address">Lorem, ipsum dolor sit amet consectetur.</div>
-                <div class="phone">+234248816374</div>
+                <div class="address">{{ reference.address }}</div>
+                <div class="phone">{{ reference.phone }}</div>
                 <a
-                    href="https://civ.ie"
+                    :href="reference.url"
                     target="_blank"
                     class="website"
-                >https://civ.ie</a>
-            </div>
-        </div>
-        <div class="reference">
-            <div class="left">
-                <h2 class="reference-name">Conor Marjoram</h2>
-                <div class="reference-profession">CEO</div>
-                <div class="reference-company">Civie</div>
-                <div class="reference-date">May 2019 - Now</div>
-                <div class="reference-comment">Lorem ipsum dolor sit amet consectetur. Voluptates commodi sapiente, iste quae eligendi dignissimos labore aperiam dolores! Temporibus esse, eius error molestiae corporis similique. Accusamus consequatur eos libero cumque.</div>
-            </div>
-            <div class="right">
-                <div class="address">Lorem, ipsum dolor sit amet consectetur.</div>
-                <div class="phone">+234248816374</div>
-                <a
-                    href="https://civ.ie"
-                    target="_blank"
-                    class="website"
-                >https://civ.ie</a>
-            </div>
-        </div>
-        <div class="reference">
-            <div class="left">
-                <h2 class="reference-name">Conor Marjoram</h2>
-                <div class="reference-profession">CEO</div>
-                <div class="reference-company">Civie</div>
-                <div class="reference-date">May 2019 - Now</div>
-                <div class="reference-comment">Lorem ipsum dolor sit amet consectetur. Voluptates commodi sapiente, iste quae eligendi dignissimos labore aperiam dolores! Temporibus esse, eius error molestiae corporis similique. Accusamus consequatur eos libero cumque.</div>
-            </div>
-            <div class="right">
-                <div class="address">Lorem, ipsum dolor sit amet consectetur.</div>
-                <div class="phone">+234248816374</div>
-                <a
-                    href="https://civ.ie"
-                    target="_blank"
-                    class="website"
-                >https://civ.ie</a>
-            </div>
-        </div>
-        <div class="reference">
-            <div class="left">
-                <h2 class="reference-name">Conor Marjoram</h2>
-                <div class="reference-profession">CEO</div>
-                <div class="reference-company">Civie</div>
-                <div class="reference-date">Duration: May 2019 - Now</div>
-                <div class="reference-comment">Lorem ipsum dolor sit amet consectetur. Voluptates commodi sapiente, iste quae eligendi dignissimos labore aperiam dolores! Temporibus esse, eius error molestiae corporis similique. Accusamus consequatur eos libero cumque.</div>
-            </div>
-            <div class="right">
-                <div class="address">Lorem, ipsum dolor sit amet consectetur.</div>
-                <div class="phone">+234248816374</div>
-                <a
-                    href="https://civ.ie"
-                    target="_blank"
-                    class="website"
-                >https://civ.ie</a>
+                >{{ reference.url }}</a>
             </div>
         </div>
     </div>
@@ -79,6 +29,7 @@
 
 <script>
 export default {
+    props: ['currentUser'],
     data: () => ({
 
     })
@@ -114,6 +65,7 @@ export default {
             .reference-profession {
                 font-size: 21px;
                 line-height: 27px;
+                color: #005BD1;
             }
 
             .reference-company {
@@ -124,7 +76,6 @@ export default {
             .reference-date {
                 font-size: 18px;
                 margin-bottom: 24px;
-                color: #005BD1;
             }
 
             .reference-comment {
