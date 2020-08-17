@@ -3,6 +3,29 @@
         <div style="width:100%;">
             <v-card class="card-ref pa-xl-10 pa-lg-5 pa-5 resume-builder__scroll reference-content" flat>
                 <v-container class>
+
+                    <div class="reference-external-link-wrapper">
+                        <div class="reference-external-link-input">
+                            <v-text-field
+                                    class="resume-builder__input civie-input"
+                                    outlined
+                                    color="#001CE2"
+                                    label="Reference link"
+                                    :disabled="true"
+                                    hint="Share with your former employers for your reference"
+                                    persistent-hint
+                                    :value="`https://civ.ie/${$store.state.user.username}/reference`"
+                                    :error="!!errors.type"
+                                    :error-messages="errors.type"
+                            ></v-text-field>
+                        </div>
+                        <div class="reference-external-link-button">
+                            <v-btn class="resume-builder__btn civie-btn filled" raised @click="copyReferenceLink">
+                                Copy Link
+                            </v-btn>
+                        </div>
+                    </div>
+
                     <v-form>
                         <v-row align="center">
                             <v-col
@@ -162,13 +185,13 @@
                                     cols="12"
                                     class="mt-xl-n6 mt-lg-n6 mt-md-n6 mt-sm-n6 mt-n8"
                             >
-                                <label  :class="{'error' : !!errors.file || !!errors.image}" style="position: absolute; top: -16px; color: #888DB1;font-size: 18px;">Upload Image</label>
+                                <label  :class="{'error' : !!errors.file || !!errors.image}" style="position: absolute; top: -14px; color: #888DB1;font-size: 15px;">Upload Image</label>
                                 <v-input
                                         class="resume-builder__input civie-dropzone"
                                         outlined
                                         :class="{'error' : !!errors.file || !!errors.image}"
                                         hint="(Maximum 5 files)"
-                                        height="157"
+                                        height="146"
                                         style="margin-top: -21px;"
                                 >
                                     <vue-dropzone
@@ -338,7 +361,6 @@
                 errors: {},
                 importImage: "",
                 tempReferenceImage: '',
-
                 editedReference: {
                     id: '',
                     type: '',
@@ -372,6 +394,21 @@
         },
         methods: {
 
+            copyReferenceLink() {
+                let $temp = $("<input>");
+                $("body").append($temp);
+                $temp.val(this.baseUrl() + this.$store.state.user.username + '/reference').select();
+                document.execCommand("copy");
+                $temp.remove();
+                this.$store.dispatch("flyingNotification", {
+                    message: "Copied",
+                    iconSrc: "/images/resume_builder/tick.svg"
+                });
+            },
+            baseUrl() {
+                let getUrl = window.location;
+                return getUrl.protocol + "//" + getUrl.host + "/";
+            },
             // references list functions:
             deleteReference(reference) {
                 if (!confirm('Do you want to delete this reference ?')) {
@@ -513,6 +550,21 @@
             max-width: 94%;
             margin-right: auto;
             margin-left: auto;
+        }
+    }
+
+    .reference-external-link-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        .reference-external-link-input{
+            width:450px;
+            margin-right: 30px;
+        }
+        .reference-external-link-button{
+
         }
     }
 
