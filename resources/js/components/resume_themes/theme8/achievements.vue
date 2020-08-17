@@ -2,71 +2,28 @@
     <div
         class="achievements"
     >
-        <div class="achievement">
+        <div
+            class="achievement"
+            v-for="achievement in currentUser.achievements"
+            :key="'achievement-' + achievement.id"
+        >
             <div class="left">
-                <img src="/images/resume_themes/theme8/achievement-sample.png" alt="achievement theme8 civie">
+                <img :src="achievement.image_src" :alt="`achievement theme8 civie ${achievement.title}`">
             </div>
             <div class="right">
-                <div class="date">2019</div>
-                <div class="achievement-title">Javascript</div>
-                <div class="achievement-code">URL: 786123ncacs13bao7612</div>
-                <div class="achievement-description hideOnTablet">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
+                <!-- <div class="date">2019</div> -->
+                <div class="achievement-title">{{ achievement.title }}</div>
+                <div class="achievement-code">URL: {{ achievement.url }}</div>
+                <div class="achievement-description hideOnTablet">{{ achievement.description }}</div>
             </div>
-            <div class="showOnTablet achievement-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-        </div>
-        <div class="achievement">
-            <div class="left">
-                <img src="/images/resume_themes/theme8/achievement-sample.png" alt="achievement theme8 civie">
-            </div>
-            <div class="right">
-                <div class="date">2019</div>
-                <div class="achievement-title">Javascript</div>
-                <div class="achievement-code">URL: 786123ncacs13bao7612</div>
-                <div class="achievement-description hideOnTablet">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-            </div>
-            <div class="showOnTablet achievement-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-        </div>
-        <div class="achievement">
-            <div class="left">
-                <img src="/images/resume_themes/theme8/achievement-sample.png" alt="achievement theme8 civie">
-            </div>
-            <div class="right">
-                <div class="date">2019</div>
-                <div class="achievement-title">Javascript</div>
-                <div class="achievement-code">URL: 786123ncacs13bao7612</div>
-                <div class="achievement-description hideOnTablet">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-            </div>
-            <div class="showOnTablet achievement-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-        </div>
-        <div class="achievement">
-            <div class="left">
-                <img src="/images/resume_themes/theme8/achievement-sample.png" alt="achievement theme8 civie">
-            </div>
-            <div class="right">
-                <div class="date">2019</div>
-                <div class="achievement-title">Javascript</div>
-                <div class="achievement-code">URL: 786123ncacs13bao7612</div>
-                <div class="achievement-description hideOnTablet">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-            </div>
-            <div class="showOnTablet achievement-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-        </div>
-        <div class="achievement">
-            <div class="left">
-                <img src="/images/resume_themes/theme8/achievement-sample.png" alt="achievement theme8 civie">
-            </div>
-            <div class="right">
-                <div class="date">2019</div>
-                <div class="achievement-title">Javascript</div>
-                <div class="achievement-code">URL: 786123ncacs13bao7612</div>
-                <div class="achievement-description hideOnTablet">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
-            </div>
-            <div class="showOnTablet achievement-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deleniti dignissimos, beatae suscipit repellendus excepturi ad ullam? Dolorem?</div>
+            <div class="showOnTablet achievement-description">{{ achievement.description }}</div>
         </div>
     </div>
 </template>
 
 <script>
 export default {
+    props: ['currentUser'],
     data: () => ({})
 }
 </script>
