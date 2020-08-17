@@ -428,6 +428,7 @@
 
                 formData.append('user_id', this.user.id);
                 formData.append('id', this.editedReference.id);
+                formData.append('externalReference', 'external');
 
 
                 axios.post('/api/user/references', formData, {headers: {'Content-Type': 'multipart/form-data'}})

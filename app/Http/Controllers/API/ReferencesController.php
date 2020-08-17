@@ -4,10 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\classes\Upload;
 use App\Http\Controllers\Controller;
+use App\Mail\ReferenceAdded;
 use App\Reference;
 use App\Http\Resources\Reference as ReferenceResource;
 use App\User;
 use Illuminate\Http\Request;use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
@@ -44,6 +46,13 @@ class ReferencesController extends Controller
         }else{
             // add
             $reference = Reference::create($request->toArray());
+
+            // if external : send an email:
+            if(isset($request->externalReference) && $request->externalReference === 'external'){
+                $user = User::find($reference->user_id);
+                Mail::to($user)->send(new ReferenceAdded($reference));
+            }
+
         }
 
 

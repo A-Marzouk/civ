@@ -7,19 +7,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class WelcomeUserMail extends Mailable
+class ReferenceAdded extends Mailable
 {
     use Queueable, SerializesModels;
-    public $details;
+    public $reference;
 
     /**
      * Create a new message instance.
-     *
-     * @param $details
+     * @param $reference
+     * @return void
      */
-    public function __construct($details)
+    public function __construct($reference)
     {
-        $this->details = $details;
+        $this->$reference = $reference;
     }
 
     /**
@@ -29,7 +29,8 @@ class WelcomeUserMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Mail from civ.ie')
-            ->view('emails.WelcomeUser');
+        return $this->subject('Mail from civ.ie | Reference added')
+            ->from('info@civ.ie')
+            ->markdown('emails.ReferenceAdded');
     }
 }
