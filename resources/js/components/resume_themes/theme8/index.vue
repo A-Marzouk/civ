@@ -1,46 +1,37 @@
 <template>
-  <div class="theme-container" v-if="currentUser">
+  <v-app class="theme-container" v-if="currentUser">
     <vue-particles></vue-particles>
     <HeaderTheme8 :currentUser="currentUser" @toogleAudioPopup="toogleAudioPopup" :isVisibleAudioPopup="isVisibleAudioPopup"></HeaderTheme8>
 
     <div class="tabs-bar-wrapper">
-      <div class="tabs-bar">
-        <div
-          class="tab-text"
+      <v-tabs
+        centered
+        show-arrows
+        grow
+      >
+        <v-tabs-slider
+          height="4px"
+        ></v-tabs-slider>
+
+        <v-tab
+          class="v-tab"
           v-for="tab in tabs"
           :key="tab.value"
           @click="activeTab = tab.value"
-          :class="[
-            { active: activeTab === tab.value },
-            { 'active-indicator': currentTab === tab.value }
-          ]"
+          :ripple="false"
         >
           {{ tab.text }}
-        </div>
-      </div>
+        </v-tab>
+      </v-tabs>
     </div>
 
     <div class="tabs-wrapper">
       <div class="tab-content-wrapper">
-        <div
-          class="portfolio"
+        <Portfolio
+          :currentUser="currentUser"
           v-show="activeTab === 'portfolio'"
           :class="{ active: activeTab === 'portfolio' }"
-        >
-          <div class="images">
-            <div
-              v-for="project in currentUser.projects"
-              :key="project.id + '_project'"
-              class="work-img"
-              :style="{backgroundImage: `url('${getProjectMainImage(project)}')`}"
-            ></div>
-          </div>
-
-          <div class="loading d-none">
-            <img src="/images/resume_themes/theme5/loading.svg" alt="loading" />
-            <div>Loading more items</div>
-          </div>
-        </div>
+        ></Portfolio>
         <div
           class="work-experience"
           v-show="activeTab === 'work-experience'"
@@ -121,53 +112,24 @@
             </div>
           </div>
         </div>
-        <div
-          class="hobbies"
+        <Hobbies
           v-show="activeTab === 'hobbies'"
-          :class="{ active: activeTab === 'hobbies' }"
-        >
-          <div class="hobbies-container">
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/football-skill.svg" alt="Football Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Football</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/hockey-skill.svg" alt="Hockey Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Hockey</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/volleyball-skill.svg" alt="Volleyball Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Volleyball</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/football-skill.svg" alt="Football Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Football</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/hockey-skill.svg" alt="Hockey Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Hockey</div>
-            </div>
-            <div class="hobbie">
-              <div class="hobbie-icon">
-                <img src="/images/resume_themes/theme8/volleyball-skill.svg" alt="Volleyball Skill icon theme8 civie josedan10">
-              </div>
-              <div class="hobbie-name">Volleyball</div>
-            </div>
-          </div>
-        </div>
+		      :class="{ active: activeTab === 'hobbies' }"
+          :currentUser="currentUser"
+        ></Hobbies>
+        <References
+          v-show="activeTab === 'references'"
+		      :class="{ active: activeTab === 'references' }"
+          :currentUser="currentUser"
+        ></References>
+        <Achievements
+          v-show="activeTab === 'achievements'"
+		      :class="{ active: activeTab === 'achievements' }"
+          :currentUser="currentUser"
+        ></Achievements>
       </div>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -176,6 +138,10 @@ import VueMarkdown from 'vue-markdown';
 import Audio from './media/Audio'
 
 import HeaderTheme8 from './header';
+import Portfolio from './portfolio';
+import Hobbies from './hobbies';
+import References from './references';
+import Achievements from './achievements';
 
 export default {
   name: "theme8",
@@ -183,7 +149,11 @@ export default {
   components: {
     Slick,
     'vue-markdown': VueMarkdown,
-    HeaderTheme8
+    HeaderTheme8,
+    Portfolio,
+    Hobbies,
+    References,
+    Achievements,
   },
   data() {
     return {
@@ -193,7 +163,7 @@ export default {
           value: "portfolio"
         },
         {
-          text: "Work Ex.",
+          text: "Work",
           value: "work-experience"
         },
         {
@@ -267,18 +237,6 @@ export default {
         );
       });
     },
-    getProjectMainImage(project) {
-      let mainImage = "";
-
-      let images = project.images;
-      images.forEach(image => {
-        if (image.is_main) {
-          mainImage = image;
-        }
-      });
-
-      return mainImage.src;
-    },
     getRandomColor() {
       return "background:#" + Math.floor(Math.random() * 16777215).toString(16);
     },
@@ -315,6 +273,7 @@ export default {
 @import url(//fonts.googleapis.com/earlyaccess/thabit.css);
 
 #resumeTheme8 {
+  font-family: 'Thabit', 'Courier New', Courier, monospace;
 
 
   .hideOnNotTablet {
@@ -326,6 +285,10 @@ export default {
     @media only screen and (min-width: 760px) {
       display: none !important;
     }
+  }
+
+  .v-application--wrap {
+    width: 100%;
   }
 
   .theme-container {
@@ -344,19 +307,28 @@ export default {
     .tabs-bar-wrapper {
       width: 100%;
       height: 119px;
-      overflow-x: auto;
       position: relative;
       z-index: 1;
       background: #333232;
       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
       
-      .tabs-bar {
+      .v-tabs {
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        background: transparent;
 
-        .tab-text {
+        .v-tabs-bar {
+          height: 100%;
+          background: transparent;
+
+        }
+
+        .v-tabs-slider {
+          background-color: #005bd1;
+          height: 4px;
+        }
+
+
+        .v-tab {
           font-style: italic;
           font-weight: bold;
           font-size: 26px;
@@ -364,38 +336,30 @@ export default {
           color: white;
           position: relative;
           padding: 0 20px;
-        }
+          text-transform: none !important;
 
-        .tab-text:hover {
-          cursor: pointer;
-          color: #005bd1;
-        }
+          &--active {
+            color: #005bd1;
+          }
 
-        .tab-text.active:before {
-          content: "";
-          position: absolute;
-          left: -8%;
-          bottom: -75%;
-          height: 4px;
-          width: 116%;
-          border: 1px solid #005bd1;
-          -webkit-box-shadow: 0px 0px 16px #005bd1;
-          box-shadow: 0px 0px 16px #005bd1;
-          background: #005bd1;
-        }
-
-        .tabs-bar {
-          position: relative;
-          z-index: 1;
-
-          div:last-child {
-            margin-right: 0;
+          &::before {
+            display: none;
           }
         }
 
-        .tab-text.active {
+        .v-tab:hover {
+          cursor: pointer;
           color: #005bd1;
           text-shadow: 0px 0px 16px rgba(142, 192, 255, 0.3);
+        }
+
+        .v-slide-group__next .v-icon,
+        .v-slide-group__prev .v-icon {
+          color: #fff !important;
+
+          &--disabled {
+            color: rgba(255, 255, 255, 0.2) !important;
+          }
         }
       }
     }
@@ -431,39 +395,6 @@ export default {
           transition: all 0.6s ease;
         }
 
-        .portfolio {
-          width: 100%;
-
-          .images {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: 20px;
-
-            .work-img {
-              grid-column: span 2;
-              height: 381px;
-              background-size: cover;
-              background-position: center;
-              border-radius: 16px;
-            }
-          }
-
-          .loading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 50px;
-            color: #3c3748cf;
-            font-size: 16px;
-
-            img {
-              width: 40px;
-              height: 40px;
-              margin-bottom: 8px;
-            }
-          }
-        }
-
         .work-experience {
           display: flex;
           flex-wrap: wrap;
@@ -489,6 +420,7 @@ export default {
             }
 
             .title {
+              font-family: 'Thabit', 'Courier New', Courier, monospace;
               font-weight: bold;
               font-size: 32px;
               line-height: 42px;
@@ -632,83 +564,7 @@ export default {
           }
         }
 
-        .hobbies {
-          width: 100%;
-
-          .hobbies-container {
-            width: 100%;
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            grid-gap: 26px 49px;
-
-            .hobbie {
-              display: flex;
-              align-items: center;
-              background: #333232;
-              border-radius: 20px;
-              color: white;
-              padding: 42px;
-              align-items: center;
-              grid-column: span 2;
-              height: 194px;
-
-              .hobbie-icon {
-                background-color: #fff;
-                width: 112px;
-                height: 112px;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                
-                img {
-                  align-self: center;
-                }
-              }
-
-              .hobbie-name {
-                font-size: 28px;
-                margin-left: 37px;
-                display: inline-block;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
-  @media only screen and (max-width: 1600px) {
-    .theme-container {
-      .tabs-wrapper {
-        .tab-content-wrapper {
-          .hobbies {
-            .hobbies-container {
-              grid-gap: 26px;
-
-              .hobbie {
-                grid-column: span 3;
-                padding: 20px;
-                height: 170px;
-
-                .hobbie-icon {
-                  width: 90px;
-                  height: 90px;
-
-                  img {
-                    height: 60px;
-                  }
-                }
-
-                .hobbie-name {
-                  margin-left: 20px;
-                  font-size: 26px;
-                }
-              }
-            }
-          }
-        }
-
+        
       }
     }
   }
@@ -717,23 +573,6 @@ export default {
     .theme-container {
       .tabs-wrapper {
         padding: 0 80px 67px 80px;
-
-        .tab-content-wrapper {
-          .hobbies {
-            .hobbies-container {
-              grid-gap: 26px;
-
-              .hobbie {
-                grid-column: span 3;
-
-                .hobbie-name {
-                  font-size: 18px;
-                }
-              }
-            }
-          }
-        }
-
       }
     }
   }
@@ -752,54 +591,14 @@ export default {
       font-family: "Thabit", monospace !important;
       max-width: 1920px;
 
-      .tabs-bar {
-        background: #333232;
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-        width: 100%;
+      .v-tabs {
         height: 101px;
         padding: 0 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        overflow: auto;
 
-        .tab-text {
-          font-style: italic;
-          font-weight: bold;
+        .v-tab {
           font-size: 26px;
           padding: 0 10px;
           line-height: 32px;
-          color: rgba(0, 91, 209, 0.3);
-          position: relative;
-        }
-
-        .tab-text:hover {
-          cursor: pointer;
-          color: #005bd1;
-        }
-
-        .tab-text.active:before {
-          content: "";
-          position: absolute;
-          left: -8%;
-          bottom: -106%;
-          height: 4px;
-          width: 116%;
-          border: 1px solid #005bd1;
-          -webkit-box-shadow: 0px 0px 16px #005bd1;
-          box-shadow: 0px 0px 16px #005bd1;
-          background: #005bd1;
-        }
-
-        .tabs-bar {
-          div:last-child {
-            margin-right: 0;
-          }
-        }
-
-        .tab-text.active {
-          color: #005bd1;
-          text-shadow: 0px 0px 16px rgba(142, 192, 255, 0.3);
         }
       }
 
@@ -829,32 +628,6 @@ export default {
             transition: all 0.6s ease;
           }
 
-          .portfolio {
-            width: 100%;
-
-            .images {
-              .work-img {
-                grid-column: span 3;
-                border-radius: 10px;
-              }
-            }
-
-            .loading {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              margin-top: 50px;
-              color: #3c3748cf;
-              font-size: 16px;
-
-              img {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 8px;
-              }
-            }
-          }
-
           .work-experience {
             display: flex;
             flex-wrap: wrap;
@@ -879,10 +652,8 @@ export default {
               }
 
               .title {
-                font-weight: bold;
                 font-size: 20px;
                 line-height: 24px;
-                color: #ffffff;
                 margin-bottom: 27px;
               }
 
@@ -1028,25 +799,6 @@ export default {
     }
   }
 
-  @media only screen and (max-width: 756px) {
-    .theme-container {
-      .tabs-wrapper {
-        .tab-content-wrapper {
-          .hobbies {
-            .hobbies-container {
-              .hobbie {
-                height: 120px;
-                grid-column: span 6;
-
-                
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   @media only screen and (max-width: 610px) {
     .theme-container {
       display: flex;
@@ -1061,58 +813,12 @@ export default {
       max-width: 1920px;
 
       .tabs-bar {
-        position: relative;
-        z-index: 1;
-        background: #333232;
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-        width: 100%;
         height: 90px;
-        display: flex;
-        align-items: center;
         padding: 0 20px;
-        justify-content: space-between;
 
-        .tab-text {
-          font-style: italic;
-          font-weight: bold;
+        .v-tab {
           font-size: 18px;
           line-height: 48px;
-          color: rgba(0, 91, 209, 0.3);
-          position: relative;
-          min-width: 140px;
-          text-align: center;
-        }
-
-        .tab-text:hover {
-          cursor: pointer;
-          color: #005bd1;
-        }
-
-        .tab-text.active:before {
-          content: "";
-          position: absolute;
-          left: -8%;
-          bottom: -42%;
-          height: 4px;
-          width: 116%;
-          border: 1px solid #005bd1;
-          -webkit-box-shadow: 0px 0px 16px #005bd1;
-          box-shadow: 0px 0px 16px #005bd1;
-          background: #005bd1;
-        }
-
-        .tabs-bar {
-          position: relative;
-          z-index: 1;
-
-          div:last-child {
-            margin-right: 0;
-          }
-        }
-
-        .tab-text.active {
-          color: #005bd1;
-          text-shadow: 0px 0px 16px rgba(142, 192, 255, 0.3);
         }
       }
 
@@ -1144,31 +850,6 @@ export default {
             transition: all 0.6s ease;
           }
 
-          .portfolio {
-            width: 100%;
-
-            .images {
-              .work-img {
-                grid-column: span 6;
-              }
-            }
-
-            .loading {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              margin-top: 50px;
-              color: #3c3748cf;
-              font-size: 16px;
-
-              img {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 8px;
-              }
-            }
-          }
-
           .work-experience {
             display: flex;
             flex-wrap: wrap;
@@ -1193,10 +874,8 @@ export default {
               }
 
               .title {
-                font-weight: bold;
                 font-size: 32px;
                 line-height: 42px;
-                color: #ffffff;
                 margin-bottom: 18px;
               }
 

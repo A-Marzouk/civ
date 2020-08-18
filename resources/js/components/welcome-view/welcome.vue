@@ -1028,6 +1028,24 @@ export default {
     }
   }
 
+  .v-text-field input {
+    color: #aeaeae !important;
+  }
+
+  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #C4C9F5;
+  }
+
+  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #C4C9F5;
+  }
+
   .build-resume-title {
     font-family: "Montserrat" !important;
     font-weight: bold;
@@ -1336,24 +1354,6 @@ export default {
     margin-bottom: 10px;
   }
 
-  .v-text-field input {
-    color: #aeaeae !important;
-  }
-
-  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-    > .v-input__control
-    > .v-input__slot
-    fieldset {
-    border: 2px solid #ffffff !important;
-  }
-
-  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
-    > .v-input__control
-    > .v-input__slot
-    fieldset {
-    border: 2px solid #ebebeb !important;
-  }
-
   .slick-dots li button {
     width: 110px !important;
     height: 6px;
@@ -1413,5 +1413,26 @@ export default {
       margin-left: -40px;
     }
   }
+}
+
+#welcomeView{
+  .v-text-field input {
+    color: #aeaeae !important;
+  }
+
+  .theme--light.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #ffffff !important;
+  }
+
+  .theme--dark.v-text-field--outlined:not(.v-input--is-focused):not(.v-input--has-state)
+  > .v-input__control
+  > .v-input__slot
+  fieldset {
+    border: 2px solid #ebebeb !important;
+  }
+
 }
 </style>

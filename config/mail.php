@@ -56,8 +56,22 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'info@civ.ie'),
+        'name' => env('MAIL_FROM_NAME', 'civ.ie'),
+    ],
+
+    /*
+  |--------------------------------------------------------------------------
+  | Global "Reply to" Address
+  |--------------------------------------------------------------------------
+  |
+  | You may wish for all e-mails sent to be replied to one email
+  |
+  */
+
+    'reply_to' => [
+        'address' => env('MAIL_FROM_ADDRESS', 'info@civ.ie'),
+        'name' => env('MAIL_FROM_NAME', 'civ.ie'),
     ],
 
     /*

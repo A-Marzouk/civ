@@ -962,8 +962,9 @@
                 cols="12"
                 sm="6"
                 md="5"
-                v-for="(hobby, i) in hobbies"
+                v-for="(hobby, i) in currentUser.hobbies"
                 :key="i"
+                v-show="hobby.is_public"
                 class="mb-12"
               >
                 <v-row no-gutters>
@@ -974,7 +975,7 @@
                     class="mr-4"
                   >
                     <v-img
-                      :src="`/images/resume_themes/theme501/${hobby.value}.svg`"
+                      :src="`/images/resume_themes/theme501/${hobby.title}.svg`"
                       max-width="60"
                       class="ma-auto"
                     ></v-img
@@ -1014,8 +1015,9 @@
               no-gutters
               justify="start"
               class="mb-8 flex-md-row-reverse"
-              v-for="n in 4"
-              :key="n"
+              v-for="(reference, i) in currentUser.references"
+              :key="i"
+              v-show="reference.is_public"
             >
               <v-col cols="2" md="1" class="mt-3 ml-sm-3 flex-md-row-reverse">
                 <v-img
@@ -1026,7 +1028,7 @@
                 ></v-img>
               </v-col>
               <v-col cols="10" sm="7">
-                <v-row no-gutters>
+                <v-row no-gutters class="flex-md-row-reverse">
                   <v-col cols="8">
                     <div class="newTitle">
                       {{ reference.title }}
@@ -1036,12 +1038,12 @@
                     <div
                       class="subtitle-2 grey--text text--darken-1 text-right mt-2"
                     >
-                      {{ reference.date }}
+                      {{ reference.created_at }}
                     </div></v-col
                   >
                   <v-col cols="12">
                     <div class="subtitle-2 grey--text text--darken-1 text-left">
-                      {{ reference.gmail }}
+                      {{ reference.email }}
                     </div></v-col
                   >
                   <v-col cols="12">
@@ -1051,7 +1053,7 @@
                   >
                   <v-col cols="12">
                     <div class="newSubtitle">
-                      {{ reference.description }}
+                      {{ reference.reference_text }}
                     </div></v-col
                   >
                 </v-row>

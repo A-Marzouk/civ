@@ -2,7 +2,7 @@
     <div class="work-container" id="worksSection">
 
         <!-- Tabs -->
-        <v-tabs class="resume-builder__tab-bar" hide-slider>
+        <v-tabs class="resume-builder__tab-bar" hide-slider height="51">
             <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setWorkCategory(tab)">
                 {{tab}}
             </v-tab>
@@ -58,13 +58,13 @@
                         <div class="date-group">
                             <div class="date-input">
                                 <label :class="{'error-label' : errors.date_from}">Date</label>
-                                <input type="date" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
+                                <input type="date" class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newWork.date_from">
                             </div>
                             <div class="date-input">
                                 <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center">
-                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> Present
+                                    <input type="checkbox" class="checkbox" v-model="newWork.present"> <span class="present-text">Present</span>
                                 </label>
-                                <input type="date" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present">
+                                <input type="date" class="pr-2" :class="{'error-label' : errors.date_to}"  v-model="newWork.date_to" :disabled="newWork.present">
                             </div>
                         </div>
                     </div>
@@ -84,12 +84,12 @@
                         </v-textarea>
                     </div>
                 </div>
-                <div class="btns">
-                    <v-btn class="resume-builder__btn civie-btn filled mr-2" raised @click="addWorkEx">
+                <div class="btns mt-2">
+                    <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="addWorkEx">
                         {{newWork.id !== '' ? 'Update' : 'Add New'}}
                     </v-btn>
 
-                    <v-btn class="resume-builder__btn civie-btn ml-2" raised @click="clearWorkEx" v-show="newWork.id !== '' ">
+                    <v-btn class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearWorkEx" v-show="newWork.id !== '' ">
                         Cancel
                     </v-btn>
                 </div>
@@ -336,14 +336,21 @@
 
     $mainBlue: #001CE2;
     $inputTextColor: #888DB1;
+
     .ml-lg-custom3{
-        @media screen and (min-width: 1441px) and (max-width: 1903px){
-            margin-left: 50px !important;
+        
+        
+        @media screen and (min-width: 1340px) and (max-width: 1903px){
+            margin-left: 25px !important; // adjusted | 50px
+        }
+
+        @media screen and (min-width: 1441px) {
+            margin-left: 25px !important; // adjusted | 50px
         }
     }
 
-    .description-text{
-
+    .present-text{
+        margin-right: 58px;
     }
 
     .work-container {
@@ -405,7 +412,7 @@
                     display: flex;
                     flex-wrap: wrap;
                     justify-content: space-between;
-                    max-width: 640px;
+                    max-width: 620px; //adjusted | 640px
 
                     @include lt-md{
 
@@ -450,8 +457,8 @@
                                 position: absolute;
                                 top: -29px;
                                 letter-spacing: 0;
-                                font-size: 18px;
-                                font-weight: 400;
+                                font-size: 15px; // adjusted | 18px
+                                font-weight: 400; //added
                                 line-height: 25px;
                                 color: #888DB1;
                                 opacity: 1;
@@ -463,7 +470,7 @@
                             }
 
                             label.light {
-                                font-size: 18px;
+                                font-size: 15px; // adjusted | 18px
                                 letter-spacing: 0;
                                 right: 0;
                                 opacity: 1;
@@ -474,8 +481,8 @@
                             }
 
                             input {
-                                height: 50px;
-                                border: 2px solid #C4C9F5 !important;
+                                height: 48px; // adjusted | 50px
+                                border: 1.95px solid #C4C9F5 !important; // adjusted | 2px
                                 border-radius: 10px;
                                 opacity: 1;
                                 color: #c4c9f5;
@@ -514,8 +521,8 @@
 
                 .right{
                     margin-left: 0;
-                    @include xl{
-                        margin-left:40px;
+                    @include lt-xl{
+                        
                     }
 
                     @include lt-md{

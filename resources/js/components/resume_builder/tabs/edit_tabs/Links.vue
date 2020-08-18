@@ -2,7 +2,7 @@
 	<div id="linksSection" data-app class="pa-md-0 pa-sm-0 pa-10">
 
 		<!-- Tabs -->
-		<v-tabs class="resume-builder__tab-bar" hide-slider>
+		<v-tabs class="resume-builder__tab-bar" hide-slider height="51">
 			<v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setLinkCategory(tab)">
 				{{tab}}
 			</v-tab>
@@ -21,20 +21,18 @@
 					<button class="input-prepended-icon" slot="prepend">
 						<img :src="`/images/resume_builder/${linkCategory}_icons/${editedLink.link_title.toLowerCase()}-1.svg`" alt="link icon">
 					</button>
-
 				</v-select>
 
 				<v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedLink.link">
 				</v-text-field>
 
-				<div class="d-flex" style="margin-top: 5.8px">
-					<v-btn class="resume-builder__btn civie-btn filled" raised @click="saveLink">
+				<div class="d-flex mt-1">
+					<v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveLink">
 						{{editedLink.id !== '' ? 'Update' : 'Add New'}}
 					</v-btn>
 
-					<v-btn style="margin-left: 2rem"
-						class="resume-builder__btn civie-btn" raised @click="clearLink" v-show="editedLink.id !== '' ">
-
+					<v-btn
+						class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearLink" v-show="editedLink.id !== '' ">
 						Cancel
 					</v-btn>
 				</div>
@@ -299,9 +297,9 @@ $mainBlue: #001ce2;
 		align-items: center;
 		grid-auto-rows: 78px;
 		grid-template-columns: minmax(0px, 210px) minmax(0, 350px) auto;
-		grid-gap: 30px;
-		margin-top: 12px;
-		margin-bottom: 30px;
+		grid-gap: 20px; //adjusted | 30px
+		// margin-top: 12px;
+		margin-bottom: 50px; //adjusted | 30px
 
 		.civie-select {
 			max-width: 210px;
@@ -312,7 +310,7 @@ $mainBlue: #001ce2;
 
 			.input-prepended-icon {
 				position: absolute;
-				top: 39px;
+				top: 37px; // adjusted | 39px
 				left: 5px;
 
 				img {
@@ -326,7 +324,6 @@ $mainBlue: #001ce2;
 		}
 
 		.civie-btn {
-			min-height: 50px;
 			width: 120px;
 			align-self: end;
 		}
@@ -336,16 +333,13 @@ $mainBlue: #001ce2;
 			align-items:center;
 			flex-wrap: wrap;
 			margin-bottom: 25px;
-			.civie-select {
-				margin-right: 30px;
-			}
+			// .civie-select {
+			// 	margin-right: 30px;
+			// }
 
-			.civie-input {
-				margin-right: 30px;
-			}
-			.civie-btn{
-				margin-top: 5px;
-			}
+			// .civie-input {
+			// 	margin-right: 30px;
+			// }
 		}
 
 		@include lt-sm {
@@ -360,7 +354,7 @@ $mainBlue: #001ce2;
 				width: 100%;
 				grid-column: span 3;
 				grid-row: 2 / 3;
-				margin-top: 15px;
+				// margin-top: 15px;
 			} 
 			
 			.civie-btn {

@@ -2,6 +2,7 @@
   <div class="education-wrapper">
     <div class="float-container">
       <v-form class="grid-form" ref="form" :lazy-validation="lazy">
+
         <v-text-field
           id="collegeName"
           v-model="newEducation.university_name"
@@ -12,6 +13,7 @@
           :error="!!errors.university_name"
           :error-messages="errors.university_name"
         ></v-text-field>
+
         <v-text-field
           id="gradeTitle"
           v-model="newEducation.degree_title"
@@ -22,6 +24,7 @@
           :error="!!errors.degree_title"
           :error-messages="errors.degree_title"
         ></v-text-field>
+
         <v-text-field
           id="location"
           v-model="newEducation.location"
@@ -32,6 +35,7 @@
           :error="!!errors.location"
           :error-messages="errors.location"
         ></v-text-field>
+
         <v-textarea
           id="description"
           v-model="newEducation.description"
@@ -42,6 +46,7 @@
           :error="!!errors.description"
           :error-messages="errors.description"
         ></v-textarea>
+
         <v-text-field
           id="website"
           v-model="newEducation.website"
@@ -52,34 +57,33 @@
           :error="!!errors.website"
           :error-messages="errors.website"
         ></v-text-field>
-        <div class="inputs-wrapper">
-          <div class="date-group">
-            <div class="date-input">
-              <label :class="{'error-label' : errors.date_from}">Date</label>
-              <input
-                type="date"
-                :class="{'error-input' : errors.date_from}"
-                v-model="newEducation.date_from"
-              />
+
+        <!-- date tags -->
+
+        <div class="date-group mb-5">
+            <div class="date-input mr-1" style="flex: 1">
+                <label class="ml-1" :class="{'error-label' : errors.date_from}">Date</label>
+                
+                <div style="display: flex">
+                  <input type="date" style="flex: 1"
+                    class="pr-2" :class="{'error-input' : errors.date_from}" v-model="newEducation.date_from">
+                </div>
             </div>
-            <div class="date-text text-center">-</div>
-            <div class="date-input">
-              <label
-                :class="{'error-label' : errors.date_to}"
-                class="light d-flex align-items-center"
-              >
-                <input type="checkbox" class="checkbox" v-model="newEducation.present" />
-                <span class="current-work-text">Present</span>
-              </label>
-              <input
-                type="date"
-                :class="{'error-input' : errors.date_to}"
-                v-model="newEducation.date_to"
-                :disabled="newEducation.present"
-              />
+
+            <div class="date-input ml-1" style="flex: 1;">
+                <label :class="{'error-label' : errors.date_to}" class="light d-flex align-items-center mr-1">
+                    <input type="checkbox" class="checkbox" v-model="newEducation.present"> <span class="present-text">Present</span>
+                </label>
+                
+                <div style="display: flex">
+                  <input type="date" style="flex: 1" class="pr-2"
+                    :class="{'error-input' : errors.date_to}"  v-model="newEducation.date_to" :disabled="newEducation.present">
+                </div>
             </div>
-          </div>
         </div>
+
+        <!-- date tags end -->
+
         <v-select
           id="currentStatus"
           class="resume-builder__input civie-select"
@@ -95,18 +99,19 @@
             <svg-vue :icon="`dropdown-caret`"></svg-vue>
           </button>
         </v-select>
+
       </v-form>
 
       <div class="edu-action-btns mt-3">
         <v-btn
           class="resume-builder__btn civie-btn filled"
-          raised
+          raised depressed
           @click="addEducation"
         >{{newEducation.id !== '' ? 'Update' : 'Add New'}}</v-btn>
 
         <v-btn
-          class="resume-builder__btn civie-btn ml-5"
-          raised
+          class="resume-builder__btn civie-btn cancel-btn"
+          raised depressed
           @click="clearEducation"
           v-show="newEducation.id !== '' "
         >Cancel</v-btn>
@@ -374,6 +379,23 @@ export default {
     display: flex;
   }
 
+  .present-text{
+    margin-right: 95px;
+    @media screen and (min-width: 1280px) and (max-width: 1700px){
+      margin-right: 50px;
+    }
+    @media screen and (min-width:1701px) and (max-width: 1800px){
+      margin-right: 65px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1279px){
+      margin-right:50px;
+    }
+    @media screen and (max-width: 959px){
+      margin-right: 100px;
+    }
+
+  }
+
   position: relative;
   padding: 60px 50px;
 
@@ -391,120 +413,103 @@ export default {
 
   .grid-form {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 90px;
-    gap: 20px 40px;
+    grid-template-columns: repeat(4, 1fr);  
+    grid-template-rows: 100px;
+    grid-column-gap: 20px;
 
-    .resume-builder__input {
-      grid-column: span 1;
-      margin-bottom: 20px;
-    }
-
-    .civie-textarea {
-      height: 100%;
-      grid-column: 4 / 5;
-      grid-row: 1 / 3;
-    }
-
-    .civie-btn {
-      align-items: start;
-      justify-self: start;
-    }
-
-    .inputs-wrapper {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-
-      .civie-datepicker {
-        max-width: 150px;
-      }
-
-      .input-checkbox-wrapper {
-        position: relative;
-        margin-left: 15px;
-
-        .civie-checkbox {
-          position: absolute;
-          left: 0;
-          top: -48px;
-          margin-top: 0;
-
-          .v-input--selection-controls__input {
-            margin-right: 7px;
-          }
-
-          .v-input--selection-controls__ripple {
-            height: 22px;
-            width: 22px;
-            top: calc(50% - 12px);
-            left: 1.19px;
-            margin: 0;
-          }
-
-          .v-icon {
-            font-size: 14px;
-          }
-
-          label {
-            font-size: 12px;
-          }
-        }
-      }
-    }
-
+    
     // Exceptions on breakpoint
-    @media (max-width: 1770px) {
-      gap: 20px;
+    
+    .date-input input {
+      max-width: 8rem;
     }
-
-    @media (max-width: 1680px) {
-      .resume-builder__input,
-      .inputs-wrapper {
-        grid-column: span 2;
-      }
-
-      .inputs-wrapper {
-        & > .civie-datepicker,
-        .input-checkbox-wrapper {
-          max-width: 48%;
-          width: 48%;
-
-          .civie-datepicker {
-            width: 100%;
-            max-width: 100%;
-          }
-        }
-      }
-
-      .civie-textarea {
-        grid-row: 3 / 5;
-      }
-    }
+    
 
     @include lt-md {
+      grid-template-columns: repeat(2, 1fr);
+
       .civie-textarea {
-        grid-column: span 4;
-        grid-row: 4 / 6;
+        grid-row: 4 / 5;
       }
 
-      .inputs-wrapper {
-        grid-row: 2 / 3;
-        grid-column: 3 / 5;
+      .date-group {
+        grid-column: 2 / 3;
+      }
+
+      .civie-select {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4
+      }
+
+      .date-input input {
+        max-width: 12rem;
+      }
+      
+    }
+
+    // date input responsive ----
+
+    @media screen and (min-width: 1804px) {
+      .date-input input {
+        max-width: 40rem;
       }
     }
 
-    @media (max-width: 750px) {
-      .inputs-wrapper,
-      .resume-builder__input {
-        grid-column: span 4;
+    @media screen and (max-width: 800px) {
+      .date-input input {
+        max-width: 12rem;
+      }
+    }
+
+    @media screen and (max-width: 715px) {
+      .date-input input {
+        max-width: 9rem;
+      }
+    }
+
+    //------
+
+    @include lt-sm {
+      grid-template-columns: repeat(1, 1fr);
+
+      .date-input input {
+        max-width: 40rem;        
       }
 
       .civie-textarea {
-        grid-row: 7 / 9;
+        grid-row: 7 / 8;
+      }
+
+      .date-group {
+        grid-column: 1 / 2;
+      }
+
+      .civie-select {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4
+      }
+    }
+
+    @media screen and (max-width: 418px) {
+      .date-input input {
+        max-width: 40rem;
+      }
+    }
+
+    @media screen and (max-width: 413px) and (min-width: 360px) {
+      .date-input input {
+        max-width: 8rem;
+      }
+
+      .date-input {
+        max-width: 8rem;
       }
     }
   }
+
+  // Exceptions on breakpoint end ----
+
+  
 
   .education-list {
     display: flex;
@@ -660,9 +665,8 @@ export default {
 }
 
 .date-group {
-  display: flex;
-  justify-content: space-between;
   margin-top: 28px;
+  display: flex;
 
   @include lt-lg {
   }
@@ -671,11 +675,11 @@ export default {
   }
 
   .date-text {
-    font: 500 26px/26px Noto Sans;
+    // font: 500 15px/15px Noto Sans;
     letter-spacing: 0;
     color: #888db1;
     opacity: 1;
-    margin: 10px 9px;
+    // margin: 10px 9px;
 
     @include lt-lg {
     }
@@ -692,31 +696,16 @@ export default {
   .date-input {
     display: flex;
     flex-direction: column;
-    width: 142px;
+    // width: 126px;
+    width: 50%;
     position: relative;
-    // @media screen and (min-width: 1280px) and (max-width: 1903px) {
-    //   min-width: 204px;
-    // }
-    // @media screen and (min-width: 1280px) and (max-width: 1430px) {
-    //   min-width: 165px;
-    // }
-    // @media screen and (max-width: 1279px) {
-    //   min-width: 196px;
-    // }
-    // @media screen and (max-width: 1023px) {
-    //   min-width: 0 !important;
-    //   max-width: 132px;
-    // }
-
-    @include lt-sm {
-    }
 
     label {
       text-align: left;
       position: absolute;
       top: -29px;
       letter-spacing: 0;
-      font-size: 18px;
+      font-size: 15px !important; //adjusted | 18px
       font-weight: 400;
       line-height: 25px;
       color: #888db1;
@@ -729,7 +718,8 @@ export default {
     }
 
     label.light {
-      font-size: 18px;
+      font-size: 15px; //adjusted | 18px
+      // margin-right: 4.4rem; //added
       letter-spacing: 0;
       right: 0;
       opacity: 1;
@@ -740,8 +730,8 @@ export default {
     }
 
     input {
-      height: 50px;
-      border: 2px solid #c4c9f5 !important;
+      height: 48px; // adjusted | 50px
+      border: 1.95px solid #c4c9f5 !important; // adjusted | 2px
       border-radius: 10px;
       opacity: 1;
       color: #c4c9f5;
@@ -779,18 +769,18 @@ export default {
   border: 2px solid red !important;
 }
 .current-work-text {
-  margin-right: 53px;
-  @media screen and (max-width: 1903px) {
-    margin-right: 120px;
-  }
-  @media screen and (max-width: 1430px) {
-    margin-right: 80px;
-  }
-  @media screen and (max-width: 1279px) {
-    margin-right: 108px;
-  }
-  @media screen and (max-width: 959px) {
-    margin-right: 50px;
-  }
+  // margin-right: 53px;
+  // @media screen and (max-width: 1903px) {
+  //   margin-right: 120px;
+  // }
+  // @media screen and (max-width: 1430px) {
+  //   margin-right: 80px;
+  // }
+  // @media screen and (max-width: 1279px) {
+  //   margin-right: 108px;
+  // }
+  // @media screen and (max-width: 959px) {
+  //   margin-right: 50px;
+  // }
 }
 </style>

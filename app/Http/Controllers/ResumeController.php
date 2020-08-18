@@ -85,11 +85,11 @@ class ResumeController extends Controller
 
 
     public function externalReferencePage($username){
-        $user = User::where($username, 'username');
+        $user = User::where('username', $username)->first();
         if(!$user){
             abort(404);
         }
-        return view('resume_builder.external_reference', compact('username'));
+        return view('resume_builder.external_reference', compact('user'));
     }
 
 }

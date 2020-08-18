@@ -109,7 +109,7 @@
                   v-show="payment_Info.is_public"
                   class="d-inline-block"
                 >
-                  <span class="title" v-if="paymentInfo == index">
+                  <span class="payment-title" v-if="paymentInfo == index">
                     {{ payment_Info.salary_frequency }} rate
                   </span>
                 </div>
@@ -123,7 +123,7 @@
                   :key="index"
                   v-show="payment_Info.is_public"
                 >
-                  <span class="title" v-if="paymentInfo == index">
+                  <span class="payment-title" v-if="paymentInfo == index">
                     {{ formatSalary(payment_Info.salary, payment_Info.currency.toUpperCase() ) }}
                   </span>
                 </div>
@@ -142,7 +142,7 @@
                   v-show="availability_info.is_public"
                   class="d-inline-block"
                 >
-                  <span class="title" v-if="available == index">
+                  <span class="hours-title" v-if="available == index">
                     {{ availability_info.available_hours_frequency }}
                   </span>
                 </div>
@@ -157,7 +157,7 @@
                   :key="index"
                   v-show="availability_info.is_public"
                 >
-                  <span class="title" v-if="available == index">
+                  <span class="hours-title" v-if="available == index">
                     {{ availability_info.available_hours }} Hours
                   </span>
                 </div>
@@ -229,7 +229,7 @@ export default {
 					return new Intl.NumberFormat('en-US', { style: 'currency', currency, maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(salary)
 				},
 				toggleAudio () {
-					this.$emit('toggleAudio')
+					this.$emit('toggleAudioPofpup')                                        
 				}
     }
 }
@@ -244,6 +244,7 @@ export default {
 		overflow-x: hidden;
     width: 100%;
     padding: 78px;
+    font-family: 'Thabit', 'Courier New', Courier, monospace;
 
     .left {
       display: flex;
@@ -427,6 +428,7 @@ export default {
 
         .prof-left {
           display: flex;
+          font-family: 'Thabit', 'Courier New', Courier, monospace;
 
           .hours {
             display: flex;
