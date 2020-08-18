@@ -708,17 +708,17 @@
               >
                 <div class="hobby-container">
                     <div 
-                    class="hobby" 
-                    v-for="(hobby, index) in hobbies" :key="index"
+                      class="hobby" 
+                      v-for="(hobby, index) in hobbies" :key="index"
                     >
-                    <div class="hobby__layer"
+                      <div class="hobby__layer"
                         :class="[index % 2 === 0 ? 'hobby_item--even' : 'hobby_item--odd']" 
-                    ></div>
-                    
-                    <div class="hobby__content">
+                      ></div>
+                      
+                      <div class="hobby__content">
                         <img :src="[hobby.image]" class="hobby_img" alt="hobby_img" >
                         <div class="text-capitalize">{{ hobby.hobby }}</div>
-                    </div>
+                      </div>
                     </div>
                 </div>
               </v-col>
@@ -738,7 +738,6 @@
                       v-for="(reference, index) in references" :key="index"
                     >
                       <div class="d-flex justify-space-between">
-
                         <!-- card left -->
                         <div>
                           <div class="ref__username font-weight-bold">{{ reference.name }}</div>
@@ -780,10 +779,8 @@
                       v-for="(achievement, index) in achievements" :key="index"
                     >
                       <div class="achievement__content">
-
                         <!-- card left -->
                         <img class="achievement_img" :src="achievement.src" alt="certificate" >
-
                         <!-- card right -->
                         <div>
                           <div class="award_title font-weight-bold">{{ achievement.title }}</div>
@@ -1322,7 +1319,7 @@ export default {
         }
       ],
       available: 0,
-      activeTab: "achievements", //portfolio
+      activeTab: "portfolio",
       paymentInfo: 0,
       portfolio: [
         {
