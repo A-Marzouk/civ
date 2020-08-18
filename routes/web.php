@@ -11,7 +11,7 @@
 |
 */
 
-
+use Illuminate\Auth\Notifications\ResetPassword;
 
 Auth::routes(['verify' => true]);
 
@@ -34,6 +34,7 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
+Route::get('/reset-password','HomeController@resetPassword')->name('resetPassowrd');
 
 
 // social sites register & login:
