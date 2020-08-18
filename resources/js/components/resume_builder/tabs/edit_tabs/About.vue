@@ -43,6 +43,64 @@
                     ></v-text-field>
                 </div>
 
+                <div class="profile-input-field input-field--current-location input-field--group-1">
+                    <v-text-field
+                            class="resume-builder__input civie-input"
+                            label="Current Location"
+                            v-model="personalInfo.location"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_location_active}"
+                            :error="!!errors.location"
+                            :error-messages="errors.location"
+                            @blur="applyEdit('auto')"
+                            hide-details="auto"
+                            outlined
+                    >
+                        <button
+                                class=" trigger-icon icon mt-custom6"
+                                slot="append"
+                                @click="updateVisibility('location')"
+                        >
+                            <svg-vue class="profile-eye-icon" :icon="`eye-icon`"
+                                     :class="{'visible' : personalInfo.is_location_active}"></svg-vue>
+                        </button>
+                    </v-text-field>
+                </div>
+
+                <div class="profile-input-field input-field--date-of-birth input-field--group-1">
+                    <v-menu
+                            ref="menu"
+                            v-model="menu"
+                            :close-on-content-click="false"
+                            :return-value.sync="personalInfo.date_of_birth"
+                            transition="scale-transition"
+                            offset-y
+                            min-width="290px"
+                    >
+                        <template v-slot:activator="{ on }">
+                            <v-text-field
+                                    v-model="personalInfo.date_of_birth"
+                                    class="resume-builder__input civie-datepicker profile-input"
+                                    label="Date Of Birth"
+                                    color="#001CE2"
+                                    readonly
+                                    v-on="on"
+                                    hide-details="auto"
+                                    outlined
+                                    placeholder="yyyy-mm-dd"
+                            >
+                                <button class="dropdown-icon icon mt-custom6" slot="append" @click="menu = true">
+                                    <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                                </button>
+                            </v-text-field>
+                        </template>
+                        <v-date-picker v-model="personalInfo.date_of_birth" no-title scrollable color="#001CE2">
+                            <v-spacer></v-spacer>
+                            <v-btn text color="primary" @click="menu = false">Cancel</v-btn>
+                            <v-btn text color="primary" @click="saveDate">OK</v-btn>
+                        </v-date-picker>
+                    </v-menu>
+                </div>
+
                 <div class="profile-input-field input-field--job-title input-field--group-1">
                     <v-text-field
                             class="resume-builder__input civie-input"
@@ -57,6 +115,131 @@
                     ></v-text-field>
                 </div>
 
+                <div class="profile-input-field input-field--nationality input-field--group-1">
+                    <v-text-field
+                            class="resume-builder__input civie-input"
+                            label="Nationality"
+                            v-model="personalInfo.nationality"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_nationality_active}"
+                            :error="!!errors.nationality"
+                            :error-messages="errors.nationality"
+                            hide-details="auto"
+                            outlined
+                            @blur="applyEdit('auto')"
+                    >
+                        <button
+                                class=" trigger-icon icon mt-custom6"
+                                :class="{'icon--disabled': false}"
+                                slot="append"
+                                @click="updateVisibility('nationality')"
+                        >
+                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
+                                     :class="{'visible' : personalInfo.is_nationality_active}"></svg-vue>
+                        </button>
+                    </v-text-field>
+                </div>
+
+                <div class="profile-input-field input-field--languages input-field--group-2">
+                    <v-select
+                            class="resume-builder__input profile-input civie-select multiple-selection"
+                            multiple
+                            chips
+                            placeholder="Select an option"
+                            @blur="syncLanguages"
+                            v-model="selectedLanguages"
+                            item-text="label"
+                            item-value="id"
+                            :items="defaultLanguages"
+                            label="Languages"
+                            color="#001CE2"
+                            outlined
+                            hide-details="auto"
+                    >
+                        <button class="dropdown-icon icon" slot="append">
+                            <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                        </button>
+                    </v-select>
+                </div>
+                <div class="profile-input-field input-field--hometown input-field--group-2">
+                    <v-text-field
+                            class="resume-builder__input civie-input"
+                            label="Hometown"
+                            v-model="personalInfo.hometown"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_hometown_active}"
+                            :error="!!errors.hometown"
+                            :error-messages="errors.hometown"
+                            hide-details="auto"
+                            outlined
+                            @blur="applyEdit('auto')"
+                    >
+                        <button
+                                class=" trigger-icon icon mt-custom6"
+                                :class="{'icon--disabled': false}"
+                                slot="append"
+                                @click="updateVisibility('hometown')"
+                        >
+                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
+                                     :class="{'visible' : personalInfo.is_hometown_active}"></svg-vue>
+                        </button>
+                    </v-text-field>
+                </div>
+
+                <div class="profile-input-field input-field--about input-field--group-3">
+                    <v-textarea
+                            class="resume-builder__input profile-input civie-textarea"
+                            color="#001CE2"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_about_active}"
+                            :disabled="false"
+                            v-model="personalInfo.about"
+                            label="About Me"
+                            hide-details="auto"
+                            outlined
+                            @blur="applyEdit('auto')"
+                    >
+                        <button class="trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('about')">
+                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
+                                     :class="{'visible' : personalInfo.is_about_active}"></svg-vue>
+                        </button>
+                    </v-textarea>
+                </div>
+
+                <div class="profile-input-field input-field--overview input-field--group-3">
+                    <v-textarea
+                            class="resume-builder__input profile-input civie-textarea"
+                            color="#001CE2"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_overview_active}"
+                            :disabled="false"
+                            v-model="personalInfo.overview"
+                            label="Overview Summary"
+                            hide-details="auto"
+                            outlined
+                            @blur="applyEdit('auto')"
+                    >
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append" @click="updateVisibility('overview')">
+                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
+                                     :class="{'visible' : personalInfo.is_overview_active}"></svg-vue>
+                        </button>
+                    </v-textarea>
+                </div>
+
+                <div class="profile-input-field input-field--quote input-field--group-3">
+                    <v-textarea
+                            class="resume-builder__input profile-input civie-textarea"
+                            color="#001CE2"
+                            :class="{'resume-builder__input--disabled': false, 'half-opacity' : ! personalInfo.is_quote_active}"
+                            :disabled="false"
+                            label="Quote"
+                            v-model="personalInfo.quote"
+                            hide-details="auto"
+                            outlined
+                            @blur="applyEdit('auto')"
+                    >
+                        <button class=" trigger-icon mt-2" :class="{'icon--disabled': false}" slot="append"   @click="updateVisibility('quote')">
+                            <svg-vue :icon="`eye-icon`" class="profile-eye-icon"
+                                     :class="{'visible' : personalInfo.is_quote_active}"></svg-vue>
+                        </button>
+                    </v-textarea>
+                </div>
             </div>
         </div>
     </div>
@@ -134,8 +317,8 @@
                 this.errors = {};
 
                 axios.post("/api/user/personal-info", formData, {
-                        headers: {"Content-Type": "multipart/form-data"}
-                    })
+                    headers: {"Content-Type": "multipart/form-data"}
+                })
                     .then(response => {
                         if (savingType === "manual") {
                             this.$store.dispatch("flyingNotification");
@@ -348,36 +531,73 @@
                         margin-bottom: unset;
 
                         &.input-field--group-1 {
+                            grid-column-start: 1;
+                            grid-column-end: 2;
+
                             &.input-field--firstname {
-                                grid-column-start: 1;
-                                grid-column-end: 2;
-                                grid-row-start: 3;
-                                grid-row-end: 4;
+                                grid-row-start: 2;
+                                grid-row-end: 3;
                             }
 
                             &.input-field--lastname {
-                                grid-column-start: 2;
-                                grid-column-end: 3;
                                 grid-row-start: 3;
                                 grid-row-end: 4;
                             }
 
+                            &.input-field--current-location {
+                                grid-row-start: 4;
+                                grid-row-end: 5;
+                            }
+
+                            &.input-field--date-of-birth {
+                                grid-row-start: 5;
+                                grid-row-end: 6;
+                            }
+
                             &.input-field--job-title {
-                                grid-column-start: 2;
-                                grid-column-end: 3;
-                                grid-row-start: 1;
-                                grid-row-end: 2;
+                                grid-row-start: 6;
+                                grid-row-end: 7;
+                            }
+
+                            &.input-field--nationality {
+                                grid-row-start: 7;
+                                grid-row-end: 8;
                             }
                         }
 
                         &.input-field--group-2 {
+                            grid-column-start: 2;
+                            grid-column-end: 3;
 
+                            &.input-field--languages {
+                                grid-row-start: 6;
+                                grid-row-end: 7;
+                            }
 
+                            &.input-field--hometown {
+                                grid-row-start: 7;
+                                grid-row-end: 8;
+                            }
                         }
 
                         &.input-field--group-3 {
+                            grid-column-start: 2;
+                            grid-column-end: 3;
 
+                            &.input-field--about {
+                                grid-row-start: 1;
+                                grid-row-end: 2;
+                            }
 
+                            &.input-field--overview {
+                                grid-row-start: 2;
+                                grid-row-end: 4;
+                            }
+
+                            &.input-field--quote {
+                                grid-row-start: 4;
+                                grid-row-end: 6;
+                            }
                         }
                     }
                 }
@@ -440,10 +660,10 @@
                             }
 
                             &.input-field--job-title {
-                                grid-row-start: 1;
-                                grid-row-end: 2;
-                                grid-column-start: 4;
-                                grid-column-end: 5;
+                                grid-row-start: 2;
+                                grid-row-end: 3;
+                                grid-column-start: 3;
+                                grid-column-end: 4;
                             }
 
                             &.input-field--nationality {

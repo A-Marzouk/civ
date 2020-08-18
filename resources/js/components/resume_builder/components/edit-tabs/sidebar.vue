@@ -87,6 +87,11 @@ export default {
           label: "Profile",
         },
         {
+          url: "/resume-builder/edit/about",
+          icon: "about",
+          label: "About",
+        },
+        {
           url: "/resume-builder/edit/links",
           icon: "links",
           label: "Links",
