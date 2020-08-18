@@ -1,6 +1,7 @@
 <template>
   <v-app style="width:100%;background-color: #F5F6FF;">
-    <v-container class="main-container">
+    <!-- main container -->
+    <v-container class="main-container pa-xl-12 pa-lg-12">
       <v-row align="center" justify="center">
         <v-col cols="12" align="center">
           <img src="/images/civie_logo-blue1.svg" alt="logo" />
@@ -20,12 +21,46 @@
               <a href="#">http://www.civ.ie/password/reset/5dfg789sfsdrsfsfd/edit</a>
             </v-card-subtitle>
             <v-card-subtitle>
-              <v-btn color="#0046fe" class="btn-change-password"></v-btn>
+              <v-btn
+                color="#0046fe"
+                class="btn-change-password"
+                depressed
+              >Change Password</v-btn>
+            </v-card-subtitle>
+            <v-card-subtitle class="reset-greeting-text">
+              <div>Kindest Regards,</div>
+              <div>civ.ie team</div>
             </v-card-subtitle>
           </v-card>
         </v-col>
       </v-row>
     </v-container>
+    <!-- Main container -->
+    <!-- footer -->
+    <v-footer color="transparent" class="custom-footer">
+      <v-row align="center" justify="center">
+        <v-col cols="12" align="center">
+          <v-card flat color="transparent">
+            <v-card-subtitle class="footer-subtitle">
+              <div>
+                This email was sent to
+                <span>johnsmith@email.com</span>
+              </div>
+              <div>
+                Update
+                <span>subscription</span> prefences
+              </div>
+              <div>
+                Please do not reply to this email. | Need help? Visit our
+                <span>FAQ</span>
+              </div>
+              <div>&#169; 2020 civ.ie | All rights reserved</div>
+            </v-card-subtitle>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-footer>
+    <!-- footer -->
   </v-app>
 </template>
 <script>
@@ -41,12 +76,11 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 .main-container {
   width: 100%;
-  font-family: "Noto Sans" !important;
   .reset-card {
     width: 700px;
-    height: 506px;
     box-shadow: 0px 15px 70px rgba(0, 16, 131, 0.06) !important;
     .reset-title {
+      font-family: "Noto Sans" !important;
       font-weight: 600;
       font-size: 24px !important;
       line-height: 33px;
@@ -60,18 +94,21 @@ export default {
       opacity: 0.5;
     }
     .reset-name {
+      font-family: "Noto Sans" !important;
       font-weight: normal;
       font-size: 20px !important;
       line-height: 27px;
       color: #888db1 !important;
     }
     .reset-desc {
+      font-family: "Noto Sans" !important;
       font-size: 16px !important;
       line-height: 28px;
       color: #888db1 !important;
     }
     .reset-link {
       a {
+        font-family: "Noto Sans" !important;
         font-size: 16px !important;
         line-height: 22px;
         color: #3c76ff !important;
@@ -84,6 +121,26 @@ export default {
       font-weight: bold !important;
       font-size: 15px !important;
       line-height: 20px;
+      text-transform: capitalize !important;
+      color: #ffffff !important;
+      font-family: "Noto Sans" !important;
+    }
+    .reset-greeting-text {
+      font-family: "Noto Sans" !important;
+      font-size: 16px !important;
+      line-height: 28px;
+      color: #888db1;
+    }
+  }
+}
+.custom-footer {
+  .footer-subtitle {
+    font-family: "Noto Sans" !important;
+    font-size: 16px !important;
+    line-height: 28px;
+    color: #888db1 !important;
+    span {
+      text-decoration-line: underline;
     }
   }
 }
