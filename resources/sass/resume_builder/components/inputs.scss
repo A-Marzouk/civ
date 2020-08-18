@@ -148,7 +148,7 @@
 
     // File input
 
-    &.civie-dropzone.error {
+    &.civie-dropzone.dropzone-error, &.civie-dropzone.error {
 
         .v-input__slot {
             border-color: red !important;

@@ -2,7 +2,7 @@
 @section('content')
 
     <div id="external_reference">
-        <external-reference username="{{$username}}"></external-reference>
+        <external-reference :user="{{json_encode($user)}}"></external-reference>
     </div>
 
 @endsection
