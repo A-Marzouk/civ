@@ -498,7 +498,7 @@
           <v-container fluid ma-0 pa-0 style="max-width:100%">
             <v-row no-gutters justify="center">
               <v-col
-                md="6"
+                md="10"
                 cols="11"
                 sm="11"
                 style="background-color:#f1f1f1;margin:1rem;border-radius:5px;padding:1rem;"
@@ -581,6 +581,7 @@
                   </v-timeline-item>
                 </v-timeline>
               </v-col>
+
               <v-col
                 v-if="activeTab === 'education'"
                 md="11"
@@ -696,6 +697,106 @@
                   </v-col>
                 </v-row>
               </v-col>
+
+              <!-- hobbies -->
+              <v-col
+                v-if="activeTab === 'hobbies'"
+                md="11"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
+                <div class="hobby-container">
+                    <div 
+                    class="hobby" 
+                    v-for="(hobby, index) in hobbies" :key="index"
+                    >
+                    <div class="hobby__layer"
+                        :class="[index % 2 === 0 ? 'hobby_item--even' : 'hobby_item--odd']" 
+                    ></div>
+                    
+                    <div class="hobby__content">
+                        <img :src="[hobby.image]" class="hobby_img" alt="hobby_img" >
+                        <div class="text-capitalize">{{ hobby.hobby }}</div>
+                    </div>
+                    </div>
+                </div>
+              </v-col>
+              <!-- hobbies end-->
+
+              <!-- references -->
+              <v-col
+                v-if="activeTab === 'references'"
+                md="11"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
+                <div class="reference-container">
+                    <div 
+                      class="reference__card" 
+                      v-for="(reference, index) in references" :key="index"
+                    >
+                      <div class="d-flex justify-space-between">
+
+                        <!-- card left -->
+                        <div>
+                          <div class="ref__username font-weight-bold">{{ reference.name }}</div>
+                          <div class="ref__position mb-3">{{ reference.position }}</div>
+                          
+                          <div class="mb-6">
+                            <div class="ref_smalltext">
+                              <span class="ref_company font-weight-bold pr-2">{{ reference.company }}</span>
+                              {{ reference.duration }}
+                            </div>
+                            <div class="ref_smalltext">
+                              {{ reference.sub }}
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- card right -->
+                        <div class="ref_address">
+                          {{ reference.address }}
+                        </div>
+                      </div>
+                      <div class="ref_smalltext">{{ reference.description }}</div>
+                    </div>
+                </div>
+              </v-col>
+              <!-- references end-->
+
+               <!-- Achievement section -->
+              <v-col
+                v-if="activeTab === 'achievements'"
+                md="11"
+                sm="11"
+                cols="11"
+                class="pb-12"
+              >
+                <div class="achievement-container">
+                    <div 
+                      class="achievement__card" 
+                      v-for="(achievement, index) in achievements" :key="index"
+                    >
+                      <div class="achievement__content">
+
+                        <!-- card left -->
+                        <img class="achievement_img" :src="achievement.src" alt="certificate" >
+
+                        <!-- card right -->
+                        <div>
+                          <div class="award_title font-weight-bold">{{ achievement.title }}</div>
+                          <div class="award_year mb-2">{{ achievement.year }}</div>
+                          <div class="award_url font-weight-bold my-2">URL: {{ achievement.url }}</div>
+                          <div class="award_desc">{{ achievement.description }}</div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </v-col>
+              <!-- Achievement end-->
+              
             </v-row>
           </v-container>
         </v-col>
@@ -992,6 +1093,186 @@
       height: 8px !important;
     }
   }
+
+  // hobbies section start -------
+
+  .hobby-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: calc(10px + 10%) calc(10px + 5%);
+    padding: 0 calc(20px + 10%);
+  }
+
+  .hobby__layer {
+    height: 8px;
+    width: 100%;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
+  }
+
+  .hobby__content {
+    height: 5.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: #F8F8F8;
+  }
+
+  .hobby_img {
+    height: 1.6rem;
+    width: auto;
+    margin-right: 10px;
+  }
+
+  .hobby_item--odd{
+    background-color: #5F45FF;
+  }
+
+  .hobby_item--even{
+    background-color: #FC5185;
+  }
+
+  //media quries ----
+  @media only screen and (max-width: 1284px) {
+    .hobby-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    .hobby-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 2rem calc(10px + 5%);
+    }
+  }
+  //media quries end ----
+
+  // hobbies section end --------
+
+  // reference section start ------
+
+  .reference-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px 40px;
+  }
+
+  .reference__card {
+    background-color: #F8F8F8;
+    padding: 1.5rem 1rem;
+    border-radius: 8px;
+  }
+
+  .detail__container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ref__username {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .ref__position {
+    font-size: 1rem;
+    color: #1F5DE4;
+  }
+
+  .ref_company {
+    // font-weight: 500;
+    color: #3C3748;
+  }
+
+  .ref_address {
+    font-size: 0.8rem;
+    color: #1F5DE4;
+    max-width: 42%;
+  }
+
+  .ref_smalltext {
+    font-size: 0.8rem;
+    color: #3C3748;
+  }
+
+  //media queries
+  @media only screen and (max-width: 850px) {
+    .reference-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 20px 30px;
+    }
+  }
+  //media queries end ---
+
+  // reference section end ------
+
+  // Achievement section start
+  .achievement-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px 40px;
+  }
+
+  .achievement__content {
+    display: flex;
+  }
+
+  .achievement__card {
+    padding: 1.8rem 1rem;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+  }
+
+  .achievement_img {
+    height: 8.1rem;
+    width: auto;
+    margin-right: 2rem;
+  }
+
+  .award_title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #3C3748;
+  }
+
+  .award_year {
+    font-size: 0.8rem;
+    color: #1F5DE4;
+  }
+
+  .award_url {
+    font-size: 1rem;
+    color: #3C3748;
+  }
+
+  .award_desc {
+    font-size: 0.8rem;
+  }
+
+  //media queries
+  @media only screen and (max-width: 1184px) {
+    .achievement-container {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 20px 30px;
+      max-width: 38rem;
+      margin: 0 auto;
+    }
+  }
+
+  @media only screen and (max-width: 522px) {
+    .achievement__content {
+      display: block;
+    }
+
+    .achievement_img {
+      margin: 0 auto;
+      margin-bottom: 1rem;
+    }
+
+  }
+  // Achievement section end
+
 }
 </style>
 
@@ -1026,10 +1307,22 @@ export default {
         {
           text: "About",
           value: "about"
+        },
+        {
+          text: "Hobbies",
+          value: "hobbies"
+        },
+        {
+          text: "References",
+          value: "references"
+        },
+        {
+          text: "Achievements",
+          value: 'achievements'
         }
       ],
       available: 0,
-      activeTab: "portfolio",
+      activeTab: "achievements", //portfolio
       paymentInfo: 0,
       portfolio: [
         {
@@ -1111,6 +1404,84 @@ export default {
         },
         {
           color: "#004D40"
+        }
+      ],
+      hobbies: [
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball.png', hobby: 'football' },
+        { image: '/images/resume_themes/theme5/ball2.png', hobby: 'football' } 
+      ],
+      references: [
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        },
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        },
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        },
+        { 
+          name: "Emma Pearson",
+          position: 'UX Designer',
+          company: 'Wedevs',
+          duration: 'Oct 2018 - Nov 2019',
+          sub: 'User Interface designer',
+          address: '42 Great Windmill Street London ads 24 7NB915679654386754 Civie.com/myprofile',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text” or double click me to add your own content and make changes."
+        }
+      ],
+      achievements: [
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
+        },
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
+        },
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
+        },
+        {
+          src: '/images/resume_themes/theme5/certificate.png',
+          title: 'Award Certificate',
+          year: '2015',
+          url: 'fjfjfkgvhjhjhgkfuiuriutiurot6576',
+          description: "I'm a paragraph. Click here to add your own text and edit me. It’s easy. Just click “Edit Text”"
         }
       ],
       currentUser: this.user
