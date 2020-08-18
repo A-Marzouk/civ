@@ -72,16 +72,11 @@
                 profile_pic_error: "",
                 savingType: "manual",
                 menu: false,
-                defaultLanguages: [],
-                selectedLanguages: []
             };
         },
         computed: {
             personalInfo() {
                 return this.$store.state.user.personal_info;
-            },
-            languages() {
-                return this.$store.state.user.languages.map(a => a.id);
             },
             user() {
                 return this.$store.state.user;
@@ -89,31 +84,9 @@
         },
 
         methods: {
-            // date functions
-            saveDate() {
-                this.$refs.menu.save(this.personalInfo.date_of_birth);
-                this.applyEdit("auto");
-            },
             updateVisibility(field_name){
                 this.personalInfo['is_' + field_name + '_active'] = !this.personalInfo['is_' + field_name + '_active'];
                 this.applyEdit("auto");
-            },
-
-            syncLanguages() {
-                axios
-                    .post("/api/user/languages-sync", {
-                        IDs: this.selectedLanguages,
-                        user_id: this.user.id
-                    })
-                    .then(() => {
-                        this.$store.dispatch("flyingNotification");
-                    })
-                    .catch(e => {
-                        this.$store.dispatch("flyingNotification", {
-                            message: "Error",
-                            iconSrc: "/images/resume_builder/error.png"
-                        });
-                    });
             },
             applyEdit(savingType) {
                 let formData = new FormData();
@@ -180,7 +153,6 @@
                 }
                 return isValid;
             },
-
             canEditEmail() {
                 return !(
                     this.user.instagram_id !== null &&
@@ -190,23 +162,7 @@
             isEmail(email) {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(email).toLowerCase());
-            },
-            setUserPreSelectedLanguages() {
-                if (this.$store.state.user.languages) {
-                    this.selectedLanguages = this.$store.state.user.languages.map(a => a.id);
-                }
             }
-        },
-        mounted() {
-            axios
-                .get("/api/user/languages-list")
-                .then(response => {
-                    this.defaultLanguages = response.data.data;
-                    this.defaultLanguages.sort((a, b) => (a.label > b.label) * 2 - 1);
-                })
-                .then(() => {
-                    this.setUserPreSelectedLanguages();
-                });
         }
     };
 </script>

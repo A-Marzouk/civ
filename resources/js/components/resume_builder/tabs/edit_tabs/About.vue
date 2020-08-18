@@ -2,46 +2,6 @@
     <div class="profile" v-if="personalInfo" data-app>
         <div class="profile-fields-wrapper">
             <div class="profile-fields">
-                <div class="profile-picture">
-                    <div class="profile-label">
-                        <div class="label" style="font-size: 15px">Photo</div>
-
-                        <div
-                                class="picture-preview"
-                                :style="`background-image: url(${personalInfo.profile_pic})`"
-                        >
-                        </div>
-                    </div>
-                    <div class="error" v-if="profile_pic_error">{{profile_pic_error}}</div>
-                </div>
-
-                <div class="profile-input-field input-field--firstname input-field--group-1">
-                    <v-text-field
-                            class="resume-builder__input civie-input"
-                            :class="{'resume-builder__input--disabled': false}"
-                            label="First Name"
-                            v-model="personalInfo.first_name"
-                            :error="!!errors.first_name"
-                            :error-messages="errors.first_name"
-                            @blur="applyEdit('auto')"
-                            hide-details="auto"
-                            outlined
-                    ></v-text-field>
-                </div>
-
-                <div class="profile-input-field input-field--lastname input-field--group-1">
-                    <v-text-field
-                            class="resume-builder__input civie-input"
-                            label="Last Name"
-                            v-model="personalInfo.last_name"
-                            :class="{'resume-builder__input--disabled': false}"
-                            :error="!!errors.last_name"
-                            :error-messages="errors.last_name"
-                            @blur="applyEdit('auto')"
-                            hide-details="auto"
-                            outlined
-                    ></v-text-field>
-                </div>
 
                 <div class="profile-input-field input-field--current-location input-field--group-1">
                     <v-text-field
@@ -101,20 +61,6 @@
                     </v-menu>
                 </div>
 
-                <div class="profile-input-field input-field--job-title input-field--group-1">
-                    <v-text-field
-                            class="resume-builder__input civie-input"
-                            label="Job Title"
-                            v-model="personalInfo.designation"
-                            :class="{'resume-builder__input--disabled': false}"
-                            :error="!!errors.designation"
-                            :error-messages="errors.designation"
-                            outlined
-                            hide-details="auto"
-                            @blur="applyEdit('auto')"
-                    ></v-text-field>
-                </div>
-
                 <div class="profile-input-field input-field--nationality input-field--group-1">
                     <v-text-field
                             class="resume-builder__input civie-input"
@@ -160,6 +106,7 @@
                         </button>
                     </v-select>
                 </div>
+
                 <div class="profile-input-field input-field--hometown input-field--group-2">
                     <v-text-field
                             class="resume-builder__input civie-input"
@@ -240,6 +187,7 @@
                         </button>
                     </v-textarea>
                 </div>
+
             </div>
         </div>
     </div>
@@ -517,84 +465,65 @@
                     display: grid;
                     grid-template-columns: 1fr 1fr;
                     gap: 20px;
-
-                    .profile-picture {
-                        grid-row-start: 1;
-                        grid-row-end: 2;
-                        grid-column-start: 1;
-                        grid-column-end: 2;
-                        padding-top: 5px;
-                        padding-bottom: 5px;
-                    }
-
                     .profile-input-field {
                         margin-bottom: unset;
 
                         &.input-field--group-1 {
-                            grid-column-start: 1;
-                            grid-column-end: 2;
-
-                            &.input-field--firstname {
-                                grid-row-start: 2;
-                                grid-row-end: 3;
-                            }
-
-                            &.input-field--lastname {
-                                grid-row-start: 3;
-                                grid-row-end: 4;
-                            }
-
                             &.input-field--current-location {
-                                grid-row-start: 4;
-                                grid-row-end: 5;
-                            }
-
-                            &.input-field--date-of-birth {
-                                grid-row-start: 5;
-                                grid-row-end: 6;
-                            }
-
-                            &.input-field--job-title {
-                                grid-row-start: 6;
-                                grid-row-end: 7;
-                            }
-
-                            &.input-field--nationality {
-                                grid-row-start: 7;
-                                grid-row-end: 8;
-                            }
-                        }
-
-                        &.input-field--group-2 {
-                            grid-column-start: 2;
-                            grid-column-end: 3;
-
-                            &.input-field--languages {
-                                grid-row-start: 6;
-                                grid-row-end: 7;
-                            }
-
-                            &.input-field--hometown {
-                                grid-row-start: 7;
-                                grid-row-end: 8;
-                            }
-                        }
-
-                        &.input-field--group-3 {
-                            grid-column-start: 2;
-                            grid-column-end: 3;
-
-                            &.input-field--about {
+                                grid-column-start: 1;
+                                grid-column-end: 2;
                                 grid-row-start: 1;
                                 grid-row-end: 2;
                             }
 
-                            &.input-field--overview {
+                            &.input-field--date-of-birth {
+                                grid-column-start: 1;
+                                grid-column-end: 2;
                                 grid-row-start: 2;
+                                grid-row-end: 3;
+                            }
+                            &.input-field--nationality {
+                                grid-column-start: 1;
+                                grid-column-end: 2;
+                                grid-row-start: 3;
+                                grid-row-end: 4;
+                            }
+                        }
+
+                        &.input-field--group-2 {
+                            &.input-field--languages {
+                                grid-column-start: 1;
+                                grid-column-end: 2;
+                                grid-row-start: 4;
+                                grid-row-end: 5;
+                            }
+
+                            &.input-field--hometown {
+                                grid-column-start: 1;
+                                grid-column-end: 2;
+                                grid-row-start: 5;
+                                grid-row-end: 6;
+                            }
+                        }
+
+                        &.input-field--group-3 {
+                            &.input-field--about {
+                                grid-column-start: 2;
+                                grid-column-end: 3;
+                                grid-row-start: 3;
                                 grid-row-end: 4;
                             }
 
+                            &.input-field--overview {
+                                grid-column-start: 2;
+                                grid-column-end: 3;
+                                grid-row-start: 1;
+                                grid-row-end: 3;
+                            }
+
                             &.input-field--quote {
+                                grid-column-start: 2;
+                                grid-column-end: 3;
                                 grid-row-start: 4;
                                 grid-row-end: 6;
                             }
@@ -631,39 +560,18 @@
                         margin-bottom: unset;
 
                         &.input-field--group-1 {
-                            &.input-field--firstname {
-                                grid-row-start: 1;
-                                grid-row-end: 2;
-                                grid-column-start: 2;
-                                grid-column-end: 3;
-                            }
-
-                            &.input-field--lastname {
-                                grid-row-start: 1;
-                                grid-row-end: 2;
-                                grid-column-start: 3;
-                                grid-column-end: 4;
-                            }
-
                             &.input-field--current-location {
                                 grid-row-start: 1;
                                 grid-row-end: 2;
-                                grid-column-start: 4;
-                                grid-column-end: 5;
-                            }
-
-                            &.input-field--date-of-birth {
-                                grid-row-start: 2;
-                                grid-row-end: 3;
                                 grid-column-start: 2;
                                 grid-column-end: 3;
                             }
 
-                            &.input-field--job-title {
-                                grid-row-start: 2;
-                                grid-row-end: 3;
-                                grid-column-start: 3;
-                                grid-column-end: 4;
+                            &.input-field--date-of-birth {
+                                grid-row-start: 1;
+                                grid-row-end: 2;
+                                grid-column-start: 1;
+                                grid-column-end: 2;
                             }
 
                             &.input-field--nationality {
@@ -676,40 +584,40 @@
 
                         &.input-field--group-2 {
                             &.input-field--languages {
-                                grid-row-start: 3;
-                                grid-row-end: 4;
-                                grid-column-start: 1;
-                                grid-column-end: 2;
+                                grid-row-start: 1;
+                                grid-row-end: 2;
+                                grid-column-start: 4;
+                                grid-column-end: 5;
                             }
 
                             &.input-field--hometown {
-                                grid-row-start: 4;
-                                grid-row-end: 5;
-                                grid-column-start: 1;
-                                grid-column-end: 2;
+                                grid-row-start: 1;
+                                grid-row-end: 2;
+                                grid-column-start: 3;
+                                grid-column-end: 4;
                             }
                         }
 
                         &.input-field--group-3 {
                             &.input-field--about {
-                                grid-row-start: 3;
-                                grid-row-end: 5;
+                                grid-row-start: 2;
+                                grid-row-end: 4;
+                                grid-column-start: 1;
+                                grid-column-end: 2;
+                            }
+
+                            &.input-field--overview {
+                                grid-row-start: 2;
+                                grid-row-end: 4;
                                 grid-column-start: 2;
                                 grid-column-end: 3;
                             }
 
-                            &.input-field--overview {
-                                grid-row-start: 3;
-                                grid-row-end: 5;
+                            &.input-field--quote {
+                                grid-row-start: 2;
+                                grid-row-end: 4;
                                 grid-column-start: 3;
                                 grid-column-end: 4;
-                            }
-
-                            &.input-field--quote {
-                                grid-row-start: 3;
-                                grid-row-end: 5;
-                                grid-column-start: 4;
-                                grid-column-end: 5;
                             }
                         }
                     }
@@ -871,7 +779,6 @@
             }
         }
     }
-
     #resumeBuilder .v-chip--select .v-chip .v-chip--clickable .v-chip--no-color .theme--light .v-size--default {
         margin-left: -7px;
     }
