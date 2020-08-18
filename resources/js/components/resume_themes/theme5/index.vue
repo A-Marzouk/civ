@@ -1124,11 +1124,11 @@
   }
 
   .hobby_item--odd{
-    background-color: #5F45FF;
+    background-color: #FC5185;
   }
 
   .hobby_item--even{
-    background-color: #FC5185;
+    background-color: #5F45FF;
   }
 
   //media quries ----
