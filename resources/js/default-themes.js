@@ -80,6 +80,7 @@ if ($("#resumeTheme8").length !== 0) {
     new Vue({
         el: "#resumeTheme8",
         store,
+        vuetify,
         components: {
             "resume-theme-8": resumeTheme8
         }
