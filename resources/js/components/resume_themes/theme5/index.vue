@@ -1097,7 +1097,6 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: calc(10px + 10%) calc(10px + 5%);
-    padding: 0 calc(20px + 10%);
   }
 
   .hobby__layer {
