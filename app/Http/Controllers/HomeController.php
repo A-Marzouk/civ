@@ -30,6 +30,11 @@ class HomeController extends Controller
         return view('pricing');
     }
 
+    public function resetPassword()
+    {
+        return view('reset-password');
+    }
+
     public function docs()
     {
         return view('api.docs');
