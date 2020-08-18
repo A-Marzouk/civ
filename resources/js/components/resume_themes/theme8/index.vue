@@ -1,23 +1,28 @@
 <template>
-  <div class="theme-container" v-if="currentUser">
+  <v-app class="theme-container" v-if="currentUser">
     <vue-particles></vue-particles>
     <HeaderTheme8 :currentUser="currentUser" @toogleAudioPopup="toogleAudioPopup" :isVisibleAudioPopup="isVisibleAudioPopup"></HeaderTheme8>
 
     <div class="tabs-bar-wrapper">
-      <div class="tabs-bar">
-        <div
-          class="tab-text"
+      <v-tabs
+        centered
+        show-arrows
+        grow
+      >
+        <v-tabs-slider
+          height="4px"
+        ></v-tabs-slider>
+
+        <v-tab
+          class="v-tab"
           v-for="tab in tabs"
           :key="tab.value"
           @click="activeTab = tab.value"
-          :class="[
-            { active: activeTab === tab.value },
-            { 'active-indicator': currentTab === tab.value }
-          ]"
+          :ripple="false"
         >
           {{ tab.text }}
-        </div>
-      </div>
+        </v-tab>
+      </v-tabs>
     </div>
 
     <div class="tabs-wrapper">
@@ -124,7 +129,7 @@
         ></Achievements>
       </div>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -268,6 +273,7 @@ export default {
 @import url(//fonts.googleapis.com/earlyaccess/thabit.css);
 
 #resumeTheme8 {
+  font-family: 'Thabit', 'Courier New', Courier, monospace;
 
 
   .hideOnNotTablet {
@@ -279,6 +285,10 @@ export default {
     @media only screen and (min-width: 760px) {
       display: none !important;
     }
+  }
+
+  .v-application--wrap {
+    width: 100%;
   }
 
   .theme-container {
@@ -297,19 +307,28 @@ export default {
     .tabs-bar-wrapper {
       width: 100%;
       height: 119px;
-      overflow-x: auto;
       position: relative;
       z-index: 1;
       background: #333232;
       box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
       
-      .tabs-bar {
+      .v-tabs {
         height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        background: transparent;
 
-        .tab-text {
+        .v-tabs-bar {
+          height: 100%;
+          background: transparent;
+
+        }
+
+        .v-tabs-slider {
+          background-color: #005bd1;
+          height: 4px;
+        }
+
+
+        .v-tab {
           font-style: italic;
           font-weight: bold;
           font-size: 26px;
@@ -317,38 +336,30 @@ export default {
           color: white;
           position: relative;
           padding: 0 20px;
-        }
+          text-transform: none !important;
 
-        .tab-text:hover {
-          cursor: pointer;
-          color: #005bd1;
-        }
+          &--active {
+            color: #005bd1;
+          }
 
-        .tab-text.active:before {
-          content: "";
-          position: absolute;
-          left: -8%;
-          bottom: -75%;
-          height: 4px;
-          width: 116%;
-          border: 1px solid #005bd1;
-          -webkit-box-shadow: 0px 0px 16px #005bd1;
-          box-shadow: 0px 0px 16px #005bd1;
-          background: #005bd1;
-        }
-
-        .tabs-bar {
-          position: relative;
-          z-index: 1;
-
-          div:last-child {
-            margin-right: 0;
+          &::before {
+            display: none;
           }
         }
 
-        .tab-text.active {
+        .v-tab:hover {
+          cursor: pointer;
           color: #005bd1;
           text-shadow: 0px 0px 16px rgba(142, 192, 255, 0.3);
+        }
+
+        .v-slide-group__next .v-icon,
+        .v-slide-group__prev .v-icon {
+          color: #fff !important;
+
+          &--disabled {
+            color: rgba(255, 255, 255, 0.2) !important;
+          }
         }
       }
     }
@@ -409,6 +420,7 @@ export default {
             }
 
             .title {
+              font-family: 'Thabit', 'Courier New', Courier, monospace;
               font-weight: bold;
               font-size: 32px;
               line-height: 42px;
@@ -579,54 +591,14 @@ export default {
       font-family: "Thabit", monospace !important;
       max-width: 1920px;
 
-      .tabs-bar {
-        background: #333232;
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-        width: 100%;
+      .v-tabs {
         height: 101px;
         padding: 0 20px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        overflow: auto;
 
-        .tab-text {
-          font-style: italic;
-          font-weight: bold;
+        .v-tab {
           font-size: 26px;
           padding: 0 10px;
           line-height: 32px;
-          color: rgba(0, 91, 209, 0.3);
-          position: relative;
-        }
-
-        .tab-text:hover {
-          cursor: pointer;
-          color: #005bd1;
-        }
-
-        .tab-text.active:before {
-          content: "";
-          position: absolute;
-          left: -8%;
-          bottom: -106%;
-          height: 4px;
-          width: 116%;
-          border: 1px solid #005bd1;
-          -webkit-box-shadow: 0px 0px 16px #005bd1;
-          box-shadow: 0px 0px 16px #005bd1;
-          background: #005bd1;
-        }
-
-        .tabs-bar {
-          div:last-child {
-            margin-right: 0;
-          }
-        }
-
-        .tab-text.active {
-          color: #005bd1;
-          text-shadow: 0px 0px 16px rgba(142, 192, 255, 0.3);
         }
       }
 
@@ -680,10 +652,8 @@ export default {
               }
 
               .title {
-                font-weight: bold;
                 font-size: 20px;
                 line-height: 24px;
-                color: #ffffff;
                 margin-bottom: 27px;
               }
 
@@ -843,57 +813,12 @@ export default {
       max-width: 1920px;
 
       .tabs-bar {
-        position: relative;
-        z-index: 1;
-        background: #333232;
-        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-        width: 100%;
         height: 90px;
-        display: flex;
-        align-items: center;
         padding: 0 20px;
-        justify-content: space-between;
 
-        .tab-text {
-          font-style: italic;
-          font-weight: bold;
+        .v-tab {
           font-size: 18px;
           line-height: 48px;
-          color: rgba(0, 91, 209, 0.3);
-          position: relative;
-          text-align: center;
-        }
-
-        .tab-text:hover {
-          cursor: pointer;
-          color: #005bd1;
-        }
-
-        .tab-text.active:before {
-          content: "";
-          position: absolute;
-          left: -8%;
-          bottom: -42%;
-          height: 4px;
-          width: 116%;
-          border: 1px solid #005bd1;
-          -webkit-box-shadow: 0px 0px 16px #005bd1;
-          box-shadow: 0px 0px 16px #005bd1;
-          background: #005bd1;
-        }
-
-        .tabs-bar {
-          position: relative;
-          z-index: 1;
-
-          div:last-child {
-            margin-right: 0;
-          }
-        }
-
-        .tab-text.active {
-          color: #005bd1;
-          text-shadow: 0px 0px 16px rgba(142, 192, 255, 0.3);
         }
       }
 
@@ -949,10 +874,8 @@ export default {
               }
 
               .title {
-                font-weight: bold;
                 font-size: 32px;
                 line-height: 42px;
-                color: #ffffff;
                 margin-bottom: 18px;
               }
 
