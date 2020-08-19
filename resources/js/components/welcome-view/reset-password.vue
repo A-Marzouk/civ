@@ -1,13 +1,17 @@
 <template>
   <v-app style="width:100%;">
     <!-- main container -->
-    <v-container class="main-container pa-xl-12 pa-lg-12">
+    <v-container class="main-container pa-xl-12 pa-lg-12 pa-md-12 pa-sm-12 pa-5 my-auto h-100">
       <v-row align="center" justify="center">
         <v-col cols="12" align="center" class="mt-10">
           <img src="/images/civie_logo-blue1.svg" alt="logo" />
         </v-col>
-        <v-col cols="12" align="center" class="my-5">
-          <v-card color="white" class="reset-card pa-xl-12 pa-lg-12" align="left">
+        <v-col cols="12" align="center" class="mt-10">
+          <v-card
+            color="white"
+            class="reset-card pa-xl-12 pa-lg-12 pa-md-12 pa-sm-12 pa-12"
+            align="left"
+          >
             <v-card-title class="reset-title">Password Reset</v-card-title>
             <v-card-subtitle>
               <hr class="horizontal-line" />
@@ -33,7 +37,7 @@
     </v-container>
     <!-- Main container -->
     <!-- footer -->
-    <v-footer color="transparent" class="custom-footer">
+    <v-footer color="transparent" class="custom-footer mt-n5">
       <v-row align="center" justify="center">
         <v-col cols="12" align="center">
           <v-card flat color="transparent">
@@ -70,11 +74,13 @@ export default {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
-body{
-  background-color: #F5F6FF;
+body {
+  background-color: #f5f6ff;
 }
 .main-container {
   width: 100%;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
   .reset-card {
     width: 700px;
     box-shadow: 0px 15px 70px rgba(0, 16, 131, 0.06) !important;
@@ -91,6 +97,9 @@ body{
       height: 2px;
       background: #e6e8fc;
       opacity: 0.5;
+      @media screen and (max-width: 1263px) {
+        width: auto;
+      }
     }
     .reset-name {
       font-family: "Noto Sans" !important;
