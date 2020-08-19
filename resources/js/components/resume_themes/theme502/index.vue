@@ -713,6 +713,134 @@
           </v-row>
         </v-col>
       </v-slide-x-reverse-transition>
+      <v-slide-x-reverse-transition>
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="activeTab == 'references'"
+          key="one"
+          style="height: 100vh;"
+        >
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
+            <v-col
+              md="6"
+              sm="12"
+              cols="12"
+              lg="6"
+              v-for="(reference, i) in currentUser.references"
+              :key="i"
+              v-show="reference.is_public"
+              class="mt-4 padleft"
+            >
+              <v-row class="mt-4" no-gutters>
+                <v-col md="12" sm="12" cols="12">
+                  <h1 class="textcol headline font-weight-bold">
+                    {{ reference.name }}
+                  </h1>
+                </v-col>
+                <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
+                  <h1
+                    class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
+                  >
+                    {{ reference.email }}
+                  </h1>
+                </v-col>
+                <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
+                  <h1
+                    class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
+                  >
+                    {{ reference.phone }}
+                  </h1>
+                </v-col>
+
+                <v-col md="12" sm="12" cols="12" xl="12" class="my-6">
+                  <div
+                    class="grey--text text--darken-1 sfont pb-2 font-weight-thin"
+                  >
+                    {{ reference.reference_text }}
+                  </div>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-slide-x-reverse-transition>
+      <v-slide-x-reverse-transition>
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="activeTab == 'hobbies'"
+          key="two"
+          style="height: 100vh;"
+        >
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
+            <v-col
+              md="6"
+              sm="12"
+              cols="12"
+              lg="6"
+              v-for="(hobby, i) in currentUser.hobbies"
+              :key="i"
+              v-show="hobby.is_public"
+              class="mt-4 padleft"
+            >
+              <v-row class="mt-4" no-gutters>
+                <v-col md="12" sm="12" cols="12">
+                  <h1 class="textcol headline font-weight-bold">
+                    {{ hobby.title }}
+                  </h1>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-slide-x-reverse-transition>
+      <v-slide-x-reverse-transition>
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="activeTab == 'achievment'"
+          key="one"
+          style="height: 100vh;"
+        >
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
+            <v-col
+              md="6"
+              sm="12"
+              cols="12"
+              lg="6"
+              v-for="(achievment, i) in currentUser.achievements"
+              :key="i"
+              v-show="achievment"
+              class="mt-4 padleft"
+            >
+              <v-row class="mt-4" no-gutters>
+                <v-col md="12" sm="12" cols="12">
+                  <h1 class="textcol headline font-weight-bold">
+                    {{ achievment.title }}
+                  </h1>
+                </v-col>
+                <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
+                  <h1
+                    class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
+                  >
+                    {{ achievment.description }}
+                  </h1>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-slide-x-reverse-transition>
     </v-row>
   </v-app>
 </template>
@@ -787,6 +915,18 @@ export default {
         {
           text: "Skills",
           value: "skills"
+        },
+        {
+          text: "References",
+          value: "references"
+        },
+        {
+          text: "Hobbies",
+          value: "hobbies"
+        },
+        {
+          text: "Achievment",
+          value: "achievment"
         }
       ]
     };
