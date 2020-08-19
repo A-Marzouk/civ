@@ -1,12 +1,12 @@
 <template>
-  <v-app style="width:100%;background-color: #F5F6FF;">
+  <v-app style="width:100%;">
     <!-- main container -->
     <v-container class="main-container pa-xl-12 pa-lg-12">
       <v-row align="center" justify="center">
-        <v-col cols="12" align="center">
+        <v-col cols="12" align="center" class="mt-10">
           <img src="/images/civie_logo-blue1.svg" alt="logo" />
         </v-col>
-        <v-col cols="12" align="center">
+        <v-col cols="12" align="center" class="my-5">
           <v-card color="white" class="reset-card pa-xl-12 pa-lg-12" align="left">
             <v-card-title class="reset-title">Password Reset</v-card-title>
             <v-card-subtitle>
@@ -21,11 +21,7 @@
               <a href="#">http://www.civ.ie/password/reset/5dfg789sfsdrsfsfd/edit</a>
             </v-card-subtitle>
             <v-card-subtitle>
-              <v-btn
-                color="#0046fe"
-                class="btn-change-password"
-                depressed
-              >Change Password</v-btn>
+              <v-btn color="#0046fe" class="btn-change-password" depressed>Change Password</v-btn>
             </v-card-subtitle>
             <v-card-subtitle class="reset-greeting-text">
               <div>Kindest Regards,</div>
@@ -74,6 +70,9 @@ export default {
 
 <style scoped lang="scss">
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+body{
+  background-color: #F5F6FF;
+}
 .main-container {
   width: 100%;
   .reset-card {
