@@ -275,7 +275,7 @@
               </v-tab-item>
               <!-- Hobbies -->
               <v-tab-item class="hobby-section" value="tab-4">
-                <v-container style="width:100%;" class="pa-md-4 pa-sm-12 pa-5">
+                <v-container style="width:100%;" class="pa-md-4 pa-sm-12 pa-8">
                   <v-row align="center" justify>
                     <v-col xl="2" lg="3" md="4" sm="6" cols="12" v-for="i in 10" :key="i">
                       <v-card class="card-hobby pa-12" flat align="center">
