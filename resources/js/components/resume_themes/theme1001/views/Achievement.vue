@@ -1,24 +1,34 @@
 <template>
-    <div class="achievement_container my-5">
-        <div v-for="(achievement, index) in achievements" :key="index" class="achievement__card" >
+  <div class="achievement_container my-5">
+    <div
+      v-for="(achievement, index) in currentUser.achievements"
+      :key="index"
+      class="achievement__card"
+    >
+      <!-- left -->
+      <div class="card__left">
+        <img
+          :src="achievement.image_src"
+          alt="certificate"
+          class="certificate_img"
+        />
+      </div>
 
-            <!-- left -->
-            <div class="card__left">
-                <img :src="achievement.src" alt="certificate" class="certificate_img" >
-            </div>
-
-            <!-- right -->
-            <div class="card__right">
-                <div class="card__title font-weight-bold mb-2">{{ achievement.title }}</div>
-                <div class="card__url mb-3">URL: {{ achievement.url }}</div>
-                <div class="card__description">{{ achievement.description }}</div>
-            </div>
+      <!-- right -->
+      <div class="card__right">
+        <div class="card__title font-weight-bold mb-2">
+          {{ achievement.title }}
         </div>
+        <div class="card__url mb-3">URL: {{ achievement.url }}</div>
+        <div class="card__description">{{ achievement.description }}</div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
     export default {
+        props: ["currentUser"],
         data: () => ({
             achievements: [
                 {
@@ -51,68 +61,64 @@
 </script>
 
 <style scoped>
-    .achievement_container {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 1.5rem;
-    }
+.achievement_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1.5rem;
+}
 
-    .achievement__card {
-        padding: 1.6rem;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 1.4rem;
-        color: #172C7A;
-        background-color: #F1F4FF;
-        border-radius: 8px;
-    }
+.achievement__card {
+  padding: 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1.4rem;
+  color: #172c7a;
+  background-color: #f1f4ff;
+  border-radius: 8px;
+}
 
+/* left */
+.card__left {
+}
 
-    /* left */
-    .card__left {
+.certificate_img {
+  height: 100%;
+  width: 100%;
+}
 
-    }
+/* right */
+.card__right {
+}
 
-    .certificate_img {
-        height: 100%;
-        width: 100%;
-    }
+.card__title {
+  font-size: 1.2rem;
+}
 
-    /* right */
-    .card__right {
+.card__description {
+  font-size: 0.8rem;
+}
 
-    }
+/* media queries */
 
-    .card__title {
-        font-size: 1.2rem;
-    }
+/* md screen */
+@media only screen and (max-width: 1600px) {
+  .achievement__card {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
-    .card__description {
-        font-size: 0.8rem;
-    }
+  .card__title {
+    text-align: center;
+  }
+}
 
-    /* media queries */
+/* sm screen */
+@media only screen and (max-width: 650px) {
+  .achievement_container {
+    grid-template-columns: 1fr;
+  }
 
-    /* md screen */
-    @media only screen and (max-width: 1600px) {
-        .achievement__card {
-            grid-template-columns: repeat(1, 1fr);
-        }
-        
-        .card__title {
-            text-align: center;
-        }
-    }
-
-    /* sm screen */
-    @media only screen and (max-width: 650px) {
-        .achievement_container  {
-            grid-template-columns: 1fr;
-        }
-        
-        .card__title {
-            text-align: center;
-        }
-    }
-
+  .card__title {
+    text-align: center;
+  }
+}
 </style>
