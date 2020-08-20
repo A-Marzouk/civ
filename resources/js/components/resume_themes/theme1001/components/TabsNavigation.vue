@@ -63,6 +63,43 @@
               >Media
             </a>
           </li>
+
+          <li
+            class="navigation__link"
+            :class="[
+              { active: activeTab === 'hobbies' },
+              { 'active-indicator': currentTab === 'hobbies' },
+            ]"
+          >
+            <a href="#" @click.prevent="$emit('tab-changed', 'hobbies')"
+              >Hobbies
+            </a>
+          </li>
+
+          <li
+            class="navigation__link"
+            :class="[
+              { active: activeTab === 'references' },
+              { 'active-indicator': currentTab === 'references' },
+            ]"
+          >
+            <a href="#" @click.prevent="$emit('tab-changed', 'references')"
+              >References
+            </a>
+          </li>
+          
+          <li
+            class="navigation__link"
+            :class="[
+              { active: activeTab === 'achievement' },
+              { 'active-indicator': currentTab === 'achievement' },
+            ]"
+          >
+            <a href="#" @click.prevent="$emit('tab-changed', 'achievement')"
+              >Achievement
+            </a>
+          </li>
+
         </ul>
 
         <a href="#" class="toggle-social-links" @click="isOpen = !isOpen">
@@ -151,7 +188,7 @@ export default {
   height: 48px;
   justify-content: space-between;
   align-items: center;
-  max-width: 100%;
+  width: 80%; // adjusted | 100
 }
 
 .navigation {
@@ -160,6 +197,7 @@ export default {
   flex: 1;
   align-items: center;
   height: 100%;
+  width: 90%;
   list-style: none;
   padding: 0 25px;
   margin: 0;

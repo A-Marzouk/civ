@@ -12,7 +12,7 @@
     }
 
     .padleft {
-        padding-left: 9rem !important;
+        padding-left: 10rem !important;
     }
 
     .avatar .v-responsive .v-image {
@@ -150,6 +150,34 @@
         font-weight: 300 !important;
     }
 
+    .newTitle{
+     
+        font-style: normal;
+        font-weight: 500;
+        font-size: 38px;
+        line-height: 60px;
+        letter-spacing: 0.05em;
+        font-feature-settings: 'tnum' on, 'lnum' on;
+        color: #2943C7;
+    }
+    .newText{
+        font-family: 'Gotham Pro';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 21px;
+        line-height: 20px;
+        letter-spacing: 0.05em;
+        font-feature-settings: 'tnum' on, 'lnum' on;
+        color: #9C9C9C;
+    }
+    .newSubtitle{
+        font-family:'Open Sans';
+        font-style: normal;
+        font-weight: 300;
+        font-size: 17px;
+        line-height: 23px;
+        color: #4E4E4E;
+    }
     @media (min-width: 1600px) {
         .margleft {
             margin-left: 8rem !important;
@@ -178,7 +206,7 @@
         }
 
         .padleft {
-            padding-left: 0rem !important;
+            padding-left: 2rem !important;
         }
 
         #theme502 {
@@ -232,13 +260,40 @@
         .margleft {
             margin-left: 0rem !important;
         }
-
+        .newTitle{
+     
+            font-style: normal;
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 40px;
+            letter-spacing: 0.05em;
+            font-feature-settings: 'tnum' on, 'lnum' on;
+            color: #2943C7;
+        }
+        .newText{
+            font-family: 'Gotham Pro';
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 20px;
+            letter-spacing: 0.05em;
+            font-feature-settings: 'tnum' on, 'lnum' on;
+            color: #9C9C9C;
+        }
+        .newSubtitle{
+            font-family:'Open Sans';
+            font-style: normal;
+            font-weight: 300;
+            font-size: 17px;
+            line-height: 23px;
+            color: #4E4E4E;
+        }
         .helo {
             margin-left: -30px;
         }
 
         .padleft {
-            padding-left: 0rem !important;
+            padding-left: 2rem !important;
         }
 
         .headline {

@@ -326,6 +326,11 @@
                   </v-col>
                 </v-row>
               </v-tab-item>
+              <v-tab-item class="hobby-section" value="tab-4">
+                <v-container>
+                  <div>Hobbies</div>
+                </v-container>
+              </v-tab-item>
             </v-tabs-items>
           </div>
         </v-col>
@@ -1723,7 +1728,8 @@ export default {
         { name: "portfolio", label: "Portfolio" },
         { name: "work-experience", label: "Work" },
         { name: "education", label: "Education" },
-        { name: "skills", label: "Skills" }
+        { name: "skills", label: "Skills" },
+        { name: "hobbies", label: "Hobbies" }
       ],
       skills: [
         {
