@@ -96,7 +96,7 @@
       <!-- 1st inner container ends here -->
 
       <!-- new 2nd layer -->
-      <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up</v-card-subtitle>
+      <v-card-subtitle align="center" class="sign-up-text mb-12 mt-10">Want to sign-up?</v-card-subtitle>
       <register-form :username="validUserName"></register-form>
 
       <!-- new 2nd layer -->
@@ -168,9 +168,9 @@
                   <v-col md="6" cols="12">
                     <span
                       class="hidden-sm-only"
-                    >Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
+                    >Add your data and then apply any theme to make your resume visually amazing. Ensure that you stand out and make a great first impression with any hiring manager.</span>
                     <span class="d-none d-sm-flex d-md-none">
-                      Add your data and then apply any theme tj make your resume visually amazing. Ensure that you stand out
+                      Add your data and then apply any theme to make your resume visually amazing. Ensure that you stand out
                       <br />and make a great first impression with any hiring manager.
                     </span>
                   </v-col>
@@ -254,7 +254,7 @@
                   />
                 </v-btn>
                 <span class="followers">14,044 Followers</span>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-1 ml-sm-0 ml-0">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon ml-md-1 ml-sm-0 ml-0" href="https://www.instagram.com/civ.ie_/">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
@@ -294,7 +294,7 @@
                     alt="facebook"
                   />
                 </v-btn>
-                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2"  href="https://www.facebook.com/civieapp">
+                <v-btn fab x-small color="#ffffff" class="footer-social-icon mx-sm-2 mx-auto mt-n2"  href="https://www.instagram.com/civ.ie_/">
                   <img
                     src="/images/welcome_landing_page/icons/social_icons/instagram.png"
                     alt="instagram"
