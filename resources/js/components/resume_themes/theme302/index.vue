@@ -320,7 +320,7 @@
                 <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-8">
                   <v-row align="center">
                     <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
-                      <v-card class="card-achievement pa-5">
+                      <v-card class="card-achievement pa-5" flat>
                         <div class="d-flex flex-row">
                           <img
                             src="/images/resume_themes/theme302/certificate.svg"
