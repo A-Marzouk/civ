@@ -274,10 +274,10 @@
       no-gutters
     >
       <v-col
-        lg="8"
+        lg="11"
         sm="12"
         cols="12"
-        xl="8"
+        xl="11"
         class="tablet mr-xl-12 mr-sm-0 mt-sm-12"
       >
         <v-tabs background-color="transparent" hide-arrows grow class="helo">
@@ -724,7 +724,7 @@
           key="one"
           style="height: 100vh;"
         >
-          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
             <v-col
               md="6"
               sm="12"
@@ -733,7 +733,7 @@
               v-for="(reference, i) in currentUser.references"
               :key="i"
               v-show="reference.is_public"
-              class="mt-4 padleft"
+              class="mt-4"
             >
               <v-row class="mt-4" no-gutters>
                 <v-col md="6" sm="6" cols="6">
@@ -741,23 +741,23 @@
                     {{ reference.name }}
                   </h1>
                 </v-col>
-                <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
-                  <h1 class="newText pb-2 mr-lg-12">
+                <v-col md="6" sm="6" cols="6" class="text-md-left">
+                  <h1 class="newText pb-2 mr-lg-12 text-right">
                     {{ getFullYear(reference.created_at) }}
                   </h1>
                 </v-col>
-                <v-col md="12" sm="12" cols="12" class="mt-2">
+                <v-col md="12" sm="12" cols="12" class="mt-md-2">
                   <h1 class="newText pb-2 mr-lg-12">
                     {{ reference.email }}
                   </h1>
                 </v-col>
-                <v-col md="12" sm="12" cols="12" class="mt-2">
+                <v-col md="12" sm="12" cols="12" class="mt-md-2">
                   <h1 class="newText pb-2 mr-lg-12">
                     {{ reference.phone }}
                   </h1>
                 </v-col>
 
-                <v-col md="12" sm="12" cols="12" xl="12" class="my-6">
+                <v-col md="12" sm="12" cols="12" xl="12" class="mt-md-2">
                   <div class="newSubtitle pb-2">
                     {{ reference.reference_text }}
                   </div>
@@ -778,20 +778,33 @@
           key="two"
           style="height: 100vh;"
         >
-          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
             <v-col
-              md="6"
+              md="4"
               sm="12"
               cols="12"
-              lg="6"
+              lg="4"
               v-for="(hobby, i) in currentUser.hobbies"
               :key="i"
               v-show="hobby.is_public"
-              class="mt-4 padleft"
+              class="mt-4"
             >
               <v-row class="mt-4" no-gutters>
-                <v-col md="12" sm="12" cols="12">
-                  <h1 class="textcol headline font-weight-bold">
+                <v-col
+                  md="2"
+                  sm="2"
+                  cols="2"
+                  align="center"
+                  align-self="center"
+                >
+                  <v-img
+                    max-width="60"
+                    class="ma-auto"
+                    src="/images/resume_themes/theme502/puzzle.svg"
+                  ></v-img>
+                </v-col>
+                <v-col md="10" sm="10" cols="10" align-self="center">
+                  <h1 class="newTitle px-3">
                     {{ hobby.title }}
                   </h1>
                 </v-col>
@@ -811,7 +824,7 @@
           key="one"
           style="height: 100vh;"
         >
-          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6">
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
             <v-col
               md="6"
               sm="12"
@@ -820,18 +833,23 @@
               v-for="(achievment, i) in currentUser.achievements"
               :key="i"
               v-show="achievment"
-              class="mt-4 padleft"
+              class="mt-4"
             >
               <v-row class="mt-4" no-gutters>
-                <v-col md="12" sm="12" cols="12">
-                  <h1 class="textcol headline font-weight-bold">
+                <v-col> </v-col>
+                <v-col md="3" sm="3" cols="3">
+                  <v-img
+                    contain
+                    class="ma-auto"
+                    max-width="150"
+                    src="/images/resume_themes/theme502/quality.svg"
+                  ></v-img>
+                </v-col>
+                <v-col md="9" sm="9" cols="9">
+                  <h1 class="newTitle">
                     {{ achievment.title }}
                   </h1>
-                </v-col>
-                <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
-                  <h1
-                    class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
-                  >
+                  <h1 class="newSubtitle mr-lg-12">
                     {{ achievment.description }}
                   </h1>
                 </v-col>
