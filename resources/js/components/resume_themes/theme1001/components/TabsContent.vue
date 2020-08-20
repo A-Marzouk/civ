@@ -9,7 +9,11 @@ import AboutMe from "./../views/AboutMe";
 import Media from "./../views/Media";
 import Portfolio from "./../views/Portfolio";
 import SkillsLanguages from "./../views/SkillsLanguages";
+import Hobbies from "./../views/Hobbies";
+import References from "./../views/References";
+import Achievement from "./../views/Achievement";
 import ExperienceEducation from "./ExperienceEducation/ExperienceEducation";
+
 
 export default {
   name: "TabsContent",
@@ -19,7 +23,10 @@ export default {
     AboutMe,
     Portfolio,
     ExperienceEducation,
-    SkillsLanguages
+    SkillsLanguages,
+    Hobbies,
+    References,
+    Achievement
   },
 
   props: {

@@ -274,10 +274,10 @@
       no-gutters
     >
       <v-col
-        lg="8"
+        lg="11"
         sm="12"
         cols="12"
-        xl="8"
+        xl="11"
         class="tablet mr-xl-12 mr-sm-0 mt-sm-12"
       >
         <v-tabs background-color="transparent" hide-arrows grow class="helo">
@@ -713,6 +713,151 @@
           </v-row>
         </v-col>
       </v-slide-x-reverse-transition>
+      <v-slide-x-reverse-transition>
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="activeTab == 'references'"
+          key="one"
+          style="height: 100vh;"
+        >
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
+            <v-col
+              md="6"
+              sm="12"
+              cols="12"
+              lg="6"
+              v-for="(reference, i) in currentUser.references"
+              :key="i"
+              v-show="reference.is_public"
+              class="mt-4"
+            >
+              <v-row class="mt-4" no-gutters>
+                <v-col md="6" sm="6" cols="6">
+                  <h1 class="newTitle">
+                    {{ reference.name }}
+                  </h1>
+                </v-col>
+                <v-col md="6" sm="6" cols="6" class="text-md-left">
+                  <h1 class="newText pb-2 mr-lg-12 text-right">
+                    {{ getFullYear(reference.created_at) }}
+                  </h1>
+                </v-col>
+                <v-col md="12" sm="12" cols="12" class="mt-md-2">
+                  <h1 class="newText pb-2 mr-lg-12">
+                    {{ reference.email }}
+                  </h1>
+                </v-col>
+                <v-col md="12" sm="12" cols="12" class="mt-md-2">
+                  <h1 class="newText pb-2 mr-lg-12">
+                    {{ reference.phone }}
+                  </h1>
+                </v-col>
+
+                <v-col md="12" sm="12" cols="12" xl="12" class="mt-md-2">
+                  <div class="newSubtitle pb-2">
+                    {{ reference.reference_text }}
+                  </div>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-slide-x-reverse-transition>
+      <v-slide-x-reverse-transition>
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="activeTab == 'hobbies'"
+          key="two"
+          style="height: 100vh;"
+        >
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
+            <v-col
+              md="4"
+              sm="12"
+              cols="12"
+              lg="4"
+              v-for="(hobby, i) in currentUser.hobbies"
+              :key="i"
+              v-show="hobby.is_public"
+              class="mt-4"
+            >
+              <v-row class="mt-4" no-gutters>
+                <v-col
+                  md="2"
+                  sm="2"
+                  cols="2"
+                  align="center"
+                  align-self="center"
+                >
+                  <v-img
+                    max-width="60"
+                    class="ma-auto"
+                    src="/images/resume_themes/theme502/puzzle.svg"
+                  ></v-img>
+                </v-col>
+                <v-col md="10" sm="10" cols="10" align-self="center">
+                  <h1 class="newTitle px-3">
+                    {{ hobby.title }}
+                  </h1>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-slide-x-reverse-transition>
+      <v-slide-x-reverse-transition>
+        <v-col
+          md="12"
+          cols="12"
+          xl="12"
+          lg="12"
+          sm="12"
+          v-if="activeTab == 'achievment'"
+          key="one"
+          style="height: 100vh;"
+        >
+          <v-row no-gutters class="px-4 px-lg-0 mt-6 px-sm-6 padleft">
+            <v-col
+              md="6"
+              sm="12"
+              cols="12"
+              lg="6"
+              v-for="(achievment, i) in currentUser.achievements"
+              :key="i"
+              v-show="achievment"
+              class="mt-4"
+            >
+              <v-row class="mt-4" no-gutters>
+                <v-col> </v-col>
+                <v-col md="3" sm="3" cols="3">
+                  <v-img
+                    contain
+                    class="ma-auto"
+                    max-width="150"
+                    src="/images/resume_themes/theme502/quality.svg"
+                  ></v-img>
+                </v-col>
+                <v-col md="9" sm="9" cols="9">
+                  <h1 class="newTitle">
+                    {{ achievment.title }}
+                  </h1>
+                  <h1 class="newSubtitle mr-lg-12">
+                    {{ achievment.description }}
+                  </h1>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-slide-x-reverse-transition>
     </v-row>
   </v-app>
 </template>
@@ -787,6 +932,18 @@ export default {
         {
           text: "Skills",
           value: "skills"
+        },
+        {
+          text: "References",
+          value: "references"
+        },
+        {
+          text: "Hobbies",
+          value: "hobbies"
+        },
+        {
+          text: "Achievment",
+          value: "achievment"
         }
       ]
     };
@@ -798,6 +955,11 @@ export default {
     }
   },
   methods: {
+   getFullYear(date) {
+      let newDate = new Date(date);
+      let yyyy = newDate.getDate() + '/' + newDate.getMonth()  + '/' +newDate.getUTCFullYear();
+      return yyyy;
+    },
     availableNext() {
       if (this.available == 2) {
         this.available = 0;
