@@ -59,7 +59,7 @@
                   </v-card>
                 </v-col>
 
-                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-md-n2 mt-sm-n10 mt-n6 d-flex">
+                <v-col xl="4" lg="4" md="6" sm="6" cols="3" class="mt-lg-n2 my-md-n10 mt-sm-n10 mt-n6 d-flex">
                   <v-btn
                     class="resume-builder__btn civie-btn filled btn-add-new mt-2 ml-xl-0 ml-lg-n2 ml-sm-n0 ml-0 mr-lg-7 mr-md-7"
                     @click="addSkill"
