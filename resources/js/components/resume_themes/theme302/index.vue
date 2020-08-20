@@ -317,8 +317,29 @@
               <!-- References -->
               <!--  Achivements -->
               <v-tab-item class="achievement-section" value="tab-6">
-                <v-container>
-                  <div>Achievements</div>
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-8">
+                  <v-row align="center">
+                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                      <v-card class="card-achievement pa-5">
+                        <div class="d-flex flex-row">
+                          <img
+                            src="/images/resume_themes/theme302/certificate.svg"
+                            alt="certificate"
+                          />
+                          <div class="ml-5">
+                            <div class="title">Herbrand Award, 2020</div>
+                            <div class="url">
+                              <span>URL:</span> https://linkedin.com/herbrand award
+                            </div>
+                            <div class="desc">
+                              <span>Description:</span>
+                              The Herbrand Award for Distinguished Contributions to Automated Reasoning is an award given by CADE Inc. (although it predates the formal incorporation of CADE) to honour persons or groups for important contributions to the field of automated deduction.
+                            </div>
+                          </div>
+                        </div>
+                      </v-card>
+                    </v-col>
+                  </v-row>
                 </v-container>
               </v-tab-item>
               <!-- Achievements -->
@@ -577,6 +598,50 @@ $colorBlue: #104efb;
     }
   }
   //card ref
+
+  //card achievement
+  .card-achievement {
+    width: 810px;
+    height: 297px;
+    border: 1px solid rgba(16, 78, 251, 0.2);
+    @media screen and (min-width: 960px) and (max-width: 1903px) {
+      width: auto;
+      height: auto;
+    }
+    .title {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 28px;
+      color: #104efb !important;
+    }
+    .url {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 16px;
+      color: #104efb;
+      margin-top: 10px;
+      span {
+        font-weight: 500;
+      }
+    }
+    .desc {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 25px;
+      color: #104efb !important;
+      margin-top: 10px;
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+  //card achievement
   .freelancerCard {
     width: 100%;
     background: #f5f7f7;
