@@ -11,8 +11,6 @@
 |
 */
 
-use Illuminate\Auth\Notifications\ResetPassword;
-
 Auth::routes(['verify' => true]);
 
 
