@@ -290,8 +290,28 @@
               <!-- Hobbies -->
               <!-- References -->
               <v-tab-item class="reference-section" value="tab-5">
-                <v-container>
-                  <div>References</div>
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-8">
+                  <v-row align="center">
+                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                      <v-card flat class="card-ref pa-5">
+                        <v-card-title class="ref-title">Sara William</v-card-title>
+                        <v-card-subtitle class="ref-subtitle">
+                          <v-row justify="space-between">
+                            <v-col cols="6">CEO, IT Software Park</v-col>
+                            <v-col cols="6" align="right">david@gmail.com</v-col>
+                          </v-row>
+                          <v-row justify="space-between" class="mt-n5">
+                            <v-col cols="6">284/6B, Texas, USA</v-col>
+                            <v-col cols="6" align="right">+9606987564889</v-col>
+                          </v-row>
+                        </v-card-subtitle>
+
+                        <v-card-text
+                          class="ref-desc"
+                        >Reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer to the second object. It is called a name for the second object. The first object in this relation is said to refer to the second object.</v-card-text>
+                      </v-card>
+                    </v-col>
+                  </v-row>
                 </v-container>
               </v-tab-item>
               <!-- References -->
@@ -515,7 +535,7 @@ $colorBlue: #104efb;
       span {
         display: inline-block;
         width: 20px;
-        border: 1px solid #104EFB;
+        border: 1px solid #104efb;
         margin-bottom: 5px;
         margin-right: 10px;
       }
@@ -523,6 +543,40 @@ $colorBlue: #104efb;
   }
   // card hobbies
 
+  //card ref
+  .card-ref {
+    width: 810px;
+    height: 320px;
+    border: 1px solid rgba(16, 78, 251, 0.2);
+    @media screen and (min-width: 960px) and (max-width: 1903px) {
+      width: auto;
+      height: auto;
+    }
+    .ref-title {
+      font-family: "Raleway" !important;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 33px;
+      color: #104efb !important;
+    }
+    .ref-subtitle {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 25px;
+      color: #104efb !important;
+    }
+    .ref-desc {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 30px;
+      color: #104efb !important;
+    }
+  }
+  //card ref
   .freelancerCard {
     width: 100%;
     background: #f5f7f7;
