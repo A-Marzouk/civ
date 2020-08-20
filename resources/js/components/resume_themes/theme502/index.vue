@@ -736,30 +736,29 @@
               class="mt-4 padleft"
             >
               <v-row class="mt-4" no-gutters>
-                <v-col md="12" sm="12" cols="12">
-                  <h1 class="textcol headline font-weight-bold">
+                <v-col md="6" sm="6" cols="6">
+                  <h1 class="newTitle">
                     {{ reference.name }}
                   </h1>
                 </v-col>
                 <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
-                  <h1
-                    class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
-                  >
+                  <h1 class="newText pb-2 mr-lg-12">
+                    {{ getFullYear(reference.created_at) }}
+                  </h1>
+                </v-col>
+                <v-col md="12" sm="12" cols="12" class="mt-2">
+                  <h1 class="newText pb-2 mr-lg-12">
                     {{ reference.email }}
                   </h1>
                 </v-col>
-                <v-col md="6" sm="6" cols="6" class="text-md-left mt-2">
-                  <h1
-                    class="caption font-weight-bold pb-2 mr-lg-12 grey--text text--darken-4"
-                  >
+                <v-col md="12" sm="12" cols="12" class="mt-2">
+                  <h1 class="newText pb-2 mr-lg-12">
                     {{ reference.phone }}
                   </h1>
                 </v-col>
 
                 <v-col md="12" sm="12" cols="12" xl="12" class="my-6">
-                  <div
-                    class="grey--text text--darken-1 sfont pb-2 font-weight-thin"
-                  >
+                  <div class="newSubtitle pb-2">
                     {{ reference.reference_text }}
                   </div>
                 </v-col>
@@ -938,6 +937,11 @@ export default {
     }
   },
   methods: {
+   getFullYear(date) {
+      let newDate = new Date(date);
+      let yyyy = newDate.getDate() + '/' + newDate.getMonth()  + '/' +newDate.getUTCFullYear();
+      return yyyy;
+    },
     availableNext() {
       if (this.available == 2) {
         this.available = 0;
