@@ -7,7 +7,7 @@
       :style="`background-image: url(${avatar});`"
     ></a>
 
-    <div class="custom-drop-down" :class="{'show' :show, 'openMenu': openMenu}">
+    <div class="custom-drop-down" :class="{'show' :show}">
       <div class="drop-down-item" :class="{'active' : activeTabMenu === 'builder'}">
         <router-link
                 id="resumeBuilder"
@@ -145,7 +145,7 @@ export default {
     box-shadow: 0 1px 4px -4px rgba(0, 0, 0, 0.32),
       0 -1px 4px -4px rgba(0, 0, 0, 0.32);
 
-    &.show.openMenu {
+    &.show {
       display: block;
     }
 

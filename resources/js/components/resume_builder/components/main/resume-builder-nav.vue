@@ -1,69 +1,13 @@
 <template>
-  <nav class="resume-builder-nav" :class="{'collapsed': !openMenu}">
+  <nav class="resume-builder-nav">
     <div class="builder-nav-container">
       <div class="builder-nav-logo-wrapper">
         <a href="/resume-builder" class="brand-link">
           <img class="brand-image" src="/images/logo_new.png" alt="123workforce icon" />
         </a>
-
-        <a v-if="openMenu" href="#" @click.prevent="$emit('onClose')" class="builder-nav-toggle">
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M13.7985 2.94662L3.19189 13.5532"
-              stroke="#001CE2"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M13.6066 13.6066L3 3"
-              stroke="#001CE2"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
-        <a v-else href="#" @click.prevent="$emit('onOpen')" class="builder-nav-toggle">
-          <svg
-            width="19"
-            height="16"
-            viewBox="0 0 19 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M17 14H2"
-              stroke="#001CE2"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M17 8H2"
-              stroke="#001CE2"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M17 2H2"
-              stroke="#001CE2"
-              stroke-width="3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
       </div>
 
-      <div class="builder-nav-actions" :class="{'collapsed': !openMenu}">
+      <div class="builder-nav-actions">
         <my-account-dropdown
           :avatar="personalInfo ? personalInfo.profile_pic : null"
           :isActive="activeTab === 'myAccount'"
@@ -134,7 +78,6 @@ $resume-builder-nav-height: 90px;
   background: #fff;
   box-shadow: 0px 0px 50px rgba(0, 19, 156, 0.05) !important;
   z-index: 10;
-  padding-bottom: $resume-builder-nav-height;
   transition: all 0.3s;
 
   &.collapsed {
@@ -175,7 +118,7 @@ $resume-builder-nav-height: 90px;
     .builder-nav-actions {
       background: transparent;
       position: absolute;
-      right: 0;
+      right: 20px;
       bottom: 0;
       width: 100%;
       height: 100%;
@@ -183,13 +126,11 @@ $resume-builder-nav-height: 90px;
       padding-right: 10px;
       display: flex;
       align-items: center;
-      justify-content: space-around;
-      margin-bottom: -$resume-builder-nav-height;
+      justify-content: flex-end;
+      margin-bottom: 0;
       transition: all 0.3s;
+      z-index: 999;
       margin-top: 2px;
-      @media screen and (max-width: 599px){
-        margin-bottom: -88px;
-      }
 
       &.collapsed {
         margin-bottom: 10px;
