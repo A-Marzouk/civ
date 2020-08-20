@@ -1,5 +1,5 @@
 <template>
-  <div class="my-account-dropdown" :class="{'active' : isActive}">
+  <div class="my-account-dropdown">
     <a
       href="#"
       class="account-avatar"
@@ -8,15 +8,24 @@
     ></a>
 
     <div class="custom-drop-down" :class="{'show' :show, 'openMenu': openMenu}">
-      <div class="drop-down-item">
+      <div class="drop-down-item" :class="{'active' : activeTabMenu === 'builder'}">
+        <router-link
+                id="resumeBuilder"
+                data-target="resumeBuilder"
+                @click.native="onItemClick('tabChanged','builder')"
+                to="/resume-builder/edit"
+        >CV builder</router-link>
+      </div>
+      <hr />
+
+      <div class="drop-down-item" :class="{'active' : activeTabMenu === 'account'}">
         <router-link
           id="myAccount"
           data-target="myAccount"
-          @click.native="onItemClick('tabChanged')"
+          @click.native="onItemClick('tabChanged','account')"
           to="/resume-builder"
         >Account Settings</router-link>
       </div>
-
       <hr />
 
       <div class="drop-down-item">
@@ -49,16 +58,38 @@ export default {
 
   data() {
     return {
-      show: false
+      show: false,
+      activeTabMenu: '',
     };
   },
 
   methods: {
-    onItemClick(eventName) {
+    onItemClick(eventName, tabName) {
       this.show = false;
+      this.activeTabMenu = tabName;
       this.$emit(eventName);
     }
+  },
+
+  mounted(){
+    let pathArray = window.location.pathname.split("/");
+    let currentTab = "builder";
+    pathArray.forEach(tab => {
+      if (tab === "resume-builder") {
+        currentTab = pathArray[pathArray.indexOf(tab) + 1];
+      }
+    });
+
+    switch (currentTab) {
+      case "edit":
+        this.activeTabMenu = 'builder';
+        break;
+      default:
+        this.activeTabMenu = 'account';
+        break;
+    }
   }
+
 };
 </script>
 
@@ -100,11 +131,12 @@ export default {
 
   .custom-drop-down {
     display: none;
+    max-width:200px;
     font-family: Noto Sans, "sans-serif";
     background: white;
     white-space: nowrap;
     position: absolute;
-    top: 60px;
+    top: 55px;
     right: 0;
     z-index: 20;
     padding: 15px;
@@ -115,18 +147,6 @@ export default {
 
     &.show.openMenu {
       display: block;
-    }
-
-    &::before {
-      content: "";
-      position: absolute;
-      top: -7px;
-      right: 18px;
-      width: 0;
-      height: 0;
-      border-bottom: solid 7px #f1f1f2;
-      border-left: solid 7px transparent;
-      border-right: solid 7px transparent;
     }
 
     .drop-down-item {
@@ -141,7 +161,10 @@ export default {
           text-decoration: none;
           color: #0046fe;
         }
-        &:visited {
+      }
+
+      &.active {
+        a{
           color: #0046fe;
         }
       }
