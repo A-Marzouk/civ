@@ -239,7 +239,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
-
     // user helper functions :
     public function updateLastActivity(){
         $this->update([

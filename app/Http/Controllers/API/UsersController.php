@@ -11,6 +11,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Promocode;
+use App\ResumeLink;
 use App\Subscription;
 use App\Tab;
 use App\User;
@@ -38,9 +39,13 @@ class UsersController extends Controller
             $id = Auth::user()->id;
         }
 
-        $user = User::where('id',$id)->with(User::$defaultRelations)->first();
+        $user = User::find($id);
+
         if($user){
             $this->setDefaultTabs($user);
+            $this->setDefaultResumeLink($user);
+            // get user with updated relations:
+            $user = User::where('id',$id)->with(User::$defaultRelations)->first();
             return response()->json($user, 200);
         }
         return response()->json(['Error' => "Something went wrong."], 404);
@@ -93,6 +98,24 @@ class UsersController extends Controller
                 'title' => 'media',
                 'label' => 'Media'
             ]
+        ]);
+    }
+
+    protected function setDefaultResumeLink($user){
+        if(isset($user->defaultResumeLink->id)){
+            return true;
+        }
+        // default resume link
+        $resumeLink = ResumeLink::create([
+            'user_id' => $user->id,
+            'url' => '',
+            'theme_id' => 1,
+            'order' => 1,
+            'is_public' => true
+        ]);
+
+        $user->update([
+            'resume_link_id' => $resumeLink->id
         ]);
     }
 

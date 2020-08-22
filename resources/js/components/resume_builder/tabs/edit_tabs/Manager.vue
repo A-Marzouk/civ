@@ -116,12 +116,12 @@
                 </div>
             </div>
 
-            <div style="max-width: 600px; margin-bottom:40px;">
+            <div style="max-width: 600px; margin-bottom:40px;" v-if="resumeLinks" >
                 <v-select
                         class="resume-builder__input civie-select"
                         outlined
                         placeholder="Default resume currently edited"
-                        :items="resumeLinks"
+                        :items="resumeLinks.filter((item) => {return item.url !== ''})"
                         item-text="url"
                         item-value="id"
                         label="Select default resume"
@@ -135,8 +135,8 @@
                 </v-select>
             </div>
 
-            <draggable class="links-items" v-model="resumeLinks" @start="drag=true" @end="drag=false"  handle=".mover">
-                <div class="link-item" v-for="link in resumeLinks" :key="link.id" :class="{'half-opacity' : !link.is_public}">
+            <draggable v-if="resumeLinks" class="links-items" v-model="resumeLinks" @start="drag=true" @end="drag=false"  handle=".mover">
+                <div class="link-item" v-for="link in resumeLinks.filter((item) => {return item.url !== ''} )" :key="link.id" :class="{'half-opacity' : !link.is_public}">
                     <div class="link-data">
                         <div class="mover">
                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
@@ -188,7 +188,7 @@
                     is_public: true
                 },
                 errors:{},
-                defaultResumeLinkID: ''
+                updatedResumeLinkID: '',
             }
         },
         computed: {
@@ -209,9 +209,15 @@
                 }
             },
             user() {
-                let User = this.$store.state.user;
-                this.defaultResumeLinkID = User.resume_link_id;
-                return User;
+                return this.$store.state.user;
+            },
+            defaultResumeLinkID:{
+                get(){
+                    return this.$store.state.user.resume_link_id ;
+                },
+                set(resume_link_id) {
+                    this.updatedResumeLinkID = resume_link_id;
+                }
             }
         },
         methods: {
@@ -223,13 +229,13 @@
                 this.activeTab = tab;
             },
             updateDefaultResumeURl(){
-                if (this.user.resume_link_id === this.defaultResumeLinkID) {
+                if (this.updatedResumeLinkID === '') {
                     return;
                 }
-                axios.put("/api/user/update-default-resume", { resume_link_id: this.defaultResumeLinkID, user_id: this.user.id })
+                axios.put("/api/user/update-default-resume", { resume_link_id: this.updatedResumeLinkID, user_id: this.user.id })
                     .then( (response) => {
                         this.resumeLinks.forEach( (link) => {
-                            if(link.id === this.defaultResumeLinkID){
+                            if(link.id === this.updatedResumeLinkID){
                                 this.user.default_resume_link = link ;
                             }
                         });
