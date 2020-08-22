@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity'
+        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id'
     ];
 
     /**
@@ -235,7 +235,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function defaultResumeLink(){
-        return $this->belongsTo(ResumeLink::class);
+        return $this->belongsTo(ResumeLink::class,'resume_link_id');
     }
 
 
