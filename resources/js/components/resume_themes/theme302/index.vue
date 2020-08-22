@@ -606,7 +606,7 @@ $colorBlue: #104efb;
       font-weight: normal;
       font-size: 16px;
       line-height: 30px;
-      color: #104efb !important
+      color: #104efb !important;
       @media screen and (max-width: 599px) {
         font-size: 14px;
       }
