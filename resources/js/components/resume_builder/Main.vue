@@ -1,6 +1,6 @@
 <template>
 	<div class="resume-container" :class="{'collapsed': !openMenu}">
-		<resume-builder-nav :activeTab="activeTab" :openMenu="openMenu" @onOpen="openMenu=true" @onClose="openMenu=false" @onChange="setActiveTab" />
+		<resume-builder-nav :activeTab="activeTab ? activeTab : 'undefined'" :openMenu="openMenu" @onOpen="openMenu=true" @onClose="openMenu=false" @onChange="setActiveTab" />
 
 		<transition :duration="590" class="content" name="fade" mode="out-in">
 			<router-view class="main-router-view"></router-view>

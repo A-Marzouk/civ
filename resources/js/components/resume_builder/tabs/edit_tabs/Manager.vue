@@ -1,15 +1,18 @@
 <template>
     <div class="outer-container">
         <div class="title">
-            <div class="d-flex align-items-center">
-                <img src="/icons/edit-cv-sidebar/downloads.svg" alt="downloads icon">
-                <span>Manage Downloads</span>
-            </div>
+            <!-- Tabs -->
+            <v-tabs class="resume-builder__tab-bar" hide-slider height="51" style="margin-top: 4px;">
+                <v-tab class="resume-builder__tab tabName" v-for="tab in tabs" :key="tab" @click="setActiveTab(tab)">
+                    {{tab}}
+                </v-tab>
+            </v-tabs>
+
             <v-btn class="resume-builder__btn civie-btn filled download-btn" raised>
                 Download My CV
             </v-btn>
         </div>
-        <div class="dns-main-content-container resume-builder__scroll">
+        <div class="dns-main-content-container resume-builder__scroll" v-if="activeTab === 'Downloads'">
             <div class="dns-main-content">
                 <table class="table table-bordered dns-table table-responsive-sm">
                     <thead>
@@ -94,6 +97,66 @@
                 </table>
             </div>
         </div>
+
+        <div class="links-content resume-builder__scroll" v-if="activeTab === 'URLs'">
+
+            <div class="link-inputs-row">
+                <v-select class="resume-builder__input civie-select icon-prepended" outlined hint="Select platform" persistent-hint :items="getCurrentCategories()" label="Site" color="#001CE2" v-model="editedResumeLink.link_title">
+                    <button class="dropdown-icon icon" slot="append">
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                    </button>
+
+                    <button class="input-prepended-icon" slot="prepend">
+                        <img :src="`/images/resume_builder/${linkCategory}_icons/${editedResumeLink.link_title.toLowerCase()}-1.svg`" alt="link icon">
+                    </button>
+                </v-select>
+
+                <v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedResumeLink.link">
+                </v-text-field>
+
+                <div class="d-flex mt-1">
+                    <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveLink">
+                        {{editedResumeLink.id !== '' ? 'Update' : 'Add New'}}
+                    </v-btn>
+
+                    <v-btn
+                            class="resume-builder__btn civie-btn cancel-btn" depressed raised @click="clearLink" v-show="editedResumeLink.id !== '' ">
+                        Cancel
+                    </v-btn>
+                </div>
+
+            </div>
+
+            <draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false"  handle=".mover">
+                <div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory" :class="{'half-opacity' : !link.is_active}">
+                    <div class="link-data">
+                        <div class="mover">
+                            <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
+                        </div>
+                        <div class="link-text">
+                            <img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase()}-1.svg`" alt="link icon">
+                            <span>{{link.link}}</span>
+                        </div>
+                    </div>
+                    <div class="action-btns">
+                        <div class="resume-builder__action-buttons-container">
+                            <v-btn class="btn-icon civie-btn" depressed @click="toggleLink(link)">
+                                <svg-vue icon="eye-icon" class="icon" :class="{'visible' : link.is_active}"></svg-vue>
+                            </v-btn>
+                            <v-btn class="btn-icon civie-btn" depressed @click="editLink(link)">
+                                <svg-vue icon="edit-icon" class="icon" :class="{'visible' : link.id === editedResumeLink.id}"></svg-vue>
+                            </v-btn>
+
+                            <v-btn class="btn-icon civie-btn" depressed @click="deleteLink(link)">
+                                <svg-vue icon="trash-delete-icon" class="icon"></svg-vue>
+                            </v-btn>
+                        </div>
+                    </div>
+                </div>
+            </draggable>
+
+        </div>
+
     </div>
 </template>
 
@@ -106,7 +169,18 @@
             draggable
         },
         data() {
-            return {}
+            return {
+                tabs:[
+                    'URLs','Downloads'
+                ],
+                activeTab: '',
+                editedResumeLink:{
+                    id: "",
+                    link_title: "Website",
+                    link: "",
+                    is_active: true
+                }
+            }
         },
         computed: {
             downloads: {
@@ -116,12 +190,23 @@
                 set(downloads) {
                     this.$store.commit("updateDownloads", downloads);
                 }
+            },
+            resumeLinks: {
+                get() {
+                    return this.$store.state.user.resume_links;
+                },
+                set(resumeLinks) {
+                    this.$store.commit("updateResumeLinks", resumeLinks);
+                }
             }
         },
         methods: {
             getFormattedData(date) {
                 let d = new Date(date);
                 return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
+            },
+            setActiveTab(tab){
+                this.activeTab = tab;
             }
         },
         mounted() {
@@ -153,6 +238,7 @@
 
 
             .download-btn.v-btn{
+                margin-bottom: 10px;
                 width: 200px !important;
             }
 
@@ -176,7 +262,6 @@
         }
 
         .dns-main-content-container {
-            margin-top: 25px;
             border-radius: 0;
             height: 350px;
 
@@ -287,5 +372,179 @@
         }
     }
 
+
+
+    .links-content {
+        height: 323px;
+        background: #fff;
+        box-shadow: 0px 5px 100px rgba(0, 16, 131, 0.1);
+        padding: 50px;
+        margin-bottom: 70px;
+
+
+        @include lt-sm {
+            height: 400px;
+            padding: 20px;
+        }
+    }
+
+    .tabName {
+        text-transform: capitalize;
+    }
+
+    .link-inputs-row {
+        display: grid;
+        align-items: center;
+        grid-auto-rows: 78px;
+        grid-template-columns: minmax(0px, 210px) minmax(0, 350px) auto;
+        grid-gap: 20px; //adjusted | 30px
+        // margin-top: 12px;
+        margin-bottom: 50px; //adjusted | 30px
+
+        .civie-select {
+            max-width: 210px;
+
+            .v-input__slot {
+                padding-left: 30px !important;
+            }
+
+            .input-prepended-icon {
+                position: absolute;
+                top: 37px; // adjusted | 39px
+                left: 5px;
+
+                img {
+                    width: 33px;
+                }
+            }
+        }
+
+        .civie-input {
+            max-width: 350px;
+        }
+
+        .civie-btn {
+            width: 120px;
+            align-self: end;
+        }
+
+        @include lt-md {
+            display: flex;
+            align-items:center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            // .civie-select {
+            // 	margin-right: 30px;
+            // }
+
+            // .civie-input {
+            // 	margin-right: 30px;
+            // }
+        }
+
+        @include lt-sm {
+            .civie-select {
+                grid-column: span 3;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .civie-input {
+                max-width: 100%;
+                width: 100%;
+                grid-column: span 3;
+                grid-row: 2 / 3;
+                // margin-top: 15px;
+            }
+
+            .civie-btn {
+                grid-column: span 3;
+                grid-row: 3 / 4;
+            }
+        }
+    }
+
+    .links-items {
+        max-width: 714px;
+        width: 100%;
+
+        .link-item {
+            width: 100%;
+            height: 50px;
+            display: flex;
+            margin-bottom: 30px;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 16, 131, 0.15);
+
+            .link-data {
+                display: flex;
+                height: 50px;
+                max-width: calc(100% - 125px);
+
+                .mover {
+                    width: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-right: 1px solid #e6e8fc;
+
+                    img {
+                        width: 12px;
+                        height: 16px;
+                    }
+
+                    &:hover {
+                        cursor: grab;
+                    }
+
+                    @include lt-sm {
+                        width: 22px;
+                    }
+                }
+
+                .link-text {
+                    display: flex;
+                    align-items: center;
+                    margin-left: 10px;
+                    font-size: 18px;
+                    line-height: 25px;
+                    color: #888db1;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+
+                    img {
+                        width: 45px;
+                        height: auto;
+                        // TODO: Don't leave spaces in the image
+                    }
+
+                    span {
+                        padding-right: 10px;
+                        display: block;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+
+                    @include lt-sm {
+                        font-size: 13px;
+                        margin-left: 0;
+                    }
+                }
+            }
+
+            .action-btns {
+                margin-right: 10px;
+
+                .resume-builder__action-buttons-container {
+                    position: static;
+                }
+            }
+
+        }
+    }
 
 </style>

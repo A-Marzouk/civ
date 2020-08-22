@@ -52,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'personalInfo',
             'availabilityInfo',
             'paymentInfo',
+            'resumeLinks',
             'summary',
             'theme',
             'subscription'
@@ -73,6 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'education',
         'workExperience',
         'links',
+        'resumeLinks',
         'projects',
         'achievements',
         'media',
@@ -149,6 +151,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function links()
     {
         return $this->hasMany(Link::class)->orderBy('order');
+    }
+
+    public function resumeLinks()
+    {
+        return $this->hasMany(ResumeLink::class)->orderBy('order');
     }
 
     public function projects()
