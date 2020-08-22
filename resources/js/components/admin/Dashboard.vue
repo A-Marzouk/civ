@@ -1,17 +1,23 @@
 <template>
     <v-app class="admin-container">
-        <div class="admin-top-bar">
-            <div class="left">
-                <img src="/images/admin/navbar_logo.svg" alt="logo">
-            </div>
-            <div class="right NoDecor">
-                <a href="/resume-builder" class="v-btn logout-btn">Resume builder</a>
-                <a href="javascript:void(0)" @click="logout" class="v-btn logout-btn">Logout</a>
-            </div>
-        </div>
+        <v-app-bar
+                color="blue accent-4" height="60"
+                dark
+                prominent
+        >
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
-        <div style="height: 100%;" class="d-flex">
-            <v-card height="100%" width="256px" class="overflow-hidden">
+            <v-spacer></v-spacer>
+
+           <div class="d-flex align-items-center" style="margin-top: 8px;">
+               <v-btn filled  href="/resume-builder" class="mr-4">builder</v-btn>
+               <v-btn filled @click="logout" class="mr-4">Logout</v-btn>
+           </div>
+        </v-app-bar>
+
+
+        <div class="d-flex" style="min-height: 100%;">
+            <v-card height="100%" :width=" drawer ? '256px' : 0" class="overflow-hidden">
                 <v-navigation-drawer
                         v-model="drawer"
                         :expand-on-hover="expandOnHover"
@@ -171,6 +177,10 @@
                 font-weight: bold;
                 font-size: 20px;
                 background: whitesmoke;
+                margin-right:6px;
+                @media screen and (max-width: 599px) {
+                    font-size: 12px;
+                }
             }
         }
 
