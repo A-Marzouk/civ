@@ -122,4 +122,16 @@
   'noto sans bold' => array(
     'normal' => $fontDir . '/noto-sans-bold-normal_0fefd6257cb2f55a5ef5adc6ac3562e9',
   ),
+  'poppins bold' => array(
+    'normal' => $fontDir . '/poppins-bold-normal_7c0485404e2206f792d631a8ce99d45a',
+  ),
+  'poppins' => array(
+    'normal' => $fontDir . '/poppins-normal_3828d5fcf583696bd33b46fd22840d4f',
+  ),
+  'roboto' => array(
+    'normal' => $fontDir . '/roboto-normal_833aee83dece12fb10337205e66f4704',
+  ),
+  'roboto bold' => array(
+    'normal' => $fontDir . '/roboto-bold-normal_7a20d70e34b99f06c9551defed44b97d',
+  ),
 ) ?>
