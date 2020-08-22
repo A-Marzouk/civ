@@ -410,6 +410,14 @@ export const store = new Vuex.Store({
                 })
                 .catch();
         },
+        updateResumeLinks(state, resume_links) {
+            state.user.resume_links = resume_links;
+            axios.post('/api/user/resume-links/update-order', {resume_links: resume_links})
+                .then( (response) => {
+                    this.dispatch('flyingNotification');
+                })
+                .catch();
+        },
         updateReferences(state, references) {
             state.user.references = references;
             axios.post('/api/user/references/update-order', {references: references})

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-5">
         <create-theme @themeCreated="themeCreated" ref="createThemeComponent"></create-theme>
 
         <h1 class="mt-5">

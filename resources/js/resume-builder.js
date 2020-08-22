@@ -18,7 +18,6 @@ import resumeBuilder from './components/resume_builder/Main';
 // main tabs
 import ResumeBuilderMyAccount from './components/resume_builder/tabs/MyAccount'
 import ResumeBuilderEditCV from './components/resume_builder/tabs/EditCV'
-import ResumeBuilderViewCV from './components/resume_builder/tabs/ViewCV'
 import ResumeBuilderJobsAlert from './components/resume_builder/tabs/Jobs'
 import ResumeBuilderCoverLetter from './components/resume_builder/tabs/CoverLetter'
 
@@ -36,7 +35,7 @@ import ResumeBuilderEditCVHobbies from './components/resume_builder/tabs/edit_ta
 import ResumeBuilderEditCVAudioVideo from './components/resume_builder/tabs/edit_tabs/AudioVideo'
 import ResumeBuilderEditCVPayAvailability  from './components/resume_builder/tabs/edit_tabs/PayAvailability'
 import ResumeBuilderEditCVImports from './components/resume_builder/tabs/edit_tabs/Imports'
-import ResumeBuilderEditCVDownloads from './components/resume_builder/tabs/edit_tabs/Downloads'
+import ResumeBuilderEditCVManager from './components/resume_builder/tabs/edit_tabs/Manager'
 import ResumeBuilderEditCVStructure from './components/resume_builder/tabs/edit_tabs/Structure'
 import ResumeBuilderEditCVSThemes from './components/resume_builder/tabs/edit_tabs/Themes'
 import ResumeBuilderEditCVReferences from './components/resume_builder/tabs/edit_tabs/References'
@@ -110,8 +109,8 @@ if ($("#resumeBuilder").length !== 0) {
                     component: ResumeBuilderEditCVImports
                 },
                 {
-                    path: '/resume-builder/edit/downloads',
-                    component: ResumeBuilderEditCVDownloads
+                    path: '/resume-builder/edit/manager',
+                    component: ResumeBuilderEditCVManager
                 },
                 {
                     path: '/resume-builder/edit/structure',
@@ -128,7 +127,6 @@ if ($("#resumeBuilder").length !== 0) {
             ]
 
         },
-        {path: '/resume-builder/view', component: ResumeBuilderViewCV, name:'view'},
         {path: '/resume-builder/jobs', component: ResumeBuilderJobsAlert, name:'jobAlert'},
         {path: '/resume-builder/cover-letter', component: ResumeBuilderCoverLetter, name:'coverLetter'},
         {path: '/resume-builder/components', component: ResumeBuilderComponentsView, name: 'components'}
