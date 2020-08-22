@@ -280,7 +280,12 @@
                     <v-col xl="2" lg="3" md="4" sm="6" cols="12" v-for="i in 10" :key="i">
                       <v-card class="card-hobby pa-12" flat align="center">
                         <v-card-text class="hobby-title">
-                          <span></span> Gardening
+                          <v-row class="mt-n4">
+                            <v-col xl="2" sm="3" cols="3">
+                              <span></span>
+                            </v-col>
+                            <v-col xl="10" sm="9" cols="9">Gardening</v-col>
+                          </v-row>
                         </v-card-text>
                       </v-card>
                     </v-col>
@@ -290,19 +295,19 @@
               <!-- Hobbies -->
               <!-- References -->
               <v-tab-item class="reference-section" value="tab-5">
-                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-8">
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0">
                   <v-row align="center">
                     <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
-                      <v-card flat class="card-ref pa-5">
+                      <v-card flat class="card-ref pa-sm-5 pa-2">
                         <v-card-title class="ref-title">Sara William</v-card-title>
                         <v-card-subtitle class="ref-subtitle">
-                          <v-row justify="space-between">
-                            <v-col cols="6">CEO, IT Software Park</v-col>
-                            <v-col cols="6" align="right">david@gmail.com</v-col>
+                          <v-row justify="space-between" dense>
+                            <v-col sm="6" cols="6" class="designation">CEO, IT Software Park</v-col>
+                            <v-col sm="6" cols="6" align="right" class="designation">david@gmail.com</v-col>
                           </v-row>
                           <v-row justify="space-between" class="mt-n5">
-                            <v-col cols="6">284/6B, Texas, USA</v-col>
-                            <v-col cols="6" align="right">+9606987564889</v-col>
+                            <v-col sm="6" cols="6" class="designation">284/6B, Texas, USA</v-col>
+                            <v-col sm="6" cols="6" align="right" class="designation">+9606987564889</v-col>
                           </v-row>
                         </v-card-subtitle>
 
@@ -547,12 +552,14 @@ $colorBlue: #104efb;
     width: 310px;
     height: 150px;
     border: 1px solid rgba(16, 78, 251, 0.2) !important;
+
     .hobby-title {
       font-family: "Roboto-Medium" !important;
       font-weight: 500;
       font-size: 25px;
       line-height: 29px;
       color: #104efb;
+
       span {
         display: inline-block;
         width: 20px;
@@ -569,7 +576,7 @@ $colorBlue: #104efb;
     width: 810px;
     height: 320px;
     border: 1px solid rgba(16, 78, 251, 0.2);
-    @media screen and (min-width: 960px) and (max-width: 1903px) {
+    @media screen and (max-width: 1903px) {
       width: auto;
       height: auto;
     }
@@ -587,6 +594,11 @@ $colorBlue: #104efb;
       font-size: 16px;
       line-height: 25px;
       color: #104efb !important;
+      .designation {
+        @media scree and (max-width: 599px) {
+          font-size: 14px;
+        }
+      }
     }
     .ref-desc {
       font-family: "Raleway" !important;
@@ -595,6 +607,9 @@ $colorBlue: #104efb;
       font-size: 16px;
       line-height: 30px;
       color: #104efb !important;
+      @media scree and (max-width: 599px) {
+        font-size: 14px;
+      }
     }
   }
   //card ref
@@ -1013,6 +1028,15 @@ $colorBlue: #104efb;
     }
     &:nth-child(4) {
       order: 2;
+    }
+    &:nth-child(5) {
+      order: 5;
+    }
+    &:nth-child(6) {
+      order: 6;
+    }
+    &:nth-child(7) {
+      order: 7;
     }
 
     &:hover {
