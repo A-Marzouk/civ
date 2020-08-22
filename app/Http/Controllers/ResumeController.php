@@ -14,7 +14,6 @@ use App\Theme;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use mysql_xdevapi\Exception;
 
 class ResumeController extends Controller
 {
@@ -74,12 +73,13 @@ class ResumeController extends Controller
     public function userResume ($username, $version = '') {
 
         // prepare user
-        $user = User::withAllRelations($username);
+        $user = User::where('username', $username)->first();
         $is_preview = 'false' ;
 
         if($user){
+            $user = User::withAllRelations($username, $this->getVersionID($version, $user->id));
             $theme = Theme::find($this->getVersionThemeID($version, $user->id));
-            $themeCode = $theme->code ? $theme->code : '1001' ;
+            $themeCode = $theme ? $theme->code : '1001' ;
 
             return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
@@ -97,11 +97,29 @@ class ResumeController extends Controller
 
         $resumeURL = ResumeLink::where($whereData)->first();
         if($resumeURL){
-            // version exists
-           return $resumeURL->theme_id;
+           return $resumeURL->id;
         }
 
         return 1 ;
+    }
+
+    protected function getVersionID($version, $user_id){
+        // check if this version exists:
+        if($version == ''){
+            return '';
+        }
+        $whereData = [
+            ['url', $version],
+            ['user_id', $user_id]
+        ];
+
+        $resumeURL = ResumeLink::where($whereData)->first();
+        if($resumeURL){
+            // version exists
+           return $resumeURL->id;
+        }
+
+        return '' ;
     }
 
 
