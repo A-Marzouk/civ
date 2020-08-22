@@ -20,6 +20,7 @@ class CreateResumeLinksTable extends Migration
             $table->string('title')->nullable();
             $table->string('url')->nullable();
             $table->integer('order')->default(1);
+            $table->boolean('is_public')->default(true);
 
             $table->timestamps();
         });

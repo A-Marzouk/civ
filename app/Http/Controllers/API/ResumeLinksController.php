@@ -25,7 +25,7 @@ class ResumeLinksController extends Controller
      */
     public function index()
     {
-        $resumeLinks = ResumeResumeLink::where('user_id',Auth::user()->id)->paginate(5);
+        $resumeLinks = ResumeLink::where('user_id',Auth::user()->id)->paginate(5);
         return ResumeLinkResource::collection($resumeLinks);
     }
 
@@ -87,8 +87,8 @@ class ResumeLinksController extends Controller
         }
     }
 
-    public function updateLinksOrder(Request $request){
-        $resumeLinks = $request->resumeLinks ;
+    public function updateResumeLinksOrder(Request $request){
+        $resumeLinks = $request->resume_links ;
         foreach ($resumeLinks as $key => $resumeLink){
             $myResumeLink = ResumeLink::find($resumeLink['id']);
             $myResumeLink->update([
@@ -100,10 +100,8 @@ class ResumeLinksController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'url' => ['required','string', 'max:255','min:3'],
-            'category' => ['sometimes', 'string', 'max:255'],
-            'link' => ['sometimes', 'string','max:255'],
-            'is_active' => ['max:255'],
+            'url' => 'required|string|alpha_dash|max:255|min:3|unique:resume_links,url,'.$data['id'].',id,user_id,'.$data['user_id'],
+            'is_public' => ['max:255'],
             'order' => ['max:255'],
         ]);
     }

@@ -8,7 +8,7 @@
                 </v-tab>
             </v-tabs>
 
-            <v-btn class="resume-builder__btn civie-btn filled download-btn" raised>
+            <v-btn class="resume-builder__btn civie-btn filled download-btn" raised v-if="activeTab === 'Downloads'">
                 Download My CV
             </v-btn>
         </div>
@@ -101,17 +101,7 @@
         <div class="links-content resume-builder__scroll" v-if="activeTab === 'URLs'">
 
             <div class="link-inputs-row">
-                <v-select class="resume-builder__input civie-select icon-prepended" outlined hint="Select platform" persistent-hint :items="getCurrentCategories()" label="Site" color="#001CE2" v-model="editedResumeLink.link_title">
-                    <button class="dropdown-icon icon" slot="append">
-                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
-                    </button>
-
-                    <button class="input-prepended-icon" slot="prepend">
-                        <img :src="`/images/resume_builder/${linkCategory}_icons/${editedResumeLink.link_title.toLowerCase()}-1.svg`" alt="link icon">
-                    </button>
-                </v-select>
-
-                <v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.link" :error-messages="errors.link" v-model="editedResumeLink.link">
+                <v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.url" :error-messages="errors.url" v-model="editedResumeLink.url">
                 </v-text-field>
 
                 <div class="d-flex mt-1">
@@ -127,21 +117,20 @@
 
             </div>
 
-            <draggable class="links-items" v-model="links" @start="drag=true" @end="drag=false"  handle=".mover">
-                <div class="link-item" v-for="link in links" :key="link.id" v-if="link.link && link.category === linkCategory" :class="{'half-opacity' : !link.is_active}">
+            <draggable class="links-items" v-model="resumeLinks" @start="drag=true" @end="drag=false"  handle=".mover">
+                <div class="link-item" v-for="link in resumeLinks" :key="link.id" :class="{'half-opacity' : !link.is_public}">
                     <div class="link-data">
                         <div class="mover">
                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
                         </div>
                         <div class="link-text">
-                            <img :src="`/images/resume_builder/${linkCategory}_icons/${link.link_title.toLowerCase()}-1.svg`" alt="link icon">
-                            <span>{{link.link}}</span>
+                            <span>https://civ.ie/{{$store.state.user.username}}/<b>{{link.url}}</b></span>
                         </div>
                     </div>
                     <div class="action-btns">
                         <div class="resume-builder__action-buttons-container">
                             <v-btn class="btn-icon civie-btn" depressed @click="toggleLink(link)">
-                                <svg-vue icon="eye-icon" class="icon" :class="{'visible' : link.is_active}"></svg-vue>
+                                <svg-vue icon="eye-icon" class="icon" :class="{'visible' : link.is_public}"></svg-vue>
                             </v-btn>
                             <v-btn class="btn-icon civie-btn" depressed @click="editLink(link)">
                                 <svg-vue icon="edit-icon" class="icon" :class="{'visible' : link.id === editedResumeLink.id}"></svg-vue>
@@ -173,13 +162,14 @@
                 tabs:[
                     'URLs','Downloads'
                 ],
-                activeTab: '',
+                activeTab: 'URLs',
                 editedResumeLink:{
                     id: "",
-                    link_title: "Website",
-                    link: "",
-                    is_active: true
-                }
+                    title: "",
+                    url: "",
+                    is_public: true
+                },
+                errors:{}
             }
         },
         computed: {
@@ -207,7 +197,101 @@
             },
             setActiveTab(tab){
                 this.activeTab = tab;
-            }
+            },
+            // CRUD:
+            editLink(link) {
+                this.editedResumeLink.id = link.id;
+                this.editedResumeLink.url = link.url;
+            },
+            deleteLink(link) {
+                if (
+                    !confirm(
+                        "Do you want to delete this link [" + link.url + "] ?"
+                    )
+                ) {
+                    return;
+                }
+                axios.delete("/api/user/resume-links/" + link.id)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotificationDelete");
+                        this.resumeLinks.forEach((link, index) => {
+                            if (link.id === response.data.data.id) {
+                                this.resumeLinks.splice(index, 1);
+                            }
+                        });
+
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+            saveLink() {
+                this.errors = {};
+
+                let edit = false;
+                if (this.editedResumeLink.id !== "") {
+                    edit = true;
+                }
+                this.editedResumeLink.user_id = this.$store.state.user.id;
+
+                axios.post("/api/user/resume-links", this.editedResumeLink)
+                    .then(response => {
+                        if (!edit) {
+                            let addedLink = response.data.data;
+                            this.resumeLinks.push(addedLink);
+                        } else {
+                            console.log(response.data);
+                            this.resumeLinks.forEach((link, index) => {
+                                if (link.id === response.data.data.id) {
+                                    this.resumeLinks.splice(index, 1, response.data.data);
+                                }
+                            });
+                        }
+                        this.clearLink();
+                        this.$store.dispatch('flyingNotification');
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
+            toggleLink(link) {
+                link.is_public = !link.is_public;
+                axios.put("/api/user/resume-links", link)
+                    .then(response => {
+                        this.$store.dispatch("flyingNotification");
+                        this.closeOptionsBtn();
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            this.errors.edit = error.response.data.errors;
+                        } else {
+                            this.errors.edit =
+                                "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
+            },
+
+            clearLink() {
+                this.editedResumeLink = {
+                    id: "",
+                    title: "",
+                    url: "",
+                    is_public: true
+                };
+            },
         },
         mounted() {
 

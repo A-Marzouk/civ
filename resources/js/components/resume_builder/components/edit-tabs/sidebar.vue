@@ -153,7 +153,7 @@ export default {
         },
         {
           url: "/resume-builder/edit/manager",
-          icon: "downloads",
+          icon: "manager",
           label: "Manager"
         },
         {

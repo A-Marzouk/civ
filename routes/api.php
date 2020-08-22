@@ -135,6 +135,15 @@ Route::group(['prefix' => 'user/'], function () {
     Route::put('/links', 'API\LinksController@store');
     Route::delete('/links/{id}', 'API\LinksController@destroy');
 
+
+// Resume Links api routes:
+    Route::get('/resume-links', 'API\ResumeLinksController@index');
+    Route::get('/resume-links/{id}', 'API\ResumeLinksController@show');
+    Route::post('/resume-links', 'API\ResumeLinksController@store');
+    Route::post('/resume-links/update-order', 'API\ResumeLinksController@updateResumeLinksOrder');
+    Route::put('/resume-links', 'API\ResumeLinksController@store');
+    Route::delete('/resume-links/{id}', 'API\ResumeLinksController@destroy');
+
 // Languages api routes:
     Route::get('/languages', 'API\LanguagesController@index');
     Route::get('/languages-list', 'API\LanguagesController@languagesList');
