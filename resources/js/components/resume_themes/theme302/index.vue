@@ -594,10 +594,9 @@ $colorBlue: #104efb;
       font-size: 16px;
       line-height: 25px;
       color: #104efb !important;
-      .designation {
-        @media scree and (max-width: 599px) {
-          font-size: 14px;
-        }
+
+      @media screen and (max-width: 599px) {
+        font-size: 14px;
       }
     }
     .ref-desc {
