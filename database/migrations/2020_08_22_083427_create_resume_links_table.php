@@ -15,8 +15,9 @@ class CreateResumeLinksTable extends Migration
     {
         Schema::create('resume_links', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('theme_id')->default(1);
+
             $table->string('title')->nullable();
             $table->string('url')->nullable();
             $table->integer('order')->default(1);

@@ -8,7 +8,7 @@ class Download extends Model
 {
     protected $table ='downloads';
     protected $fillable = [
-        'is_public','title','label','url','order','user_id'
+        'is_public','title','label','url','order','user_id','resume_link_id'
     ];
 
 

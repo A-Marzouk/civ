@@ -31,6 +31,7 @@ class CreateReferencesTable extends Migration
             $table->integer('order')->default(1);
 
             $table->integer('user_id')->unsigned();
+            $table->integer('resume_link_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

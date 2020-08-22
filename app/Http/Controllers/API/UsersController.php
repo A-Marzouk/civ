@@ -107,6 +107,17 @@ class UsersController extends Controller
         return ['status' => 'success'];
     }
 
+    public function updateUserDefaultResume(Request $request){
+
+        $user = User::findOrFail($request->user_id);
+
+        $user->update(
+            ['resume_link_id' => $request->resume_link_id]
+        );
+
+        return ['status' => 'success'];
+    }
+
     public function editAccountData(Request $request){
         $request->validate([
             'name' => 'required|max:191|min:3',

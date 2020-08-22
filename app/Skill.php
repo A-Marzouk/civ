@@ -9,7 +9,7 @@ class Skill extends Model
 
     protected $table = 'skills';
     protected $fillable = [
-        'is_public','title','category','percentage','user_id','order'
+        'is_public','title','category','percentage','user_id','resume_link_id','order'
     ];
 
 

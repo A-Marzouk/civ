@@ -18,6 +18,7 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
             $table->string('name')->unique()->nullable();
             $table->string('label');
+            $table->integer('resume_link_id')->unsigned()->nullable();
 
             $table->timestamps();
         });

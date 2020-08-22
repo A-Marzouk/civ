@@ -89,7 +89,7 @@
 
 <script>
     export default {
-        name: "ViewCV",
+        name: "Themes",
         data() {
             return {
                 overlay: false,

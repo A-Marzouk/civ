@@ -126,6 +126,11 @@ Route::group(['prefix' => 'user/'], function () {
 //  update user theme :
     Route::put('/update-theme', 'API\UsersController@updateUserTheme');
 
+
+//  update user default resume :
+
+    Route::put('/update-default-resume', 'API\UsersController@updateUserDefaultResume');
+
 // Links api routes:
     Route::get('/links', 'API\LinksController@index');
     Route::get('/links/{category}', 'API\LinksController@getLinksByCategory');

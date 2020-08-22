@@ -1,5 +1,5 @@
 <template>
-    <div class="outer-container">
+    <div class="outer-container" data-app>
         <div class="title">
             <!-- Tabs -->
             <v-tabs class="resume-builder__tab-bar" hide-slider height="51" style="margin-top: 4px;">
@@ -101,7 +101,7 @@
         <div class="links-content resume-builder__scroll" v-if="activeTab === 'URLs'">
 
             <div class="link-inputs-row">
-                <v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" :error="!!errors.url" :error-messages="errors.url" v-model="editedResumeLink.url">
+                <v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" placeholder="Unique URL segment" :error="!!errors.url" :error-messages="errors.url" v-model="editedResumeLink.url">
                 </v-text-field>
 
                 <div class="d-flex mt-1">
@@ -114,7 +114,25 @@
                         Cancel
                     </v-btn>
                 </div>
+            </div>
 
+            <div style="max-width: 600px; margin-bottom:40px;">
+                <v-select
+                        class="resume-builder__input civie-select"
+                        outlined
+                        placeholder="Default resume currently edited"
+                        :items="resumeLinks"
+                        item-text="url"
+                        item-value="id"
+                        label="Select default resume"
+                        color="#001CE2"
+                        @change="updateDefaultResumeURl"
+                        v-model="defaultResumeLinkID"
+                >
+                    <button class="dropdown-icon icon" slot="append" @click.prevent>
+                        <svg-vue :icon="`dropdown-caret`"></svg-vue>
+                    </button>
+                </v-select>
             </div>
 
             <draggable class="links-items" v-model="resumeLinks" @start="drag=true" @end="drag=false"  handle=".mover">
@@ -124,7 +142,7 @@
                             <img src="/images/new_resume_builder/three-dots.svg" alt="mover icon">
                         </div>
                         <div class="link-text">
-                            <span>https://civ.ie/{{$store.state.user.username}}/<b>{{link.url}}</b></span>
+                            <span>https://civ.ie/{{user.username}}/<b>{{link.url}}</b></span>
                         </div>
                     </div>
                     <div class="action-btns">
@@ -169,7 +187,8 @@
                     url: "",
                     is_public: true
                 },
-                errors:{}
+                errors:{},
+                defaultResumeLinkID: ''
             }
         },
         computed: {
@@ -188,6 +207,11 @@
                 set(resumeLinks) {
                     this.$store.commit("updateResumeLinks", resumeLinks);
                 }
+            },
+            user() {
+                let User = this.$store.state.user;
+                this.defaultResumeLinkID = User.resume_link_id;
+                return User;
             }
         },
         methods: {
@@ -197,6 +221,28 @@
             },
             setActiveTab(tab){
                 this.activeTab = tab;
+            },
+            updateDefaultResumeURl(){
+                if (this.user.resume_link_id === this.defaultResumeLinkID) {
+                    return;
+                }
+                axios.put("/api/user/update-default-resume", { resume_link_id: this.defaultResumeLinkID, user_id: this.user.id })
+                    .then( (response) => {
+                        console.log(response);
+                        this.$store.dispatch("flyingNotification");
+                    })
+                    .catch(error => {
+                        if (typeof error.response.data === "object") {
+                            console.log(error.response.data.errors);
+                            this.errors = error.response.data.errors;
+                        } else {
+                            this.errors = "Something went wrong. Please try again.";
+                        }
+                        this.$store.dispatch("flyingNotification", {
+                            message: "Error",
+                            iconSrc: "/images/resume_builder/error.png"
+                        });
+                    });
             },
             // CRUD:
             editLink(link) {
@@ -233,7 +279,7 @@
                 if (this.editedResumeLink.id !== "") {
                     edit = true;
                 }
-                this.editedResumeLink.user_id = this.$store.state.user.id;
+                this.editedResumeLink.user_id = this.user.id;
 
                 axios.post("/api/user/resume-links", this.editedResumeLink)
                     .then(response => {
@@ -310,8 +356,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-right: 20px;
-
 
             @include lt-sm {
                 flex-wrap: wrap;
@@ -323,6 +367,7 @@
 
             .download-btn.v-btn{
                 margin-bottom: 10px;
+                margin-right: 20px;
                 width: 200px !important;
             }
 
@@ -481,9 +526,8 @@
         align-items: center;
         grid-auto-rows: 78px;
         grid-template-columns: minmax(0px, 210px) minmax(0, 350px) auto;
-        grid-gap: 20px; //adjusted | 30px
-        // margin-top: 12px;
-        margin-bottom: 50px; //adjusted | 30px
+        grid-gap: 20px;
+        margin-bottom: 10px;
 
         .civie-select {
             max-width: 210px;

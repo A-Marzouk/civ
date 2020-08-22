@@ -53,6 +53,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'availabilityInfo',
             'paymentInfo',
             'resumeLinks',
+            'defaultResumeLink',
             'summary',
             'theme',
             'subscription'
@@ -62,6 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'personalInfo',
         'availabilityInfo',
         'paymentInfo',
+        'defaultResumeLink',
         'summary',
         'theme',
         'subscription'
@@ -230,6 +232,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function theme(){
         return $this->belongsTo(Theme::class);
+    }
+
+    public function defaultResumeLink(){
+        return $this->belongsTo(ResumeLink::class);
     }
 
 

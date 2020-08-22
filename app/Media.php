@@ -9,7 +9,7 @@ class Media extends Model
     protected $table = 'media';
 
     protected $fillable = [
-        'is_public','title','url','type','transcript','user_id','order'
+        'is_public','title','url','type','transcript','user_id','resume_link_id','order'
     ];
 
 
