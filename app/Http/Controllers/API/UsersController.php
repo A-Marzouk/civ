@@ -99,8 +99,8 @@ class UsersController extends Controller
     public function updateUserTheme(Request $request){
 
         $user = User::findOrFail($request->user_id);
-
-        $user->update(
+        $currentResume = $user->defaultResumeLink;
+        $currentResume->update(
             ['theme_id' => $request->theme_id]
         );
 

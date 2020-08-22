@@ -25,7 +25,9 @@
 			<div class="cv-content-preview-wrapper" v-if="activeTab !== 'imports'">
 				<div class="cv-content-preview">
 					<div class="cv-preview-link">
-						<a v-if="user.username" :href="`https://civ.ie/${user.username}`" target="_blank" v-text="`https://civ.ie/${user.username}`"></a>
+						<a v-if="user.username" :href="`https://civ.ie/${user.username}/${user.default_resume_link.url}`" target="_blank">
+							https://civ.ie/{{user.username}}/{{user.default_resume_link.url}}
+						</a>
 					</div>
 					<div class="cv-preview-theme-wrapper">
 						<div class="cv-preview-theme">
@@ -35,7 +37,7 @@
 										type="list-item-avatar-three-line, image, article, actions"
 								></v-skeleton-loader>
 							</div>
-							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username + `?current-view=${activeTab}`" @iframe-load="onLoad"></vue-friendly-iframe>
+							<vue-friendly-iframe v-if="user.username" :src="this.baseUrl + user.username + '/' + user.default_resume_link.url + `?current-view=${activeTab}`" @iframe-load="onLoad"></vue-friendly-iframe>
 						</div>
 					</div>
 				</div>
@@ -67,9 +69,6 @@ export default {
 		}
 	},
 	methods:{
-		importComponent(path) {
-			return () => import('../../resume_themes/theme'+ path + '/index.vue');
-		},
 		getThemeUrl(){
 			// refresh iframe src:
 				this.baseUrl =  '';

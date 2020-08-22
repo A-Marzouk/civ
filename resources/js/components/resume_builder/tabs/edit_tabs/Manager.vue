@@ -228,7 +228,11 @@
                 }
                 axios.put("/api/user/update-default-resume", { resume_link_id: this.defaultResumeLinkID, user_id: this.user.id })
                     .then( (response) => {
-                        console.log(response);
+                        this.resumeLinks.forEach( (link) => {
+                            if(link.id === this.defaultResumeLinkID){
+                                this.user.default_resume_link = link ;
+                            }
+                        });
                         this.$store.dispatch("flyingNotification");
                     })
                     .catch(error => {
