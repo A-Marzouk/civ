@@ -151,14 +151,11 @@ export default {
           icon: "imports",
           label: "Imports",
         },
-
-
-        // {
-        //   url: "/resume-builder/edit/downloads",
-        //   icon: "downloads",
-        //   label: "Downloads"
-        // },
-
+        {
+          url: "/resume-builder/edit/manager",
+          icon: "downloads",
+          label: "Manager"
+        },
         {
           url: "/resume-builder/edit/themes",
           icon: "themes",
