@@ -280,12 +280,16 @@
                     <v-col xl="2" lg="3" md="4" sm="6" cols="12" v-for="i in 10" :key="i">
                       <v-card class="card-hobby pa-12" flat align="center">
                         <v-card-text class="hobby-title">
+<<<<<<< HEAD
                           <v-row class="mt-n4">
                             <v-col xl="2" sm="3" cols="3">
                               <span></span>
                             </v-col>
                             <v-col xl="10" sm="9" cols="9">Gardening</v-col>
                           </v-row>
+=======
+                          <span></span> Gardening
+>>>>>>> a96a470a7d85cfd23d7b8c6c06307fc371ef626c
                         </v-card-text>
                       </v-card>
                     </v-col>
@@ -295,6 +299,7 @@
               <!-- Hobbies -->
               <!-- References -->
               <v-tab-item class="reference-section" value="tab-5">
+<<<<<<< HEAD
                 <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-0">
                   <v-row align="center">
                     <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
@@ -308,6 +313,21 @@
                           <v-row justify="space-between" class="mt-n5">
                             <v-col sm="6" cols="6" class="designation">284/6B, Texas, USA</v-col>
                             <v-col sm="6" cols="6" align="right" class="designation">+9606987564889</v-col>
+=======
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-8">
+                  <v-row align="center">
+                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                      <v-card flat class="card-ref pa-5">
+                        <v-card-title class="ref-title">Sara William</v-card-title>
+                        <v-card-subtitle class="ref-subtitle">
+                          <v-row justify="space-between">
+                            <v-col cols="6">CEO, IT Software Park</v-col>
+                            <v-col cols="6" align="right">david@gmail.com</v-col>
+                          </v-row>
+                          <v-row justify="space-between" class="mt-n5">
+                            <v-col cols="6">284/6B, Texas, USA</v-col>
+                            <v-col cols="6" align="right">+9606987564889</v-col>
+>>>>>>> a96a470a7d85cfd23d7b8c6c06307fc371ef626c
                           </v-row>
                         </v-card-subtitle>
 
@@ -317,6 +337,7 @@
                       </v-card>
                     </v-col>
                   </v-row>
+<<<<<<< HEAD
                 </v-container>
               </v-tab-item>
               <!-- References -->
@@ -347,6 +368,38 @@
                   </v-row>
                 </v-container>
               </v-tab-item>
+=======
+                </v-container>
+              </v-tab-item>
+              <!-- References -->
+              <!--  Achivements -->
+              <v-tab-item class="achievement-section" value="tab-6">
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-8">
+                  <v-row align="center">
+                    <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
+                      <v-card class="card-achievement pa-5" flat>
+                        <div class="d-flex flex-row">
+                          <img
+                            src="/images/resume_themes/theme302/certificate.svg"
+                            alt="certificate"
+                          />
+                          <div class="ml-5">
+                            <div class="title">Herbrand Award, 2020</div>
+                            <div class="url">
+                              <span>URL:</span> https://linkedin.com/herbrand award
+                            </div>
+                            <div class="desc">
+                              <span>Description:</span>
+                              The Herbrand Award for Distinguished Contributions to Automated Reasoning is an award given by CADE Inc. (although it predates the formal incorporation of CADE) to honour persons or groups for important contributions to the field of automated deduction.
+                            </div>
+                          </div>
+                        </div>
+                      </v-card>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-tab-item>
+>>>>>>> a96a470a7d85cfd23d7b8c6c06307fc371ef626c
               <!-- Achievements -->
             </v-tabs-items>
           </div>
@@ -552,14 +605,20 @@ $colorBlue: #104efb;
     width: 310px;
     height: 150px;
     border: 1px solid rgba(16, 78, 251, 0.2) !important;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a96a470a7d85cfd23d7b8c6c06307fc371ef626c
     .hobby-title {
       font-family: "Roboto-Medium" !important;
       font-weight: 500;
       font-size: 25px;
       line-height: 29px;
       color: #104efb;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a96a470a7d85cfd23d7b8c6c06307fc371ef626c
       span {
         display: inline-block;
         width: 20px;
@@ -570,6 +629,7 @@ $colorBlue: #104efb;
     }
   }
   // card hobbies
+<<<<<<< HEAD
 
   //card ref
   .card-ref {
@@ -614,6 +674,44 @@ $colorBlue: #104efb;
   }
   //card ref
 
+=======
+
+  //card ref
+  .card-ref {
+    width: 810px;
+    height: 320px;
+    border: 1px solid rgba(16, 78, 251, 0.2);
+    @media screen and (min-width: 960px) and (max-width: 1903px) {
+      width: auto;
+      height: auto;
+    }
+    .ref-title {
+      font-family: "Raleway" !important;
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 33px;
+      color: #104efb !important;
+    }
+    .ref-subtitle {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 25px;
+      color: #104efb !important;
+    }
+    .ref-desc {
+      font-family: "Raleway" !important;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 30px;
+      color: #104efb !important;
+    }
+  }
+  //card ref
+
+>>>>>>> a96a470a7d85cfd23d7b8c6c06307fc371ef626c
   //card achievement
   .card-achievement {
     width: 810px;
