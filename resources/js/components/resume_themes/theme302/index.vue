@@ -220,6 +220,7 @@
                       hide-slider
                       :center-active="true"
                       :show-arrows="true"
+                      grow
                     >
                       <v-tab
                         v-for="(skill, index) in items"
