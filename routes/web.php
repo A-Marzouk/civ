@@ -13,7 +13,6 @@
 
 Auth::routes(['verify' => true]);
 
-
 // public routes
 Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
 Route::get('/preview-by-code/{theme_code}', 'ResumeController@themePreviewByCode'); // resume preview by code
@@ -32,7 +31,7 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
-Route::get('/reset-password','HomeController@resetPassword')->name('resetPassowrd');
+
 
 
 // social sites register & login:

@@ -37,17 +37,7 @@ if ($("#pricing").length !== 0) {
     });
 }
 
-//reset password
-import resetPassword from './components/welcome-view/reset-password';
-if ($("#reset-password").length !== 0) {
-    new Vue({
-        el: '#reset-password',
-        vuetify,
-        components: {
-            'reset-password': resetPassword
-        }
-    });
-}
+
 
 import subscriptionModal from './components/resume_builder/tabs/includes/SubscriptionModal';
 if ($("#subscription_modal").length !== 0) {
