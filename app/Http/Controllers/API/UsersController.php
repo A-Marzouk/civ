@@ -110,6 +110,7 @@ class UsersController extends Controller
         $resumeLink = ResumeLink::create([
             'user_id' => $user->id,
             'url' => '',
+            'title' => 'default',
             'theme_id' => 1,
             'order' => 1,
             'is_public' => true
