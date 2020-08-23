@@ -9,7 +9,7 @@ class Achievement extends Model
 
     protected $table = 'achievements';
     protected $fillable = [
-        'is_public','type','title','year','description','image_src','url','user_id','category','order'
+        'is_public','type','title','year','description','image_src','url','user_id','resume_link_id','category','order'
     ];
 
     // relation belongs to

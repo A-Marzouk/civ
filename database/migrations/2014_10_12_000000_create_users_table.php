@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('username')->unique()->nullable()->index();
             $table->integer('theme_id')->default(1);
+            $table->integer('resume_link_id')->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();

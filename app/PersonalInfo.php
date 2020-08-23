@@ -16,6 +16,7 @@ class PersonalInfo extends Model
         'email',
         'designation',
         'user_id',
+        'resume_link_id',
         'profile_pic',
 
         'nationality',

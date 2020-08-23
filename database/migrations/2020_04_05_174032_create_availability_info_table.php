@@ -15,11 +15,12 @@ class CreateAvailabilityInfoTable extends Migration
     {
         Schema::create('availability_info', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float('available_hours',16,2)->nullable();
+            $table->float('available_hours', 16, 2)->nullable();
             $table->string('available_hours_frequency')->nullable();
             $table->boolean('is_public')->default(true);
 
             $table->integer('user_id')->unsigned();
+            $table->integer('resume_link_id')->unsigned()->nullable();
 
             $table->timestamps();
         });

@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\ResumeLink;
 use App\Tab;
 use App\User;
 use App\AvailabilityInfo;
@@ -136,6 +137,15 @@ class UserObserver
             'user_id' => $user->id,
             'first_name' => $user->name,
             'email' => $user->email
+        ]);
+
+        // default resume link
+        ResumeLink::create([
+            'user_id' => $user->id,
+            'url' => '',
+            'theme_id' => 1,
+            'order' => 1,
+            'is_public' => true
         ]);
 
         // payment_info

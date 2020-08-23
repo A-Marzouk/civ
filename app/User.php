@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity'
+        'name', 'username', 'theme_id', 'email', 'password', 'api_token', 'github_id', 'google_id', 'linkedin_id', 'facebook_id', 'instagram_id','last_activity','resume_link_id'
     ];
 
     /**
@@ -52,6 +52,8 @@ class User extends Authenticatable implements MustVerifyEmail
             'personalInfo',
             'availabilityInfo',
             'paymentInfo',
+            'resumeLinks',
+            'defaultResumeLink',
             'summary',
             'theme',
             'subscription'
@@ -61,6 +63,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'personalInfo',
         'availabilityInfo',
         'paymentInfo',
+        'defaultResumeLink',
         'summary',
         'theme',
         'subscription'
@@ -73,6 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'education',
         'workExperience',
         'links',
+        'resumeLinks',
         'projects',
         'achievements',
         'media',
@@ -151,6 +155,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Link::class)->orderBy('order');
     }
 
+    public function resumeLinks()
+    {
+        return $this->hasMany(ResumeLink::class)->orderBy('order');
+    }
+
     public function projects()
     {
         return $this->hasMany(Project::class)->orderBy('order');
@@ -225,6 +234,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Theme::class);
     }
 
+    public function defaultResumeLink(){
+        return $this->belongsTo(ResumeLink::class,'resume_link_id');
+    }
 
 
     // user helper functions :

@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\ResumeLink;
 use App\Theme;
 use App\User;
 use Illuminate\Http\Request;
@@ -70,17 +71,37 @@ class ResumeController extends Controller
         // return view('defaultPDFThemes.' . $themeCode);
     }
 
-    public function userResume ($username) {
-        // get user default cv code.
+    public function userResume ($username, $version = '') {
+
+        // prepare user
         $user = User::withAllRelations($username);
         $is_preview = 'false' ;
+
         if($user){
-            // get theme code
-            $themeCode = $user->theme ? $user->theme->code : '1001' ;
+            $theme = Theme::find($this->getVersionThemeID($version, $user->id));
+            $themeCode = $theme->code ? $theme->code : '1001' ;
+
             return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
             return abort(404);
         }
+    }
+
+    protected function getVersionThemeID($version, $user_id){
+
+        // check if this version exists:
+        $whereData = [
+            ['url', $version],
+            ['user_id', $user_id]
+        ];
+
+        $resumeURL = ResumeLink::where($whereData)->first();
+        if($resumeURL){
+            // version exists
+           return $resumeURL->theme_id;
+        }
+
+        return 1 ;
     }
 
 

@@ -104,7 +104,7 @@ export default {
 	},
 	mounted() {
 		this.$store.dispatch("setCurrentUser", this.$attrs.tempuser);
-		let currentTab = "myAccount";
+		let currentTab = "editCV";
 		let pathArray = window.location.pathname.split("/");
 		pathArray.forEach(tab => {
 			if (tab === "resume-builder") {
@@ -115,9 +115,6 @@ export default {
 		switch (currentTab) {
 			case "edit":
 				this.setActiveTab("editCV");
-				break;
-			case "view":
-				this.setActiveTab("viewCV");
 				break;
 			case "jobs":
 				this.setActiveTab("jobAlert");
