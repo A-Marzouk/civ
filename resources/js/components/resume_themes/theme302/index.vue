@@ -618,7 +618,7 @@ $colorBlue: #104efb;
     width: 810px;
     height: 297px;
     border: 1px solid rgba(16, 78, 251, 0.2);
-    @media screen and (min-width: 960px) and (max-width: 1903px) {
+    @media screen and (max-width: 1903px) {
       width: auto;
       height: auto;
     }
