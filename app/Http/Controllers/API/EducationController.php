@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Education;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Education as EducationResource;
+use App\User;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -51,6 +52,7 @@ class EducationController extends Controller
             $education = Education::findOrFail($request->id);
             $education->update($request->toArray());
         }else{
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $education = Education::create($request->toArray());
         }
 
@@ -75,6 +77,7 @@ class EducationController extends Controller
     {
         foreach ($request->toArray() as $education){
             $this->validator($education)->validate();
+            $education['resume_link_id'] = User::find($education['user_id'])->resume_link_id;
             Education::create($education);
         }
 

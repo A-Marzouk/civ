@@ -7,13 +7,13 @@
                     <!-- tab bar -->
                     <v-card class="card-themes-wrapper main-content resume-builder__scroll">
                         <div class="themes-wrapper-title mb-4">Choose the CV template you love</div>
-                        <div v-if="user.theme"  class="theme-container-wrapper">
+                        <div v-if="user.default_resume_link"  class="theme-container-wrapper">
                             <div v-for="theme in availableThemes" :key="theme.id" class="theme-container">
                                 <v-hover>
                                     <template v-slot:default="{ hover }">
                                         <v-card class="card-theme-holder pa-0 ma-0":style="{ backgroundImage: `url(${theme.image})` }" flat color="transparent">
                                             <div>
-                                                <div class="theme-image holder" :class="theme.id == user.theme.id? 'active': 'inactive'"></div>
+                                                <div class="theme-image holder" :class="theme.id == user.default_resume_link.theme_id? 'active': 'inactive'"></div>
                                                 <v-fade-transition>
                                                     <v-overlay
                                                             v-if="hover"
@@ -26,11 +26,11 @@
                                                                 color="#001CE2"
                                                                 absolute
                                                                 class="btn-activate"
-                                                                :class="{active : theme.id === user.theme.id}"
+                                                                :class="{active : theme.id === user.default_resume_link.theme_id}"
                                                                 depressed
                                                                 @click="activateTheme(theme.id)"
                                                         >
-                                                            {{theme.id === user.theme.id ? 'Active' : 'Activate'}}
+                                                            {{theme.id === user.default_resume_link.theme_id ? 'Active' : 'Activate'}}
                                                             <img
                                                                     src="/icons/check.svg"
                                                             />
@@ -89,7 +89,7 @@
 
 <script>
     export default {
-        name: "ViewCV",
+        name: "Themes",
         data() {
             return {
                 overlay: false,
@@ -185,13 +185,13 @@
                 window.open(url, "_blank") || window.location.replace(url);
             },
             activateTheme(theme_id) {
-                if (this.user.theme_id === theme_id) {
+                if (this.user.default_resume_link.theme_id === theme_id) {
                     return;
                 }
                 axios
                     .put("/api/user/update-theme", { theme_id: theme_id, user_id: this.user.id })
                     .then(response => {
-                        this.user.theme_id = theme_id;
+                        this.user.default_resume_link.theme_id = theme_id;
                         this.setActiveTheme(theme_id);
                         this.updateIframe();
                         this.$store.dispatch("flyingNotification");
@@ -222,7 +222,7 @@
             setActiveTheme(theme_id) {
                 this.availableThemes.forEach(theme => {
                     if (theme.id === theme_id) {
-                        this.user.theme = theme;
+                        this.user.default_resume_link.theme_id = theme_id;
                     }
                 });
             },
