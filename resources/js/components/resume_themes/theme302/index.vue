@@ -322,17 +322,17 @@
               <!-- References -->
               <!--  Achivements -->
               <v-tab-item class="achievement-section" value="tab-6">
-                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-8">
+                <v-container style="width:100%;" class="pa-xl-4 pa-lg-4 pa-md-4 pa-sm-12 pa-3">
                   <v-row align="center">
                     <v-col md="6" sm="12" cols="12" v-for="i in 4" :key="i">
                       <v-card class="card-achievement pa-5" flat>
-                        <div class="d-flex flex-row">
+                        <div :class="windowWidth<=599?'d-flex flex-column': 'd-flex flex-row'">
                           <img
                             src="/images/resume_themes/theme302/certificate.svg"
                             alt="certificate"
                           />
-                          <div class="ml-5">
-                            <div class="title">Herbrand Award, 2020</div>
+                          <div class="ml-5 mt-sm-0 mt-5">
+                            <div class="title">Herbrand Award, 2020 {{windowWidth}}</div>
                             <div class="url">
                               <span>URL:</span> https://linkedin.com/herbrand award
                             </div>
@@ -1829,6 +1829,7 @@ export default {
   },
   data() {
     return {
+      windowWidth: window.innerWidth,
       activeTab: "portfolio",
       tabmodel: null,
       resume_tabs: [
@@ -2117,6 +2118,9 @@ export default {
 
     // let user accessible in included components.
     this.$store.dispatch("updateThemeUser", this.currentUser);
+    window.onresize = () => {
+      this.windowWidth = window.innerWidth;
+    };
   },
 };
 </script>
