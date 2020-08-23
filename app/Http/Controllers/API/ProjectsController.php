@@ -6,6 +6,7 @@ use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\ProjectImage;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Resources\Project as ProjectResource;
 use Illuminate\Support\Facades\Auth;
@@ -52,6 +53,7 @@ class ProjectsController extends Controller
             $project->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $project = Project::create($request->toArray());
         }
 
@@ -74,6 +76,7 @@ class ProjectsController extends Controller
         $addedProjects = [];
 
         foreach($request->projects as $project){
+            $project['resume_link_id'] = User::find($project['user_id'])->resume_link_id;
             $newProject = Project::create($project);
             if(isset($project['image'])){
                 $newProject->images()->create([

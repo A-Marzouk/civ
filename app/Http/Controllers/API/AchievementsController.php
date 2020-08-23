@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Achievement;
 use App\classes\Upload;
+use App\User;
 use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -27,43 +28,55 @@ class AchievementsController extends Controller
 
     public function store(Request $request)
     {
-
         if(!$this->is_auth($request)){
             throw new Exception('Not Authenticated!');
         }
-
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put') || $request->id != '' ){
-            // update
-            $achievement = Achievement::findOrFail($request->id);
-            if($request['is_public'] == false || $request['is_public'] === 'false' ){
-                $request['is_public'] = false ;
-            }
-            else if($request['is_public'] == true || $request['is_public'] === 'true') {
-                $request['is_public'] = true ;
-            }
-            $achievement->update($request->toArray());
+            $achievement = $this->updateAchievement($request);
         }else{
-            $achievement =Achievement::create($request->toArray());
+            $achievement = $this->createAchievement($request);
         }
 
         if (isset($_FILES['file'])) {
-            $pathToPicture = Upload::certificate('file', $request->user_id);
-            if($pathToPicture){
-                $achievement->update([
-                    'image_src' => '/'.$pathToPicture
-                ]);
-            }else{
-                throw new Exception('Failed to upload image');
-            }
-
+            $this->uploadAchievementFile($achievement);
         }
 
         if ($achievement->id){
             return new AchievementResource($achievement);
         }
     }
+
+    protected function updateAchievement($request){
+        $achievement = Achievement::findOrFail($request->id);
+        if($request['is_public'] == false || $request['is_public'] === 'false' ){
+            $request['is_public'] = false ;
+        }
+        else if($request['is_public'] == true || $request['is_public'] === 'true') {
+            $request['is_public'] = true ;
+        }
+        $achievement->update($request->toArray());
+
+        return $achievement;
+    }
+
+    protected function createAchievement($request){
+        $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
+        return Achievement::create($request->toArray());
+    }
+
+    protected function uploadAchievementFile($achievement){
+        $pathToPicture = Upload::certificate('file', $achievement->user_id);
+        if($pathToPicture){
+            $achievement->update([
+                'image_src' => '/'.$pathToPicture
+            ]);
+        }else{
+            throw new Exception('Failed to upload image');
+        }
+    }
+
 
     public function show($id)
     {
