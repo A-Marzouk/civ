@@ -11,8 +11,13 @@
           center-active
           centered
         >
-          <v-tab v-for="(tab,i) in tabs" :key="i" @click="currentTab=i" class="mx-auto">
-            <div class="text-capitalize tabtitle">{{tab.name}}</div>
+          <v-tab
+            v-for="(tab, i) in tabs"
+            :key="i"
+            @click="currentTab = i"
+            class="mx-auto"
+          >
+            <div class="text-capitalize tabtitle">{{ tab.name }}</div>
           </v-tab>
         </v-tabs>
       </v-col>
@@ -44,7 +49,10 @@ export default {
       { name: "Experience" },
       { name: "Skills" },
       { name: "Media" },
-      { name: "About Me" }
+      { name: "About Me" },
+      { name: "Hobbies" },
+      { name: "References" },
+      { name: "Achievement" },
     ]
   }),
   computed: {
@@ -74,6 +82,15 @@ export default {
         return "#39E1AA";
       }
       if (this.currentTab == 5) {
+        return "#F7B301";
+      }
+      if (this.currentTab == 6) {
+        return "#F7B301";
+      }
+      if (this.currentTab == 7) {
+        return "#F7B301";
+      }
+      if (this.currentTab == 8) {
         return "#F7B301";
       }
     }
