@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use phpDocumentor\Reflection\Types\Self_;
 use Spatie\Permission\Traits\HasRoles;
 use Carbon\Carbon;
 
@@ -59,6 +60,16 @@ class User extends Authenticatable implements MustVerifyEmail
             'subscription'
         ];
 
+    public static $excludedFromVersionFilter = [
+        'permissions',
+        'projects.images',
+        'testimonials',
+        'resumeLinks',
+        'defaultResumeLink',
+        'subscription',
+        'theme',
+    ];
+
     public static $defaultOneToOneRelations = [
         'personalInfo',
         'availabilityInfo',
@@ -108,9 +119,23 @@ class User extends Authenticatable implements MustVerifyEmail
 
     //user with all relations
 
-    public static function withAllRelations($username)
+    public static function withAllRelations($username, $resume_link_id = '')
     {
-        return User::where('username', $username)->with(self::$defaultRelations)->first();
+        $defaultRelations = self::$defaultRelations;
+
+        if($resume_link_id !== ''){
+            $defaultRelations = [] ;
+            foreach (self::$defaultRelations as $relation){
+                if(in_array($relation, self::$excludedFromVersionFilter)){
+                    $defaultRelations[] = $relation ;
+                    continue;
+                }
+                $defaultRelations[$relation] = function($q) use($resume_link_id) {$q->where('resume_link_id', $resume_link_id);} ;
+            }
+            $defaultRelations['projects'] = function($q) use($resume_link_id) {$q->where('resume_link_id', $resume_link_id);} ;
+        }
+
+        return User::where('username', $username)->with($defaultRelations)->first();
     }
 
     public function testName()

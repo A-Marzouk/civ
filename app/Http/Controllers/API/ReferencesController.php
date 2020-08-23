@@ -45,6 +45,7 @@ class ReferencesController extends Controller
             $reference->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $reference = Reference::create($request->toArray());
 
             // if external : send an email:

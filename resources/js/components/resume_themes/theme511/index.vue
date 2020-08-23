@@ -5,16 +5,27 @@
         <v-col cols="12" lg="12" class="layer my-lg-5 my-2 my-sm-4">
           <v-container fluid>
             <v-row dense>
-              <v-col class="profile-picture" cols="2" lg="2" sm="3" align="center" align-self="center">
+              <v-col
+                class="profile-picture"
+                cols="2"
+                lg="2"
+                sm="3"
+                align="center"
+                align-self="center"
+              >
                 <v-img
                   @click.stop="drawer = !drawer"
                   :src="currentUser.personal_info.profile_pic"
                   alt="avatar"
-                  style="border-radius:50%;"
+                  style="border-radius: 50%;"
                   contain
                 ></v-img>
 
-                <a href="/preview-pdf-theme-by-code/theme21" class="pdf-btn" target="_blank">
+                <a
+                  href="/preview-pdf-theme-by-code/theme21"
+                  class="pdf-btn"
+                  target="_blank"
+                >
                   <svg-vue :icon="'themes.pdf-button-theme511'"></svg-vue>
                 </a>
 
@@ -50,7 +61,12 @@
                       @click="activeTab = tab.value"
                     >
                       <v-list-item-content
-                        :class="[ activeTab === tab.value ? 'drawer--tab-active' : 'drawer--tab-disable', 'menu--tabs white--text text-left']"
+                        :class="[
+                          activeTab === tab.value
+                            ? 'drawer--tab-active'
+                            : 'drawer--tab-disable',
+                          'menu--tabs white--text text-left',
+                        ]"
                       >
                         <v-list-item-title>{{ tab.name }}</v-list-item-title>
                       </v-list-item-content>
@@ -77,9 +93,7 @@
                 >
                   {{ currentUser.personal_info.overview }}
                 </div>
-                <div
-                  class="hidden-xs-only"
-                >
+                <div class="hidden-xs-only">
                   <div class="info-text d-inline-block mr-6 mr-sm-2">
                     hour rate
                     <div
@@ -288,8 +302,25 @@
                   :education="currentUser.education"
                   :activeTab="activeTab"
                 />
-                <Media style="margin-bottom:150px;" :activeTab="activeTab" :media="currentUser.media" :user_name="currentUser.full_name" />
+                <Media
+                  style="margin-bottom: 150px;"
+                  :activeTab="activeTab"
+                  :media="currentUser.media"
+                  :user_name="currentUser.full_name"
+                />
                 <About :activeTab="activeTab" :user="currentUser" />
+                <Hobbies
+                  :activeTab="activeTab"
+                  :hobbies="currentUser.hobbies"
+                />
+                <References
+                  :activeTab="activeTab"
+                  :references="currentUser.references"
+                />
+                <Achievement
+                  :activeTab="activeTab"
+                  :achievements="currentUser.achievements"
+                />
               </v-col>
             </v-row>
           </v-container>
@@ -308,6 +339,9 @@ import Skills from "./tabs/Skills";
 import Media from "./tabs/Media";
 import About from "./tabs/About";
 import payment from "./payments/payment";
+import Hobbies from "./tabs/Hobbies";
+import References from "./tabs/References";
+import Achievement from "./tabs/Achievement";
 export default {
   components: {
     Portfolio,
@@ -316,7 +350,10 @@ export default {
     Skills,
     Media,
     About,
-    payment
+    payment,
+    Hobbies,
+    References,
+    Achievement
   },
   props: ["user", "is_preview", "currentTab"],
   data() {
@@ -332,7 +369,10 @@ export default {
         { name: "Experience", value: "work-experience" },
         { name: "Skills", value: "skills" },
         { name: "Media", value: "media" },
-        { name: "About Me", value: "about" }
+        { name: "About Me", value: "about" },
+        { name: "Hobbies", value: "hobbies" },
+        { name: "References", value: "references" },
+        { name: "Achievement", value: "achievement" },
       ]
     };
   },
@@ -393,6 +433,15 @@ export default {
         return "#39E1AA";
       }
       if (this.activeTab === "about") {
+        return "#F7B301";
+      }
+      if (this.activeTab === "hobbies") {
+        return "#F7B301";
+      }
+      if (this.activeTab === "references") {
+        return "#F7B301";
+      }
+      if (this.activeTab === "achievement") {
         return "#F7B301";
       }
     },
@@ -638,7 +687,7 @@ export default {
 
 .profile-picture {
   position: relative;
-  
+
   .pdf-btn {
     position: absolute;
     right: 0;
@@ -647,7 +696,6 @@ export default {
     width: 50px;
   }
 }
-
 
 @media screen and (max-width: 1024px) and (min-width: 700px) {
   .head {

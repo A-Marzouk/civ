@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Hobby;
+use App\User;
 use Exception;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ class HobbiesController extends Controller
             $hobby = Hobby::findOrFail($request->id);
             $hobby->update($request->toArray());
         }else{
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $hobby =Hobby::create($request->toArray());
         }
 
