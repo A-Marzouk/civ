@@ -30,7 +30,7 @@ class ResumeController extends Controller
         }
 
         if($is_preview === 'false' &&  Auth::user()){
-            $user = User::withAllRelations( Auth::user()->username);
+            $user = User::withAllRelations(Auth::user()->username, Auth::user()->resume_link_id);
             if($user){
                 return view('defaultThemes.theme' . $theme->code,compact('user','is_preview'));
             }
