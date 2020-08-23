@@ -2,101 +2,116 @@
 
 namespace App\Observers;
 
-use App\ResumeLink;
-use App\Tab;
-use App\User;
 use App\AvailabilityInfo;
 use App\PaymentInfo;
 use App\PersonalInfo;
+use App\ResumeLink;
 use App\Summary;
+use App\Tab;
+use App\User;
+use Illuminate\Database\Eloquent\Builder;
 
-class UserObserver
+class ResumeLinkObserver
 {
     /**
-     * Handle the user "created" event.
+     * Handle the ResumeLink "created" event.
      *
-     * @param  \App\User $user
+     * @param  \App\ResumeLink  $resumeLink
      * @return void
      */
-    public function created(User $user)
+    public function created(ResumeLink $resumeLink)
     {
-
-        $this->assignDefaultValuesForNewUser($user);
-
+        $this->assignDefaultValuesForNewResumeLink($resumeLink);
     }
 
     /**
-     * Handle the user "updated" event.
+     * Handle the ResumeLink "updated" event.
      *
-     * @param  \App\User $user
+     * @param  \App\ResumeLink  $resumeLink
      * @return void
      */
-    public function updated(User $user)
+    public function updated(ResumeLink $resumeLink)
     {
         //
     }
 
     /**
-     * Handle the user "deleted" event.
+     * Handle the ResumeLink "deleted" event.
      *
-     * @param  \App\User $user
+     * @param  \App\ResumeLink  $resumeLink
      * @return void
      */
-    public function deleted(User $user)
+    public function deleted(ResumeLink $resumeLink)
     {
-        // delete all user relations :
+
+        // delete all user relations that has the resume_link_id of the deleted resume link.
+
+        $user = User::find($resumeLink->user_id);
 
         foreach (User::$defaultOneToOneRelations as $relation) {
-            $user->$relation()->delete();
+            if(in_array($relation, User::$excludedFromVersionFilter)){
+                continue;
+            }
+
+            $user->$relation()
+                ->where(function (Builder $query) use ($resumeLink) {
+                return $query->where('resume_link_id', $resumeLink->id);
+            })->delete();
+
         }
 
         foreach (User::$defaultOneToManyRelations as $relation) {
-            foreach ($user->$relation as $model) {
+            if(in_array($relation, User::$excludedFromVersionFilter)){
+                continue;
+            }
+
+            $relations = $user->$relation()
+                ->where(function (Builder $query) use ($resumeLink) {
+                    return $query->where('resume_link_id', $resumeLink->id);
+                })->get();
+
+            foreach ($relations as $model) {
                 $model->delete();
             }
         }
 
-    }
-
-    /**
-     * Handle the user "restored" event.
-     *
-     * @param  \App\User $user
-     * @return void
-     */
-    public function restored(User $user)
-    {
-        //
-    }
-
-    /**
-     * Handle the user "force deleted" event.
-     *
-     * @param  \App\User $user
-     * @return void
-     */
-    public function forceDeleted(User $user)
-    {
-        //
-    }
-
-    protected function assignDefaultValuesForNewUser($user){
-
-
-        // default resume link
-        $resumeLink = ResumeLink::create([
-            'user_id' => $user->id,
-            'url' => '',
-            'theme_id' => 1,
-            'order' => 1,
-            'is_public' => true
-        ]);
-
+        $defaultResumeLink = ResumeLink::where([
+            ['url',''],
+            ['user_id', $user->id]
+        ])->first();
         $user->update([
-            'resume_link_id' => $resumeLink->id,
+            'resume_link_id' => $defaultResumeLink->id
         ]);
 
+    }
+
+    /**
+     * Handle the ResumeLink "restored" event.
+     *
+     * @param  \App\ResumeLink  $resumeLink
+     * @return void
+     */
+    public function restored(ResumeLink $resumeLink)
+    {
+        //
+    }
+
+    /**
+     * Handle the ResumeLink "force deleted" event.
+     *
+     * @param  \App\ResumeLink  $resumeLink
+     * @return void
+     */
+    public function forceDeleted(ResumeLink $resumeLink)
+    {
+        //
+    }
+
+    protected function assignDefaultValuesForNewResumeLink($resumeLink){
         // Main default tabs
+        
+        $user = User::find($resumeLink->user_id);
+        
         Tab::insert([
             [
                 'user_id' => $user->id,
@@ -147,7 +162,6 @@ class UserObserver
                 'label' => 'Media'
             ]
         ]);
-
         // personal info
         PersonalInfo::create([
             'user_id' => $user->id,
@@ -155,8 +169,6 @@ class UserObserver
             'first_name' => $user->name,
             'email' => $user->email
         ]);
-
-
         // payment_info
         PaymentInfo::insert([
             [
@@ -188,7 +200,6 @@ class UserObserver
                 'currency' => 'usd'
             ]
         ]);
-
         // availability info
         AvailabilityInfo::insert([
             [
@@ -210,7 +221,6 @@ class UserObserver
                 'available_hours' => 4000
             ]
         ]);
-
         // summary
         Summary::create([
             'user_id' => $user->id,

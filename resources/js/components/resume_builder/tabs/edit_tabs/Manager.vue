@@ -275,8 +275,6 @@
                                 this.resumeLinks.splice(index, 1);
                             }
                         });
-
-                        this.closeOptionsBtn();
                     })
                     .catch(error => {
                         console.log(error);
@@ -324,7 +322,6 @@
                 axios.put("/api/user/resume-links", link)
                     .then(response => {
                         this.$store.dispatch("flyingNotification");
-                        this.closeOptionsBtn();
                     })
                     .catch(error => {
                         if (typeof error.response.data === "object") {

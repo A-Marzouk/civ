@@ -45,7 +45,9 @@ class UsersController extends Controller
             $this->setDefaultTabs($user);
             $this->setDefaultResumeLink($user);
             // get user with updated relations:
-            $user = User::where('id',$id)->with(User::$defaultRelations)->first();
+//            $user = User::where('id',$id)->with(User::$defaultRelations)->first();
+            $user = User::withAllRelations($user->username, $user->resume_link_id);
+
             return response()->json($user, 200);
         }
         return response()->json(['Error' => "Something went wrong."], 404);

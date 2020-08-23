@@ -60,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
             'subscription'
         ];
 
-    public static $excludedRelationsOnCV = [
+    public static $excludedFromVersionFilter = [
         'permissions',
         'projects.images',
         'testimonials',
@@ -126,7 +126,8 @@ class User extends Authenticatable implements MustVerifyEmail
         if($resume_link_id !== ''){
             $defaultRelations = [] ;
             foreach (self::$defaultRelations as $relation){
-                if(in_array($relation, self::$excludedRelationsOnCV)){
+                if(in_array($relation, self::$excludedFromVersionFilter)){
+                    $defaultRelations[] = $relation ;
                     continue;
                 }
                 $defaultRelations[$relation] = function($q) use($resume_link_id) {$q->where('resume_link_id', $resume_link_id);} ;

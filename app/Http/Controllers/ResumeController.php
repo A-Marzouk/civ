@@ -80,7 +80,6 @@ class ResumeController extends Controller
             $user = User::withAllRelations($username, $this->getVersionID($version, $user->id));
             $theme = Theme::find($this->getVersionThemeID($version, $user->id));
             $themeCode = $theme ? $theme->code : '1001' ;
-
             return view('defaultThemes.theme' . $themeCode, compact('user','is_preview'));
         }else{
             return abort(404);
@@ -97,7 +96,7 @@ class ResumeController extends Controller
 
         $resumeURL = ResumeLink::where($whereData)->first();
         if($resumeURL){
-           return $resumeURL->id;
+           return $resumeURL->theme_id;
         }
 
         return 1 ;
@@ -105,9 +104,6 @@ class ResumeController extends Controller
 
     protected function getVersionID($version, $user_id){
         // check if this version exists:
-        if($version == ''){
-            return '';
-        }
         $whereData = [
             ['url', $version],
             ['user_id', $user_id]
