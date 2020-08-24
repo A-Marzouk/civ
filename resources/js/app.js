@@ -37,6 +37,8 @@ if ($("#pricing").length !== 0) {
     });
 }
 
+
+
 import subscriptionModal from './components/resume_builder/tabs/includes/SubscriptionModal';
 if ($("#subscription_modal").length !== 0) {
     new Vue({
