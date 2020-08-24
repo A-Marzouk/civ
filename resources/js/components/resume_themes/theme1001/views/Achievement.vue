@@ -79,11 +79,12 @@
 
 /* left */
 .card__left {
+  
 }
 
 .certificate_img {
-  height: 100%;
-  width: 100%;
+  height: auto;
+  width: auto;
 }
 
 /* right */
@@ -103,17 +104,20 @@
 /* md screen */
 @media only screen and (max-width: 1600px) {
   .achievement__card {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  .card__title {
-    text-align: center;
+/* md screen */
+@media only screen and (max-width: 1137px) {
+  .achievement_container {
+    grid-template-columns: 1fr;
   }
 }
 
 /* sm screen */
-@media only screen and (max-width: 650px) {
-  .achievement_container {
+@media only screen and (max-width: 700px) {
+  .achievement__card {
     grid-template-columns: 1fr;
   }
 
