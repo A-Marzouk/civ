@@ -36,7 +36,28 @@ width: 100% !important;
 <!-- Body content -->
 <tr>
 <td class="content-cell">
-{{ Illuminate\Mail\Markdown::parse($slot) }}
+<!-- {{ Illuminate\Mail\Markdown::parse($slot) }} -->
+<h1>Password Reset</h1>
+<hr class="custom-hrline">
+<h2>Hi John,</h2>
+<p class="custom-msg-content">
+You recently requested a link to reset your civ.ie password.
+Please set a new password by the link below:
+</p>
+<p class="reset-link"><a href="http://www.civ.ie/password/reset/5dfg789sfsdrsfsfd/edit">
+http://www.civ.ie/password/reset/5dfg789sfsdrsfsfd/edit
+</a></p>
+
+<p>
+    <a href="#" class="btn-change-password">Change Password</a>
+</p>
+
+<p class="custom-msg-content">
+Kindest regards,
+<br>
+civ.team
+</p>
+
 
 {{ $subcopy ?? '' }}
 </td>

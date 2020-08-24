@@ -21,7 +21,13 @@
 {{-- Footer --}}
 @slot('footer')
 @component('mail::footer')
-<div>
+<div class="custom-footer">
+    This email was sent to <a>johnsmith@email.com</a>
+    <br>
+    Update <a>subscription</a> prefences
+    <br>
+    Please do not reply to this email. | Need help? Visit our <a>FAQ</a>
+    <br>
     © {{ date('Y') }} civ.ie | @lang('All rights reserved.')
 </div>
 
