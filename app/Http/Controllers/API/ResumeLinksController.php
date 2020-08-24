@@ -102,6 +102,7 @@ class ResumeLinksController extends Controller
         return Validator::make($data, [
             'url' => 'required|string|alpha_dash|max:255|min:3|unique:resume_links,url,'.$data['id'].',id,user_id,'.$data['user_id'],
             'is_public' => ['max:255'],
+            'title' => ['max:255'],
             'order' => ['max:255'],
         ]);
     }

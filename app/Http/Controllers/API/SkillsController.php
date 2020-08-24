@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Skill as SkillResource;
 use App\Skill;
+use App\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,11 +47,10 @@ class SkillsController extends Controller
         $this->validator($request->all())->validate();
 
         if($request->isMethod('put') || $request->id != ''){
-            // update
             $skill = Skill::findOrFail($request->id);
             $skill->update($request->toArray());
         }else{
-            // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $skill =Skill::create($request->toArray());
         }
 
@@ -61,9 +61,14 @@ class SkillsController extends Controller
 
     public function storeMany(Request $request)
     {
-        if(Skill::insert($request->toArray())){
-           return ['status' =>'success'];
+
+        foreach ($request->toArray() as $skill){
+            $this->validator($skill)->validate();
+            $skill['resume_link_id'] = User::find($skill['user_id'])->resume_link_id;
+            Skill::create($skill);
         }
+
+        return ['status' =>'success'];
 
     }
 

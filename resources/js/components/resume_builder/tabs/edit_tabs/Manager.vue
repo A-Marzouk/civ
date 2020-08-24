@@ -121,8 +121,8 @@
                         class="resume-builder__input civie-select"
                         outlined
                         placeholder="Default resume currently edited"
-                        :items="resumeLinks.filter((item) => {return item.url !== ''})"
-                        item-text="url"
+                        :items="resumeLinks"
+                        item-text="title"
                         item-value="id"
                         label="Select default resume"
                         color="#001CE2"
@@ -238,6 +238,7 @@
                             if(link.id === this.updatedResumeLinkID){
                                 this.user.default_resume_link = link ;
                             }
+                            this.$store.dispatch("setCurrentUser", this.user.id);
                         });
                         this.$store.dispatch("flyingNotification");
                     })
@@ -275,8 +276,6 @@
                                 this.resumeLinks.splice(index, 1);
                             }
                         });
-
-                        this.closeOptionsBtn();
                     })
                     .catch(error => {
                         console.log(error);
@@ -290,6 +289,7 @@
                     edit = true;
                 }
                 this.editedResumeLink.user_id = this.user.id;
+                this.editedResumeLink.title   = this.editedResumeLink.url;
 
                 axios.post("/api/user/resume-links", this.editedResumeLink)
                     .then(response => {
@@ -324,7 +324,6 @@
                 axios.put("/api/user/resume-links", link)
                     .then(response => {
                         this.$store.dispatch("flyingNotification");
-                        this.closeOptionsBtn();
                     })
                     .catch(error => {
                         if (typeof error.response.data === "object") {

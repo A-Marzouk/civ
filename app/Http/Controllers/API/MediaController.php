@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\classes\Upload;
 use App\Http\Controllers\Controller;
 use App\Media;
+use App\User;
 use Exception;
 use App\Http\Resources\Media as MediaResource;
 use Illuminate\Http\Request;
@@ -47,6 +48,7 @@ class MediaController extends Controller
             $media->update($request->toArray());
         }else{
             // add
+            $request['resume_link_id'] = User::find($request->user_id)->resume_link_id;
             $media = Media::create($request->toArray());
 
             if($request->hasfile('mediaFile')) {

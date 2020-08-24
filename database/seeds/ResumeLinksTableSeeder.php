@@ -12,7 +12,6 @@ class ResumeLinksTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(ResumeLink::class,3)->create();
 
     }
 }

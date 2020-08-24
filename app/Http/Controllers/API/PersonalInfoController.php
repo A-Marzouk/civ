@@ -43,7 +43,10 @@ class PersonalInfoController extends Controller
         $this->validator($request->all())->validate();
         $user = User::find($request->user_id);
 
-        $personalInfo = $user->personalInfo;
+        $personalInfo = PersonalInfo::where([
+            ['user_id',$user->id],
+            ['resume_link_id', $user->resume_link_id]
+        ])->first();
         if($request->isMethod('put')){
             $personalInfo->update($request->toArray());
         }
