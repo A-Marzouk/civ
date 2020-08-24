@@ -11,10 +11,7 @@
 |
 */
 
-
-
 Auth::routes(['verify' => true]);
-
 
 // public routes
 Route::get('/preview/{theme_id}/{slug?}', 'ResumeController@themePreview'); // resume preview
@@ -34,6 +31,7 @@ Route::get('/', 'HomeController@welcome')->name('home');
 Route::get('/pricing', 'HomeController@pricing')->name('pricing');
 Route::get('/privacy', 'HomeController@privacy')->name('privacy');
 Route::get('/terms', 'HomeController@terms')->name('terms');
+
 
 
 // social sites register & login:

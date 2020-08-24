@@ -100,9 +100,24 @@
 
         <div class="links-content resume-builder__scroll" v-if="activeTab === 'URLs'">
 
-            <div class="link-inputs-row">
-                <v-text-field class="resume-builder__input civie-input" outlined color="#001CE2" :class="{'resume-builder__input--disabled': false}" :disabled="false" label="URL" placeholder="Unique URL segment" :error="!!errors.url" :error-messages="errors.url" v-model="editedResumeLink.url">
-                </v-text-field>
+            <div class="d-flex flex-wrap align-items-center justify-content-between" style="max-width: 450px; margin-bottom: 30px;">
+                <div>
+                    <span class="v-label v-label--active theme--light" style="color: #888DB1; font-size: 16px;">
+                    URL
+                </span>
+                    <v-text-field
+                            class="resume-builder__input top-input-margin url" style="margin-top: -25px; max-width: 310px;"
+                            :outlined="true"
+                            :class="{'resume-builder__input--disabled': false}"
+                            :error="!!errors.url"
+                            :error-messages="errors.url"
+                            v-model="editedResumeLink.url"
+                    >
+                        <template slot="prepend-inner">
+                            <span class="inner-text" style="margin-top:-4.8px;">civ.ie/{{user.username}}/</span>
+                        </template>
+                    </v-text-field>
+                </div>
 
                 <div class="d-flex mt-1">
                     <v-btn class="resume-builder__btn civie-btn filled" depressed raised @click="saveLink">
@@ -116,15 +131,15 @@
                 </div>
             </div>
 
-            <div style="max-width: 600px; margin-bottom:40px;" v-if="resumeLinks" >
+            <div style="max-width: 450px; margin-bottom:40px;" v-if="resumeLinks" >
                 <v-select
                         class="resume-builder__input civie-select"
                         outlined
-                        placeholder="Default resume currently edited"
+                        placeholder="Active CV"
                         :items="resumeLinks"
-                        item-text="title"
+                        :item-text="selectionTitle"
                         item-value="id"
-                        label="Select default resume"
+                        label="Select Active CV"
                         color="#001CE2"
                         @change="updateDefaultResumeURl"
                         v-model="defaultResumeLinkID"
@@ -221,6 +236,13 @@
             }
         },
         methods: {
+            selectionTitle(item){
+                if(item.title === 'civ.ie/' || item.title === 'default'){
+                    return 'civ.ie/' + this.user.username;
+                }else {
+                    return 'civ.ie/' + this.user.username + '/' + item.title;
+                }
+            },
             getFormattedData(date) {
                 let d = new Date(date);
                 return d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear() ;
