@@ -42,6 +42,10 @@ export default {
     setActiveTabByURL(){
       let currentParam = this.$route.query['current-view'];
 
+      if(!currentParam){
+        return;
+      }
+
       if(currentParam.includes('education') || currentParam.includes('experience')){
         this.activeTab = 'experience-education';
       }
